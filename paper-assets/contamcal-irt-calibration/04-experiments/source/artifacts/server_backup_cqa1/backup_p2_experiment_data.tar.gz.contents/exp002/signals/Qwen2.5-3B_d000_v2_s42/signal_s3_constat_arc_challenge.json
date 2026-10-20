@@ -1,0 +1,7669 @@
+[
+  {
+    "item_id": "arc_challenge_0000",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 0
+    }
+  },
+  {
+    "item_id": "arc_challenge_0002",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 2
+    }
+  },
+  {
+    "item_id": "arc_challenge_0005",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 5
+    }
+  },
+  {
+    "item_id": "arc_challenge_0006",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 6
+    }
+  },
+  {
+    "item_id": "arc_challenge_0007",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 7
+    }
+  },
+  {
+    "item_id": "arc_challenge_0008",
+    "signal": "s3_constat",
+    "score": 0.5,
+    "metadata": {
+      "orig_accuracy": 0.5,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 8
+    }
+  },
+  {
+    "item_id": "arc_challenge_0009",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 9
+    }
+  },
+  {
+    "item_id": "arc_challenge_0010",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 10
+    }
+  },
+  {
+    "item_id": "arc_challenge_0012",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 12
+    }
+  },
+  {
+    "item_id": "arc_challenge_0014",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 14
+    }
+  },
+  {
+    "item_id": "arc_challenge_0015",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 15
+    }
+  },
+  {
+    "item_id": "arc_challenge_0016",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 16
+    }
+  },
+  {
+    "item_id": "arc_challenge_0020",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 20
+    }
+  },
+  {
+    "item_id": "arc_challenge_0023",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 23
+    }
+  },
+  {
+    "item_id": "arc_challenge_0025",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 25
+    }
+  },
+  {
+    "item_id": "arc_challenge_0027",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 27
+    }
+  },
+  {
+    "item_id": "arc_challenge_0028",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 28
+    }
+  },
+  {
+    "item_id": "arc_challenge_0029",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 29
+    }
+  },
+  {
+    "item_id": "arc_challenge_0030",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 30
+    }
+  },
+  {
+    "item_id": "arc_challenge_0031",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 31
+    }
+  },
+  {
+    "item_id": "arc_challenge_0035",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 35
+    }
+  },
+  {
+    "item_id": "arc_challenge_0036",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 36
+    }
+  },
+  {
+    "item_id": "arc_challenge_0038",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 38
+    }
+  },
+  {
+    "item_id": "arc_challenge_0039",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 39
+    }
+  },
+  {
+    "item_id": "arc_challenge_0043",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 43
+    }
+  },
+  {
+    "item_id": "arc_challenge_0045",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 45
+    }
+  },
+  {
+    "item_id": "arc_challenge_0052",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 52
+    }
+  },
+  {
+    "item_id": "arc_challenge_0054",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 54
+    }
+  },
+  {
+    "item_id": "arc_challenge_0055",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 55
+    }
+  },
+  {
+    "item_id": "arc_challenge_0057",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 57
+    }
+  },
+  {
+    "item_id": "arc_challenge_0060",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 60
+    }
+  },
+  {
+    "item_id": "arc_challenge_0061",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 61
+    }
+  },
+  {
+    "item_id": "arc_challenge_0062",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 62
+    }
+  },
+  {
+    "item_id": "arc_challenge_0063",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 63
+    }
+  },
+  {
+    "item_id": "arc_challenge_0064",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 64
+    }
+  },
+  {
+    "item_id": "arc_challenge_0065",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 65
+    }
+  },
+  {
+    "item_id": "arc_challenge_0066",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 66
+    }
+  },
+  {
+    "item_id": "arc_challenge_0067",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 67
+    }
+  },
+  {
+    "item_id": "arc_challenge_0069",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 69
+    }
+  },
+  {
+    "item_id": "arc_challenge_0072",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 72
+    }
+  },
+  {
+    "item_id": "arc_challenge_0074",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 74
+    }
+  },
+  {
+    "item_id": "arc_challenge_0076",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 76
+    }
+  },
+  {
+    "item_id": "arc_challenge_0077",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 77
+    }
+  },
+  {
+    "item_id": "arc_challenge_0078",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 78
+    }
+  },
+  {
+    "item_id": "arc_challenge_0079",
+    "signal": "s3_constat",
+    "score": -1.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 79
+    }
+  },
+  {
+    "item_id": "arc_challenge_0080",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 80
+    }
+  },
+  {
+    "item_id": "arc_challenge_0081",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 81
+    }
+  },
+  {
+    "item_id": "arc_challenge_0082",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 82
+    }
+  },
+  {
+    "item_id": "arc_challenge_0083",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 83
+    }
+  },
+  {
+    "item_id": "arc_challenge_0084",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 84
+    }
+  },
+  {
+    "item_id": "arc_challenge_0086",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 86
+    }
+  },
+  {
+    "item_id": "arc_challenge_0088",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 88
+    }
+  },
+  {
+    "item_id": "arc_challenge_0089",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 89
+    }
+  },
+  {
+    "item_id": "arc_challenge_0090",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 90
+    }
+  },
+  {
+    "item_id": "arc_challenge_0091",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 91
+    }
+  },
+  {
+    "item_id": "arc_challenge_0092",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 92
+    }
+  },
+  {
+    "item_id": "arc_challenge_0093",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 93
+    }
+  },
+  {
+    "item_id": "arc_challenge_0095",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 95
+    }
+  },
+  {
+    "item_id": "arc_challenge_0096",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 96
+    }
+  },
+  {
+    "item_id": "arc_challenge_0099",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 99
+    }
+  },
+  {
+    "item_id": "arc_challenge_0101",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 101
+    }
+  },
+  {
+    "item_id": "arc_challenge_0102",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 102
+    }
+  },
+  {
+    "item_id": "arc_challenge_0103",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 103
+    }
+  },
+  {
+    "item_id": "arc_challenge_0104",
+    "signal": "s3_constat",
+    "score": -1.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 104
+    }
+  },
+  {
+    "item_id": "arc_challenge_0105",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 105
+    }
+  },
+  {
+    "item_id": "arc_challenge_0106",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 106
+    }
+  },
+  {
+    "item_id": "arc_challenge_0107",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 107
+    }
+  },
+  {
+    "item_id": "arc_challenge_0108",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 108
+    }
+  },
+  {
+    "item_id": "arc_challenge_0110",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 110
+    }
+  },
+  {
+    "item_id": "arc_challenge_0111",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 111
+    }
+  },
+  {
+    "item_id": "arc_challenge_0112",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 112
+    }
+  },
+  {
+    "item_id": "arc_challenge_0113",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 113
+    }
+  },
+  {
+    "item_id": "arc_challenge_0114",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 114
+    }
+  },
+  {
+    "item_id": "arc_challenge_0118",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 118
+    }
+  },
+  {
+    "item_id": "arc_challenge_0119",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 119
+    }
+  },
+  {
+    "item_id": "arc_challenge_0120",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 120
+    }
+  },
+  {
+    "item_id": "arc_challenge_0122",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 122
+    }
+  },
+  {
+    "item_id": "arc_challenge_0123",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 123
+    }
+  },
+  {
+    "item_id": "arc_challenge_0125",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 125
+    }
+  },
+  {
+    "item_id": "arc_challenge_0128",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 128
+    }
+  },
+  {
+    "item_id": "arc_challenge_0129",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 129
+    }
+  },
+  {
+    "item_id": "arc_challenge_0132",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 132
+    }
+  },
+  {
+    "item_id": "arc_challenge_0133",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 133
+    }
+  },
+  {
+    "item_id": "arc_challenge_0135",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 135
+    }
+  },
+  {
+    "item_id": "arc_challenge_0136",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 136
+    }
+  },
+  {
+    "item_id": "arc_challenge_0137",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 137
+    }
+  },
+  {
+    "item_id": "arc_challenge_0140",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 140
+    }
+  },
+  {
+    "item_id": "arc_challenge_0143",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 143
+    }
+  },
+  {
+    "item_id": "arc_challenge_0144",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 144
+    }
+  },
+  {
+    "item_id": "arc_challenge_0146",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 146
+    }
+  },
+  {
+    "item_id": "arc_challenge_0148",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 148
+    }
+  },
+  {
+    "item_id": "arc_challenge_0151",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 151
+    }
+  },
+  {
+    "item_id": "arc_challenge_0152",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 152
+    }
+  },
+  {
+    "item_id": "arc_challenge_0153",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 153
+    }
+  },
+  {
+    "item_id": "arc_challenge_0156",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 156
+    }
+  },
+  {
+    "item_id": "arc_challenge_0159",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 159
+    }
+  },
+  {
+    "item_id": "arc_challenge_0160",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 160
+    }
+  },
+  {
+    "item_id": "arc_challenge_0162",
+    "signal": "s3_constat",
+    "score": -1.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 162
+    }
+  },
+  {
+    "item_id": "arc_challenge_0166",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 166
+    }
+  },
+  {
+    "item_id": "arc_challenge_0167",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 167
+    }
+  },
+  {
+    "item_id": "arc_challenge_0168",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 168
+    }
+  },
+  {
+    "item_id": "arc_challenge_0170",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 170
+    }
+  },
+  {
+    "item_id": "arc_challenge_0172",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 172
+    }
+  },
+  {
+    "item_id": "arc_challenge_0178",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 178
+    }
+  },
+  {
+    "item_id": "arc_challenge_0182",
+    "signal": "s3_constat",
+    "score": 0.5,
+    "metadata": {
+      "orig_accuracy": 0.5,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 182
+    }
+  },
+  {
+    "item_id": "arc_challenge_0184",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 184
+    }
+  },
+  {
+    "item_id": "arc_challenge_0185",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 185
+    }
+  },
+  {
+    "item_id": "arc_challenge_0186",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 186
+    }
+  },
+  {
+    "item_id": "arc_challenge_0187",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 187
+    }
+  },
+  {
+    "item_id": "arc_challenge_0189",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 189
+    }
+  },
+  {
+    "item_id": "arc_challenge_0190",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 190
+    }
+  },
+  {
+    "item_id": "arc_challenge_0191",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 191
+    }
+  },
+  {
+    "item_id": "arc_challenge_0192",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 192
+    }
+  },
+  {
+    "item_id": "arc_challenge_0193",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 193
+    }
+  },
+  {
+    "item_id": "arc_challenge_0195",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 195
+    }
+  },
+  {
+    "item_id": "arc_challenge_0196",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 196
+    }
+  },
+  {
+    "item_id": "arc_challenge_0198",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 198
+    }
+  },
+  {
+    "item_id": "arc_challenge_0200",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 200
+    }
+  },
+  {
+    "item_id": "arc_challenge_0201",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 201
+    }
+  },
+  {
+    "item_id": "arc_challenge_0203",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 203
+    }
+  },
+  {
+    "item_id": "arc_challenge_0204",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 204
+    }
+  },
+  {
+    "item_id": "arc_challenge_0205",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 205
+    }
+  },
+  {
+    "item_id": "arc_challenge_0210",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 210
+    }
+  },
+  {
+    "item_id": "arc_challenge_0212",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 212
+    }
+  },
+  {
+    "item_id": "arc_challenge_0214",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 214
+    }
+  },
+  {
+    "item_id": "arc_challenge_0215",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 215
+    }
+  },
+  {
+    "item_id": "arc_challenge_0217",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 217
+    }
+  },
+  {
+    "item_id": "arc_challenge_0220",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 220
+    }
+  },
+  {
+    "item_id": "arc_challenge_0223",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 223
+    }
+  },
+  {
+    "item_id": "arc_challenge_0226",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 226
+    }
+  },
+  {
+    "item_id": "arc_challenge_0228",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 228
+    }
+  },
+  {
+    "item_id": "arc_challenge_0229",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 229
+    }
+  },
+  {
+    "item_id": "arc_challenge_0230",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 230
+    }
+  },
+  {
+    "item_id": "arc_challenge_0231",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 231
+    }
+  },
+  {
+    "item_id": "arc_challenge_0232",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 232
+    }
+  },
+  {
+    "item_id": "arc_challenge_0235",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 235
+    }
+  },
+  {
+    "item_id": "arc_challenge_0236",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 236
+    }
+  },
+  {
+    "item_id": "arc_challenge_0237",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 237
+    }
+  },
+  {
+    "item_id": "arc_challenge_0238",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 238
+    }
+  },
+  {
+    "item_id": "arc_challenge_0239",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 239
+    }
+  },
+  {
+    "item_id": "arc_challenge_0240",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 240
+    }
+  },
+  {
+    "item_id": "arc_challenge_0241",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 241
+    }
+  },
+  {
+    "item_id": "arc_challenge_0243",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 243
+    }
+  },
+  {
+    "item_id": "arc_challenge_0245",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 245
+    }
+  },
+  {
+    "item_id": "arc_challenge_0246",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 246
+    }
+  },
+  {
+    "item_id": "arc_challenge_0247",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 247
+    }
+  },
+  {
+    "item_id": "arc_challenge_0249",
+    "signal": "s3_constat",
+    "score": 0.5,
+    "metadata": {
+      "orig_accuracy": 0.5,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 249
+    }
+  },
+  {
+    "item_id": "arc_challenge_0250",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 250
+    }
+  },
+  {
+    "item_id": "arc_challenge_0251",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 251
+    }
+  },
+  {
+    "item_id": "arc_challenge_0252",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 252
+    }
+  },
+  {
+    "item_id": "arc_challenge_0254",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 254
+    }
+  },
+  {
+    "item_id": "arc_challenge_0255",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 255
+    }
+  },
+  {
+    "item_id": "arc_challenge_0256",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 256
+    }
+  },
+  {
+    "item_id": "arc_challenge_0257",
+    "signal": "s3_constat",
+    "score": 0.5,
+    "metadata": {
+      "orig_accuracy": 0.5,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 257
+    }
+  },
+  {
+    "item_id": "arc_challenge_0258",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 258
+    }
+  },
+  {
+    "item_id": "arc_challenge_0260",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 260
+    }
+  },
+  {
+    "item_id": "arc_challenge_0261",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 261
+    }
+  },
+  {
+    "item_id": "arc_challenge_0262",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 262
+    }
+  },
+  {
+    "item_id": "arc_challenge_0263",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 263
+    }
+  },
+  {
+    "item_id": "arc_challenge_0264",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 264
+    }
+  },
+  {
+    "item_id": "arc_challenge_0265",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 265
+    }
+  },
+  {
+    "item_id": "arc_challenge_0266",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 266
+    }
+  },
+  {
+    "item_id": "arc_challenge_0272",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 272
+    }
+  },
+  {
+    "item_id": "arc_challenge_0273",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 273
+    }
+  },
+  {
+    "item_id": "arc_challenge_0274",
+    "signal": "s3_constat",
+    "score": 0.5,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.5,
+      "n_seeds": 2,
+      "original_index": 274
+    }
+  },
+  {
+    "item_id": "arc_challenge_0275",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 275
+    }
+  },
+  {
+    "item_id": "arc_challenge_0278",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 278
+    }
+  },
+  {
+    "item_id": "arc_challenge_0279",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 279
+    }
+  },
+  {
+    "item_id": "arc_challenge_0280",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 280
+    }
+  },
+  {
+    "item_id": "arc_challenge_0281",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 281
+    }
+  },
+  {
+    "item_id": "arc_challenge_0282",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 282
+    }
+  },
+  {
+    "item_id": "arc_challenge_0283",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 283
+    }
+  },
+  {
+    "item_id": "arc_challenge_0284",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 284
+    }
+  },
+  {
+    "item_id": "arc_challenge_0287",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 287
+    }
+  },
+  {
+    "item_id": "arc_challenge_0288",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 288
+    }
+  },
+  {
+    "item_id": "arc_challenge_0290",
+    "signal": "s3_constat",
+    "score": -1.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 290
+    }
+  },
+  {
+    "item_id": "arc_challenge_0293",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 293
+    }
+  },
+  {
+    "item_id": "arc_challenge_0294",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 294
+    }
+  },
+  {
+    "item_id": "arc_challenge_0295",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 295
+    }
+  },
+  {
+    "item_id": "arc_challenge_0296",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 296
+    }
+  },
+  {
+    "item_id": "arc_challenge_0297",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 297
+    }
+  },
+  {
+    "item_id": "arc_challenge_0299",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.5,
+      "para_accuracy": 0.5,
+      "n_seeds": 2,
+      "original_index": 299
+    }
+  },
+  {
+    "item_id": "arc_challenge_0300",
+    "signal": "s3_constat",
+    "score": 0.5,
+    "metadata": {
+      "orig_accuracy": 0.5,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 300
+    }
+  },
+  {
+    "item_id": "arc_challenge_0301",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 301
+    }
+  },
+  {
+    "item_id": "arc_challenge_0302",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 302
+    }
+  },
+  {
+    "item_id": "arc_challenge_0303",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 303
+    }
+  },
+  {
+    "item_id": "arc_challenge_0306",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 306
+    }
+  },
+  {
+    "item_id": "arc_challenge_0308",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 308
+    }
+  },
+  {
+    "item_id": "arc_challenge_0313",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 313
+    }
+  },
+  {
+    "item_id": "arc_challenge_0315",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 315
+    }
+  },
+  {
+    "item_id": "arc_challenge_0316",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 316
+    }
+  },
+  {
+    "item_id": "arc_challenge_0317",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 317
+    }
+  },
+  {
+    "item_id": "arc_challenge_0318",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 318
+    }
+  },
+  {
+    "item_id": "arc_challenge_0320",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 320
+    }
+  },
+  {
+    "item_id": "arc_challenge_0321",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 321
+    }
+  },
+  {
+    "item_id": "arc_challenge_0322",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 322
+    }
+  },
+  {
+    "item_id": "arc_challenge_0323",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 323
+    }
+  },
+  {
+    "item_id": "arc_challenge_0330",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 330
+    }
+  },
+  {
+    "item_id": "arc_challenge_0331",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 331
+    }
+  },
+  {
+    "item_id": "arc_challenge_0332",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 332
+    }
+  },
+  {
+    "item_id": "arc_challenge_0333",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 333
+    }
+  },
+  {
+    "item_id": "arc_challenge_0334",
+    "signal": "s3_constat",
+    "score": -0.5,
+    "metadata": {
+      "orig_accuracy": 0.5,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 334
+    }
+  },
+  {
+    "item_id": "arc_challenge_0337",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 337
+    }
+  },
+  {
+    "item_id": "arc_challenge_0340",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 340
+    }
+  },
+  {
+    "item_id": "arc_challenge_0344",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 344
+    }
+  },
+  {
+    "item_id": "arc_challenge_0345",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 345
+    }
+  },
+  {
+    "item_id": "arc_challenge_0348",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 348
+    }
+  },
+  {
+    "item_id": "arc_challenge_0349",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 349
+    }
+  },
+  {
+    "item_id": "arc_challenge_0350",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 350
+    }
+  },
+  {
+    "item_id": "arc_challenge_0351",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 351
+    }
+  },
+  {
+    "item_id": "arc_challenge_0352",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 352
+    }
+  },
+  {
+    "item_id": "arc_challenge_0355",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 355
+    }
+  },
+  {
+    "item_id": "arc_challenge_0359",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 359
+    }
+  },
+  {
+    "item_id": "arc_challenge_0364",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 364
+    }
+  },
+  {
+    "item_id": "arc_challenge_0368",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 368
+    }
+  },
+  {
+    "item_id": "arc_challenge_0370",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 370
+    }
+  },
+  {
+    "item_id": "arc_challenge_0371",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 371
+    }
+  },
+  {
+    "item_id": "arc_challenge_0373",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 373
+    }
+  },
+  {
+    "item_id": "arc_challenge_0374",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 374
+    }
+  },
+  {
+    "item_id": "arc_challenge_0375",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 375
+    }
+  },
+  {
+    "item_id": "arc_challenge_0376",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 376
+    }
+  },
+  {
+    "item_id": "arc_challenge_0377",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 377
+    }
+  },
+  {
+    "item_id": "arc_challenge_0382",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 382
+    }
+  },
+  {
+    "item_id": "arc_challenge_0383",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 383
+    }
+  },
+  {
+    "item_id": "arc_challenge_0384",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 384
+    }
+  },
+  {
+    "item_id": "arc_challenge_0385",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 385
+    }
+  },
+  {
+    "item_id": "arc_challenge_0386",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 386
+    }
+  },
+  {
+    "item_id": "arc_challenge_0390",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 390
+    }
+  },
+  {
+    "item_id": "arc_challenge_0391",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 391
+    }
+  },
+  {
+    "item_id": "arc_challenge_0392",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 392
+    }
+  },
+  {
+    "item_id": "arc_challenge_0393",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 393
+    }
+  },
+  {
+    "item_id": "arc_challenge_0398",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 398
+    }
+  },
+  {
+    "item_id": "arc_challenge_0399",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 399
+    }
+  },
+  {
+    "item_id": "arc_challenge_0401",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 401
+    }
+  },
+  {
+    "item_id": "arc_challenge_0402",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 402
+    }
+  },
+  {
+    "item_id": "arc_challenge_0403",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 403
+    }
+  },
+  {
+    "item_id": "arc_challenge_0404",
+    "signal": "s3_constat",
+    "score": -1.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 404
+    }
+  },
+  {
+    "item_id": "arc_challenge_0407",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 407
+    }
+  },
+  {
+    "item_id": "arc_challenge_0410",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 410
+    }
+  },
+  {
+    "item_id": "arc_challenge_0411",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 411
+    }
+  },
+  {
+    "item_id": "arc_challenge_0413",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 413
+    }
+  },
+  {
+    "item_id": "arc_challenge_0416",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 416
+    }
+  },
+  {
+    "item_id": "arc_challenge_0419",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 419
+    }
+  },
+  {
+    "item_id": "arc_challenge_0421",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 421
+    }
+  },
+  {
+    "item_id": "arc_challenge_0422",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 422
+    }
+  },
+  {
+    "item_id": "arc_challenge_0424",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 424
+    }
+  },
+  {
+    "item_id": "arc_challenge_0425",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 425
+    }
+  },
+  {
+    "item_id": "arc_challenge_0427",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 427
+    }
+  },
+  {
+    "item_id": "arc_challenge_0428",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 428
+    }
+  },
+  {
+    "item_id": "arc_challenge_0430",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 430
+    }
+  },
+  {
+    "item_id": "arc_challenge_0432",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 432
+    }
+  },
+  {
+    "item_id": "arc_challenge_0433",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 433
+    }
+  },
+  {
+    "item_id": "arc_challenge_0434",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 434
+    }
+  },
+  {
+    "item_id": "arc_challenge_0443",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 443
+    }
+  },
+  {
+    "item_id": "arc_challenge_0446",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 446
+    }
+  },
+  {
+    "item_id": "arc_challenge_0447",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 447
+    }
+  },
+  {
+    "item_id": "arc_challenge_0448",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 448
+    }
+  },
+  {
+    "item_id": "arc_challenge_0449",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 449
+    }
+  },
+  {
+    "item_id": "arc_challenge_0450",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 450
+    }
+  },
+  {
+    "item_id": "arc_challenge_0455",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 455
+    }
+  },
+  {
+    "item_id": "arc_challenge_0456",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 456
+    }
+  },
+  {
+    "item_id": "arc_challenge_0458",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 458
+    }
+  },
+  {
+    "item_id": "arc_challenge_0459",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 459
+    }
+  },
+  {
+    "item_id": "arc_challenge_0461",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 461
+    }
+  },
+  {
+    "item_id": "arc_challenge_0464",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 464
+    }
+  },
+  {
+    "item_id": "arc_challenge_0465",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 465
+    }
+  },
+  {
+    "item_id": "arc_challenge_0467",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 467
+    }
+  },
+  {
+    "item_id": "arc_challenge_0468",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 468
+    }
+  },
+  {
+    "item_id": "arc_challenge_0470",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 470
+    }
+  },
+  {
+    "item_id": "arc_challenge_0472",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 472
+    }
+  },
+  {
+    "item_id": "arc_challenge_0473",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 473
+    }
+  },
+  {
+    "item_id": "arc_challenge_0474",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 474
+    }
+  },
+  {
+    "item_id": "arc_challenge_0475",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 475
+    }
+  },
+  {
+    "item_id": "arc_challenge_0480",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 480
+    }
+  },
+  {
+    "item_id": "arc_challenge_0481",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 481
+    }
+  },
+  {
+    "item_id": "arc_challenge_0482",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 482
+    }
+  },
+  {
+    "item_id": "arc_challenge_0483",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 483
+    }
+  },
+  {
+    "item_id": "arc_challenge_0484",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 484
+    }
+  },
+  {
+    "item_id": "arc_challenge_0485",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 485
+    }
+  },
+  {
+    "item_id": "arc_challenge_0486",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 486
+    }
+  },
+  {
+    "item_id": "arc_challenge_0489",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 489
+    }
+  },
+  {
+    "item_id": "arc_challenge_0490",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 490
+    }
+  },
+  {
+    "item_id": "arc_challenge_0492",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 492
+    }
+  },
+  {
+    "item_id": "arc_challenge_0494",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 494
+    }
+  },
+  {
+    "item_id": "arc_challenge_0496",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 496
+    }
+  },
+  {
+    "item_id": "arc_challenge_0500",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 500
+    }
+  },
+  {
+    "item_id": "arc_challenge_0501",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 501
+    }
+  },
+  {
+    "item_id": "arc_challenge_0503",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 503
+    }
+  },
+  {
+    "item_id": "arc_challenge_0504",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 504
+    }
+  },
+  {
+    "item_id": "arc_challenge_0505",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 505
+    }
+  },
+  {
+    "item_id": "arc_challenge_0506",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 506
+    }
+  },
+  {
+    "item_id": "arc_challenge_0508",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 508
+    }
+  },
+  {
+    "item_id": "arc_challenge_0509",
+    "signal": "s3_constat",
+    "score": -1.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 509
+    }
+  },
+  {
+    "item_id": "arc_challenge_0510",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 510
+    }
+  },
+  {
+    "item_id": "arc_challenge_0511",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 511
+    }
+  },
+  {
+    "item_id": "arc_challenge_0512",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 512
+    }
+  },
+  {
+    "item_id": "arc_challenge_0521",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 521
+    }
+  },
+  {
+    "item_id": "arc_challenge_0523",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 523
+    }
+  },
+  {
+    "item_id": "arc_challenge_0524",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 524
+    }
+  },
+  {
+    "item_id": "arc_challenge_0525",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 525
+    }
+  },
+  {
+    "item_id": "arc_challenge_0526",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 526
+    }
+  },
+  {
+    "item_id": "arc_challenge_0527",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 527
+    }
+  },
+  {
+    "item_id": "arc_challenge_0528",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 528
+    }
+  },
+  {
+    "item_id": "arc_challenge_0529",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 529
+    }
+  },
+  {
+    "item_id": "arc_challenge_0532",
+    "signal": "s3_constat",
+    "score": 0.5,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.5,
+      "n_seeds": 2,
+      "original_index": 532
+    }
+  },
+  {
+    "item_id": "arc_challenge_0533",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 533
+    }
+  },
+  {
+    "item_id": "arc_challenge_0534",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 534
+    }
+  },
+  {
+    "item_id": "arc_challenge_0536",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 536
+    }
+  },
+  {
+    "item_id": "arc_challenge_0537",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 537
+    }
+  },
+  {
+    "item_id": "arc_challenge_0538",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 538
+    }
+  },
+  {
+    "item_id": "arc_challenge_0539",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 539
+    }
+  },
+  {
+    "item_id": "arc_challenge_0540",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 540
+    }
+  },
+  {
+    "item_id": "arc_challenge_0541",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 541
+    }
+  },
+  {
+    "item_id": "arc_challenge_0543",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 543
+    }
+  },
+  {
+    "item_id": "arc_challenge_0544",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 544
+    }
+  },
+  {
+    "item_id": "arc_challenge_0547",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 547
+    }
+  },
+  {
+    "item_id": "arc_challenge_0548",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 548
+    }
+  },
+  {
+    "item_id": "arc_challenge_0549",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 549
+    }
+  },
+  {
+    "item_id": "arc_challenge_0550",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 550
+    }
+  },
+  {
+    "item_id": "arc_challenge_0552",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 552
+    }
+  },
+  {
+    "item_id": "arc_challenge_0555",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 555
+    }
+  },
+  {
+    "item_id": "arc_challenge_0558",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 558
+    }
+  },
+  {
+    "item_id": "arc_challenge_0560",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 560
+    }
+  },
+  {
+    "item_id": "arc_challenge_0561",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 561
+    }
+  },
+  {
+    "item_id": "arc_challenge_0562",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 562
+    }
+  },
+  {
+    "item_id": "arc_challenge_0563",
+    "signal": "s3_constat",
+    "score": -1.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 563
+    }
+  },
+  {
+    "item_id": "arc_challenge_0565",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 565
+    }
+  },
+  {
+    "item_id": "arc_challenge_0566",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 566
+    }
+  },
+  {
+    "item_id": "arc_challenge_0567",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 567
+    }
+  },
+  {
+    "item_id": "arc_challenge_0569",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 569
+    }
+  },
+  {
+    "item_id": "arc_challenge_0573",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 573
+    }
+  },
+  {
+    "item_id": "arc_challenge_0574",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 574
+    }
+  },
+  {
+    "item_id": "arc_challenge_0575",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 575
+    }
+  },
+  {
+    "item_id": "arc_challenge_0579",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 579
+    }
+  },
+  {
+    "item_id": "arc_challenge_0581",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 581
+    }
+  },
+  {
+    "item_id": "arc_challenge_0583",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 583
+    }
+  },
+  {
+    "item_id": "arc_challenge_0584",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 584
+    }
+  },
+  {
+    "item_id": "arc_challenge_0586",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 586
+    }
+  },
+  {
+    "item_id": "arc_challenge_0588",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 588
+    }
+  },
+  {
+    "item_id": "arc_challenge_0589",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 589
+    }
+  },
+  {
+    "item_id": "arc_challenge_0590",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 590
+    }
+  },
+  {
+    "item_id": "arc_challenge_0591",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 591
+    }
+  },
+  {
+    "item_id": "arc_challenge_0597",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 597
+    }
+  },
+  {
+    "item_id": "arc_challenge_0598",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 598
+    }
+  },
+  {
+    "item_id": "arc_challenge_0599",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 599
+    }
+  },
+  {
+    "item_id": "arc_challenge_0600",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 600
+    }
+  },
+  {
+    "item_id": "arc_challenge_0602",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 602
+    }
+  },
+  {
+    "item_id": "arc_challenge_0606",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 606
+    }
+  },
+  {
+    "item_id": "arc_challenge_0608",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 608
+    }
+  },
+  {
+    "item_id": "arc_challenge_0609",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.5,
+      "para_accuracy": 0.5,
+      "n_seeds": 2,
+      "original_index": 609
+    }
+  },
+  {
+    "item_id": "arc_challenge_0610",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 610
+    }
+  },
+  {
+    "item_id": "arc_challenge_0612",
+    "signal": "s3_constat",
+    "score": 0.5,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.5,
+      "n_seeds": 2,
+      "original_index": 612
+    }
+  },
+  {
+    "item_id": "arc_challenge_0613",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 613
+    }
+  },
+  {
+    "item_id": "arc_challenge_0614",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 614
+    }
+  },
+  {
+    "item_id": "arc_challenge_0615",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 615
+    }
+  },
+  {
+    "item_id": "arc_challenge_0618",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 618
+    }
+  },
+  {
+    "item_id": "arc_challenge_0620",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 620
+    }
+  },
+  {
+    "item_id": "arc_challenge_0621",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 621
+    }
+  },
+  {
+    "item_id": "arc_challenge_0624",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 624
+    }
+  },
+  {
+    "item_id": "arc_challenge_0625",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 625
+    }
+  },
+  {
+    "item_id": "arc_challenge_0628",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 628
+    }
+  },
+  {
+    "item_id": "arc_challenge_0629",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 629
+    }
+  },
+  {
+    "item_id": "arc_challenge_0631",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 631
+    }
+  },
+  {
+    "item_id": "arc_challenge_0632",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 632
+    }
+  },
+  {
+    "item_id": "arc_challenge_0633",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 633
+    }
+  },
+  {
+    "item_id": "arc_challenge_0634",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 634
+    }
+  },
+  {
+    "item_id": "arc_challenge_0635",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 635
+    }
+  },
+  {
+    "item_id": "arc_challenge_0636",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 636
+    }
+  },
+  {
+    "item_id": "arc_challenge_0637",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 637
+    }
+  },
+  {
+    "item_id": "arc_challenge_0638",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 638
+    }
+  },
+  {
+    "item_id": "arc_challenge_0640",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 640
+    }
+  },
+  {
+    "item_id": "arc_challenge_0642",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 642
+    }
+  },
+  {
+    "item_id": "arc_challenge_0643",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 643
+    }
+  },
+  {
+    "item_id": "arc_challenge_0646",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 646
+    }
+  },
+  {
+    "item_id": "arc_challenge_0649",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 649
+    }
+  },
+  {
+    "item_id": "arc_challenge_0651",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 651
+    }
+  },
+  {
+    "item_id": "arc_challenge_0653",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 653
+    }
+  },
+  {
+    "item_id": "arc_challenge_0654",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 654
+    }
+  },
+  {
+    "item_id": "arc_challenge_0655",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 655
+    }
+  },
+  {
+    "item_id": "arc_challenge_0657",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 657
+    }
+  },
+  {
+    "item_id": "arc_challenge_0658",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 658
+    }
+  },
+  {
+    "item_id": "arc_challenge_0663",
+    "signal": "s3_constat",
+    "score": -1.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 663
+    }
+  },
+  {
+    "item_id": "arc_challenge_0667",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 667
+    }
+  },
+  {
+    "item_id": "arc_challenge_0668",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 668
+    }
+  },
+  {
+    "item_id": "arc_challenge_0669",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 669
+    }
+  },
+  {
+    "item_id": "arc_challenge_0672",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 672
+    }
+  },
+  {
+    "item_id": "arc_challenge_0673",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 673
+    }
+  },
+  {
+    "item_id": "arc_challenge_0674",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 674
+    }
+  },
+  {
+    "item_id": "arc_challenge_0675",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 675
+    }
+  },
+  {
+    "item_id": "arc_challenge_0676",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 676
+    }
+  },
+  {
+    "item_id": "arc_challenge_0677",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 677
+    }
+  },
+  {
+    "item_id": "arc_challenge_0678",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 678
+    }
+  },
+  {
+    "item_id": "arc_challenge_0680",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 680
+    }
+  },
+  {
+    "item_id": "arc_challenge_0683",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 683
+    }
+  },
+  {
+    "item_id": "arc_challenge_0687",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 687
+    }
+  },
+  {
+    "item_id": "arc_challenge_0688",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 688
+    }
+  },
+  {
+    "item_id": "arc_challenge_0689",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 689
+    }
+  },
+  {
+    "item_id": "arc_challenge_0690",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 690
+    }
+  },
+  {
+    "item_id": "arc_challenge_0691",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 691
+    }
+  },
+  {
+    "item_id": "arc_challenge_0692",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 692
+    }
+  },
+  {
+    "item_id": "arc_challenge_0694",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 694
+    }
+  },
+  {
+    "item_id": "arc_challenge_0695",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 695
+    }
+  },
+  {
+    "item_id": "arc_challenge_0696",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 696
+    }
+  },
+  {
+    "item_id": "arc_challenge_0697",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 697
+    }
+  },
+  {
+    "item_id": "arc_challenge_0698",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 698
+    }
+  },
+  {
+    "item_id": "arc_challenge_0699",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 699
+    }
+  },
+  {
+    "item_id": "arc_challenge_0700",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 700
+    }
+  },
+  {
+    "item_id": "arc_challenge_0702",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 702
+    }
+  },
+  {
+    "item_id": "arc_challenge_0703",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 703
+    }
+  },
+  {
+    "item_id": "arc_challenge_0704",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 704
+    }
+  },
+  {
+    "item_id": "arc_challenge_0705",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 705
+    }
+  },
+  {
+    "item_id": "arc_challenge_0706",
+    "signal": "s3_constat",
+    "score": -1.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 706
+    }
+  },
+  {
+    "item_id": "arc_challenge_0707",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 707
+    }
+  },
+  {
+    "item_id": "arc_challenge_0709",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 709
+    }
+  },
+  {
+    "item_id": "arc_challenge_0710",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 710
+    }
+  },
+  {
+    "item_id": "arc_challenge_0712",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 712
+    }
+  },
+  {
+    "item_id": "arc_challenge_0713",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 713
+    }
+  },
+  {
+    "item_id": "arc_challenge_0714",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 714
+    }
+  },
+  {
+    "item_id": "arc_challenge_0715",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 715
+    }
+  },
+  {
+    "item_id": "arc_challenge_0717",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 717
+    }
+  },
+  {
+    "item_id": "arc_challenge_0718",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 718
+    }
+  },
+  {
+    "item_id": "arc_challenge_0722",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 722
+    }
+  },
+  {
+    "item_id": "arc_challenge_0723",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 723
+    }
+  },
+  {
+    "item_id": "arc_challenge_0726",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 726
+    }
+  },
+  {
+    "item_id": "arc_challenge_0729",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 729
+    }
+  },
+  {
+    "item_id": "arc_challenge_0731",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 731
+    }
+  },
+  {
+    "item_id": "arc_challenge_0737",
+    "signal": "s3_constat",
+    "score": -0.5,
+    "metadata": {
+      "orig_accuracy": 0.5,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 737
+    }
+  },
+  {
+    "item_id": "arc_challenge_0739",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 739
+    }
+  },
+  {
+    "item_id": "arc_challenge_0743",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 743
+    }
+  },
+  {
+    "item_id": "arc_challenge_0744",
+    "signal": "s3_constat",
+    "score": -0.5,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.5,
+      "n_seeds": 2,
+      "original_index": 744
+    }
+  },
+  {
+    "item_id": "arc_challenge_0745",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 745
+    }
+  },
+  {
+    "item_id": "arc_challenge_0746",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 746
+    }
+  },
+  {
+    "item_id": "arc_challenge_0747",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 747
+    }
+  },
+  {
+    "item_id": "arc_challenge_0748",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 748
+    }
+  },
+  {
+    "item_id": "arc_challenge_0750",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 750
+    }
+  },
+  {
+    "item_id": "arc_challenge_0752",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 752
+    }
+  },
+  {
+    "item_id": "arc_challenge_0753",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 753
+    }
+  },
+  {
+    "item_id": "arc_challenge_0754",
+    "signal": "s3_constat",
+    "score": -1.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 754
+    }
+  },
+  {
+    "item_id": "arc_challenge_0756",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 756
+    }
+  },
+  {
+    "item_id": "arc_challenge_0757",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 757
+    }
+  },
+  {
+    "item_id": "arc_challenge_0760",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 760
+    }
+  },
+  {
+    "item_id": "arc_challenge_0761",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 761
+    }
+  },
+  {
+    "item_id": "arc_challenge_0762",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 762
+    }
+  },
+  {
+    "item_id": "arc_challenge_0763",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 763
+    }
+  },
+  {
+    "item_id": "arc_challenge_0764",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 764
+    }
+  },
+  {
+    "item_id": "arc_challenge_0767",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 767
+    }
+  },
+  {
+    "item_id": "arc_challenge_0768",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 768
+    }
+  },
+  {
+    "item_id": "arc_challenge_0769",
+    "signal": "s3_constat",
+    "score": -0.5,
+    "metadata": {
+      "orig_accuracy": 0.5,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 769
+    }
+  },
+  {
+    "item_id": "arc_challenge_0770",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 770
+    }
+  },
+  {
+    "item_id": "arc_challenge_0771",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 771
+    }
+  },
+  {
+    "item_id": "arc_challenge_0773",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 773
+    }
+  },
+  {
+    "item_id": "arc_challenge_0774",
+    "signal": "s3_constat",
+    "score": -1.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 774
+    }
+  },
+  {
+    "item_id": "arc_challenge_0777",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 777
+    }
+  },
+  {
+    "item_id": "arc_challenge_0779",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 779
+    }
+  },
+  {
+    "item_id": "arc_challenge_0782",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 782
+    }
+  },
+  {
+    "item_id": "arc_challenge_0783",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 783
+    }
+  },
+  {
+    "item_id": "arc_challenge_0787",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 787
+    }
+  },
+  {
+    "item_id": "arc_challenge_0788",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 788
+    }
+  },
+  {
+    "item_id": "arc_challenge_0789",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 789
+    }
+  },
+  {
+    "item_id": "arc_challenge_0790",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 790
+    }
+  },
+  {
+    "item_id": "arc_challenge_0791",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 791
+    }
+  },
+  {
+    "item_id": "arc_challenge_0792",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 792
+    }
+  },
+  {
+    "item_id": "arc_challenge_0795",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 795
+    }
+  },
+  {
+    "item_id": "arc_challenge_0796",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 796
+    }
+  },
+  {
+    "item_id": "arc_challenge_0797",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 797
+    }
+  },
+  {
+    "item_id": "arc_challenge_0798",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 798
+    }
+  },
+  {
+    "item_id": "arc_challenge_0799",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 799
+    }
+  },
+  {
+    "item_id": "arc_challenge_0800",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 800
+    }
+  },
+  {
+    "item_id": "arc_challenge_0804",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 804
+    }
+  },
+  {
+    "item_id": "arc_challenge_0805",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 805
+    }
+  },
+  {
+    "item_id": "arc_challenge_0808",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 808
+    }
+  },
+  {
+    "item_id": "arc_challenge_0809",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 809
+    }
+  },
+  {
+    "item_id": "arc_challenge_0810",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 810
+    }
+  },
+  {
+    "item_id": "arc_challenge_0811",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 811
+    }
+  },
+  {
+    "item_id": "arc_challenge_0812",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 812
+    }
+  },
+  {
+    "item_id": "arc_challenge_0814",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 814
+    }
+  },
+  {
+    "item_id": "arc_challenge_0816",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 816
+    }
+  },
+  {
+    "item_id": "arc_challenge_0817",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 817
+    }
+  },
+  {
+    "item_id": "arc_challenge_0819",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 819
+    }
+  },
+  {
+    "item_id": "arc_challenge_0820",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 820
+    }
+  },
+  {
+    "item_id": "arc_challenge_0821",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 821
+    }
+  },
+  {
+    "item_id": "arc_challenge_0822",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 822
+    }
+  },
+  {
+    "item_id": "arc_challenge_0823",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 823
+    }
+  },
+  {
+    "item_id": "arc_challenge_0824",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 824
+    }
+  },
+  {
+    "item_id": "arc_challenge_0829",
+    "signal": "s3_constat",
+    "score": -0.5,
+    "metadata": {
+      "orig_accuracy": 0.5,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 829
+    }
+  },
+  {
+    "item_id": "arc_challenge_0832",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 832
+    }
+  },
+  {
+    "item_id": "arc_challenge_0835",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 835
+    }
+  },
+  {
+    "item_id": "arc_challenge_0836",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 836
+    }
+  },
+  {
+    "item_id": "arc_challenge_0838",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 838
+    }
+  },
+  {
+    "item_id": "arc_challenge_0839",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 839
+    }
+  },
+  {
+    "item_id": "arc_challenge_0841",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 841
+    }
+  },
+  {
+    "item_id": "arc_challenge_0843",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 843
+    }
+  },
+  {
+    "item_id": "arc_challenge_0844",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 844
+    }
+  },
+  {
+    "item_id": "arc_challenge_0845",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 845
+    }
+  },
+  {
+    "item_id": "arc_challenge_0848",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 848
+    }
+  },
+  {
+    "item_id": "arc_challenge_0851",
+    "signal": "s3_constat",
+    "score": 0.5,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.5,
+      "n_seeds": 2,
+      "original_index": 851
+    }
+  },
+  {
+    "item_id": "arc_challenge_0852",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 852
+    }
+  },
+  {
+    "item_id": "arc_challenge_0853",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 853
+    }
+  },
+  {
+    "item_id": "arc_challenge_0855",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 855
+    }
+  },
+  {
+    "item_id": "arc_challenge_0856",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 856
+    }
+  },
+  {
+    "item_id": "arc_challenge_0857",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 857
+    }
+  },
+  {
+    "item_id": "arc_challenge_0858",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 858
+    }
+  },
+  {
+    "item_id": "arc_challenge_0859",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 859
+    }
+  },
+  {
+    "item_id": "arc_challenge_0860",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 860
+    }
+  },
+  {
+    "item_id": "arc_challenge_0861",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 861
+    }
+  },
+  {
+    "item_id": "arc_challenge_0862",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 862
+    }
+  },
+  {
+    "item_id": "arc_challenge_0865",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 865
+    }
+  },
+  {
+    "item_id": "arc_challenge_0866",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 866
+    }
+  },
+  {
+    "item_id": "arc_challenge_0867",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 867
+    }
+  },
+  {
+    "item_id": "arc_challenge_0868",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 868
+    }
+  },
+  {
+    "item_id": "arc_challenge_0872",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 872
+    }
+  },
+  {
+    "item_id": "arc_challenge_0873",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 873
+    }
+  },
+  {
+    "item_id": "arc_challenge_0874",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 874
+    }
+  },
+  {
+    "item_id": "arc_challenge_0875",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 875
+    }
+  },
+  {
+    "item_id": "arc_challenge_0879",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 879
+    }
+  },
+  {
+    "item_id": "arc_challenge_0881",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 881
+    }
+  },
+  {
+    "item_id": "arc_challenge_0882",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 882
+    }
+  },
+  {
+    "item_id": "arc_challenge_0883",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 883
+    }
+  },
+  {
+    "item_id": "arc_challenge_0884",
+    "signal": "s3_constat",
+    "score": 0.5,
+    "metadata": {
+      "orig_accuracy": 0.5,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 884
+    }
+  },
+  {
+    "item_id": "arc_challenge_0885",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 885
+    }
+  },
+  {
+    "item_id": "arc_challenge_0886",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 886
+    }
+  },
+  {
+    "item_id": "arc_challenge_0888",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 888
+    }
+  },
+  {
+    "item_id": "arc_challenge_0893",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 893
+    }
+  },
+  {
+    "item_id": "arc_challenge_0894",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 894
+    }
+  },
+  {
+    "item_id": "arc_challenge_0895",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 895
+    }
+  },
+  {
+    "item_id": "arc_challenge_0896",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 896
+    }
+  },
+  {
+    "item_id": "arc_challenge_0897",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 897
+    }
+  },
+  {
+    "item_id": "arc_challenge_0898",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 898
+    }
+  },
+  {
+    "item_id": "arc_challenge_0899",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 899
+    }
+  },
+  {
+    "item_id": "arc_challenge_0900",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 900
+    }
+  },
+  {
+    "item_id": "arc_challenge_0901",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 901
+    }
+  },
+  {
+    "item_id": "arc_challenge_0902",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 902
+    }
+  },
+  {
+    "item_id": "arc_challenge_0904",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 904
+    }
+  },
+  {
+    "item_id": "arc_challenge_0911",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 911
+    }
+  },
+  {
+    "item_id": "arc_challenge_0912",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 912
+    }
+  },
+  {
+    "item_id": "arc_challenge_0913",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 913
+    }
+  },
+  {
+    "item_id": "arc_challenge_0916",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 916
+    }
+  },
+  {
+    "item_id": "arc_challenge_0917",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 917
+    }
+  },
+  {
+    "item_id": "arc_challenge_0920",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 920
+    }
+  },
+  {
+    "item_id": "arc_challenge_0921",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 921
+    }
+  },
+  {
+    "item_id": "arc_challenge_0923",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 923
+    }
+  },
+  {
+    "item_id": "arc_challenge_0924",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 924
+    }
+  },
+  {
+    "item_id": "arc_challenge_0926",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 926
+    }
+  },
+  {
+    "item_id": "arc_challenge_0927",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 927
+    }
+  },
+  {
+    "item_id": "arc_challenge_0928",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 928
+    }
+  },
+  {
+    "item_id": "arc_challenge_0930",
+    "signal": "s3_constat",
+    "score": 0.5,
+    "metadata": {
+      "orig_accuracy": 0.5,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 930
+    }
+  },
+  {
+    "item_id": "arc_challenge_0932",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 932
+    }
+  },
+  {
+    "item_id": "arc_challenge_0933",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 933
+    }
+  },
+  {
+    "item_id": "arc_challenge_0934",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 934
+    }
+  },
+  {
+    "item_id": "arc_challenge_0935",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 935
+    }
+  },
+  {
+    "item_id": "arc_challenge_0937",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 937
+    }
+  },
+  {
+    "item_id": "arc_challenge_0938",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 938
+    }
+  },
+  {
+    "item_id": "arc_challenge_0939",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 939
+    }
+  },
+  {
+    "item_id": "arc_challenge_0940",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 940
+    }
+  },
+  {
+    "item_id": "arc_challenge_0941",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 941
+    }
+  },
+  {
+    "item_id": "arc_challenge_0942",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 942
+    }
+  },
+  {
+    "item_id": "arc_challenge_0943",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 943
+    }
+  },
+  {
+    "item_id": "arc_challenge_0944",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 944
+    }
+  },
+  {
+    "item_id": "arc_challenge_0946",
+    "signal": "s3_constat",
+    "score": -1.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 946
+    }
+  },
+  {
+    "item_id": "arc_challenge_0948",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 948
+    }
+  },
+  {
+    "item_id": "arc_challenge_0949",
+    "signal": "s3_constat",
+    "score": 0.5,
+    "metadata": {
+      "orig_accuracy": 0.5,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 949
+    }
+  },
+  {
+    "item_id": "arc_challenge_0952",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 952
+    }
+  },
+  {
+    "item_id": "arc_challenge_0953",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 953
+    }
+  },
+  {
+    "item_id": "arc_challenge_0956",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 956
+    }
+  },
+  {
+    "item_id": "arc_challenge_0957",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 957
+    }
+  },
+  {
+    "item_id": "arc_challenge_0958",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 958
+    }
+  },
+  {
+    "item_id": "arc_challenge_0959",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 959
+    }
+  },
+  {
+    "item_id": "arc_challenge_0960",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 960
+    }
+  },
+  {
+    "item_id": "arc_challenge_0965",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 965
+    }
+  },
+  {
+    "item_id": "arc_challenge_0966",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 966
+    }
+  },
+  {
+    "item_id": "arc_challenge_0967",
+    "signal": "s3_constat",
+    "score": -1.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 967
+    }
+  },
+  {
+    "item_id": "arc_challenge_0968",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 968
+    }
+  },
+  {
+    "item_id": "arc_challenge_0971",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 971
+    }
+  },
+  {
+    "item_id": "arc_challenge_0972",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 972
+    }
+  },
+  {
+    "item_id": "arc_challenge_0973",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 973
+    }
+  },
+  {
+    "item_id": "arc_challenge_0974",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 974
+    }
+  },
+  {
+    "item_id": "arc_challenge_0977",
+    "signal": "s3_constat",
+    "score": 0.5,
+    "metadata": {
+      "orig_accuracy": 0.5,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 977
+    }
+  },
+  {
+    "item_id": "arc_challenge_0980",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 980
+    }
+  },
+  {
+    "item_id": "arc_challenge_0982",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 982
+    }
+  },
+  {
+    "item_id": "arc_challenge_0984",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 984
+    }
+  },
+  {
+    "item_id": "arc_challenge_0985",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 985
+    }
+  },
+  {
+    "item_id": "arc_challenge_0986",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 986
+    }
+  },
+  {
+    "item_id": "arc_challenge_0990",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 990
+    }
+  },
+  {
+    "item_id": "arc_challenge_0993",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 993
+    }
+  },
+  {
+    "item_id": "arc_challenge_0994",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 994
+    }
+  },
+  {
+    "item_id": "arc_challenge_0995",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 995
+    }
+  },
+  {
+    "item_id": "arc_challenge_0996",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 996
+    }
+  },
+  {
+    "item_id": "arc_challenge_0998",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 998
+    }
+  },
+  {
+    "item_id": "arc_challenge_0999",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 999
+    }
+  },
+  {
+    "item_id": "arc_challenge_1000",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1000
+    }
+  },
+  {
+    "item_id": "arc_challenge_1002",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1002
+    }
+  },
+  {
+    "item_id": "arc_challenge_1003",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1003
+    }
+  },
+  {
+    "item_id": "arc_challenge_1004",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1004
+    }
+  },
+  {
+    "item_id": "arc_challenge_1005",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1005
+    }
+  },
+  {
+    "item_id": "arc_challenge_1006",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1006
+    }
+  },
+  {
+    "item_id": "arc_challenge_1008",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1008
+    }
+  },
+  {
+    "item_id": "arc_challenge_1009",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 1009
+    }
+  },
+  {
+    "item_id": "arc_challenge_1012",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1012
+    }
+  },
+  {
+    "item_id": "arc_challenge_1015",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1015
+    }
+  },
+  {
+    "item_id": "arc_challenge_1017",
+    "signal": "s3_constat",
+    "score": 0.5,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.5,
+      "n_seeds": 2,
+      "original_index": 1017
+    }
+  },
+  {
+    "item_id": "arc_challenge_1018",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1018
+    }
+  },
+  {
+    "item_id": "arc_challenge_1019",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1019
+    }
+  },
+  {
+    "item_id": "arc_challenge_1021",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1021
+    }
+  },
+  {
+    "item_id": "arc_challenge_1025",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1025
+    }
+  },
+  {
+    "item_id": "arc_challenge_1027",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1027
+    }
+  },
+  {
+    "item_id": "arc_challenge_1028",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 1028
+    }
+  },
+  {
+    "item_id": "arc_challenge_1031",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 1031
+    }
+  },
+  {
+    "item_id": "arc_challenge_1032",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1032
+    }
+  },
+  {
+    "item_id": "arc_challenge_1033",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1033
+    }
+  },
+  {
+    "item_id": "arc_challenge_1034",
+    "signal": "s3_constat",
+    "score": -0.5,
+    "metadata": {
+      "orig_accuracy": 0.5,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1034
+    }
+  },
+  {
+    "item_id": "arc_challenge_1036",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1036
+    }
+  },
+  {
+    "item_id": "arc_challenge_1037",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1037
+    }
+  },
+  {
+    "item_id": "arc_challenge_1038",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1038
+    }
+  },
+  {
+    "item_id": "arc_challenge_1039",
+    "signal": "s3_constat",
+    "score": 0.5,
+    "metadata": {
+      "orig_accuracy": 0.5,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 1039
+    }
+  },
+  {
+    "item_id": "arc_challenge_1041",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1041
+    }
+  },
+  {
+    "item_id": "arc_challenge_1043",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1043
+    }
+  },
+  {
+    "item_id": "arc_challenge_1045",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1045
+    }
+  },
+  {
+    "item_id": "arc_challenge_1046",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 1046
+    }
+  },
+  {
+    "item_id": "arc_challenge_1047",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1047
+    }
+  },
+  {
+    "item_id": "arc_challenge_1051",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1051
+    }
+  },
+  {
+    "item_id": "arc_challenge_1052",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 1052
+    }
+  },
+  {
+    "item_id": "arc_challenge_1053",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1053
+    }
+  },
+  {
+    "item_id": "arc_challenge_1054",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 1054
+    }
+  },
+  {
+    "item_id": "arc_challenge_1056",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1056
+    }
+  },
+  {
+    "item_id": "arc_challenge_1057",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1057
+    }
+  },
+  {
+    "item_id": "arc_challenge_1060",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1060
+    }
+  },
+  {
+    "item_id": "arc_challenge_1063",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1063
+    }
+  },
+  {
+    "item_id": "arc_challenge_1064",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1064
+    }
+  },
+  {
+    "item_id": "arc_challenge_1066",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1066
+    }
+  },
+  {
+    "item_id": "arc_challenge_1067",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1067
+    }
+  },
+  {
+    "item_id": "arc_challenge_1069",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1069
+    }
+  },
+  {
+    "item_id": "arc_challenge_1071",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1071
+    }
+  },
+  {
+    "item_id": "arc_challenge_1072",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1072
+    }
+  },
+  {
+    "item_id": "arc_challenge_1073",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1073
+    }
+  },
+  {
+    "item_id": "arc_challenge_1074",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1074
+    }
+  },
+  {
+    "item_id": "arc_challenge_1076",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1076
+    }
+  },
+  {
+    "item_id": "arc_challenge_1077",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1077
+    }
+  },
+  {
+    "item_id": "arc_challenge_1078",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1078
+    }
+  },
+  {
+    "item_id": "arc_challenge_1080",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1080
+    }
+  },
+  {
+    "item_id": "arc_challenge_1082",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1082
+    }
+  },
+  {
+    "item_id": "arc_challenge_1083",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 1083
+    }
+  },
+  {
+    "item_id": "arc_challenge_1084",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1084
+    }
+  },
+  {
+    "item_id": "arc_challenge_1085",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1085
+    }
+  },
+  {
+    "item_id": "arc_challenge_1086",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1086
+    }
+  },
+  {
+    "item_id": "arc_challenge_1088",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1088
+    }
+  },
+  {
+    "item_id": "arc_challenge_1089",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1089
+    }
+  },
+  {
+    "item_id": "arc_challenge_1091",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1091
+    }
+  },
+  {
+    "item_id": "arc_challenge_1093",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1093
+    }
+  },
+  {
+    "item_id": "arc_challenge_1094",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1094
+    }
+  },
+  {
+    "item_id": "arc_challenge_1096",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1096
+    }
+  },
+  {
+    "item_id": "arc_challenge_1098",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 1098
+    }
+  },
+  {
+    "item_id": "arc_challenge_1100",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1100
+    }
+  },
+  {
+    "item_id": "arc_challenge_1103",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1103
+    }
+  },
+  {
+    "item_id": "arc_challenge_1106",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1106
+    }
+  },
+  {
+    "item_id": "arc_challenge_1107",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1107
+    }
+  },
+  {
+    "item_id": "arc_challenge_1108",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1108
+    }
+  },
+  {
+    "item_id": "arc_challenge_1109",
+    "signal": "s3_constat",
+    "score": -1.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1109
+    }
+  },
+  {
+    "item_id": "arc_challenge_1110",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1110
+    }
+  },
+  {
+    "item_id": "arc_challenge_1111",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1111
+    }
+  },
+  {
+    "item_id": "arc_challenge_1113",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 1113
+    }
+  },
+  {
+    "item_id": "arc_challenge_1114",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1114
+    }
+  },
+  {
+    "item_id": "arc_challenge_1115",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1115
+    }
+  },
+  {
+    "item_id": "arc_challenge_1116",
+    "signal": "s3_constat",
+    "score": -1.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1116
+    }
+  },
+  {
+    "item_id": "arc_challenge_1117",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1117
+    }
+  },
+  {
+    "item_id": "arc_challenge_1118",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1118
+    }
+  },
+  {
+    "item_id": "arc_challenge_1119",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1119
+    }
+  },
+  {
+    "item_id": "arc_challenge_1121",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1121
+    }
+  },
+  {
+    "item_id": "arc_challenge_1123",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 1123
+    }
+  },
+  {
+    "item_id": "arc_challenge_1126",
+    "signal": "s3_constat",
+    "score": -1.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1126
+    }
+  },
+  {
+    "item_id": "arc_challenge_1127",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1127
+    }
+  },
+  {
+    "item_id": "arc_challenge_1130",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1130
+    }
+  },
+  {
+    "item_id": "arc_challenge_1131",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1131
+    }
+  },
+  {
+    "item_id": "arc_challenge_1132",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1132
+    }
+  },
+  {
+    "item_id": "arc_challenge_1135",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 1135
+    }
+  },
+  {
+    "item_id": "arc_challenge_1138",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1138
+    }
+  },
+  {
+    "item_id": "arc_challenge_1140",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1140
+    }
+  },
+  {
+    "item_id": "arc_challenge_1141",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1141
+    }
+  },
+  {
+    "item_id": "arc_challenge_1143",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1143
+    }
+  },
+  {
+    "item_id": "arc_challenge_1144",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1144
+    }
+  },
+  {
+    "item_id": "arc_challenge_1146",
+    "signal": "s3_constat",
+    "score": -0.5,
+    "metadata": {
+      "orig_accuracy": 0.5,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1146
+    }
+  },
+  {
+    "item_id": "arc_challenge_1147",
+    "signal": "s3_constat",
+    "score": -1.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1147
+    }
+  },
+  {
+    "item_id": "arc_challenge_1148",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1148
+    }
+  },
+  {
+    "item_id": "arc_challenge_1150",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1150
+    }
+  },
+  {
+    "item_id": "arc_challenge_1151",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1151
+    }
+  },
+  {
+    "item_id": "arc_challenge_1152",
+    "signal": "s3_constat",
+    "score": 1.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 1152
+    }
+  },
+  {
+    "item_id": "arc_challenge_1154",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1154
+    }
+  },
+  {
+    "item_id": "arc_challenge_1155",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1155
+    }
+  },
+  {
+    "item_id": "arc_challenge_1156",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1156
+    }
+  },
+  {
+    "item_id": "arc_challenge_1157",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 1157
+    }
+  },
+  {
+    "item_id": "arc_challenge_1158",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1158
+    }
+  },
+  {
+    "item_id": "arc_challenge_1160",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 1160
+    }
+  },
+  {
+    "item_id": "arc_challenge_1161",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1161
+    }
+  },
+  {
+    "item_id": "arc_challenge_1165",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1165
+    }
+  },
+  {
+    "item_id": "arc_challenge_1166",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1166
+    }
+  },
+  {
+    "item_id": "arc_challenge_1168",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1168
+    }
+  },
+  {
+    "item_id": "arc_challenge_1169",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 1.0,
+      "para_accuracy": 1.0,
+      "n_seeds": 2,
+      "original_index": 1169
+    }
+  },
+  {
+    "item_id": "arc_challenge_1171",
+    "signal": "s3_constat",
+    "score": 0.0,
+    "metadata": {
+      "orig_accuracy": 0.0,
+      "para_accuracy": 0.0,
+      "n_seeds": 2,
+      "original_index": 1171
+    }
+  }
+]

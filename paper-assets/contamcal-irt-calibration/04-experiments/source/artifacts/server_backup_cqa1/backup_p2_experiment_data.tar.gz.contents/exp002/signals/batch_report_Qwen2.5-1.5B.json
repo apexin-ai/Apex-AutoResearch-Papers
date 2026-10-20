@@ -1,0 +1,22 @@
+{
+  "model_name": "Qwen2.5-1.5B",
+  "model_size": "1.5B",
+  "dry_run": false,
+  "tasks_run": 12,
+  "tasks_passed": 12,
+  "skipped": [],
+  "results": {
+    "Qwen2.5-1.5B_d000_s42/mmlu": "PASS",
+    "Qwen2.5-1.5B_d000_s42/gsm8k": "PASS",
+    "Qwen2.5-1.5B_d000_s42/arc_challenge": "PASS",
+    "Qwen2.5-1.5B_d005_s42/mmlu": "PASS",
+    "Qwen2.5-1.5B_d005_s42/gsm8k": "PASS",
+    "Qwen2.5-1.5B_d005_s42/arc_challenge": "PASS",
+    "Qwen2.5-1.5B_d025_s42/mmlu": "PASS",
+    "Qwen2.5-1.5B_d025_s42/gsm8k": "PASS",
+    "Qwen2.5-1.5B_d025_s42/arc_challenge": "PASS",
+    "Qwen2.5-1.5B_d100_s42/mmlu": "PASS",
+    "Qwen2.5-1.5B_d100_s42/gsm8k": "PASS",
+    "Qwen2.5-1.5B_d100_s42/arc_challenge": "PASS"
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "rrf": {
+    "auc_roc": 0.9997888888888888,
+    "avg_precision": 0.9981534320343908,
+    "precision_at_100": 0.97,
+    "precision_at_500": 0.2
+  },
+  "rank_avg": {
+    "auc_roc": 0.9987333333333333,
+    "avg_precision": 0.9890669771923035,
+    "precision_at_100": 0.95,
+    "precision_at_500": 0.2
+  },
+  "single_s1_embedding": {
+    "auc_roc": 0.9746888888888889,
+    "avg_precision": 0.8518813484081833,
+    "precision_at_100": 0.74,
+    "precision_at_500": 0.2
+  },
+  "single_s2_minkpp": {
+    "auc_roc": 0.9319111111111111,
+    "avg_precision": 0.7344690453646624,
+    "precision_at_100": 0.65,
+    "precision_at_500": 0.194
+  },
+  "single_s3_constat": {
+    "auc_roc": 0.9464333333333332,
+    "avg_precision": 0.7533945529764426,
+    "precision_at_100": 0.67,
+    "precision_at_500": 0.198
+  },
+  "single_s4_selfcritique": {
+    "auc_roc": 0.9166777777777778,
+    "avg_precision": 0.6233421519347097,
+    "precision_at_100": 0.59,
+    "precision_at_500": 0.194
+  },
+  "calibrated_rrf": {
+    "auc_roc": 0.9998555555555556,
+    "avg_precision": 0.9987306419717603,
+    "precision_at_100": 0.97,
+    "precision_at_500": 0.2
+  },
+  "fp_05pct_rrf": {
+    "auc_roc": 0.9983777777777778,
+    "avg_precision": 0.9876064929107604,
+    "precision_at_100": 0.93,
+    "precision_at_500": 0.2
+  },
+  "fp_05pct_rank_avg": {
+    "auc_roc": 0.9987333333333334,
+    "avg_precision": 0.9891485435112393,
+    "precision_at_100": 0.95,
+    "precision_at_500": 0.2
+  },
+  "fp_05pct_s1_embedding": {
+    "auc_roc": 0.9646777777777777,
+    "avg_precision": 0.6844529042367612,
+    "precision_at_100": 0.71,
+    "precision_at_500": 0.2
+  },
+  "fp_05pct_s2_minkpp": {
+    "auc_roc": 0.9185666666666668,
+    "avg_precision": 0.5430036048893029,
+    "precision_at_100": 0.59,
+    "precision_at_500": 0.194
+  },
+  "fp_05pct_s3_constat": {
+    "auc_roc": 0.9356888888888889,
+    "avg_precision": 0.593262641992654,
+    "precision_at_100": 0.63,
+    "precision_at_500": 0.198
+  },
+  "fp_05pct_s4_selfcritique": {
+    "auc_roc": 0.9067555555555555,
+    "avg_precision": 0.5015453646354797,
+    "precision_at_100": 0.55,
+    "precision_at_500": 0.194
+  },
+  "fp_10pct_rrf": {
+    "auc_roc": 0.9955444444444446,
+    "avg_precision": 0.9674535223183004,
+    "precision_at_100": 0.9,
+    "precision_at_500": 0.2
+  },
+  "fp_10pct_rank_avg": {
+    "auc_roc": 0.9981388888888889,
+    "avg_precision": 0.9843083655161501,
+    "precision_at_100": 0.94,
+    "precision_at_500": 0.2
+  },
+  "fp_10pct_s1_embedding": {
+    "auc_roc": 0.9569222222222222,
+    "avg_precision": 0.6073726403205031,
+    "precision_at_100": 0.69,
+    "precision_at_500": 0.2
+  },
+  "fp_10pct_s2_minkpp": {
+    "auc_roc": 0.9062555555555556,
+    "avg_precision": 0.4506832631516692,
+    "precision_at_100": 0.55,
+    "precision_at_500": 0.194
+  },
+  "fp_10pct_s3_constat": {
+    "auc_roc": 0.9244777777777778,
+    "avg_precision": 0.5095820670140866,
+    "precision_at_100": 0.58,
+    "precision_at_500": 0.198
+  },
+  "fp_10pct_s4_selfcritique": {
+    "auc_roc": 0.8945500000000001,
+    "avg_precision": 0.4144941104785669,
+    "precision_at_100": 0.53,
+    "precision_at_500": 0.194
+  },
+  "fp_20pct_rrf": {
+    "auc_roc": 0.988,
+    "avg_precision": 0.9207724423830825,
+    "precision_at_100": 0.8,
+    "precision_at_500": 0.2
+  },
+  "fp_20pct_rank_avg": {
+    "auc_roc": 0.997138888888889,
+    "avg_precision": 0.9759512414967578,
+    "precision_at_100": 0.9,
+    "precision_at_500": 0.2
+  },
+  "fp_20pct_s1_embedding": {
+    "auc_roc": 0.9317777777777778,
+    "avg_precision": 0.46740638139456453,
+    "precision_at_100": 0.53,
+    "precision_at_500": 0.2
+  },
+  "fp_20pct_s2_minkpp": {
+    "auc_roc": 0.8835666666666667,
+    "avg_precision": 0.3518985326312129,
+    "precision_at_100": 0.43,
+    "precision_at_500": 0.194
+  },
+  "fp_20pct_s3_constat": {
+    "auc_roc": 0.9042,
+    "avg_precision": 0.4185343766427235,
+    "precision_at_100": 0.49,
+    "precision_at_500": 0.198
+  },
+  "fp_20pct_s4_selfcritique": {
+    "auc_roc": 0.8737388888888888,
+    "avg_precision": 0.3306021637445224,
+    "precision_at_100": 0.41,
+    "precision_at_500": 0.194
+  },
+  "degraded_2sig": {
+    "auc_roc": 0.9791444444444445,
+    "avg_precision": 0.8927073105585719,
+    "precision_at_100": 0.8,
+    "precision_at_500": 0.2
+  }
+}

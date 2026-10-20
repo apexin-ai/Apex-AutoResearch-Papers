@@ -1,0 +1,2132 @@
+[
+  {
+    "item_id": "mmlu_10002",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_10017",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_10019",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_10028",
+    "mean_gap": -0.4,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_10072",
+    "mean_gap": 0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_10083",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_10172",
+    "mean_gap": -0.5,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_10200",
+    "mean_gap": -0.9,
+    "disagree_rate": 0.9
+  },
+  {
+    "item_id": "mmlu_10241",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_10245",
+    "mean_gap": -0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_10268",
+    "mean_gap": -1.0,
+    "disagree_rate": 1.0
+  },
+  {
+    "item_id": "mmlu_10272",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_10311",
+    "mean_gap": 0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_10341",
+    "mean_gap": 0.65,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_10350",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_10368",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_10407",
+    "mean_gap": -0.95,
+    "disagree_rate": 0.95
+  },
+  {
+    "item_id": "mmlu_10443",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_10454",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_10460",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_10488",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_10512",
+    "mean_gap": 0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_10556",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_1057",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_10584",
+    "mean_gap": 0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_10585",
+    "mean_gap": -0.2,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_10607",
+    "mean_gap": 0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_10629",
+    "mean_gap": 0.05,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_10640",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_10644",
+    "mean_gap": -0.15,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_10703",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_10737",
+    "mean_gap": -0.9,
+    "disagree_rate": 1.0
+  },
+  {
+    "item_id": "mmlu_10759",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_10793",
+    "mean_gap": -0.4,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_10822",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_10855",
+    "mean_gap": 0.3,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_10942",
+    "mean_gap": -0.95,
+    "disagree_rate": 0.95
+  },
+  {
+    "item_id": "mmlu_10973",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_10986",
+    "mean_gap": 0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_11023",
+    "mean_gap": 0.25,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_11064",
+    "mean_gap": 0.4,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_11090",
+    "mean_gap": 0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_11125",
+    "mean_gap": -0.2,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_11133",
+    "mean_gap": 0.9,
+    "disagree_rate": 0.9
+  },
+  {
+    "item_id": "mmlu_11155",
+    "mean_gap": 0.25,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_11157",
+    "mean_gap": -0.2,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_11251",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_11267",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_11304",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_11334",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_11370",
+    "mean_gap": 0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_11373",
+    "mean_gap": 0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_11390",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_11395",
+    "mean_gap": -0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_11489",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_11498",
+    "mean_gap": 0.3,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_11532",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_11536",
+    "mean_gap": 0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_11539",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_11550",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_11562",
+    "mean_gap": 0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_11618",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_11640",
+    "mean_gap": 0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_11662",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_11681",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_11730",
+    "mean_gap": -0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_11765",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_11782",
+    "mean_gap": 0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_11811",
+    "mean_gap": 0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_11827",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.95
+  },
+  {
+    "item_id": "mmlu_11880",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_11890",
+    "mean_gap": 0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_11904",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_11921",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.95
+  },
+  {
+    "item_id": "mmlu_11960",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_11965",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_11973",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_11984",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_12018",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.95
+  },
+  {
+    "item_id": "mmlu_12036",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_12048",
+    "mean_gap": -0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_12052",
+    "mean_gap": 0.3,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_12061",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_12064",
+    "mean_gap": 0.5,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_12110",
+    "mean_gap": -0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_12125",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_12137",
+    "mean_gap": -0.95,
+    "disagree_rate": 0.95
+  },
+  {
+    "item_id": "mmlu_12157",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_12167",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_12173",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_12198",
+    "mean_gap": 0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_122",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_12243",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_12252",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_12259",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_12265",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.9
+  },
+  {
+    "item_id": "mmlu_12285",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_12315",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_12332",
+    "mean_gap": 0.65,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_12357",
+    "mean_gap": -0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_12372",
+    "mean_gap": 0.1,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_12428",
+    "mean_gap": 0.25,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_12450",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_12451",
+    "mean_gap": 0.9,
+    "disagree_rate": 0.9
+  },
+  {
+    "item_id": "mmlu_12461",
+    "mean_gap": 0.4,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_12502",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_12509",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.95
+  },
+  {
+    "item_id": "mmlu_12522",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_12526",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_12527",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_12573",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_12576",
+    "mean_gap": 0.05,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_12592",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_12603",
+    "mean_gap": -0.7,
+    "disagree_rate": 1.0
+  },
+  {
+    "item_id": "mmlu_12631",
+    "mean_gap": -0.9,
+    "disagree_rate": 0.9
+  },
+  {
+    "item_id": "mmlu_12639",
+    "mean_gap": 0.25,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_12659",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_12664",
+    "mean_gap": -0.95,
+    "disagree_rate": 0.95
+  },
+  {
+    "item_id": "mmlu_12698",
+    "mean_gap": -0.9,
+    "disagree_rate": 0.9
+  },
+  {
+    "item_id": "mmlu_12717",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_12748",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_12795",
+    "mean_gap": 0.65,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_12803",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_12819",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_12822",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_12838",
+    "mean_gap": 0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_1284",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_12844",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_12864",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_12865",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_12888",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_12891",
+    "mean_gap": 0.75,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_12892",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_12907",
+    "mean_gap": -0.1,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_12932",
+    "mean_gap": 0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_12941",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_12954",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_12975",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_13000",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_13043",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_13047",
+    "mean_gap": -0.95,
+    "disagree_rate": 0.95
+  },
+  {
+    "item_id": "mmlu_13091",
+    "mean_gap": -0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_13095",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_13110",
+    "mean_gap": 0.5,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_1312",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_13158",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_13193",
+    "mean_gap": 0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_13204",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_13208",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_13228",
+    "mean_gap": 0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_13245",
+    "mean_gap": -0.2,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_13280",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_13297",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_1330",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_13315",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_13350",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_13358",
+    "mean_gap": -0.1,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_13393",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_13402",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_13409",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_13422",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_13430",
+    "mean_gap": 0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_1347",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_13473",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_13514",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_13530",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_1354",
+    "mean_gap": 0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_13590",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_13723",
+    "mean_gap": 0.45,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_13767",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_13770",
+    "mean_gap": -0.5,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_13776",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_1378",
+    "mean_gap": -0.35,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_13782",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_13783",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_13788",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_13796",
+    "mean_gap": -0.95,
+    "disagree_rate": 0.95
+  },
+  {
+    "item_id": "mmlu_13833",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.95
+  },
+  {
+    "item_id": "mmlu_13843",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_13846",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_13848",
+    "mean_gap": 0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_13853",
+    "mean_gap": 0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_13858",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.95
+  },
+  {
+    "item_id": "mmlu_13863",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_13936",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_13966",
+    "mean_gap": 0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_13968",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.95
+  },
+  {
+    "item_id": "mmlu_13975",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_13996",
+    "mean_gap": -0.45,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_1400",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_14041",
+    "mean_gap": -0.15,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_1406",
+    "mean_gap": 0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_1413",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_1462",
+    "mean_gap": -0.35,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_1469",
+    "mean_gap": -0.6,
+    "disagree_rate": 1.0
+  },
+  {
+    "item_id": "mmlu_1481",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_1549",
+    "mean_gap": 0.5,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_1574",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_1607",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_1611",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_1637",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_1641",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_1663",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_1699",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_1712",
+    "mean_gap": -0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_1717",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_1731",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_1752",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_1761",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_1776",
+    "mean_gap": -0.45,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_1794",
+    "mean_gap": -0.05,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_1804",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_1829",
+    "mean_gap": -0.6,
+    "disagree_rate": 1.0
+  },
+  {
+    "item_id": "mmlu_1904",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_1905",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_1921",
+    "mean_gap": 0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_194",
+    "mean_gap": -0.7,
+    "disagree_rate": 1.0
+  },
+  {
+    "item_id": "mmlu_199",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_1990",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_2047",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_2144",
+    "mean_gap": 0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_2187",
+    "mean_gap": 0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_2202",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_2476",
+    "mean_gap": 0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_2496",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_2649",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_2742",
+    "mean_gap": 0.45,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_2783",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_279",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_285",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.95
+  },
+  {
+    "item_id": "mmlu_2855",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_2879",
+    "mean_gap": 0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_2890",
+    "mean_gap": 0.5,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_2895",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_2937",
+    "mean_gap": 0.1,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_2951",
+    "mean_gap": -0.7,
+    "disagree_rate": 0.9
+  },
+  {
+    "item_id": "mmlu_2956",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_2991",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_3145",
+    "mean_gap": -0.7,
+    "disagree_rate": 0.9
+  },
+  {
+    "item_id": "mmlu_3147",
+    "mean_gap": 0.75,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_3194",
+    "mean_gap": 0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_3232",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_334",
+    "mean_gap": -0.35,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_3625",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_3647",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_3683",
+    "mean_gap": 0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_3691",
+    "mean_gap": 0.15,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_370",
+    "mean_gap": -0.25,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_3767",
+    "mean_gap": -0.25,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_3852",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_3936",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_3937",
+    "mean_gap": 0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_3945",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_396",
+    "mean_gap": -0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_4044",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_4051",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_4105",
+    "mean_gap": 0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_4124",
+    "mean_gap": 0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_4143",
+    "mean_gap": -0.05,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_4504",
+    "mean_gap": 0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_4644",
+    "mean_gap": 0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_4672",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_4718",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_4850",
+    "mean_gap": 0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_489",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_4895",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_4946",
+    "mean_gap": 0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_4948",
+    "mean_gap": -0.25,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_4949",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_5037",
+    "mean_gap": 0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_5051",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_5098",
+    "mean_gap": -0.15,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_5142",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_5148",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_5151",
+    "mean_gap": 0.5,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_5175",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_5181",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_5196",
+    "mean_gap": -0.7,
+    "disagree_rate": 1.0
+  },
+  {
+    "item_id": "mmlu_5348",
+    "mean_gap": 0.4,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_5376",
+    "mean_gap": 0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_5386",
+    "mean_gap": 0.2,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_5396",
+    "mean_gap": -0.3,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_5409",
+    "mean_gap": 0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_5420",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.95
+  },
+  {
+    "item_id": "mmlu_5423",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_550",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_568",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_6127",
+    "mean_gap": -0.95,
+    "disagree_rate": 0.95
+  },
+  {
+    "item_id": "mmlu_6133",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_6239",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_624",
+    "mean_gap": 0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_625",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_6285",
+    "mean_gap": 0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_6322",
+    "mean_gap": 0.6,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_6405",
+    "mean_gap": 0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_6407",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_6413",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_6484",
+    "mean_gap": 0.9,
+    "disagree_rate": 0.9
+  },
+  {
+    "item_id": "mmlu_6500",
+    "mean_gap": 0.35,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_6502",
+    "mean_gap": -0.1,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_6515",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_6525",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_6567",
+    "mean_gap": 0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_657",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_6585",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_6600",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_6610",
+    "mean_gap": 0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_6647",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_6648",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_6707",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_6725",
+    "mean_gap": -0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_6730",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_6791",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_6799",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_6976",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_7034",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.9
+  },
+  {
+    "item_id": "mmlu_704",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_7042",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_7068",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_7147",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_7194",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_721",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_7268",
+    "mean_gap": -0.9,
+    "disagree_rate": 0.9
+  },
+  {
+    "item_id": "mmlu_7288",
+    "mean_gap": 0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_7358",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_7359",
+    "mean_gap": 0.5,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_7363",
+    "mean_gap": -0.5,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_7391",
+    "mean_gap": 0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_7407",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_7432",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_749",
+    "mean_gap": 0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_7620",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_7638",
+    "mean_gap": 0.0,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_7661",
+    "mean_gap": 0.3,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_7686",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_7690",
+    "mean_gap": -0.05,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_7708",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_7709",
+    "mean_gap": 0.05,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_7851",
+    "mean_gap": 0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_7898",
+    "mean_gap": 0.05,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_7923",
+    "mean_gap": 0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_7995",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_7999",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_8031",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_8100",
+    "mean_gap": 0.0,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_8122",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_8177",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.95
+  },
+  {
+    "item_id": "mmlu_8183",
+    "mean_gap": -0.05,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_8199",
+    "mean_gap": -0.9,
+    "disagree_rate": 0.9
+  },
+  {
+    "item_id": "mmlu_8205",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_8234",
+    "mean_gap": -0.95,
+    "disagree_rate": 0.95
+  },
+  {
+    "item_id": "mmlu_8261",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_8271",
+    "mean_gap": 0.1,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_8287",
+    "mean_gap": -0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_8289",
+    "mean_gap": -0.2,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_8294",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_8306",
+    "mean_gap": 0.2,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_8308",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_8336",
+    "mean_gap": 0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_8356",
+    "mean_gap": 0.15,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_8371",
+    "mean_gap": 0.6,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_8411",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_842",
+    "mean_gap": -0.15,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_8425",
+    "mean_gap": 0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_8429",
+    "mean_gap": -0.4,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_8434",
+    "mean_gap": 0.05,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_8445",
+    "mean_gap": -0.95,
+    "disagree_rate": 0.95
+  },
+  {
+    "item_id": "mmlu_8451",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_8489",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_8490",
+    "mean_gap": -1.0,
+    "disagree_rate": 1.0
+  },
+  {
+    "item_id": "mmlu_8493",
+    "mean_gap": -0.75,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_8495",
+    "mean_gap": -0.7,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_8539",
+    "mean_gap": -0.35,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_8554",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_8583",
+    "mean_gap": -0.3,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_861",
+    "mean_gap": 0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_8621",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_8698",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_8702",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_8733",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_8747",
+    "mean_gap": -0.45,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_8763",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_8805",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_8838",
+    "mean_gap": -0.35,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_8849",
+    "mean_gap": 0.6,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_8875",
+    "mean_gap": -0.7,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_8918",
+    "mean_gap": -0.4,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_8926",
+    "mean_gap": 0.75,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_8968",
+    "mean_gap": -0.5,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_8981",
+    "mean_gap": -0.7,
+    "disagree_rate": 0.9
+  },
+  {
+    "item_id": "mmlu_8990",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_8992",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_9011",
+    "mean_gap": -0.25,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_9098",
+    "mean_gap": 0.45,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_910",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_9159",
+    "mean_gap": -0.5,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_917",
+    "mean_gap": -0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_9242",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_9289",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_9305",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_9373",
+    "mean_gap": -0.35,
+    "disagree_rate": 0.75
+  },
+  {
+    "item_id": "mmlu_9385",
+    "mean_gap": 0.55,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_9388",
+    "mean_gap": -0.25,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_9477",
+    "mean_gap": -0.45,
+    "disagree_rate": 0.55
+  },
+  {
+    "item_id": "mmlu_9588",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_9670",
+    "mean_gap": 0.0,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_9703",
+    "mean_gap": -0.5,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_9760",
+    "mean_gap": -0.9,
+    "disagree_rate": 0.9
+  },
+  {
+    "item_id": "mmlu_9765",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_9767",
+    "mean_gap": 0.1,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_9789",
+    "mean_gap": 0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_9808",
+    "mean_gap": -0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_9816",
+    "mean_gap": -0.8,
+    "disagree_rate": 0.8
+  },
+  {
+    "item_id": "mmlu_9833",
+    "mean_gap": -0.9,
+    "disagree_rate": 0.9
+  },
+  {
+    "item_id": "mmlu_9857",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_9875",
+    "mean_gap": 0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_9881",
+    "mean_gap": -0.7,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_9884",
+    "mean_gap": -0.45,
+    "disagree_rate": 0.65
+  },
+  {
+    "item_id": "mmlu_9886",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.7
+  },
+  {
+    "item_id": "mmlu_9891",
+    "mean_gap": 0.95,
+    "disagree_rate": 0.95
+  },
+  {
+    "item_id": "mmlu_9916",
+    "mean_gap": -0.6,
+    "disagree_rate": 0.6
+  },
+  {
+    "item_id": "mmlu_9943",
+    "mean_gap": 0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_9956",
+    "mean_gap": -0.85,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_9957",
+    "mean_gap": -0.9,
+    "disagree_rate": 0.9
+  },
+  {
+    "item_id": "mmlu_9983",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.85
+  },
+  {
+    "item_id": "mmlu_9994",
+    "mean_gap": -0.65,
+    "disagree_rate": 0.65
+  }
+]

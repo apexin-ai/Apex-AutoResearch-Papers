@@ -1,0 +1,8206 @@
+[
+  {
+    "index": 0,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1874887943267822,
+    "s2_minkpp_raw": -1.1874887943267822,
+    "n_tokens": 66
+  },
+  {
+    "index": 1,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1321632862091064,
+    "s2_minkpp_raw": -1.1321632862091064,
+    "n_tokens": 81
+  },
+  {
+    "index": 2,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.369800329208374,
+    "s2_minkpp_raw": -1.369800329208374,
+    "n_tokens": 73
+  },
+  {
+    "index": 3,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.366416096687317,
+    "s2_minkpp_raw": -1.366416096687317,
+    "n_tokens": 91
+  },
+  {
+    "index": 4,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5258979797363281,
+    "s2_minkpp_raw": -1.5258979797363281,
+    "n_tokens": 110
+  },
+  {
+    "index": 5,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.534805417060852,
+    "s2_minkpp_raw": -1.534805417060852,
+    "n_tokens": 113
+  },
+  {
+    "index": 6,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5762667655944824,
+    "s2_minkpp_raw": -1.5762667655944824,
+    "n_tokens": 110
+  },
+  {
+    "index": 7,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.337669014930725,
+    "s2_minkpp_raw": -1.337669014930725,
+    "n_tokens": 75
+  },
+  {
+    "index": 8,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.558487892150879,
+    "s2_minkpp_raw": -1.558487892150879,
+    "n_tokens": 99
+  },
+  {
+    "index": 9,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9276019930839539,
+    "s2_minkpp_raw": -0.9276019930839539,
+    "n_tokens": 50
+  },
+  {
+    "index": 10,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4798346757888794,
+    "s2_minkpp_raw": -1.4798346757888794,
+    "n_tokens": 62
+  },
+  {
+    "index": 11,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2750164270401,
+    "s2_minkpp_raw": -1.2750164270401,
+    "n_tokens": 56
+  },
+  {
+    "index": 12,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2721402645111084,
+    "s2_minkpp_raw": -1.2721402645111084,
+    "n_tokens": 72
+  },
+  {
+    "index": 13,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2155181169509888,
+    "s2_minkpp_raw": -1.2155181169509888,
+    "n_tokens": 62
+  },
+  {
+    "index": 14,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2314872741699219,
+    "s2_minkpp_raw": -1.2314872741699219,
+    "n_tokens": 39
+  },
+  {
+    "index": 15,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0901191234588623,
+    "s2_minkpp_raw": -1.0901191234588623,
+    "n_tokens": 44
+  },
+  {
+    "index": 16,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4297661781311035,
+    "s2_minkpp_raw": -1.4297661781311035,
+    "n_tokens": 93
+  },
+  {
+    "index": 17,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3122234344482422,
+    "s2_minkpp_raw": -1.3122234344482422,
+    "n_tokens": 83
+  },
+  {
+    "index": 18,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.526933193206787,
+    "s2_minkpp_raw": -1.526933193206787,
+    "n_tokens": 99
+  },
+  {
+    "index": 19,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6136530637741089,
+    "s2_minkpp_raw": -1.6136530637741089,
+    "n_tokens": 70
+  },
+  {
+    "index": 20,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3026303052902222,
+    "s2_minkpp_raw": -1.3026303052902222,
+    "n_tokens": 73
+  },
+  {
+    "index": 21,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6306692361831665,
+    "s2_minkpp_raw": -1.6306692361831665,
+    "n_tokens": 124
+  },
+  {
+    "index": 22,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3882317543029785,
+    "s2_minkpp_raw": -1.3882317543029785,
+    "n_tokens": 48
+  },
+  {
+    "index": 23,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4372773170471191,
+    "s2_minkpp_raw": -1.4372773170471191,
+    "n_tokens": 99
+  },
+  {
+    "index": 24,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2715187072753906,
+    "s2_minkpp_raw": -1.2715187072753906,
+    "n_tokens": 33
+  },
+  {
+    "index": 25,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4119864702224731,
+    "s2_minkpp_raw": -1.4119864702224731,
+    "n_tokens": 59
+  },
+  {
+    "index": 26,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3957068920135498,
+    "s2_minkpp_raw": -1.3957068920135498,
+    "n_tokens": 89
+  },
+  {
+    "index": 27,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3739655017852783,
+    "s2_minkpp_raw": -1.3739655017852783,
+    "n_tokens": 115
+  },
+  {
+    "index": 28,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5068198442459106,
+    "s2_minkpp_raw": -1.5068198442459106,
+    "n_tokens": 76
+  },
+  {
+    "index": 29,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4189915657043457,
+    "s2_minkpp_raw": -1.4189915657043457,
+    "n_tokens": 41
+  },
+  {
+    "index": 30,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2541539669036865,
+    "s2_minkpp_raw": -1.2541539669036865,
+    "n_tokens": 78
+  },
+  {
+    "index": 31,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3461486101150513,
+    "s2_minkpp_raw": -1.3461486101150513,
+    "n_tokens": 61
+  },
+  {
+    "index": 32,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3552051782608032,
+    "s2_minkpp_raw": -1.3552051782608032,
+    "n_tokens": 48
+  },
+  {
+    "index": 33,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3253371715545654,
+    "s2_minkpp_raw": -1.3253371715545654,
+    "n_tokens": 53
+  },
+  {
+    "index": 34,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4514285326004028,
+    "s2_minkpp_raw": -1.4514285326004028,
+    "n_tokens": 32
+  },
+  {
+    "index": 35,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3334063291549683,
+    "s2_minkpp_raw": -1.3334063291549683,
+    "n_tokens": 86
+  },
+  {
+    "index": 36,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4776743650436401,
+    "s2_minkpp_raw": -1.4776743650436401,
+    "n_tokens": 85
+  },
+  {
+    "index": 37,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3241634368896484,
+    "s2_minkpp_raw": -1.3241634368896484,
+    "n_tokens": 60
+  },
+  {
+    "index": 38,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1623903512954712,
+    "s2_minkpp_raw": -1.1623903512954712,
+    "n_tokens": 61
+  },
+  {
+    "index": 39,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3767346143722534,
+    "s2_minkpp_raw": -1.3767346143722534,
+    "n_tokens": 78
+  },
+  {
+    "index": 40,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4461652040481567,
+    "s2_minkpp_raw": -1.4461652040481567,
+    "n_tokens": 58
+  },
+  {
+    "index": 41,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.495225191116333,
+    "s2_minkpp_raw": -1.495225191116333,
+    "n_tokens": 44
+  },
+  {
+    "index": 42,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.018502950668335,
+    "s2_minkpp_raw": -1.018502950668335,
+    "n_tokens": 51
+  },
+  {
+    "index": 43,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0682311058044434,
+    "s2_minkpp_raw": -1.0682311058044434,
+    "n_tokens": 65
+  },
+  {
+    "index": 44,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.632838487625122,
+    "s2_minkpp_raw": -1.632838487625122,
+    "n_tokens": 72
+  },
+  {
+    "index": 45,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3458055257797241,
+    "s2_minkpp_raw": -1.3458055257797241,
+    "n_tokens": 36
+  },
+  {
+    "index": 46,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4042026996612549,
+    "s2_minkpp_raw": -1.4042026996612549,
+    "n_tokens": 37
+  },
+  {
+    "index": 47,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1154166460037231,
+    "s2_minkpp_raw": -1.1154166460037231,
+    "n_tokens": 41
+  },
+  {
+    "index": 48,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2379388809204102,
+    "s2_minkpp_raw": -1.2379388809204102,
+    "n_tokens": 45
+  },
+  {
+    "index": 49,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4213712215423584,
+    "s2_minkpp_raw": -1.4213712215423584,
+    "n_tokens": 53
+  },
+  {
+    "index": 50,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3760907649993896,
+    "s2_minkpp_raw": -1.3760907649993896,
+    "n_tokens": 102
+  },
+  {
+    "index": 51,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4108643531799316,
+    "s2_minkpp_raw": -1.4108643531799316,
+    "n_tokens": 68
+  },
+  {
+    "index": 52,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0394911766052246,
+    "s2_minkpp_raw": -1.0394911766052246,
+    "n_tokens": 45
+  },
+  {
+    "index": 53,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4346243143081665,
+    "s2_minkpp_raw": -1.4346243143081665,
+    "n_tokens": 58
+  },
+  {
+    "index": 54,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3970685005187988,
+    "s2_minkpp_raw": -1.3970685005187988,
+    "n_tokens": 65
+  },
+  {
+    "index": 55,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.624969482421875,
+    "s2_minkpp_raw": -1.624969482421875,
+    "n_tokens": 126
+  },
+  {
+    "index": 56,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1783039569854736,
+    "s2_minkpp_raw": -1.1783039569854736,
+    "n_tokens": 66
+  },
+  {
+    "index": 57,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3214304447174072,
+    "s2_minkpp_raw": -1.3214304447174072,
+    "n_tokens": 82
+  },
+  {
+    "index": 58,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1518620252609253,
+    "s2_minkpp_raw": -1.1518620252609253,
+    "n_tokens": 36
+  },
+  {
+    "index": 59,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.269410490989685,
+    "s2_minkpp_raw": -1.269410490989685,
+    "n_tokens": 132
+  },
+  {
+    "index": 60,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6810251474380493,
+    "s2_minkpp_raw": -1.6810251474380493,
+    "n_tokens": 53
+  },
+  {
+    "index": 61,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3064745664596558,
+    "s2_minkpp_raw": -1.3064745664596558,
+    "n_tokens": 46
+  },
+  {
+    "index": 62,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1736890077590942,
+    "s2_minkpp_raw": -1.1736890077590942,
+    "n_tokens": 47
+  },
+  {
+    "index": 63,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9319085478782654,
+    "s2_minkpp_raw": -0.9319085478782654,
+    "n_tokens": 37
+  },
+  {
+    "index": 64,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3819693326950073,
+    "s2_minkpp_raw": -1.3819693326950073,
+    "n_tokens": 111
+  },
+  {
+    "index": 65,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3472940921783447,
+    "s2_minkpp_raw": -1.3472940921783447,
+    "n_tokens": 53
+  },
+  {
+    "index": 66,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2546380758285522,
+    "s2_minkpp_raw": -1.2546380758285522,
+    "n_tokens": 76
+  },
+  {
+    "index": 67,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.290366530418396,
+    "s2_minkpp_raw": -1.290366530418396,
+    "n_tokens": 71
+  },
+  {
+    "index": 68,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.559518814086914,
+    "s2_minkpp_raw": -1.559518814086914,
+    "n_tokens": 43
+  },
+  {
+    "index": 69,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3345985412597656,
+    "s2_minkpp_raw": -1.3345985412597656,
+    "n_tokens": 49
+  },
+  {
+    "index": 70,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4062217473983765,
+    "s2_minkpp_raw": -1.4062217473983765,
+    "n_tokens": 62
+  },
+  {
+    "index": 71,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6133688688278198,
+    "s2_minkpp_raw": -1.6133688688278198,
+    "n_tokens": 47
+  },
+  {
+    "index": 72,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.37794828414917,
+    "s2_minkpp_raw": -1.37794828414917,
+    "n_tokens": 79
+  },
+  {
+    "index": 73,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3580846786499023,
+    "s2_minkpp_raw": -1.3580846786499023,
+    "n_tokens": 53
+  },
+  {
+    "index": 74,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.397647738456726,
+    "s2_minkpp_raw": -1.397647738456726,
+    "n_tokens": 58
+  },
+  {
+    "index": 75,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1061643362045288,
+    "s2_minkpp_raw": -1.1061643362045288,
+    "n_tokens": 57
+  },
+  {
+    "index": 76,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2548702955245972,
+    "s2_minkpp_raw": -1.2548702955245972,
+    "n_tokens": 92
+  },
+  {
+    "index": 77,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2819182872772217,
+    "s2_minkpp_raw": -1.2819182872772217,
+    "n_tokens": 79
+  },
+  {
+    "index": 78,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1786227226257324,
+    "s2_minkpp_raw": -1.1786227226257324,
+    "n_tokens": 75
+  },
+  {
+    "index": 79,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3832664489746094,
+    "s2_minkpp_raw": -1.3832664489746094,
+    "n_tokens": 39
+  },
+  {
+    "index": 80,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.243990182876587,
+    "s2_minkpp_raw": -1.243990182876587,
+    "n_tokens": 43
+  },
+  {
+    "index": 81,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0460293292999268,
+    "s2_minkpp_raw": -1.0460293292999268,
+    "n_tokens": 54
+  },
+  {
+    "index": 82,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.312232255935669,
+    "s2_minkpp_raw": -1.312232255935669,
+    "n_tokens": 44
+  },
+  {
+    "index": 83,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3986235857009888,
+    "s2_minkpp_raw": -1.3986235857009888,
+    "n_tokens": 36
+  },
+  {
+    "index": 84,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.404998540878296,
+    "s2_minkpp_raw": -1.404998540878296,
+    "n_tokens": 110
+  },
+  {
+    "index": 85,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4183542728424072,
+    "s2_minkpp_raw": -1.4183542728424072,
+    "n_tokens": 53
+  },
+  {
+    "index": 86,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4700322151184082,
+    "s2_minkpp_raw": -1.4700322151184082,
+    "n_tokens": 125
+  },
+  {
+    "index": 87,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3744910955429077,
+    "s2_minkpp_raw": -1.3744910955429077,
+    "n_tokens": 91
+  },
+  {
+    "index": 88,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2871285676956177,
+    "s2_minkpp_raw": -1.2871285676956177,
+    "n_tokens": 90
+  },
+  {
+    "index": 89,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.521878719329834,
+    "s2_minkpp_raw": -1.521878719329834,
+    "n_tokens": 48
+  },
+  {
+    "index": 90,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3187358379364014,
+    "s2_minkpp_raw": -1.3187358379364014,
+    "n_tokens": 43
+  },
+  {
+    "index": 91,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3974355459213257,
+    "s2_minkpp_raw": -1.3974355459213257,
+    "n_tokens": 74
+  },
+  {
+    "index": 92,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4865727424621582,
+    "s2_minkpp_raw": -1.4865727424621582,
+    "n_tokens": 69
+  },
+  {
+    "index": 93,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3185380697250366,
+    "s2_minkpp_raw": -1.3185380697250366,
+    "n_tokens": 118
+  },
+  {
+    "index": 94,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1280723810195923,
+    "s2_minkpp_raw": -1.1280723810195923,
+    "n_tokens": 63
+  },
+  {
+    "index": 95,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.141987681388855,
+    "s2_minkpp_raw": -1.141987681388855,
+    "n_tokens": 52
+  },
+  {
+    "index": 96,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.403787612915039,
+    "s2_minkpp_raw": -1.403787612915039,
+    "n_tokens": 75
+  },
+  {
+    "index": 97,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4739011526107788,
+    "s2_minkpp_raw": -1.4739011526107788,
+    "n_tokens": 45
+  },
+  {
+    "index": 98,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9416230320930481,
+    "s2_minkpp_raw": -0.9416230320930481,
+    "n_tokens": 60
+  },
+  {
+    "index": 99,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3533414602279663,
+    "s2_minkpp_raw": -1.3533414602279663,
+    "n_tokens": 61
+  },
+  {
+    "index": 100,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.567280888557434,
+    "s2_minkpp_raw": -1.567280888557434,
+    "n_tokens": 88
+  },
+  {
+    "index": 101,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.210188627243042,
+    "s2_minkpp_raw": -1.210188627243042,
+    "n_tokens": 66
+  },
+  {
+    "index": 102,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4829702377319336,
+    "s2_minkpp_raw": -1.4829702377319336,
+    "n_tokens": 38
+  },
+  {
+    "index": 103,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3268780708312988,
+    "s2_minkpp_raw": -1.3268780708312988,
+    "n_tokens": 41
+  },
+  {
+    "index": 104,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3594164848327637,
+    "s2_minkpp_raw": -1.3594164848327637,
+    "n_tokens": 53
+  },
+  {
+    "index": 105,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2170515060424805,
+    "s2_minkpp_raw": -1.2170515060424805,
+    "n_tokens": 73
+  },
+  {
+    "index": 106,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3642871379852295,
+    "s2_minkpp_raw": -1.3642871379852295,
+    "n_tokens": 55
+  },
+  {
+    "index": 107,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4479303359985352,
+    "s2_minkpp_raw": -1.4479303359985352,
+    "n_tokens": 83
+  },
+  {
+    "index": 108,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5781328678131104,
+    "s2_minkpp_raw": -1.5781328678131104,
+    "n_tokens": 68
+  },
+  {
+    "index": 109,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5908340215682983,
+    "s2_minkpp_raw": -1.5908340215682983,
+    "n_tokens": 37
+  },
+  {
+    "index": 110,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2934210300445557,
+    "s2_minkpp_raw": -1.2934210300445557,
+    "n_tokens": 104
+  },
+  {
+    "index": 111,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1557689905166626,
+    "s2_minkpp_raw": -1.1557689905166626,
+    "n_tokens": 54
+  },
+  {
+    "index": 112,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6007558107376099,
+    "s2_minkpp_raw": -1.6007558107376099,
+    "n_tokens": 64
+  },
+  {
+    "index": 113,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3164732456207275,
+    "s2_minkpp_raw": -1.3164732456207275,
+    "n_tokens": 41
+  },
+  {
+    "index": 114,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4586668014526367,
+    "s2_minkpp_raw": -1.4586668014526367,
+    "n_tokens": 45
+  },
+  {
+    "index": 115,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.060430884361267,
+    "s2_minkpp_raw": -1.060430884361267,
+    "n_tokens": 46
+  },
+  {
+    "index": 116,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0206574201583862,
+    "s2_minkpp_raw": -1.0206574201583862,
+    "n_tokens": 49
+  },
+  {
+    "index": 117,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3769272565841675,
+    "s2_minkpp_raw": -1.3769272565841675,
+    "n_tokens": 49
+  },
+  {
+    "index": 118,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3358138799667358,
+    "s2_minkpp_raw": -1.3358138799667358,
+    "n_tokens": 79
+  },
+  {
+    "index": 119,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2067458629608154,
+    "s2_minkpp_raw": -1.2067458629608154,
+    "n_tokens": 72
+  },
+  {
+    "index": 120,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2373249530792236,
+    "s2_minkpp_raw": -1.2373249530792236,
+    "n_tokens": 77
+  },
+  {
+    "index": 121,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2138283252716064,
+    "s2_minkpp_raw": -1.2138283252716064,
+    "n_tokens": 43
+  },
+  {
+    "index": 122,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.472467303276062,
+    "s2_minkpp_raw": -1.472467303276062,
+    "n_tokens": 62
+  },
+  {
+    "index": 123,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5307697057724,
+    "s2_minkpp_raw": -1.5307697057724,
+    "n_tokens": 71
+  },
+  {
+    "index": 124,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.315540075302124,
+    "s2_minkpp_raw": -1.315540075302124,
+    "n_tokens": 67
+  },
+  {
+    "index": 125,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2497042417526245,
+    "s2_minkpp_raw": -1.2497042417526245,
+    "n_tokens": 47
+  },
+  {
+    "index": 126,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.482870101928711,
+    "s2_minkpp_raw": -1.482870101928711,
+    "n_tokens": 34
+  },
+  {
+    "index": 127,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.7967430949211121,
+    "s2_minkpp_raw": -0.7967430949211121,
+    "n_tokens": 35
+  },
+  {
+    "index": 128,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6858515739440918,
+    "s2_minkpp_raw": -1.6858515739440918,
+    "n_tokens": 32
+  },
+  {
+    "index": 129,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0506258010864258,
+    "s2_minkpp_raw": -1.0506258010864258,
+    "n_tokens": 52
+  },
+  {
+    "index": 130,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2959682941436768,
+    "s2_minkpp_raw": -1.2959682941436768,
+    "n_tokens": 41
+  },
+  {
+    "index": 131,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2713627815246582,
+    "s2_minkpp_raw": -1.2713627815246582,
+    "n_tokens": 46
+  },
+  {
+    "index": 132,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.344991683959961,
+    "s2_minkpp_raw": -1.344991683959961,
+    "n_tokens": 40
+  },
+  {
+    "index": 133,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.332043170928955,
+    "s2_minkpp_raw": -1.332043170928955,
+    "n_tokens": 51
+  },
+  {
+    "index": 134,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4791449308395386,
+    "s2_minkpp_raw": -1.4791449308395386,
+    "n_tokens": 73
+  },
+  {
+    "index": 135,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6627445220947266,
+    "s2_minkpp_raw": -1.6627445220947266,
+    "n_tokens": 73
+  },
+  {
+    "index": 136,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2907545566558838,
+    "s2_minkpp_raw": -1.2907545566558838,
+    "n_tokens": 85
+  },
+  {
+    "index": 137,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.295095682144165,
+    "s2_minkpp_raw": -1.295095682144165,
+    "n_tokens": 63
+  },
+  {
+    "index": 138,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.153535008430481,
+    "s2_minkpp_raw": -1.153535008430481,
+    "n_tokens": 66
+  },
+  {
+    "index": 139,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1244235038757324,
+    "s2_minkpp_raw": -1.1244235038757324,
+    "n_tokens": 51
+  },
+  {
+    "index": 140,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2254835367202759,
+    "s2_minkpp_raw": -1.2254835367202759,
+    "n_tokens": 70
+  },
+  {
+    "index": 141,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.229101300239563,
+    "s2_minkpp_raw": -1.229101300239563,
+    "n_tokens": 65
+  },
+  {
+    "index": 142,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2129398584365845,
+    "s2_minkpp_raw": -1.2129398584365845,
+    "n_tokens": 49
+  },
+  {
+    "index": 143,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.16634202003479,
+    "s2_minkpp_raw": -1.16634202003479,
+    "n_tokens": 80
+  },
+  {
+    "index": 144,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1243393421173096,
+    "s2_minkpp_raw": -1.1243393421173096,
+    "n_tokens": 41
+  },
+  {
+    "index": 145,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5074366331100464,
+    "s2_minkpp_raw": -1.5074366331100464,
+    "n_tokens": 95
+  },
+  {
+    "index": 146,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5127639770507812,
+    "s2_minkpp_raw": -1.5127639770507812,
+    "n_tokens": 43
+  },
+  {
+    "index": 147,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.35202956199646,
+    "s2_minkpp_raw": -1.35202956199646,
+    "n_tokens": 51
+  },
+  {
+    "index": 148,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.185212254524231,
+    "s2_minkpp_raw": -1.185212254524231,
+    "n_tokens": 33
+  },
+  {
+    "index": 149,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1935842037200928,
+    "s2_minkpp_raw": -1.1935842037200928,
+    "n_tokens": 52
+  },
+  {
+    "index": 150,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5108541250228882,
+    "s2_minkpp_raw": -1.5108541250228882,
+    "n_tokens": 52
+  },
+  {
+    "index": 151,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0559990406036377,
+    "s2_minkpp_raw": -1.0559990406036377,
+    "n_tokens": 40
+  },
+  {
+    "index": 152,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2866735458374023,
+    "s2_minkpp_raw": -1.2866735458374023,
+    "n_tokens": 41
+  },
+  {
+    "index": 153,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1814236640930176,
+    "s2_minkpp_raw": -1.1814236640930176,
+    "n_tokens": 75
+  },
+  {
+    "index": 154,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3383508920669556,
+    "s2_minkpp_raw": -1.3383508920669556,
+    "n_tokens": 69
+  },
+  {
+    "index": 155,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4927186965942383,
+    "s2_minkpp_raw": -1.4927186965942383,
+    "n_tokens": 43
+  },
+  {
+    "index": 156,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.8554155230522156,
+    "s2_minkpp_raw": -0.8554155230522156,
+    "n_tokens": 38
+  },
+  {
+    "index": 157,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4551222324371338,
+    "s2_minkpp_raw": -1.4551222324371338,
+    "n_tokens": 43
+  },
+  {
+    "index": 158,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3533350229263306,
+    "s2_minkpp_raw": -1.3533350229263306,
+    "n_tokens": 39
+  },
+  {
+    "index": 159,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4262685775756836,
+    "s2_minkpp_raw": -1.4262685775756836,
+    "n_tokens": 40
+  },
+  {
+    "index": 160,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0935779809951782,
+    "s2_minkpp_raw": -1.0935779809951782,
+    "n_tokens": 58
+  },
+  {
+    "index": 161,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4349262714385986,
+    "s2_minkpp_raw": -1.4349262714385986,
+    "n_tokens": 43
+  },
+  {
+    "index": 162,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3862048387527466,
+    "s2_minkpp_raw": -1.3862048387527466,
+    "n_tokens": 110
+  },
+  {
+    "index": 163,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3745628595352173,
+    "s2_minkpp_raw": -1.3745628595352173,
+    "n_tokens": 60
+  },
+  {
+    "index": 164,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.069896936416626,
+    "s2_minkpp_raw": -1.069896936416626,
+    "n_tokens": 35
+  },
+  {
+    "index": 165,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.8640885353088379,
+    "s2_minkpp_raw": -0.8640885353088379,
+    "n_tokens": 30
+  },
+  {
+    "index": 166,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4666733741760254,
+    "s2_minkpp_raw": -1.4666733741760254,
+    "n_tokens": 52
+  },
+  {
+    "index": 167,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4869117736816406,
+    "s2_minkpp_raw": -1.4869117736816406,
+    "n_tokens": 59
+  },
+  {
+    "index": 168,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0640407800674438,
+    "s2_minkpp_raw": -1.0640407800674438,
+    "n_tokens": 44
+  },
+  {
+    "index": 169,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2999268770217896,
+    "s2_minkpp_raw": -1.2999268770217896,
+    "n_tokens": 71
+  },
+  {
+    "index": 170,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2467379570007324,
+    "s2_minkpp_raw": -1.2467379570007324,
+    "n_tokens": 162
+  },
+  {
+    "index": 171,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2979753017425537,
+    "s2_minkpp_raw": -1.2979753017425537,
+    "n_tokens": 63
+  },
+  {
+    "index": 172,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.211663842201233,
+    "s2_minkpp_raw": -1.211663842201233,
+    "n_tokens": 71
+  },
+  {
+    "index": 173,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1041134595870972,
+    "s2_minkpp_raw": -1.1041134595870972,
+    "n_tokens": 52
+  },
+  {
+    "index": 174,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3450032472610474,
+    "s2_minkpp_raw": -1.3450032472610474,
+    "n_tokens": 38
+  },
+  {
+    "index": 175,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1921333074569702,
+    "s2_minkpp_raw": -1.1921333074569702,
+    "n_tokens": 98
+  },
+  {
+    "index": 176,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3622550964355469,
+    "s2_minkpp_raw": -1.3622550964355469,
+    "n_tokens": 64
+  },
+  {
+    "index": 177,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4889329671859741,
+    "s2_minkpp_raw": -1.4889329671859741,
+    "n_tokens": 69
+  },
+  {
+    "index": 178,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3829034566879272,
+    "s2_minkpp_raw": -1.3829034566879272,
+    "n_tokens": 58
+  },
+  {
+    "index": 179,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6748590469360352,
+    "s2_minkpp_raw": -1.6748590469360352,
+    "n_tokens": 29
+  },
+  {
+    "index": 180,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.404845118522644,
+    "s2_minkpp_raw": -1.404845118522644,
+    "n_tokens": 37
+  },
+  {
+    "index": 181,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.309632420539856,
+    "s2_minkpp_raw": -1.309632420539856,
+    "n_tokens": 84
+  },
+  {
+    "index": 182,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2691313028335571,
+    "s2_minkpp_raw": -1.2691313028335571,
+    "n_tokens": 42
+  },
+  {
+    "index": 183,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.573796033859253,
+    "s2_minkpp_raw": -1.573796033859253,
+    "n_tokens": 80
+  },
+  {
+    "index": 184,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2287414073944092,
+    "s2_minkpp_raw": -1.2287414073944092,
+    "n_tokens": 74
+  },
+  {
+    "index": 185,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.277960181236267,
+    "s2_minkpp_raw": -1.277960181236267,
+    "n_tokens": 108
+  },
+  {
+    "index": 186,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5476573705673218,
+    "s2_minkpp_raw": -1.5476573705673218,
+    "n_tokens": 103
+  },
+  {
+    "index": 187,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5451592206954956,
+    "s2_minkpp_raw": -1.5451592206954956,
+    "n_tokens": 89
+  },
+  {
+    "index": 188,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.190310001373291,
+    "s2_minkpp_raw": -1.190310001373291,
+    "n_tokens": 41
+  },
+  {
+    "index": 189,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0438002347946167,
+    "s2_minkpp_raw": -1.0438002347946167,
+    "n_tokens": 53
+  },
+  {
+    "index": 190,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1133958101272583,
+    "s2_minkpp_raw": -1.1133958101272583,
+    "n_tokens": 56
+  },
+  {
+    "index": 191,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.441832423210144,
+    "s2_minkpp_raw": -1.441832423210144,
+    "n_tokens": 83
+  },
+  {
+    "index": 192,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2514983415603638,
+    "s2_minkpp_raw": -1.2514983415603638,
+    "n_tokens": 46
+  },
+  {
+    "index": 193,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.183830976486206,
+    "s2_minkpp_raw": -1.183830976486206,
+    "n_tokens": 78
+  },
+  {
+    "index": 194,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3308672904968262,
+    "s2_minkpp_raw": -1.3308672904968262,
+    "n_tokens": 82
+  },
+  {
+    "index": 195,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0379064083099365,
+    "s2_minkpp_raw": -1.0379064083099365,
+    "n_tokens": 59
+  },
+  {
+    "index": 196,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4186289310455322,
+    "s2_minkpp_raw": -1.4186289310455322,
+    "n_tokens": 100
+  },
+  {
+    "index": 197,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2158339023590088,
+    "s2_minkpp_raw": -1.2158339023590088,
+    "n_tokens": 66
+  },
+  {
+    "index": 198,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4178169965744019,
+    "s2_minkpp_raw": -1.4178169965744019,
+    "n_tokens": 70
+  },
+  {
+    "index": 199,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3022316694259644,
+    "s2_minkpp_raw": -1.3022316694259644,
+    "n_tokens": 52
+  },
+  {
+    "index": 200,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4754163026809692,
+    "s2_minkpp_raw": -1.4754163026809692,
+    "n_tokens": 62
+  },
+  {
+    "index": 201,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4653373956680298,
+    "s2_minkpp_raw": -1.4653373956680298,
+    "n_tokens": 59
+  },
+  {
+    "index": 202,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.177127480506897,
+    "s2_minkpp_raw": -1.177127480506897,
+    "n_tokens": 35
+  },
+  {
+    "index": 203,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.340212345123291,
+    "s2_minkpp_raw": -1.340212345123291,
+    "n_tokens": 57
+  },
+  {
+    "index": 204,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1547369956970215,
+    "s2_minkpp_raw": -1.1547369956970215,
+    "n_tokens": 48
+  },
+  {
+    "index": 205,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.101162314414978,
+    "s2_minkpp_raw": -1.101162314414978,
+    "n_tokens": 72
+  },
+  {
+    "index": 206,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.275110125541687,
+    "s2_minkpp_raw": -1.275110125541687,
+    "n_tokens": 78
+  },
+  {
+    "index": 207,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3466650247573853,
+    "s2_minkpp_raw": -1.3466650247573853,
+    "n_tokens": 92
+  },
+  {
+    "index": 208,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4451550245285034,
+    "s2_minkpp_raw": -1.4451550245285034,
+    "n_tokens": 67
+  },
+  {
+    "index": 209,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0644012689590454,
+    "s2_minkpp_raw": -1.0644012689590454,
+    "n_tokens": 45
+  },
+  {
+    "index": 210,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4341436624526978,
+    "s2_minkpp_raw": -1.4341436624526978,
+    "n_tokens": 56
+  },
+  {
+    "index": 211,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3448213338851929,
+    "s2_minkpp_raw": -1.3448213338851929,
+    "n_tokens": 98
+  },
+  {
+    "index": 212,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3553639650344849,
+    "s2_minkpp_raw": -1.3553639650344849,
+    "n_tokens": 57
+  },
+  {
+    "index": 213,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0236754417419434,
+    "s2_minkpp_raw": -1.0236754417419434,
+    "n_tokens": 93
+  },
+  {
+    "index": 214,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4059522151947021,
+    "s2_minkpp_raw": -1.4059522151947021,
+    "n_tokens": 91
+  },
+  {
+    "index": 215,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5298633575439453,
+    "s2_minkpp_raw": -1.5298633575439453,
+    "n_tokens": 67
+  },
+  {
+    "index": 216,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0628446340560913,
+    "s2_minkpp_raw": -1.0628446340560913,
+    "n_tokens": 47
+  },
+  {
+    "index": 217,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3409794569015503,
+    "s2_minkpp_raw": -1.3409794569015503,
+    "n_tokens": 65
+  },
+  {
+    "index": 218,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2684236764907837,
+    "s2_minkpp_raw": -1.2684236764907837,
+    "n_tokens": 26
+  },
+  {
+    "index": 219,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2683762311935425,
+    "s2_minkpp_raw": -1.2683762311935425,
+    "n_tokens": 62
+  },
+  {
+    "index": 220,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2538576126098633,
+    "s2_minkpp_raw": -1.2538576126098633,
+    "n_tokens": 58
+  },
+  {
+    "index": 221,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.281100869178772,
+    "s2_minkpp_raw": -1.281100869178772,
+    "n_tokens": 75
+  },
+  {
+    "index": 222,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2167447805404663,
+    "s2_minkpp_raw": -1.2167447805404663,
+    "n_tokens": 44
+  },
+  {
+    "index": 223,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.278794288635254,
+    "s2_minkpp_raw": -1.278794288635254,
+    "n_tokens": 72
+  },
+  {
+    "index": 224,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.11188542842865,
+    "s2_minkpp_raw": -1.11188542842865,
+    "n_tokens": 40
+  },
+  {
+    "index": 225,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4606138467788696,
+    "s2_minkpp_raw": -1.4606138467788696,
+    "n_tokens": 75
+  },
+  {
+    "index": 226,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3979090452194214,
+    "s2_minkpp_raw": -1.3979090452194214,
+    "n_tokens": 95
+  },
+  {
+    "index": 227,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3210968971252441,
+    "s2_minkpp_raw": -1.3210968971252441,
+    "n_tokens": 66
+  },
+  {
+    "index": 228,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.253376841545105,
+    "s2_minkpp_raw": -1.253376841545105,
+    "n_tokens": 41
+  },
+  {
+    "index": 229,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3544806241989136,
+    "s2_minkpp_raw": -1.3544806241989136,
+    "n_tokens": 60
+  },
+  {
+    "index": 230,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4428133964538574,
+    "s2_minkpp_raw": -1.4428133964538574,
+    "n_tokens": 135
+  },
+  {
+    "index": 231,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.48385751247406,
+    "s2_minkpp_raw": -1.48385751247406,
+    "n_tokens": 196
+  },
+  {
+    "index": 232,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2324625253677368,
+    "s2_minkpp_raw": -1.2324625253677368,
+    "n_tokens": 46
+  },
+  {
+    "index": 233,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1728070974349976,
+    "s2_minkpp_raw": -1.1728070974349976,
+    "n_tokens": 37
+  },
+  {
+    "index": 234,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.423039436340332,
+    "s2_minkpp_raw": -1.423039436340332,
+    "n_tokens": 52
+  },
+  {
+    "index": 235,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.484606146812439,
+    "s2_minkpp_raw": -1.484606146812439,
+    "n_tokens": 51
+  },
+  {
+    "index": 236,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3690444231033325,
+    "s2_minkpp_raw": -1.3690444231033325,
+    "n_tokens": 61
+  },
+  {
+    "index": 237,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2518887519836426,
+    "s2_minkpp_raw": -1.2518887519836426,
+    "n_tokens": 64
+  },
+  {
+    "index": 238,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2701228857040405,
+    "s2_minkpp_raw": -1.2701228857040405,
+    "n_tokens": 97
+  },
+  {
+    "index": 239,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2514554262161255,
+    "s2_minkpp_raw": -1.2514554262161255,
+    "n_tokens": 57
+  },
+  {
+    "index": 240,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0490491390228271,
+    "s2_minkpp_raw": -1.0490491390228271,
+    "n_tokens": 53
+  },
+  {
+    "index": 241,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2795703411102295,
+    "s2_minkpp_raw": -1.2795703411102295,
+    "n_tokens": 66
+  },
+  {
+    "index": 242,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2765151262283325,
+    "s2_minkpp_raw": -1.2765151262283325,
+    "n_tokens": 61
+  },
+  {
+    "index": 243,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0931729078292847,
+    "s2_minkpp_raw": -1.0931729078292847,
+    "n_tokens": 38
+  },
+  {
+    "index": 244,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1494301557540894,
+    "s2_minkpp_raw": -1.1494301557540894,
+    "n_tokens": 89
+  },
+  {
+    "index": 245,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0072969198226929,
+    "s2_minkpp_raw": -1.0072969198226929,
+    "n_tokens": 55
+  },
+  {
+    "index": 246,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9981814622879028,
+    "s2_minkpp_raw": -0.9981814622879028,
+    "n_tokens": 53
+  },
+  {
+    "index": 247,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3276065587997437,
+    "s2_minkpp_raw": -1.3276065587997437,
+    "n_tokens": 71
+  },
+  {
+    "index": 248,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.270296573638916,
+    "s2_minkpp_raw": -1.270296573638916,
+    "n_tokens": 43
+  },
+  {
+    "index": 249,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3917335271835327,
+    "s2_minkpp_raw": -1.3917335271835327,
+    "n_tokens": 32
+  },
+  {
+    "index": 250,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2599492073059082,
+    "s2_minkpp_raw": -1.2599492073059082,
+    "n_tokens": 50
+  },
+  {
+    "index": 251,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3763766288757324,
+    "s2_minkpp_raw": -1.3763766288757324,
+    "n_tokens": 85
+  },
+  {
+    "index": 252,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4389011859893799,
+    "s2_minkpp_raw": -1.4389011859893799,
+    "n_tokens": 74
+  },
+  {
+    "index": 253,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.964579701423645,
+    "s2_minkpp_raw": -0.964579701423645,
+    "n_tokens": 40
+  },
+  {
+    "index": 254,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2932301759719849,
+    "s2_minkpp_raw": -1.2932301759719849,
+    "n_tokens": 72
+  },
+  {
+    "index": 255,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3443702459335327,
+    "s2_minkpp_raw": -1.3443702459335327,
+    "n_tokens": 46
+  },
+  {
+    "index": 256,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2211635112762451,
+    "s2_minkpp_raw": -1.2211635112762451,
+    "n_tokens": 37
+  },
+  {
+    "index": 257,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4729959964752197,
+    "s2_minkpp_raw": -1.4729959964752197,
+    "n_tokens": 102
+  },
+  {
+    "index": 258,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4290196895599365,
+    "s2_minkpp_raw": -1.4290196895599365,
+    "n_tokens": 71
+  },
+  {
+    "index": 259,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1914595365524292,
+    "s2_minkpp_raw": -1.1914595365524292,
+    "n_tokens": 65
+  },
+  {
+    "index": 260,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3610631227493286,
+    "s2_minkpp_raw": -1.3610631227493286,
+    "n_tokens": 67
+  },
+  {
+    "index": 261,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2364614009857178,
+    "s2_minkpp_raw": -1.2364614009857178,
+    "n_tokens": 41
+  },
+  {
+    "index": 262,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2204246520996094,
+    "s2_minkpp_raw": -1.2204246520996094,
+    "n_tokens": 64
+  },
+  {
+    "index": 263,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.220173954963684,
+    "s2_minkpp_raw": -1.220173954963684,
+    "n_tokens": 47
+  },
+  {
+    "index": 264,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3527336120605469,
+    "s2_minkpp_raw": -1.3527336120605469,
+    "n_tokens": 58
+  },
+  {
+    "index": 265,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2701750993728638,
+    "s2_minkpp_raw": -1.2701750993728638,
+    "n_tokens": 73
+  },
+  {
+    "index": 266,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2852911949157715,
+    "s2_minkpp_raw": -1.2852911949157715,
+    "n_tokens": 44
+  },
+  {
+    "index": 267,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4418131113052368,
+    "s2_minkpp_raw": -1.4418131113052368,
+    "n_tokens": 55
+  },
+  {
+    "index": 268,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3189812898635864,
+    "s2_minkpp_raw": -1.3189812898635864,
+    "n_tokens": 89
+  },
+  {
+    "index": 269,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6440062522888184,
+    "s2_minkpp_raw": -1.6440062522888184,
+    "n_tokens": 174
+  },
+  {
+    "index": 270,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2632323503494263,
+    "s2_minkpp_raw": -1.2632323503494263,
+    "n_tokens": 57
+  },
+  {
+    "index": 271,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5854649543762207,
+    "s2_minkpp_raw": -1.5854649543762207,
+    "n_tokens": 29
+  },
+  {
+    "index": 272,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0755385160446167,
+    "s2_minkpp_raw": -1.0755385160446167,
+    "n_tokens": 49
+  },
+  {
+    "index": 273,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3318833112716675,
+    "s2_minkpp_raw": -1.3318833112716675,
+    "n_tokens": 56
+  },
+  {
+    "index": 274,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.521343469619751,
+    "s2_minkpp_raw": -1.521343469619751,
+    "n_tokens": 49
+  },
+  {
+    "index": 275,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6300150156021118,
+    "s2_minkpp_raw": -1.6300150156021118,
+    "n_tokens": 92
+  },
+  {
+    "index": 276,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.447020173072815,
+    "s2_minkpp_raw": -1.447020173072815,
+    "n_tokens": 63
+  },
+  {
+    "index": 277,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4332064390182495,
+    "s2_minkpp_raw": -1.4332064390182495,
+    "n_tokens": 51
+  },
+  {
+    "index": 278,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3932236433029175,
+    "s2_minkpp_raw": -1.3932236433029175,
+    "n_tokens": 89
+  },
+  {
+    "index": 279,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3684003353118896,
+    "s2_minkpp_raw": -1.3684003353118896,
+    "n_tokens": 54
+  },
+  {
+    "index": 280,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1746420860290527,
+    "s2_minkpp_raw": -1.1746420860290527,
+    "n_tokens": 64
+  },
+  {
+    "index": 281,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3013527393341064,
+    "s2_minkpp_raw": -1.3013527393341064,
+    "n_tokens": 78
+  },
+  {
+    "index": 282,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5257835388183594,
+    "s2_minkpp_raw": -1.5257835388183594,
+    "n_tokens": 58
+  },
+  {
+    "index": 283,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5451815128326416,
+    "s2_minkpp_raw": -1.5451815128326416,
+    "n_tokens": 53
+  },
+  {
+    "index": 284,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.223302960395813,
+    "s2_minkpp_raw": -1.223302960395813,
+    "n_tokens": 93
+  },
+  {
+    "index": 285,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9746437668800354,
+    "s2_minkpp_raw": -0.9746437668800354,
+    "n_tokens": 59
+  },
+  {
+    "index": 286,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3610409498214722,
+    "s2_minkpp_raw": -1.3610409498214722,
+    "n_tokens": 62
+  },
+  {
+    "index": 287,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.045875072479248,
+    "s2_minkpp_raw": -1.045875072479248,
+    "n_tokens": 65
+  },
+  {
+    "index": 288,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1222563982009888,
+    "s2_minkpp_raw": -1.1222563982009888,
+    "n_tokens": 56
+  },
+  {
+    "index": 289,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.086622953414917,
+    "s2_minkpp_raw": -1.086622953414917,
+    "n_tokens": 90
+  },
+  {
+    "index": 290,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6527786254882812,
+    "s2_minkpp_raw": -1.6527786254882812,
+    "n_tokens": 108
+  },
+  {
+    "index": 291,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3428540229797363,
+    "s2_minkpp_raw": -1.3428540229797363,
+    "n_tokens": 93
+  },
+  {
+    "index": 292,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.070910930633545,
+    "s2_minkpp_raw": -1.070910930633545,
+    "n_tokens": 38
+  },
+  {
+    "index": 293,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3680212497711182,
+    "s2_minkpp_raw": -1.3680212497711182,
+    "n_tokens": 57
+  },
+  {
+    "index": 294,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.009511947631836,
+    "s2_minkpp_raw": -1.009511947631836,
+    "n_tokens": 41
+  },
+  {
+    "index": 295,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2054146528244019,
+    "s2_minkpp_raw": -1.2054146528244019,
+    "n_tokens": 38
+  },
+  {
+    "index": 296,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5671330690383911,
+    "s2_minkpp_raw": -1.5671330690383911,
+    "n_tokens": 57
+  },
+  {
+    "index": 297,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2550158500671387,
+    "s2_minkpp_raw": -1.2550158500671387,
+    "n_tokens": 55
+  },
+  {
+    "index": 298,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4971392154693604,
+    "s2_minkpp_raw": -1.4971392154693604,
+    "n_tokens": 102
+  },
+  {
+    "index": 299,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3092284202575684,
+    "s2_minkpp_raw": -1.3092284202575684,
+    "n_tokens": 111
+  },
+  {
+    "index": 300,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4494131803512573,
+    "s2_minkpp_raw": -1.4494131803512573,
+    "n_tokens": 58
+  },
+  {
+    "index": 301,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5700322389602661,
+    "s2_minkpp_raw": -1.5700322389602661,
+    "n_tokens": 64
+  },
+  {
+    "index": 302,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0429553985595703,
+    "s2_minkpp_raw": -1.0429553985595703,
+    "n_tokens": 50
+  },
+  {
+    "index": 303,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3951163291931152,
+    "s2_minkpp_raw": -1.3951163291931152,
+    "n_tokens": 62
+  },
+  {
+    "index": 304,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3031716346740723,
+    "s2_minkpp_raw": -1.3031716346740723,
+    "n_tokens": 51
+  },
+  {
+    "index": 305,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.32029128074646,
+    "s2_minkpp_raw": -1.32029128074646,
+    "n_tokens": 41
+  },
+  {
+    "index": 306,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.169779896736145,
+    "s2_minkpp_raw": -1.169779896736145,
+    "n_tokens": 58
+  },
+  {
+    "index": 307,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1020647287368774,
+    "s2_minkpp_raw": -1.1020647287368774,
+    "n_tokens": 54
+  },
+  {
+    "index": 308,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2032183408737183,
+    "s2_minkpp_raw": -1.2032183408737183,
+    "n_tokens": 45
+  },
+  {
+    "index": 309,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2611044645309448,
+    "s2_minkpp_raw": -1.2611044645309448,
+    "n_tokens": 59
+  },
+  {
+    "index": 310,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5649034976959229,
+    "s2_minkpp_raw": -1.5649034976959229,
+    "n_tokens": 143
+  },
+  {
+    "index": 311,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.275825023651123,
+    "s2_minkpp_raw": -1.275825023651123,
+    "n_tokens": 79
+  },
+  {
+    "index": 312,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3892078399658203,
+    "s2_minkpp_raw": -1.3892078399658203,
+    "n_tokens": 29
+  },
+  {
+    "index": 313,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.7042157649993896,
+    "s2_minkpp_raw": -1.7042157649993896,
+    "n_tokens": 77
+  },
+  {
+    "index": 314,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3969217538833618,
+    "s2_minkpp_raw": -1.3969217538833618,
+    "n_tokens": 75
+  },
+  {
+    "index": 315,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.7074847221374512,
+    "s2_minkpp_raw": -1.7074847221374512,
+    "n_tokens": 69
+  },
+  {
+    "index": 316,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.512349009513855,
+    "s2_minkpp_raw": -1.512349009513855,
+    "n_tokens": 47
+  },
+  {
+    "index": 317,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.7243419885635376,
+    "s2_minkpp_raw": -1.7243419885635376,
+    "n_tokens": 70
+  },
+  {
+    "index": 318,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1558257341384888,
+    "s2_minkpp_raw": -1.1558257341384888,
+    "n_tokens": 122
+  },
+  {
+    "index": 319,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2790385484695435,
+    "s2_minkpp_raw": -1.2790385484695435,
+    "n_tokens": 33
+  },
+  {
+    "index": 320,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.409894585609436,
+    "s2_minkpp_raw": -1.409894585609436,
+    "n_tokens": 122
+  },
+  {
+    "index": 321,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2161129713058472,
+    "s2_minkpp_raw": -1.2161129713058472,
+    "n_tokens": 53
+  },
+  {
+    "index": 322,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0886576175689697,
+    "s2_minkpp_raw": -1.0886576175689697,
+    "n_tokens": 68
+  },
+  {
+    "index": 323,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1984986066818237,
+    "s2_minkpp_raw": -1.1984986066818237,
+    "n_tokens": 55
+  },
+  {
+    "index": 324,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.955960750579834,
+    "s2_minkpp_raw": -0.955960750579834,
+    "n_tokens": 40
+  },
+  {
+    "index": 325,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5797832012176514,
+    "s2_minkpp_raw": -1.5797832012176514,
+    "n_tokens": 94
+  },
+  {
+    "index": 326,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4788551330566406,
+    "s2_minkpp_raw": -1.4788551330566406,
+    "n_tokens": 33
+  },
+  {
+    "index": 327,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3531172275543213,
+    "s2_minkpp_raw": -1.3531172275543213,
+    "n_tokens": 50
+  },
+  {
+    "index": 328,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5936797857284546,
+    "s2_minkpp_raw": -1.5936797857284546,
+    "n_tokens": 49
+  },
+  {
+    "index": 329,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.509512186050415,
+    "s2_minkpp_raw": -1.509512186050415,
+    "n_tokens": 39
+  },
+  {
+    "index": 330,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.410420536994934,
+    "s2_minkpp_raw": -1.410420536994934,
+    "n_tokens": 64
+  },
+  {
+    "index": 331,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6005851030349731,
+    "s2_minkpp_raw": -1.6005851030349731,
+    "n_tokens": 113
+  },
+  {
+    "index": 332,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3374686241149902,
+    "s2_minkpp_raw": -1.3374686241149902,
+    "n_tokens": 40
+  },
+  {
+    "index": 333,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3828556537628174,
+    "s2_minkpp_raw": -1.3828556537628174,
+    "n_tokens": 75
+  },
+  {
+    "index": 334,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2316430807113647,
+    "s2_minkpp_raw": -1.2316430807113647,
+    "n_tokens": 66
+  },
+  {
+    "index": 335,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5197581052780151,
+    "s2_minkpp_raw": -1.5197581052780151,
+    "n_tokens": 68
+  },
+  {
+    "index": 336,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.173642873764038,
+    "s2_minkpp_raw": -1.173642873764038,
+    "n_tokens": 68
+  },
+  {
+    "index": 337,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2308738231658936,
+    "s2_minkpp_raw": -1.2308738231658936,
+    "n_tokens": 81
+  },
+  {
+    "index": 338,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1576244831085205,
+    "s2_minkpp_raw": -1.1576244831085205,
+    "n_tokens": 60
+  },
+  {
+    "index": 339,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2514244318008423,
+    "s2_minkpp_raw": -1.2514244318008423,
+    "n_tokens": 61
+  },
+  {
+    "index": 340,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9601191282272339,
+    "s2_minkpp_raw": -0.9601191282272339,
+    "n_tokens": 51
+  },
+  {
+    "index": 341,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.706351399421692,
+    "s2_minkpp_raw": -1.706351399421692,
+    "n_tokens": 46
+  },
+  {
+    "index": 342,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0528446435928345,
+    "s2_minkpp_raw": -1.0528446435928345,
+    "n_tokens": 47
+  },
+  {
+    "index": 343,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4101998805999756,
+    "s2_minkpp_raw": -1.4101998805999756,
+    "n_tokens": 106
+  },
+  {
+    "index": 344,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6149433851242065,
+    "s2_minkpp_raw": -1.6149433851242065,
+    "n_tokens": 93
+  },
+  {
+    "index": 345,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2643141746520996,
+    "s2_minkpp_raw": -1.2643141746520996,
+    "n_tokens": 82
+  },
+  {
+    "index": 346,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2750341892242432,
+    "s2_minkpp_raw": -1.2750341892242432,
+    "n_tokens": 49
+  },
+  {
+    "index": 347,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.293982982635498,
+    "s2_minkpp_raw": -1.293982982635498,
+    "n_tokens": 55
+  },
+  {
+    "index": 348,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0420496463775635,
+    "s2_minkpp_raw": -1.0420496463775635,
+    "n_tokens": 36
+  },
+  {
+    "index": 349,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3978229761123657,
+    "s2_minkpp_raw": -1.3978229761123657,
+    "n_tokens": 56
+  },
+  {
+    "index": 350,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.175492525100708,
+    "s2_minkpp_raw": -1.175492525100708,
+    "n_tokens": 50
+  },
+  {
+    "index": 351,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6649504899978638,
+    "s2_minkpp_raw": -1.6649504899978638,
+    "n_tokens": 84
+  },
+  {
+    "index": 352,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2487326860427856,
+    "s2_minkpp_raw": -1.2487326860427856,
+    "n_tokens": 48
+  },
+  {
+    "index": 353,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2740768194198608,
+    "s2_minkpp_raw": -1.2740768194198608,
+    "n_tokens": 52
+  },
+  {
+    "index": 354,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3629720211029053,
+    "s2_minkpp_raw": -1.3629720211029053,
+    "n_tokens": 53
+  },
+  {
+    "index": 355,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4743366241455078,
+    "s2_minkpp_raw": -1.4743366241455078,
+    "n_tokens": 50
+  },
+  {
+    "index": 356,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3950072526931763,
+    "s2_minkpp_raw": -1.3950072526931763,
+    "n_tokens": 89
+  },
+  {
+    "index": 357,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.326237678527832,
+    "s2_minkpp_raw": -1.326237678527832,
+    "n_tokens": 98
+  },
+  {
+    "index": 358,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4058419466018677,
+    "s2_minkpp_raw": -1.4058419466018677,
+    "n_tokens": 56
+  },
+  {
+    "index": 359,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4466291666030884,
+    "s2_minkpp_raw": -1.4466291666030884,
+    "n_tokens": 60
+  },
+  {
+    "index": 360,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.390477180480957,
+    "s2_minkpp_raw": -1.390477180480957,
+    "n_tokens": 83
+  },
+  {
+    "index": 361,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3061293363571167,
+    "s2_minkpp_raw": -1.3061293363571167,
+    "n_tokens": 58
+  },
+  {
+    "index": 362,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2678096294403076,
+    "s2_minkpp_raw": -1.2678096294403076,
+    "n_tokens": 46
+  },
+  {
+    "index": 363,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2189276218414307,
+    "s2_minkpp_raw": -1.2189276218414307,
+    "n_tokens": 45
+  },
+  {
+    "index": 364,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4583572149276733,
+    "s2_minkpp_raw": -1.4583572149276733,
+    "n_tokens": 102
+  },
+  {
+    "index": 365,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2011946439743042,
+    "s2_minkpp_raw": -1.2011946439743042,
+    "n_tokens": 59
+  },
+  {
+    "index": 366,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2620189189910889,
+    "s2_minkpp_raw": -1.2620189189910889,
+    "n_tokens": 51
+  },
+  {
+    "index": 367,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2567555904388428,
+    "s2_minkpp_raw": -1.2567555904388428,
+    "n_tokens": 47
+  },
+  {
+    "index": 368,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3632677793502808,
+    "s2_minkpp_raw": -1.3632677793502808,
+    "n_tokens": 59
+  },
+  {
+    "index": 369,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4138623476028442,
+    "s2_minkpp_raw": -1.4138623476028442,
+    "n_tokens": 49
+  },
+  {
+    "index": 370,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3389681577682495,
+    "s2_minkpp_raw": -1.3389681577682495,
+    "n_tokens": 69
+  },
+  {
+    "index": 371,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1037883758544922,
+    "s2_minkpp_raw": -1.1037883758544922,
+    "n_tokens": 53
+  },
+  {
+    "index": 372,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2249051332473755,
+    "s2_minkpp_raw": -1.2249051332473755,
+    "n_tokens": 85
+  },
+  {
+    "index": 373,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.435246467590332,
+    "s2_minkpp_raw": -1.435246467590332,
+    "n_tokens": 61
+  },
+  {
+    "index": 374,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4015610218048096,
+    "s2_minkpp_raw": -1.4015610218048096,
+    "n_tokens": 166
+  },
+  {
+    "index": 375,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3586434125900269,
+    "s2_minkpp_raw": -1.3586434125900269,
+    "n_tokens": 62
+  },
+  {
+    "index": 376,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1035516262054443,
+    "s2_minkpp_raw": -1.1035516262054443,
+    "n_tokens": 55
+  },
+  {
+    "index": 377,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.409733533859253,
+    "s2_minkpp_raw": -1.409733533859253,
+    "n_tokens": 37
+  },
+  {
+    "index": 378,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.215956211090088,
+    "s2_minkpp_raw": -1.215956211090088,
+    "n_tokens": 85
+  },
+  {
+    "index": 379,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1584076881408691,
+    "s2_minkpp_raw": -1.1584076881408691,
+    "n_tokens": 52
+  },
+  {
+    "index": 380,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3529651165008545,
+    "s2_minkpp_raw": -1.3529651165008545,
+    "n_tokens": 65
+  },
+  {
+    "index": 381,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2490475177764893,
+    "s2_minkpp_raw": -1.2490475177764893,
+    "n_tokens": 51
+  },
+  {
+    "index": 382,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.386514663696289,
+    "s2_minkpp_raw": -1.386514663696289,
+    "n_tokens": 67
+  },
+  {
+    "index": 383,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4063221216201782,
+    "s2_minkpp_raw": -1.4063221216201782,
+    "n_tokens": 73
+  },
+  {
+    "index": 384,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.464495301246643,
+    "s2_minkpp_raw": -1.464495301246643,
+    "n_tokens": 66
+  },
+  {
+    "index": 385,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.770147681236267,
+    "s2_minkpp_raw": -1.770147681236267,
+    "n_tokens": 36
+  },
+  {
+    "index": 386,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9873345494270325,
+    "s2_minkpp_raw": -0.9873345494270325,
+    "n_tokens": 36
+  },
+  {
+    "index": 387,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1544091701507568,
+    "s2_minkpp_raw": -1.1544091701507568,
+    "n_tokens": 98
+  },
+  {
+    "index": 388,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0317326784133911,
+    "s2_minkpp_raw": -1.0317326784133911,
+    "n_tokens": 56
+  },
+  {
+    "index": 389,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2211247682571411,
+    "s2_minkpp_raw": -1.2211247682571411,
+    "n_tokens": 74
+  },
+  {
+    "index": 390,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.309517502784729,
+    "s2_minkpp_raw": -1.309517502784729,
+    "n_tokens": 71
+  },
+  {
+    "index": 391,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5285860300064087,
+    "s2_minkpp_raw": -1.5285860300064087,
+    "n_tokens": 98
+  },
+  {
+    "index": 392,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4681318998336792,
+    "s2_minkpp_raw": -1.4681318998336792,
+    "n_tokens": 106
+  },
+  {
+    "index": 393,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4720940589904785,
+    "s2_minkpp_raw": -1.4720940589904785,
+    "n_tokens": 64
+  },
+  {
+    "index": 394,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2829852104187012,
+    "s2_minkpp_raw": -1.2829852104187012,
+    "n_tokens": 96
+  },
+  {
+    "index": 395,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3254591226577759,
+    "s2_minkpp_raw": -1.3254591226577759,
+    "n_tokens": 45
+  },
+  {
+    "index": 396,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3460613489151,
+    "s2_minkpp_raw": -1.3460613489151,
+    "n_tokens": 100
+  },
+  {
+    "index": 397,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6502619981765747,
+    "s2_minkpp_raw": -1.6502619981765747,
+    "n_tokens": 59
+  },
+  {
+    "index": 398,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.167935848236084,
+    "s2_minkpp_raw": -1.167935848236084,
+    "n_tokens": 81
+  },
+  {
+    "index": 399,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.393754482269287,
+    "s2_minkpp_raw": -1.393754482269287,
+    "n_tokens": 80
+  },
+  {
+    "index": 400,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.7701235413551331,
+    "s2_minkpp_raw": -0.7701235413551331,
+    "n_tokens": 30
+  },
+  {
+    "index": 401,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3767614364624023,
+    "s2_minkpp_raw": -1.3767614364624023,
+    "n_tokens": 81
+  },
+  {
+    "index": 402,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4303210973739624,
+    "s2_minkpp_raw": -1.4303210973739624,
+    "n_tokens": 84
+  },
+  {
+    "index": 403,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2173100709915161,
+    "s2_minkpp_raw": -1.2173100709915161,
+    "n_tokens": 64
+  },
+  {
+    "index": 404,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3840019702911377,
+    "s2_minkpp_raw": -1.3840019702911377,
+    "n_tokens": 87
+  },
+  {
+    "index": 405,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5040967464447021,
+    "s2_minkpp_raw": -1.5040967464447021,
+    "n_tokens": 85
+  },
+  {
+    "index": 406,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3180313110351562,
+    "s2_minkpp_raw": -1.3180313110351562,
+    "n_tokens": 73
+  },
+  {
+    "index": 407,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.361053228378296,
+    "s2_minkpp_raw": -1.361053228378296,
+    "n_tokens": 78
+  },
+  {
+    "index": 408,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4232730865478516,
+    "s2_minkpp_raw": -1.4232730865478516,
+    "n_tokens": 94
+  },
+  {
+    "index": 409,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.202696442604065,
+    "s2_minkpp_raw": -1.202696442604065,
+    "n_tokens": 71
+  },
+  {
+    "index": 410,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3555028438568115,
+    "s2_minkpp_raw": -1.3555028438568115,
+    "n_tokens": 80
+  },
+  {
+    "index": 411,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1276977062225342,
+    "s2_minkpp_raw": -1.1276977062225342,
+    "n_tokens": 58
+  },
+  {
+    "index": 412,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1785221099853516,
+    "s2_minkpp_raw": -1.1785221099853516,
+    "n_tokens": 42
+  },
+  {
+    "index": 413,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3097543716430664,
+    "s2_minkpp_raw": -1.3097543716430664,
+    "n_tokens": 89
+  },
+  {
+    "index": 414,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1068289279937744,
+    "s2_minkpp_raw": -1.1068289279937744,
+    "n_tokens": 67
+  },
+  {
+    "index": 415,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5333285331726074,
+    "s2_minkpp_raw": -1.5333285331726074,
+    "n_tokens": 81
+  },
+  {
+    "index": 416,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.489202618598938,
+    "s2_minkpp_raw": -1.489202618598938,
+    "n_tokens": 152
+  },
+  {
+    "index": 417,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.544228434562683,
+    "s2_minkpp_raw": -1.544228434562683,
+    "n_tokens": 44
+  },
+  {
+    "index": 418,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2082926034927368,
+    "s2_minkpp_raw": -1.2082926034927368,
+    "n_tokens": 56
+  },
+  {
+    "index": 419,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.541351079940796,
+    "s2_minkpp_raw": -1.541351079940796,
+    "n_tokens": 81
+  },
+  {
+    "index": 420,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9345278739929199,
+    "s2_minkpp_raw": -0.9345278739929199,
+    "n_tokens": 34
+  },
+  {
+    "index": 421,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1237720251083374,
+    "s2_minkpp_raw": -1.1237720251083374,
+    "n_tokens": 95
+  },
+  {
+    "index": 422,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2710174322128296,
+    "s2_minkpp_raw": -1.2710174322128296,
+    "n_tokens": 88
+  },
+  {
+    "index": 423,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3834482431411743,
+    "s2_minkpp_raw": -1.3834482431411743,
+    "n_tokens": 95
+  },
+  {
+    "index": 424,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.244895339012146,
+    "s2_minkpp_raw": -1.244895339012146,
+    "n_tokens": 70
+  },
+  {
+    "index": 425,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3797489404678345,
+    "s2_minkpp_raw": -1.3797489404678345,
+    "n_tokens": 95
+  },
+  {
+    "index": 426,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.498183012008667,
+    "s2_minkpp_raw": -1.498183012008667,
+    "n_tokens": 65
+  },
+  {
+    "index": 427,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.8324874639511108,
+    "s2_minkpp_raw": -1.8324874639511108,
+    "n_tokens": 38
+  },
+  {
+    "index": 428,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2993344068527222,
+    "s2_minkpp_raw": -1.2993344068527222,
+    "n_tokens": 97
+  },
+  {
+    "index": 429,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9623364210128784,
+    "s2_minkpp_raw": -0.9623364210128784,
+    "n_tokens": 45
+  },
+  {
+    "index": 430,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1045031547546387,
+    "s2_minkpp_raw": -1.1045031547546387,
+    "n_tokens": 27
+  },
+  {
+    "index": 431,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4394680261611938,
+    "s2_minkpp_raw": -1.4394680261611938,
+    "n_tokens": 116
+  },
+  {
+    "index": 432,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3472195863723755,
+    "s2_minkpp_raw": -1.3472195863723755,
+    "n_tokens": 68
+  },
+  {
+    "index": 433,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.143371820449829,
+    "s2_minkpp_raw": -1.143371820449829,
+    "n_tokens": 60
+  },
+  {
+    "index": 434,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5405936241149902,
+    "s2_minkpp_raw": -1.5405936241149902,
+    "n_tokens": 122
+  },
+  {
+    "index": 435,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3877989053726196,
+    "s2_minkpp_raw": -1.3877989053726196,
+    "n_tokens": 137
+  },
+  {
+    "index": 436,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5849653482437134,
+    "s2_minkpp_raw": -1.5849653482437134,
+    "n_tokens": 128
+  },
+  {
+    "index": 437,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6485682725906372,
+    "s2_minkpp_raw": -1.6485682725906372,
+    "n_tokens": 40
+  },
+  {
+    "index": 438,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4585776329040527,
+    "s2_minkpp_raw": -1.4585776329040527,
+    "n_tokens": 121
+  },
+  {
+    "index": 439,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2566646337509155,
+    "s2_minkpp_raw": -1.2566646337509155,
+    "n_tokens": 87
+  },
+  {
+    "index": 440,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.441579818725586,
+    "s2_minkpp_raw": -1.441579818725586,
+    "n_tokens": 43
+  },
+  {
+    "index": 441,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9818289875984192,
+    "s2_minkpp_raw": -0.9818289875984192,
+    "n_tokens": 36
+  },
+  {
+    "index": 442,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3813196420669556,
+    "s2_minkpp_raw": -1.3813196420669556,
+    "n_tokens": 64
+  },
+  {
+    "index": 443,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4235904216766357,
+    "s2_minkpp_raw": -1.4235904216766357,
+    "n_tokens": 73
+  },
+  {
+    "index": 444,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6301614046096802,
+    "s2_minkpp_raw": -1.6301614046096802,
+    "n_tokens": 73
+  },
+  {
+    "index": 445,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3213977813720703,
+    "s2_minkpp_raw": -1.3213977813720703,
+    "n_tokens": 52
+  },
+  {
+    "index": 446,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4617805480957031,
+    "s2_minkpp_raw": -1.4617805480957031,
+    "n_tokens": 61
+  },
+  {
+    "index": 447,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5278594493865967,
+    "s2_minkpp_raw": -1.5278594493865967,
+    "n_tokens": 43
+  },
+  {
+    "index": 448,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.357997179031372,
+    "s2_minkpp_raw": -1.357997179031372,
+    "n_tokens": 95
+  },
+  {
+    "index": 449,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3170300722122192,
+    "s2_minkpp_raw": -1.3170300722122192,
+    "n_tokens": 70
+  },
+  {
+    "index": 450,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3299767971038818,
+    "s2_minkpp_raw": -1.3299767971038818,
+    "n_tokens": 80
+  },
+  {
+    "index": 451,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.033977746963501,
+    "s2_minkpp_raw": -1.033977746963501,
+    "n_tokens": 37
+  },
+  {
+    "index": 452,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4733084440231323,
+    "s2_minkpp_raw": -1.4733084440231323,
+    "n_tokens": 44
+  },
+  {
+    "index": 453,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6629538536071777,
+    "s2_minkpp_raw": -1.6629538536071777,
+    "n_tokens": 78
+  },
+  {
+    "index": 454,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3866640329360962,
+    "s2_minkpp_raw": -1.3866640329360962,
+    "n_tokens": 96
+  },
+  {
+    "index": 455,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3250354528427124,
+    "s2_minkpp_raw": -1.3250354528427124,
+    "n_tokens": 100
+  },
+  {
+    "index": 456,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3564406633377075,
+    "s2_minkpp_raw": -1.3564406633377075,
+    "n_tokens": 45
+  },
+  {
+    "index": 457,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5555460453033447,
+    "s2_minkpp_raw": -1.5555460453033447,
+    "n_tokens": 65
+  },
+  {
+    "index": 458,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.461395025253296,
+    "s2_minkpp_raw": -1.461395025253296,
+    "n_tokens": 138
+  },
+  {
+    "index": 459,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.308279275894165,
+    "s2_minkpp_raw": -1.308279275894165,
+    "n_tokens": 70
+  },
+  {
+    "index": 460,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6944226026535034,
+    "s2_minkpp_raw": -1.6944226026535034,
+    "n_tokens": 33
+  },
+  {
+    "index": 461,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4004460573196411,
+    "s2_minkpp_raw": -1.4004460573196411,
+    "n_tokens": 101
+  },
+  {
+    "index": 462,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6087826490402222,
+    "s2_minkpp_raw": -1.6087826490402222,
+    "n_tokens": 93
+  },
+  {
+    "index": 463,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2860798835754395,
+    "s2_minkpp_raw": -1.2860798835754395,
+    "n_tokens": 58
+  },
+  {
+    "index": 464,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.374982237815857,
+    "s2_minkpp_raw": -1.374982237815857,
+    "n_tokens": 42
+  },
+  {
+    "index": 465,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.471834421157837,
+    "s2_minkpp_raw": -1.471834421157837,
+    "n_tokens": 75
+  },
+  {
+    "index": 466,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4703553915023804,
+    "s2_minkpp_raw": -1.4703553915023804,
+    "n_tokens": 94
+  },
+  {
+    "index": 467,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2750433683395386,
+    "s2_minkpp_raw": -1.2750433683395386,
+    "n_tokens": 67
+  },
+  {
+    "index": 468,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3612695932388306,
+    "s2_minkpp_raw": -1.3612695932388306,
+    "n_tokens": 68
+  },
+  {
+    "index": 469,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.123469591140747,
+    "s2_minkpp_raw": -1.123469591140747,
+    "n_tokens": 94
+  },
+  {
+    "index": 470,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4764039516448975,
+    "s2_minkpp_raw": -1.4764039516448975,
+    "n_tokens": 75
+  },
+  {
+    "index": 471,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.240243911743164,
+    "s2_minkpp_raw": -1.240243911743164,
+    "n_tokens": 49
+  },
+  {
+    "index": 472,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.215159296989441,
+    "s2_minkpp_raw": -1.215159296989441,
+    "n_tokens": 73
+  },
+  {
+    "index": 473,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5693585872650146,
+    "s2_minkpp_raw": -1.5693585872650146,
+    "n_tokens": 41
+  },
+  {
+    "index": 474,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5289002656936646,
+    "s2_minkpp_raw": -1.5289002656936646,
+    "n_tokens": 115
+  },
+  {
+    "index": 475,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.16924250125885,
+    "s2_minkpp_raw": -1.16924250125885,
+    "n_tokens": 55
+  },
+  {
+    "index": 476,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.180047631263733,
+    "s2_minkpp_raw": -1.180047631263733,
+    "n_tokens": 41
+  },
+  {
+    "index": 477,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2919200658798218,
+    "s2_minkpp_raw": -1.2919200658798218,
+    "n_tokens": 87
+  },
+  {
+    "index": 478,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.210878610610962,
+    "s2_minkpp_raw": -1.210878610610962,
+    "n_tokens": 37
+  },
+  {
+    "index": 479,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4813576936721802,
+    "s2_minkpp_raw": -1.4813576936721802,
+    "n_tokens": 61
+  },
+  {
+    "index": 480,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5105903148651123,
+    "s2_minkpp_raw": -1.5105903148651123,
+    "n_tokens": 54
+  },
+  {
+    "index": 481,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0225261449813843,
+    "s2_minkpp_raw": -1.0225261449813843,
+    "n_tokens": 30
+  },
+  {
+    "index": 482,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4908161163330078,
+    "s2_minkpp_raw": -1.4908161163330078,
+    "n_tokens": 82
+  },
+  {
+    "index": 483,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.488327980041504,
+    "s2_minkpp_raw": -1.488327980041504,
+    "n_tokens": 98
+  },
+  {
+    "index": 484,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4518585205078125,
+    "s2_minkpp_raw": -1.4518585205078125,
+    "n_tokens": 64
+  },
+  {
+    "index": 485,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5519542694091797,
+    "s2_minkpp_raw": -1.5519542694091797,
+    "n_tokens": 73
+  },
+  {
+    "index": 486,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2247068881988525,
+    "s2_minkpp_raw": -1.2247068881988525,
+    "n_tokens": 54
+  },
+  {
+    "index": 487,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.237246036529541,
+    "s2_minkpp_raw": -1.237246036529541,
+    "n_tokens": 46
+  },
+  {
+    "index": 488,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.162314534187317,
+    "s2_minkpp_raw": -1.162314534187317,
+    "n_tokens": 60
+  },
+  {
+    "index": 489,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3437790870666504,
+    "s2_minkpp_raw": -1.3437790870666504,
+    "n_tokens": 44
+  },
+  {
+    "index": 490,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2955399751663208,
+    "s2_minkpp_raw": -1.2955399751663208,
+    "n_tokens": 78
+  },
+  {
+    "index": 491,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4880393743515015,
+    "s2_minkpp_raw": -1.4880393743515015,
+    "n_tokens": 76
+  },
+  {
+    "index": 492,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1149839162826538,
+    "s2_minkpp_raw": -1.1149839162826538,
+    "n_tokens": 47
+  },
+  {
+    "index": 493,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2858383655548096,
+    "s2_minkpp_raw": -1.2858383655548096,
+    "n_tokens": 70
+  },
+  {
+    "index": 494,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2048646211624146,
+    "s2_minkpp_raw": -1.2048646211624146,
+    "n_tokens": 48
+  },
+  {
+    "index": 495,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1491646766662598,
+    "s2_minkpp_raw": -1.1491646766662598,
+    "n_tokens": 46
+  },
+  {
+    "index": 496,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2683783769607544,
+    "s2_minkpp_raw": -1.2683783769607544,
+    "n_tokens": 66
+  },
+  {
+    "index": 497,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.176125407218933,
+    "s2_minkpp_raw": -1.176125407218933,
+    "n_tokens": 36
+  },
+  {
+    "index": 498,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.501816987991333,
+    "s2_minkpp_raw": -1.501816987991333,
+    "n_tokens": 107
+  },
+  {
+    "index": 499,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.169087290763855,
+    "s2_minkpp_raw": -1.169087290763855,
+    "n_tokens": 88
+  },
+  {
+    "index": 500,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2721586227416992,
+    "s2_minkpp_raw": -1.2721586227416992,
+    "n_tokens": 80
+  },
+  {
+    "index": 501,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.07338285446167,
+    "s2_minkpp_raw": -1.07338285446167,
+    "n_tokens": 53
+  },
+  {
+    "index": 502,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2614421844482422,
+    "s2_minkpp_raw": -1.2614421844482422,
+    "n_tokens": 80
+  },
+  {
+    "index": 503,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.262760043144226,
+    "s2_minkpp_raw": -1.262760043144226,
+    "n_tokens": 36
+  },
+  {
+    "index": 504,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4864708185195923,
+    "s2_minkpp_raw": -1.4864708185195923,
+    "n_tokens": 109
+  },
+  {
+    "index": 505,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4495595693588257,
+    "s2_minkpp_raw": -1.4495595693588257,
+    "n_tokens": 79
+  },
+  {
+    "index": 506,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.004723072052002,
+    "s2_minkpp_raw": -1.004723072052002,
+    "n_tokens": 121
+  },
+  {
+    "index": 507,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3249369859695435,
+    "s2_minkpp_raw": -1.3249369859695435,
+    "n_tokens": 75
+  },
+  {
+    "index": 508,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3784362077713013,
+    "s2_minkpp_raw": -1.3784362077713013,
+    "n_tokens": 72
+  },
+  {
+    "index": 509,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3832718133926392,
+    "s2_minkpp_raw": -1.3832718133926392,
+    "n_tokens": 63
+  },
+  {
+    "index": 510,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4953867197036743,
+    "s2_minkpp_raw": -1.4953867197036743,
+    "n_tokens": 51
+  },
+  {
+    "index": 511,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2254194021224976,
+    "s2_minkpp_raw": -1.2254194021224976,
+    "n_tokens": 37
+  },
+  {
+    "index": 512,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.141558051109314,
+    "s2_minkpp_raw": -1.141558051109314,
+    "n_tokens": 57
+  },
+  {
+    "index": 513,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.437206745147705,
+    "s2_minkpp_raw": -1.437206745147705,
+    "n_tokens": 30
+  },
+  {
+    "index": 514,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1691224575042725,
+    "s2_minkpp_raw": -1.1691224575042725,
+    "n_tokens": 56
+  },
+  {
+    "index": 515,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9918590188026428,
+    "s2_minkpp_raw": -0.9918590188026428,
+    "n_tokens": 55
+  },
+  {
+    "index": 516,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.178062081336975,
+    "s2_minkpp_raw": -1.178062081336975,
+    "n_tokens": 83
+  },
+  {
+    "index": 517,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2965004444122314,
+    "s2_minkpp_raw": -1.2965004444122314,
+    "n_tokens": 49
+  },
+  {
+    "index": 518,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.295960545539856,
+    "s2_minkpp_raw": -1.295960545539856,
+    "n_tokens": 41
+  },
+  {
+    "index": 519,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.907559871673584,
+    "s2_minkpp_raw": -0.907559871673584,
+    "n_tokens": 30
+  },
+  {
+    "index": 520,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.935207724571228,
+    "s2_minkpp_raw": -0.935207724571228,
+    "n_tokens": 38
+  },
+  {
+    "index": 521,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.410878300666809,
+    "s2_minkpp_raw": -1.410878300666809,
+    "n_tokens": 59
+  },
+  {
+    "index": 522,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.413630485534668,
+    "s2_minkpp_raw": -1.413630485534668,
+    "n_tokens": 39
+  },
+  {
+    "index": 523,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.377807855606079,
+    "s2_minkpp_raw": -1.377807855606079,
+    "n_tokens": 88
+  },
+  {
+    "index": 524,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4424598217010498,
+    "s2_minkpp_raw": -1.4424598217010498,
+    "n_tokens": 83
+  },
+  {
+    "index": 525,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9731769561767578,
+    "s2_minkpp_raw": -0.9731769561767578,
+    "n_tokens": 33
+  },
+  {
+    "index": 526,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.379895567893982,
+    "s2_minkpp_raw": -1.379895567893982,
+    "n_tokens": 72
+  },
+  {
+    "index": 527,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2793687582015991,
+    "s2_minkpp_raw": -1.2793687582015991,
+    "n_tokens": 63
+  },
+  {
+    "index": 528,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2520872354507446,
+    "s2_minkpp_raw": -1.2520872354507446,
+    "n_tokens": 58
+  },
+  {
+    "index": 529,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4388290643692017,
+    "s2_minkpp_raw": -1.4388290643692017,
+    "n_tokens": 64
+  },
+  {
+    "index": 530,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6289968490600586,
+    "s2_minkpp_raw": -1.6289968490600586,
+    "n_tokens": 50
+  },
+  {
+    "index": 531,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3396390676498413,
+    "s2_minkpp_raw": -1.3396390676498413,
+    "n_tokens": 74
+  },
+  {
+    "index": 532,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.369749903678894,
+    "s2_minkpp_raw": -1.369749903678894,
+    "n_tokens": 83
+  },
+  {
+    "index": 533,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1323777437210083,
+    "s2_minkpp_raw": -1.1323777437210083,
+    "n_tokens": 40
+  },
+  {
+    "index": 534,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3156416416168213,
+    "s2_minkpp_raw": -1.3156416416168213,
+    "n_tokens": 40
+  },
+  {
+    "index": 535,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5595329999923706,
+    "s2_minkpp_raw": -1.5595329999923706,
+    "n_tokens": 31
+  },
+  {
+    "index": 536,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3386311531066895,
+    "s2_minkpp_raw": -1.3386311531066895,
+    "n_tokens": 43
+  },
+  {
+    "index": 537,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4122068881988525,
+    "s2_minkpp_raw": -1.4122068881988525,
+    "n_tokens": 58
+  },
+  {
+    "index": 538,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3054661750793457,
+    "s2_minkpp_raw": -1.3054661750793457,
+    "n_tokens": 58
+  },
+  {
+    "index": 539,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.253272294998169,
+    "s2_minkpp_raw": -1.253272294998169,
+    "n_tokens": 62
+  },
+  {
+    "index": 540,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1903420686721802,
+    "s2_minkpp_raw": -1.1903420686721802,
+    "n_tokens": 51
+  },
+  {
+    "index": 541,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5533565282821655,
+    "s2_minkpp_raw": -1.5533565282821655,
+    "n_tokens": 71
+  },
+  {
+    "index": 542,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3324685096740723,
+    "s2_minkpp_raw": -1.3324685096740723,
+    "n_tokens": 65
+  },
+  {
+    "index": 543,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.487877607345581,
+    "s2_minkpp_raw": -1.487877607345581,
+    "n_tokens": 117
+  },
+  {
+    "index": 544,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.440852165222168,
+    "s2_minkpp_raw": -1.440852165222168,
+    "n_tokens": 156
+  },
+  {
+    "index": 545,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2541741132736206,
+    "s2_minkpp_raw": -1.2541741132736206,
+    "n_tokens": 61
+  },
+  {
+    "index": 546,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.7577645778656006,
+    "s2_minkpp_raw": -1.7577645778656006,
+    "n_tokens": 51
+  },
+  {
+    "index": 547,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2460118532180786,
+    "s2_minkpp_raw": -1.2460118532180786,
+    "n_tokens": 33
+  },
+  {
+    "index": 548,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.346869945526123,
+    "s2_minkpp_raw": -1.346869945526123,
+    "n_tokens": 79
+  },
+  {
+    "index": 549,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2602324485778809,
+    "s2_minkpp_raw": -1.2602324485778809,
+    "n_tokens": 45
+  },
+  {
+    "index": 550,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1360442638397217,
+    "s2_minkpp_raw": -1.1360442638397217,
+    "n_tokens": 44
+  },
+  {
+    "index": 551,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2556222677230835,
+    "s2_minkpp_raw": -1.2556222677230835,
+    "n_tokens": 49
+  },
+  {
+    "index": 552,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3945624828338623,
+    "s2_minkpp_raw": -1.3945624828338623,
+    "n_tokens": 59
+  },
+  {
+    "index": 553,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6318048238754272,
+    "s2_minkpp_raw": -1.6318048238754272,
+    "n_tokens": 27
+  },
+  {
+    "index": 554,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1887065172195435,
+    "s2_minkpp_raw": -1.1887065172195435,
+    "n_tokens": 66
+  },
+  {
+    "index": 555,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5410313606262207,
+    "s2_minkpp_raw": -1.5410313606262207,
+    "n_tokens": 52
+  },
+  {
+    "index": 556,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5145232677459717,
+    "s2_minkpp_raw": -1.5145232677459717,
+    "n_tokens": 102
+  },
+  {
+    "index": 557,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4292808771133423,
+    "s2_minkpp_raw": -1.4292808771133423,
+    "n_tokens": 87
+  },
+  {
+    "index": 558,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2203007936477661,
+    "s2_minkpp_raw": -1.2203007936477661,
+    "n_tokens": 39
+  },
+  {
+    "index": 559,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0798441171646118,
+    "s2_minkpp_raw": -1.0798441171646118,
+    "n_tokens": 37
+  },
+  {
+    "index": 560,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.576640248298645,
+    "s2_minkpp_raw": -1.576640248298645,
+    "n_tokens": 68
+  },
+  {
+    "index": 561,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2204726934432983,
+    "s2_minkpp_raw": -1.2204726934432983,
+    "n_tokens": 44
+  },
+  {
+    "index": 562,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1274365186691284,
+    "s2_minkpp_raw": -1.1274365186691284,
+    "n_tokens": 55
+  },
+  {
+    "index": 563,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5470068454742432,
+    "s2_minkpp_raw": -1.5470068454742432,
+    "n_tokens": 107
+  },
+  {
+    "index": 564,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2067095041275024,
+    "s2_minkpp_raw": -1.2067095041275024,
+    "n_tokens": 48
+  },
+  {
+    "index": 565,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3184901475906372,
+    "s2_minkpp_raw": -1.3184901475906372,
+    "n_tokens": 79
+  },
+  {
+    "index": 566,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5303544998168945,
+    "s2_minkpp_raw": -1.5303544998168945,
+    "n_tokens": 98
+  },
+  {
+    "index": 567,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0448740720748901,
+    "s2_minkpp_raw": -1.0448740720748901,
+    "n_tokens": 37
+  },
+  {
+    "index": 568,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3460038900375366,
+    "s2_minkpp_raw": -1.3460038900375366,
+    "n_tokens": 66
+  },
+  {
+    "index": 569,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3503657579421997,
+    "s2_minkpp_raw": -1.3503657579421997,
+    "n_tokens": 56
+  },
+  {
+    "index": 570,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4197367429733276,
+    "s2_minkpp_raw": -1.4197367429733276,
+    "n_tokens": 59
+  },
+  {
+    "index": 571,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.23634934425354,
+    "s2_minkpp_raw": -1.23634934425354,
+    "n_tokens": 42
+  },
+  {
+    "index": 572,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.08907151222229,
+    "s2_minkpp_raw": -1.08907151222229,
+    "n_tokens": 44
+  },
+  {
+    "index": 573,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4367294311523438,
+    "s2_minkpp_raw": -1.4367294311523438,
+    "n_tokens": 77
+  },
+  {
+    "index": 574,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3552215099334717,
+    "s2_minkpp_raw": -1.3552215099334717,
+    "n_tokens": 135
+  },
+  {
+    "index": 575,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1958402395248413,
+    "s2_minkpp_raw": -1.1958402395248413,
+    "n_tokens": 42
+  },
+  {
+    "index": 576,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.168808937072754,
+    "s2_minkpp_raw": -1.168808937072754,
+    "n_tokens": 51
+  },
+  {
+    "index": 577,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.572522521018982,
+    "s2_minkpp_raw": -1.572522521018982,
+    "n_tokens": 96
+  },
+  {
+    "index": 578,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2802656888961792,
+    "s2_minkpp_raw": -1.2802656888961792,
+    "n_tokens": 59
+  },
+  {
+    "index": 579,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2995760440826416,
+    "s2_minkpp_raw": -1.2995760440826416,
+    "n_tokens": 70
+  },
+  {
+    "index": 580,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.637649416923523,
+    "s2_minkpp_raw": -1.637649416923523,
+    "n_tokens": 41
+  },
+  {
+    "index": 581,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3210253715515137,
+    "s2_minkpp_raw": -1.3210253715515137,
+    "n_tokens": 58
+  },
+  {
+    "index": 582,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2519084215164185,
+    "s2_minkpp_raw": -1.2519084215164185,
+    "n_tokens": 36
+  },
+  {
+    "index": 583,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4670902490615845,
+    "s2_minkpp_raw": -1.4670902490615845,
+    "n_tokens": 47
+  },
+  {
+    "index": 584,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.449100136756897,
+    "s2_minkpp_raw": -1.449100136756897,
+    "n_tokens": 147
+  },
+  {
+    "index": 585,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2314159870147705,
+    "s2_minkpp_raw": -1.2314159870147705,
+    "n_tokens": 54
+  },
+  {
+    "index": 586,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.591585636138916,
+    "s2_minkpp_raw": -1.591585636138916,
+    "n_tokens": 42
+  },
+  {
+    "index": 587,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.385606050491333,
+    "s2_minkpp_raw": -1.385606050491333,
+    "n_tokens": 46
+  },
+  {
+    "index": 588,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4015207290649414,
+    "s2_minkpp_raw": -1.4015207290649414,
+    "n_tokens": 144
+  },
+  {
+    "index": 589,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5181753635406494,
+    "s2_minkpp_raw": -1.5181753635406494,
+    "n_tokens": 39
+  },
+  {
+    "index": 590,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.351567268371582,
+    "s2_minkpp_raw": -1.351567268371582,
+    "n_tokens": 91
+  },
+  {
+    "index": 591,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.298553228378296,
+    "s2_minkpp_raw": -1.298553228378296,
+    "n_tokens": 40
+  },
+  {
+    "index": 592,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4332634210586548,
+    "s2_minkpp_raw": -1.4332634210586548,
+    "n_tokens": 35
+  },
+  {
+    "index": 593,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3139081001281738,
+    "s2_minkpp_raw": -1.3139081001281738,
+    "n_tokens": 41
+  },
+  {
+    "index": 594,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3251062631607056,
+    "s2_minkpp_raw": -1.3251062631607056,
+    "n_tokens": 58
+  },
+  {
+    "index": 595,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2828437089920044,
+    "s2_minkpp_raw": -1.2828437089920044,
+    "n_tokens": 62
+  },
+  {
+    "index": 596,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1614937782287598,
+    "s2_minkpp_raw": -1.1614937782287598,
+    "n_tokens": 63
+  },
+  {
+    "index": 597,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3496994972229004,
+    "s2_minkpp_raw": -1.3496994972229004,
+    "n_tokens": 79
+  },
+  {
+    "index": 598,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.402281641960144,
+    "s2_minkpp_raw": -1.402281641960144,
+    "n_tokens": 120
+  },
+  {
+    "index": 599,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.665725827217102,
+    "s2_minkpp_raw": -1.665725827217102,
+    "n_tokens": 113
+  },
+  {
+    "index": 600,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1459996700286865,
+    "s2_minkpp_raw": -1.1459996700286865,
+    "n_tokens": 61
+  },
+  {
+    "index": 601,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0737779140472412,
+    "s2_minkpp_raw": -1.0737779140472412,
+    "n_tokens": 26
+  },
+  {
+    "index": 602,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1246100664138794,
+    "s2_minkpp_raw": -1.1246100664138794,
+    "n_tokens": 85
+  },
+  {
+    "index": 603,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6466436386108398,
+    "s2_minkpp_raw": -1.6466436386108398,
+    "n_tokens": 43
+  },
+  {
+    "index": 604,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3882651329040527,
+    "s2_minkpp_raw": -1.3882651329040527,
+    "n_tokens": 84
+  },
+  {
+    "index": 605,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1540601253509521,
+    "s2_minkpp_raw": -1.1540601253509521,
+    "n_tokens": 52
+  },
+  {
+    "index": 606,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.061807632446289,
+    "s2_minkpp_raw": -1.061807632446289,
+    "n_tokens": 41
+  },
+  {
+    "index": 607,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1872766017913818,
+    "s2_minkpp_raw": -1.1872766017913818,
+    "n_tokens": 38
+  },
+  {
+    "index": 608,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5434818267822266,
+    "s2_minkpp_raw": -1.5434818267822266,
+    "n_tokens": 56
+  },
+  {
+    "index": 609,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.61086106300354,
+    "s2_minkpp_raw": -1.61086106300354,
+    "n_tokens": 83
+  },
+  {
+    "index": 610,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3427015542984009,
+    "s2_minkpp_raw": -1.3427015542984009,
+    "n_tokens": 75
+  },
+  {
+    "index": 611,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3744574785232544,
+    "s2_minkpp_raw": -1.3744574785232544,
+    "n_tokens": 49
+  },
+  {
+    "index": 612,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3277063369750977,
+    "s2_minkpp_raw": -1.3277063369750977,
+    "n_tokens": 82
+  },
+  {
+    "index": 613,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.415969729423523,
+    "s2_minkpp_raw": -1.415969729423523,
+    "n_tokens": 71
+  },
+  {
+    "index": 614,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4591922760009766,
+    "s2_minkpp_raw": -1.4591922760009766,
+    "n_tokens": 52
+  },
+  {
+    "index": 615,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5144931077957153,
+    "s2_minkpp_raw": -1.5144931077957153,
+    "n_tokens": 94
+  },
+  {
+    "index": 616,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4414277076721191,
+    "s2_minkpp_raw": -1.4414277076721191,
+    "n_tokens": 67
+  },
+  {
+    "index": 617,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2901924848556519,
+    "s2_minkpp_raw": -1.2901924848556519,
+    "n_tokens": 67
+  },
+  {
+    "index": 618,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9740053415298462,
+    "s2_minkpp_raw": -0.9740053415298462,
+    "n_tokens": 44
+  },
+  {
+    "index": 619,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1064598560333252,
+    "s2_minkpp_raw": -1.1064598560333252,
+    "n_tokens": 53
+  },
+  {
+    "index": 620,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2995792627334595,
+    "s2_minkpp_raw": -1.2995792627334595,
+    "n_tokens": 32
+  },
+  {
+    "index": 621,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0357091426849365,
+    "s2_minkpp_raw": -1.0357091426849365,
+    "n_tokens": 67
+  },
+  {
+    "index": 622,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2921968698501587,
+    "s2_minkpp_raw": -1.2921968698501587,
+    "n_tokens": 48
+  },
+  {
+    "index": 623,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2993863821029663,
+    "s2_minkpp_raw": -1.2993863821029663,
+    "n_tokens": 76
+  },
+  {
+    "index": 624,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.5071365833282471,
+    "s2_minkpp_raw": -0.5071365833282471,
+    "n_tokens": 42
+  },
+  {
+    "index": 625,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1593230962753296,
+    "s2_minkpp_raw": -1.1593230962753296,
+    "n_tokens": 70
+  },
+  {
+    "index": 626,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4837474822998047,
+    "s2_minkpp_raw": -1.4837474822998047,
+    "n_tokens": 69
+  },
+  {
+    "index": 627,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2205356359481812,
+    "s2_minkpp_raw": -1.2205356359481812,
+    "n_tokens": 60
+  },
+  {
+    "index": 628,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1229809522628784,
+    "s2_minkpp_raw": -1.1229809522628784,
+    "n_tokens": 37
+  },
+  {
+    "index": 629,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5105476379394531,
+    "s2_minkpp_raw": -1.5105476379394531,
+    "n_tokens": 53
+  },
+  {
+    "index": 630,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4570534229278564,
+    "s2_minkpp_raw": -1.4570534229278564,
+    "n_tokens": 59
+  },
+  {
+    "index": 631,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2924679517745972,
+    "s2_minkpp_raw": -1.2924679517745972,
+    "n_tokens": 92
+  },
+  {
+    "index": 632,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4188200235366821,
+    "s2_minkpp_raw": -1.4188200235366821,
+    "n_tokens": 77
+  },
+  {
+    "index": 633,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3747621774673462,
+    "s2_minkpp_raw": -1.3747621774673462,
+    "n_tokens": 67
+  },
+  {
+    "index": 634,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4673240184783936,
+    "s2_minkpp_raw": -1.4673240184783936,
+    "n_tokens": 96
+  },
+  {
+    "index": 635,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.240662693977356,
+    "s2_minkpp_raw": -1.240662693977356,
+    "n_tokens": 106
+  },
+  {
+    "index": 636,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3368792533874512,
+    "s2_minkpp_raw": -1.3368792533874512,
+    "n_tokens": 112
+  },
+  {
+    "index": 637,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4580222368240356,
+    "s2_minkpp_raw": -1.4580222368240356,
+    "n_tokens": 104
+  },
+  {
+    "index": 638,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0189107656478882,
+    "s2_minkpp_raw": -1.0189107656478882,
+    "n_tokens": 35
+  },
+  {
+    "index": 639,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.684704303741455,
+    "s2_minkpp_raw": -1.684704303741455,
+    "n_tokens": 43
+  },
+  {
+    "index": 640,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4892020225524902,
+    "s2_minkpp_raw": -1.4892020225524902,
+    "n_tokens": 89
+  },
+  {
+    "index": 641,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3603140115737915,
+    "s2_minkpp_raw": -1.3603140115737915,
+    "n_tokens": 70
+  },
+  {
+    "index": 642,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1677380800247192,
+    "s2_minkpp_raw": -1.1677380800247192,
+    "n_tokens": 90
+  },
+  {
+    "index": 643,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2639939785003662,
+    "s2_minkpp_raw": -1.2639939785003662,
+    "n_tokens": 47
+  },
+  {
+    "index": 644,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.201931357383728,
+    "s2_minkpp_raw": -1.201931357383728,
+    "n_tokens": 32
+  },
+  {
+    "index": 645,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4679460525512695,
+    "s2_minkpp_raw": -1.4679460525512695,
+    "n_tokens": 71
+  },
+  {
+    "index": 646,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4379757642745972,
+    "s2_minkpp_raw": -1.4379757642745972,
+    "n_tokens": 65
+  },
+  {
+    "index": 647,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9501272439956665,
+    "s2_minkpp_raw": -0.9501272439956665,
+    "n_tokens": 65
+  },
+  {
+    "index": 648,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.325745701789856,
+    "s2_minkpp_raw": -1.325745701789856,
+    "n_tokens": 25
+  },
+  {
+    "index": 649,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2198975086212158,
+    "s2_minkpp_raw": -1.2198975086212158,
+    "n_tokens": 57
+  },
+  {
+    "index": 650,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6246293783187866,
+    "s2_minkpp_raw": -1.6246293783187866,
+    "n_tokens": 83
+  },
+  {
+    "index": 651,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4950165748596191,
+    "s2_minkpp_raw": -1.4950165748596191,
+    "n_tokens": 88
+  },
+  {
+    "index": 652,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1748634576797485,
+    "s2_minkpp_raw": -1.1748634576797485,
+    "n_tokens": 56
+  },
+  {
+    "index": 653,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2445920705795288,
+    "s2_minkpp_raw": -1.2445920705795288,
+    "n_tokens": 49
+  },
+  {
+    "index": 654,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3097816705703735,
+    "s2_minkpp_raw": -1.3097816705703735,
+    "n_tokens": 48
+  },
+  {
+    "index": 655,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4233245849609375,
+    "s2_minkpp_raw": -1.4233245849609375,
+    "n_tokens": 61
+  },
+  {
+    "index": 656,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5068204402923584,
+    "s2_minkpp_raw": -1.5068204402923584,
+    "n_tokens": 43
+  },
+  {
+    "index": 657,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5645395517349243,
+    "s2_minkpp_raw": -1.5645395517349243,
+    "n_tokens": 106
+  },
+  {
+    "index": 658,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.241059422492981,
+    "s2_minkpp_raw": -1.241059422492981,
+    "n_tokens": 75
+  },
+  {
+    "index": 659,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4555290937423706,
+    "s2_minkpp_raw": -1.4555290937423706,
+    "n_tokens": 68
+  },
+  {
+    "index": 660,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2756922245025635,
+    "s2_minkpp_raw": -1.2756922245025635,
+    "n_tokens": 96
+  },
+  {
+    "index": 661,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3218687772750854,
+    "s2_minkpp_raw": -1.3218687772750854,
+    "n_tokens": 96
+  },
+  {
+    "index": 662,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.237127423286438,
+    "s2_minkpp_raw": -1.237127423286438,
+    "n_tokens": 57
+  },
+  {
+    "index": 663,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3282192945480347,
+    "s2_minkpp_raw": -1.3282192945480347,
+    "n_tokens": 54
+  },
+  {
+    "index": 664,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3025962114334106,
+    "s2_minkpp_raw": -1.3025962114334106,
+    "n_tokens": 73
+  },
+  {
+    "index": 665,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1891340017318726,
+    "s2_minkpp_raw": -1.1891340017318726,
+    "n_tokens": 39
+  },
+  {
+    "index": 666,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4291143417358398,
+    "s2_minkpp_raw": -1.4291143417358398,
+    "n_tokens": 51
+  },
+  {
+    "index": 667,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1822761297225952,
+    "s2_minkpp_raw": -1.1822761297225952,
+    "n_tokens": 76
+  },
+  {
+    "index": 668,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2991045713424683,
+    "s2_minkpp_raw": -1.2991045713424683,
+    "n_tokens": 64
+  },
+  {
+    "index": 669,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2657151222229004,
+    "s2_minkpp_raw": -1.2657151222229004,
+    "n_tokens": 63
+  },
+  {
+    "index": 670,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.7482599020004272,
+    "s2_minkpp_raw": -1.7482599020004272,
+    "n_tokens": 61
+  },
+  {
+    "index": 671,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4037833213806152,
+    "s2_minkpp_raw": -1.4037833213806152,
+    "n_tokens": 91
+  },
+  {
+    "index": 672,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2798051834106445,
+    "s2_minkpp_raw": -1.2798051834106445,
+    "n_tokens": 47
+  },
+  {
+    "index": 673,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3349354267120361,
+    "s2_minkpp_raw": -1.3349354267120361,
+    "n_tokens": 79
+  },
+  {
+    "index": 674,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2237530946731567,
+    "s2_minkpp_raw": -1.2237530946731567,
+    "n_tokens": 57
+  },
+  {
+    "index": 675,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.371022343635559,
+    "s2_minkpp_raw": -1.371022343635559,
+    "n_tokens": 30
+  },
+  {
+    "index": 676,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4355418682098389,
+    "s2_minkpp_raw": -1.4355418682098389,
+    "n_tokens": 70
+  },
+  {
+    "index": 677,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0933101177215576,
+    "s2_minkpp_raw": -1.0933101177215576,
+    "n_tokens": 45
+  },
+  {
+    "index": 678,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2945997714996338,
+    "s2_minkpp_raw": -1.2945997714996338,
+    "n_tokens": 79
+  },
+  {
+    "index": 679,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1093456745147705,
+    "s2_minkpp_raw": -1.1093456745147705,
+    "n_tokens": 53
+  },
+  {
+    "index": 680,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4124500751495361,
+    "s2_minkpp_raw": -1.4124500751495361,
+    "n_tokens": 71
+  },
+  {
+    "index": 681,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2620328664779663,
+    "s2_minkpp_raw": -1.2620328664779663,
+    "n_tokens": 56
+  },
+  {
+    "index": 682,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2460505962371826,
+    "s2_minkpp_raw": -1.2460505962371826,
+    "n_tokens": 55
+  },
+  {
+    "index": 683,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4414342641830444,
+    "s2_minkpp_raw": -1.4414342641830444,
+    "n_tokens": 56
+  },
+  {
+    "index": 684,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.246320128440857,
+    "s2_minkpp_raw": -1.246320128440857,
+    "n_tokens": 39
+  },
+  {
+    "index": 685,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.136296033859253,
+    "s2_minkpp_raw": -1.136296033859253,
+    "n_tokens": 59
+  },
+  {
+    "index": 686,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2085402011871338,
+    "s2_minkpp_raw": -1.2085402011871338,
+    "n_tokens": 65
+  },
+  {
+    "index": 687,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4591420888900757,
+    "s2_minkpp_raw": -1.4591420888900757,
+    "n_tokens": 39
+  },
+  {
+    "index": 688,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0111773014068604,
+    "s2_minkpp_raw": -1.0111773014068604,
+    "n_tokens": 40
+  },
+  {
+    "index": 689,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1113322973251343,
+    "s2_minkpp_raw": -1.1113322973251343,
+    "n_tokens": 50
+  },
+  {
+    "index": 690,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3556758165359497,
+    "s2_minkpp_raw": -1.3556758165359497,
+    "n_tokens": 69
+  },
+  {
+    "index": 691,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2740627527236938,
+    "s2_minkpp_raw": -1.2740627527236938,
+    "n_tokens": 48
+  },
+  {
+    "index": 692,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3392515182495117,
+    "s2_minkpp_raw": -1.3392515182495117,
+    "n_tokens": 115
+  },
+  {
+    "index": 693,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5265743732452393,
+    "s2_minkpp_raw": -1.5265743732452393,
+    "n_tokens": 36
+  },
+  {
+    "index": 694,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3430086374282837,
+    "s2_minkpp_raw": -1.3430086374282837,
+    "n_tokens": 50
+  },
+  {
+    "index": 695,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6145241260528564,
+    "s2_minkpp_raw": -1.6145241260528564,
+    "n_tokens": 44
+  },
+  {
+    "index": 696,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.372606873512268,
+    "s2_minkpp_raw": -1.372606873512268,
+    "n_tokens": 65
+  },
+  {
+    "index": 697,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3401927947998047,
+    "s2_minkpp_raw": -1.3401927947998047,
+    "n_tokens": 69
+  },
+  {
+    "index": 698,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2795054912567139,
+    "s2_minkpp_raw": -1.2795054912567139,
+    "n_tokens": 81
+  },
+  {
+    "index": 699,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2009321451187134,
+    "s2_minkpp_raw": -1.2009321451187134,
+    "n_tokens": 34
+  },
+  {
+    "index": 700,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1701310873031616,
+    "s2_minkpp_raw": -1.1701310873031616,
+    "n_tokens": 35
+  },
+  {
+    "index": 701,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3214397430419922,
+    "s2_minkpp_raw": -1.3214397430419922,
+    "n_tokens": 52
+  },
+  {
+    "index": 702,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2690207958221436,
+    "s2_minkpp_raw": -1.2690207958221436,
+    "n_tokens": 52
+  },
+  {
+    "index": 703,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3235722780227661,
+    "s2_minkpp_raw": -1.3235722780227661,
+    "n_tokens": 58
+  },
+  {
+    "index": 704,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3953759670257568,
+    "s2_minkpp_raw": -1.3953759670257568,
+    "n_tokens": 44
+  },
+  {
+    "index": 705,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.385561466217041,
+    "s2_minkpp_raw": -1.385561466217041,
+    "n_tokens": 90
+  },
+  {
+    "index": 706,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1803234815597534,
+    "s2_minkpp_raw": -1.1803234815597534,
+    "n_tokens": 58
+  },
+  {
+    "index": 707,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2165077924728394,
+    "s2_minkpp_raw": -1.2165077924728394,
+    "n_tokens": 92
+  },
+  {
+    "index": 708,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3740158081054688,
+    "s2_minkpp_raw": -1.3740158081054688,
+    "n_tokens": 70
+  },
+  {
+    "index": 709,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3768264055252075,
+    "s2_minkpp_raw": -1.3768264055252075,
+    "n_tokens": 90
+  },
+  {
+    "index": 710,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2022416591644287,
+    "s2_minkpp_raw": -1.2022416591644287,
+    "n_tokens": 71
+  },
+  {
+    "index": 711,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3970043659210205,
+    "s2_minkpp_raw": -1.3970043659210205,
+    "n_tokens": 56
+  },
+  {
+    "index": 712,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2900855541229248,
+    "s2_minkpp_raw": -1.2900855541229248,
+    "n_tokens": 44
+  },
+  {
+    "index": 713,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4053776264190674,
+    "s2_minkpp_raw": -1.4053776264190674,
+    "n_tokens": 67
+  },
+  {
+    "index": 714,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4202810525894165,
+    "s2_minkpp_raw": -1.4202810525894165,
+    "n_tokens": 128
+  },
+  {
+    "index": 715,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.305802345275879,
+    "s2_minkpp_raw": -1.305802345275879,
+    "n_tokens": 80
+  },
+  {
+    "index": 716,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3463801145553589,
+    "s2_minkpp_raw": -1.3463801145553589,
+    "n_tokens": 61
+  },
+  {
+    "index": 717,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.162257432937622,
+    "s2_minkpp_raw": -1.162257432937622,
+    "n_tokens": 71
+  },
+  {
+    "index": 718,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5214897394180298,
+    "s2_minkpp_raw": -1.5214897394180298,
+    "n_tokens": 87
+  },
+  {
+    "index": 719,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4046616554260254,
+    "s2_minkpp_raw": -1.4046616554260254,
+    "n_tokens": 45
+  },
+  {
+    "index": 720,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0415219068527222,
+    "s2_minkpp_raw": -1.0415219068527222,
+    "n_tokens": 30
+  },
+  {
+    "index": 721,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2231533527374268,
+    "s2_minkpp_raw": -1.2231533527374268,
+    "n_tokens": 40
+  },
+  {
+    "index": 722,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2461707592010498,
+    "s2_minkpp_raw": -1.2461707592010498,
+    "n_tokens": 66
+  },
+  {
+    "index": 723,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.393310546875,
+    "s2_minkpp_raw": -1.393310546875,
+    "n_tokens": 42
+  },
+  {
+    "index": 724,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1678653955459595,
+    "s2_minkpp_raw": -1.1678653955459595,
+    "n_tokens": 45
+  },
+  {
+    "index": 725,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3855531215667725,
+    "s2_minkpp_raw": -1.3855531215667725,
+    "n_tokens": 74
+  },
+  {
+    "index": 726,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9837287068367004,
+    "s2_minkpp_raw": -0.9837287068367004,
+    "n_tokens": 39
+  },
+  {
+    "index": 727,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2666583061218262,
+    "s2_minkpp_raw": -1.2666583061218262,
+    "n_tokens": 77
+  },
+  {
+    "index": 728,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.8679506182670593,
+    "s2_minkpp_raw": -0.8679506182670593,
+    "n_tokens": 36
+  },
+  {
+    "index": 729,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3600033521652222,
+    "s2_minkpp_raw": -1.3600033521652222,
+    "n_tokens": 79
+  },
+  {
+    "index": 730,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2548668384552002,
+    "s2_minkpp_raw": -1.2548668384552002,
+    "n_tokens": 102
+  },
+  {
+    "index": 731,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5879404544830322,
+    "s2_minkpp_raw": -1.5879404544830322,
+    "n_tokens": 102
+  },
+  {
+    "index": 732,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.233241319656372,
+    "s2_minkpp_raw": -1.233241319656372,
+    "n_tokens": 75
+  },
+  {
+    "index": 733,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2118570804595947,
+    "s2_minkpp_raw": -1.2118570804595947,
+    "n_tokens": 51
+  },
+  {
+    "index": 734,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3671389818191528,
+    "s2_minkpp_raw": -1.3671389818191528,
+    "n_tokens": 55
+  },
+  {
+    "index": 735,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4278521537780762,
+    "s2_minkpp_raw": -1.4278521537780762,
+    "n_tokens": 58
+  },
+  {
+    "index": 736,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5720027685165405,
+    "s2_minkpp_raw": -1.5720027685165405,
+    "n_tokens": 74
+  },
+  {
+    "index": 737,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.142605185508728,
+    "s2_minkpp_raw": -1.142605185508728,
+    "n_tokens": 36
+  },
+  {
+    "index": 738,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3715317249298096,
+    "s2_minkpp_raw": -1.3715317249298096,
+    "n_tokens": 53
+  },
+  {
+    "index": 739,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.479615330696106,
+    "s2_minkpp_raw": -1.479615330696106,
+    "n_tokens": 63
+  },
+  {
+    "index": 740,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0024924278259277,
+    "s2_minkpp_raw": -1.0024924278259277,
+    "n_tokens": 49
+  },
+  {
+    "index": 741,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3831605911254883,
+    "s2_minkpp_raw": -1.3831605911254883,
+    "n_tokens": 110
+  },
+  {
+    "index": 742,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1788910627365112,
+    "s2_minkpp_raw": -1.1788910627365112,
+    "n_tokens": 65
+  },
+  {
+    "index": 743,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4039249420166016,
+    "s2_minkpp_raw": -1.4039249420166016,
+    "n_tokens": 73
+  },
+  {
+    "index": 744,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0846269130706787,
+    "s2_minkpp_raw": -1.0846269130706787,
+    "n_tokens": 38
+  },
+  {
+    "index": 745,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1904984712600708,
+    "s2_minkpp_raw": -1.1904984712600708,
+    "n_tokens": 78
+  },
+  {
+    "index": 746,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2971960306167603,
+    "s2_minkpp_raw": -1.2971960306167603,
+    "n_tokens": 70
+  },
+  {
+    "index": 747,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2750306129455566,
+    "s2_minkpp_raw": -1.2750306129455566,
+    "n_tokens": 40
+  },
+  {
+    "index": 748,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2615675926208496,
+    "s2_minkpp_raw": -1.2615675926208496,
+    "n_tokens": 66
+  },
+  {
+    "index": 749,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2854288816452026,
+    "s2_minkpp_raw": -1.2854288816452026,
+    "n_tokens": 50
+  },
+  {
+    "index": 750,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.212992787361145,
+    "s2_minkpp_raw": -1.212992787361145,
+    "n_tokens": 59
+  },
+  {
+    "index": 751,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.142848014831543,
+    "s2_minkpp_raw": -1.142848014831543,
+    "n_tokens": 62
+  },
+  {
+    "index": 752,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.343342900276184,
+    "s2_minkpp_raw": -1.343342900276184,
+    "n_tokens": 74
+  },
+  {
+    "index": 753,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2129508256912231,
+    "s2_minkpp_raw": -1.2129508256912231,
+    "n_tokens": 59
+  },
+  {
+    "index": 754,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2573513984680176,
+    "s2_minkpp_raw": -1.2573513984680176,
+    "n_tokens": 67
+  },
+  {
+    "index": 755,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.474379539489746,
+    "s2_minkpp_raw": -1.474379539489746,
+    "n_tokens": 74
+  },
+  {
+    "index": 756,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2473241090774536,
+    "s2_minkpp_raw": -1.2473241090774536,
+    "n_tokens": 65
+  },
+  {
+    "index": 757,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.298409104347229,
+    "s2_minkpp_raw": -1.298409104347229,
+    "n_tokens": 86
+  },
+  {
+    "index": 758,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3748761415481567,
+    "s2_minkpp_raw": -1.3748761415481567,
+    "n_tokens": 57
+  },
+  {
+    "index": 759,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4285120964050293,
+    "s2_minkpp_raw": -1.4285120964050293,
+    "n_tokens": 64
+  },
+  {
+    "index": 760,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9908701181411743,
+    "s2_minkpp_raw": -0.9908701181411743,
+    "n_tokens": 57
+  },
+  {
+    "index": 761,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3857167959213257,
+    "s2_minkpp_raw": -1.3857167959213257,
+    "n_tokens": 73
+  },
+  {
+    "index": 762,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.448589563369751,
+    "s2_minkpp_raw": -1.448589563369751,
+    "n_tokens": 75
+  },
+  {
+    "index": 763,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4026507139205933,
+    "s2_minkpp_raw": -1.4026507139205933,
+    "n_tokens": 58
+  },
+  {
+    "index": 764,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3181300163269043,
+    "s2_minkpp_raw": -1.3181300163269043,
+    "n_tokens": 68
+  },
+  {
+    "index": 765,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2925410270690918,
+    "s2_minkpp_raw": -1.2925410270690918,
+    "n_tokens": 78
+  },
+  {
+    "index": 766,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2676938772201538,
+    "s2_minkpp_raw": -1.2676938772201538,
+    "n_tokens": 100
+  },
+  {
+    "index": 767,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.342443823814392,
+    "s2_minkpp_raw": -1.342443823814392,
+    "n_tokens": 100
+  },
+  {
+    "index": 768,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.508191466331482,
+    "s2_minkpp_raw": -1.508191466331482,
+    "n_tokens": 48
+  },
+  {
+    "index": 769,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1672379970550537,
+    "s2_minkpp_raw": -1.1672379970550537,
+    "n_tokens": 53
+  },
+  {
+    "index": 770,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3380142450332642,
+    "s2_minkpp_raw": -1.3380142450332642,
+    "n_tokens": 78
+  },
+  {
+    "index": 771,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9970897436141968,
+    "s2_minkpp_raw": -0.9970897436141968,
+    "n_tokens": 39
+  },
+  {
+    "index": 772,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2495436668395996,
+    "s2_minkpp_raw": -1.2495436668395996,
+    "n_tokens": 41
+  },
+  {
+    "index": 773,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4138120412826538,
+    "s2_minkpp_raw": -1.4138120412826538,
+    "n_tokens": 35
+  },
+  {
+    "index": 774,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3274680376052856,
+    "s2_minkpp_raw": -1.3274680376052856,
+    "n_tokens": 63
+  },
+  {
+    "index": 775,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2481616735458374,
+    "s2_minkpp_raw": -1.2481616735458374,
+    "n_tokens": 31
+  },
+  {
+    "index": 776,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.186020016670227,
+    "s2_minkpp_raw": -1.186020016670227,
+    "n_tokens": 74
+  },
+  {
+    "index": 777,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2753214836120605,
+    "s2_minkpp_raw": -1.2753214836120605,
+    "n_tokens": 46
+  },
+  {
+    "index": 778,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0500715970993042,
+    "s2_minkpp_raw": -1.0500715970993042,
+    "n_tokens": 43
+  },
+  {
+    "index": 779,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.359636902809143,
+    "s2_minkpp_raw": -1.359636902809143,
+    "n_tokens": 79
+  },
+  {
+    "index": 780,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.361674189567566,
+    "s2_minkpp_raw": -1.361674189567566,
+    "n_tokens": 77
+  },
+  {
+    "index": 781,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2844865322113037,
+    "s2_minkpp_raw": -1.2844865322113037,
+    "n_tokens": 42
+  },
+  {
+    "index": 782,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.18734872341156,
+    "s2_minkpp_raw": -1.18734872341156,
+    "n_tokens": 34
+  },
+  {
+    "index": 783,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.267067790031433,
+    "s2_minkpp_raw": -1.267067790031433,
+    "n_tokens": 60
+  },
+  {
+    "index": 784,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1098029613494873,
+    "s2_minkpp_raw": -1.1098029613494873,
+    "n_tokens": 54
+  },
+  {
+    "index": 785,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4697701930999756,
+    "s2_minkpp_raw": -1.4697701930999756,
+    "n_tokens": 83
+  },
+  {
+    "index": 786,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5168007612228394,
+    "s2_minkpp_raw": -1.5168007612228394,
+    "n_tokens": 39
+  },
+  {
+    "index": 787,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3800443410873413,
+    "s2_minkpp_raw": -1.3800443410873413,
+    "n_tokens": 84
+  },
+  {
+    "index": 788,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5846304893493652,
+    "s2_minkpp_raw": -1.5846304893493652,
+    "n_tokens": 138
+  },
+  {
+    "index": 789,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3740830421447754,
+    "s2_minkpp_raw": -1.3740830421447754,
+    "n_tokens": 89
+  },
+  {
+    "index": 790,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3915702104568481,
+    "s2_minkpp_raw": -1.3915702104568481,
+    "n_tokens": 78
+  },
+  {
+    "index": 791,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.7370027899742126,
+    "s2_minkpp_raw": -0.7370027899742126,
+    "n_tokens": 40
+  },
+  {
+    "index": 792,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5572606325149536,
+    "s2_minkpp_raw": -1.5572606325149536,
+    "n_tokens": 69
+  },
+  {
+    "index": 793,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0316683053970337,
+    "s2_minkpp_raw": -1.0316683053970337,
+    "n_tokens": 43
+  },
+  {
+    "index": 794,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2900108098983765,
+    "s2_minkpp_raw": -1.2900108098983765,
+    "n_tokens": 75
+  },
+  {
+    "index": 795,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2735728025436401,
+    "s2_minkpp_raw": -1.2735728025436401,
+    "n_tokens": 72
+  },
+  {
+    "index": 796,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1472136974334717,
+    "s2_minkpp_raw": -1.1472136974334717,
+    "n_tokens": 57
+  },
+  {
+    "index": 797,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.015731692314148,
+    "s2_minkpp_raw": -1.015731692314148,
+    "n_tokens": 66
+  },
+  {
+    "index": 798,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2720904350280762,
+    "s2_minkpp_raw": -1.2720904350280762,
+    "n_tokens": 62
+  },
+  {
+    "index": 799,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3980001211166382,
+    "s2_minkpp_raw": -1.3980001211166382,
+    "n_tokens": 104
+  },
+  {
+    "index": 800,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1809439659118652,
+    "s2_minkpp_raw": -1.1809439659118652,
+    "n_tokens": 46
+  },
+  {
+    "index": 801,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5455259084701538,
+    "s2_minkpp_raw": -1.5455259084701538,
+    "n_tokens": 44
+  },
+  {
+    "index": 802,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.315953016281128,
+    "s2_minkpp_raw": -1.315953016281128,
+    "n_tokens": 61
+  },
+  {
+    "index": 803,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4533721208572388,
+    "s2_minkpp_raw": -1.4533721208572388,
+    "n_tokens": 56
+  },
+  {
+    "index": 804,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3215116262435913,
+    "s2_minkpp_raw": -1.3215116262435913,
+    "n_tokens": 87
+  },
+  {
+    "index": 805,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.217720627784729,
+    "s2_minkpp_raw": -1.217720627784729,
+    "n_tokens": 37
+  },
+  {
+    "index": 806,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3173162937164307,
+    "s2_minkpp_raw": -1.3173162937164307,
+    "n_tokens": 69
+  },
+  {
+    "index": 807,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2016526460647583,
+    "s2_minkpp_raw": -1.2016526460647583,
+    "n_tokens": 36
+  },
+  {
+    "index": 808,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.318315029144287,
+    "s2_minkpp_raw": -1.318315029144287,
+    "n_tokens": 123
+  },
+  {
+    "index": 809,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3757563829421997,
+    "s2_minkpp_raw": -1.3757563829421997,
+    "n_tokens": 56
+  },
+  {
+    "index": 810,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2815309762954712,
+    "s2_minkpp_raw": -1.2815309762954712,
+    "n_tokens": 49
+  },
+  {
+    "index": 811,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0396355390548706,
+    "s2_minkpp_raw": -1.0396355390548706,
+    "n_tokens": 58
+  },
+  {
+    "index": 812,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2598881721496582,
+    "s2_minkpp_raw": -1.2598881721496582,
+    "n_tokens": 52
+  },
+  {
+    "index": 813,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4209938049316406,
+    "s2_minkpp_raw": -1.4209938049316406,
+    "n_tokens": 78
+  },
+  {
+    "index": 814,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.490183711051941,
+    "s2_minkpp_raw": -1.490183711051941,
+    "n_tokens": 90
+  },
+  {
+    "index": 815,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.459876298904419,
+    "s2_minkpp_raw": -1.459876298904419,
+    "n_tokens": 36
+  },
+  {
+    "index": 816,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3882253170013428,
+    "s2_minkpp_raw": -1.3882253170013428,
+    "n_tokens": 144
+  },
+  {
+    "index": 817,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1709260940551758,
+    "s2_minkpp_raw": -1.1709260940551758,
+    "n_tokens": 53
+  },
+  {
+    "index": 818,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2877224683761597,
+    "s2_minkpp_raw": -1.2877224683761597,
+    "n_tokens": 57
+  },
+  {
+    "index": 819,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2842730283737183,
+    "s2_minkpp_raw": -1.2842730283737183,
+    "n_tokens": 80
+  },
+  {
+    "index": 820,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.446426510810852,
+    "s2_minkpp_raw": -1.446426510810852,
+    "n_tokens": 57
+  },
+  {
+    "index": 821,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3450857400894165,
+    "s2_minkpp_raw": -1.3450857400894165,
+    "n_tokens": 51
+  },
+  {
+    "index": 822,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2813260555267334,
+    "s2_minkpp_raw": -1.2813260555267334,
+    "n_tokens": 69
+  },
+  {
+    "index": 823,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2491024732589722,
+    "s2_minkpp_raw": -1.2491024732589722,
+    "n_tokens": 76
+  },
+  {
+    "index": 824,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.405351161956787,
+    "s2_minkpp_raw": -1.405351161956787,
+    "n_tokens": 62
+  },
+  {
+    "index": 825,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4418100118637085,
+    "s2_minkpp_raw": -1.4418100118637085,
+    "n_tokens": 70
+  },
+  {
+    "index": 826,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4810081720352173,
+    "s2_minkpp_raw": -1.4810081720352173,
+    "n_tokens": 77
+  },
+  {
+    "index": 827,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0670453310012817,
+    "s2_minkpp_raw": -1.0670453310012817,
+    "n_tokens": 52
+  },
+  {
+    "index": 828,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3108536005020142,
+    "s2_minkpp_raw": -1.3108536005020142,
+    "n_tokens": 38
+  },
+  {
+    "index": 829,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.228155255317688,
+    "s2_minkpp_raw": -1.228155255317688,
+    "n_tokens": 40
+  },
+  {
+    "index": 830,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5637917518615723,
+    "s2_minkpp_raw": -1.5637917518615723,
+    "n_tokens": 47
+  },
+  {
+    "index": 831,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0219080448150635,
+    "s2_minkpp_raw": -1.0219080448150635,
+    "n_tokens": 48
+  },
+  {
+    "index": 832,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3742344379425049,
+    "s2_minkpp_raw": -1.3742344379425049,
+    "n_tokens": 69
+  },
+  {
+    "index": 833,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0314083099365234,
+    "s2_minkpp_raw": -1.0314083099365234,
+    "n_tokens": 44
+  },
+  {
+    "index": 834,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0998508930206299,
+    "s2_minkpp_raw": -1.0998508930206299,
+    "n_tokens": 37
+  },
+  {
+    "index": 835,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3463881015777588,
+    "s2_minkpp_raw": -1.3463881015777588,
+    "n_tokens": 71
+  },
+  {
+    "index": 836,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4980525970458984,
+    "s2_minkpp_raw": -1.4980525970458984,
+    "n_tokens": 87
+  },
+  {
+    "index": 837,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3084427118301392,
+    "s2_minkpp_raw": -1.3084427118301392,
+    "n_tokens": 42
+  },
+  {
+    "index": 838,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4250236749649048,
+    "s2_minkpp_raw": -1.4250236749649048,
+    "n_tokens": 63
+  },
+  {
+    "index": 839,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2287095785140991,
+    "s2_minkpp_raw": -1.2287095785140991,
+    "n_tokens": 37
+  },
+  {
+    "index": 840,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3840203285217285,
+    "s2_minkpp_raw": -1.3840203285217285,
+    "n_tokens": 58
+  },
+  {
+    "index": 841,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3560597896575928,
+    "s2_minkpp_raw": -1.3560597896575928,
+    "n_tokens": 67
+  },
+  {
+    "index": 842,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3163495063781738,
+    "s2_minkpp_raw": -1.3163495063781738,
+    "n_tokens": 60
+  },
+  {
+    "index": 843,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.222145915031433,
+    "s2_minkpp_raw": -1.222145915031433,
+    "n_tokens": 67
+  },
+  {
+    "index": 844,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1462880373001099,
+    "s2_minkpp_raw": -1.1462880373001099,
+    "n_tokens": 65
+  },
+  {
+    "index": 845,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5413048267364502,
+    "s2_minkpp_raw": -1.5413048267364502,
+    "n_tokens": 50
+  },
+  {
+    "index": 846,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.326508641242981,
+    "s2_minkpp_raw": -1.326508641242981,
+    "n_tokens": 44
+  },
+  {
+    "index": 847,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4895880222320557,
+    "s2_minkpp_raw": -1.4895880222320557,
+    "n_tokens": 89
+  },
+  {
+    "index": 848,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3909118175506592,
+    "s2_minkpp_raw": -1.3909118175506592,
+    "n_tokens": 100
+  },
+  {
+    "index": 849,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2928396463394165,
+    "s2_minkpp_raw": -1.2928396463394165,
+    "n_tokens": 59
+  },
+  {
+    "index": 850,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4052151441574097,
+    "s2_minkpp_raw": -1.4052151441574097,
+    "n_tokens": 87
+  },
+  {
+    "index": 851,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3962188959121704,
+    "s2_minkpp_raw": -1.3962188959121704,
+    "n_tokens": 89
+  },
+  {
+    "index": 852,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.370006799697876,
+    "s2_minkpp_raw": -1.370006799697876,
+    "n_tokens": 40
+  },
+  {
+    "index": 853,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1764583587646484,
+    "s2_minkpp_raw": -1.1764583587646484,
+    "n_tokens": 52
+  },
+  {
+    "index": 854,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2725059986114502,
+    "s2_minkpp_raw": -1.2725059986114502,
+    "n_tokens": 51
+  },
+  {
+    "index": 855,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4271976947784424,
+    "s2_minkpp_raw": -1.4271976947784424,
+    "n_tokens": 189
+  },
+  {
+    "index": 856,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3943802118301392,
+    "s2_minkpp_raw": -1.3943802118301392,
+    "n_tokens": 107
+  },
+  {
+    "index": 857,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6648085117340088,
+    "s2_minkpp_raw": -1.6648085117340088,
+    "n_tokens": 84
+  },
+  {
+    "index": 858,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1517225503921509,
+    "s2_minkpp_raw": -1.1517225503921509,
+    "n_tokens": 36
+  },
+  {
+    "index": 859,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2132172584533691,
+    "s2_minkpp_raw": -1.2132172584533691,
+    "n_tokens": 91
+  },
+  {
+    "index": 860,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4695290327072144,
+    "s2_minkpp_raw": -1.4695290327072144,
+    "n_tokens": 58
+  },
+  {
+    "index": 861,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9911315441131592,
+    "s2_minkpp_raw": -0.9911315441131592,
+    "n_tokens": 55
+  },
+  {
+    "index": 862,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3183355331420898,
+    "s2_minkpp_raw": -1.3183355331420898,
+    "n_tokens": 95
+  },
+  {
+    "index": 863,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2260273694992065,
+    "s2_minkpp_raw": -1.2260273694992065,
+    "n_tokens": 62
+  },
+  {
+    "index": 864,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4750021696090698,
+    "s2_minkpp_raw": -1.4750021696090698,
+    "n_tokens": 90
+  },
+  {
+    "index": 865,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3191252946853638,
+    "s2_minkpp_raw": -1.3191252946853638,
+    "n_tokens": 67
+  },
+  {
+    "index": 866,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5258140563964844,
+    "s2_minkpp_raw": -1.5258140563964844,
+    "n_tokens": 64
+  },
+  {
+    "index": 867,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3018419742584229,
+    "s2_minkpp_raw": -1.3018419742584229,
+    "n_tokens": 47
+  },
+  {
+    "index": 868,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4573708772659302,
+    "s2_minkpp_raw": -1.4573708772659302,
+    "n_tokens": 69
+  },
+  {
+    "index": 869,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3305654525756836,
+    "s2_minkpp_raw": -1.3305654525756836,
+    "n_tokens": 109
+  },
+  {
+    "index": 870,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.252399206161499,
+    "s2_minkpp_raw": -1.252399206161499,
+    "n_tokens": 51
+  },
+  {
+    "index": 871,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1758668422698975,
+    "s2_minkpp_raw": -1.1758668422698975,
+    "n_tokens": 58
+  },
+  {
+    "index": 872,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3322772979736328,
+    "s2_minkpp_raw": -1.3322772979736328,
+    "n_tokens": 75
+  },
+  {
+    "index": 873,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6038552522659302,
+    "s2_minkpp_raw": -1.6038552522659302,
+    "n_tokens": 84
+  },
+  {
+    "index": 874,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0235475301742554,
+    "s2_minkpp_raw": -1.0235475301742554,
+    "n_tokens": 31
+  },
+  {
+    "index": 875,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4051674604415894,
+    "s2_minkpp_raw": -1.4051674604415894,
+    "n_tokens": 73
+  },
+  {
+    "index": 876,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.419028878211975,
+    "s2_minkpp_raw": -1.419028878211975,
+    "n_tokens": 52
+  },
+  {
+    "index": 877,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.953190803527832,
+    "s2_minkpp_raw": -0.953190803527832,
+    "n_tokens": 41
+  },
+  {
+    "index": 878,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2767802476882935,
+    "s2_minkpp_raw": -1.2767802476882935,
+    "n_tokens": 45
+  },
+  {
+    "index": 879,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.679541826248169,
+    "s2_minkpp_raw": -1.679541826248169,
+    "n_tokens": 59
+  },
+  {
+    "index": 880,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3385051488876343,
+    "s2_minkpp_raw": -1.3385051488876343,
+    "n_tokens": 54
+  },
+  {
+    "index": 881,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0082428455352783,
+    "s2_minkpp_raw": -1.0082428455352783,
+    "n_tokens": 62
+  },
+  {
+    "index": 882,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3394379615783691,
+    "s2_minkpp_raw": -1.3394379615783691,
+    "n_tokens": 52
+  },
+  {
+    "index": 883,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3174477815628052,
+    "s2_minkpp_raw": -1.3174477815628052,
+    "n_tokens": 68
+  },
+  {
+    "index": 884,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3964512348175049,
+    "s2_minkpp_raw": -1.3964512348175049,
+    "n_tokens": 66
+  },
+  {
+    "index": 885,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9368449449539185,
+    "s2_minkpp_raw": -0.9368449449539185,
+    "n_tokens": 38
+  },
+  {
+    "index": 886,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5732386112213135,
+    "s2_minkpp_raw": -1.5732386112213135,
+    "n_tokens": 65
+  },
+  {
+    "index": 887,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.394020915031433,
+    "s2_minkpp_raw": -1.394020915031433,
+    "n_tokens": 72
+  },
+  {
+    "index": 888,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2280383110046387,
+    "s2_minkpp_raw": -1.2280383110046387,
+    "n_tokens": 113
+  },
+  {
+    "index": 889,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2583293914794922,
+    "s2_minkpp_raw": -1.2583293914794922,
+    "n_tokens": 100
+  },
+  {
+    "index": 890,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1452425718307495,
+    "s2_minkpp_raw": -1.1452425718307495,
+    "n_tokens": 46
+  },
+  {
+    "index": 891,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5146663188934326,
+    "s2_minkpp_raw": -1.5146663188934326,
+    "n_tokens": 102
+  },
+  {
+    "index": 892,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2377328872680664,
+    "s2_minkpp_raw": -1.2377328872680664,
+    "n_tokens": 72
+  },
+  {
+    "index": 893,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.234802007675171,
+    "s2_minkpp_raw": -1.234802007675171,
+    "n_tokens": 54
+  },
+  {
+    "index": 894,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0212424993515015,
+    "s2_minkpp_raw": -1.0212424993515015,
+    "n_tokens": 40
+  },
+  {
+    "index": 895,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3516401052474976,
+    "s2_minkpp_raw": -1.3516401052474976,
+    "n_tokens": 60
+  },
+  {
+    "index": 896,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9647050499916077,
+    "s2_minkpp_raw": -0.9647050499916077,
+    "n_tokens": 37
+  },
+  {
+    "index": 897,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3504257202148438,
+    "s2_minkpp_raw": -1.3504257202148438,
+    "n_tokens": 87
+  },
+  {
+    "index": 898,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1950674057006836,
+    "s2_minkpp_raw": -1.1950674057006836,
+    "n_tokens": 68
+  },
+  {
+    "index": 899,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3619948625564575,
+    "s2_minkpp_raw": -1.3619948625564575,
+    "n_tokens": 81
+  },
+  {
+    "index": 900,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.50355064868927,
+    "s2_minkpp_raw": -1.50355064868927,
+    "n_tokens": 105
+  },
+  {
+    "index": 901,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.308418869972229,
+    "s2_minkpp_raw": -1.308418869972229,
+    "n_tokens": 62
+  },
+  {
+    "index": 902,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1672642230987549,
+    "s2_minkpp_raw": -1.1672642230987549,
+    "n_tokens": 82
+  },
+  {
+    "index": 903,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3883845806121826,
+    "s2_minkpp_raw": -1.3883845806121826,
+    "n_tokens": 66
+  },
+  {
+    "index": 904,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9595977067947388,
+    "s2_minkpp_raw": -0.9595977067947388,
+    "n_tokens": 41
+  },
+  {
+    "index": 905,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2558783292770386,
+    "s2_minkpp_raw": -1.2558783292770386,
+    "n_tokens": 88
+  },
+  {
+    "index": 906,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2177517414093018,
+    "s2_minkpp_raw": -1.2177517414093018,
+    "n_tokens": 51
+  },
+  {
+    "index": 907,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2103371620178223,
+    "s2_minkpp_raw": -1.2103371620178223,
+    "n_tokens": 82
+  },
+  {
+    "index": 908,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.114230990409851,
+    "s2_minkpp_raw": -1.114230990409851,
+    "n_tokens": 43
+  },
+  {
+    "index": 909,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.522578239440918,
+    "s2_minkpp_raw": -1.522578239440918,
+    "n_tokens": 73
+  },
+  {
+    "index": 910,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.381775140762329,
+    "s2_minkpp_raw": -1.381775140762329,
+    "n_tokens": 26
+  },
+  {
+    "index": 911,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3262349367141724,
+    "s2_minkpp_raw": -1.3262349367141724,
+    "n_tokens": 56
+  },
+  {
+    "index": 912,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3672202825546265,
+    "s2_minkpp_raw": -1.3672202825546265,
+    "n_tokens": 39
+  },
+  {
+    "index": 913,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1200636625289917,
+    "s2_minkpp_raw": -1.1200636625289917,
+    "n_tokens": 57
+  },
+  {
+    "index": 914,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2533318996429443,
+    "s2_minkpp_raw": -1.2533318996429443,
+    "n_tokens": 70
+  },
+  {
+    "index": 915,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4048402309417725,
+    "s2_minkpp_raw": -1.4048402309417725,
+    "n_tokens": 54
+  },
+  {
+    "index": 916,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4445568323135376,
+    "s2_minkpp_raw": -1.4445568323135376,
+    "n_tokens": 64
+  },
+  {
+    "index": 917,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3347502946853638,
+    "s2_minkpp_raw": -1.3347502946853638,
+    "n_tokens": 67
+  },
+  {
+    "index": 918,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2917639017105103,
+    "s2_minkpp_raw": -1.2917639017105103,
+    "n_tokens": 51
+  },
+  {
+    "index": 919,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2020225524902344,
+    "s2_minkpp_raw": -1.2020225524902344,
+    "n_tokens": 80
+  },
+  {
+    "index": 920,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.267216682434082,
+    "s2_minkpp_raw": -1.267216682434082,
+    "n_tokens": 56
+  },
+  {
+    "index": 921,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3162422180175781,
+    "s2_minkpp_raw": -1.3162422180175781,
+    "n_tokens": 66
+  },
+  {
+    "index": 922,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2592637538909912,
+    "s2_minkpp_raw": -1.2592637538909912,
+    "n_tokens": 70
+  },
+  {
+    "index": 923,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4487911462783813,
+    "s2_minkpp_raw": -1.4487911462783813,
+    "n_tokens": 90
+  },
+  {
+    "index": 924,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6463011503219604,
+    "s2_minkpp_raw": -1.6463011503219604,
+    "n_tokens": 172
+  },
+  {
+    "index": 925,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.425145149230957,
+    "s2_minkpp_raw": -1.425145149230957,
+    "n_tokens": 32
+  },
+  {
+    "index": 926,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4962776899337769,
+    "s2_minkpp_raw": -1.4962776899337769,
+    "n_tokens": 41
+  },
+  {
+    "index": 927,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.471016526222229,
+    "s2_minkpp_raw": -1.471016526222229,
+    "n_tokens": 106
+  },
+  {
+    "index": 928,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.304160237312317,
+    "s2_minkpp_raw": -1.304160237312317,
+    "n_tokens": 45
+  },
+  {
+    "index": 929,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4508004188537598,
+    "s2_minkpp_raw": -1.4508004188537598,
+    "n_tokens": 84
+  },
+  {
+    "index": 930,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2036445140838623,
+    "s2_minkpp_raw": -1.2036445140838623,
+    "n_tokens": 64
+  },
+  {
+    "index": 931,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.037642240524292,
+    "s2_minkpp_raw": -1.037642240524292,
+    "n_tokens": 46
+  },
+  {
+    "index": 932,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3355648517608643,
+    "s2_minkpp_raw": -1.3355648517608643,
+    "n_tokens": 92
+  },
+  {
+    "index": 933,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2619537115097046,
+    "s2_minkpp_raw": -1.2619537115097046,
+    "n_tokens": 41
+  },
+  {
+    "index": 934,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2808104753494263,
+    "s2_minkpp_raw": -1.2808104753494263,
+    "n_tokens": 101
+  },
+  {
+    "index": 935,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.8388985395431519,
+    "s2_minkpp_raw": -0.8388985395431519,
+    "n_tokens": 42
+  },
+  {
+    "index": 936,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.324112057685852,
+    "s2_minkpp_raw": -1.324112057685852,
+    "n_tokens": 66
+  },
+  {
+    "index": 937,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3263572454452515,
+    "s2_minkpp_raw": -1.3263572454452515,
+    "n_tokens": 87
+  },
+  {
+    "index": 938,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.603372573852539,
+    "s2_minkpp_raw": -1.603372573852539,
+    "n_tokens": 58
+  },
+  {
+    "index": 939,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0824823379516602,
+    "s2_minkpp_raw": -1.0824823379516602,
+    "n_tokens": 85
+  },
+  {
+    "index": 940,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.077486515045166,
+    "s2_minkpp_raw": -1.077486515045166,
+    "n_tokens": 47
+  },
+  {
+    "index": 941,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4286484718322754,
+    "s2_minkpp_raw": -1.4286484718322754,
+    "n_tokens": 87
+  },
+  {
+    "index": 942,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4116921424865723,
+    "s2_minkpp_raw": -1.4116921424865723,
+    "n_tokens": 51
+  },
+  {
+    "index": 943,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5871893167495728,
+    "s2_minkpp_raw": -1.5871893167495728,
+    "n_tokens": 61
+  },
+  {
+    "index": 944,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1615434885025024,
+    "s2_minkpp_raw": -1.1615434885025024,
+    "n_tokens": 53
+  },
+  {
+    "index": 945,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.20103120803833,
+    "s2_minkpp_raw": -1.20103120803833,
+    "n_tokens": 61
+  },
+  {
+    "index": 946,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1800118684768677,
+    "s2_minkpp_raw": -1.1800118684768677,
+    "n_tokens": 68
+  },
+  {
+    "index": 947,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2803888320922852,
+    "s2_minkpp_raw": -1.2803888320922852,
+    "n_tokens": 51
+  },
+  {
+    "index": 948,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9679616093635559,
+    "s2_minkpp_raw": -0.9679616093635559,
+    "n_tokens": 35
+  },
+  {
+    "index": 949,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4188263416290283,
+    "s2_minkpp_raw": -1.4188263416290283,
+    "n_tokens": 75
+  },
+  {
+    "index": 950,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5796197652816772,
+    "s2_minkpp_raw": -1.5796197652816772,
+    "n_tokens": 121
+  },
+  {
+    "index": 951,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.004439353942871,
+    "s2_minkpp_raw": -1.004439353942871,
+    "n_tokens": 51
+  },
+  {
+    "index": 952,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4025567770004272,
+    "s2_minkpp_raw": -1.4025567770004272,
+    "n_tokens": 46
+  },
+  {
+    "index": 953,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6262277364730835,
+    "s2_minkpp_raw": -1.6262277364730835,
+    "n_tokens": 79
+  },
+  {
+    "index": 954,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2188210487365723,
+    "s2_minkpp_raw": -1.2188210487365723,
+    "n_tokens": 46
+  },
+  {
+    "index": 955,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3953838348388672,
+    "s2_minkpp_raw": -1.3953838348388672,
+    "n_tokens": 27
+  },
+  {
+    "index": 956,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1857699155807495,
+    "s2_minkpp_raw": -1.1857699155807495,
+    "n_tokens": 64
+  },
+  {
+    "index": 957,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0784090757369995,
+    "s2_minkpp_raw": -1.0784090757369995,
+    "n_tokens": 45
+  },
+  {
+    "index": 958,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5454297065734863,
+    "s2_minkpp_raw": -1.5454297065734863,
+    "n_tokens": 83
+  },
+  {
+    "index": 959,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.8657868504524231,
+    "s2_minkpp_raw": -0.8657868504524231,
+    "n_tokens": 40
+  },
+  {
+    "index": 960,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2980152368545532,
+    "s2_minkpp_raw": -1.2980152368545532,
+    "n_tokens": 91
+  },
+  {
+    "index": 961,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3307744264602661,
+    "s2_minkpp_raw": -1.3307744264602661,
+    "n_tokens": 33
+  },
+  {
+    "index": 962,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.430220603942871,
+    "s2_minkpp_raw": -1.430220603942871,
+    "n_tokens": 64
+  },
+  {
+    "index": 963,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.7222861051559448,
+    "s2_minkpp_raw": -1.7222861051559448,
+    "n_tokens": 41
+  },
+  {
+    "index": 964,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3907009363174438,
+    "s2_minkpp_raw": -1.3907009363174438,
+    "n_tokens": 89
+  },
+  {
+    "index": 965,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0069055557250977,
+    "s2_minkpp_raw": -1.0069055557250977,
+    "n_tokens": 57
+  },
+  {
+    "index": 966,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.408928632736206,
+    "s2_minkpp_raw": -1.408928632736206,
+    "n_tokens": 76
+  },
+  {
+    "index": 967,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4068862199783325,
+    "s2_minkpp_raw": -1.4068862199783325,
+    "n_tokens": 75
+  },
+  {
+    "index": 968,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4674968719482422,
+    "s2_minkpp_raw": -1.4674968719482422,
+    "n_tokens": 83
+  },
+  {
+    "index": 969,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2001748085021973,
+    "s2_minkpp_raw": -1.2001748085021973,
+    "n_tokens": 82
+  },
+  {
+    "index": 970,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3807157278060913,
+    "s2_minkpp_raw": -1.3807157278060913,
+    "n_tokens": 53
+  },
+  {
+    "index": 971,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3848655223846436,
+    "s2_minkpp_raw": -1.3848655223846436,
+    "n_tokens": 105
+  },
+  {
+    "index": 972,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9337701201438904,
+    "s2_minkpp_raw": -0.9337701201438904,
+    "n_tokens": 32
+  },
+  {
+    "index": 973,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3831843137741089,
+    "s2_minkpp_raw": -1.3831843137741089,
+    "n_tokens": 70
+  },
+  {
+    "index": 974,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.282109022140503,
+    "s2_minkpp_raw": -1.282109022140503,
+    "n_tokens": 81
+  },
+  {
+    "index": 975,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.7575387954711914,
+    "s2_minkpp_raw": -1.7575387954711914,
+    "n_tokens": 54
+  },
+  {
+    "index": 976,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3177754878997803,
+    "s2_minkpp_raw": -1.3177754878997803,
+    "n_tokens": 82
+  },
+  {
+    "index": 977,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3007676601409912,
+    "s2_minkpp_raw": -1.3007676601409912,
+    "n_tokens": 49
+  },
+  {
+    "index": 978,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1091827154159546,
+    "s2_minkpp_raw": -1.1091827154159546,
+    "n_tokens": 38
+  },
+  {
+    "index": 979,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3329575061798096,
+    "s2_minkpp_raw": -1.3329575061798096,
+    "n_tokens": 31
+  },
+  {
+    "index": 980,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3535113334655762,
+    "s2_minkpp_raw": -1.3535113334655762,
+    "n_tokens": 47
+  },
+  {
+    "index": 981,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.158268928527832,
+    "s2_minkpp_raw": -1.158268928527832,
+    "n_tokens": 73
+  },
+  {
+    "index": 982,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4023586511611938,
+    "s2_minkpp_raw": -1.4023586511611938,
+    "n_tokens": 97
+  },
+  {
+    "index": 983,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4080637693405151,
+    "s2_minkpp_raw": -1.4080637693405151,
+    "n_tokens": 33
+  },
+  {
+    "index": 984,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4527111053466797,
+    "s2_minkpp_raw": -1.4527111053466797,
+    "n_tokens": 65
+  },
+  {
+    "index": 985,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1134719848632812,
+    "s2_minkpp_raw": -1.1134719848632812,
+    "n_tokens": 36
+  },
+  {
+    "index": 986,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4588183164596558,
+    "s2_minkpp_raw": -1.4588183164596558,
+    "n_tokens": 35
+  },
+  {
+    "index": 987,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3539471626281738,
+    "s2_minkpp_raw": -1.3539471626281738,
+    "n_tokens": 68
+  },
+  {
+    "index": 988,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2364345788955688,
+    "s2_minkpp_raw": -1.2364345788955688,
+    "n_tokens": 85
+  },
+  {
+    "index": 989,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9956283569335938,
+    "s2_minkpp_raw": -0.9956283569335938,
+    "n_tokens": 55
+  },
+  {
+    "index": 990,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3496953248977661,
+    "s2_minkpp_raw": -1.3496953248977661,
+    "n_tokens": 71
+  },
+  {
+    "index": 991,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2482309341430664,
+    "s2_minkpp_raw": -1.2482309341430664,
+    "n_tokens": 41
+  },
+  {
+    "index": 992,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2745189666748047,
+    "s2_minkpp_raw": -1.2745189666748047,
+    "n_tokens": 60
+  },
+  {
+    "index": 993,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.190690517425537,
+    "s2_minkpp_raw": -1.190690517425537,
+    "n_tokens": 111
+  },
+  {
+    "index": 994,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2210488319396973,
+    "s2_minkpp_raw": -1.2210488319396973,
+    "n_tokens": 57
+  },
+  {
+    "index": 995,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.272627592086792,
+    "s2_minkpp_raw": -1.272627592086792,
+    "n_tokens": 69
+  },
+  {
+    "index": 996,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.034594178199768,
+    "s2_minkpp_raw": -1.034594178199768,
+    "n_tokens": 31
+  },
+  {
+    "index": 997,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1910706758499146,
+    "s2_minkpp_raw": -1.1910706758499146,
+    "n_tokens": 63
+  },
+  {
+    "index": 998,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1756033897399902,
+    "s2_minkpp_raw": -1.1756033897399902,
+    "n_tokens": 68
+  },
+  {
+    "index": 999,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.598183035850525,
+    "s2_minkpp_raw": -1.598183035850525,
+    "n_tokens": 92
+  },
+  {
+    "index": 1000,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3671627044677734,
+    "s2_minkpp_raw": -1.3671627044677734,
+    "n_tokens": 91
+  },
+  {
+    "index": 1001,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4328961372375488,
+    "s2_minkpp_raw": -1.4328961372375488,
+    "n_tokens": 69
+  },
+  {
+    "index": 1002,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3607674837112427,
+    "s2_minkpp_raw": -1.3607674837112427,
+    "n_tokens": 67
+  },
+  {
+    "index": 1003,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3864521980285645,
+    "s2_minkpp_raw": -1.3864521980285645,
+    "n_tokens": 121
+  },
+  {
+    "index": 1004,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3802640438079834,
+    "s2_minkpp_raw": -1.3802640438079834,
+    "n_tokens": 90
+  },
+  {
+    "index": 1005,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3161624670028687,
+    "s2_minkpp_raw": -1.3161624670028687,
+    "n_tokens": 74
+  },
+  {
+    "index": 1006,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4173015356063843,
+    "s2_minkpp_raw": -1.4173015356063843,
+    "n_tokens": 120
+  },
+  {
+    "index": 1007,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.275251865386963,
+    "s2_minkpp_raw": -1.275251865386963,
+    "n_tokens": 63
+  },
+  {
+    "index": 1008,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1349058151245117,
+    "s2_minkpp_raw": -1.1349058151245117,
+    "n_tokens": 61
+  },
+  {
+    "index": 1009,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1655077934265137,
+    "s2_minkpp_raw": -1.1655077934265137,
+    "n_tokens": 31
+  },
+  {
+    "index": 1010,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.9754979610443115,
+    "s2_minkpp_raw": -0.9754979610443115,
+    "n_tokens": 42
+  },
+  {
+    "index": 1011,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2911823987960815,
+    "s2_minkpp_raw": -1.2911823987960815,
+    "n_tokens": 69
+  },
+  {
+    "index": 1012,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3936095237731934,
+    "s2_minkpp_raw": -1.3936095237731934,
+    "n_tokens": 62
+  },
+  {
+    "index": 1013,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3700286149978638,
+    "s2_minkpp_raw": -1.3700286149978638,
+    "n_tokens": 42
+  },
+  {
+    "index": 1014,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1755425930023193,
+    "s2_minkpp_raw": -1.1755425930023193,
+    "n_tokens": 56
+  },
+  {
+    "index": 1015,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3622854948043823,
+    "s2_minkpp_raw": -1.3622854948043823,
+    "n_tokens": 48
+  },
+  {
+    "index": 1016,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3787965774536133,
+    "s2_minkpp_raw": -1.3787965774536133,
+    "n_tokens": 39
+  },
+  {
+    "index": 1017,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4825834035873413,
+    "s2_minkpp_raw": -1.4825834035873413,
+    "n_tokens": 82
+  },
+  {
+    "index": 1018,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5195010900497437,
+    "s2_minkpp_raw": -1.5195010900497437,
+    "n_tokens": 54
+  },
+  {
+    "index": 1019,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5239198207855225,
+    "s2_minkpp_raw": -1.5239198207855225,
+    "n_tokens": 67
+  },
+  {
+    "index": 1020,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1868282556533813,
+    "s2_minkpp_raw": -1.1868282556533813,
+    "n_tokens": 69
+  },
+  {
+    "index": 1021,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4047329425811768,
+    "s2_minkpp_raw": -1.4047329425811768,
+    "n_tokens": 66
+  },
+  {
+    "index": 1022,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2628169059753418,
+    "s2_minkpp_raw": -1.2628169059753418,
+    "n_tokens": 60
+  },
+  {
+    "index": 1023,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3290928602218628,
+    "s2_minkpp_raw": -1.3290928602218628,
+    "n_tokens": 55
+  },
+  {
+    "index": 1024,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2890050411224365,
+    "s2_minkpp_raw": -1.2890050411224365,
+    "n_tokens": 68
+  },
+  {
+    "index": 1025,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4384219646453857,
+    "s2_minkpp_raw": -1.4384219646453857,
+    "n_tokens": 93
+  },
+  {
+    "index": 1026,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3715063333511353,
+    "s2_minkpp_raw": -1.3715063333511353,
+    "n_tokens": 45
+  },
+  {
+    "index": 1027,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3010334968566895,
+    "s2_minkpp_raw": -1.3010334968566895,
+    "n_tokens": 46
+  },
+  {
+    "index": 1028,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2626270055770874,
+    "s2_minkpp_raw": -1.2626270055770874,
+    "n_tokens": 75
+  },
+  {
+    "index": 1029,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1559858322143555,
+    "s2_minkpp_raw": -1.1559858322143555,
+    "n_tokens": 29
+  },
+  {
+    "index": 1030,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6497267484664917,
+    "s2_minkpp_raw": -1.6497267484664917,
+    "n_tokens": 64
+  },
+  {
+    "index": 1031,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5011765956878662,
+    "s2_minkpp_raw": -1.5011765956878662,
+    "n_tokens": 77
+  },
+  {
+    "index": 1032,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.447506308555603,
+    "s2_minkpp_raw": -1.447506308555603,
+    "n_tokens": 97
+  },
+  {
+    "index": 1033,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2431528568267822,
+    "s2_minkpp_raw": -1.2431528568267822,
+    "n_tokens": 104
+  },
+  {
+    "index": 1034,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5616986751556396,
+    "s2_minkpp_raw": -1.5616986751556396,
+    "n_tokens": 45
+  },
+  {
+    "index": 1035,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3827775716781616,
+    "s2_minkpp_raw": -1.3827775716781616,
+    "n_tokens": 72
+  },
+  {
+    "index": 1036,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3642621040344238,
+    "s2_minkpp_raw": -1.3642621040344238,
+    "n_tokens": 46
+  },
+  {
+    "index": 1037,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3772472143173218,
+    "s2_minkpp_raw": -1.3772472143173218,
+    "n_tokens": 58
+  },
+  {
+    "index": 1038,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.43962562084198,
+    "s2_minkpp_raw": -1.43962562084198,
+    "n_tokens": 65
+  },
+  {
+    "index": 1039,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3733398914337158,
+    "s2_minkpp_raw": -1.3733398914337158,
+    "n_tokens": 65
+  },
+  {
+    "index": 1040,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4246582984924316,
+    "s2_minkpp_raw": -1.4246582984924316,
+    "n_tokens": 63
+  },
+  {
+    "index": 1041,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2814079523086548,
+    "s2_minkpp_raw": -1.2814079523086548,
+    "n_tokens": 89
+  },
+  {
+    "index": 1042,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1598244905471802,
+    "s2_minkpp_raw": -1.1598244905471802,
+    "n_tokens": 44
+  },
+  {
+    "index": 1043,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1662901639938354,
+    "s2_minkpp_raw": -1.1662901639938354,
+    "n_tokens": 63
+  },
+  {
+    "index": 1044,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4903985261917114,
+    "s2_minkpp_raw": -1.4903985261917114,
+    "n_tokens": 54
+  },
+  {
+    "index": 1045,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5586509704589844,
+    "s2_minkpp_raw": -1.5586509704589844,
+    "n_tokens": 101
+  },
+  {
+    "index": 1046,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.391892671585083,
+    "s2_minkpp_raw": -1.391892671585083,
+    "n_tokens": 39
+  },
+  {
+    "index": 1047,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3120145797729492,
+    "s2_minkpp_raw": -1.3120145797729492,
+    "n_tokens": 92
+  },
+  {
+    "index": 1048,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4707576036453247,
+    "s2_minkpp_raw": -1.4707576036453247,
+    "n_tokens": 39
+  },
+  {
+    "index": 1049,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3926033973693848,
+    "s2_minkpp_raw": -1.3926033973693848,
+    "n_tokens": 52
+  },
+  {
+    "index": 1050,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.958100438117981,
+    "s2_minkpp_raw": -0.958100438117981,
+    "n_tokens": 53
+  },
+  {
+    "index": 1051,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.418924331665039,
+    "s2_minkpp_raw": -1.418924331665039,
+    "n_tokens": 104
+  },
+  {
+    "index": 1052,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2220314741134644,
+    "s2_minkpp_raw": -1.2220314741134644,
+    "n_tokens": 53
+  },
+  {
+    "index": 1053,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3724638223648071,
+    "s2_minkpp_raw": -1.3724638223648071,
+    "n_tokens": 62
+  },
+  {
+    "index": 1054,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.460899829864502,
+    "s2_minkpp_raw": -1.460899829864502,
+    "n_tokens": 49
+  },
+  {
+    "index": 1055,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1159049272537231,
+    "s2_minkpp_raw": -1.1159049272537231,
+    "n_tokens": 70
+  },
+  {
+    "index": 1056,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0050196647644043,
+    "s2_minkpp_raw": -1.0050196647644043,
+    "n_tokens": 37
+  },
+  {
+    "index": 1057,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3553258180618286,
+    "s2_minkpp_raw": -1.3553258180618286,
+    "n_tokens": 86
+  },
+  {
+    "index": 1058,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3050305843353271,
+    "s2_minkpp_raw": -1.3050305843353271,
+    "n_tokens": 64
+  },
+  {
+    "index": 1059,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4752693176269531,
+    "s2_minkpp_raw": -1.4752693176269531,
+    "n_tokens": 89
+  },
+  {
+    "index": 1060,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2279672622680664,
+    "s2_minkpp_raw": -1.2279672622680664,
+    "n_tokens": 59
+  },
+  {
+    "index": 1061,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3649988174438477,
+    "s2_minkpp_raw": -1.3649988174438477,
+    "n_tokens": 47
+  },
+  {
+    "index": 1062,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0796757936477661,
+    "s2_minkpp_raw": -1.0796757936477661,
+    "n_tokens": 56
+  },
+  {
+    "index": 1063,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.169079303741455,
+    "s2_minkpp_raw": -1.169079303741455,
+    "n_tokens": 84
+  },
+  {
+    "index": 1064,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3199241161346436,
+    "s2_minkpp_raw": -1.3199241161346436,
+    "n_tokens": 61
+  },
+  {
+    "index": 1065,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3974027633666992,
+    "s2_minkpp_raw": -1.3974027633666992,
+    "n_tokens": 119
+  },
+  {
+    "index": 1066,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2480394840240479,
+    "s2_minkpp_raw": -1.2480394840240479,
+    "n_tokens": 70
+  },
+  {
+    "index": 1067,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0522181987762451,
+    "s2_minkpp_raw": -1.0522181987762451,
+    "n_tokens": 54
+  },
+  {
+    "index": 1068,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1656602621078491,
+    "s2_minkpp_raw": -1.1656602621078491,
+    "n_tokens": 49
+  },
+  {
+    "index": 1069,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.304567813873291,
+    "s2_minkpp_raw": -1.304567813873291,
+    "n_tokens": 109
+  },
+  {
+    "index": 1070,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.321928858757019,
+    "s2_minkpp_raw": -1.321928858757019,
+    "n_tokens": 78
+  },
+  {
+    "index": 1071,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1561387777328491,
+    "s2_minkpp_raw": -1.1561387777328491,
+    "n_tokens": 62
+  },
+  {
+    "index": 1072,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.433607816696167,
+    "s2_minkpp_raw": -1.433607816696167,
+    "n_tokens": 29
+  },
+  {
+    "index": 1073,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2734112739562988,
+    "s2_minkpp_raw": -1.2734112739562988,
+    "n_tokens": 47
+  },
+  {
+    "index": 1074,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5247812271118164,
+    "s2_minkpp_raw": -1.5247812271118164,
+    "n_tokens": 121
+  },
+  {
+    "index": 1075,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4229925870895386,
+    "s2_minkpp_raw": -1.4229925870895386,
+    "n_tokens": 74
+  },
+  {
+    "index": 1076,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5050361156463623,
+    "s2_minkpp_raw": -1.5050361156463623,
+    "n_tokens": 39
+  },
+  {
+    "index": 1077,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.305119276046753,
+    "s2_minkpp_raw": -1.305119276046753,
+    "n_tokens": 55
+  },
+  {
+    "index": 1078,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.400126576423645,
+    "s2_minkpp_raw": -1.400126576423645,
+    "n_tokens": 83
+  },
+  {
+    "index": 1079,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2646420001983643,
+    "s2_minkpp_raw": -1.2646420001983643,
+    "n_tokens": 87
+  },
+  {
+    "index": 1080,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2192624807357788,
+    "s2_minkpp_raw": -1.2192624807357788,
+    "n_tokens": 85
+  },
+  {
+    "index": 1081,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1611090898513794,
+    "s2_minkpp_raw": -1.1611090898513794,
+    "n_tokens": 51
+  },
+  {
+    "index": 1082,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2604328393936157,
+    "s2_minkpp_raw": -1.2604328393936157,
+    "n_tokens": 48
+  },
+  {
+    "index": 1083,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.313503384590149,
+    "s2_minkpp_raw": -1.313503384590149,
+    "n_tokens": 83
+  },
+  {
+    "index": 1084,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2210280895233154,
+    "s2_minkpp_raw": -1.2210280895233154,
+    "n_tokens": 69
+  },
+  {
+    "index": 1085,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.27895987033844,
+    "s2_minkpp_raw": -1.27895987033844,
+    "n_tokens": 94
+  },
+  {
+    "index": 1086,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4123884439468384,
+    "s2_minkpp_raw": -1.4123884439468384,
+    "n_tokens": 107
+  },
+  {
+    "index": 1087,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2451740503311157,
+    "s2_minkpp_raw": -1.2451740503311157,
+    "n_tokens": 82
+  },
+  {
+    "index": 1088,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 0.8381847143173218,
+    "s2_minkpp_raw": -0.8381847143173218,
+    "n_tokens": 55
+  },
+  {
+    "index": 1089,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2364277839660645,
+    "s2_minkpp_raw": -1.2364277839660645,
+    "n_tokens": 81
+  },
+  {
+    "index": 1090,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2518507242202759,
+    "s2_minkpp_raw": -1.2518507242202759,
+    "n_tokens": 60
+  },
+  {
+    "index": 1091,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1901051998138428,
+    "s2_minkpp_raw": -1.1901051998138428,
+    "n_tokens": 40
+  },
+  {
+    "index": 1092,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.733712911605835,
+    "s2_minkpp_raw": -1.733712911605835,
+    "n_tokens": 115
+  },
+  {
+    "index": 1093,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0755122900009155,
+    "s2_minkpp_raw": -1.0755122900009155,
+    "n_tokens": 87
+  },
+  {
+    "index": 1094,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4642391204833984,
+    "s2_minkpp_raw": -1.4642391204833984,
+    "n_tokens": 47
+  },
+  {
+    "index": 1095,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3155890703201294,
+    "s2_minkpp_raw": -1.3155890703201294,
+    "n_tokens": 38
+  },
+  {
+    "index": 1096,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2876843214035034,
+    "s2_minkpp_raw": -1.2876843214035034,
+    "n_tokens": 56
+  },
+  {
+    "index": 1097,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3741705417633057,
+    "s2_minkpp_raw": -1.3741705417633057,
+    "n_tokens": 72
+  },
+  {
+    "index": 1098,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.308638572692871,
+    "s2_minkpp_raw": -1.308638572692871,
+    "n_tokens": 87
+  },
+  {
+    "index": 1099,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4221694469451904,
+    "s2_minkpp_raw": -1.4221694469451904,
+    "n_tokens": 59
+  },
+  {
+    "index": 1100,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1672217845916748,
+    "s2_minkpp_raw": -1.1672217845916748,
+    "n_tokens": 53
+  },
+  {
+    "index": 1101,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3787816762924194,
+    "s2_minkpp_raw": -1.3787816762924194,
+    "n_tokens": 64
+  },
+  {
+    "index": 1102,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.566436767578125,
+    "s2_minkpp_raw": -1.566436767578125,
+    "n_tokens": 44
+  },
+  {
+    "index": 1103,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3569589853286743,
+    "s2_minkpp_raw": -1.3569589853286743,
+    "n_tokens": 47
+  },
+  {
+    "index": 1104,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4299620389938354,
+    "s2_minkpp_raw": -1.4299620389938354,
+    "n_tokens": 64
+  },
+  {
+    "index": 1105,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1242341995239258,
+    "s2_minkpp_raw": -1.1242341995239258,
+    "n_tokens": 72
+  },
+  {
+    "index": 1106,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2359119653701782,
+    "s2_minkpp_raw": -1.2359119653701782,
+    "n_tokens": 39
+  },
+  {
+    "index": 1107,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2978090047836304,
+    "s2_minkpp_raw": -1.2978090047836304,
+    "n_tokens": 58
+  },
+  {
+    "index": 1108,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3867828845977783,
+    "s2_minkpp_raw": -1.3867828845977783,
+    "n_tokens": 108
+  },
+  {
+    "index": 1109,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0684181451797485,
+    "s2_minkpp_raw": -1.0684181451797485,
+    "n_tokens": 59
+  },
+  {
+    "index": 1110,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2945547103881836,
+    "s2_minkpp_raw": -1.2945547103881836,
+    "n_tokens": 54
+  },
+  {
+    "index": 1111,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3780333995819092,
+    "s2_minkpp_raw": -1.3780333995819092,
+    "n_tokens": 90
+  },
+  {
+    "index": 1112,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1189168691635132,
+    "s2_minkpp_raw": -1.1189168691635132,
+    "n_tokens": 47
+  },
+  {
+    "index": 1113,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4968478679656982,
+    "s2_minkpp_raw": -1.4968478679656982,
+    "n_tokens": 55
+  },
+  {
+    "index": 1114,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2738053798675537,
+    "s2_minkpp_raw": -1.2738053798675537,
+    "n_tokens": 48
+  },
+  {
+    "index": 1115,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2102789878845215,
+    "s2_minkpp_raw": -1.2102789878845215,
+    "n_tokens": 57
+  },
+  {
+    "index": 1116,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2463507652282715,
+    "s2_minkpp_raw": -1.2463507652282715,
+    "n_tokens": 56
+  },
+  {
+    "index": 1117,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2920945882797241,
+    "s2_minkpp_raw": -1.2920945882797241,
+    "n_tokens": 87
+  },
+  {
+    "index": 1118,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4660289287567139,
+    "s2_minkpp_raw": -1.4660289287567139,
+    "n_tokens": 81
+  },
+  {
+    "index": 1119,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.0655081272125244,
+    "s2_minkpp_raw": -1.0655081272125244,
+    "n_tokens": 47
+  },
+  {
+    "index": 1120,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.619295597076416,
+    "s2_minkpp_raw": -1.619295597076416,
+    "n_tokens": 84
+  },
+  {
+    "index": 1121,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2888555526733398,
+    "s2_minkpp_raw": -1.2888555526733398,
+    "n_tokens": 51
+  },
+  {
+    "index": 1122,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1663483381271362,
+    "s2_minkpp_raw": -1.1663483381271362,
+    "n_tokens": 46
+  },
+  {
+    "index": 1123,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.334554672241211,
+    "s2_minkpp_raw": -1.334554672241211,
+    "n_tokens": 35
+  },
+  {
+    "index": 1124,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.660293459892273,
+    "s2_minkpp_raw": -1.660293459892273,
+    "n_tokens": 30
+  },
+  {
+    "index": 1125,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1845706701278687,
+    "s2_minkpp_raw": -1.1845706701278687,
+    "n_tokens": 62
+  },
+  {
+    "index": 1126,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3523701429367065,
+    "s2_minkpp_raw": -1.3523701429367065,
+    "n_tokens": 69
+  },
+  {
+    "index": 1127,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.456980586051941,
+    "s2_minkpp_raw": -1.456980586051941,
+    "n_tokens": 59
+  },
+  {
+    "index": 1128,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1281003952026367,
+    "s2_minkpp_raw": -1.1281003952026367,
+    "n_tokens": 58
+  },
+  {
+    "index": 1129,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3766489028930664,
+    "s2_minkpp_raw": -1.3766489028930664,
+    "n_tokens": 95
+  },
+  {
+    "index": 1130,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3750289678573608,
+    "s2_minkpp_raw": -1.3750289678573608,
+    "n_tokens": 71
+  },
+  {
+    "index": 1131,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.22604501247406,
+    "s2_minkpp_raw": -1.22604501247406,
+    "n_tokens": 83
+  },
+  {
+    "index": 1132,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.047577142715454,
+    "s2_minkpp_raw": -1.047577142715454,
+    "n_tokens": 51
+  },
+  {
+    "index": 1133,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2594640254974365,
+    "s2_minkpp_raw": -1.2594640254974365,
+    "n_tokens": 85
+  },
+  {
+    "index": 1134,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.098126769065857,
+    "s2_minkpp_raw": -1.098126769065857,
+    "n_tokens": 34
+  },
+  {
+    "index": 1135,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4590363502502441,
+    "s2_minkpp_raw": -1.4590363502502441,
+    "n_tokens": 34
+  },
+  {
+    "index": 1136,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2289433479309082,
+    "s2_minkpp_raw": -1.2289433479309082,
+    "n_tokens": 28
+  },
+  {
+    "index": 1137,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4235148429870605,
+    "s2_minkpp_raw": -1.4235148429870605,
+    "n_tokens": 97
+  },
+  {
+    "index": 1138,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4573489427566528,
+    "s2_minkpp_raw": -1.4573489427566528,
+    "n_tokens": 57
+  },
+  {
+    "index": 1139,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4400442838668823,
+    "s2_minkpp_raw": -1.4400442838668823,
+    "n_tokens": 59
+  },
+  {
+    "index": 1140,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3334953784942627,
+    "s2_minkpp_raw": -1.3334953784942627,
+    "n_tokens": 78
+  },
+  {
+    "index": 1141,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3360759019851685,
+    "s2_minkpp_raw": -1.3360759019851685,
+    "n_tokens": 53
+  },
+  {
+    "index": 1142,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1590588092803955,
+    "s2_minkpp_raw": -1.1590588092803955,
+    "n_tokens": 51
+  },
+  {
+    "index": 1143,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4384126663208008,
+    "s2_minkpp_raw": -1.4384126663208008,
+    "n_tokens": 80
+  },
+  {
+    "index": 1144,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3905251026153564,
+    "s2_minkpp_raw": -1.3905251026153564,
+    "n_tokens": 72
+  },
+  {
+    "index": 1145,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.564805507659912,
+    "s2_minkpp_raw": -1.564805507659912,
+    "n_tokens": 30
+  },
+  {
+    "index": 1146,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2909306287765503,
+    "s2_minkpp_raw": -1.2909306287765503,
+    "n_tokens": 77
+  },
+  {
+    "index": 1147,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.347856044769287,
+    "s2_minkpp_raw": -1.347856044769287,
+    "n_tokens": 107
+  },
+  {
+    "index": 1148,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1816737651824951,
+    "s2_minkpp_raw": -1.1816737651824951,
+    "n_tokens": 67
+  },
+  {
+    "index": 1149,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5316381454467773,
+    "s2_minkpp_raw": -1.5316381454467773,
+    "n_tokens": 46
+  },
+  {
+    "index": 1150,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2096256017684937,
+    "s2_minkpp_raw": -1.2096256017684937,
+    "n_tokens": 35
+  },
+  {
+    "index": 1151,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4039716720581055,
+    "s2_minkpp_raw": -1.4039716720581055,
+    "n_tokens": 81
+  },
+  {
+    "index": 1152,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.6508314609527588,
+    "s2_minkpp_raw": -1.6508314609527588,
+    "n_tokens": 40
+  },
+  {
+    "index": 1153,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4771463871002197,
+    "s2_minkpp_raw": -1.4771463871002197,
+    "n_tokens": 73
+  },
+  {
+    "index": 1154,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1556239128112793,
+    "s2_minkpp_raw": -1.1556239128112793,
+    "n_tokens": 81
+  },
+  {
+    "index": 1155,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3444799184799194,
+    "s2_minkpp_raw": -1.3444799184799194,
+    "n_tokens": 62
+  },
+  {
+    "index": 1156,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3053793907165527,
+    "s2_minkpp_raw": -1.3053793907165527,
+    "n_tokens": 57
+  },
+  {
+    "index": 1157,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2366437911987305,
+    "s2_minkpp_raw": -1.2366437911987305,
+    "n_tokens": 52
+  },
+  {
+    "index": 1158,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2359075546264648,
+    "s2_minkpp_raw": -1.2359075546264648,
+    "n_tokens": 37
+  },
+  {
+    "index": 1159,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2599517107009888,
+    "s2_minkpp_raw": -1.2599517107009888,
+    "n_tokens": 68
+  },
+  {
+    "index": 1160,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.027641773223877,
+    "s2_minkpp_raw": -1.027641773223877,
+    "n_tokens": 37
+  },
+  {
+    "index": 1161,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.531304955482483,
+    "s2_minkpp_raw": -1.531304955482483,
+    "n_tokens": 88
+  },
+  {
+    "index": 1162,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.5643259286880493,
+    "s2_minkpp_raw": -1.5643259286880493,
+    "n_tokens": 83
+  },
+  {
+    "index": 1163,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.1558470726013184,
+    "s2_minkpp_raw": -1.1558470726013184,
+    "n_tokens": 40
+  },
+  {
+    "index": 1164,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4540985822677612,
+    "s2_minkpp_raw": -1.4540985822677612,
+    "n_tokens": 36
+  },
+  {
+    "index": 1165,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3929027318954468,
+    "s2_minkpp_raw": -1.3929027318954468,
+    "n_tokens": 58
+  },
+  {
+    "index": 1166,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.187747836112976,
+    "s2_minkpp_raw": -1.187747836112976,
+    "n_tokens": 76
+  },
+  {
+    "index": 1167,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.203047752380371,
+    "s2_minkpp_raw": -1.203047752380371,
+    "n_tokens": 48
+  },
+  {
+    "index": 1168,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.441535472869873,
+    "s2_minkpp_raw": -1.441535472869873,
+    "n_tokens": 52
+  },
+  {
+    "index": 1169,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.4940283298492432,
+    "s2_minkpp_raw": -1.4940283298492432,
+    "n_tokens": 83
+  },
+  {
+    "index": 1170,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.2305413484573364,
+    "s2_minkpp_raw": -1.2305413484573364,
+    "n_tokens": 57
+  },
+  {
+    "index": 1171,
+    "benchmark": "arc_challenge",
+    "s2_minkpp": 1.3011507987976074,
+    "s2_minkpp_raw": -1.3011507987976074,
+    "n_tokens": 59
+  }
+]
