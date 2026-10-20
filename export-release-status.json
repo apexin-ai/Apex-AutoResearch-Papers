@@ -309,6 +309,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 2629
+        },
+        "causal_annot_error_attrib": {
+          "status": "uploaded",
+          "project": "causal_annot_error_attrib",
+          "collection": "causal_annot_error_attrib--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "3a3f2489aca6c988decb8a039686550c46c2200fc74ab00eaf20619323668661",
+          "indexed_members": 2601,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 2596
         }
       },
       "status": "in_progress",

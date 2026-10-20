@@ -111,6 +111,19 @@
       }
     },
     {
+      "project": "causal_annot_error_attrib--export-20260712",
+      "title": "Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)",
+      "catalog": "../research-snapshots/causal_annot_error_attrib/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 2596,
+        "messages": 325638,
+        "user_turns": 11368,
+        "tool_calls": 91347,
+        "unparsed_lines": 0,
+        "conversation": 2596
+      }
+    },
+    {
       "project": "causal_style_decomp_judge",
       "title": "The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation",
       "catalog": "../paper-assets/causal_style_decomp_judge/05-generation-trace/catalog.json",
