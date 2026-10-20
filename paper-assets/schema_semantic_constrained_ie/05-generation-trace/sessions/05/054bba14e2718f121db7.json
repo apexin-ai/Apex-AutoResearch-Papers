@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "054bba14e2718f121db7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis r14 llama beam done",
+  "task_key": "worker_analysis_r14_llama_beam_done_20260521T044404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r14_llama_beam_done_20260521T044404_result.json",
+    "occurrence": 1,
+    "bytes": 712,
+    "sha256": "9fa9d112e7cfe57c909678c22ce9e0922b0f473510460bf864fef4b336014bd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment `r14_llama_docred_beam4_998` complete. Cron was not active in this session (already cleared or from a different session).\n\n**Summary:**\n- **Status**: DONE (success), 998/998 docs processed (959 success, 39 parse fail)\n- **Hypothesis confirmed**: Beam=4 S1 constrained decoding eliminates DR violations on full dataset\n- **Key results vs ZS greedy baseline**:\n  - DR%: 2.55% → **0.00%** (eliminated)\n  - CF%: 8.54% → **1.00%** (−88%)\n  - R-F1: 6.27 → **8.83** (+2.56)\n  - E-F1: 54.93 → **57.81** (+2.88)\n  - Parse fail: 9.1% → **3.9%** (−57%)\n- **Note**: d064/d065 results (R-F1~45) are from a different campaign (likely FT models), not comparable to this ZS run"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r14-llama-beam-done.md"
+}

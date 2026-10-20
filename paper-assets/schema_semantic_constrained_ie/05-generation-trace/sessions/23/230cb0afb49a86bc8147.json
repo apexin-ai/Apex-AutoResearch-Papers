@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "230cb0afb49a86bc8147",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code d066 seed variance prep",
+  "task_key": "worker_code_d066_seed_variance_prep_20260519T151226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d066_seed_variance_prep_20260519T151226_result.json",
+    "occurrence": 1,
+    "bytes": 884,
+    "sha256": "e3709d0eca21347dc927680080a1357b6d9544e606a6a8c3658a25e39d49f8e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**已完成：**\n1. **脚本编写并部署到两台服务器**（westd-16980, westd-21461）：\n   - `scripts/d067_seed_variance.sh` — 单配置单 seed 推理（unconstrained + full_s1 + violation check）\n   - `scripts/d067_run_all.sh` — 批量运行，2 GPU 并行 nohup\n\n2. **验证通过**：语法检查、参数校验、checkpoint/数据路径确认\n\n3. **Seed 机制**：`run_constrained_extraction.py` 已支持 `--seed`，greedy decoding 下理论确定性，LoRA 模型是否有差异正是实验目标\n\n4. **报告**：`artifacts/_project/report/d067_seed_variance_prep.md`\n\n**启动方式**（GPU 释放后）：\n```bash\n# 在任一服务器上\nbash scripts/d067_run_all.sh\n# 或单独跑\nbash scripts/d067_seed_variance.sh 0 qwen_scierc 123\n```\n\n预估单服务器全量运行 ~4.5 小时（2 GPU 并行）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d066-seed-variance-prep.md"
+}

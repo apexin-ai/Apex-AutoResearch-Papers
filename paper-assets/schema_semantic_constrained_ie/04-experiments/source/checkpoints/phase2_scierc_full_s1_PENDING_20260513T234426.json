@@ -1,0 +1,16 @@
+{
+  "exp_id": "phase2_scierc_full_s1",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T21:48:44.785Z",
+    "updated_at": "2026-05-13T23:44:26.771Z",
+    "hypothesis": "Grammar + Semantic 双层约束 (S1 单通道) 能否同时消除 rv + dr violations？F1 变化是关键：<2pp 降=完美，2-5pp=可接受 trade-off，>5pp=需要 S2 策略",
+    "notes": "Dry-run 验证通过 (5/13 23:36): E=4, R=1, 7.4s。XGrammar + TypeConstraintProcessor 双层约束正常工作，额外有 grammar 编译步骤。代码就绪，等 grammar_only/unconstrained 完成后提交。参数名是 --max_samples（非 --num_samples）。"
+  },
+  "timestamp": "2026-05-13T23:44:26.800111+00:00",
+  "trigger": "update_registry"
+}

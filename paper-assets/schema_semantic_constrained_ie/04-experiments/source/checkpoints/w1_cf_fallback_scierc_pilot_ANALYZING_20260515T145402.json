@@ -1,0 +1,78 @@
+{
+  "exp_id": "w1_cf_fallback_scierc_pilot",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:32:48.425Z",
+    "updated_at": "2026-05-15T14:54:02.207Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "270088",
+      "log_path": "~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log",
+      "submitted_at": "2026-05-15T14:07:14.512Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-16980",
+    "gpu": "cuda:0",
+    "account": "root",
+    "pid": "270088",
+    "log_path": "~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\"",
+      "finished_at": "2026-05-15T14:47:53.690Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T14:47:54.986519+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot.jsonl",
+    "metrics": {
+      "checker_version": "fixed_20260514_v2",
+      "total_samples": 551,
+      "total_triples_extracted": 1725,
+      "total_entities_extracted": 2474,
+      "json_parse_rate": 1,
+      "ET_rate": 0,
+      "RV_rate": 0,
+      "DR_rate": 14.78,
+      "CF_rate": 0.04,
+      "total_violation_rate": 6.1,
+      "dr_plus_cf_budget": 14.82,
+      "entity_precision": 25.98,
+      "entity_recall": 38.37,
+      "entity_f1": 30.98,
+      "relation_precision": 6.43,
+      "relation_recall": 11.4,
+      "relation_f1": 8.23,
+      "grammar_first_fallback_rate": 36.64,
+      "cf_registry_fallback_rate": 4.48,
+      "grammar_first_fallback_count": 6237,
+      "cf_registry_fallback_count": 763,
+      "total_mask_calls": 17024,
+      "delta_DR_vs_baseline_pp": 13.85,
+      "delta_CF_vs_baseline_pp": -9.86,
+      "delta_RF1_vs_baseline_pp": -0.13,
+      "delta_EF1_vs_baseline_pp": 0,
+      "delta_budget_vs_baseline_pp": 3.99,
+      "baseline_exp_id": "phase2_scierc_full_s1"
+    },
+    "notes": "CF fallback 实验在 SciERC + Qwen3-8B 上的 pilot 结果：CF 从 9.90% 下降到 0.04% (-9.86pp)，但 DR 从 0.93% 上升到 14.78% (+13.85pp)。DR+CF budget 净增 +3.99pp。F1 几乎不变 (E-F1=30.98% 与 baseline 完全一致；R-F1=8.23%, -0.13pp)。Grammar-first fallback 触发率 36.64% (6237/17024 mask calls)，CF-registry fallback 4.48%。判定：成功降低 CF 但代价是 DR 大幅恶化，违规没有真正减少，只是从 CF 转移到 DR。建议改进方向：(1) 仅在 CF-registry 命中时回退，保留 DR enforcement；(2) rebuttal 中诚实呈现这是 violation re-routing 而非 reduction。详细报告见 artifact w1_cf_fallback_scierc_pilot_analysis。",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-15T14:54:02.282110+00:00",
+  "trigger": "update_registry"
+}

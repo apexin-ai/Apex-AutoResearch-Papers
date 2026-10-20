@@ -1,0 +1,25 @@
+{
+  "exp_id": "d066_beam_sweep",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T23:44:23.637Z",
+    "updated_at": "2026-05-20T02:25:10.557Z",
+    "hypothesis": "Beam width k∈{1,2,4,8} on SciERC (LoRA, Qwen3-8B) will show monotonic DR/CF reduction with diminishing returns past k=4, establishing the cost-effectiveness trade-off for the beam search appendix Pareto analysis.",
+    "spec": {
+      "command": "bash scripts/d066_beam_sweep_scierc.sh (k=1,2,4,8 × unc/con, 8 runs)",
+      "server": "westd-21461 GPU1",
+      "data_path": "data/processed_data/test.json (SciERC 551 docs)",
+      "data_count": 551,
+      "model_name": "Qwen3-8B LoRA SciERC (merged)",
+      "seed": 42,
+      "claim": "Claim 3 + deployment guidance",
+      "paper_usage": "New appendix table + Pareto curve"
+    }
+  },
+  "timestamp": "2026-05-20T02:25:10.870890+00:00",
+  "trigger": "update_registry"
+}

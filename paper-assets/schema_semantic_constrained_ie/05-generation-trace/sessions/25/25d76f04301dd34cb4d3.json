@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "25d76f04301dd34cb4d3",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "analysis mt6144 unconstrained",
+  "task_key": "worker_analysis_mt6144_unconstrained_20260515T140655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_mt6144_unconstrained_20260515T140655.jsonl",
+    "occurrence": 1,
+    "bytes": 186,
+    "sha256": "ea04263d27dc568512f69762a000ed2f0f889f3be529ccf3d3412dcc5da25d8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T14:07:05.737780+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 18, 11am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mt6144_unconstrained_20260515T140655"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-mt6144-unconstrained.md"
+}

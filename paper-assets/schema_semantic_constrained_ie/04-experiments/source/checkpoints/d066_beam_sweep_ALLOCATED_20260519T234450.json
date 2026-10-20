@@ -1,0 +1,15 @@
+{
+  "exp_id": "d066_beam_sweep",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T23:44:23.637Z",
+    "updated_at": "2026-05-19T23:44:50.180Z",
+    "hypothesis": "Fine-tuned beam width ablation (k=1,2,4,8) shows consistent DR elimination at k>=4, producing Pareto curve of violation rate vs latency for deployment guidance"
+  },
+  "timestamp": "2026-05-19T23:44:50.430335+00:00",
+  "trigger": "update_registry"
+}

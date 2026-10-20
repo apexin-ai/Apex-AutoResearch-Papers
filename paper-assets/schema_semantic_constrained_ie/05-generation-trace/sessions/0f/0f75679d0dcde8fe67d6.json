@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f75679d0dcde8fe67d6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "review pre submission checklist",
+  "task_key": "worker_review_pre_submission_checklist_20260515T062759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_pre_submission_checklist_20260515T062759_result.json",
+    "occurrence": 1,
+    "bytes": 3810,
+    "sha256": "8727eb008dc9ce62d2b901f91d03ed702407b8bd7482264786b197b664771312"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Pre-submission Checklist Report\n\n### 1. Anonymization [PASS]\n- `\\author{Anonymous ACL submission}` — correctly anonymized (`main.tex:20`)\n- `\\usepackage[review]{acl}` — review mode enabled (`main.tex:3`)\n- No author names, institutions, personal URLs, emails, or ORCIDs found in any .tex file\n- No Acknowledgments section present\n- GitHub URLs found only in bibliography entries (`relwork_new_entries.bib`, `main.bbl`) referencing third-party tool `guidance-ai/guidance` — not the authors' repo, acceptable\n\n### 2. Format Compliance [PASS]\n- **documentclass**: `\\documentclass[11pt]{article}` with `\\usepackage[review]{acl}` — standard ACL template (`main.tex:1,3`)\n- **Font**: `\\usepackage{times}` present (`main.tex:5`)\n- **Paper size**: ACL template defaults to US Letter — correct\n- **Margin overrides**: None found (no `\\geometry`, `\\setlength{\\textwidth}`, `\\addtolength`, etc.)\n\n### 3. Appendix References [WARN]\n- **Orphan references**: None — all `\\ref{app:...}` have matching labels\n- **Orphan labels** (defined but never `\\ref`'d):\n  - `\\label{app:related_work}` — `appendix_related_work.tex:2`\n  - `\\label{app:discussion}` — `appendix_discussion.tex:4`\n- Only `app:llama-per-relation` is actually cross-referenced from the main text (`section5_crossmodel_draft.tex:69`)\n- The comment \"Full discussion paragraphs moved to Appendix B\" (`section7_conclusion_compressed.tex:2`) is a comment, not a proper `\\ref` — readers have no way to navigate to these appendices\n\n### 4. Figure/Table Numbering [PASS]\n**Tables in main text** (in document order):\n| # | Label | File |\n|---|-------|------|\n| Table 1 | `tab:prompt_comparison` | `section3_violation_landscape.tex:23` |\n| Table 2 | `tab:scierc-ablation` | `section5_scierc_draft.tex:71` |\n| Table 3 | `tab:docred-ablation` | `section5_docred_draft.tex:56` |\n| Table 4 | `tab:cross-model` | `section5_crossmodel_draft.tex:45` |\n\n**Tables in appendix:**\n| # | Label | File |\n|---|-------|------|\n| Table 5 (or A1) | `tab:llama-per-relation-dr` | `appendix_llama_per_relation.tex:15` |\n\n**Figures:**\n| # | Label | File |\n|---|-------|------|\n| Figure 1 | `fig:per_relation_dr` | `section3_violation_landscape.tex:43` |\n\n- Sequential, no gaps, no commented-out environments causing skips\n- Note: draft files not `\\input`'d (e.g., `paper_tables_draft.tex`, `section5_*_4796e8.tex`) contain duplicate labels but are harmless since they're excluded from compilation\n\n### 5. Ethics/Limitations [FAIL]\n- **Limitations**: Present as `\\paragraph{Limitations.}` inside `\\section{Discussion and Conclusion}` (`section7_conclusion_compressed.tex:29`). Content is ~4 lines. **However, EMNLP/ARR requires Limitations as a standalone `\\section*{Limitations}` after the conclusion, not as a paragraph embedded within another section.** This will likely be flagged by the checklist reviewers.\n- **Ethics Statement**: Not found anywhere. **WARNING** — recommended but not required by ARR policy.\n\n---\n\n### Needs Fix Summary\n1. **[MUST FIX] Limitations section format** — Move `\\paragraph{Limitations.}` out of Discussion and Conclusion into its own `\\section*{Limitations}` between the conclusion and bibliography in `main.tex`. Current location: `section7_conclusion_compressed.tex:29-33`.\n2. **[SHOULD FIX] Appendix cross-references** — Add `\\ref{app:related_work}` and `\\ref{app:discussion}` somewhere in the main text (e.g., \"Extended related work in Appendix~\\ref{app:related_work}; full discussion in Appendix~\\ref{app:discussion}\"), or remove the orphan appendices if not needed.\n3. **[RECOMMENDED] Ethics Statement** — Add a brief `\\section*{Ethics Statement}` (even 2-3 sentences) after Limitations. ARR reviewers increasingly expect it."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-pre-submission-checklist.md"
+}

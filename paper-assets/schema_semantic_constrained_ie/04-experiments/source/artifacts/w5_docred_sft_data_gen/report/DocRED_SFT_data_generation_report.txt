@@ -1,0 +1,42 @@
+# DocRED SFT Data Generation Report (exp_id=w5_docred_sft_data_gen)
+
+## Status
+DONE — script and outputs already on server (generated 2026-05-16 01:51 by an earlier run); verified format & ontology coverage in this session, no regeneration needed.
+
+## Artifacts
+- Script: `/root/schema_semantic_constrained_ie/scripts/prepare_sft_data_docred.py` (7180 B)
+- Train:  `/root/schema_semantic_constrained_ie/data/docred/sft_train.jsonl` (18.9 MB, 3053 lines)
+- Dev:    `/root/schema_semantic_constrained_ie/data/docred/sft_dev.jsonl`   (6.2 MB, 998 lines)
+
+## Format
+Each JSONL line: `{prompt, completion, doc_id, n_entities, n_relations}`.
+Prompt = Qwen3-8B chat-templated text up to assistant-generation start, `enable_thinking=False`. The script imports `build_messages` and `load_docred_data` from `run_constrained_extraction.py` to keep prompts byte-identical to inference-time prompts on `--dataset docred`. P-code relation labels are converted to readable names before being written to `completion`, matching the relation list shown in the prompt.
+
+## Statistics
+| Split | Docs | ent_total | rel_total | mean ent/doc | mean rel/doc |
+|-------|------|-----------|-----------|--------------|--------------|
+| train | 3053 |   59,493  |   38,180  |    19.49     |    12.51     |
+| dev   |  998 |   19,528  |   12,275  |    19.57     |    12.30     |
+
+## Token length (Qwen3-8B tokenizer)
+| Split | prompt mean / p95 / max | completion mean / p95 / max | total mean / p95 / max |
+|-------|-------------------------|------------------------------|-------------------------|
+| train |   771 / 912 / 1142      |    779 / 1395 / 3033         |   1549 / 2199 / 3942    |
+| dev   |   772 / 923 / 1176      |    774 / 1404 / 2524         |   1546 / 2206 / 3299    |
+
+All samples fit comfortably under 4096 ctx; p95 ≈ 2200, max ≈ 3942.
+
+## Ontology coverage
+- Entity types in completions: subset of {LOC, MISC, NUM, ORG, PER, TIME} ✅ (zero bad types)
+- Relation types in completions: all 96 P-code → name from ontology_constraints_docred.json ✅ (zero bad types)
+
+## Sample spot-check (sft_train, first 5)
+- AirAsia Zest: 17 ent, 13 rel — ORG/LOC/TIME/NUM types correct, relations use names like "headquarters location", "country"
+- Short-beaked common dolphin: 12 ent, 0 rel (MISC-heavy taxonomy doc)
+- Niklas Bergqvist: 16 ent, 5 rel — PER/LOC/TIME, "country", "country of citizenship"
+- Pacific Fair Shopping Centre: 31 ent, 28 rel
+- Ministry of Home Security: 15 ent, 11 rel — uses "inception", "dissolved, abolished or demolished"
+Every prompt tail ends with `…<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n` (the Qwen3 no-thinking assistant header), so SFT loss is masked correctly downstream.
+
+## Next step
+Ready to be consumed by Qwen3-8B / Llama-3.1-8B DocRED LoRA fine-tune (w5).

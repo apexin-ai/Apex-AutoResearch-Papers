@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23bb51e82403d5db65aa",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents unconstrained 21461",
+  "task_key": "worker_code_wikievents_unconstrained_21461_20260517T164105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_unconstrained_21461_20260517T164105_result.json",
+    "occurrence": 1,
+    "bytes": 1122,
+    "sha256": "59fa517ccc36e66cf3e49b990acd077e746ba7970cb779b8b4c59295c8eb0461"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行完成。\n\n## 结果汇总\n\n| 项目 | 状态 |\n|------|------|\n| **代码/数据同步** | 从 westd-16980 同步了 `run_constrained_extraction.py`、`compiler/`、`prompts/`、`data/wikievents/` |\n| **模型** | 本地路径 `/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3` |\n| **总样本数** | 12 docs（WikiEvents train.jsonl 仅 12 个文档，非任务预期的 246） |\n| **成功/失败** | 10 success, 2 fail（E=0 说明未提取到 entities，可能需检查 prompt） |\n| **总用时** | ~4 分钟（含模型加载） |\n| **输出文件** | `outputs/wikievents_mistral_unconstrained.jsonl` |\n| **日志文件** | `outputs/wikievents_mistral_unconstrained.log` |\n\n**注意事项**：\n1. WikiEvents 数据只有 12 个 docs，远少于预期的 ~246。可能需要检查 16980 上是否有更完整的数据集（如 test split）\n2. 有 2 个文档 FAIL（第 5 个和第 12 个），E=0 表示这些样本未成功提取到任何实体或事件\n3. 所有成功样本的 E=0 但 Ev>0，说明 unconstrained 模式下可能只提取了事件但没有单独提取实体"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-unconstrained-21461.md"
+}

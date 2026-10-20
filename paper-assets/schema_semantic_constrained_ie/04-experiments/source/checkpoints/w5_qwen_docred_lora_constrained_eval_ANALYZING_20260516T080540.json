@@ -1,0 +1,35 @@
+{
+  "exp_id": "w5_qwen_docred_lora_constrained_eval",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:03:33.642Z",
+    "updated_at": "2026-05-16T08:05:39.975Z",
+    "hypothesis": "Fine-tuned Qwen3-8B DocRED LoRA + OntoCoDec constrained eval — 验证 composability：约束解码在 fine-tuned Qwen DocRED 上是否仍能消除残余 DR 且不损 R-F1",
+    "parent": "w5_qwen_docred_lora_training",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/checkpoints/qwen_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w5_qwen_docred_lora_constrained_eval.jsonl --batch_size 1 --max_new_tokens 4096\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "321568",
+      "log_path": "~/runs/schema_semantic_constrained_ie/w5_qwen_docred_lora_constrained_eval.log",
+      "model_name": "Qwen3-8B-LoRA-DocRED",
+      "data_path": "data/docred/dev.json",
+      "data_count": 998,
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen_lora_docred_merged",
+      "eval_data": "data/docred/dev.json"
+    },
+    "notes": "由另一个 worker 提交，本次确认进程正常运行。PID 321568 (GPU subprocess), wrapper PID 321563, tmux session. CUDA_VISIBLE_DEVICES=1 由 wrapper 控制。模型已加载，2/998 开始推理。Grammar 编译 96 relation types 后开始生成。ETA ~5-6h (参考 unconstrained 5.82h, constrained 更慢)。",
+    "reproduce": {
+      "finished_at": "2026-05-16T08:05:39.680Z"
+    }
+  },
+  "timestamp": "2026-05-16T08:05:40.105408+00:00",
+  "trigger": "update_registry"
+}

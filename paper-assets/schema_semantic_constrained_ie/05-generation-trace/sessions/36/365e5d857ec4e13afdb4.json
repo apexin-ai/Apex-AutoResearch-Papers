@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "365e5d857ec4e13afdb4",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code llama cross model prep",
+  "task_key": "worker_code_llama_cross_model_prep_20260514T054115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama_cross_model_prep_20260514T054115_result.json",
+    "occurrence": 1,
+    "bytes": 797,
+    "sha256": "7b66523e80d5afc87eacae4fc8aa53bd7599756ff543cd88d59a2f15bed67219"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改总结：\n\n**改了什么**：3 个文件共 6 处 `enable_thinking=False` → `**_chat_template_kwargs(tokenizer)`\n- `run_extraction.py`：2 处（vLLM / transformers 后端各 1 处）\n- `run_extraction_docred.py`：1 处\n- `run_constrained_extraction.py`：3 处（single_pass 1 处、s2_two_pass 的 pass1/pass2 各 1 处）\n\n**检测逻辑**：每个文件新增 `_chat_template_kwargs(tokenizer)` 函数，通过 `tokenizer.name_or_path` 判断是否为 Qwen 模型。Qwen 模型返回 `{'enable_thinking': False}`，其他模型返回 `{}`。\n\n**验证结果**：\n- 3 个文件 `import` 语法检查通过\n- Llama-3.1-8B-Instruct dry-run (`--max_samples 1`, unconstrained mode) 成功：模型加载正常，推理输出正确解析为结构化 JSON"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-cross-model-prep.md"
+}

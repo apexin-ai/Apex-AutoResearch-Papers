@@ -1,0 +1,4784 @@
+# analysis w1 cf fallback scierc pilot 20260515T144938 retry1
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 93
+- **Recorded user turns:** 0
+- **Tool calls:** 35
+- **Original source:** `logs/workers/worker_analysis_w1_cf_fallback_scierc_pilot_20260515T144938_retry1.log`
+- **Structured JSON:** [`0f62e2dae064c80f66e4.json`](../../sessions/0f/0f62e2dae064c80f66e4.json)
+
+## Before a recorded user message
+
+93 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-7[1m]",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "97c17a6a-fde7-4998-a685-90446c4ed22b",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778858400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "1a2984a8-576d-4a84-9440-327a712ef7b6",
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "828dd4ea-005f-4181-b683-ddb8ee036728",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01ShKXBfXmCgbS4jZteE6TBk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 15817,
+      "cache_read_input_tokens": 15664,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15817
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01JD7J9qPEv9pKn2aaeBMcJU`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "5a80cc37-58ff-437d-b756-fc066311006a",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01ShKXBfXmCgbS4jZteE6TBk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 15817,
+      "cache_read_input_tokens": 15664,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15817
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T14:49:55.978Z_
+
+<details><summary>↩ Tool result · `toolu_01JD7J9qPEv9pKn2aaeBMcJU`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "e1f5182d-1d40-47e1-b426-8190bc92af64",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "ab621b02-9e7a-4309-9c4d-f94833cf7c58",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_0189zcscCQj4qfgzdeYEZTEy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 18882,
+      "cache_read_input_tokens": 15757,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18882
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 29088
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J2TkzcQ45apwNgeBxnxgmE`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "tail -200 /root/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "1a351c93-d167-4ad1-81d1-ea497915e4ac",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_0189zcscCQj4qfgzdeYEZTEy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 18882,
+      "cache_read_input_tokens": 15757,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18882
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 29088
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R54yiQhmm87E7GGa4yFbsi`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ls -la /root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "2b2cd369-ca5f-4c8f-bccf-22b4814114ab",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_0189zcscCQj4qfgzdeYEZTEy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 18882,
+      "cache_read_input_tokens": 15757,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18882
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 29088
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T14:50:01.854Z_
+
+<details><summary>↩ Tool result · `toolu_01J2TkzcQ45apwNgeBxnxgmE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Grammar-first fallback triggered (skip_count=11): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=12): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=13): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=14): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=15): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=16): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=17): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=18): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=19): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=20): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=21): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=22): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=23): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=1): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=2): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=3): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=4): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=1): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=2): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=3): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=4): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=5): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=6): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=7): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=8): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=9): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=10): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=1): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=2): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=3): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=4): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=5): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=6): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=7): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=8): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=9): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=10): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=11): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered\\n\\n... [截断: 输出过长，省略 10811 字符] ...\\n\\n\\nGrammar-first fallback triggered (skip_count=4): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=5): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=6): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=7): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=8): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=1): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=2): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=3): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=4): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=5): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=6): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=7): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=8): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=9): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=1): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=2): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=3): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=4): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=5): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=6): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=7): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=8): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=9): semantic mask would eliminate all grammar-valid tokens\\n[529/551] CVPR_2010_30_abs_sent1: OK E=6 R=4 4.7s\\n[530/551] CVPR_2010_30_abs_sent2: OK E=2 R=1 2.2s\\n[531/551] CVPR_2010_30_abs_sent3: OK E=5 R=3 4.7s\\n[532/551] CVPR_2010_30_abs_sent4: OK E=6 R=3 4.0s\\n[533/551] CVPR_2004_30_abs_sent0: OK E=2 R=1 1.5s\\n[534/551] CVPR_2004_30_abs_sent1: OK E=5 R=4 5.3s\\n[535/551] CVPR_2004_30_abs_sent2: OK E=6 R=4 6.0s\\n[536/551] CVPR_2004_30_abs_sent3: OK E=4 R=2 3.2s\\n[537/551] CVPR_2004_30_abs_sent4: OK E=3 R=2 3.2s\\n[538/551] CVPR_2004_30_abs_sent5: OK E=6 R=4 4.5s\\n[539/551] CVPR_2004_30_abs_sent6: OK E=4 R=3 4.0s\\n[540/551] INTERSPEECH_2007_40_abs_sent0: OK E=7 R=6 7.5s\\n[541/551] INTERSPEECH_2007_40_abs_sent1: OK E=3 R=2 2.4s\\n[542/551] INTERSPEECH_2007_40_abs_sent2: OK E=3 R=2 3.5s\\n[543/551] INTERSPEECH_2007_40_abs_sent3: OK E=6 R=4 5.6s\\n[544/551] CVPR_2003_30_abs_sent0: OK E=3 R=2 3.2s\\n[545/551] CVPR_2003_30_abs_sent1: OK E=10 R=8 8.5s\\n[546/551] CVPR_2003_30_abs_sent2: OK E=3 R=2 3.1s\\n[547/551] CVPR_2003_30_abs_sent3: OK E=3 R=3 3.7s\\n[548/551] NIPS_2016_80_abs_sent0: OK E=5 R=4 5.2s\\n[549/551] NIPS_2016_80_abs_sent1: OK E=6 R=4 4.2s\\n[550/551] NIPS_2016_80_abs_sent2: OK E=5 R=3 4.7s\\n[551/551] NIPS_2016_80_abs_sent3: OK E=5 R=3 4.4s\\n\\nDone: 551 new samples, success=551, fail=0 (skipped 0 already processed)\\nOutput: outputs/w1_cf_fallback_scierc_pilot.jsonl\\n\\n=== CF Fallback Stats ===\\n  grammar_first_fallback_count: 6237\\n  cf_registry_fallback_count:   763\\n  total_mask_calls:             17024\\n  grammar_first_fallback_rate:  0.366365\\n  cf_registry_fallback_rate:    0.044819\\nFallback stats: outputs/w1_cf_fallback_scierc_pilot_fallback_stats.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "0e8b28b2-ab0c-43b0-acd6-794b554c5b85",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Grammar-first fallback triggered (skip_count=11): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=12): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=13): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=14): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=15): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=16): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=17): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=18): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=19): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=20): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=21): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=22): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=23): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=1): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=2): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=3): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=4): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=1): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=2): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=3): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=4): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=5): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=6): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=7): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=8): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=9): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=10): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=1): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=2): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=3): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=4): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=5): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=6): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=7): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=8): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=9): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=10): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=11): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered\\\\n\\\\n... [截断: 输出过长，省略 10811 字符] ...\\\\n\\\\n\\\\nGrammar-first fallback triggered (skip_count=4): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=5): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=6): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=7): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=8): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=1): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=2): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=3): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=4): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=5): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=6): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=7): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=8): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=9): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=1): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=2): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=3): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=4): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=5): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=6): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=7): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=8): semantic mask would eliminate all grammar-valid tokens\\\\nGrammar-first fallback triggered (skip_count=9): semantic mask would eliminate all grammar-valid tokens\\\\n[529/551] CVPR_2010_30_abs_sent1: OK E=6 R=4 4.7s\\\\n[530/551] CVPR_2010_30_abs_sent2: OK E=2 R=1 2.2s\\\\n[531/551] CVPR_2010_30_abs_sent3: OK E=5 R=3 4.7s\\\\n[532/551] CVPR_2010_30_abs_sent4: OK E=6 R=3 4.0s\\\\n[533/551] CVPR_2004_30_abs_sent0: OK E=2 R=1 1.5s\\\\n[534/551] CVPR_2004_30_abs_sent1: OK E=5 R=4 5.3s\\\\n[535/551] CVPR_2004_30_abs_sent2: OK E=6 R=4 6.0s\\\\n[536/551] CVPR_2004_30_abs_sent3: OK E=4 R=2 3.2s\\\\n[537/551] CVPR_2004_30_abs_sent4: OK E=3 R=2 3.2s\\\\n[538/551] CVPR_2004_30_abs_sent5: OK E=6 R=4 4.5s\\\\n[539/551] CVPR_2004_30_abs_sent6: OK E=4 R=3 4.0s\\\\n[540/551] INTERSPEECH_2007_40_abs_sent0: OK E=7 R=6 7.5s\\\\n[541/551] INTERSPEECH_2007_40_abs_sent1: OK E=3 R=2 2.4s\\\\n[542/551] INTERSPEECH_2007_40_abs_sent2: OK E=3 R=2 3.5s\\\\n[543/551] INTERSPEECH_2007_40_abs_sent3: OK E=6 R=4 5.6s\\\\n[544/551] CVPR_2003_30_abs_sent0: OK E=3 R=2 3.2s\\\\n[545/551] CVPR_2003_30_abs_sent1: OK E=10 R=8 8.5s\\\\n[546/551] CVPR_2003_30_abs_sent2: OK E=3 R=2 3.1s\\\\n[547/551] CVPR_2003_30_abs_sent3: OK E=3 R=3 3.7s\\\\n[548/551] NIPS_2016_80_abs_sent0: OK E=5 R=4 5.2s\\\\n[549/551] NIPS_2016_80_abs_sent1: OK E=6 R=4 4.2s\\\\n[550/551] NIPS_2016_80_abs_sent2: OK E=5 R=3 4.7s\\\\n[551/551] NIPS_2016_80_abs_sent3: OK E=5 R=3 4.4s\\\\n\\\\nDone: 551 new samples, success=551, fail=0 (skipped 0 already processed)\\\\nOutput: outputs/w1_cf_fallback_scierc_pilot.jsonl\\\\n\\\\n=== CF Fallback Stats ===\\\\n  grammar_first_fallback_count: 6237\\\\n  cf_registry_fallback_count:   763\\\\n  total_mask_calls:             17024\\\\n  grammar_first_fallback_rate:  0.366365\\\\n  cf_registry_fallback_rate:    0.044819\\\\nFallback stats: outputs/w1_cf_fallback_scierc_pilot_fallback_stats.json\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Grammar-first fallback triggered (skip_count=11): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=12): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=13): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=14): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=15): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=16): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=17): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=18): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=19): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=20): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=21): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=22): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=23): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=1): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=2): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=3): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=4): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=1): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=2): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=3): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=4): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=5): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=6): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=7): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=8): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=9): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=10): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=1): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=2): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=3): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=4): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=5): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=6): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=7): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=8): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=9): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=10): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=11): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered\\n\\n... [截断: 输出过长，省略 10811 字符] ...\\n\\n\\nGrammar-first fallback triggered (skip_count=4): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=5): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=6): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=7): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=8): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=1): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=2): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=3): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=4): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=5): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=6): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=7): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=8): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=9): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=1): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=2): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=3): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=4): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=5): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=6): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=7): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=8): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=9): semantic mask would eliminate all grammar-valid tokens\\n[529/551] CVPR_2010_30_abs_sent1: OK E=6 R=4 4.7s\\n[530/551] CVPR_2010_30_abs_sent2: OK E=2 R=1 2.2s\\n[531/551] CVPR_2010_30_abs_sent3: OK E=5 R=3 4.7s\\n[532/551] CVPR_2010_30_abs_sent4: OK E=6 R=3 4.0s\\n[533/551] CVPR_2004_30_abs_sent0: OK E=2 R=1 1.5s\\n[534/551] CVPR_2004_30_abs_sent1: OK E=5 R=4 5.3s\\n[535/551] CVPR_2004_30_abs_sent2: OK E=6 R=4 6.0s\\n[536/551] CVPR_2004_30_abs_sent3: OK E=4 R=2 3.2s\\n[537/551] CVPR_2004_30_abs_sent4: OK E=3 R=2 3.2s\\n[538/551] CVPR_2004_30_abs_sent5: OK E=6 R=4 4.5s\\n[539/551] CVPR_2004_30_abs_sent6: OK E=4 R=3 4.0s\\n[540/551] INTERSPEECH_2007_40_abs_sent0: OK E=7 R=6 7.5s\\n[541/551] INTERSPEECH_2007_40_abs_sent1: OK E=3 R=2 2.4s\\n[542/551] INTERSPEECH_2007_40_abs_sent2: OK E=3 R=2 3.5s\\n[543/551] INTERSPEECH_2007_40_abs_sent3: OK E=6 R=4 5.6s\\n[544/551] CVPR_2003_30_abs_sent0: OK E=3 R=2 3.2s\\n[545/551] CVPR_2003_30_abs_sent1: OK E=10 R=8 8.5s\\n[546/551] CVPR_2003_30_abs_sent2: OK E=3 R=2 3.1s\\n[547/551] CVPR_2003_30_abs_sent3: OK E=3 R=3 3.7s\\n[548/551] NIPS_2016_80_abs_sent0: OK E=5 R=4 5.2s\\n[549/551] NIPS_2016_80_abs_sent1: OK E=6 R=4 4.2s\\n[550/551] NIPS_2016_80_abs_sent2: OK E=5 R=3 4.7s\\n[551/551] NIPS_2016_80_abs_sent3: OK E=5 R=3 4.4s\\n\\nDone: 551 new samples, success=551, fail=0 (skipped 0 already processed)\\nOutput: outputs/w1_cf_fallback_scierc_pilot.jsonl\\n\\n=== CF Fallback Stats ===\\n  grammar_first_fallback_count: 6237\\n  cf_registry_fallback_count:   763\\n  total_mask_calls:             17024\\n  grammar_first_fallback_rate:  0.366365\\n  cf_registry_fallback_rate:    0.044819\\nFallback stats: outputs/w1_cf_fallback_scierc_pilot_fallback_stats.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T14:50:02.382Z_
+
+<details><summary>↩ Tool result · `toolu_01R54yiQhmm87E7GGa4yFbsi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 1322087 May 15 22:46 /root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "7c24e16d-f3cc-4036-a270-9fdb2b1bd0dc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 1322087 May 15 22:46 /root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 1322087 May 15 22:46 /root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "8bff6b85-3e62-4539-9fd1-3ffc1ecd9e7c",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_015byJQwUboctZcnoMcHVZSH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4525,
+      "cache_read_input_tokens": 34639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4525
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+Experiment completed successfully (551/551, exit 0). Now running violation checker and F1.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "200d6abf-af3b-4239-8dc4-a69448119e1c",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_015byJQwUboctZcnoMcHVZSH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4525,
+      "cache_read_input_tokens": 34639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4525
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NygDztZ5YdQFL9YB9V7U8s`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ls /root/schema_semantic_constrained_ie/violation_checker.py /root/schema_semantic_constrained_ie/evaluate_f1.py /root/schema_semantic_constrained_ie/ontology_constraints.json /root/schema_semantic_constrained_ie/data/processed_data/test.json /root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot_fallback_stats.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "0254e5f7-b856-44ca-9ecd-51041ad59273",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_015byJQwUboctZcnoMcHVZSH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4525,
+      "cache_read_input_tokens": 34639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4525
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T14:50:09.067Z_
+
+<details><summary>↩ Tool result · `toolu_01NygDztZ5YdQFL9YB9V7U8s`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\\n/root/schema_semantic_constrained_ie/ontology_constraints.json\\n/root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot_fallback_stats.json\\n/root/schema_semantic_constrained_ie/violation_checker.py\\n\", \"stderr\": \"ls: cannot access '/root/schema_semantic_constrained_ie/evaluate_f1.py': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "92a5fb75-1bbd-4023-acc6-a1c04ccb78ff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/data/processed_data/test.json\\\\n/root/schema_semantic_constrained_ie/ontology_constraints.json\\\\n/root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot_fallback_stats.json\\\\n/root/schema_semantic_constrained_ie/violation_checker.py\\\\n\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/schema_semantic_constrained_ie/evaluate_f1.py': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\\n/root/schema_semantic_constrained_ie/ontology_constraints.json\\n/root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot_fallback_stats.json\\n/root/schema_semantic_constrained_ie/violation_checker.py\\n\", \"stderr\": \"ls: cannot access '/root/schema_semantic_constrained_ie/evaluate_f1.py': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WpQZA1hB6AEUob4yqxVToe`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "find /root/schema_semantic_constrained_ie -maxdepth 2 -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "29b0eb0c-e2c8-4506-bd03-d1881ded4c32",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01YPT2ypUfKReKzzPFYxoWzn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 748,
+      "cache_read_input_tokens": 39164,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 748
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T14:50:12.819Z_
+
+<details><summary>↩ Tool result · `toolu_01WpQZA1hB6AEUob4yqxVToe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/analyze_ontology.py\\n/root/schema_semantic_constrained_ie/run_extraction.py\\n/root/schema_semantic_constrained_ie/violation_checker.py\\n/root/schema_semantic_constrained_ie/analyze_ontology_docred.py\\n/root/schema_semantic_constrained_ie/run_extraction_docred.py\\n/root/schema_semantic_constrained_ie/violation_checker_docred.py\\n/root/schema_semantic_constrained_ie/compiler/__init__.py\\n/root/schema_semantic_constrained_ie/compiler/ontology_compiler.py\\n/root/schema_semantic_constrained_ie/compiler/type_mask_processor.py\\n/root/schema_semantic_constrained_ie/compiler/test_type_mask.py\\n/root/schema_semantic_constrained_ie/compare_prompts.py\\n/root/schema_semantic_constrained_ie/run_constrained_extraction.py\\n/root/schema_semantic_constrained_ie/scripts/compare_phase2.py\\n/root/schema_semantic_constrained_ie/scripts/q8_fp_analysis.py\\n/root/schema_semantic_constrained_ie/scripts/rectangularity_analysis.py\\n/root/schema_semantic_constrained_ie/scripts/prepare_sft_data_scierc.py\\n/root/schema_semantic_constrained_ie/scripts/train_lora_scierc.py\\n/root/schema_semantic_constrained_ie/analyze_phase2.py\\n/root/schema_semantic_constrained_ie/analyze_cf_violations.py\\n/root/schema_semantic_constrained_ie/unified_f1_eval.py\\n/root/schema_semantic_constrained_ie/analyze_docred_semantic_only.py\\n/root/schema_semantic_constrained_ie/analyze_compare.py\\n/root/schema_semantic_constrained_ie/unified_violation_recalc.py\\n/root/schema_semantic_constrained_ie/compute_bootstrap_ci.py\\n/root/schema_semantic_constrained_ie/posthoc_filter.py\\n/root/schema_semantic_constrained_ie/estimate_fallback_rate.py\\n/root/schema_semantic_constrained_ie/analyze_llama_docred.py\\n/root/schema_semantic_constrained_ie/run_bootstrap_llama.py\\n/root/schema_semantic_constrained_ie/compute_bootstrap_ci_llama.py\\n/root/schema_semantic_constrained_ie/analyze_dr_residual.py\\n/root/schema_semantic_constrained_ie/analyze_dr_residual_v2.py\\n/root/schema_semantic_constrained_ie/analyze_cf_fallback.py\\n/root/schema_semantic_constrained_ie/analyze_llama_docred_mt6144.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "59b02fe0-a0f7-4a40-89d6-6397b9eedd20",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/analyze_ontology.py\\\\n/root/schema_semantic_constrained_ie/run_extraction.py\\\\n/root/schema_semantic_constrained_ie/violation_checker.py\\\\n/root/schema_semantic_constrained_ie/analyze_ontology_docred.py\\\\n/root/schema_semantic_constrained_ie/run_extraction_docred.py\\\\n/root/schema_semantic_constrained_ie/violation_checker_docred.py\\\\n/root/schema_semantic_constrained_ie/compiler/__init__.py\\\\n/root/schema_semantic_constrained_ie/compiler/ontology_compiler.py\\\\n/root/schema_semantic_constrained_ie/compiler/type_mask_processor.py\\\\n/root/schema_semantic_constrained_ie/compiler/test_type_mask.py\\\\n/root/schema_semantic_constrained_ie/compare_prompts.py\\\\n/root/schema_semantic_constrained_ie/run_constrained_extraction.py\\\\n/root/schema_semantic_constrained_ie/scripts/compare_phase2.py\\\\n/root/schema_semantic_constrained_ie/scripts/q8_fp_analysis.py\\\\n/root/schema_semantic_constrained_ie/scripts/rectangularity_analysis.py\\\\n/root/schema_semantic_constrained_ie/scripts/prepare_sft_data_scierc.py\\\\n/root/schema_semantic_constrained_ie/scripts/train_lora_scierc.py\\\\n/root/schema_semantic_constrained_ie/analyze_phase2.py\\\\n/root/schema_semantic_constrained_ie/analyze_cf_violations.py\\\\n/root/schema_semantic_constrained_ie/unified_f1_eval.py\\\\n/root/schema_semantic_constrained_ie/analyze_docred_semantic_only.py\\\\n/root/schema_semantic_constrained_ie/analyze_compare.py\\\\n/root/schema_semantic_constrained_ie/unified_violation_recalc.py\\\\n/root/schema_semantic_constrained_ie/compute_bootstrap_ci.py\\\\n/root/schema_semantic_constrained_ie/posthoc_filter.py\\\\n/root/schema_semantic_constrained_ie/estimate_fallback_rate.py\\\\n/root/schema_semantic_constrained_ie/analyze_llama_docred.py\\\\n/root/schema_semantic_constrained_ie/run_bootstrap_llama.py\\\\n/root/schema_semantic_constrained_ie/compute_bootstrap_ci_llama.py\\\\n/root/schema_semantic_constrained_ie/analyze_dr_residual.py\\\\n/root/schema_semantic_constrained_ie/analyze_dr_residual_v2.py\\\\n/root/schema_semantic_constrained_ie/analyze_cf_fallback.py\\\\n/root/schema_semantic_constrained_ie/analyze_llama_docred_mt6144.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/analyze_ontology.py\\n/root/schema_semantic_constrained_ie/run_extraction.py\\n/root/schema_semantic_constrained_ie/violation_checker.py\\n/root/schema_semantic_constrained_ie/analyze_ontology_docred.py\\n/root/schema_semantic_constrained_ie/run_extraction_docred.py\\n/root/schema_semantic_constrained_ie/violation_checker_docred.py\\n/root/schema_semantic_constrained_ie/compiler/__init__.py\\n/root/schema_semantic_constrained_ie/compiler/ontology_compiler.py\\n/root/schema_semantic_constrained_ie/compiler/type_mask_processor.py\\n/root/schema_semantic_constrained_ie/compiler/test_type_mask.py\\n/root/schema_semantic_constrained_ie/compare_prompts.py\\n/root/schema_semantic_constrained_ie/run_constrained_extraction.py\\n/root/schema_semantic_constrained_ie/scripts/compare_phase2.py\\n/root/schema_semantic_constrained_ie/scripts/q8_fp_analysis.py\\n/root/schema_semantic_constrained_ie/scripts/rectangularity_analysis.py\\n/root/schema_semantic_constrained_ie/scripts/prepare_sft_data_scierc.py\\n/root/schema_semantic_constrained_ie/scripts/train_lora_scierc.py\\n/root/schema_semantic_constrained_ie/analyze_phase2.py\\n/root/schema_semantic_constrained_ie/analyze_cf_violations.py\\n/root/schema_semantic_constrained_ie/unified_f1_eval.py\\n/root/schema_semantic_constrained_ie/analyze_docred_semantic_only.py\\n/root/schema_semantic_constrained_ie/analyze_compare.py\\n/root/schema_semantic_constrained_ie/unified_violation_recalc.py\\n/root/schema_semantic_constrained_ie/compute_bootstrap_ci.py\\n/root/schema_semantic_constrained_ie/posthoc_filter.py\\n/root/schema_semantic_constrained_ie/estimate_fallback_rate.py\\n/root/schema_semantic_constrained_ie/analyze_llama_docred.py\\n/root/schema_semantic_constrained_ie/run_bootstrap_llama.py\\n/root/schema_semantic_constrained_ie/compute_bootstrap_ci_llama.py\\n/root/schema_semantic_constrained_ie/analyze_dr_residual.py\\n/root/schema_semantic_constrained_ie/analyze_dr_residual_v2.py\\n/root/schema_semantic_constrained_ie/analyze_cf_fallback.py\\n/root/schema_semantic_constrained_ie/analyze_llama_docred_mt6144.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "e58122e4-fe1e-4120-9593-4dd61bea2d4d",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_016XkyKHU9MD9as3VDmEm7gW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1303,
+      "cache_read_input_tokens": 39912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1303
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EdVaX115wP8GA9RL3EzNvm`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -n \"argparse\\|add_argument\\|ArgumentParser\" /root/schema_semantic_constrained_ie/violation_checker.py /root/schema_semantic_constrained_ie/unified_f1_eval.py /root/schema_semantic_constrained_ie/analyze_cf_fallback.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "82464785-7ed7-4100-8e3b-0fc439f5f434",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_016XkyKHU9MD9as3VDmEm7gW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1303,
+      "cache_read_input_tokens": 39912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1303
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T14:50:18.647Z_
+
+<details><summary>↩ Tool result · `toolu_01EdVaX115wP8GA9RL3EzNvm`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "71eb626a-aac8-496d-9e38-a341425a4d06",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Lz4PpaStp41pSmFJ6iWG2p`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot_fallback_stats.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "5dd6d44a-9f27-484b-9caa-c73a21f630e3",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_016XkyKHU9MD9as3VDmEm7gW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1303,
+      "cache_read_input_tokens": 39912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1303
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T14:50:19.995Z_
+
+<details><summary>↩ Tool result · `toolu_01Lz4PpaStp41pSmFJ6iWG2p`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"grammar_first_fallback_count\\\": 6237,\\n  \\\"cf_registry_fallback_count\\\": 763,\\n  \\\"total_mask_calls\\\": 17024,\\n  \\\"grammar_first_fallback_rate\\\": 0.36636513157894735,\\n  \\\"cf_registry_fallback_rate\\\": 0.04481907894736842\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "fdceef13-4869-4021-962d-3d7141e4be8d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"grammar_first_fallback_count\\\\\\\": 6237,\\\\n  \\\\\\\"cf_registry_fallback_count\\\\\\\": 763,\\\\n  \\\\\\\"total_mask_calls\\\\\\\": 17024,\\\\n  \\\\\\\"grammar_first_fallback_rate\\\\\\\": 0.36636513157894735,\\\\n  \\\\\\\"cf_registry_fallback_rate\\\\\\\": 0.04481907894736842\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"grammar_first_fallback_count\\\": 6237,\\n  \\\"cf_registry_fallback_count\\\": 763,\\n  \\\"total_mask_calls\\\": 17024,\\n  \\\"grammar_first_fallback_rate\\\": 0.36636513157894735,\\n  \\\"cf_registry_fallback_rate\\\": 0.04481907894736842\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KasjfvNGfCPBSwuSQodvC6`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -n \"add_argument\\|ArgumentParser\" /root/schema_semantic_constrained_ie/violation_checker.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "1b851fb4-60d2-4a4d-90c7-89ad4cc1b7d9",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_018M6rW1PVFju4VvtrEG4nTY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 909,
+      "cache_read_input_tokens": 41215,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 909
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T14:50:23.509Z_
+
+<details><summary>↩ Tool result · `toolu_01KasjfvNGfCPBSwuSQodvC6`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "3d1afac9-25c5-4eb9-90d8-2d6aa8948964",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013CCY3ed3ZrBmzLiEnfQenv`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -n \"add_argument\\|ArgumentParser\" /root/schema_semantic_constrained_ie/unified_f1_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "2e4f4dad-cd67-4118-9854-72ec5d90a45f",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_018M6rW1PVFju4VvtrEG4nTY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 909,
+      "cache_read_input_tokens": 41215,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 909
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T14:50:25.099Z_
+
+<details><summary>↩ Tool result · `toolu_013CCY3ed3ZrBmzLiEnfQenv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "b569046b-c1c1-44c0-a43a-f8163d033255",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UPg3mELVuyNWtAzFjBSneH`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -n \"add_argument\\|ArgumentParser\" /root/schema_semantic_constrained_ie/analyze_cf_fallback.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "63d1ddae-4ce8-40b1-a0bb-1c7f62fb34a5",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_018M6rW1PVFju4VvtrEG4nTY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 909,
+      "cache_read_input_tokens": 41215,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 909
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T14:50:25.682Z_
+
+<details><summary>↩ Tool result · `toolu_01UPg3mELVuyNWtAzFjBSneH`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "2ac84f9f-858c-4ed4-ab4f-351e7ad0da22",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "9b92fe38-418d-4536-8cc1-da2e8153330c",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01J6C5R7L8nwPYkYTfSW3ydT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1113,
+      "cache_read_input_tokens": 42124,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1113
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Fh1zTMRzhLiFitNYk7TJjX`</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "8ed56166-e7d0-47a6-b952-38f874770ad9",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01J6C5R7L8nwPYkYTfSW3ydT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1113,
+      "cache_read_input_tokens": 42124,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1113
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T14:50:29.324Z_
+
+<details><summary>↩ Tool result · `toolu_01Fh1zTMRzhLiFitNYk7TJjX`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "TodoWrite"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "d29afd57-cc38-4353-8ccd-ed09f1fdeae3",
+  "tool_use_result": {
+    "matches": [
+      "TodoWrite"
+    ],
+    "query": "select:TodoWrite",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_01CFjQssRvq2yZe39dByrFxM`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Check log + output file status",
+      "activeForm": "Checking log + output file status",
+      "status": "completed"
+    },
+    {
+      "content": "Determine violation_checker / F1 eval CLI args",
+      "activeForm": "Determining script CLI args",
+      "status": "in_progress"
+    },
+    {
+      "content": "Run violation_checker on output",
+      "activeForm": "Running violation_checker on output",
+      "status": "pending"
+    },
+    {
+      "content": "Run F1 eval",
+      "activeForm": "Running F1 eval",
+      "status": "pending"
+    },
+    {
+      "content": "Run analyze_cf_fallback / CF analysis",
+      "activeForm": "Running CF analysis",
+      "status": "pending"
+    },
+    {
+      "content": "Write analysis report + register artifact",
+      "activeForm": "Writing analysis report + registering artifact",
+      "status": "pending"
+    },
+    {
+      "content": "Update registry with metrics + conclusion",
+      "activeForm": "Updating registry",
+      "status": "pending"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "68489833-d2f1-40a5-a817-15010ff6caef",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_015o2Uh8VWkVcsuWya5aqu76",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 3571,
+      "cache_read_input_tokens": 43237,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3571
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T14:50:34.891Z_
+
+<details><summary>↩ Tool result · `toolu_01CFjQssRvq2yZe39dByrFxM`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "45a558d0-f540-4590-a4e4-238b0328976d",
+  "tool_use_result": {
+    "oldTodos": [],
+    "newTodos": [
+      {
+        "content": "Check log + output file status",
+        "status": "completed",
+        "activeForm": "Checking log + output file status"
+      },
+      {
+        "content": "Determine violation_checker / F1 eval CLI args",
+        "status": "in_progress",
+        "activeForm": "Determining script CLI args"
+      },
+      {
+        "content": "Run violation_checker on output",
+        "status": "pending",
+        "activeForm": "Running violation_checker on output"
+      },
+      {
+        "content": "Run F1 eval",
+        "status": "pending",
+        "activeForm": "Running F1 eval"
+      },
+      {
+        "content": "Run analyze_cf_fallback / CF analysis",
+        "status": "pending",
+        "activeForm": "Running CF analysis"
+      },
+      {
+        "content": "Write analysis report + register artifact",
+        "status": "pending",
+        "activeForm": "Writing analysis report + registering artifact"
+      },
+      {
+        "content": "Update registry with metrics + conclusion",
+        "status": "pending",
+        "activeForm": "Updating registry"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013taEYwGDHGFLjVE1x6wioP`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 violation_checker.py --help && echo \"---\" && python3 unified_f1_eval.py --help && echo \"---\" && python3 analyze_cf_fallback.py --help",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "55f835c3-0159-4371-aca4-7ef59b909fc7",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01MaKHBswWxW5MpjYLNbE7Qe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 434,
+      "cache_read_input_tokens": 46808,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 434
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T14:51:02.240Z_
+
+<details><summary>↩ Tool result · `toolu_013taEYwGDHGFLjVE1x6wioP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: violation_checker.py [-h] [--input_path INPUT_PATH]\\n                            [--constraints_path CONSTRAINTS_PATH]\\n                            [--output_path OUTPUT_PATH]\\n\\nCheck ontology constraint violations (SciERC)\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --input_path INPUT_PATH\\n  --constraints_path CONSTRAINTS_PATH\\n  --output_path OUTPUT_PATH\\n---\\n\\n======================================================================\\nFile: outputs/docred_unconstrained.jsonl\\n======================================================================\\nTotal records: 998, Parse failures: 12\\nTotal raw relations: 17497\\nTotal unique relations (raw type): 17355\\nTotal recognized (normalized to PID): 12214\\nTotal unrecognized relations: 5189\\n\\nEntity F1: P=0.5726 R=0.5907 F1=0.5815 (tp=11356, gold=19225, pred=19832)\\n\\nmethod_all_raw:\\n  R-F1: P=0.0650 R=0.0946 F1=0.0770\\n  tp=1137, gold=12021, pred=17497\\n\\nmethod_all_set:\\n  R-F1: P=0.0655 R=0.0946 F1=0.0774\\n  tp=1137, gold=12021, pred=17355\\n\\nmethod_recognized_set:\\n  R-F1: P=0.0931 R=0.0946 F1=0.0938\\n  tp=1137, gold=12021, pred=12214\\n\\nmethod_normalized_set:\\n  R-F1: P=0.0655 R=0.0946 F1=0.0774\\n  tp=1137, gold=12021, pred=17355\\n\\n======================================================================\\nFile: outputs/docred_full_s1.jsonl\\n======================================================================\\nTotal records: 998, Parse failures: 11\\nTotal raw relations: 17341\\nTotal unique relations (raw type): 17227\\nTotal recognized (normalized to PID): 17222\\nTotal unrecognized relations: 5\\n\\nEntity F1: P=0.5848 R=0.6031 F1=0.5938 (tp=11613, gold=19254, pred=19859)\\n\\nmethod_all_raw:\\n  R-F1: P=0.0695 R=0.1002 F1=0.0821\\n  tp=1205, gold=12031, pred=17341\\n\\nmethod_all_set:\\n  R-F1: P=0.0699 R=0.1002 F1=0.0824\\n  tp=1205, gold=12031, pred=17227\\n\\nmethod_recognized_set:\\n  R-F1: P=0.0700 R=0.1002 F1=0.0824\\n  tp=1205, gold=12031, pred=17222\\n\\nmethod_normalized_set:\\n  R-F1: P=0.0699 R=0.1002 F1=0.0824\\n  tp=1205, gold=12031, pred=17227\\n\\n======================================================================\\nDELTA: unconstrained vs full_s1\\n======================================================================\\n\\nmethod_all_raw: unconstrained=0.0770 full_s1=0.0821 delta=+0.0050 (+0.50pp)\\n\\nmethod_all_set: unconstrained=0.0774 full_s1=0.0824 delta=+0.0050 (+0.50pp)\\n\\nmethod_recognized_set: unconstrained=0.0938 full_s1=0.0824 delta=-0.0114 (-1.14pp)\\n\\nmethod_normalized_set: unconstrained=0.0774 full_s1=0.0824 delta=+0.0050 (+0.50pp)\\n---\\nusage: analyze_cf_fallback.py [-h] [--results_dir RESULTS_DIR]\\n                              [--output_dir OUTPUT_DIR]\\n                              [--scierc_checker SCIERC_CHECKER]\\n                              [--docred_checker DOCRED_CHECKER]\\n                              [--project_root PROJECT_ROOT]\\n\\nAnalyze CF fallback experiment results vs no-fallback baselines.\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --results_dir RESULTS_DIR\\n                        Directory with experiment JSONL files (default:\\n                        outputs/)\\n  --output_dir OUTPUT_DIR\\n                        Directory for analysis outputs (default:\\n                        outputs/cf_analysis/)\\n  --scierc_checker SCIERC_CHECKER\\n                        Path to SciERC violation checker script\\n  --docred_checker DOCRED_CHECKER\\n                        Path to DocRED violation checker script\\n  --project_root PROJECT_ROOT\\n                        Project root for locating constraint files (default:\\n                        .)\\n\\nExamples:\\n  # Full analysis (after all experiments finish)\\n  python3 analyze_cf_fallback.py --results_dir outputs/ --output_dir outputs/cf_analysis/\\n\\n  # Partial analysis (skips missing files)\\n  python3 analyze_cf_fallback.py\\n\\n  # Custom checker paths\\n  python3 analyze_cf_fallback.py --scierc_checker violation_checker.py \\\\\\n                                 --docred_checker violation_checker_docred.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 22.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "5a218e61-be5d-47c0-bd59-6a3949c7bcd7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: violation_checker.py [-h] [--input_path INPUT_PATH]\\\\n                            [--constraints_path CONSTRAINTS_PATH]\\\\n                            [--output_path OUTPUT_PATH]\\\\n\\\\nCheck ontology constraint violations (SciERC)\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --input_path INPUT_PATH\\\\n  --constraints_path CONSTRAINTS_PATH\\\\n  --output_path OUTPUT_PATH\\\\n---\\\\n\\\\n======================================================================\\\\nFile: outputs/docred_unconstrained.jsonl\\\\n======================================================================\\\\nTotal records: 998, Parse failures: 12\\\\nTotal raw relations: 17497\\\\nTotal unique relations (raw type): 17355\\\\nTotal recognized (normalized to PID): 12214\\\\nTotal unrecognized relations: 5189\\\\n\\\\nEntity F1: P=0.5726 R=0.5907 F1=0.5815 (tp=11356, gold=19225, pred=19832)\\\\n\\\\nmethod_all_raw:\\\\n  R-F1: P=0.0650 R=0.0946 F1=0.0770\\\\n  tp=1137, gold=12021, pred=17497\\\\n\\\\nmethod_all_set:\\\\n  R-F1: P=0.0655 R=0.0946 F1=0.0774\\\\n  tp=1137, gold=12021, pred=17355\\\\n\\\\nmethod_recognized_set:\\\\n  R-F1: P=0.0931 R=0.0946 F1=0.0938\\\\n  tp=1137, gold=12021, pred=12214\\\\n\\\\nmethod_normalized_set:\\\\n  R-F1: P=0.0655 R=0.0946 F1=0.0774\\\\n  tp=1137, gold=12021, pred=17355\\\\n\\\\n======================================================================\\\\nFile: outputs/docred_full_s1.jsonl\\\\n======================================================================\\\\nTotal records: 998, Parse failures: 11\\\\nTotal raw relations: 17341\\\\nTotal unique relations (raw type): 17227\\\\nTotal recognized (normalized to PID): 17222\\\\nTotal unrecognized relations: 5\\\\n\\\\nEntity F1: P=0.5848 R=0.6031 F1=0.5938 (tp=11613, gold=19254, pred=19859)\\\\n\\\\nmethod_all_raw:\\\\n  R-F1: P=0.0695 R=0.1002 F1=0.0821\\\\n  tp=1205, gold=12031, pred=17341\\\\n\\\\nmethod_all_set:\\\\n  R-F1: P=0.0699 R=0.1002 F1=0.0824\\\\n  tp=1205, gold=12031, pred=17227\\\\n\\\\nmethod_recognized_set:\\\\n  R-F1: P=0.0700 R=0.1002 F1=0.0824\\\\n  tp=1205, gold=12031, pred=17222\\\\n\\\\nmethod_normalized_set:\\\\n  R-F1: P=0.0699 R=0.1002 F1=0.0824\\\\n  tp=1205, gold=12031, pred=17227\\\\n\\\\n======================================================================\\\\nDELTA: unconstrained vs full_s1\\\\n======================================================================\\\\n\\\\nmethod_all_raw: unconstrained=0.0770 full_s1=0.0821 delta=+0.0050 (+0.50pp)\\\\n\\\\nmethod_all_set: unconstrained=0.0774 full_s1=0.0824 delta=+0.0050 (+0.50pp)\\\\n\\\\nmethod_recognized_set: unconstrained=0.0938 full_s1=0.0824 delta=-0.0114 (-1.14pp)\\\\n\\\\nmethod_normalized_set: unconstrained=0.0774 full_s1=0.0824 delta=+0.0050 (+0.50pp)\\\\n---\\\\nusage: analyze_cf_fallback.py [-h] [--results_dir RESULTS_DIR]\\\\n                              [--output_dir OUTPUT_DIR]\\\\n                              [--scierc_checker SCIERC_CHECKER]\\\\n                              [--docred_checker DOCRED_CHECKER]\\\\n                              [--project_root PROJECT_ROOT]\\\\n\\\\nAnalyze CF fallback experiment results vs no-fallback baselines.\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --results_dir RESULTS_DIR\\\\n                        Directory with experiment JSONL files (default:\\\\n                        outputs/)\\\\n  --output_dir OUTPUT_DIR\\\\n                        Directory for analysis outputs (default:\\\\n                        outputs/cf_analysis/)\\\\n  --scierc_checker SCIERC_CHECKER\\\\n                        Path to SciERC violation checker script\\\\n  --docred_checker DOCRED_CHECKER\\\\n                        Path to DocRED violation checker script\\\\n  --project_root PROJECT_ROOT\\\\n                        Project root for locating constraint files (default:\\\\n                        .)\\\\n\\\\nExamples:\\\\n  # Full analysis (after all experiments finish)\\\\n  python3 analyze_cf_fallback.py --results_dir outputs/ --output_dir outputs/cf_analysis/\\\\n\\\\n  # Partial analysis (skips missing files)\\\\n  python3 analyze_cf_fallback.py\\\\n\\\\n  # Custom checker paths\\\\n  python3 analyze_cf_fallback.py --scierc_checker violation_checker.py \\\\\\\\\\\\n                                 --docred_checker violation_checker_docred.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 22.89}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: violation_checker.py [-h] [--input_path INPUT_PATH]\\n                            [--constraints_path CONSTRAINTS_PATH]\\n                            [--output_path OUTPUT_PATH]\\n\\nCheck ontology constraint violations (SciERC)\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --input_path INPUT_PATH\\n  --constraints_path CONSTRAINTS_PATH\\n  --output_path OUTPUT_PATH\\n---\\n\\n======================================================================\\nFile: outputs/docred_unconstrained.jsonl\\n======================================================================\\nTotal records: 998, Parse failures: 12\\nTotal raw relations: 17497\\nTotal unique relations (raw type): 17355\\nTotal recognized (normalized to PID): 12214\\nTotal unrecognized relations: 5189\\n\\nEntity F1: P=0.5726 R=0.5907 F1=0.5815 (tp=11356, gold=19225, pred=19832)\\n\\nmethod_all_raw:\\n  R-F1: P=0.0650 R=0.0946 F1=0.0770\\n  tp=1137, gold=12021, pred=17497\\n\\nmethod_all_set:\\n  R-F1: P=0.0655 R=0.0946 F1=0.0774\\n  tp=1137, gold=12021, pred=17355\\n\\nmethod_recognized_set:\\n  R-F1: P=0.0931 R=0.0946 F1=0.0938\\n  tp=1137, gold=12021, pred=12214\\n\\nmethod_normalized_set:\\n  R-F1: P=0.0655 R=0.0946 F1=0.0774\\n  tp=1137, gold=12021, pred=17355\\n\\n======================================================================\\nFile: outputs/docred_full_s1.jsonl\\n======================================================================\\nTotal records: 998, Parse failures: 11\\nTotal raw relations: 17341\\nTotal unique relations (raw type): 17227\\nTotal recognized (normalized to PID): 17222\\nTotal unrecognized relations: 5\\n\\nEntity F1: P=0.5848 R=0.6031 F1=0.5938 (tp=11613, gold=19254, pred=19859)\\n\\nmethod_all_raw:\\n  R-F1: P=0.0695 R=0.1002 F1=0.0821\\n  tp=1205, gold=12031, pred=17341\\n\\nmethod_all_set:\\n  R-F1: P=0.0699 R=0.1002 F1=0.0824\\n  tp=1205, gold=12031, pred=17227\\n\\nmethod_recognized_set:\\n  R-F1: P=0.0700 R=0.1002 F1=0.0824\\n  tp=1205, gold=12031, pred=17222\\n\\nmethod_normalized_set:\\n  R-F1: P=0.0699 R=0.1002 F1=0.0824\\n  tp=1205, gold=12031, pred=17227\\n\\n======================================================================\\nDELTA: unconstrained vs full_s1\\n======================================================================\\n\\nmethod_all_raw: unconstrained=0.0770 full_s1=0.0821 delta=+0.0050 (+0.50pp)\\n\\nmethod_all_set: unconstrained=0.0774 full_s1=0.0824 delta=+0.0050 (+0.50pp)\\n\\nmethod_recognized_set: unconstrained=0.0938 full_s1=0.0824 delta=-0.0114 (-1.14pp)\\n\\nmethod_normalized_set: unconstrained=0.0774 full_s1=0.0824 delta=+0.0050 (+0.50pp)\\n---\\nusage: analyze_cf_fallback.py [-h] [--results_dir RESULTS_DIR]\\n                              [--output_dir OUTPUT_DIR]\\n                              [--scierc_checker SCIERC_CHECKER]\\n                              [--docred_checker DOCRED_CHECKER]\\n                              [--project_root PROJECT_ROOT]\\n\\nAnalyze CF fallback experiment results vs no-fallback baselines.\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --results_dir RESULTS_DIR\\n                        Directory with experiment JSONL files (default:\\n                        outputs/)\\n  --output_dir OUTPUT_DIR\\n                        Directory for analysis outputs (default:\\n                        outputs/cf_analysis/)\\n  --scierc_checker SCIERC_CHECKER\\n                        Path to SciERC violation checker script\\n  --docred_checker DOCRED_CHECKER\\n                        Path to DocRED violation checker script\\n  --project_root PROJECT_ROOT\\n                        Project root for locating constraint files (default:\\n                        .)\\n\\nExamples:\\n  # Full analysis (after all experiments finish)\\n  python3 analyze_cf_fallback.py --results_dir outputs/ --output_dir outputs/cf_analysis/\\n\\n  # Partial analysis (skips missing files)\\n  python3 analyze_cf_fallback.py\\n\\n  # Custom checker paths\\n  python3 analyze_cf_fallback.py --scierc_checker violation_checker.py \\\\\\n                                 --docred_checker violation_checker_docred.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 22.89}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "c6ec8303-7e66-4b3e-8962-39fc5dd21f0e",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01EyM41ag9a2QYf6zLeByTFJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2263,
+      "cache_read_input_tokens": 47242,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2263
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RpSxGhNFjj4wWfpbfiXzy6`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "head -50 /root/schema_semantic_constrained_ie/unified_f1_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "db6a47c2-e9e3-4daa-8385-d596553d0f70",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01EyM41ag9a2QYf6zLeByTFJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2263,
+      "cache_read_input_tokens": 47242,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2263
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T14:51:09.493Z_
+
+<details><summary>↩ Tool result · `toolu_01RpSxGhNFjj4wWfpbfiXzy6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Unified F1 evaluation for DocRED - investigates discrepancy between two evaluation approaches.\\\"\\\"\\\"\\nimport json\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\ndef _levenshtein(s1, s2):\\n    if len(s1) < len(s2):\\n        return _levenshtein(s2, s1)\\n    if len(s2) == 0:\\n        return len(s1)\\n    prev_row = range(len(s2) + 1)\\n    for i, c1 in enumerate(s1):\\n        curr_row = [i + 1]\\n        for j, c2 in enumerate(s2):\\n            insertions = prev_row[j + 1] + 1\\n            deletions = curr_row[j] + 1\\n            substitutions = prev_row[j] + (c1 != c2)\\n            curr_row.append(min(insertions, deletions, substitutions))\\n        prev_row = curr_row\\n    return prev_row[-1]\\n\\ndef load_constraints(path):\\n    with open(path) as f:\\n        return json.load(f)\\n\\ndef build_relation_name_to_id(rel_types):\\n    name_to_id = {}\\n    for rid, rname in rel_types.items():\\n        name_to_id[rname.lower().strip()] = rid\\n        name_to_id[rid.lower()] = rid\\n    return name_to_id\\n\\ndef normalize_relation(rel_name, rel_types, name_to_id):\\n    rel_key = name_to_id.get(rel_name.lower().strip())\\n    if rel_key:\\n        return rel_key, rel_types.get(rel_key, rel_name), False\\n\\n    rel_tokens = set(rel_name.strip().lower().split())\\n    best_pid, best_name = None, None\\n    best_overlap = 0.0\\n    for rid, rname in rel_types.items():\\n        rname_tokens = set(rname.lower().split())\\n        if rel_tokens and rname_tokens:\\n            overlap = len(rel_tokens & rname_tokens)\\n            union = len(rel_tokens | rname_tokens)\\n            ratio = overlap / union\\n            if ratio > 0.8 and ratio > best_overlap:\\n                best_overlap = ratio\\n                best_pid, best_name = rid, rname\\n    if best_pid:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "5ada8928-b528-4e89-8ad1-f8a0810e7351",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Unified F1 evaluation for DocRED - investigates discrepancy between two evaluation approaches.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\ndef _levenshtein(s1, s2):\\\\n    if len(s1) < len(s2):\\\\n        return _levenshtein(s2, s1)\\\\n    if len(s2) == 0:\\\\n        return len(s1)\\\\n    prev_row = range(len(s2) + 1)\\\\n    for i, c1 in enumerate(s1):\\\\n        curr_row = [i + 1]\\\\n        for j, c2 in enumerate(s2):\\\\n            insertions = prev_row[j + 1] + 1\\\\n            deletions = curr_row[j] + 1\\\\n            substitutions = prev_row[j] + (c1 != c2)\\\\n            curr_row.append(min(insertions, deletions, substitutions))\\\\n        prev_row = curr_row\\\\n    return prev_row[-1]\\\\n\\\\ndef load_constraints(path):\\\\n    with open(path) as f:\\\\n        return json.load(f)\\\\n\\\\ndef build_relation_name_to_id(rel_types):\\\\n    name_to_id = {}\\\\n    for rid, rname in rel_types.items():\\\\n        name_to_id[rname.lower().strip()] = rid\\\\n        name_to_id[rid.lower()] = rid\\\\n    return name_to_id\\\\n\\\\ndef normalize_relation(rel_name, rel_types, name_to_id):\\\\n    rel_key = name_to_id.get(rel_name.lower().strip())\\\\n    if rel_key:\\\\n        return rel_key, rel_types.get(rel_key, rel_name), False\\\\n\\\\n    rel_tokens = set(rel_name.strip().lower().split())\\\\n    best_pid, best_name = None, None\\\\n    best_overlap = 0.0\\\\n    for rid, rname in rel_types.items():\\\\n        rname_tokens = set(rname.lower().split())\\\\n        if rel_tokens and rname_tokens:\\\\n            overlap = len(rel_tokens & rname_tokens)\\\\n            union = len(rel_tokens | rname_tokens)\\\\n            ratio = overlap / union\\\\n            if ratio > 0.8 and ratio > best_overlap:\\\\n                best_overlap = ratio\\\\n                best_pid, best_name = rid, rname\\\\n    if best_pid:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Unified F1 evaluation for DocRED - investigates discrepancy between two evaluation approaches.\\\"\\\"\\\"\\nimport json\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\ndef _levenshtein(s1, s2):\\n    if len(s1) < len(s2):\\n        return _levenshtein(s2, s1)\\n    if len(s2) == 0:\\n        return len(s1)\\n    prev_row = range(len(s2) + 1)\\n    for i, c1 in enumerate(s1):\\n        curr_row = [i + 1]\\n        for j, c2 in enumerate(s2):\\n            insertions = prev_row[j + 1] + 1\\n            deletions = curr_row[j] + 1\\n            substitutions = prev_row[j] + (c1 != c2)\\n            curr_row.append(min(insertions, deletions, substitutions))\\n        prev_row = curr_row\\n    return prev_row[-1]\\n\\ndef load_constraints(path):\\n    with open(path) as f:\\n        return json.load(f)\\n\\ndef build_relation_name_to_id(rel_types):\\n    name_to_id = {}\\n    for rid, rname in rel_types.items():\\n        name_to_id[rname.lower().strip()] = rid\\n        name_to_id[rid.lower()] = rid\\n    return name_to_id\\n\\ndef normalize_relation(rel_name, rel_types, name_to_id):\\n    rel_key = name_to_id.get(rel_name.lower().strip())\\n    if rel_key:\\n        return rel_key, rel_types.get(rel_key, rel_name), False\\n\\n    rel_tokens = set(rel_name.strip().lower().split())\\n    best_pid, best_name = None, None\\n    best_overlap = 0.0\\n    for rid, rname in rel_types.items():\\n        rname_tokens = set(rname.lower().split())\\n        if rel_tokens and rname_tokens:\\n            overlap = len(rel_tokens & rname_tokens)\\n            union = len(rel_tokens | rname_tokens)\\n            ratio = overlap / union\\n            if ratio > 0.8 and ratio > best_overlap:\\n                best_overlap = ratio\\n                best_pid, best_name = rid, rname\\n    if best_pid:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CE1Eod8k5TXbUbzuBTQ1Vv`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "head -80 /root/schema_semantic_constrained_ie/scripts/compare_phase2.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "121b7e6c-3872-431b-a6f9-7282a7610a64",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01EyM41ag9a2QYf6zLeByTFJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2263,
+      "cache_read_input_tokens": 47242,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2263
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T14:51:10.445Z_
+
+<details><summary>↩ Tool result · `toolu_01CE1Eod8k5TXbUbzuBTQ1Vv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 2 SciERC experiment comparison: violation rates + F1 metrics across modes.\\n\\nInput:  violation report JSONs from violation_checker.py (one per mode)\\nOutput: summary table (stdout) + optional JSON export\\n\\nUsage:\\n  python scripts/compare_phase2.py\\n  python scripts/compare_phase2.py --output_dir outputs/\\n  python scripts/compare_phase2.py --modes unconstrained grammar_only semantic_only full_s1\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport sys\\nfrom pathlib import Path\\n\\n\\nMODES = [\\\"unconstrained\\\", \\\"grammar_only\\\", \\\"semantic_only\\\", \\\"full_s1\\\"]\\n\\nREPORT_PATTERN = \\\"violation_report_phase2_{mode}.json\\\"\\n\\nMETRIC_KEYS = [\\n    (\\\"entity_f1\\\", \\\"quality.entity_f1.f1\\\"),\\n    (\\\"relation_f1\\\", \\\"quality.relation_f1.f1\\\"),\\n    (\\\"entity_p\\\", \\\"quality.entity_f1.precision\\\"),\\n    (\\\"entity_r\\\", \\\"quality.entity_f1.recall\\\"),\\n    (\\\"relation_p\\\", \\\"quality.relation_f1.precision\\\"),\\n    (\\\"relation_r\\\", \\\"quality.relation_f1.recall\\\"),\\n    (\\\"et_violation%\\\", \\\"summary.entity_type_violation_rate\\\"),\\n    (\\\"rv_violation%\\\", \\\"summary.relation_vocabulary_violation_rate\\\"),\\n    (\\\"dr_violation%\\\", \\\"summary.domain_range_violation_rate\\\"),\\n    (\\\"cf_violation%\\\", \\\"summary.cross_field_consistency_violation_rate\\\"),\\n    (\\\"total_violation%\\\", \\\"summary.total_violation_rate\\\"),\\n    (\\\"json_parse%\\\", \\\"summary.json_parse_rate\\\"),\\n    (\\\"n_entities\\\", \\\"summary.total_entities_extracted\\\"),\\n    (\\\"n_relations\\\", \\\"summary.total_triples_extracted\\\"),\\n    (\\\"n_samples\\\", \\\"summary.total_samples\\\"),\\n]\\n\\n\\ndef extract_nested(data, dotted_key):\\n    \\\"\\\"\\\"Extract a value from nested dict using dotted key path.\\\"\\\"\\\"\\n    parts = dotted_key.split(\\\".\\\")\\n    cur = data\\n    for p in parts:\\n        if not isinstance(cur, dict) or p not in cur:\\n            return None\\n        cur = cur[p]\\n    return cur\\n\\n\\ndef load_report(report_path):\\n    \\\"\\\"\\\"Load a violation report JSON. Returns None if file missing.\\\"\\\"\\\"\\n    p = Path(report_path)\\n    if not p.exists():\\n        return None\\n    with open(p) as f:\\n        return json.load(f)\\n\\n\\ndef collect_metrics(report):\\n    \\\"\\\"\\\"Extract all metrics from a single violation report.\\\"\\\"\\\"\\n    if report is None:\\n        return {k: None for k, _ in METRIC_KEYS}\\n    return {name: extract_nested(report, path) for name, path in METRIC_KEYS}\\n\\n\\ndef fmt_val(val, is_pct=False, is_int=False):\\n    \\\"\\\"\\\"Format a metric value for display.\\\"\\\"\\\"\\n    if val is None:\\n        return \\\"N/A\\\"\\n    if is_int:\\n        return str(int(val))\\n    if is_pct:\\n        return f\\\"{val * 100:.2f}%\\\"\\n    return f\\\"{val:.4f}\\\"\\n\\n\\ndef fmt_delta(val, baseline, higher_is_better=True):\\n    \\\"\\\"\\\"Format delta relative to baseline.\\\"\\\"\\\"\\n    if val is None or baseline is None:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "e52aaacc-a966-498a-86ef-d35b5436f4bb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Phase 2 SciERC experiment comparison: violation rates + F1 metrics across modes.\\\\n\\\\nInput:  violation report JSONs from violation_checker.py (one per mode)\\\\nOutput: summary table (stdout) + optional JSON export\\\\n\\\\nUsage:\\\\n  python scripts/compare_phase2.py\\\\n  python scripts/compare_phase2.py --output_dir outputs/\\\\n  python scripts/compare_phase2.py --modes unconstrained grammar_only semantic_only full_s1\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\n\\\\nMODES = [\\\\\\\"unconstrained\\\\\\\", \\\\\\\"grammar_only\\\\\\\", \\\\\\\"semantic_only\\\\\\\", \\\\\\\"full_s1\\\\\\\"]\\\\n\\\\nREPORT_PATTERN = \\\\\\\"violation_report_phase2_{mode}.json\\\\\\\"\\\\n\\\\nMETRIC_KEYS = [\\\\n    (\\\\\\\"entity_f1\\\\\\\", \\\\\\\"quality.entity_f1.f1\\\\\\\"),\\\\n    (\\\\\\\"relation_f1\\\\\\\", \\\\\\\"quality.relation_f1.f1\\\\\\\"),\\\\n    (\\\\\\\"entity_p\\\\\\\", \\\\\\\"quality.entity_f1.precision\\\\\\\"),\\\\n    (\\\\\\\"entity_r\\\\\\\", \\\\\\\"quality.entity_f1.recall\\\\\\\"),\\\\n    (\\\\\\\"relation_p\\\\\\\", \\\\\\\"quality.relation_f1.precision\\\\\\\"),\\\\n    (\\\\\\\"relation_r\\\\\\\", \\\\\\\"quality.relation_f1.recall\\\\\\\"),\\\\n    (\\\\\\\"et_violation%\\\\\\\", \\\\\\\"summary.entity_type_violation_rate\\\\\\\"),\\\\n    (\\\\\\\"rv_violation%\\\\\\\", \\\\\\\"summary.relation_vocabulary_violation_rate\\\\\\\"),\\\\n    (\\\\\\\"dr_violation%\\\\\\\", \\\\\\\"summary.domain_range_violation_rate\\\\\\\"),\\\\n    (\\\\\\\"cf_violation%\\\\\\\", \\\\\\\"summary.cross_field_consistency_violation_rate\\\\\\\"),\\\\n    (\\\\\\\"total_violation%\\\\\\\", \\\\\\\"summary.total_violation_rate\\\\\\\"),\\\\n    (\\\\\\\"json_parse%\\\\\\\", \\\\\\\"summary.json_parse_rate\\\\\\\"),\\\\n    (\\\\\\\"n_entities\\\\\\\", \\\\\\\"summary.total_entities_extracted\\\\\\\"),\\\\n    (\\\\\\\"n_relations\\\\\\\", \\\\\\\"summary.total_triples_extracted\\\\\\\"),\\\\n    (\\\\\\\"n_samples\\\\\\\", \\\\\\\"summary.total_samples\\\\\\\"),\\\\n]\\\\n\\\\n\\\\ndef extract_nested(data, dotted_key):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract a value from nested dict using dotted key path.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    parts = dotted_key.split(\\\\\\\".\\\\\\\")\\\\n    cur = data\\\\n    for p in parts:\\\\n        if not isinstance(cur, dict) or p not in cur:\\\\n            return None\\\\n        cur = cur[p]\\\\n    return cur\\\\n\\\\n\\\\ndef load_report(report_path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load a violation report JSON. Returns None if file missing.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    p = Path(report_path)\\\\n    if not p.exists():\\\\n        return None\\\\n    with open(p) as f:\\\\n        return json.load(f)\\\\n\\\\n\\\\ndef collect_metrics(report):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract all metrics from a single violation report.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if report is None:\\\\n        return {k: None for k, _ in METRIC_KEYS}\\\\n    return {name: extract_nested(report, path) for name, path in METRIC_KEYS}\\\\n\\\\n\\\\ndef fmt_val(val, is_pct=False, is_int=False):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Format a metric value for display.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if val is None:\\\\n        return \\\\\\\"N/A\\\\\\\"\\\\n    if is_int:\\\\n        return str(int(val))\\\\n    if is_pct:\\\\n        return f\\\\\\\"{val * 100:.2f}%\\\\\\\"\\\\n    return f\\\\\\\"{val:.4f}\\\\\\\"\\\\n\\\\n\\\\ndef fmt_delta(val, baseline, higher_is_better=True):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Format delta relative to baseline.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if val is None or baseline is None:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.72}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 2 SciERC experiment comparison: violation rates + F1 metrics across modes.\\n\\nInput:  violation report JSONs from violation_checker.py (one per mode)\\nOutput: summary table (stdout) + optional JSON export\\n\\nUsage:\\n  python scripts/compare_phase2.py\\n  python scripts/compare_phase2.py --output_dir outputs/\\n  python scripts/compare_phase2.py --modes unconstrained grammar_only semantic_only full_s1\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport sys\\nfrom pathlib import Path\\n\\n\\nMODES = [\\\"unconstrained\\\", \\\"grammar_only\\\", \\\"semantic_only\\\", \\\"full_s1\\\"]\\n\\nREPORT_PATTERN = \\\"violation_report_phase2_{mode}.json\\\"\\n\\nMETRIC_KEYS = [\\n    (\\\"entity_f1\\\", \\\"quality.entity_f1.f1\\\"),\\n    (\\\"relation_f1\\\", \\\"quality.relation_f1.f1\\\"),\\n    (\\\"entity_p\\\", \\\"quality.entity_f1.precision\\\"),\\n    (\\\"entity_r\\\", \\\"quality.entity_f1.recall\\\"),\\n    (\\\"relation_p\\\", \\\"quality.relation_f1.precision\\\"),\\n    (\\\"relation_r\\\", \\\"quality.relation_f1.recall\\\"),\\n    (\\\"et_violation%\\\", \\\"summary.entity_type_violation_rate\\\"),\\n    (\\\"rv_violation%\\\", \\\"summary.relation_vocabulary_violation_rate\\\"),\\n    (\\\"dr_violation%\\\", \\\"summary.domain_range_violation_rate\\\"),\\n    (\\\"cf_violation%\\\", \\\"summary.cross_field_consistency_violation_rate\\\"),\\n    (\\\"total_violation%\\\", \\\"summary.total_violation_rate\\\"),\\n    (\\\"json_parse%\\\", \\\"summary.json_parse_rate\\\"),\\n    (\\\"n_entities\\\", \\\"summary.total_entities_extracted\\\"),\\n    (\\\"n_relations\\\", \\\"summary.total_triples_extracted\\\"),\\n    (\\\"n_samples\\\", \\\"summary.total_samples\\\"),\\n]\\n\\n\\ndef extract_nested(data, dotted_key):\\n    \\\"\\\"\\\"Extract a value from nested dict using dotted key path.\\\"\\\"\\\"\\n    parts = dotted_key.split(\\\".\\\")\\n    cur = data\\n    for p in parts:\\n        if not isinstance(cur, dict) or p not in cur:\\n            return None\\n        cur = cur[p]\\n    return cur\\n\\n\\ndef load_report(report_path):\\n    \\\"\\\"\\\"Load a violation report JSON. Returns None if file missing.\\\"\\\"\\\"\\n    p = Path(report_path)\\n    if not p.exists():\\n        return None\\n    with open(p) as f:\\n        return json.load(f)\\n\\n\\ndef collect_metrics(report):\\n    \\\"\\\"\\\"Extract all metrics from a single violation report.\\\"\\\"\\\"\\n    if report is None:\\n        return {k: None for k, _ in METRIC_KEYS}\\n    return {name: extract_nested(report, path) for name, path in METRIC_KEYS}\\n\\n\\ndef fmt_val(val, is_pct=False, is_int=False):\\n    \\\"\\\"\\\"Format a metric value for display.\\\"\\\"\\\"\\n    if val is None:\\n        return \\\"N/A\\\"\\n    if is_int:\\n        return str(int(val))\\n    if is_pct:\\n        return f\\\"{val * 100:.2f}%\\\"\\n    return f\\\"{val:.4f}\\\"\\n\\n\\ndef fmt_delta(val, baseline, higher_is_better=True):\\n    \\\"\\\"\\\"Format delta relative to baseline.\\\"\\\"\\\"\\n    if val is None or baseline is None:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "a8a40d96-a3bf-4bc7-802c-3bd66bf1eab8",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_017ueZHxo38pbcVsKAu38idT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3197,
+      "cache_read_input_tokens": 49505,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3197
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+The `violation_checker.py` for SciERC includes F1 metrics in its output report. Running it now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "e41e0bfe-5caf-405d-a6de-24cb1d87591c",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_017ueZHxo38pbcVsKAu38idT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3197,
+      "cache_read_input_tokens": 49505,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3197
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BnAQ3GjhYVRc4rUwvwCK4x`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 violation_checker.py --input_path outputs/w1_cf_fallback_scierc_pilot.jsonl --constraints_path ontology_constraints.json --output_path outputs/violation_report_w1_cf_fallback_scierc_pilot.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "ff37fd41-3dd7-410c-b939-d6f7746b977a",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_017ueZHxo38pbcVsKAu38idT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3197,
+      "cache_read_input_tokens": 49505,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3197
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T14:51:18.127Z_
+
+<details><summary>↩ Tool result · `toolu_01BnAQ3GjhYVRc4rUwvwCK4x`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Violation Report (SciERC) ===\\nSamples: 551, JSON failures: 0 (0.0%)\\nEntities: 2474, Relations: 1725\\n\\nEntity type violations: 0/2474 (0.0%)\\nRelation vocab violations: 0/1725 (0.0%)\\nDomain/range violations: 255/1725 (14.8%)\\nCross-field consistency violations: 1\\nFuzzy relation matches: 0\\n\\nGo/No-go metric (D/R violation rate): 0.1478\\n\\nEntity F1: P=0.2598 R=0.3837 F1=0.3098\\nRelation F1: P=0.0643 R=0.1140 F1=0.0823\\n\\nReport saved to outputs/violation_report_w1_cf_fallback_scierc_pilot.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "bafe7baa-82f0-4e1b-9b9f-ecc8f1b92c6a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Violation Report (SciERC) ===\\\\nSamples: 551, JSON failures: 0 (0.0%)\\\\nEntities: 2474, Relations: 1725\\\\n\\\\nEntity type violations: 0/2474 (0.0%)\\\\nRelation vocab violations: 0/1725 (0.0%)\\\\nDomain/range violations: 255/1725 (14.8%)\\\\nCross-field consistency violations: 1\\\\nFuzzy relation matches: 0\\\\n\\\\nGo/No-go metric (D/R violation rate): 0.1478\\\\n\\\\nEntity F1: P=0.2598 R=0.3837 F1=0.3098\\\\nRelation F1: P=0.0643 R=0.1140 F1=0.0823\\\\n\\\\nReport saved to outputs/violation_report_w1_cf_fallback_scierc_pilot.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== Violation Report (SciERC) ===\\nSamples: 551, JSON failures: 0 (0.0%)\\nEntities: 2474, Relations: 1725\\n\\nEntity type violations: 0/2474 (0.0%)\\nRelation vocab violations: 0/1725 (0.0%)\\nDomain/range violations: 255/1725 (14.8%)\\nCross-field consistency violations: 1\\nFuzzy relation matches: 0\\n\\nGo/No-go metric (D/R violation rate): 0.1478\\n\\nEntity F1: P=0.2598 R=0.3837 F1=0.3098\\nRelation F1: P=0.0643 R=0.1140 F1=0.0823\\n\\nReport saved to outputs/violation_report_w1_cf_fallback_scierc_pilot.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "05bffbde-b45c-466d-b4fa-4c97af8a764e",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01NfEZJHjfneCrSuUpPN68QS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 768,
+      "cache_read_input_tokens": 52702,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 768
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+Big shift: DR exploded from 0.93% → 14.8%, but CF dropped from 9.90% → ~0%. Let me read the full report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "41b466c3-bad4-4464-990e-862362454d25",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01NfEZJHjfneCrSuUpPN68QS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 768,
+      "cache_read_input_tokens": 52702,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 768
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EHBfcKbFmXBUAkbuxqfNdX`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/schema_semantic_constrained_ie/outputs/violation_report_w1_cf_fallback_scierc_pilot.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "a4faeda3-3624-4243-8afb-1d34477f96aa",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01NfEZJHjfneCrSuUpPN68QS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 768,
+      "cache_read_input_tokens": 52702,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 768
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T14:51:39.693Z_
+
+<details><summary>↩ Tool result · `toolu_01EHBfcKbFmXBUAkbuxqfNdX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\",\\n    \\\"total_samples\\\": 551,\\n    \\\"total_triples_extracted\\\": 1725,\\n    \\\"total_entities_extracted\\\": 2474,\\n    \\\"json_parse_failures\\\": 0,\\n    \\\"json_parse_rate\\\": 1.0,\\n    \\\"entity_type_violations\\\": 0,\\n    \\\"entity_type_violation_rate\\\": 0.0,\\n    \\\"relation_vocabulary_violations\\\": 0,\\n    \\\"relation_vocabulary_violation_rate\\\": 0.0,\\n    \\\"relation_fuzzy_matches\\\": 0,\\n    \\\"domain_range_violations\\\": 255,\\n    \\\"domain_range_violation_rate\\\": 0.1478,\\n    \\\"cross_field_consistency_violations\\\": 1,\\n    \\\"cross_field_consistency_violation_rate\\\": 0.0004,\\n    \\\"total_violations_any\\\": 256,\\n    \\\"total_violation_rate\\\": 0.061,\\n    \\\"go_nogo_metric\\\": 0.1478,\\n    \\\"go_nogo_metric_description\\\": \\\"per-triple domain_range_violation_rate (excludes relation_vocabulary_violations)\\\"\\n  },\\n  \\\"per_relation_type\\\": {\\n    \\\"Compare\\\": {\\n      \\\"total\\\": 71,\\n      \\\"domain_range_violations\\\": 28,\\n      \\\"violation_rate\\\": 0.3944\\n    },\\n    \\\"Conjunction\\\": {\\n      \\\"total\\\": 33,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"Evaluate-for\\\": {\\n      \\\"total\\\": 134,\\n      \\\"domain_range_violations\\\": 31,\\n      \\\"violation_rate\\\": 0.2313\\n    },\\n    \\\"Feature-of\\\": {\\n      \\\"total\\\": 494,\\n      \\\"domain_range_violations\\\": 158,\\n      \\\"violation_rate\\\": 0.3198\\n    },\\n    \\\"Hyponym-of\\\": {\\n      \\\"total\\\": 125,\\n      \\\"domain_range_violations\\\": 18,\\n      \\\"violation_rate\\\": 0.144\\n    },\\n    \\\"Part-of\\\": {\\n      \\\"total\\\": 77,\\n      \\\"domain_range_violations\\\": 18,\\n      \\\"violation_rate\\\": 0.2338\\n    },\\n    \\\"Used-for\\\": {\\n      \\\"total\\\": 791,\\n      \\\"domain_range_violations\\\": 2,\\n      \\\"violation_rate\\\": 0.0025\\n    }\\n  },\\n  \\\"examples\\\": {\\n    \\\"entity_type_violations\\\": [],\\n    \\\"relation_vocabulary_violations\\\": [],\\n    \\\"domain_range_violations\\\": [\\n      {\\n        \\\"doc_id\\\": \\\"X96-1059_sent2\\\",\\n        \\\"relation\\\": {\\n          \\\"head\\\": \\\"Multi-lingual Evaluation Task\\\",\\n          \\\"tail\\\": \\\"MET\\\",\\n          \\\"type\\\": \\\"Hyponym-of\\\",\\n          \\\"head_type\\\": \\\"Task\\\",\\n          \\\"tail_type\\\": \\\"OtherScientificTerm\\\"\\n        },\\n        \\\"matched_relation\\\": \\\"Hyponym-of\\\",\\n        \\\"reason\\\": \\\"(Task, OtherScientificTerm) not in valid pairs for Hyponym-of\\\"\\n      },\\n      {\\n        \\\"doc_id\\\": \\\"X96-1059_sent6\\\",\\n        \\\"relation\\\": {\\n          \\\"head\\\": \\\"segment\\\",\\n          \\\"tail\\\": \\\"Japanese character strings\\\",\\n          \\\"type\\\": \\\"Feature-of\\\",\\n          \\\"head_type\\\": \\\"Task\\\",\\n          \\\"tail_type\\\": \\\"Material\\\"\\n        },\\n        \\\"matched_relation\\\": \\\"Feature-of\\\",\\n        \\\"reason\\\": \\\"(Task, Material) not in valid pairs for Feature-of\\\"\\n      },\\n      {\\n        \\\"doc_id\\\": \\\"X96-1059_sent6\\\",\\n        \\\"relation\\\": {\\n          \\\"head\\\": \\\"tag\\\",\\n          \\\"tail\\\": \\\"Japanese character strings\\\",\\n          \\\"type\\\": \\\"Feature-of\\\",\\n          \\\"head_type\\\": \\\"Task\\\",\\n          \\\"tail_type\\\": \\\"Material\\\"\\n        },\\n        \\\"matched_relation\\\": \\\"Feature-of\\\",\\n        \\\"reason\\\": \\\"(Task, Material) not in valid pairs for Feature-of\\\"\\n      }\\n    ],\\n    \\\"cross_field_consistency_violations\\\": [\\n      {\\n        \\\"doc_id\\\": \\\"P06-2012_sent1\\\",\\n        \\\"mention\\\": \\\"eigenvectors\\\",\\n        \\\"conflicting_types\\\": [\\n          \\\"Material\\\",\\n          \\\"OtherScientificTerm\\\"\\n        ]\\n      }\\n    ]\\n  },\\n  \\\"quality\\\": {\\n    \\\"entity_f1\\\": {\\n      \\\"precision\\\": 0.2598,\\n      \\\"recall\\\": 0.3837,\\n      \\\"f1\\\": 0.3098,\\n      \\\"tp\\\": 642,\\n      \\\"gold\\\": 1673,\\n      \\\"pred\\\": 2471\\n    },\\n    \\\"relation_f1\\\": {\\n      \\\"precision\\\": 0.0643,\\n      \\\"recall\\\": 0.114,\\n      \\\"f1\\\": 0.0823,\\n      \\\"tp\\\": 111,\\n      \\\"gold\\\": 974,\\n      \\\"pred\\\": 1725\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "c45eb2de-1003-492e-b032-9829bb93c87e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"checker_version\\\\\\\": \\\\\\\"fixed_20260514_v2 (strip + alias + unique_et)\\\\\\\",\\\\n    \\\\\\\"total_samples\\\\\\\": 551,\\\\n    \\\\\\\"total_triples_extracted\\\\\\\": 1725,\\\\n    \\\\\\\"total_entities_extracted\\\\\\\": 2474,\\\\n    \\\\\\\"json_parse_failures\\\\\\\": 0,\\\\n    \\\\\\\"json_parse_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"entity_type_violations\\\\\\\": 0,\\\\n    \\\\\\\"entity_type_violation_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"relation_vocabulary_violations\\\\\\\": 0,\\\\n    \\\\\\\"relation_vocabulary_violation_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"relation_fuzzy_matches\\\\\\\": 0,\\\\n    \\\\\\\"domain_range_violations\\\\\\\": 255,\\\\n    \\\\\\\"domain_range_violation_rate\\\\\\\": 0.1478,\\\\n    \\\\\\\"cross_field_consistency_violations\\\\\\\": 1,\\\\n    \\\\\\\"cross_field_consistency_violation_rate\\\\\\\": 0.0004,\\\\n    \\\\\\\"total_violations_any\\\\\\\": 256,\\\\n    \\\\\\\"total_violation_rate\\\\\\\": 0.061,\\\\n    \\\\\\\"go_nogo_metric\\\\\\\": 0.1478,\\\\n    \\\\\\\"go_nogo_metric_description\\\\\\\": \\\\\\\"per-triple domain_range_violation_rate (excludes relation_vocabulary_violations)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"per_relation_type\\\\\\\": {\\\\n    \\\\\\\"Compare\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 71,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 28,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.3944\\\\n    },\\\\n    \\\\\\\"Conjunction\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 33,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"Evaluate-for\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 134,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 31,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.2313\\\\n    },\\\\n    \\\\\\\"Feature-of\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 494,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 158,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.3198\\\\n    },\\\\n    \\\\\\\"Hyponym-of\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 125,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 18,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.144\\\\n    },\\\\n    \\\\\\\"Part-of\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 77,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 18,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.2338\\\\n    },\\\\n    \\\\\\\"Used-for\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 791,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 2,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0025\\\\n    }\\\\n  },\\\\n  \\\\\\\"examples\\\\\\\": {\\\\n    \\\\\\\"entity_type_violations\\\\\\\": [],\\\\n    \\\\\\\"relation_vocabulary_violations\\\\\\\": [],\\\\n    \\\\\\\"domain_range_violations\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"X96-1059_sent2\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": {\\\\n          \\\\\\\"head\\\\\\\": \\\\\\\"Multi-lingual Evaluation Task\\\\\\\",\\\\n          \\\\\\\"tail\\\\\\\": \\\\\\\"MET\\\\\\\",\\\\n          \\\\\\\"type\\\\\\\": \\\\\\\"Hyponym-of\\\\\\\",\\\\n          \\\\\\\"head_type\\\\\\\": \\\\\\\"Task\\\\\\\",\\\\n          \\\\\\\"tail_type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\"\\\\n        },\\\\n        \\\\\\\"matched_relation\\\\\\\": \\\\\\\"Hyponym-of\\\\\\\",\\\\n        \\\\\\\"reason\\\\\\\": \\\\\\\"(Task, OtherScientificTerm) not in valid pairs for Hyponym-of\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"X96-1059_sent6\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": {\\\\n          \\\\\\\"head\\\\\\\": \\\\\\\"segment\\\\\\\",\\\\n          \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese character strings\\\\\\\",\\\\n          \\\\\\\"type\\\\\\\": \\\\\\\"Feature-of\\\\\\\",\\\\n          \\\\\\\"head_type\\\\\\\": \\\\\\\"Task\\\\\\\",\\\\n          \\\\\\\"tail_type\\\\\\\": \\\\\\\"Material\\\\\\\"\\\\n        },\\\\n        \\\\\\\"matched_relation\\\\\\\": \\\\\\\"Feature-of\\\\\\\",\\\\n        \\\\\\\"reason\\\\\\\": \\\\\\\"(Task, Material) not in valid pairs for Feature-of\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"X96-1059_sent6\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": {\\\\n          \\\\\\\"head\\\\\\\": \\\\\\\"tag\\\\\\\",\\\\n          \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese character strings\\\\\\\",\\\\n          \\\\\\\"type\\\\\\\": \\\\\\\"Feature-of\\\\\\\",\\\\n          \\\\\\\"head_type\\\\\\\": \\\\\\\"Task\\\\\\\",\\\\n          \\\\\\\"tail_type\\\\\\\": \\\\\\\"Material\\\\\\\"\\\\n        },\\\\n        \\\\\\\"matched_relation\\\\\\\": \\\\\\\"Feature-of\\\\\\\",\\\\n        \\\\\\\"reason\\\\\\\": \\\\\\\"(Task, Material) not in valid pairs for Feature-of\\\\\\\"\\\\n      }\\\\n    ],\\\\n    \\\\\\\"cross_field_consistency_violations\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"P06-2012_sent1\\\\\\\",\\\\n        \\\\\\\"mention\\\\\\\": \\\\\\\"eigenvectors\\\\\\\",\\\\n        \\\\\\\"conflicting_types\\\\\\\": [\\\\n          \\\\\\\"Material\\\\\\\",\\\\n          \\\\\\\"OtherScientificTerm\\\\\\\"\\\\n        ]\\\\n      }\\\\n    ]\\\\n  },\\\\n  \\\\\\\"quality\\\\\\\": {\\\\n    \\\\\\\"entity_f1\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.2598,\\\\n      \\\\\\\"recall\\\\\\\": 0.3837,\\\\n      \\\\\\\"f1\\\\\\\": 0.3098,\\\\n      \\\\\\\"tp\\\\\\\": 642,\\\\n      \\\\\\\"gold\\\\\\\": 1673,\\\\n      \\\\\\\"pred\\\\\\\": 2471\\\\n    },\\\\n    \\\\\\\"relation_f1\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.0643,\\\\n      \\\\\\\"recall\\\\\\\": 0.114,\\\\n      \\\\\\\"f1\\\\\\\": 0.0823,\\\\n      \\\\\\\"tp\\\\\\\": 111,\\\\n      \\\\\\\"gold\\\\\\\": 974,\\\\n      \\\\\\\"pred\\\\\\\": 1725\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\",\\n    \\\"total_samples\\\": 551,\\n    \\\"total_triples_extracted\\\": 1725,\\n    \\\"total_entities_extracted\\\": 2474,\\n    \\\"json_parse_failures\\\": 0,\\n    \\\"json_parse_rate\\\": 1.0,\\n    \\\"entity_type_violations\\\": 0,\\n    \\\"entity_type_violation_rate\\\": 0.0,\\n    \\\"relation_vocabulary_violations\\\": 0,\\n    \\\"relation_vocabulary_violation_rate\\\": 0.0,\\n    \\\"relation_fuzzy_matches\\\": 0,\\n    \\\"domain_range_violations\\\": 255,\\n    \\\"domain_range_violation_rate\\\": 0.1478,\\n    \\\"cross_field_consistency_violations\\\": 1,\\n    \\\"cross_field_consistency_violation_rate\\\": 0.0004,\\n    \\\"total_violations_any\\\": 256,\\n    \\\"total_violation_rate\\\": 0.061,\\n    \\\"go_nogo_metric\\\": 0.1478,\\n    \\\"go_nogo_metric_description\\\": \\\"per-triple domain_range_violation_rate (excludes relation_vocabulary_violations)\\\"\\n  },\\n  \\\"per_relation_type\\\": {\\n    \\\"Compare\\\": {\\n      \\\"total\\\": 71,\\n      \\\"domain_range_violations\\\": 28,\\n      \\\"violation_rate\\\": 0.3944\\n    },\\n    \\\"Conjunction\\\": {\\n      \\\"total\\\": 33,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"Evaluate-for\\\": {\\n      \\\"total\\\": 134,\\n      \\\"domain_range_violations\\\": 31,\\n      \\\"violation_rate\\\": 0.2313\\n    },\\n    \\\"Feature-of\\\": {\\n      \\\"total\\\": 494,\\n      \\\"domain_range_violations\\\": 158,\\n      \\\"violation_rate\\\": 0.3198\\n    },\\n    \\\"Hyponym-of\\\": {\\n      \\\"total\\\": 125,\\n      \\\"domain_range_violations\\\": 18,\\n      \\\"violation_rate\\\": 0.144\\n    },\\n    \\\"Part-of\\\": {\\n      \\\"total\\\": 77,\\n      \\\"domain_range_violations\\\": 18,\\n      \\\"violation_rate\\\": 0.2338\\n    },\\n    \\\"Used-for\\\": {\\n      \\\"total\\\": 791,\\n      \\\"domain_range_violations\\\": 2,\\n      \\\"violation_rate\\\": 0.0025\\n    }\\n  },\\n  \\\"examples\\\": {\\n    \\\"entity_type_violations\\\": [],\\n    \\\"relation_vocabulary_violations\\\": [],\\n    \\\"domain_range_violations\\\": [\\n      {\\n        \\\"doc_id\\\": \\\"X96-1059_sent2\\\",\\n        \\\"relation\\\": {\\n          \\\"head\\\": \\\"Multi-lingual Evaluation Task\\\",\\n          \\\"tail\\\": \\\"MET\\\",\\n          \\\"type\\\": \\\"Hyponym-of\\\",\\n          \\\"head_type\\\": \\\"Task\\\",\\n          \\\"tail_type\\\": \\\"OtherScientificTerm\\\"\\n        },\\n        \\\"matched_relation\\\": \\\"Hyponym-of\\\",\\n        \\\"reason\\\": \\\"(Task, OtherScientificTerm) not in valid pairs for Hyponym-of\\\"\\n      },\\n      {\\n        \\\"doc_id\\\": \\\"X96-1059_sent6\\\",\\n        \\\"relation\\\": {\\n          \\\"head\\\": \\\"segment\\\",\\n          \\\"tail\\\": \\\"Japanese character strings\\\",\\n          \\\"type\\\": \\\"Feature-of\\\",\\n          \\\"head_type\\\": \\\"Task\\\",\\n          \\\"tail_type\\\": \\\"Material\\\"\\n        },\\n        \\\"matched_relation\\\": \\\"Feature-of\\\",\\n        \\\"reason\\\": \\\"(Task, Material) not in valid pairs for Feature-of\\\"\\n      },\\n      {\\n        \\\"doc_id\\\": \\\"X96-1059_sent6\\\",\\n        \\\"relation\\\": {\\n          \\\"head\\\": \\\"tag\\\",\\n          \\\"tail\\\": \\\"Japanese character strings\\\",\\n          \\\"type\\\": \\\"Feature-of\\\",\\n          \\\"head_type\\\": \\\"Task\\\",\\n          \\\"tail_type\\\": \\\"Material\\\"\\n        },\\n        \\\"matched_relation\\\": \\\"Feature-of\\\",\\n        \\\"reason\\\": \\\"(Task, Material) not in valid pairs for Feature-of\\\"\\n      }\\n    ],\\n    \\\"cross_field_consistency_violations\\\": [\\n      {\\n        \\\"doc_id\\\": \\\"P06-2012_sent1\\\",\\n        \\\"mention\\\": \\\"eigenvectors\\\",\\n        \\\"conflicting_types\\\": [\\n          \\\"Material\\\",\\n          \\\"OtherScientificTerm\\\"\\n        ]\\n      }\\n    ]\\n  },\\n  \\\"quality\\\": {\\n    \\\"entity_f1\\\": {\\n      \\\"precision\\\": 0.2598,\\n      \\\"recall\\\": 0.3837,\\n      \\\"f1\\\": 0.3098,\\n      \\\"tp\\\": 642,\\n      \\\"gold\\\": 1673,\\n      \\\"pred\\\": 2471\\n    },\\n    \\\"relation_f1\\\": {\\n      \\\"precision\\\": 0.0643,\\n      \\\"recall\\\": 0.114,\\n      \\\"f1\\\": 0.0823,\\n      \\\"tp\\\": 111,\\n      \\\"gold\\\": 974,\\n      \\\"pred\\\": 1725\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "e7e86e8f-81ec-4e3e-a09a-d1de3fd3afeb",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01SmU4uMYRVhjoYVKS9353tz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4224,
+      "cache_read_input_tokens": 53470,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4224
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LLf74fcnNDnpwHLU4uGrf4`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ls /root/schema_semantic_constrained_ie/outputs/violation_report_phase2_full_s1.json /root/schema_semantic_constrained_ie/outputs/violation_report_phase2_unconstrained.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "0dd709fe-7006-4c8a-af55-65c10408ee46",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01SmU4uMYRVhjoYVKS9353tz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4224,
+      "cache_read_input_tokens": 53470,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4224
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T14:51:46.476Z_
+
+<details><summary>↩ Tool result · `toolu_01LLf74fcnNDnpwHLU4uGrf4`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/outputs/violation_report_phase2_unconstrained.json\\n\", \"stderr\": \"ls: cannot access '/root/schema_semantic_constrained_ie/outputs/violation_report_phase2_full_s1.json': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "26a29b0d-304c-4ae1-b090-b9c3cb719d55",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/outputs/violation_report_phase2_unconstrained.json\\\\n\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/schema_semantic_constrained_ie/outputs/violation_report_phase2_full_s1.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/outputs/violation_report_phase2_unconstrained.json\\n\", \"stderr\": \"ls: cannot access '/root/schema_semantic_constrained_ie/outputs/violation_report_phase2_full_s1.json': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NQyiCbuyJYaqh5YoxVNLmy`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "find /root/schema_semantic_constrained_ie/outputs -maxdepth 1 -name \"violation_report_phase2*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "794b991c-75b7-4ecf-9eb3-ac8f64226d91",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01Pr3xrh9os2CLYwZH4SpbAZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 480,
+      "cache_read_input_tokens": 57694,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 480
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T14:51:49.996Z_
+
+<details><summary>↩ Tool result · `toolu_01NQyiCbuyJYaqh5YoxVNLmy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/outputs/violation_report_phase2_grammar_only.json\\n/root/schema_semantic_constrained_ie/outputs/violation_report_phase2_unconstrained.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "9838bdf7-d967-4240-8682-6d94918bd96c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/outputs/violation_report_phase2_grammar_only.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_phase2_unconstrained.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/outputs/violation_report_phase2_grammar_only.json\\n/root/schema_semantic_constrained_ie/outputs/violation_report_phase2_unconstrained.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UT91gr92BhGq1imXLozt2F`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "find /root/schema_semantic_constrained_ie/outputs -maxdepth 1 -name \"phase2_scierc_full_s1*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "aa0bebbf-8321-427a-a960-f5d2a2b19e56",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01Pr3xrh9os2CLYwZH4SpbAZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 480,
+      "cache_read_input_tokens": 57694,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 480
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T14:51:51.023Z_
+
+<details><summary>↩ Tool result · `toolu_01UT91gr92BhGq1imXLozt2F`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl\\n/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "682f9c1f-0c6a-445f-a37b-92835d1fe297",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl\\n/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_01RAeM22ppoFEfpbVEGNYDAE`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Check log + output file status",
+      "activeForm": "Checking log + output file status",
+      "status": "completed"
+    },
+    {
+      "content": "Determine violation_checker / F1 eval CLI args",
+      "activeForm": "Determining script CLI args",
+      "status": "completed"
+    },
+    {
+      "content": "Run violation_checker on output",
+      "activeForm": "Running violation_checker on output",
+      "status": "completed"
+    },
+    {
+      "content": "Re-run baseline violation checker for direct comparison",
+      "activeForm": "Re-running baseline violation checker",
+      "status": "in_progress"
+    },
+    {
+      "content": "Run analyze_cf_fallback / CF analysis",
+      "activeForm": "Running CF analysis",
+      "status": "pending"
+    },
+    {
+      "content": "Write analysis report + register artifact",
+      "activeForm": "Writing analysis report + registering artifact",
+      "status": "pending"
+    },
+    {
+      "content": "Update registry with metrics + conclusion",
+      "activeForm": "Updating registry",
+      "status": "pending"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "19e6c8f0-2511-4fdf-9436-221693f69a7f",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_016brXc6GRhp9CQfHwmSdspJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1059,
+      "cache_read_input_tokens": 58174,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1059
+      },
+      "output_tokens": 54,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-15T14:51:58.438Z_
+
+<details><summary>↩ Tool result · `toolu_01RAeM22ppoFEfpbVEGNYDAE`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "945c9542-aed1-4a59-b6c0-99ebe9cd194d",
+  "tool_use_result": {
+    "oldTodos": [
+      {
+        "content": "Check log + output file status",
+        "status": "completed",
+        "activeForm": "Checking log + output file status"
+      },
+      {
+        "content": "Determine violation_checker / F1 eval CLI args",
+        "status": "in_progress",
+        "activeForm": "Determining script CLI args"
+      },
+      {
+        "content": "Run violation_checker on output",
+        "status": "pending",
+        "activeForm": "Running violation_checker on output"
+      },
+      {
+        "content": "Run F1 eval",
+        "status": "pending",
+        "activeForm": "Running F1 eval"
+      },
+      {
+        "content": "Run analyze_cf_fallback / CF analysis",
+        "status": "pending",
+        "activeForm": "Running CF analysis"
+      },
+      {
+        "content": "Write analysis report + register artifact",
+        "status": "pending",
+        "activeForm": "Writing analysis report + registering artifact"
+      },
+      {
+        "content": "Update registry with metrics + conclusion",
+        "status": "pending",
+        "activeForm": "Updating registry"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "Check log + output file status",
+        "status": "completed",
+        "activeForm": "Checking log + output file status"
+      },
+      {
+        "content": "Determine violation_checker / F1 eval CLI args",
+        "status": "completed",
+        "activeForm": "Determining script CLI args"
+      },
+      {
+        "content": "Run violation_checker on output",
+        "status": "completed",
+        "activeForm": "Running violation_checker on output"
+      },
+      {
+        "content": "Re-run baseline violation checker for direct comparison",
+        "status": "in_progress",
+        "activeForm": "Re-running baseline violation checker"
+      },
+      {
+        "content": "Run analyze_cf_fallback / CF analysis",
+        "status": "pending",
+        "activeForm": "Running CF analysis"
+      },
+      {
+        "content": "Write analysis report + register artifact",
+        "status": "pending",
+        "activeForm": "Writing analysis report + registering artifact"
+      },
+      {
+        "content": "Update registry with metrics + conclusion",
+        "status": "pending",
+        "activeForm": "Updating registry"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01UddxjJAxo2zNQZVqs6VSQC`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 violation_checker.py --input_path outputs/phase2_scierc_full_s1.jsonl --constraints_path ontology_constraints.json --output_path outputs/violation_report_phase2_scierc_full_s1.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "cd8f7a32-d39b-443a-bdf8-a9f44e239e95",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_014Y7rzg7k8DtZRXbcroqVe8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 442,
+      "cache_read_input_tokens": 59233,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 442
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-15T14:52:03.022Z_
+
+<details><summary>↩ Tool result · `toolu_01UddxjJAxo2zNQZVqs6VSQC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Violation Report (SciERC) ===\\nSamples: 7, JSON failures: 0 (0.0%)\\nEntities: 25, Relations: 17\\n\\nEntity type violations: 0/25 (0.0%)\\nRelation vocab violations: 0/17 (0.0%)\\nDomain/range violations: 0/17 (0.0%)\\nCross-field consistency violations: 2\\nFuzzy relation matches: 0\\n\\nGo/No-go metric (D/R violation rate): 0.0000\\n\\nEntity F1: P=0.2000 R=0.1852 F1=0.1923\\nRelation F1: P=0.0588 R=0.0588 F1=0.0588\\n\\nReport saved to outputs/violation_report_phase2_scierc_full_s1.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "047fd7d0-840f-403d-b807-e134087e73ad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Violation Report (SciERC) ===\\\\nSamples: 7, JSON failures: 0 (0.0%)\\\\nEntities: 25, Relations: 17\\\\n\\\\nEntity type violations: 0/25 (0.0%)\\\\nRelation vocab violations: 0/17 (0.0%)\\\\nDomain/range violations: 0/17 (0.0%)\\\\nCross-field consistency violations: 2\\\\nFuzzy relation matches: 0\\\\n\\\\nGo/No-go metric (D/R violation rate): 0.0000\\\\n\\\\nEntity F1: P=0.2000 R=0.1852 F1=0.1923\\\\nRelation F1: P=0.0588 R=0.0588 F1=0.0588\\\\n\\\\nReport saved to outputs/violation_report_phase2_scierc_full_s1.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== Violation Report (SciERC) ===\\nSamples: 7, JSON failures: 0 (0.0%)\\nEntities: 25, Relations: 17\\n\\nEntity type violations: 0/25 (0.0%)\\nRelation vocab violations: 0/17 (0.0%)\\nDomain/range violations: 0/17 (0.0%)\\nCross-field consistency violations: 2\\nFuzzy relation matches: 0\\n\\nGo/No-go metric (D/R violation rate): 0.0000\\n\\nEntity F1: P=0.2000 R=0.1852 F1=0.1923\\nRelation F1: P=0.0588 R=0.0588 F1=0.0588\\n\\nReport saved to outputs/violation_report_phase2_scierc_full_s1.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "89308989-06a0-4f83-9e05-ebce96401f7e",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01JELVWWwxiifvTGZLA4HPjA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 631,
+      "cache_read_input_tokens": 59675,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 631
+      },
+      "output_tokens": 52,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015ZeLzSBZBA4pGe6NaPAVMT`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && wc -l outputs/phase2_scierc_full_s1.jsonl outputs/phase2_scierc_full_s1_v2.jsonl outputs/w1_cf_fallback_scierc_pilot.jsonl && python3 violation_checker.py --input_path outputs/phase2_scierc_full_s1_v2.jsonl --constraints_path ontology_constraints.json --output_path outputs/violation_report_phase2_scierc_full_s1_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "0f848329-778e-4a7d-a506-982299075f27",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01JELVWWwxiifvTGZLA4HPjA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 631,
+      "cache_read_input_tokens": 59675,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 631
+      },
+      "output_tokens": 52,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T14:52:09.149Z_
+
+<details><summary>↩ Tool result · `toolu_015ZeLzSBZBA4pGe6NaPAVMT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      7 outputs/phase2_scierc_full_s1.jsonl\\n    551 outputs/phase2_scierc_full_s1_v2.jsonl\\n    551 outputs/w1_cf_fallback_scierc_pilot.jsonl\\n   1109 total\\n=== Violation Report (SciERC) ===\\nSamples: 551, JSON failures: 0 (0.0%)\\nEntities: 2474, Relations: 1729\\n\\nEntity type violations: 0/2474 (0.0%)\\nRelation vocab violations: 0/1729 (0.0%)\\nDomain/range violations: 16/1729 (0.9%)\\nCross-field consistency violations: 245\\nFuzzy relation matches: 0\\n\\nGo/No-go metric (D/R violation rate): 0.0093\\n\\nEntity F1: P=0.2598 R=0.3837 F1=0.3098\\nRelation F1: P=0.0654 R=0.1160 F1=0.0836\\n\\nReport saved to outputs/violation_report_phase2_scierc_full_s1_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "1df539cd-1cd9-444b-a5ee-c7f7676e7951",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      7 outputs/phase2_scierc_full_s1.jsonl\\\\n    551 outputs/phase2_scierc_full_s1_v2.jsonl\\\\n    551 outputs/w1_cf_fallback_scierc_pilot.jsonl\\\\n   1109 total\\\\n=== Violation Report (SciERC) ===\\\\nSamples: 551, JSON failures: 0 (0.0%)\\\\nEntities: 2474, Relations: 1729\\\\n\\\\nEntity type violations: 0/2474 (0.0%)\\\\nRelation vocab violations: 0/1729 (0.0%)\\\\nDomain/range violations: 16/1729 (0.9%)\\\\nCross-field consistency violations: 245\\\\nFuzzy relation matches: 0\\\\n\\\\nGo/No-go metric (D/R violation rate): 0.0093\\\\n\\\\nEntity F1: P=0.2598 R=0.3837 F1=0.3098\\\\nRelation F1: P=0.0654 R=0.1160 F1=0.0836\\\\n\\\\nReport saved to outputs/violation_report_phase2_scierc_full_s1_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"      7 outputs/phase2_scierc_full_s1.jsonl\\n    551 outputs/phase2_scierc_full_s1_v2.jsonl\\n    551 outputs/w1_cf_fallback_scierc_pilot.jsonl\\n   1109 total\\n=== Violation Report (SciERC) ===\\nSamples: 551, JSON failures: 0 (0.0%)\\nEntities: 2474, Relations: 1729\\n\\nEntity type violations: 0/2474 (0.0%)\\nRelation vocab violations: 0/1729 (0.0%)\\nDomain/range violations: 16/1729 (0.9%)\\nCross-field consistency violations: 245\\nFuzzy relation matches: 0\\n\\nGo/No-go metric (D/R violation rate): 0.0093\\n\\nEntity F1: P=0.2598 R=0.3837 F1=0.3098\\nRelation F1: P=0.0654 R=0.1160 F1=0.0836\\n\\nReport saved to outputs/violation_report_phase2_scierc_full_s1_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "bc0c878f-0149-48fd-b8de-0e1e62f210b6",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_019AjFWJUoQbpRVatJ6Xo7Vf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 892,
+      "cache_read_input_tokens": 60306,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 892
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GgWdm2GmgEYV9hPM6oKanx`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "head -25 /root/schema_semantic_constrained_ie/outputs/violation_report_phase2_scierc_full_s1_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "b7a9e333-de98-4b9d-9571-b58c833f51a2",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_019AjFWJUoQbpRVatJ6Xo7Vf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 892,
+      "cache_read_input_tokens": 60306,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 892
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-15T14:52:15.829Z_
+
+<details><summary>↩ Tool result · `toolu_01GgWdm2GmgEYV9hPM6oKanx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\",\\n    \\\"total_samples\\\": 551,\\n    \\\"total_triples_extracted\\\": 1729,\\n    \\\"total_entities_extracted\\\": 2474,\\n    \\\"json_parse_failures\\\": 0,\\n    \\\"json_parse_rate\\\": 1.0,\\n    \\\"entity_type_violations\\\": 0,\\n    \\\"entity_type_violation_rate\\\": 0.0,\\n    \\\"relation_vocabulary_violations\\\": 0,\\n    \\\"relation_vocabulary_violation_rate\\\": 0.0,\\n    \\\"relation_fuzzy_matches\\\": 0,\\n    \\\"domain_range_violations\\\": 16,\\n    \\\"domain_range_violation_rate\\\": 0.0093,\\n    \\\"cross_field_consistency_violations\\\": 245,\\n    \\\"cross_field_consistency_violation_rate\\\": 0.099,\\n    \\\"total_violations_any\\\": 261,\\n    \\\"total_violation_rate\\\": 0.0621,\\n    \\\"go_nogo_metric\\\": 0.0093,\\n    \\\"go_nogo_metric_description\\\": \\\"per-triple domain_range_violation_rate (excludes relation_vocabulary_violations)\\\"\\n  },\\n  \\\"per_relation_type\\\": {\\n    \\\"Compare\\\": {\\n      \\\"total\\\": 71,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "ef0c1b81-3bbd-4f39-bce5-3d39100a4ec6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"checker_version\\\\\\\": \\\\\\\"fixed_20260514_v2 (strip + alias + unique_et)\\\\\\\",\\\\n    \\\\\\\"total_samples\\\\\\\": 551,\\\\n    \\\\\\\"total_triples_extracted\\\\\\\": 1729,\\\\n    \\\\\\\"total_entities_extracted\\\\\\\": 2474,\\\\n    \\\\\\\"json_parse_failures\\\\\\\": 0,\\\\n    \\\\\\\"json_parse_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"entity_type_violations\\\\\\\": 0,\\\\n    \\\\\\\"entity_type_violation_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"relation_vocabulary_violations\\\\\\\": 0,\\\\n    \\\\\\\"relation_vocabulary_violation_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"relation_fuzzy_matches\\\\\\\": 0,\\\\n    \\\\\\\"domain_range_violations\\\\\\\": 16,\\\\n    \\\\\\\"domain_range_violation_rate\\\\\\\": 0.0093,\\\\n    \\\\\\\"cross_field_consistency_violations\\\\\\\": 245,\\\\n    \\\\\\\"cross_field_consistency_violation_rate\\\\\\\": 0.099,\\\\n    \\\\\\\"total_violations_any\\\\\\\": 261,\\\\n    \\\\\\\"total_violation_rate\\\\\\\": 0.0621,\\\\n    \\\\\\\"go_nogo_metric\\\\\\\": 0.0093,\\\\n    \\\\\\\"go_nogo_metric_description\\\\\\\": \\\\\\\"per-triple domain_range_violation_rate (excludes relation_vocabulary_violations)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"per_relation_type\\\\\\\": {\\\\n    \\\\\\\"Compare\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 71,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\",\\n    \\\"total_samples\\\": 551,\\n    \\\"total_triples_extracted\\\": 1729,\\n    \\\"total_entities_extracted\\\": 2474,\\n    \\\"json_parse_failures\\\": 0,\\n    \\\"json_parse_rate\\\": 1.0,\\n    \\\"entity_type_violations\\\": 0,\\n    \\\"entity_type_violation_rate\\\": 0.0,\\n    \\\"relation_vocabulary_violations\\\": 0,\\n    \\\"relation_vocabulary_violation_rate\\\": 0.0,\\n    \\\"relation_fuzzy_matches\\\": 0,\\n    \\\"domain_range_violations\\\": 16,\\n    \\\"domain_range_violation_rate\\\": 0.0093,\\n    \\\"cross_field_consistency_violations\\\": 245,\\n    \\\"cross_field_consistency_violation_rate\\\": 0.099,\\n    \\\"total_violations_any\\\": 261,\\n    \\\"total_violation_rate\\\": 0.0621,\\n    \\\"go_nogo_metric\\\": 0.0093,\\n    \\\"go_nogo_metric_description\\\": \\\"per-triple domain_range_violation_rate (excludes relation_vocabulary_violations)\\\"\\n  },\\n  \\\"per_relation_type\\\": {\\n    \\\"Compare\\\": {\\n      \\\"total\\\": 71,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "f48e2680-5920-406f-9c8f-c8dd44f3f24a",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01PBfPinBKe3w7QpTXB7N8E7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1133,
+      "cache_read_input_tokens": 61198,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1133
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+Confirmed baseline. CF dropped massively (9.90% → 0.04%) but DR exploded (0.93% → 14.78%). Running the CF fallback analyzer.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "76df45de-e53c-4084-9a7b-30c3200e3bbe",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01PBfPinBKe3w7QpTXB7N8E7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1133,
+      "cache_read_input_tokens": 61198,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1133
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LJgTn6xqmsAKjX87Sui1hu`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 analyze_cf_fallback.py --results_dir outputs/ --output_dir outputs/cf_analysis_w1_pilot/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "3348b9f1-979b-4726-82d6-7f1657580d86",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01PBfPinBKe3w7QpTXB7N8E7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1133,
+      "cache_read_input_tokens": 61198,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1133
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-15T14:52:26.922Z_
+
+<details><summary>↩ Tool result · `toolu_01LJgTn6xqmsAKjX87Sui1hu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nRUNNING VIOLATION CHECKERS\\n============================================================\\n\\n[CHECK] Qwen SciERC\\n  Running: violation_checker.py on w1_cf_fallback_scierc_pilot.jsonl\\n  DR=14.78%  CF=0.04%  R-F1=8.23%  E-F1=30.98%\\n\\n[SKIP] Qwen DocRED: outputs/w1_cf_fallback_docred.jsonl not found\\n\\n[SKIP] Llama SciERC: outputs/w1_cf_fallback_llama_scierc.jsonl not found\\n\\n[SKIP] Llama DocRED: outputs/w1_cf_fallback_llama_docred.jsonl not found\\n\\n============================================================\\nCOMPARISON TABLE\\n============================================================\\n| 配置 | Mode | DR (%) | CF (%) | RV (%) | ET (%) | R-F1 (%) | E-F1 (%) | ΔDR | ΔCF |\\n|------|------|--------|--------|--------|--------|----------|----------|-----|-----|\\n| Qwen SciERC | S1 (no fb) | 0.93 | 9.90 | — | — | 8.36 | — | — | — |\\n| Qwen SciERC | S1 + CF fb | 14.78 | 0.04 | 0.00 | 0.00 | 8.23 | 30.98 | +13.85 | -9.86 |\\n| Qwen DocRED | S1 (no fb) | 10.21 | 2.57 | — | — | 8.23 | — | — | — |\\n| Qwen DocRED | S1 + CF fb | — | — | — | — | — | — | — | — |\\n| Llama SciERC | S1 (no fb) | 0.08 | 6.56 | — | — | 2.54 | — | — | — |\\n| Llama SciERC | S1 + CF fb | — | — | — | — | — | — | — | — |\\n| Llama DocRED | S1 (no fb) | 2.55 | 12.02 | — | — | 6.27 | — | — | — |\\n| Llama DocRED | S1 + CF fb | — | — | — | — | — | — | — | — |\\n\\nSaved: outputs/cf_analysis_w1_pilot/comparison_table.md\\n\\n============================================================\\nGENERATING PARETO PLOT\\n============================================================\\n  Saved: outputs/cf_analysis_w1_pilot/dr_vs_cf_pareto.pdf\\n  Saved: outputs/cf_analysis_w1_pilot/dr_vs_cf_pareto.png\\n\\n============================================================\\nFALLBACK TRIGGER RATES\\n============================================================\\n\\nQwen SciERC  (w1_cf_fallback_scierc_pilot_fallback_stats.json):\\n  grammar_first_fallback_rate: 0.3664\\n  cf_registry_fallback_rate: 0.0448\\n  cf_registry_fallback_count: 763\\n  grammar_first_fallback_count: 6237\\n  total_mask_calls: 17024\\n\\n============================================================\\nVIOLATION BUDGET ANALYSIS  (budget = DR + CF)\\n============================================================\\n| 配置 | Budget (no fb) | Budget (+fb) | ΔBudget | Result |\\n|------|----------------|--------------|---------|--------|\\n| Qwen SciERC | 10.83 | 14.82 | +3.99 | increased |\\n| Qwen DocRED | 12.78 | — | — | (pending) |\\n| Llama SciERC | 6.64 | — | — | (pending) |\\n| Llama DocRED | 14.57 | — | — | (pending) |\\n\\nSaved: outputs/cf_analysis_w1_pilot/violation_budget.md\\n\\n============================================================\\nDONE: 1/4 configs analyzed\\nPending: Qwen DocRED, Llama SciERC, Llama DocRED\\n============================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "99dae3e3-4aad-42dc-8dbd-d370a87a480b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nRUNNING VIOLATION CHECKERS\\\\n============================================================\\\\n\\\\n[CHECK] Qwen SciERC\\\\n  Running: violation_checker.py on w1_cf_fallback_scierc_pilot.jsonl\\\\n  DR=14.78%  CF=0.04%  R-F1=8.23%  E-F1=30.98%\\\\n\\\\n[SKIP] Qwen DocRED: outputs/w1_cf_fallback_docred.jsonl not found\\\\n\\\\n[SKIP] Llama SciERC: outputs/w1_cf_fallback_llama_scierc.jsonl not found\\\\n\\\\n[SKIP] Llama DocRED: outputs/w1_cf_fallback_llama_docred.jsonl not found\\\\n\\\\n============================================================\\\\nCOMPARISON TABLE\\\\n============================================================\\\\n| 配置 | Mode | DR (%) | CF (%) | RV (%) | ET (%) | R-F1 (%) | E-F1 (%) | ΔDR | ΔCF |\\\\n|------|------|--------|--------|--------|--------|----------|----------|-----|-----|\\\\n| Qwen SciERC | S1 (no fb) | 0.93 | 9.90 | — | — | 8.36 | — | — | — |\\\\n| Qwen SciERC | S1 + CF fb | 14.78 | 0.04 | 0.00 | 0.00 | 8.23 | 30.98 | +13.85 | -9.86 |\\\\n| Qwen DocRED | S1 (no fb) | 10.21 | 2.57 | — | — | 8.23 | — | — | — |\\\\n| Qwen DocRED | S1 + CF fb | — | — | — | — | — | — | — | — |\\\\n| Llama SciERC | S1 (no fb) | 0.08 | 6.56 | — | — | 2.54 | — | — | — |\\\\n| Llama SciERC | S1 + CF fb | — | — | — | — | — | — | — | — |\\\\n| Llama DocRED | S1 (no fb) | 2.55 | 12.02 | — | — | 6.27 | — | — | — |\\\\n| Llama DocRED | S1 + CF fb | — | — | — | — | — | — | — | — |\\\\n\\\\nSaved: outputs/cf_analysis_w1_pilot/comparison_table.md\\\\n\\\\n============================================================\\\\nGENERATING PARETO PLOT\\\\n============================================================\\\\n  Saved: outputs/cf_analysis_w1_pilot/dr_vs_cf_pareto.pdf\\\\n  Saved: outputs/cf_analysis_w1_pilot/dr_vs_cf_pareto.png\\\\n\\\\n============================================================\\\\nFALLBACK TRIGGER RATES\\\\n============================================================\\\\n\\\\nQwen SciERC  (w1_cf_fallback_scierc_pilot_fallback_stats.json):\\\\n  grammar_first_fallback_rate: 0.3664\\\\n  cf_registry_fallback_rate: 0.0448\\\\n  cf_registry_fallback_count: 763\\\\n  grammar_first_fallback_count: 6237\\\\n  total_mask_calls: 17024\\\\n\\\\n============================================================\\\\nVIOLATION BUDGET ANALYSIS  (budget = DR + CF)\\\\n============================================================\\\\n| 配置 | Budget (no fb) | Budget (+fb) | ΔBudget | Result |\\\\n|------|----------------|--------------|---------|--------|\\\\n| Qwen SciERC | 10.83 | 14.82 | +3.99 | increased |\\\\n| Qwen DocRED | 12.78 | — | — | (pending) |\\\\n| Llama SciERC | 6.64 | — | — | (pending) |\\\\n| Llama DocRED | 14.57 | — | — | (pending) |\\\\n\\\\nSaved: outputs/cf_analysis_w1_pilot/violation_budget.md\\\\n\\\\n============================================================\\\\nDONE: 1/4 configs analyzed\\\\nPending: Qwen DocRED, Llama SciERC, Llama DocRED\\\\n============================================================\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nRUNNING VIOLATION CHECKERS\\n============================================================\\n\\n[CHECK] Qwen SciERC\\n  Running: violation_checker.py on w1_cf_fallback_scierc_pilot.jsonl\\n  DR=14.78%  CF=0.04%  R-F1=8.23%  E-F1=30.98%\\n\\n[SKIP] Qwen DocRED: outputs/w1_cf_fallback_docred.jsonl not found\\n\\n[SKIP] Llama SciERC: outputs/w1_cf_fallback_llama_scierc.jsonl not found\\n\\n[SKIP] Llama DocRED: outputs/w1_cf_fallback_llama_docred.jsonl not found\\n\\n============================================================\\nCOMPARISON TABLE\\n============================================================\\n| 配置 | Mode | DR (%) | CF (%) | RV (%) | ET (%) | R-F1 (%) | E-F1 (%) | ΔDR | ΔCF |\\n|------|------|--------|--------|--------|--------|----------|----------|-----|-----|\\n| Qwen SciERC | S1 (no fb) | 0.93 | 9.90 | — | — | 8.36 | — | — | — |\\n| Qwen SciERC | S1 + CF fb | 14.78 | 0.04 | 0.00 | 0.00 | 8.23 | 30.98 | +13.85 | -9.86 |\\n| Qwen DocRED | S1 (no fb) | 10.21 | 2.57 | — | — | 8.23 | — | — | — |\\n| Qwen DocRED | S1 + CF fb | — | — | — | — | — | — | — | — |\\n| Llama SciERC | S1 (no fb) | 0.08 | 6.56 | — | — | 2.54 | — | — | — |\\n| Llama SciERC | S1 + CF fb | — | — | — | — | — | — | — | — |\\n| Llama DocRED | S1 (no fb) | 2.55 | 12.02 | — | — | 6.27 | — | — | — |\\n| Llama DocRED | S1 + CF fb | — | — | — | — | — | — | — | — |\\n\\nSaved: outputs/cf_analysis_w1_pilot/comparison_table.md\\n\\n============================================================\\nGENERATING PARETO PLOT\\n============================================================\\n  Saved: outputs/cf_analysis_w1_pilot/dr_vs_cf_pareto.pdf\\n  Saved: outputs/cf_analysis_w1_pilot/dr_vs_cf_pareto.png\\n\\n============================================================\\nFALLBACK TRIGGER RATES\\n============================================================\\n\\nQwen SciERC  (w1_cf_fallback_scierc_pilot_fallback_stats.json):\\n  grammar_first_fallback_rate: 0.3664\\n  cf_registry_fallback_rate: 0.0448\\n  cf_registry_fallback_count: 763\\n  grammar_first_fallback_count: 6237\\n  total_mask_calls: 17024\\n\\n============================================================\\nVIOLATION BUDGET ANALYSIS  (budget = DR + CF)\\n============================================================\\n| 配置 | Budget (no fb) | Budget (+fb) | ΔBudget | Result |\\n|------|----------------|--------------|---------|--------|\\n| Qwen SciERC | 10.83 | 14.82 | +3.99 | increased |\\n| Qwen DocRED | 12.78 | — | — | (pending) |\\n| Llama SciERC | 6.64 | — | — | (pending) |\\n| Llama DocRED | 14.57 | — | — | (pending) |\\n\\nSaved: outputs/cf_analysis_w1_pilot/violation_budget.md\\n\\n============================================================\\nDONE: 1/4 configs analyzed\\nPending: Qwen DocRED, Llama SciERC, Llama DocRED\\n============================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "668bbb6d-272a-4a52-b0b2-3aaeb7e713c2",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01Db1rUA4FgZgDuKFseDnnXr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2297,
+      "cache_read_input_tokens": 62331,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2297
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_014B8zSXVrr86NSmCL1vbAoR`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Check log + output file status",
+      "activeForm": "Checking log + output file status",
+      "status": "completed"
+    },
+    {
+      "content": "Determine violation_checker / F1 eval CLI args",
+      "activeForm": "Determining script CLI args",
+      "status": "completed"
+    },
+    {
+      "content": "Run violation_checker on output",
+      "activeForm": "Running violation_checker on output",
+      "status": "completed"
+    },
+    {
+      "content": "Re-run baseline violation checker for direct comparison",
+      "activeForm": "Re-running baseline violation checker",
+      "status": "completed"
+    },
+    {
+      "content": "Run analyze_cf_fallback / CF analysis",
+      "activeForm": "Running CF analysis",
+      "status": "completed"
+    },
+    {
+      "content": "Write analysis report + register artifact",
+      "activeForm": "Writing analysis report + registering artifact",
+      "status": "in_progress"
+    },
+    {
+      "content": "Update registry with metrics + conclusion",
+      "activeForm": "Updating registry",
+      "status": "pending"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "54d32310-f8b5-4605-86f1-732e1e94b121",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01Db1rUA4FgZgDuKFseDnnXr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2297,
+      "cache_read_input_tokens": 62331,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2297
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-15T14:52:38.786Z_
+
+<details><summary>↩ Tool result · `toolu_014B8zSXVrr86NSmCL1vbAoR`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "ad4f92de-7ee3-4cdb-910a-80135bc8e5bb",
+  "tool_use_result": {
+    "oldTodos": [
+      {
+        "content": "Check log + output file status",
+        "status": "completed",
+        "activeForm": "Checking log + output file status"
+      },
+      {
+        "content": "Determine violation_checker / F1 eval CLI args",
+        "status": "completed",
+        "activeForm": "Determining script CLI args"
+      },
+      {
+        "content": "Run violation_checker on output",
+        "status": "completed",
+        "activeForm": "Running violation_checker on output"
+      },
+      {
+        "content": "Re-run baseline violation checker for direct comparison",
+        "status": "in_progress",
+        "activeForm": "Re-running baseline violation checker"
+      },
+      {
+        "content": "Run analyze_cf_fallback / CF analysis",
+        "status": "pending",
+        "activeForm": "Running CF analysis"
+      },
+      {
+        "content": "Write analysis report + register artifact",
+        "status": "pending",
+        "activeForm": "Writing analysis report + registering artifact"
+      },
+      {
+        "content": "Update registry with metrics + conclusion",
+        "status": "pending",
+        "activeForm": "Updating registry"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "Check log + output file status",
+        "status": "completed",
+        "activeForm": "Checking log + output file status"
+      },
+      {
+        "content": "Determine violation_checker / F1 eval CLI args",
+        "status": "completed",
+        "activeForm": "Determining script CLI args"
+      },
+      {
+        "content": "Run violation_checker on output",
+        "status": "completed",
+        "activeForm": "Running violation_checker on output"
+      },
+      {
+        "content": "Re-run baseline violation checker for direct comparison",
+        "status": "completed",
+        "activeForm": "Re-running baseline violation checker"
+      },
+      {
+        "content": "Run analyze_cf_fallback / CF analysis",
+        "status": "completed",
+        "activeForm": "Running CF analysis"
+      },
+      {
+        "content": "Write analysis report + register artifact",
+        "status": "in_progress",
+        "activeForm": "Writing analysis report + registering artifact"
+      },
+      {
+        "content": "Update registry with metrics + conclusion",
+        "status": "pending",
+        "activeForm": "Updating registry"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01ERY4eyC6xahy6Zq9SAYHEU`</summary>
+
+```json
+{
+  "file_path": "/tmp/w1_cf_fallback_scierc_pilot_report.md",
+  "content": "# W1 (CF Fallback) Pilot — SciERC Analysis Report\n\n**Experiment:** `w1_cf_fallback_scierc_pilot`\n**Date:** 2026-05-15\n**Server:** westd-16980\n**Dataset / Model / Mode:** SciERC test (551 samples) · Qwen3-8B · `full_s1` + CF fallback\n**Output:** `outputs/w1_cf_fallback_scierc_pilot.jsonl`\n**Log:** `~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log`\n**Checker version:** `fixed_20260514_v2 (strip + alias + unique_et)`\n\n---\n\n## 1. Run status\n\n- 551/551 samples completed (`success=551, fail=0`), exit code 0.\n- 0 JSON parse failures (json_parse_rate = 1.0).\n- No exceptions in log tail; only expected `Grammar-first fallback triggered` info lines.\n\n## 2. Fallback trigger statistics\n\nFrom `outputs/w1_cf_fallback_scierc_pilot_fallback_stats.json`:\n\n| Metric | Value |\n|---|---|\n| total_mask_calls | 17 024 |\n| grammar_first_fallback_count | 6 237 |\n| grammar_first_fallback_rate | **36.64 %** |\n| cf_registry_fallback_count | 763 |\n| cf_registry_fallback_rate | **4.48 %** |\n\nInterpretation: in **36.6 %** of constrained-decoding mask calls, the semantic mask would have eliminated every grammar-valid token, so the policy fell back to grammar-only (no DR enforcement on that token). The CF-registry fallback (semantic mask compatible with seen-mention types) fired in 4.5 %.\n\n## 3. Violation rates (per-triple unless stated)\n\n| Metric | W1 + CF-fb | Baseline `full_s1` | Δ |\n|---|---|---|---|\n| Samples | 551 | 551 | — |\n| Entities extracted | 2 474 | 2 474 | 0 |\n| Triples extracted | 1 725 | 1 729 | −4 |\n| ET violation | 0 / 2 474 (0.00 %) | 0 / 2 474 (0.00 %) | 0 |\n| RV violation | 0 / 1 725 (0.00 %) | 0 / 1 729 (0.00 %) | 0 |\n| **DR violation** | 255 / 1 725 (**14.78 %**) | 16 / 1 729 (**0.93 %**) | **+13.85 pp** |\n| **CF violation** | 1 (**0.04 %**) | 245 (**9.90 %**) | **−9.86 pp** |\n| Total violations (any) | 256 (6.10 %) | 261 (6.21 %) | −0.11 pp |\n| DR + CF budget | **14.82 %** | **10.83 %** | **+3.99 pp** |\n\nDR per relation type (W1):\n\n| Relation | Total | DR violations | DR rate |\n|---|---|---|---|\n| Feature-of | 494 | 158 | 31.98 % |\n| Compare | 71 | 28 | 39.44 % |\n| Part-of | 77 | 18 | 23.38 % |\n| Evaluate-for | 134 | 31 | 23.13 % |\n| Hyponym-of | 125 | 18 | 14.40 % |\n| Used-for | 791 | 2 | 0.25 % |\n| Conjunction | 33 | 0 | 0.00 % |\n\nDR damage is concentrated in `Feature-of`, `Compare`, `Part-of`, `Evaluate-for` — these are the relation types whose semantic mask most often left zero grammar-valid tokens, triggering the grammar-first fallback.\n\n## 4. F1 metrics (extractive quality)\n\n| Metric | W1 + CF-fb | Baseline `full_s1` | Δ |\n|---|---|---|---|\n| Entity P / R / F1 | 0.2598 / 0.3837 / **0.3098** | 0.2598 / 0.3837 / **0.3098** | 0 / 0 / **0 pp** |\n| Relation P / R / F1 | 0.0643 / 0.1140 / **0.0823** | 0.0654 / 0.1160 / **0.0836** | −0.11 / −0.20 / **−0.13 pp** |\n| Entity TP / gold / pred | 642 / 1 673 / 2 471 | 642 / 1 673 / 2 471 | 0 |\n| Relation TP / gold / pred | 111 / 974 / 1 725 | (similar) | — |\n\nEntity F1 is byte-identical to baseline (entity-level extraction is unaffected by the CF fallback). Relation F1 drops only 0.13 pp — within noise.\n\nFor reference, the **unconstrained baseline** sits at E-F1 ≈ 31.01 %, R-F1 ≈ 8.23 %, DR ≈ 15.37 %, CF ≈ 0 % — so W1 + CF-fb now resembles the unconstrained baseline in DR/CF behaviour rather than the constrained baseline.\n\n## 5. Conclusion\n\nThe W1 CF-fallback mechanism does what it says on the tin — **CF violations collapse from 9.90 % to 0.04 %** — but the trade-off is severe: **DR violations explode from 0.93 % to 14.78 %**, and the combined DR + CF budget **increases by ~4 pp**. The grammar-first fallback fires on 36.6 % of mask calls, meaning more than a third of the decoding steps are no longer semantically constrained at all.\n\nAgainst the task's success criteria:\n\n| Criterion | Required | Observed | Pass? |\n|---|---|---|---|\n| CF drops significantly | < 9.90 % | 0.04 % | ✅ |\n| DR stays low | < 2 % | 14.78 % | ❌ |\n| R-F1 not significantly hurt | Δ > −2 pp | −0.13 pp | ✅ |\n\nDR fails the criterion → **conclusion: NEGATIVE** (the mechanism shifts violations from CF onto DR rather than eliminating them).\n\n## 6. Implications for W1 (rebuttal)\n\n- The current \"grammar-first fallback when semantic mask is empty\" implementation is **not a Pareto improvement** — it strictly increases total ontology violations on SciERC + Qwen3-8B.\n- The CF reduction is real and dramatic, but the framing of W1 as \"fallback that protects CF without harming other constraints\" is **not supported** by these numbers.\n- Two plausible next moves before the rebuttal:\n  1. **Replace grammar-first fallback with a CF-registry-only fallback** (keep DR enforcement, fall back only on CF). The current `cf_registry_fallback_rate` (4.48 %) suggests this would still capture most CF gains without re-introducing DR violations.\n  2. **Report this trade-off honestly** in the rebuttal and characterise W1 as a \"violation re-routing\" rather than reduction; pair with a Pareto plot (auto-generated at `outputs/cf_analysis_w1_pilot/dr_vs_cf_pareto.pdf`).\n- Pilot is on Qwen3-8B / SciERC only. DocRED and Llama runs are still pending — the pattern may differ.\n\n## 7. Provenance\n\n- Output: `outputs/w1_cf_fallback_scierc_pilot.jsonl` (1 322 087 B, 551 lines)\n- Violation report: `outputs/violation_report_w1_cf_fallback_scierc_pilot.json`\n- Fallback stats: `outputs/w1_cf_fallback_scierc_pilot_fallback_stats.json`\n- Comparison table: `outputs/cf_analysis_w1_pilot/comparison_table.md`\n- Pareto plot: `outputs/cf_analysis_w1_pilot/dr_vs_cf_pareto.{pdf,png}`\n- Baseline report (re-generated for parity): `outputs/violation_report_phase2_scierc_full_s1_v2.json` (over `outputs/phase2_scierc_full_s1_v2.jsonl`, 551 lines)\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "3b0a4333-2bf6-4372-b027-c4b560da8e87",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_012uL2kXjCxEmV7gcgk2FFd8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 931,
+      "cache_read_input_tokens": 64628,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 931
+      },
+      "output_tokens": 52,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-15T14:53:18.431Z_
+
+<details><summary>↩ Tool result · `toolu_01ERY4eyC6xahy6Zq9SAYHEU`</summary>
+
+```text
+File created successfully at: /tmp/w1_cf_fallback_scierc_pilot_report.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "2552c28e-bf5f-4a17-9cc5-4072f65cbd87",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/tmp/w1_cf_fallback_scierc_pilot_report.md",
+    "content": "# W1 (CF Fallback) Pilot — SciERC Analysis Report\n\n**Experiment:** `w1_cf_fallback_scierc_pilot`\n**Date:** 2026-05-15\n**Server:** westd-16980\n**Dataset / Model / Mode:** SciERC test (551 samples) · Qwen3-8B · `full_s1` + CF fallback\n**Output:** `outputs/w1_cf_fallback_scierc_pilot.jsonl`\n**Log:** `~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log`\n**Checker version:** `fixed_20260514_v2 (strip + alias + unique_et)`\n\n---\n\n## 1. Run status\n\n- 551/551 samples completed (`success=551, fail=0`), exit code 0.\n- 0 JSON parse failures (json_parse_rate = 1.0).\n- No exceptions in log tail; only expected `Grammar-first fallback triggered` info lines.\n\n## 2. Fallback trigger statistics\n\nFrom `outputs/w1_cf_fallback_scierc_pilot_fallback_stats.json`:\n\n| Metric | Value |\n|---|---|\n| total_mask_calls | 17 024 |\n| grammar_first_fallback_count | 6 237 |\n| grammar_first_fallback_rate | **36.64 %** |\n| cf_registry_fallback_count | 763 |\n| cf_registry_fallback_rate | **4.48 %** |\n\nInterpretation: in **36.6 %** of constrained-decoding mask calls, the semantic mask would have eliminated every grammar-valid token, so the policy fell back to grammar-only (no DR enforcement on that token). The CF-registry fallback (semantic mask compatible with seen-mention types) fired in 4.5 %.\n\n## 3. Violation rates (per-triple unless stated)\n\n| Metric | W1 + CF-fb | Baseline `full_s1` | Δ |\n|---|---|---|---|\n| Samples | 551 | 551 | — |\n| Entities extracted | 2 474 | 2 474 | 0 |\n| Triples extracted | 1 725 | 1 729 | −4 |\n| ET violation | 0 / 2 474 (0.00 %) | 0 / 2 474 (0.00 %) | 0 |\n| RV violation | 0 / 1 725 (0.00 %) | 0 / 1 729 (0.00 %) | 0 |\n| **DR violation** | 255 / 1 725 (**14.78 %**) | 16 / 1 729 (**0.93 %**) | **+13.85 pp** |\n| **CF violation** | 1 (**0.04 %**) | 245 (**9.90 %**) | **−9.86 pp** |\n| Total violations (any) | 256 (6.10 %) | 261 (6.21 %) | −0.11 pp |\n| DR + CF budget | **14.82 %** | **10.83 %** | **+3.99 pp** |\n\nDR per relation type (W1):\n\n| Relation | Total | DR violations | DR rate |\n|---|---|---|---|\n| Feature-of | 494 | 158 | 31.98 % |\n| Compare | 71 | 28 | 39.44 % |\n| Part-of | 77 | 18 | 23.38 % |\n| Evaluate-for | 134 | 31 | 23.13 % |\n| Hyponym-of | 125 | 18 | 14.40 % |\n| Used-for | 791 | 2 | 0.25 % |\n| Conjunction | 33 | 0 | 0.00 % |\n\nDR damage is concentrated in `Feature-of`, `Compare`, `Part-of`, `Evaluate-for` — these are the relation types whose semantic mask most often left zero grammar-valid tokens, triggering the grammar-first fallback.\n\n## 4. F1 metrics (extractive quality)\n\n| Metric | W1 + CF-fb | Baseline `full_s1` | Δ |\n|---|---|---|---|\n| Entity P / R / F1 | 0.2598 / 0.3837 / **0.3098** | 0.2598 / 0.3837 / **0.3098** | 0 / 0 / **0 pp** |\n| Relation P / R / F1 | 0.0643 / 0.1140 / **0.0823** | 0.0654 / 0.1160 / **0.0836** | −0.11 / −0.20 / **−0.13 pp** |\n| Entity TP / gold / pred | 642 / 1 673 / 2 471 | 642 / 1 673 / 2 471 | 0 |\n| Relation TP / gold / pred | 111 / 974 / 1 725 | (similar) | — |\n\nEntity F1 is byte-identical to baseline (entity-level extraction is unaffected by the CF fallback). Relation F1 drops only 0.13 pp — within noise.\n\nFor reference, the **unconstrained baseline** sits at E-F1 ≈ 31.01 %, R-F1 ≈ 8.23 %, DR ≈ 15.37 %, CF ≈ 0 % — so W1 + CF-fb now resembles the unconstrained baseline in DR/CF behaviour rather than the constrained baseline.\n\n## 5. Conclusion\n\nThe W1 CF-fallback mechanism does what it says on the tin — **CF violations collapse from 9.90 % to 0.04 %** — but the trade-off is severe: **DR violations explode from 0.93 % to 14.78 %**, and the combined DR + CF budget **increases by ~4 pp**. The grammar-first fallback fires on 36.6 % of mask calls, meaning more than a third of the decoding steps are no longer semantically constrained at all.\n\nAgainst the task's success criteria:\n\n| Criterion | Required | Observed | Pass? |\n|---|---|---|---|\n| CF drops significantly | < 9.90 % | 0.04 % | ✅ |\n| DR stays low | < 2 % | 14.78 % | ❌ |\n| R-F1 not significantly hurt | Δ > −2 pp | −0.13 pp | ✅ |\n\nDR fails the criterion → **conclusion: NEGATIVE** (the mechanism shifts violations from CF onto DR rather than eliminating them).\n\n## 6. Implications for W1 (rebuttal)\n\n- The current \"grammar-first fallback when semantic mask is empty\" implementation is **not a Pareto improvement** — it strictly increases total ontology violations on SciERC + Qwen3-8B.\n- The CF reduction is real and dramatic, but the framing of W1 as \"fallback that protects CF without harming other constraints\" is **not supported** by these numbers.\n- Two plausible next moves before the rebuttal:\n  1. **Replace grammar-first fallback with a CF-registry-only fallback** (keep DR enforcement, fall back only on CF). The current `cf_registry_fallback_rate` (4.48 %) suggests this would still capture most CF gains without re-introducing DR violations.\n  2. **Report this trade-off honestly** in the rebuttal and characterise W1 as a \"violation re-routing\" rather than reduction; pair with a Pareto plot (auto-generated at `outputs/cf_analysis_w1_pilot/dr_vs_cf_pareto.pdf`).\n- Pilot is on Qwen3-8B / SciERC only. DocRED and Llama runs are still pending — the pattern may differ.\n\n## 7. Provenance\n\n- Output: `outputs/w1_cf_fallback_scierc_pilot.jsonl` (1 322 087 B, 551 lines)\n- Violation report: `outputs/violation_report_w1_cf_fallback_scierc_pilot.json`\n- Fallback stats: `outputs/w1_cf_fallback_scierc_pilot_fallback_stats.json`\n- Comparison table: `outputs/cf_analysis_w1_pilot/comparison_table.md`\n- Pareto plot: `outputs/cf_analysis_w1_pilot/dr_vs_cf_pareto.{pdf,png}`\n- Baseline report (re-generated for parity): `outputs/violation_report_phase2_scierc_full_s1_v2.json` (over `outputs/phase2_scierc_full_s1_v2.jsonl`, 551 lines)\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01Rm23BwcEvqPEjEDCyLL6Rz`</summary>
+
+```json
+{
+  "name": "w1_cf_fallback_scierc_pilot_analysis",
+  "type": "report",
+  "description": "Analysis of W1 (CF fallback) pilot on SciERC + Qwen3-8B. CF drops 9.90%→0.04% but DR explodes 0.93%→14.78%; R-F1/E-F1 essentially unchanged. Verdict: NEGATIVE — fallback re-routes violations from CF to DR (+3.99pp budget). Includes per-relation DR breakdown, fallback trigger rates, and rebuttal implications.",
+  "project": "schema_semantic_constrained_ie",
+  "exp_id": "w1_cf_fallback_scierc_pilot",
+  "source_path": "/tmp/w1_cf_fallback_scierc_pilot_report.md",
+  "tags": [
+    "w1",
+    "cf_fallback",
+    "scierc",
+    "qwen3-8b",
+    "pilot",
+    "negative"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "27559759-f80a-49a9-89b2-ee9ad2f9a7c7",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01XZz9bnGB8yv7ZjYp171Zgf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2961,
+      "cache_read_input_tokens": 65559,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2961
+      },
+      "output_tokens": 88,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-15T14:53:26.590Z_
+
+<details><summary>↩ Tool result · `toolu_01Rm23BwcEvqPEjEDCyLL6Rz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_0e1d86\", \"name\": \"w1_cf_fallback_scierc_pilot_analysis\", \"type\": \"report\", \"description\": \"Analysis of W1 (CF fallback) pilot on SciERC + Qwen3-8B. CF drops 9.90%→0.04% but DR explodes 0.93%→14.78%; R-F1/E-F1 essentially unchanged. Verdict: NEGATIVE — fallback re-routes violations from CF to DR (+3.99pp budget). Includes per-relation DR breakdown, fallback trigger rates, and rebuttal implications.\", \"path\": \"projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_scierc_pilot/report/w1_cf_fallback_scierc_pilot_report.md\", \"url\": null, \"project\": \"schema_semantic_constrained_ie\", \"exp_id\": \"w1_cf_fallback_scierc_pilot\", \"skill\": \"\", \"created_at\": \"2026-05-15T14:53:26.494928+00:00\", \"tags\": [\"w1\", \"cf_fallback\", \"scierc\", \"qwen3-8b\", \"pilot\", \"negative\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "e0cbbbcf-5899-4304-ba5f-e153bf22aee2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_0e1d86\\\", \\\"name\\\": \\\"w1_cf_fallback_scierc_pilot_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Analysis of W1 (CF fallback) pilot on SciERC + Qwen3-8B. CF drops 9.90%→0.04% but DR explodes 0.93%→14.78%; R-F1/E-F1 essentially unchanged. Verdict: NEGATIVE — fallback re-routes violations from CF to DR (+3.99pp budget). Includes per-relation DR breakdown, fallback trigger rates, and rebuttal implications.\\\", \\\"path\\\": \\\"projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_scierc_pilot/report/w1_cf_fallback_scierc_pilot_report.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"exp_id\\\": \\\"w1_cf_fallback_scierc_pilot\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T14:53:26.494928+00:00\\\", \\\"tags\\\": [\\\"w1\\\", \\\"cf_fallback\\\", \\\"scierc\\\", \\\"qwen3-8b\\\", \\\"pilot\\\", \\\"negative\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_0e1d86\", \"name\": \"w1_cf_fallback_scierc_pilot_analysis\", \"type\": \"report\", \"description\": \"Analysis of W1 (CF fallback) pilot on SciERC + Qwen3-8B. CF drops 9.90%→0.04% but DR explodes 0.93%→14.78%; R-F1/E-F1 essentially unchanged. Verdict: NEGATIVE — fallback re-routes violations from CF to DR (+3.99pp budget). Includes per-relation DR breakdown, fallback trigger rates, and rebuttal implications.\", \"path\": \"projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_scierc_pilot/report/w1_cf_fallback_scierc_pilot_report.md\", \"url\": null, \"project\": \"schema_semantic_constrained_ie\", \"exp_id\": \"w1_cf_fallback_scierc_pilot\", \"skill\": \"\", \"created_at\": \"2026-05-15T14:53:26.494928+00:00\", \"tags\": [\"w1\", \"cf_fallback\", \"scierc\", \"qwen3-8b\", \"pilot\", \"negative\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01KhgTf5YF6c1mJ7GrLv5uED`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "w1_cf_fallback_scierc_pilot"
+  },
+  "project": "schema_semantic_constrained_ie",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "88841af8-ea7c-44c4-85b9-7e5a9a0771af",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01GWSJqNvww6sKvEn3zoQKU6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1045,
+      "cache_read_input_tokens": 68520,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1045
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-15T14:53:34.210Z_
+
+<details><summary>↩ Tool result · `toolu_01KhgTf5YF6c1mJ7GrLv5uED`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0955}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "21b637a4-06a4-4567-a3d6-ef83f7f5636c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0955}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0955}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01PedPG8SdQgfA4u5kFrtCEJ`</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "fields": [
+    "*"
+  ],
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "6dcb6686-38da-49ea-a0a4-f46805dc60de",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01AMMihScPGS5GfgLmaypnG2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 264,
+      "cache_read_input_tokens": 69565,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 264
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-15T14:53:39.698Z_
+
+<details><summary>↩ Tool result · `toolu_01PedPG8SdQgfA4u5kFrtCEJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"w1_cf_fallback_scierc_pilot\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:32:48.425Z\", \"updated_at\": \"2026-05-15T14:47:53.846Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"270088\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\", \"submitted_at\": \"2026-05-15T14:07:14.512Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"270088\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"finished_at\": \"2026-05-15T14:47:53.690Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T14:47:54.986519+00:00\"}]}}, \"llama_docred_unconstrained_mt6144\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:17:33.154Z\", \"updated_at\": \"2026-05-15T14:09:53.452Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"246947\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained_mt6144.log\", \"submitted_at\": \"2026-05-15T08:19:27.565Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 20932.1, \"gpu_hours\": 5.81}, \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"pid\": \"246947\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained_mt6144.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\"\", \"finished_at\": \"2026-05-15T13:59:24.508Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:59:25.767053+00:00\"}]}, \"metrics\": {\"ET_rate\": 0.13, \"RV_rate\": 15.89, \"DR_rate\": 26.18, \"DR_rate_eligible\": 31.15, \"CF_rate\": 0.17, \"entity_precision\": 61.19, \"entity_recall\": 51.06, \"entity_f1\": 55.67, \"relation_precision\": 5.18, \"relation_recall\": 7, \"relation_f1\": 5.95, \"parse_failures\": 67, \"documents_checked\": 931, \"total_documents\": 998, \"unique_entities\": 11534, \"total_triples\": 16584, \"dr_eligible_triples\": 13936, \"fuzzy_relation_matches\": 121}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl\", \"notes\": \"mt6144 vs mt4096 对比: parse_failures 68→67 (-1, 几乎无变化); unique_entities 11525→11534 (+9); triples 16437→16584 (+147, +0.9%); E-F1 55.65%→55.67% (+0.02pp); R-F1 5.98%→5.95% (-0.03pp); DR 26.07%→26.18% (+0.11pp); RV 16.03%→15.89% (-0.14pp); ET/CF 不变. 67 个 FAIL 中绝大多数 inference time ~96s (仍触发 max_tokens cap), 说明这些失败主要源于模型陷入重复循环直到 token 上限, 而非文档过长. 增加 max_new_tokens 不能挽救此类失败. 训练 wall clock 约 5h39m, 比 mt4096 (~5h02m) 多约 37 分钟. 结论: max_new_tokens 4096→6144 对 unconstrained 生成无实质影响, 不建议采用作为后续 baseline.\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T14:08:19.680Z\"}, \"w1_cf_fallback_llama_scierc\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:32:57.470Z\", \"updated_at\": \"2026-05-15T11:48:00.744Z\", \"spec\": {\"hypothesis\": \"W1 CF fallback 在 Llama SciERC 上的跨模型验证。Llama SciERC full_s1 原 CF=6.56%，预期显著降低。Phase 2 实验。\", \"parent\": \"llama_scierc_full_s1\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_llama_scierc.jsonl --device cuda:1 --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-16980\", \"data_path\": \"data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Meta-Llama-3.1-8B-Instruct\", \"seed\": \"default\", \"gpu\": \"cuda:1\"}}, \"w1_cf_fallback_docred\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:32:53.234Z\", \"updated_at\": \"2026-05-15T11:47:56.874Z\", \"spec\": {\"hypothesis\": \"W1 CF fallback 在 DocRED (96 relations, 高 tightness) 上的效果。DocRED CF 原值 2.57%，预计 fallback 触发更频繁，DR vs CF trade-off 更明显。Phase 2 实验。\", \"parent\": \"phase2_docred_full_s1\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w1_cf_fallback_docred.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-16980\", \"data_path\": \"data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": \"default\", \"gpu\": \"cuda:0\"}}, \"w1_cf_fallback_llama_docred\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:33:00.998Z\", \"updated_at\": \"2026-05-15T11:29:52.780Z\", \"spec\": {\"hypothesis\": \"W1 CF fallback 在 Llama DocRED 上的效果。Llama DocRED full_s1 原 CF=12.02%（最高），预期 fallback 大幅降低。Phase 3 实验。\", \"parent\": \"llama_docred_full_s1\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w1_cf_fallback_llama_docred.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-16980\", \"data_path\": \"data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Meta-Llama-3.1-8B-Instruct\", \"seed\": \"default\", \"gpu\": \"cuda:0\"}}}, \"count\": 5, \"total\": 26, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0988}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "2e608941-d0b2-4557-ba01-c97c25fcdced",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"w1_cf_fallback_scierc_pilot\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:32:48.425Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:47:53.846Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"270088\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T14:07:14.512Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"pid\\\": \\\"270088\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T14:47:53.690Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T14:47:54.986519+00:00\\\"}]}}, \\\"llama_docred_unconstrained_mt6144\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:17:33.154Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:09:53.452Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"246947\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained_mt6144.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T08:19:27.565Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 20932.1, \\\"gpu_hours\\\": 5.81}, \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"246947\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained_mt6144.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T13:59:24.508Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:59:25.767053+00:00\\\"}]}, \\\"metrics\\\": {\\\"ET_rate\\\": 0.13, \\\"RV_rate\\\": 15.89, \\\"DR_rate\\\": 26.18, \\\"DR_rate_eligible\\\": 31.15, \\\"CF_rate\\\": 0.17, \\\"entity_precision\\\": 61.19, \\\"entity_recall\\\": 51.06, \\\"entity_f1\\\": 55.67, \\\"relation_precision\\\": 5.18, \\\"relation_recall\\\": 7, \\\"relation_f1\\\": 5.95, \\\"parse_failures\\\": 67, \\\"documents_checked\\\": 931, \\\"total_documents\\\": 998, \\\"unique_entities\\\": 11534, \\\"total_triples\\\": 16584, \\\"dr_eligible_triples\\\": 13936, \\\"fuzzy_relation_matches\\\": 121}, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl\\\", \\\"notes\\\": \\\"mt6144 vs mt4096 对比: parse_failures 68→67 (-1, 几乎无变化); unique_entities 11525→11534 (+9); triples 16437→16584 (+147, +0.9%); E-F1 55.65%→55.67% (+0.02pp); R-F1 5.98%→5.95% (-0.03pp); DR 26.07%→26.18% (+0.11pp); RV 16.03%→15.89% (-0.14pp); ET/CF 不变. 67 个 FAIL 中绝大多数 inference time ~96s (仍触发 max_tokens cap), 说明这些失败主要源于模型陷入重复循环直到 token 上限, 而非文档过长. 增加 max_new_tokens 不能挽救此类失败. 训练 wall clock 约 5h39m, 比 mt4096 (~5h02m) 多约 37 分钟. 结论: max_new_tokens 4096→6144 对 unconstrained 生成无实质影响, 不建议采用作为后续 baseline.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T14:08:19.680Z\\\"}, \\\"w1_cf_fallback_llama_scierc\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:32:57.470Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:48:00.744Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"W1 CF fallback 在 Llama SciERC 上的跨模型验证。Llama SciERC full_s1 原 CF=6.56%，预期显著降低。Phase 2 实验。\\\", \\\"parent\\\": \\\"llama_scierc_full_s1\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_llama_scierc.jsonl --device cuda:1 --batch_size 1 --max_new_tokens 4096\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Meta-Llama-3.1-8B-Instruct\\\", \\\"seed\\\": \\\"default\\\", \\\"gpu\\\": \\\"cuda:1\\\"}}, \\\"w1_cf_fallback_docred\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:32:53.234Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:47:56.874Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"W1 CF fallback 在 DocRED (96 relations, 高 tightness) 上的效果。DocRED CF 原值 2.57%，预计 fallback 触发更频繁，DR vs CF trade-off 更明显。Phase 2 实验。\\\", \\\"parent\\\": \\\"phase2_docred_full_s1\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w1_cf_fallback_docred.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/docred/dev.json\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": \\\"default\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}, \\\"w1_cf_fallback_llama_docred\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:33:00.998Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:29:52.780Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"W1 CF fallback 在 Llama DocRED 上的效果。Llama DocRED full_s1 原 CF=12.02%（最高），预期 fallback 大幅降低。Phase 3 实验。\\\", \\\"parent\\\": \\\"llama_docred_full_s1\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w1_cf_fallback_llama_docred.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/docred/dev.json\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Meta-Llama-3.1-8B-Instruct\\\", \\\"seed\\\": \\\"default\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}}, \\\"count\\\": 5, \\\"total\\\": 26, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0988}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"w1_cf_fallback_scierc_pilot\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:32:48.425Z\", \"updated_at\": \"2026-05-15T14:47:53.846Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"270088\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\", \"submitted_at\": \"2026-05-15T14:07:14.512Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"270088\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"finished_at\": \"2026-05-15T14:47:53.690Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T14:47:54.986519+00:00\"}]}}, \"llama_docred_unconstrained_mt6144\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:17:33.154Z\", \"updated_at\": \"2026-05-15T14:09:53.452Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"246947\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained_mt6144.log\", \"submitted_at\": \"2026-05-15T08:19:27.565Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 20932.1, \"gpu_hours\": 5.81}, \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"pid\": \"246947\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained_mt6144.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\"\", \"finished_at\": \"2026-05-15T13:59:24.508Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:59:25.767053+00:00\"}]}, \"metrics\": {\"ET_rate\": 0.13, \"RV_rate\": 15.89, \"DR_rate\": 26.18, \"DR_rate_eligible\": 31.15, \"CF_rate\": 0.17, \"entity_precision\": 61.19, \"entity_recall\": 51.06, \"entity_f1\": 55.67, \"relation_precision\": 5.18, \"relation_recall\": 7, \"relation_f1\": 5.95, \"parse_failures\": 67, \"documents_checked\": 931, \"total_documents\": 998, \"unique_entities\": 11534, \"total_triples\": 16584, \"dr_eligible_triples\": 13936, \"fuzzy_relation_matches\": 121}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl\", \"notes\": \"mt6144 vs mt4096 对比: parse_failures 68→67 (-1, 几乎无变化); unique_entities 11525→11534 (+9); triples 16437→16584 (+147, +0.9%); E-F1 55.65%→55.67% (+0.02pp); R-F1 5.98%→5.95% (-0.03pp); DR 26.07%→26.18% (+0.11pp); RV 16.03%→15.89% (-0.14pp); ET/CF 不变. 67 个 FAIL 中绝大多数 inference time ~96s (仍触发 max_tokens cap), 说明这些失败主要源于模型陷入重复循环直到 token 上限, 而非文档过长. 增加 max_new_tokens 不能挽救此类失败. 训练 wall clock 约 5h39m, 比 mt4096 (~5h02m) 多约 37 分钟. 结论: max_new_tokens 4096→6144 对 unconstrained 生成无实质影响, 不建议采用作为后续 baseline.\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T14:08:19.680Z\"}, \"w1_cf_fallback_llama_scierc\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:32:57.470Z\", \"updated_at\": \"2026-05-15T11:48:00.744Z\", \"spec\": {\"hypothesis\": \"W1 CF fallback 在 Llama SciERC 上的跨模型验证。Llama SciERC full_s1 原 CF=6.56%，预期显著降低。Phase 2 实验。\", \"parent\": \"llama_scierc_full_s1\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_llama_scierc.jsonl --device cuda:1 --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-16980\", \"data_path\": \"data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Meta-Llama-3.1-8B-Instruct\", \"seed\": \"default\", \"gpu\": \"cuda:1\"}}, \"w1_cf_fallback_docred\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:32:53.234Z\", \"updated_at\": \"2026-05-15T11:47:56.874Z\", \"spec\": {\"hypothesis\": \"W1 CF fallback 在 DocRED (96 relations, 高 tightness) 上的效果。DocRED CF 原值 2.57%，预计 fallback 触发更频繁，DR vs CF trade-off 更明显。Phase 2 实验。\", \"parent\": \"phase2_docred_full_s1\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w1_cf_fallback_docred.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-16980\", \"data_path\": \"data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": \"default\", \"gpu\": \"cuda:0\"}}, \"w1_cf_fallback_llama_docred\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:33:00.998Z\", \"updated_at\": \"2026-05-15T11:29:52.780Z\", \"spec\": {\"hypothesis\": \"W1 CF fallback 在 Llama DocRED 上的效果。Llama DocRED full_s1 原 CF=12.02%（最高），预期 fallback 大幅降低。Phase 3 实验。\", \"parent\": \"llama_docred_full_s1\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w1_cf_fallback_llama_docred.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-16980\", \"data_path\": \"data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Meta-Llama-3.1-8B-Instruct\", \"seed\": \"default\", \"gpu\": \"cuda:0\"}}}, \"count\": 5, \"total\": 26, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0988}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "868dda9d-e8bc-44a5-a898-6786e034648a",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_0165oZozx9JjJW9WGByeEgjH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4509,
+      "cache_read_input_tokens": 69829,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4509
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01SgT3VYRBe3gMRkhudGDtK4`</summary>
+
+```json
+{
+  "exp_id": "w1_cf_fallback_scierc_pilot",
+  "field": "checkpoint_path",
+  "value": "/root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot.jsonl",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "1ac7a9a3-3c92-4155-a66e-7423d527349e",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_0165oZozx9JjJW9WGByeEgjH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4509,
+      "cache_read_input_tokens": 69829,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4509
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-15T14:53:46.795Z_
+
+<details><summary>↩ Tool result · `toolu_01SgT3VYRBe3gMRkhudGDtK4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"w1_cf_fallback_scierc_pilot\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:32:48.425Z\", \"updated_at\": \"2026-05-15T14:53:46.718Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"270088\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\", \"submitted_at\": \"2026-05-15T14:07:14.512Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"270088\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"finished_at\": \"2026-05-15T14:47:53.690Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T14:47:54.986519+00:00\"}]}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot.jsonl\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1597}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "a9dea479-3469-4f59-9253-35d290a317f0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"w1_cf_fallback_scierc_pilot\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:32:48.425Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:53:46.718Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"270088\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T14:07:14.512Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"pid\\\": \\\"270088\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T14:47:53.690Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T14:47:54.986519+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot.jsonl\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1597}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"w1_cf_fallback_scierc_pilot\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:32:48.425Z\", \"updated_at\": \"2026-05-15T14:53:46.718Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"270088\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\", \"submitted_at\": \"2026-05-15T14:07:14.512Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"270088\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"finished_at\": \"2026-05-15T14:47:53.690Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T14:47:54.986519+00:00\"}]}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot.jsonl\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1597}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01QbsjmiNve5ZirZniY9Txkk`</summary>
+
+```json
+{
+  "exp_id": "w1_cf_fallback_scierc_pilot",
+  "field": "metrics",
+  "value": {
+    "checker_version": "fixed_20260514_v2",
+    "total_samples": 551,
+    "total_triples_extracted": 1725,
+    "total_entities_extracted": 2474,
+    "json_parse_rate": 1,
+    "ET_rate": 0,
+    "RV_rate": 0,
+    "DR_rate": 14.78,
+    "CF_rate": 0.04,
+    "total_violation_rate": 6.1,
+    "dr_plus_cf_budget": 14.82,
+    "entity_precision": 25.98,
+    "entity_recall": 38.37,
+    "entity_f1": 30.98,
+    "relation_precision": 6.43,
+    "relation_recall": 11.4,
+    "relation_f1": 8.23,
+    "grammar_first_fallback_rate": 36.64,
+    "cf_registry_fallback_rate": 4.48,
+    "grammar_first_fallback_count": 6237,
+    "cf_registry_fallback_count": 763,
+    "total_mask_calls": 17024,
+    "delta_DR_vs_baseline_pp": 13.85,
+    "delta_CF_vs_baseline_pp": -9.86,
+    "delta_RF1_vs_baseline_pp": -0.13,
+    "delta_EF1_vs_baseline_pp": 0,
+    "delta_budget_vs_baseline_pp": 3.99,
+    "baseline_exp_id": "phase2_scierc_full_s1"
+  },
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "957c4aff-b2bd-446f-900c-83b08088ab5b",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_0165oZozx9JjJW9WGByeEgjH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4509,
+      "cache_read_input_tokens": 69829,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4509
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-15T14:53:52.582Z_
+
+<details><summary>↩ Tool result · `toolu_01QbsjmiNve5ZirZniY9Txkk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"w1_cf_fallback_scierc_pilot\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:32:48.425Z\", \"updated_at\": \"2026-05-15T14:53:52.485Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"270088\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\", \"submitted_at\": \"2026-05-15T14:07:14.512Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"270088\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"finished_at\": \"2026-05-15T14:47:53.690Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T14:47:54.986519+00:00\"}]}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot.jsonl\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2\", \"total_samples\": 551, \"total_triples_extracted\": 1725, \"total_entities_extracted\": 2474, \"json_parse_rate\": 1, \"ET_rate\": 0, \"RV_rate\": 0, \"DR_rate\": 14.78, \"CF_rate\": 0.04, \"total_violation_rate\": 6.1, \"dr_plus_cf_budget\": 14.82, \"entity_precision\": 25.98, \"entity_recall\": 38.37, \"entity_f1\": 30.98, \"relation_precision\": 6.43, \"relation_recall\": 11.4, \"relation_f1\": 8.23, \"grammar_first_fallback_rate\": 36.64, \"cf_registry_fallback_rate\": 4.48, \"grammar_first_fallback_count\": 6237, \"cf_registry_fallback_count\": 763, \"total_mask_calls\": 17024, \"delta_DR_vs_baseline_pp\": 13.85, \"delta_CF_vs_baseline_pp\": -9.86, \"delta_RF1_vs_baseline_pp\": -0.13, \"delta_EF1_vs_baseline_pp\": 0, \"delta_budget_vs_baseline_pp\": 3.99, \"baseline_exp_id\": \"phase2_scierc_full_s1\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1935}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "79983510-e601-4696-9be0-53fd7e655c6d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"w1_cf_fallback_scierc_pilot\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:32:48.425Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:53:52.485Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"270088\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T14:07:14.512Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"pid\\\": \\\"270088\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T14:47:53.690Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T14:47:54.986519+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot.jsonl\\\", \\\"metrics\\\": {\\\"checker_version\\\": \\\"fixed_20260514_v2\\\", \\\"total_samples\\\": 551, \\\"total_triples_extracted\\\": 1725, \\\"total_entities_extracted\\\": 2474, \\\"json_parse_rate\\\": 1, \\\"ET_rate\\\": 0, \\\"RV_rate\\\": 0, \\\"DR_rate\\\": 14.78, \\\"CF_rate\\\": 0.04, \\\"total_violation_rate\\\": 6.1, \\\"dr_plus_cf_budget\\\": 14.82, \\\"entity_precision\\\": 25.98, \\\"entity_recall\\\": 38.37, \\\"entity_f1\\\": 30.98, \\\"relation_precision\\\": 6.43, \\\"relation_recall\\\": 11.4, \\\"relation_f1\\\": 8.23, \\\"grammar_first_fallback_rate\\\": 36.64, \\\"cf_registry_fallback_rate\\\": 4.48, \\\"grammar_first_fallback_count\\\": 6237, \\\"cf_registry_fallback_count\\\": 763, \\\"total_mask_calls\\\": 17024, \\\"delta_DR_vs_baseline_pp\\\": 13.85, \\\"delta_CF_vs_baseline_pp\\\": -9.86, \\\"delta_RF1_vs_baseline_pp\\\": -0.13, \\\"delta_EF1_vs_baseline_pp\\\": 0, \\\"delta_budget_vs_baseline_pp\\\": 3.99, \\\"baseline_exp_id\\\": \\\"phase2_scierc_full_s1\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1935}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"w1_cf_fallback_scierc_pilot\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:32:48.425Z\", \"updated_at\": \"2026-05-15T14:53:52.485Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"270088\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\", \"submitted_at\": \"2026-05-15T14:07:14.512Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"270088\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"finished_at\": \"2026-05-15T14:47:53.690Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T14:47:54.986519+00:00\"}]}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot.jsonl\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2\", \"total_samples\": 551, \"total_triples_extracted\": 1725, \"total_entities_extracted\": 2474, \"json_parse_rate\": 1, \"ET_rate\": 0, \"RV_rate\": 0, \"DR_rate\": 14.78, \"CF_rate\": 0.04, \"total_violation_rate\": 6.1, \"dr_plus_cf_budget\": 14.82, \"entity_precision\": 25.98, \"entity_recall\": 38.37, \"entity_f1\": 30.98, \"relation_precision\": 6.43, \"relation_recall\": 11.4, \"relation_f1\": 8.23, \"grammar_first_fallback_rate\": 36.64, \"cf_registry_fallback_rate\": 4.48, \"grammar_first_fallback_count\": 6237, \"cf_registry_fallback_count\": 763, \"total_mask_calls\": 17024, \"delta_DR_vs_baseline_pp\": 13.85, \"delta_CF_vs_baseline_pp\": -9.86, \"delta_RF1_vs_baseline_pp\": -0.13, \"delta_EF1_vs_baseline_pp\": 0, \"delta_budget_vs_baseline_pp\": 3.99, \"baseline_exp_id\": \"phase2_scierc_full_s1\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1935}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01HKpM9BZroLJKtaG62cpCzm`</summary>
+
+```json
+{
+  "exp_id": "w1_cf_fallback_scierc_pilot",
+  "field": "notes",
+  "value": "CF fallback 实验在 SciERC + Qwen3-8B 上的 pilot 结果：CF 从 9.90% 下降到 0.04% (-9.86pp)，但 DR 从 0.93% 上升到 14.78% (+13.85pp)。DR+CF budget 净增 +3.99pp。F1 几乎不变 (E-F1=30.98% 与 baseline 完全一致；R-F1=8.23%, -0.13pp)。Grammar-first fallback 触发率 36.64% (6237/17024 mask calls)，CF-registry fallback 4.48%。判定：成功降低 CF 但代价是 DR 大幅恶化，违规没有真正减少，只是从 CF 转移到 DR。建议改进方向：(1) 仅在 CF-registry 命中时回退，保留 DR enforcement；(2) rebuttal 中诚实呈现这是 violation re-routing 而非 reduction。详细报告见 artifact w1_cf_fallback_scierc_pilot_analysis。",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "be1fd4f8-6538-49b3-8d5a-3f6c2fa1a2d1",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_0165oZozx9JjJW9WGByeEgjH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4509,
+      "cache_read_input_tokens": 69829,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4509
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-15T14:53:58.962Z_
+
+<details><summary>↩ Tool result · `toolu_01HKpM9BZroLJKtaG62cpCzm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"w1_cf_fallback_scierc_pilot\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:32:48.425Z\", \"updated_at\": \"2026-05-15T14:53:58.876Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"270088\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\", \"submitted_at\": \"2026-05-15T14:07:14.512Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"270088\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"finished_at\": \"2026-05-15T14:47:53.690Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T14:47:54.986519+00:00\"}]}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot.jsonl\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2\", \"total_samples\": 551, \"total_triples_extracted\": 1725, \"total_entities_extracted\": 2474, \"json_parse_rate\": 1, \"ET_rate\": 0, \"RV_rate\": 0, \"DR_rate\": 14.78, \"CF_rate\": 0.04, \"total_violation_rate\": 6.1, \"dr_plus_cf_budget\": 14.82, \"entity_precision\": 25.98, \"entity_recall\": 38.37, \"entity_f1\": 30.98, \"relation_precision\": 6.43, \"relation_recall\": 11.4, \"relation_f1\": 8.23, \"grammar_first_fallback_rate\": 36.64, \"cf_registry_fallback_rate\": 4.48, \"grammar_first_fallback_count\": 6237, \"cf_registry_fallback_count\": 763, \"total_mask_calls\": 17024, \"delta_DR_vs_baseline_pp\": 13.85, \"delta_CF_vs_baseline_pp\": -9.86, \"delta_RF1_vs_baseline_pp\": -0.13, \"delta_EF1_vs_baseline_pp\": 0, \"delta_budget_vs_baseline_pp\": 3.99, \"baseline_exp_id\": \"phase2_scierc_full_s1\"}, \"notes\": \"CF fallback 实验在 SciERC + Qwen3-8B 上的 pilot 结果：CF 从 9.90% 下降到 0.04% (-9.86pp)，但 DR 从 0.93% 上升到 14.78% (+13.85pp)。DR+CF budget 净增 +3.99pp。F1 几乎不变 (E-F1=30.98% 与 baseline 完全一致；R-F1=8.23%, -0.13pp)。Grammar-first fallback 触发率 36.64% (6237/17024 mask calls)，CF-registry fallback 4.48%。判定：成功降低 CF 但代价是 DR 大幅恶化，违规没有真正减少，只是从 CF 转移到 DR。建议改进方向：(1) 仅在 CF-registry 命中时回退，保留 DR enforcement；(2) rebuttal 中诚实呈现这是 violation re-routing 而非 reduction。详细报告见 artifact w1_cf_fallback_scierc_pilot_analysis。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1853}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "5cd80dd0-7f9d-4002-906b-275bf6a7f750",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"w1_cf_fallback_scierc_pilot\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:32:48.425Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:53:58.876Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"270088\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T14:07:14.512Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"pid\\\": \\\"270088\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T14:47:53.690Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T14:47:54.986519+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot.jsonl\\\", \\\"metrics\\\": {\\\"checker_version\\\": \\\"fixed_20260514_v2\\\", \\\"total_samples\\\": 551, \\\"total_triples_extracted\\\": 1725, \\\"total_entities_extracted\\\": 2474, \\\"json_parse_rate\\\": 1, \\\"ET_rate\\\": 0, \\\"RV_rate\\\": 0, \\\"DR_rate\\\": 14.78, \\\"CF_rate\\\": 0.04, \\\"total_violation_rate\\\": 6.1, \\\"dr_plus_cf_budget\\\": 14.82, \\\"entity_precision\\\": 25.98, \\\"entity_recall\\\": 38.37, \\\"entity_f1\\\": 30.98, \\\"relation_precision\\\": 6.43, \\\"relation_recall\\\": 11.4, \\\"relation_f1\\\": 8.23, \\\"grammar_first_fallback_rate\\\": 36.64, \\\"cf_registry_fallback_rate\\\": 4.48, \\\"grammar_first_fallback_count\\\": 6237, \\\"cf_registry_fallback_count\\\": 763, \\\"total_mask_calls\\\": 17024, \\\"delta_DR_vs_baseline_pp\\\": 13.85, \\\"delta_CF_vs_baseline_pp\\\": -9.86, \\\"delta_RF1_vs_baseline_pp\\\": -0.13, \\\"delta_EF1_vs_baseline_pp\\\": 0, \\\"delta_budget_vs_baseline_pp\\\": 3.99, \\\"baseline_exp_id\\\": \\\"phase2_scierc_full_s1\\\"}, \\\"notes\\\": \\\"CF fallback 实验在 SciERC + Qwen3-8B 上的 pilot 结果：CF 从 9.90% 下降到 0.04% (-9.86pp)，但 DR 从 0.93% 上升到 14.78% (+13.85pp)。DR+CF budget 净增 +3.99pp。F1 几乎不变 (E-F1=30.98% 与 baseline 完全一致；R-F1=8.23%, -0.13pp)。Grammar-first fallback 触发率 36.64% (6237/17024 mask calls)，CF-registry fallback 4.48%。判定：成功降低 CF 但代价是 DR 大幅恶化，违规没有真正减少，只是从 CF 转移到 DR。建议改进方向：(1) 仅在 CF-registry 命中时回退，保留 DR enforcement；(2) rebuttal 中诚实呈现这是 violation re-routing 而非 reduction。详细报告见 artifact w1_cf_fallback_scierc_pilot_analysis。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1853}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"w1_cf_fallback_scierc_pilot\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:32:48.425Z\", \"updated_at\": \"2026-05-15T14:53:58.876Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"270088\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\", \"submitted_at\": \"2026-05-15T14:07:14.512Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"270088\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"finished_at\": \"2026-05-15T14:47:53.690Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T14:47:54.986519+00:00\"}]}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot.jsonl\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2\", \"total_samples\": 551, \"total_triples_extracted\": 1725, \"total_entities_extracted\": 2474, \"json_parse_rate\": 1, \"ET_rate\": 0, \"RV_rate\": 0, \"DR_rate\": 14.78, \"CF_rate\": 0.04, \"total_violation_rate\": 6.1, \"dr_plus_cf_budget\": 14.82, \"entity_precision\": 25.98, \"entity_recall\": 38.37, \"entity_f1\": 30.98, \"relation_precision\": 6.43, \"relation_recall\": 11.4, \"relation_f1\": 8.23, \"grammar_first_fallback_rate\": 36.64, \"cf_registry_fallback_rate\": 4.48, \"grammar_first_fallback_count\": 6237, \"cf_registry_fallback_count\": 763, \"total_mask_calls\": 17024, \"delta_DR_vs_baseline_pp\": 13.85, \"delta_CF_vs_baseline_pp\": -9.86, \"delta_RF1_vs_baseline_pp\": -0.13, \"delta_EF1_vs_baseline_pp\": 0, \"delta_budget_vs_baseline_pp\": 3.99, \"baseline_exp_id\": \"phase2_scierc_full_s1\"}, \"notes\": \"CF fallback 实验在 SciERC + Qwen3-8B 上的 pilot 结果：CF 从 9.90% 下降到 0.04% (-9.86pp)，但 DR 从 0.93% 上升到 14.78% (+13.85pp)。DR+CF budget 净增 +3.99pp。F1 几乎不变 (E-F1=30.98% 与 baseline 完全一致；R-F1=8.23%, -0.13pp)。Grammar-first fallback 触发率 36.64% (6237/17024 mask calls)，CF-registry fallback 4.48%。判定：成功降低 CF 但代价是 DR 大幅恶化，违规没有真正减少，只是从 CF 转移到 DR。建议改进方向：(1) 仅在 CF-registry 命中时回退，保留 DR enforcement；(2) rebuttal 中诚实呈现这是 violation re-routing 而非 reduction。详细报告见 artifact w1_cf_fallback_scierc_pilot_analysis。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1853}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_0188gHcfhHHEj5gyJMqcHzGd`</summary>
+
+```json
+{
+  "exp_id": "w1_cf_fallback_scierc_pilot",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "57ce0205-9c99-41aa-a4cd-6046b901b2c4",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01KH6joLQJVoRigWdSLH587X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6144,
+      "cache_read_input_tokens": 74338,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6144
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-15T14:54:02.292Z_
+
+<details><summary>↩ Tool result · `toolu_0188gHcfhHHEj5gyJMqcHzGd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"w1_cf_fallback_scierc_pilot\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:32:48.425Z\", \"updated_at\": \"2026-05-15T14:54:02.207Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"270088\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\", \"submitted_at\": \"2026-05-15T14:07:14.512Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"270088\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"finished_at\": \"2026-05-15T14:47:53.690Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T14:47:54.986519+00:00\"}]}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot.jsonl\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2\", \"total_samples\": 551, \"total_triples_extracted\": 1725, \"total_entities_extracted\": 2474, \"json_parse_rate\": 1, \"ET_rate\": 0, \"RV_rate\": 0, \"DR_rate\": 14.78, \"CF_rate\": 0.04, \"total_violation_rate\": 6.1, \"dr_plus_cf_budget\": 14.82, \"entity_precision\": 25.98, \"entity_recall\": 38.37, \"entity_f1\": 30.98, \"relation_precision\": 6.43, \"relation_recall\": 11.4, \"relation_f1\": 8.23, \"grammar_first_fallback_rate\": 36.64, \"cf_registry_fallback_rate\": 4.48, \"grammar_first_fallback_count\": 6237, \"cf_registry_fallback_count\": 763, \"total_mask_calls\": 17024, \"delta_DR_vs_baseline_pp\": 13.85, \"delta_CF_vs_baseline_pp\": -9.86, \"delta_RF1_vs_baseline_pp\": -0.13, \"delta_EF1_vs_baseline_pp\": 0, \"delta_budget_vs_baseline_pp\": 3.99, \"baseline_exp_id\": \"phase2_scierc_full_s1\"}, \"notes\": \"CF fallback 实验在 SciERC + Qwen3-8B 上的 pilot 结果：CF 从 9.90% 下降到 0.04% (-9.86pp)，但 DR 从 0.93% 上升到 14.78% (+13.85pp)。DR+CF budget 净增 +3.99pp。F1 几乎不变 (E-F1=30.98% 与 baseline 完全一致；R-F1=8.23%, -0.13pp)。Grammar-first fallback 触发率 36.64% (6237/17024 mask calls)，CF-registry fallback 4.48%。判定：成功降低 CF 但代价是 DR 大幅恶化，违规没有真正减少，只是从 CF 转移到 DR。建议改进方向：(1) 仅在 CF-registry 命中时回退，保留 DR enforcement；(2) rebuttal 中诚实呈现这是 violation re-routing 而非 reduction。详细报告见 artifact w1_cf_fallback_scierc_pilot_analysis。\", \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.181}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "46dbcaca-9f0a-4914-b8ea-0d6f3752e622",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"w1_cf_fallback_scierc_pilot\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:32:48.425Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:54:02.207Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"270088\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T14:07:14.512Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"pid\\\": \\\"270088\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T14:47:53.690Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T14:47:54.986519+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot.jsonl\\\", \\\"metrics\\\": {\\\"checker_version\\\": \\\"fixed_20260514_v2\\\", \\\"total_samples\\\": 551, \\\"total_triples_extracted\\\": 1725, \\\"total_entities_extracted\\\": 2474, \\\"json_parse_rate\\\": 1, \\\"ET_rate\\\": 0, \\\"RV_rate\\\": 0, \\\"DR_rate\\\": 14.78, \\\"CF_rate\\\": 0.04, \\\"total_violation_rate\\\": 6.1, \\\"dr_plus_cf_budget\\\": 14.82, \\\"entity_precision\\\": 25.98, \\\"entity_recall\\\": 38.37, \\\"entity_f1\\\": 30.98, \\\"relation_precision\\\": 6.43, \\\"relation_recall\\\": 11.4, \\\"relation_f1\\\": 8.23, \\\"grammar_first_fallback_rate\\\": 36.64, \\\"cf_registry_fallback_rate\\\": 4.48, \\\"grammar_first_fallback_count\\\": 6237, \\\"cf_registry_fallback_count\\\": 763, \\\"total_mask_calls\\\": 17024, \\\"delta_DR_vs_baseline_pp\\\": 13.85, \\\"delta_CF_vs_baseline_pp\\\": -9.86, \\\"delta_RF1_vs_baseline_pp\\\": -0.13, \\\"delta_EF1_vs_baseline_pp\\\": 0, \\\"delta_budget_vs_baseline_pp\\\": 3.99, \\\"baseline_exp_id\\\": \\\"phase2_scierc_full_s1\\\"}, \\\"notes\\\": \\\"CF fallback 实验在 SciERC + Qwen3-8B 上的 pilot 结果：CF 从 9.90% 下降到 0.04% (-9.86pp)，但 DR 从 0.93% 上升到 14.78% (+13.85pp)。DR+CF budget 净增 +3.99pp。F1 几乎不变 (E-F1=30.98% 与 baseline 完全一致；R-F1=8.23%, -0.13pp)。Grammar-first fallback 触发率 36.64% (6237/17024 mask calls)，CF-registry fallback 4.48%。判定：成功降低 CF 但代价是 DR 大幅恶化，违规没有真正减少，只是从 CF 转移到 DR。建议改进方向：(1) 仅在 CF-registry 命中时回退，保留 DR enforcement；(2) rebuttal 中诚实呈现这是 violation re-routing 而非 reduction。详细报告见 artifact w1_cf_fallback_scierc_pilot_analysis。\\\", \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.181}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"w1_cf_fallback_scierc_pilot\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:32:48.425Z\", \"updated_at\": \"2026-05-15T14:54:02.207Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"270088\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\", \"submitted_at\": \"2026-05-15T14:07:14.512Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"270088\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"finished_at\": \"2026-05-15T14:47:53.690Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T14:47:54.986519+00:00\"}]}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot.jsonl\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2\", \"total_samples\": 551, \"total_triples_extracted\": 1725, \"total_entities_extracted\": 2474, \"json_parse_rate\": 1, \"ET_rate\": 0, \"RV_rate\": 0, \"DR_rate\": 14.78, \"CF_rate\": 0.04, \"total_violation_rate\": 6.1, \"dr_plus_cf_budget\": 14.82, \"entity_precision\": 25.98, \"entity_recall\": 38.37, \"entity_f1\": 30.98, \"relation_precision\": 6.43, \"relation_recall\": 11.4, \"relation_f1\": 8.23, \"grammar_first_fallback_rate\": 36.64, \"cf_registry_fallback_rate\": 4.48, \"grammar_first_fallback_count\": 6237, \"cf_registry_fallback_count\": 763, \"total_mask_calls\": 17024, \"delta_DR_vs_baseline_pp\": 13.85, \"delta_CF_vs_baseline_pp\": -9.86, \"delta_RF1_vs_baseline_pp\": -0.13, \"delta_EF1_vs_baseline_pp\": 0, \"delta_budget_vs_baseline_pp\": 3.99, \"baseline_exp_id\": \"phase2_scierc_full_s1\"}, \"notes\": \"CF fallback 实验在 SciERC + Qwen3-8B 上的 pilot 结果：CF 从 9.90% 下降到 0.04% (-9.86pp)，但 DR 从 0.93% 上升到 14.78% (+13.85pp)。DR+CF budget 净增 +3.99pp。F1 几乎不变 (E-F1=30.98% 与 baseline 完全一致；R-F1=8.23%, -0.13pp)。Grammar-first fallback 触发率 36.64% (6237/17024 mask calls)，CF-registry fallback 4.48%。判定：成功降低 CF 但代价是 DR 大幅恶化，违规没有真正减少，只是从 CF 转移到 DR。建议改进方向：(1) 仅在 CF-registry 命中时回退，保留 DR enforcement；(2) rebuttal 中诚实呈现这是 violation re-routing 而非 reduction。详细报告见 artifact w1_cf_fallback_scierc_pilot_analysis。\", \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.181}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_01YC6P9XuM2iV95CNSbqKdzL`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Check log + output file status",
+      "activeForm": "Checking log + output file status",
+      "status": "completed"
+    },
+    {
+      "content": "Determine violation_checker / F1 eval CLI args",
+      "activeForm": "Determining script CLI args",
+      "status": "completed"
+    },
+    {
+      "content": "Run violation_checker on output",
+      "activeForm": "Running violation_checker on output",
+      "status": "completed"
+    },
+    {
+      "content": "Re-run baseline violation checker for direct comparison",
+      "activeForm": "Re-running baseline violation checker",
+      "status": "completed"
+    },
+    {
+      "content": "Run analyze_cf_fallback / CF analysis",
+      "activeForm": "Running CF analysis",
+      "status": "completed"
+    },
+    {
+      "content": "Write analysis report + register artifact",
+      "activeForm": "Writing analysis report + registering artifact",
+      "status": "completed"
+    },
+    {
+      "content": "Update registry with metrics + conclusion",
+      "activeForm": "Updating registry",
+      "status": "completed"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "c035fef4-0bb9-4f4e-9f2c-e732c180e724",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01VRRmWUA4iHkuSPiqR7CQdW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2139,
+      "cache_read_input_tokens": 80482,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2139
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-15T14:54:08.137Z_
+
+<details><summary>↩ Tool result · `toolu_01YC6P9XuM2iV95CNSbqKdzL`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "c69e984e-1b3b-4918-8568-65f440396998",
+  "tool_use_result": {
+    "oldTodos": [
+      {
+        "content": "Check log + output file status",
+        "status": "completed",
+        "activeForm": "Checking log + output file status"
+      },
+      {
+        "content": "Determine violation_checker / F1 eval CLI args",
+        "status": "completed",
+        "activeForm": "Determining script CLI args"
+      },
+      {
+        "content": "Run violation_checker on output",
+        "status": "completed",
+        "activeForm": "Running violation_checker on output"
+      },
+      {
+        "content": "Re-run baseline violation checker for direct comparison",
+        "status": "completed",
+        "activeForm": "Re-running baseline violation checker"
+      },
+      {
+        "content": "Run analyze_cf_fallback / CF analysis",
+        "status": "completed",
+        "activeForm": "Running CF analysis"
+      },
+      {
+        "content": "Write analysis report + register artifact",
+        "status": "in_progress",
+        "activeForm": "Writing analysis report + registering artifact"
+      },
+      {
+        "content": "Update registry with metrics + conclusion",
+        "status": "pending",
+        "activeForm": "Updating registry"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "Check log + output file status",
+        "status": "completed",
+        "activeForm": "Checking log + output file status"
+      },
+      {
+        "content": "Determine violation_checker / F1 eval CLI args",
+        "status": "completed",
+        "activeForm": "Determining script CLI args"
+      },
+      {
+        "content": "Run violation_checker on output",
+        "status": "completed",
+        "activeForm": "Running violation_checker on output"
+      },
+      {
+        "content": "Re-run baseline violation checker for direct comparison",
+        "status": "completed",
+        "activeForm": "Re-running baseline violation checker"
+      },
+      {
+        "content": "Run analyze_cf_fallback / CF analysis",
+        "status": "completed",
+        "activeForm": "Running CF analysis"
+      },
+      {
+        "content": "Write analysis report + register artifact",
+        "status": "completed",
+        "activeForm": "Writing analysis report + registering artifact"
+      },
+      {
+        "content": "Update registry with metrics + conclusion",
+        "status": "completed",
+        "activeForm": "Updating registry"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 92_
+
+分析完成。判定 **NEGATIVE**。
+
+**核心结果（W1 + CF fallback vs `phase2_scierc_full_s1` baseline，551 样本）:**
+
+| 指标 | W1 + CF-fb | Baseline | Δ |
+|---|---|---|---|
+| ET / RV | 0.00 / 0.00 % | 0.00 / 0.00 % | 0 |
+| **DR** | **14.78 %** | 0.93 % | **+13.85 pp** ❌ |
+| **CF** | **0.04 %** | 9.90 % | **−9.86 pp** ✅ |
+| DR + CF budget | 14.82 % | 10.83 % | **+3.99 pp** ❌ |
+| E-F1 | 30.98 % | 30.98 % | 0 pp ✅ |
+| R-F1 | 8.23 % | 8.36 % | −0.13 pp ✅ |
+
+**Fallback 触发率**：grammar-first 36.64 %（6237/17024）、cf_registry 4.48 %（763）。
+
+**判定依据**：CF 几乎归零、F1 不掉 → 通过；但 DR 从 0.93% 暴涨到 14.78%（要求 < 2%）→ 不通过。机制实际是把 CF 违规"转嫁"到 DR，总违规预算反而升 +3.99 pp。
+
+**Artifacts**：
+- 报告：`projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_scierc_pilot/report/w1_cf_fallback_scierc_pilot_report.md`（art_20260515_0e1d86）
+- Pareto 图：`outputs/cf_analysis_w1_pilot/dr_vs_cf_pareto.{pdf,png}`
+- Registry：metrics / notes / conclusion=`negative` / checkpoint_path 已写入
+
+**Rebuttal implication**：当前 grammar-first fallback 不是 Pareto 改进。建议下一步只保留 CF-registry fallback（保留 DR enforcement），或诚实呈现为"violation re-routing"。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "uuid": "569dec5d-d933-4e7c-8712-f4108d7f7806",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_019z2WVTy6S9Y9TPuUfGxkcx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 440,
+      "cache_read_input_tokens": 82621,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 440
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 93_
+
+分析完成。判定 **NEGATIVE**。
+
+**核心结果（W1 + CF fallback vs `phase2_scierc_full_s1` baseline，551 样本）:**
+
+| 指标 | W1 + CF-fb | Baseline | Δ |
+|---|---|---|---|
+| ET / RV | 0.00 / 0.00 % | 0.00 / 0.00 % | 0 |
+| **DR** | **14.78 %** | 0.93 % | **+13.85 pp** ❌ |
+| **CF** | **0.04 %** | 9.90 % | **−9.86 pp** ✅ |
+| DR + CF budget | 14.82 % | 10.83 % | **+3.99 pp** ❌ |
+| E-F1 | 30.98 % | 30.98 % | 0 pp ✅ |
+| R-F1 | 8.23 % | 8.36 % | −0.13 pp ✅ |
+
+**Fallback 触发率**：grammar-first 36.64 %（6237/17024）、cf_registry 4.48 %（763）。
+
+**判定依据**：CF 几乎归零、F1 不掉 → 通过；但 DR 从 0.93% 暴涨到 14.78%（要求 < 2%）→ 不通过。机制实际是把 CF 违规"转嫁"到 DR，总违规预算反而升 +3.99 pp。
+
+**Artifacts**：
+- 报告：`projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_scierc_pilot/report/w1_cf_fallback_scierc_pilot_report.md`（art_20260515_0e1d86）
+- Pareto 图：`outputs/cf_analysis_w1_pilot/dr_vs_cf_pareto.{pdf,png}`
+- Registry：metrics / notes / conclusion=`negative` / checkpoint_path 已写入
+
+**Rebuttal implication**：当前 grammar-first fallback 不是 Pareto 改进。建议下一步只保留 CF-registry fallback（保留 DR enforcement），或诚实呈现为"violation re-routing"。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 268565,
+  "duration_api_ms": 239124,
+  "num_turns": 36,
+  "stop_reason": "end_turn",
+  "session_id": "7ef26e30-282b-483d-abd6-b29bfc560c9e",
+  "total_cost_usd": 1.66806225,
+  "usage": {
+    "input_tokens": 42,
+    "cache_creation_input_tokens": 83121,
+    "cache_read_input_tokens": 1515592,
+    "output_tokens": 15545,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 83121,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 724,
+        "cache_read_input_tokens": 82621,
+        "cache_creation_input_tokens": 440,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 440
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1815,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001925,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-7[1m]": {
+      "inputTokens": 42,
+      "outputTokens": 15545,
+      "cacheReadInputTokens": 1515592,
+      "cacheCreationInputTokens": 83121,
+      "webSearchRequests": 0,
+      "costUSD": 1.66613725,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "72eb8bbb-2ffd-4b50-97b3-c260699223e4"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0cbdc3908265cf636222",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check westd21461 running experiments",
+  "task_key": "worker_check_westd21461-running-experiments_20260523T020308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd21461-running-experiments_20260523T020308_result.json",
+    "occurrence": 1,
+    "bytes": 729,
+    "sha256": "06c0dac008a4e6aff025cbc70e44f64b1f700beb9f9836fca6d51911804ffbb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态\n\n两个实验均在 **运行中**，启动于 08:40（约 1h24m 前）。\n\n| 实验 | GPU | PID | 已完成 | 进度 | 预估剩余 |\n|------|-----|-----|--------|------|----------|\n| **eval_70b_zs_docred_200_full_s1** | GPU 0 | 88685 | 159/200 | 79.5% | ~25 min |\n| **eval_70b_lora_docred_200_full_s2** | GPU 1 (w/ LoRA ckpt-1146) | 88995 | 46/200 | 23% | ~4.5h |\n\n注意：s2 的日志里有 93 条 `pad_token_id` 消息但 output jsonl 只有 46 行，可能是因为 full_s2 每个 sample 需要多轮生成（先 entity 再 relation），每个 sample 输出两条日志。\n\nZS S1 实验预计约 25 分钟完成；LoRA S2 实验因为两阶段解码，预计还需约 4-5 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd21461-running-experiments.md"
+}

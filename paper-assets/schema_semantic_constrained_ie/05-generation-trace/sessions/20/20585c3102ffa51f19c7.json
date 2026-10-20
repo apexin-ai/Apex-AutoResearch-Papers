@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20585c3102ffa51f19c7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d062 ontology scalability",
+  "task_key": "worker_ssh_d062_ontology_scalability_20260519T041125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d062_ontology_scalability_20260519T041125_result.json",
+    "occurrence": 1,
+    "bytes": 1046,
+    "sha256": "e3e2261faa43777c4a3db413a796052896e2192e0b6f3045f8a9b8992bca5352"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "d062 完成。结果摘要:\n\n**编译 Benchmark**: 总编译时间从 0.33s (SciERC, 6 types/7 rels) 到 0.42s (XLarge, 200 types/1000 rels)，仅增加 1.25x。Grammar 编译是主要开销且几乎不随 ontology 规模增长 (~0.32-0.36s)；semantic 编译线性增长但极快 (0.4ms → 17ms)。\n\n**推理 Overhead**: 全部 4 个规模的 constrained inference overhead 稳定在 **2-3%** (1.02x-1.03x)，从 small 到 xlarge 无显著增加。Zero failures。\n\n**结论**: OntoCoDec 可以高效扩展到 200+ entity types / 1000+ relations，编译 <0.5s，推理 overhead ~3%。Limitations 中关于\"scalability to large ontologies\"的 gap 可以用这组数据消除。\n\n**产出**:\n- 远程脚本: `/root/schema_semantic_constrained_ie/scripts/ontology_scalability_benchmark.py`\n- 合成 ontology: `/root/schema_semantic_constrained_ie/data/synthetic/ontology_{large_100,xlarge_200}.json`\n- 报告: `artifacts/d062_ontology_scalability_results.md`\n- Registry: `d062_ontology_scalability` → DONE (success)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d062-ontology-scalability.md"
+}

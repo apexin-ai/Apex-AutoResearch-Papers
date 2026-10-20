@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ecea6b93e0ec3c7dc00",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "monitor docred 70b 200 cutoff",
+  "task_key": "worker_monitor_docred_70b_200_cutoff_20260522T035122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_docred_70b_200_cutoff_20260522T035122_result.json",
+    "occurrence": 1,
+    "bytes": 207,
+    "sha256": "3b2a7048453938cc752ce45116e6ab204de1ab815ef908f0226d59103d85453c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**DocRED 70B LoRA unconstrained 推理进度：57/200**\n- PID 881085 正常运行，已跑 ~1h19m\n- 速率约 0.7 条/分钟，预计还需 ~3-4 小时到 200 条\n- 15 分钟后再次轮询"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-docred-70b-200-cutoff.md"
+}

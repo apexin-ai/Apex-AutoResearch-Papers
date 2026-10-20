@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "224e250aeae088e2ed34",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code find mistral cache and launch v3",
+  "task_key": "worker_code_find_mistral_cache_and_launch_v3_20260518T070155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_find_mistral_cache_and_launch_v3_20260518T070155_result.json",
+    "occurrence": 1,
+    "bytes": 643,
+    "sha256": "72f5d3aea2a5554cf2381ce9c69adc29e915e719a7b4f39a2d7b11bdf6eea475"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Mistral v3 已成功启动并在运行中。\n\n**总结：**\n\n| 项目 | 状态 |\n|------|------|\n| **模型路径** | `/root/autodl-tmp/.ms_cache/mistralai/Mistral-7B-Instruct-v0___3/` |\n| **服务器** | westd-21461 |\n| **GPU** | cuda:0（15GB / 97GB，85% util） |\n| **Samples** | 246（使用 `all.jsonl`） |\n| **HF_HUB_OFFLINE** | 1（已设置） |\n| **tmux session** | `mistral_v3_full` |\n| **PID** | 5971 |\n| **已完成** | 2/246 samples（正在处理中） |\n\n注意：之前失败的 session 默认加载了 `train.jsonl`（12 行），这次已显式指定 `--data_path data/wikievents/all.jsonl`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-find-mistral-cache-and-launch-v3.md"
+}

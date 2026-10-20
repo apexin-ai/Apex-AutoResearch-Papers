@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "138fed986522de8ac4f6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis docred unconstrained recheck",
+  "task_key": "worker_analysis_docred_unconstrained_recheck_20260514T131743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_docred_unconstrained_recheck_20260514T131743_result.json",
+    "occurrence": 1,
+    "bytes": 2460,
+    "sha256": "6e433b8c7bd07b78b460da6d0813d08bfd5a120910f0157cf923e545a6f717aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。汇报如下：\n\n---\n\n## 1. GPU 状态\n| GPU | 型号 | 利用率 | 显存 | 状态 |\n|-----|------|--------|------|------|\n| 0 | RTX PRO 6000 Blackwell | 0% | 0/97887 MiB | **空闲** |\n| 1 | RTX PRO 6000 Blackwell | 85% | 17535/97887 MiB | **占用** (semantic_only) |\n\n## 2. 实验完成状态\n| 实验 | 状态 | 行数 |\n|------|------|------|\n| `docred_unconstrained.jsonl` | **已完成** | 998 |\n| `docred_semantic_only.jsonl` | **运行中** (820/998) | 837 (已输出) |\n| `docred_full_s1.jsonl` | **已完成** (EXIT_CODE=0) | 998 |\n\n## 3. 去重结果\n- `docred_unconstrained.jsonl`: 998 lines, 998 unique doc_ids, **无重复**\n- `docred_semantic_only.jsonl`: 837 lines, 837 unique doc_ids, **无重复**\n\n## 4. Unconstrained Violation Metrics — Phase 2 重新分析\n\n| Metric | OLD (错误文件) | **NEW (正确)** | 差异 |\n|--------|---------------|----------------|------|\n| Documents checked | 962 | **986** | +24 |\n| Parse failures | 36 | **12** | -24 |\n| Entities | 19099 | **20171** | +1072 |\n| Triples | 16540 | **17497** | +957 |\n| **DR%** | 18.7% | **18.5%** | -0.2pp |\n| **RV%** | 28.9% | **29.7%** | +0.8pp |\n| **ET%** | 7.5% | **8.2%** | +0.7pp |\n| **CF%** | n/a | **0.10%** | — |\n\n确认：OLD 报告数字与新数字不同，说明之前确实用了错误文件（parse failures 差异尤为明显：36 vs 12）。\n\n## 5. F1 Metrics\n\n| Metric | Unconstrained | Full_S1 |\n|--------|--------------|---------|\n| Entity P | 0.5726 | 0.5845 |\n| Entity R | 0.5831 | 0.5963 |\n| **Entity F1** | **0.5778** | **0.5904** |\n| Relation P | 0.0931 | 0.0699 |\n| Relation R | 0.0935 | 0.0991 |\n| **Relation F1** | **0.0933** | **0.0820** |\n\n## 6. Semantic Only — 未完成\n进度 820/998，预计还需 ~1.5h 完成。完成后需同样运行 violation checker + F1 评估。\n\n## 7. 全模式对比表\n\n| Mode | DR% | RV% | ET% | CF% | Triples | Ent F1 | Rel F1 |\n|------|-----|-----|-----|-----|---------|--------|--------|\n| **Unconstrained** (Phase 2 新) | 18.5 | 29.7 | 8.2 | 0.10 | 17497 | 0.5778 | 0.0933 |\n| Grammar Only | 26.2 | 0.0 | 0.0 | — | 17341 | — | — |\n| Full S1 | 10.2 | 0.0 | 0.0 | 2.57 | 17372 | 0.5904 | 0.0820 |\n| Semantic Only | *(运行中)* | | | | | | |\n\n报告已保存至服务器：\n- `outputs/violation_report_docred_unconstrained_phase2.json`\n- `outputs/f1_report_docred_unconstrained_phase2.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-docred-unconstrained-recheck.md"
+}

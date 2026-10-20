@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c89e398e5e08b51717c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d062 full ft scierc recover",
+  "task_key": "worker_ssh_d062_full_ft_scierc_recover_20260519T042307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d062_full_ft_scierc_recover_20260519T042307_result.json",
+    "occurrence": 1,
+    "bytes": 814,
+    "sha256": "9e35554b9fe0ed44b5656e89db6780168b1d7d7d6abf9b5f4aac719ca2be43de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Inference 正在运行。Unconstrained 接近完成 (462/551)，constrained 刚开始 (17/551)。4 分钟后检查进展。\n\n**当前状态**:\n- Checkpoint 验证通过：16GB model.safetensors，399 shards 加载成功\n- 训练信息：eval_loss=0.09459，3 epochs，Qwen3-8B full FT\n- Unconstrained 推理：另一个 worker 已启动 (PID 83571)，462/551 完成\n- Constrained (full_s1) 推理：我启动的 tmux session `d062_full_ft_infer`，17/551 完成\n- GPU 使用：3 个进程共用 96GB GPU，约 57GB 已用\n\n**LoRA FT 对比基线** (已记录):\n| Metric | LoRA FT Greedy Constrained | LoRA FT Beam4 Constrained |\n|--------|---------------------------|--------------------------|\n| E_F1 | 67.05 | 66.88 |\n| R_F1 | 43.77 | 44.23 |\n| DR | 0.20% | 0% |\n| CF | 1.18% | 0% |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d062-full-ft-scierc-recover.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b461ea8f25355c4365e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops w7 qwen semantic exit check",
+  "task_key": "worker_ops_w7_qwen_semantic_exit_check_20260516T072237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_w7_qwen_semantic_exit_check_20260516T072237_result.json",
+    "occurrence": 1,
+    "bytes": 1544,
+    "sha256": "bcfb36c0d99d2caa7e17402f60e062365b3d545f37cbebe97a680aa01c4b055e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n**状态**: **SUCCESS** — 551/551 完成，0 失败，0 JSON 解析错误。\n\n### Violation Metrics 对比\n\n| Metric | semantic_only | grammar_only | unconstrained (baseline) |\n|--------|:------------:|:------------:|:------------------------:|\n| ET% | **0.0%** | 0.0% | ~1.95% |\n| RV% | **0.0%** | 0.0% | — |\n| DR% | **0.6%** | 1.9% | ~1.95% |\n| CF | 15 | 0 | — |\n\n### F1 Metrics\n\n| Metric | semantic_only | grammar_only |\n|--------|:------------:|:------------:|\n| E_P | 0.6523 | 0.6523 |\n| E_R | 0.6898 | 0.6898 |\n| E_F1 | **0.6705** | 0.6705 |\n| R_P | 0.4073 | 0.4087 |\n| R_R | 0.4713 | 0.4733 |\n| R_F1 | **0.4369** | 0.4386 |\n\n### 分析\n\n- **DR 从 1.9% 降至 0.6%** — semantic 层有效消除了大部分 domain-range 违规（降幅 ~68%），但未完全归零（残留 7 个 DR violation）\n- **ET/RV 均为 0%** — fine-tuned 模型本身已学会正确的 entity type 和 relation vocabulary，两个 ablation 条件下一致\n- **CF = 15** — semantic_only 引入了 cross-field consistency 违规（grammar_only 为 0），这说明 grammar 层对 CF 有抑制作用\n- **F1 几乎相同** — semantic 约束对抽取质量无负面影响（R_F1 差异仅 0.0017）\n- Entity F1 完全一致（两者共享同一 fine-tuned 模型，entity 抽取不受解码约束影响）\n\n**关键发现**: Semantic 层独立贡献了 DR 降低（1.9% → 0.6%），验证了 ablation 假设。但 DR 未归零，7 个残留 violation 值得检查是否为边界情况。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-w7-qwen-semantic-exit-check.md"
+}

@@ -1,0 +1,1676 @@
+{
+  "schema_version": "1.0",
+  "id": "00f2e45093b3eb87a79a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "fix reviewer crossmodel fixes",
+  "task_key": "worker_fix_reviewer_crossmodel_fixes_20260514T210233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_reviewer_crossmodel_fixes_20260514T210233.log",
+    "occurrence": 1,
+    "bytes": 145465,
+    "sha256": "53158b9db30de7ed651fb5eb542a3b6bb8b845770fa64a0f8b9eb6597a49d04e"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 11,
+      "tool_result": 11,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "3cdd01de-0aa6-41cd-98be-23e8b8a54aad",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779102000,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.86,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "38e134df-270b-4e06-b2ad-618d45eff133",
+                "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the file first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "2e44de13-f0e2-43c0-8492-6fb64153684d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PVNAbm1ZvuSh428B5SCiyJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11778,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11778
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TuNZ2bg5mobAdPttf7fMT9",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "16e2d9ca-facd-4515-96cf-6f59242460d5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PVNAbm1ZvuSh428B5SCiyJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11778,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11778
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T21:02:45.675Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TuNZ2bg5mobAdPttf7fMT9",
+              "type": "tool_result",
+              "content": "1\t% Section 5 — Cross-Model Validation (Draft)\n2\t% Data source: Phase 2 registry experiments, Qwen3-8B + Llama-3.1-8B\n3\t% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n4\t%          phase2_docred_unconstrained, phase2_docred_full_s1,\n5\t%          phase2_scierc_llama_unconstrained, phase2_scierc_llama_full_s1,\n6\t%          phase2_docred_llama_unconstrained, phase2_docred_llama_full_s1\n7\t% All numbers verified against registry 2026-05-14.\n8\t\n9\t\\subsection{Cross-Model Validation}\n10\t\\label{sec:cross-model}\n11\t\n12\tTo verify that our constraint framework generalizes beyond a single LLM,\n13\twe replicate the full two-layer (S1) configuration with\n14\tLlama-3.1-8B-Instruct under identical prompts, decoding parameters,\n15\tand evaluation protocol.\n16\tTable~\\ref{tab:cross-model} summarizes results alongside Qwen3-8B.\n17\t\n18\t% ──────────────────────────────────────────\n19\t%  Table: Cross-model comparison\n20\t% ──────────────────────────────────────────\n21\t\\begin{table}[t]\n22\t\\centering\n23\t\\small\n24\t\\setlength{\\tabcolsep}{3.4pt}\n25\t\\begin{tabular}{@{}ll rrrr rr@{}}\n26\t\\toprule\n27\t& & \\multicolumn{4}{c}{\\textbf{Violation Rates (\\%)}}\n28\t& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n29\t\\cmidrule(lr){3-6} \\cmidrule(l){7-8}\n30\t\\textbf{Dataset} & \\textbf{Model}\n31\t  & DR\\,$\\downarrow$ & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n32\t  & Rel. & Ent. \\\\\n33\t\\midrule\n34\t\\multirow{4}{*}{SciERC}\n35\t  & Qwen (U)  & 15.37 & 1.39 & 0.40 & 0.08 & 8.23 & 31.01 \\\\\n36\t  & Qwen (S1) &  0.93 & 0    & 0    & 9.90 & 8.36 & 30.98 \\\\\n37\t  \\cmidrule(l){2-8}\n38\t  & Llama (U)  & 13.34 & 0.55 & 0    & 0.09 & 2.68 & 23.56 \\\\\n39\t  & Llama (S1) &  0.08 & 0    & 0    & 6.56 & 2.54 & 23.49 \\\\\n40\t% phase2_scierc_unconstrained: DR=0.1537, RV=0.0139, ET=0.0040, CF=0.0008, R-F1=0.0823, E-F1=0.3101\n41\t% phase2_scierc_full_s1: DR=0.0093, RV=0, ET=0, CF=0.0990, R-F1=0.0836, E-F1=0.3098\n42\t% phase2_scierc_llama_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0009, R-F1=0.0268, E-F1=0.2356\n43\t% phase2_scierc_llama_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349\n44\t\\midrule\n45\t\\multirow{4}{*}{DocRED}\n46\t  & Qwen (U)  & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\\\\n47\t  & Qwen (S1) & 10.21 &  0.03 & 0    & 2.57 & 8.23 & 59.37 \\\\\n48\t  \\cmidrule(l){2-8}\n49\t  & Llama (U)  & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 & 55.65 \\\\\n50\t  & Llama (S1) &  2.55 &  0    & 0    & 12.02 & 6.27 & 55.01 \\\\\n51\t% phase2_docred_unconstrained: DR=0.1846, RV=0.2966, ET=0.0248, CF=0.0010, R-F1=0.0774, E-F1=0.5815\n52\t% phase2_docred_full_s1: DR=0.1021, RV=0.0003, ET=0, CF=0.0257, R-F1=0.0823, E-F1=0.5937\n53\t% phase2_docred_llama_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565\n54\t% phase2_docred_llama_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501\n55\t\\bottomrule\n56\t\\end{tabular}\n57\t\\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).\n58\tU: unconstrained baseline; S1: full two-layer constraints.\n59\tDR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.\n60\tF1 scores are multiplied by 100.}\n61\t\\label{tab:cross-model}\n62\t\\end{table}\n63\t\n64\t% ──────────────────────────────────────────\n65\t%  (a) Grammar layer: model-agnostic\n66\t% ──────────────────────────────────────────\n67\t\\paragraph{Grammar-layer guarantees are model-agnostic.}\n68\tRV and ET violations reach 0\\% under S1 for both models on both\n69\tdatasets.\n70\t% Qwen SciERC S1: RV=0, ET=0; Llama SciERC S1: RV=0, ET=0\n71\t% Qwen DocRED S1: RV=0.03%, ET=0; Llama DocRED S1: RV=0, ET=0\n72\tThis confirms that the grammar layer's structural enforcement---relation\n73\tvocabulary restriction and entity type validation---operates on the\n74\tconstrained decoding mechanism itself and does not depend on\n75\tmodel-specific generation patterns.\n76\t\n77\t% ──────────────────────────────────────────\n78\t%  (b) Semantic layer: DR reduction across models\n79\t% ──────────────────────────────────────────\n80\t\\paragraph{Semantic-layer DR reduction generalizes across models.}\n81\tDomain/range violations decrease under S1 for both models on both\n82\tdatasets:\n83\tSciERC DR drops 94\\% for Qwen (15.37\\%\\,$\\to$\\,0.93\\%) and\n84\t99.4\\% for Llama (13.34\\%\\,$\\to$\\,0.08\\%);\n85\t% Qwen: (15.37-0.93)/15.37=0.939; Llama: (13.34-0.08)/13.34=0.994\n86\tDocRED DR drops 45\\% for Qwen (18.46\\%\\,$\\to$\\,10.21\\%) and\n87\t90.2\\% for Llama (26.07\\%\\,$\\to$\\,2.55\\%).\n88\t% Qwen: (18.46-10.21)/18.46=0.447; Llama: (26.07-2.55)/26.07=0.902\n89\tIn both cases, relation F1 is preserved or marginally improves\n90\t(Qwen R-F1: +0.13/+0.49\\,pp; Llama R-F1: $-$0.14/+0.29\\,pp),\n91\t% phase2_scierc: Qwen 8.23→8.36; Llama 2.68→2.54\n92\t% phase2_docred: Qwen 7.74→8.23; Llama 5.98→6.27\n93\tindicating that constraint enforcement redirects probability mass\n94\ttoward schema-compliant outputs without degrading extraction quality.\n95\t\n96\t% ──────────────────────────────────────────\n97\t%  (c) Llama vs Qwen DR reduction asymmetry\n98\t% ──────────────────────────────────────────\n99\t\\paragraph{Llama achieves higher DR reduction than Qwen.}\n100\tLlama's relative DR reduction exceeds Qwen's on both datasets\n101\t(SciERC: 99.4\\% vs.\\ 94\\%; DocRED: 90.2\\% vs.\\ 45\\%).\n102\tThis asymmetry reflects the interaction between constraint tightness\n103\tand model-specific violation profiles: Qwen's higher baseline RV\n104\t(29.66\\% vs.\\ 16.03\\%) causes grammar-layer enforcement to surface\n105\tmore latent DR violations, raising residual DR despite identical\n106\tontology constraints (see tightness paragraph,\n107\tSection~\\ref{sec:docred-results}).\n108\t% Qwen DocRED: RV=0.2966, DR_full=0.1021, DR_reduction=44.7%\n109\t% Llama DocRED: RV=0.1603, DR_full=0.0255, DR_reduction=90.2%\n110\tNotably, Llama's absolute IE quality is lower than Qwen's\n111\t(R-F1 $\\approx$ 2.5--6.3 vs.\\ 8.2--8.4; E-F1 lower by 2--8\\,pp),\n112\tbut this does not diminish the validity of the compliance comparison:\n113\tconstraint enforcement is evaluated on the model's own output\n114\tdistribution, and the consistent violation reduction pattern across\n115\ttwo models with different capability levels strengthens the\n116\tmodel-agnostic claim.\n117\t\n118\t% ──────────────────────────────────────────\n119\t%  (d) CF trade-off\n120\t% ──────────────────────────────────────────\n121\t\\paragraph{CF trade-off persists across models.}\n122\tCross-field consistency violations increase under S1 for both models\n123\t(Qwen: 0.08\\%\\,$\\to$\\,9.90\\% on SciERC, 0.10\\%\\,$\\to$\\,2.57\\% on\n124\tDocRED; Llama: 0.09\\%\\,$\\to$\\,6.56\\% on SciERC,\n125\t0.17\\%\\,$\\to$\\,12.02\\% on DocRED).\n126\t% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.09→6.56\n127\t% phase2_docred: Qwen CF 0.10→2.57; Llama CF 0.17→12.02\n128\tLlama exhibits the highest CF rate (12.02\\% on DocRED), consistent with\n129\tits lower baseline generation quality producing more cases where\n130\tconstrained field corrections create inter-field inconsistencies.\n131\tThis cross-model pattern confirms that CF elevation is a systematic\n132\tproperty of the current constraint architecture rather than a\n133\tmodel-specific artifact, motivating a joint cross-field enforcement\n134\tmechanism as future work (Section~\\ref{sec:discussion}).\n135\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "72dcc665-0005-46ac-89d0-1bf12f65eb20",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+                "content": "% Section 5 — Cross-Model Validation (Draft)\n% Data source: Phase 2 registry experiments, Qwen3-8B + Llama-3.1-8B\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n%          phase2_docred_unconstrained, phase2_docred_full_s1,\n%          phase2_scierc_llama_unconstrained, phase2_scierc_llama_full_s1,\n%          phase2_docred_llama_unconstrained, phase2_docred_llama_full_s1\n% All numbers verified against registry 2026-05-14.\n\n\\subsection{Cross-Model Validation}\n\\label{sec:cross-model}\n\nTo verify that our constraint framework generalizes beyond a single LLM,\nwe replicate the full two-layer (S1) configuration with\nLlama-3.1-8B-Instruct under identical prompts, decoding parameters,\nand evaluation protocol.\nTable~\\ref{tab:cross-model} summarizes results alongside Qwen3-8B.\n\n% ──────────────────────────────────────────\n%  Table: Cross-model comparison\n% ──────────────────────────────────────────\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3.4pt}\n\\begin{tabular}{@{}ll rrrr rr@{}}\n\\toprule\n& & \\multicolumn{4}{c}{\\textbf{Violation Rates (\\%)}}\n& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n\\cmidrule(lr){3-6} \\cmidrule(l){7-8}\n\\textbf{Dataset} & \\textbf{Model}\n  & DR\\,$\\downarrow$ & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n  & Rel. & Ent. \\\\\n\\midrule\n\\multirow{4}{*}{SciERC}\n  & Qwen (U)  & 15.37 & 1.39 & 0.40 & 0.08 & 8.23 & 31.01 \\\\\n  & Qwen (S1) &  0.93 & 0    & 0    & 9.90 & 8.36 & 30.98 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 13.34 & 0.55 & 0    & 0.09 & 2.68 & 23.56 \\\\\n  & Llama (S1) &  0.08 & 0    & 0    & 6.56 & 2.54 & 23.49 \\\\\n% phase2_scierc_unconstrained: DR=0.1537, RV=0.0139, ET=0.0040, CF=0.0008, R-F1=0.0823, E-F1=0.3101\n% phase2_scierc_full_s1: DR=0.0093, RV=0, ET=0, CF=0.0990, R-F1=0.0836, E-F1=0.3098\n% phase2_scierc_llama_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0009, R-F1=0.0268, E-F1=0.2356\n% phase2_scierc_llama_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349\n\\midrule\n\\multirow{4}{*}{DocRED}\n  & Qwen (U)  & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\\\\n  & Qwen (S1) & 10.21 &  0.03 & 0    & 2.57 & 8.23 & 59.37 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 & 55.65 \\\\\n  & Llama (S1) &  2.55 &  0    & 0    & 12.02 & 6.27 & 55.01 \\\\\n% phase2_docred_unconstrained: DR=0.1846, RV=0.2966, ET=0.0248, CF=0.0010, R-F1=0.0774, E-F1=0.5815\n% phase2_docred_full_s1: DR=0.1021, RV=0.0003, ET=0, CF=0.0257, R-F1=0.0823, E-F1=0.5937\n% phase2_docred_llama_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565\n% phase2_docred_llama_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).\nU: unconstrained baseline; S1: full two-layer constraints.\nDR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.\nF1 scores are multiplied by 100.}\n\\label{tab:cross-model}\n\\end{table}\n\n% ──────────────────────────────────────────\n%  (a) Grammar layer: model-agnostic\n% ──────────────────────────────────────────\n\\paragraph{Grammar-layer guarantees are model-agnostic.}\nRV and ET violations reach 0\\% under S1 for both models on both\ndatasets.\n% Qwen SciERC S1: RV=0, ET=0; Llama SciERC S1: RV=0, ET=0\n% Qwen DocRED S1: RV=0.03%, ET=0; Llama DocRED S1: RV=0, ET=0\nThis confirms that the grammar layer's structural enforcement---relation\nvocabulary restriction and entity type validation---operates on the\nconstrained decoding mechanism itself and does not depend on\nmodel-specific generation patterns.\n\n% ──────────────────────────────────────────\n%  (b) Semantic layer: DR reduction across models\n% ──────────────────────────────────────────\n\\paragraph{Semantic-layer DR reduction generalizes across models.}\nDomain/range violations decrease under S1 for both models on both\ndatasets:\nSciERC DR drops 94\\% for Qwen (15.37\\%\\,$\\to$\\,0.93\\%) and\n99.4\\% for Llama (13.34\\%\\,$\\to$\\,0.08\\%);\n% Qwen: (15.37-0.93)/15.37=0.939; Llama: (13.34-0.08)/13.34=0.994\nDocRED DR drops 45\\% for Qwen (18.46\\%\\,$\\to$\\,10.21\\%) and\n90.2\\% for Llama (26.07\\%\\,$\\to$\\,2.55\\%).\n% Qwen: (18.46-10.21)/18.46=0.447; Llama: (26.07-2.55)/26.07=0.902\nIn both cases, relation F1 is preserved or marginally improves\n(Qwen R-F1: +0.13/+0.49\\,pp; Llama R-F1: $-$0.14/+0.29\\,pp),\n% phase2_scierc: Qwen 8.23→8.36; Llama 2.68→2.54\n% phase2_docred: Qwen 7.74→8.23; Llama 5.98→6.27\nindicating that constraint enforcement redirects probability mass\ntoward schema-compliant outputs without degrading extraction quality.\n\n% ──────────────────────────────────────────\n%  (c) Llama vs Qwen DR reduction asymmetry\n% ──────────────────────────────────────────\n\\paragraph{Llama achieves higher DR reduction than Qwen.}\nLlama's relative DR reduction exceeds Qwen's on both datasets\n(SciERC: 99.4\\% vs.\\ 94\\%; DocRED: 90.2\\% vs.\\ 45\\%).\nThis asymmetry reflects the interaction between constraint tightness\nand model-specific violation profiles: Qwen's higher baseline RV\n(29.66\\% vs.\\ 16.03\\%) causes grammar-layer enforcement to surface\nmore latent DR violations, raising residual DR despite identical\nontology constraints (see tightness paragraph,\nSection~\\ref{sec:docred-results}).\n% Qwen DocRED: RV=0.2966, DR_full=0.1021, DR_reduction=44.7%\n% Llama DocRED: RV=0.1603, DR_full=0.0255, DR_reduction=90.2%\nNotably, Llama's absolute IE quality is lower than Qwen's\n(R-F1 $\\approx$ 2.5--6.3 vs.\\ 8.2--8.4; E-F1 lower by 2--8\\,pp),\nbut this does not diminish the validity of the compliance comparison:\nconstraint enforcement is evaluated on the model's own output\ndistribution, and the consistent violation reduction pattern across\ntwo models with different capability levels strengthens the\nmodel-agnostic claim.\n\n% ──────────────────────────────────────────\n%  (d) CF trade-off\n% ──────────────────────────────────────────\n\\paragraph{CF trade-off persists across models.}\nCross-field consistency violations increase under S1 for both models\n(Qwen: 0.08\\%\\,$\\to$\\,9.90\\% on SciERC, 0.10\\%\\,$\\to$\\,2.57\\% on\nDocRED; Llama: 0.09\\%\\,$\\to$\\,6.56\\% on SciERC,\n0.17\\%\\,$\\to$\\,12.02\\% on DocRED).\n% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.09→6.56\n% phase2_docred: Qwen CF 0.10→2.57; Llama CF 0.17→12.02\nLlama exhibits the highest CF rate (12.02\\% on DocRED), consistent with\nits lower baseline generation quality producing more cases where\nconstrained field corrections create inter-field inconsistencies.\nThis cross-model pattern confirms that CF elevation is a systematic\nproperty of the current constraint architecture rather than a\nmodel-specific artifact, motivating a joint cross-field enforcement\nmechanism as future work (Section~\\ref{sec:discussion}).\n",
+                "numLines": 135,
+                "startLine": 1,
+                "totalLines": 135
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the full file. Let me analyze each fix:\n\n### Fix #1: Llama SciERC unconstrained CF data error\n- Line 38: CF=0.09 → should be 0.24\n- Line 42: CF=0.0009 → should be CF=0.0024\n- Also need to update line 124 where it says \"Llama: 0.09\\%\\,$\\to$\\,6.56\\%\"\n- And line 126 comment: \"Llama CF 0.09→6.56\"\n\n\n- Fix #2 addresses the \"reach 0%\" contradiction on line 68 where it claims RV and ET violations reach 0%, but Qwen DocRED S1 actually has RV=0.03%, so I need to soften the language to say they're eliminated or near-eliminated instead.\n- For Fix #3, I should add the E-F1 discussion after the R-F1 paragraph around line 94.\n- Fix #5 requires adding parse failure rate data, though the thought cuts off before specifying where exactly.\n- For Fix #6, I'm systematically renaming the Llama experiment IDs by removing the \"phase2_\" prefix across lines 3-6, 42-43, and 53-54 to clean up the naming convention. I'm going through the remaining edits systematically—updating the last comment line to remove the \"phase2_\" prefix, then executing all the fixes in sequence to avoid any conflicts with the string replacements.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "1de3b29b-3405-444c-b9fb-0b5f72fa32bf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L9EoJgSPYnrM1n5NiJ74Jq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3290,
+                "cache_read_input_tokens": 23619,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3290
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll apply all 5 fixes now. Let me do them in sequence to avoid conflicts.\n\n**Fix #6: exp_id comment names**"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "173ddfbc-017b-4b82-859b-9d12415d4e6a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L9EoJgSPYnrM1n5NiJ74Jq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3290,
+                "cache_read_input_tokens": 23619,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3290
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TtPCBNWMw2cPC7Q26seXYt",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+                "old_string": "%          phase2_scierc_llama_unconstrained, phase2_scierc_llama_full_s1,\n%          phase2_docred_llama_unconstrained, phase2_docred_llama_full_s1",
+                "new_string": "%          llama_scierc_unconstrained, llama_scierc_full_s1,\n%          llama_docred_unconstrained, llama_docred_full_s1"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "e298a733-3d5a-4332-b459-544eb535ab6a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L9EoJgSPYnrM1n5NiJ74Jq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3290,
+                "cache_read_input_tokens": 23619,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3290
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T21:03:01.983Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TtPCBNWMw2cPC7Q26seXYt",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "92cc19e3-4c6c-4cc3-ad0e-3357051815cf",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+              "oldString": "%          phase2_scierc_llama_unconstrained, phase2_scierc_llama_full_s1,\n%          phase2_docred_llama_unconstrained, phase2_docred_llama_full_s1",
+              "newString": "%          llama_scierc_unconstrained, llama_scierc_full_s1,\n%          llama_docred_unconstrained, llama_docred_full_s1",
+              "originalFile": "% Section 5 — Cross-Model Validation (Draft)\n% Data source: Phase 2 registry experiments, Qwen3-8B + Llama-3.1-8B\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n%          phase2_docred_unconstrained, phase2_docred_full_s1,\n%          phase2_scierc_llama_unconstrained, phase2_scierc_llama_full_s1,\n%          phase2_docred_llama_unconstrained, phase2_docred_llama_full_s1\n% All numbers verified against registry 2026-05-14.\n\n\\subsection{Cross-Model Validation}\n\\label{sec:cross-model}\n\nTo verify that our constraint framework generalizes beyond a single LLM,\nwe replicate the full two-layer (S1) configuration with\nLlama-3.1-8B-Instruct under identical prompts, decoding parameters,\nand evaluation protocol.\nTable~\\ref{tab:cross-model} summarizes results alongside Qwen3-8B.\n\n% ──────────────────────────────────────────\n%  Table: Cross-model comparison\n% ──────────────────────────────────────────\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3.4pt}\n\\begin{tabular}{@{}ll rrrr rr@{}}\n\\toprule\n& & \\multicolumn{4}{c}{\\textbf{Violation Rates (\\%)}}\n& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n\\cmidrule(lr){3-6} \\cmidrule(l){7-8}\n\\textbf{Dataset} & \\textbf{Model}\n  & DR\\,$\\downarrow$ & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n  & Rel. & Ent. \\\\\n\\midrule\n\\multirow{4}{*}{SciERC}\n  & Qwen (U)  & 15.37 & 1.39 & 0.40 & 0.08 & 8.23 & 31.01 \\\\\n  & Qwen (S1) &  0.93 & 0    & 0    & 9.90 & 8.36 & 30.98 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 13.34 & 0.55 & 0    & 0.09 & 2.68 & 23.56 \\\\\n  & Llama (S1) &  0.08 & 0    & 0    & 6.56 & 2.54 & 23.49 \\\\\n% phase2_scierc_unconstrained: DR=0.1537, RV=0.0139, ET=0.0040, CF=0.0008, R-F1=0.0823, E-F1=0.3101\n% phase2_scierc_full_s1: DR=0.0093, RV=0, ET=0, CF=0.0990, R-F1=0.0836, E-F1=0.3098\n% phase2_scierc_llama_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0009, R-F1=0.0268, E-F1=0.2356\n% phase2_scierc_llama_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349\n\\midrule\n\\multirow{4}{*}{DocRED}\n  & Qwen (U)  & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\\\\n  & Qwen (S1) & 10.21 &  0.03 & 0    & 2.57 & 8.23 & 59.37 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 & 55.65 \\\\\n  & Llama (S1) &  2.55 &  0    & 0    & 12.02 & 6.27 & 55.01 \\\\\n% phase2_docred_unconstrained: DR=0.1846, RV=0.2966, ET=0.0248, CF=0.0010, R-F1=0.0774, E-F1=0.5815\n% phase2_docred_full_s1: DR=0.1021, RV=0.0003, ET=0, CF=0.0257, R-F1=0.0823, E-F1=0.5937\n% phase2_docred_llama_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565\n% phase2_docred_llama_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).\nU: unconstrained baseline; S1: full two-layer constraints.\nDR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.\nF1 scores are multiplied by 100.}\n\\label{tab:cross-model}\n\\end{table}\n\n% ──────────────────────────────────────────\n%  (a) Grammar layer: model-agnostic\n% ──────────────────────────────────────────\n\\paragraph{Grammar-layer guarantees are model-agnostic.}\nRV and ET violations reach 0\\% under S1 for both models on both\ndatasets.\n% Qwen SciERC S1: RV=0, ET=0; Llama SciERC S1: RV=0, ET=0\n% Qwen DocRED S1: RV=0.03%, ET=0; Llama DocRED S1: RV=0, ET=0\nThis confirms that the grammar layer's structural enforcement---relation\nvocabulary restriction and entity type validation---operates on the\nconstrained decoding mechanism itself and does not depend on\nmodel-specific generation patterns.\n\n% ──────────────────────────────────────────\n%  (b) Semantic layer: DR reduction across models\n% ──────────────────────────────────────────\n\\paragraph{Semantic-layer DR reduction generalizes across models.}\nDomain/range violations decrease under S1 for both models on both\ndatasets:\nSciERC DR drops 94\\% for Qwen (15.37\\%\\,$\\to$\\,0.93\\%) and\n99.4\\% for Llama (13.34\\%\\,$\\to$\\,0.08\\%);\n% Qwen: (15.37-0.93)/15.37=0.939; Llama: (13.34-0.08)/13.34=0.994\nDocRED DR drops 45\\% for Qwen (18.46\\%\\,$\\to$\\,10.21\\%) and\n90.2\\% for Llama (26.07\\%\\,$\\to$\\,2.55\\%).\n% Qwen: (18.46-10.21)/18.46=0.447; Llama: (26.07-2.55)/26.07=0.902\nIn both cases, relation F1 is preserved or marginally improves\n(Qwen R-F1: +0.13/+0.49\\,pp; Llama R-F1: $-$0.14/+0.29\\,pp),\n% phase2_scierc: Qwen 8.23→8.36; Llama 2.68→2.54\n% phase2_docred: Qwen 7.74→8.23; Llama 5.98→6.27\nindicating that constraint enforcement redirects probability mass\ntoward schema-compliant outputs without degrading extraction quality.\n\n% ──────────────────────────────────────────\n%  (c) Llama vs Qwen DR reduction asymmetry\n% ──────────────────────────────────────────\n\\paragraph{Llama achieves higher DR reduction than Qwen.}\nLlama's relative DR reduction exceeds Qwen's on both datasets\n(SciERC: 99.4\\% vs.\\ 94\\%; DocRED: 90.2\\% vs.\\ 45\\%).\nThis asymmetry reflects the interaction between constraint tightness\nand model-specific violation profiles: Qwen's higher baseline RV\n(29.66\\% vs.\\ 16.03\\%) causes grammar-layer enforcement to surface\nmore latent DR violations, raising residual DR despite identical\nontology constraints (see tightness paragraph,\nSection~\\ref{sec:docred-results}).\n% Qwen DocRED: RV=0.2966, DR_full=0.1021, DR_reduction=44.7%\n% Llama DocRED: RV=0.1603, DR_full=0.0255, DR_reduction=90.2%\nNotably, Llama's absolute IE quality is lower than Qwen's\n(R-F1 $\\approx$ 2.5--6.3 vs.\\ 8.2--8.4; E-F1 lower by 2--8\\,pp),\nbut this does not diminish the validity of the compliance comparison:\nconstraint enforcement is evaluated on the model's own output\ndistribution, and the consistent violation reduction pattern across\ntwo models with different capability levels strengthens the\nmodel-agnostic claim.\n\n% ──────────────────────────────────────────\n%  (d) CF trade-off\n% ──────────────────────────────────────────\n\\paragraph{CF trade-off persists across models.}\nCross-field consistency violations increase under S1 for both models\n(Qwen: 0.08\\%\\,$\\to$\\,9.90\\% on SciERC, 0.10\\%\\,$\\to$\\,2.57\\% on\nDocRED; Llama: 0.09\\%\\,$\\to$\\,6.56\\% on SciERC,\n0.17\\%\\,$\\to$\\,12.02\\% on DocRED).\n% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.09→6.56\n% phase2_docred: Qwen CF 0.10→2.57; Llama CF 0.17→12.02\nLlama exhibits the highest CF rate (12.02\\% on DocRED), consistent with\nits lower baseline generation quality producing more cases where\nconstrained field corrections create inter-field inconsistencies.\nThis cross-model pattern confirms that CF elevation is a systematic\nproperty of the current constraint architecture rather than a\nmodel-specific artifact, motivating a joint cross-field enforcement\nmechanism as future work (Section~\\ref{sec:discussion}).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 2,
+                  "oldLines": 8,
+                  "newStart": 2,
+                  "newLines": 8,
+                  "lines": [
+                    " % Data source: Phase 2 registry experiments, Qwen3-8B + Llama-3.1-8B",
+                    " % exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,",
+                    " %          phase2_docred_unconstrained, phase2_docred_full_s1,",
+                    "-%          phase2_scierc_llama_unconstrained, phase2_scierc_llama_full_s1,",
+                    "-%          phase2_docred_llama_unconstrained, phase2_docred_llama_full_s1",
+                    "+%          llama_scierc_unconstrained, llama_scierc_full_s1,",
+                    "+%          llama_docred_unconstrained, llama_docred_full_s1",
+                    " % All numbers verified against registry 2026-05-14.",
+                    " ",
+                    " \\subsection{Cross-Model Validation}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CQkkpVY1bSQ3cMquHSKWyH",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+                "old_string": "% phase2_scierc_llama_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0009, R-F1=0.0268, E-F1=0.2356\n% phase2_scierc_llama_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349",
+                "new_string": "% llama_scierc_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0024, R-F1=0.0268, E-F1=0.2356\n% llama_scierc_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "a8ac4e53-54a9-404c-94eb-b07eb2432a5e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KixaQJkZ6D5Z8zt5LfjtMj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1186,
+                "cache_read_input_tokens": 26909,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1186
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T21:03:08.274Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CQkkpVY1bSQ3cMquHSKWyH",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "c110930e-3bbd-4650-ada0-2a7c5f1a6a60",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+              "oldString": "% phase2_scierc_llama_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0009, R-F1=0.0268, E-F1=0.2356\n% phase2_scierc_llama_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349",
+              "newString": "% llama_scierc_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0024, R-F1=0.0268, E-F1=0.2356\n% llama_scierc_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349",
+              "originalFile": "% Section 5 — Cross-Model Validation (Draft)\n% Data source: Phase 2 registry experiments, Qwen3-8B + Llama-3.1-8B\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n%          phase2_docred_unconstrained, phase2_docred_full_s1,\n%          llama_scierc_unconstrained, llama_scierc_full_s1,\n%          llama_docred_unconstrained, llama_docred_full_s1\n% All numbers verified against registry 2026-05-14.\n\n\\subsection{Cross-Model Validation}\n\\label{sec:cross-model}\n\nTo verify that our constraint framework generalizes beyond a single LLM,\nwe replicate the full two-layer (S1) configuration with\nLlama-3.1-8B-Instruct under identical prompts, decoding parameters,\nand evaluation protocol.\nTable~\\ref{tab:cross-model} summarizes results alongside Qwen3-8B.\n\n% ──────────────────────────────────────────\n%  Table: Cross-model comparison\n% ──────────────────────────────────────────\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3.4pt}\n\\begin{tabular}{@{}ll rrrr rr@{}}\n\\toprule\n& & \\multicolumn{4}{c}{\\textbf{Violation Rates (\\%)}}\n& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n\\cmidrule(lr){3-6} \\cmidrule(l){7-8}\n\\textbf{Dataset} & \\textbf{Model}\n  & DR\\,$\\downarrow$ & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n  & Rel. & Ent. \\\\\n\\midrule\n\\multirow{4}{*}{SciERC}\n  & Qwen (U)  & 15.37 & 1.39 & 0.40 & 0.08 & 8.23 & 31.01 \\\\\n  & Qwen (S1) &  0.93 & 0    & 0    & 9.90 & 8.36 & 30.98 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 13.34 & 0.55 & 0    & 0.09 & 2.68 & 23.56 \\\\\n  & Llama (S1) &  0.08 & 0    & 0    & 6.56 & 2.54 & 23.49 \\\\\n% phase2_scierc_unconstrained: DR=0.1537, RV=0.0139, ET=0.0040, CF=0.0008, R-F1=0.0823, E-F1=0.3101\n% phase2_scierc_full_s1: DR=0.0093, RV=0, ET=0, CF=0.0990, R-F1=0.0836, E-F1=0.3098\n% phase2_scierc_llama_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0009, R-F1=0.0268, E-F1=0.2356\n% phase2_scierc_llama_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349\n\\midrule\n\\multirow{4}{*}{DocRED}\n  & Qwen (U)  & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\\\\n  & Qwen (S1) & 10.21 &  0.03 & 0    & 2.57 & 8.23 & 59.37 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 & 55.65 \\\\\n  & Llama (S1) &  2.55 &  0    & 0    & 12.02 & 6.27 & 55.01 \\\\\n% phase2_docred_unconstrained: DR=0.1846, RV=0.2966, ET=0.0248, CF=0.0010, R-F1=0.0774, E-F1=0.5815\n% phase2_docred_full_s1: DR=0.1021, RV=0.0003, ET=0, CF=0.0257, R-F1=0.0823, E-F1=0.5937\n% phase2_docred_llama_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565\n% phase2_docred_llama_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).\nU: unconstrained baseline; S1: full two-layer constraints.\nDR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.\nF1 scores are multiplied by 100.}\n\\label{tab:cross-model}\n\\end{table}\n\n% ──────────────────────────────────────────\n%  (a) Grammar layer: model-agnostic\n% ──────────────────────────────────────────\n\\paragraph{Grammar-layer guarantees are model-agnostic.}\nRV and ET violations reach 0\\% under S1 for both models on both\ndatasets.\n% Qwen SciERC S1: RV=0, ET=0; Llama SciERC S1: RV=0, ET=0\n% Qwen DocRED S1: RV=0.03%, ET=0; Llama DocRED S1: RV=0, ET=0\nThis confirms that the grammar layer's structural enforcement---relation\nvocabulary restriction and entity type validation---operates on the\nconstrained decoding mechanism itself and does not depend on\nmodel-specific generation patterns.\n\n% ──────────────────────────────────────────\n%  (b) Semantic layer: DR reduction across models\n% ──────────────────────────────────────────\n\\paragraph{Semantic-layer DR reduction generalizes across models.}\nDomain/range violations decrease under S1 for both models on both\ndatasets:\nSciERC DR drops 94\\% for Qwen (15.37\\%\\,$\\to$\\,0.93\\%) and\n99.4\\% for Llama (13.34\\%\\,$\\to$\\,0.08\\%);\n% Qwen: (15.37-0.93)/15.37=0.939; Llama: (13.34-0.08)/13.34=0.994\nDocRED DR drops 45\\% for Qwen (18.46\\%\\,$\\to$\\,10.21\\%) and\n90.2\\% for Llama (26.07\\%\\,$\\to$\\,2.55\\%).\n% Qwen: (18.46-10.21)/18.46=0.447; Llama: (26.07-2.55)/26.07=0.902\nIn both cases, relation F1 is preserved or marginally improves\n(Qwen R-F1: +0.13/+0.49\\,pp; Llama R-F1: $-$0.14/+0.29\\,pp),\n% phase2_scierc: Qwen 8.23→8.36; Llama 2.68→2.54\n% phase2_docred: Qwen 7.74→8.23; Llama 5.98→6.27\nindicating that constraint enforcement redirects probability mass\ntoward schema-compliant outputs without degrading extraction quality.\n\n% ──────────────────────────────────────────\n%  (c) Llama vs Qwen DR reduction asymmetry\n% ──────────────────────────────────────────\n\\paragraph{Llama achieves higher DR reduction than Qwen.}\nLlama's relative DR reduction exceeds Qwen's on both datasets\n(SciERC: 99.4\\% vs.\\ 94\\%; DocRED: 90.2\\% vs.\\ 45\\%).\nThis asymmetry reflects the interaction between constraint tightness\nand model-specific violation profiles: Qwen's higher baseline RV\n(29.66\\% vs.\\ 16.03\\%) causes grammar-layer enforcement to surface\nmore latent DR violations, raising residual DR despite identical\nontology constraints (see tightness paragraph,\nSection~\\ref{sec:docred-results}).\n% Qwen DocRED: RV=0.2966, DR_full=0.1021, DR_reduction=44.7%\n% Llama DocRED: RV=0.1603, DR_full=0.0255, DR_reduction=90.2%\nNotably, Llama's absolute IE quality is lower than Qwen's\n(R-F1 $\\approx$ 2.5--6.3 vs.\\ 8.2--8.4; E-F1 lower by 2--8\\,pp),\nbut this does not diminish the validity of the compliance comparison:\nconstraint enforcement is evaluated on the model's own output\ndistribution, and the consistent violation reduction pattern across\ntwo models with different capability levels strengthens the\nmodel-agnostic claim.\n\n% ──────────────────────────────────────────\n%  (d) CF trade-off\n% ──────────────────────────────────────────\n\\paragraph{CF trade-off persists across models.}\nCross-field consistency violations increase under S1 for both models\n(Qwen: 0.08\\%\\,$\\to$\\,9.90\\% on SciERC, 0.10\\%\\,$\\to$\\,2.57\\% on\nDocRED; Llama: 0.09\\%\\,$\\to$\\,6.56\\% on SciERC,\n0.17\\%\\,$\\to$\\,12.02\\% on DocRED).\n% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.09→6.56\n% phase2_docred: Qwen CF 0.10→2.57; Llama CF 0.17→12.02\nLlama exhibits the highest CF rate (12.02\\% on DocRED), consistent with\nits lower baseline generation quality producing more cases where\nconstrained field corrections create inter-field inconsistencies.\nThis cross-model pattern confirms that CF elevation is a systematic\nproperty of the current constraint architecture rather than a\nmodel-specific artifact, motivating a joint cross-field enforcement\nmechanism as future work (Section~\\ref{sec:discussion}).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 39,
+                  "oldLines": 8,
+                  "newStart": 39,
+                  "newLines": 8,
+                  "lines": [
+                    "   & Llama (S1) &  0.08 & 0    & 0    & 6.56 & 2.54 & 23.49 \\\\",
+                    " % phase2_scierc_unconstrained: DR=0.1537, RV=0.0139, ET=0.0040, CF=0.0008, R-F1=0.0823, E-F1=0.3101",
+                    " % phase2_scierc_full_s1: DR=0.0093, RV=0, ET=0, CF=0.0990, R-F1=0.0836, E-F1=0.3098",
+                    "-% phase2_scierc_llama_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0009, R-F1=0.0268, E-F1=0.2356",
+                    "-% phase2_scierc_llama_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349",
+                    "+% llama_scierc_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0024, R-F1=0.0268, E-F1=0.2356",
+                    "+% llama_scierc_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349",
+                    " \\midrule",
+                    " \\multirow{4}{*}{DocRED}",
+                    "   & Qwen (U)  & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\\\"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LWWQrAD8M4XPLsupG3QF98",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+                "old_string": "% phase2_docred_llama_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565\n% phase2_docred_llama_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501",
+                "new_string": "% llama_docred_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565\n% llama_docred_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "c2301bfd-665a-4272-a029-903d0aa8721d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Q3HrKBsiUfsk53VVVMP5GD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 449,
+                "cache_read_input_tokens": 28095,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 449
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T21:03:12.943Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LWWQrAD8M4XPLsupG3QF98",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "a5488eab-1384-456d-8663-36269e473f24",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+              "oldString": "% phase2_docred_llama_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565\n% phase2_docred_llama_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501",
+              "newString": "% llama_docred_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565\n% llama_docred_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501",
+              "originalFile": "% Section 5 — Cross-Model Validation (Draft)\n% Data source: Phase 2 registry experiments, Qwen3-8B + Llama-3.1-8B\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n%          phase2_docred_unconstrained, phase2_docred_full_s1,\n%          llama_scierc_unconstrained, llama_scierc_full_s1,\n%          llama_docred_unconstrained, llama_docred_full_s1\n% All numbers verified against registry 2026-05-14.\n\n\\subsection{Cross-Model Validation}\n\\label{sec:cross-model}\n\nTo verify that our constraint framework generalizes beyond a single LLM,\nwe replicate the full two-layer (S1) configuration with\nLlama-3.1-8B-Instruct under identical prompts, decoding parameters,\nand evaluation protocol.\nTable~\\ref{tab:cross-model} summarizes results alongside Qwen3-8B.\n\n% ──────────────────────────────────────────\n%  Table: Cross-model comparison\n% ──────────────────────────────────────────\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3.4pt}\n\\begin{tabular}{@{}ll rrrr rr@{}}\n\\toprule\n& & \\multicolumn{4}{c}{\\textbf{Violation Rates (\\%)}}\n& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n\\cmidrule(lr){3-6} \\cmidrule(l){7-8}\n\\textbf{Dataset} & \\textbf{Model}\n  & DR\\,$\\downarrow$ & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n  & Rel. & Ent. \\\\\n\\midrule\n\\multirow{4}{*}{SciERC}\n  & Qwen (U)  & 15.37 & 1.39 & 0.40 & 0.08 & 8.23 & 31.01 \\\\\n  & Qwen (S1) &  0.93 & 0    & 0    & 9.90 & 8.36 & 30.98 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 13.34 & 0.55 & 0    & 0.09 & 2.68 & 23.56 \\\\\n  & Llama (S1) &  0.08 & 0    & 0    & 6.56 & 2.54 & 23.49 \\\\\n% phase2_scierc_unconstrained: DR=0.1537, RV=0.0139, ET=0.0040, CF=0.0008, R-F1=0.0823, E-F1=0.3101\n% phase2_scierc_full_s1: DR=0.0093, RV=0, ET=0, CF=0.0990, R-F1=0.0836, E-F1=0.3098\n% llama_scierc_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0024, R-F1=0.0268, E-F1=0.2356\n% llama_scierc_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349\n\\midrule\n\\multirow{4}{*}{DocRED}\n  & Qwen (U)  & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\\\\n  & Qwen (S1) & 10.21 &  0.03 & 0    & 2.57 & 8.23 & 59.37 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 & 55.65 \\\\\n  & Llama (S1) &  2.55 &  0    & 0    & 12.02 & 6.27 & 55.01 \\\\\n% phase2_docred_unconstrained: DR=0.1846, RV=0.2966, ET=0.0248, CF=0.0010, R-F1=0.0774, E-F1=0.5815\n% phase2_docred_full_s1: DR=0.1021, RV=0.0003, ET=0, CF=0.0257, R-F1=0.0823, E-F1=0.5937\n% phase2_docred_llama_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565\n% phase2_docred_llama_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).\nU: unconstrained baseline; S1: full two-layer constraints.\nDR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.\nF1 scores are multiplied by 100.}\n\\label{tab:cross-model}\n\\end{table}\n\n% ──────────────────────────────────────────\n%  (a) Grammar layer: model-agnostic\n% ──────────────────────────────────────────\n\\paragraph{Grammar-layer guarantees are model-agnostic.}\nRV and ET violations reach 0\\% under S1 for both models on both\ndatasets.\n% Qwen SciERC S1: RV=0, ET=0; Llama SciERC S1: RV=0, ET=0\n% Qwen DocRED S1: RV=0.03%, ET=0; Llama DocRED S1: RV=0, ET=0\nThis confirms that the grammar layer's structural enforcement---relation\nvocabulary restriction and entity type validation---operates on the\nconstrained decoding mechanism itself and does not depend on\nmodel-specific generation patterns.\n\n% ──────────────────────────────────────────\n%  (b) Semantic layer: DR reduction across models\n% ──────────────────────────────────────────\n\\paragraph{Semantic-layer DR reduction generalizes across models.}\nDomain/range violations decrease under S1 for both models on both\ndatasets:\nSciERC DR drops 94\\% for Qwen (15.37\\%\\,$\\to$\\,0.93\\%) and\n99.4\\% for Llama (13.34\\%\\,$\\to$\\,0.08\\%);\n% Qwen: (15.37-0.93)/15.37=0.939; Llama: (13.34-0.08)/13.34=0.994\nDocRED DR drops 45\\% for Qwen (18.46\\%\\,$\\to$\\,10.21\\%) and\n90.2\\% for Llama (26.07\\%\\,$\\to$\\,2.55\\%).\n% Qwen: (18.46-10.21)/18.46=0.447; Llama: (26.07-2.55)/26.07=0.902\nIn both cases, relation F1 is preserved or marginally improves\n(Qwen R-F1: +0.13/+0.49\\,pp; Llama R-F1: $-$0.14/+0.29\\,pp),\n% phase2_scierc: Qwen 8.23→8.36; Llama 2.68→2.54\n% phase2_docred: Qwen 7.74→8.23; Llama 5.98→6.27\nindicating that constraint enforcement redirects probability mass\ntoward schema-compliant outputs without degrading extraction quality.\n\n% ──────────────────────────────────────────\n%  (c) Llama vs Qwen DR reduction asymmetry\n% ──────────────────────────────────────────\n\\paragraph{Llama achieves higher DR reduction than Qwen.}\nLlama's relative DR reduction exceeds Qwen's on both datasets\n(SciERC: 99.4\\% vs.\\ 94\\%; DocRED: 90.2\\% vs.\\ 45\\%).\nThis asymmetry reflects the interaction between constraint tightness\nand model-specific violation profiles: Qwen's higher baseline RV\n(29.66\\% vs.\\ 16.03\\%) causes grammar-layer enforcement to surface\nmore latent DR violations, raising residual DR despite identical\nontology constraints (see tightness paragraph,\nSection~\\ref{sec:docred-results}).\n% Qwen DocRED: RV=0.2966, DR_full=0.1021, DR_reduction=44.7%\n% Llama DocRED: RV=0.1603, DR_full=0.0255, DR_reduction=90.2%\nNotably, Llama's absolute IE quality is lower than Qwen's\n(R-F1 $\\approx$ 2.5--6.3 vs.\\ 8.2--8.4; E-F1 lower by 2--8\\,pp),\nbut this does not diminish the validity of the compliance comparison:\nconstraint enforcement is evaluated on the model's own output\ndistribution, and the consistent violation reduction pattern across\ntwo models with different capability levels strengthens the\nmodel-agnostic claim.\n\n% ──────────────────────────────────────────\n%  (d) CF trade-off\n% ──────────────────────────────────────────\n\\paragraph{CF trade-off persists across models.}\nCross-field consistency violations increase under S1 for both models\n(Qwen: 0.08\\%\\,$\\to$\\,9.90\\% on SciERC, 0.10\\%\\,$\\to$\\,2.57\\% on\nDocRED; Llama: 0.09\\%\\,$\\to$\\,6.56\\% on SciERC,\n0.17\\%\\,$\\to$\\,12.02\\% on DocRED).\n% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.09→6.56\n% phase2_docred: Qwen CF 0.10→2.57; Llama CF 0.17→12.02\nLlama exhibits the highest CF rate (12.02\\% on DocRED), consistent with\nits lower baseline generation quality producing more cases where\nconstrained field corrections create inter-field inconsistencies.\nThis cross-model pattern confirms that CF elevation is a systematic\nproperty of the current constraint architecture rather than a\nmodel-specific artifact, motivating a joint cross-field enforcement\nmechanism as future work (Section~\\ref{sec:discussion}).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 50,
+                  "oldLines": 8,
+                  "newStart": 50,
+                  "newLines": 8,
+                  "lines": [
+                    "   & Llama (S1) &  2.55 &  0    & 0    & 12.02 & 6.27 & 55.01 \\\\",
+                    " % phase2_docred_unconstrained: DR=0.1846, RV=0.2966, ET=0.0248, CF=0.0010, R-F1=0.0774, E-F1=0.5815",
+                    " % phase2_docred_full_s1: DR=0.1021, RV=0.0003, ET=0, CF=0.0257, R-F1=0.0823, E-F1=0.5937",
+                    "-% phase2_docred_llama_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565",
+                    "-% phase2_docred_llama_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501",
+                    "+% llama_docred_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565",
+                    "+% llama_docred_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501",
+                    " \\bottomrule",
+                    " \\end{tabular}",
+                    " \\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct)."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Fix #1: Llama SciERC unconstrained CF 0.09 → 0.24** (table cell + CF paragraph references)"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "b6a03e25-6f34-420a-a97b-ab93f483ea43",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E3cy3BgqLwJL2gqcqtHnC1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 451,
+                "cache_read_input_tokens": 28544,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 451
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G6tVhbtPKGgcFy7HdYptjF",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+                "old_string": "  & Llama (U)  & 13.34 & 0.55 & 0    & 0.09 & 2.68 & 23.56 \\\\",
+                "new_string": "  & Llama (U)  & 13.34 & 0.55 & 0    & 0.24 & 2.68 & 23.56 \\\\"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "8320e1b0-e713-4ff6-bb1f-d249c26435d4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E3cy3BgqLwJL2gqcqtHnC1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 451,
+                "cache_read_input_tokens": 28544,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 451
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T21:03:19.130Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G6tVhbtPKGgcFy7HdYptjF",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "ef64e684-f63e-4bb6-a34f-9b2b44f8ed53",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+              "oldString": "  & Llama (U)  & 13.34 & 0.55 & 0    & 0.09 & 2.68 & 23.56 \\\\",
+              "newString": "  & Llama (U)  & 13.34 & 0.55 & 0    & 0.24 & 2.68 & 23.56 \\\\",
+              "originalFile": "% Section 5 — Cross-Model Validation (Draft)\n% Data source: Phase 2 registry experiments, Qwen3-8B + Llama-3.1-8B\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n%          phase2_docred_unconstrained, phase2_docred_full_s1,\n%          llama_scierc_unconstrained, llama_scierc_full_s1,\n%          llama_docred_unconstrained, llama_docred_full_s1\n% All numbers verified against registry 2026-05-14.\n\n\\subsection{Cross-Model Validation}\n\\label{sec:cross-model}\n\nTo verify that our constraint framework generalizes beyond a single LLM,\nwe replicate the full two-layer (S1) configuration with\nLlama-3.1-8B-Instruct under identical prompts, decoding parameters,\nand evaluation protocol.\nTable~\\ref{tab:cross-model} summarizes results alongside Qwen3-8B.\n\n% ──────────────────────────────────────────\n%  Table: Cross-model comparison\n% ──────────────────────────────────────────\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3.4pt}\n\\begin{tabular}{@{}ll rrrr rr@{}}\n\\toprule\n& & \\multicolumn{4}{c}{\\textbf{Violation Rates (\\%)}}\n& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n\\cmidrule(lr){3-6} \\cmidrule(l){7-8}\n\\textbf{Dataset} & \\textbf{Model}\n  & DR\\,$\\downarrow$ & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n  & Rel. & Ent. \\\\\n\\midrule\n\\multirow{4}{*}{SciERC}\n  & Qwen (U)  & 15.37 & 1.39 & 0.40 & 0.08 & 8.23 & 31.01 \\\\\n  & Qwen (S1) &  0.93 & 0    & 0    & 9.90 & 8.36 & 30.98 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 13.34 & 0.55 & 0    & 0.09 & 2.68 & 23.56 \\\\\n  & Llama (S1) &  0.08 & 0    & 0    & 6.56 & 2.54 & 23.49 \\\\\n% phase2_scierc_unconstrained: DR=0.1537, RV=0.0139, ET=0.0040, CF=0.0008, R-F1=0.0823, E-F1=0.3101\n% phase2_scierc_full_s1: DR=0.0093, RV=0, ET=0, CF=0.0990, R-F1=0.0836, E-F1=0.3098\n% llama_scierc_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0024, R-F1=0.0268, E-F1=0.2356\n% llama_scierc_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349\n\\midrule\n\\multirow{4}{*}{DocRED}\n  & Qwen (U)  & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\\\\n  & Qwen (S1) & 10.21 &  0.03 & 0    & 2.57 & 8.23 & 59.37 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 & 55.65 \\\\\n  & Llama (S1) &  2.55 &  0    & 0    & 12.02 & 6.27 & 55.01 \\\\\n% phase2_docred_unconstrained: DR=0.1846, RV=0.2966, ET=0.0248, CF=0.0010, R-F1=0.0774, E-F1=0.5815\n% phase2_docred_full_s1: DR=0.1021, RV=0.0003, ET=0, CF=0.0257, R-F1=0.0823, E-F1=0.5937\n% llama_docred_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565\n% llama_docred_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).\nU: unconstrained baseline; S1: full two-layer constraints.\nDR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.\nF1 scores are multiplied by 100.}\n\\label{tab:cross-model}\n\\end{table}\n\n% ──────────────────────────────────────────\n%  (a) Grammar layer: model-agnostic\n% ──────────────────────────────────────────\n\\paragraph{Grammar-layer guarantees are model-agnostic.}\nRV and ET violations reach 0\\% under S1 for both models on both\ndatasets.\n% Qwen SciERC S1: RV=0, ET=0; Llama SciERC S1: RV=0, ET=0\n% Qwen DocRED S1: RV=0.03%, ET=0; Llama DocRED S1: RV=0, ET=0\nThis confirms that the grammar layer's structural enforcement---relation\nvocabulary restriction and entity type validation---operates on the\nconstrained decoding mechanism itself and does not depend on\nmodel-specific generation patterns.\n\n% ──────────────────────────────────────────\n%  (b) Semantic layer: DR reduction across models\n% ──────────────────────────────────────────\n\\paragraph{Semantic-layer DR reduction generalizes across models.}\nDomain/range violations decrease under S1 for both models on both\ndatasets:\nSciERC DR drops 94\\% for Qwen (15.37\\%\\,$\\to$\\,0.93\\%) and\n99.4\\% for Llama (13.34\\%\\,$\\to$\\,0.08\\%);\n% Qwen: (15.37-0.93)/15.37=0.939; Llama: (13.34-0.08)/13.34=0.994\nDocRED DR drops 45\\% for Qwen (18.46\\%\\,$\\to$\\,10.21\\%) and\n90.2\\% for Llama (26.07\\%\\,$\\to$\\,2.55\\%).\n% Qwen: (18.46-10.21)/18.46=0.447; Llama: (26.07-2.55)/26.07=0.902\nIn both cases, relation F1 is preserved or marginally improves\n(Qwen R-F1: +0.13/+0.49\\,pp; Llama R-F1: $-$0.14/+0.29\\,pp),\n% phase2_scierc: Qwen 8.23→8.36; Llama 2.68→2.54\n% phase2_docred: Qwen 7.74→8.23; Llama 5.98→6.27\nindicating that constraint enforcement redirects probability mass\ntoward schema-compliant outputs without degrading extraction quality.\n\n% ──────────────────────────────────────────\n%  (c) Llama vs Qwen DR reduction asymmetry\n% ──────────────────────────────────────────\n\\paragraph{Llama achieves higher DR reduction than Qwen.}\nLlama's relative DR reduction exceeds Qwen's on both datasets\n(SciERC: 99.4\\% vs.\\ 94\\%; DocRED: 90.2\\% vs.\\ 45\\%).\nThis asymmetry reflects the interaction between constraint tightness\nand model-specific violation profiles: Qwen's higher baseline RV\n(29.66\\% vs.\\ 16.03\\%) causes grammar-layer enforcement to surface\nmore latent DR violations, raising residual DR despite identical\nontology constraints (see tightness paragraph,\nSection~\\ref{sec:docred-results}).\n% Qwen DocRED: RV=0.2966, DR_full=0.1021, DR_reduction=44.7%\n% Llama DocRED: RV=0.1603, DR_full=0.0255, DR_reduction=90.2%\nNotably, Llama's absolute IE quality is lower than Qwen's\n(R-F1 $\\approx$ 2.5--6.3 vs.\\ 8.2--8.4; E-F1 lower by 2--8\\,pp),\nbut this does not diminish the validity of the compliance comparison:\nconstraint enforcement is evaluated on the model's own output\ndistribution, and the consistent violation reduction pattern across\ntwo models with different capability levels strengthens the\nmodel-agnostic claim.\n\n% ──────────────────────────────────────────\n%  (d) CF trade-off\n% ──────────────────────────────────────────\n\\paragraph{CF trade-off persists across models.}\nCross-field consistency violations increase under S1 for both models\n(Qwen: 0.08\\%\\,$\\to$\\,9.90\\% on SciERC, 0.10\\%\\,$\\to$\\,2.57\\% on\nDocRED; Llama: 0.09\\%\\,$\\to$\\,6.56\\% on SciERC,\n0.17\\%\\,$\\to$\\,12.02\\% on DocRED).\n% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.09→6.56\n% phase2_docred: Qwen CF 0.10→2.57; Llama CF 0.17→12.02\nLlama exhibits the highest CF rate (12.02\\% on DocRED), consistent with\nits lower baseline generation quality producing more cases where\nconstrained field corrections create inter-field inconsistencies.\nThis cross-model pattern confirms that CF elevation is a systematic\nproperty of the current constraint architecture rather than a\nmodel-specific artifact, motivating a joint cross-field enforcement\nmechanism as future work (Section~\\ref{sec:discussion}).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 35,
+                  "oldLines": 7,
+                  "newStart": 35,
+                  "newLines": 7,
+                  "lines": [
+                    "   & Qwen (U)  & 15.37 & 1.39 & 0.40 & 0.08 & 8.23 & 31.01 \\\\",
+                    "   & Qwen (S1) &  0.93 & 0    & 0    & 9.90 & 8.36 & 30.98 \\\\",
+                    "   \\cmidrule(l){2-8}",
+                    "-  & Llama (U)  & 13.34 & 0.55 & 0    & 0.09 & 2.68 & 23.56 \\\\",
+                    "+  & Llama (U)  & 13.34 & 0.55 & 0    & 0.24 & 2.68 & 23.56 \\\\",
+                    "   & Llama (S1) &  0.08 & 0    & 0    & 6.56 & 2.54 & 23.49 \\\\",
+                    " % phase2_scierc_unconstrained: DR=0.1537, RV=0.0139, ET=0.0040, CF=0.0008, R-F1=0.0823, E-F1=0.3101",
+                    " % phase2_scierc_full_s1: DR=0.0093, RV=0, ET=0, CF=0.0990, R-F1=0.0836, E-F1=0.3098"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014yCVJ2KZMFstrG83Misqz3",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+                "old_string": "DocRED; Llama: 0.09\\%\\,$\\to$\\,6.56\\% on SciERC,",
+                "new_string": "DocRED; Llama: 0.24\\%\\,$\\to$\\,6.56\\% on SciERC,"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "9770d5ee-be1f-4410-85b5-80ae00a5fedb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019jfmekuA4o9hgZcsQR94JY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 343,
+                "cache_read_input_tokens": 28995,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 343
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T21:03:24.440Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014yCVJ2KZMFstrG83Misqz3",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "4e5071d7-b78e-4fcd-b575-38298ea0f33a",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+              "oldString": "DocRED; Llama: 0.09\\%\\,$\\to$\\,6.56\\% on SciERC,",
+              "newString": "DocRED; Llama: 0.24\\%\\,$\\to$\\,6.56\\% on SciERC,",
+              "originalFile": "% Section 5 — Cross-Model Validation (Draft)\n% Data source: Phase 2 registry experiments, Qwen3-8B + Llama-3.1-8B\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n%          phase2_docred_unconstrained, phase2_docred_full_s1,\n%          llama_scierc_unconstrained, llama_scierc_full_s1,\n%          llama_docred_unconstrained, llama_docred_full_s1\n% All numbers verified against registry 2026-05-14.\n\n\\subsection{Cross-Model Validation}\n\\label{sec:cross-model}\n\nTo verify that our constraint framework generalizes beyond a single LLM,\nwe replicate the full two-layer (S1) configuration with\nLlama-3.1-8B-Instruct under identical prompts, decoding parameters,\nand evaluation protocol.\nTable~\\ref{tab:cross-model} summarizes results alongside Qwen3-8B.\n\n% ──────────────────────────────────────────\n%  Table: Cross-model comparison\n% ──────────────────────────────────────────\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3.4pt}\n\\begin{tabular}{@{}ll rrrr rr@{}}\n\\toprule\n& & \\multicolumn{4}{c}{\\textbf{Violation Rates (\\%)}}\n& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n\\cmidrule(lr){3-6} \\cmidrule(l){7-8}\n\\textbf{Dataset} & \\textbf{Model}\n  & DR\\,$\\downarrow$ & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n  & Rel. & Ent. \\\\\n\\midrule\n\\multirow{4}{*}{SciERC}\n  & Qwen (U)  & 15.37 & 1.39 & 0.40 & 0.08 & 8.23 & 31.01 \\\\\n  & Qwen (S1) &  0.93 & 0    & 0    & 9.90 & 8.36 & 30.98 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 13.34 & 0.55 & 0    & 0.24 & 2.68 & 23.56 \\\\\n  & Llama (S1) &  0.08 & 0    & 0    & 6.56 & 2.54 & 23.49 \\\\\n% phase2_scierc_unconstrained: DR=0.1537, RV=0.0139, ET=0.0040, CF=0.0008, R-F1=0.0823, E-F1=0.3101\n% phase2_scierc_full_s1: DR=0.0093, RV=0, ET=0, CF=0.0990, R-F1=0.0836, E-F1=0.3098\n% llama_scierc_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0024, R-F1=0.0268, E-F1=0.2356\n% llama_scierc_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349\n\\midrule\n\\multirow{4}{*}{DocRED}\n  & Qwen (U)  & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\\\\n  & Qwen (S1) & 10.21 &  0.03 & 0    & 2.57 & 8.23 & 59.37 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 & 55.65 \\\\\n  & Llama (S1) &  2.55 &  0    & 0    & 12.02 & 6.27 & 55.01 \\\\\n% phase2_docred_unconstrained: DR=0.1846, RV=0.2966, ET=0.0248, CF=0.0010, R-F1=0.0774, E-F1=0.5815\n% phase2_docred_full_s1: DR=0.1021, RV=0.0003, ET=0, CF=0.0257, R-F1=0.0823, E-F1=0.5937\n% llama_docred_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565\n% llama_docred_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).\nU: unconstrained baseline; S1: full two-layer constraints.\nDR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.\nF1 scores are multiplied by 100.}\n\\label{tab:cross-model}\n\\end{table}\n\n% ──────────────────────────────────────────\n%  (a) Grammar layer: model-agnostic\n% ──────────────────────────────────────────\n\\paragraph{Grammar-layer guarantees are model-agnostic.}\nRV and ET violations reach 0\\% under S1 for both models on both\ndatasets.\n% Qwen SciERC S1: RV=0, ET=0; Llama SciERC S1: RV=0, ET=0\n% Qwen DocRED S1: RV=0.03%, ET=0; Llama DocRED S1: RV=0, ET=0\nThis confirms that the grammar layer's structural enforcement---relation\nvocabulary restriction and entity type validation---operates on the\nconstrained decoding mechanism itself and does not depend on\nmodel-specific generation patterns.\n\n% ──────────────────────────────────────────\n%  (b) Semantic layer: DR reduction across models\n% ──────────────────────────────────────────\n\\paragraph{Semantic-layer DR reduction generalizes across models.}\nDomain/range violations decrease under S1 for both models on both\ndatasets:\nSciERC DR drops 94\\% for Qwen (15.37\\%\\,$\\to$\\,0.93\\%) and\n99.4\\% for Llama (13.34\\%\\,$\\to$\\,0.08\\%);\n% Qwen: (15.37-0.93)/15.37=0.939; Llama: (13.34-0.08)/13.34=0.994\nDocRED DR drops 45\\% for Qwen (18.46\\%\\,$\\to$\\,10.21\\%) and\n90.2\\% for Llama (26.07\\%\\,$\\to$\\,2.55\\%).\n% Qwen: (18.46-10.21)/18.46=0.447; Llama: (26.07-2.55)/26.07=0.902\nIn both cases, relation F1 is preserved or marginally improves\n(Qwen R-F1: +0.13/+0.49\\,pp; Llama R-F1: $-$0.14/+0.29\\,pp),\n% phase2_scierc: Qwen 8.23→8.36; Llama 2.68→2.54\n% phase2_docred: Qwen 7.74→8.23; Llama 5.98→6.27\nindicating that constraint enforcement redirects probability mass\ntoward schema-compliant outputs without degrading extraction quality.\n\n% ──────────────────────────────────────────\n%  (c) Llama vs Qwen DR reduction asymmetry\n% ──────────────────────────────────────────\n\\paragraph{Llama achieves higher DR reduction than Qwen.}\nLlama's relative DR reduction exceeds Qwen's on both datasets\n(SciERC: 99.4\\% vs.\\ 94\\%; DocRED: 90.2\\% vs.\\ 45\\%).\nThis asymmetry reflects the interaction between constraint tightness\nand model-specific violation profiles: Qwen's higher baseline RV\n(29.66\\% vs.\\ 16.03\\%) causes grammar-layer enforcement to surface\nmore latent DR violations, raising residual DR despite identical\nontology constraints (see tightness paragraph,\nSection~\\ref{sec:docred-results}).\n% Qwen DocRED: RV=0.2966, DR_full=0.1021, DR_reduction=44.7%\n% Llama DocRED: RV=0.1603, DR_full=0.0255, DR_reduction=90.2%\nNotably, Llama's absolute IE quality is lower than Qwen's\n(R-F1 $\\approx$ 2.5--6.3 vs.\\ 8.2--8.4; E-F1 lower by 2--8\\,pp),\nbut this does not diminish the validity of the compliance comparison:\nconstraint enforcement is evaluated on the model's own output\ndistribution, and the consistent violation reduction pattern across\ntwo models with different capability levels strengthens the\nmodel-agnostic claim.\n\n% ──────────────────────────────────────────\n%  (d) CF trade-off\n% ──────────────────────────────────────────\n\\paragraph{CF trade-off persists across models.}\nCross-field consistency violations increase under S1 for both models\n(Qwen: 0.08\\%\\,$\\to$\\,9.90\\% on SciERC, 0.10\\%\\,$\\to$\\,2.57\\% on\nDocRED; Llama: 0.09\\%\\,$\\to$\\,6.56\\% on SciERC,\n0.17\\%\\,$\\to$\\,12.02\\% on DocRED).\n% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.09→6.56\n% phase2_docred: Qwen CF 0.10→2.57; Llama CF 0.17→12.02\nLlama exhibits the highest CF rate (12.02\\% on DocRED), consistent with\nits lower baseline generation quality producing more cases where\nconstrained field corrections create inter-field inconsistencies.\nThis cross-model pattern confirms that CF elevation is a systematic\nproperty of the current constraint architecture rather than a\nmodel-specific artifact, motivating a joint cross-field enforcement\nmechanism as future work (Section~\\ref{sec:discussion}).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 121,
+                  "oldLines": 7,
+                  "newStart": 121,
+                  "newLines": 7,
+                  "lines": [
+                    " \\paragraph{CF trade-off persists across models.}",
+                    " Cross-field consistency violations increase under S1 for both models",
+                    " (Qwen: 0.08\\%\\,$\\to$\\,9.90\\% on SciERC, 0.10\\%\\,$\\to$\\,2.57\\% on",
+                    "-DocRED; Llama: 0.09\\%\\,$\\to$\\,6.56\\% on SciERC,",
+                    "+DocRED; Llama: 0.24\\%\\,$\\to$\\,6.56\\% on SciERC,",
+                    " 0.17\\%\\,$\\to$\\,12.02\\% on DocRED).",
+                    " % phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.09→6.56",
+                    " % phase2_docred: Qwen CF 0.10→2.57; Llama CF 0.17→12.02"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ShD2znv8xwh1fQb69d31h5",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+                "old_string": "% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.09→6.56",
+                "new_string": "% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.24→6.56"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "c150746c-8826-45b0-a806-bb7193eef578",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WPtiYJh5jvsS8sVgmXTJKA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 281,
+                "cache_read_input_tokens": 29338,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 281
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T21:03:28.094Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ShD2znv8xwh1fQb69d31h5",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "d59f9c54-8c30-4a54-983a-da52590ffda1",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+              "oldString": "% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.09→6.56",
+              "newString": "% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.24→6.56",
+              "originalFile": "% Section 5 — Cross-Model Validation (Draft)\n% Data source: Phase 2 registry experiments, Qwen3-8B + Llama-3.1-8B\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n%          phase2_docred_unconstrained, phase2_docred_full_s1,\n%          llama_scierc_unconstrained, llama_scierc_full_s1,\n%          llama_docred_unconstrained, llama_docred_full_s1\n% All numbers verified against registry 2026-05-14.\n\n\\subsection{Cross-Model Validation}\n\\label{sec:cross-model}\n\nTo verify that our constraint framework generalizes beyond a single LLM,\nwe replicate the full two-layer (S1) configuration with\nLlama-3.1-8B-Instruct under identical prompts, decoding parameters,\nand evaluation protocol.\nTable~\\ref{tab:cross-model} summarizes results alongside Qwen3-8B.\n\n% ──────────────────────────────────────────\n%  Table: Cross-model comparison\n% ──────────────────────────────────────────\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3.4pt}\n\\begin{tabular}{@{}ll rrrr rr@{}}\n\\toprule\n& & \\multicolumn{4}{c}{\\textbf{Violation Rates (\\%)}}\n& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n\\cmidrule(lr){3-6} \\cmidrule(l){7-8}\n\\textbf{Dataset} & \\textbf{Model}\n  & DR\\,$\\downarrow$ & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n  & Rel. & Ent. \\\\\n\\midrule\n\\multirow{4}{*}{SciERC}\n  & Qwen (U)  & 15.37 & 1.39 & 0.40 & 0.08 & 8.23 & 31.01 \\\\\n  & Qwen (S1) &  0.93 & 0    & 0    & 9.90 & 8.36 & 30.98 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 13.34 & 0.55 & 0    & 0.24 & 2.68 & 23.56 \\\\\n  & Llama (S1) &  0.08 & 0    & 0    & 6.56 & 2.54 & 23.49 \\\\\n% phase2_scierc_unconstrained: DR=0.1537, RV=0.0139, ET=0.0040, CF=0.0008, R-F1=0.0823, E-F1=0.3101\n% phase2_scierc_full_s1: DR=0.0093, RV=0, ET=0, CF=0.0990, R-F1=0.0836, E-F1=0.3098\n% llama_scierc_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0024, R-F1=0.0268, E-F1=0.2356\n% llama_scierc_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349\n\\midrule\n\\multirow{4}{*}{DocRED}\n  & Qwen (U)  & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\\\\n  & Qwen (S1) & 10.21 &  0.03 & 0    & 2.57 & 8.23 & 59.37 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 & 55.65 \\\\\n  & Llama (S1) &  2.55 &  0    & 0    & 12.02 & 6.27 & 55.01 \\\\\n% phase2_docred_unconstrained: DR=0.1846, RV=0.2966, ET=0.0248, CF=0.0010, R-F1=0.0774, E-F1=0.5815\n% phase2_docred_full_s1: DR=0.1021, RV=0.0003, ET=0, CF=0.0257, R-F1=0.0823, E-F1=0.5937\n% llama_docred_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565\n% llama_docred_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).\nU: unconstrained baseline; S1: full two-layer constraints.\nDR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.\nF1 scores are multiplied by 100.}\n\\label{tab:cross-model}\n\\end{table}\n\n% ──────────────────────────────────────────\n%  (a) Grammar layer: model-agnostic\n% ──────────────────────────────────────────\n\\paragraph{Grammar-layer guarantees are model-agnostic.}\nRV and ET violations reach 0\\% under S1 for both models on both\ndatasets.\n% Qwen SciERC S1: RV=0, ET=0; Llama SciERC S1: RV=0, ET=0\n% Qwen DocRED S1: RV=0.03%, ET=0; Llama DocRED S1: RV=0, ET=0\nThis confirms that the grammar layer's structural enforcement---relation\nvocabulary restriction and entity type validation---operates on the\nconstrained decoding mechanism itself and does not depend on\nmodel-specific generation patterns.\n\n% ──────────────────────────────────────────\n%  (b) Semantic layer: DR reduction across models\n% ──────────────────────────────────────────\n\\paragraph{Semantic-layer DR reduction generalizes across models.}\nDomain/range violations decrease under S1 for both models on both\ndatasets:\nSciERC DR drops 94\\% for Qwen (15.37\\%\\,$\\to$\\,0.93\\%) and\n99.4\\% for Llama (13.34\\%\\,$\\to$\\,0.08\\%);\n% Qwen: (15.37-0.93)/15.37=0.939; Llama: (13.34-0.08)/13.34=0.994\nDocRED DR drops 45\\% for Qwen (18.46\\%\\,$\\to$\\,10.21\\%) and\n90.2\\% for Llama (26.07\\%\\,$\\to$\\,2.55\\%).\n% Qwen: (18.46-10.21)/18.46=0.447; Llama: (26.07-2.55)/26.07=0.902\nIn both cases, relation F1 is preserved or marginally improves\n(Qwen R-F1: +0.13/+0.49\\,pp; Llama R-F1: $-$0.14/+0.29\\,pp),\n% phase2_scierc: Qwen 8.23→8.36; Llama 2.68→2.54\n% phase2_docred: Qwen 7.74→8.23; Llama 5.98→6.27\nindicating that constraint enforcement redirects probability mass\ntoward schema-compliant outputs without degrading extraction quality.\n\n% ──────────────────────────────────────────\n%  (c) Llama vs Qwen DR reduction asymmetry\n% ──────────────────────────────────────────\n\\paragraph{Llama achieves higher DR reduction than Qwen.}\nLlama's relative DR reduction exceeds Qwen's on both datasets\n(SciERC: 99.4\\% vs.\\ 94\\%; DocRED: 90.2\\% vs.\\ 45\\%).\nThis asymmetry reflects the interaction between constraint tightness\nand model-specific violation profiles: Qwen's higher baseline RV\n(29.66\\% vs.\\ 16.03\\%) causes grammar-layer enforcement to surface\nmore latent DR violations, raising residual DR despite identical\nontology constraints (see tightness paragraph,\nSection~\\ref{sec:docred-results}).\n% Qwen DocRED: RV=0.2966, DR_full=0.1021, DR_reduction=44.7%\n% Llama DocRED: RV=0.1603, DR_full=0.0255, DR_reduction=90.2%\nNotably, Llama's absolute IE quality is lower than Qwen's\n(R-F1 $\\approx$ 2.5--6.3 vs.\\ 8.2--8.4; E-F1 lower by 2--8\\,pp),\nbut this does not diminish the validity of the compliance comparison:\nconstraint enforcement is evaluated on the model's own output\ndistribution, and the consistent violation reduction pattern across\ntwo models with different capability levels strengthens the\nmodel-agnostic claim.\n\n% ──────────────────────────────────────────\n%  (d) CF trade-off\n% ──────────────────────────────────────────\n\\paragraph{CF trade-off persists across models.}\nCross-field consistency violations increase under S1 for both models\n(Qwen: 0.08\\%\\,$\\to$\\,9.90\\% on SciERC, 0.10\\%\\,$\\to$\\,2.57\\% on\nDocRED; Llama: 0.24\\%\\,$\\to$\\,6.56\\% on SciERC,\n0.17\\%\\,$\\to$\\,12.02\\% on DocRED).\n% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.09→6.56\n% phase2_docred: Qwen CF 0.10→2.57; Llama CF 0.17→12.02\nLlama exhibits the highest CF rate (12.02\\% on DocRED), consistent with\nits lower baseline generation quality producing more cases where\nconstrained field corrections create inter-field inconsistencies.\nThis cross-model pattern confirms that CF elevation is a systematic\nproperty of the current constraint architecture rather than a\nmodel-specific artifact, motivating a joint cross-field enforcement\nmechanism as future work (Section~\\ref{sec:discussion}).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 123,
+                  "oldLines": 7,
+                  "newStart": 123,
+                  "newLines": 7,
+                  "lines": [
+                    " (Qwen: 0.08\\%\\,$\\to$\\,9.90\\% on SciERC, 0.10\\%\\,$\\to$\\,2.57\\% on",
+                    " DocRED; Llama: 0.24\\%\\,$\\to$\\,6.56\\% on SciERC,",
+                    " 0.17\\%\\,$\\to$\\,12.02\\% on DocRED).",
+                    "-% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.09→6.56",
+                    "+% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.24→6.56",
+                    " % phase2_docred: Qwen CF 0.10→2.57; Llama CF 0.17→12.02",
+                    " Llama exhibits the highest CF rate (12.02\\% on DocRED), consistent with",
+                    " its lower baseline generation quality producing more cases where"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Fix #2: \"reach 0%\" → near-eliminated**"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "337d6c25-3a5f-4ba2-a7e5-bb4f123529da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N9yUD5LFDbrm3ETQsjJbMw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 387,
+                "cache_read_input_tokens": 29619,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 387
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UPosmM5mrhpS2nYuanwY1B",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+                "old_string": "RV and ET violations reach 0\\% under S1 for both models on both\ndatasets.",
+                "new_string": "RV and ET violations are eliminated or near-eliminated ($\\leq$0.03\\%)\nunder S1 for both models on both datasets."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "ffc59d24-7d6b-49e8-acd2-149fc3fa5799",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N9yUD5LFDbrm3ETQsjJbMw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 387,
+                "cache_read_input_tokens": 29619,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 387
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T21:03:32.026Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UPosmM5mrhpS2nYuanwY1B",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "e3599ab9-7b9f-412e-8cdd-d77509467a89",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+              "oldString": "RV and ET violations reach 0\\% under S1 for both models on both\ndatasets.",
+              "newString": "RV and ET violations are eliminated or near-eliminated ($\\leq$0.03\\%)\nunder S1 for both models on both datasets.",
+              "originalFile": "% Section 5 — Cross-Model Validation (Draft)\n% Data source: Phase 2 registry experiments, Qwen3-8B + Llama-3.1-8B\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n%          phase2_docred_unconstrained, phase2_docred_full_s1,\n%          llama_scierc_unconstrained, llama_scierc_full_s1,\n%          llama_docred_unconstrained, llama_docred_full_s1\n% All numbers verified against registry 2026-05-14.\n\n\\subsection{Cross-Model Validation}\n\\label{sec:cross-model}\n\nTo verify that our constraint framework generalizes beyond a single LLM,\nwe replicate the full two-layer (S1) configuration with\nLlama-3.1-8B-Instruct under identical prompts, decoding parameters,\nand evaluation protocol.\nTable~\\ref{tab:cross-model} summarizes results alongside Qwen3-8B.\n\n% ──────────────────────────────────────────\n%  Table: Cross-model comparison\n% ──────────────────────────────────────────\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3.4pt}\n\\begin{tabular}{@{}ll rrrr rr@{}}\n\\toprule\n& & \\multicolumn{4}{c}{\\textbf{Violation Rates (\\%)}}\n& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n\\cmidrule(lr){3-6} \\cmidrule(l){7-8}\n\\textbf{Dataset} & \\textbf{Model}\n  & DR\\,$\\downarrow$ & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n  & Rel. & Ent. \\\\\n\\midrule\n\\multirow{4}{*}{SciERC}\n  & Qwen (U)  & 15.37 & 1.39 & 0.40 & 0.08 & 8.23 & 31.01 \\\\\n  & Qwen (S1) &  0.93 & 0    & 0    & 9.90 & 8.36 & 30.98 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 13.34 & 0.55 & 0    & 0.24 & 2.68 & 23.56 \\\\\n  & Llama (S1) &  0.08 & 0    & 0    & 6.56 & 2.54 & 23.49 \\\\\n% phase2_scierc_unconstrained: DR=0.1537, RV=0.0139, ET=0.0040, CF=0.0008, R-F1=0.0823, E-F1=0.3101\n% phase2_scierc_full_s1: DR=0.0093, RV=0, ET=0, CF=0.0990, R-F1=0.0836, E-F1=0.3098\n% llama_scierc_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0024, R-F1=0.0268, E-F1=0.2356\n% llama_scierc_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349\n\\midrule\n\\multirow{4}{*}{DocRED}\n  & Qwen (U)  & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\\\\n  & Qwen (S1) & 10.21 &  0.03 & 0    & 2.57 & 8.23 & 59.37 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 & 55.65 \\\\\n  & Llama (S1) &  2.55 &  0    & 0    & 12.02 & 6.27 & 55.01 \\\\\n% phase2_docred_unconstrained: DR=0.1846, RV=0.2966, ET=0.0248, CF=0.0010, R-F1=0.0774, E-F1=0.5815\n% phase2_docred_full_s1: DR=0.1021, RV=0.0003, ET=0, CF=0.0257, R-F1=0.0823, E-F1=0.5937\n% llama_docred_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565\n% llama_docred_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).\nU: unconstrained baseline; S1: full two-layer constraints.\nDR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.\nF1 scores are multiplied by 100.}\n\\label{tab:cross-model}\n\\end{table}\n\n% ──────────────────────────────────────────\n%  (a) Grammar layer: model-agnostic\n% ──────────────────────────────────────────\n\\paragraph{Grammar-layer guarantees are model-agnostic.}\nRV and ET violations reach 0\\% under S1 for both models on both\ndatasets.\n% Qwen SciERC S1: RV=0, ET=0; Llama SciERC S1: RV=0, ET=0\n% Qwen DocRED S1: RV=0.03%, ET=0; Llama DocRED S1: RV=0, ET=0\nThis confirms that the grammar layer's structural enforcement---relation\nvocabulary restriction and entity type validation---operates on the\nconstrained decoding mechanism itself and does not depend on\nmodel-specific generation patterns.\n\n% ──────────────────────────────────────────\n%  (b) Semantic layer: DR reduction across models\n% ──────────────────────────────────────────\n\\paragraph{Semantic-layer DR reduction generalizes across models.}\nDomain/range violations decrease under S1 for both models on both\ndatasets:\nSciERC DR drops 94\\% for Qwen (15.37\\%\\,$\\to$\\,0.93\\%) and\n99.4\\% for Llama (13.34\\%\\,$\\to$\\,0.08\\%);\n% Qwen: (15.37-0.93)/15.37=0.939; Llama: (13.34-0.08)/13.34=0.994\nDocRED DR drops 45\\% for Qwen (18.46\\%\\,$\\to$\\,10.21\\%) and\n90.2\\% for Llama (26.07\\%\\,$\\to$\\,2.55\\%).\n% Qwen: (18.46-10.21)/18.46=0.447; Llama: (26.07-2.55)/26.07=0.902\nIn both cases, relation F1 is preserved or marginally improves\n(Qwen R-F1: +0.13/+0.49\\,pp; Llama R-F1: $-$0.14/+0.29\\,pp),\n% phase2_scierc: Qwen 8.23→8.36; Llama 2.68→2.54\n% phase2_docred: Qwen 7.74→8.23; Llama 5.98→6.27\nindicating that constraint enforcement redirects probability mass\ntoward schema-compliant outputs without degrading extraction quality.\n\n% ──────────────────────────────────────────\n%  (c) Llama vs Qwen DR reduction asymmetry\n% ──────────────────────────────────────────\n\\paragraph{Llama achieves higher DR reduction than Qwen.}\nLlama's relative DR reduction exceeds Qwen's on both datasets\n(SciERC: 99.4\\% vs.\\ 94\\%; DocRED: 90.2\\% vs.\\ 45\\%).\nThis asymmetry reflects the interaction between constraint tightness\nand model-specific violation profiles: Qwen's higher baseline RV\n(29.66\\% vs.\\ 16.03\\%) causes grammar-layer enforcement to surface\nmore latent DR violations, raising residual DR despite identical\nontology constraints (see tightness paragraph,\nSection~\\ref{sec:docred-results}).\n% Qwen DocRED: RV=0.2966, DR_full=0.1021, DR_reduction=44.7%\n% Llama DocRED: RV=0.1603, DR_full=0.0255, DR_reduction=90.2%\nNotably, Llama's absolute IE quality is lower than Qwen's\n(R-F1 $\\approx$ 2.5--6.3 vs.\\ 8.2--8.4; E-F1 lower by 2--8\\,pp),\nbut this does not diminish the validity of the compliance comparison:\nconstraint enforcement is evaluated on the model's own output\ndistribution, and the consistent violation reduction pattern across\ntwo models with different capability levels strengthens the\nmodel-agnostic claim.\n\n% ──────────────────────────────────────────\n%  (d) CF trade-off\n% ──────────────────────────────────────────\n\\paragraph{CF trade-off persists across models.}\nCross-field consistency violations increase under S1 for both models\n(Qwen: 0.08\\%\\,$\\to$\\,9.90\\% on SciERC, 0.10\\%\\,$\\to$\\,2.57\\% on\nDocRED; Llama: 0.24\\%\\,$\\to$\\,6.56\\% on SciERC,\n0.17\\%\\,$\\to$\\,12.02\\% on DocRED).\n% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.24→6.56\n% phase2_docred: Qwen CF 0.10→2.57; Llama CF 0.17→12.02\nLlama exhibits the highest CF rate (12.02\\% on DocRED), consistent with\nits lower baseline generation quality producing more cases where\nconstrained field corrections create inter-field inconsistencies.\nThis cross-model pattern confirms that CF elevation is a systematic\nproperty of the current constraint architecture rather than a\nmodel-specific artifact, motivating a joint cross-field enforcement\nmechanism as future work (Section~\\ref{sec:discussion}).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 65,
+                  "oldLines": 8,
+                  "newStart": 65,
+                  "newLines": 8,
+                  "lines": [
+                    " %  (a) Grammar layer: model-agnostic",
+                    " % ──────────────────────────────────────────",
+                    " \\paragraph{Grammar-layer guarantees are model-agnostic.}",
+                    "-RV and ET violations reach 0\\% under S1 for both models on both",
+                    "-datasets.",
+                    "+RV and ET violations are eliminated or near-eliminated ($\\leq$0.03\\%)",
+                    "+under S1 for both models on both datasets.",
+                    " % Qwen SciERC S1: RV=0, ET=0; Llama SciERC S1: RV=0, ET=0",
+                    " % Qwen DocRED S1: RV=0.03%, ET=0; Llama DocRED S1: RV=0, ET=0",
+                    " This confirms that the grammar layer's structural enforcement---relation"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Fix #3: Add E-F1 discussion after R-F1 paragraph**"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "b809c298-4387-4176-97b2-8589f4fb470c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BvSoTgCsF69aTnLT9sDdVq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 286,
+                "cache_read_input_tokens": 30006,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 286
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017nACboTbDL75gMvXKN1tP2",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+                "old_string": "indicating that constraint enforcement redirects probability mass\ntoward schema-compliant outputs without degrading extraction quality.\n\n% ──────────────────────────────────────────\n%  (c) Llama vs Qwen DR reduction asymmetry",
+                "new_string": "indicating that constraint enforcement redirects probability mass\ntoward schema-compliant outputs without degrading extraction quality.\nEntity F1 is preserved or improved for Qwen3-8B ($+$0.03/$+$1.22\\,pp)\nbut shows a minor decline for Llama-3.1-8B on DocRED ($-$0.64\\,pp),\nattributable in part to increased parse failures\n(68\\,$\\to$\\,91) under constrained decoding.\n% llama_docred_unconstrained: E-F1=55.65, parse_fail=68\n% llama_docred_full_s1: E-F1=55.01, parse_fail=91\n\n% ──────────────────────────────────────────\n%  (c) Llama vs Qwen DR reduction asymmetry"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "2b275fd3-63f6-4fd5-b415-6d282594c874",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BvSoTgCsF69aTnLT9sDdVq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 286,
+                "cache_read_input_tokens": 30006,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 286
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T21:03:40.597Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017nACboTbDL75gMvXKN1tP2",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "1d5fbc9b-5a88-4ce2-bd50-07ce20e54cb9",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+              "oldString": "indicating that constraint enforcement redirects probability mass\ntoward schema-compliant outputs without degrading extraction quality.\n\n% ──────────────────────────────────────────\n%  (c) Llama vs Qwen DR reduction asymmetry",
+              "newString": "indicating that constraint enforcement redirects probability mass\ntoward schema-compliant outputs without degrading extraction quality.\nEntity F1 is preserved or improved for Qwen3-8B ($+$0.03/$+$1.22\\,pp)\nbut shows a minor decline for Llama-3.1-8B on DocRED ($-$0.64\\,pp),\nattributable in part to increased parse failures\n(68\\,$\\to$\\,91) under constrained decoding.\n% llama_docred_unconstrained: E-F1=55.65, parse_fail=68\n% llama_docred_full_s1: E-F1=55.01, parse_fail=91\n\n% ──────────────────────────────────────────\n%  (c) Llama vs Qwen DR reduction asymmetry",
+              "originalFile": "% Section 5 — Cross-Model Validation (Draft)\n% Data source: Phase 2 registry experiments, Qwen3-8B + Llama-3.1-8B\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n%          phase2_docred_unconstrained, phase2_docred_full_s1,\n%          llama_scierc_unconstrained, llama_scierc_full_s1,\n%          llama_docred_unconstrained, llama_docred_full_s1\n% All numbers verified against registry 2026-05-14.\n\n\\subsection{Cross-Model Validation}\n\\label{sec:cross-model}\n\nTo verify that our constraint framework generalizes beyond a single LLM,\nwe replicate the full two-layer (S1) configuration with\nLlama-3.1-8B-Instruct under identical prompts, decoding parameters,\nand evaluation protocol.\nTable~\\ref{tab:cross-model} summarizes results alongside Qwen3-8B.\n\n% ──────────────────────────────────────────\n%  Table: Cross-model comparison\n% ──────────────────────────────────────────\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3.4pt}\n\\begin{tabular}{@{}ll rrrr rr@{}}\n\\toprule\n& & \\multicolumn{4}{c}{\\textbf{Violation Rates (\\%)}}\n& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n\\cmidrule(lr){3-6} \\cmidrule(l){7-8}\n\\textbf{Dataset} & \\textbf{Model}\n  & DR\\,$\\downarrow$ & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n  & Rel. & Ent. \\\\\n\\midrule\n\\multirow{4}{*}{SciERC}\n  & Qwen (U)  & 15.37 & 1.39 & 0.40 & 0.08 & 8.23 & 31.01 \\\\\n  & Qwen (S1) &  0.93 & 0    & 0    & 9.90 & 8.36 & 30.98 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 13.34 & 0.55 & 0    & 0.24 & 2.68 & 23.56 \\\\\n  & Llama (S1) &  0.08 & 0    & 0    & 6.56 & 2.54 & 23.49 \\\\\n% phase2_scierc_unconstrained: DR=0.1537, RV=0.0139, ET=0.0040, CF=0.0008, R-F1=0.0823, E-F1=0.3101\n% phase2_scierc_full_s1: DR=0.0093, RV=0, ET=0, CF=0.0990, R-F1=0.0836, E-F1=0.3098\n% llama_scierc_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0024, R-F1=0.0268, E-F1=0.2356\n% llama_scierc_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349\n\\midrule\n\\multirow{4}{*}{DocRED}\n  & Qwen (U)  & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\\\\n  & Qwen (S1) & 10.21 &  0.03 & 0    & 2.57 & 8.23 & 59.37 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 & 55.65 \\\\\n  & Llama (S1) &  2.55 &  0    & 0    & 12.02 & 6.27 & 55.01 \\\\\n% phase2_docred_unconstrained: DR=0.1846, RV=0.2966, ET=0.0248, CF=0.0010, R-F1=0.0774, E-F1=0.5815\n% phase2_docred_full_s1: DR=0.1021, RV=0.0003, ET=0, CF=0.0257, R-F1=0.0823, E-F1=0.5937\n% llama_docred_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565\n% llama_docred_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).\nU: unconstrained baseline; S1: full two-layer constraints.\nDR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.\nF1 scores are multiplied by 100.}\n\\label{tab:cross-model}\n\\end{table}\n\n% ──────────────────────────────────────────\n%  (a) Grammar layer: model-agnostic\n% ──────────────────────────────────────────\n\\paragraph{Grammar-layer guarantees are model-agnostic.}\nRV and ET violations are eliminated or near-eliminated ($\\leq$0.03\\%)\nunder S1 for both models on both datasets.\n% Qwen SciERC S1: RV=0, ET=0; Llama SciERC S1: RV=0, ET=0\n% Qwen DocRED S1: RV=0.03%, ET=0; Llama DocRED S1: RV=0, ET=0\nThis confirms that the grammar layer's structural enforcement---relation\nvocabulary restriction and entity type validation---operates on the\nconstrained decoding mechanism itself and does not depend on\nmodel-specific generation patterns.\n\n% ──────────────────────────────────────────\n%  (b) Semantic layer: DR reduction across models\n% ──────────────────────────────────────────\n\\paragraph{Semantic-layer DR reduction generalizes across models.}\nDomain/range violations decrease under S1 for both models on both\ndatasets:\nSciERC DR drops 94\\% for Qwen (15.37\\%\\,$\\to$\\,0.93\\%) and\n99.4\\% for Llama (13.34\\%\\,$\\to$\\,0.08\\%);\n% Qwen: (15.37-0.93)/15.37=0.939; Llama: (13.34-0.08)/13.34=0.994\nDocRED DR drops 45\\% for Qwen (18.46\\%\\,$\\to$\\,10.21\\%) and\n90.2\\% for Llama (26.07\\%\\,$\\to$\\,2.55\\%).\n% Qwen: (18.46-10.21)/18.46=0.447; Llama: (26.07-2.55)/26.07=0.902\nIn both cases, relation F1 is preserved or marginally improves\n(Qwen R-F1: +0.13/+0.49\\,pp; Llama R-F1: $-$0.14/+0.29\\,pp),\n% phase2_scierc: Qwen 8.23→8.36; Llama 2.68→2.54\n% phase2_docred: Qwen 7.74→8.23; Llama 5.98→6.27\nindicating that constraint enforcement redirects probability mass\ntoward schema-compliant outputs without degrading extraction quality.\n\n% ──────────────────────────────────────────\n%  (c) Llama vs Qwen DR reduction asymmetry\n% ──────────────────────────────────────────\n\\paragraph{Llama achieves higher DR reduction than Qwen.}\nLlama's relative DR reduction exceeds Qwen's on both datasets\n(SciERC: 99.4\\% vs.\\ 94\\%; DocRED: 90.2\\% vs.\\ 45\\%).\nThis asymmetry reflects the interaction between constraint tightness\nand model-specific violation profiles: Qwen's higher baseline RV\n(29.66\\% vs.\\ 16.03\\%) causes grammar-layer enforcement to surface\nmore latent DR violations, raising residual DR despite identical\nontology constraints (see tightness paragraph,\nSection~\\ref{sec:docred-results}).\n% Qwen DocRED: RV=0.2966, DR_full=0.1021, DR_reduction=44.7%\n% Llama DocRED: RV=0.1603, DR_full=0.0255, DR_reduction=90.2%\nNotably, Llama's absolute IE quality is lower than Qwen's\n(R-F1 $\\approx$ 2.5--6.3 vs.\\ 8.2--8.4; E-F1 lower by 2--8\\,pp),\nbut this does not diminish the validity of the compliance comparison:\nconstraint enforcement is evaluated on the model's own output\ndistribution, and the consistent violation reduction pattern across\ntwo models with different capability levels strengthens the\nmodel-agnostic claim.\n\n% ──────────────────────────────────────────\n%  (d) CF trade-off\n% ──────────────────────────────────────────\n\\paragraph{CF trade-off persists across models.}\nCross-field consistency violations increase under S1 for both models\n(Qwen: 0.08\\%\\,$\\to$\\,9.90\\% on SciERC, 0.10\\%\\,$\\to$\\,2.57\\% on\nDocRED; Llama: 0.24\\%\\,$\\to$\\,6.56\\% on SciERC,\n0.17\\%\\,$\\to$\\,12.02\\% on DocRED).\n% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.24→6.56\n% phase2_docred: Qwen CF 0.10→2.57; Llama CF 0.17→12.02\nLlama exhibits the highest CF rate (12.02\\% on DocRED), consistent with\nits lower baseline generation quality producing more cases where\nconstrained field corrections create inter-field inconsistencies.\nThis cross-model pattern confirms that CF elevation is a systematic\nproperty of the current constraint architecture rather than a\nmodel-specific artifact, motivating a joint cross-field enforcement\nmechanism as future work (Section~\\ref{sec:discussion}).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 92,
+                  "oldLines": 6,
+                  "newStart": 92,
+                  "newLines": 12,
+                  "lines": [
+                    " % phase2_docred: Qwen 7.74→8.23; Llama 5.98→6.27",
+                    " indicating that constraint enforcement redirects probability mass",
+                    " toward schema-compliant outputs without degrading extraction quality.",
+                    "+Entity F1 is preserved or improved for Qwen3-8B ($+$0.03/$+$1.22\\,pp)",
+                    "+but shows a minor decline for Llama-3.1-8B on DocRED ($-$0.64\\,pp),",
+                    "+attributable in part to increased parse failures",
+                    "+(68\\,$\\to$\\,91) under constrained decoding.",
+                    "+% llama_docred_unconstrained: E-F1=55.65, parse_fail=68",
+                    "+% llama_docred_full_s1: E-F1=55.01, parse_fail=91",
+                    " ",
+                    " % ──────────────────────────────────────────",
+                    " %  (c) Llama vs Qwen DR reduction asymmetry"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Fix #5: Parse failure rates in table caption**"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "47c6d90b-90ed-40bf-a441-2d87e75a18c1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MFsoRCzXzEmVYxK4YhB4pa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 488,
+                "cache_read_input_tokens": 30292,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 488
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019UbPtGFsjtaA6a2qv1JW7t",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+                "old_string": "\\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).\nU: unconstrained baseline; S1: full two-layer constraints.\nDR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.\nF1 scores are multiplied by 100.}",
+                "new_string": "\\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).\nU: unconstrained baseline; S1: full two-layer constraints.\nDR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.\nF1 scores are multiplied by 100.\nParse failures (U$\\to$S1): Qwen SciERC 0$\\to$0, Llama SciERC 1$\\to$0,\nQwen DocRED 12$\\to$11, Llama DocRED 68$\\to$91.}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "f16b4a36-0ced-494b-866f-70f7ca8b78d9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MFsoRCzXzEmVYxK4YhB4pa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 488,
+                "cache_read_input_tokens": 30292,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 488
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T21:03:48.726Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019UbPtGFsjtaA6a2qv1JW7t",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "724fe65a-459a-4c76-b486-c5f1b91eacd8",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+              "oldString": "\\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).\nU: unconstrained baseline; S1: full two-layer constraints.\nDR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.\nF1 scores are multiplied by 100.}",
+              "newString": "\\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).\nU: unconstrained baseline; S1: full two-layer constraints.\nDR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.\nF1 scores are multiplied by 100.\nParse failures (U$\\to$S1): Qwen SciERC 0$\\to$0, Llama SciERC 1$\\to$0,\nQwen DocRED 12$\\to$11, Llama DocRED 68$\\to$91.}",
+              "originalFile": "% Section 5 — Cross-Model Validation (Draft)\n% Data source: Phase 2 registry experiments, Qwen3-8B + Llama-3.1-8B\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n%          phase2_docred_unconstrained, phase2_docred_full_s1,\n%          llama_scierc_unconstrained, llama_scierc_full_s1,\n%          llama_docred_unconstrained, llama_docred_full_s1\n% All numbers verified against registry 2026-05-14.\n\n\\subsection{Cross-Model Validation}\n\\label{sec:cross-model}\n\nTo verify that our constraint framework generalizes beyond a single LLM,\nwe replicate the full two-layer (S1) configuration with\nLlama-3.1-8B-Instruct under identical prompts, decoding parameters,\nand evaluation protocol.\nTable~\\ref{tab:cross-model} summarizes results alongside Qwen3-8B.\n\n% ──────────────────────────────────────────\n%  Table: Cross-model comparison\n% ──────────────────────────────────────────\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3.4pt}\n\\begin{tabular}{@{}ll rrrr rr@{}}\n\\toprule\n& & \\multicolumn{4}{c}{\\textbf{Violation Rates (\\%)}}\n& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n\\cmidrule(lr){3-6} \\cmidrule(l){7-8}\n\\textbf{Dataset} & \\textbf{Model}\n  & DR\\,$\\downarrow$ & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n  & Rel. & Ent. \\\\\n\\midrule\n\\multirow{4}{*}{SciERC}\n  & Qwen (U)  & 15.37 & 1.39 & 0.40 & 0.08 & 8.23 & 31.01 \\\\\n  & Qwen (S1) &  0.93 & 0    & 0    & 9.90 & 8.36 & 30.98 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 13.34 & 0.55 & 0    & 0.24 & 2.68 & 23.56 \\\\\n  & Llama (S1) &  0.08 & 0    & 0    & 6.56 & 2.54 & 23.49 \\\\\n% phase2_scierc_unconstrained: DR=0.1537, RV=0.0139, ET=0.0040, CF=0.0008, R-F1=0.0823, E-F1=0.3101\n% phase2_scierc_full_s1: DR=0.0093, RV=0, ET=0, CF=0.0990, R-F1=0.0836, E-F1=0.3098\n% llama_scierc_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0024, R-F1=0.0268, E-F1=0.2356\n% llama_scierc_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349\n\\midrule\n\\multirow{4}{*}{DocRED}\n  & Qwen (U)  & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\\\\n  & Qwen (S1) & 10.21 &  0.03 & 0    & 2.57 & 8.23 & 59.37 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 & 55.65 \\\\\n  & Llama (S1) &  2.55 &  0    & 0    & 12.02 & 6.27 & 55.01 \\\\\n% phase2_docred_unconstrained: DR=0.1846, RV=0.2966, ET=0.0248, CF=0.0010, R-F1=0.0774, E-F1=0.5815\n% phase2_docred_full_s1: DR=0.1021, RV=0.0003, ET=0, CF=0.0257, R-F1=0.0823, E-F1=0.5937\n% llama_docred_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565\n% llama_docred_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).\nU: unconstrained baseline; S1: full two-layer constraints.\nDR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.\nF1 scores are multiplied by 100.}\n\\label{tab:cross-model}\n\\end{table}\n\n% ──────────────────────────────────────────\n%  (a) Grammar layer: model-agnostic\n% ──────────────────────────────────────────\n\\paragraph{Grammar-layer guarantees are model-agnostic.}\nRV and ET violations are eliminated or near-eliminated ($\\leq$0.03\\%)\nunder S1 for both models on both datasets.\n% Qwen SciERC S1: RV=0, ET=0; Llama SciERC S1: RV=0, ET=0\n% Qwen DocRED S1: RV=0.03%, ET=0; Llama DocRED S1: RV=0, ET=0\nThis confirms that the grammar layer's structural enforcement---relation\nvocabulary restriction and entity type validation---operates on the\nconstrained decoding mechanism itself and does not depend on\nmodel-specific generation patterns.\n\n% ──────────────────────────────────────────\n%  (b) Semantic layer: DR reduction across models\n% ──────────────────────────────────────────\n\\paragraph{Semantic-layer DR reduction generalizes across models.}\nDomain/range violations decrease under S1 for both models on both\ndatasets:\nSciERC DR drops 94\\% for Qwen (15.37\\%\\,$\\to$\\,0.93\\%) and\n99.4\\% for Llama (13.34\\%\\,$\\to$\\,0.08\\%);\n% Qwen: (15.37-0.93)/15.37=0.939; Llama: (13.34-0.08)/13.34=0.994\nDocRED DR drops 45\\% for Qwen (18.46\\%\\,$\\to$\\,10.21\\%) and\n90.2\\% for Llama (26.07\\%\\,$\\to$\\,2.55\\%).\n% Qwen: (18.46-10.21)/18.46=0.447; Llama: (26.07-2.55)/26.07=0.902\nIn both cases, relation F1 is preserved or marginally improves\n(Qwen R-F1: +0.13/+0.49\\,pp; Llama R-F1: $-$0.14/+0.29\\,pp),\n% phase2_scierc: Qwen 8.23→8.36; Llama 2.68→2.54\n% phase2_docred: Qwen 7.74→8.23; Llama 5.98→6.27\nindicating that constraint enforcement redirects probability mass\ntoward schema-compliant outputs without degrading extraction quality.\nEntity F1 is preserved or improved for Qwen3-8B ($+$0.03/$+$1.22\\,pp)\nbut shows a minor decline for Llama-3.1-8B on DocRED ($-$0.64\\,pp),\nattributable in part to increased parse failures\n(68\\,$\\to$\\,91) under constrained decoding.\n% llama_docred_unconstrained: E-F1=55.65, parse_fail=68\n% llama_docred_full_s1: E-F1=55.01, parse_fail=91\n\n% ──────────────────────────────────────────\n%  (c) Llama vs Qwen DR reduction asymmetry\n% ──────────────────────────────────────────\n\\paragraph{Llama achieves higher DR reduction than Qwen.}\nLlama's relative DR reduction exceeds Qwen's on both datasets\n(SciERC: 99.4\\% vs.\\ 94\\%; DocRED: 90.2\\% vs.\\ 45\\%).\nThis asymmetry reflects the interaction between constraint tightness\nand model-specific violation profiles: Qwen's higher baseline RV\n(29.66\\% vs.\\ 16.03\\%) causes grammar-layer enforcement to surface\nmore latent DR violations, raising residual DR despite identical\nontology constraints (see tightness paragraph,\nSection~\\ref{sec:docred-results}).\n% Qwen DocRED: RV=0.2966, DR_full=0.1021, DR_reduction=44.7%\n% Llama DocRED: RV=0.1603, DR_full=0.0255, DR_reduction=90.2%\nNotably, Llama's absolute IE quality is lower than Qwen's\n(R-F1 $\\approx$ 2.5--6.3 vs.\\ 8.2--8.4; E-F1 lower by 2--8\\,pp),\nbut this does not diminish the validity of the compliance comparison:\nconstraint enforcement is evaluated on the model's own output\ndistribution, and the consistent violation reduction pattern across\ntwo models with different capability levels strengthens the\nmodel-agnostic claim.\n\n% ──────────────────────────────────────────\n%  (d) CF trade-off\n% ──────────────────────────────────────────\n\\paragraph{CF trade-off persists across models.}\nCross-field consistency violations increase under S1 for both models\n(Qwen: 0.08\\%\\,$\\to$\\,9.90\\% on SciERC, 0.10\\%\\,$\\to$\\,2.57\\% on\nDocRED; Llama: 0.24\\%\\,$\\to$\\,6.56\\% on SciERC,\n0.17\\%\\,$\\to$\\,12.02\\% on DocRED).\n% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.24→6.56\n% phase2_docred: Qwen CF 0.10→2.57; Llama CF 0.17→12.02\nLlama exhibits the highest CF rate (12.02\\% on DocRED), consistent with\nits lower baseline generation quality producing more cases where\nconstrained field corrections create inter-field inconsistencies.\nThis cross-model pattern confirms that CF elevation is a systematic\nproperty of the current constraint architecture rather than a\nmodel-specific artifact, motivating a joint cross-field enforcement\nmechanism as future work (Section~\\ref{sec:discussion}).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 57,
+                  "oldLines": 7,
+                  "newStart": 57,
+                  "newLines": 9,
+                  "lines": [
+                    " \\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).",
+                    " U: unconstrained baseline; S1: full two-layer constraints.",
+                    " DR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.",
+                    "-F1 scores are multiplied by 100.}",
+                    "+F1 scores are multiplied by 100.",
+                    "+Parse failures (U$\\to$S1): Qwen SciERC 0$\\to$0, Llama SciERC 1$\\to$0,",
+                    "+Qwen DocRED 12$\\to$11, Llama DocRED 68$\\to$91.}",
+                    " \\label{tab:cross-model}",
+                    " \\end{table}",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me verify the final file."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "c6a6f99f-329e-4c9e-958b-898e21bc8569",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RfDmCzyBAkRadonekT7ZxX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 477,
+                "cache_read_input_tokens": 30780,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 477
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013wvGfSDNc1XsWjQV5xdffS",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "e99c5249-d8fd-431d-a622-88b412ca506a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RfDmCzyBAkRadonekT7ZxX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 477,
+                "cache_read_input_tokens": 30780,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 477
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T21:03:51.906Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013wvGfSDNc1XsWjQV5xdffS",
+              "type": "tool_result",
+              "content": "1\t% Section 5 — Cross-Model Validation (Draft)\n2\t% Data source: Phase 2 registry experiments, Qwen3-8B + Llama-3.1-8B\n3\t% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n4\t%          phase2_docred_unconstrained, phase2_docred_full_s1,\n5\t%          llama_scierc_unconstrained, llama_scierc_full_s1,\n6\t%          llama_docred_unconstrained, llama_docred_full_s1\n7\t% All numbers verified against registry 2026-05-14.\n8\t\n9\t\\subsection{Cross-Model Validation}\n10\t\\label{sec:cross-model}\n11\t\n12\tTo verify that our constraint framework generalizes beyond a single LLM,\n13\twe replicate the full two-layer (S1) configuration with\n14\tLlama-3.1-8B-Instruct under identical prompts, decoding parameters,\n15\tand evaluation protocol.\n16\tTable~\\ref{tab:cross-model} summarizes results alongside Qwen3-8B.\n17\t\n18\t% ──────────────────────────────────────────\n19\t%  Table: Cross-model comparison\n20\t% ──────────────────────────────────────────\n21\t\\begin{table}[t]\n22\t\\centering\n23\t\\small\n24\t\\setlength{\\tabcolsep}{3.4pt}\n25\t\\begin{tabular}{@{}ll rrrr rr@{}}\n26\t\\toprule\n27\t& & \\multicolumn{4}{c}{\\textbf{Violation Rates (\\%)}}\n28\t& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n29\t\\cmidrule(lr){3-6} \\cmidrule(l){7-8}\n30\t\\textbf{Dataset} & \\textbf{Model}\n31\t  & DR\\,$\\downarrow$ & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n32\t  & Rel. & Ent. \\\\\n33\t\\midrule\n34\t\\multirow{4}{*}{SciERC}\n35\t  & Qwen (U)  & 15.37 & 1.39 & 0.40 & 0.08 & 8.23 & 31.01 \\\\\n36\t  & Qwen (S1) &  0.93 & 0    & 0    & 9.90 & 8.36 & 30.98 \\\\\n37\t  \\cmidrule(l){2-8}\n38\t  & Llama (U)  & 13.34 & 0.55 & 0    & 0.24 & 2.68 & 23.56 \\\\\n39\t  & Llama (S1) &  0.08 & 0    & 0    & 6.56 & 2.54 & 23.49 \\\\\n40\t% phase2_scierc_unconstrained: DR=0.1537, RV=0.0139, ET=0.0040, CF=0.0008, R-F1=0.0823, E-F1=0.3101\n41\t% phase2_scierc_full_s1: DR=0.0093, RV=0, ET=0, CF=0.0990, R-F1=0.0836, E-F1=0.3098\n42\t% llama_scierc_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0024, R-F1=0.0268, E-F1=0.2356\n43\t% llama_scierc_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349\n44\t\\midrule\n45\t\\multirow{4}{*}{DocRED}\n46\t  & Qwen (U)  & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\\\\n47\t  & Qwen (S1) & 10.21 &  0.03 & 0    & 2.57 & 8.23 & 59.37 \\\\\n48\t  \\cmidrule(l){2-8}\n49\t  & Llama (U)  & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 & 55.65 \\\\\n50\t  & Llama (S1) &  2.55 &  0    & 0    & 12.02 & 6.27 & 55.01 \\\\\n51\t% phase2_docred_unconstrained: DR=0.1846, RV=0.2966, ET=0.0248, CF=0.0010, R-F1=0.0774, E-F1=0.5815\n52\t% phase2_docred_full_s1: DR=0.1021, RV=0.0003, ET=0, CF=0.0257, R-F1=0.0823, E-F1=0.5937\n53\t% llama_docred_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565\n54\t% llama_docred_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501\n55\t\\bottomrule\n56\t\\end{tabular}\n57\t\\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).\n58\tU: unconstrained baseline; S1: full two-layer constraints.\n59\tDR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.\n60\tF1 scores are multiplied by 100.\n61\tParse failures (U$\\to$S1): Qwen SciERC 0$\\to$0, Llama SciERC 1$\\to$0,\n62\tQwen DocRED 12$\\to$11, Llama DocRED 68$\\to$91.}\n63\t\\label{tab:cross-model}\n64\t\\end{table}\n65\t\n66\t% ──────────────────────────────────────────\n67\t%  (a) Grammar layer: model-agnostic\n68\t% ──────────────────────────────────────────\n69\t\\paragraph{Grammar-layer guarantees are model-agnostic.}\n70\tRV and ET violations are eliminated or near-eliminated ($\\leq$0.03\\%)\n71\tunder S1 for both models on both datasets.\n72\t% Qwen SciERC S1: RV=0, ET=0; Llama SciERC S1: RV=0, ET=0\n73\t% Qwen DocRED S1: RV=0.03%, ET=0; Llama DocRED S1: RV=0, ET=0\n74\tThis confirms that the grammar layer's structural enforcement---relation\n75\tvocabulary restriction and entity type validation---operates on the\n76\tconstrained decoding mechanism itself and does not depend on\n77\tmodel-specific generation patterns.\n78\t\n79\t% ──────────────────────────────────────────\n80\t%  (b) Semantic layer: DR reduction across models\n81\t% ──────────────────────────────────────────\n82\t\\paragraph{Semantic-layer DR reduction generalizes across models.}\n83\tDomain/range violations decrease under S1 for both models on both\n84\tdatasets:\n85\tSciERC DR drops 94\\% for Qwen (15.37\\%\\,$\\to$\\,0.93\\%) and\n86\t99.4\\% for Llama (13.34\\%\\,$\\to$\\,0.08\\%);\n87\t% Qwen: (15.37-0.93)/15.37=0.939; Llama: (13.34-0.08)/13.34=0.994\n88\tDocRED DR drops 45\\% for Qwen (18.46\\%\\,$\\to$\\,10.21\\%) and\n89\t90.2\\% for Llama (26.07\\%\\,$\\to$\\,2.55\\%).\n90\t% Qwen: (18.46-10.21)/18.46=0.447; Llama: (26.07-2.55)/26.07=0.902\n91\tIn both cases, relation F1 is preserved or marginally improves\n92\t(Qwen R-F1: +0.13/+0.49\\,pp; Llama R-F1: $-$0.14/+0.29\\,pp),\n93\t% phase2_scierc: Qwen 8.23→8.36; Llama 2.68→2.54\n94\t% phase2_docred: Qwen 7.74→8.23; Llama 5.98→6.27\n95\tindicating that constraint enforcement redirects probability mass\n96\ttoward schema-compliant outputs without degrading extraction quality.\n97\tEntity F1 is preserved or improved for Qwen3-8B ($+$0.03/$+$1.22\\,pp)\n98\tbut shows a minor decline for Llama-3.1-8B on DocRED ($-$0.64\\,pp),\n99\tattributable in part to increased parse failures\n100\t(68\\,$\\to$\\,91) under constrained decoding.\n101\t% llama_docred_unconstrained: E-F1=55.65, parse_fail=68\n102\t% llama_docred_full_s1: E-F1=55.01, parse_fail=91\n103\t\n104\t% ──────────────────────────────────────────\n105\t%  (c) Llama vs Qwen DR reduction asymmetry\n106\t% ──────────────────────────────────────────\n107\t\\paragraph{Llama achieves higher DR reduction than Qwen.}\n108\tLlama's relative DR reduction exceeds Qwen's on both datasets\n109\t(SciERC: 99.4\\% vs.\\ 94\\%; DocRED: 90.2\\% vs.\\ 45\\%).\n110\tThis asymmetry reflects the interaction between constraint tightness\n111\tand model-specific violation profiles: Qwen's higher baseline RV\n112\t(29.66\\% vs.\\ 16.03\\%) causes grammar-layer enforcement to surface\n113\tmore latent DR violations, raising residual DR despite identical\n114\tontology constraints (see tightness paragraph,\n115\tSection~\\ref{sec:docred-results}).\n116\t% Qwen DocRED: RV=0.2966, DR_full=0.1021, DR_reduction=44.7%\n117\t% Llama DocRED: RV=0.1603, DR_full=0.0255, DR_reduction=90.2%\n118\tNotably, Llama's absolute IE quality is lower than Qwen's\n119\t(R-F1 $\\approx$ 2.5--6.3 vs.\\ 8.2--8.4; E-F1 lower by 2--8\\,pp),\n120\tbut this does not diminish the validity of the compliance comparison:\n121\tconstraint enforcement is evaluated on the model's own output\n122\tdistribution, and the consistent violation reduction pattern across\n123\ttwo models with different capability levels strengthens the\n124\tmodel-agnostic claim.\n125\t\n126\t% ──────────────────────────────────────────\n127\t%  (d) CF trade-off\n128\t% ──────────────────────────────────────────\n129\t\\paragraph{CF trade-off persists across models.}\n130\tCross-field consistency violations increase under S1 for both models\n131\t(Qwen: 0.08\\%\\,$\\to$\\,9.90\\% on SciERC, 0.10\\%\\,$\\to$\\,2.57\\% on\n132\tDocRED; Llama: 0.24\\%\\,$\\to$\\,6.56\\% on SciERC,\n133\t0.17\\%\\,$\\to$\\,12.02\\% on DocRED).\n134\t% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.24→6.56\n135\t% phase2_docred: Qwen CF 0.10→2.57; Llama CF 0.17→12.02\n136\tLlama exhibits the highest CF rate (12.02\\% on DocRED), consistent with\n137\tits lower baseline generation quality producing more cases where\n138\tconstrained field corrections create inter-field inconsistencies.\n139\tThis cross-model pattern confirms that CF elevation is a systematic\n140\tproperty of the current constraint architecture rather than a\n141\tmodel-specific artifact, motivating a joint cross-field enforcement\n142\tmechanism as future work (Section~\\ref{sec:discussion}).\n143\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "e3eda907-02a2-4ebd-92e9-c8c20e3b8999",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+                "content": "% Section 5 — Cross-Model Validation (Draft)\n% Data source: Phase 2 registry experiments, Qwen3-8B + Llama-3.1-8B\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n%          phase2_docred_unconstrained, phase2_docred_full_s1,\n%          llama_scierc_unconstrained, llama_scierc_full_s1,\n%          llama_docred_unconstrained, llama_docred_full_s1\n% All numbers verified against registry 2026-05-14.\n\n\\subsection{Cross-Model Validation}\n\\label{sec:cross-model}\n\nTo verify that our constraint framework generalizes beyond a single LLM,\nwe replicate the full two-layer (S1) configuration with\nLlama-3.1-8B-Instruct under identical prompts, decoding parameters,\nand evaluation protocol.\nTable~\\ref{tab:cross-model} summarizes results alongside Qwen3-8B.\n\n% ──────────────────────────────────────────\n%  Table: Cross-model comparison\n% ──────────────────────────────────────────\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3.4pt}\n\\begin{tabular}{@{}ll rrrr rr@{}}\n\\toprule\n& & \\multicolumn{4}{c}{\\textbf{Violation Rates (\\%)}}\n& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n\\cmidrule(lr){3-6} \\cmidrule(l){7-8}\n\\textbf{Dataset} & \\textbf{Model}\n  & DR\\,$\\downarrow$ & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n  & Rel. & Ent. \\\\\n\\midrule\n\\multirow{4}{*}{SciERC}\n  & Qwen (U)  & 15.37 & 1.39 & 0.40 & 0.08 & 8.23 & 31.01 \\\\\n  & Qwen (S1) &  0.93 & 0    & 0    & 9.90 & 8.36 & 30.98 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 13.34 & 0.55 & 0    & 0.24 & 2.68 & 23.56 \\\\\n  & Llama (S1) &  0.08 & 0    & 0    & 6.56 & 2.54 & 23.49 \\\\\n% phase2_scierc_unconstrained: DR=0.1537, RV=0.0139, ET=0.0040, CF=0.0008, R-F1=0.0823, E-F1=0.3101\n% phase2_scierc_full_s1: DR=0.0093, RV=0, ET=0, CF=0.0990, R-F1=0.0836, E-F1=0.3098\n% llama_scierc_unconstrained: DR=0.1334, RV=0.0055, ET=0, CF=0.0024, R-F1=0.0268, E-F1=0.2356\n% llama_scierc_full_s1: DR=0.0008, RV=0, ET=0, CF=0.0656, R-F1=0.0254, E-F1=0.2349\n\\midrule\n\\multirow{4}{*}{DocRED}\n  & Qwen (U)  & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\\\\n  & Qwen (S1) & 10.21 &  0.03 & 0    & 2.57 & 8.23 & 59.37 \\\\\n  \\cmidrule(l){2-8}\n  & Llama (U)  & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 & 55.65 \\\\\n  & Llama (S1) &  2.55 &  0    & 0    & 12.02 & 6.27 & 55.01 \\\\\n% phase2_docred_unconstrained: DR=0.1846, RV=0.2966, ET=0.0248, CF=0.0010, R-F1=0.0774, E-F1=0.5815\n% phase2_docred_full_s1: DR=0.1021, RV=0.0003, ET=0, CF=0.0257, R-F1=0.0823, E-F1=0.5937\n% llama_docred_unconstrained: DR=0.2607, RV=0.1603, ET=0.0013, CF=0.0017, R-F1=0.0598, E-F1=0.5565\n% llama_docred_full_s1: DR=0.0255, RV=0, ET=0, CF=0.1202, R-F1=0.0627, E-F1=0.5501\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-model validation (Qwen3-8B vs.\\ Llama-3.1-8B-Instruct).\nU: unconstrained baseline; S1: full two-layer constraints.\nDR/RV/ET/CF defined as in Table~\\ref{tab:scierc-ablation}.\nF1 scores are multiplied by 100.\nParse failures (U$\\to$S1): Qwen SciERC 0$\\to$0, Llama SciERC 1$\\to$0,\nQwen DocRED 12$\\to$11, Llama DocRED 68$\\to$91.}\n\\label{tab:cross-model}\n\\end{table}\n\n% ──────────────────────────────────────────\n%  (a) Grammar layer: model-agnostic\n% ──────────────────────────────────────────\n\\paragraph{Grammar-layer guarantees are model-agnostic.}\nRV and ET violations are eliminated or near-eliminated ($\\leq$0.03\\%)\nunder S1 for both models on both datasets.\n% Qwen SciERC S1: RV=0, ET=0; Llama SciERC S1: RV=0, ET=0\n% Qwen DocRED S1: RV=0.03%, ET=0; Llama DocRED S1: RV=0, ET=0\nThis confirms that the grammar layer's structural enforcement---relation\nvocabulary restriction and entity type validation---operates on the\nconstrained decoding mechanism itself and does not depend on\nmodel-specific generation patterns.\n\n% ──────────────────────────────────────────\n%  (b) Semantic layer: DR reduction across models\n% ──────────────────────────────────────────\n\\paragraph{Semantic-layer DR reduction generalizes across models.}\nDomain/range violations decrease under S1 for both models on both\ndatasets:\nSciERC DR drops 94\\% for Qwen (15.37\\%\\,$\\to$\\,0.93\\%) and\n99.4\\% for Llama (13.34\\%\\,$\\to$\\,0.08\\%);\n% Qwen: (15.37-0.93)/15.37=0.939; Llama: (13.34-0.08)/13.34=0.994\nDocRED DR drops 45\\% for Qwen (18.46\\%\\,$\\to$\\,10.21\\%) and\n90.2\\% for Llama (26.07\\%\\,$\\to$\\,2.55\\%).\n% Qwen: (18.46-10.21)/18.46=0.447; Llama: (26.07-2.55)/26.07=0.902\nIn both cases, relation F1 is preserved or marginally improves\n(Qwen R-F1: +0.13/+0.49\\,pp; Llama R-F1: $-$0.14/+0.29\\,pp),\n% phase2_scierc: Qwen 8.23→8.36; Llama 2.68→2.54\n% phase2_docred: Qwen 7.74→8.23; Llama 5.98→6.27\nindicating that constraint enforcement redirects probability mass\ntoward schema-compliant outputs without degrading extraction quality.\nEntity F1 is preserved or improved for Qwen3-8B ($+$0.03/$+$1.22\\,pp)\nbut shows a minor decline for Llama-3.1-8B on DocRED ($-$0.64\\,pp),\nattributable in part to increased parse failures\n(68\\,$\\to$\\,91) under constrained decoding.\n% llama_docred_unconstrained: E-F1=55.65, parse_fail=68\n% llama_docred_full_s1: E-F1=55.01, parse_fail=91\n\n% ──────────────────────────────────────────\n%  (c) Llama vs Qwen DR reduction asymmetry\n% ──────────────────────────────────────────\n\\paragraph{Llama achieves higher DR reduction than Qwen.}\nLlama's relative DR reduction exceeds Qwen's on both datasets\n(SciERC: 99.4\\% vs.\\ 94\\%; DocRED: 90.2\\% vs.\\ 45\\%).\nThis asymmetry reflects the interaction between constraint tightness\nand model-specific violation profiles: Qwen's higher baseline RV\n(29.66\\% vs.\\ 16.03\\%) causes grammar-layer enforcement to surface\nmore latent DR violations, raising residual DR despite identical\nontology constraints (see tightness paragraph,\nSection~\\ref{sec:docred-results}).\n% Qwen DocRED: RV=0.2966, DR_full=0.1021, DR_reduction=44.7%\n% Llama DocRED: RV=0.1603, DR_full=0.0255, DR_reduction=90.2%\nNotably, Llama's absolute IE quality is lower than Qwen's\n(R-F1 $\\approx$ 2.5--6.3 vs.\\ 8.2--8.4; E-F1 lower by 2--8\\,pp),\nbut this does not diminish the validity of the compliance comparison:\nconstraint enforcement is evaluated on the model's own output\ndistribution, and the consistent violation reduction pattern across\ntwo models with different capability levels strengthens the\nmodel-agnostic claim.\n\n% ──────────────────────────────────────────\n%  (d) CF trade-off\n% ──────────────────────────────────────────\n\\paragraph{CF trade-off persists across models.}\nCross-field consistency violations increase under S1 for both models\n(Qwen: 0.08\\%\\,$\\to$\\,9.90\\% on SciERC, 0.10\\%\\,$\\to$\\,2.57\\% on\nDocRED; Llama: 0.24\\%\\,$\\to$\\,6.56\\% on SciERC,\n0.17\\%\\,$\\to$\\,12.02\\% on DocRED).\n% phase2_scierc: Qwen CF 0.08→9.90; Llama CF 0.24→6.56\n% phase2_docred: Qwen CF 0.10→2.57; Llama CF 0.17→12.02\nLlama exhibits the highest CF rate (12.02\\% on DocRED), consistent with\nits lower baseline generation quality producing more cases where\nconstrained field corrections create inter-field inconsistencies.\nThis cross-model pattern confirms that CF elevation is a systematic\nproperty of the current constraint architecture rather than a\nmodel-specific artifact, motivating a joint cross-field enforcement\nmechanism as future work (Section~\\ref{sec:discussion}).\n",
+                "numLines": 143,
+                "startLine": 1,
+                "totalLines": 143
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 5 项修复完成：\n\n| Fix | 修改内容 |\n|-----|---------|\n| #1 | 表格 Llama SciERC (U) CF: 0.09→0.24；注释 CF=0.0009→0.0024；CF 段落 0.09%→0.24% |\n| #2 | \"reach 0%\" → \"are eliminated or near-eliminated ($\\leq$0.03%)\" |\n| #3 | R-F1 段落后新增 E-F1 讨论（Qwen +0.03/+1.22pp，Llama DocRED -0.64pp + parse fail 归因） |\n| #5 | caption 末尾添加 parse failure 数据（4 组 U→S1） |\n| #6 | 所有 `phase2_*_llama_*` exp_id 改为 `llama_*` 格式（header + 4 条数据注释） |"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "uuid": "7cff267a-9ebe-4161-966d-eac62fb5d58b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0114pR3ru6EXCQJvPEEXuD1y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3508,
+                "cache_read_input_tokens": 31257,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3508
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 5 项修复完成：\n\n| Fix | 修改内容 |\n|-----|---------|\n| #1 | 表格 Llama SciERC (U) CF: 0.09→0.24；注释 CF=0.0009→0.0024；CF 段落 0.09%→0.24% |\n| #2 | \"reach 0%\" → \"are eliminated or near-eliminated ($\\leq$0.03%)\" |\n| #3 | R-F1 段落后新增 E-F1 讨论（Qwen +0.03/+1.22pp，Llama DocRED -0.64pp + parse fail 归因） |\n| #5 | caption 末尾添加 parse failure 数据（4 组 U→S1） |\n| #6 | 所有 `phase2_*_llama_*` exp_id 改为 `llama_*` 格式（header + 4 条数据注释） |"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 77833,
+            "duration_api_ms": 79403,
+            "num_turns": 12,
+            "stop_reason": "end_turn",
+            "session_id": "cdea942f-be2e-41ec-a2c1-c11c6e2772dc",
+            "total_cost_usd": 0.4124595,
+            "usage": {
+              "input_tokens": 13,
+              "cache_creation_input_tokens": 22924,
+              "cache_read_input_tokens": 329295,
+              "output_tokens": 4110,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 22924,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 261,
+                  "cache_read_input_tokens": 31257,
+                  "cache_creation_input_tokens": 3508,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3508
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1627,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001722,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 13,
+                "outputTokens": 4110,
+                "cacheReadInputTokens": 329295,
+                "cacheCreationInputTokens": 22924,
+                "webSearchRequests": 0,
+                "costUSD": 0.4107375,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "d00511b3-4551-483d-8c40-84d0e8c9ebd6"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-reviewer-crossmodel-fixes.md"
+}

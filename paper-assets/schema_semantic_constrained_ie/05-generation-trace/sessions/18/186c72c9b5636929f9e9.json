@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "186c72c9b5636929f9e9",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code r16 70b lora scierc",
+  "task_key": "worker_code_r16_70b_lora_scierc_20260521T040623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r16_70b_lora_scierc_20260521T040623.log",
+    "occurrence": 1,
+    "bytes": 609614,
+    "sha256": "f05071e34efeb348e37c0d1136d93524331591069b76743bf63c63bd6936a178"
+  },
+  "statistics": {
+    "messages": 157,
+    "user_turns": 0,
+    "tool_calls": 54,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 54,
+      "tool_result": 54,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 157,
+      "chunks": [
+        {
+          "path": "186c72c9b5636929f9e9-part-0001.json",
+          "message_count": 150
+        },
+        {
+          "path": "186c72c9b5636929f9e9-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-r16-70b-lora-scierc.md"
+}

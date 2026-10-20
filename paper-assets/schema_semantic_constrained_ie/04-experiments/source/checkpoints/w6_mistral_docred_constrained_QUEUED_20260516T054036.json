@@ -1,0 +1,24 @@
+{
+  "exp_id": "w6_mistral_docred_constrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-16T03:19:37.979Z",
+    "updated_at": "2026-05-16T05:40:35.939Z",
+    "hypothesis": "Mistral (3rd model) + OntoCoDec constrained eval on DocRED — 验证约束解码在第三模型+复杂 schema 上的泛化性",
+    "notes": "PID 6789 on cuda:1 via nohup. Patched xgrammar 0.2.0 hf.py (accept_token .item() fix for transformers 5.8.1 compat). Model loaded from symlink. Log at /tmp/w6_mistral_docred_constrained.log.",
+    "failure_reason": "Process killed by fix worker (pkill) during orphan cleanup. Had 15/998 samples before kill.",
+    "completed_at": "2026-05-16T05:31:30.251Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "PID 6789 on cuda:1 via nohup. Patched xgrammar 0.2.0 hf.py (accept_token .item() fix for transformers 5.8.1 compat). Model loaded from symlink. Log at /tmp/w6_mistral_docred_constrained.log."
+      }
+    }
+  },
+  "timestamp": "2026-05-16T05:40:36.077502+00:00",
+  "trigger": "update_registry"
+}

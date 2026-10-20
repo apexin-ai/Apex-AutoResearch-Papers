@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "324395132e7295b0a5b6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "fix violation checker parse fail bug",
+  "task_key": "worker_fix_violation-checker-parse-fail-bug_20260522T072733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_violation-checker-parse-fail-bug_20260522T072733_result.json",
+    "occurrence": 1,
+    "bytes": 1755,
+    "sha256": "8a7b71ca9685a50308967d32144cd64c76442aaf0949ffcc1a0743d46591478e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总产出：\n\n## 产出\n\n### 1. 修复部署\n- `violation_checker.py`（SciERC）：parse failure 时 gold 计入 F1 分母，备份 `.bak_pre_parse_fix`\n- `unified_f1_eval.py`（DocRED）：同样修复，备份 `.bak_pre_parse_fix`\n- `eval_d064.py`（DocRED 主评估脚本）：无 bug，无需修改\n\n### 2. 验证\n- parse_fail=0% 配置（phase2_scierc_unconstrained）：新旧结果完全一致 ✓\n\n### 3. 影响评估\n\n**SciERC — 实际受影响（violation_checker.py bug）：**\n\n| 配置 | PF% | 旧 R-F1 | 新 R-F1 | Δ |\n|------|-----|---------|---------|---|\n| r16_trie_llama_ft_scierc | 50.8 | 41.42 | **19.95** | **-21.47** |\n| r16_trie_qwen_ft_scierc | 9.1 | 42.57 | **41.16** | **-1.41** |\n\n**DocRED — eval_d064.py 无 bug，数值基本不变：**\n\n| 配置 | PF% | Registry | 验证 | Δ |\n|------|-----|----------|------|---|\n| eval_70b_lora_docred_200_unc | 10.0 | 43.80 | 43.80 | 0 |\n| w5_qwen_docred_lora_con | 8.52 | 40.56 | 40.56 | 0 |\n| w5_qwen_docred_lora_unc | 7.11 | 40.86 | 40.86 | 0 |\n| w8_qwen_docred_ft_sem | 7.52 | 40.89 | 40.85 | -0.04 |\n| w8_qwen_docred_ft_gram | 7.01 | 40.85 | 40.85 | 0 |\n| w5_llama_docred_lora_con | 2.51 | 43.78 | 43.78 | 0 |\n| w5_llama_docred_lora_unc | 2.30 | 43.72 | 43.72 | 0 |\n| w8_llama_docred_ft_sem | 2.40 | 43.90 | 43.85 | -0.05 |\n| w8_llama_docred_ft_gram | 2.30 | 43.77 | 43.72 | -0.05 |\n\nw8 的微小偏差（0.04-0.05pp）来自原始评估用了 `unified_f1_eval.py`（同 bug），已统一修正为 `eval_d064.py` 结果。\n\n**关键发现**：`r16_trie_llama_ft_scierc` 的 R-F1 从 41.42 暴跌至 19.95（50.8% parse failure 导致一半 gold 被丢弃）。论文中引用该数据需要更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-violation-checker-parse-fail-bug.md"
+}

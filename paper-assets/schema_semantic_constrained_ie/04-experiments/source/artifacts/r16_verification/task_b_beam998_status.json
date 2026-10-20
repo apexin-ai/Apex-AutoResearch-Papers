@@ -1,0 +1,33 @@
+{
+  "timestamp": "2026-05-21T11:00:00Z",
+  "qwen_docred_beam4_998": {
+    "status": "running",
+    "server": "westd-21461",
+    "pid": 226609,
+    "elapsed": "6h38m",
+    "progress": "739/998 documents (74.0%)",
+    "avg_time_per_doc_sec": 32.3,
+    "eta_remaining": "~2h20m",
+    "eta_completion": "~2026-05-21T13:20Z",
+    "command": "python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path /root/autodl-tmp/schema_outputs/r14_qwen_docred_beam4_998.jsonl --device cuda:0 --max_new_tokens 4096 --seed 42 --decoding_strategy beam --num_beams 4 --skip_on_error",
+    "output_file": "/root/autodl-tmp/schema_outputs/r14_qwen_docred_beam4_998.jsonl",
+    "log_file": "/root/autodl-tmp/schema_outputs/r14_qwen_docred_beam4_998.log",
+    "notes": "Log shows occasional FAIL docs (e.g., doc 651 Adolfo Nicolas failed with 128.7s timeout). Most docs process in 15-60s.",
+    "metrics": null
+  },
+  "llama_docred_beam4_998": {
+    "status": "running",
+    "server": "westd-16980",
+    "pid": 790392,
+    "elapsed": "5h12m",
+    "progress": "741/998 documents (74.2%)",
+    "avg_time_per_doc_sec": 25.3,
+    "eta_remaining": "~1h48m",
+    "eta_completion": "~2026-05-21T12:48Z",
+    "command": "python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path /root/autodl-tmp/schema_outputs/r14_llama_docred_beam4_998.jsonl --device cuda:0 --max_new_tokens 4096 --seed 42 --decoding_strategy beam --num_beams 4 --skip_on_error",
+    "output_file": "/root/autodl-tmp/schema_outputs/r14_llama_docred_beam4_998.jsonl",
+    "log_file": "/root/autodl-tmp/schema_outputs/r14_llama_docred_beam4_998.log",
+    "notes": "Llama processes ~27% faster per doc than Qwen on average. Log has verbose pad_token_id warnings.",
+    "metrics": null
+  }
+}

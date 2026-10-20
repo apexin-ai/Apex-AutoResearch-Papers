@@ -1,0 +1,15 @@
+{
+  "exp_id": "ee_llama_wikievents_unconstrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T19:35:35.416Z",
+    "updated_at": "2026-05-17T19:35:45.411Z",
+    "hypothesis": "WikiEvents zero-shot unconstrained baseline: Llama-3.1-8B will produce significant EV and RoV violations due to lack of schema constraints, establishing baseline violation rates for cross-task generalizability evaluation"
+  },
+  "timestamp": "2026-05-17T19:35:45.579930+00:00",
+  "trigger": "update_registry"
+}

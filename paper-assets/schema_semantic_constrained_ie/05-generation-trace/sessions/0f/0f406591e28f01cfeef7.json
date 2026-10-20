@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f406591e28f01cfeef7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code d009 llama prep",
+  "task_key": "worker_code_d009_llama_prep_20260514T094600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d009_llama_prep_20260514T094600_result.json",
+    "occurrence": 1,
+    "bytes": 1946,
+    "sha256": "e9494e1f4ddd47c32e4e194542a388a75dd07b5ef91ec060d7736877532e8cd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n**兼容性：零代码修改，完全通过。**\n\n| 检查项 | 结果 |\n|--------|------|\n| Tokenizer 加载 | OK — vocab_size=128000, pad=None→eos_token（代码已处理） |\n| `enable_thinking=False` | OK — Llama template 静默忽略该参数 |\n| Chat template 格式 | OK — system/user/assistant 正确分隔 |\n| XGrammar TokenizerInfo | OK |\n| XGrammar GrammarCompiler | OK |\n| JSON schema 编译 | OK |\n| First-token uniqueness | 6/6 唯一: Task(6396) Method(3607) Material(13721) Metric(55410) OtherScientificTerm(11663) Generic(20560) |\n| Dry-run unconstrained 2 samples | 2/2 OK，E=5/3, R=1/0, ~5s/sample |\n| Dry-run full_s1 2 samples | 2/2 OK，E=5/3, R=1/0, ~5.6s/sample |\n\n## 实验启动命令\n\n两组实验可直接执行，DocRED 完成后在任一 GPU 上启动：\n\n**Exp 1 — unconstrained baseline:**\n```bash\nnohup python run_constrained_extraction.py --mode unconstrained --dataset scierc \\\n  --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct \\\n  --data_path data/processed_data/test.json --constraints_path ontology_constraints.json \\\n  --output_path outputs/phase2_scierc_llama_unconstrained.jsonl \\\n  --device cuda:0 --max_new_tokens 2048 > /tmp/llama_unconstrained.log 2>&1 &\n```\n\n**Exp 2 — full_s1 (grammar+semantic):**\n```bash\nnohup python run_constrained_extraction.py --mode full_s1 --dataset scierc \\\n  --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct \\\n  --data_path data/processed_data/test.json --constraints_path ontology_constraints.json \\\n  --output_path outputs/phase2_scierc_llama_full_s1.jsonl \\\n  --device cuda:0 --max_new_tokens 2048 > /tmp/llama_full_s1.log 2>&1 &\n```\n\n预计每组 ~46 min（551 samples × ~5s）。两组可并行跑在 cuda:0/cuda:1 上（各占 ~16GB，当前各有 ~80GB 空闲）。命令已注册为 artifact `art_20260514_49e74a`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d009-llama-prep.md"
+}

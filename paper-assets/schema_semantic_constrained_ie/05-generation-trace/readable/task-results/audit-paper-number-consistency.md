@@ -1,0 +1,105 @@
+# audit paper number consistency
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_audit_paper_number_consistency_20260522T040852_result.json`
+- **Structured JSON:** [`ca17fe60b98a11d6e50d.json`](../../sessions/ca/ca17fe60b98a11d6e50d.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+All data collected. Here is the complete audit.
+
+---
+
+## Section5_runtime.tex Registry 一致性审计报告
+
+### 审计覆盖范围
+逐行检查了 section5_runtime.tex 中的 27 个定量声明，对照 registry 实验数据和论文内部表格。
+
+---
+
+### 对比表
+
+| # | 论文声明 | 论文数值 | 对应 exp_id / 来源 | Registry 数值 | 匹配? |
+|---|---------|---------|-------------------|--------------|-------|
+| 1 | L5: SciERC overhead | +13.1% | `p8_latency_overhead` | overhead_pct=13.1 | ✅ |
+| 2 | L5: DocRED overhead | +2.43% | `p8b_docred_latency` | **FAILED, 无 metrics** | ⚠️ 无 registry 支撑 |
+| 3 | L5: LoRA overhead | +10.0% | `p8c_ft_scierc_latency` | overhead_mean_pct=10 | ✅ |
+| 4 | L5: LoRA absolute latency reduction | 37% lower | `p8_latency_overhead` vs `p8c_ft_scierc_latency` | (4.163−2.612)/4.163=37.3% | ✅ |
+| 5 | L6: compilation time | <0.5s | `d062_ontology_scalability` | compile_xlarge=0.42s | ✅ |
+| 6 | L6: scaling overhead | 2–3% | `d062_ontology_scalability` | 1.02×–1.03× | ✅ |
+| 7 | L6: scale range | 200 types, 1000 rels | `appendix_scalability.tex` XLarge row | 200 types, 1000 rels | ✅ |
+| 8 | L11: beam LoRA R-F1 range | 44–47 | `w10_qwen_scierc_ft_beam_4`, `d066_sweep_llama_scierc_beam4_s1_551` | 44.23–46.18 | ❌ 上界应为 46 |
+| 9 | L11: beam ZS DR=0% both datasets | 0% | `beam_search_scierc_full_551`, `r14_*_docred_beam4_998` | DR=0 | ✅ |
+| 10 | L11: 998-doc DocRED | 998 | `r14_qwen_docred_beam4_998` | samples=998 | ✅ |
+| 11 | L12: total latency | 1.54× | `d062_beam_latency` | 4.013/2.612=1.537 | ✅ |
+| 12 | L12: beam overhead | 1.32× | `d062_beam_latency` | beam_greedy_ratio=1.319 | ✅ |
+| 13 | L12: constraint overhead | 1.17× | `d062_beam_latency` | constraint_overhead_beam=1.165 | ⚠️ 论文1.17×, 实际1.165× (附录写16.5%) |
+| 14 | L17: 70B ZS DR | 6.41%→0% | `r16_70b_scierc_zs_s1` | baseline_unc_DR=6.41, DR=0 | ✅ |
+| 15 | L17: 70B ZS R-F1 | 11.24 | `r16_70b_scierc_zs_s1` | R_F1=11.24 | ✅ |
+| 16 | L17: R-F1 delta | +0.09 pp | `r16_70b_scierc_zs_s1` | 11.24−11.15=0.09 | ✅ |
+| 17 | L17: 70B ZS CF | 3.50% | `r16_70b_scierc_zs_s1` | CF_pct=3.5 | ✅ |
+| 18 | L17: CF unconstrained baseline | 0% | `r16_70b_scierc_zs_s1` | baseline_unc_CF=0 | ✅ |
+| 19 | L19: 70B LoRA数值 | XX.XX占位 | `r16_70b_lora_scierc_eval` / `eval_70b_lora_*` | PREPARING/RUNNING | ✅ 预期 |
+| 20 | L19: 8B CF pattern | 9.90%→1.18% | `tab:scierc-ablation` + `tab:composability` | Full S1 CF=9.90%, Qwen FT CF=1.18% | ✅ |
+| 21 | L24: grammar-only DR reduction | 24% | `tab:scierc-ablation` row 2 | Grammar ΔDR=**↓3%** (非24%) | ❌ **严重错误** |
+| 22 | L24: Full S1 DR reduction | 94% | `tab:scierc-ablation` row 4 | ΔDR=↓94% | ✅ |
+| 23 | L24: grammar-only RV/ET | →0% | `tab:scierc-ablation` row 2 | RV=0, ET=0 | ✅ |
+| 24 | L25: trie-only DR range | 15–96% | `r16_trie_*` (4个实验) | 15.2–95.5% | ✅ (取整) |
+| 25 | L25: unconstrained DR range | 1–15% | 各模型/设置 unconstrained | 1.11–15.37% | ✅ (取整) |
+
+---
+
+### 需要关注的问题
+
+**❌ 严重：L24 grammar-only DR reduction 数值错误**
+
+论文写道：
+> "Our grammar-only ablation (Table 3, row 2)... achieving RV/ET→0% but **only 24% DR reduction** vs. Full S1's 94%."
+
+但 `tab:scierc-ablation` row 2 (Grammar) 的 ΔDR = **↓3%**，不是 24%。24% 属于 row 3 (Semantic)。这是将 Semantic 层的效果错误归因到了 Grammar 层。
+
+**修正建议**：将 "24%" 改为 "3%"，或改为引用正确的行。
+
+---
+
+**❌ R-F1 范围上界偏高：L11 "R-F1 44–47" 应为 "44–46"**
+
+beam S1 LoRA SciERC 实验 R-F1：
+- `w10_qwen_scierc_ft_beam_4`: 44.23
+- `d066_sweep_llama_scierc_beam4_s1_551`: 46.18
+
+最大值 46.18 → 取整后为 46，不是 47。
+
+---
+
+**⚠️ DocRED latency 2.43% 无 registry 支撑**
+
+`p8b_docred_latency` 实验状态为 FAILED，无 metrics。2.43% 仅出现在论文文本中（appendix_discussion.tex L383：19.34→19.81 s/doc），原始数据未回写 registry。建议补登。
+
+---
+
+**⚠️ constraint overhead 1.17× vs registry 1.165×**
+
+`d062_beam_latency.constraint_overhead_beam` = 1.165，论文写 1.17×。附录 beam_search 部分则写 "16.5%"（= 1.165×），与 registry 一致。主文 1.17× 与附录 16.5% 存在内部不一致（取整差异）。
+
+---
+
+**⚠️ exp_id 注释与 registry key 不完全对应**
+
+L14 和 L21 的 `% exp_ids:` 注释使用了缩写名（如 `70b_lora_scierc`），registry 实际 key 为 `r16_70b_lora_scierc`（带 `r16_` 前缀）。不影响数据正确性，但会阻碍自动化追溯。
+
+---

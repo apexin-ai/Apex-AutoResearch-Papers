@@ -1,0 +1,33 @@
+{
+  "exp_id": "w5_lora_scierc_training",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:56:20.233Z",
+    "updated_at": "2026-05-15T14:56:20.234Z",
+    "spec": {
+      "hypothesis": "Fine-tuned Qwen3-8B (LoRA rank=16) on SciERC 350 docs improves extraction F1 while maintaining constraint compliance under OntoCoDec. Addresses reviewer concern: constrained decoding composable with fine-tuning, not just prompting.",
+      "parent": "phase2_scierc_full_s1",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 scripts/train_lora_scierc.py\"",
+      "server": "westd-16980",
+      "data_path": "data/processed_data/train.json",
+      "data_count": 350,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "hyperparams": {
+        "lora_rank": 16,
+        "lora_alpha": 32,
+        "learning_rate": 0.0002,
+        "epochs": 3,
+        "batch_size": 4,
+        "gradient_accumulation_steps": 4
+      }
+    }
+  },
+  "timestamp": "2026-05-15T14:56:20.317606+00:00",
+  "trigger": "update_registry"
+}

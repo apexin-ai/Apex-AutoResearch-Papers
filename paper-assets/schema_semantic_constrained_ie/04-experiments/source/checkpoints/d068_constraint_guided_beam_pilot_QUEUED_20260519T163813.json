@@ -1,0 +1,15 @@
+{
+  "exp_id": "d068_constraint_guided_beam_pilot",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T16:38:01.430Z",
+    "updated_at": "2026-05-19T16:38:12.924Z",
+    "hypothesis": "Constraint-guided beam scoring (score = logP - β×violations) reduces CF without degrading DR/F1, by penalizing beams with more constraint violations during search"
+  },
+  "timestamp": "2026-05-19T16:38:13.221353+00:00",
+  "trigger": "update_registry"
+}

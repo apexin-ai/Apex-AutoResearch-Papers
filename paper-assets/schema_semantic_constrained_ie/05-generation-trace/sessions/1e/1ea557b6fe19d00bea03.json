@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ea557b6fe19d00bea03",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code prepare phase2 analysis pipeline",
+  "task_key": "worker_code_prepare_phase2_analysis_pipeline_20260513T234038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare_phase2_analysis_pipeline_20260513T234038_result.json",
+    "occurrence": 1,
+    "bytes": 1837,
+    "sha256": "21fc5016628c0ae8e8381f23603b67f051313f3ffc7fd2d8f4674561a1869766"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报如下：\n\n---\n\n### 1. 工具输入输出格式确认\n\n**violation_checker.py**：\n- 输入：`--input_path` (JSONL, 每行含 `doc_id`, `gold_entities`, `gold_relations`, `parsed_output`, `mode`)、`--constraints_path` (ontology_constraints.json)、`--output_path`\n- 输出 JSON 结构：`summary` (violation counts/rates) + `per_relation_type` (per-relation breakdown) + `quality` (含 `entity_f1` 和 `relation_f1`，micro P/R/F1)\n- **F1 在 violation_checker.py 内部计算**（`compute_f1` + `aggregate_f1`），没有独立评估脚本\n\n**文件命名模式**（Phase 2）：\n- JSONL：`outputs/phase2_scierc_{mode}.jsonl`\n- Violation report：`outputs/violation_report_phase2_{mode}.json`\n\n### 2. 当前实验状态\n\n| Mode | JSONL | Violation Report |\n|------|-------|-----------------|\n| unconstrained | ✅ 551 samples | ✅ |\n| grammar_only | ✅ 551 samples | ✅ |\n| semantic_only | ❌ 未开始 | ❌ |\n| full_s1 | ❌ 未开始 | ❌ |\n\n### 3. 分析脚本\n\n路径：`/root/schema_semantic_constrained_ie/scripts/compare_phase2.py`\n\n用法：\n```bash\n# 基本用法（读 outputs/ 下的 4 个 violation report）\npython scripts/compare_phase2.py\n\n# 导出 JSON\npython scripts/compare_phase2.py --export_json outputs/phase2_comparison.json\n\n# 只比较已完成的\npython scripts/compare_phase2.py --modes unconstrained grammar_only\n```\n\n输出包含：汇总表（F1 + 4 类 violation rate + delta）、counts 表、per-relation breakdown。缺失实验用 N/A 填充。\n\n### 4. 格式兼容问题\n\n无兼容问题。`run_constrained_extraction.py` 的输出字段（`parsed_output`, `gold_entities`, `gold_relations`）与 `violation_checker.py` 的预期完全一致。4 种 mode 共用同一套 JSONL schema，checker 对所有 mode 通用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-phase2-analysis-pipeline.md"
+}

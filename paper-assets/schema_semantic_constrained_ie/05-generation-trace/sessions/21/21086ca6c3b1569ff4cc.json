@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21086ca6c3b1569ff4cc",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper d067 determinism enhance",
+  "task_key": "worker_paper_d067_determinism_enhance_20260520T120110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d067_determinism_enhance_20260520T120110_result.json",
+    "occurrence": 1,
+    "bytes": 484,
+    "sha256": "de2a68294da2bc41da24307e2d3f89e84025adf778d7d86e9b680eb55bff491d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译 0 errors，32 pages。\n\n更新内容：\n- **正文段落**（8 句）：解释 argmax 无随机成分的机制 → byte-identical 实验验证 → cross-server float divergence 是唯一 variance 来源 → σ 上界数值 → SNR > 12× 含义 → 结论 single-run justified\n- **Table \\ref{tab:seed-variance}**：4 行数据（Qwen/Llama × Unc/Con），列为 Model/Dataset/Mode/E-F1/R-F1/DR%，caption 自包含\n- 所有数字与 d067 eval 报告一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d067-determinism-enhance.md"
+}

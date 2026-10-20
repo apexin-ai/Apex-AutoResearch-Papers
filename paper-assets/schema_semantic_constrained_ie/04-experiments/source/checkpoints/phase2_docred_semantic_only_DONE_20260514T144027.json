@@ -1,0 +1,70 @@
+{
+  "exp_id": "phase2_docred_semantic_only",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T04:40:51.107Z",
+    "updated_at": "2026-05-14T14:40:27.786Z",
+    "hypothesis": "Semantic-only constrained decoding 在 DocRED (96 relations, avg 5.68 valid pairs) 上的 DR 降低幅度。SciERC semantic_only DR↓24% (15.37→11.65%)，DocRED 约束更紧预期效果更明显。关键验证 Claim 3 enabling dependency：semantic_only 无法消除 RV/ET（需 grammar），证明两层互补非替代。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode semantic_only --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_semantic_only.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "172859",
+      "log_path": "~/runs/schema_semantic_constrained_ie/phase2_docred_semantic_only.log",
+      "submitted_at": "2026-05-14T08:30:43.644Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 21989.5,
+      "gpu_hours": 6.11
+    },
+    "server": "westd-16980",
+    "gpu": "cuda:1",
+    "pid": "172859",
+    "log_path": "~/runs/schema_semantic_constrained_ie/phase2_docred_semantic_only.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode semantic_only --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_semantic_only.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\"",
+      "finished_at": "2026-05-14T14:13:58.319Z"
+    },
+    "notes": "DocRED semantic-only 完成 (998 docs, 0 duplicates, 11 parse failures)。all_set 方法对比 unconstrained: DR 18.46%→14.83% (-3.63pp, ↓19.7%), ET 8.18%→2.47% (-5.71pp, ↓69.8%), RV 29.66%→29.87% (≈不变，符合预期), R-F1 7.74%→7.70% (≈持平), E-F1 58.15%→57.81% (≈持平)。DR 降幅(↓19.7%)与 SciERC(↓24.1%)接近但更温和。关键发现：(1) semantic约束同时降低DR和ET，ET降幅更大; (2) RV完全不变，验证Claim 3——semantic层无法消除RV（需grammar层）; (3) F1无损。注意：violation_checker_docred.py 的 ET 口径(18.44%)与 analyze 脚本(2.47%)不同，前者是 entity-level，后者是 triple-level all_set 方法（与 baseline 对比口径一致）。",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T14:13:59.612547+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "f1_method": "all_set",
+      "entity_f1": 57.81,
+      "entity_precision": 57.27,
+      "entity_recall": 58.37,
+      "relation_f1": 7.7,
+      "relation_precision": 6.54,
+      "relation_recall": 9.37,
+      "domain_range_violation_rate": 14.83,
+      "relation_vocabulary_violation_rate": 29.87,
+      "entity_type_violation_rate": 2.47,
+      "cross_field_consistency_violation_rate": 3.47,
+      "total_triples": 17571,
+      "total_entities": 20185,
+      "documents_checked": 987,
+      "parse_failures": 11,
+      "fuzzy_relation_matches": 136,
+      "duplicates_removed": 0
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/schema_semantic_constrained_ie/outputs/docred_semantic_only.jsonl",
+    "completed_at": "2026-05-14T14:37:13.158Z"
+  },
+  "timestamp": "2026-05-14T14:40:27.849435+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22a580ec4c8b62d54ab1",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code r4 sf8 reproducibility",
+  "task_key": "worker_code_r4_sf8_reproducibility_20260517T105439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r4_sf8_reproducibility_20260517T105439_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "8cdf124745099993ba994aefa39bc28de3b18e33e0a47d65f965a47a7dba6443"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已写入 `artifacts/r4_sf8_reproducibility.md`。\n\n关键数据摘要:\n\n**LoRA 配置** (四个模型一致): r=16, alpha=32, dropout=0.05, 7 个 target modules, AdamW, lr=2e-4, cosine schedule, 3 epochs, effective batch size=16\n\n**Training steps**: SciERC 333 步 (warmup 33), DocRED 573 步 (warmup 57)\n\n**GPU**: 2x NVIDIA RTX PRO 6000 Blackwell (98GB); 训练约 SciERC ~11min, DocRED ~1.5h per model\n\n**Inference time (Qwen, sec/doc)**:\n- SciERC: Unconstrained 8.69±3.89, Full S1 6.76±3.67 (-22.2%), Beam k=4 5.92±2.34\n- DocRED: Unconstrained 19.75±8.99, Full S1 20.39±9.43 (+3.2%), Beam k=4 31.35±26.09 (n=50)\n\nDocRED beam search 只有 50 条 pilot 数据，没有全量 998 条的运行结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r4-sf8-reproducibility.md"
+}

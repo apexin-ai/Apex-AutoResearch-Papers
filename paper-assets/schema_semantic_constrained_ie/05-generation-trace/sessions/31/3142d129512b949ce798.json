@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3142d129512b949ce798",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops check docred constrained eval status",
+  "task_key": "worker_ops_check_docred_constrained_eval_status_20260516T020953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_docred_constrained_eval_status_20260516T020953_result.json",
+    "occurrence": 1,
+    "bytes": 1174,
+    "sha256": "a3fb59dda8f67fa7b0bd17286d17457f2622928dbd2123332f668d4c1b428fc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇报\n\n### 1. w5_llama_docred_lora_constrained_eval\n- **进程状态**: 运行中 (PID 317464/317469, ELAPSED 01:43:05, STAT=Rl)\n- **GPU 占用**: cuda:0, 16816 MiB\n- **进度**: **407/998** 行 (~40.8%)\n- **输出文件**: `/root/schema_semantic_constrained_ie/outputs/w5_llama_docred_lora_constrained_eval.jsonl`\n- **日志**: 正常，持续输出 `pad_token_id` 设置提示（无错误）\n- **预估剩余**: 已跑 ~103 分钟处理 407 条，平均 ~15.2s/条，剩余 591 条约 **150 分钟（~2.5 小时）**\n\n### 2. w5_qwen_docred_lora_constrained_eval\n- **进程状态**: 运行中 (PID 321568, ELAPSED 15:18, STAT=Rl)\n- **GPU 占用**: cuda:1, 17256 MiB\n- **进度**: **47/998** 行 (~4.7%)\n- **输出文件**: `/root/schema_semantic_constrained_ie/outputs/w5_qwen_docred_lora_constrained_eval.jsonl`\n- **日志**: 模型加载完成，正在推理（有 Mistral tokenizer regex 警告，不影响功能）\n- **预估剩余**: 已跑 ~15 分钟处理 47 条，平均 ~19.1s/条，剩余 951 条约 **303 分钟（~5 小时）**\n\n两个实验均正常运行，无错误。Qwen 启动较晚且单条推理略慢。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-docred-constrained-eval-status-copy-2.md"
+}

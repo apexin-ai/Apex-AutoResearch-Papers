@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0110a6e27812e0775170",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "fix delete p8b cron",
+  "task_key": "worker_fix_delete_p8b_cron_20260518T173148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_delete_p8b_cron_20260518T173148_result.json",
+    "occurrence": 1,
+    "bytes": 151,
+    "sha256": "00d46d05ab664fc8ffc09e1c96ff6039cb1adf0a1e7223b9d59c2a3687e87dd7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "删除完成。`p8b_docred_latency` 已从 `active_crons` 移至 `completed_crons`（status=completed），不会再触发 escalation。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-delete-p8b-cron.md"
+}

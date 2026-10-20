@@ -1,0 +1,15 @@
+{
+  "exp_id": "w9_llama_scierc_beam_551",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:18:21.758Z",
+    "updated_at": "2026-05-17T03:18:26.716Z",
+    "hypothesis": "Beam search (k=4) with full_s1 constraints on Llama-3.1-8B SciERC 551 docs will show DR reduction similar to Qwen (0.93%→0%), confirming beam search compatibility is model-agnostic"
+  },
+  "timestamp": "2026-05-17T03:18:26.880524+00:00",
+  "trigger": "update_registry"
+}

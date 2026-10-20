@@ -1,0 +1,69 @@
+{
+  "exp_id": "llama_docred_unconstrained_mt6144",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T08:17:33.154Z",
+    "updated_at": "2026-05-15T14:03:50.752Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "246947",
+      "log_path": "~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained_mt6144.log",
+      "submitted_at": "2026-05-15T08:19:27.565Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-16980",
+    "gpu": "cuda:0",
+    "pid": "246947",
+    "log_path": "~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained_mt6144.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\"",
+      "finished_at": "2026-05-15T13:59:24.508Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T13:59:25.767053+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "checker_version": "fixed_20260514_v2",
+      "f1_method": "all_set",
+      "documents_total": 998,
+      "documents_checked": 931,
+      "parse_failures": 67,
+      "unique_entities": 11534,
+      "total_triples": 16584,
+      "dr_eligible_triples": 13936,
+      "fuzzy_relation_matches": 121,
+      "ET_rate": 0.13,
+      "RV_rate": 15.89,
+      "DR_rate_all": 26.18,
+      "DR_rate_eligible": 31.15,
+      "CF_rate": 0.17,
+      "entity_precision": 61.19,
+      "entity_recall": 51.06,
+      "entity_f1": 55.67,
+      "relation_precision": 5.18,
+      "relation_recall": 7,
+      "relation_f1": 5.95
+    },
+    "checkpoint_path": "/root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl",
+    "notes": "mt6144 vs mt4096 对比: parse_failures 68→67 (-1, 几乎无变化); unique_entities 11525→11534 (+9); triples 16437→16584 (+147, +0.9%); E-F1 55.65%→55.67% (+0.02pp); R-F1 5.98%→5.95% (-0.03pp); DR 26.07%→26.18% (+0.11pp); RV 16.03%→15.89% (-0.14pp); ET/CF 不变. 67 个 FAIL 中绝大多数 inference time ~96s (仍触发 max_tokens cap), 说明这些失败主要源于模型陷入重复循环直到 token 上限, 而非文档过长. 增加 max_new_tokens 不能挽救此类失败. 训练 wall clock 约 5h39m, 比 mt4096 (~5h02m) 多约 37 分钟. 结论: max_new_tokens 4096→6144 对 unconstrained 生成无实质影响, 不建议采用作为后续 baseline.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T14:03:50.834315+00:00",
+  "trigger": "update_registry"
+}

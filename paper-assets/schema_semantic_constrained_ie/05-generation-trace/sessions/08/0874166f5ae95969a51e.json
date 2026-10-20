@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0874166f5ae95969a51e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code qwen retry 16k",
+  "task_key": "worker_code_qwen_retry_16k_20260518T014336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen_retry_16k_20260518T014336_result.json",
+    "occurrence": 1,
+    "bytes": 416,
+    "sha256": "ad83f886f818abf36716e1097c80ecff52381d903bfa5460f6f93ad7bbe823d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:0 GPU 利用率 82%，正在推理中。首条 16K constrained generation 文档较慢，确认已正常运行。\n\n## Qwen 16K retry\n- 输出文件: `wikievents_qwen_constrained_full.jsonl`\n- Failure lines removed: 40（保留 206）\n- 模型路径: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n- tmux: `qwen_retry_16k`, cuda:0\n- 启动确认: yes\n- type_mask_processor.py: 812 行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen-retry-16k.md"
+}

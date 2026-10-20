@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2aa48aa1f77a98178069",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "experiment posthoc filtering baseline",
+  "task_key": "worker_experiment_posthoc_filtering_baseline_20260514T181438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_posthoc_filtering_baseline_20260514T181438_result.json",
+    "occurrence": 1,
+    "bytes": 1501,
+    "sha256": "ccb1d917136556640e68da91fbf46db56cbc8ea53d7e10644c123ebb0b5dc0be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。汇总对比表：\n\n## SciERC (551 samples)\n\n| 方法 | DR% | R-Recall | R-Prec | R-F1 | Rejection |\n|------|-----|----------|--------|------|-----------|\n| Unconstrained | 15.37% | 11.40% | 6.44% | 8.23% | 0% |\n| **Post-hoc filter** | **0%** | 10.68% | 7.25% | 8.63% | 16.8% |\n| OntoCoDec full_s1 | 0.93% | **11.60%** | 6.54% | 8.36% | 0% |\n\n## DocRED (998 docs)\n\n| 方法 | DR% | R-Recall | R-Prec | R-F1 | Rejection |\n|------|-----|----------|--------|------|-----------|\n| Unconstrained | 18.46% | 9.46% | 6.55% | 7.74% | 0% |\n| **Post-hoc filter** | **0%** | 8.40% | 11.22% | 9.61% | 48.1% |\n| OntoCoDec full_s1 | 10.20% | **10.02%** | 6.99% | 8.24% | 0% |\n\n## 关键发现\n\n**Recall 对比**（核心论点）：\n- Post-hoc **recall 下降**：SciERC -0.72pp (丢了 7 个正确 triple)，DocRED -1.06pp (丢了 127 个正确 triple)\n- OntoCoDec **recall 上升**：SciERC +0.20pp，DocRED +0.56pp — 概率质量重分配到合法 token，反而帮助模型生成更多正确 triple\n\n**Rejection rate**：DocRED post-hoc 丢弃了 48.1% 的 triple，几乎一半的抽取信息被扔掉。\n\n**F1 可能误导**：post-hoc 的 F1 反而比 unconstrained 高，因为大量移除的错误 triple 提升了 precision。但这是以信息完整性为代价的 — recall 才是衡量\"有多少正确知识被保留\"的指标。\n\n文件已保存在服务器 `outputs/posthoc_report_{scierc,docred}.json`，脚本为 `posthoc_filter.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-posthoc-filtering-baseline.md"
+}

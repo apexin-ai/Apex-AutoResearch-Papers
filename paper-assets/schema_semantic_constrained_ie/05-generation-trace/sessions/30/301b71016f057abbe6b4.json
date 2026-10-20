@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "301b71016f057abbe6b4",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check paper status",
+  "task_key": "worker_check_paper_status_20260520T101358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_paper_status_20260520T101358_result.json",
+    "occurrence": 1,
+    "bytes": 1235,
+    "sha256": "b2ba42ec58d1ccc64975f772c08b6c3da94c530d1afb5dfdd3166893f5265847"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n---\n\n## 1. Table 2 (tab:composability) — D069 修正未入稿\n\n`section5_scierc_draft.tex:140` Llama DocRED Full S1 行仍为旧值：\n\n| 字段 | 当前值 | D069 应改为 |\n|------|--------|-------------|\n| **Llama Con E-F1** | **85.23** | **83.94** |\n| Qwen Unc CF | 0.12 | 0.09 |\n| Qwen Con CF | 0.41 | 0.27 |\n\n根因：beam-4 (d064) 的 E-F1=85.23 被误放入 greedy 行，正确的 greedy 值为 83.94。\n\n## 2. 编译状态\n\n- **main.pdf** 最后生成：`2026-05-20 08:43 UTC`\n- **无编译错误**（0 个 `!` error）\n- **无 undefined references/citations**\n- 13 个 `h→ht` float 警告（正常）\n- 1 个 `Label(s) may have changed` 警告（需再跑一次 LaTeX 消除）\n\n## 3. review_issues 状态\n\n| 类别 | 数量 |\n|------|------|\n| **Resolved** | **24** |\n| **Open** | **1** (R11-DIV1: 技术新颖性评估分歧，reviewer 间分歧，无 action item) |\n\n唯一 open issue `R11-DIV1` 是 reviewer 间对新颖性的意见分歧（R1: 3/5, R2: 2.5/5），属于主观评价，无具体修改项。\n\n---\n\n**待办**：D069 的三处数值修正需要写入 `section5_scierc_draft.tex` 的 tab:composability 表。需要我执行修正吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-paper-status.md"
+}

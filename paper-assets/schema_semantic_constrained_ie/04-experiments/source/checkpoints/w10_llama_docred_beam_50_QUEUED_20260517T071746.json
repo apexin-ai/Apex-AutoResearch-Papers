@@ -1,0 +1,15 @@
+{
+  "exp_id": "w10_llama_docred_beam_50",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T07:11:24.746Z",
+    "updated_at": "2026-05-17T07:17:46.445Z",
+    "hypothesis": "Beam search (k=4) on Llama DocRED will reduce DR and CF violations, completing the beam search matrix (3rd model-dataset combination). Llama's weaker entity typing on DocRED may limit DR elimination compared to Qwen."
+  },
+  "timestamp": "2026-05-17T07:17:46.618877+00:00",
+  "trigger": "update_registry"
+}

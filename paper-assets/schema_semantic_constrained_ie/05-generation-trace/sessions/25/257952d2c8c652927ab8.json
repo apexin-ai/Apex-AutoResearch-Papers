@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "257952d2c8c652927ab8",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research latency profiling design",
+  "task_key": "worker_research_latency_profiling_design_20260516T025445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_latency_profiling_design_20260516T025445_result.json",
+    "occurrence": 1,
+    "bytes": 653,
+    "sha256": "1cdc7354da7809646a957a3298b4b7743b6d856a41c3a8337b2e6a33fc2fc17a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "方案文档已保存至 `artifacts/_project/report/latency_profiling_design.md`。\n\n核心设计要点：\n\n1. **三层计时**：Level 1 per-sample wall-clock（已有）→ Level 2 LogitsProcessor 内部 breakdown（wrap `__call__`）→ Level 3 model forward 用差值法\n2. **侵入最小**：新建独立脚本 `run_latency_profile.py`，wrap 现有 processors，不修改正式实验代码\n3. **关键洞察**：TypeConstraintProcessor 每 token 做 `decode + regex`，其开销随序列长度 O(n) 增长，这是最值得量化的点\n4. **实验规模**：最小矩阵 ~14h 单 GPU，双 RTX PRO 6000 并行约 7h 可完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-latency-profiling-design.md"
+}

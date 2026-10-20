@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "023dad5351e72bcc7d2d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "status 16980 progress",
+  "task_key": "worker_status_16980_progress_20260520T010650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_16980_progress_20260520T010650_result.json",
+    "occurrence": 1,
+    "bytes": 1051,
+    "sha256": "45c6d716c94139903a69c55c761739c1fea15abbcdaa82a7a6c3345e28ce97b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**Qwen greedy unconstrained (GPU0)**\n- 日志进度: 167/998 (16.7%)\n- jsonl 行数: 275（可能含前次残留数据，日志计数器更可靠）\n- 速度: ~2.1 doc/min（07:49 启动，已运行 ~78min）\n- ETA: ~6.5 小时（约 15:30）\n\n**Qwen greedy constrained (GPU1, cascade)**\n- jsonl 行数: 129/998 (12.9%)\n- cascade 日志只记录了模型加载，处理进度未写入日志文件（可能用 `\\r` 覆盖输出）\n- 速度: ~3.2 doc/min（08:27 启动，已运行 ~40min）\n- ETA: ~4.5 小时（约 13:30）\n\n**GPU 利用率**\n| GPU | Util | VRAM |\n|-----|------|------|\n| 0 | 87% | 18.9/97.9 GB |\n| 1 | 85% | 18.9/97.9 GB |\n\n**Llama greedy 文件完整性** — 已完成\n- `d064_llama_docred_greedy_unconstrained_w5.jsonl`: 998/998\n- `d064_llama_docred_greedy_constrained_w5.jsonl`: 998/998\n\n注意：unconstrained jsonl (275行) 与日志计数器 (167/998) 不一致，可能是启动前未清空旧文件。如果需要干净数据，完成后需确认是否要截断前 N 行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-16980-progress.md"
+}

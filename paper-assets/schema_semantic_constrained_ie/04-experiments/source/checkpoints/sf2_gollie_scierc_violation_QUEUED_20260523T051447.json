@@ -1,0 +1,15 @@
+{
+  "exp_id": "sf2_gollie_scierc_violation",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T05:14:38.851Z",
+    "updated_at": "2026-05-23T05:14:46.803Z",
+    "hypothesis": "GoLLIE-7B achieves low schema violation rates on SciERC zero-shot because it outputs very conservatively (few entities, almost no relations), resulting in trivially low violation rates but extremely poor recall and F1."
+  },
+  "timestamp": "2026-05-23T05:14:47.167711+00:00",
+  "trigger": "update_registry"
+}

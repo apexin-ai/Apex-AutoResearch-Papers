@@ -1,0 +1,15 @@
+{
+  "exp_id": "d067_seed_variance",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T23:44:45.500Z",
+    "updated_at": "2026-05-19T23:45:04.763Z",
+    "hypothesis": "Constrained decoding violation rates are stable across random seeds (variance < 1pp), confirming that reported zero-violation results are not seed-dependent artifacts"
+  },
+  "timestamp": "2026-05-19T23:45:04.996856+00:00",
+  "trigger": "update_registry"
+}

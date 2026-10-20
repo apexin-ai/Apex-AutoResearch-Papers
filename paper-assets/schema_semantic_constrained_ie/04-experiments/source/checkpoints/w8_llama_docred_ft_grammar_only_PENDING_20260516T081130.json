@@ -1,0 +1,15 @@
+{
+  "exp_id": "w8_llama_docred_ft_grammar_only",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T06:34:25.909Z",
+    "updated_at": "2026-05-16T08:11:30.767Z",
+    "hypothesis": "FT Llama DocRED + grammar_only eval: FT 后 DR 残留 0.49%，grammar_only 能消除多少？如果 grammar_only 已足够则 semantic 层在 FT regime 边际价值小；如果不够则两层在 FT 后仍互补。"
+  },
+  "timestamp": "2026-05-16T08:11:30.918064+00:00",
+  "trigger": "update_registry"
+}

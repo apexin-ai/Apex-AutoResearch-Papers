@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ce8c3a7cb4736297c5d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d064 collect final",
+  "task_key": "worker_ssh_d064_collect_final_20260519T124552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d064_collect_final_20260519T124552_result.json",
+    "occurrence": 1,
+    "bytes": 940,
+    "sha256": "4da22a1cadefa9f09bd76dced8a5ca672dfb596662ef4e0ca155e239416c3990"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## d064 状态汇总\n\n**所有 6 个推理任务仍在运行中，尚无完成的文件。**\n\n### 当前进度\n\n| GPU | 任务 | 进度 | 速度 | ETA |\n|-----|------|------|------|-----|\n| GPU 0 | Llama greedy unc | 546/998 (55%) | ~17s/doc | ~23:00 今天 |\n| GPU 1 | Qwen beam-4 unc | 614/998 (62%) | ~20s/doc | ~23:00 今天 |\n\n### 已完成的步骤\n- Llama LoRA 训练 ✅ (train_loss=0.0571, token_acc=98.1%)\n- Llama LoRA merge ✅\n\n### 待运行（按队列顺序）\n- GPU 0: Llama greedy con → beam-4 unc → beam-4 con（最终完成 ETA ~5月20日 16:40）\n- GPU 1: Qwen beam-4 con（ETA ~5月20日 04:30）\n\n### 关键信息\n- 服务器**没有**重启，原始进程仍在运行（PID 98185, 102892）\n- Qwen beam-4 unc 解析失败率 ~3.3%（16/490）\n- Cascade 脚本用 `set -e`，任一步骤失败会终止整个链\n- 需要等文件完成后才能计算 F1 / violation rate 指标"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d064-collect-final.md"
+}

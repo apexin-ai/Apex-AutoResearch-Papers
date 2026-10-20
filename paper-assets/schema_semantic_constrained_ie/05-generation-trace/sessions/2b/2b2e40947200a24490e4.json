@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b2e40947200a24490e4",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code w10 qwen scierc ft beam launch",
+  "task_key": "worker_code_w10_qwen_scierc_ft_beam_launch_20260517T094912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w10_qwen_scierc_ft_beam_launch_20260517T094912_result.json",
+    "occurrence": 1,
+    "bytes": 335,
+    "sha256": "34d1ac6101fb639961ecc7dfceb2fb78ce3a275a207057c72a06dcb772ed82dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动。\n\n**结果：**\n- **PID**: 434037\n- **日志**: `logs/w10_qwen_scierc_ft_beam_k4.log`\n- **输出**: `outputs/w10_qwen_scierc_ft_beam_k4.jsonl`\n- **Registry**: `w10_qwen_scierc_ft_beam_4` → RUNNING\n- **预估时长**: ~40-50 min（FT 模型生成更简洁，比 ZS beam k=4 的 54 min 略快）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w10-qwen-scierc-ft-beam-launch.md"
+}

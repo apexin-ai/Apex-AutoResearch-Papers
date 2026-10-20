@@ -1,0 +1,46 @@
+{
+  "exp_id": "w5_llama_lora_scierc_training",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:33:38.168Z",
+    "updated_at": "2026-05-15T17:24:37.194Z",
+    "spec": {
+      "hypothesis": "Llama-3.1-8B-Instruct LoRA fine-tune on SciERC, extending Claim 3 composability to cross-model. Mirrors Qwen3-8B LoRA config (r=16, alpha=32, lr=2e-4, 3 epochs).",
+      "parent": "w5_lora_scierc_training",
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "dataset": "SciERC",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/llama_lora_scierc_merged",
+      "log_path": "logs/w5_llama_lora_scierc_training.log",
+      "adapter_path": "checkpoints/llama_lora_scierc",
+      "base_model": "/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct"
+    },
+    "hypothesis": "Llama-3.1-8B-Instruct LoRA fine-tune on SciERC — 扩展 composability 验证到跨模型。预期：(1) LoRA 训练后 E-F1/R-F1 大幅提升（对标 Qwen LoRA +36pp/+36pp）；(2) 为 Llama SciERC 2×2 composability matrix 提供 fine-tuned baseline。",
+    "server": "westd-16980",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-16980",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T17:17:30.599Z"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "adapter_size_mb": 167.8,
+      "merged_shards": 4,
+      "merged_path": "/root/autodl-tmp/checkpoints/llama_lora_scierc_merged",
+      "train_loss": 0.0229,
+      "eval_loss": 0.0595,
+      "train_token_accuracy": 0.9912,
+      "eval_token_accuracy": 0.9817,
+      "epochs": 3,
+      "total_steps": 333
+    },
+    "completed_at": "2026-05-15T17:18:45.275Z"
+  },
+  "timestamp": "2026-05-15T17:24:37.277707+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,50 @@
+{
+  "exp_id": "sf2_llama_int4_docred_s1",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T05:53:03.669Z",
+    "updated_at": "2026-05-23T07:13:24.996Z",
+    "hypothesis": "AWQ INT4 quantization of fine-tuned Llama-3.1-8B does not significantly affect constraint enforcement or extraction quality on DocRED S1, maintaining DR=0% and R-F1 within 2pp of FP16 baseline",
+    "parent": "d066_sweep_llama_docred_beam1_s1",
+    "spec": {
+      "command": "bash scripts/run_llama_docred_int4.sh",
+      "server": "westd-16980",
+      "gpu": "cuda:1",
+      "pid": 21381,
+      "data_path": "data/docred/dev.json",
+      "data_count": 200,
+      "model_name": "Llama-8B-DocRED-FT-AWQ-INT4",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/llama_lora_docred_merged/",
+      "eval_data": "DocRED dev 200 docs",
+      "log_path": "/tmp/sf2_llama_int4_docred_s1.log"
+    },
+    "metrics": {
+      "DR%": 0,
+      "RV%": 0,
+      "ET%": 0,
+      "CF%": 0.22,
+      "R-F1": 48.04,
+      "E-F1": 84.18,
+      "R-P": 44.79,
+      "R-R": 51.8,
+      "E-P": 85.5,
+      "E-R": 82.9,
+      "samples": 200,
+      "parse_fail": 5,
+      "parse_fail_pct": 2.5,
+      "entities_pred": 3669,
+      "relations_pred": 2997
+    },
+    "checkpoint_path": "outputs/sf2_llama_int4_docred_s1/output.jsonl",
+    "log_path": "outputs/sf2_llama_int4_docred_s1/eval_results.json",
+    "conclusion": "success",
+    "completed_at": "2026-05-23T07:13:24.996Z"
+  },
+  "timestamp": "2026-05-23T07:13:25.316206+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18db05f77e86f2f6686f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code 70b launch 21461",
+  "task_key": "worker_code_70b_launch_21461_20260518T114616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_70b_launch_21461_20260518T114616_result.json",
+    "occurrence": 1,
+    "bytes": 1168,
+    "sha256": "bfd479e52709e5b9540999c1537a6dd1b9016dbae2dc33e6000caf9946828c19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验正在正常产出结果：unconstrained 7 docs, constrained 6 docs。\n\n---\n\n## 报告\n\n| 项目 | 结果 |\n|------|------|\n| **1. 下载** | 完成。9 shards, 38GB 总计。路径 `Meta-Llama-3___1-70B-Instruct-AWQ-INT4`，已创建 `Meta-Llama-3.1-70B-Instruct-AWQ-INT4` 符号链接 |\n| **2. GPU** | 2x NVIDIA RTX PRO 6000 Blackwell Server Edition, 98GB VRAM/卡 |\n| **3. 代码改动** | `run_constrained_extraction.py` L881: `torch_dtype=torch.bfloat16` → `torch_dtype=\"auto\"` (AWQ config 指定 float16)。另安装 `gptqmodel` 7.0.0 + 依赖（transformers 5.8.1 要求替代 autoawq） |\n| **4. Dry-run** | 成功。Marlin fp16 JIT 编译 62s（首次，后续缓存），推理 6.1s/doc，GPU 占用 39GB/98GB |\n| **5. 实验启动** | 均在 tmux 中运行。**Unconstrained** (PID 24552, cuda:0, tmux: `70b_unconstrained`)；**Constrained full_s1** (PID 24703, cuda:1, tmux: `70b_constrained`)。各卡独立，~39-43GB VRAM。551 docs 预计约 55 分钟/实验 |\n\n注：`submit_training_job` 工具不可用，改用 tmux 启动。日志分别在 `/tmp/70b_unconstrained.log` 和 `/tmp/70b_constrained.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-70b-launch-21461.md"
+}

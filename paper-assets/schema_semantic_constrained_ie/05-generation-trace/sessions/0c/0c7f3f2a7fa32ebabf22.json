@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c7f3f2a7fa32ebabf22",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research tightness ablation feasibility",
+  "task_key": "worker_research_tightness_ablation_feasibility_20260515T063131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_tightness_ablation_feasibility_20260515T063131_result.json",
+    "occurrence": 1,
+    "bytes": 866,
+    "sha256": "1486ddaa0957468a5bbd8604e3867825d2e767c1e70e70884e9d0f65773a294a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写到 `artifacts/tightness_ablation/feasibility_report.md`。核心结论：\n\n**不推荐做完整 tightness ablation 实验。**\n\n关键发现：\n- Schema 是 JSON 格式，编译链路全自动（修改 JSON → `OntologyCompiler` 重编译 → 新 LogitsProcessor），技术上完全可行\n- 但投入 ~37 GPU hours，且人为修改 schema 的实验设计科学合理性存疑（收紧约束会 confound recall ceiling）\n- SciERC (τ\\_avg=0.333) vs DocRED (τ\\_avg=0.842) 已经是天然的 tightness 对比，grammar-first fallback 在 DocRED 触发而 SciERC 不触发就是直接证据\n\n**推荐替代**：对 DocRED 96 个 relation 按 τ 分 3 组做 post-hoc 分析（零推理成本，~2 小时开发），作为 tightness 效应的 within-dataset 证据。如果审稿人明确要求 controlled ablation 再执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-tightness-ablation-feasibility.md"
+}

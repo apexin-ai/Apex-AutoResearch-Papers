@@ -1,0 +1,39 @@
+{
+  "exp_id": "w1_cf_fallback_docred",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-15T10:32:53.234Z",
+    "updated_at": "2026-05-15T16:26:25.327Z",
+    "server": "westd-16980",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w1_cf_fallback_docred.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\""
+    },
+    "notes": "D020: Director 取消全部 CF fallback 实验。改用 Analytical Finding 方案——pilot negative 本身作为论文素材。仅跑约 30s 即被终止。",
+    "completed_at": "2026-05-15T15:47:59.075Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed",
+        "notes": "D020: Director 取消全部 CF fallback 实验。改用 Analytical Finding 方案——pilot negative 本身作为论文素材。仅跑约 30s 即被终止。"
+      }
+    },
+    "spec": {
+      "hypothesis": "W1 CF fallback trade-off analysis on DocRED (96 relations, high tightness). Expect more frequent grammar-first fallback due to tight constraints. CF↔DR trade-off data for analytical finding (D020 方案A).",
+      "parent": "phase2_docred_full_s1",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w1_cf_fallback_docred.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\"",
+      "server": "westd-16980",
+      "data_path": "data/docred/dev.json",
+      "data_count": 998,
+      "model_name": "Qwen3-8B",
+      "seed": "default",
+      "gpu": "cuda:1"
+    }
+  },
+  "timestamp": "2026-05-15T16:26:25.405454+00:00",
+  "trigger": "update_registry"
+}

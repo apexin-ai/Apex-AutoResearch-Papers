@@ -1,0 +1,1346 @@
+# code prepare llama crossmodel
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/chats/worker_code_prepare_llama_crossmodel_20260514T043051.jsonl`
+- **Structured JSON:** [`f464ea3732dfbda12884.json`](../../sessions/f4/f464ea3732dfbda12884.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+43 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T04:32:59.665087+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image,WebSearch",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image,WebSearch",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T04:32:59.665512+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T04:32:59.665750+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/schema_semantic_constrained_ie/run_constrained_extraction.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "cat /root/schema_semantic_constrained_ie/run_constrained_extraction.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T04:32:59.665930+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "cat /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T04:32:59.666061+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ls /root/autodl-tmp/models/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "ls /root/autodl-tmp/models/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T04:32:59.666633+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 2: Constrained extraction with grammar (XGrammar) + semantic (TypeConstraintProcessor) layers.\\n\\nModes:\\n  unconstrained  - no constraints (baseline)\\n  grammar_only   - XGrammar JSON/enum structure enforcement\\n  semantic_only  - TypeConstraintProcessor domain/range masking\\n  full_s1        - both layers, single-pass\\n  full_s2        - two-pass: entities first, then constrained relations\\n\\nDatasets: scierc (sentence-level), docred (document-level)\\nOutput: JSONL compatible with violation_checker.py\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport re\\nimport time\\nfrom pathlib import Path\\n\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nfrom compiler.ontology_compiler import ConstraintSpec, RelationConstraint\\nfrom compiler.type_mask_processor import TypeConstraintProcessor\\n\\n\\nRAW_TO_CANONICAL = {\\n    \\\"USED-FOR\\\": \\\"Used-for\\\", \\\"FEATURE-OF\\\": \\\"Feature-of\\\",\\n    \\\"HYPONYM-OF\\\": \\\"Hyponym-of\\\", \\\"PART-OF\\\": \\\"Part-of\\\",\\n    \\\"COMPARE\\\": \\\"Compare\\\", \\\"CONJUNCTION\\\": \\\"Conjunction\\\",\\n    \\\"EVALUATE-FOR\\\": \\\"Evaluate-for\\\",\\n}\\n\\n# DocRED entity type order must match Phase 0 (run_extraction_docred.py)\\nDOCRED_ENTITY_TYPES = [\\\"PER\\\", \\\"ORG\\\", \\\"LOC\\\", \\\"TIME\\\", \\\"NUM\\\", \\\"MISC\\\"]\\n\\nSCIERC_SYSTEM = \\\"\\\"\\\"You are an expert information extraction system for scientific texts. Extract entities and relations from the given text.\\n\\nEntity types: Task, Method, Material, Metric, OtherScientificTerm, Generic\\nRelation types: Used-for, Feature-of, Hyponym-of, Part-of, Compare, Conjunction, Evaluate-for\\n\\nOutput a JSON object with:\\n- \\\"entities\\\": list of {\\\"text\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\"}\\n- \\\"relations\\\": list of {\\\"head\\\": \\\"...\\\", \\\"tail\\\": \\\"...\\\", \\\"type\\\": \\\"...
+…[truncated 7256 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T04:32:59.667013+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"LogitsProcessor for runtime domain/range type constraint enforcement.\\n\\nLayered on top of XGrammar's structural constraints:\\n- XGrammar (Layer 1): Guarantees valid JSON, entity/relation type strings from enum\\n- TypeConstraintProcessor (Layer 2): Guarantees domain/range consistency\\n\\nAt each generation step:\\n1. Detect current JSON field position (entity type? relation head_type? tail_type?)\\n2. If at entity type position -> allow all entity type first tokens\\n3. If at head_type position -> mask to types valid for the current relation\\n4. If at tail_type position -> mask to types valid for (relation_type, head_type) pair\\n5. Apply mask: disallowed type tokens -> logits = -inf\\n\\nComposition:\\n    grammar_processor = xgr.contrib.hf.LogitsProcessor(compiled_grammar)\\n    type_processor = TypeConstraintProcessor(spec, tokenizer)\\n    model.generate(logits_processor=[grammar_processor, type_processor])\\n\\nFramework: HuggingFace transformers (API: __call__(input_ids, scores) -> scores)\\nDepends on: ontology_compiler.ConstraintSpec (type->token mappings + relation constraints)\\n\\nVerified first-token IDs (Qwen3-8B tokenizer, context-independent):\\n  SciERC:\\n    Task=6262, Method=3523, Material=13415, Metric=54310,\\n    OtherScientificTerm=11409, Generic=19964\\n  DocRED:\\n    PER=9654, ORG=44927, LOC=12052, TIME=18129, NUM=17488, MISC=44\\nAll first tokens are unique within each dataset -> simple first-token masking\\nis sufficient, no trie-based multi-token tracking needed.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport re\\nfrom dataclasses import dataclass, field\\nfrom enum import Enum, auto\\nfrom typing import Optional\\n\\nimport torch\\nfrom transformers import LogitsProcessor, PreTrainedTokenizerBase\\n\\nfrom .ontology_compiler import ConstraintSpec\\n\\n\\nclass FieldPosition(Enum):\\n    \\\"\\\"\\\"Current position in the JSON output structure.
+…[truncated 6866 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T04:32:59.667190+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LLM-Research\\nQwen3-8B-link\\nQwen3-8B-ms\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T04:32:59.667328+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -rn \"xgrammar\\|XGrammar\\|tokenizer_info\\|TokenizerInfo\" /root/schema_semantic_constrained_ie/compiler/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "grep -rn \"xgrammar\\|XGrammar\\|tokenizer_info\\|TokenizerInfo\" /root/schema_semantic_constrained_ie/compiler/ --include=\"*.py\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T04:32:59.667456+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T04:32:59.667577+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "meta-llama Llama-3.1-8B-Instruct HuggingFace model ID 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "meta-llama Llama-3.1-8B-Instruct HuggingFace model ID 2026"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T04:32:59.667761+00:00_
+
+Web search results for query: "meta-llama Llama-3.1-8B-Instruct HuggingFace model ID 2026"
+
+Links: [{"title":"meta-llama/Llama-3.1-8B-Instruct · Hugging Face","url":"https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct"},{"title":"meta-llama/Llama-3.1-8B-Instruct at main","url":"https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct/tree/main"},{"title":"meta-llama/Meta-Llama-3-8B-Instruct · Hugging Face","url":"https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct"},{"title":"bartowski/Meta-Llama-3.1-8B-Instruct-GGUF · Hugging Face","url":"https://huggingface.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF"},{"title":"meta-llama (Meta Llama)","url":"https://huggingface.co/meta-llama"},{"title":"nvidia/Llama-3.1-8B-Instruct-NVFP4 · Hugging Face","url":"https://huggingface.co/nvidia/Llama-3.1-8B-Instruct-NVFP4"},{"title":"nvidia/Llama-3.1-8B-Instruct-FP8 · Hugging Face","url":"https://huggingface.co/nvidia/Llama-3.1-8B-Instruct-FP8"},{"title":"lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF · Hugging Face","url":"https://huggingface.co/lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF"},{"title":"Fine-tuned Models for meta-llama/Llama-3.1-8B-Instruct – Hugging Face","url":"https://huggingface.co/models?other=base_model%3Afinetune%3Ameta-llama%2FLlama-3.1-8B-Instruct"},{"title":"meta-llama/Llama-3.1-8B-Instruct-evals · Datasets at Hugging Face","url":"https://huggingface.co/datasets/meta-llama/Llama-3.1-8B-Instruct-evals"}]
+
+Based on the search results, I found information about the **meta-llama/Llama-3.1-8B-Instruct** HuggingFace model.
+
+## Key Information:
+
+**Model ID:** meta-llama/Llama-3.1-8B-Instruct
+
+**Release Date:** July 23, 2024
+
+**Model Details:**
+- This repository contains two versions of Meta-Llama-3.1-8B-Instruct, for use with transformers and with the original llama codebase.
+- Starting with transformers >= 4.43.0 onward, you can run conversational inference using the Transformers pipeline abstraction or by leveraging the Auto classes with the 
+…[truncated 611 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T04:32:59.667953+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -n \"xgrammar\\|XGrammar\\|tokenizer_info\\|TokenizerInfo\" /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "grep -n \"xgrammar\\|XGrammar\\|tokenizer_info\\|TokenizerInfo\" /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T04:32:59.668086+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T04:32:59.668207+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -n \"_build_first_token_map\\|ensure_first_token_map\\|first_token\" /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "grep -n \"_build_first_token_map\\|ensure_first_token_map\\|first_token\" /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T04:32:59.668328+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T04:32:59.668480+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -rn \"_build_first_token_map\\|ensure_first_token_map\\|first_token\" /root/schema_semantic_constrained_ie/run_constrained_extraction.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "grep -rn \"_build_first_token_map\\|ensure_first_token_map\\|first_token\" /root/schema_semantic_constrained_ie/run_constrained_extraction.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T04:32:59.668617+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T04:32:59.668758+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -rn \"xgrammar\\|TokenizerInfo\\|from_huggingface\" /root/schema_semantic_constrained_ie/run_constrained_extraction.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "grep -rn \"xgrammar\\|TokenizerInfo\\|from_huggingface\" /root/schema_semantic_constrained_ie/run_constrained_extraction.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T04:32:59.668879+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T04:32:59.668995+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -rn \"def _build_first_token_map\\|def ensure_first_token_map\" /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "grep -rn \"def _build_first_token_map\\|def ensure_first_token_map\" /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T04:32:59.669112+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T04:32:59.669225+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ls /root/autodl-tmp/models/LLM-Research/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "ls /root/autodl-tmp/models/LLM-Research/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T04:32:59.669344+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Meta-Llama-3.1-8B-Instruct\\nMeta-Llama-3___1-8B-Instruct\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T04:32:59.669491+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -n -e \"_build_first_token_map\" -e \"ensure_first_token_map\" -e \"first_token\" /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "grep -n -e \"_build_first_token_map\" -e \"ensure_first_token_map\" -e \"first_token\" /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T04:32:59.669631+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"200:        self._type_first_token, self._all_type_first_tokens = self._build_first_token_map()\\n202:    def _build_first_token_map(self) -> tuple[dict[str, int], set[int]]:\\n203:        \\\"\\\"\\\"Build entity_type -> first_token_id mapping.\\n205:        Uses pre-computed token IDs from ConstraintSpec.entity_type_first_token\\n212:        type_first_token: dict[str, int] = {}\\n213:        all_first_tokens: set[int] = set()\\n217:            if etype in self.spec.entity_type_first_token:\\n218:                first_id = self.spec.entity_type_first_token[etype]\\n225:            type_first_token[etype] = first_id\\n226:            all_first_tokens.add(first_id)\\n228:        return type_first_token, all_first_tokens\\n297:            if actual_type and actual_type in self._type_first_token:\\n328:            if actual_type and actual_type in self._type_first_token:\\n354:        disallowed_first_tokens = [\\n355:            tid for etype, tid in self._type_first_token.items()\\n359:        if not disallowed_first_tokens:\\n364:            logits[self._type_first_token[t]].item() > self._GRAMMAR_MASK_THRESHOLD\\n366:            if t in self._type_first_token\\n371:        logits[disallowed_first_tokens] = float(\\\"-inf\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T04:32:59.669782+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -n -e \"xgrammar\" -e \"TokenizerInfo\" -e \"from_huggingface\" /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "grep -n -e \"xgrammar\" -e \"TokenizerInfo\" -e \"from_huggingface\" /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T04:32:59.669905+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"390:        [xgrammar_processor, type_constraint_processor]\\n398:    import xgrammar as xgr\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T04:32:59.670020+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -n -e \"ensure_first_token_map\" -e \"first_token\" /root/schema_semantic_constrained_ie/run_constrained_extraction.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "grep -n -e \"ensure_first_token_map\" -e \"first_token\" /root/schema_semantic_constrained_ie/run_constrained_extraction.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T04:32:59.670138+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"377:def ensure_first_token_map(spec, tokenizer):\\n378:    if spec.entity_type_first_token:\\n383:        spec.entity_type_first_token[etype] = token_ids[0]\\n655:    ensure_first_token_map(spec, tokenizer)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T04:32:59.670254+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -rn -e \"qwen\" -e \"Qwen\" -e \"chat_template\" /root/schema_semantic_constrained_ie/run_constrained_extraction.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "grep -rn -e \"qwen\" -e \"Qwen\" -e \"chat_template\" /root/schema_semantic_constrained_ie/run_constrained_extraction.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T04:32:59.670385+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"414:    text = tokenizer.apply_chat_template(\\n463:    text_p1 = tokenizer.apply_chat_template(\\n504:    text_p2 = tokenizer.apply_chat_template(\\n616:        for p in [\\\"/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B\\\",\\n617:                   \\\"/root/models/Qwen3-8B\\\"]:\\n622:        raise FileNotFoundError(\\\"Qwen3-8B not found. Specify --model_path.\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T04:32:59.670503+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "du -sh /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "du -sh /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T04:32:59.670618+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"15G\\t/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T04:32:59.670806+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "head -400 /root/schema_semantic_constrained_ie/run_constrained_extraction.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "head -400 /root/schema_semantic_constrained_ie/run_constrained_extraction.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-14T04:32:59.670930+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/schema_semantic_constrained_ie/compiler/ontology_compiler.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "cat /root/schema_semantic_constrained_ie/compiler/ontology_compiler.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T04:32:59.671214+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 2: Constrained extraction with grammar (XGrammar) + semantic (TypeConstraintProcessor) layers.\\n\\nModes:\\n  unconstrained  - no constraints (baseline)\\n  grammar_only   - XGrammar JSON/enum structure enforcement\\n  semantic_only  - TypeConstraintProcessor domain/range masking\\n  full_s1        - both layers, single-pass\\n  full_s2        - two-pass: entities first, then constrained relations\\n\\nDatasets: scierc (sentence-level), docred (document-level)\\nOutput: JSONL compatible with violation_checker.py\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport re\\nimport time\\nfrom pathlib import Path\\n\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nfrom compiler.ontology_compiler import ConstraintSpec, RelationConstraint\\nfrom compiler.type_mask_processor import TypeConstraintProcessor\\n\\n\\nRAW_TO_CANONICAL = {\\n    \\\"USED-FOR\\\": \\\"Used-for\\\", \\\"FEATURE-OF\\\": \\\"Feature-of\\\",\\n    \\\"HYPONYM-OF\\\": \\\"Hyponym-of\\\", \\\"PART-OF\\\": \\\"Part-of\\\",\\n    \\\"COMPARE\\\": \\\"Compare\\\", \\\"CONJUNCTION\\\": \\\"Conjunction\\\",\\n    \\\"EVALUATE-FOR\\\": \\\"Evaluate-for\\\",\\n}\\n\\n# DocRED entity type order must match Phase 0 (run_extraction_docred.py)\\nDOCRED_ENTITY_TYPES = [\\\"PER\\\", \\\"ORG\\\", \\\"LOC\\\", \\\"TIME\\\", \\\"NUM\\\", \\\"MISC\\\"]\\n\\nSCIERC_SYSTEM = \\\"\\\"\\\"You are an expert information extraction system for scientific texts. Extract entities and relations from the given text.\\n\\nEntity types: Task, Method, Material, Metric, OtherScientificTerm, Generic\\nRelation types: Used-for, Feature-of, Hyponym-of, Part-of, Compare, Conjunction, Evaluate-for\\n\\nOutput a JSON object with:\\n- \\\"entities\\\": list of {\\\"text\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\"}\\n- \\\"relations\\\": list of {\\\"head\\\": \\\"...\\\", \\\"tail\\\": \\\"...\\\", \\\"type\\\": \\\"...
+…[truncated 7576 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T04:32:59.671733+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Ontology Schema -> Constraint Specification Compiler.\\n\\nCompiles an IE ontology schema (entity types, relation types, domain/range pairs)\\ninto two constraint artifacts:\\n  1. EBNF grammar for XGrammar — enforces valid JSON structure + type vocabulary\\n  2. TypeConstraintSpec — semantic-level constraints for the LogitsProcessor\\n\\nInput:  ontology_constraints.json (entity types, relation types, valid head/tail pairs)\\nOutput: ConstraintSpec (for TypeConstraintProcessor) + CompiledGrammar (for XGrammar)\\nDepends: xgrammar, transformers (tokenizer)\\n\\nArchitecture: HF transformers + XGrammar (standalone).\\n- XGrammar handles structural constraints via EBNF grammar\\n- Custom LogitsProcessor handles semantic constraints (domain/range masking)\\n- Composed via LogitsProcessorList in model.generate()\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport json\\nfrom dataclasses import dataclass, field\\nfrom pathlib import Path\\nfrom typing import Optional\\n\\n\\n@dataclass\\nclass RelationConstraint:\\n    \\\"\\\"\\\"Domain/range constraint for a single relation type.\\\"\\\"\\\"\\n    relation_type: str\\n    valid_pairs: list[tuple[str, str]]  # [(head_type, tail_type), ...]\\n\\n    def valid_head_types(self) -> set[str]:\\n        return {h for h, _ in self.valid_pairs}\\n\\n    def valid_tail_types(self) -> set[str]:\\n        return {t for _, t in self.valid_pairs}\\n\\n    def valid_tail_types_for_head(self, head_type: str) -> set[str]:\\n        return {t for h, t in self.valid_pairs if h == head_type}\\n\\n    def valid_head_types_for_tail(self, tail_type: str) -> set[str]:\\n        return {h for h, t in self.valid_pairs if t == tail_type}\\n\\n\\n@dataclass\\nclass ConstraintSpec:\\n    \\\"\\\"\\\"Complete constraint specification compiled from an ontology schema.\\n\\n    Used by both the EBNF grammar generator and the TypeConstraintProcessor.\\n    \\\"\\\"\\\"\
+…[truncated 6950 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-14T04:32:59.671938+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ls /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "ls /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T04:32:59.672084+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LICENSE\\nREADME.md\\nUSE_POLICY.md\\nconfig.json\\nconfiguration.json\\ngeneration_config.json\\nmodel-00001-of-00004.safetensors\\nmodel-00002-of-00004.safetensors\\nmodel-00003-of-00004.safetensors\\nmodel-00004-of-00004.safetensors\\nmodel.safetensors.index.json\\noriginal\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T04:32:59.672629+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -n -e \"thinking\" -e \"think\" -e \"enable_think\" -e \"apply_chat_template\" /root/schema_semantic_constrained_ie/run_constrained_extraction.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "grep -n -e \"thinking\" -e \"think\" -e \"enable_think\" -e \"apply_chat_template\" /root/schema_semantic_constrained_ie/run_constrained_extraction.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T04:32:59.672828+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"414:    text = tokenizer.apply_chat_template(\\n416:        enable_thinking=False,\\n463:    text_p1 = tokenizer.apply_chat_template(\\n464:        msgs_p1, tokenize=False, add_generation_prompt=True, enable_thinking=False,\\n504:    text_p2 = tokenizer.apply_chat_template(\\n505:        msgs_p2, tokenize=False, add_generation_prompt=True, enable_thinking=False,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-14T04:32:59.673036+00:00_
+
+调研完成。以下是 Llama-3.1-8B cross-model 验证的兼容性报告。
+
+---
+
+## Llama-3.1-8B 兼容性评估
+
+### 1. 模型加载 — ✅ 兼容
+- `AutoModelForCausalLM` + `AutoTokenizer`，通用接口
+- 默认路径硬编码为 Qwen3-8B（line 616-622），但 `--model_path` 参数可覆盖，**无需改代码**
+
+### 2. Chat Template — ❌ 需要修改
+**唯一的硬性不兼容点。** 三处 `apply_chat_template` 调用传了 Qwen3 特有参数：
+- `run_constrained_extraction.py:416` — `enable_thinking=False`
+- `run_constrained_extraction.py:464` — `enable_thinking=False`
+- `run_constrained_extraction.py:505` — `enable_thinking=False`
+
+Llama tokenizer 不识别 `enable_thinking`，会抛 `TypeError`。**修复方案**: 条件传参，检测 tokenizer 是否支持该参数。
+
+### 3. Semantic Constraint (First-Token Masking) — ✅ 兼容（需验证）
+- `ensure_first_token_map()` 和 `_build_first_token_map()` 动态从 tokenizer 计算，**无硬编码 token ID**
+- `compile_type_constraints()` 有运行时碰撞检查（两个 entity type 共享 first token → ValueError）
+- **风险点**: SciERC 的 Method/Material/Metric 和 DocRED 的 MISC 都以 M 开头，需确认 Llama tokenizer 不会产生 first-token 碰撞。大概率没问题（常见英文单词通常有独立 BPE token），但建议跑前先用脚本验证
+
+### 4. XGrammar — ✅ 兼容
+- `xgr.TokenizerInfo.from_huggingface(tokenizer, vocab_size=...)` 是通用 HF 接口
+- Grammar 编译基于 JSON Schema，与 tokenizer 无关
+
+### 5. 模型下载 — ✅ 已存在
+- 路径: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct/`
+- 大小: 15GB，4 个 safetensors shard + tokenizer 文件齐全
+- HF 模型 ID: `meta-llama/Llama-3.1-8B-Instruct` ([HuggingFace](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct))
+
+---
+
+## 需要的代码修改
+
+**仅 1 处改动**（3 个调用点）：`enable_thinking=False` 条件化
+
+```python
+# 方案: 构造 chat_template kwargs
+chat_kwargs = dict(tokenize=False, add_generation_prompt=True)
+if "enable_thinking" in inspect.signature(tokenizer.apply_chat_template).parameters:
+    chat_kwargs["enable_thinking"] = False
+
+text = tokenizer.apply_chat_template(msgs, **chat_kwargs)
+```
+
+或更简单：`try/except` 包一层。
+
+## 建议的运行命令
+
+```bash
+cd /root/schema_semantic_constrained_ie
+
+# SciERC full_s2 (与 Qwen3 实验对齐)
+python run_constrained_extraction.py \
+  --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct \
+  --dataset scierc \
+  --mode full_s2 \
+  --output_path results/scierc_llama31_8b_full_s2.jsonl
+
+# 其他 modes 对齐 Qwen 实验
+python run_constrained_extraction.py \
+  --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct \
+  --dataset scierc \
+  --mode unconstrained \
+  --output_path results/scierc_llama31_8b_unconstrained.jsonl
+```
+
+## 预计准备时间
+
+- 代码修改: ~10 分钟（`enable_thinking` 条件化 + first-token 碰撞验证脚本）
+- 测试运行（几个 sample）: ~5 分钟
+- 全量运行: 与 Qwen3 实验耗时相当
+
+批准后可立即开始改代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_prepare_llama_crossmodel_20260514T043051"
+}
+```
+
+</details>
+
+---

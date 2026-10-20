@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a02466a9e82797db886",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d064 collect results",
+  "task_key": "worker_ssh_d064_collect_results_20260519T101822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d064_collect_results_20260519T101822_result.json",
+    "occurrence": 1,
+    "bytes": 1860,
+    "sha256": "76b42fa219d95eb78e2a24e10febd74c6df29f3d8787e61052b5e30d4f4e2103"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验仍在运行中，远未完成。** 当前状态：\n\n### GPU 0 — Llama 流水线\n| 阶段 | 状态 | 进度 |\n|------|------|------|\n| Llama LoRA 训练 | **运行中** | step 445/573 (78%)，预计 ~18 min 完成 |\n| 自动 merge 权重 | 等待训练完成 | — |\n| Llama greedy unconstrained | 等待 merge | 排队中 |\n| Llama greedy constrained | 等待 | 排队中 |\n| Llama beam-4 unconstrained | 等待 | 排队中 |\n| Llama beam-4 constrained | 等待 | 排队中 |\n\n训练完成后 cascade 脚本 (`d064_gpu0_llama_all_with_greedy.sh`) 会自动运行 4 个推理任务（998 docs × 4 = 3992 次推理）。\n\n### GPU 1 — Qwen 流水线\n| 阶段 | 状态 | 进度 |\n|------|------|------|\n| Qwen beam-4 unconstrained | **运行中** | doc 167/998 (17%)，已写 211 行 |\n| Qwen beam-4 constrained | 等待 unc 完成 | 排队中 |\n\n### 输出文件状态\n| 文件 | 行数 | 状态 |\n|------|------|------|\n| `d064_qwen_docred_beam4_unconstrained.jsonl` | 211/998 | 运行中 |\n| `d064_qwen_docred_beam4_constrained.jsonl` | — | 未开始 |\n| `d064_llama_docred_greedy_unconstrained.jsonl` | — | 未开始 |\n| `d064_llama_docred_greedy_constrained.jsonl` | — | 未开始 |\n| `d064_llama_docred_beam4_unconstrained.jsonl` | — | 未开始 |\n| `d064_llama_docred_beam4_constrained.jsonl` | — | 未开始 |\n\n### 时间估算\n- **Llama 训练**: ~18 min + ~10 min merge\n- **Llama 4×推理**: 每次 ~4-6 小时 (greedy 快些，beam-4 慢些)，串行总计 ~16-20 小时\n- **Qwen unc 完成**: ~4-5 小时，之后 Qwen con 再 ~5-6 小时\n- **总计**: GPU 0 瓶颈，预计 **~20-24 小时**后全部完成\n\nCascade 脚本已正确配置，会在前序任务完成后自动启动后续任务。无需人工干预，但现在还不能收集结果。建议明天再来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d064-collect-results.md"
+}

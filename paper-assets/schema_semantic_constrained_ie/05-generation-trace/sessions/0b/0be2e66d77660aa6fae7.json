@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0be2e66d77660aa6fae7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "status check all running",
+  "task_key": "worker_status_check_all_running_20260516T054357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_check_all_running_20260516T054357_result.json",
+    "occurrence": 1,
+    "bytes": 1340,
+    "sha256": "36a8b540cf66da90ca7c9bf0bcb38983dccfebe70bbf38aede385c5538e8b176"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度汇总\n\n### westd-16980\n\n| exp_id | status | progress | ETA | GPU |\n|--------|--------|----------|-----|-----|\n| w6_mistral_scierc_constrained | **ALIVE** (14m) | **176/551** (32%) | ~23 min (avg 3.7s/sample) | cuda:0 86%, 14.7/95.8 GiB |\n| w5_qwen_docred_lora_constrained_eval | **ALIVE** (3h49m) | **486/998** (49%) | ~2.8h (avg ~20s/sample) | cuda:1 85%, 17.0/95.8 GiB |\n\n### westd-21461\n\n| exp_id | status | progress | ETA | GPU |\n|--------|--------|----------|-----|-----|\n| w6_mistral_docred_unconstrained | **ALIVE** (14m) | **~84/998** (8%) | ~2.5h (est ~10s/sample) | cuda:0 90%, 14.9/95.8 GiB |\n| w6_mistral_docred_constrained | **ALIVE** (8m) | **~47/998** (5%) | ~2.6h (est ~10s/sample) | cuda:1 86%, 14.9/95.8 GiB |\n\n### 注意事项\n\n1. **w5_qwen_docred_lora_constrained_eval**: 最后一个样本 `[486] Bill Warner (writer)` **FAIL** (E=0 R=0, 耗时 76.1s)，疑似超时/解析失败。其余样本正常。\n\n2. **westd-21461 两个实验没有 log 文件** — unconstrained 的 `~/runs/` log 是旧进程的（已被 SIGHUP kill，EXIT_CODE=129），当前进程没有 tee 到 log；constrained 的 log 文件完全不存在。进度只能从 output jsonl 行数推断（84 和 47 行）。\n\n3. 所有 4 个进程都在正常运行，GPU 利用率健康（85-90%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-check-all-running.md"
+}

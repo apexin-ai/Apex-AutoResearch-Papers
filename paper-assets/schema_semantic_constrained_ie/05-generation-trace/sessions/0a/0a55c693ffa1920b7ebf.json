@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a55c693ffa1920b7ebf",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops diagnose full s2 exit",
+  "task_key": "worker_ops_diagnose_full_s2_exit_20260514T010939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_full_s2_exit_20260514T010939_result.json",
+    "occurrence": 1,
+    "bytes": 406,
+    "sha256": "b2d8343fd5df8b0ec906067bc67cf5bc37525edcb8a6ea25267243bc129021d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程仍在运行，未退出。** Cron 报告有误。\n\n- PID 144858，CPU 107%，启动于 09:06，已运行约 3 分钟\n- 输出：105/551 行（从 88 行 resume，已新增 17 行）\n- 日志无错误/异常\n- tmux session 不存在（使用的是 bash wrapper 而非 tmux），但 python3 进程正常运行中\n\n无需更新 registry 或删除 cron，进程正常推进中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-full-s2-exit.md"
+}

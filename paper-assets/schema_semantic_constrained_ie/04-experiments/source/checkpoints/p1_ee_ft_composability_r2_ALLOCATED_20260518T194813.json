@@ -1,0 +1,16 @@
+{
+  "exp_id": "p1_ee_ft_composability_r2",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:47:21.742Z",
+    "updated_at": "2026-05-18T19:48:13.292Z",
+    "hypothesis": "LoRA fine-tuning Qwen3-8B on WikiEvents EE with correct train/dev/test splits (no data leakage) will produce a model whose unconstrained output has schema violations that are reduced by constrained decoding (full_s1), demonstrating composability of schema constraints with fine-tuned models.",
+    "parent": "p1_ee_ft_composability"
+  },
+  "timestamp": "2026-05-18T19:48:13.497152+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,67 @@
+{
+  "exp_id": "w5_llama_lora_scierc_constrained_eval",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:33:42.462Z",
+    "updated_at": "2026-05-15T18:12:19.787Z",
+    "spec": {
+      "command": "cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python run_constrained_extraction.py --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --data_path data/processed_data/test.json --constraint_path ontology_constraints.json --output_path outputs/w5_llama_lora_scierc_constrained.jsonl --mode full_s1",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "290317",
+      "log_path": "~/runs/schema_semantic_constrained_ie/w5_llama_lora_scierc_constrained_eval.log",
+      "submitted_at": "2026-05-15T17:38:56.723Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "llama-3.1-8b-instruct-lora-scierc-merged",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/llama_lora_scierc_merged",
+      "eval_data": "SciERC test set (551 samples)",
+      "wall_clock_seconds": 2003.1,
+      "gpu_hours": 0.56
+    },
+    "hypothesis": "Fine-tuned Llama-3.1-8B + OntoCoDec constrained eval on SciERC — composability 验证：约束解码在 fine-tuned Llama 上仍有效且不损 F1。完成 Llama SciERC 2×2 matrix。",
+    "reproduce": {
+      "finished_at": "2026-05-15T17:59:25.871Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T17:59:27.794917+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "domain_range_violation_rate": 0.0009,
+      "relation_vocabulary_violation_rate": 0,
+      "entity_type_violation_rate": 0,
+      "cross_field_consistency_violation_rate": 0.0046,
+      "relation_f1": 0.4547,
+      "relation_precision": 0.432,
+      "relation_recall": 0.4795,
+      "entity_f1": 0.6776,
+      "entity_precision": 0.6647,
+      "entity_recall": 0.691,
+      "total_relations": 1081,
+      "total_entities": 1757,
+      "total_samples": 551,
+      "parse_failures": 0
+    },
+    "checkpoint_path": "outputs/w5_llama_lora_scierc_constrained.jsonl",
+    "completed_at": "2026-05-15T18:12:19.787Z"
+  },
+  "timestamp": "2026-05-15T18:12:19.882100+00:00",
+  "trigger": "update_registry"
+}

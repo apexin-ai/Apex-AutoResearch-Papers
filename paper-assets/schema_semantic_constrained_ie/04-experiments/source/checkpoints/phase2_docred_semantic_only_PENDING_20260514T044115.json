@@ -1,0 +1,15 @@
+{
+  "exp_id": "phase2_docred_semantic_only",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T04:40:51.107Z",
+    "updated_at": "2026-05-14T04:41:15.195Z",
+    "hypothesis": "Semantic-only constrained decoding 在 DocRED (96 relations, avg 5.68 valid pairs) 上的 DR 降低幅度。SciERC semantic_only DR↓24% (15.37→11.65%)，DocRED 约束更紧预期效果更明显。关键验证 Claim 3 enabling dependency：semantic_only 无法消除 RV/ET（需 grammar），证明两层互补非替代。"
+  },
+  "timestamp": "2026-05-14T04:41:15.241058+00:00",
+  "trigger": "update_registry"
+}

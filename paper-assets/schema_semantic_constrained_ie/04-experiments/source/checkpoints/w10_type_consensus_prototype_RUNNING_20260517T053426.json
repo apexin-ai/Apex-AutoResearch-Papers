@@ -1,0 +1,33 @@
+{
+  "exp_id": "w10_type_consensus_prototype",
+  "project": "schema_semantic_constrained_ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T05:07:18.638Z",
+    "updated_at": "2026-05-17T05:34:26.055Z",
+    "hypothesis": "Document-level type consensus constraint (forcing same entity text to receive identical type across all relation triples) will eliminate CF violations caused by inconsistent type assignment, reducing CF from ~9.90% toward 0% on SciERC without increasing DR",
+    "spec": {
+      "command": "python run_constrained_extraction.py --mode full_s1 --dataset scierc --type_consensus --device cuda:0",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "417859",
+      "log_path": "~/runs/schema_semantic_constrained_ie/w10_type_consensus_prototype.log",
+      "submitted_at": "2026-05-17T05:34:19.247Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "Qwen3-8B",
+      "data_path": "data/processed_data/test.json",
+      "data_count": 551,
+      "seed": 42,
+      "notes": "GTC Layer 3 v2 (DR-aware skip). Kill switch: DR>2% → abort."
+    }
+  },
+  "timestamp": "2026-05-17T05:34:26.204088+00:00",
+  "trigger": "update_registry"
+}

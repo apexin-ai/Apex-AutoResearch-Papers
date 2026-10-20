@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d0f04fa11734e4e1d35",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check mt6144 progress v2",
+  "task_key": "worker_check_mt6144_progress_v2_20260515T112358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_mt6144_progress_v2_20260515T112358_result.json",
+    "occurrence": 1,
+    "bytes": 645,
+    "sha256": "178dc53814d427a02bd4e4cffbca11a0f054fbafc0975f22baa53ab2011b41ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n## llama_docred_unconstrained_mt6144 (cuda:0)\nStatus: RUNNING (uptime 3h05m)\nProgress: 548/998 docs (54.9%)\nRate: ~2.96 docs/min\nETA: ~2h32m remaining\n\n## llama_docred_full_s1_mt6144 (cuda:1) ⚠️ 含 CF fallback 逻辑\nStatus: RUNNING (uptime 3h02m)\nProgress: 441/998 docs (44.2%)\nRate: ~2.42 docs/min\nETA: ~3h50m remaining\n注: 日志中大量 \"Grammar-first fallback triggered\" — 语义掩码频繁被跳过，\n    full_s1 因 constrained decoding 开销比 unconstrained 慢约 18%。\n```\n\nunconstrained 预计约 2.5h 后完成，full_s1 预计约 4h 后完成。需要稍后再检查收集结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-mt6144-progress-v2.md"
+}

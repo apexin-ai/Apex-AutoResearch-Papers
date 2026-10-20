@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c132b58e02ae12eaa2b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis phase2 grammar only check",
+  "task_key": "worker_analysis_phase2_grammar_only_check_20260513T222159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_grammar_only_check_20260513T222159_result.json",
+    "occurrence": 1,
+    "bytes": 1086,
+    "sha256": "2e9063b99a3fea7a4f4236f481ec395a23ea1a4dc192e56c8a0c93f5af35aa3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：cron 误报 — 两个进程均仍在运行中。**\n\n| 实验 | PID | 状态 | 运行时长 | 完成进度 | GPU |\n|------|-----|------|----------|----------|-----|\n| grammar_only | 126473 (子进程) | `Rl` (运行中) | 5h50m | 62/551 (11.3%) | GPU 1, 16482 MiB |\n| unconstrained | 126948 (子进程) | `Rl` (运行中) | 2h46m | 22/551 (4.0%) | GPU 1, 16480 MiB |\n\n关键观察：\n- JSONL 文件仍在增长（短时间内从 55 → 62 行），进程活跃\n- 两个实验共享 GPU 1（92% 利用率），GPU 0 被另一个进程 PID 116365 占用\n- Violation report 尚未生成（预期 — 提取未完成，violation_checker 在提取之后的命令链中）\n- 每个样本平均推理时间约 5-10 秒，但 Qwen3-8B 的 thinking 模式可能导致部分样本耗时更长\n\n**估计剩余时间**：grammar_only 当前速率约 3.5 样本/分钟，剩余 489 样本 ≈ **~2.3 小时**。unconstrained 更靠后，预估 **~4-5 小时**。\n\n两个 GPU 1 上的推理进程可能互相抢资源，这解释了整体速度低于预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase2-grammar-only-check.md"
+}

@@ -1,0 +1,64 @@
+{
+  "exp_id": "w8_qwen_docred_ft_semantic_only",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T10:08:59.297Z",
+    "updated_at": "2026-05-16T16:22:28.075Z",
+    "hypothesis": "FT Qwen DocRED + semantic_only eval: 与 grammar_only 配对，验证 semantic 层在 FT+DocRED regime 下能否独立降低 DR。预期 DR 从 0.76% 降至 ~0.3-0.5%（参照 SciERC 模式：semantic_only 降 DR 68%��。完成后 DocRED FT ablation 有 Qwen 双模式数据。",
+    "parent": "w5_qwen_docred_lora_training",
+    "spec": {
+      "command": "python run_constrained_extraction.py --mode semantic_only --dataset docred --model /root/autodl-tmp/checkpoints/qwen_lora_docred_merged",
+      "server": "westd-21461",
+      "data_path": "data/docred",
+      "data_count": 998,
+      "model_name": "qwen_lora_docred_merged",
+      "seed": 42,
+      "checkpoint_source": "qwen_lora_docred_merged",
+      "eval_data": "docred_test_998",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/qwen_lora_docred_merged",
+      "log_path": "~/runs/schema_semantic_constrained_ie/w8_qwen_docred_ft_semantic_only.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T16:18:27.113Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T16:18:29.130284+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "E_F1": 82.15,
+      "E_P": 85.58,
+      "E_R": 78.99,
+      "R_F1": 40.89,
+      "R_P": 36.35,
+      "R_R": 46.73,
+      "ET_pct": 0,
+      "RV_pct": 0.23,
+      "DR_pct": 0.21,
+      "CF_pct": 0.27,
+      "parse_fail_rate": 7.52,
+      "total_samples": 998,
+      "parse_failures": 75,
+      "documents_checked": 923,
+      "total_entities": 18025,
+      "total_triples": 15909,
+      "DR_violations": 34,
+      "RV_violations": 37,
+      "ET_violations": 0,
+      "CF_violations": 49
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-16T16:22:28.075Z"
+  },
+  "timestamp": "2026-05-16T16:22:28.309281+00:00",
+  "trigger": "update_registry"
+}

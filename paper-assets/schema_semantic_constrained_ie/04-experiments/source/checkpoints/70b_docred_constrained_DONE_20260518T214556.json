@@ -1,0 +1,69 @@
+{
+  "exp_id": "70b_docred_constrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T12:43:03.053Z",
+    "updated_at": "2026-05-18T21:45:56.501Z",
+    "hypothesis": "OntoCoDec constrained decoding (full_s1 mode) on 70B AWQ-INT4 model eliminates all schema violations (ET, RV, DR) on DocRED without degrading extraction F1, demonstrating scalability to larger models and cross-sentence RE datasets.",
+    "parent": "70b_scierc_constrained",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python run_constrained_extraction.py --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4 --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path /root/autodl-tmp/schema_outputs/70b_docred_constrained.jsonl --mode full_s1 --max_new_tokens 4096 --skip_on_error",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "556631",
+      "log_path": "~/runs/schema_semantic_constrained_ie/70b_docred_constrained.log",
+      "submitted_at": "2026-05-18T12:48:47.766Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/docred/dev.json",
+      "data_count": 998,
+      "model_name": "Meta-Llama-3.1-70B-Instruct-AWQ-INT4",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4",
+      "eval_data": "data/docred/dev.json",
+      "wall_clock_seconds": 32228.7,
+      "gpu_hours": 8.95
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T21:42:12.715Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T21:42:16.440666+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/schema_outputs/70b_docred_constrained.jsonl",
+    "metrics": {
+      "ET_violation": 0,
+      "RV_violation": 0,
+      "DR_violation": 0,
+      "CF_violation": 7.01,
+      "entity_f1": 69.05,
+      "entity_precision": 75.03,
+      "entity_recall": 63.95,
+      "relation_f1": 13.07,
+      "relation_precision": 12.54,
+      "relation_recall": 13.64,
+      "parse_failures": 1,
+      "docs_processed": 997,
+      "total_docs": 998,
+      "unique_entities": 12207,
+      "total_triples": 13249
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-18T21:45:56.501Z"
+  },
+  "timestamp": "2026-05-18T21:45:56.727937+00:00",
+  "trigger": "update_registry"
+}

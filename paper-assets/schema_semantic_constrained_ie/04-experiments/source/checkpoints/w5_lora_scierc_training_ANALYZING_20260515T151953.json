@@ -1,0 +1,66 @@
+{
+  "exp_id": "w5_lora_scierc_training",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 1,
+    "created_at": "2026-05-15T14:56:20.233Z",
+    "updated_at": "2026-05-15T15:19:53.551Z",
+    "server": "westd-16980",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "command": "bash -c \"export WANDB_MODE=disabled && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 scripts/train_lora_scierc.py\"",
+      "finished_at": "2026-05-15T15:16:50.985Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-15T14:58:56.873Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T14:58:58.618383+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T15:16:52.498789+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"export WANDB_MODE=disabled && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 scripts/train_lora_scierc.py\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "276523",
+      "log_path": "~/runs/schema_semantic_constrained_ie/w5_lora_scierc_training.log",
+      "submitted_at": "2026-05-15T15:02:11.699Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "276523",
+    "log_path": "~/runs/schema_semantic_constrained_ie/w5_lora_scierc_training.log",
+    "metrics": {
+      "train_loss": 0.0634,
+      "eval_loss": 0.0586,
+      "eval_token_accuracy": 0.9816,
+      "eval_entropy": 0.9635,
+      "train_runtime_sec": 688.4,
+      "epochs": 3,
+      "checkpoint_path": "/root/schema_semantic_constrained_ie/checkpoints/qwen3_8b_lora_scierc",
+      "merged_model_path": "/root/schema_semantic_constrained_ie/checkpoints/qwen3_8b_lora_scierc_merged"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T15:19:53.625066+00:00",
+  "trigger": "update_registry"
+}

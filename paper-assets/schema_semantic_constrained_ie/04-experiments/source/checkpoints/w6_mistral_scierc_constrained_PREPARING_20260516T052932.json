@@ -1,0 +1,22 @@
+{
+  "exp_id": "w6_mistral_scierc_constrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-16T02:59:03.181Z",
+    "updated_at": "2026-05-16T05:29:32.459Z",
+    "hypothesis": "Mistral-7B constrained SciERC (full_s1 mode) - test if schema constraints reduce violations and improve F1 vs unconstrained baseline (E_F1=0.2728, R_F1=0.0366, DR=56.94%)",
+    "failure_reason": "TypeError: xgrammar.GrammarMatcher.accept_token expected int but got ffi.Tensor. xgrammar/tvm version mismatch on westd-21461. Crashed 10s after start.",
+    "completed_at": "2026-05-16T05:28:06.343Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-16T05:29:32.596529+00:00",
+  "trigger": "update_registry"
+}

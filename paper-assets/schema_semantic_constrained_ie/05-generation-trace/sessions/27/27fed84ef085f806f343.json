@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "27fed84ef085f806f343",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "writing d066 pareto figure",
+  "task_key": "worker_writing_d066-pareto-figure_20260520T040015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_d066-pareto-figure_20260520T040015_result.json",
+    "occurrence": 1,
+    "bytes": 2113369,
+    "sha256": "4ec6b2785f25dd03105d0bc446824a8094af1323c295fb314eab6e5ebc263fbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2113389,
+                "serialized_sha256": "268a0d7c7b3735588ed6244e5770e387afc9f371b9bdb09f6dbc53c644c09273",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-d066-pareto-figure.md"
+}

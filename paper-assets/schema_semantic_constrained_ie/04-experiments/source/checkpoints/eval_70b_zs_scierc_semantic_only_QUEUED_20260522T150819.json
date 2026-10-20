@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_70b_zs_scierc_semantic_only",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:39:36.807Z",
+    "updated_at": "2026-05-22T15:08:18.887Z",
+    "hypothesis": "Semantic-only constraints on 70B ZS will reduce DR partially (similar to 8B pattern: ~24% reduction) without eliminating RV/ET, isolating semantic layer's independent contribution at 70B scale.",
+    "parent": "r16_70b_scierc_zs_s1"
+  },
+  "timestamp": "2026-05-22T15:08:19.196124+00:00",
+  "trigger": "update_registry"
+}

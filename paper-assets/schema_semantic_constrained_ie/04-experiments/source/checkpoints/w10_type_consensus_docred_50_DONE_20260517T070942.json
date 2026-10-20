@@ -1,0 +1,52 @@
+{
+  "exp_id": "w10_type_consensus_docred_50",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T06:06:56.659Z",
+    "updated_at": "2026-05-17T07:09:42.510Z",
+    "hypothesis": "GTC Layer 3 on DocRED (96 relation types, complex schema) will reduce CF violations while maintaining DR through DR-aware skip mechanism; skip frequency expected higher than SciERC due to more type ambiguity in fine-grained ontology",
+    "spec": {
+      "command": "python run_constrained_extraction.py --mode full_s1 --dataset docred --type_consensus --max_samples 50 --device cuda:0",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "419622",
+      "log_path": "~/runs/schema_semantic_constrained_ie/w10_type_consensus_docred_50.log",
+      "submitted_at": "2026-05-17T06:07:17.194Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "Qwen3-8B",
+      "data_path": "data/processed_data/docred_test.json",
+      "data_count": 50,
+      "seed": 42,
+      "notes": "GTC Layer 3 v2 on DocRED 96-type schema. Testing skip frequency under complex ontology.",
+      "wall_clock_seconds": 3745.3,
+      "gpu_hours": 1.04
+    },
+    "metrics": {
+      "ET_pct": 0,
+      "RV_pct": 0,
+      "DR_pct": 8.69,
+      "CF_pct": 2.4,
+      "E_F1": 59.08,
+      "R_F1": 8.33,
+      "gtc_skip_total": 601,
+      "gtc_skip_unique_entities": 213,
+      "gtc_effective_corrections": 0,
+      "delta_DR": 0,
+      "delta_CF": 0
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/schema_semantic_constrained_ie/outputs/docred_full_s1_consensus_50.jsonl",
+    "log_path": "~/runs/schema_semantic_constrained_ie/w10_type_consensus_docred_50.log",
+    "completed_at": "2026-05-17T07:09:42.510Z"
+  },
+  "timestamp": "2026-05-17T07:09:42.660019+00:00",
+  "trigger": "update_registry"
+}

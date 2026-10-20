@@ -1,0 +1,27 @@
+{
+  "exp_id": "posthoc_filtering_baseline",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:46:07.823Z",
+    "updated_at": "2026-05-14T18:46:23.429Z",
+    "spec": {
+      "hypothesis": "Post-hoc filtering baseline: generate unconstrained triples then remove DR/RV/ET violations. Comparison with OntoCoDec decoding-time enforcement on precision, recall, coverage, and residual violations.",
+      "command": "python posthoc_filter.py",
+      "server": "westd-16980",
+      "data_path": "/root/schema_semantic_constrained_ie/outputs/",
+      "data_count": 2,
+      "model_name": "Qwen3-8B (unconstrained outputs)",
+      "seed": 42,
+      "checkpoint_path": "/root/schema_semantic_constrained_ie/outputs/posthoc_report_docred.json",
+      "log_path": "/root/schema_semantic_constrained_ie/outputs/posthoc_report_scierc.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T18:46:23.429Z"
+  },
+  "timestamp": "2026-05-14T18:46:23.486211+00:00",
+  "trigger": "update_registry"
+}

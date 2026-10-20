@@ -1,0 +1,1724 @@
+# cron hook w6 mistral docred unconstrained 20260516T172043 675263
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 52
+- **Recorded user turns:** 2
+- **Tool calls:** 24
+- **Original source:** `logs/chats/archive/cron_hook_w6_mistral_docred_unconstrained_20260516T172043_675263.jsonl`
+- **Structured JSON:** [`a31f9e427a2834ea3382.json`](../../sessions/a3/a31f9e427a2834ea3382.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+50 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T13:13:06.594418+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #14。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-16980 [cuda:0, cuda:1] + westd-21461 [cuda:0, cuda:1]，共 4 卡，不得用其他
+- westd-21461 用 conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在
+- submit_training_job 命令必须自带环境激活（conda activate），GPU 编号始终从 0 开始
+- w6_mistral_docred_unconstrained 已失败 2 次（SIGHUP），第 3 次重试前必须确认根因已修复
+
+### 2. 🖥️ 基础设施快照
+- **westd-16980**: 工作目录 /root/schema_semantic_constrained_ie，Python /root/miniconda3/bin/python3，2x GPU
+  - 模型：/root/autodl-tmp/checkpoints/llama_lora_docred_merged, qwen_lora_docred_merged, llama_lora_scierc_merged, qwen3_8b_lora_scierc_merged
+  - 活跃：w8_llama_docred_ft_grammar_only (RUNNING, cuda:1)
+- **westd-21461**: 同结构，2x RTX PRO 6000 Blackwell 98GB
+  - 模型：/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3（symlink → ms_cache）
+  - 活跃：w6_mistral_docred_constrained (PID 8347, cuda:1, cron 监控中)
+  - 空闲：cuda:0（unconstrained 失败后释放）
+- 数据：SciERC data/processed_data/test.json (551), DocRED data/docred/dev.json (998)
+- 约束文件：ontology_constraints.json (SciERC), data/docred/ontology_constraints_docred.json (DocRED, 96 relations)
+
+### 3. 📊 当前状态
+刚收到 w6_mistral_docred_unconstrained 第二次失败回调（EXIT_CODE=129/SIGHUP）。已派诊断 Worker (worker_diagnose_w6_mistral_docred_unconstrained_20260516T083833) SSH 深查根因。已向 Director 汇报失败 + 2 GPU 空闲状况，等 Director 决策。
+
+**RUNNING**: 
+- w8_llama_docred_ft_grammar_only (westd-16980 cuda:1) — FT Llama DocRED grammar_only ablation
+- w6_mistral_docred_constrained (westd-21461 cuda:1) — Mistral DocRED constrained eval
+
+**PREPARING**:
+- w8_ft_posthoc_baseline — FT post-hoc filtering baseline（Dream 审稿必做项）
+
+**等待中**:
+- 诊断 Worker 回调 → 确认 SIGHUP 根因
+- Director 决策 → westd-16980 cuda:0 分配任务
+
+### 4. 📋 待办（条件触发式）
+- 诊断 Worker 返回 → 更新 registry notes + 根据 error_type 决定：infra 可自动修复则重试 w6 unconstrained on westd-21461 cuda:0；resource 问题则报 Director
+- Director 回复 cuda:0 任务分配 → 按指令提交（候选：w8_ft_posthoc_baseline / w8_llama_docred_ft_semantic_only / latency profiling）
+- w6_mistral_docred_constrained cron 回调（完成）→ 按 on-experiment-done 走 success/negative 分支，与 Qwen/Llama 对比 DR reduction
+- w8_llama_docred_ft_grammar_only cron 回调（完成）→ 分析 grammar_only 对 FT Llama DocRED 的效果，与 SciERC 结果对比
+
+### 5. 🎯 战略上下文
+- **核心方向**: OntoCoDec 两层约束解码，目标 EMNLP 2026 ARR May 25 提交
+- **关键进展**: 3 模型（Qwen/Llama/Mistral）× 2 数据集（SciERC/DocRED）的 zero-shot + composability(FT+OntoCoDec) 矩阵接近完成
+- **Dream 审稿（borderline accept）暴露的必修项**: ①缺 related work (SynCode/IterGen/BoostCD) ②FT regime 无 ablation（w7 SciERC 已完成，DocRED 在跑） ③FT post-hoc baseline 未做 ④entity types 太少
+- **w7 ablation 核心结论（SciERC 已完成）**: grammar 层消除 RV/ET，semantic 层消除 DR（-68%），两层互补缺一不可。full_s1 DR=0% 证明联合约束完全消除 violations
+- **易错点**: 
+  - w6_mistral_docred_unconstrained 两次 SIGHUP，不要盲目第三次重试——必须先确认根因
+  - post-hoc baseline (w8_zs) 结论已翻转论文论点：ZS 下 post-hoc R_F1 ≥ constrained R_F1，论文应强调 "generation-time hard guarantee + composability" 而非 "F1 保留"
+  - Qwen tokenizer 有 regex warning，可能影响 w7 结果可比性——ROADMAP 提到需评估
+
+## 可查的历史
+前 64 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-16T13:13:18.947666+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-16T13:13:18.998322+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T13:13:24.339136+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T13:13:24.742961+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T13:13:25.196571+00:00_
+
+&lt;persisted-output>
+Output too large (50.5KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie--claude-sessions-agent-a9506461/f67b4226-a9c6-4c30-8e80-fea47187d539/tool-results/toolu_01TitNYGsJXT9JwWgi9D14Rs.txt
+
+Preview (first 2KB):
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"w8_llama_docred_ft_semantic_only\": {\"status\": \"ALLOCATED\", \"created_at\": \"2026-05-16T10:54:02.910Z\", \"updated_at\": \"2026-05-16T12:32:46.749Z\", \"hypothesis\": \"FT Llama DocRED + semantic_only eval: 与 grammar_only 配对，验证 semantic 层在 FT+DocRED regime 下能否独立降低 DR。预期 DR 从 0.49% 降至 ~0.2-0.3%（参照 SciERC 模式：semantic_only 降 DR 42%）。完成后 DocRED FT ablation 有 Llama 双模式数据，2 模型 ×2 模式全部完备。\", \"parent\": \"w5_llama_docred_lora_training\"}, \"w8_llama_docred_ft_grammar_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T06:34:25.909Z\", \"updated_at\": \"2026-05-16T12:31:40.780Z\", \"hypothesis\": \"FT Llama DocRED + grammar_only eval: FT 后 DR 残留 0.49%，grammar_only 能消除多少？如果 grammar_only 已足够则 semantic 层在 FT regime 边际价值小；如果不够则两层在 FT 后仍互补。\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 84.04, \"R_F1\": 43.77, \"entity_precision\": 84.99, \"entity_recall\": 83.11, \"relation_precision\": 38.6, \"relation_recall\": 50.53, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.51, \"CF_pct\": 0.12, \"parse_fail_rate\": 2.3, \"total_samples\": 998, \"total_relations\": 16199, \"unique_entities\": 13225, \"parse_failures\": 23}}, \"w6_mistral_scierc_unconstrained\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T02:59:02.565Z\", \"updated_at\": \"2026-05-16T10:41:37.382Z\", \"hypothesis\": \"Mistral (3rd model) SciERC unconstrained baseline — 获取 zero-shot violation profile (DR/RV/ET) 和 F1，验证 OntoCoDec 三模型泛化性\", \"notes\": \"Mistral-7B unconstrained SciERC: E_F1=0.2728, R_F1=0.0366. 0% parse failures. 56.94% dangling relations, 1.5% ET violations, 0% RV violations. Poor IE perfo
+…[truncated 359 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 857
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T13:13:25.197101+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T13:13:25.197345+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T13:13:30.976213+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"w8_qwen_docred_ft_grammar_only\", \"success\": true, \"actions\": [\"Job still running (pid=18555)\"]}, {\"exp_id\": \"w8_qwen_docred_ft_semantic_only\", \"success\": true, \"actions\": [\"Job still running (pid=20035)\"]}, {\"exp_id\": \"w8_llama_docred_ft_semantic_only\", \"success\": true, \"actions\": [\"Job still running (pid=361202)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 6233
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T13:13:31.027081+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/report.md\", \"content\": \"# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| w8_qwen_docred_ft_semantic_only | FT Qwen DocRED + semantic_only eval: 与 grammar_only 配对，验证 semantic 层在 FT+DocRED regime 下能否独立降低 DR。预期 DR 从 0.76% 降至 ~0.3-0.5%（参照 SciERC 模式：semantic_only 降 DR 68%��。完成后 DocRED FT ablation 有 Qwen 双模式数据。 | — | — | — |\\n| w8_qwen_docred_ft_grammar_only | FT Qwen DocRED + grammar_only eval: FT 后 DR 残留 0.76%，grammar_only 能消除多少？与 w8_llama_docred_ft_grammar_only 配对，补全 DocRED FT ablation 两模型对比。预期 DR≈0.76%（与 SciERC 模式一致：grammar 层不约束 DR）。 | — | — | — |\\n\\n## 待处理\\n- w8_llama_docred_ft_semantic_only: FT Llama DocRED + semantic_only eval: 与 grammar_only 配对，验证 semantic 层在 FT+DocRED regime 下能否独立降低 DR。预期 DR 从 0.49% 降至 ~0.2-0.3%（参照 SciERC 模式：semantic_only 降 DR 42%）。完成后 DocRED FT ablation 有 Llama 双模式数据，2 模型 ×2 模式全部完备。（已分配 ? GPU:?，等待提交）\\n\\n## 近期结论\\n- **w8_llama_docred_ft_grammar_only** (success): FT Llama DocRED + grammar_only eval: FT 后 DR 残留 0.49%，grammar_only 能消除多少？如果 grammar_only 已足够则 semantic 层在 FT regime 边际价值小；如果不够则两层在 FT 后仍互补。\\n- **w6_mistral_scierc_unconstrained** (success): Mistral (3rd model) SciERC unconstrained baseline — 获取 zero-shot violation profile (DR/RV/ET) 和 F1，验证 OntoCoDec 三模型泛化性\\n- **w6_mistral_scierc_constrained** (success): Mistral-7B constrained SciERC (full_s1 mode) - test if schema constraints reduce violations and improve F1 vs unconstrained baseline (E_F1=0.2728, R_F1=0.0366, DR=56.94%)\\n\\n## 趋势\\n成功 45 / 负向 1 / 失败 0 / 共 50\\nCF_pct: 0.12 ↓（近 3 次 success）\\nDR_pct: 0.51 ↓（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-16980: 无 GPU 信息\\nwestd-21461: 空闲 cuda:0, cuda:1\\n\\n## 告警\\n- mvp_phase0_docred_schema_r2: 已被终止 — unknown\\n- w1_cf_fallback_docred: 已被终止 — unkno
+…[truncated 187 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 5829
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T13:13:31.027830+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md\", \"content\": \"# schema_semantic_constrained_ie — Research Dashboard\\n\\n> 最后更新: 2026-05-16 06:30 UTC | 更新原因: Session 重启后全面更新：新增 Mistral 3rd model 进展、w7 FT ablation、Dream 结构性问题、更新 GPU 调度和时间线\\n\\n## 核心方向\\nOntoCoDec: 两层约束解码（grammar + semantic）自动编译 IE ontology schema 为 token-level constraints，消除 LLM-based IE 的 ontology constraint violations。详见 paper_framing.md。\\n\\n## 当前进展\\n**阶段**: Research scope 扩展 + Round 1 审稿并行 | 目标 EMNLP 2026 ARR May 25\\n\\n**实验覆盖**: 48 个实验，36 成功，4 RUNNING，3 PREPARING\\n- **3 模型验证**: Qwen3-8B ✅ | Llama3.1-8B ✅ | Mistral-7B-v0.3 🔥 SciERC done, DocRED running\\n- **Composability (FT+OntoCoDec)**: SciERC 2×2 ✅✅ | DocRED Llama ✅, Qwen 69% running\\n- **FT-regime ablation (w7)**: grammar_only Qwen running, 3 queued (Dream 结构性缺陷修复)\\n- **Dream 审稿 (dream_20260516T021434)**: median borderline accept, worst weak reject\\n\\n### Composability Matrices\\n| | SciERC | DocRED |\\n|--|--------|--------|\\n| Qwen3-8B | ✅ DR=0.0%, ΔF1=-0.09pp | 🔥 constrained eval 69% |\\n| Llama3.1-8B | ✅ DR=0.09%, ΔF1=+0.02pp | ✅ DR=0.2%, ΔF1=+0.51pp |\\n\\n### Mistral (3rd Model) Zero-shot\\n| | SciERC | DocRED |\\n|--|--------|--------|\\n| Unconstrained | DR=56.94% (最高) | 🔥 22% |\\n| Constrained | DR=13.4% (-43.5pp), ET→0% | 🔥 16% |\\n\\n## Dream 暴露的结构性问题（三档一致）\\n1. ❌ 缺关键 related work: SynCode, IterGen, BoostCD/BoostIE → Paper Agent 处理\\n2. ❌ FT regime 无 ablation → **w7 系列正在修复**（grammar_only / semantic_only × 2 模型）\\n3. ❌ FT regime 无 post-hoc baseline → 待排\\n4. ⚠️ Entity types 太少（两数据集各 6 种）→ NYT29 待决策\\n5. ⚠️ Novelty 定位 → Paper Agent framing 调整\\n\\n## 近期任务\\n- [x] Mistral SciERC unconstrained + constrained (w6)\\n- [x] Llama DocRED composability (w5)\\n- [ ] Qwen DocRED composability — 69%, ETA ~1.2h\\n- [ ] Mistral DocRED unconstrained + constrained — 16-22%, ETA ~2-3h\\n- [ ] w7 FT ablation 4 格: grammar_only×{Qwen,
+…[truncated 3155 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 5830
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T13:14:04.733225+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T13:14:05.186588+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"w8_qwen_docred_ft_semantic_only\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T10:08:59.297Z\", \"updated_at\": \"2026-05-16T10:09:42.312Z\", \"hypothesis\": \"FT Qwen DocRED + semantic_only eval: 与 grammar_only 配对，验证 semantic 层在 FT+DocRED regime 下能否独立降低 DR。预期 DR 从 0.76% 降至 ~0.3-0.5%（参照 SciERC 模式：semantic_only 降 DR 68%��。完成后 DocRED FT ablation 有 Qwen 双模式数据。\", \"parent\": \"w5_qwen_docred_lora_training\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode semantic_only --dataset docred --model_path /root/autodl-tmp/checkpoints/qwen_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w8_qwen_docred_ft_semantic_only.jsonl --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-21461\", \"gpu\": 1, \"pid\": 20035, \"log_path\": \"~/runs/schema_semantic_constrained_ie/w8_qwen_docred_ft_semantic_only.log\", \"submitted_at\": \"2026-05-16T10:09:32.938Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"Qwen3-8B-LoRA-DocRED\", \"data_path\": \"data/docred/dev.json\", \"data_count\": 998, \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen_lora_docred_merged\", \"eval_data\": \"data/docred/dev.json\"}}, \"w8_qwen_docred_ft_grammar_only\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T09:13:03.945Z\", \"updated_at\": \"2026-05-16T09:35:11.570Z\", \"hypothesis\": \"FT Qwen DocRED + grammar_only eval: FT 后 DR 残留 0.76%，grammar_only 能消除多少？与 w8_llama_docred_ft_grammar_only 配对，补全 DocRED FT ablation 两模型对比。预期 DR≈0.76%（与 SciERC 模式一致：grammar 层不约束 DR）。\", \"parent\": \"w5_qwen_docred_lora_training\", \"spec\": {\"command\": \"bash -c \\\"source /roo
+…[truncated 1088 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T13:14:06.091864+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "filters": "{'status': 'DONE'}",
+  "limit": "5",
+  "fields": "['status', 'conclusion', 'metrics', 'updated_at', 'spec', 'notes']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie",
+    "filters": "{'status': 'DONE'}",
+    "limit": "5",
+    "fields": "['status', 'conclusion', 'metrics', 'updated_at', 'spec', 'notes']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T13:14:06.343568+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"w8_llama_docred_ft_grammar_only\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T12:31:40.780Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode grammar_only --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w8_llama_docred_ft_grammar_only.jsonl --batch_size 1 --max_new_tokens 4096\", \"server\": \"westd-16980\", \"data_path\": \"data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"llama_lora_docred_merged\", \"seed\": 42, \"checkpoint_source\": \"w5_llama_docred_lora\", \"eval_data\": \"docred_dev_998\"}, \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 84.04, \"R_F1\": 43.77, \"entity_precision\": 84.99, \"entity_recall\": 83.11, \"relation_precision\": 38.6, \"relation_recall\": 50.53, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.51, \"CF_pct\": 0.12, \"parse_fail_rate\": 2.3, \"total_samples\": 998, \"total_relations\": 16199, \"unique_entities\": 13225, \"parse_failures\": 23}}, \"w6_mistral_scierc_unconstrained\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T10:41:37.382Z\", \"spec\": {\"command\": \"python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w6_mistral_scierc_unconstrained.jsonl --batch_size 1 --max_new_tokens 4096\", \"server\": \"westd-16980\", \"gpu\": 0, \"pid\": 332156, \"log_path\": \"~/runs/schema_semantic_constrained_ie/w6_mistral_scierc_unconstrained.log\", \"submitted_at\": \"2026-05-16T04:53:56.502Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"Mistral-7B-Instruct-v0.3\", \"data_path\": \"data/processe
+…[truncated 6916 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T13:14:50.465990+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "filters": "{'status': 'ALLOCATED'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie",
+    "filters": "{'status': 'ALLOCATED'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T13:14:51.270092+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"w8_llama_docred_ft_semantic_only\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T10:54:02.910Z\", \"updated_at\": \"2026-05-16T12:32:46.749Z\", \"hypothesis\": \"FT Llama DocRED + semantic_only eval: 与 grammar_only 配对，验证 semantic 层在 FT+DocRED regime 下能否独立降低 DR。预期 DR 从 0.49% 降至 ~0.2-0.3%（参照 SciERC 模式：semantic_only 降 DR 42%）。完成后 DocRED FT ablation 有 Llama 双模式数据，2 模型 ×2 模式全部完备。\", \"parent\": \"w5_llama_docred_lora_training\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode semantic_only --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w8_llama_docred_ft_semantic_only.jsonl --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-16980\", \"gpu\": 1, \"pid\": 361202, \"model_name\": \"Llama-3.1-8B-LoRA-DocRED\", \"data_path\": \"data/docred/dev.json\", \"data_count\": 998, \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/llama_lora_docred_merged\", \"eval_data\": \"data/docred/dev.json\"}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2632}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 804
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T13:14:51.270567+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T13:14:51.322832+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "ToolSearch",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T13:15:05.201436+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "w8_llama_docred_ft_semantic_only",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "schema_semantic_constrained_ie",
+  "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode semantic_only --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w8_llama_docred_ft_semantic_only.jsonl --batch_size 1 --max_new_tokens 4096\"', 'server': 'westd-16980', 'gpu': 1, 'pid': 361202, 'model_name': 'Llama-3.1-8B-LoRA-DocRED', 'data_path': 'data/docred/dev.json', 'data_count': 998, 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/checkpoints/llama_lora_docred_merged', 'eval_data': 'data/docred/dev.json'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "w8_llama_docred_ft_semantic_only",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "schema_semantic_constrained_ie",
+    "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode semantic_only --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w8_llama_docred_ft_semantic_only.jsonl --batch_size 1 --max_new_tokens 4096\"', 'server': 'westd-16980', 'gpu': 1, 'pid': 361202, 'model_name': 'Llama-3.1-8B-LoRA-DocRED', 'data_path': 'data/docred/dev.json', 'data_count': 998, 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/checkpoints/llama_lora_docred_merged', 'eval_data': 'data/docred/dev.json'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T13:15:06.005870+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "filters": "{'exp_id': 'w6_mistral_docred_constrained'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie",
+    "filters": "{'exp_id': 'w6_mistral_docred_constrained'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T13:15:06.459918+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"w8_llama_docred_ft_semantic_only\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T10:54:02.910Z\", \"updated_at\": \"2026-05-16T13:15:05.364Z\", \"hypothesis\": \"FT Llama DocRED + semantic_only eval: 与 grammar_only 配对，验证 semantic 层在 FT+DocRED regime 下能否独立降低 DR。预期 DR 从 0.49% 降至 ~0.2-0.3%（参照 SciERC 模式：semantic_only 降 DR 42%）。完成后 DocRED FT ablation 有 Llama 双模式数据，2 模型 ×2 模式全部完备。\", \"parent\": \"w5_llama_docred_lora_training\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode semantic_only --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w8_llama_docred_ft_semantic_only.jsonl --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-16980\", \"gpu\": 1, \"pid\": 361202, \"model_name\": \"Llama-3.1-8B-LoRA-DocRED\", \"data_path\": \"data/docred/dev.json\", \"data_count\": 998, \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/llama_lora_docred_merged\", \"eval_data\": \"data/docred/dev.json\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.856}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1258
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T13:15:06.460495+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2393}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 454
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T13:15:06.460820+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "status": "running",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie",
+    "status": "running",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T13:15:06.511325+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_ops_latency_docred_artifact_20260516_20260516T131452\", \"task_type\": \"ops:latency_docred_artifact_20260516\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"running\", \"started_at\": \"2026-05-16T13:14:52.955404+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-16T13:15:28.148161+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie--claude-sessions-agent-a9506461/f67b4226-a9c6-4c30-8e80-fea47187d539/tool-results/toolu_01TitNYGsJXT9JwWgi9D14Rs.txt",
+  "offset": "0",
+  "limit": "100"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie--claude-sessions-agent-a9506461/f67b4226-a9c6-4c30-8e80-fea47187d539/tool-results/toolu_01TitNYGsJXT9JwWgi9D14Rs.txt",
+    "offset": "0",
+    "limit": "100"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T13:15:28.452487+00:00_
+
+0	{"result":"{\"success\": true, \"data\": {\"experiments\": {\"w8_llama_docred_ft_semantic_only\": {\"status\": \"ALLOCATED\", \"created_at\": \"2026-05-16T10:54:02.910Z\", \"updated_at\": \"2026-05-16T12:32:46.749Z\", \"hypothesis\": \"FT Llama DocRED + semantic_only eval: 与 grammar_only 配对，验证 semantic 层在 FT+DocRED regime 下能否独立降低 DR。预期 DR 从 0.49% 降至 ~0.2-0.3%（参照 SciERC 模式：semantic_only 降 DR 42%）。完成后 DocRED FT ablation 有 Llama 双模式数据，2 模型 ×2 模式全部完备。\", \"parent\": \"w5_llama_docred_lora_training\"}, \"w8_llama_docred_ft_grammar_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T06:34:25.909Z\", \"updated_at\": \"2026-05-16T12:31:40.780Z\", \"hypothesis\": \"FT Llama DocRED + grammar_only eval: FT 后 DR 残留 0.49%，grammar_only 能消除多少？如果 grammar_only 已足够则 semantic 层在 FT regime 边际价值小；如果不够则两层在 FT 后仍互补。\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 84.04, \"R_F1\": 43.77, \"entity_precision\": 84.99, \"entity_recall\": 83.11, \"relation_precision\": 38.6, \"relation_recall\": 50.53, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.51, \"CF_pct\": 0.12, \"parse_fail_rate\": 2.3, \"total_samples\": 998, \"total_relations\": 16199, \"unique_entities\": 13225, \"parse_failures\": 23}}, \"w6_mistral_scierc_unconstrained\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T02:59:02.565Z\", \"updated_at\": \"2026-05-16T10:41:37.382Z\", \"hypothesis\": \"Mistral (3rd model) SciERC unconstrained baseline — 获取 zero-shot violation profile (DR/RV/ET) 和 F1，验证 OntoCoDec 三模型泛化性\", \"notes\": \"Mistral-7B unconstrained SciERC: E_F1=0.2728, R_F1=0.0366. 0% parse failures. 56.94% dangling relations, 1.5% ET violations, 0% RV violations. Poor IE performance typical of unconstrained 7B model on SciERC.\", \"metrics\": {\"E_P\": 0.2402, \"E_R\": 0.3156, \"E_F1\": 0.2728, \"R_P\": 0.0295, \"R_R\": 0.0483, \"R_F1\": 0.0366, \"ET_pct\": 1.5, \"RV_pct\": 0, \"DR_pct\": 56.94, \"CF_pct\": 56.87, \"parse_fail_rate\": 0, \"total_samples\": 551, \"total_pred_entities\": 2202, \"total_pre
+…[truncated 49689 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "Read",
+  "elapsed_ms": 304
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T13:16:13.475248+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T13:16:13.475896+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-16T13:16:13.877362+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_ops_latency_docred_artifact_20260516_20260516T131452",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_ops_latency_docred_artifact_20260516_20260516T131452",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T13:16:13.928056+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_latency_docred_artifact_20260516_20260516T131452\", \"status\": \"running\", \"task_type\": \"ops:latency_docred_artifact_20260516\", \"project\": \"schema_semantic_constrained_ie\", \"started_at\": \"2026-05-16T13:14:52.955404+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\"], \"last_text\": \"分段读取有重叠不确定性。用 python 输出 base64 以避免截断问题。\", \"turn_count\": 11}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-16T13:16:19.953353+00:00_
+
+called mcp__agent-ml-research__read_experiment_plan_with_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T13:16:20.204744+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": [], \"total\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-16T13:16:59.365597+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-16T13:16:59.366171+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_a9506461.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-16T13:17:03.362593+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-16T13:17:03.513737+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "Glob",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-16T13:17:07.128359+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/*.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T13:17:07.229246+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "Glob",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-16T13:17:11.097873+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T13:17:11.300008+00:00_
+
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/resources/beta/skills/__init__.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/resources/beta/skills/skills.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/resources/beta/skills/versions.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_create_response.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_create_params.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/__init__.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_list_params.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_retrieve_response.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_list_response.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_delete_response.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/dependencies.md
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/SKILL.md
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/other-tools.md
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/streaming.md
+/home/ubuntu/agent-ml-research/core/skills/__init__.py
+/home/ubuntu/agent-ml-research/core/skills/tracker.py
+/home/ubuntu/agent-ml-research/core/skills/evolution.py
+/home/ubuntu/agent-ml-research/core/skills/loader.py
+/home/ubuntu/agent-ml-research/core/skills/plugin_loader.py
+/home/ubuntu/agent-ml-research/skills/global/academic-writer.skill.md
+/home/ubuntu/agent-ml-re
+…[truncated 5731 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "Glob",
+  "elapsed_ms": 202
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-16T13:17:14.718170+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-16T13:17:14.738203+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "Read",
+  "elapsed_ms": 20
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-16T13:18:03.945962+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "research:related_work_survey",
+  "project": "schema_semantic_constrained_ie",
+  "task_prompt": "## 任务：Related Work 文献调研\n\n### 背景\nDream 审稿（borderline accept）指出论文缺关键 related work：SynCode, IterGen, BoostCD/BoostIE。这是必修项。\n\n### 目标\n调研以下论文/方法，输出结构化对比分析：\n\n1. **SynCode** — Grammar-augmented generation / constrained decoding for code\n2. **IterGen** — Iterative constrained generation\n3. **BoostCD / BoostIE** — Boosted constrained decoding for IE\n\n对每篇论文，产出：\n- 完整引用信息（作者、年份、会议/arXiv）\n- 核心方法概述（1-2 段）\n- 约束类型（grammar / semantic / hybrid）\n- 目标任务（code gen / IE / general NLG）\n- 与 OntoCoDec 的关键区别：\n  - 约束来源（手工 vs 自动编译 schema）\n  - 约束粒度（token-level vs sequence-level）\n  - 是否支持 composability（FT + constrained decoding）\n  - 是否 model-agnostic\n\n另外搜索是否有其他重要的 constrained decoding for IE 的近期工作（2023-2026），特别是：\n- LMQL, Guidance, Outlines 等 structured generation frameworks\n- 任何将 ontology constraints 编译为 decoding constraints 的工作\n\n### 产出格式\n将结果写入项目文件 `related_work_survey.md`，格式：\n```\n# Related Work Survey — Constrained Decoding for IE\n## 1. SynCode\n...\n## 2. IterGen\n...\n## 3. BoostCD / BoostIE\n...\n## 4. Other Relevant Work\n...\n## 5. Positioning Summary\n| Method | Constraint Source | Granularity | Composability | Model-Agnostic | Task |\n...\n```\n\n### 工具使用\n- 用 WebSearch 搜索论文\n- 用 WebFetch 读取 arXiv abstract/内容\n- 最终用 save_project_file 保存结果",
+  "tool_groups": "['knowledge']",
+  "tools": "['WebSearch', 'WebFetch']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "research:related_work_survey",
+    "project": "schema_semantic_constrained_ie",
+    "task_prompt": "## 任务：Related Work 文献调研\n\n### 背景\nDream 审稿（borderline accept）指出论文缺关键 related work：SynCode, IterGen, BoostCD/BoostIE。这是必修项。\n\n### 目标\n调研以下论文/方法，输出结构化对比分析：\n\n1. **SynCode** — Grammar-augmented generation / constrained decoding for code\n2. **IterGen** — Iterative constrained generation\n3. **BoostCD / BoostIE** — Boosted constrained decoding for IE\n\n对每篇论文，产出：\n- 完整引用信息（作者、年份、会议/arXiv）\n- 核心方法概述（1-2 段）\n- 约束类型（grammar / semantic / hybrid）\n- 目标任务（code gen / IE / general NLG）\n- 与 OntoCoDec 的关键区别：\n  - 约束来源（手工 vs 自动编译 schema）\n  - 约束粒度（token-level vs sequence-level）\n  - 是否支持 composability（FT + constrained decoding）\n  - 是否 model-agnostic\n\n另外搜索是否有其他重要的 constrained decoding for IE 的近期工作（2023-2026），特别是：\n- LMQL, Guidance, Outlines 等 structured generation frameworks\n- 任何将 ontology constraints 编译为 decoding constraints 的工作\n\n### 产出格式\n将结果写入项目文件 `related_work_survey.md`，格式：\n```\n# Related Work Survey — Constrained Decoding for IE\n## 1. SynCode\n...\n## 2. IterGen\n...\n## 3. BoostCD / BoostIE\n...\n## 4. Other Relevant Work\n...\n## 5. Positioning Summary\n| Method | Constraint Source | Granularity | Composability | Model-Agnostic | Task |\n...\n```\n\n### 工具使用\n- 用 WebSearch 搜索论文\n- 用 WebFetch 读取 arXiv abstract/内容\n- 最终用 save_project_file 保存结果",
+    "tool_groups": "['knowledge']",
+    "tools": "['WebSearch', 'WebFetch']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-16T13:18:25.477250+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_related_work_survey_20260516T131804\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_research_related_work_survey_20260516T131804.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_related_work_survey_20260516T131804 started. Use get_worker_status('worker_research_related_work_survey_20260516T131804') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 21531
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-16T13:18:25.778841+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 4 / 实际在跑 3 | Worker 池 2 (GPU 0 / CPU 2)\n\n## 当前状态\n\n**RUNNING (3 GPU 任务)**:\n- w8_llama_docred_ft_semantic_only — westd-16980 cuda:1 (Llama DocRED semantic_only ablation)\n- w8_qwen_docred_ft_grammar_only — westd-21461 cuda:0 (Qwen DocRED grammar_only ablation)\n- w8_qwen_docred_ft_semantic_only — westd-21461 cuda:1 (Qwen DocRED semantic_only ablation)\n\n**空闲 GPU**: westd-16980 cuda:0 — w8_llama_docred_ft_grammar_only 已完成释放。Latency profiling worker 正在分析现有数据（turn 11），完成后将用此 GPU 跑 latency benchmark。\n\n**Worker 池**:\n- worker_ops_latency_docred_artifact (running, turn 11) — 从服务器读取 inference log 做 latency 分析\n- worker_related_work_survey (just spawned) — Dream 审稿必修：SynCode/IterGen/BoostCD 文献调研\n\n## 近期完成\n\n**w8_llama_docred_ft_grammar_only** (success):\n- E_F1=84.04, R_F1=43.77\n- ET=0%, RV=0%, **DR=0.51%** (vs unconstrained 0.49%)\n- 结论：grammar_only 在 FT Llama DocRED 上消除 ET/RV 但不降 DR，与 SciERC 模式完全一致\n\n**w6_mistral_docred_constrained** (success):\n- ET=0%, RV=0%, DR=33.2% (-24.22pp from 57.42%)\n- E_F1=50.59 (+2.08pp), R_F1=5.52 (+2.02pp)\n- 结论：OntoCoDec 在 Mistral DocRED 上有效消除 ET/RV，DR 降幅 24pp 但残余高（33%）——ZS 下 semantic constraint 覆盖率不足\n\n## DocRED FT Ablation 进度\n\n3/4 格完成或在跑，预计 1-2h 全部完成：\n| | grammar_only | semantic_only |\n|--|--|--|\n| Llama DocRED | ✅ DR=0.51% (不降) | 🔥 RUNNING |\n| Qwen DocRED | 🔥 RUNNING | 🔥 RUNNING |\n\n完成后 FT ablation 全矩阵(2模型×2数据集×2模式)将全部完备。\n\n## 待 Director 决策\n\nwestd-16980 cuda:0 空闲。当前无新 GPU 实验可立即提交（所有矩阵格子已填或在跑）。候选：\n1. Latency benchmark（等 latency worker 产出脚本后立即提交）\n2. 如 Director 有新实验方向可分配\n\n## 下一步（自动执行，无需审批）\n- 3 个 DocRED ablation 完成后 → on-experiment-done 分析 + 更新 report\n- Latency worker 完成 → 提交 benchmark 到 westd-16980 cuda:0\n- Related work survey worker 完成 → 整合到论文 related work section",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 4 / 实际在跑 3 | Worker 池 2 (GPU 0 / CPU 2)\n\n## 当前状态\n\n**RUNNING (3 GPU 任务)**:\n- w8_llama_docred_ft_semantic_only — westd-16980 cuda:1 (Llama DocRED semantic_only ablation)\n- w8_qwen_docred_ft_grammar_only — westd-21461 cuda:0 (Qwen DocRED grammar_only ablation)\n- w8_qwen_docred_ft_semantic_only — westd-21461 cuda:1 (Qwen DocRED semantic_only ablation)\n\n**空闲 GPU**: westd-16980 cuda:0 — w8_llama_docred_ft_grammar_only 已完成释放。Latency profiling worker 正在分析现有数据（turn 11），完成后将用此 GPU 跑 latency benchmark。\n\n**Worker 池**:\n- worker_ops_latency_docred_artifact (running, turn 11) — 从服务器读取 inference log 做 latency 分析\n- worker_related_work_survey (just spawned) — Dream 审稿必修：SynCode/IterGen/BoostCD 文献调研\n\n## 近期完成\n\n**w8_llama_docred_ft_grammar_only** (success):\n- E_F1=84.04, R_F1=43.77\n- ET=0%, RV=0%, **DR=0.51%** (vs unconstrained 0.49%)\n- 结论：grammar_only 在 FT Llama DocRED 上消除 ET/RV 但不降 DR，与 SciERC 模式完全一致\n\n**w6_mistral_docred_constrained** (success):\n- ET=0%, RV=0%, DR=33.2% (-24.22pp from 57.42%)\n- E_F1=50.59 (+2.08pp), R_F1=5.52 (+2.02pp)\n- 结论：OntoCoDec 在 Mistral DocRED 上有效消除 ET/RV，DR 降幅 24pp 但残余高（33%）——ZS 下 semantic constraint 覆盖率不足\n\n## DocRED FT Ablation 进度\n\n3/4 格完成或在跑，预计 1-2h 全部完成：\n| | grammar_only | semantic_only |\n|--|--|--|\n| Llama DocRED | ✅ DR=0.51% (不降) | 🔥 RUNNING |\n| Qwen DocRED | 🔥 RUNNING | 🔥 RUNNING |\n\n完成后 FT ablation 全矩阵(2模型×2数据集×2模式)将全部完备。\n\n## 待 Director 决策\n\nwestd-16980 cuda:0 空闲。当前无新 GPU 实验可立即提交（所有矩阵格子已填或在跑）。候选：\n1. Latency benchmark（等 latency worker 产出脚本后立即提交）\n2. 如 Director 有新实验方向可分配\n\n## 下一步（自动执行，无需审批）\n- 3 个 DocRED ablation 完成后 → on-experiment-done 分析 + 更新 report\n- Latency worker 完成 → 提交 benchmark 到 westd-16980 cuda:0\n- Related work survey worker 完成 → 整合到论文 related work section",
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-16T13:18:29.596375+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3817
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-16T13:18:56.328231+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T13:18:56.378841+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-16T13:19:15.284815+00:00_
+
+report.md 是系统自动生成的，无需手动更新。Registry 已修正（w8_llama_docred_ft_semantic_only → RUNNING），系统下次刷新时会自动同步。
+
+**Session-start 完成，当前状态清晰：**
+
+| 资源 | 状态 |
+|------|------|
+| westd-16980 cuda:0 | 空闲（等 latency benchmark） |
+| westd-16980 cuda:1 | w8_llama_docred_ft_semantic_only |
+| westd-21461 cuda:0 | w8_qwen_docred_ft_grammar_only |
+| westd-21461 cuda:1 | w8_qwen_docred_ft_semantic_only |
+| Worker #1 | latency artifact 分析 (turn 11) |
+| Worker #2 | related work survey (just spawned) |
+
+**等待事件：**
+- 3 个 DocRED FT ablation cron 完成回调 → on-experiment-done 处理
+- Latency worker 完成 → 提交 benchmark 到 cuda:0
+- Related work worker 完成 → 整合论文
+- Director 回复（关于 cuda:0 或其他方向）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:w6_mistral_docred_unconstrained"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 51 · 2026-05-16T17:19:58.538433+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:w6_mistral_docred_unconstrained",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-16T17:20:43.673269+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-16980 [cuda:0, cuda:1] + westd-21461 [cuda:0, cuda:1]，共 4 卡，不得用其他
+- westd-21461 用 conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在
+- submit_training_job 命令必须自带环境激活（conda activate），GPU 编号始终从 0 开始
+- w6_mistral_docred_unconstrained 已失败 2 次（SIGHUP）后第 3 次成功——不要再重试这个实验，它已 DONE/success
+
+### 2. 🖥️ 基础设施快照
+- **westd-16980**: 工作目录 /root/schema_semantic_constrained_ie，Python /root/miniconda3/bin/python3，2x GPU
+  - 模型：/root/autodl-tmp/checkpoints/llama_lora_docred_merged, qwen_lora_docred_merged, llama_lora_scierc_merged, qwen3_8b_lora_scierc_merged
+  - 活跃：w8_llama_docred_ft_semantic_only (PID 361202, cuda:1, cron 监控中)
+  - 空闲：cuda:0（等 latency benchmark）
+- **westd-21461**: 同结构，2x RTX PRO 6000 Blackwell 98GB，conda base env
+  - 模型：/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3，/root/autodl-tmp/checkpoints/qwen_lora_docred_merged
+  - 活跃：w8_qwen_docred_ft_grammar_only (PID 18555, cuda:0), w8_qwen_docred_ft_semantic_only (PID 20035, cuda:1)
+- 数据：SciERC data/processed_data/test.json (551), DocRED data/docred/dev.json (998)
+- 约束文件：ontology_constraints.json (SciERC), data/docred/ontology_constraints_docred.json (DocRED, 96 relations)
+
+### 3. 📊 当前状态
+Session-start 已完成：registry 同步、cron reconcile（3 job alive）、Director 已汇报。
+
+**RUNNING (3 GPU)**:
+- w8_llama_docred_ft_semantic_only (westd-16980 cuda:1) — FT Llama DocRED semantic_only ablation
+- w8_qwen_docred_ft_grammar_only (westd-21461 cuda:0) — FT Qwen DocRED grammar_only ablation
+- w8_qwen_docred_ft_semantic_only (westd-21461 cuda:1) — FT Qwen DocRED semantic_only ablation
+
+**Worker 池 (2)**:
+- worker_ops_latency_docred_artifact_20260516_20260516T131452 (running, turn 11) — 从服务器读取 inference log 分析 latency
+- worker_research_related_work_survey_20260516T131804 (just spawned) — SynCode/IterGen/BoostCD 文献调研
+
+**已完成本轮**：修正 w8_llama_docred_ft_semantic_only registry ALLOCATED→RUNNING（之前状态未同步）
+
+### 4. 📋 待办（条件触发式）
+- w8_qwen_docred_ft_grammar_only cron 回调 → on-experiment-done，预期 DR≈0.76%（grammar 不降 DR），更新 report + 汇报 Director
+- w8_qwen_docred_ft_semantic_only cron 回调 → on-experiment-done，预期 DR 降至 ~0.3-0.5%（semantic 层降 DR），与 Llama 对比
+- w8_llama_docred_ft_semantic_only cron 回调 → on-experiment-done，预期 DR 降至 ~0.2-0.3%，完成 DocRED 2×2 ablation
+- latency worker 完成 → 检查产出，如需 GPU benchmark 则提交到 westd-16980 cuda:0
+- related work worker 完成 → 整合到论文 related work section，标记 Dream 审稿 issue #1 已修
+- 3 个 ablation 全部完成 → 汇报 Director 全矩阵 done，建议进入论文写作阶段
+- Director 回复 cuda:0 分配 → 按指令提交
+
+### 5. 🎯 战略上下文
+- **核心方向**: OntoCoDec 两层约束解码，目标 EMNLP 2026 ARR May 25
+- **ablation 核心结论（SciERC 已证实，DocRED 正在验证）**: grammar 层消除 RV/ET，semantic 层消除 DR，两层互补缺一不可。full_s1 DR≈0% 证明联合约束完全消除 violations
+- **w8_llama_docred_ft_grammar_only 刚完成**: DR=0.51%≈unconstrained 0.49%，确认 DocRED 与 SciERC 模式一致
+- **post-hoc baseline 关键发现（D032/D033）**: ZS 下 post-hoc R_F1 ≥ constrained R_F1（5/6 组），论文应强调"generation-time hard guarantee + composability"而非"F1 保留"。例外：Mistral DocRED（73.7% rejection 导致 net F1 loss）
+- **Mistral DocRED constrained DR=33.2%**: ZS regime 下残余高，因为 semantic constraint 覆盖不完整——这是 ZS vs FT 的 gap，论文可讨论
+- **易错点**:
+  - report.md 是自动生成的（不能直接 save_project_file 写）
+  - experiment_plan.yaml 为空——所有实验已分派到 registry
+  - w6_mistral_docred_unconstrained 已成功完成（之前 2 次 SIGHUP 已解决），不要误以为还需重试
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:w6_mistral_docred_unconstrained"
+}
+```
+
+</details>
+
+---

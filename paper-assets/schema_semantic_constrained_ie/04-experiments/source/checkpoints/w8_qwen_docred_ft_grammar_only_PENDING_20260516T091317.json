@@ -1,0 +1,16 @@
+{
+  "exp_id": "w8_qwen_docred_ft_grammar_only",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T09:13:03.945Z",
+    "updated_at": "2026-05-16T09:13:17.832Z",
+    "hypothesis": "FT Qwen DocRED + grammar_only eval: FT 后 DR 残留 0.76%，grammar_only 能消除多少？与 w8_llama_docred_ft_grammar_only 配对，补全 DocRED FT ablation 两模型对比。预期 DR≈0.76%（与 SciERC 模式一致：grammar 层不约束 DR）。",
+    "parent": "w5_qwen_docred_lora_training"
+  },
+  "timestamp": "2026-05-16T09:13:17.996512+00:00",
+  "trigger": "update_registry"
+}

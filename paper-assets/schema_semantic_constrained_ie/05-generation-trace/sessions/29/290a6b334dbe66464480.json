@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "290a6b334dbe66464480",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code docred schema prompt prep",
+  "task_key": "worker_code_docred_schema_prompt_prep_20260513T193903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_docred_schema_prompt_prep_20260513T193903_result.json",
+    "occurrence": 1,
+    "bytes": 1206,
+    "sha256": "5ab3133bed2b36260a079b24485a5a446532cb0f714c000f601fa05bb54fc370"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完毕。\n\n## 报告：DocRED schema-informed prompt 就绪状态\n\n### 结论：已就绪，无 bug\n\n**代码实现完整：**\n- `--prompt_mode schema_informed` 和 `--constraints_path` 参数已实现\n- `build_schema_informed_relation_str()` 按训练频率排序，截取 top-50（`--max_relations 50`），剩余 46 个低频 relation 以一行汇总\n- prompt 模板正确包含 type constraint 注释（\"Each extracted relation's (head_type, tail_type) must be a valid pair...\"）\n\n**数据文件正确：**\n- `ontology_constraints_docred.json` 包含全部 96 个 relation types 的 valid_pairs 和 stats\n- 平均每个 relation 5.68 个 valid pairs，格式与代码预期一致\n- 无 unseen relation types\n\n**Token 长度（Qwen3-8B tokenizer 精确计数）：**\n\n| | Schema-informed | Minimal | Delta |\n|---|---|---|---|\n| Relation section | 2209 tok | 396 tok | +1813 |\n| 完整 prompt（含典型 doc） | ~2500-2700 tok | ~700-850 tok | ~+1800 |\n\n远低于 4000 token 阈值，max_length=8192 的上下文也完全够用。\n\n**无 `--dry_run` 参数**，但不影响功能。DocRED minimal 跑完后可直接启动 schema-informed 实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-docred-schema-prompt-prep.md"
+}

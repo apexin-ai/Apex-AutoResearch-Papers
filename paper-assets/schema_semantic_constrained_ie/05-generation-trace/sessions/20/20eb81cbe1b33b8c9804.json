@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20eb81cbe1b33b8c9804",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops check docred progress",
+  "task_key": "worker_ops_check_docred_progress_20260514T022901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_docred_progress_20260514T022901_result.json",
+    "occurrence": 1,
+    "bytes": 670,
+    "sha256": "f37298fa8ea0770bb4542dc9bcff1adabde155210720ab68168246cbb637cc74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## DocRED Phase 2 实验进度\n\n| 实验 | 进度 | 速率 | 预计剩余 |\n|------|------|------|----------|\n| grammar_only | **102 / 998** (10.2%) | ~2.9 行/min (运行 35 min) | ~5.1 小时 |\n| full_s1 | **71 / 998** (7.1%) | ~3.0 行/min (运行 24 min) | ~5.1 小时 |\n\n**进程状态:** 两个均存活，CPU 100%\n- PID 150766 (grammar_only) → GPU 0\n- PID 152032 (full_s1) → GPU 1\n\n**GPU 利用率:**\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 85% | 17,451 / 97,887 MiB |\n| 1 | 83% | 17,223 / 97,887 MiB |\n\n两个实验都在正常推进，预计约 5 小时后完成。完成后再运行 violation_checker。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-docred-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26b8ebfe503f23998f65",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code docred batch resume",
+  "task_key": "worker_code_docred_batch_resume_20260513T191555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_docred_batch_resume_20260513T191555_result.json",
+    "occurrence": 1,
+    "bytes": 1499,
+    "sha256": "ab4956dcfaceed21f3e3c3a1e5f0f95084b8935ac4025a3319beb7596fdd6104"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无残留进程。Dry-run 验证结果汇总：\n\n**验证通过：**\n- **Resume**: 正确识别 263 已处理 docs，跳过后处理 2 个新 doc\n- **Batch 推理**: 2 docs 在 1 个 batch 中完成，batch 总耗时 34.4s（per-doc 17.2s）\n- **输出格式**: JSON parse 2/2 成功，append 模式正确（263→265）\n- **文件完整性**: 265 行，265 unique doc_ids，无重复\n\n**速度对比：**\n- 旧单条推理: ~18.5s/doc\n- 新 batch 推理 (batch=2): 17.2s/doc — 这只是 2 样本的 batch，不是满 batch=4\n\nbatch_size=4 的加速主要体现在同时处理 4 个 prompt 时可以共享 prefill 计算。这里只有 2 个样本，效果有限。满 batch=4 预计 per-doc 降到 ~10-12s。\n\n**全量运行命令（供 submit_training_job 使用）：**\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_extraction_docred.py \\\n    --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B \\\n    --data_path data/docred/dev.json \\\n    --output_path outputs/raw_outputs_docred.jsonl \\\n    --device cuda:1 \\\n    --constraints_path data/docred/ontology_constraints_docred.json \\\n    --batch_size 4 \\\n    --resume\n```\n\n**预估时间：**\n- 剩余 733 docs (998 - 265)\n- 保守估计 per-doc 17s (batch=4 满载会更快): 733 × 17 / 3600 ≈ **3.5 小时**\n- 乐观估计 per-doc 12s (batch=4 满载): 733 × 12 / 3600 ≈ **2.4 小时**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-docred-batch-resume.md"
+}

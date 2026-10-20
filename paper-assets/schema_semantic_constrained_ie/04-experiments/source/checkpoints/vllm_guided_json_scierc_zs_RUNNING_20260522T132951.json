@@ -1,0 +1,37 @@
+{
+  "exp_id": "vllm_guided_json_scierc_zs",
+  "project": "schema_semantic_constrained_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T13:29:07.493Z",
+    "updated_at": "2026-05-22T13:29:51.652Z",
+    "hypothesis": "vLLM's guided_json (JSON schema-constrained decoding) produces equivalent violation rates and F1 scores to our XGrammar grammar-only ablation, confirming that guided_json ≈ GCD (grammar-constrained decoding) without semantic constraints.",
+    "spec": {
+      "command": "python vllm_guided_json_eval.py --model_path /root/autodl-tmp/models/Qwen3-8B-link --data_path data/processed_data/test.json --output_path outputs/vllm_guided_json_scierc_zs.jsonl --max_tokens 2048",
+      "server": "westd-16980",
+      "data_path": "data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "Qwen3-8B",
+      "seed": 0
+    },
+    "metrics": {
+      "DR%": 15.26,
+      "RV%": 0,
+      "ET%": 0,
+      "CF%": 0.04,
+      "R-F1": 8.75,
+      "E-F1": 30.91,
+      "parse_fail%": 0,
+      "total_samples": 551,
+      "total_entities": 2485,
+      "total_relations": 1724,
+      "inference_time_s": 108.5
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T13:29:51.951408+00:00",
+  "trigger": "update_registry"
+}

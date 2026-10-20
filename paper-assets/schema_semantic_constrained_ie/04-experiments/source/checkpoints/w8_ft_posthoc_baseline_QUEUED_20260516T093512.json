@@ -1,0 +1,116 @@
+{
+  "exp_id": "w8_ft_posthoc_baseline",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T06:34:25.203Z",
+    "updated_at": "2026-05-16T09:35:12.361Z",
+    "hypothesis": "FT 后 DR<2%，post-hoc filtering 能否替代 OntoCoDec？对 4 组 FT unconstrained output 跑 posthoc_filter.py，量化 recall 损失和 coverage 代价。预期：post-hoc 过滤虽消除 DR 但丢失 TP（recall 下降），证明 constrained decoding 的 generation-time 优势。",
+    "conclusion": "success",
+    "metrics": {
+      "ft_regime": {
+        "qwen_scierc": {
+          "R_F1_before": 43.86,
+          "R_F1_posthoc": 43.94,
+          "R_F1_constrained": 43.77,
+          "reject_rate_pct": 1.95,
+          "TP_lost": 4
+        },
+        "llama_scierc": {
+          "R_F1_before": 45.45,
+          "R_F1_posthoc": 45.23,
+          "R_F1_constrained": 45.47,
+          "reject_rate_pct": 1.11,
+          "TP_lost": 5
+        },
+        "qwen_docred": {
+          "R_F1_before": 40.91,
+          "R_F1_posthoc": 41.11,
+          "R_F1_constrained": "TBD",
+          "reject_rate_pct": 1.03,
+          "TP_lost": 1
+        },
+        "llama_docred": {
+          "R_F1_before": 43.77,
+          "R_F1_posthoc": 43.92,
+          "R_F1_constrained": 44.23,
+          "reject_rate_pct": 0.64,
+          "TP_lost": 1
+        }
+      },
+      "zs_regime": {
+        "mistral_scierc": {
+          "triples": 1584,
+          "reject_pct": 20.27,
+          "R_F1_before": 0.0376,
+          "R_F1_posthoc": 0.0394,
+          "R_F1_constrained": 0.0367,
+          "TP_before": 48,
+          "TP_after": 44,
+          "TP_lost": 4
+        },
+        "qwen_scierc": {
+          "triples": 1724,
+          "reject_pct": 16.76,
+          "R_F1_before": 0.0823,
+          "R_F1_posthoc": 0.0863,
+          "R_F1_constrained": 0.0836,
+          "TP_before": 111,
+          "TP_after": 104,
+          "TP_lost": 7
+        },
+        "llama_scierc": {
+          "triples": 1274,
+          "reject_pct": 13.89,
+          "R_F1_before": 0.0268,
+          "R_F1_posthoc": 0.0271,
+          "R_F1_constrained": 0.0254,
+          "TP_before": 30,
+          "TP_after": 28,
+          "TP_lost": 2
+        },
+        "qwen_docred": {
+          "triples": 17497,
+          "reject_pct": 48.12,
+          "R_F1_before": 0.0774,
+          "R_F1_posthoc": 0.0961,
+          "R_F1_constrained": 0.0823,
+          "TP_before": 1137,
+          "TP_after": 1010,
+          "TP_lost": 127
+        },
+        "llama_docred": {
+          "triples": 16437,
+          "reject_pct": 42.18,
+          "R_F1_before": 0.0598,
+          "R_F1_posthoc": 0.0744,
+          "R_F1_constrained": 0.0627,
+          "TP_before": 850,
+          "TP_after": 802,
+          "TP_lost": 48
+        },
+        "mistral_docred": {
+          "triples": 11836,
+          "reject_pct": 73.73,
+          "R_F1_before": 0.0434,
+          "R_F1_posthoc": 0.0385,
+          "R_F1_constrained": 0.0552,
+          "TP_before": 518,
+          "TP_after": 292,
+          "TP_lost": 226,
+          "removed_RV": 4172,
+          "removed_ET": 3382,
+          "removed_DR": 1173,
+          "note": "Only ZS case where posthoc HURTS R_F1 — 73.7% rejection rate loses 43.6% of TPs"
+        }
+      },
+      "key_finding": "ZS: post-hoc R_F1 >= constrained R_F1 in 5/6 groups. Exception: Mistral DocRED where extreme rejection rate (73.7%) causes net F1 loss. Constrained decoding value is in structural guarantee (0% violations) and composability, not F1 preservation."
+    },
+    "notes": "零样本 + FT 两组 post-hoc baseline 完成。关键发现：ZS 下 post-hoc R_F1 在全部 5 组中 ≥ constrained R_F1（Qwen DocRED 差距最大 +1.38pp）。原因：post-hoc 删除大量 FP 提升 precision，recall 损失有限（TP_lost 仅占 rejected 的 1-2%）。constrained decoding 在 ZS 下强制约束干扰模型分布，总体 F1 反而略低。论文论点需调整：constrained decoding 的 ZS 价值不在 \"F1 保留\" 而在 \"生成时硬保证 0% violations + composability\"。"
+  },
+  "timestamp": "2026-05-16T09:35:12.493551+00:00",
+  "trigger": "update_registry"
+}

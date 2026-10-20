@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "070487bc066a49e81a3c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "write abstract conclusion update",
+  "task_key": "worker_write_abstract_conclusion_update_20260514T201909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_abstract_conclusion_update_20260514T201909_result.json",
+    "occurrence": 1,
+    "bytes": 863,
+    "sha256": "5b695135cb92f5fe79d71d3cad694847e27f4be7c88151c75bc0332dba4cf135"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已更新完毕。变更摘要：\n\n**abstract.tex**:\n- 替换 DocRED placeholder 为实际结果（DR↓45%, 18.46%→10.21%, Rel F1 +0.50pp, Ent F1 +1.23pp）\n- 添加 constraint tightness τ̄ 数据（SciERC 0.333, DocRED 0.842）\n- 更新 SciERC 结果含 p=0.58 标注\"not significant\"\n- 添加 cross-model 验证（Qwen3-8B + Llama-3.1-8B-Instruct）\n- 添加 post-hoc filtering 对比\n- 移除旧的 prompting 段落和 CF 细节以控制篇幅\n\n**section7_conclusion.tex**:\n- DocRED baseline 18.70% → 18.46%\n- 第一贡献添加 τ̄ 具体数值及\"DR reduction scales inversely with τ̄\"\n- DocRED placeholder 替换为完整结果 + post-hoc comparison\n- Limitations 更新为双模型验证，标注 `[LLAMA-DOCRED-TBD]`\n- Future Work 第(1)条更新为扩展至更大模型 + 完成 Llama DocRED 验证"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-abstract-conclusion-update.md"
+}

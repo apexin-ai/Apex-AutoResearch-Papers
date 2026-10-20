@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3396ef8ff87339a22f9a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "knowledge consolidate results for paper",
+  "task_key": "worker_knowledge_consolidate_results_for_paper_20260514T022941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_consolidate_results_for_paper_20260514T022941_result.json",
+    "occurrence": 1,
+    "bytes": 749,
+    "sha256": "fd348af5cea7076f78eee77c5454708a766011da8f0504dae154b6c26e1242b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。产出文件: `artifacts/paper_results_summary.md`，包含：\n\n- **Table 1**: SciERC 5 种解码模式对比 (unconstrained → full_s1/s2)，含 delta 表\n- **Table 2**: DocRED Phase 0 unconstrained vs schema-informed，含跨数据集 prompt 有效性对比\n- **Figure 数据**: 7 个 relation 在 5 种 mode 下的 DR 变化 + triple count 分母\n- **Claim-evidence mapping**: 4 个 core claims 各对应具体 exp_id 和数字\n- **CF 根因分析**: EVR 占 >90%，top 冲突 Generic↔OtherScientificTerm (60次)，grammar CF=0.08% 证明 CF 100% 来自 semantic 层\n- **S1 vs S2**: S1 全面略优，S2 定位为 ablation\n- **待补实验**: DocRED Phase 2 (2 个 RUNNING) + cross-model validation (stretch)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-consolidate-results-for-paper.md"
+}

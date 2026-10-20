@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "067a1b01678a3cf6a169",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code w10 mistral scierc beam 551 collect",
+  "task_key": "worker_code_w10_mistral_scierc_beam_551_collect_20260517T083031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w10_mistral_scierc_beam_551_collect_20260517T083031_result.json",
+    "occurrence": 1,
+    "bytes": 1133,
+    "sha256": "9499a6588b1730ece7e119e1fa9cca9c07cac824176fd8c972fec7c15f30c504"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No cron jobs in this session to delete (the cron was likely in a previous session and already expired or cleaned up).\n\n---\n\n## 实验结果报告：w10_mistral_scierc_beam_551\n\n**状态**：正常完成（551 samples, 550 success, 1 parse failure）\n\n### 完整指标\n\n| Metric | Beam (k=4) | Greedy | Delta |\n|--------|-----------|--------|-------|\n| ET_pct | 0.0% | - | - |\n| RV_pct | 0.0% | - | - |\n| **DR_pct** | **13.79%** | 13.4% | **+0.39pp** (worse) |\n| **CF_pct** | **0.57%** | 1.27% | **-0.70pp** (better) |\n| **E_F1** | **26.66** | 27.46 | **-0.80pp** (worse) |\n| **R_F1** | **4.37** | 3.67 | **+0.70pp** (better) |\n\n### 分析\n\n结论：**negative**。Beam search 对 Mistral SciERC 效果混合：\n- R_F1 有改善（+19% relative），CF 违规减半（55% relative reduction）\n- 但核心指标 DR 未改善（+0.39pp），E_F1 略降（-0.80pp）\n- 假设部分被否定：beam search 无法通过更宽的 token 探索降低 DR，Mistral 的 entity type 误分类才是瓶颈\n\nRegistry 已更新为 DONE (negative)，包含 metrics、checkpoint_path、log_path、analysis。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w10-mistral-scierc-beam-551-collect.md"
+}

@@ -1,0 +1,32 @@
+{
+  "exp_id": "mvp_phase0_violation_rate_docred",
+  "project": "schema_semantic_constrained_ie",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T17:38:05.075Z",
+    "updated_at": "2026-05-13T18:06:17.088Z",
+    "hypothesis": "DocRED 有 96 relation types，约束空间远大于 SciERC (7 types)，预期 unconstrained LLM 的 per-triple violation rate 显著高于 SciERC，验证违规率与约束空间复杂度正相关",
+    "spec": {
+      "command": "python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred.jsonl --device cuda:0",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "106608",
+      "log_path": "~/runs/schema_semantic_constrained_ie/mvp_phase0_violation_rate_docred.log",
+      "submitted_at": "2026-05-13T18:05:46.716Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/schema_semantic_constrained_ie/data/docred/dev.json",
+      "data_count": 998,
+      "model_name": "Qwen3-8B",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-13T18:06:17.098737+00:00",
+  "trigger": "update_registry"
+}

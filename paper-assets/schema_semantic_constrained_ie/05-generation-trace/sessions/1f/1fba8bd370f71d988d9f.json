@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fba8bd370f71d988d9f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_12_1778910171.md",
+  "task_key": "loop_12_1778910171",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778910171.md",
+    "occurrence": 1,
+    "bytes": 4389,
+    "sha256": "b3fbb9bf2ab28cd9b66eca1d6787ae3d9c42d5c42c647671b3f9f6f017781a04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T05:42:35+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: westd-16980 用 cuda:0 + cuda:1；westd-21461 用 cuda:0 + cuda:1。不得用其他设备号\n- **xgrammar 兼容性**: westd-21461 上 xgrammar 0.2.0 + transformers 5.8.1 有 `accept_token` 类型错误，已 patch `hf.py`（加 `.item()`）。如重装/更新 xgrammar 需重新 patch\n- **Mistral 模型路径**: westd-21461 用 symlink `/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3` → ms_cache；westd-16980 路径可能不同，需确认\n- **截止日期硬约束**: May 19 内部稿交付 → May 25 EMNLP ARR 提交。Mistral wave 6 是最后一批实验数据\n\n### 2. 🖥️ 基础设施快照\n- **westd-16980**: 2× GPU（型号未确认），工作目录 /root/autodl-tmp/ 下项目代码\n  - cuda:0: w6_mistral_scierc_constrained (PID 334606)\n  - cuda:1: w5_qwen_docred_lora_constrained_eval (PID 321568, tmux session, wrapper PID 321563)\n- **westd-21461**: 2× RTX PRO 6000 Blackwell 98GB\n  - cuda:0: w6_mistral_docred_unconstrained (PID 7740)\n  - cuda:1: w6_mistral_docred_constrained (PID 8347)\n- **环境**: 两台服务器均为 aml-train 镜像，conda base 环境（`/root/miniconda3/bin/python`）\n- **Cron 活跃**: w5_qwen_docred_lora_constrained_eval 有 cron 监控（reconcile 确认 pid=321568 still running）\n- **W&B**: 项目配置中有 wandb 设置（需 load_project_config 确认具体 project name）\n\n### 3. 📊 当前状态\n**刚完成**: w6_mistral_scierc_unconstrained (success) — 建立了 Mistral 违规 profile (DR=56.94%, RV=0%, ET=1.5%)，已写入 memory.md 分析洞察。\n\n**4 个实验 RUNNING，全部 GPU 满载**:\n1. `w5_qwen_docred_lora_constrained_eval` — Qwen DocRED FT+constrained composability 最后一格（westd-16980 cuda:1）\n2. `w6_mistral_scierc_constrained` — Mistral SciERC constrained（westd-16980 cuda:0）\n3. `w6_mistral_docred_unconstrained` — Mistral DocRED unconstrained baseline（westd-21461 cuda:0）\n4. `w6_mistral_docred_constrained` — Mistral DocRED constrained eval（westd-21461 cuda:1）\n\n**等待**: 上述 4 个实验的 cron 完成回调。无 pending Worker 回调、无 Director 待决策事项。\n\n### 4. 📋 待办（条件触发式）\n- `w5_qwen_docred_lora_constrained_eval` 完成 → 提取 metrics → 填 Qwen×DocRED FT+constrained 格 → 更新 ROADMAP Table → 如 Qwen DocRED 2×2 四格齐全则更新论文 Table 5 + §5.5\n- `w6_mistral_scierc_constrained` 完成 → 计算 ΔDR 和 ΔR-F1 vs unconstrained (DR=56.94%, R-F1=3.66%) → 如 DR 大幅下降（预期从 56.94%→<5%）则确认 semantic 层独立有效性\n- `w6_mistral_docred_unconstrained` 完成 → 建立 Mistral DocRED 违规 baseline\n- `w6_mistral_docred_constrained` 完成 → 计算 Mistral DocRED constrained 改善 → 完成第三模型全部数据\n- **全部 Mistral 4 格完成** → 组装 3-model composability evidence → 论文更新 Table 3 加 Mistral 行 + §5 新增 third-model paragraph → 全文数字一致性审查\n- **所有实验完成** → 论文 final pass → May 19 内部稿\n\n### 5. 🎯 战略上下文\n- **核心论文 story**: OntoCoDec 双层约束解码（grammar + semantic）自动从 ontology 编译 token-level constraints，消除 LLM IE 的违规。三大 claim：(1) violation reduction 跨模型泛化，(2) F1 无损/微升，(3) composability with fine-tuning\n- **D030**: 第三模型选定 Mistral-7B-Instruct-v0.3。Mistral 是 semantic 层的极端测试用例——RV=0%（grammar 层无事可做），所有 reduction 必须由 semantic 层完成。如果 constrained 能降 DR 56.94%→低值，是 semantic 层独立有效的铁证\n- **易错点 1**: Mistral DR=56.94% 是 SciERC 的数字。DocRED 有 96 relations，违规 profile 可能不同，不要混淆两个 dataset 的 baseline\n- **易错点 2**: w6_mistral_docred_constrained notes 提到 \"PID 6789\" 但 registry spec 显示 pid=8347——可能经历了 retry（retry_count=1），以 registry pid 为准\n- **易错点 3**: 论文更新时 Qwen DocRED unconstrained baseline 有 `***` 标注（R-F1 +0.50pp），表示该数字有 parse_fail 等 caveat，更新时需保持一致标注\n- **决策链**: D023 reframe Claim 3 → D025 composability 确认 → D028 Llama SciERC 2×2 完成 → D029 kill/resubmit DocRED training → D030 第三模型 Mistral\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778910171.md"
+}

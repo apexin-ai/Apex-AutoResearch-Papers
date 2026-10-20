@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0baa77c03d9dc0b5d1e2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code qwen rov exact match fix",
+  "task_key": "worker_code_qwen_rov_exact_match_fix_20260518T032344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen_rov_exact_match_fix_20260518T032344_result.json",
+    "occurrence": 1,
+    "bytes": 531,
+    "sha256": "85a194248afa8257184d8a617f7a9b48d795bdd8641026232799b1168cb5c75c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**修改内容**：`_apply_role_continuation_mask` 函数中增加 4 行（L672, L680-682）\n- L672: `exact_match = partial in still_reachable` — 检测 partial 是否已精确匹配某个 allowed role\n- L680-682: 若 exact match 且 token 以 `\"` 开头（闭合引号），直接放行到 `tokens_allowed`\n\n**修改后总行数**：816（原 812 + 4 行）\n\n**rsync**：成功（westd-21461 → westd-16980）\n\n**westd-16980 行数确认**：816，一致\n\n**import 测试**：通过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen-rov-exact-match-fix.md"
+}

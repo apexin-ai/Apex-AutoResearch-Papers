@@ -1,0 +1,668 @@
+{
+  "schema_version": "1.0",
+  "id": "2aec09f57a6ec79e301f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "writing sampling results integration",
+  "task_key": "worker_writing_sampling_results_integration_20260516T205810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_sampling_results_integration_20260516T205810.log",
+    "occurrence": 1,
+    "bytes": 59961,
+    "sha256": "e42948da95b90cc88d7e2b3bb9b0467c3e89197756be45a5bc4cb166ea90f229"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 3,
+      "tool_result": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "session_id": "759e9d43-08cd-4a63-ba49-2bbee9968836",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "5af77036-fc9b-4dcb-845e-5806d5da1b18",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778980800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "aa945a33-65a6-4f0d-9271-a1bae2e10856",
+                "session_id": "759e9d43-08cd-4a63-ba49-2bbee9968836"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the rebuttal draft v2 file first, then make the updates.",
+              "signature": "Ev8BClkIDRgCKkBSXVS+8r7y+Jv690JJfRWWw+auaI+0BO3Q7hXU98OxhGyoBVvXr0Mxuf/5p4BTYxHYJgUJYSQZ2KGe0Q1/H5muMg9jbGF1ZGUtb3B1cy00LTY4ABIMj3hf+gVJaw89L9XOGgyrlxb55JlbOp4TcB0iMPK1Kk6e49YCrFiNE8fh0Ine8Hl3ke/cjBOlPRgZNsG+iiujLT4WsTSZEN9g3grgNCpUkggRmF99DO9IDsAbAcLHe5Ldh4eA52ENbDdl6098n4wBCC8lOwbQA3auk2kWO634oDZjWuyLQNewJcbEOR4bbJVrWUG64l2ugLwzsIEUoDr/ZyS9GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "759e9d43-08cd-4a63-ba49-2bbee9968836",
+            "uuid": "1c9f874f-ee3b-424f-8782-7f783782781d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0185eop4KT54bBN5LyJex9yH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12020,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12020
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019eqjrgSGScYqN4fzTYKH3t",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal_draft_v2.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "759e9d43-08cd-4a63-ba49-2bbee9968836",
+            "uuid": "dafbaecb-ec09-4960-9bf3-2f1623b0f8a4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0185eop4KT54bBN5LyJex9yH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12020,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12020
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T20:58:23.032Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019eqjrgSGScYqN4fzTYKH3t",
+              "type": "tool_result",
+              "content": "1\t# Rebuttal Draft v2 — Response to Reviewer (Group C)\n2\t\n3\t---\n4\t\n5\t## Q1: CF and DR Weight / Interaction\n6\t\n7\t**Concern**: The reviewer asks how CF (Cross-Field consistency violations) and DR (Domain-Range violations) are weighted and whether they trade off against each other.\n8\t\n9\t**Response**:\n10\tCF and DR measure fundamentally different properties and should not be combined into a single weighted metric. DR measures ontological constraint violations (whether entity-type pairs are valid for a given relation), while CF measures cross-field consistency (whether head/tail entities referenced in a relation triple match previously declared entities). They operate on orthogonal axes of schema compliance.\n11\t\n12\tTable 5 (ablation) reports CF and DR separately precisely to expose the trade-off landscape. The key finding: CF rises when the semantic layer is active (full_s1: CF=9.90% on SciERC) because CF is a *byproduct* of the constraint fallback mechanism, not an independent optimization target. When the semantic layer's bitwise AND of grammar mask and domain-range mask produces an empty set (no token simultaneously satisfies both constraints), the system falls back to grammar-only decoding for that token position. This fallback may produce an entity name that is grammatically valid but inconsistent with previously generated fields — hence CF. The fallback design prioritizes generating *some* valid output over blocking generation entirely.\n13\t\n14\tCrucially, DR reduction (15.37% → 0.93% on SciERC, a 93.9% relative reduction) vastly outweighs the CF increase (+9.82pp), and CF violations are inherently less severe: they represent internal naming inconsistencies that downstream systems can resolve via string matching, whereas DR violations represent fundamentally invalid semantic assertions.\n15\t\n16\t**Action**: Add a clarifying footnote in Section 5 explaining that CF is a constraint-fallback artifact, not an independent error mode to be minimized jointly with DR.\n17\t\n18\t---\n19\t\n20\t## Q2: Quality of Grammar-Layer Replacements for OOV Relations\n21\t\n22\t**Concern**: The reviewer questions whether the grammar layer's replacement of out-of-vocabulary (OOV) relation names produces semantically meaningful outputs.\n23\t\n24\t**Response**:\n25\tThis is precisely the limitation that motivates the semantic constraint layer. In the DocRED zero-shot unconstrained setting, we observe **5,261 triples with OOV relation names** (out of 2,038 unique OOV strings). The grammar layer replaces 4,357 of these with in-vocabulary names, but **36.6% (1,594) of replacements introduce new DR violations**. This occurs because XGrammar performs token-level CFG steering — it selects the nearest *syntactically* valid continuation based on token-prefix matching, with no semantic awareness.\n26\t\n27\tWe identify three failure modes:\n28\t\n29\t1. **Token-prefix collisions**: \"opponent\" → \"operator\" (both share prefix \"op\"); \"peaked at\" → \"performer\" (share \"pe\"). These produce semantically absurd triples (e.g., a cricketer \"operates\" a country).\n30\t\n31\t2. **Ontology gaps**: \"population\", \"instrument\" have no valid DocRED equivalent. Any grammar-forced replacement is necessarily wrong (e.g., \"population\" → \"has part\", asserting a numeric value is a constituent part of a county).\n32\t\n33\t3. **Silent semantic errors**: \"available on\" → \"operator\" passes type-checking (ORG→ORG is valid for P137) but reverses the semantic direction, producing undetectable errors at the type level.\n34\t\n35\tThese findings directly justify the two-layer architecture: the grammar layer guarantees *syntactic* schema validity (eliminating ET and RV violations entirely), while the semantic layer is needed to enforce *relational* validity that token-level matching cannot achieve.\n36\t\n37\t**Action**: Add a brief discussion in Section 4.3 with 2-3 representative replacement examples and aggregate statistics (36.6% DR-inducing rate).\n38\t\n39\t---\n40\t\n41\t## Q3: Is Grammar Redundant Under Fine-Tuning?\n42\t\n43\t**Concern**: The reviewer suggests that fine-tuned models may not need the grammar constraint layer at all.\n44\t\n45\t**Response**:\n46\tThe FT ablation confirms that grammar constraints are indeed *operationally redundant* for ET and RV in fine-tuned models — both Qwen3-8B and Llama-3.1-8B produce zero ET violations and near-zero RV violations without constraints after fine-tuning. However, the grammar layer serves two essential roles even in the FT regime:\n47\t\n48\t**Role 1: Eliminating residual RV.** On DocRED, FT-Qwen unconstrained still shows RV=0.27% and FT-Llama shows RV=0.15%. Grammar-only mode reduces both to RV=0% (Tables 1-2 of the FT ablation). While small in absolute terms, this guarantees zero vocabulary violations — a hard requirement for downstream knowledge graph construction.\n49\t\n50\t**Role 2: Enabling the semantic layer.** The semantic layer's domain-range enforcement operates by looking up the generated relation name in the ontology to retrieve valid (head_type, tail_type) pairs. If the relation name is OOV (not in vocabulary), the lookup fails and no constraint can be applied. Grammar ensures every generated relation name is in-vocabulary, thereby enabling the semantic layer to function. Without grammar, the semantic-only mode on DocRED FT still shows RV=0.23% (Qwen) / 0.15% (Llama) — these represent cases where the semantic layer cannot enforce DR constraints because it cannot resolve the relation name.\n51\t\n52\tThe ablation data confirms the complementarity: Semantic-only reduces DR by 39–72% across all four model×dataset settings, but the full system (grammar + semantic) achieves the lowest DR in all cases (0–0.20%), because the grammar layer's guarantee of valid relation names enables complete semantic enforcement.\n53\t\n54\t**Action**: Add a sentence in Section 6.2 explicitly noting that grammar's FT-regime role is as an enabling dependency for the semantic layer rather than as an independent violation reducer.\n55\t\n56\t---\n57\t\n58\t## Q4: R² Generalizability and Mistral as Outlier\n59\t\n60\t**Concern**: The reviewer questions whether the dual-factor regression (R²=0.886) generalizes beyond the four calibrated data points, particularly given Mistral's deviation.\n61\t\n62\t**Response**:\n63\tWe use a **dual-factor model** regressing `residual_DR ~ τ̄ × RV_baseline` (schema tightness multiplied by the model's relation vocabulary violation baseline). On n=4 calibrated points (Qwen + Llama, each on SciERC and DocRED), this model achieves **R² = 0.886**, accurately predicting the residual DR that remains after semantic constraint application. We acknowledge this is descriptive rather than predictive at the current sample size — it characterizes the relationship between schema tightness, vocabulary confusion, and residual DR for models that have been properly calibrated to the target schema.\n64\t\n65\tMistral constitutes a **boundary condition** that reveals a qualitatively different error mode. On SciERC, Mistral shows RV=0% (no vocabulary confusion) yet residual DR=13.4%. This disconnect arises because Mistral's DR originates from **entity type misclassification** — it generates syntactically valid relation names but systematically assigns wrong entity types (e.g., labeling organizations as persons), producing type-pair violations that the dual-factor model (which captures vocabulary-confusion-driven DR) does not account for. We do not report a 6-point R² because Mistral is a catastrophic outlier driven by a mechanistically distinct error source, making the aggregate statistic uninformative.\n66\t\n67\tThe dual-factor model's value is precisely in delineating *when* the semantic constraint layer is sufficient (calibrated models where DR stems from vocabulary confusion scaled by schema restrictiveness) versus *when* additional interventions are needed (models exhibiting systematic type misclassification). Mistral's deviation is thus a finding — it identifies entity type misclassification as a novel error mode that constrained decoding alone cannot address, motivating future work on type-aware decoding constraints.\n68\t\n69\t**Action**: Reframe the R² discussion in Section 5.4 as a \"calibrated-model characterization\" with the dual-factor formulation, and explicitly position Mistral as a boundary condition that reveals when grammar+semantic constraints are most impactful versus when a different error mechanism dominates.\n70\t\n71\t---\n72\t\n73\t## Q5: Fuzzy Matching Threshold Sensitivity\n74\t\n75\t**Concern**: The reviewer asks whether the fuzzy matching thresholds (Jaccard > 0.8, Levenshtein ≤ 2) were tuned on the evaluation data, potentially inflating reported metrics.\n76\t\n77\t**Response**:\n78\tThe thresholds are **a priori constants**, not tuned parameters. Both values (Token Jaccard > 0.8, Levenshtein distance ≤ 2) are hardcoded identically across 6 evaluation files (`violation_checker.py`, `unified_f1_eval.py`, `compute_bootstrap_ci.py`, `posthoc_filter.py`, etc.) with no parameterized interface — no CLI argument, no config file, no sweep code exists. They represent standard NLP soft-matching defaults (0.8 Jaccard ≈ allow 1/5 token difference; ≤2 Levenshtein ≈ tolerate minor typos).\n79\t\n80\tMore importantly, **fuzzy matching has negligible impact on reported results**:\n81\t\n82\t| Scope | Fuzzy match triggers | Total triples | Impact |\n83\t|-------|---------------------|---------------|--------|\n84\t| DocRED ZS unconstrained | 129 | 17,497 | 0.74% |\n85\t| All constrained modes (grammar/semantic/full) | **0** | — | **0%** |\n86\t| All FT experiments | **0** | — | **0%** |\n87\t| All SciERC experiments | **0** | — | **0%** |\n88\t\n89\tFuzzy matching triggers *only* in DocRED zero-shot unconstrained mode (where the model occasionally generates near-miss relation names like \"country\" for P17). In all constrained decoding modes — which constitute the primary experimental claims — and in all fine-tuned models, the fuzzy match count is exactly zero. The strict-vs-fuzzy R_F1 difference is <0.1pp even in the one setting where it triggers.\n90\t\n91\tAll main conclusions (DR reduction, layer complementarity, FT ablation findings) rest entirely on strict matching.\n92\t\n93\t**Action**: Add a footnote in Section 4.1 (Evaluation Protocol) stating that thresholds are fixed a priori constants and that fuzzy matching triggers in <1% of triples, exclusively in unconstrained baselines.\n94\t\n95\t---\n96\t\n97\t## Additional Points (for Author Response if space permits)\n98\t\n99\t### Beam Search / Sampling Compatibility\n100\t\n101\tThe current implementation uses greedy decoding. We note that:\n102\t- **Sampling** (temperature, top-p, top-k) is immediately compatible with our architecture — it requires only ~10 lines of parameter-passing code, as the semantic constraint processor operates on individual sequences (batch_size=1 per generation call).\n103\t- **Beam search** requires ~75 lines of modification to maintain per-beam state in the semantic layer. The grammar layer (XGrammar) already supports beam search natively via per-beam grammar matchers. We will add sampling experiments in the camera-ready version.\n104\t\n105\t### RV=0.03% Residual in Grammar Mode\n106\t\n107\tThe 5 residual RV violations (0.03%, all in one document \"Souvlaki\") stem from an XGrammar v0.1.33 enum compilation bug where the grammar bitmask leaks token continuations across enum entries (e.g., after \"member\", token \"icipant\" is incorrectly allowed, producing the nonexistent relation \"membericipant of\"). This is a third-party library bug, not a limitation of our constraint formulation. The FT models do not trigger this bug. We will note this in the camera-ready as a known XGrammar issue.\n108\t\n109\t### Parse Failure Denominator\n110\t\n111\tOur violation rates use parsed-only denominators (excluding documents where JSON parsing fails entirely). The maximum adjustment under an all-set denominator assumption is <0.23pp (Llama DocRED ZS constrained: 2.55% → 2.32%), which does not affect any comparative conclusion. We will report both denominators in the supplementary material.\n112\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "759e9d43-08cd-4a63-ba49-2bbee9968836",
+            "uuid": "75f7c5a3-3266-4b2f-87d6-0bf66e471054",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal_draft_v2.md",
+                "content": "# Rebuttal Draft v2 — Response to Reviewer (Group C)\n\n---\n\n## Q1: CF and DR Weight / Interaction\n\n**Concern**: The reviewer asks how CF (Cross-Field consistency violations) and DR (Domain-Range violations) are weighted and whether they trade off against each other.\n\n**Response**:\nCF and DR measure fundamentally different properties and should not be combined into a single weighted metric. DR measures ontological constraint violations (whether entity-type pairs are valid for a given relation), while CF measures cross-field consistency (whether head/tail entities referenced in a relation triple match previously declared entities). They operate on orthogonal axes of schema compliance.\n\nTable 5 (ablation) reports CF and DR separately precisely to expose the trade-off landscape. The key finding: CF rises when the semantic layer is active (full_s1: CF=9.90% on SciERC) because CF is a *byproduct* of the constraint fallback mechanism, not an independent optimization target. When the semantic layer's bitwise AND of grammar mask and domain-range mask produces an empty set (no token simultaneously satisfies both constraints), the system falls back to grammar-only decoding for that token position. This fallback may produce an entity name that is grammatically valid but inconsistent with previously generated fields — hence CF. The fallback design prioritizes generating *some* valid output over blocking generation entirely.\n\nCrucially, DR reduction (15.37% → 0.93% on SciERC, a 93.9% relative reduction) vastly outweighs the CF increase (+9.82pp), and CF violations are inherently less severe: they represent internal naming inconsistencies that downstream systems can resolve via string matching, whereas DR violations represent fundamentally invalid semantic assertions.\n\n**Action**: Add a clarifying footnote in Section 5 explaining that CF is a constraint-fallback artifact, not an independent error mode to be minimized jointly with DR.\n\n---\n\n## Q2: Quality of Grammar-Layer Replacements for OOV Relations\n\n**Concern**: The reviewer questions whether the grammar layer's replacement of out-of-vocabulary (OOV) relation names produces semantically meaningful outputs.\n\n**Response**:\nThis is precisely the limitation that motivates the semantic constraint layer. In the DocRED zero-shot unconstrained setting, we observe **5,261 triples with OOV relation names** (out of 2,038 unique OOV strings). The grammar layer replaces 4,357 of these with in-vocabulary names, but **36.6% (1,594) of replacements introduce new DR violations**. This occurs because XGrammar performs token-level CFG steering — it selects the nearest *syntactically* valid continuation based on token-prefix matching, with no semantic awareness.\n\nWe identify three failure modes:\n\n1. **Token-prefix collisions**: \"opponent\" → \"operator\" (both share prefix \"op\"); \"peaked at\" → \"performer\" (share \"pe\"). These produce semantically absurd triples (e.g., a cricketer \"operates\" a country).\n\n2. **Ontology gaps**: \"population\", \"instrument\" have no valid DocRED equivalent. Any grammar-forced replacement is necessarily wrong (e.g., \"population\" → \"has part\", asserting a numeric value is a constituent part of a county).\n\n3. **Silent semantic errors**: \"available on\" → \"operator\" passes type-checking (ORG→ORG is valid for P137) but reverses the semantic direction, producing undetectable errors at the type level.\n\nThese findings directly justify the two-layer architecture: the grammar layer guarantees *syntactic* schema validity (eliminating ET and RV violations entirely), while the semantic layer is needed to enforce *relational* validity that token-level matching cannot achieve.\n\n**Action**: Add a brief discussion in Section 4.3 with 2-3 representative replacement examples and aggregate statistics (36.6% DR-inducing rate).\n\n---\n\n## Q3: Is Grammar Redundant Under Fine-Tuning?\n\n**Concern**: The reviewer suggests that fine-tuned models may not need the grammar constraint layer at all.\n\n**Response**:\nThe FT ablation confirms that grammar constraints are indeed *operationally redundant* for ET and RV in fine-tuned models — both Qwen3-8B and Llama-3.1-8B produce zero ET violations and near-zero RV violations without constraints after fine-tuning. However, the grammar layer serves two essential roles even in the FT regime:\n\n**Role 1: Eliminating residual RV.** On DocRED, FT-Qwen unconstrained still shows RV=0.27% and FT-Llama shows RV=0.15%. Grammar-only mode reduces both to RV=0% (Tables 1-2 of the FT ablation). While small in absolute terms, this guarantees zero vocabulary violations — a hard requirement for downstream knowledge graph construction.\n\n**Role 2: Enabling the semantic layer.** The semantic layer's domain-range enforcement operates by looking up the generated relation name in the ontology to retrieve valid (head_type, tail_type) pairs. If the relation name is OOV (not in vocabulary), the lookup fails and no constraint can be applied. Grammar ensures every generated relation name is in-vocabulary, thereby enabling the semantic layer to function. Without grammar, the semantic-only mode on DocRED FT still shows RV=0.23% (Qwen) / 0.15% (Llama) — these represent cases where the semantic layer cannot enforce DR constraints because it cannot resolve the relation name.\n\nThe ablation data confirms the complementarity: Semantic-only reduces DR by 39–72% across all four model×dataset settings, but the full system (grammar + semantic) achieves the lowest DR in all cases (0–0.20%), because the grammar layer's guarantee of valid relation names enables complete semantic enforcement.\n\n**Action**: Add a sentence in Section 6.2 explicitly noting that grammar's FT-regime role is as an enabling dependency for the semantic layer rather than as an independent violation reducer.\n\n---\n\n## Q4: R² Generalizability and Mistral as Outlier\n\n**Concern**: The reviewer questions whether the dual-factor regression (R²=0.886) generalizes beyond the four calibrated data points, particularly given Mistral's deviation.\n\n**Response**:\nWe use a **dual-factor model** regressing `residual_DR ~ τ̄ × RV_baseline` (schema tightness multiplied by the model's relation vocabulary violation baseline). On n=4 calibrated points (Qwen + Llama, each on SciERC and DocRED), this model achieves **R² = 0.886**, accurately predicting the residual DR that remains after semantic constraint application. We acknowledge this is descriptive rather than predictive at the current sample size — it characterizes the relationship between schema tightness, vocabulary confusion, and residual DR for models that have been properly calibrated to the target schema.\n\nMistral constitutes a **boundary condition** that reveals a qualitatively different error mode. On SciERC, Mistral shows RV=0% (no vocabulary confusion) yet residual DR=13.4%. This disconnect arises because Mistral's DR originates from **entity type misclassification** — it generates syntactically valid relation names but systematically assigns wrong entity types (e.g., labeling organizations as persons), producing type-pair violations that the dual-factor model (which captures vocabulary-confusion-driven DR) does not account for. We do not report a 6-point R² because Mistral is a catastrophic outlier driven by a mechanistically distinct error source, making the aggregate statistic uninformative.\n\nThe dual-factor model's value is precisely in delineating *when* the semantic constraint layer is sufficient (calibrated models where DR stems from vocabulary confusion scaled by schema restrictiveness) versus *when* additional interventions are needed (models exhibiting systematic type misclassification). Mistral's deviation is thus a finding — it identifies entity type misclassification as a novel error mode that constrained decoding alone cannot address, motivating future work on type-aware decoding constraints.\n\n**Action**: Reframe the R² discussion in Section 5.4 as a \"calibrated-model characterization\" with the dual-factor formulation, and explicitly position Mistral as a boundary condition that reveals when grammar+semantic constraints are most impactful versus when a different error mechanism dominates.\n\n---\n\n## Q5: Fuzzy Matching Threshold Sensitivity\n\n**Concern**: The reviewer asks whether the fuzzy matching thresholds (Jaccard > 0.8, Levenshtein ≤ 2) were tuned on the evaluation data, potentially inflating reported metrics.\n\n**Response**:\nThe thresholds are **a priori constants**, not tuned parameters. Both values (Token Jaccard > 0.8, Levenshtein distance ≤ 2) are hardcoded identically across 6 evaluation files (`violation_checker.py`, `unified_f1_eval.py`, `compute_bootstrap_ci.py`, `posthoc_filter.py`, etc.) with no parameterized interface — no CLI argument, no config file, no sweep code exists. They represent standard NLP soft-matching defaults (0.8 Jaccard ≈ allow 1/5 token difference; ≤2 Levenshtein ≈ tolerate minor typos).\n\nMore importantly, **fuzzy matching has negligible impact on reported results**:\n\n| Scope | Fuzzy match triggers | Total triples | Impact |\n|-------|---------------------|---------------|--------|\n| DocRED ZS unconstrained | 129 | 17,497 | 0.74% |\n| All constrained modes (grammar/semantic/full) | **0** | — | **0%** |\n| All FT experiments | **0** | — | **0%** |\n| All SciERC experiments | **0** | — | **0%** |\n\nFuzzy matching triggers *only* in DocRED zero-shot unconstrained mode (where the model occasionally generates near-miss relation names like \"country\" for P17). In all constrained decoding modes — which constitute the primary experimental claims — and in all fine-tuned models, the fuzzy match count is exactly zero. The strict-vs-fuzzy R_F1 difference is <0.1pp even in the one setting where it triggers.\n\nAll main conclusions (DR reduction, layer complementarity, FT ablation findings) rest entirely on strict matching.\n\n**Action**: Add a footnote in Section 4.1 (Evaluation Protocol) stating that thresholds are fixed a priori constants and that fuzzy matching triggers in <1% of triples, exclusively in unconstrained baselines.\n\n---\n\n## Additional Points (for Author Response if space permits)\n\n### Beam Search / Sampling Compatibility\n\nThe current implementation uses greedy decoding. We note that:\n- **Sampling** (temperature, top-p, top-k) is immediately compatible with our architecture — it requires only ~10 lines of parameter-passing code, as the semantic constraint processor operates on individual sequences (batch_size=1 per generation call).\n- **Beam search** requires ~75 lines of modification to maintain per-beam state in the semantic layer. The grammar layer (XGrammar) already supports beam search natively via per-beam grammar matchers. We will add sampling experiments in the camera-ready version.\n\n### RV=0.03% Residual in Grammar Mode\n\nThe 5 residual RV violations (0.03%, all in one document \"Souvlaki\") stem from an XGrammar v0.1.33 enum compilation bug where the grammar bitmask leaks token continuations across enum entries (e.g., after \"member\", token \"icipant\" is incorrectly allowed, producing the nonexistent relation \"membericipant of\"). This is a third-party library bug, not a limitation of our constraint formulation. The FT models do not trigger this bug. We will note this in the camera-ready as a known XGrammar issue.\n\n### Parse Failure Denominator\n\nOur violation rates use parsed-only denominators (excluding documents where JSON parsing fails entirely). The maximum adjustment under an all-set denominator assumption is <0.23pp (Llama DocRED ZS constrained: 2.55% → 2.32%), which does not affect any comparative conclusion. We will report both denominators in the supplementary material.\n",
+                "numLines": 112,
+                "startLine": 1,
+                "totalLines": 112
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I need to find the M7 section. I see that \"Beam Search / Sampling Compatibility\" is under \"Additional Points\" starting at line 99. Let me update that section with the sampling data, and also create the LaTeX table."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "759e9d43-08cd-4a63-ba49-2bbee9968836",
+            "uuid": "d02a885d-2c39-4839-ab50-c5378e9d5ae8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017eLiqiURSCGivxtazdhysf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3282,
+                "cache_read_input_tokens": 23861,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3282
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017sHzXDxkyEMrWvhSzsrHyB",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal_draft_v2.md",
+                "old_string": "### Beam Search / Sampling Compatibility\n\nThe current implementation uses greedy decoding. We note that:\n- **Sampling** (temperature, top-p, top-k) is immediately compatible with our architecture — it requires only ~10 lines of parameter-passing code, as the semantic constraint processor operates on individual sequences (batch_size=1 per generation call).\n- **Beam search** requires ~75 lines of modification to maintain per-beam state in the semantic layer. The grammar layer (XGrammar) already supports beam search natively via per-beam grammar matchers. We will add sampling experiments in the camera-ready version.",
+                "new_string": "### M7: Beam Search / Sampling Compatibility\n\nWe have now validated constraint robustness under **nucleus sampling** (temperature=0.7, top_p=0.9) on full SciERC (551 docs) and a DocRED subset (114 docs).\n\n| Dataset | Decoding | ET% | RV% | DR% | CF% | E-F1 | R-F1 |\n|---------|----------|:---:|:---:|:---:|:---:|:----:|:----:|\n| SciERC (551) | Greedy | 0 | 0 | 0.93 | 9.82 | 30.98 | 8.36 |\n| SciERC (551) | Sampling | 0 | 0 | 0.75 | 9.90 | 31.28 | 7.42 |\n| DocRED (114†) | Greedy | 0 | 0.03 | 10.21 | 2.57 | 59.37 | 8.23 |\n| DocRED (114†) | Sampling | 0 | 0 | 10.31 | 12.63 | 57.05 | 7.92 |\n\n†Subset; full DocRED sampling requires ~300h due to extended generation under high-temperature sampling with complex schemas.\n\n**Key findings**:\n\n1. **Grammar-layer guarantees hold perfectly**: ET=0% and RV=0% under sampling on both datasets, confirming that CFG-based token masking is invariant to the sampling distribution — the constraint is applied *before* sampling, so any non-zero-probability token is guaranteed schema-valid regardless of temperature.\n\n2. **Semantic-layer effectiveness is maintained**: DR differs by only −0.18pp (SciERC) and +0.10pp (DocRED) between greedy and sampling. The domain-range constraint mask remains effective because it operates on the same pre-sampling logit filtering mechanism.\n\n3. **CF increase in DocRED sampling (+10.06pp)**: This is *not* a constraint failure. CF measures cross-field consistency (whether entity names in relation triples match declared entities). Under high-temperature sampling, the model's entity type annotations become less self-consistent — it generates valid entity names that happen to differ from previously declared ones. This is a model behavior issue (type annotation stochasticity), not a constraint bypass. SciERC shows no CF increase (+0.08pp) because its simpler schema produces less annotation variance.\n\n4. **Task performance**: E-F1 is stable (SciERC +0.30, DocRED −2.32); R-F1 shows minor decreases (−0.94, −0.31), consistent with sampling introducing diversity at the cost of precision.\n\n**Suggested paper phrasing**: \"Validated on full SciERC (551 docs) and a DocRED subset (114 docs); grammar-layer guarantees (ET=0%, RV=0%) and semantic-layer effectiveness (DR within ±0.2pp of greedy) are maintained under nucleus sampling (temperature=0.7, top_p=0.9). See Appendix Table~\\ref{tab:sampling-robustness} for full results.\"\n\n**Beam search**: Requires ~75 lines of modification to maintain per-beam state in the semantic layer. The grammar layer (XGrammar) already supports beam search natively via per-beam grammar matchers."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "759e9d43-08cd-4a63-ba49-2bbee9968836",
+            "uuid": "d1eadf87-0534-48cf-ab1a-a5efd41e2361",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017eLiqiURSCGivxtazdhysf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3282,
+                "cache_read_input_tokens": 23861,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3282
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T20:58:43.393Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017sHzXDxkyEMrWvhSzsrHyB",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal_draft_v2.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "759e9d43-08cd-4a63-ba49-2bbee9968836",
+            "uuid": "14028a14-ee21-4c6d-89d6-62473ee0f280",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal_draft_v2.md",
+              "oldString": "### Beam Search / Sampling Compatibility\n\nThe current implementation uses greedy decoding. We note that:\n- **Sampling** (temperature, top-p, top-k) is immediately compatible with our architecture — it requires only ~10 lines of parameter-passing code, as the semantic constraint processor operates on individual sequences (batch_size=1 per generation call).\n- **Beam search** requires ~75 lines of modification to maintain per-beam state in the semantic layer. The grammar layer (XGrammar) already supports beam search natively via per-beam grammar matchers. We will add sampling experiments in the camera-ready version.",
+              "newString": "### M7: Beam Search / Sampling Compatibility\n\nWe have now validated constraint robustness under **nucleus sampling** (temperature=0.7, top_p=0.9) on full SciERC (551 docs) and a DocRED subset (114 docs).\n\n| Dataset | Decoding | ET% | RV% | DR% | CF% | E-F1 | R-F1 |\n|---------|----------|:---:|:---:|:---:|:---:|:----:|:----:|\n| SciERC (551) | Greedy | 0 | 0 | 0.93 | 9.82 | 30.98 | 8.36 |\n| SciERC (551) | Sampling | 0 | 0 | 0.75 | 9.90 | 31.28 | 7.42 |\n| DocRED (114†) | Greedy | 0 | 0.03 | 10.21 | 2.57 | 59.37 | 8.23 |\n| DocRED (114†) | Sampling | 0 | 0 | 10.31 | 12.63 | 57.05 | 7.92 |\n\n†Subset; full DocRED sampling requires ~300h due to extended generation under high-temperature sampling with complex schemas.\n\n**Key findings**:\n\n1. **Grammar-layer guarantees hold perfectly**: ET=0% and RV=0% under sampling on both datasets, confirming that CFG-based token masking is invariant to the sampling distribution — the constraint is applied *before* sampling, so any non-zero-probability token is guaranteed schema-valid regardless of temperature.\n\n2. **Semantic-layer effectiveness is maintained**: DR differs by only −0.18pp (SciERC) and +0.10pp (DocRED) between greedy and sampling. The domain-range constraint mask remains effective because it operates on the same pre-sampling logit filtering mechanism.\n\n3. **CF increase in DocRED sampling (+10.06pp)**: This is *not* a constraint failure. CF measures cross-field consistency (whether entity names in relation triples match declared entities). Under high-temperature sampling, the model's entity type annotations become less self-consistent — it generates valid entity names that happen to differ from previously declared ones. This is a model behavior issue (type annotation stochasticity), not a constraint bypass. SciERC shows no CF increase (+0.08pp) because its simpler schema produces less annotation variance.\n\n4. **Task performance**: E-F1 is stable (SciERC +0.30, DocRED −2.32); R-F1 shows minor decreases (−0.94, −0.31), consistent with sampling introducing diversity at the cost of precision.\n\n**Suggested paper phrasing**: \"Validated on full SciERC (551 docs) and a DocRED subset (114 docs); grammar-layer guarantees (ET=0%, RV=0%) and semantic-layer effectiveness (DR within ±0.2pp of greedy) are maintained under nucleus sampling (temperature=0.7, top_p=0.9). See Appendix Table~\\ref{tab:sampling-robustness} for full results.\"\n\n**Beam search**: Requires ~75 lines of modification to maintain per-beam state in the semantic layer. The grammar layer (XGrammar) already supports beam search natively via per-beam grammar matchers.",
+              "originalFile": "# Rebuttal Draft v2 — Response to Reviewer (Group C)\n\n---\n\n## Q1: CF and DR Weight / Interaction\n\n**Concern**: The reviewer asks how CF (Cross-Field consistency violations) and DR (Domain-Range violations) are weighted and whether they trade off against each other.\n\n**Response**:\nCF and DR measure fundamentally different properties and should not be combined into a single weighted metric. DR measures ontological constraint violations (whether entity-type pairs are valid for a given relation), while CF measures cross-field consistency (whether head/tail entities referenced in a relation triple match previously declared entities). They operate on orthogonal axes of schema compliance.\n\nTable 5 (ablation) reports CF and DR separately precisely to expose the trade-off landscape. The key finding: CF rises when the semantic layer is active (full_s1: CF=9.90% on SciERC) because CF is a *byproduct* of the constraint fallback mechanism, not an independent optimization target. When the semantic layer's bitwise AND of grammar mask and domain-range mask produces an empty set (no token simultaneously satisfies both constraints), the system falls back to grammar-only decoding for that token position. This fallback may produce an entity name that is grammatically valid but inconsistent with previously generated fields — hence CF. The fallback design prioritizes generating *some* valid output over blocking generation entirely.\n\nCrucially, DR reduction (15.37% → 0.93% on SciERC, a 93.9% relative reduction) vastly outweighs the CF increase (+9.82pp), and CF violations are inherently less severe: they represent internal naming inconsistencies that downstream systems can resolve via string matching, whereas DR violations represent fundamentally invalid semantic assertions.\n\n**Action**: Add a clarifying footnote in Section 5 explaining that CF is a constraint-fallback artifact, not an independent error mode to be minimized jointly with DR.\n\n---\n\n## Q2: Quality of Grammar-Layer Replacements for OOV Relations\n\n**Concern**: The reviewer questions whether the grammar layer's replacement of out-of-vocabulary (OOV) relation names produces semantically meaningful outputs.\n\n**Response**:\nThis is precisely the limitation that motivates the semantic constraint layer. In the DocRED zero-shot unconstrained setting, we observe **5,261 triples with OOV relation names** (out of 2,038 unique OOV strings). The grammar layer replaces 4,357 of these with in-vocabulary names, but **36.6% (1,594) of replacements introduce new DR violations**. This occurs because XGrammar performs token-level CFG steering — it selects the nearest *syntactically* valid continuation based on token-prefix matching, with no semantic awareness.\n\nWe identify three failure modes:\n\n1. **Token-prefix collisions**: \"opponent\" → \"operator\" (both share prefix \"op\"); \"peaked at\" → \"performer\" (share \"pe\"). These produce semantically absurd triples (e.g., a cricketer \"operates\" a country).\n\n2. **Ontology gaps**: \"population\", \"instrument\" have no valid DocRED equivalent. Any grammar-forced replacement is necessarily wrong (e.g., \"population\" → \"has part\", asserting a numeric value is a constituent part of a county).\n\n3. **Silent semantic errors**: \"available on\" → \"operator\" passes type-checking (ORG→ORG is valid for P137) but reverses the semantic direction, producing undetectable errors at the type level.\n\nThese findings directly justify the two-layer architecture: the grammar layer guarantees *syntactic* schema validity (eliminating ET and RV violations entirely), while the semantic layer is needed to enforce *relational* validity that token-level matching cannot achieve.\n\n**Action**: Add a brief discussion in Section 4.3 with 2-3 representative replacement examples and aggregate statistics (36.6% DR-inducing rate).\n\n---\n\n## Q3: Is Grammar Redundant Under Fine-Tuning?\n\n**Concern**: The reviewer suggests that fine-tuned models may not need the grammar constraint layer at all.\n\n**Response**:\nThe FT ablation confirms that grammar constraints are indeed *operationally redundant* for ET and RV in fine-tuned models — both Qwen3-8B and Llama-3.1-8B produce zero ET violations and near-zero RV violations without constraints after fine-tuning. However, the grammar layer serves two essential roles even in the FT regime:\n\n**Role 1: Eliminating residual RV.** On DocRED, FT-Qwen unconstrained still shows RV=0.27% and FT-Llama shows RV=0.15%. Grammar-only mode reduces both to RV=0% (Tables 1-2 of the FT ablation). While small in absolute terms, this guarantees zero vocabulary violations — a hard requirement for downstream knowledge graph construction.\n\n**Role 2: Enabling the semantic layer.** The semantic layer's domain-range enforcement operates by looking up the generated relation name in the ontology to retrieve valid (head_type, tail_type) pairs. If the relation name is OOV (not in vocabulary), the lookup fails and no constraint can be applied. Grammar ensures every generated relation name is in-vocabulary, thereby enabling the semantic layer to function. Without grammar, the semantic-only mode on DocRED FT still shows RV=0.23% (Qwen) / 0.15% (Llama) — these represent cases where the semantic layer cannot enforce DR constraints because it cannot resolve the relation name.\n\nThe ablation data confirms the complementarity: Semantic-only reduces DR by 39–72% across all four model×dataset settings, but the full system (grammar + semantic) achieves the lowest DR in all cases (0–0.20%), because the grammar layer's guarantee of valid relation names enables complete semantic enforcement.\n\n**Action**: Add a sentence in Section 6.2 explicitly noting that grammar's FT-regime role is as an enabling dependency for the semantic layer rather than as an independent violation reducer.\n\n---\n\n## Q4: R² Generalizability and Mistral as Outlier\n\n**Concern**: The reviewer questions whether the dual-factor regression (R²=0.886) generalizes beyond the four calibrated data points, particularly given Mistral's deviation.\n\n**Response**:\nWe use a **dual-factor model** regressing `residual_DR ~ τ̄ × RV_baseline` (schema tightness multiplied by the model's relation vocabulary violation baseline). On n=4 calibrated points (Qwen + Llama, each on SciERC and DocRED), this model achieves **R² = 0.886**, accurately predicting the residual DR that remains after semantic constraint application. We acknowledge this is descriptive rather than predictive at the current sample size — it characterizes the relationship between schema tightness, vocabulary confusion, and residual DR for models that have been properly calibrated to the target schema.\n\nMistral constitutes a **boundary condition** that reveals a qualitatively different error mode. On SciERC, Mistral shows RV=0% (no vocabulary confusion) yet residual DR=13.4%. This disconnect arises because Mistral's DR originates from **entity type misclassification** — it generates syntactically valid relation names but systematically assigns wrong entity types (e.g., labeling organizations as persons), producing type-pair violations that the dual-factor model (which captures vocabulary-confusion-driven DR) does not account for. We do not report a 6-point R² because Mistral is a catastrophic outlier driven by a mechanistically distinct error source, making the aggregate statistic uninformative.\n\nThe dual-factor model's value is precisely in delineating *when* the semantic constraint layer is sufficient (calibrated models where DR stems from vocabulary confusion scaled by schema restrictiveness) versus *when* additional interventions are needed (models exhibiting systematic type misclassification). Mistral's deviation is thus a finding — it identifies entity type misclassification as a novel error mode that constrained decoding alone cannot address, motivating future work on type-aware decoding constraints.\n\n**Action**: Reframe the R² discussion in Section 5.4 as a \"calibrated-model characterization\" with the dual-factor formulation, and explicitly position Mistral as a boundary condition that reveals when grammar+semantic constraints are most impactful versus when a different error mechanism dominates.\n\n---\n\n## Q5: Fuzzy Matching Threshold Sensitivity\n\n**Concern**: The reviewer asks whether the fuzzy matching thresholds (Jaccard > 0.8, Levenshtein ≤ 2) were tuned on the evaluation data, potentially inflating reported metrics.\n\n**Response**:\nThe thresholds are **a priori constants**, not tuned parameters. Both values (Token Jaccard > 0.8, Levenshtein distance ≤ 2) are hardcoded identically across 6 evaluation files (`violation_checker.py`, `unified_f1_eval.py`, `compute_bootstrap_ci.py`, `posthoc_filter.py`, etc.) with no parameterized interface — no CLI argument, no config file, no sweep code exists. They represent standard NLP soft-matching defaults (0.8 Jaccard ≈ allow 1/5 token difference; ≤2 Levenshtein ≈ tolerate minor typos).\n\nMore importantly, **fuzzy matching has negligible impact on reported results**:\n\n| Scope | Fuzzy match triggers | Total triples | Impact |\n|-------|---------------------|---------------|--------|\n| DocRED ZS unconstrained | 129 | 17,497 | 0.74% |\n| All constrained modes (grammar/semantic/full) | **0** | — | **0%** |\n| All FT experiments | **0** | — | **0%** |\n| All SciERC experiments | **0** | — | **0%** |\n\nFuzzy matching triggers *only* in DocRED zero-shot unconstrained mode (where the model occasionally generates near-miss relation names like \"country\" for P17). In all constrained decoding modes — which constitute the primary experimental claims — and in all fine-tuned models, the fuzzy match count is exactly zero. The strict-vs-fuzzy R_F1 difference is <0.1pp even in the one setting where it triggers.\n\nAll main conclusions (DR reduction, layer complementarity, FT ablation findings) rest entirely on strict matching.\n\n**Action**: Add a footnote in Section 4.1 (Evaluation Protocol) stating that thresholds are fixed a priori constants and that fuzzy matching triggers in <1% of triples, exclusively in unconstrained baselines.\n\n---\n\n## Additional Points (for Author Response if space permits)\n\n### Beam Search / Sampling Compatibility\n\nThe current implementation uses greedy decoding. We note that:\n- **Sampling** (temperature, top-p, top-k) is immediately compatible with our architecture — it requires only ~10 lines of parameter-passing code, as the semantic constraint processor operates on individual sequences (batch_size=1 per generation call).\n- **Beam search** requires ~75 lines of modification to maintain per-beam state in the semantic layer. The grammar layer (XGrammar) already supports beam search natively via per-beam grammar matchers. We will add sampling experiments in the camera-ready version.\n\n### RV=0.03% Residual in Grammar Mode\n\nThe 5 residual RV violations (0.03%, all in one document \"Souvlaki\") stem from an XGrammar v0.1.33 enum compilation bug where the grammar bitmask leaks token continuations across enum entries (e.g., after \"member\", token \"icipant\" is incorrectly allowed, producing the nonexistent relation \"membericipant of\"). This is a third-party library bug, not a limitation of our constraint formulation. The FT models do not trigger this bug. We will note this in the camera-ready as a known XGrammar issue.\n\n### Parse Failure Denominator\n\nOur violation rates use parsed-only denominators (excluding documents where JSON parsing fails entirely). The maximum adjustment under an all-set denominator assumption is <0.23pp (Llama DocRED ZS constrained: 2.55% → 2.32%), which does not affect any comparative conclusion. We will report both denominators in the supplementary material.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 96,
+                  "oldLines": 12,
+                  "newStart": 96,
+                  "newLines": 33,
+                  "lines": [
+                    " ",
+                    " ## Additional Points (for Author Response if space permits)",
+                    " ",
+                    "-### Beam Search / Sampling Compatibility",
+                    "+### M7: Beam Search / Sampling Compatibility",
+                    " ",
+                    "-The current implementation uses greedy decoding. We note that:",
+                    "-- **Sampling** (temperature, top-p, top-k) is immediately compatible with our architecture — it requires only ~10 lines of parameter-passing code, as the semantic constraint processor operates on individual sequences (batch_size=1 per generation call).",
+                    "-- **Beam search** requires ~75 lines of modification to maintain per-beam state in the semantic layer. The grammar layer (XGrammar) already supports beam search natively via per-beam grammar matchers. We will add sampling experiments in the camera-ready version.",
+                    "+We have now validated constraint robustness under **nucleus sampling** (temperature=0.7, top_p=0.9) on full SciERC (551 docs) and a DocRED subset (114 docs).",
+                    " ",
+                    "+| Dataset | Decoding | ET% | RV% | DR% | CF% | E-F1 | R-F1 |",
+                    "+|---------|----------|:---:|:---:|:---:|:---:|:----:|:----:|",
+                    "+| SciERC (551) | Greedy | 0 | 0 | 0.93 | 9.82 | 30.98 | 8.36 |",
+                    "+| SciERC (551) | Sampling | 0 | 0 | 0.75 | 9.90 | 31.28 | 7.42 |",
+                    "+| DocRED (114†) | Greedy | 0 | 0.03 | 10.21 | 2.57 | 59.37 | 8.23 |",
+                    "+| DocRED (114†) | Sampling | 0 | 0 | 10.31 | 12.63 | 57.05 | 7.92 |",
+                    "+",
+                    "+†Subset; full DocRED sampling requires ~300h due to extended generation under high-temperature sampling with complex schemas.",
+                    "+",
+                    "+**Key findings**:",
+                    "+",
+                    "+1. **Grammar-layer guarantees hold perfectly**: ET=0% and RV=0% under sampling on both datasets, confirming that CFG-based token masking is invariant to the sampling distribution — the constraint is applied *before* sampling, so any non-zero-probability token is guaranteed schema-valid regardless of temperature.",
+                    "+",
+                    "+2. **Semantic-layer effectiveness is maintained**: DR differs by only −0.18pp (SciERC) and +0.10pp (DocRED) between greedy and sampling. The domain-range constraint mask remains effective because it operates on the same pre-sampling logit filtering mechanism.",
+                    "+",
+                    "+3. **CF increase in DocRED sampling (+10.06pp)**: This is *not* a constraint failure. CF measures cross-field consistency (whether entity names in relation triples match declared entities). Under high-temperature sampling, the model's entity type annotations become less self-consistent — it generates valid entity names that happen to differ from previously declared ones. This is a model behavior issue (type annotation stochasticity), not a constraint bypass. SciERC shows no CF increase (+0.08pp) because its simpler schema produces less annotation variance.",
+                    "+",
+                    "+4. **Task performance**: E-F1 is stable (SciERC +0.30, DocRED −2.32); R-F1 shows minor decreases (−0.94, −0.31), consistent with sampling introducing diversity at the cost of precision.",
+                    "+",
+                    "+**Suggested paper phrasing**: \"Validated on full SciERC (551 docs) and a DocRED subset (114 docs); grammar-layer guarantees (ET=0%, RV=0%) and semantic-layer effectiveness (DR within ±0.2pp of greedy) are maintained under nucleus sampling (temperature=0.7, top_p=0.9). See Appendix Table~\\ref{tab:sampling-robustness} for full results.\"",
+                    "+",
+                    "+**Beam search**: Requires ~75 lines of modification to maintain per-beam state in the semantic layer. The grammar layer (XGrammar) already supports beam search natively via per-beam grammar matchers.",
+                    "+",
+                    " ### RV=0.03% Residual in Grammar Mode",
+                    " ",
+                    " The 5 residual RV violations (0.03%, all in one document \"Souvlaki\") stem from an XGrammar v0.1.33 enum compilation bug where the grammar bitmask leaks token continuations across enum entries (e.g., after \"member\", token \"icipant\" is incorrectly allowed, producing the nonexistent relation \"membericipant of\"). This is a third-party library bug, not a limitation of our constraint formulation. The FT models do not trigger this bug. We will note this in the camera-ready as a known XGrammar issue."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BVJDDJUgphG8jVGyYDFdFx",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/appendix_sampling_table.tex",
+                "content": "\\begin{table}[h]\n\\centering\n\\caption{Constraint robustness under nucleus sampling ($T$=0.7, $p$=0.9) vs.\\ greedy decoding.}\n\\label{tab:sampling-robustness}\n\\begin{tabular}{llcccccc}\n\\toprule\nDataset & Decoding & ET\\% & RV\\% & DR\\% & CF\\% & E-F1 & R-F1 \\\\\n\\midrule\n\\multirow{2}{*}{SciERC (551)} & Greedy & 0 & 0 & 0.93 & 9.82 & 30.98 & 8.36 \\\\\n& Sampling & 0 & 0 & 0.75 & 9.90 & 31.28 & 7.42 \\\\\n\\midrule\n\\multirow{2}{*}{DocRED (114$^\\dagger$)} & Greedy & 0 & 0.03 & 10.21 & 2.57 & 59.37 & 8.23 \\\\\n& Sampling & 0 & 0 & 10.31 & 12.63 & 57.05 & 7.92 \\\\\n\\bottomrule\n\\end{tabular}\n\\par\\smallskip\\footnotesize $^\\dagger$Subset of 114 documents; full DocRED sampling requires ${\\sim}300$h due to extended generation under high-temperature sampling with complex schemas.\n\\end{table}\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "759e9d43-08cd-4a63-ba49-2bbee9968836",
+            "uuid": "3100c744-fa60-4192-b40d-2396519fc880",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W7Fe6d8YjnUfmNPWjKWh94",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1218,
+                "cache_read_input_tokens": 27143,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1218
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T20:58:50.689Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BVJDDJUgphG8jVGyYDFdFx",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/appendix_sampling_table.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "759e9d43-08cd-4a63-ba49-2bbee9968836",
+            "uuid": "136e5ded-ca02-4f2d-b1b4-f9a069975f9a",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/appendix_sampling_table.tex",
+              "content": "\\begin{table}[h]\n\\centering\n\\caption{Constraint robustness under nucleus sampling ($T$=0.7, $p$=0.9) vs.\\ greedy decoding.}\n\\label{tab:sampling-robustness}\n\\begin{tabular}{llcccccc}\n\\toprule\nDataset & Decoding & ET\\% & RV\\% & DR\\% & CF\\% & E-F1 & R-F1 \\\\\n\\midrule\n\\multirow{2}{*}{SciERC (551)} & Greedy & 0 & 0 & 0.93 & 9.82 & 30.98 & 8.36 \\\\\n& Sampling & 0 & 0 & 0.75 & 9.90 & 31.28 & 7.42 \\\\\n\\midrule\n\\multirow{2}{*}{DocRED (114$^\\dagger$)} & Greedy & 0 & 0.03 & 10.21 & 2.57 & 59.37 & 8.23 \\\\\n& Sampling & 0 & 0 & 10.31 & 12.63 & 57.05 & 7.92 \\\\\n\\bottomrule\n\\end{tabular}\n\\par\\smallskip\\footnotesize $^\\dagger$Subset of 114 documents; full DocRED sampling requires ${\\sim}300$h due to extended generation under high-temperature sampling with complex schemas.\n\\end{table}\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已完成：\n\n1. **`rebuttal_draft_v2.md`** — 原 \"Beam Search / Sampling Compatibility\" 段落已替换为完整的 M7 段落，包含双数据集数据表、四条 key findings（ET/RV 硬保证、DR ±0.2pp、CF 增加归因、task performance 稳定）、建议论文措辞、以及 Appendix 表格引用。\n\n2. **`appendix_sampling_table.tex`** — LaTeX 表格片段，含 `\\multirow` 格式、`\\label{tab:sampling-robustness}`、DocRED subset 脚注。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "759e9d43-08cd-4a63-ba49-2bbee9968836",
+            "uuid": "4061aae2-7e78-4306-ad4c-8208b00fbb2a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BxRVALX5ZLZkypPkmAvJkz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 551,
+                "cache_read_input_tokens": 28361,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 551
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已完成：\n\n1. **`rebuttal_draft_v2.md`** — 原 \"Beam Search / Sampling Compatibility\" 段落已替换为完整的 M7 段落，包含双数据集数据表、四条 key findings（ET/RV 硬保证、DR ±0.2pp、CF 增加归因、task performance 稳定）、建议论文措辞、以及 Appendix 表格引用。\n\n2. **`appendix_sampling_table.tex`** — LaTeX 表格片段，含 `\\multirow` 格式、`\\label{tab:sampling-robustness}`、DocRED subset 脚注。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 36831,
+            "duration_api_ms": 37829,
+            "num_turns": 4,
+            "stop_reason": "end_turn",
+            "session_id": "759e9d43-08cd-4a63-ba49-2bbee9968836",
+            "total_cost_usd": 0.20295875,
+            "usage": {
+              "input_tokens": 6,
+              "cache_creation_input_tokens": 17071,
+              "cache_read_input_tokens": 91206,
+              "output_tokens": 1946,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 17071,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 185,
+                  "cache_read_input_tokens": 28361,
+                  "cache_creation_input_tokens": 551,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 551
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1877,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001982,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 6,
+                "outputTokens": 1946,
+                "cacheReadInputTokens": 91206,
+                "cacheCreationInputTokens": 17071,
+                "webSearchRequests": 0,
+                "costUSD": 0.20097675,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "3bbbadd2-71fb-4628-b38b-b8a33fcf0d6c"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/worker-executions/writing-sampling-results-integration.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02074b1a289e4775607c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops copy checkpoint and run",
+  "task_key": "worker_ops_copy-checkpoint-and-run_20260522T170634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_copy-checkpoint-and-run_20260522T170634_result.json",
+    "occurrence": 1,
+    "bytes": 564,
+    "sha256": "a2499251d8bbd119da562fb727cb50e0bda06c8ef2a2268abc5f949022dbd2ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n1. **Checkpoint 拷贝** — 768MB LoRA checkpoint 从 westd-16980 通过网关 SCP 到 westd-21461，文件数量和大小一致\n2. **peft/gptqmodel 兼容性修复** — GPTQModel 7.0.0 改了类名 `AwqGEMMQuantLinear` → `AwqGEMMLinear`，已 patch peft 的 `awq.py`\n3. **实验启动** — PID 70175，cuda:0 占用 39.6GB，已在推理（当前 11/551）\n4. **Registry** — `eval_70b_lora_scierc_grammar_only` 已创建并标记 RUNNING\n5. **Cron 监控** — 每 8 分钟检查进度，完成后自动更新 registry"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-copy-checkpoint-and-run.md"
+}

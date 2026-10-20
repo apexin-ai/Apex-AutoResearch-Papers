@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "286303144d7d3638ee7f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d064 cascade qwen con and eval",
+  "task_key": "worker_ssh_d064_cascade_qwen_con_and_eval_20260519T235354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d064_cascade_qwen_con_and_eval_20260519T235354_result.json",
+    "occurrence": 1,
+    "bytes": 623,
+    "sha256": "ff8f60ac632cc86a322917c2ec2078f5ea4f72bed3cba1117773a3aa0101f1eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n1. **Cascade 脚本** PID 677484 已启动，正在等 Llama con (PID 665503) 完成后自动启动 Qwen greedy constrained on GPU1\n2. **Llama greedy unc eval**: ET=0, RV=17(0.11%), DR=45(0.30%), CF=12(0.07%), E-F1=83.45, R-F1=44.70, PF=4.8%\n3. **Llama greedy con**: 882/998，约60min完成，eval 待补\n\n与 beam-4 对比：greedy 在 E-F1 (−1.71)、R-F1 (−2.47)、parse failure (3.4× higher) 上均不如 beam-4，violations 也更高。beam search 即使不加 constraint 也能降低 violations。\n\n报告已写入 `artifacts/_project/report/d064_eval_batch2_llama_greedy.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d064-cascade-qwen-con-and-eval.md"
+}

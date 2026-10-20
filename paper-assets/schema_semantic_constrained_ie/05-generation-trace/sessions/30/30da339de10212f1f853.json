@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30da339de10212f1f853",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents first token collision",
+  "task_key": "worker_code_wikievents_first_token_collision_20260517T150923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_first_token_collision_20260517T150923_result.json",
+    "occurrence": 1,
+    "bytes": 1392,
+    "sha256": "72805cfe371dddabf3e0a8be9fd51d3bdebae37f20bab6684c3c0e749157fb0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 产出总结\n\n### 1. `scripts/check_first_token_collision.py` — 独立分析脚本 ✓\n\n### 2. Collision 报告\n\n| 类别 | 总数 | 唯一首 token | 碰撞率 | 碰撞组 |\n|------|------|-------------|--------|--------|\n| Event types | 51 | 13 | **96.1%** | 11 groups |\n| Roles | 80 | 68 | **31.2%** | 12 groups |\n| Entity types | 26 | 26 | **0%** | 0 groups |\n\n### 3. `ontology_compiler.py` 修改 ✓\n\n- 添加了 `logging` 模块\n- `compile_event_type_constraints()`: 检测碰撞组并 `logger.warning()`\n- `compile_role_constraints()`: 检测碰撞组 + 进一步检测 **same-event collision**（同一事件类型内的角色碰撞）\n\n### 4. 影响评估\n\n- **Event type collision [HIGH but mitigated]**: 96.1% 碰撞，但 XGrammar EBNF enum 已约束合法事件类型字符串，first-token mask 仅为 soft filter，grammar 保证后续 token 正确。实际影响：mask 减少候选但无法单独区分同组事件类型。\n- **Role collision [MEDIUM — 6 cases problematic]**: 6 个事件类型存在同事件内角色碰撞（`Place`/`PlaceOfEmployment`, `ConsumedThing`/`ConsumingEntity` 等），且 **grammar 没有 role enum**，mask 是唯一约束层。这些情况下 mask 无法区分碰撞角色。\n- **Entity type collision [NONE]**: 26 个实体类型首 token 全部唯一，masking 完全有效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-first-token-collision.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_70b_zs_docred_200_full_s1",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:41:26.371Z",
+    "updated_at": "2026-05-23T00:41:49.264Z",
+    "hypothesis": "Full S1 (grammar+semantic) constraints on 70B ZS DocRED should achieve DR close to semantic_only (1.66%) since grammar adds zero DR contribution in ZS setting. R_F1 should remain ~13 (matching unconstrained 13.25). This completes the ZS DocRED ablation matrix.",
+    "parent": "eval_70b_zs_docred_200_unconstrained"
+  },
+  "timestamp": "2026-05-23T00:41:49.806977+00:00",
+  "trigger": "update_registry"
+}

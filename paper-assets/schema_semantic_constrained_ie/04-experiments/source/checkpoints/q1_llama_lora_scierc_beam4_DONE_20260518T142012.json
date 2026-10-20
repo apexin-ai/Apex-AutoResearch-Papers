@@ -1,0 +1,64 @@
+{
+  "exp_id": "q1_llama_lora_scierc_beam4",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:38:41.024Z",
+    "updated_at": "2026-05-18T14:20:12.077Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/schema_semantic_constrained_ie && python run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --decoding_strategy beam --num_beams 4 --output_path /root/autodl-tmp/schema_outputs/q1_llama_lora_scierc_beam4.jsonl --max_new_tokens 4096 --skip_on_error --device cuda:0\"",
+      "server": "westd-21461",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "30426",
+      "log_path": "~/runs/schema_semantic_constrained_ie/q1_llama_lora_scierc_beam4.log",
+      "submitted_at": "2026-05-18T13:39:49.737Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "Llama-3.1-8B-Instruct-LoRA-SciERC",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/llama_lora_scierc_merged",
+      "eval_data": "data/processed_data/test.json",
+      "wall_clock_seconds": 2422.3,
+      "gpu_hours": 0.67
+    },
+    "hypothesis": "Llama-3.1-8B LoRA fine-tuned + beam search k=4 with OntoCoDec full_s1 on SciERC will achieve zero violations (ET=0%, RV=0%, DR=0%, CF=0%), replicating w10_qwen_scierc_ft_beam_4 results on a second model and strengthening the 'zero violations' Abstract claim",
+    "parent": "w10_qwen_scierc_ft_beam_4",
+    "reproduce": {
+      "finished_at": "2026-05-18T14:12:22.985Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T14:12:31.003769+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/schema_outputs/q1_llama_lora_scierc_beam4.jsonl",
+    "log_path": "~/runs/schema_semantic_constrained_ie/q1_llama_lora_scierc_beam4.log",
+    "conclusion": "success",
+    "metrics": {
+      "ET_violation_rate": 0,
+      "RV_violation_rate": 0,
+      "DR_violation_rate": 0,
+      "CF_violation_rate": 0,
+      "entity_f1": 67.94,
+      "relation_f1": 46.11,
+      "samples": 551,
+      "total_entities": 1853,
+      "total_relations": 727
+    },
+    "completed_at": "2026-05-18T14:20:12.077Z"
+  },
+  "timestamp": "2026-05-18T14:20:12.280223+00:00",
+  "trigger": "update_registry"
+}

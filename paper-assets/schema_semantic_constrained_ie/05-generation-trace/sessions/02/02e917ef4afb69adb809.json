@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02e917ef4afb69adb809",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "exp 70b lora scierc grammar only",
+  "task_key": "worker_exp_70b-lora-scierc-grammar-only_20260522T170440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_70b-lora-scierc-grammar-only_20260522T170440_result.json",
+    "occurrence": 1,
+    "bytes": 674,
+    "sha256": "5f1dce8266c1602d3e1d80c8dec2c3117328ada21716d32c8436d7f504450b9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Checkpoint 不可用。** `/root/autodl-tmp/checkpoints/70b_lora_scierc/checkpoint-663/` 目录存在但为空（0 个文件），机器上无其他副本。\n\n环境概况：\n- **GPU**: 2× NVIDIA RTX PRO 6000 Blackwell (98GB), 均空闲\n- **Base model**: ✅ `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-70B-Instruct-AWQ-INT4`\n- **项目目录**: ✅ `/root/schema_semantic_constrained_ie/`（注意在 /root/ 下，不在 autodl-tmp）\n- **Checkpoint**: ❌ 空目录，需要从其他机器拷贝\n\n按指令，不尝试跨服务器拷贝。请告知如何处理 checkpoint——是从 westd-16980 手动拷贝，还是有其他来源？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-70b-lora-scierc-grammar-only.md"
+}

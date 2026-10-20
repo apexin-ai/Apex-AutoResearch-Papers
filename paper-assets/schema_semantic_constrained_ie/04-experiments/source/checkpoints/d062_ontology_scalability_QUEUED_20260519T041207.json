@@ -1,0 +1,15 @@
+{
+  "exp_id": "d062_ontology_scalability",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T04:10:38.904Z",
+    "updated_at": "2026-05-19T04:12:06.766Z",
+    "hypothesis": "OntoCoDec's grammar compilation and per-token constraint overhead scale sub-linearly with ontology size (relations and entity types), because the prefix map grows linearly with entity type count but per-token masking only checks the active prefix path, not all types. Compile time may scale super-linearly due to CFG complexity, but inference overhead should remain bounded."
+  },
+  "timestamp": "2026-05-19T04:12:07.056192+00:00",
+  "trigger": "update_registry"
+}

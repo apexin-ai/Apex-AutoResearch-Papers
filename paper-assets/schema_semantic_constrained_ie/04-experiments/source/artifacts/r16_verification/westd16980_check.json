@@ -1,0 +1,37 @@
+{
+  "check_time": "2026-05-21T12:56:00+08:00",
+  "experiment": "r16_70b_scierc_zs",
+  "server": "westd-16980",
+  "model": "Llama-3.1-70B-Instruct-AWQ-INT4",
+  "dataset": "scierc",
+  "total_samples": 551,
+  "process": {
+    "pid": 808988,
+    "status": "running",
+    "elapsed_minutes": 47,
+    "started_at": "2026-05-21T12:09:28+08:00"
+  },
+  "step_1_unconstrained": {
+    "status": "in_progress",
+    "output_file": "outputs/r16_70b_scierc_zs_unconstrained.jsonl",
+    "lines_completed": 326,
+    "lines_total": 551,
+    "progress_pct": 59.2,
+    "estimated_remaining_minutes": 30
+  },
+  "step_2_constrained_full_s1": {
+    "status": "not_started",
+    "output_file": "outputs/r16_70b_scierc_zs_full_s1.jsonl",
+    "lines_completed": 0,
+    "lines_total": 551,
+    "progress_pct": 0
+  },
+  "rate_seconds_per_sample": 8.6,
+  "estimated_total_remaining_minutes": 110,
+  "notes": [
+    "Output path is project-relative outputs/, NOT /root/autodl-tmp/schema_outputs/",
+    "Rate ~8.6s/sample, slower than estimated 5.8s",
+    "Constrained step will likely be even slower than unconstrained"
+  ],
+  "evaluation": null
+}

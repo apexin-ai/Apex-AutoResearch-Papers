@@ -1,0 +1,64 @@
+{
+  "timestamp": "2026-05-21T~current",
+  "beam_998_status": {
+    "qwen": {
+      "server": "westd-21461",
+      "pid": 226609,
+      "status": "running",
+      "elapsed": "7h18m",
+      "progress": "799/998 docs (80.1%)",
+      "jsonl_lines": 799,
+      "log_last_doc": "653/998 (log buffered, JSONL is authoritative)",
+      "avg_rate_docs_per_min": 1.82,
+      "eta_remaining_min": 109,
+      "fail_count_in_log": "at least 1 (doc 651 Adolfo Nicolas)",
+      "metrics": null
+    },
+    "llama": {
+      "server": "westd-16980",
+      "pid": 790392,
+      "status": "running",
+      "elapsed": "5h52m",
+      "progress": "852/998 docs (85.4%)",
+      "jsonl_lines": 852,
+      "log_last_doc": "822/998 (log buffered, JSONL is authoritative)",
+      "avg_rate_docs_per_min": 2.42,
+      "eta_remaining_min": 60,
+      "fail_count_in_log": "multiple (docs 15,21,46,72,81,780,814,...)",
+      "metrics": null
+    }
+  },
+  "wikievents_test_split": {
+    "doc_count": 20,
+    "is_full_official_split": true,
+    "evidence": "WikiEvents (Li et al., 2021) official split: train=206, dev=20, test=20, total=246. Server data confirms: all.jsonl=246 lines, test.jsonl=20 lines, dev.jsonl=20 lines. train.jsonl=12 lines is a curated SFT subset, not the full training set. 20-doc test IS the complete official test split.",
+    "split_sizes": {
+      "train_full": 206,
+      "train_sft_subset": 12,
+      "dev": 20,
+      "test": 20,
+      "all": 246
+    }
+  },
+  "70b_lora_feasibility": {
+    "gpu_model": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "gpu_count": 2,
+    "vram_total_gb": 95.6,
+    "vram_per_gpu_mib": 97887,
+    "gpu1_free_mib": 78250,
+    "vram_estimate_gb": {
+      "model_awq_int4": 38,
+      "lora_adapters": 1.5,
+      "kv_cache_short_seq": 3,
+      "constraint_overhead": 0.5,
+      "total": 43
+    },
+    "feasible": true,
+    "headroom_gb": 33,
+    "model_already_downloaded": true,
+    "model_path": "/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-70B-Instruct-AWQ-INT4",
+    "model_size_on_disk": "38G",
+    "blockers": [],
+    "notes": "96GB VRAM is more than sufficient for 70B AWQ INT4 (~43GB total). ~33GB headroom allows for longer sequences or batch>1 if needed. Model already downloaded on westd-21461."
+  }
+}

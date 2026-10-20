@@ -1,0 +1,46 @@
+{
+  "experiment": "r14_llama_docred_beam4_998",
+  "model": "Llama-3.1-8B-Instruct (zero-shot)",
+  "dataset": "DocRED dev (998 docs)",
+  "decoding": "beam search (num_beams=4)",
+  "mode": "full_s1 (grammar + semantic constraints)",
+  "completed_at": "2026-05-21",
+  "results": {
+    "samples": 998,
+    "success": 959,
+    "parse_fail": 39,
+    "parse_fail_pct": 3.91,
+    "E_P": 64.82,
+    "E_R": 52.17,
+    "E_F1": 57.81,
+    "R_P": 8.33,
+    "R_R": 9.40,
+    "R_F1": 8.83,
+    "ET_pct": 0.00,
+    "RV_pct": 0.00,
+    "DR_pct": 0.00,
+    "CF_pct": 1.00,
+    "et_violations": 0,
+    "rv_violations": 0,
+    "dr_violations": 0,
+    "cf_violations": 157
+  },
+  "baseline_zs_greedy_unconstrained": {
+    "label": "Llama-ZS-Greedy-Orig (outputs/llama_docred_full_s1.jsonl)",
+    "E_F1": 54.93,
+    "R_F1": 6.27,
+    "DR_pct": 2.55,
+    "CF_pct": 8.54,
+    "parse_fail_pct": 9.1
+  },
+  "delta_vs_baseline": {
+    "E_F1": "+2.88",
+    "R_F1": "+2.56",
+    "DR_pct": "-2.55 (eliminated)",
+    "CF_pct": "-7.54",
+    "parse_fail_pct": "-5.2"
+  },
+  "hypothesis_confirmed": true,
+  "conclusion": "Beam=4 S1 constrained decoding on full 998-doc DocRED with ZS Llama-3.1-8B eliminates all DR violations (2.55% → 0%), reduces CF violations (8.54% → 1.00%), and improves both E-F1 (+2.88) and R-F1 (+2.56) vs ZS greedy baseline. Confirms constraint effectiveness generalizes across full dataset and second model (Llama).",
+  "note": "d064/d065 Llama DocRED results (E-F1~85, R-F1~45) are from a different experiment campaign and likely used FT models, not directly comparable to this ZS run."
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16ccf62fc4d03d60c3c1",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops w8 qwen docred ft grammar only submit",
+  "task_key": "worker_ops_w8_qwen_docred_ft_grammar_only_submit_20260516T091401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_w8_qwen_docred_ft_grammar_only_submit_20260516T091401_result.json",
+    "occurrence": 1,
+    "bytes": 627,
+    "sha256": "3be9d227ffa9b2d25a8778daee0c6103464bc81738af0db2ff7fea722078a178"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型已加载到 GPU（18.9GB VRAM）。进程 PID 18555 正在运行。Grammar 编译 96 个 relation types 需要几分钟，之后开始推理。\n\n实验提交成功：\n- **Server**: westd-21461, cuda:0\n- **PID**: 18550 (wrapper) / 18555 (GPU subprocess)  \n- **VRAM**: 18.9 GB\n- **tmux session**: w8_qwen_docred_ft_grammar_only\n- **Log**: ~/runs/schema_semantic_constrained_ie/w8_qwen_docred_ft_grammar_only.log\n- **预期运行时间**: ~5-6h (998 samples + constrained decoding)\n\nCheckpoint 从 westd-16980 通过 sshpass + scp 成功传输到 westd-21461（16GB，通过 AutoDL SSH 代理）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-w8-qwen-docred-ft-grammar-only-submit.md"
+}

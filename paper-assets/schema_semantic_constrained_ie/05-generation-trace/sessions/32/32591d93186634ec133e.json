@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32591d93186634ec133e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops w7 qwen grammar exit check",
+  "task_key": "worker_ops_w7_qwen_grammar_exit_check_20260516T063347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_w7_qwen_grammar_exit_check_20260516T063347_result.json",
+    "occurrence": 1,
+    "bytes": 1421,
+    "sha256": "60ba382c09296697c3a7fb19c0ad12547d9ce2f49ff1ba5002a9dca723fc65e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All results in. Here's the report:\n\n---\n\n## w7_qwen_scierc_ft_grammar_only — 结果报告\n\n**状态**: SUCCESS (进程已退出，551/551 samples 全部完成)\n\n**输出文件**: `/root/schema_semantic_constrained_ie/outputs/w7_qwen_scierc_ft_grammar_only.jsonl` (998KB, 2026-05-16 14:33)\n\n**注意**: 无 exit sentinel 文件 (`/tmp/agent-ml-exit/` 中无 w7 条目)，但输出完整。\n\n### Violation Metrics\n\n| Metric | Value |\n|--------|-------|\n| Entity Type (ET%) | **0.0%** (0/1784) |\n| Relation Vocab (RV%) | **0.0%** (0/1128) |\n| Domain/Range (DR%) | **1.9%** (22/1128) |\n| Cross-Field (CF%) | **0.0%** (0) |\n| JSON parse failures | 0.0% |\n\n### F1 Metrics (violation_checker)\n\n| Metric | P | R | F1 |\n|--------|---|---|-----|\n| Entity F1 | 0.6523 | 0.6898 | **0.6705** |\n| Relation F1 | 0.4087 | 0.4733 | **0.4386** |\n\n### F1 Metrics (unified_f1_eval, method_all_set)\n\n| Metric | P | R | F1 |\n|--------|---|---|-----|\n| Entity F1 | 0.5848 | 0.6031 | **0.5938** |\n| Relation F1 | 0.0699 | 0.1002 | **0.0824** |\n\n### 结论\n\n**SUCCESS** — grammar_only constrained decoding 在 fine-tuned Qwen3-8B 上完整运行。ET/RV/CF 全部为 0（grammar 层完全消除了类型和词汇违规），仅残留 1.9% DR 违规（grammar 层不约束 domain/range，这是 semantic layer 的职责）。Entity F1=0.67, Relation F1=0.44（violation_checker 口径）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-w7-qwen-grammar-exit-check.md"
+}

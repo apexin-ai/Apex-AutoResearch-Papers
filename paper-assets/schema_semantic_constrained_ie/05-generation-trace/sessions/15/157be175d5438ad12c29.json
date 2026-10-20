@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "157be175d5438ad12c29",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "status 21461 d066 d067 quick",
+  "task_key": "worker_status_21461_d066_d067_quick_20260520T012030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_21461_d066_d067_quick_20260520T012030_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "973f0c9df8894ee1698455c507805002c0e794a9f0c8df404795d3d116d4286e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**d066 beam sweep (SciERC, Qwen):** 4/8 configs done\n- ✅ beam1_unconstrained, beam1_full_s1, beam2_unconstrained, beam2_full_s1\n- 🔄 beam4_unconstrained — 运行中 (09:12 启动, ~8min)\n- ⏳ beam4_full_s1, beam8_unconstrained, beam8_full_s1\n- ETA: ~60-80min (beam4/8 比 beam1/2 慢)\n\n**d067 seed variance:** 4/12 configs done\n- ✅ qwen_scierc_seed123 (unc+full), qwen_scierc_seed456 (unc+full) — 各551行完整\n- 🔄 llama_scierc_seed123_unconstrained — 396/551 (72%, 09:07 启动)\n- ⏳ llama_scierc_seed123_full_s1, llama_scierc_seed456 ×2, qwen_docred_seed123 ×2, qwen_docred_seed456 ×2\n- ETA: ~2-2.5h\n\n**GPU:** 双卡都在跑 (GPU0: 89%/18.3GB, GPU1: 85%/18.9GB)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-21461-d066-d067-quick.md"
+}

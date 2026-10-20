@@ -1,0 +1,16 @@
+{
+  "exp_id": "w5_llama_docred_sft_data_gen",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:07:32.770Z",
+    "updated_at": "2026-05-15T18:10:33.915Z",
+    "hypothesis": "Generate Llama-3.1-8B-Instruct format DocRED SFT train/dev JSONL — prerequisite for Llama DocRED LoRA fine-tune (composability matrix Llama×DocRED cell)",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T18:10:34.031856+00:00",
+  "trigger": "update_registry"
+}

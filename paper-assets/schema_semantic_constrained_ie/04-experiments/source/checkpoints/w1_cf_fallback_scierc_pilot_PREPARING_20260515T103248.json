@@ -1,0 +1,25 @@
+{
+  "exp_id": "w1_cf_fallback_scierc_pilot",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:32:48.425Z",
+    "updated_at": "2026-05-15T10:32:48.425Z",
+    "spec": {
+      "hypothesis": "W1 CF registry-consistent fallback 在 SciERC full_s1 上能否显著降低 CF violations (原 9.90%)，同时 DR 仅略升。验证 registry consistency > DR compliance 的 trade-off。",
+      "parent": "phase2_scierc_full_s1",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --data_path data/scierc/test.json --constraints_path data/scierc/ontology_constraints_scierc.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\"",
+      "server": "westd-16980",
+      "data_path": "data/scierc/test.json",
+      "data_count": 551,
+      "model_name": "Qwen3-8B",
+      "seed": "default",
+      "gpu": "cuda:0"
+    }
+  },
+  "timestamp": "2026-05-15T10:32:48.486594+00:00",
+  "trigger": "update_registry"
+}

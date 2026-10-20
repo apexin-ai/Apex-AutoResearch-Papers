@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "24eb1a901e091a7f647c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "emergency kill 190246 clean restart",
+  "task_key": "worker_emergency_kill_190246_clean_restart_20260514T141504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_emergency_kill_190246_clean_restart_20260514T141504.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/emergency-kill-190246-clean-restart.md"
+}

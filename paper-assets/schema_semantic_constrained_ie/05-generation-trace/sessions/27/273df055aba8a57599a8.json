@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "273df055aba8a57599a8",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis w9 docred sampling results",
+  "task_key": "worker_analysis_w9_docred_sampling_results_20260516T195333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w9_docred_sampling_results_20260516T195333_result.json",
+    "occurrence": 1,
+    "bytes": 943,
+    "sha256": "a2e200cb1fcf055c4273ee25cba1a6d54ed9d397f766a31c1c6247750ac2c691"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**实验失败**，未产生任何输出。\n\n### 失败原因\n\n模型路径错误：脚本尝试加载 `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`，但：\n1. 该路径在 westd-21461 上不存在（`/root/autodl-tmp/models/` 下只有 Mistral 相关模型）\n2. 即使存在，多层嵌套路径 `Qwen3-8B-ms/Qwen/Qwen3-8B` 会被 transformers 误解为 HuggingFace repo ID 格式\n\n### Greedy baseline 参考（phase2_docred_full_s1，Qwen ZS constrained greedy）\n\n| Metric | Value |\n|--------|-------|\n| ET_pct | 0% |\n| RV_pct | 0.03% |\n| DR_pct | 10.21% |\n| CF_pct | 2.57% |\n| R_F1 | 8.23 |\n| E_F1 | 59.37 |\n\n### 修复建议\n\n需要将 Qwen3-8B 模型下载到 westd-21461 上（或修改配置指向正确路径），然后重新运行。当前服务器只有 Mistral-7B 模型。\n\n要我将失败报告写入 `w9_sampling_analysis.md` 并更新 registry 状态为 FAILED 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w9-docred-sampling-results.md"
+}

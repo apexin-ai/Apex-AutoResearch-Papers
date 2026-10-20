@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c5e13827df760d1e9dd",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code beam mistral docred oneshot",
+  "task_key": "worker_code_beam_mistral_docred_oneshot_20260517T013529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_beam_mistral_docred_oneshot_20260517T013529_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "d3a8f090d19a541d5712553679fdc01ae2b8de7b54f07af96735391ccd864d2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已收集完毕。\n\n```\nStatus: COMPLETE\nModel: Mistral-7B-v0.3\nDataset: DocRED (50 docs)\nDecoding: beam_size=4, full_s1\n\nET%: 0.0% (0/597 entities)\nRV%: 0.0% (0/524 relations)\nDR%: 21.4% (112/524 relations)\nCF%: 1 violation\nE_F1: 0.5178 (P=0.6520, R=0.4294)\nR_F1: 0.0570 (P=0.0649, R=0.0508)\nParse failures: 1/50\n```\n\n关键观察：\n- **Entity F1 合理** (0.52)，说明模型能识别实体\n- **Relation F1 极低** (0.057)，几乎没有正确提取关系三元组\n- **Entity type 和 relation vocab violation 为 0%**，说明 schema 约束在这两方面完全生效\n- **Domain/range violation 仍有 21.4%**，beam search 未能完全消除 D/R 违规\n- Relation recall 极低 (0.05) 表明模型输出的三元组与 gold 几乎不匹配，可能是 entity mention 对齐问题导致的 matching 失败"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-beam-mistral-docred-oneshot.md"
+}

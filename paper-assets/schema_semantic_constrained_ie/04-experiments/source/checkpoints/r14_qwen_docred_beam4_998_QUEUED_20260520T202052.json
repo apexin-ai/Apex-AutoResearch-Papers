@@ -1,0 +1,15 @@
+{
+  "exp_id": "r14_qwen_docred_beam4_998",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:20:43.999Z",
+    "updated_at": "2026-05-20T20:20:52.466Z",
+    "hypothesis": "Qwen3-8B zero-shot with beam search k=4 and OntoCoDec full_s1 on complete DocRED 998-doc dev set will show comparable violation elimination to the 50-doc subset, providing full-scale evidence for the reviewer request. This addresses the reviewer concern that beam search results were only reported on 5% of the test set."
+  },
+  "timestamp": "2026-05-20T20:20:52.781160+00:00",
+  "trigger": "update_registry"
+}

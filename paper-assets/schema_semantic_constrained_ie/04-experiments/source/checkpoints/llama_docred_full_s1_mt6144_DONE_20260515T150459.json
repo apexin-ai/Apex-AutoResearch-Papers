@@ -1,0 +1,91 @@
+{
+  "exp_id": "llama_docred_full_s1_mt6144",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-15T08:17:36.675Z",
+    "updated_at": "2026-05-15T15:04:59.453Z",
+    "server": "westd-16980",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_full_s1_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\"",
+      "finished_at": "2026-05-15T14:59:20.782Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-15T08:19:51.861Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T08:19:53.379823+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T14:59:25.181921+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_full_s1_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "247487",
+      "log_path": "~/runs/schema_semantic_constrained_ie/llama_docred_full_s1_mt6144.log",
+      "submitted_at": "2026-05-15T08:22:03.222Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 24176.2,
+      "gpu_hours": 6.72
+    },
+    "pid": "247487",
+    "log_path": "~/runs/schema_semantic_constrained_ie/llama_docred_full_s1_mt6144.log",
+    "notes": "⚠️ 变量混淆：此实验同时包含 CF fallback 代码修改 + max_tokens 6144（两个变量）。CF 数据可作为 'Llama DocRED with fallback + mt6144' 参考点，但不能用于纯 CF ablation 对比。纯 CF ablation 必须控制 max_tokens=4096。unconstrained_mt6144 不受影响（不走 semantic layer）。",
+    "metrics": {
+      "DR_rate_pct": 2.57,
+      "RV_rate_pct": 0,
+      "ET_rate_pct": 0,
+      "CF_rate_pct": 12.13,
+      "R_F1": 6.25,
+      "R_precision": 5.45,
+      "R_recall": 7.32,
+      "E_F1": 55.04,
+      "E_precision": 61.41,
+      "E_recall": 49.87,
+      "documents_total": 998,
+      "documents_checked": 908,
+      "parse_failures": 90,
+      "triples": 16471,
+      "unique_entities": 11307,
+      "fallback_events": 67911,
+      "wall_clock_seconds": 23926,
+      "vs_unconstrained_mt6144": {
+        "DR_delta_pp": -23.61,
+        "DR_reduction_pct": -90.2,
+        "R_F1_delta_pp": 0.3,
+        "E_F1_delta_pp": -0.63
+      },
+      "vs_full_s1_mt4096": {
+        "DR_delta_pp": 0.02,
+        "R_F1_delta_pp": -0.02,
+        "E_F1_delta_pp": 0.03,
+        "CF_delta_pp": 0.11,
+        "parse_fail_delta": -1
+      }
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/schema_semantic_constrained_ie/outputs/llama_docred_full_s1_mt6144.jsonl"
+  },
+  "timestamp": "2026-05-15T15:04:59.551621+00:00",
+  "trigger": "update_registry"
+}

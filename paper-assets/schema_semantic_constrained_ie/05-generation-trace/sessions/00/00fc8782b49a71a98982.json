@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00fc8782b49a71a98982",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "gpu d066 docred beam sweep",
+  "task_key": "worker_gpu_d066_docred_beam_sweep_20260520T024354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_d066_docred_beam_sweep_20260520T024354_result.json",
+    "occurrence": 1,
+    "bytes": 186,
+    "sha256": "608fe56efdaee74e40d18d5eec8cdecac5cfcec11e5c4dbca2bfc1cda664ae72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理脚本已在 GPU0 上后台运行，正在依次跑 6 个 config（k=1, 2, 8 × unc/con，各 200 docs）。k=4 eval 已完成。等待 ~4.5 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-d066-docred-beam-sweep.md"
+}

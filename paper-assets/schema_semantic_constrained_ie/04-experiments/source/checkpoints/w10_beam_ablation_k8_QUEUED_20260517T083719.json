@@ -1,0 +1,15 @@
+{
+  "exp_id": "w10_beam_ablation_k8",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:31:56.573Z",
+    "updated_at": "2026-05-17T08:37:19.488Z",
+    "hypothesis": "Beam search k=8 on Qwen3-8B SciERC (551 docs) will match or marginally improve on k=4 (DR=0%, CF=0.53%), testing whether larger beam width yields diminishing returns for constraint satisfaction once DR is already eliminated."
+  },
+  "timestamp": "2026-05-17T08:37:19.648057+00:00",
+  "trigger": "update_registry"
+}

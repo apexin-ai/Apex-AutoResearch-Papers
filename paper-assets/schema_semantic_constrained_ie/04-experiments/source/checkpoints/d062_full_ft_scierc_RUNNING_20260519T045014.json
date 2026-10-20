@@ -1,0 +1,40 @@
+{
+  "exp_id": "d062_full_ft_scierc",
+  "project": "schema_semantic_constrained_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:15:32.642Z",
+    "updated_at": "2026-05-19T04:50:14.131Z",
+    "hypothesis": "Full fine-tuning Qwen3-8B on SciERC (vs LoRA) will improve extraction quality and reduce schema violations, as full parameter updates allow deeper adaptation to the IE task structure.",
+    "spec": {
+      "command": "bash scripts/run_d062_full_ft_scierc.sh",
+      "server": "westd-21461",
+      "gpu": "cuda:0",
+      "data_path": "data/sft/scierc_sft_train.jsonl",
+      "data_count": 1762,
+      "model_name": "Qwen3-8B (full fine-tuning)",
+      "seed": 42,
+      "training_method": "full_fine_tuning",
+      "hyperparams": {
+        "lr": "2e-4",
+        "epochs": 3,
+        "batch_size": 16,
+        "gradient_checkpointing": true,
+        "bf16": true,
+        "warmup_ratio": 0.1,
+        "optimizer": "AdamW",
+        "schedule": "cosine"
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T04:50:12.113Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-19T04:50:14.412106+00:00",
+  "trigger": "update_registry"
+}

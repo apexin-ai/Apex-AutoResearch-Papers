@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_70b_zs_scierc_semantic_only",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:39:36.807Z",
+    "updated_at": "2026-05-22T14:39:36.808Z"
+  },
+  "timestamp": "2026-05-22T14:39:37.099394+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "vllm_guided_json_scierc_zs",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T13:29:07.493Z",
+    "updated_at": "2026-05-22T13:29:17.503Z",
+    "hypothesis": "vLLM's guided_json (JSON schema-constrained decoding) produces equivalent violation rates and F1 scores to our XGrammar grammar-only ablation, confirming that guided_json ≈ GCD (grammar-constrained decoding) without semantic constraints."
+  },
+  "timestamp": "2026-05-22T13:29:17.808090+00:00",
+  "trigger": "update_registry"
+}

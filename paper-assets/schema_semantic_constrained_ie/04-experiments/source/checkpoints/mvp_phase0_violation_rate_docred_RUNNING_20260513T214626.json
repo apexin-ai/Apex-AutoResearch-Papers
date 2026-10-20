@@ -1,0 +1,66 @@
+{
+  "exp_id": "mvp_phase0_violation_rate_docred",
+  "project": "schema_semantic_constrained_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T17:38:05.075Z",
+    "updated_at": "2026-05-13T21:46:26.186Z",
+    "hypothesis": "DocRED 有 96 relation types，约束空间远大于 SciERC (7 types)，预期 unconstrained LLM 的 per-triple violation rate 显著高于 SciERC，验证违规率与约束空间复杂度正相关",
+    "spec": {
+      "command": "python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred.jsonl --device cuda:0 --batch_size 4 --resume",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "data_path": "/root/schema_semantic_constrained_ie/data/docred/dev.json",
+      "data_count": 998,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "pid": 113148,
+      "resumed_from_doc": 265,
+      "batch_size": 4,
+      "current_progress": 281
+    },
+    "metrics": {
+      "total_docs": 998,
+      "parsed_docs": 962,
+      "json_parse_rate": 0.964,
+      "total_entities": 19099,
+      "total_triples": 16540,
+      "entity_type_violation_rate": 0.075,
+      "relation_vocabulary_violation_rate": 0.289,
+      "domain_range_violation_rate": 0.187,
+      "cross_field_consistency_violation_rate": 0.0008,
+      "go_nogo_metric": 0.187,
+      "fuzzy_matches": 126,
+      "top_dr_violations_by_rate": {
+        "P35_head_of_state": 1,
+        "P710_participant": 0.919,
+        "P172_ethnic_group": 0.875
+      },
+      "top_dr_violations_by_count": {
+        "P31_instance_of": {
+          "violations": 322,
+          "total": 533,
+          "rate": 0.604
+        },
+        "P1001_applies_to_jurisdiction": {
+          "violations": 264,
+          "total": 594,
+          "rate": 0.444
+        },
+        "P1344_participant_in": {
+          "violations": 194,
+          "total": 312,
+          "rate": 0.622
+        }
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-13T21:46:26.201861+00:00",
+  "trigger": "update_registry"
+}

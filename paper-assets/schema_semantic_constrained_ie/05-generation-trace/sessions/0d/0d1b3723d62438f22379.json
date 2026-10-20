@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d1b3723d62438f22379",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "status 21461 d066 d067 v2",
+  "task_key": "worker_status_21461_d066_d067_v2_20260520T015738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_21461_d066_d067_v2_20260520T015738_result.json",
+    "occurrence": 1,
+    "bytes": 1417,
+    "sha256": "ad485a89e0ba512ecc4ee66c338b2e647e75f304c865cb271e88d289e315906a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 进度汇报\n\n### d066 beam sweep (GPU 1)\n\n| config | 进度 | 状态 |\n|--------|------|------|\n| qwen_scierc_beam1_unconstrained | 551/551 | ✅ |\n| qwen_scierc_beam1_full_s1 | 551/551 | ✅ |\n| qwen_scierc_beam2_unconstrained | 551/551 | ✅ |\n| qwen_scierc_beam2_full_s1 | 551/551 | ✅ |\n| qwen_scierc_beam4_unconstrained | 551/551 | ✅ |\n| **qwen_scierc_beam4_full_s1** | **192/551 (34.8%)** | 🔄 运行中 |\n\n日志显示 ~4.5s/sample，剩余 359 样本。**ETA ≈ 27 分钟**。这是 d066 最后一个 config。\n\n### d067 seed variance (GPU 0)\n\n| config | 进度 | 状态 |\n|--------|------|------|\n| qwen_scierc_seed123_unconstrained | 551/551 | ✅ |\n| qwen_scierc_seed123_full_s1 | 551/551 | ✅ |\n| qwen_scierc_seed456_unconstrained | 551/551 | ✅ |\n| qwen_scierc_seed456_full_s1 | 551/551 | ✅ |\n| llama_scierc_seed123_unconstrained | 551/551 | ✅ |\n| llama_scierc_seed123_full_s1 | 551/551 | ✅ |\n| **llama_scierc_seed456_unconstrained** | **241/551 (43.7%)** | 🔄 运行中 |\n| llama_scierc_seed456_full_s1 | 0/551 | ⏳ 排队 |\n\n剩余 310 + 551 = 861 样本。**ETA ≈ 60-70 分钟**。\n\n### GPU 利用率\n- GPU 0: 89%, 18347 MiB — d067\n- GPU 1: 79%, 18919 MiB — d066\n\n### 额外发现\nd068_guided_beam 也有产出（beta1.0: 138/551, beta2.0: 141/551），但当前未活跃，可能是之前跑的或等 GPU 空闲后继续。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-21461-d066-d067-v2.md"
+}

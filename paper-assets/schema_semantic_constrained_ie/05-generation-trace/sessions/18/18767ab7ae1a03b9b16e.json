@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18767ab7ae1a03b9b16e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "writing sampling results integration",
+  "task_key": "worker_writing_sampling_results_integration_20260516T205810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_sampling_results_integration_20260516T205810_result.json",
+    "occurrence": 1,
+    "bytes": 496,
+    "sha256": "def2cc93e3cf516039b0ae7cf9ea5f986ae79473782789a02952848448bf3e8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已完成：\n\n1. **`rebuttal_draft_v2.md`** — 原 \"Beam Search / Sampling Compatibility\" 段落已替换为完整的 M7 段落，包含双数据集数据表、四条 key findings（ET/RV 硬保证、DR ±0.2pp、CF 增加归因、task performance 稳定）、建议论文措辞、以及 Appendix 表格引用。\n\n2. **`appendix_sampling_table.tex`** — LaTeX 表格片段，含 `\\multirow` 格式、`\\label{tab:sampling-robustness}`、DocRED subset 脚注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-sampling-results-integration.md"
+}

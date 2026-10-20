@@ -1,0 +1,14 @@
+{
+  "exp_id": "70b_docred_unconstrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T12:43:01.940Z",
+    "updated_at": "2026-05-18T12:43:01.940Z"
+  },
+  "timestamp": "2026-05-18T12:43:02.158212+00:00",
+  "trigger": "update_registry"
+}

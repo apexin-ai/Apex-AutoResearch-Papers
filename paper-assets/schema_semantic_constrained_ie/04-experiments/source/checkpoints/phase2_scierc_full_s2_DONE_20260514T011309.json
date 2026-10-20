@@ -1,0 +1,47 @@
+{
+  "exp_id": "phase2_scierc_full_s2",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:36:35.941Z",
+    "updated_at": "2026-05-14T01:13:09.036Z",
+    "spec": {
+      "command": "bash -c \"tmux kill-session -t phase2_scierc_full_s2 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s2 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s2.jsonl --device cuda:0 --batch_size 1 --resume\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s2.log",
+      "submitted_at": "2026-05-14T01:07:00.401Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 368.6,
+      "gpu_hours": 0.1
+    },
+    "hypothesis": "S2 两通道约束解码全量验证 — Grammar (Pass 1) + Semantic (Pass 2) 分离式约束。S2 pilot50 已验证 D/R violation=0%，全量运行检验 F1 稳定性和 per-relation 效果。与 S1 对比验证两种架构的 F1-violation trade-off。",
+    "notes": "Resume from 88/551. PID 144858 确认存活 (105/551 at 01:10 UTC)。旧 tmux session 被命令内的 kill-session 误杀（教训：不要在 allocate_and_submit 命令内放 tmux kill-session），进程以孤儿方式继续运行。已重新注册 cron 追踪 PID 144858。",
+    "server": "westd-16980",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-16980",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-14T01:06:58.685Z",
+      "command": "bash -c \"tmux kill-session -t phase2_scierc_full_s2 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s2 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s2.jsonl --device cuda:0 --batch_size 1 --resume\"",
+      "finished_at": "2026-05-14T01:13:08.809Z",
+      "training_hours": 0.1
+    },
+    "pid": 144858,
+    "log_path": "~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s2.log",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-14T01:13:09.036Z"
+  },
+  "timestamp": "2026-05-14T01:13:09.069491+00:00",
+  "trigger": "update_registry"
+}

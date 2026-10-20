@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "273d107d37e25034e97e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "diag d062 full ft scierc",
+  "task_key": "worker_diag_d062_full_ft_scierc_20260519T045139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_d062_full_ft_scierc_20260519T045139_result.json",
+    "occurrence": 1,
+    "bytes": 742,
+    "sha256": "01de5267533f68f31ce5d1542efbd5533510679ab08dbf36e3595f245338bcc1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**一句话总结**: 训练成功完成 (3 epochs, eval accuracy 97.6%)，但 checkpoint 保存时 `/dev/md0` 数据盘 (250GB) 空间不足导致 safetensors 序列化失败 (`os error 28: No space left on device`)。\n\n**当前状态**: checkpoint 已被手动恢复保存，constrained inference (full_s1) 正在 tmux 中运行 (176/551 samples)。**不需要重新训练或重试。**\n\n**两个需要关注的点**:\n1. 数据盘 250GB 已用 65% (models 83GB + checkpoints 77GB)，建议清理旧 checkpoints\n2. `WANDB_DISABLED=true` 是脚本里显式设置的，所以 cron 监控看不到 W&B 指标是预期行为，不是异常\n\n报告已写入 `artifacts/d062_full_ft_scierc/diagnosis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-d062-full-ft-scierc.md"
+}

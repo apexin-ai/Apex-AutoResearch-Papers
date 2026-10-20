@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19cf9c4972258afdaf33",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research new citations bibtex v2",
+  "task_key": "worker_research_new_citations_bibtex_v2_20260518T162834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_new_citations_bibtex_v2_20260518T162834_result.json",
+    "occurrence": 1,
+    "bytes": 1041,
+    "sha256": "d25669bf43fb980f5032b6e2fcb377cabcd4702999231f71aa08dc9a38482945"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9 篇论文的 BibTeX 全部获取完毕，已写入并注册。汇总：\n\n| # | Citation Key | 论文 | 来源 | 状态 |\n|---|---|---|---|---|\n| 1 | `sakota2025boostcd` | BoostCD (EMNLP 2025 Main) | ACL Anthology | OK |\n| 2 | `park2024grammaraligned` | Grammar-Aligned Decoding (NeurIPS 2024) | NeurIPS Proceedings | OK |\n| 3 | `lee2026formattax` | The Format Tax (arXiv 2604.03616) | arXiv | OK |\n| 4 | `schall2025hiddencost` | The Hidden Cost of Structure (RANLP 2025) | ACL Anthology | OK |\n| 5 | `reddy2026dccd` | DCCD (arXiv 2603.03305) | arXiv | OK |\n| 6 | `shen2025slot` | SLOT (EMNLP 2025 Industry) | ACL Anthology | OK |\n| 7 | `delafuente2025guidex` | GUIDEX (ACL 2025 Findings) | ACL Anthology | OK |\n| 8 | `lu2025schemarl` | Schema RL (ACL 2025 Main) | ACL Anthology | OK |\n| 9 | `geng2025jsonschemabench` | JSONSchemaBench (arXiv 2501.10868) | arXiv | OK |\n\n所有条目均有完整作者列表、标题、venue、year、url，无 UNVERIFIED 标记。文件路径：`artifacts/new_citations.bib`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-new-citations-bibtex-v2.md"
+}

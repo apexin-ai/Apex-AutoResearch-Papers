@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15cddcb12d437a5b0989",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "verify cf fallback dryrun",
+  "task_key": "worker_verify_cf_fallback_dryrun_20260515T113020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_cf_fallback_dryrun_20260515T113020_result.json",
+    "occurrence": 1,
+    "bytes": 1495,
+    "sha256": "7b14b29ce915264b9bdeee6c2ab4ddc99faf7e9a9ff366bbc6be31ae8c64c0c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## CF Fallback Dry-Run 验证报告 — 摘要\n\n**结论：有问题。** CF fallback 代码与数据/模型全部就绪，但任务给出的 4 条命令中有 3 处路径错误，原样执行会立刻 FileNotFoundError。\n\n**代码 (PASS)**：`compiler/type_mask_processor.py` 的 CF registry-consistent fallback 完整 — `_cf_fallback_count` (L205/309/352/423-426)，`_mask_head_type` else 分支 (L306-311)，`_mask_tail_type` else 分支 (L349-354)，`reset()` logging (L419-427)。\n\n**路径错误（必须修正）**：\n\n| 任务命令路径 | 实际路径 |\n|---|---|\n| `/root/autodl-tmp/models/Qwen/Qwen3-8B` | `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`（有符号链接 `Qwen3-8B-link`） |\n| `data/scierc/test.json` | `data/processed_data/test.json` |\n| `data/scierc/ontology_constraints_scierc.json` | `ontology_constraints.json`（项目根） |\n\n**受影响实验**：scierc_pilot 改 3 处；docred 改 1 处（Qwen 路径）；llama_scierc 改 2 处（数据路径）；llama_docred 无需改。\n\n**其他 (PASS)**：Llama-3.1-8B config.json 存在 (855B)；docred 数据 (4.1MB) + 约束 (62KB) 路径正确；outputs/ 下无 `w1_cf_fallback_*` 冲突文件；`--help` 正常；磁盘 `/root` 22GB，`/root/autodl-tmp` 193GB 可用。\n\n完整报告（含修正后的可执行命令）已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback/dryrun_verification.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-cf-fallback-dryrun.md"
+}

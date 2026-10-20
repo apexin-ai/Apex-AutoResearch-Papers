@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ad23647b485fe92a274",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "critical resubmit semantic full s1",
+  "task_key": "worker_critical_resubmit_semantic_full_s1_20260514T003549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_critical_resubmit_semantic_full_s1_20260514T003549_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "54104dfca35435844da04789425b9bf3906db318d65710c431a1c0f2f8eabe37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已成功加载模型，正在运行推理。\n\n**最终状态：**\n\n| GPU | PID | 任务 | 显存 | 状态 |\n|-----|-----|------|------|------|\n| 0 | 137719 | docred schema_informed | 20352 MiB | 运行中 (90% util) |\n| 1 | 138136 | **full_s2** (已有) | 16480 MiB | 运行中 |\n| 1 | 139051 | **full_s1** (新提交) | 16480 MiB | 运行中 |\n| 1 | 139923 | **semantic_only** (新提交) | 加载中 | 模型加载完成 |\n\nGPU 1 总用量 ~48GB/98GB (加载完后约 ~64GB)，安全。两个 GPU 利用率均 90%+。\n\n**注意事项：**\n1. 两个实验都在 **cuda:1** 上（因 cuda:0 被 docred 占用），而非原计划的分开两张卡\n2. 清理了 2 个重复的 semantic_only 进程（PID 138674, 139423），它们会与我们的进程写同一输出文件导致数据损坏\n3. `submit_training_job` 工具不可用，用 tmux 启动，未自动注册 cron 监控——如需定期检查状态请告知"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/critical-resubmit-semantic-full-s1.md"
+}

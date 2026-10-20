@@ -1,0 +1,15 @@
+{
+  "exp_id": "d065_qwen_greedy_4096",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:15:26.700Z",
+    "updated_at": "2026-05-20T03:15:30.898Z",
+    "hypothesis": "Qwen3-8B LoRA on full DocRED dev (998 docs) with greedy 4096 tokens will show comparable DR elimination under constrained decoding as seen in SciERC, confirming schema-semantic constraints generalize to high-cardinality relation extraction (96 types)."
+  },
+  "timestamp": "2026-05-20T03:15:31.192306+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,32 @@
+{
+  "exp_id": "p1_ee_ft_llama_r2",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:28:30.109Z",
+    "updated_at": "2026-05-18T23:44:36.608Z",
+    "hypothesis": "After fixing schema mismatch (entities not required in EE JSON schema) and adding repetition_penalty=1.2, Llama-3.1-8B FT on WikiEvents EE will produce parseable constrained output with RoV/AC violations eliminated, validating dual-model composability on event extraction.",
+    "parent": "p1_ee_ft_llama",
+    "metrics": {
+      "parse_rate_unconstrained": 1,
+      "parse_rate_constrained": 1,
+      "trigger_f1_unconstrained": 0.2752,
+      "trigger_f1_constrained": 0.2691,
+      "argument_f1_unconstrained": 0.0998,
+      "argument_f1_constrained": 0.0891,
+      "entity_f1": 0,
+      "rov_rate_unconstrained": 0.088,
+      "rov_rate_constrained": 0,
+      "ac_rate_unconstrained": 0.035,
+      "ac_rate_constrained": 0.008,
+      "go_nogo_unconstrained": 0.122,
+      "go_nogo_constrained": 0.0078
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T23:44:36.830460+00:00",
+  "trigger": "update_registry"
+}

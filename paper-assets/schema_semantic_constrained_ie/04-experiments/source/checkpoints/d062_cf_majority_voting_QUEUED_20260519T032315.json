@@ -1,0 +1,15 @@
+{
+  "exp_id": "d062_cf_majority_voting",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:15:34.085Z",
+    "updated_at": "2026-05-19T03:23:15.037Z",
+    "hypothesis": "Majority voting over entity types within each document can reduce CF violations without significantly increasing DR violations, because the most frequent type assignment for each entity is likely the ontology-consistent one."
+  },
+  "timestamp": "2026-05-19T03:23:15.362023+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "w10_qwen_scierc_ft_beam_4",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T09:47:48.852Z",
+    "updated_at": "2026-05-17T09:50:25.819Z",
+    "hypothesis": "FT+beam composability: Qwen3-8B SciERC LoRA FT + beam k=4 + full_s1 constraints will reduce residual DR from FT greedy (0.20%) to 0%, demonstrating that beam search eliminates the last constraint-search failures even in fine-tuned models. Validates full-stack OntoCoDec+FT+beam composability."
+  },
+  "timestamp": "2026-05-17T09:50:26.011714+00:00",
+  "trigger": "update_registry"
+}

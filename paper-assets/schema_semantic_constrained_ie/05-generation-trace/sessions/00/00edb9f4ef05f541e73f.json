@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00edb9f4ef05f541e73f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops kill 728348 16980",
+  "task_key": "worker_ops_kill-728348-16980_20260520T082735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-728348-16980_20260520T082735_result.json",
+    "occurrence": 1,
+    "bytes": 473,
+    "sha256": "82a6484c2ea5af4a0925f013a1fe833068fe75853f1aba68dbe100812a5339f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **728348**: 已 kill，进程不存在\n- **732035**: 运行中，已跑 1h04m，GPU0 独占（18.9GB / 97.9GB），GPU 利用率 72%\n- **GPU1**: 已完全释放（0MB），空闲\n- **进度**: 92/200 docs（46%）\n\n**预估剩余时间**：之前 88 docs 用了约 1h（有 GPU 竞争），现在 GPU0 无竞争，速度应提升。剩余 108 docs，保守估计加速 30-50%，预计还需 **50-75 分钟**（约 17:20-17:45 完成）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-728348-16980.md"
+}

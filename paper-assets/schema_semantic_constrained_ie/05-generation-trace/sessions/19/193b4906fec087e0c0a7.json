@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "193b4906fec087e0c0a7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "build paper recompile 20260515",
+  "task_key": "worker_build_paper_recompile_20260515_20260515T065052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_build_paper_recompile_20260515_20260515T065052_result.json",
+    "occurrence": 1,
+    "bytes": 2214912,
+    "sha256": "1e71eec7c20d1f69a8cf9e889210c54f80bd79783fdf6dae1d96c007e89dd19b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2449878,
+                "serialized_sha256": "8736538ce32d27df734333c5c5435254658e0497c72587bc37c62aa04bb482a3",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/build-paper-recompile-20260515.md"
+}

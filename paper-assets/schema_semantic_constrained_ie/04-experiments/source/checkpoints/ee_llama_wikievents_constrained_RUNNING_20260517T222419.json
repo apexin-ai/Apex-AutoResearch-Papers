@@ -1,0 +1,37 @@
+{
+  "exp_id": "ee_llama_wikievents_constrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T19:49:20.228Z",
+    "updated_at": "2026-05-17T22:24:18.927Z",
+    "hypothesis": "WikiEvents constrained decoding (full_s1 + continuation masking v2) will eliminate EV violations (10.5%→0%) and dramatically reduce RoV (88.8%→near 0%) with minimal F1 impact, demonstrating cross-task generalizability of OntoCoDec from RE to EE",
+    "spec": {
+      "command": "python run_constrained_extraction.py --model_name meta-llama/Llama-3.1-8B-Instruct --dataset wikievents --data_path data/wikievents/all.jsonl --constraint_mode full_s1 --ontology_path data/wikievents/ontology_constraints_wikievents.json --output_file outputs/wikievents_llama_constrained_full.jsonl --max_new_tokens 4096",
+      "server": "westd-16980",
+      "data_path": "data/wikievents/all.jsonl",
+      "data_count": 246,
+      "model_name": "meta-llama/Llama-3.1-8B-Instruct",
+      "seed": "default"
+    },
+    "metrics": {
+      "parse_success": "212/246 (86.2%)",
+      "ET": 0,
+      "EV": 0,
+      "RoV": 0,
+      "AC": 3.7,
+      "CF": 15.3,
+      "trigger_f1": 0.0803,
+      "argument_f1": 0.0116,
+      "entity_f1": 0.1795,
+      "parse_failures": 34,
+      "go_no_go": 3.69
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T22:24:19.114834+00:00",
+  "trigger": "update_registry"
+}

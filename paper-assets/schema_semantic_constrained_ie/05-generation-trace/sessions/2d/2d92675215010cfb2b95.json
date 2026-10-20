@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d92675215010cfb2b95",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops llama eval timeout fix",
+  "task_key": "worker_ops_llama_eval_timeout_fix_20260515T231151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama_eval_timeout_fix_20260515T231151_result.json",
+    "occurrence": 1,
+    "bytes": 936,
+    "sha256": "8b9258862f16cdd695f105393e33e101a2ad3ad66226e8d0215c455055de083e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n| 项目 | 状态 |\n|------|------|\n| **原进程** | 已死亡 — kill timeout PID 303529 时信号传播杀掉了 python 子进程 303530 |\n| **JSONL 进度** | 被 kill 时 775/998，当前 783/998（resume 已续跑 8 个新样本） |\n| **Resume 验证** | 无重复（grep 确认），文件以 append 模式追加 |\n| **timeout 状态** | 已解除 — 新进程用 nohup 启动，无 timeout wrapper |\n| **新进程** | PID 312925，GPU 0 (16364 MiB)，运行正常 |\n| **预计完成** | 剩余 ~215 样本 × ~15s ≈ 54min，无超时风险 |\n| **GPU 1** | Qwen eval (PID 304011) 仍在正常运行，17418 MiB |\n\n**注意**：`timeout` 收到 SIGTERM 时会把信号转发给整个子进程组，`kill <timeout_pid>` 无法单独杀 timeout 而保留子进程。今后如需解除 timeout，应先将子进程 `disown` 或用 `kill -STOP` + `setsid` 隔离进程组后再杀 timeout。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama-eval-timeout-fix.md"
+}

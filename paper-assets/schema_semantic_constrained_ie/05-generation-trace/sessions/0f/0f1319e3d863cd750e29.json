@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f1319e3d863cd750e29",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check compile quantization appendix",
+  "task_key": "worker_check_compile-quantization-appendix_20260523T080201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_compile-quantization-appendix_20260523T080201_result.json",
+    "occurrence": 1,
+    "bytes": 436,
+    "sha256": "7d2b0b96d2fa96563d413a8dcea2990eb416f91dee18380603e71d23da7e1a8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，39 页 PDF 已生成。\n\n**appendix_quantization.tex 结果**：\n- **无 error**\n- **无 overfull hbox**（表格宽度正常，`\\resizebox{\\columnwidth}` 生效）\n- 唯一警告：一个 `Underfull \\vbox (badness 2875)`，这是页面分页时的正常松散警告，不影响渲染\n- `\\textsuperscript{\\dag}` / `\\textsuperscript{\\ddag}` 和 `\\addlinespace[4pt]` 均无报错，正确编译"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-compile-quantization-appendix.md"
+}

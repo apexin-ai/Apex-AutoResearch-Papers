@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "051938d51e12309ef770",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper bootstrap ci integration",
+  "task_key": "worker_paper_bootstrap-ci-integration_20260522T084539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_bootstrap-ci-integration_20260522T084539_result.json",
+    "occurrence": 1,
+    "bytes": 425,
+    "sha256": "0490fbd47cfb8d27b537790e602a4d3bb739fbb6edd77e8d4ff67c872b80435f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修改完成：\n\n1. **Line 106-107**（composability 段落）：插入一句 bootstrap 结论，带 `% exp_ids` 注释标注数据来源\n2. **Line 143**（Table 2 caption）：替换旧的 `p>0.05` 统计描述为 Bonferroni 校正后的精确结果\n\n关键数据：4 对比较均未通过 Bonferroni 校正（α/4=0.0125），最小 p=0.014（Qwen-DocRED），所有 95% CI ⊆ [-0.76, +0.22]pp。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-bootstrap-ci-integration.md"
+}

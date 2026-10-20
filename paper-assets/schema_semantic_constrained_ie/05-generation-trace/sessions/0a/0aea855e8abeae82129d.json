@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0aea855e8abeae82129d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "emergency llama scierc full s1 dedup",
+  "task_key": "worker_emergency_llama_scierc_full_s1_dedup_20260514T141055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_emergency_llama_scierc_full_s1_dedup_20260514T141055_result.json",
+    "occurrence": 1,
+    "bytes": 1321,
+    "sha256": "87322e24d16463979a6189834af401264e98d42b74528d80024d2dcb03d120d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据结构清晰了。汇总报告：\n\n---\n\n## 诊断结果\n\n### 1. 进程状态\n- **PID 190653**: 已死亡，无需处理\n- **PID 190246**: 正常运行，21:48 启动，是唯一活跃进程\n\n### 2. 数据完整性\n| 指标 | 值 |\n|------|------|\n| 总输出行 | 335（持续增长中） |\n| 有效 JSON | 334 |\n| 损坏行 | **1**（第 194 行，`N04-1022_sent3`，缺 `{\"doc` 前缀） |\n| 重复 doc_id | **0** |\n| 输出顺序 | **完美顺序** index 0→334，唯一 gap 恰在第 193 号（即损坏行） |\n\n### 3. 根因分析\n- 脚本未带 `--resume`，文件以 `\"w\"` 模式打开\n- 190653 启动时截断了文件，但很快死亡（可能 GPU 显存冲突）\n- 当前 PID 190246 实际是**后启动的那个进程**（21:48 启动，运行仅约 28 分钟），并非原始的 6h 进程\n- 损坏发生在两个进程并发写入的瞬间，仅影响 1 行\n\n### 4. 结论：**情况 B（轻微变体）**\n- 数据 **未严重损坏**，仅 1/551 行受损，0 重复\n- PID 190246 正常推进中，当前已完成 334/551\n- 剩余 217 样本，约 **16-20 分钟**完成\n\n### 5. 建议处理\n- **让 190246 继续运行至完成**\n- 完成后删除第 194 行坏数据，用 `--resume` 单独补跑 `N04-1022_sent3`\n- 最终结果：551/551 完整"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/emergency-llama-scierc-full-s1-dedup.md"
+}

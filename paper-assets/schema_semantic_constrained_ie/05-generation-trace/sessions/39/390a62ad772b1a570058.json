@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "390a62ad772b1a570058",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis docred minimal completion",
+  "task_key": "worker_analysis_docred_minimal_completion_20260513T213630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_docred_minimal_completion_20260513T213630_result.json",
+    "occurrence": 1,
+    "bytes": 434,
+    "sha256": "bf856e355701e0d5e0b771aaa036c3c1d7efaf8367775fe0649ad1eab73958f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程仍在运行，尚未完成。\n\n**当前状态：**\n- **PID 113153**：运行中，已运行 **2小时5分56秒**，内存占用 ~1.9GB\n- **进度**：957 / 998 行（**95.8%**）\n- **预估剩余时间**：按当前速率（957行/126分钟 ≈ 7.6行/分钟），剩余41行约需 **~5分钟**\n\n进程即将完成，建议几分钟后再检查并跑 violation analysis。需要我稍后自动检查吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-docred-minimal-completion.md"
+}

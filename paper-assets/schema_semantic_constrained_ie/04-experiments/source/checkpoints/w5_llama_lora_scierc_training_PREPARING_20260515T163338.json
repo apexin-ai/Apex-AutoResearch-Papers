@@ -1,0 +1,20 @@
+{
+  "exp_id": "w5_llama_lora_scierc_training",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:33:38.168Z",
+    "updated_at": "2026-05-15T16:33:38.168Z",
+    "spec": {
+      "hypothesis": "Llama-3.1-8B-Instruct LoRA fine-tune on SciERC, extending Claim 3 composability to cross-model. Mirrors Qwen3-8B LoRA config (r=16, alpha=32, lr=2e-4, 3 epochs).",
+      "parent": "w5_lora_scierc_training",
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "dataset": "SciERC"
+    }
+  },
+  "timestamp": "2026-05-15T16:33:38.316029+00:00",
+  "trigger": "update_registry"
+}

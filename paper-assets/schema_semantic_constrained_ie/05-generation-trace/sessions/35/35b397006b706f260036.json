@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0",
+  "id": "35b397006b706f260036",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "research ref audit beta",
+  "task_key": "worker_research_ref-audit-beta_20260526T101833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-beta_20260526T101833.log",
+    "occurrence": 1,
+    "bytes": 943359,
+    "sha256": "6c12d7f409402d1db1ea5029aba091940657be0e97784ee8e2682c70ae2828d0"
+  },
+  "statistics": {
+    "messages": 446,
+    "user_turns": 6,
+    "tool_calls": 141,
+    "roles": {
+      "log": 1,
+      "system": 140,
+      "record": 3,
+      "assistant": 13,
+      "tool_call": 141,
+      "tool_result": 141,
+      "user": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "35b397006b706f260036-part-0001.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 36,
+      "chunks": [
+        {
+          "path": "35b397006b706f260036-part-0001.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "35b397006b706f260036-part-0001.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "35b397006b706f260036-part-0001.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 65,
+      "chunks": [
+        {
+          "path": "35b397006b706f260036-part-0001.json",
+          "message_count": 65
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 43,
+      "chunks": [
+        {
+          "path": "35b397006b706f260036-part-0001.json",
+          "message_count": 9
+        },
+        {
+          "path": "35b397006b706f260036-part-0002.json",
+          "message_count": 34
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 232,
+      "chunks": [
+        {
+          "path": "35b397006b706f260036-part-0002.json",
+          "message_count": 146
+        },
+        {
+          "path": "35b397006b706f260036-part-0003.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-ref-audit-beta.md"
+}

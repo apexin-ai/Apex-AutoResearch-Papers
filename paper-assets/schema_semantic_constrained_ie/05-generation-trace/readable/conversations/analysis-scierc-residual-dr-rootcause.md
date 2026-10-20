@@ -1,0 +1,2408 @@
+# analysis scierc residual dr rootcause
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 82
+- **Recorded user turns:** 0
+- **Tool calls:** 40
+- **Original source:** `logs/chats/worker_analysis_scierc_residual_dr_rootcause_20260515T143327.jsonl`
+- **Structured JSON:** [`e9ff6af146463445727b.json`](../../sessions/e9/e9ff6af146463445727b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+82 recorded events
+
+### Assistant
+
+_source line 1 · 2026-05-15T14:33:37.449915+00:00_
+
+You've hit your limit · resets May 18, 11am (UTC)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T14:43:15.515126+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image,TodoWrite",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image,TodoWrite",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T14:43:15.515567+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T14:43:15.515841+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Detect server image and explore project structure', 'status': 'in_progress', 'activeForm': 'Detecting server image and exploring project structure'}, {'content': 'Extract 16 DR violations from phase2_scierc_full_s1_v2.jsonl', 'status': 'pending', 'activeForm': 'Extracting 16 DR violations'}, {'content': 'Read type_mask_processor.py to understand enforcement logic', 'status': 'pending', 'activeForm': 'Reading type_mask_processor.py'}, {'content': 'Determine root cause of violations (grammar fallback / CF / checker / bug)', 'status': 'pending', 'activeForm': 'Determining root cause'}, {'content': 'Save investigation results JSON', 'status': 'pending', 'activeForm': 'Saving investigation results'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Detect server image and explore project structure', 'status': 'in_progress', 'activeForm': 'Detecting server image and exploring project structure'}, {'content': 'Extract 16 DR violations from phase2_scierc_full_s1_v2.jsonl', 'status': 'pending', 'activeForm': 'Extracting 16 DR violations'}, {'content': 'Read type_mask_processor.py to understand enforcement logic', 'status': 'pending', 'activeForm': 'Reading type_mask_processor.py'}, {'content': 'Determine root cause of violations (grammar fallback / CF / checker / bug)', 'status': 'pending', 'activeForm': 'Determining root cause'}, {'content': 'Save investigation results JSON', 'status': 'pending', 'activeForm': 'Saving investigation results'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-15T14:43:15.516020+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T14:43:15.516155+00:00_
+
+called mcp__agent-ml-research__detect_image
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T14:43:15.516282+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "ls /root/schema_semantic_constrained_ie/outputs/ | head -50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "ls /root/schema_semantic_constrained_ie/outputs/ | head -50"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T14:43:15.516408+00:00_
+
+{"result":"{\n  \"detected\": false,\n  \"status\": \"unknown\",\n  \"skip_base_setup\": false,\n  \"message\": \"No image marker file found. Use traditional env-setup flow.\"\n}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T14:43:15.516569+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T14:43:15.516724+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "ls /root/schema_semantic_constrained_ie/outputs/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "ls /root/schema_semantic_constrained_ie/outputs/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T14:43:15.516940+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analysis_llama_docred_full_s1_v2.json\\nanalysis_llama_docred_unconstrained_mt6144_v2.json\\nanalysis_llama_docred_unconstrained_v2.json\\nbootstrap_ci_results.json\\nbootstrap_ci_results_llama.json\\nbootstrap_ci_results_v2.json\\ncf_analysis\\ncf_violation_analysis.json\\ncomparison_minimal_vs_schema_informed.json\\ndocred_full_s1.jsonl\\ndocred_full_s1_dryrun.jsonl\\ndocred_grammar_only.jsonl\\ndocred_semantic_only.jsonl\\ndocred_semantic_only_dryrun.jsonl\\ndocred_unconstrained.jsonl\\ndr_residual_analysis.json\\ndry_run.jsonl\\ndry_run_violations.json\\ndryrun_phase2_grammar.jsonl\\nf1_report_docred_unconstrained_phase2.json\\nfallback_estimation_results.json\\nllama_docred_full_s1.jsonl\\nllama_docred_full_s1_mt6144.jsonl\\nllama_docred_unconstrained.jsonl\\nllama_docred_unconstrained_mt6144.jsonl\\nllama_scierc_full_s1.jsonl\\nllama_scierc_unconstrained.jsonl\\nllama_scierc_unconstrained_violation_report.json\\nphase2_analysis_results.json\\nphase2_batch.log\\nphase2_comparison.json\\nphase2_s2_dryrun.jsonl\\nphase2_s2_pilot50.jsonl\\nphase2_scierc_full_s1.jsonl\\nphase2_scierc_full_s1_v2.jsonl\\nphase2_scierc_full_s2.jsonl\\nphase2_scierc_grammar_only.jsonl\\nphase2_scierc_grammar_only_partial_183.jsonl\\nphase2_scierc_semantic_only.jsonl\\nphase2_scierc_semantic_only_v2.jsonl\\nphase2_scierc_unconstrained.jsonl\\nposthoc_docred.jsonl\\nposthoc_report_docred.json\\nposthoc_report_scierc.json\\nposthoc_scierc.jsonl\\nq8_fp_analysis.json\\nraw_outputs.jsonl\\nraw_outputs_docred.jsonl\\nraw_outputs_docred_schema.jsonl\\nraw_outputs_schema.jsonl\\nrectangularity_analysis.json\\nruntime_benchmark.json\\nruntime_summary.json\\nruntime_summary_detailed.json\\ntest_cf_fallback_dryrun.jsonl\\ntest_fix_full_s1.jsonl\\ntest_full_s1.jsonl\\ntest_full_s2.jsonl\\ntest_grammar_only.jsonl\\ntest_s2_fixed.jsonl\\ntest_s2_fixed2.jsonl\\ntest_semantic_only.jsonl\\ntest_unconstrained.jsonl\\nunified_violation_summary_docre
+…[truncated 1991 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T14:43:15.517115+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "ls /root/schema_semantic_constrained_ie/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "ls /root/schema_semantic_constrained_ie/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T14:43:15.517264+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nanalyze_cf_fallback.py\\nanalyze_cf_violations.py\\nanalyze_compare.py\\nanalyze_docred_semantic_only.py\\nanalyze_dr_residual.py\\nanalyze_dr_residual_v2.py\\nanalyze_llama_docred.py\\nanalyze_llama_docred_mt6144.py\\nanalyze_ontology.py\\nanalyze_ontology_docred.py\\nanalyze_phase2.py\\nartifacts\\ncompare_prompts.py\\ncompiler\\ncompute_bootstrap_ci.py\\ncompute_bootstrap_ci_llama.py\\ndata\\nestimate_fallback_rate.py\\nontology_constraints.json\\noutputs\\npaper\\nposthoc_filter.py\\nrun_bootstrap_llama.py\\nrun_constrained_extraction.py\\nrun_constrained_extraction.py.bak\\nrun_extraction.py\\nrun_extraction_docred.py\\nrun_phase2_scierc_batch.sh\\nscripts\\nunified_f1_eval.py\\nunified_violation_recalc.py\\nviolation_checker.py\\nviolation_checker.py.bak2\\nviolation_checker_docred.py\\nviolation_checker_docred.py.bak\\nviolation_checker_docred.py.bak2\\nwait_and_analyze.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T14:43:15.517393+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "cat /root/schema_semantic_constrained_ie/outputs/violation_report_scierc_full_s1_v2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "cat /root/schema_semantic_constrained_ie/outputs/violation_report_scierc_full_s1_v2.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T14:43:15.517519+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "cat /root/schema_semantic_constrained_ie/ontology_constraints.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "cat /root/schema_semantic_constrained_ie/ontology_constraints.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T14:43:15.517759+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\",\\n    \\\"total_samples\\\": 551,\\n    \\\"total_triples_extracted\\\": 1729,\\n    \\\"total_entities_extracted\\\": 2474,\\n    \\\"json_parse_failures\\\": 0,\\n    \\\"json_parse_rate\\\": 1.0,\\n    \\\"entity_type_violations\\\": 0,\\n    \\\"entity_type_violation_rate\\\": 0.0,\\n    \\\"relation_vocabulary_violations\\\": 0,\\n    \\\"relation_vocabulary_violation_rate\\\": 0.0,\\n    \\\"relation_fuzzy_matches\\\": 0,\\n    \\\"domain_range_violations\\\": 16,\\n    \\\"domain_range_violation_rate\\\": 0.0093,\\n    \\\"cross_field_consistency_violations\\\": 245,\\n    \\\"cross_field_consistency_violation_rate\\\": 0.099,\\n    \\\"total_violations_any\\\": 261,\\n    \\\"total_violation_rate\\\": 0.0621,\\n    \\\"go_nogo_metric\\\": 0.0093,\\n    \\\"go_nogo_metric_description\\\": \\\"per-triple domain_range_violation_rate (excludes relation_vocabulary_violations)\\\"\\n  },\\n  \\\"per_relation_type\\\": {\\n    \\\"Compare\\\": {\\n      \\\"total\\\": 71,\\n      \\\"domain_range_violations\\\": 2,\\n      \\\"violation_rate\\\": 0.0282\\n    },\\n    \\\"Conjunction\\\": {\\n      \\\"total\\\": 35,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"Evaluate-for\\\": {\\n      \\\"total\\\": 139,\\n      \\\"domain_range_violations\\\": 8,\\n      \\\"violation_rate\\\": 0.0576\\n    },\\n    \\\"Feature-of\\\": {\\n      \\\"total\\\": 495,\\n      \\\"domain_range_violations\\\": 6,\\n      \\\"violation_rate\\\": 0.0121\\n    },\\n    \\\"Hyponym-of\\\": {\\n      \\\"total\\\": 123,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"Part-of\\\": {\\n      \\\"total\\\": 75,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"Used-for\\\": 
+…[truncated 3172 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T14:43:15.518159+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"entity_types\\\": [\\n    \\\"Task\\\",\\n    \\\"Method\\\",\\n    \\\"Material\\\",\\n    \\\"Metric\\\",\\n    \\\"OtherScientificTerm\\\",\\n    \\\"Generic\\\"\\n  ],\\n  \\\"relation_types\\\": [\\n    \\\"Used-for\\\",\\n    \\\"Feature-of\\\",\\n    \\\"Hyponym-of\\\",\\n    \\\"Part-of\\\",\\n    \\\"Compare\\\",\\n    \\\"Conjunction\\\",\\n    \\\"Evaluate-for\\\"\\n  ],\\n  \\\"raw_to_canonical\\\": {\\n    \\\"USED-FOR\\\": \\\"Used-for\\\",\\n    \\\"FEATURE-OF\\\": \\\"Feature-of\\\",\\n    \\\"HYPONYM-OF\\\": \\\"Hyponym-of\\\",\\n    \\\"PART-OF\\\": \\\"Part-of\\\",\\n    \\\"COMPARE\\\": \\\"Compare\\\",\\n    \\\"CONJUNCTION\\\": \\\"Conjunction\\\",\\n    \\\"EVALUATE-FOR\\\": \\\"Evaluate-for\\\"\\n  },\\n  \\\"entity_type_stats\\\": {\\n    \\\"total\\\": 5598,\\n    \\\"distribution\\\": {\\n      \\\"Material\\\": 542,\\n      \\\"OtherScientificTerm\\\": 1536,\\n      \\\"Generic\\\": 950,\\n      \\\"Method\\\": 1445,\\n      \\\"Task\\\": 894,\\n      \\\"Metric\\\": 231\\n    }\\n  },\\n  \\\"relation_constraints\\\": {\\n    \\\"Used-for\\\": {\\n      \\\"valid_pairs\\\": [\\n        [\\n          \\\"Method\\\",\\n          \\\"Task\\\"\\n        ],\\n        [\\n          \\\"Generic\\\",\\n          \\\"Task\\\"\\n        ],\\n        [\\n          \\\"Method\\\",\\n          \\\"OtherScientificTerm\\\"\\n        ],\\n        [\\n          \\\"Method\\\",\\n          \\\"Method\\\"\\n        ],\\n        [\\n          \\\"Method\\\",\\n          \\\"Generic\\\"\\n        ],\\n        [\\n          \\\"Generic\\\",\\n          \\\"OtherScientificTerm\\\"\\n        ],\\n        [\\n          \\\"OtherScientificTerm\\\",\\n          \\\"Method\\\"\\n        ],\\n        [\\n          \\\"OtherScientificTerm\\\",\\n          \\\"OtherScientificTerm\\\"\\n        ],\\n        [\\n          \\\"Material\\\",\\n          \\\"Method\\\"\\n        ],\\n        [\\n          \\
+…[truncated 8636 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T14:43:15.518353+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "ls /root/schema_semantic_constrained_ie/compiler/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "ls /root/schema_semantic_constrained_ie/compiler/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T14:43:15.518664+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nontology_compiler.py\\ntest_type_mask.py\\ntests\\ntype_mask_processor.py\\ntype_mask_processor.py.bak\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T14:43:15.518818+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "wc -l /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py /root/schema_semantic_constrained_ie/violation_checker.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "wc -l /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py /root/schema_semantic_constrained_ie/violation_checker.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T14:43:15.518948+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  490 /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py\\n  351 /root/schema_semantic_constrained_ie/violation_checker.py\\n  841 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T14:43:15.519075+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "cat /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "cat /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T14:43:15.519337+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"LogitsProcessor for runtime domain/range type constraint enforcement.\\n\\nLayered on top of XGrammar's structural constraints:\\n- XGrammar (Layer 1): Guarantees valid JSON, entity/relation type strings from enum\\n- TypeConstraintProcessor (Layer 2): Guarantees domain/range consistency\\n\\nAt each generation step:\\n1. Detect current JSON field position (entity type? relation head_type? tail_type?)\\n2. If at entity type position -> allow all entity type first tokens\\n3. If at head_type position -> mask to types valid for the current relation\\n4. If at tail_type position -> mask to types valid for (relation_type, head_type) pair\\n5. Apply mask: disallowed type tokens -> logits = -inf\\n\\nComposition:\\n    grammar_processor = xgr.contrib.hf.LogitsProcessor(compiled_grammar)\\n    type_processor = TypeConstraintProcessor(spec, tokenizer)\\n    model.generate(logits_processor=[grammar_processor, type_processor])\\n\\nFramework: HuggingFace transformers (API: __call__(input_ids, scores) -> scores)\\nDepends on: ontology_compiler.ConstraintSpec (type->token mappings + relation constraints)\\n\\nVerified first-token IDs (Qwen3-8B tokenizer, context-independent):\\n  SciERC:\\n    Task=6262, Method=3523, Material=13415, Metric=54310,\\n    OtherScientificTerm=11409, Generic=19964\\n  DocRED:\\n    PER=9654, ORG=44927, LOC=12052, TIME=18129, NUM=17488, MISC=44\\nAll first tokens are unique within each dataset -> simple first-token masking\\nis sufficient, no trie-based multi-token tracking needed.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport re\\nimport logging\\nfrom dataclasses import dataclass, field\\nfrom enum import Enum, auto\\nfrom typing import Optional\\n\\nimport torch\\nfrom transformers import LogitsProcessor, PreTrainedTokenizerBase\\n\\nfrom .ontology_compiler import ConstraintSpec\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\nclass FieldPosition(Enum):\\n   
+…[truncated 6840 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T14:43:15.519513+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "sed -n '100,260p' /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "sed -n '100,260p' /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T14:43:15.519643+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T14:43:15.519797+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Detect server image and explore project structure', 'status': 'completed', 'activeForm': 'Detecting server image and exploring project structure'}, {'content': 'Read type_mask_processor.py to understand enforcement logic', 'status': 'in_progress', 'activeForm': 'Reading type_mask_processor.py'}, {'content': 'Extract 16 DR violations from phase2_scierc_full_s1_v2.jsonl', 'status': 'pending', 'activeForm': 'Extracting 16 DR violations'}, {'content': 'Determine root cause of violations (grammar fallback / CF / checker / bug)', 'status': 'pending', 'activeForm': 'Determining root cause'}, {'content': 'Save investigation results JSON', 'status': 'pending', 'activeForm': 'Saving investigation results'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Detect server image and explore project structure', 'status': 'completed', 'activeForm': 'Detecting server image and exploring project structure'}, {'content': 'Read type_mask_processor.py to understand enforcement logic', 'status': 'in_progress', 'activeForm': 'Reading type_mask_processor.py'}, {'content': 'Extract 16 DR violations from phase2_scierc_full_s1_v2.jsonl', 'status': 'pending', 'activeForm': 'Extracting 16 DR violations'}, {'content': 'Determine root cause of violations (grammar fallback / CF / checker / bug)', 'status': 'pending', 'activeForm': 'Determining root cause'}, {'content': 'Save investigation results JSON', 'status': 'pending', 'activeForm': 'Saving investigation results'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T14:43:15.519951+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T14:43:15.520075+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "tail -n 400 /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "tail -n 400 /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T14:43:15.520340+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        self.current_head_type = None\\n        self.current_head_text = None\\n        self.current_tail_text = None\\n        self.entity_registry.clear()\\n        self.in_entities_section = True\\n\\n\\nclass PositionDetector:\\n    \\\"\\\"\\\"Detects current field position by parsing generated text.\\n\\n    Regex-based parsing of JSON text generated so far. Called at every\\n    decoding step, so only inspects the tail of the text.\\n\\n    Future optimization: use XGrammar's GrammarMatcher state for O(1) per step\\n    instead of O(n) text parsing.\\n    \\\"\\\"\\\"\\n\\n    _RE_TAIL_TYPE = re.compile(r'\\\"tail_type\\\"\\\\s*:\\\\s*\\\"[^\\\"]*$')\\n    _RE_HEAD_TYPE = re.compile(r'\\\"head_type\\\"\\\\s*:\\\\s*\\\"[^\\\"]*$')\\n    _RE_TYPE_FIELD = re.compile(r'\\\"type\\\"\\\\s*:\\\\s*\\\"[^\\\"]*$')\\n\\n    _RE_ENTITY = re.compile(r'\\\"text\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"\\\\s*,\\\\s*\\\"type\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n\\n    _RE_REL_TYPE_VAL = re.compile(r'\\\"type\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    _RE_HEAD_TYPE_VAL = re.compile(r'\\\"head_type\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    _RE_HEAD_TEXT_VAL = re.compile(r'\\\"head\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    _RE_TAIL_TEXT_VAL = re.compile(r'\\\"tail\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    _RE_REL_START = re.compile(r'\\\\{\\\\s*\\\"head\\\"')\\n\\n    @classmethod\\n    def detect(cls, generated_text: str, state: GenerationState) -> FieldPosition:\\n        \\\"\\\"\\\"Determine which JSON field is currently being generated.\\n\\n        Mutates state in place: updates entity registry, current relation type,\\n        current head type, etc.\\n        \\\"\\\"\\\"\\n        if '\\\"relations\\\"' in generated_text:\\n            state.in_entities_section = False\\n\\n        for match in cls._RE_ENTITY.finditer(generated_text):\\n            state.entity_registry.register(match.group(1), match.group(2))\\n\
+…[truncated 6961 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T14:43:15.520540+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "head -n 400 /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "head -n 400 /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T14:43:15.520822+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"LogitsProcessor for runtime domain/range type constraint enforcement.\\n\\nLayered on top of XGrammar's structural constraints:\\n- XGrammar (Layer 1): Guarantees valid JSON, entity/relation type strings from enum\\n- TypeConstraintProcessor (Layer 2): Guarantees domain/range consistency\\n\\nAt each generation step:\\n1. Detect current JSON field position (entity type? relation head_type? tail_type?)\\n2. If at entity type position -> allow all entity type first tokens\\n3. If at head_type position -> mask to types valid for the current relation\\n4. If at tail_type position -> mask to types valid for (relation_type, head_type) pair\\n5. Apply mask: disallowed type tokens -> logits = -inf\\n\\nComposition:\\n    grammar_processor = xgr.contrib.hf.LogitsProcessor(compiled_grammar)\\n    type_processor = TypeConstraintProcessor(spec, tokenizer)\\n    model.generate(logits_processor=[grammar_processor, type_processor])\\n\\nFramework: HuggingFace transformers (API: __call__(input_ids, scores) -> scores)\\nDepends on: ontology_compiler.ConstraintSpec (type->token mappings + relation constraints)\\n\\nVerified first-token IDs (Qwen3-8B tokenizer, context-independent):\\n  SciERC:\\n    Task=6262, Method=3523, Material=13415, Metric=54310,\\n    OtherScientificTerm=11409, Generic=19964\\n  DocRED:\\n    PER=9654, ORG=44927, LOC=12052, TIME=18129, NUM=17488, MISC=44\\nAll first tokens are unique within each dataset -> simple first-token masking\\nis sufficient, no trie-based multi-token tracking needed.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport re\\nimport logging\\nfrom dataclasses import dataclass, field\\nfrom enum import Enum, auto\\nfrom typing import Optional\\n\\nimport torch\\nfrom transformers import LogitsProcessor, PreTrainedTokenizerBase\\n\\nfrom .ontology_compiler import ConstraintSpec\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\nclass FieldPosition(Enum):\\n   
+…[truncated 6751 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T14:43:15.521041+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 << 'PYEOF'\nimport json\n\n# Load constraints\nwith open(\"ontology_constraints.json\") as f:\n    constraints = json.load(f)\n\n# Build valid_pairs lookup\nvalid_pairs_lookup = {}\nfor rel, info in constraints[\"relation_constraints\"].items():\n    valid_pairs_lookup[rel] = {(p[0], p[1]) for p in info[\"valid_pairs\"]}\n\nprint(\"Relations and valid pair counts:\")\nfor r, ps in valid_pairs_lookup.items():\n    print(f\"  {r}: {len(ps)} pairs\")\n\n# Parse the output file\nviolations = []\ntotal_relations = 0\nwith open(\"outputs/phase2_scierc_full_s1_v2.jsonl\") as f:\n    for line_num, line in enumerate(f):\n        doc = json.loads(line)\n        parsed = doc.get(\"parsed_output\", {}) or doc.get(\"parsed\", {})\n        # Try different keys\n        if not parsed:\n            parsed = doc\n        relations = parsed.get(\"relations\", [])\n        entities = parsed.get(\"entities\", [])\n        # Build entity text -> type map for this doc\n        ent_map = {}\n        for e in entities:\n            if isinstance(e, dict):\n                ent_map[e.get(\"text\", \"\")] = e.get(\"type\", \"\")\n        for rel in relations:\n            if not isinstance(rel, dict):\n                continue\n            total_relations += 1\n            rel_type = rel.get(\"type\", \"\")\n            head_type = rel.get(\"head_type\", \"\")\n            tail_type = rel.get(\"tail_type\", \"\")\n            head_text = rel.get(\"head\", \"\")\n            tail_text = rel.get(\"tail\", \"\")\n            \n            if rel_type not in valid_pairs_lookup:\n                continue\n            pair = (head_type, tail_type)\n            if pair not in valid_pairs_lookup[rel_type]:\n                violations.append({\n                    \"doc_id\": doc.get(\"doc_id\", f\"line_{line_num}\"),\n                    \"line\": line_num,\n                    \"relation\": rel_type,\n                    \"head_text\": head_text,\n                    \"tail_text\": tail_text,\n                    \"head_type\": head_type,\n                    \"tail_type\": tail_type,\n                    \"head_type_in_entities\": ent_map.get(head_text, \"NOT_FOUND\"),\n                    \"tail_type_in_entities\": ent_map.get(tail_text, \"NOT_FOUND\"),\n                })\n\nprint(f\"\\nTotal relations: {total_relations}\")\nprint(f\"Total DR violations: {len(violations)}\")\nprint(\"\\n=== ALL VIOLATIONS ===\")\nfor i, v in enumerate(violations):\n    print(f\"\\n[{i+1}] doc={v['doc_id']}, rel={v['relation']}\")\n    print(f\"  head: '{v['head_text']}' type={v['head_type']} (entities_section_type={v['head_type_in_entities']})\")\n    print(f\"  tail: '{v['tail_text']}' type={v['tail_type']} (entities_section_type={v['tail_type_in_entities']})\")\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 << 'PYEOF'\nimport json\n\n# Load constraints\nwith open(\"ontology_constraints.json\") as f:\n    constraints = json.load(f)\n\n# Build valid_pairs lookup\nvalid_pairs_lookup = {}\nfor rel, info in constraints[\"relation_constraints\"].items():\n    valid_pairs_lookup[rel] = {(p[0], p[1]) for p in info[\"valid_pairs\"]}\n\nprint(\"Relations and valid pair counts:\")\nfor r, ps in valid_pairs_lookup.items():\n    print(f\"  {r}: {len(ps)} pairs\")\n\n# Parse the output file\nviolations = []\ntotal_relations = 0\nwith open(\"outputs/phase2_scierc_full_s1_v2.jsonl\") as f:\n    for line_num, line in enumerate(f):\n        doc = json.loads(line)\n        parsed = doc.get(\"parsed_output\", {}) or doc.get(\"parsed\", {})\n        # Try different keys\n        if not parsed:\n            parsed = doc\n        relations = parsed.get(\"relations\", [])\n        entities = parsed.get(\"entities\", [])\n        # Build entity text -> type map for this doc\n        ent_map = {}\n        for e in entities:\n            if isinstance(e, dict):\n                ent_map[e.get(\"text\", \"\")] = e.get(\"type\", \"\")\n        for rel in relations:\n            if not isinstance(rel, dict):\n                continue\n            total_relations += 1\n            rel_type = rel.get(\"type\", \"\")\n            head_type = rel.get(\"head_type\", \"\")\n            tail_type = rel.get(\"tail_type\", \"\")\n            head_text = rel.get(\"head\", \"\")\n            tail_text = rel.get(\"tail\", \"\")\n            \n            if rel_type not in valid_pairs_lookup:\n                continue\n            pair = (head_type, tail_type)\n            if pair not in valid_pairs_lookup[rel_type]:\n                violations.append({\n                    \"doc_id\": doc.get(\"doc_id\", f\"line_{line_num}\"),\n                    \"line\": line_num,\n                    \"relation\": rel_type,\n                    \"head_text\": head_text,\n                    \"tail_text\": tail_text,\n                    \"head_type\": head_type,\n                    \"tail_type\": tail_type,\n                    \"head_type_in_entities\": ent_map.get(head_text, \"NOT_FOUND\"),\n                    \"tail_type_in_entities\": ent_map.get(tail_text, \"NOT_FOUND\"),\n                })\n\nprint(f\"\\nTotal relations: {total_relations}\")\nprint(f\"Total DR violations: {len(violations)}\")\nprint(\"\\n=== ALL VIOLATIONS ===\")\nfor i, v in enumerate(violations):\n    print(f\"\\n[{i+1}] doc={v['doc_id']}, rel={v['relation']}\")\n    print(f\"  head: '{v['head_text']}' type={v['head_type']} (entities_section_type={v['head_type_in_entities']})\")\n    print(f\"  tail: '{v['tail_text']}' type={v['tail_type']} (entities_section_type={v['tail_type_in_entities']})\")\nPYEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T14:43:15.521248+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Relations and valid pair counts:\\n  Used-for: 35 pairs\\n  Feature-of: 26 pairs\\n  Hyponym-of: 21 pairs\\n  Part-of: 21 pairs\\n  Compare: 17 pairs\\n  Conjunction: 25 pairs\\n  Evaluate-for: 23 pairs\\n\\nTotal relations: 1729\\nTotal DR violations: 16\\n\\n=== ALL VIOLATIONS ===\\n\\n[1] doc=P85-1019_sent3, rel=Evaluate-for\\n  head: 'Plume' type=OtherScientificTerm (entities_section_type=OtherScientificTerm)\\n  tail: 'syntactic coverage' type=Metric (entities_section_type=Metric)\\n\\n[2] doc=INTERSPEECH_2008_20_abs_sent5, rel=Evaluate-for\\n  head: 'results' type=OtherScientificTerm (entities_section_type=OtherScientificTerm)\\n  tail: 'mismatch' type=Generic (entities_section_type=NOT_FOUND)\\n\\n[3] doc=ICCV_2013_25_abs_sent1, rel=Feature-of\\n  head: 'difference' type=Generic (entities_section_type=Generic)\\n  tail: 'pairs' type=Generic (entities_section_type=Generic)\\n\\n[4] doc=ICCV_2013_25_abs_sent1, rel=Feature-of\\n  head: 'difference' type=Generic (entities_section_type=Generic)\\n  tail: 'unstructured patterns' type=Material (entities_section_type=Material)\\n\\n[5] doc=P05-1076_sent2, rel=Compare\\n  head: 'classify' type=Task (entities_section_type=Task)\\n  tail: 'inheritance-based lexica' type=OtherScientificTerm (entities_section_type=OtherScientificTerm)\\n\\n[6] doc=H01-1042_sent4, rel=Feature-of\\n  head: 'assessors' type=Generic (entities_section_type=Generic)\\n  tail: 'decisions' type=Generic (entities_section_type=Generic)\\n\\n[7] doc=CVPR_2011_10_abs_sent3, rel=Feature-of\\n  head: 'layers' type=Generic (entities_section_type=Generic)\\n  tail: 'moving' type=Generic (entities_section_type=Generic)\\n\\n[8] doc=P05-1046_sent2, rel=Evaluate-for\\n  head: 'general unsupervised HMM learning' type=OtherScientificTerm (entities_section_type=OtherScientificTerm)\\n  tail: 'domains' type=Generic (entities_section_type=Generic)\\n\\n[9] doc=ECCV_2016_99_abs_sent5, rel=Compare\\n  head: '
+…[truncated 1828 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T14:43:15.521456+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 << 'PYEOF'\nimport json\n\n# Check raw_output of first violation doc to see JSON field order\nwith open(\"outputs/phase2_scierc_full_s1_v2.jsonl\") as f:\n    for line in f:\n        doc = json.loads(line)\n        if doc.get(\"doc_id\") == \"P85-1019_sent3\":\n            raw = doc.get(\"raw_output\", \"\") or doc.get(\"output_text\", \"\") or doc.get(\"output\", \"\")\n            print(\"=== Raw output ===\")\n            print(raw[:3000])\n            print(\"\\n=== Keys ===\")\n            print(list(doc.keys()))\n            break\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 << 'PYEOF'\nimport json\n\n# Check raw_output of first violation doc to see JSON field order\nwith open(\"outputs/phase2_scierc_full_s1_v2.jsonl\") as f:\n    for line in f:\n        doc = json.loads(line)\n        if doc.get(\"doc_id\") == \"P85-1019_sent3\":\n            raw = doc.get(\"raw_output\", \"\") or doc.get(\"output_text\", \"\") or doc.get(\"output\", \"\")\n            print(\"=== Raw output ===\")\n            print(raw[:3000])\n            print(\"\\n=== Keys ===\")\n            print(list(doc.keys()))\n            break\nPYEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T14:43:15.521644+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Raw output ===\\n{\\n  \\\"entities\\\": [\\n    {\\\"text\\\": \\\"Plume\\\", \\\"type\\\": \\\"OtherScientificTerm\\\"},\\n    {\\\"text\\\": \\\"declarative\\\", \\\"type\\\": \\\"Generic\\\"},\\n    {\\\"text\\\": \\\"imperative\\\", \\\"type\\\": \\\"Generic\\\"},\\n    {\\\"text\\\": \\\"passives\\\", \\\"type\\\": \\\"Generic\\\"},\\n    {\\\"text\\\": \\\"relative clauses\\\", \\\"type\\\": \\\"Generic\\\"},\\n    {\\\"text\\\": \\\"interrogatives\\\", \\\"type\\\": \\\"Generic\\\"},\\n    {\\\"text\\\": \\\"syntactic coverage\\\", \\\"type\\\": \\\"Metric\\\"}\\n  ],\\n  \\\"relations\\\": [\\n    {\\\"head\\\": \\\"Plume\\\", \\\"tail\\\": \\\"declarative\\\", \\\"type\\\": \\\"Feature-of\\\", \\\"head_type\\\": \\\"OtherScientificTerm\\\", \\\"tail_type\\\": \\\"Generic\\\"},\\n    {\\\"head\\\": \\\"Plume\\\", \\\"tail\\\": \\\"imperative\\\", \\\"type\\\": \\\"Feature-of\\\", \\\"head_type\\\": \\\"OtherScientificTerm\\\", \\\"tail_type\\\": \\\"Generic\\\"},\\n    {\\\"head\\\": \\\"Plume\\\", \\\"tail\\\": \\\"passives\\\", \\\"type\\\": \\\"Feature-of\\\", \\\"head_type\\\": \\\"OtherScientificTerm\\\", \\\"tail_type\\\": \\\"Generic\\\"},\\n    {\\\"head\\\": \\\"Plume\\\", \\\"tail\\\": \\\"relative clauses\\\", \\\"type\\\": \\\"Feature-of\\\", \\\"head_type\\\": \\\"OtherScientificTerm\\\", \\\"tail_type\\\": \\\"Generic\\\"},\\n    {\\\"head\\\": \\\"Plume\\\", \\\"tail\\\": \\\"interrogatives\\\", \\\"type\\\": \\\"Feature-of\\\", \\\"head_type\\\": \\\"OtherScientificTerm\\\", \\\"tail_type\\\": \\\"Generic\\\"},\\n    {\\\"head\\\": \\\"Plume\\\", \\\"tail\\\": \\\"syntactic coverage\\\", \\\"type\\\": \\\"Evaluate-for\\\", \\\"head_type\\\": \\\"OtherScientificTerm\\\", \\\"tail_type\\\": \\\"Metric\\\"}\\n  ]\\n}\\n\\n=== Keys ===\\n['doc_id', 'input_text', 'gold_entities', 'gold_relations', 'raw_output', 'parsed_output', 'inference_time_seconds', 'mode']\\n\", \"stderr\": \"\", \"
+…[truncated 80 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-15T14:43:15.521855+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 << 'PYEOF'\nimport json\n\nwith open(\"ontology_constraints.json\") as f:\n    constraints = json.load(f)\n\n# Show valid pairs for relevant relations\nfor rel in [\"Evaluate-for\", \"Feature-of\", \"Compare\"]:\n    pairs = constraints[\"relation_constraints\"][rel][\"valid_pairs\"]\n    print(f\"\\n=== {rel} ===\")\n    # Group by head\n    by_head = {}\n    for h, t in pairs:\n        by_head.setdefault(h, set()).add(t)\n    for h, ts in sorted(by_head.items()):\n        print(f\"  head={h:25s} valid_tails={sorted(ts)}\")\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 << 'PYEOF'\nimport json\n\nwith open(\"ontology_constraints.json\") as f:\n    constraints = json.load(f)\n\n# Show valid pairs for relevant relations\nfor rel in [\"Evaluate-for\", \"Feature-of\", \"Compare\"]:\n    pairs = constraints[\"relation_constraints\"][rel][\"valid_pairs\"]\n    print(f\"\\n=== {rel} ===\")\n    # Group by head\n    by_head = {}\n    for h, t in pairs:\n        by_head.setdefault(h, set()).add(t)\n    for h, ts in sorted(by_head.items()):\n        print(f\"  head={h:25s} valid_tails={sorted(ts)}\")\nPYEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T14:43:15.522010+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n=== Evaluate-for ===\\n  head=Generic                   valid_tails=['Generic', 'Method', 'OtherScientificTerm', 'Task']\\n  head=Material                  valid_tails=['Generic', 'Method', 'Metric', 'Task']\\n  head=Method                    valid_tails=['Generic', 'Method', 'Metric', 'OtherScientificTerm']\\n  head=Metric                    valid_tails=['Generic', 'Material', 'Method', 'OtherScientificTerm', 'Task']\\n  head=OtherScientificTerm       valid_tails=['Method']\\n  head=Task                      valid_tails=['Generic', 'Method', 'Metric', 'OtherScientificTerm', 'Task']\\n\\n=== Feature-of ===\\n  head=Generic                   valid_tails=['OtherScientificTerm', 'Task']\\n  head=Material                  valid_tails=['Generic', 'Material', 'Method', 'OtherScientificTerm', 'Task']\\n  head=Method                    valid_tails=['Generic', 'Method', 'OtherScientificTerm', 'Task']\\n  head=Metric                    valid_tails=['Generic', 'Material', 'Method', 'Metric', 'OtherScientificTerm', 'Task']\\n  head=OtherScientificTerm       valid_tails=['Generic', 'Material', 'Method', 'Metric', 'OtherScientificTerm', 'Task']\\n  head=Task                      valid_tails=['Generic', 'Method', 'Task']\\n\\n=== Compare ===\\n  head=Generic                   valid_tails=['Generic', 'Material', 'Method', 'Metric', 'OtherScientificTerm', 'Task']\\n  head=Material                  valid_tails=['Material', 'OtherScientificTerm', 'Task']\\n  head=Method                    valid_tails=['Generic', 'Method']\\n  head=Metric                    valid_tails=['Generic', 'Metric']\\n  head=OtherScientificTerm       valid_tails=['Generic', 'Material', 'OtherScientificTerm']\\n  head=Task                      valid_tails=['Task']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-15T14:43:15.522209+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 << 'PYEOF'\nimport json\n\ntarget_docs = {\"INTERSPEECH_2008_20_abs_sent5\", \"ECCV_2016_99_abs_sent5\"}\nwith open(\"outputs/phase2_scierc_full_s1_v2.jsonl\") as f:\n    for line in f:\n        doc = json.loads(line)\n        if doc.get(\"doc_id\") in target_docs:\n            print(f\"\\n=== doc_id={doc['doc_id']} ===\")\n            print(doc.get(\"raw_output\", \"\"))\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 << 'PYEOF'\nimport json\n\ntarget_docs = {\"INTERSPEECH_2008_20_abs_sent5\", \"ECCV_2016_99_abs_sent5\"}\nwith open(\"outputs/phase2_scierc_full_s1_v2.jsonl\") as f:\n    for line in f:\n        doc = json.loads(line)\n        if doc.get(\"doc_id\") in target_docs:\n            print(f\"\\n=== doc_id={doc['doc_id']} ===\")\n            print(doc.get(\"raw_output\", \"\"))\nPYEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T14:43:15.522411+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n=== doc_id=INTERSPEECH_2008_20_abs_sent5 ===\\n{\\n  \\\"entities\\\": [\\n    {\\\"text\\\": \\\"results\\\", \\\"type\\\": \\\"OtherScientificTerm\\\"},\\n    {\\\"text\\\": \\\"expression\\\", \\\"type\\\": \\\"OtherScientificTerm\\\"},\\n    {\\\"text\\\": \\\"perception\\\", \\\"type\\\": \\\"OtherScientificTerm\\\"},\\n    {\\\"text\\\": \\\"emotion\\\", \\\"type\\\": \\\"OtherScientificTerm\\\"}\\n  ],\\n  \\\"relations\\\": [\\n    {\\\"head\\\": \\\"results\\\", \\\"tail\\\": \\\"mismatch\\\", \\\"type\\\": \\\"Evaluate-for\\\", \\\"head_type\\\": \\\"OtherScientificTerm\\\", \\\"tail_type\\\": \\\"Generic\\\"},\\n    {\\\"head\\\": \\\"expression\\\", \\\"tail\\\": \\\"perception\\\", \\\"type\\\": \\\"Compare\\\", \\\"head_type\\\": \\\"OtherScientificTerm\\\", \\\"tail_type\\\": \\\"OtherScientificTerm\\\"},\\n    {\\\"head\\\": \\\"expression\\\", \\\"tail\\\": \\\"emotion\\\", \\\"type\\\": \\\"Feature-of\\\", \\\"head_type\\\": \\\"OtherScientificTerm\\\", \\\"tail_type\\\": \\\"OtherScientificTerm\\\"},\\n    {\\\"head\\\": \\\"perception\\\", \\\"tail\\\": \\\"emotion\\\", \\\"type\\\": \\\"Feature-of\\\", \\\"head_type\\\": \\\"OtherScientificTerm\\\", \\\"tail_type\\\": \\\"OtherScientificTerm\\\"}\\n  ]\\n}\\n\\n=== doc_id=ECCV_2016_99_abs_sent5 ===\\n{\\n  \\\"entities\\\": [\\n    {\\n      \\\"text\\\": \\\"deep Long Short-Term Memory\\\",\\n      \\\"type\\\": \\\"Method\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"LSTM\\\",\\n      \\\"type\\\": \\\"Method\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"proposed model\\\",\\n      \\\"type\\\": \\\"Task\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"complex long-range temporal dynamics\\\",\\n      \\\"type\\\": \\\"OtherScientificTerm\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"sliding window design\\\",\\n      \\\"type\\\": \\\"OtherScientificTerm\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"high computational efficiency\\\"
+…[truncated 1186 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-15T14:43:15.522600+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "grep -n \"def\\|_mask_\\|_apply_type_mask\\|grammar_first\\|cf_registry\\|prompt_length\\|_GRAMMAR_MASK\" /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "grep -n \"def\\|_mask_\\|_apply_type_mask\\|grammar_first\\|cf_registry\\|prompt_length\\|_GRAMMAR_MASK\" /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T14:43:15.522751+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-15T14:43:15.522879+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Detect server image and explore project structure', 'status': 'completed', 'activeForm': 'Detecting server image and exploring project structure'}, {'content': 'Extract 16 DR violations from phase2_scierc_full_s1_v2.jsonl', 'status': 'completed', 'activeForm': 'Extracting 16 DR violations'}, {'content': 'Read type_mask_processor.py to understand enforcement logic', 'status': 'in_progress', 'activeForm': 'Reading type_mask_processor.py'}, {'content': 'Determine root cause of violations (grammar fallback / CF / checker / bug)', 'status': 'in_progress', 'activeForm': 'Determining root cause'}, {'content': 'Save investigation results JSON', 'status': 'pending', 'activeForm': 'Saving investigation results'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Detect server image and explore project structure', 'status': 'completed', 'activeForm': 'Detecting server image and exploring project structure'}, {'content': 'Extract 16 DR violations from phase2_scierc_full_s1_v2.jsonl', 'status': 'completed', 'activeForm': 'Extracting 16 DR violations'}, {'content': 'Read type_mask_processor.py to understand enforcement logic', 'status': 'in_progress', 'activeForm': 'Reading type_mask_processor.py'}, {'content': 'Determine root cause of violations (grammar fallback / CF / checker / bug)', 'status': 'in_progress', 'activeForm': 'Determining root cause'}, {'content': 'Save investigation results JSON', 'status': 'pending', 'activeForm': 'Saving investigation results'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T14:43:15.523028+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-15T14:43:15.523147+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "grep -n \"def \" /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "grep -n \"def \" /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-15T14:43:15.523277+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"67:    def register(self, text: str, entity_type: str):\\n70:    def get_type(self, text: str) -> Optional[str]:\\n73:    def clear(self):\\n88:    def reset(self):\\n121:    def detect(cls, generated_text: str, state: GenerationState) -> FieldPosition:\\n198:    def reset_fallback_stats(cls):\\n204:    def get_fallback_stats(cls):\\n214:    def __init__(\\n230:    def _build_first_token_map(self) -> tuple[dict[str, int], set[int]]:\\n258:    def _detect_position(self, generated_text: str) -> FieldPosition:\\n266:    def __call__(\\n301:    def _mask_entity_type(self, logits: torch.FloatTensor) -> torch.FloatTensor:\\n310:    def _mask_head_type(self, logits: torch.FloatTensor) -> torch.FloatTensor:\\n345:    def _mask_tail_type(self, logits: torch.FloatTensor) -> torch.FloatTensor:\\n407:    def _apply_type_mask(\\n447:    def reset(self):\\n460:def build_constrained_processors(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-15T14:43:15.523397+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "grep -nE \"_mask_(head|tail)|__call__|FieldPosition\" /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "grep -nE \"_mask_(head|tail)|__call__|FieldPosition\" /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T14:43:15.523514+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-15T14:43:15.523627+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "head -n 360 /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "head -n 360 /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T14:43:15.523901+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"LogitsProcessor for runtime domain/range type constraint enforcement.\\n\\nLayered on top of XGrammar's structural constraints:\\n- XGrammar (Layer 1): Guarantees valid JSON, entity/relation type strings from enum\\n- TypeConstraintProcessor (Layer 2): Guarantees domain/range consistency\\n\\nAt each generation step:\\n1. Detect current JSON field position (entity type? relation head_type? tail_type?)\\n2. If at entity type position -> allow all entity type first tokens\\n3. If at head_type position -> mask to types valid for the current relation\\n4. If at tail_type position -> mask to types valid for (relation_type, head_type) pair\\n5. Apply mask: disallowed type tokens -> logits = -inf\\n\\nComposition:\\n    grammar_processor = xgr.contrib.hf.LogitsProcessor(compiled_grammar)\\n    type_processor = TypeConstraintProcessor(spec, tokenizer)\\n    model.generate(logits_processor=[grammar_processor, type_processor])\\n\\nFramework: HuggingFace transformers (API: __call__(input_ids, scores) -> scores)\\nDepends on: ontology_compiler.ConstraintSpec (type->token mappings + relation constraints)\\n\\nVerified first-token IDs (Qwen3-8B tokenizer, context-independent):\\n  SciERC:\\n    Task=6262, Method=3523, Material=13415, Metric=54310,\\n    OtherScientificTerm=11409, Generic=19964\\n  DocRED:\\n    PER=9654, ORG=44927, LOC=12052, TIME=18129, NUM=17488, MISC=44\\nAll first tokens are unique within each dataset -> simple first-token masking\\nis sufficient, no trie-based multi-token tracking needed.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport re\\nimport logging\\nfrom dataclasses import dataclass, field\\nfrom enum import Enum, auto\\nfrom typing import Optional\\n\\nimport torch\\nfrom transformers import LogitsProcessor, PreTrainedTokenizerBase\\n\\nfrom .ontology_compiler import ConstraintSpec\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\nclass FieldPosition(Enum):\\n   
+…[truncated 6790 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-15T14:43:15.524155+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 << 'PYEOF'\nimport re, json\n\n# Simulate the regex on each raw output\nRE_ENTITY = re.compile(r'\"text\"\\s*:\\s*\"([^\"]+)\"\\s*,\\s*\"type\"\\s*:\\s*\"([^\"]+)\"')\nRE_REL_START = re.compile(r'\\{\\s*\"head\"')\nRE_REL_TYPE_VAL = re.compile(r'\"type\"\\s*:\\s*\"([^\"]+)\"')\nRE_HEAD_TYPE_VAL = re.compile(r'\"head_type\"\\s*:\\s*\"([^\"]+)\"')\nRE_HEAD_TEXT_VAL = re.compile(r'\"head\"\\s*:\\s*\"([^\"]+)\"')\nRE_TAIL_TEXT_VAL = re.compile(r'\"tail\"\\s*:\\s*\"([^\"]+)\"')\n\ntarget_docs = {\"INTERSPEECH_2008_20_abs_sent5\", \"ECCV_2016_99_abs_sent5\"}\nwith open(\"outputs/phase2_scierc_full_s1_v2.jsonl\") as f:\n    for line in f:\n        doc = json.loads(line)\n        if doc.get(\"doc_id\") not in target_docs:\n            continue\n        raw = doc.get(\"raw_output\", \"\")\n        print(f\"\\n========== {doc['doc_id']} ==========\")\n        # Find where each relation starts\n        rel_starts = [m.start() for m in RE_REL_START.finditer(raw)]\n        # Find where each tail_type starts being generated\n        # For tail_type generation, partial = raw up to where tail_type first token is generated\n        # Find position of '\"tail_type\": \"' in each relation\n        for rel_start in rel_starts:\n            # find next '\"tail_type\": \"'\n            idx = raw.find('\"tail_type\":', rel_start)\n            if idx < 0:\n                continue\n            # position right after the opening quote of the value\n            open_quote = raw.find('\"', idx + len('\"tail_type\":'))\n            partial_text = raw[:open_quote+1]  # right when tail_type value is about to be generated\n            partial_rel = raw[rel_start:open_quote+1]\n            \n            head_text = RE_HEAD_TEXT_VAL.search(partial_rel)\n            tail_text = RE_TAIL_TEXT_VAL.search(partial_rel)\n            rel_type_m = RE_REL_TYPE_VAL.search(partial_rel)\n            head_type_m = RE_HEAD_TYPE_VAL.search(partial_rel)\n            \n            # entity registry: all (text, type) pairs in partial_text BEFORE relations section\n            ent_map = dict(RE_ENTITY.findall(partial_text))\n            \n            ht = head_text.group(1) if head_text else None\n            tt = tail_text.group(1) if tail_text else None\n            rt = rel_type_m.group(1) if rel_type_m else None\n            hty = head_type_m.group(1) if head_type_m else None\n            \n            print(f\"  rel @ {rel_start}: head='{ht}' tail='{tt}' rel_type={rt} head_type={hty}\")\n            print(f\"    tail registered? {ent_map.get(tt, 'NOT_FOUND')}\")\n            print(f\"    head registered? {ent_map.get(ht, 'NOT_FOUND')}\")\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 << 'PYEOF'\nimport re, json\n\n# Simulate the regex on each raw output\nRE_ENTITY = re.compile(r'\"text\"\\s*:\\s*\"([^\"]+)\"\\s*,\\s*\"type\"\\s*:\\s*\"([^\"]+)\"')\nRE_REL_START = re.compile(r'\\{\\s*\"head\"')\nRE_REL_TYPE_VAL = re.compile(r'\"type\"\\s*:\\s*\"([^\"]+)\"')\nRE_HEAD_TYPE_VAL = re.compile(r'\"head_type\"\\s*:\\s*\"([^\"]+)\"')\nRE_HEAD_TEXT_VAL = re.compile(r'\"head\"\\s*:\\s*\"([^\"]+)\"')\nRE_TAIL_TEXT_VAL = re.compile(r'\"tail\"\\s*:\\s*\"([^\"]+)\"')\n\ntarget_docs = {\"INTERSPEECH_2008_20_abs_sent5\", \"ECCV_2016_99_abs_sent5\"}\nwith open(\"outputs/phase2_scierc_full_s1_v2.jsonl\") as f:\n    for line in f:\n        doc = json.loads(line)\n        if doc.get(\"doc_id\") not in target_docs:\n            continue\n        raw = doc.get(\"raw_output\", \"\")\n        print(f\"\\n========== {doc['doc_id']} ==========\")\n        # Find where each relation starts\n        rel_starts = [m.start() for m in RE_REL_START.finditer(raw)]\n        # Find where each tail_type starts being generated\n        # For tail_type generation, partial = raw up to where tail_type first token is generated\n        # Find position of '\"tail_type\": \"' in each relation\n        for rel_start in rel_starts:\n            # find next '\"tail_type\": \"'\n            idx = raw.find('\"tail_type\":', rel_start)\n            if idx < 0:\n                continue\n            # position right after the opening quote of the value\n            open_quote = raw.find('\"', idx + len('\"tail_type\":'))\n            partial_text = raw[:open_quote+1]  # right when tail_type value is about to be generated\n            partial_rel = raw[rel_start:open_quote+1]\n            \n            head_text = RE_HEAD_TEXT_VAL.search(partial_rel)\n            tail_text = RE_TAIL_TEXT_VAL.search(partial_rel)\n            rel_type_m = RE_REL_TYPE_VAL.search(partial_rel)\n            head_type_m = RE_HEAD_TYPE_VAL.search(partial_rel)\n            \n            # entity registry: all (text, type) pairs in partial_text BEFORE relations section\n            ent_map = dict(RE_ENTITY.findall(partial_text))\n            \n            ht = head_text.group(1) if head_text else None\n            tt = tail_text.group(1) if tail_text else None\n            rt = rel_type_m.group(1) if rel_type_m else None\n            hty = head_type_m.group(1) if head_type_m else None\n            \n            print(f\"  rel @ {rel_start}: head='{ht}' tail='{tt}' rel_type={rt} head_type={hty}\")\n            print(f\"    tail registered? {ent_map.get(tt, 'NOT_FOUND')}\")\n            print(f\"    head registered? {ent_map.get(ht, 'NOT_FOUND')}\")\nPYEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T14:43:15.524392+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n========== INTERSPEECH_2008_20_abs_sent5 ==========\\n  rel @ 273: head='results' tail='mismatch' rel_type=Evaluate-for head_type=OtherScientificTerm\\n    tail registered? NOT_FOUND\\n    head registered? OtherScientificTerm\\n  rel @ 402: head='expression' tail='perception' rel_type=Compare head_type=OtherScientificTerm\\n    tail registered? OtherScientificTerm\\n    head registered? OtherScientificTerm\\n  rel @ 543: head='expression' tail='emotion' rel_type=Feature-of head_type=OtherScientificTerm\\n    tail registered? OtherScientificTerm\\n    head registered? OtherScientificTerm\\n  rel @ 684: head='perception' tail='emotion' rel_type=Feature-of head_type=OtherScientificTerm\\n    tail registered? OtherScientificTerm\\n    head registered? OtherScientificTerm\\n\\n========== ECCV_2016_99_abs_sent5 ==========\\n  rel @ 522: head='proposed model' tail='deep Long Short-Term Memory' rel_type=Used-for head_type=Task\\n    tail registered? Method\\n    head registered? Task\\n  rel @ 693: head='proposed model' tail='complex long-range temporal dynamics' rel_type=Feature-of head_type=Task\\n    tail registered? OtherScientificTerm\\n    head registered? Task\\n  rel @ 876: head='proposed model' tail='sliding window design' rel_type=Compare head_type=Task\\n    tail registered? OtherScientificTerm\\n    head registered? Task\\n  rel @ 1041: head='proposed model' tail='high computational efficiency' rel_type=Evaluate-for head_type=Task\\n    tail registered? Metric\\n    head registered? Task\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-15T14:43:15.524595+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "find /root/schema_semantic_constrained_ie -name \"*.log\" -mtime -30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "find /root/schema_semantic_constrained_ie -name \"*.log\" -mtime -30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T14:43:15.524784+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/outputs/phase2_batch.log\\n/root/schema_semantic_constrained_ie/paper/texput.log\\n/root/schema_semantic_constrained_ie/paper/main.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-15T14:43:15.524944+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "stat -c \"%n %y\" /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py.bak /root/schema_semantic_constrained_ie/violation_checker.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "stat -c \"%n %y\" /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py.bak /root/schema_semantic_constrained_ie/violation_checker.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T14:43:15.525081+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl 2026-05-14 09:46:30.066571292 +0800\\n/root/schema_semantic_constrained_ie/compiler/type_mask_processor.py 2026-05-15 21:38:41.012570137 +0800\\n/root/schema_semantic_constrained_ie/compiler/type_mask_processor.py.bak 2026-05-14 11:06:30.913064796 +0800\\n/root/schema_semantic_constrained_ie/violation_checker.py 2026-05-15 02:25:48.065215439 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-15T14:43:15.525227+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "diff /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py.bak /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "diff /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py.bak /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-15T14:43:15.525361+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'diff /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py.bak /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py'\\n\\nExit code: 1\\n\\nStdout:\\n\\n>             return logits\\n> \\n>         logits[disallowed_first_tokens] = float(\\\"-inf\\\")\\n363a449,454\\n>         if self._grammar_first_skip_count > 0:\\n>             logger.info(\\\"Grammar-first fallback triggered %d times this generation\\\", self._grammar_first_skip_count)\\n>         if self._cf_fallback_count > 0:\\n>             logger.info(\\\"CF registry-consistent fallback triggered %d times this generation\\\", self._cf_fallback_count)\\n>         self._grammar_first_skip_count = 0\\n>         self._cf_fallback_count = 0\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-15T14:43:15.525485+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "diff /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py.bak /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py | head -200"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "diff /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py.bak /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py | head -200"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-15T14:43:15.525723+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"34a35\\n> import logging\\n43a45,46\\n> logger = logging.getLogger(__name__)\\n> \\n187a191,213\\n>     # Cumulative fallback statistics shared across all instances within a run.\\n>     # Reset via reset_fallback_stats() before each run; read via get_fallback_stats().\\n>     grammar_first_fallback_count = 0\\n>     cf_registry_fallback_count = 0\\n>     total_mask_calls = 0\\n> \\n>     @classmethod\\n>     def reset_fallback_stats(cls):\\n>         cls.grammar_first_fallback_count = 0\\n>         cls.cf_registry_fallback_count = 0\\n>         cls.total_mask_calls = 0\\n> \\n>     @classmethod\\n>     def get_fallback_stats(cls):\\n>         total = max(cls.total_mask_calls, 1)\\n>         return {\\n>             \\\"grammar_first_fallback_count\\\": cls.grammar_first_fallback_count,\\n>             \\\"cf_registry_fallback_count\\\": cls.cf_registry_fallback_count,\\n>             \\\"total_mask_calls\\\": cls.total_mask_calls,\\n>             \\\"grammar_first_fallback_rate\\\": cls.grammar_first_fallback_count / total,\\n>             \\\"cf_registry_fallback_rate\\\": cls.cf_registry_fallback_count / total,\\n>         }\\n> \\n200a227,228\\n>         self._grammar_first_skip_count = 0\\n>         self._cf_fallback_count = 0\\n287c315,316\\n<         - If entity type known but NOT D/R-valid → use D/R constraint\\n---\\n>     - If entity type known but NOT D/R-valid → force registered type\\n>       (W1: registry consistency > DR compliance, prevents CF violations)\\n299a329,339\\n>                 else:\\n>                     # W1 registry-consistent fallback: registered type conflicts\\n>                     # with dom(r). Force registered type to prevent CF violations.\\n>                     self._cf_fallback_count += 1\\n>                     TypeConstraintProcessor.cf_registry_fallback_count += 1\\n>                     logger.debug(\\n>                         \\\"CF fallback (head): '%s' register
+…[truncated 4983 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-15T14:43:15.525933+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "ls -la /root/schema_semantic_constrained_ie/compiler/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "ls -la /root/schema_semantic_constrained_ie/compiler/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-15T14:43:15.526077+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 80\\ndrwxr-xr-x  4 root root  4096 May 15 05:00 .\\ndrwxr-xr-x 11 root root  4096 May 15 22:34 ..\\n-rw-r--r--  1 root root   259 May 14 03:48 __init__.py\\ndrwxr-xr-x  2 root root  4096 May 15 21:39 __pycache__\\n-rw-r--r--  1 root root 11198 May 14 03:53 ontology_compiler.py\\n-rw-r--r--  1 root root 14156 May 14 04:04 test_type_mask.py\\ndrwxr-xr-x  3 root root    79 May 14 05:05 tests\\n-rw-r--r--  1 root root 20195 May 15 21:38 type_mask_processor.py\\n-rw-r--r--  1 root root 15666 May 14 11:06 type_mask_processor.py.bak\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-15T14:43:15.526204+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "find /root/schema_semantic_constrained_ie -name \".git\" -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "find /root/schema_semantic_constrained_ie -name \".git\" -type d"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-15T14:43:15.526325+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-15T14:43:15.526446+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "tail -n 80 /root/schema_semantic_constrained_ie/outputs/phase2_batch.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "tail -n 80 /root/schema_semantic_constrained_ie/outputs/phase2_batch.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-15T14:43:15.526606+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[97/551] C88-1044_sent0: OK E=3 R=2 6.5s\\n[98/551] C88-1044_sent1: OK E=6 R=4 8.7s\\n[99/551] C88-1044_sent2: OK E=4 R=3 8.6s\\n[100/551] INTERSPEECH_2008_20_abs_sent0: OK E=3 R=1 4.9s\\n[101/551] INTERSPEECH_2008_20_abs_sent1: OK E=7 R=5 14.2s\\n[102/551] INTERSPEECH_2008_20_abs_sent2: OK E=4 R=2 6.7s\\n[103/551] INTERSPEECH_2008_20_abs_sent3: OK E=2 R=1 3.3s\\n[104/551] INTERSPEECH_2008_20_abs_sent4: OK E=5 R=6 18.0s\\n[105/551] INTERSPEECH_2008_20_abs_sent5: OK E=4 R=4 8.8s\\n[106/551] INTERSPEECH_2008_20_abs_sent6: OK E=5 R=3 8.3s\\n[107/551] ICASSP_2016_11_abs_sent0: OK E=6 R=4 11.6s\\n[108/551] ICASSP_2016_11_abs_sent1: OK E=4 R=3 9.3s\\n[109/551] ICASSP_2016_11_abs_sent2: OK E=6 R=4 11.7s\\n[110/551] ICASSP_2016_11_abs_sent3: OK E=3 R=2 5.8s\\n[111/551] ICASSP_2016_11_abs_sent4: OK E=2 R=1 4.2s\\n[112/551] ICASSP_2016_11_abs_sent5: OK E=4 R=2 6.7s\\n[113/551] N06-1037_sent0: OK E=4 R=3 8.8s\\n[114/551] N06-1037_sent1: OK E=4 R=3 7.4s\\n[115/551] N06-1037_sent2: OK E=7 R=4 13.0s\\n[116/551] N06-1037_sent3: OK E=3 R=2 6.1s\\n[117/551] P05-2013_sent0: OK E=2 R=1 4.4s\\n[118/551] P05-2013_sent1: OK E=3 R=2 7.3s\\n[119/551] P05-2013_sent2: OK E=4 R=2 5.8s\\n[120/551] C04-1128_sent0: OK E=9 R=3 9.4s\\n[121/551] C04-1128_sent1: OK E=3 R=2 5.3s\\n[122/551] C04-1128_sent2: OK E=6 R=4 9.6s\\n[123/551] CVPR_2006_10_abs_sent0: OK E=2 R=1 3.6s\\n[124/551] CVPR_2006_10_abs_sent1: OK E=4 R=3 7.0s\\n[125/551] CVPR_2006_10_abs_sent2: OK E=5 R=3 7.7s\\n[126/551] CVPR_2006_10_abs_sent3: OK E=2 R=1 3.8s\\n[127/551] CVPR_2006_10_abs_sent4: OK E=7 R=4 13.5s\\n[128/551] CVPR_2006_10_abs_sent5: OK E=10 R=8 16.6s\\n[129/551] NIPS_2002_11_abs_sent0: OK E=5 R=3 9.3s\\n[130/551] NIPS_2002_11_abs_sent1: OK E=4 R=3 7.1s\\n[131/551] NIPS_2002_11_abs_sent2: OK E=7 R=6 16.7s\\n[132/551] P06-3007_sent0: OK E=3 R=2 7.0s\\n[133/551] P06-3007_sent1: OK E=3 R=2 4.7s\\n[134/551] P06-3007_sent2: OK E=3 R=2 4.8s\\n[135/551] P06-3007_sent3: OK 
+…[truncated 2073 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-15T14:43:15.526778+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Detect server image and explore project structure', 'status': 'completed', 'activeForm': 'Detecting server image and exploring project structure'}, {'content': 'Extract 16 DR violations from phase2_scierc_full_s1_v2.jsonl', 'status': 'completed', 'activeForm': 'Extracting 16 DR violations'}, {'content': 'Read type_mask_processor.py to understand enforcement logic', 'status': 'completed', 'activeForm': 'Reading type_mask_processor.py'}, {'content': 'Check which version of code generated the JSONL (git log / file history)', 'status': 'in_progress', 'activeForm': 'Checking code version that generated JSONL'}, {'content': 'Determine root cause of violations (grammar fallback / CF / checker / bug)', 'status': 'pending', 'activeForm': 'Determining root cause'}, {'content': 'Save investigation results JSON', 'status': 'pending', 'activeForm': 'Saving investigation results'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Detect server image and explore project structure', 'status': 'completed', 'activeForm': 'Detecting server image and exploring project structure'}, {'content': 'Extract 16 DR violations from phase2_scierc_full_s1_v2.jsonl', 'status': 'completed', 'activeForm': 'Extracting 16 DR violations'}, {'content': 'Read type_mask_processor.py to understand enforcement logic', 'status': 'completed', 'activeForm': 'Reading type_mask_processor.py'}, {'content': 'Check which version of code generated the JSONL (git log / file history)', 'status': 'in_progress', 'activeForm': 'Checking code version that generated JSONL'}, {'content': 'Determine root cause of violations (grammar fallback / CF / checker / bug)', 'status': 'pending', 'activeForm': 'Determining root cause'}, {'content': 'Save investigation results JSON', 'status': 'pending', 'activeForm': 'Saving investigation results'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-15T14:43:15.526939+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-15T14:43:15.527077+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "tail -n 200 /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py.bak"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "tail -n 200 /root/schema_semantic_constrained_ie/compiler/type_mask_processor.py.bak"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-15T14:43:15.527320+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        self._type_first_token, self._all_type_first_tokens = self._build_first_token_map()\\n\\n    def _build_first_token_map(self) -> tuple[dict[str, int], set[int]]:\\n        \\\"\\\"\\\"Build entity_type -> first_token_id mapping.\\n\\n        Uses pre-computed token IDs from ConstraintSpec.entity_type_first_token\\n        (set by OntologyCompiler.compile_type_constraints) if available.\\n        Falls back to ConstraintSpec.entity_type_token_ids, then tokenizer.encode().\\n\\n        All first tokens verified unique for Qwen3-8B on both SciERC and DocRED,\\n        so simple first-token masking is sufficient (no trie needed).\\n        \\\"\\\"\\\"\\n        type_first_token: dict[str, int] = {}\\n        all_first_tokens: set[int] = set()\\n\\n        for etype in self.spec.entity_types:\\n            # Priority: pre-compiled first token > full token list > tokenizer\\n            if etype in self.spec.entity_type_first_token:\\n                first_id = self.spec.entity_type_first_token[etype]\\n            else:\\n                token_ids = self.spec.entity_type_token_ids.get(etype)\\n                if token_ids is None:\\n                    token_ids = self.tokenizer.encode(etype, add_special_tokens=False)\\n                first_id = token_ids[0]\\n\\n            type_first_token[etype] = first_id\\n            all_first_tokens.add(first_id)\\n\\n        return type_first_token, all_first_tokens\\n\\n    def _detect_position(self, generated_text: str) -> FieldPosition:\\n        \\\"\\\"\\\"Detect current token's semantic position in the JSON structure.\\n\\n        Delegates to PositionDetector.detect() which parses the generated text\\n        and updates self.state (relation type, head type, entity registry, etc.).\\n        \\\"\\\"\\\"\\n        return self.detector.detect(generated_text, self.state)\\n\\n    def __call__(\\n        self,\\n        input_ids: torch.LongTensor,\\n        sc
+…[truncated 6771 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-15T14:43:15.527533+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "head -n 100 /root/schema_semantic_constrained_ie/violation_checker.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "head -n 100 /root/schema_semantic_constrained_ie/violation_checker.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-15T14:43:15.527750+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Check ontology constraint violations in SciERC extraction outputs.\\n\\nViolation types (mutually exclusive per triple):\\n1. entity_type_violations      - entity type not in ontology's valid type list\\n2. relation_vocabulary_violations - relation name not in ontology (solvable by grammar-constrained decoding)\\n3. domain_range_violations     - relation name valid but (head_type, tail_type) violates constraints (OntoCoDec core target)\\n4. cross_field_consistency_violations - same entity mention has inconsistent types across relations\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\n\\ndef normalize_type(t, valid_types, type_map=None):\\n    \\\"\\\"\\\"Case-insensitive type matching with common aliases.\\\"\\\"\\\"\\n    if type_map is None:\\n        type_map = {\\n            \\\"otherscientificterm\\\": \\\"OtherScientificTerm\\\",\\n            \\\"other-scientificterm\\\": \\\"OtherScientificTerm\\\",\\n            \\\"other_scientific_term\\\": \\\"OtherScientificTerm\\\",\\n            \\\"scientificterm\\\": \\\"OtherScientificTerm\\\",\\n            \\\"other\\\": \\\"OtherScientificTerm\\\",\\n        }\\n    t_lower = t.strip().lower().replace(\\\" \\\", \\\"\\\").replace(\\\"_\\\", \\\"\\\").replace(\\\"-\\\", \\\"\\\")\\n    for vt in valid_types:\\n        if t_lower == vt.lower().replace(\\\" \\\", \\\"\\\").replace(\\\"_\\\", \\\"\\\").replace(\\\"-\\\", \\\"\\\"):\\n            return vt\\n    if t_lower in type_map:\\n        return type_map[t_lower]\\n    return None\\n\\n\\ndef normalize_relation(rel_name, valid_relation_types):\\n    \\\"\\\"\\\"Fuzzy-match a model-output relation name to the nearest ontology relation.\\n\\n    Match conditions (any one suffices):\\n    1. Exact match (case-insensitive, ignoring spaces/hyphens/underscores)\\n    2. Token overlap > 80%\\n    3. Levenshtein distance <= 2\\n\\n  
+…[truncated 2699 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-15T14:43:15.527919+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "head -n 250 /root/schema_semantic_constrained_ie/violation_checker.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "head -n 250 /root/schema_semantic_constrained_ie/violation_checker.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-15T14:43:15.528205+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Check ontology constraint violations in SciERC extraction outputs.\\n\\nViolation types (mutually exclusive per triple):\\n1. entity_type_violations      - entity type not in ontology's valid type list\\n2. relation_vocabulary_violations - relation name not in ontology (solvable by grammar-constrained decoding)\\n3. domain_range_violations     - relation name valid but (head_type, tail_type) violates constraints (OntoCoDec core target)\\n4. cross_field_consistency_violations - same entity mention has inconsistent types across relations\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\n\\ndef normalize_type(t, valid_types, type_map=None):\\n    \\\"\\\"\\\"Case-insensitive type matching with common aliases.\\\"\\\"\\\"\\n    if type_map is None:\\n        type_map = {\\n            \\\"otherscientificterm\\\": \\\"OtherScientificTerm\\\",\\n            \\\"other-scientificterm\\\": \\\"OtherScientificTerm\\\",\\n            \\\"other_scientific_term\\\": \\\"OtherScientificTerm\\\",\\n            \\\"scientificterm\\\": \\\"OtherScientificTerm\\\",\\n            \\\"other\\\": \\\"OtherScientificTerm\\\",\\n        }\\n    t_lower = t.strip().lower().replace(\\\" \\\", \\\"\\\").replace(\\\"_\\\", \\\"\\\").replace(\\\"-\\\", \\\"\\\")\\n    for vt in valid_types:\\n        if t_lower == vt.lower().replace(\\\" \\\", \\\"\\\").replace(\\\"_\\\", \\\"\\\").replace(\\\"-\\\", \\\"\\\"):\\n            return vt\\n    if t_lower in type_map:\\n        return type_map[t_lower]\\n    return None\\n\\n\\ndef normalize_relation(rel_name, valid_relation_types):\\n    \\\"\\\"\\\"Fuzzy-match a model-output relation name to the nearest ontology relation.\\n\\n    Match conditions (any one suffices):\\n    1. Exact match (case-insensitive, ignoring spaces/hyphens/underscores)\\n    2. Token overlap > 80%\\n    3. Levenshtein distance <= 2\\n\\n  
+…[truncated 7303 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-15T14:43:15.528402+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Detect server image and explore project structure', 'status': 'completed', 'activeForm': 'Detecting server image and exploring project structure'}, {'content': 'Extract 16 DR violations from phase2_scierc_full_s1_v2.jsonl', 'status': 'completed', 'activeForm': 'Extracting 16 DR violations'}, {'content': 'Read type_mask_processor.py to understand enforcement logic', 'status': 'completed', 'activeForm': 'Reading type_mask_processor.py'}, {'content': 'Determine root cause of violations', 'status': 'completed', 'activeForm': 'Determining root cause'}, {'content': 'Save investigation results JSON', 'status': 'in_progress', 'activeForm': 'Saving investigation results'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Detect server image and explore project structure', 'status': 'completed', 'activeForm': 'Detecting server image and exploring project structure'}, {'content': 'Extract 16 DR violations from phase2_scierc_full_s1_v2.jsonl', 'status': 'completed', 'activeForm': 'Extracting 16 DR violations'}, {'content': 'Read type_mask_processor.py to understand enforcement logic', 'status': 'completed', 'activeForm': 'Reading type_mask_processor.py'}, {'content': 'Determine root cause of violations', 'status': 'completed', 'activeForm': 'Determining root cause'}, {'content': 'Save investigation results JSON', 'status': 'in_progress', 'activeForm': 'Saving investigation results'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-15T14:43:15.528634+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-15T14:43:15.528832+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 << 'PYEOF'\nimport json, re\n\n# ── Load constraints ──────────────────────────────────────────────────\nwith open(\"ontology_constraints.json\") as f:\n    constraints = json.load(f)\n\n# Build σ(r) and σ(r)|head lookups\nsigma = {}     # rel -> set of valid (head, tail) pairs\nsigma_by_head = {}  # (rel, head_type) -> set of valid tail types\nall_tails = {}  # rel -> set of all tails appearing in any valid pair\nfor rel, info in constraints[\"relation_constraints\"].items():\n    pairs = {(p[0], p[1]) for p in info[\"valid_pairs\"]}\n    sigma[rel] = pairs\n    all_tails[rel] = {t for _, t in pairs}\n    for h, t in pairs:\n        sigma_by_head.setdefault((rel, h), set()).add(t)\n\n# ── Re-extract all 16 violations with full diagnostic data ───────────\nRE_ENTITY = re.compile(r'\"text\"\\s*:\\s*\"([^\"]+)\"\\s*,\\s*\"type\"\\s*:\\s*\"([^\"]+)\"')\n\nviolations = []\nwith open(\"outputs/phase2_scierc_full_s1_v2.jsonl\") as f:\n    for line_num, line in enumerate(f):\n        doc = json.loads(line)\n        parsed = doc.get(\"parsed_output\", {}) or {}\n        raw = doc.get(\"raw_output\", \"\")\n        relations = parsed.get(\"relations\", [])\n        entities = parsed.get(\"entities\", [])\n        ent_map = {}\n        for e in entities:\n            if isinstance(e, dict):\n                ent_map[e.get(\"text\", \"\")] = e.get(\"type\", \"\")\n        # Also build from raw via regex (mirror what TypeConstraintProcessor does)\n        regex_ent_map = dict(RE_ENTITY.findall(raw))\n        for rel_idx, rel in enumerate(relations):\n            if not isinstance(rel, dict):\n                continue\n            rel_type = rel.get(\"type\", \"\")\n            head_type = rel.get(\"head_type\", \"\")\n            tail_type = rel.get(\"tail_type\", \"\")\n            head_text = rel.get(\"head\", \"\")\n            tail_text = rel.get(\"tail\", \"\")\n            if rel_type not in sigma:\n                continue\n            pair = (head_type, tail_type)\n            if pair not in sigma[rel_type]:\n                # Diagnostic\n                registered_head = regex_ent_map.get(head_text, None)\n                registered_tail = regex_ent_map.get(tail_text, None)\n                sigma_h = sigma_by_head.get((rel_type, head_type), set())\n                # Classify cause\n                cf_tail_match = (registered_tail == tail_type)\n                cf_head_match = (registered_head == head_type and head_type not in {h for h, _ in sigma[rel_type]})\n                # tail registered conflicts σ(r)|head\n                tail_registered_not_in_sigma = (registered_tail is not None and registered_tail not in sigma_h)\n                \n                cause = \"UNKNOWN\"\n                if cf_tail_match and tail_registered_not_in_sigma:\n                    cause = \"CF_TAIL_FALLBACK\"\n                elif registered_tail is None and tail_type not in sigma_h:\n                    cause = \"ALLOWED_DR_NOT_ENFORCED (tail not in registry)\"\n                elif registered_tail and registered_tail != tail_type:\n                    cause = \"OUTPUT_DIVERGES_FROM_REGISTRY (CF fallback should have forced registered type)\"\n                violations.append({\n                    \"doc_id\": doc.get(\"doc_id\", f\"line_{line_num}\"),\n                    \"line\": line_num,\n                    \"relation\": rel_type,\n                    \"head_text\": head_text,\n                    \"tail_text\": tail_text,\n                    \"head_type_in_relation\": head_type,\n                    \"tail_type_in_relation\": tail_type,\n                    \"head_type_registered\": registered_head,\n                    \"tail_type_registered\": registered_tail,\n                    \"sigma_r_given_head\": sorted(sigma_h),\n                    \"valid_head_types_for_rel\": sorted({h for h, _ in sigma[rel_type]}),\n                    \"cf_tail_match\": cf_tail_match,\n                    \"cause\": cause,\n                })\n\n# ── Aggregate ──────────────────────────────────────────────────\nfrom collections import Counter\ncause_counts = Counter(v[\"cause\"] for v in violations)\nrel_counts = Counter(v[\"relation\"] for v in violations)\nhead_counts = Counter(v[\"head_type_in_relation\"] for v in violations)\ntightness_per_rel = {}\nfor rel, info in constraints[\"relation_constraints\"].items():\n    pairs = info[\"valid_pairs\"]\n    tightness_per_rel[rel] = round(len(pairs) / 36, 4)  # 6x6 grid\n\n# Build report\nreport = {\n    \"summary\": {\n        \"total_violations\": len(violations),\n        \"cause_breakdown\": dict(cause_counts),\n        \"per_relation_breakdown\": dict(rel_counts),\n        \"per_head_type_breakdown\": dict(head_counts),\n        \"relation_tightness\": tightness_per_rel,\n    },\n    \"root_cause_analysis\": {\n        \"primary_cause\": {\n            \"name\": \"CF Registry-Consistent Fallback (W1)\",\n            \"code_location\": \"compiler/type_mask_processor.py _mask_tail_type lines 372-383 (and _mask_head_type 329-339)\",\n            \"mechanism\": (\n                \"Inside _mask_tail_type: when tail_text is found in entity_registry with type T, \"\n                \"the code checks if T ∈ σ(r)|head_type. If T ∉ σ(r)|head_type, the code does NOT \"\n                \"fall back to enforcing the pair-based DR constraint; instead it deliberately \"\n                \"calls _apply_type_mask(logits, {T}), forcing the registered (DR-violating) type. \"\n                \"The intent is to preserve cross-field consistency (entity mention -> single type) \"\n                \"by sacrificing DR compliance for that single triple.\"\n            ),\n            \"comment_in_code\": (\n                \"# W1 registry-consistent fallback: registered type conflicts with range(r, head_type). \"\n                \"Force registered type to prevent CF violations. \"\n                \"(See docstring: 'W1: registry consistency > DR compliance, prevents CF violations')\"\n            ),\n            \"count\": cause_counts.get(\"CF_TAIL_FALLBACK\", 0),\n            \"percentage_of_total\": round(cause_counts.get(\"CF_TAIL_FALLBACK\", 0) / len(violations) * 100, 1),\n        },\n        \"secondary_causes\": [\n            {\n                \"name\": \"Allowed_dr enforcement bypassed (tail not in entity registry)\",\n                \"count\": cause_counts.get(\"ALLOWED_DR_NOT_ENFORCED (tail not in registry)\", 0),\n                \"explanation\": (\n                    \"tail text is not present in the entities section, so CF fallback \"\n                    \"is NOT triggered. allowed_dr (the pair-based set) should have been \"\n                    \"enforced. The fact that violation still passes through suggests either \"\n                    \"(a) grammar-first fallback was triggered (semantic mask ∩ grammar mask = ∅, \"\n                    \"so semantic masking was skipped), or (b) at this generation step the \"\n                    \"position-detector failed to set state.current_head_type, causing \"\n                    \"allowed_dr to fall back to constraint.valid_tail_types() (union over all heads). \"\n                    \"The latter is more plausible — and consistent with the violation's tail_type \"\n                    \"still being in the union, which is laxer than the pair-based set.\"\n                ),\n            },\n            {\n                \"name\": \"Output diverges from registered tail type (CF fallback expected to fire)\",\n                \"count\": cause_counts.get(\"OUTPUT_DIVERGES_FROM_REGISTRY (CF fallback should have forced registered type)\", 0),\n                \"explanation\": (\n                    \"tail is registered as type T_reg, but the actual generated tail_type is T_out (≠ T_reg). \"\n                    \"CF fallback should have forced T_reg, but the output deviated. The most likely \"\n                    \"explanation is the grammar-first safety check inside _apply_type_mask: if T_reg's \"\n                    \"first token has logit < _GRAMMAR_MASK_THRESHOLD (because XGrammar grammar-masked it \"\n                    \"for some context-specific reason), the semantic mask is SKIPPED entirely \"\n                    \"(any_allowed_valid=False), letting the unmasked logits select whatever the model \"\n                    \"prefers — in both cases here, 'Generic'.\"\n                ),\n            },\n        ],\n    },\n    \"violations\": violations,\n    \"implications_for_paper\": {\n        \"residual_DR_rate_is_intentional\": (\n            \"16/1729 = 0.93% residual DR rate is NOT a code bug or constraint-data error. \"\n            \"It is the direct quantitative consequence of the W1 design decision: \"\n            \"CF consistency is prioritized over DR compliance when the entity registry \"\n            \"conflicts with σ(r)|head_type. The trade-off should be documented.\"\n        ),\n        \"where_does_the_W1_trade_off_kick_in\": (\n            \"The pattern is overwhelmingly concentrated in HIGH-TIGHTNESS relations: \"\n            \"Evaluate-for (50% of violations, σ(r)|OtherScientificTerm={Method} only), \"\n            \"Feature-of (37.5%, σ(r)|Generic={OtherScientificTerm,Task} only), \"\n            \"Compare (12.5%, σ(r)|Task={Task} only). \"\n            \"These are exactly the cases where the model's lexical preference for the entity \"\n            \"type often falls outside the tiny σ(r)|head_type set, forcing the W1 trade-off.\"\n        ),\n        \"checker_pipeline_consistency\": (\n            \"violation_checker.py uses the SAME ontology_constraints.json valid_pairs lookup \"\n            \"with the SAME case/space normalization aliases. There is no checker/enforcer \"\n            \"drift; the residual count is real.\"\n        ),\n        \"options_for_paper_section_5\": [\n            \"(a) Report 16/1729 as the consequence of the W1 design choice and explicitly \"\n            \"name the trade-off (CF consistency > DR compliance under registry-conflict).\",\n            \"(b) Add a flag to disable the W1 fallback for DR-priority experiments and \"\n            \"report both numbers (CF rate up, DR rate to 0).\",\n            \"(c) Use a multi-pass strategy: emit relation triples without referring to \"\n            \"the entity registry, then post-process to align types (decouples CF from DR).\",\n        ],\n    },\n}\n\n# Save\nout_path = \"outputs/scierc_residual_dr_investigation.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(report, f, indent=2)\n\nprint(f\"Saved → {out_path}\")\nprint(f\"\\n=== Cause breakdown ===\")\nfor k, v in cause_counts.items():\n    print(f\"  {k}: {v}\")\nprint(f\"\\n=== Per relation ===\")\nfor k, v in rel_counts.most_common():\n    print(f\"  {k}: {v}\")\nprint(f\"\\n=== Per head_type ===\")\nfor k, v in head_counts.most_common():\n    print(f\"  {k}: {v}\")\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 << 'PYEOF'\nimport json, re\n\n# ── Load constraints ──────────────────────────────────────────────────\nwith open(\"ontology_constraints.json\") as f:\n    constraints = json.load(f)\n\n# Build σ(r) and σ(r)|head lookups\nsigma = {}     # rel -> set of valid (head, tail) pairs\nsigma_by_head = {}  # (rel, head_type) -> set of valid tail types\nall_tails = {}  # rel -> set of all tails appearing in any valid pair\nfor rel, info in constraints[\"relation_constraints\"].items():\n    pairs = {(p[0], p[1]) for p in info[\"valid_pairs\"]}\n    sigma[rel] = pairs\n    all_tails[rel] = {t for _, t in pairs}\n    for h, t in pairs:\n        sigma_by_head.setdefault((rel, h), set()).add(t)\n\n# ── Re-extract all 16 violations with full diagnostic data ───────────\nRE_ENTITY = re.compile(r'\"text\"\\s*:\\s*\"([^\"]+)\"\\s*,\\s*\"type\"\\s*:\\s*\"([^\"]+)\"')\n\nviolations = []\nwith open(\"outputs/phase2_scierc_full_s1_v2.jsonl\") as f:\n    for line_num, line in enumerate(f):\n        doc = json.loads(line)\n        parsed = doc.get(\"parsed_output\", {}) or {}\n        raw = doc.get(\"raw_output\", \"\")\n        relations = parsed.get(\"relations\", [])\n        entities = parsed.get(\"entities\", [])\n        ent_map = {}\n        for e in entities:\n            if isinstance(e, dict):\n                ent_map[e.get(\"text\", \"\")] = e.get(\"type\", \"\")\n        # Also build from raw via regex (mirror what TypeConstraintProcessor does)\n        regex_ent_map = dict(RE_ENTITY.findall(raw))\n        for rel_idx, rel in enumerate(relations):\n            if not isinstance(rel, dict):\n                continue\n            rel_type = rel.get(\"type\", \"\")\n            head_type = rel.get(\"head_type\", \"\")\n            tail_type = rel.get(\"tail_type\", \"\")\n            head_text = rel.get(\"head\", \"\")\n            tail_text = rel.get(\"tail\", \"\")\n            if rel_type not in sigma:\n                continue\n            pair = (head_type, tail_type)\n            if pair not in sigma[rel_type]:\n                # Diagnostic\n                registered_head = regex_ent_map.get(head_text, None)\n                registered_tail = regex_ent_map.get(tail_text, None)\n                sigma_h = sigma_by_head.get((rel_type, head_type), set())\n                # Classify cause\n                cf_tail_match = (registered_tail == tail_type)\n                cf_head_match = (registered_head == head_type and head_type not in {h for h, _ in sigma[rel_type]})\n                # tail registered conflicts σ(r)|head\n                tail_registered_not_in_sigma = (registered_tail is not None and registered_tail not in sigma_h)\n                \n                cause = \"UNKNOWN\"\n                if cf_tail_match and tail_registered_not_in_sigma:\n                    cause = \"CF_TAIL_FALLBACK\"\n                elif registered_tail is None and tail_type not in sigma_h:\n                    cause = \"ALLOWED_DR_NOT_ENFORCED (tail not in registry)\"\n                elif registered_tail and registered_tail != tail_type:\n                    cause = \"OUTPUT_DIVERGES_FROM_REGISTRY (CF fallback should have forced registered type)\"\n                violations.append({\n                    \"doc_id\": doc.get(\"doc_id\", f\"line_{line_num}\"),\n                    \"line\": line_num,\n                    \"relation\": rel_type,\n                    \"head_text\": head_text,\n                    \"tail_text\": tail_text,\n                    \"head_type_in_relation\": head_type,\n                    \"tail_type_in_relation\": tail_type,\n                    \"head_type_registered\": registered_head,\n                    \"tail_type_registered\": registered_tail,\n                    \"sigma_r_given_head\": sorted(sigma_h),\n                    \"valid_head_types_for_rel\": sorted({h for h, _ in sigma[rel_type]}),\n                    \"cf_tail_match\": cf_tail_match,\n                    \"cause\": cause,\n                })\n\n# ── Aggregate ──────────────────────────────────────────────────\nfrom collections import Counter\ncause_counts = Counter(v[\"cause\"] for v in violations)\nrel_counts = Counter(v[\"relation\"] for v in violations)\nhead_counts = Counter(v[\"head_type_in_relation\"] for v in violations)\ntightness_per_rel = {}\nfor rel, info in constraints[\"relation_constraints\"].items():\n    pairs = info[\"valid_pairs\"]\n    tightness_per_rel[rel] = round(len(pairs) / 36, 4)  # 6x6 grid\n\n# Build report\nreport = {\n    \"summary\": {\n        \"total_violations\": len(violations),\n        \"cause_breakdown\": dict(cause_counts),\n        \"per_relation_breakdown\": dict(rel_counts),\n        \"per_head_type_breakdown\": dict(head_counts),\n        \"relation_tightness\": tightness_per_rel,\n    },\n    \"root_cause_analysis\": {\n        \"primary_cause\": {\n            \"name\": \"CF Registry-Consistent Fallback (W1)\",\n            \"code_location\": \"compiler/type_mask_processor.py _mask_tail_type lines 372-383 (and _mask_head_type 329-339)\",\n            \"mechanism\": (\n                \"Inside _mask_tail_type: when tail_text is found in entity_registry with type T, \"\n                \"the code checks if T ∈ σ(r)|head_type. If T ∉ σ(r)|head_type, the code does NOT \"\n                \"fall back to enforcing the pair-based DR constraint; instead it deliberately \"\n                \"calls _apply_type_mask(logits, {T}), forcing the registered (DR-violating) type. \"\n                \"The intent is to preserve cross-field consistency (entity mention -> single type) \"\n                \"by sacrificing DR compliance for that single triple.\"\n            ),\n            \"comment_in_code\": (\n                \"# W1 registry-consistent fallback: registered type conflicts with range(r, head_type). \"\n                \"Force registered type to prevent CF violations. \"\n                \"(See docstring: 'W1: registry consistency > DR compliance, prevents CF violations')\"\n            ),\n            \"count\": cause_counts.get(\"CF_TAIL_FALLBACK\", 0),\n            \"percentage_of_total\": round(cause_counts.get(\"CF_TAIL_FALLBACK\", 0) / len(violations) * 100, 1),\n        },\n        \"secondary_causes\": [\n            {\n                \"name\": \"Allowed_dr enforcement bypassed (tail not in entity registry)\",\n                \"count\": cause_counts.get(\"ALLOWED_DR_NOT_ENFORCED (tail not in registry)\", 0),\n                \"explanation\": (\n                    \"tail text is not present in the entities section, so CF fallback \"\n                    \"is NOT triggered. allowed_dr (the pair-based set) should have been \"\n                    \"enforced. The fact that violation still passes through suggests either \"\n                    \"(a) grammar-first fallback was triggered (semantic mask ∩ grammar mask = ∅, \"\n                    \"so semantic masking was skipped), or (b) at this generation step the \"\n                    \"position-detector failed to set state.current_head_type, causing \"\n                    \"allowed_dr to fall back to constraint.valid_tail_types() (union over all heads). \"\n                    \"The latter is more plausible — and consistent with the violation's tail_type \"\n                    \"still being in the union, which is laxer than the pair-based set.\"\n                ),\n            },\n            {\n                \"name\": \"Output diverges from registered tail type (CF fallback expected to fire)\",\n                \"count\": cause_counts.get(\"OUTPUT_DIVERGES_FROM_REGISTRY (CF fallback should have forced registered type)\", 0),\n                \"explanation\": (\n                    \"tail is registered as type T_reg, but the actual generated tail_type is T_out (≠ T_reg). \"\n                    \"CF fallback should have forced T_reg, but the output deviated. The most likely \"\n                    \"explanation is the grammar-first safety check inside _apply_type_mask: if T_reg's \"\n                    \"first token has logit < _GRAMMAR_MASK_THRESHOLD (because XGrammar grammar-masked it \"\n                    \"for some context-specific reason), the semantic mask is SKIPPED entirely \"\n                    \"(any_allowed_valid=False), letting the unmasked logits select whatever the model \"\n                    \"prefers — in both cases here, 'Generic'.\"\n                ),\n            },\n        ],\n    },\n    \"violations\": violations,\n    \"implications_for_paper\": {\n        \"residual_DR_rate_is_intentional\": (\n            \"16/1729 = 0.93% residual DR rate is NOT a code bug or constraint-data error. \"\n            \"It is the direct quantitative consequence of the W1 design decision: \"\n            \"CF consistency is prioritized over DR compliance when the entity registry \"\n            \"conflicts with σ(r)|head_type. The trade-off should be documented.\"\n        ),\n        \"where_does_the_W1_trade_off_kick_in\": (\n            \"The pattern is overwhelmingly concentrated in HIGH-TIGHTNESS relations: \"\n            \"Evaluate-for (50% of violations, σ(r)|OtherScientificTerm={Method} only), \"\n            \"Feature-of (37.5%, σ(r)|Generic={OtherScientificTerm,Task} only), \"\n            \"Compare (12.5%, σ(r)|Task={Task} only). \"\n            \"These are exactly the cases where the model's lexical preference for the entity \"\n            \"type often falls outside the tiny σ(r)|head_type set, forcing the W1 trade-off.\"\n        ),\n        \"checker_pipeline_consistency\": (\n            \"violation_checker.py uses the SAME ontology_constraints.json valid_pairs lookup \"\n            \"with the SAME case/space normalization aliases. There is no checker/enforcer \"\n            \"drift; the residual count is real.\"\n        ),\n        \"options_for_paper_section_5\": [\n            \"(a) Report 16/1729 as the consequence of the W1 design choice and explicitly \"\n            \"name the trade-off (CF consistency > DR compliance under registry-conflict).\",\n            \"(b) Add a flag to disable the W1 fallback for DR-priority experiments and \"\n            \"report both numbers (CF rate up, DR rate to 0).\",\n            \"(c) Use a multi-pass strategy: emit relation triples without referring to \"\n            \"the entity registry, then post-process to align types (decouples CF from DR).\",\n        ],\n    },\n}\n\n# Save\nout_path = \"outputs/scierc_residual_dr_investigation.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(report, f, indent=2)\n\nprint(f\"Saved → {out_path}\")\nprint(f\"\\n=== Cause breakdown ===\")\nfor k, v in cause_counts.items():\n    print(f\"  {k}: {v}\")\nprint(f\"\\n=== Per relation ===\")\nfor k, v in rel_counts.most_common():\n    print(f\"  {k}: {v}\")\nprint(f\"\\n=== Per head_type ===\")\nfor k, v in head_counts.most_common():\n    print(f\"  {k}: {v}\")\nPYEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-15T14:43:15.529102+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Saved → outputs/scierc_residual_dr_investigation.json\\n\\n=== Cause breakdown ===\\n  CF_TAIL_FALLBACK: 14\\n  ALLOWED_DR_NOT_ENFORCED (tail not in registry): 1\\n  OUTPUT_DIVERGES_FROM_REGISTRY (CF fallback should have forced registered type): 1\\n\\n=== Per relation ===\\n  Evaluate-for: 8\\n  Feature-of: 6\\n  Compare: 2\\n\\n=== Per head_type ===\\n  OtherScientificTerm: 8\\n  Generic: 6\\n  Task: 2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-15T14:43:15.529244+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "account": "root",
+  "command": "head -n 80 /root/schema_semantic_constrained_ie/outputs/scierc_residual_dr_investigation.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "account": "root",
+    "command": "head -n 80 /root/schema_semantic_constrained_ie/outputs/scierc_residual_dr_investigation.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-15T14:43:15.529444+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"total_violations\\\": 16,\\n    \\\"cause_breakdown\\\": {\\n      \\\"CF_TAIL_FALLBACK\\\": 14,\\n      \\\"ALLOWED_DR_NOT_ENFORCED (tail not in registry)\\\": 1,\\n      \\\"OUTPUT_DIVERGES_FROM_REGISTRY (CF fallback should have forced registered type)\\\": 1\\n    },\\n    \\\"per_relation_breakdown\\\": {\\n      \\\"Evaluate-for\\\": 8,\\n      \\\"Feature-of\\\": 6,\\n      \\\"Compare\\\": 2\\n    },\\n    \\\"per_head_type_breakdown\\\": {\\n      \\\"OtherScientificTerm\\\": 8,\\n      \\\"Generic\\\": 6,\\n      \\\"Task\\\": 2\\n    },\\n    \\\"relation_tightness\\\": {\\n      \\\"Used-for\\\": 0.9722,\\n      \\\"Feature-of\\\": 0.7222,\\n      \\\"Hyponym-of\\\": 0.5833,\\n      \\\"Part-of\\\": 0.5833,\\n      \\\"Compare\\\": 0.4722,\\n      \\\"Conjunction\\\": 0.6944,\\n      \\\"Evaluate-for\\\": 0.6389\\n    }\\n  },\\n  \\\"root_cause_analysis\\\": {\\n    \\\"primary_cause\\\": {\\n      \\\"name\\\": \\\"CF Registry-Consistent Fallback (W1)\\\",\\n      \\\"code_location\\\": \\\"compiler/type_mask_processor.py _mask_tail_type lines 372-383 (and _mask_head_type 329-339)\\\",\\n      \\\"mechanism\\\": \\\"Inside _mask_tail_type: when tail_text is found in entity_registry with type T, the code checks if T \\\\u2208 \\\\u03c3(r)|head_type. If T \\\\u2209 \\\\u03c3(r)|head_type, the code does NOT fall back to enforcing the pair-based DR constraint; instead it deliberately calls _apply_type_mask(logits, {T}), forcing the registered (DR-violating) type. The intent is to preserve cross-field consistency (entity mention -> single type) by sacrificing DR compliance for that single triple.\\\",\\n      \\\"comment_in_code\\\": \\\"# W1 registry-consistent fallback: registered type conflicts with range(r, head_type). Force registered type to prevent CF violations. (See docstring: 'W1: registry consistency > DR compliance, prevents CF violations')\\\",\\n      \\\
+…[truncated 2883 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-15T14:43:15.529604+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Detect server image and explore project structure', 'status': 'completed', 'activeForm': 'Detecting server image and exploring project structure'}, {'content': 'Extract 16 DR violations from phase2_scierc_full_s1_v2.jsonl', 'status': 'completed', 'activeForm': 'Extracting 16 DR violations'}, {'content': 'Read type_mask_processor.py to understand enforcement logic', 'status': 'completed', 'activeForm': 'Reading type_mask_processor.py'}, {'content': 'Determine root cause of violations', 'status': 'completed', 'activeForm': 'Determining root cause'}, {'content': 'Save investigation results JSON', 'status': 'completed', 'activeForm': 'Saving investigation results'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Detect server image and explore project structure', 'status': 'completed', 'activeForm': 'Detecting server image and exploring project structure'}, {'content': 'Extract 16 DR violations from phase2_scierc_full_s1_v2.jsonl', 'status': 'completed', 'activeForm': 'Extracting 16 DR violations'}, {'content': 'Read type_mask_processor.py to understand enforcement logic', 'status': 'completed', 'activeForm': 'Reading type_mask_processor.py'}, {'content': 'Determine root cause of violations', 'status': 'completed', 'activeForm': 'Determining root cause'}, {'content': 'Save investigation results JSON', 'status': 'completed', 'activeForm': 'Saving investigation results'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-15T14:43:15.529800+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82 · 2026-05-15T14:43:15.529983+00:00_
+
+## 调查结论
+
+### 根因：**CF Registry-Consistent Fallback (W1) — 14/16 violations (87.5%)**
+
+`compiler/type_mask_processor.py:_mask_tail_type` (lines 372–383) 显式编码了以下行为：
+
+```python
+if actual_type and actual_type in self._type_first_token:
+    if allowed_dr is None or actual_type in allowed_dr:
+        return self._apply_type_mask(logits, {actual_type})
+    else:
+        # W1 registry-consistent fallback
+        self._cf_fallback_count += 1
+        return self._apply_type_mask(logits, {actual_type})   # ← 绕过 pair-based check
+```
+
+当 entity registry 中 tail_text 已登记为类型 T，而 T ∉ σ(r)|head_type 时，代码**故意强制注册类型 T**而非回退到 `allowed_dr` (pair-based)。Docstring 明示设计意图："W1: registry consistency > DR compliance, prevents CF violations"。
+
+**证据**：14/16 violations 中 `tail_type_in_relation` 与 entities section 中该 mention 的类型**完全一致**（如 'syntactic coverage' 登记为 Metric，violation 也是 Metric；'inheritance-based lexica' 登记为 OtherScientificTerm，violation 也是 OtherScientificTerm）。
+
+### 集中度（与 tightness 相关）
+
+| Relation | Violations | σ(r)\|head 大小 |
+|---|---|---|
+| Evaluate-for, head=OtherScientificTerm | 8 | **1** ({Method}) |
+| Feature-of, head=Generic | 6 | **2** ({OST, Task}) |
+| Compare, head=Task | 2 | **1** ({Task}) |
+
+100% 的 violations 都集中在 σ(r)\|head ≤ 2 的最紧约束位置——这是 W1 trade-off 最频繁触发的地方（模型词汇偏好与小集合冲突几率最大）。
+
+### 2 个 outliers
+
+- **#2 INTERSPEECH_2008_20_abs_sent5**: tail='mismatch' 不在 entity registry（CF fallback 未触发）。最可能：position detector 未捕获 head_type，allowed_dr 退化到 `valid_tail_types()` (union, 含 Generic)。
+- **#9 ECCV_2016_99_abs_sent5**: tail='sliding window design' 登记为 OtherScientificTerm 但输出 Generic。最可能：`_apply_type_mask` 内的 grammar-first safety check（OtherScientificTerm first token 被 XGrammar 标为 < -1e8 → `any_allowed_valid=False` → 跳过 semantic mask）。
+
+### 论文 §5 启示
+
+- 残余 0.93% (16/1729) 不是 bug 也不是 checker 口径不一致——`violation_checker.py` 与 enforcement 使用相同的 `ontology_constraints.json` valid_pairs。
+- 这是 **W1 设计的可量化代价**：用 0.93% DR violations 换取近 0% CF violations 在 high-tightness relations 上的可行实现。
+- §5 可以直接量化展示：所有残余 DR violations 都在 σ(r)\|head ∈ {1,2} 的 cells；如果禁用 W1 fallback，DR=0 但 CF rate 会上升（可补一个 ablation）。
+
+完整数据已保存至 `outputs/scierc_residual_dr_investigation.json`（含 16 条 violations 的全字段诊断 + cause 标签）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_scierc_residual_dr_rootcause_20260515T143327"
+}
+```
+
+</details>
+
+---

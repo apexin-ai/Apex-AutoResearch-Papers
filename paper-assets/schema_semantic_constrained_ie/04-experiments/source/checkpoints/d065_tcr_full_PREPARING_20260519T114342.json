@@ -1,0 +1,17 @@
+{
+  "exp_id": "d065_tcr_full",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:43:23.631Z",
+    "updated_at": "2026-05-19T11:43:42.621Z",
+    "hypothesis": "TCR's CF elimination generalizes across datasets (DocRED 96 rels, Mistral, 70B) and fine-tuning settings, but effectiveness is inversely correlated with mean schema constraint tightness (κ̄): higher κ̄ (more restrictive schemas like DocRED) produces more fundamental conflicts where no single entity type satisfies all relational contexts, causing DR to increase when CF is forcibly resolved.",
+    "parent": "d065_tcr_pilot",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T11:43:42.948418+00:00",
+  "trigger": "update_registry"
+}

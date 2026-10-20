@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_70b_zs_scierc_unconstrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:45:13.928Z",
+    "updated_at": "2026-05-22T18:45:31.931Z",
+    "hypothesis": "Independent 70B ZS SciERC unconstrained baseline to verify prior DR and R-F1 numbers from r16_70b_scierc_zs_s1 experiment. Expect DR~6-8% and R-F1~11 consistent with earlier measurements.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python run_constrained_extraction.py --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-70B-Instruct-AWQ-INT4 --data_path data/processed_data/test.json --dataset scierc --mode unconstrained --constraints_path ontology_constraints.json --output_path outputs/70b_zs_scierc_unconstrained.jsonl --max_new_tokens 2048",
+      "server": "westd-21461",
+      "gpu": "cuda:0 (NVIDIA RTX PRO 6000 Blackwell 96GB)",
+      "pid": 74572,
+      "data_path": "data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "Llama-3.1-70B-Instruct-AWQ-INT4 (zero-shot)",
+      "seed": 42,
+      "checkpoint_source": "N/A (zero-shot)",
+      "eval_data": "SciERC test 551 docs",
+      "checkpoint_path": "N/A",
+      "log_path": "/tmp/70b_zs_scierc_unconstrained.log"
+    }
+  },
+  "timestamp": "2026-05-22T18:45:32.229857+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bb707a6c4218d380db5",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis w8 qwen docred ft grammar only",
+  "task_key": "worker_analysis_w8_qwen_docred_ft_grammar_only_20260516T152215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w8_qwen_docred_ft_grammar_only_20260516T152215_result.json",
+    "occurrence": 1,
+    "bytes": 1617,
+    "sha256": "2374530c0bd2245d923cb4031a8a01db7d76dbc8e24ad130710a296c2b32f3e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## w8_qwen_docred_ft_grammar_only 完整指标\n\n### ALL SAMPLES (fail = 0 contribution)\n\n| 指标 | 值 |\n|------|------|\n| **ET_pct** | 0.00% |\n| **RV_pct** | 0.00% |\n| **DR_pct** | 0.61% |\n| **CF_pct** | 0.11% |\n| **E_F1** | 82.19 |\n| **E_P** | 85.47 |\n| **E_R** | 79.16 |\n| **R_F1** | 40.85 |\n| **R_P** | 36.27 |\n| **R_R** | 46.77 |\n| **parse_fail_rate** | 7.01% (70/998) |\n\n### EXCL FAIL (仅成功样本)\n\n| 指标 | 值 |\n|------|------|\n| **E_F1_excl_fail** | 85.72 |\n| **R_F1_excl_fail** | 42.12 |\n| **R_P_excl_fail** | 36.27 |\n| **R_R_excl_fail** | 50.22 |\n\n### vs Qwen FT Unconstrained (baseline)\n\n| 指标 | Unconstrained | Grammar Only | Delta |\n|------|------|------|------|\n| ET_pct | 0.00% | 0.00% | 0 |\n| RV_pct | 0.27% | 0.00% | **-0.27pp** (消除) |\n| DR_pct | 0.76% | 0.61% | **-0.15pp** |\n| R_F1 | 40.86 | 40.85 | -0.01 (持平) |\n| R_F1_excl_fail | 42.20 | 42.12 | -0.08 (持平) |\n\n### vs Llama DocRED grammar_only\n\n| 指标 | Llama grammar_only | Qwen FT grammar_only |\n|------|------|------|\n| DR_pct | 0.51% | 0.61% |\n| E_F1 | 84.04 | 82.19 |\n| R_F1 | 43.77 | 40.85 |\n\n### 分析\n\n1. **Grammar 层完全消除了 ET 和 RV 违规**（ET=0%, RV=0%），符合预期\n2. **DR_pct = 0.61%**，接近 unconstrained 的 0.76%——验证了假设：grammar_only 模式不约束 domain-range，DR 违规几乎保留原样（仅因 RV=0 导致分母略变使得比例从 0.76% 降到 0.61%）\n3. **R_F1 几乎不变**（40.85 vs 40.86），说明 grammar 层不降低生成质量\n4. CF_pct 极低（0.11%），与 unconstrained 一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w8-qwen-docred-ft-grammar-only.md"
+}

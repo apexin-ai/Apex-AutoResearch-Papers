@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "2287d787bb94be6bd3fb",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code beam search docred mistral dryrun",
+  "task_key": "worker_code_beam_search_docred_mistral_dryrun_20260517T011428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_beam_search_docred_mistral_dryrun_20260517T011428.log",
+    "occurrence": 1,
+    "bytes": 674373,
+    "sha256": "738019c3b01c74d386296f8bd1e81f49b6344a750096b26444b767f1700c4abe"
+  },
+  "statistics": {
+    "messages": 372,
+    "user_turns": 0,
+    "tool_calls": 149,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 71,
+      "tool_call": 149,
+      "tool_result": 149
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 372,
+      "chunks": [
+        {
+          "path": "2287d787bb94be6bd3fb-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2287d787bb94be6bd3fb-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2287d787bb94be6bd3fb-part-0003.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-beam-search-docred-mistral-dryrun.md"
+}

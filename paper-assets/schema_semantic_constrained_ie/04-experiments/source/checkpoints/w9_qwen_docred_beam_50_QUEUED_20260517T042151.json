@@ -1,0 +1,15 @@
+{
+  "exp_id": "w9_qwen_docred_beam_50",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:48:50.746Z",
+    "updated_at": "2026-05-17T04:21:51.200Z",
+    "hypothesis": "Beam search (k=4) on Qwen3-8B DocRED 50 docs with full_s1: DR should decrease from greedy baseline 10.21% but likely not reach 0% due to DocRED's tighter schema (96 types, avg 5.68 valid pairs). Tests whether beam exploration can find legal paths in a complex constraint space."
+  },
+  "timestamp": "2026-05-17T04:21:51.501858+00:00",
+  "trigger": "update_registry"
+}

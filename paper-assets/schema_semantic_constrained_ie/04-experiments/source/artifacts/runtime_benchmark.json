@@ -1,0 +1,23 @@
+{
+  "scierc": {
+    "unconstrained": {"source_file": "phase2_scierc_unconstrained.jsonl", "docs": 551, "total_seconds": 4790.33, "median_sec_per_doc": 8.526, "avg_sec_per_doc": 8.694, "tokens_generated": 131797, "avg_tokens_per_doc": 239.2, "tokens_per_sec": 27.51, "overhead_pct_vs_unconstrained": 0.0},
+    "grammar_only": {"source_file": "phase2_scierc_grammar_only.jsonl", "docs": 551, "total_seconds": 4856.829, "median_sec_per_doc": 8.354, "avg_sec_per_doc": 8.815, "tokens_generated": 131821, "avg_tokens_per_doc": 239.24, "tokens_per_sec": 27.14, "overhead_pct_vs_unconstrained": 1.39},
+    "semantic_only": {"source_file": "phase2_scierc_semantic_only_v2.jsonl", "docs": 551, "total_seconds": 3981.505, "median_sec_per_doc": 6.449, "avg_sec_per_doc": 7.226, "tokens_generated": 131771, "avg_tokens_per_doc": 239.15, "tokens_per_sec": 33.1, "overhead_pct_vs_unconstrained": -16.88},
+    "full_s1": {"source_file": "phase2_scierc_full_s1_v2.jsonl", "docs": 551, "total_seconds": 3725.176, "median_sec_per_doc": 5.981, "avg_sec_per_doc": 6.761, "tokens_generated": 131843, "avg_tokens_per_doc": 239.28, "tokens_per_sec": 35.39, "overhead_pct_vs_unconstrained": -22.24},
+    "posthoc": {"source_file": "posthoc_scierc.jsonl (inference from unconstrained) + posthoc_filter.py", "docs": 551, "inference_seconds": 4790.33, "filter_seconds": 0.062, "filter_runs_seconds": [0.064, 0.062, 0.061], "total_seconds": 4790.392, "median_sec_per_doc": 8.526, "avg_sec_per_doc": 8.694, "tokens_generated": 131797, "avg_tokens_per_doc": 239.2, "tokens_per_sec": 27.51, "overhead_pct_vs_unconstrained": 0.0}
+  },
+  "docred": {
+    "unconstrained": {"source_file": "docred_unconstrained.jsonl", "docs": 998, "total_seconds": 19715.149, "median_sec_per_doc": 18.248, "avg_sec_per_doc": 19.755, "tokens_generated": 1121442, "avg_tokens_per_doc": 1123.69, "tokens_per_sec": 56.88, "overhead_pct_vs_unconstrained": 0.0},
+    "grammar_only": {"source_file": "docred_grammar_only.jsonl", "docs": 998, "total_seconds": 20534.963, "median_sec_per_doc": 18.74, "avg_sec_per_doc": 20.576, "tokens_generated": 1124288, "avg_tokens_per_doc": 1126.54, "tokens_per_sec": 54.75, "overhead_pct_vs_unconstrained": 4.16},
+    "semantic_only": {"source_file": "docred_semantic_only.jsonl", "docs": 998, "total_seconds": 20486.546, "median_sec_per_doc": 19.079, "avg_sec_per_doc": 20.528, "tokens_generated": 1120340, "avg_tokens_per_doc": 1122.59, "tokens_per_sec": 54.69, "overhead_pct_vs_unconstrained": 3.91},
+    "full_s1": {"source_file": "docred_full_s1.jsonl", "docs": 998, "total_seconds": 20354.023, "median_sec_per_doc": 18.815, "avg_sec_per_doc": 20.395, "tokens_generated": 1116251, "avg_tokens_per_doc": 1118.49, "tokens_per_sec": 54.84, "overhead_pct_vs_unconstrained": 3.24},
+    "posthoc": {"source_file": "posthoc_docred.jsonl (inference from unconstrained) + posthoc_filter.py", "docs": 998, "inference_seconds": 19715.149, "filter_seconds": 21.895, "filter_runs_seconds": [21.851, 22.176, 21.895], "total_seconds": 19737.044, "median_sec_per_doc": 18.248, "avg_sec_per_doc": 19.7766, "tokens_generated": 1121442, "avg_tokens_per_doc": 1123.69, "tokens_per_sec": 56.82, "overhead_pct_vs_unconstrained": 0.11}
+  },
+  "_meta": {
+    "model": "Qwen3-8B",
+    "datasets": {"scierc": 551, "docred": 998},
+    "timing_source": "Sum of inference_time_seconds in each per-doc JSONL record (excludes model loading). Posthoc filter time = median of 3 fresh runs of posthoc_filter.py.",
+    "tokens_source": "Generated tokens counted by re-tokenizing raw_output with Qwen3 tokenizer",
+    "posthoc_definition": "inference time of unconstrained + offline rule-based filter time"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16164c25ed1dadb77fc7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "debug w10 llama docred beam param",
+  "task_key": "worker_debug_w10_llama_docred_beam_param_20260517T074352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_w10_llama_docred_beam_param_20260517T074352_result.json",
+    "occurrence": 1,
+    "bytes": 1502,
+    "sha256": "36fea3343567d25f9a935b64e039f91fa6724beccfce2d51640811c6222ad063"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**RV = 0/614 (0.0%)！D/R = 0/614 (0.0%)！** Grammar constraint 完全正常工作。\n\n## 最终结论\n\n### 1. 根因\n\n**不是 grammar constraint 失效，而是用错了 violation checker。**\n\n- `violation_checker.py`（用于 SciERC）对 DocRED 的 dict 格式 `relation_types` 迭代 keys（P-codes），无法匹配模型输出的自然语言名称 → RV=100%\n- `violation_checker_docred.py`（DocRED 专用）有 `build_relation_name_to_id()` 映射名称→P-codes → RV=0%\n\n### 2. 代码逻辑确认\n\n`load_constraint_spec`（run_constrained_extraction.py:359-362）**设计如此**：\n```python\n# DocRED: {P-code: name} dict -> use names as relation types\nrelation_types = list(code_to_name.values())  # 自然语言名称\n```\n\nGrammar schema 的 enum 约束模型输出为这些名称，prompt 也列出这些名称。Grammar 正确生效。\n\n### 3. 参数格式\n\n`--beam_size` 在 `run_constrained_extraction.py` 中**不存在**。两个 beam 实验都用了相同格式：\n```\n--decoding_strategy beam --num_beams 4\n```\n\nSciERC beam 日志确认：`Decoding: beam search (num_beams=4)`\n\n### 4. 正确的 violation checker 结果\n\n```\nRV = 0/614 (0.0%)\nD/R = 0/614 (0.0%)\nEntity type violations = 0\nCross-field consistency = 6\n```\n\n### 5. 不需要重新跑实验\n\n原始数据 `docred_llama_beam_50.jsonl` 完全正确。只需用 `violation_checker_docred.py` 评估即可。未来 DocRED 实验评估统一用这个 checker。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-w10-llama-docred-beam-param.md"
+}

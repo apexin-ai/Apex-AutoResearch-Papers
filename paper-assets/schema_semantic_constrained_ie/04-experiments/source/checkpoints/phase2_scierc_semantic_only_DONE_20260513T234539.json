@@ -1,0 +1,47 @@
+{
+  "exp_id": "phase2_scierc_semantic_only",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T21:48:44.427Z",
+    "updated_at": "2026-05-13T23:45:39.272Z",
+    "hypothesis": "Semantic-only constrained decoding (TypeConstraintProcessor) 能否消除 domain/range violations？预期 dr_violation→0%，但可能影响 F1（约束过强导致生成偏移）",
+    "notes": "Dry-run 验证通过 (5/13 23:36): E=4, R=1, 6.7s。代码就绪，等 grammar_only/unconstrained 完成后提交。参数名是 --max_samples（非 --num_samples）。",
+    "server": "westd-16980",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-16980",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-13T23:45:06.174Z",
+      "command": "python3 run_constrained_extraction.py --mode semantic_only --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_semantic_only.jsonl --device cuda:0 --batch_size 1",
+      "finished_at": "2026-05-13T23:45:38.627Z",
+      "training_hours": 0.01
+    },
+    "spec": {
+      "command": "python3 run_constrained_extraction.py --mode semantic_only --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_semantic_only.jsonl --device cuda:0 --batch_size 1",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/schema_semantic_constrained_ie/phase2_scierc_semantic_only.log",
+      "submitted_at": "2026-05-13T23:45:36.687Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 2.6,
+      "gpu_hours": 0.0
+    },
+    "pid": "unknown",
+    "log_path": "~/runs/schema_semantic_constrained_ie/phase2_scierc_semantic_only.log",
+    "failure_reason": "EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-13T23:45:39.272Z"
+  },
+  "timestamp": "2026-05-13T23:45:39.302896+00:00",
+  "trigger": "update_registry"
+}

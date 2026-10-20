@@ -1,0 +1,84 @@
+{
+  "exp_id": "llama_scierc_full_s1",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T10:42:56.936Z",
+    "updated_at": "2026-05-14T14:36:33.800Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/llama_scierc_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "190648",
+      "log_path": "~/runs/schema_semantic_constrained_ie/llama_scierc_full_s1.log",
+      "submitted_at": "2026-05-14T13:50:35.755Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/schema_semantic_constrained_ie/data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "Llama-3.1-8B-Instruct",
+      "seed": 42,
+      "wall_clock_seconds": 1249.5,
+      "gpu_hours": 0.35
+    },
+    "hypothesis": "Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 SciERC 上的效果。与 Qwen3-8B full_s1 (DR 0.93%) 对比，验证 OntoCoDec 的 model-agnostic 特性。零代码修改。D009 cross-model 验证核心实验。",
+    "server": "westd-16980",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-16980",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-14T13:50:33.979Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/llama_scierc_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\"",
+      "finished_at": "2026-05-14T14:11:24.215Z",
+      "training_hours": 0.35
+    },
+    "pid": "190648",
+    "log_path": "~/runs/schema_semantic_constrained_ie/llama_scierc_full_s1.log",
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "success",
+    "completed_at": "2026-05-14T14:11:25.248Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T14:11:26.755217+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "samples": 550,
+      "entities_extracted": 2469,
+      "relations_extracted": 1315,
+      "domain_range_violation_rate": 0.0008,
+      "relation_vocab_violation_rate": 0,
+      "entity_type_violation_rate": 0,
+      "cross_field_consistency_violation_rate": 0.0656,
+      "total_violation_rate": 0.0431,
+      "entity_f1": 0.2349,
+      "entity_precision": 0.1972,
+      "entity_recall": 0.2902,
+      "relation_f1": 0.0254,
+      "relation_precision": 0.0221,
+      "relation_recall": 0.0298,
+      "per_relation_dr": {
+        "Compare": 0.0128,
+        "Conjunction": 0,
+        "Evaluate-for": 0,
+        "Feature-of": 0,
+        "Hyponym-of": 0,
+        "Part-of": 0,
+        "Used-for": 0
+      }
+    }
+  },
+  "timestamp": "2026-05-14T14:36:33.863327+00:00",
+  "trigger": "update_registry"
+}

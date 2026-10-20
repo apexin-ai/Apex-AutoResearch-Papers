@@ -1,0 +1,16 @@
+{
+  "exp_id": "d066_sweep_21461_gpu1",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:01:12.415Z",
+    "updated_at": "2026-05-20T11:01:20.008Z",
+    "hypothesis": "d066 DocRED beam sweep sub-task: Qwen beam8 constrained (full_s1) on 200-doc subset (westd-21461 GPU1). Part of d066_beam_sweep parent experiment.",
+    "parent": "d066_beam_sweep"
+  },
+  "timestamp": "2026-05-20T11:01:20.312378+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,41 @@
+{
+  "exp_id": "w9_qwen_docred_zs_sampling_r2",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T19:56:42.483Z",
+    "updated_at": "2026-05-18T21:52:09.956Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/.cache/huggingface/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218 --data_path /root/autodl-tmp/schema_outputs/w9_docred_remaining.json --constraints_path data/docred/ontology_constraints_docred.json --output_path /root/autodl-tmp/schema_outputs/w9_qwen_docred_zs_sampling_r2.jsonl --batch_size 1 --max_new_tokens 4096 --temperature 0.7 --top_p 0.9 --skip_on_error --device cuda:0",
+      "server": "westd-21461",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "383602",
+      "log_path": "/root/autodl-tmp/schema_outputs/w9_docred_r2.log",
+      "submitted_at": "2026-05-16T19:56:51.235Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/schema_outputs/w9_docred_remaining.json",
+      "data_count": 892,
+      "model_name": "Qwen3-8B",
+      "seed": null,
+      "checkpoint_path": "/root/autodl-tmp/schema_outputs/w9_qwen_docred_zs_sampling_r2.jsonl",
+      "checkpoint_source": "Qwen3-8B pretrained (zero-shot)",
+      "eval_data": "DocRED dev set (remaining 892 docs from index 106)",
+      "tmux_session": "w9_docred_r2",
+      "wall_clock_seconds": 179718.7,
+      "gpu_hours": 49.92
+    },
+    "conclusion": "killed",
+    "hypothesis": "Continuation of w9 DocRED sampling from doc 106, testing OntoCoDec full_s1 with temperature sampling (T=0.7) on remaining 892 DocRED documents",
+    "parent": "w9_qwen_docred_zs_sampling",
+    "completed_at": "2026-05-18T21:52:09.956Z"
+  },
+  "timestamp": "2026-05-18T21:52:10.237130+00:00",
+  "trigger": "update_registry"
+}

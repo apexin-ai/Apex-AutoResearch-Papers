@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12ee3b88f8ae8a38e532",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code d064 paper template",
+  "task_key": "worker_code_d064_paper_template_20260519T172509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d064_paper_template_20260519T172509_result.json",
+    "occurrence": 1,
+    "bytes": 989,
+    "sha256": "f4799c7d84b93b52b1b9eff12a4cec3fccf5f67fafac140c4c5a63a9360de6fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/_project/report/d064_paper_template.md`。\n\n总结：\n\n**需更新的文件共 4 个，25+ 个具体位置：**\n\n- **appendix_beam_search.tex** — 主战场，共 ~17 处：表格 6 行 DocRED 数据 + caption + Discussion 段落全部百分比 + parse failure 统计 + CI 辩护 + 一处 \"50 DocRED documents\"\n- **section5_runtime.tex** L13 — \"50-document subset\" → \"998-document dev set\" + Mistral 数字\n- **main.tex** L82 — \"a DocRED subset\" → \"the full DocRED dev set (998 documents)\"\n- **appendix_tcr.tex** L82 — \"DocRED 50-doc subset\" → \"DocRED (998 docs)\"\n\n**不需要动的：** abstract、intro、conclusion、§5 SciERC 段落——它们只引用 SciERC beam 结果。\n\n**关键决策点：** 如果 998-doc 结果 Qwen/Llama DR 仍=0%，叙事结构不变只换数字；如果 DR>0%，需要将 \"eliminates\" 降级为 \"substantially reduces\"，且可能波及 abstract/intro 中的 claim。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d064-paper-template.md"
+}

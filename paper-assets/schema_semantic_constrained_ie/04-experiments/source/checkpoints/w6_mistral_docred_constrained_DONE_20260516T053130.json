@@ -1,0 +1,36 @@
+{
+  "exp_id": "w6_mistral_docred_constrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:19:37.979Z",
+    "updated_at": "2026-05-16T05:31:30.251Z",
+    "hypothesis": "Mistral (3rd model) + OntoCoDec constrained eval on DocRED — 验证约束解码在第三模型+复杂 schema 上的泛化性",
+    "spec": {
+      "command": "python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w6_mistral_docred_constrained.jsonl --batch_size 1 --max_new_tokens 4096",
+      "server": "westd-21461",
+      "gpu": [
+        "cuda:1"
+      ],
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "data_path": "data/docred/dev.json",
+      "data_count": 998,
+      "seed": 42,
+      "pid": "6789",
+      "log_path": "/tmp/w6_mistral_docred_constrained.log",
+      "submitted_at": "2026-05-16T13:23:00Z",
+      "backend": "nohup",
+      "account": "root",
+      "checkpoint_path": "N/A"
+    },
+    "notes": "PID 6789 on cuda:1 via nohup. Patched xgrammar 0.2.0 hf.py (accept_token .item() fix for transformers 5.8.1 compat). Model loaded from symlink. Log at /tmp/w6_mistral_docred_constrained.log.",
+    "conclusion": "failed",
+    "failure_reason": "Process killed by fix worker (pkill) during orphan cleanup. Had 15/998 samples before kill.",
+    "completed_at": "2026-05-16T05:31:30.251Z"
+  },
+  "timestamp": "2026-05-16T05:31:30.370222+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,40 @@
+{
+  "exp_id": "phase2_docred_full_s1",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 1,
+    "created_at": "2026-05-14T02:07:20.166Z",
+    "updated_at": "2026-05-14T08:29:07.957Z",
+    "hypothesis": "Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上能否复现 SciERC 的 DR 消除效果 (15.37%→0.93%)？DocRED 约束更紧 (avg 5.68 valid pairs)，DR baseline 更高 (18.7%)，验证 OntoCoDec 在复杂 schema 上的泛化性。",
+    "notes": "修复后重启 (PID 157042, tmux: phase2_docred_full_s1, cuda:1)。根因: TypeConstraintProcessor._apply_type_mask 在 allowed_types 与 grammar-valid tokens 无交集时，把所有 grammar-valid tokens 设为 -inf，导致 argmax 选中 grammar-invalid token (logit=-1e10 > -inf)。修复: _apply_type_mask 增加安全检查，若无 semantically-allowed type 有非 grammar-masked logit，跳过 semantic masking 交由 grammar 控制。Dry-run 验证 doc 88(原崩溃点)+7 docs 全部通过。--resume 从 87 继续，当前 89/998。",
+    "completed_at": "2026-05-14T02:55:47.271Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "修复后重启 (PID 157042, tmux: phase2_docred_full_s1, cuda:1)。根因: TypeConstraintProcessor._apply_type_mask 在 allowed_types 与 grammar-valid tokens 无交集时，把所有 grammar-valid tokens 设为 -inf，导致 argmax 选中 grammar-invalid token (logit=-1e10 > -inf)。修复: _apply_type_mask 增加安全检查，若无 semantically-allowed type 有非 grammar-masked logit，跳过 semantic masking 交由 grammar 控制。Dry-run 验证 doc 88(原崩溃点)+7 docs 全部通过。--resume 从 87 继续，当前 89/998。"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096 --resume\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "157042",
+      "data_path": "/root/schema_semantic_constrained_ie/data/docred/dev.json",
+      "data_count": 998,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "log_path": "~/runs/schema_semantic_constrained_ie/phase2_docred_full_s1.log",
+      "fix_applied": "type_mask_processor.py: semantic mask safety check — skip semantic masking when allowed_types have no non-grammar-masked logits"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T08:29:07.765Z"
+    }
+  },
+  "timestamp": "2026-05-14T08:29:08.043282+00:00",
+  "trigger": "update_registry"
+}

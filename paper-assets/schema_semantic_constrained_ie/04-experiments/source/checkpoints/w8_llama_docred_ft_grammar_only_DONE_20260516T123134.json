@@ -1,0 +1,29 @@
+{
+  "exp_id": "w8_llama_docred_ft_grammar_only",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T06:34:25.909Z",
+    "updated_at": "2026-05-16T12:31:33.933Z",
+    "hypothesis": "FT Llama DocRED + grammar_only eval: FT 后 DR 残留 0.49%，grammar_only 能消除多少？如果 grammar_only 已足够则 semantic 层在 FT regime 边际价值小；如果不够则两层在 FT 后仍互补。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode grammar_only --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w8_llama_docred_ft_grammar_only.jsonl --batch_size 1 --max_new_tokens 4096",
+      "server": "westd-16980",
+      "data_path": "data/docred/dev.json",
+      "data_count": 998,
+      "model_name": "llama_lora_docred_merged",
+      "seed": 42,
+      "checkpoint_source": "w5_llama_docred_lora",
+      "eval_data": "docred_dev_998"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/llama_lora_docred_merged",
+    "log_path": "/tmp/w8_llama_docred_ft_grammar_only.log",
+    "completed_at": "2026-05-16T12:31:33.933Z"
+  },
+  "timestamp": "2026-05-16T12:31:34.069486+00:00",
+  "trigger": "update_registry"
+}

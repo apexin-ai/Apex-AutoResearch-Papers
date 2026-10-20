@@ -1,0 +1,39 @@
+{
+  "exp_id": "d066_sweep_llama_docred_beam1_s1",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T13:18:07.824Z",
+    "updated_at": "2026-05-20T16:41:01.414Z",
+    "hypothesis": "d066 DocRED beam sweep sub-task: Llama beam1 (greedy) constrained (full_s1) on 200-doc subset (westd-21461 GPU1). Part of d066_beam_sweep. DocRED data needed for Pareto dual-panel figure.",
+    "parent": "d066_beam_sweep",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --decoding_strategy beam --num_beams 1 --max_new_tokens 4096 --max_samples 200 --seed 42 --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json",
+      "server": "westd-21461 GPU1",
+      "data_path": "data/docred/dev.json (200-doc subset)",
+      "data_count": 200,
+      "model_name": "Llama-3.1-8B LoRA DocRED (merged)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/llama_lora_docred_merged",
+      "eval_data": "data/docred/dev.json (200-doc subset)",
+      "note": "PID 209444. Relay from beam1 unc (success)."
+    },
+    "checkpoint_path": "/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_beam1_full_s1.jsonl",
+    "log_path": "/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_beam1_s1.log",
+    "metrics": {
+      "E-F1": 85.43,
+      "R-F1": 47.35,
+      "DR_pct": 0,
+      "CF_pct": 0.19,
+      "PF_pct": 2,
+      "samples": 200
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T16:41:01.414Z"
+  },
+  "timestamp": "2026-05-20T16:41:01.675712+00:00",
+  "trigger": "update_registry"
+}

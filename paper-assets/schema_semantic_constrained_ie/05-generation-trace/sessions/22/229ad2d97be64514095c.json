@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "229ad2d97be64514095c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "diagnose server status 16980",
+  "task_key": "worker_diagnose_server_status_16980_20260520T033149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_server_status_16980_20260520T033149_result.json",
+    "occurrence": 1,
+    "bytes": 1262,
+    "sha256": "28a063fe5901a41b64b07e9eabb448bde066e27c5e2772ce70b42d7dd8903d03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个进程均在运行，状态如下：\n\n### 1. d065 Llama greedy unc 4096 (unconstrained)\n\n| 项目 | 值 |\n|------|-----|\n| PID | 697390 |\n| GPU | GPU 0 (CUDA_VISIBLE_DEVICES=0), 显存 18266MiB, 利用率 90% |\n| 进度 | **486/998** (48.7%) |\n| 启动时间 | 今天 09:35 |\n| 处理速率 | ROADMAP 记录 372 → 现 486，~117 min 处理 114 docs，约 1.03 min/doc |\n| 预计完成 | 剩余 512 docs，约 8.8 小时 → **~20:20** |\n| 输出文件 | `/root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_unc_4096.jsonl` (4.4MB) |\n\n### 2. d065 Llama greedy con 4096 (constrained)\n\n| 项目 | 值 |\n|------|-----|\n| PID | 698086 |\n| GPU | GPU 1 (CUDA_VISIBLE_DEVICES=1), 显存 18266MiB, 利用率 88% |\n| 进度 | **447/998** (44.8%) |\n| 启动时间 | 今天 09:37 |\n| 处理速率 | ROADMAP 记录 336 → 现 447，~115 min 处理 111 docs，约 1.04 min/doc |\n| 预计完成 | 剩余 551 docs，约 9.5 小时 → **~21:05** |\n| 输出文件 | `/root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_con_4096.jsonl` (4.1MB) |\n\n两个进程今天 09:35-09:37 重启后正常运行，输出文件最后写入时间均为 11:32（刚刚），处理速率稳定。预计今晚 20:00-21:00 前后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-server-status-16980.md"
+}

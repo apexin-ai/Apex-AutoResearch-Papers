@@ -1,0 +1,15 @@
+{
+  "exp_id": "w10_beam_ablation_k2",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:31:55.361Z",
+    "updated_at": "2026-05-17T08:37:18.578Z",
+    "hypothesis": "Beam search k=2 on Qwen3-8B SciERC (551 docs) will partially reduce DR and CF compared to greedy (DR=0.93%, CF=9.90%), but less effectively than k=4 (DR=0%, CF=0.53%). Establishes the lower bound of the beam size-constraint satisfaction curve."
+  },
+  "timestamp": "2026-05-17T08:37:18.759344+00:00",
+  "trigger": "update_registry"
+}

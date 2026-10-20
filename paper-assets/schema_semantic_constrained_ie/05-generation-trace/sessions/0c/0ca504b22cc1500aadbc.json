@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ca504b22cc1500aadbc",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research docred composability prep",
+  "task_key": "worker_research_docred_composability_prep_20260516T041714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_docred_composability_prep_20260516T041714_result.json",
+    "occurrence": 1,
+    "bytes": 596,
+    "sha256": "35593dfd7223811c8b4d3dcb3357e2f836e3d078fcfa5344b8201f9d0db48692"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "更新指南已保存并注册为 artifact `docred_composability_update_guide.md`。\n\n内容覆盖：\n- **6 个 P0/P1 更新点**的精确文件位置、行号、当前文本和目标文本模板\n- **12 个占位符**的计算公式（DR reduction、R-F1 delta、CF delta、跨数据集汇总值）\n- **5 个条件分支**（DR 高/中/低、F1 下降、CF 偏高）对应的 claim 措辞调整策略\n- 已有数据汇总（FT-U baseline、ZS 参照、SciERC composability 对照）\n- Claim 3 story 一致性检查要点（orthogonal axes 叙事 + LoRA-only caveat 保留）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-docred-composability-prep.md"
+}

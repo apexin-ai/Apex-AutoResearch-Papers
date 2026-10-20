@@ -1,0 +1,15 @@
+{
+  "exp_id": "tcr_beam4_qwen_scierc",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:37:32.074Z",
+    "updated_at": "2026-05-22T14:37:44.478Z",
+    "hypothesis": "TCR reranking of beam search candidates will reduce CF violations while preserving F1, by selecting candidates with higher entity type consistency over pure log-probability ranking."
+  },
+  "timestamp": "2026-05-22T14:37:44.803669+00:00",
+  "trigger": "update_registry"
+}

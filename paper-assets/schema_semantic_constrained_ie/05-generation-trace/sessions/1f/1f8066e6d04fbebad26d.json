@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f8066e6d04fbebad26d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "backup discover westd 21461",
+  "task_key": "worker_backup_discover-westd-21461_20260525T205612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_backup_discover-westd-21461_20260525T205612_result.json",
+    "occurrence": 1,
+    "bytes": 547,
+    "sha256": "82012dc0a1b79d1054c2a10a3a2d5b0164b588bc0fd84c39f5129c899e1737c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/backup_discovery_westd21461.md`。\n\n关键发现：\n- **需备份总量约 2.8G**：LoRA checkpoints 2.4G（qwen3_8b_lora_wikievents + llama_lora_docred 各 1.2G），outputs 140M，数据盘 schema_outputs 145M，data 88M，代码约 2M\n- **排除 72G 公开模型**（/root/autodl-tmp/models/）\n- 服务器上无 .git、无 venv、无 wandb 缓存\n- rsync 需要两条命令：一条同步项目根目录（排除 `__pycache__`/`.pytest_cache`），一条同步 `/root/autodl-tmp/schema_outputs/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/backup-discover-westd-21461.md"
+}

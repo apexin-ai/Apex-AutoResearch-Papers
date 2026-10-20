@@ -1,0 +1,208 @@
+{
+  "schema_version": "1.0",
+  "id": "02db4a34ff1228bccc14",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "write appendix llama per relation",
+  "task_key": "worker_write_appendix_llama_per_relation_20260514T223244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_write_appendix_llama_per_relation_20260514T223244.jsonl",
+    "occurrence": 1,
+    "bytes": 10738,
+    "sha256": "d48339f58ded216e43de547495b8087620e7f03deb0512c931f20eac002e4cdb"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T22:33:39.494540+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_appendix_llama_per_relation_20260514T223244",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/llama_docred_per_relation_dr_analysis.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T22:33:39.494986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Llama DocRED Per-Relation DR Violation & Fallback Analysis\n2\t\n3\t## 1. Aggregate Summary\n4\t\n5\t| Metric | Unconstrained | Full_S1 | Delta |\n6\t|--------|--------------|---------|-------|\n7\t| Total triples | 16,437 | 16,368 | -69 |\n8\t| Parse failures | 68/998 | 91/998 | +23 |\n9\t| OOV (RV) triples | 2,756 (16.8%) | 0 (0.0%) | -2,756 |\n10\t| Mapped triples | 13,681 | 16,368 | +2,687 |\n11\t| DR violations (of mapped) | 4,221 (30.9%) | 418 (2.6%) | -3,803 |\n12\t| DR violations (of total) | 4,221 (25.7%) | 418 (2.6%) | -3,803 |\n13\t| Unique OOV relation names | 625 | 0 | -625 |\n14\t\n15\t## 2. Per-Relation DR Violation Rate — Unconstrained (Top 10)\n16\t\n17\t| P-code | Relation Name | Total | DR | DR% |\n18\t|--------|--------------|-------|-----|-----|\n19\t| P1198 | unemployment rate | 13 | 12 | 92.3% |\n20\t| P156 | followed by | 84 | 70 | 83.3% |\n21\t| P35 | head of state | 34 | 28 | 82.4% |\n22\t| P710 | participant | 139 | 109 | 78.4% |\n23\t| P582 | end time | 139 | 106 | 76.3% |\n24\t| P6 | head of government | 28 | 21 | 75.0% |\n25\t| P86 | composer | 117 | 85 | 72.6% |\n26\t| P276 | location | 422 | 291 | 69.0% |\n27\t| P155 | follows | 164 | 112 | 68.3% |\n28\t| P170 | creator | 167 | 109 | 65.3% |\n29\t\n30\t**Bottom 5 (0% DR):** P140 (religion), P22 (father), P25 (mother), P118 (league), P264 (record label)\n31\t\n32\t## 3. Per-Relation DR Violation Rate — Full_S1 (Top 10)\n33\t\n34\t| P-code | Relation Name | Total | DR | DR% |\n35\t|--------|--------------|-------|-----|-----|\n36\t| P576 | dissolved/demolished | 73 | 24 | 32.9% |\n37\t| P156 | followed by | 117 | 24 | 20.5% |\n38\t| P1198 | unemployment rate | 15 | 3 | 20.0% |\n39\t| P582 | end time | 130 | 21 | 16.2% |\n40\t| P31 | instance of | 290 | 37 | 12.8% |\n41\t| P1056 | product or material produced | 98 | 11 | 11.2% |\n42\t| P740 | location of formation | 81 | 8 | 9.9% |\n43\t| P35 | head of state | 41 | 3 | 7.3% |\n44\t| P1001 | applies to jurisdiction | 637 | 45 | 7.1% |\n45\t| P607 | conflict | 453 | 30 | 6.6% |\n46\t\n47\t**0% DR relations (>20 triples):** P1\n…[truncated 4599 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_appendix_llama_per_relation_20260514T223244",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T22:33:39.495228+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_appendix_llama_per_relation_20260514T223244",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/paper/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T22:33:39.495383+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/paper_tables_draft.tex\nartifacts/_project/paper/section5_scierc_draft_4796e8.tex\nartifacts/_project/paper/abstract_fd4b26.tex\nartifacts/_project/paper/abstract_d3264e.tex\nartifacts/_project/paper/section7_conclusion_550cbf.tex\nartifacts/_project/paper/section5_docred_draft_9b84f1.tex\nartifacts/_project/paper/discussion_paragraphs_cf83d1.tex\nartifacts/_project/paper/section5_scierc_draft.tex\nartifacts/_project/paper/section6_relwork_additions.tex\nartifacts/_project/paper/discussion_paragraphs.tex\nartifacts/_project/paper/section7_conclusion.tex\nartifacts/_project/paper/section6_related_work.tex\nartifacts/_project/paper/appendix_discussion.tex\nartifacts/_project/paper/section3_violation_landscape.tex\nartifacts/_project/paper/section2_background.tex\nartifacts/_project/paper/section1_introduction_draft.tex\nartifacts/_project/paper/section4_composition_draft.tex\nartifacts/_project/paper/section5_docred_draft.tex\nartifacts/_project/paper/section5_crossmodel_draft.tex\nartifacts/_project/paper/abstract.tex\nartifacts/_project/paper/section3_method_draft.tex\nartifacts/_project/paper/section7_conclusion_compressed.tex\nartifacts/_project/paper/main.tex\nartifacts/_project/paper/appendix_related_work.tex\nartifacts/_project/paper/section6_relwork_outline.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_appendix_llama_per_relation_20260514T223244",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T22:33:39.495532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_appendix_llama_per_relation_20260514T223244",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+              "limit": "40"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T22:33:39.495732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Appendix B — Extended Discussion\n2\t% Contains discussion paragraphs moved from the main text during compression.\n3\t\n4\t\\section{Extended Discussion}\\label{app:discussion}\n5\t\n6\t%%% Paragraph 1: Low F1 Practical Significance %%%\n7\t% exp_ids: phase2_scierc_full_s1 (R-F1=8.36%), phase2_docred_full_s1 (R-F1=8.23%),\n8\t%          phase0_scierc_unconstrained (DR=15.37%), phase2_docred_unconstrained (DR=18.46%)\n9\t\n10\t\\paragraph{Practical Significance of Zero-Shot F1.}\n11\tOur reported relation F1 of approximately 8\\% on both SciERC and DocRED reflects the inherent difficulty of zero-shot closed IE, where the model receives no task-specific training examples.\n12\tFor reference, supervised state-of-the-art systems on SciERC achieve approximately 49--53\\% relation F1 with full training data~\\citep{zhong2021frustratingly,ye2022packed}.\n13\tConstraint enforcement operates largely independently of the extraction model's intrinsic capability: it restricts the output space to ontologically valid triples regardless of the underlying model's accuracy.\n14\tWhen applied to fine-tuned models that reach competitive F1 levels, the same constraints remain necessary---Phase~0 analysis confirms that even well-prompted models exhibit non-trivial violation rates (15.37\\% DR on SciERC, 18.46\\% on DocRED).\n15\t% exp_ids: phase0_scierc_unconstrained, phase2_docred_unconstrained\n16\tIn our evaluation, F1 serves as a \\emph{control variable} verifying that constraint enforcement does not degrade extraction quality, not as an optimization target.\n17\tThe contribution of this work is the constraint enforcement method itself; the zero-shot setting isolates its effect from confounds introduced by task-specific fine-tuning.\n18\t\n19\t%%% Paragraph 4: Decoding-Time vs. Post-Hoc Enforcement %%%\n20\t% exp_ids: posthoc_filtering_baseline, phase2_scierc_full_s1 (R-F1=8.36%),\n21\t%          phase2_docred_full_s1 (R-F1=8.23%, ET=0%)\n22\t\n23\t\\paragraph{Decoding-Time vs.\\ Post-Hoc Enforcement.}\n24\tPost-hoc filtering---gener\n…[truncated 1210 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_appendix_llama_per_relation_20260514T223244",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T22:33:39.495974+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_appendix_llama_per_relation_20260514T223244",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_llama_per_relation.tex",
+              "content": "% Appendix E — Per-Relation Violation Analysis (Llama-3.1-8B)\n% exp_ids: llama_docred_unconstrained, llama_docred_full_s1\n\n\\section{Per-Relation Violation Analysis (Llama-3.1-8B)}\\label{app:llama-per-relation}\n\nTable~\\ref{tab:llama-per-relation-dr} presents the per-relation domain--range violation breakdown for Llama-3.1-8B on DocRED under full S1 constraints.\nThe Llama baseline exhibits an OOV rate of 16.8\\% (2{,}756/16{,}437 triples), substantially lower than Qwen's 29.66\\%, indicating stronger baseline vocabulary compliance.\n% exp_ids: llama_docred_unconstrained (OOV=16.8%), qwen_docred_unconstrained (OOV~29.66%)\nFull S1 completely eliminates OOV violations and reduces the residual DR rate to 2.6\\% (418/16{,}368 mapped triples), with only three relations exceeding 10\\%.\n% exp_ids: llama_docred_full_s1 (DR=2.6%, 418/16368)\n\n\\begin{table}[h]\n\\centering\n\\caption{Top 10 per-relation DR violation rates for Llama-3.1-8B on DocRED under full S1 constraints. Relations with $>$20 triples and 0\\% DR (e.g., P131, P206, P361, P170, P86) are omitted.}\n\\label{tab:llama-per-relation-dr}\n\\begin{tabular}{@{}llrrr@{}}\n\\toprule\nRelation & PID & Triples & DR Violations & DR Rate (\\%) \\\\\n\\midrule\ndissolved/demolished & P576 & 73 & 24 & 32.9 \\\\\nfollowed by          & P156 & 117 & 24 & 20.5 \\\\\nunemployment rate    & P1198 & 15 & 3 & 20.0 \\\\\nend time             & P582 & 130 & 21 & 16.2 \\\\\ninstance of          & P31  & 290 & 37 & 12.8 \\\\\nproduct/material produced & P1056 & 98 & 11 & 11.2 \\\\\nlocation of formation & P740 & 81 & 8 & 9.9 \\\\\nhead of state        & P35  & 41  & 3  & 7.3 \\\\\napplies to jurisdiction & P1001 & 637 & 45 & 7.1 \\\\\nconflict             & P607 & 453 & 30 & 6.6 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n% exp_ids: llama_docred_full_s1\n\nCompared with Qwen, which retains a 10.2\\% residual DR under full S1 concentrated in P1198 (83\\% fallback) and P171 (78\\% fallback), Llama's residual DR on the same relations is markedly lower---P1198 reaches only 20.0\\% and no relation-level fallback concentration comparable to Qwen is observed.\n% exp_ids: llama_docred_full_s1, qwen_docred_full_s1\nThe substantially lower residual DR for Llama (2.6\\% vs.\\ Qwen's 10.2\\%) on the same ontology confirms that constraint tightness alone does not determine enforcement effectiveness: the model's baseline vocabulary compliance (RV) modulates the fraction of triples eligible for semantic-layer enforcement.\n"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T22:33:39.496155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_llama_per_relation.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_appendix_llama_per_relation_20260514T223244",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T22:33:39.496317+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已创建：`artifacts/_project/paper/appendix_llama_per_relation.tex`\n\n内容包含：\n- 介绍段（OOV 16.8% → 0%，DR 降至 2.6%）\n- 完整 Top 10 per-relation DR 表格（从分析报告提取，P576 32.9% 到 P607 6.6%）\n- Qwen 对比段（2.6% vs 10.2%，P1198 20% vs 83%）\n- 总结句（tightness × RV 双因素叙事）\n- 所有数字标注 exp_ids"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_appendix_llama_per_relation_20260514T223244"
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/write-appendix-llama-per-relation.md"
+}

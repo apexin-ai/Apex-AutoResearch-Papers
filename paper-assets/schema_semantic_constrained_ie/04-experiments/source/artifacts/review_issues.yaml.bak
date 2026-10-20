@@ -1,0 +1,697 @@
+# Review Issues Tracker — schema_semantic_constrained_ie
+# Updated: R25 fresh review, 2026-05-23
+
+# ============================================================
+# Round 25 — Active Issues
+# ============================================================
+
+- id: "R16-W5"
+  summary: "Proposition 1 定位过高 + 理论-实践 gap 桥接不充分"
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 14
+  last_seen_round: 25
+  mentions:
+    - round: 19
+      reviewers: [1, 2]
+      note: "共识定位为 systems contribution。"
+    - round: 23
+      reviewers: [1, 2]
+      note: "与 R23-W2/W7 合并。降低理论贡献措辞。"
+    - round: 24
+      reviewers: [1, 2]
+      note: "R24-MF1 (critical)。R23 写作降级不够。"
+    - round: 25
+      reviewers: [1, 2]
+      note: "R25 R1-W1+R2-W1 完全共识 [Major]。论文已改为 'formalizing a known intuition'，定位诚实但仍列为 Contribution 1 首位且 §3 篇幅过大。两位 Reviewer 认为 engineering applicability (DFA 6^17 states) 比 Proposition 1 本身更有价值。多轮复发但严重程度已从 critical 降为 warning——定位措辞已改善，问题在于展示权重。"
+  action_items:
+    - round: 19
+      action: "§7 Discussion 定位 systems contribution"
+      assigned_to: paper_agent
+      status: completed
+    - round: 21
+      action: "§3 论证 semantic layer 非显而易见"
+      assigned_to: paper_agent
+      status: completed
+    - round: 23
+      action: "降低 Proposition 1 强度 + κ 统计限定"
+      assigned_to: paper_agent
+      status: completed
+    - round: 24
+      action: "§1 C1 重写 'formalizing known intuition' + §3 DFA 可行边界 + proof sketch 扩展"
+      assigned_to: paper_agent
+      status: completed
+    - round: 25
+      action: "降低 Proposition 1 展示权重：从 Contribution 1 首位降级，或将 engineering applicability 作为主要论述重心而非 pumping lemma proof"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R16-W1"
+  summary: "κ-DR 相关性 n=3 呈现不当——正文 §4 叙事权重过高"
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 12
+  last_seen_round: 25
+  mentions:
+    - round: 22
+      reviewers: [1, 2]
+      note: "R22 解决：加 empirical + scale-dependent qualifier + descriptive only。"
+    - round: 24
+      reviewers: [1, 2]
+      note: "R24-MF2 (critical)。R23 只改了 §4，Abstract/§1 仍用 correlate。"
+    - round: 25
+      reviewers: [1, 2]
+      note: "R25 R1-N1+R2-W4 完全共识。§4 已标注 descriptive (n=3, p=0.138)，但正文中 κ 仍有独立定义式+整段分析+Appendix case study。叙事权重与 n=3 证据强度不匹配。R2 建议降 Critical→Major，因未列入 Contribution。R1 指出 κ 是 confounded variable (entity type confusability)。共识：压缩 §4 至 1-2 句，详细分析移 Appendix。"
+  action_items:
+    - round: 22
+      action: "全文加 empirical + scale-dependent qualifier"
+      assigned_to: paper_agent
+      status: completed
+    - round: 23
+      action: "加 descriptive only (n=3, p=0.138)"
+      assigned_to: paper_agent
+      status: completed
+    - round: 24
+      action: "全文统一 correlate → observed pattern"
+      assigned_to: paper_agent
+      status: completed
+    - round: 25
+      action: "§4 Constraint Tightness 压缩为 1-2 句描述性观察，删除 p 值报告（n=3 的 p 值本身误导），详细分析移 Appendix"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R23-W5"
+  summary: "70B 验证单一模型族 + Contribution 声称 'scale validation' overclaim"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 23
+  last_seen_round: 25
+  mentions:
+    - round: 23
+      reviewers: [1, 2]
+      note: "R1-W4。Abstract 加 '(AWQ INT4)' + §5.3 量化限制声明。"
+    - round: 24
+      reviewers: [1, 2]
+      note: "R24-MF3 (critical)。Contribution 拆分要求。"
+    - round: 25
+      reviewers: [1, 2]
+      note: "R25 R2-W2+R1 AGREE [Major]。Contribution 3 已标 'Single-family scale validation' 但仍用 'validation'。仅 Llama-3.1-70B AWQ INT4，无 Qwen-72B/Mistral-Large，无 FP16 对比。Scale-dependent interaction (24%→84%) 基于单一模型族单一数据点。需改 'preliminary observation/probe'。"
+  action_items:
+    - round: 23
+      action: "Abstract 加 '(AWQ INT4)' + §5.3 量化限制声明"
+      assigned_to: paper_agent
+      status: completed
+    - round: 24
+      action: "Contribution 拆分为 C2(8B)+C3(70B preliminary)+C4(部署)"
+      assigned_to: paper_agent
+      status: completed
+    - round: 25
+      action: "Contribution 3 改 'Preliminary 70B exploration' 或 'Single-model scale probe'，不用 'validation'"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R23-W4"
+  summary: "WikiEvents n=20 不足以支撑 task generalization contribution claim"
+  category: experiment
+  severity: critical
+  status: open
+  first_raised_round: 23
+  last_seen_round: 25
+  mentions:
+    - round: 23
+      reviewers: [1, 2]
+      note: "降级 contribution list + Preliminary Pilot 标题。"
+    - round: 24
+      reviewers: [1, 2]
+      note: "R24-SF3。复发——Table 仍在正文。必须移 Appendix。"
+    - round: 25
+      reviewers: [1, 2]
+      note: "R25 R2-N1 [Critical]+R1-W5 [Major]，完全共识。§1 Contribution 2 仍包含 'directional evidence of task generalization'。n=20, MDE≈±5.0pp 不构成 generalization 证据。两位 Reviewer 一致要求：(1)从 Contribution 删除 WikiEvents；(2)§5.2 移至 Appendix 或正文仅 1 句概述；(3)如保留改为 feasibility demonstration。多轮复发，升级为 critical。"
+  action_items:
+    - round: 23
+      action: "降级 contribution list + 标题改 Preliminary Pilot"
+      assigned_to: paper_agent
+      status: completed
+    - round: 24
+      action: "Table 移至 Appendix + 正文压缩为 1-2 句"
+      assigned_to: paper_agent
+      status: in_progress
+    - round: 25
+      action: "从 Contribution 2 完全删除 WikiEvents 表述 + §5.2 移至 Appendix + 正文最多保留 1 句 feasibility mention"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R25-N2"
+  summary: "GoLLIE 比较方法论不公平——零样本 GoLLIE vs. 微调 OntoCoDec"
+  category: experiment
+  severity: critical
+  status: open
+  first_raised_round: 25
+  last_seen_round: 25
+  mentions:
+    - round: 25
+      reviewers: [1, 2]
+      note: "R2-N2 [Critical]+R1-W6 [Minor] 交叉后共识 [Critical]。Appendix S 对比 GoLLIE-7B zero-shot (5 predicted relations) vs. OntoCoDec LoRA+S1 (~1100 predictions)。§6 引用此结论('near-complete output suppression')定位差异化，但实验条件不对等——GoLLIE 未在 SciERC 训练导致输出少，非方法内在差异。R1 补充：定位为 'complementary' 合理，但附录对比表应删除或改为定性讨论。注：R23-W3 曾标 resolved(R24 R1 rebut 有效)，但 R25 fresh review 重新发现并升级。"
+  action_items:
+    - round: 25
+      action: "删除 Appendix S 直接对比表，改为定性讨论两种 paradigm trade-off；§6 删除或限定 'near-complete output suppression' 表述，显著说明不可比原因"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R25-W1"
+  summary: "DR↔CF trade-off 在零样本场景下严重程度讨论不足"
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 25
+  last_seen_round: 25
+  mentions:
+    - round: 25
+      reviewers: [1, 2]
+      note: "R1-N2 [Critical]+R2-W3 [Major]，交叉后共识 [Major]。Zero-shot greedy S1: total violation 15.45%→10.83% 仅降 30% (DR↓94% 但 CF 0.08%→9.90%)。Abstract 突出 DR reduction 但 CF increase 不对称。R2 补充：(1)Abstract 确实提及 zero-shot CF 可达 12%；(2)DR/CF 质性差异真实(DR 不可恢复 vs CF 可 post-hoc)；(3)推荐配置 fine-tuned+beam 下 trade-off 很小。共识：Abstract framing 需更对称，§7 Discussion 需扩展 CF 实际影响分析。"
+  action_items:
+    - round: 25
+      action: "Abstract 同时报告 DR reduction 和 CF increase 的 net effect + §7 Discussion 扩展 zero-shot CF 实际影响(如 CF violations 中多少 match gold labels) + 明确推荐 beam k≥2 作为 zero-shot 部署配置"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R25-W2"
+  summary: "Scale-dependent layer interaction 缺乏因果解释"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 25
+  last_seen_round: 25
+  mentions:
+    - round: 25
+      reviewers: [1, 2]
+      note: "R1-W2 [Major]+R2 Q3 AGREE。Semantic-only 在 8B 仅 24% DR reduction vs. 70B 达 84%，论文仅称 'empirical observation' 无因果解释。候选假设：(1)70B vocabulary calibration 更好；(2)logit distribution 更 peaked；(3)fallback 频率差异。现有数据(Appendix C fallback tracing)应可提供部分解释但未连接。"
+  action_items:
+    - round: 25
+      action: "§3 或 §5 添加 1-2 句关于 scale-dependent interaction 的机制讨论，至少分析 8B vs 70B semantic-only 下的 fallback 频率差异"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R25-W3"
+  summary: "S1 vs S2 对比缺乏深入分析"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 25
+  last_seen_round: 25
+  mentions:
+    - round: 25
+      reviewers: [1, 2]
+      note: "R1-W4 [Major]+R2 AGREE。S2 R-F1 低于 S1 (8.03 vs 8.36) 但 CF 更优 (8.03% vs 9.90%)，差异未做统计检验。70B 下 S2 降 8.45pp 未分析具体 failure case。S2 何时优于 S1 无指导。R2 注：S1/S2 分析是次要叙事，Major 但不影响接收。"
+  action_items:
+    - round: 25
+      action: "提供 S1 vs S2 的 paired bootstrap test + 70B S2 failure case 分析 + 在何种条件下推荐 S2 的指导"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R25-M1"
+  summary: "Abstract F1 范围 '41-47%' 与 Table 2 数据不一致 (Qwen DocRED S1 R-F1=40.79%)"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 25
+  last_seen_round: 25
+  mentions:
+    - round: 25
+      reviewers: [1, 2]
+      note: "R2-M1+R1 AGREE。Factual inconsistency。应改为 'R-F1 40-47%' 或加 rounding 说明。§1 也有同样问题。"
+  action_items:
+    - round: 25
+      action: "Abstract + §1 中 'F1 41-47%' 修正为 'R-F1 40-47%'"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R25-M2"
+  summary: "CRANE (Banerjee et al., 2025) 仅在 Appendix B 讨论，应在主文提及"
+  category: related_work
+  severity: info
+  status: open
+  first_raised_round: 25
+  last_seen_round: 25
+  mentions:
+    - round: 25
+      reviewers: [1, 2]
+      note: "R2-M2+R1 AGREE。S2 在 70B 下 R-F1 降 8.45pp 正是 CRANE 预测的 constraint→reasoning interference 现象。Appendix B 已讨论但 connection 应在主文 §3.4 或 §5 70B 段明确指出。"
+  action_items:
+    - round: 25
+      action: "§3.4 或 §5 70B 段添加 CRANE reference，指出 S2 70B 降级与 CRANE 理论预测一致"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R25-M3"
+  summary: "DocRED dev set 使用说明应从 footnote 提升至正文"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 25
+  last_seen_round: 25
+  mentions:
+    - round: 25
+      reviewers: [1, 2]
+      note: "R2-M3+R1 AGREE。DocRED 是两大评估数据集之一，使用 dev set 而非 test set 的 caveat 仅在 footnote 1。"
+  action_items:
+    - round: 25
+      action: "§5 Setup 段正文中显著说明 DocRED 使用 development set (test annotations unavailable)"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R25-M4"
+  summary: "Figure 1 缺少端到端 running example"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 25
+  last_seen_round: 25
+  mentions:
+    - round: 25
+      reviewers: [1, 2]
+      note: "R2-M4+R1 AGREE。§3.3 有文本 running example 但未可视化。一个 token-level masking step-by-step 示例会极大提升可读性。注：与 R20-W5(wont_fix due to space) 相关，但 R25 从不同角度提出。"
+  action_items:
+    - round: 25
+      action: "考虑在 Figure 1 或新 Figure 中添加具体的 masking 过程示例"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R25-M5"
+  summary: "Schema coverage gap 对 schema evolution 场景的影响未讨论"
+  category: method
+  severity: info
+  status: open
+  first_raised_round: 25
+  last_seen_round: 25
+  mentions:
+    - round: 25
+      reviewers: [1, 2]
+      note: "R2-M6+R1 AGREE。Empirical constraints 0.6-1.0% 未覆盖 valid type pairs。新增实体类型或关系时 constraints 会 over-restrict。Limitations 应简短提及。"
+  action_items:
+    - round: 25
+      action: "Limitations 或 Discussion 加 1-2 句 schema evolution caveat"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+# ============================================================
+# Carried from prior rounds — status updated for R25
+# ============================================================
+
+- id: "R24-SF1"
+  summary: "缺乏 OntoCoDec 作为 constraint enforcement method 的明确定位声明"
+  category: framing
+  severity: warning
+  status: in_progress
+  first_raised_round: 24
+  last_seen_round: 25
+  mentions:
+    - round: 24
+      reviewers: [1, 2]
+      note: "R2-N2, R1 rebut 部分有效。"
+    - round: 25
+      reviewers: [1, 2]
+      note: "R25 未作为独立 issue 提出，但 §1 已有 'orthogonal and complementary' 定位。与 R25-N2 (GoLLIE 比较公平性) 相关。"
+  action_items:
+    - round: 24
+      action: "§1 加定位声明"
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R24-SF2"
+  summary: "R-F1 41-47% 在正文中缺乏 LLM-based generative RE 上下文定位"
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 24
+  last_seen_round: 25
+  mentions:
+    - round: 24
+      reviewers: [1, 2]
+      note: "正文缺上下文。"
+    - round: 25
+      note: "R25 未单独提出。§5 Setup 已有 'R-F1 range (41-47% under LoRA) is consistent with recent LLM-based generative RE benchmarks' 定位。可能已部分修复。"
+  action_items:
+    - round: 24
+      action: "§5 Setup 加 1-2 句 LLM-based generative RE 典型 F1 范围定位"
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R23-W12"
+  summary: "First-seen semantics 级联错误影响未量化"
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 23
+  last_seen_round: 25
+  mentions:
+    - round: 23
+      reviewers: [1, 2]
+      note: "§3.3 formalize + Limitations 加 entity-first 约束。"
+    - round: 24
+      reviewers: [1, 2]
+      note: "R24-SF4。要求数据量化。"
+    - round: 25
+      reviewers: [1, 2]
+      note: "R25 R1 在 §5.1 Cross-field violation analysis 中注意到论文已报告 cascade error 数据 (correct locks 2.5× more frequent than cascade errors, 7.3%)。R2 未单独提出。可能已部分修复——需确认正文中数据是否充分。"
+  action_items:
+    - round: 24
+      action: "Agent 分析 245 CF violations 中 first-seen 级联 vs 合法歧义分解"
+      assigned_to: main_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R24-SF5"
+  summary: "§7 Discussion 过于压缩——缺 DR↔CF trade-off 等讨论"
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 24
+  last_seen_round: 25
+  mentions:
+    - round: 24
+      reviewers: [1, 2]
+      note: "需压缩 §6 释放空间。"
+    - round: 25
+      reviewers: [1, 2]
+      note: "R25 与 R25-W1 (CF trade-off 讨论不足) 直接相关。§7 仍仅约 0.5 页。需扩展 DR↔CF trade-off、per-triple vs global enforcement、training-based complementarity 讨论。"
+  action_items:
+    - round: 24
+      action: "压缩 §6 + §7 扩展为 3 段"
+      assigned_to: paper_agent
+      status: in_progress
+    - round: 25
+      action: "§7 扩展 CF 实际影响分析 + beam search 推荐"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R24-SF7"
+  summary: "LoRA 超参从 SciERC 直接转移到 DocRED 缺乏论证"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 24
+  last_seen_round: 25
+  mentions:
+    - round: 24
+      reviewers: [1, 2]
+      note: "DDL 内无法补实验，承认限制。"
+    - round: 25
+      note: "R25 未单独提出。Limitations 已有 'LoRA hyperparameters were tuned on SciERC and transferred to DocRED without dataset-specific optimization, which may underestimate DocRED potential'。可能已修复。"
+  action_items:
+    - round: 24
+      action: "§5 Setup + Limitations 承认超参转移限制"
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R23-W2"
+  summary: "算法创新有限——主要是 XGrammar + stateful logits processor 的系统集成"
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 23
+  last_seen_round: 25
+  mentions:
+    - round: 23
+      reviewers: [1, 2]
+      note: "降低 Proposition 1 强度。"
+    - round: 24
+      reviewers: [1, 2]
+      note: "合并到 R16-W5/MF1。"
+    - round: 25
+      reviewers: [1, 2]
+      note: "R25 R1(Excitement 3/5)+R2(Excitement 3/5) 一致：核心方案是现有 constrained decoding 的自然延伸，entity registry + dynamic masking 概念上非 surprising。论文价值主要在实证而非概念。与 R16-W5 紧密相关。"
+  action_items:
+    - round: 25
+      action: "合并到 R16-W5 处理——将论文重心从理论贡献转向实证贡献和工程设计"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+# ============================================================
+# Prior Rounds — Resolved (confirmed in R25 or earlier)
+# ============================================================
+
+- id: "R23-W1"
+  summary: "CF 违规占残余违规 64%，与标题 'Type-Constrained IE' 形成 gap"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 23
+  last_seen_round: 23
+  resolution: "R24 未作为独立 weakness。R25 CF 讨论转向 zero-shot severity (R25-W1) 而非 title gap。"
+  resolution_round: 24
+
+- id: "R23-W3"
+  summary: "GoLLIE 对比不公平 + 缺少与训练基方法的系统性对比"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 23
+  last_seen_round: 25
+  mentions:
+    - round: 23
+      reviewers: [1, 2]
+      note: "§6 GoLLIE 段重写。"
+    - round: 24
+      reviewers: [1, 2]
+      note: "R1 rebut 有效——已有三层对比。标 resolved。"
+    - round: 25
+      reviewers: [1, 2]
+      note: "R25 fresh review 重新发现并升级为 R25-N2 [Critical]。R24 的 'resolved' 判断错误——§6 重写和定位声明未解决 Appendix S 对比表的方法论不公平。合并到 R25-N2。"
+  resolution: ""
+  resolution_round: null
+
+- id: "R23-W6"
+  summary: "Zero-shot 实验占主文 ~3 页但 R-F1 仅 4-8%，篇幅分配失衡"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 23
+  last_seen_round: 23
+  resolution: "R24 未提及。R25 未提及。压缩有效。"
+  resolution_round: 24
+
+- id: "R23-W7"
+  summary: "Proposition 1 实际意义论证 gap"
+  category: method
+  severity: info
+  status: open
+  first_raised_round: 23
+  last_seen_round: 25
+  mentions:
+    - round: 25
+      note: "合并到 R16-W5。"
+  resolution: ""
+  resolution_round: null
+
+- id: "R23-W8"
+  summary: "'Empirical enabling dependency' 重复 ≥6 次"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 23
+  last_seen_round: 23
+  resolution: "R24/R25 均未提及。修复有效。"
+  resolution_round: 24
+
+- id: "R23-W9"
+  summary: "Fallback 频率模型依赖性未在正文讨论"
+  category: experiment
+  severity: info
+  status: resolved
+  first_raised_round: 23
+  last_seen_round: 23
+  resolution: "R24/R25 均未作为独立 issue。R25 R1-S6 还肯定了 fallback causal tracing (Appendix C)。"
+  resolution_round: 24
+
+- id: "R23-W10"
+  summary: "Continuation masking prefix collision 频率未量化"
+  category: method
+  severity: info
+  status: open
+  first_raised_round: 23
+  last_seen_round: 25
+  mentions:
+    - round: 25
+      note: "R25 R1-Q3 追问了 morphologically similar types 的失败率。未被 R25 列为 weakness 但作为 question 保留。"
+  resolution: ""
+  resolution_round: null
+
+- id: "R23-W11"
+  summary: "Beam width sensitivity 讨论不足"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 23
+  last_seen_round: 25
+  mentions:
+    - round: 25
+      note: "R25 未单独提出。论文 §5 已有 beam sweep (k∈{1,2,4,8})，R1-S2 肯定了 beam search 评估。可能已修复。"
+  resolution: ""
+  resolution_round: null
+
+- id: "R23-D1"
+  summary: "Limitations 长度是否 excessive"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 23
+  last_seen_round: 23
+  resolution: "R24/R25 均评 Limitations 充分。R25 R2-S3 特别肯定了三段式 Limitations 的透明度。"
+  resolution_round: 24
+
+- id: "R16-MF3"
+  summary: "CF trade-off 在 Abstract 中 framing 偏乐观"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 21
+  resolution: "Abstract CF 分层报告。R25 仍有相关问题(R25-W1)但性质不同——不是隐瞒 CF 而是叙事不对称。"
+  resolution_round: 22
+
+- id: "R16-W4"
+  summary: "70B AWQ INT4 quantization 对约束效果的影响未隔离"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 14
+  last_seen_round: 21
+  resolution: "Appendix R 4 组配置验证。R25 R1-S4 肯定了 quantization robustness 验证。"
+  resolution_round: 22
+
+- id: "R16-W3"
+  summary: "WikiEvents fine-tuning composability 仅 n=20 文档"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 12
+  last_seen_round: 25
+  mentions:
+    - round: 25
+      note: "合并到 R23-W4。"
+  resolution: ""
+  resolution_round: null
+
+- id: "R15-MF3"
+  summary: "正文溢出至第 9 页"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 21
+  resolution: "R25 格式检查确认主文 §1-§7 在 page 1-8。"
+  resolution_round: 22
+
+- id: "R18-M2"
+  summary: "Figure 1 视觉层次不够分明"
+  category: writing
+  severity: info
+  status: in_progress
+  first_raised_round: 18
+  last_seen_round: 25
+  mentions:
+    - round: 25
+      note: "R25 Visual Check info: Figure 1 内部组件标注文字偏小(约正文 60%)。R2-M4 要求端到端 running example。问题从'视觉层次'转为'缺少具体示例'。合并到 R25-M4。"
+  resolution: ""
+  resolution_round: null
+
+- id: "R20-W1"
+  summary: "Proposition 1 证明中 position→name 转换缺乏形式论证"
+  category: method
+  severity: info
+  status: in_progress
+  first_raised_round: 20
+  last_seen_round: 25
+  mentions:
+    - round: 25
+      note: "R25 R1 小问题中提到 Appendix O proof Case 1 的 position vs. name-based 区分不够清晰。问题仍存在但严重程度低。合并到 R16-W5。"
+  resolution: ""
+  resolution_round: null
+
+- id: "R20-W4"
+  summary: "主文 Related Work §6 过于精简"
+  category: related_work
+  severity: info
+  status: resolved
+  first_raised_round: 20
+  last_seen_round: 23
+  resolution: "R25 R2-S5 肯定 Related Work 三轴组织清晰有效。无关精简问题。"
+  resolution_round: 23
+
+- id: "R24-SF6"
+  summary: "Contribution 2 过度打包"
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 24
+  last_seen_round: 25
+  mentions:
+    - round: 25
+      note: "R25 仍见 Contribution 2 包含多项内容。合并到 R23-W5 处理。"
+  resolution: ""
+  resolution_round: null
+
+# ============================================================
+# Won't Fix
+# ============================================================
+
+- id: "R20-W5"
+  summary: "Running example 仍不充分"
+  category: writing
+  severity: info
+  status: wont_fix
+  first_raised_round: 20
+  last_seen_round: 21
+  resolution: "空间限制无法在正文加完整 running example。R25-M4 从不同角度重新提出。"
+  resolution_round: 20
+
+- id: "R20-W6"
+  summary: "Zero-shot 评估实际意义有限（R-F1 仅 4-8%）"
+  category: experiment
+  severity: info
+  status: wont_fix
+  first_raised_round: 20
+  last_seen_round: 23
+  resolution: "ZS 定位为 diagnostic probe。R25 未复发。"
+  resolution_round: 23

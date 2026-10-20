@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1193b0b89f4c7be2ac35",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_2_1778739982.md",
+  "task_key": "loop_2_1778739982",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778739982.md",
+    "occurrence": 1,
+    "bytes": 4211,
+    "sha256": "29eeead65f3b792fd911273241cbe6876608555c860e5e84e6e2894d99a7e9f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T06:09:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 westd-16980 cuda:0 + cuda:1**，不可用其他 GPU\n- submit_training_job 命令必须 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"` 包裹，否则 EXIT_CODE=127\n- 重提交实验前**单独**清理旧 tmux session，**禁止**在 allocate_and_submit 命令内放 `tmux kill-session`（会自杀）\n- Cron PID 追踪不可靠（已导致 4 次假失败），长实验用 `wc -l` 输出文件行数判断完成\n- DocRED full_s1 有 type_mask 交互 bug 修复（`_apply_type_mask` 安全检查），代码已在服务器上，勿回滚\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-16980, root@, 2× NVIDIA RTX PRO 6000 Blackwell (94GB each)\n- **工作目录**: `/root/schema_semantic_constrained_ie`\n- **Python**: `/root/miniconda3/bin/python3` (conda base), torch 2.10.0+cu128, transformers 4.57.6, CUDA 12.8\n- **模型**: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B` (Qwen3-8B)\n- **数据**: SciERC `data/processed_data/test.json` (551), DocRED `data/docred/dev.json` (998)\n- **约束文件**: SciERC `ontology_constraints.json`, DocRED `data/docred/ontology_constraints_docred.json`\n- **活跃进程**:\n  - `phase2_docred_grammar_only`: PID 150766, tmux=phase2_docred_grammar_only, cuda:0, cron 监控中\n  - `phase2_docred_full_s1`: PID 157042, tmux=phase2_docred_full_s1, cuda:1, cron 监控中 (--resume 从 doc 87 继续)\n- **W&B**: 未配置（本项目用 violation_checker 离线分析）\n\n### 3. 📊 当前状态\nSciERC Phase 2 **全部完成**，核心结论：S1 (grammar+semantic) DR 15.37%→0.93% (↓94%) 且 F1 无损。S2 降级 ablation。\n\n正在跑 DocRED 跨数据集验证（4 实验 × 998 docs each）：\n- `phase2_docred_grammar_only` — **RUNNING** cuda:0, 预计数小时完成\n- `phase2_docred_full_s1` — **RUNNING** cuda:1, --resume 从 doc 87（修复 type_mask 交互 bug 后重启）\n- `phase2_docred_semantic_only` — **QUEUED**, 等 GPU 释放\n- `phase2_docred_unconstrained` — **QUEUED**, 等 GPU 释放\n\n**Worker 池 = 0**（两个 GPU 实验有 cron 自动监控，无需 Worker 值守）。grammar_only 或 full_s1 完成后应立即提交排队的 semantic_only/unconstrained。\n\n### 4. 📋 待办（条件触发式）\n- `phase2_docred_grammar_only` cron 回调 → spawn Worker 分析 violation metrics → update_registry → cuda:0 立即提交 `phase2_docred_unconstrained`\n- `phase2_docred_full_s1` cron 回调 → spawn Worker 分析 metrics → update_registry → cuda:1 立即提交 `phase2_docred_semantic_only`\n- DocRED 4 实验全部完成 → 汇总跨数据集消融表 → 向 Director 汇报 + 启动论文写作\n- CF 根因分析脚本已派单（上一 session），结果未回 → 检查是否需要重派 Worker\n- 论文写作 target **May 19**（距今 5 天），DocRED 验证完成后应立即启动 paper writing Worker\n\n### 5. 🎯 战略上下文\n- **投稿目标**: EMNLP 2026 ARR, deadline **5/25**（距今 11 天）\n- **核心 narrative**: OntoCoDec = grammar + semantic 双层约束解码，将 ontology D/R 约束编译为解码时 logits mask，近乎消除 type violations 且零 F1 代价\n- **决策链**: D001(EMNLP target) → D002(GO) → D003(Phase 2) → D004/5/6(SciERC 结果确认) → D007(S2 降级, 标题改 \"Near-Complete\") → D008(补跑 DocRED 全消融)\n- **已知 limitation**: CF violation (S1=9.9%) 来自 per-relation 独立 type enforcement，S2 也没解决，需论文正面报告 + future work\n- **易踩坑**:\n  - DocRED full_s1 的 type_mask 交互 bug 已修复（`_GRAMMAR_MASK_THRESHOLD = -1e8`），但**这个 invariant（semantic mask ⊆ grammar allowed set）必须写进 Method section**\n  - Cron 假失败问题反复出现，收到 `on_failed` 回调时**先 SSH 查 nvidia-smi + wc -l 确认真死了再处理**，不要盲信\n  - semantic_only 早期数据被 108 样本污染误导 DR=16.43%，干净数据实际 11.65%——引用时只用 _v2 数据\n  - DocRED schema_informed (Phase 0) DR=12.8% 不是 constrained decoding 结果，是 prompt 级 baseline，不要混入 Phase 2 消融表\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778739982.md"
+}

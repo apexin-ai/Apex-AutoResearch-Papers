@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22089511502ddca32399",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops fix docred sampling race",
+  "task_key": "worker_ops_fix_docred_sampling_race_20260516T201228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_docred_sampling_race_20260516T201228_result.json",
+    "occurrence": 1,
+    "bytes": 818,
+    "sha256": "6f64e0fd09bb979bd928a8c6944466fca9c5adee6e5cad629b373bdf11e8db9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Model loaded, inference started — output file already has 2 lines and growing. Everything healthy.\n\n---\n\n**结果报告：**\n\n| 操作 | 状态 |\n|------|------|\n| Kill PID 383367 (重复进程) | ✓ 已终止 |\n| Kill PID 383607 (输出已被竞态损坏) | ✓ 已终止 |\n| 删除损坏文件 `w9_qwen_docred_zs_sampling.jsonl` | ✓ 已删除 |\n| 清理旧 tmux sessions | ✓ 已清理 |\n| 重启 clean run | ✓ 运行中 |\n\n**cuda:1 最终状态：**\n- 单一进程 PID **384608**，占用 16560 MiB\n- GPU utilization 正常\n\n**新实验：**\n- Tmux session: `w9_docred_sampling_r3`\n- 输出: `outputs/w9_qwen_docred_zs_sampling_r3.jsonl` (已开始写入，2 samples done)\n- 日志: `~/runs/schema_semantic_constrained_ie/w9_docred_sampling_r3.log`\n- cuda:0 未受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-docred-sampling-race.md"
+}

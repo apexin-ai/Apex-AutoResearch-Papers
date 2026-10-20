@@ -1,0 +1,15 @@
+{
+  "exp_id": "ee_qwen_wikievents_constrained_v3",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:29:11.628Z",
+    "updated_at": "2026-05-18T10:29:20.918Z",
+    "hypothesis": "938-line fixed code (collision group + exact-match fix) will maintain RoV=0% and reduce AC from 2.1% to near 0% for Qwen on WikiEvents full 246 docs, confirming the fix generalizes across the full test set"
+  },
+  "timestamp": "2026-05-18T10:29:21.170319+00:00",
+  "trigger": "update_registry"
+}

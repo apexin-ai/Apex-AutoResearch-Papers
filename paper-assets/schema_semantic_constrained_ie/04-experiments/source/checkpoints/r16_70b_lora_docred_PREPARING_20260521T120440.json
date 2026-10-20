@@ -1,0 +1,14 @@
+{
+  "exp_id": "r16_70b_lora_docred",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T12:04:39.980Z",
+    "updated_at": "2026-05-21T12:04:39.981Z"
+  },
+  "timestamp": "2026-05-21T12:04:40.298015+00:00",
+  "trigger": "update_registry"
+}

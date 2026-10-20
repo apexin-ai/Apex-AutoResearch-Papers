@@ -1,0 +1,1647 @@
+# analysis eval docred schema
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/workers/worker_analysis_eval_docred_schema_20260514T014843.log`
+- **Structured JSON:** [`b8971a8d96ef0d1ee5cd.json`](../../sessions/b8/b8971a8d96ef0d1ee5cd.json)
+
+## Before a recorded user message
+
+33 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "52396843-4c87-4a01-8246-1e7fab88009a",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778729400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "b09c7f0f-cc09-4759-b692-9533dae84c56",
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the experiment status on the server first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "ef9605ce-c90f-448b-b59f-ec9781bfd5e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MxLV2kPw9ToGF5GQgPaAEW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12127,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12127
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CnoKiPD5CMfAxYW5BA1epg`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "9e67557d-8e94-4894-aaf6-e16c50d15c2d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MxLV2kPw9ToGF5GQgPaAEW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12127,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12127
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T01:48:55.839Z_
+
+<details><summary>↩ Tool result · `toolu_01CnoKiPD5CMfAxYW5BA1epg`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "7399bd01-5bf1-44c2-baec-29c65b958f1f",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the experiment status on the server first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "6e8ab7bb-bc5d-462d-afd8-282f34ee191f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CiLnXT7FZPWtgFAFMFo4Gy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1451,
+      "cache_read_input_tokens": 23574,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1451
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+检查实验状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "768b743d-263b-44d4-a0d8-d8da0cd76fbc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CiLnXT7FZPWtgFAFMFo4Gy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1451,
+      "cache_read_input_tokens": 23574,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1451
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FFr8HmG85PxhAwvffgAS5H`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "wc -l /root/schema_semantic_constrained_ie/outputs/phase2_scierc_semantic_only_v2.jsonl /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s2.jsonl /root/schema_semantic_constrained_ie/outputs/raw_outputs_docred_schema.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "e5065b8a-3a62-468d-bfad-cfbff2b239ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CiLnXT7FZPWtgFAFMFo4Gy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1451,
+      "cache_read_input_tokens": 23574,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1451
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QCEST7dp5cViX9VxLZvbCc`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "c6169f51-f369-4288-99c5-f156de0924a0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CiLnXT7FZPWtgFAFMFo4Gy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1451,
+      "cache_read_input_tokens": 23574,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1451
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T01:49:01.957Z_
+
+<details><summary>↩ Tool result · `toolu_01FFr8HmG85PxhAwvffgAS5H`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     551 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_semantic_only_v2.jsonl\\n     551 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl\\n     410 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s2.jsonl\\n     998 /root/schema_semantic_constrained_ie/outputs/raw_outputs_docred_schema.jsonl\\n    2510 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "51b48a5f-734d-40a1-8eef-d65b1e9bc8b9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     551 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_semantic_only_v2.jsonl\\\\n     551 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl\\\\n     410 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s2.jsonl\\\\n     998 /root/schema_semantic_constrained_ie/outputs/raw_outputs_docred_schema.jsonl\\\\n    2510 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"     551 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_semantic_only_v2.jsonl\\n     551 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl\\n     410 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s2.jsonl\\n     998 /root/schema_semantic_constrained_ie/outputs/raw_outputs_docred_schema.jsonl\\n    2510 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T01:49:02.568Z_
+
+<details><summary>↩ Tool result · `toolu_01QCEST7dp5cViX9VxLZvbCc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"144858, 16540 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "5df9ba0e-04dc-4139-9d56-b860ba29c579",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"144858, 16540 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"144858, 16540 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+实验状态：
+- `phase2_scierc_semantic_only_v2.jsonl`: 551 行 (完成)
+- `phase2_scierc_full_s1_v2.jsonl`: 551 行 (完成)
+- `phase2_scierc_full_s2.jsonl`: 410/551 行 (进行中)
+- `raw_outputs_docred_schema.jsonl`: **998 行 (完成)**
+
+DocRED schema 已完成 998/998，运行 violation checker 评估。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "59d5909a-8163-4aac-8870-e75124f431d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015CBgG7bcbvZ2mNijFnSkPm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 723,
+      "cache_read_input_tokens": 25025,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 723
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015QYo3Ajf1hfYxnz9o6ZrMf`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 violation_checker_docred.py --input_path outputs/raw_outputs_docred_schema.jsonl --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/violation_report_docred_schema.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "41517f25-e23b-480e-9f64-b17473e5e43d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015CBgG7bcbvZ2mNijFnSkPm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 723,
+      "cache_read_input_tokens": 25025,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 723
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T01:49:28.616Z_
+
+<details><summary>↩ Tool result · `toolu_015QYo3Ajf1hfYxnz9o6ZrMf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Violation Report (DocRED) ===\\nDocuments: 943 checked, 55 parse failures\\nEntities: 19524, Triples: 16782\\n\\nEntity type violations: 119 (0.6%)\\nRelation vocab violations: 3090/16782 (18.4%)\\nDomain/range violations: 2154/16782 (12.8%)\\nCross-field consistency violations: 29\\nFuzzy relation matches: 85\\n\\nGo/No-go metric (D/R violation rate): 0.1284\\nOutput: outputs/violation_report_docred_schema.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 20.03}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "cf547aeb-d737-4901-a243-526211055f8b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Violation Report (DocRED) ===\\\\nDocuments: 943 checked, 55 parse failures\\\\nEntities: 19524, Triples: 16782\\\\n\\\\nEntity type violations: 119 (0.6%)\\\\nRelation vocab violations: 3090/16782 (18.4%)\\\\nDomain/range violations: 2154/16782 (12.8%)\\\\nCross-field consistency violations: 29\\\\nFuzzy relation matches: 85\\\\n\\\\nGo/No-go metric (D/R violation rate): 0.1284\\\\nOutput: outputs/violation_report_docred_schema.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 20.03}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== Violation Report (DocRED) ===\\nDocuments: 943 checked, 55 parse failures\\nEntities: 19524, Triples: 16782\\n\\nEntity type violations: 119 (0.6%)\\nRelation vocab violations: 3090/16782 (18.4%)\\nDomain/range violations: 2154/16782 (12.8%)\\nCross-field consistency violations: 29\\nFuzzy relation matches: 85\\n\\nGo/No-go metric (D/R violation rate): 0.1284\\nOutput: outputs/violation_report_docred_schema.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 20.03}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+评估完成。读取完整报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "46733609-fcb0-414a-b1ff-0af6052a23a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HkjgvthYT6wYFTfem5whZK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 572,
+      "cache_read_input_tokens": 25748,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 572
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HV3AXDYvu6iHEDQbKmk52t`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/schema_semantic_constrained_ie/outputs/violation_report_docred_schema.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "f4314037-a6a7-4e89-9c1b-f4c6d99dc5cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HkjgvthYT6wYFTfem5whZK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 572,
+      "cache_read_input_tokens": 25748,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 572
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T01:49:32.972Z_
+
+<details><summary>↩ Tool result · `toolu_01HV3AXDYvu6iHEDQbKmk52t`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"total_documents\\\": 998,\\n    \\\"documents_checked\\\": 943,\\n    \\\"parse_failures\\\": 55,\\n    \\\"json_parse_rate\\\": 0.9449,\\n    \\\"total_triples_extracted\\\": 16782,\\n    \\\"total_entities_extracted\\\": 19524,\\n    \\\"entity_type_violations\\\": 119,\\n    \\\"entity_type_violation_rate\\\": 0.0061,\\n    \\\"relation_vocabulary_violations\\\": 3090,\\n    \\\"relation_vocabulary_violation_rate\\\": 0.1841,\\n    \\\"relation_fuzzy_matches\\\": 85,\\n    \\\"domain_range_violations\\\": 2154,\\n    \\\"domain_range_violation_rate\\\": 0.1284,\\n    \\\"cross_field_consistency_violations\\\": 29,\\n    \\\"cross_field_consistency_violation_rate\\\": 0.0015,\\n    \\\"total_violations_any\\\": 5392,\\n    \\\"total_violation_rate\\\": 0.1485,\\n    \\\"go_nogo_metric\\\": 0.1284,\\n    \\\"go_nogo_metric_description\\\": \\\"per-triple domain_range_violation_rate (excludes relation_vocabulary_violations)\\\"\\n  },\\n  \\\"per_relation_type\\\": {\\n    \\\"\\\": {\\n      \\\"total\\\": 4,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"B - side\\\": {\\n      \\\"total\\\": 1,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"Executive Producer\\\": {\\n      \\\"total\\\": 2,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"MISC\\\": {\\n      \\\"total\\\": 25,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P1001\\\": {\\n      \\\"total\\\": 5,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P102\\\": {\\n      \\\"total\\\": 86,\\n      \\\"domain_range_violations\\\": 9,\\n      \\\"violation_rate\\\": 0.1047\\n    },\\n    \\\"P108\\\": {\\n      \\\"total\\\": 65,\\n      \\\"domain_range_violations\\\": 23,\\n      \\\"violation_rate\\\": 0.3538\\n    },\\n    \\\"P112\\\": {\\n      \\\"total\\\": 9,\\n      \\\"domain_range_violations\\\": 2,\\n      \\\"violation_rate\\\": 0.2222\\n    },\\n    \\\"P118\\\": {\\n      \\\"total\\\": 1,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P123\\\": {\\n      \\\"total\\\": 48,\\n      \\\"domain_range_violations\\\": 5,\\n      \\\"violation_rate\\\": 0.1042\\n    },\\n    \\\"P127\\\": {\\n      \\\"total\\\": 103,\\n      \\\"domain_range_violations\\\": 7,\\n      \\\"violation_rate\\\": 0.068\\n    },\\n    \\\"P131\\\": {\\n      \\\"total\\\": 3386,\\n      \\\"domain_range_violations\\\": 189,\\n      \\\"violation_rate\\\": 0.0558\\n    },\\n    \\\"P1344\\\": {\\n      \\\"total\\\": 91,\\n      \\\"domain_range_violations\\\": 44,\\n      \\\"violation_rate\\\": 0.4835\\n    },\\n    \\\"P136\\\": {\\n      \\\"total\\\": 3,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P1365\\\": {\\n      \\\"total\\\": 7,\\n      \\\"domain_range_violations\\\": 3,\\n      \\\"violation_rate\\\": 0.4286\\n    },\\n    \\\"P1366\\\": {\\n      \\\"total\\\": 10,\\n      \\\"domain_range_violations\\\": 7,\\n      \\\"violation_rate\\\": 0.7\\n    },\\n    \\\"P137\\\": {\\n      \\\"total\\\": 1,\\n      \\\"domain_range_violations\\\": 1,\\n      \\\"violation_rate\\\": 1.0\\n    },\\n    \\\"P1376\\\": {\\n      \\\"total\\\": 3,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P140\\\": {\\n      \\\"total\\\": 3,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P1412\\\": {\\n      \\\"total\\\": 20,\\n      \\\"domain_range_violations\\\": 4,\\n      \\\"violation_rate\\\": 0.2\\n    },\\n    \\\"P1441\\\": {\\n      \\\"total\\\": 188,\\n      \\\"domain_range_violations\\\": 54,\\n      \\\"violation_rate\\\": 0.2872\\n    },\\n    \\\"P150\\\": {\\n      \\\"total\\\": 345,\\n      \\\"domain_range_violations\\\": 150,\\n      \\\"violation_rate\\\": 0.4348\\n    },\\n    \\\"P155\\\": {\\n      \\\"total\\\": 77,\\n      \\\"domain_range_violations\\\": 22,\\n      \\\"violation_rate\\\": 0.2857\\n    },\\n    \\\"P156\\\": {\\n      \\\"total\\\": 32,\\n      \\\"domain_range_violations\\\": 16,\\n      \\\"violation_rate\\\": 0.5\\n    },\\n    \\\"P159\\\": {\\n      \\\"total\\\": 36,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P161\\\": {\\n      \\\"total\\\": 321,\\n      \\\"domain_range_violations\\\": 43,\\n      \\\"violation_rate\\\": 0.134\\n    },\\n    \\\"P162\\\": {\\n      \\\"total\\\": 56,\\n      \\\"domain_range_violations\\\": 16,\\n      \\\"violation_rate\\\": 0.2857\\n    },\\n    \\\"P166\\\": {\\n      \\\"total\\\": 100,\\n      \\\"domain_range_violations\\\": 14,\\n      \\\"violation_rate\\\": 0.14\\n    },\\n    \\\"P17\\\": {\\n      \\\"total\\\": 384,\\n      \\\"domain_range_violations\\\": 22,\\n      \\\"violation_rate\\\": 0.0573\\n    },\\n    \\\"P170\\\": {\\n      \\\"total\\\": 42,\\n      \\\"domain_range_violations\\\": 21,\\n  \\n\\n... [截断: 输出过长，省略 382674 字符] ...\\n\\n: \\\"Phineas Clanton\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 27,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 4,\\n      \\\"domain_range_violations\\\": 4,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Vauban (train)\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 27,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 0,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Piracy on Falcon Lake\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 15,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 2,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Coolidge Cricket Ground\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 23,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 9,\\n      \\\"domain_range_violations\\\": 4,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Liang Congjie\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 18,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 2,\\n      \\\"domain_range_violations\\\": 2,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"The Time of the Doves\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 18,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 8,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"White Sea\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 17,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 0,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Perpetual virginity of Mary\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 24,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 17,\\n      \\\"domain_range_violations\\\": 3,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Church of Saint Francis of Assisi (Ouro Preto)\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 17,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 2,\\n      \\\"domain_range_violations\\\": 3,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Johannes Cuspinian\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 22,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 0,\\n      \\\"domain_range_violations\\\": 7,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Iwo Byczewski\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 23,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 0,\\n      \\\"domain_range_violations\\\": 8,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Royal Arsenal\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 18,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 0,\\n      \\\"domain_range_violations\\\": 1,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Ramapo High School (New Jersey)\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 19,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 0,\\n      \\\"domain_range_violations\\\": 6,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Essingen Islands\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 16,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 0,\\n      \\\"domain_range_violations\\\": 4,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Soldier (Gavin DeGraw song)\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 12,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 0,\\n      \\\"domain_range_violations\\\": 5,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Paul Pfeifer\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 15,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 0,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"cross_field_violations\\\": 1\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "0ac96f1b-7cd1-4d5e-82ab-63fda64e60f1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"total_documents\\\\\\\": 998,\\\\n    \\\\\\\"documents_checked\\\\\\\": 943,\\\\n    \\\\\\\"parse_failures\\\\\\\": 55,\\\\n    \\\\\\\"json_parse_rate\\\\\\\": 0.9449,\\\\n    \\\\\\\"total_triples_extracted\\\\\\\": 16782,\\\\n    \\\\\\\"total_entities_extracted\\\\\\\": 19524,\\\\n    \\\\\\\"entity_type_violations\\\\\\\": 119,\\\\n    \\\\\\\"entity_type_violation_rate\\\\\\\": 0.0061,\\\\n    \\\\\\\"relation_vocabulary_violations\\\\\\\": 3090,\\\\n    \\\\\\\"relation_vocabulary_violation_rate\\\\\\\": 0.1841,\\\\n    \\\\\\\"relation_fuzzy_matches\\\\\\\": 85,\\\\n    \\\\\\\"domain_range_violations\\\\\\\": 2154,\\\\n    \\\\\\\"domain_range_violation_rate\\\\\\\": 0.1284,\\\\n    \\\\\\\"cross_field_consistency_violations\\\\\\\": 29,\\\\n    \\\\\\\"cross_field_consistency_violation_rate\\\\\\\": 0.0015,\\\\n    \\\\\\\"total_violations_any\\\\\\\": 5392,\\\\n    \\\\\\\"total_violation_rate\\\\\\\": 0.1485,\\\\n    \\\\\\\"go_nogo_metric\\\\\\\": 0.1284,\\\\n    \\\\\\\"go_nogo_metric_description\\\\\\\": \\\\\\\"per-triple domain_range_violation_rate (excludes relation_vocabulary_violations)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"per_relation_type\\\\\\\": {\\\\n    \\\\\\\"\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 4,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"B - side\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 1,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"Executive Producer\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 2,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"MISC\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 25,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"P1001\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 5,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"P102\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 86,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 9,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.1047\\\\n    },\\\\n    \\\\\\\"P108\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 65,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 23,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.3538\\\\n    },\\\\n    \\\\\\\"P112\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 9,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 2,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.2222\\\\n    },\\\\n    \\\\\\\"P118\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 1,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"P123\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 48,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 5,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.1042\\\\n    },\\\\n    \\\\\\\"P127\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 103,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 7,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.068\\\\n    },\\\\n    \\\\\\\"P131\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 3386,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 189,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0558\\\\n    },\\\\n    \\\\\\\"P1344\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 91,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 44,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.4835\\\\n    },\\\\n    \\\\\\\"P136\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 3,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"P1365\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 7,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 3,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.4286\\\\n    },\\\\n    \\\\\\\"P1366\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 10,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 7,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.7\\\\n    },\\\\n    \\\\\\\"P137\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 1,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 1,\\\\n      \\\\\\\"violation_rate\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"P1376\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 3,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"P140\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 3,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"P1412\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 20,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 4,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.2\\\\n    },\\\\n    \\\\\\\"P1441\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 188,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 54,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.2872\\\\n    },\\\\n    \\\\\\\"P150\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 345,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 150,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.4348\\\\n    },\\\\n    \\\\\\\"P155\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 77,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 22,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.2857\\\\n    },\\\\n    \\\\\\\"P156\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 32,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 16,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.5\\\\n    },\\\\n    \\\\\\\"P159\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 36,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"P161\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 321,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 43,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.134\\\\n    },\\\\n    \\\\\\\"P162\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 56,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 16,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.2857\\\\n    },\\\\n    \\\\\\\"P166\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 100,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 14,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.14\\\\n    },\\\\n    \\\\\\\"P17\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 384,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 22,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0573\\\\n    },\\\\n    \\\\\\\"P170\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 42,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 21,\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 382674 字符] ...\\\\n\\\\n: \\\\\\\"Phineas Clanton\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"checked\\\\\\\",\\\\n      \\\\\\\"n_triples\\\\\\\": 27,\\\\n      \\\\\\\"entity_type_violations\\\\\\\": 0,\\\\n      \\\\\\\"relation_vocabulary_violations\\\\\\\": 4,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 4,\\\\n      \\\\\\\"cross_field_violations\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"doc_id\\\\\\\": \\\\\\\"Vauban (train)\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"checked\\\\\\\",\\\\n      \\\\\\\"n_triples\\\\\\\": 27,\\\\n      \\\\\\\"entity_type_violations\\\\\\\": 0,\\\\n      \\\\\\\"relation_vocabulary_violations\\\\\\\": 0,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 0,\\\\n      \\\\\\\"cross_field_violations\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"doc_id\\\\\\\": \\\\\\\"Piracy on Falcon Lake\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"checked\\\\\\\",\\\\n      \\\\\\\"n_triples\\\\\\\": 15,\\\\n      \\\\\\\"entity_type_violations\\\\\\\": 0,\\\\n      \\\\\\\"relation_vocabulary_violations\\\\\\\": 2,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 0,\\\\n      \\\\\\\"cross_field_violations\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"doc_id\\\\\\\": \\\\\\\"Coolidge Cricket Ground\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"checked\\\\\\\",\\\\n      \\\\\\\"n_triples\\\\\\\": 23,\\\\n      \\\\\\\"entity_type_violations\\\\\\\": 0,\\\\n      \\\\\\\"relation_vocabulary_violations\\\\\\\": 9,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 4,\\\\n      \\\\\\\"cross_field_violations\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"doc_id\\\\\\\": \\\\\\\"Liang Congjie\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"checked\\\\\\\",\\\\n      \\\\\\\"n_triples\\\\\\\": 18,\\\\n      \\\\\\\"entity_type_violations\\\\\\\": 0,\\\\n      \\\\\\\"relation_vocabulary_violations\\\\\\\": 2,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 2,\\\\n      \\\\\\\"cross_field_violations\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"doc_id\\\\\\\": \\\\\\\"The Time of the Doves\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"checked\\\\\\\",\\\\n      \\\\\\\"n_triples\\\\\\\": 18,\\\\n      \\\\\\\"entity_type_violations\\\\\\\": 0,\\\\n      \\\\\\\"relation_vocabulary_violations\\\\\\\": 8,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 0,\\\\n      \\\\\\\"cross_field_violations\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"doc_id\\\\\\\": \\\\\\\"White Sea\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"checked\\\\\\\",\\\\n      \\\\\\\"n_triples\\\\\\\": 17,\\\\n      \\\\\\\"entity_type_violations\\\\\\\": 0,\\\\n      \\\\\\\"relation_vocabulary_violations\\\\\\\": 0,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 0,\\\\n      \\\\\\\"cross_field_violations\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"doc_id\\\\\\\": \\\\\\\"Perpetual virginity of Mary\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"checked\\\\\\\",\\\\n      \\\\\\\"n_triples\\\\\\\": 24,\\\\n      \\\\\\\"entity_type_violations\\\\\\\": 0,\\\\n      \\\\\\\"relation_vocabulary_violations\\\\\\\": 17,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 3,\\\\n      \\\\\\\"cross_field_violations\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"doc_id\\\\\\\": \\\\\\\"Church of Saint Francis of Assisi (Ouro Preto)\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"checked\\\\\\\",\\\\n      \\\\\\\"n_triples\\\\\\\": 17,\\\\n      \\\\\\\"entity_type_violations\\\\\\\": 0,\\\\n      \\\\\\\"relation_vocabulary_violations\\\\\\\": 2,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 3,\\\\n      \\\\\\\"cross_field_violations\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"doc_id\\\\\\\": \\\\\\\"Johannes Cuspinian\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"checked\\\\\\\",\\\\n      \\\\\\\"n_triples\\\\\\\": 22,\\\\n      \\\\\\\"entity_type_violations\\\\\\\": 0,\\\\n      \\\\\\\"relation_vocabulary_violations\\\\\\\": 0,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 7,\\\\n      \\\\\\\"cross_field_violations\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"doc_id\\\\\\\": \\\\\\\"Iwo Byczewski\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"checked\\\\\\\",\\\\n      \\\\\\\"n_triples\\\\\\\": 23,\\\\n      \\\\\\\"entity_type_violations\\\\\\\": 0,\\\\n      \\\\\\\"relation_vocabulary_violations\\\\\\\": 0,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 8,\\\\n      \\\\\\\"cross_field_violations\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"doc_id\\\\\\\": \\\\\\\"Royal Arsenal\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"checked\\\\\\\",\\\\n      \\\\\\\"n_triples\\\\\\\": 18,\\\\n      \\\\\\\"entity_type_violations\\\\\\\": 0,\\\\n      \\\\\\\"relation_vocabulary_violations\\\\\\\": 0,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 1,\\\\n      \\\\\\\"cross_field_violations\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"doc_id\\\\\\\": \\\\\\\"Ramapo High School (New Jersey)\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"checked\\\\\\\",\\\\n      \\\\\\\"n_triples\\\\\\\": 19,\\\\n      \\\\\\\"entity_type_violations\\\\\\\": 0,\\\\n      \\\\\\\"relation_vocabulary_violations\\\\\\\": 0,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 6,\\\\n      \\\\\\\"cross_field_violations\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"doc_id\\\\\\\": \\\\\\\"Essingen Islands\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"checked\\\\\\\",\\\\n      \\\\\\\"n_triples\\\\\\\": 16,\\\\n      \\\\\\\"entity_type_violations\\\\\\\": 0,\\\\n      \\\\\\\"relation_vocabulary_violations\\\\\\\": 0,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 4,\\\\n      \\\\\\\"cross_field_violations\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"doc_id\\\\\\\": \\\\\\\"Soldier (Gavin DeGraw song)\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"checked\\\\\\\",\\\\n      \\\\\\\"n_triples\\\\\\\": 12,\\\\n      \\\\\\\"entity_type_violations\\\\\\\": 0,\\\\n      \\\\\\\"relation_vocabulary_violations\\\\\\\": 0,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 5,\\\\n      \\\\\\\"cross_field_violations\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"doc_id\\\\\\\": \\\\\\\"Paul Pfeifer\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"checked\\\\\\\",\\\\n      \\\\\\\"n_triples\\\\\\\": 15,\\\\n      \\\\\\\"entity_type_violations\\\\\\\": 0,\\\\n      \\\\\\\"relation_vocabulary_violations\\\\\\\": 0,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 0,\\\\n      \\\\\\\"cross_field_violations\\\\\\\": 1\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"total_documents\\\": 998,\\n    \\\"documents_checked\\\": 943,\\n    \\\"parse_failures\\\": 55,\\n    \\\"json_parse_rate\\\": 0.9449,\\n    \\\"total_triples_extracted\\\": 16782,\\n    \\\"total_entities_extracted\\\": 19524,\\n    \\\"entity_type_violations\\\": 119,\\n    \\\"entity_type_violation_rate\\\": 0.0061,\\n    \\\"relation_vocabulary_violations\\\": 3090,\\n    \\\"relation_vocabulary_violation_rate\\\": 0.1841,\\n    \\\"relation_fuzzy_matches\\\": 85,\\n    \\\"domain_range_violations\\\": 2154,\\n    \\\"domain_range_violation_rate\\\": 0.1284,\\n    \\\"cross_field_consistency_violations\\\": 29,\\n    \\\"cross_field_consistency_violation_rate\\\": 0.0015,\\n    \\\"total_violations_any\\\": 5392,\\n    \\\"total_violation_rate\\\": 0.1485,\\n    \\\"go_nogo_metric\\\": 0.1284,\\n    \\\"go_nogo_metric_description\\\": \\\"per-triple domain_range_violation_rate (excludes relation_vocabulary_violations)\\\"\\n  },\\n  \\\"per_relation_type\\\": {\\n    \\\"\\\": {\\n      \\\"total\\\": 4,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"B - side\\\": {\\n      \\\"total\\\": 1,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"Executive Producer\\\": {\\n      \\\"total\\\": 2,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"MISC\\\": {\\n      \\\"total\\\": 25,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P1001\\\": {\\n      \\\"total\\\": 5,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P102\\\": {\\n      \\\"total\\\": 86,\\n      \\\"domain_range_violations\\\": 9,\\n      \\\"violation_rate\\\": 0.1047\\n    },\\n    \\\"P108\\\": {\\n      \\\"total\\\": 65,\\n      \\\"domain_range_violations\\\": 23,\\n      \\\"violation_rate\\\": 0.3538\\n    },\\n    \\\"P112\\\": {\\n      \\\"total\\\": 9,\\n      \\\"domain_range_violations\\\": 2,\\n      \\\"violation_rate\\\": 0.2222\\n    },\\n    \\\"P118\\\": {\\n      \\\"total\\\": 1,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P123\\\": {\\n      \\\"total\\\": 48,\\n      \\\"domain_range_violations\\\": 5,\\n      \\\"violation_rate\\\": 0.1042\\n    },\\n    \\\"P127\\\": {\\n      \\\"total\\\": 103,\\n      \\\"domain_range_violations\\\": 7,\\n      \\\"violation_rate\\\": 0.068\\n    },\\n    \\\"P131\\\": {\\n      \\\"total\\\": 3386,\\n      \\\"domain_range_violations\\\": 189,\\n      \\\"violation_rate\\\": 0.0558\\n    },\\n    \\\"P1344\\\": {\\n      \\\"total\\\": 91,\\n      \\\"domain_range_violations\\\": 44,\\n      \\\"violation_rate\\\": 0.4835\\n    },\\n    \\\"P136\\\": {\\n      \\\"total\\\": 3,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P1365\\\": {\\n      \\\"total\\\": 7,\\n      \\\"domain_range_violations\\\": 3,\\n      \\\"violation_rate\\\": 0.4286\\n    },\\n    \\\"P1366\\\": {\\n      \\\"total\\\": 10,\\n      \\\"domain_range_violations\\\": 7,\\n      \\\"violation_rate\\\": 0.7\\n    },\\n    \\\"P137\\\": {\\n      \\\"total\\\": 1,\\n      \\\"domain_range_violations\\\": 1,\\n      \\\"violation_rate\\\": 1.0\\n    },\\n    \\\"P1376\\\": {\\n      \\\"total\\\": 3,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P140\\\": {\\n      \\\"total\\\": 3,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P1412\\\": {\\n      \\\"total\\\": 20,\\n      \\\"domain_range_violations\\\": 4,\\n      \\\"violation_rate\\\": 0.2\\n    },\\n    \\\"P1441\\\": {\\n      \\\"total\\\": 188,\\n      \\\"domain_range_violations\\\": 54,\\n      \\\"violation_rate\\\": 0.2872\\n    },\\n    \\\"P150\\\": {\\n      \\\"total\\\": 345,\\n      \\\"domain_range_violations\\\": 150,\\n      \\\"violation_rate\\\": 0.4348\\n    },\\n    \\\"P155\\\": {\\n      \\\"total\\\": 77,\\n      \\\"domain_range_violations\\\": 22,\\n      \\\"violation_rate\\\": 0.2857\\n    },\\n    \\\"P156\\\": {\\n      \\\"total\\\": 32,\\n      \\\"domain_range_violations\\\": 16,\\n      \\\"violation_rate\\\": 0.5\\n    },\\n    \\\"P159\\\": {\\n      \\\"total\\\": 36,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P161\\\": {\\n      \\\"total\\\": 321,\\n      \\\"domain_range_violations\\\": 43,\\n      \\\"violation_rate\\\": 0.134\\n    },\\n    \\\"P162\\\": {\\n      \\\"total\\\": 56,\\n      \\\"domain_range_violations\\\": 16,\\n      \\\"violation_rate\\\": 0.2857\\n    },\\n    \\\"P166\\\": {\\n      \\\"total\\\": 100,\\n      \\\"domain_range_violations\\\": 14,\\n      \\\"violation_rate\\\": 0.14\\n    },\\n    \\\"P17\\\": {\\n      \\\"total\\\": 384,\\n      \\\"domain_range_violations\\\": 22,\\n      \\\"violation_rate\\\": 0.0573\\n    },\\n    \\\"P170\\\": {\\n      \\\"total\\\": 42,\\n      \\\"domain_range_violations\\\": 21,\\n  \\n\\n... [截断: 输出过长，省略 382674 字符] ...\\n\\n: \\\"Phineas Clanton\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 27,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 4,\\n      \\\"domain_range_violations\\\": 4,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Vauban (train)\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 27,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 0,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Piracy on Falcon Lake\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 15,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 2,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Coolidge Cricket Ground\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 23,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 9,\\n      \\\"domain_range_violations\\\": 4,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Liang Congjie\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 18,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 2,\\n      \\\"domain_range_violations\\\": 2,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"The Time of the Doves\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 18,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 8,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"White Sea\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 17,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 0,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Perpetual virginity of Mary\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 24,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 17,\\n      \\\"domain_range_violations\\\": 3,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Church of Saint Francis of Assisi (Ouro Preto)\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 17,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 2,\\n      \\\"domain_range_violations\\\": 3,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Johannes Cuspinian\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 22,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 0,\\n      \\\"domain_range_violations\\\": 7,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Iwo Byczewski\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 23,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 0,\\n      \\\"domain_range_violations\\\": 8,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Royal Arsenal\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 18,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 0,\\n      \\\"domain_range_violations\\\": 1,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Ramapo High School (New Jersey)\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 19,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 0,\\n      \\\"domain_range_violations\\\": 6,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Essingen Islands\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 16,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 0,\\n      \\\"domain_range_violations\\\": 4,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Soldier (Gavin DeGraw song)\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 12,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 0,\\n      \\\"domain_range_violations\\\": 5,\\n      \\\"cross_field_violations\\\": 0\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"Paul Pfeifer\\\",\\n      \\\"status\\\": \\\"checked\\\",\\n      \\\"n_triples\\\": 15,\\n      \\\"entity_type_violations\\\": 0,\\n      \\\"relation_vocabulary_violations\\\": 0,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"cross_field_violations\\\": 1\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Got the full violation report. Let me summarize the key metrics and compare with baseline:
+
+**DocRED Schema results:**
+- total_documents: 998
+- documents_checked: 943
+- parse_failures: 55
+- json_parse_rate: 94.49%
+- total_triples: 16782
+- total_entities: 19524
+- entity_type_violation_rate: 0.61%
+- relation_vocabulary_violation_rate: 18.41%
+
+
+- domain_range_violation_rate: 12.84%
+- cross_field_consistency_violation_rate: 0.15%
+
+Comparing against the Phase 0 minimal baseline, I'm seeing solid improvements across most violation categories. Entity type violations dropped from 7.5% down to 0.61%, and relation vocabulary violations improved from 28.9% to 18.41%. Domain range violations are at 12.84% compared to the baseline's 18.7%, so that's also moving in the right direction.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "26486cf7-d7ee-4ee8-a0c4-354767159a4d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DC918A6wApGseTVyFvNwpv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4628,
+      "cache_read_input_tokens": 26320,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4628
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+评估完成，结果非常好。更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "75b823e3-da88-4411-b5c9-ef52fd830ab3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DC918A6wApGseTVyFvNwpv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4628,
+      "cache_read_input_tokens": 26320,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4628
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_011p4Gy6UZUHK8woxh169mzL`</summary>
+
+```json
+{
+  "exp_id": "mvp_phase0_docred_schema",
+  "field": "metrics",
+  "value": {
+    "total_documents": 998,
+    "documents_checked": 943,
+    "parse_failures": 55,
+    "json_parse_rate": 0.9449,
+    "total_entities": 19524,
+    "total_triples": 16782,
+    "entity_type_violations": 119,
+    "entity_type_violation_rate": 0.0061,
+    "relation_vocabulary_violations": 3090,
+    "relation_vocabulary_violation_rate": 0.1841,
+    "relation_fuzzy_matches": 85,
+    "domain_range_violations": 2154,
+    "domain_range_violation_rate": 0.1284,
+    "cross_field_consistency_violations": 29,
+    "cross_field_consistency_violation_rate": 0.0015,
+    "total_violations_any": 5392,
+    "total_violation_rate": 0.1485,
+    "go_nogo_metric_dr": 0.1284
+  },
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "d26c58a5-44bf-44fe-8f84-6f82ad5f4bcb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DC918A6wApGseTVyFvNwpv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4628,
+      "cache_read_input_tokens": 26320,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4628
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T01:49:46.594Z_
+
+<details><summary>↩ Tool result · `toolu_011p4Gy6UZUHK8woxh169mzL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp_phase0_docred_schema\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:58:18.184Z\", \"updated_at\": \"2026-05-14T01:49:46.536Z\", \"hypothesis\": \"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心\", \"spec\": {\"command\": \"python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"116365\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/mvp_phase0_docred_schema.log\", \"submitted_at\": \"2026-05-13T20:13:18.695Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"wall_clock_seconds\": 13513.6, \"gpu_hours\": 3.75}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:58:31.565Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:58:32.325Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:58:33.241310+00:00\"}]}, \"notes\": \"已恢复续跑 (PID 137719, GPU 0, tmux session mvp_phase0_docred_schema_r2)。880/998 docs 已完成，续跑 118 docs。registry 状态卡在 DONE(failed) 因为 DONE→RUNNING 不允许。\", \"metrics\": {\"total_documents\": 998, \"documents_checked\": 943, \"parse_failures\": 55, \"json_parse_rate\": 0.9449, \"total_entities\": 19524, \"total_triples\": 16782, \"entity_type_violations\": 119, \"entity_type_violation_rate\": 0.0061, \"relation_vocabulary_violations\": 3090, \"relation_vocabulary_violation_rate\": 0.1841, \"relation_fuzzy_matches\": 85, \"domain_range_violations\": 2154, \"domain_range_violation_rate\": 0.1284, \"cross_field_consistency_violations\": 29, \"cross_field_consistency_violation_rate\": 0.0015, \"total_violations_any\": 5392, \"total_violation_rate\": 0.1485, \"go_nogo_metric_dr\": 0.1284}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.095}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "ae797fbb-ecf7-4fda-af79-68f5403fa0f9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp_phase0_docred_schema\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T17:58:18.184Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:49:46.536Z\\\", \\\"hypothesis\\\": \\\"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"116365\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/mvp_phase0_docred_schema.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T20:13:18.695Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/docred/dev.json\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 13513.6, \\\"gpu_hours\\\": 3.75}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T23:58:31.565Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=143 (SIGTERM — graceful kill)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-13T23:58:32.325Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:58:33.241310+00:00\\\"}]}, \\\"notes\\\": \\\"已恢复续跑 (PID 137719, GPU 0, tmux session mvp_phase0_docred_schema_r2)。880/998 docs 已完成，续跑 118 docs。registry 状态卡在 DONE(failed) 因为 DONE→RUNNING 不允许。\\\", \\\"metrics\\\": {\\\"total_documents\\\": 998, \\\"documents_checked\\\": 943, \\\"parse_failures\\\": 55, \\\"json_parse_rate\\\": 0.9449, \\\"total_entities\\\": 19524, \\\"total_triples\\\": 16782, \\\"entity_type_violations\\\": 119, \\\"entity_type_violation_rate\\\": 0.0061, \\\"relation_vocabulary_violations\\\": 3090, \\\"relation_vocabulary_violation_rate\\\": 0.1841, \\\"relation_fuzzy_matches\\\": 85, \\\"domain_range_violations\\\": 2154, \\\"domain_range_violation_rate\\\": 0.1284, \\\"cross_field_consistency_violations\\\": 29, \\\"cross_field_consistency_violation_rate\\\": 0.0015, \\\"total_violations_any\\\": 5392, \\\"total_violation_rate\\\": 0.1485, \\\"go_nogo_metric_dr\\\": 0.1284}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.095}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp_phase0_docred_schema\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:58:18.184Z\", \"updated_at\": \"2026-05-14T01:49:46.536Z\", \"hypothesis\": \"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心\", \"spec\": {\"command\": \"python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"116365\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/mvp_phase0_docred_schema.log\", \"submitted_at\": \"2026-05-13T20:13:18.695Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"wall_clock_seconds\": 13513.6, \"gpu_hours\": 3.75}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:58:31.565Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:58:32.325Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:58:33.241310+00:00\"}]}, \"notes\": \"已恢复续跑 (PID 137719, GPU 0, tmux session mvp_phase0_docred_schema_r2)。880/998 docs 已完成，续跑 118 docs。registry 状态卡在 DONE(failed) 因为 DONE→RUNNING 不允许。\", \"metrics\": {\"total_documents\": 998, \"documents_checked\": 943, \"parse_failures\": 55, \"json_parse_rate\": 0.9449, \"total_entities\": 19524, \"total_triples\": 16782, \"entity_type_violations\": 119, \"entity_type_violation_rate\": 0.0061, \"relation_vocabulary_violations\": 3090, \"relation_vocabulary_violation_rate\": 0.1841, \"relation_fuzzy_matches\": 85, \"domain_range_violations\": 2154, \"domain_range_violation_rate\": 0.1284, \"cross_field_consistency_violations\": 29, \"cross_field_consistency_violation_rate\": 0.0015, \"total_violations_any\": 5392, \"total_violation_rate\": 0.1485, \"go_nogo_metric_dr\": 0.1284}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.095}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_012zt73wb6Key1R4ma6d2j8o`</summary>
+
+```json
+{
+  "exp_id": "mvp_phase0_docred_schema",
+  "field": "checkpoint_path",
+  "value": "outputs/raw_outputs_docred_schema.jsonl",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "f37aa3f2-bc79-4edd-97f6-4c5e5123b185",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DC918A6wApGseTVyFvNwpv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4628,
+      "cache_read_input_tokens": 26320,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4628
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T01:49:48.082Z_
+
+<details><summary>↩ Tool result · `toolu_012zt73wb6Key1R4ma6d2j8o`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp_phase0_docred_schema\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:58:18.184Z\", \"updated_at\": \"2026-05-14T01:49:48.038Z\", \"hypothesis\": \"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心\", \"spec\": {\"command\": \"python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"116365\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/mvp_phase0_docred_schema.log\", \"submitted_at\": \"2026-05-13T20:13:18.695Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"wall_clock_seconds\": 13513.6, \"gpu_hours\": 3.75}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:58:31.565Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:58:32.325Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:58:33.241310+00:00\"}]}, \"notes\": \"已恢复续跑 (PID 137719, GPU 0, tmux session mvp_phase0_docred_schema_r2)。880/998 docs 已完成，续跑 118 docs。registry 状态卡在 DONE(failed) 因为 DONE→RUNNING 不允许。\", \"metrics\": {\"total_documents\": 998, \"documents_checked\": 943, \"parse_failures\": 55, \"json_parse_rate\": 0.9449, \"total_entities\": 19524, \"total_triples\": 16782, \"entity_type_violations\": 119, \"entity_type_violation_rate\": 0.0061, \"relation_vocabulary_violations\": 3090, \"relation_vocabulary_violation_rate\": 0.1841, \"relation_fuzzy_matches\": 85, \"domain_range_violations\": 2154, \"domain_range_violation_rate\": 0.1284, \"cross_field_consistency_violations\": 29, \"cross_field_consistency_violation_rate\": 0.0015, \"total_violations_any\": 5392, \"total_violation_rate\": 0.1485, \"go_nogo_metric_dr\": 0.1284}, \"checkpoint_path\": \"outputs/raw_outputs_docred_schema.jsonl\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0864}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "965c90a8-6fbc-4d37-b25e-7f923e1df6b1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp_phase0_docred_schema\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T17:58:18.184Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:49:48.038Z\\\", \\\"hypothesis\\\": \\\"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"116365\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/mvp_phase0_docred_schema.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T20:13:18.695Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/docred/dev.json\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 13513.6, \\\"gpu_hours\\\": 3.75}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T23:58:31.565Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=143 (SIGTERM — graceful kill)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-13T23:58:32.325Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:58:33.241310+00:00\\\"}]}, \\\"notes\\\": \\\"已恢复续跑 (PID 137719, GPU 0, tmux session mvp_phase0_docred_schema_r2)。880/998 docs 已完成，续跑 118 docs。registry 状态卡在 DONE(failed) 因为 DONE→RUNNING 不允许。\\\", \\\"metrics\\\": {\\\"total_documents\\\": 998, \\\"documents_checked\\\": 943, \\\"parse_failures\\\": 55, \\\"json_parse_rate\\\": 0.9449, \\\"total_entities\\\": 19524, \\\"total_triples\\\": 16782, \\\"entity_type_violations\\\": 119, \\\"entity_type_violation_rate\\\": 0.0061, \\\"relation_vocabulary_violations\\\": 3090, \\\"relation_vocabulary_violation_rate\\\": 0.1841, \\\"relation_fuzzy_matches\\\": 85, \\\"domain_range_violations\\\": 2154, \\\"domain_range_violation_rate\\\": 0.1284, \\\"cross_field_consistency_violations\\\": 29, \\\"cross_field_consistency_violation_rate\\\": 0.0015, \\\"total_violations_any\\\": 5392, \\\"total_violation_rate\\\": 0.1485, \\\"go_nogo_metric_dr\\\": 0.1284}, \\\"checkpoint_path\\\": \\\"outputs/raw_outputs_docred_schema.jsonl\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0864}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp_phase0_docred_schema\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:58:18.184Z\", \"updated_at\": \"2026-05-14T01:49:48.038Z\", \"hypothesis\": \"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心\", \"spec\": {\"command\": \"python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"116365\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/mvp_phase0_docred_schema.log\", \"submitted_at\": \"2026-05-13T20:13:18.695Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"wall_clock_seconds\": 13513.6, \"gpu_hours\": 3.75}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:58:31.565Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:58:32.325Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:58:33.241310+00:00\"}]}, \"notes\": \"已恢复续跑 (PID 137719, GPU 0, tmux session mvp_phase0_docred_schema_r2)。880/998 docs 已完成，续跑 118 docs。registry 状态卡在 DONE(failed) 因为 DONE→RUNNING 不允许。\", \"metrics\": {\"total_documents\": 998, \"documents_checked\": 943, \"parse_failures\": 55, \"json_parse_rate\": 0.9449, \"total_entities\": 19524, \"total_triples\": 16782, \"entity_type_violations\": 119, \"entity_type_violation_rate\": 0.0061, \"relation_vocabulary_violations\": 3090, \"relation_vocabulary_violation_rate\": 0.1841, \"relation_fuzzy_matches\": 85, \"domain_range_violations\": 2154, \"domain_range_violation_rate\": 0.1284, \"cross_field_consistency_violations\": 29, \"cross_field_consistency_violation_rate\": 0.0015, \"total_violations_any\": 5392, \"total_violation_rate\": 0.1485, \"go_nogo_metric_dr\": 0.1284}, \"checkpoint_path\": \"outputs/raw_outputs_docred_schema.jsonl\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0864}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_019wAE6h5Mf335GNJqzcmakw`</summary>
+
+```json
+{
+  "exp_id": "mvp_phase0_docred_schema",
+  "field": "conclusion",
+  "value": "success",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "8f033a30-f345-47b7-86c1-ba329ffc7f3f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DC918A6wApGseTVyFvNwpv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4628,
+      "cache_read_input_tokens": 26320,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4628
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T01:49:48.806Z_
+
+<details><summary>↩ Tool result · `toolu_019wAE6h5Mf335GNJqzcmakw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp_phase0_docred_schema\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:58:18.184Z\", \"updated_at\": \"2026-05-14T01:49:48.752Z\", \"hypothesis\": \"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心\", \"spec\": {\"command\": \"python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"116365\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/mvp_phase0_docred_schema.log\", \"submitted_at\": \"2026-05-13T20:13:18.695Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"wall_clock_seconds\": 13513.6, \"gpu_hours\": 3.75}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:58:31.565Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T23:58:32.325Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:58:33.241310+00:00\"}]}, \"notes\": \"已恢复续跑 (PID 137719, GPU 0, tmux session mvp_phase0_docred_schema_r2)。880/998 docs 已完成，续跑 118 docs。registry 状态卡在 DONE(failed) 因为 DONE→RUNNING 不允许。\", \"metrics\": {\"total_documents\": 998, \"documents_checked\": 943, \"parse_failures\": 55, \"json_parse_rate\": 0.9449, \"total_entities\": 19524, \"total_triples\": 16782, \"entity_type_violations\": 119, \"entity_type_violation_rate\": 0.0061, \"relation_vocabulary_violations\": 3090, \"relation_vocabulary_violation_rate\": 0.1841, \"relation_fuzzy_matches\": 85, \"domain_range_violations\": 2154, \"domain_range_violation_rate\": 0.1284, \"cross_field_consistency_violations\": 29, \"cross_field_consistency_violation_rate\": 0.0015, \"total_violations_any\": 5392, \"total_violation_rate\": 0.1485, \"go_nogo_metric_dr\": 0.1284}, \"checkpoint_path\": \"outputs/raw_outputs_docred_schema.jsonl\"}, \"impact_analysis\": {\"change_type\": \"experiment\", \"change_id\": \"mvp_phase0_docred_schema\", \"affected_decisions\": [], \"cascade_decisions\": [], \"affected_claims\": [], \"affected_figures\": [], \"recommendations\": [\"No downstream impact detected\"]}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0948}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "560b854b-7da4-44ee-bf63-1133c2990cad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp_phase0_docred_schema\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T17:58:18.184Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:49:48.752Z\\\", \\\"hypothesis\\\": \\\"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"116365\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/mvp_phase0_docred_schema.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T20:13:18.695Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/docred/dev.json\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 13513.6, \\\"gpu_hours\\\": 3.75}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T23:58:31.565Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=143 (SIGTERM — graceful kill)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T23:58:32.325Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:58:33.241310+00:00\\\"}]}, \\\"notes\\\": \\\"已恢复续跑 (PID 137719, GPU 0, tmux session mvp_phase0_docred_schema_r2)。880/998 docs 已完成，续跑 118 docs。registry 状态卡在 DONE(failed) 因为 DONE→RUNNING 不允许。\\\", \\\"metrics\\\": {\\\"total_documents\\\": 998, \\\"documents_checked\\\": 943, \\\"parse_failures\\\": 55, \\\"json_parse_rate\\\": 0.9449, \\\"total_entities\\\": 19524, \\\"total_triples\\\": 16782, \\\"entity_type_violations\\\": 119, \\\"entity_type_violation_rate\\\": 0.0061, \\\"relation_vocabulary_violations\\\": 3090, \\\"relation_vocabulary_violation_rate\\\": 0.1841, \\\"relation_fuzzy_matches\\\": 85, \\\"domain_range_violations\\\": 2154, \\\"domain_range_violation_rate\\\": 0.1284, \\\"cross_field_consistency_violations\\\": 29, \\\"cross_field_consistency_violation_rate\\\": 0.0015, \\\"total_violations_any\\\": 5392, \\\"total_violation_rate\\\": 0.1485, \\\"go_nogo_metric_dr\\\": 0.1284}, \\\"checkpoint_path\\\": \\\"outputs/raw_outputs_docred_schema.jsonl\\\"}, \\\"impact_analysis\\\": {\\\"change_type\\\": \\\"experiment\\\", \\\"change_id\\\": \\\"mvp_phase0_docred_schema\\\", \\\"affected_decisions\\\": [], \\\"cascade_decisions\\\": [], \\\"affected_claims\\\": [], \\\"affected_figures\\\": [], \\\"recommendations\\\": [\\\"No downstream impact detected\\\"]}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0948}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp_phase0_docred_schema\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:58:18.184Z\", \"updated_at\": \"2026-05-14T01:49:48.752Z\", \"hypothesis\": \"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心\", \"spec\": {\"command\": \"python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"116365\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/mvp_phase0_docred_schema.log\", \"submitted_at\": \"2026-05-13T20:13:18.695Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"wall_clock_seconds\": 13513.6, \"gpu_hours\": 3.75}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:58:31.565Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T23:58:32.325Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:58:33.241310+00:00\"}]}, \"notes\": \"已恢复续跑 (PID 137719, GPU 0, tmux session mvp_phase0_docred_schema_r2)。880/998 docs 已完成，续跑 118 docs。registry 状态卡在 DONE(failed) 因为 DONE→RUNNING 不允许。\", \"metrics\": {\"total_documents\": 998, \"documents_checked\": 943, \"parse_failures\": 55, \"json_parse_rate\": 0.9449, \"total_entities\": 19524, \"total_triples\": 16782, \"entity_type_violations\": 119, \"entity_type_violation_rate\": 0.0061, \"relation_vocabulary_violations\": 3090, \"relation_vocabulary_violation_rate\": 0.1841, \"relation_fuzzy_matches\": 85, \"domain_range_violations\": 2154, \"domain_range_violation_rate\": 0.1284, \"cross_field_consistency_violations\": 29, \"cross_field_consistency_violation_rate\": 0.0015, \"total_violations_any\": 5392, \"total_violation_rate\": 0.1485, \"go_nogo_metric_dr\": 0.1284}, \"checkpoint_path\": \"outputs/raw_outputs_docred_schema.jsonl\"}, \"impact_analysis\": {\"change_type\": \"experiment\", \"change_id\": \"mvp_phase0_docred_schema\", \"affected_decisions\": [], \"cascade_decisions\": [], \"affected_claims\": [], \"affected_figures\": [], \"recommendations\": [\"No downstream impact detected\"]}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0948}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+更新 notes 到两个实验记录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "139aa8a3-b25e-4b7e-be07-70bc93814832",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NNkZHuHPoYiaKbzvoPxvT8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4253,
+      "cache_read_input_tokens": 30948,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4253
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01UX5F141mdBrceuKAPpQvu1`</summary>
+
+```json
+{
+  "exp_id": "mvp_phase0_docred_schema",
+  "field": "notes",
+  "value": "Resume 完成 998/998 docs. Schema-informed prompt 结果: ET=0.61% (baseline 7.5%, Δ-6.89%), RV=18.4% (baseline 28.9%, Δ-10.5%), DR=12.8% (baseline 18.7%, Δ-5.9%). 全维度显著改善。",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "3cfff285-97b4-460a-94d7-c0499575de74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NNkZHuHPoYiaKbzvoPxvT8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4253,
+      "cache_read_input_tokens": 30948,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4253
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T01:49:57.149Z_
+
+<details><summary>↩ Tool result · `toolu_01UX5F141mdBrceuKAPpQvu1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp_phase0_docred_schema\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:58:18.184Z\", \"updated_at\": \"2026-05-14T01:49:57.097Z\", \"hypothesis\": \"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心\", \"spec\": {\"command\": \"python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"116365\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/mvp_phase0_docred_schema.log\", \"submitted_at\": \"2026-05-13T20:13:18.695Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"wall_clock_seconds\": 13513.6, \"gpu_hours\": 3.75}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:58:31.565Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T23:58:32.325Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:58:33.241310+00:00\"}]}, \"notes\": \"Resume 完成 998/998 docs. Schema-informed prompt 结果: ET=0.61% (baseline 7.5%, Δ-6.89%), RV=18.4% (baseline 28.9%, Δ-10.5%), DR=12.8% (baseline 18.7%, Δ-5.9%). 全维度显著改善。\", \"metrics\": {\"total_documents\": 998, \"documents_checked\": 943, \"parse_failures\": 55, \"json_parse_rate\": 0.9449, \"total_entities\": 19524, \"total_triples\": 16782, \"entity_type_violations\": 119, \"entity_type_violation_rate\": 0.0061, \"relation_vocabulary_violations\": 3090, \"relation_vocabulary_violation_rate\": 0.1841, \"relation_fuzzy_matches\": 85, \"domain_range_violations\": 2154, \"domain_range_violation_rate\": 0.1284, \"cross_field_consistency_violations\": 29, \"cross_field_consistency_violation_rate\": 0.0015, \"total_violations_any\": 5392, \"total_violation_rate\": 0.1485, \"go_nogo_metric_dr\": 0.1284}, \"checkpoint_path\": \"outputs/raw_outputs_docred_schema.jsonl\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0971}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "999e43fe-6ea7-4bbe-a474-e8a68cbca099",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp_phase0_docred_schema\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T17:58:18.184Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:49:57.097Z\\\", \\\"hypothesis\\\": \\\"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"116365\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/mvp_phase0_docred_schema.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T20:13:18.695Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/docred/dev.json\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 13513.6, \\\"gpu_hours\\\": 3.75}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T23:58:31.565Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=143 (SIGTERM — graceful kill)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T23:58:32.325Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:58:33.241310+00:00\\\"}]}, \\\"notes\\\": \\\"Resume 完成 998/998 docs. Schema-informed prompt 结果: ET=0.61% (baseline 7.5%, Δ-6.89%), RV=18.4% (baseline 28.9%, Δ-10.5%), DR=12.8% (baseline 18.7%, Δ-5.9%). 全维度显著改善。\\\", \\\"metrics\\\": {\\\"total_documents\\\": 998, \\\"documents_checked\\\": 943, \\\"parse_failures\\\": 55, \\\"json_parse_rate\\\": 0.9449, \\\"total_entities\\\": 19524, \\\"total_triples\\\": 16782, \\\"entity_type_violations\\\": 119, \\\"entity_type_violation_rate\\\": 0.0061, \\\"relation_vocabulary_violations\\\": 3090, \\\"relation_vocabulary_violation_rate\\\": 0.1841, \\\"relation_fuzzy_matches\\\": 85, \\\"domain_range_violations\\\": 2154, \\\"domain_range_violation_rate\\\": 0.1284, \\\"cross_field_consistency_violations\\\": 29, \\\"cross_field_consistency_violation_rate\\\": 0.0015, \\\"total_violations_any\\\": 5392, \\\"total_violation_rate\\\": 0.1485, \\\"go_nogo_metric_dr\\\": 0.1284}, \\\"checkpoint_path\\\": \\\"outputs/raw_outputs_docred_schema.jsonl\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0971}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp_phase0_docred_schema\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:58:18.184Z\", \"updated_at\": \"2026-05-14T01:49:57.097Z\", \"hypothesis\": \"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心\", \"spec\": {\"command\": \"python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"116365\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/mvp_phase0_docred_schema.log\", \"submitted_at\": \"2026-05-13T20:13:18.695Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"wall_clock_seconds\": 13513.6, \"gpu_hours\": 3.75}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:58:31.565Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T23:58:32.325Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:58:33.241310+00:00\"}]}, \"notes\": \"Resume 完成 998/998 docs. Schema-informed prompt 结果: ET=0.61% (baseline 7.5%, Δ-6.89%), RV=18.4% (baseline 28.9%, Δ-10.5%), DR=12.8% (baseline 18.7%, Δ-5.9%). 全维度显著改善。\", \"metrics\": {\"total_documents\": 998, \"documents_checked\": 943, \"parse_failures\": 55, \"json_parse_rate\": 0.9449, \"total_entities\": 19524, \"total_triples\": 16782, \"entity_type_violations\": 119, \"entity_type_violation_rate\": 0.0061, \"relation_vocabulary_violations\": 3090, \"relation_vocabulary_violation_rate\": 0.1841, \"relation_fuzzy_matches\": 85, \"domain_range_violations\": 2154, \"domain_range_violation_rate\": 0.1284, \"cross_field_consistency_violations\": 29, \"cross_field_consistency_violation_rate\": 0.0015, \"total_violations_any\": 5392, \"total_violation_rate\": 0.1485, \"go_nogo_metric_dr\": 0.1284}, \"checkpoint_path\": \"outputs/raw_outputs_docred_schema.jsonl\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0971}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_015ADV3famjyVk5S8VpjUUSs`</summary>
+
+```json
+{
+  "exp_id": "mvp_phase0_docred_schema_r2",
+  "field": "notes",
+  "value": "续跑实验已完成 (118 docs 补齐至 998/998)。最终结果见 mvp_phase0_docred_schema metrics。",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "fe1ad69c-a54e-44f6-8466-70b687fe2ab9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NNkZHuHPoYiaKbzvoPxvT8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4253,
+      "cache_read_input_tokens": 30948,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4253
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T01:49:57.251Z_
+
+<details><summary>↩ Tool result · `toolu_015ADV3famjyVk5S8VpjUUSs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp_phase0_docred_schema_r2\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:36:06.125Z\", \"updated_at\": \"2026-05-14T01:49:57.211Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4 --resume\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"note\": \"Resume from killed mvp_phase0_docred_schema. Original ran ~3.5h before being killed by cleanup Worker.\"}, \"hypothesis\": \"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心。（从被误杀的 mvp_phase0_docred_schema 恢复，--resume）\", \"notes\": \"续跑实验已完成 (118 docs 补齐至 998/998)。最终结果见 mvp_phase0_docred_schema metrics。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0867}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "90c6e0b7-41ee-4a27-8739-d2137a4e089f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp_phase0_docred_schema_r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T00:36:06.125Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:49:57.211Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4 --resume\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/docred/dev.json\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"note\\\": \\\"Resume from killed mvp_phase0_docred_schema. Original ran ~3.5h before being killed by cleanup Worker.\\\"}, \\\"hypothesis\\\": \\\"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心。（从被误杀的 mvp_phase0_docred_schema 恢复，--resume）\\\", \\\"notes\\\": \\\"续跑实验已完成 (118 docs 补齐至 998/998)。最终结果见 mvp_phase0_docred_schema metrics。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0867}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp_phase0_docred_schema_r2\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:36:06.125Z\", \"updated_at\": \"2026-05-14T01:49:57.211Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4 --resume\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"note\": \"Resume from killed mvp_phase0_docred_schema. Original ran ~3.5h before being killed by cleanup Worker.\"}, \"hypothesis\": \"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心。（从被误杀的 mvp_phase0_docred_schema 恢复，--resume）\", \"notes\": \"续跑实验已完成 (118 docs 补齐至 998/998)。最终结果见 mvp_phase0_docred_schema metrics。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0867}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+Registry 已更新。
+
+---
+
+## DocRED Schema-Informed Prompt 实验结果
+
+| 指标 | Schema | Minimal Baseline | Delta |
+|------|--------|-----------------|-------|
+| **Entity Type Violation** | **0.61%** | 7.5% | **-6.89%** |
+| **Relation Vocab Violation** | **18.4%** | 28.9% | **-10.5%** |
+| **Domain/Range Violation** | **12.8%** | 18.7% | **-5.9%** |
+| Cross-field Consistency | 0.15% | — | — |
+| JSON Parse Rate | 94.5% | — | — |
+| Total Entities | 19,524 | — | — |
+| Total Triples | 16,782 | 16,540 | +242 |
+| Docs Checked | 943/998 | — | 55 parse failures |
+
+**三个核心违规维度全部显著下降**，schema-informed prompt 在 96 relation types 的大约束空间下依然有效。DR violation 从 18.7%→12.8%（go/no-go metric），ET 改善最大（降幅 92%）。
+
+仍在运行的实验：`phase2_scierc_full_s2.jsonl` 410/551（GPU 0 占用 16.5GB）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "uuid": "f652d042-451d-4f1b-b044-543e28255d10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LTtaZvavRLdRZvbXDYmnVu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2069,
+      "cache_read_input_tokens": 35201,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2069
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 33_
+
+Registry 已更新。
+
+---
+
+## DocRED Schema-Informed Prompt 实验结果
+
+| 指标 | Schema | Minimal Baseline | Delta |
+|------|--------|-----------------|-------|
+| **Entity Type Violation** | **0.61%** | 7.5% | **-6.89%** |
+| **Relation Vocab Violation** | **18.4%** | 28.9% | **-10.5%** |
+| **Domain/Range Violation** | **12.8%** | 18.7% | **-5.9%** |
+| Cross-field Consistency | 0.15% | — | — |
+| JSON Parse Rate | 94.5% | — | — |
+| Total Entities | 19,524 | — | — |
+| Total Triples | 16,782 | 16,540 | +242 |
+| Docs Checked | 943/998 | — | 55 parse failures |
+
+**三个核心违规维度全部显著下降**，schema-informed prompt 在 96 relation types 的大约束空间下依然有效。DR violation 从 18.7%→12.8%（go/no-go metric），ET 改善最大（降幅 92%）。
+
+仍在运行的实验：`phase2_scierc_full_s2.jsonl` 410/551（GPU 0 占用 16.5GB）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 73735,
+  "duration_api_ms": 52639,
+  "num_turns": 11,
+  "stop_reason": "end_turn",
+  "session_id": "0fea4c17-96a7-4979-ab63-63618e11c8fe",
+  "total_cost_usd": 0.32022925,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 25823,
+    "cache_read_input_tokens": 178263,
+    "output_tokens": 2722,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 25823,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 363,
+        "cache_read_input_tokens": 35201,
+        "cache_creation_input_tokens": 2069,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2069
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1524,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001604,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 2722,
+      "cacheReadInputTokens": 178263,
+      "cacheCreationInputTokens": 25823,
+      "webSearchRequests": 0,
+      "costUSD": 0.31862525,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "9e5e8768-850f-4121-a426-cd5c0c9d5a67"
+}
+```
+
+</details>
+
+---

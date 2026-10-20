@@ -1,0 +1,15 @@
+{
+  "exp_id": "d066_docred_beam_sweep",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T02:42:56.730Z",
+    "updated_at": "2026-05-20T02:43:02.799Z",
+    "hypothesis": "DocRED beam width sweep (k=2,8) on Qwen LoRA 200-doc subset will show the same Pareto pattern as SciERC — k=2 as sweet spot with diminishing returns at k=8 — confirming the beam width recommendation generalizes across datasets with different schema complexity (DocRED: 96 relation types vs SciERC: 7)."
+  },
+  "timestamp": "2026-05-20T02:43:03.065298+00:00",
+  "trigger": "update_registry"
+}

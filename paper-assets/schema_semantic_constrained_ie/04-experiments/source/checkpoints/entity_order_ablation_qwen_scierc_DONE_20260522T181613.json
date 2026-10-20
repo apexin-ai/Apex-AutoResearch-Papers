@@ -1,0 +1,87 @@
+{
+  "exp_id": "entity_order_ablation_qwen_scierc",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:48:40.066Z",
+    "updated_at": "2026-05-22T18:16:13.444Z",
+    "hypothesis": "Shuffling entity type order in the constraint schema (seed=42) does not significantly change constrained decoding results (R-F1 within ±0.5pp, violation rates identical), confirming that OntoCoDec is order-invariant. This addresses R19-W3 reviewer concern about entity registry ordering sensitivity.",
+    "parent": "w5_lora_scierc_constrained_eval",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged --data_path data/processed_data/test.json --constraints_path ontology_constraints_shuffled.json --output_path outputs/entity_order_shuffled_qwen_scierc.jsonl --max_new_tokens 2048",
+      "server": "westd-16980",
+      "gpu": "cuda:1",
+      "pid": 967058,
+      "data_path": "data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "Qwen3-8B-LoRA-SciERC-merged",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged",
+      "eval_data": "SciERC test (551 sentences)",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged",
+      "log_path": "/tmp/entity_order_shuffled_qwen_scierc.log",
+      "shuffle_seed": 42,
+      "original_entity_order": [
+        "Task",
+        "Method",
+        "Material",
+        "Metric",
+        "OtherScientificTerm",
+        "Generic"
+      ],
+      "shuffled_entity_order": [
+        "Metric",
+        "Method",
+        "Material",
+        "OtherScientificTerm",
+        "Task",
+        "Generic"
+      ],
+      "original_relation_order": [
+        "Used-for",
+        "Feature-of",
+        "Hyponym-of",
+        "Part-of",
+        "Compare",
+        "Conjunction",
+        "Evaluate-for"
+      ],
+      "shuffled_relation_order": [
+        "Conjunction",
+        "Evaluate-for",
+        "Compare",
+        "Part-of",
+        "Feature-of",
+        "Hyponym-of",
+        "Used-for"
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "E_F1": 67.05,
+      "E_P": 65.23,
+      "E_R": 68.98,
+      "R_F1": 43.77,
+      "R_P": 40.78,
+      "R_R": 47.23,
+      "DR_pct": 0,
+      "RV_pct": 0,
+      "ET_pct": 0,
+      "CF_count": 21,
+      "parse_fail_pct": 0,
+      "samples": 551,
+      "entities": 1784,
+      "relations": 1128,
+      "delta_R_F1_vs_original": -3.38,
+      "original_R_F1": 47.15,
+      "original_DR_pct": 0.09,
+      "note": "Shuffled entity order causes -3.38pp R-F1 drop (>0.5pp threshold), NOT order-invariant. CF violations increased from ~0 to 21."
+    },
+    "completed_at": "2026-05-22T18:04:14.919Z"
+  },
+  "timestamp": "2026-05-22T18:16:13.851533+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "054b15d192378b849682",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "critical kill orphan processes",
+  "task_key": "worker_critical_kill_orphan_processes_20260513T235550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_critical_kill_orphan_processes_20260513T235550_result.json",
+    "occurrence": 1,
+    "bytes": 1360,
+    "sha256": "7109f83cde3326ac17a9b53e7ddf9e1779d140cd672886f1d6df79f070092acd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n---\n\n### 1. Kill 结果\n\n| PID | 身份 | 操作 |\n|-----|------|------|\n| **116365** | 孤儿 — `run_extraction_docred.py`（占 GPU-0 25GB） | **已 kill** |\n| 134450, 134886 | Director 提到的可疑 PID | 进程已不存在，无需处理 |\n\n### 2. nvidia-smi 前后对比\n\n**Kill 前（3 个进程）：**\n| PID | GPU | 显存 |\n|-----|-----|------|\n| 116365 | GPU-0 | 25294 MiB |\n| 134207 | GPU-0 | 16480 MiB |\n| 134598 | GPU-1 | 16482 MiB |\n\n**Kill 后（2 个进程）：**\n| PID | GPU | 显存 |\n|-----|-----|------|\n| 134207 | GPU-0 | 16482 MiB |\n| 134598 | GPU-1 | 16482 MiB |\n\nGPU-0 释放了 25GB 显存。\n\n### 3. 数据污染 + 修复\n\n两个文件均有 **1 行 null bytes（\\x00）污染**，系并发写入所致。无重复 doc_id。\n\n| 文件 | 修复前 | 修复后 | 删除 |\n|------|--------|--------|------|\n| `phase2_scierc_semantic_only.jsonl` | 55 行 | **54 行** | 1 行 null bytes |\n| `phase2_scierc_full_s1.jsonl` | 63 行 | **62 行** | 1 行 null bytes |\n\n### 4. 合法进程状态\n\n- **PID 134202**（semantic_only wrapper）→ **134207**（python）：✅ 运行中\n- **PID 134593**（full_s1 wrapper）→ **134598**（python）：✅ 运行中\n\n### 5. 无需重跑\n\n数据已成功去污，两个合法推理进程正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/critical-kill-orphan-processes.md"
+}

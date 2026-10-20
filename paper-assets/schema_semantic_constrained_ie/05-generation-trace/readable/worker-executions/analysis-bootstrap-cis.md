@@ -1,0 +1,2105 @@
+# analysis bootstrap cis
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 44
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/workers/worker_analysis_bootstrap-cis_20260522T070950.log`
+- **Structured JSON:** [`93f99494fbab4218a2d4.json`](../../sessions/93/93f99494fbab4218a2d4.json)
+
+## Before a recorded user message
+
+44 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "bbe25a6a-46f0-4481-a61d-22e22bb5f0c9",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779706800,
+    "rateLimitType": "seven_day",
+    "utilization": 0.76,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "394caf69-a1ac-4ada-8339-6a11eb706629",
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by exploring the server to find the prediction files and existing evaluation code.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "4d2c814f-acab-4bc3-bc81-a525d161d631",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FFW3PEFFCq266pYAWaZucx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12816,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12816
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CcmiYY3qDTKkD11TvXdLcG`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "aed4aa59-fedd-4497-a69e-2ef2a57ce11c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FFW3PEFFCq266pYAWaZucx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12816,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12816
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T07:10:05.783Z_
+
+<details><summary>↩ Tool result · `toolu_01CcmiYY3qDTKkD11TvXdLcG`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "b730d1f7-6810-4788-9460-93217a759398",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by finding the prediction files and existing evaluation code on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "386559e0-96c1-4ba7-b9eb-35104566830b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXRKGt1TMsoDS9mKz7v4bw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 890,
+      "cache_read_input_tokens": 24657,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 890
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KtS3prv4hrFRzsnoCHtwoD`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "find /root/autodl-tmp/schema_outputs/ -name \"*scierc*\" -type f 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "a46525d7-d928-4b9a-82d7-2e218145d815",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXRKGt1TMsoDS9mKz7v4bw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 890,
+      "cache_read_input_tokens": 24657,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 890
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T07:10:09.979Z_
+
+<details><summary>↩ Tool result · `toolu_01KtS3prv4hrFRzsnoCHtwoD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "6e7de5e8-48c9-4ae4-b639-a3a45c7347bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015smbQJNh1KYUvCm3wmBbbm`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "find /root/autodl-tmp/schema_outputs/ -name \"*docred*\" -type f 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "94806c88-3461-47a9-8bf7-7ab0a9872438",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXRKGt1TMsoDS9mKz7v4bw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 890,
+      "cache_read_input_tokens": 24657,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 890
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T07:10:11.002Z_
+
+<details><summary>↩ Tool result · `toolu_015smbQJNh1KYUvCm3wmBbbm`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "da7e9026-e782-42aa-ad5e-e3fac83dfbf4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GYrNSCqASoXEL4PAtXZShZ`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ls /root/schema_semantic_constrained_ie/outputs/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "7c502253-c3ea-4962-964a-54fcefc26582",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXRKGt1TMsoDS9mKz7v4bw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 890,
+      "cache_read_input_tokens": 24657,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 890
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T07:10:11.179Z_
+
+<details><summary>↩ Tool result · `toolu_01GYrNSCqASoXEL4PAtXZShZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "fcc48ecd-673c-459c-a968-849d6961b8aa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `2>/dev/null` redirect is being blocked. Let me retry without the redirect.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "f1001bdf-5113-4cf3-9d7e-c5b7525277cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DKYL7hbVC8Up1Vu9PTzDm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 692,
+      "cache_read_input_tokens": 25547,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 692
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Redirects are blocked in read-only mode. Let me retry without them.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "795e4cc9-6740-407b-b9e5-12aff2de72f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DKYL7hbVC8Up1Vu9PTzDm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 692,
+      "cache_read_input_tokens": 25547,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 692
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Vb2UGDX59Ck6pR5iiJJzSc`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "find /root/autodl-tmp/schema_outputs/ -name \"*scierc*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "023f2b67-ef91-4f03-b274-86dfa9c07b4f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DKYL7hbVC8Up1Vu9PTzDm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 692,
+      "cache_read_input_tokens": 25547,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 692
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012xNCTnu2dbboWroUfheKbp`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "find /root/autodl-tmp/schema_outputs/ -name \"*docred*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "eafcff4f-12d9-4ddb-b583-80c55008959a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DKYL7hbVC8Up1Vu9PTzDm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 692,
+      "cache_read_input_tokens": 25547,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 692
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Toc5RgdRqkAoecS7xJLUk4`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ls /root/schema_semantic_constrained_ie/outputs/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "98a92f5f-2916-4c52-a556-e8041590db4b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DKYL7hbVC8Up1Vu9PTzDm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 692,
+      "cache_read_input_tokens": 25547,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 692
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T07:10:16.574Z_
+
+<details><summary>↩ Tool result · `toolu_01Vb2UGDX59Ck6pR5iiJJzSc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam4_s1_551.log\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam4_full_s1.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam2_s1_551.log\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam8_unc_551.log\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam8_unconstrained.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam8_s1_551.log\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam8_full_s1.jsonl\\n/root/autodl-tmp/schema_outputs/unified_eval/scierc_qwen_unc.json\\n/root/autodl-tmp/schema_outputs/unified_eval/scierc_qwen_con.json\\n/root/autodl-tmp/schema_outputs/unified_eval/scierc_llama_unc.json\\n/root/autodl-tmp/schema_outputs/unified_eval/scierc_llama_con.json\\n/root/autodl-tmp/schema_outputs/unified_eval/scierc_qwen_con_cfcorr.json\\n/root/autodl-tmp/schema_outputs/unified_eval/scierc_llama_con_cfcorr.json\\n/root/autodl-tmp/schema_outputs/r16_70b_lora_scierc/scierc_unconstrained.jsonl\\n/root/autodl-tmp/schema_outputs/r16_70b_lora_scierc/scierc_s1.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.56}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "e9517015-53e1-4f85-b96a-97ee02851767",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam4_s1_551.log\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam4_full_s1.jsonl\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam2_s1_551.log\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam8_unc_551.log\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam8_unconstrained.jsonl\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam8_s1_551.log\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam8_full_s1.jsonl\\\\n/root/autodl-tmp/schema_outputs/unified_eval/scierc_qwen_unc.json\\\\n/root/autodl-tmp/schema_outputs/unified_eval/scierc_qwen_con.json\\\\n/root/autodl-tmp/schema_outputs/unified_eval/scierc_llama_unc.json\\\\n/root/autodl-tmp/schema_outputs/unified_eval/scierc_llama_con.json\\\\n/root/autodl-tmp/schema_outputs/unified_eval/scierc_qwen_con_cfcorr.json\\\\n/root/autodl-tmp/schema_outputs/unified_eval/scierc_llama_con_cfcorr.json\\\\n/root/autodl-tmp/schema_outputs/r16_70b_lora_scierc/scierc_unconstrained.jsonl\\\\n/root/autodl-tmp/schema_outputs/r16_70b_lora_scierc/scierc_s1.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.56}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam4_s1_551.log\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam4_full_s1.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam2_s1_551.log\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam8_unc_551.log\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam8_unconstrained.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam2_full_s1.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam8_s1_551.log\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam8_full_s1.jsonl\\n/root/autodl-tmp/schema_outputs/unified_eval/scierc_qwen_unc.json\\n/root/autodl-tmp/schema_outputs/unified_eval/scierc_qwen_con.json\\n/root/autodl-tmp/schema_outputs/unified_eval/scierc_llama_unc.json\\n/root/autodl-tmp/schema_outputs/unified_eval/scierc_llama_con.json\\n/root/autodl-tmp/schema_outputs/unified_eval/scierc_qwen_con_cfcorr.json\\n/root/autodl-tmp/schema_outputs/unified_eval/scierc_llama_con_cfcorr.json\\n/root/autodl-tmp/schema_outputs/r16_70b_lora_scierc/scierc_unconstrained.jsonl\\n/root/autodl-tmp/schema_outputs/r16_70b_lora_scierc/scierc_s1.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.56}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016rvwRkruDGpBXbigVqcNJW`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "find /root/schema_semantic_constrained_ie/ -name \"*bootstrap*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "10804ddf-dfc6-40fa-b29b-ba03187352c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DKYL7hbVC8Up1Vu9PTzDm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 692,
+      "cache_read_input_tokens": 25547,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 692
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T07:10:17.103Z_
+
+<details><summary>↩ Tool result · `toolu_012xNCTnu2dbboWroUfheKbp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/schema_outputs/70b_docred_unconstrained.jsonl\\n/root/autodl-tmp/schema_outputs/70b_docred_constrained.jsonl\\n/root/autodl-tmp/schema_outputs/d064_llama_docred_beam4_unconstrained_16980.jsonl\\n/root/autodl-tmp/schema_outputs/d064_llama_docred_beam4_constrained_16980.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/violations/qwen_docred_200_beam2_unconstrained_violations.json\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/violations/qwen_docred_200_beam2_full_s1_violations.json\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/violations/qwen_docred_200_beam8_unconstrained_violations.json\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/violations/qwen_docred_200_beam8_full_s1_violations.json\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_greedy_unc.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_greedy_s1.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_beam2_unconstrained.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_beam2_full_s1.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_beam8_unconstrained.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_200_beam2_unconstrained.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_beam8_full_s1.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_200_beam2_full_s1.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_200_beam8_unconstrained.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_200_beam8_full_s1.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_beam4_unc.log\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_200_beam4_unconstrained.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_200_beam4_constrained.jsonl\\n/root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_unc_4096.jsonl\\n/root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_con_4096.jsonl\\n/root/autodl-tmp/schema_outputs/docred_dev_200.json\\n/root/autodl-tmp/schema_outputs/d065_qwen_docred_greedy_con_4096.jsonl\\n/root/autodl-tmp/schema_outputs/unified_eval/w5_qwen_docred_unc.json\\n/root/autodl-tmp/schema_outputs/unified_eval/w5_qwen_docred_con.json\\n/root/autodl-tmp/schema_outputs/unified_eval/w5_llama_docred_unc.json\\n/root/autodl-tmp/schema_outputs/unified_eval/w5_llama_docred_con.json\\n/root/autodl-tmp/schema_outputs/unified_eval/w5_qwen_docred_con_cfcorr.json\\n/root/autodl-tmp/schema_outputs/unified_eval/w5_llama_docred_con_cfcorr.json\\n/root/autodl-tmp/schema_outputs/r14_llama_docred_beam4_998.log\\n/root/autodl-tmp/schema_outputs/r14_llama_docred_beam4_998.jsonl\\n/root/autodl-tmp/schema_outputs/r16_70b_lora_docred/docred_unconstrained.jsonl\\n/root/autodl-tmp/schema_outputs/r16_70b_lora_docred/docred_200_unconstrained.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "af8b8b0c-39ad-442b-87e7-f728ba473d5b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/schema_outputs/70b_docred_unconstrained.jsonl\\\\n/root/autodl-tmp/schema_outputs/70b_docred_constrained.jsonl\\\\n/root/autodl-tmp/schema_outputs/d064_llama_docred_beam4_unconstrained_16980.jsonl\\\\n/root/autodl-tmp/schema_outputs/d064_llama_docred_beam4_constrained_16980.jsonl\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/violations/qwen_docred_200_beam2_unconstrained_violations.json\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/violations/qwen_docred_200_beam2_full_s1_violations.json\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/violations/qwen_docred_200_beam8_unconstrained_violations.json\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/violations/qwen_docred_200_beam8_full_s1_violations.json\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_greedy_unc.jsonl\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_greedy_s1.jsonl\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_beam2_unconstrained.jsonl\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_beam2_full_s1.jsonl\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_beam8_unconstrained.jsonl\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_200_beam2_unconstrained.jsonl\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_beam8_full_s1.jsonl\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_200_beam2_full_s1.jsonl\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_200_beam8_unconstrained.jsonl\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_200_beam8_full_s1.jsonl\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_beam4_unc.log\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_200_beam4_unconstrained.jsonl\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_200_beam4_constrained.jsonl\\\\n/root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_unc_4096.jsonl\\\\n/root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_con_4096.jsonl\\\\n/root/autodl-tmp/schema_outputs/docred_dev_200.json\\\\n/root/autodl-tmp/schema_outputs/d065_qwen_docred_greedy_con_4096.jsonl\\\\n/root/autodl-tmp/schema_outputs/unified_eval/w5_qwen_docred_unc.json\\\\n/root/autodl-tmp/schema_outputs/unified_eval/w5_qwen_docred_con.json\\\\n/root/autodl-tmp/schema_outputs/unified_eval/w5_llama_docred_unc.json\\\\n/root/autodl-tmp/schema_outputs/unified_eval/w5_llama_docred_con.json\\\\n/root/autodl-tmp/schema_outputs/unified_eval/w5_qwen_docred_con_cfcorr.json\\\\n/root/autodl-tmp/schema_outputs/unified_eval/w5_llama_docred_con_cfcorr.json\\\\n/root/autodl-tmp/schema_outputs/r14_llama_docred_beam4_998.log\\\\n/root/autodl-tmp/schema_outputs/r14_llama_docred_beam4_998.jsonl\\\\n/root/autodl-tmp/schema_outputs/r16_70b_lora_docred/docred_unconstrained.jsonl\\\\n/root/autodl-tmp/schema_outputs/r16_70b_lora_docred/docred_200_unconstrained.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/schema_outputs/70b_docred_unconstrained.jsonl\\n/root/autodl-tmp/schema_outputs/70b_docred_constrained.jsonl\\n/root/autodl-tmp/schema_outputs/d064_llama_docred_beam4_unconstrained_16980.jsonl\\n/root/autodl-tmp/schema_outputs/d064_llama_docred_beam4_constrained_16980.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/violations/qwen_docred_200_beam2_unconstrained_violations.json\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/violations/qwen_docred_200_beam2_full_s1_violations.json\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/violations/qwen_docred_200_beam8_unconstrained_violations.json\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/violations/qwen_docred_200_beam8_full_s1_violations.json\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_greedy_unc.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_greedy_s1.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_beam2_unconstrained.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_beam2_full_s1.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_beam8_unconstrained.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_200_beam2_unconstrained.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_docred_200_beam8_full_s1.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_200_beam2_full_s1.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_200_beam8_unconstrained.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_200_beam8_full_s1.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_beam4_unc.log\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_200_beam4_unconstrained.jsonl\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_docred_200_beam4_constrained.jsonl\\n/root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_unc_4096.jsonl\\n/root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_con_4096.jsonl\\n/root/autodl-tmp/schema_outputs/docred_dev_200.json\\n/root/autodl-tmp/schema_outputs/d065_qwen_docred_greedy_con_4096.jsonl\\n/root/autodl-tmp/schema_outputs/unified_eval/w5_qwen_docred_unc.json\\n/root/autodl-tmp/schema_outputs/unified_eval/w5_qwen_docred_con.json\\n/root/autodl-tmp/schema_outputs/unified_eval/w5_llama_docred_unc.json\\n/root/autodl-tmp/schema_outputs/unified_eval/w5_llama_docred_con.json\\n/root/autodl-tmp/schema_outputs/unified_eval/w5_qwen_docred_con_cfcorr.json\\n/root/autodl-tmp/schema_outputs/unified_eval/w5_llama_docred_con_cfcorr.json\\n/root/autodl-tmp/schema_outputs/r14_llama_docred_beam4_998.log\\n/root/autodl-tmp/schema_outputs/r14_llama_docred_beam4_998.jsonl\\n/root/autodl-tmp/schema_outputs/r16_70b_lora_docred/docred_unconstrained.jsonl\\n/root/autodl-tmp/schema_outputs/r16_70b_lora_docred/docred_200_unconstrained.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T07:10:17.698Z_
+
+<details><summary>↩ Tool result · `toolu_01Toc5RgdRqkAoecS7xJLUk4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analysis_llama_docred_70b_constrained_v2.json\\nanalysis_llama_docred_ft_grammar_only.json\\nanalysis_llama_docred_full_s1_mt6144_v2.json\\nanalysis_llama_docred_full_s1_v2.json\\nanalysis_llama_docred_unconstrained_mt6144_v2.json\\nanalysis_llama_docred_unconstrained_v2.json\\nanalysis_w5_llama_docred_lora_constrained_v2.json\\nbeam_search_50.jsonl\\nbeam_search_dryrun_10.jsonl\\nbeam_search_full_551.log\\nbeam_search_scierc_full_551.jsonl\\nbootstrap_ci_ee_ft_llama.json\\nbootstrap_ci_ft_composability.json\\nbootstrap_ci_results.json\\nbootstrap_ci_results_llama.json\\nbootstrap_ci_results_v2.json\\ncf_analysis\\ncf_analysis_w1_pilot\\ncf_correction_report_llama_docred_ft.json\\ncf_correction_report_llama_docred_zs.json\\ncf_correction_report_llama_scierc_ft.json\\ncf_correction_report_llama_scierc_zs.json\\ncf_correction_report_qwen_docred_ft.json\\ncf_correction_report_qwen_docred_zs.json\\ncf_correction_report_qwen_scierc_ft.json\\ncf_correction_report_qwen_scierc_zs.json\\ncf_violation_analysis.json\\ncomparison_minimal_vs_schema_informed.json\\nd066_docred_zs_grammar.json\\nd066_docred_zs_s1.json\\nd066_docred_zs_semantic.json\\nd066_docred_zs_unc.json\\nd066_llama_docred_lora_s1.json\\nd066_llama_docred_lora_unc.json\\nd066_llama_scierc_lora_s1.json\\nd066_llama_scierc_lora_unc.json\\nd066_qwen_docred_lora_s1.json\\nd066_qwen_docred_lora_unc.json\\nd066_qwen_scierc_lora_s1.json\\nd066_qwen_scierc_lora_unc.json\\nd066_scierc_zs_grammar.json\\nd066_scierc_zs_s1.json\\nd066_scierc_zs_semantic.json\\nd066_scierc_zs_unc.json\\nd068_guided_beam\\ndebug_final.log\\ndebug_semantic.log\\ndebug_semantic2.log\\ndoc_length_breakdown.json\\ndocred_full_s1.jsonl\\ndocred_full_s1_cf_corrected.jsonl\\ndocred_full_s1_consensus_50.jsonl\\ndocred_full_s1_dryrun.jsonl\\ndocred_grammar_only.jsonl\\ndocred_llama_beam_50.jsonl\\ndocred_semantic_only.jsonl\\ndocred_semantic_only_dryrun.jsonl\\ndocred_unconstrained.jsonl\\ndr_residual_analysis.json\\ndry_run.jsonl\\ndry_run_violations.json\\ndryrun_10_log.txt\\ndryrun_10docs.log\\ndryrun_10docs_fixed.log\\ndryrun_10docs_v3.log\\ndryrun_consensus_10.jsonl\\ndryrun_consensus_10_v2.jsonl\\ndryrun_constrained.log\\ndryrun_phase2_grammar.jsonl\\ndryrun_prompt_sens.jsonl\\ndryrun_prompt_sens_full.jsonl\\ndryrun_prompt_sens_full2.jsonl\\ndryrun_report.md\\ndryrun_unconstrained.log\\nee_llama_ft_wikievents_full_s1.jsonl\\nee_llama_ft_wikievents_full_s1_r2.jsonl\\nee_llama_ft_wikievents_unconstrained.jsonl\\nee_llama_ft_wikievents_unconstrained_r2.jsonl\\nee_llama_wikievents_grammar_only.jsonl\\nee_llama_wikievents_unconstrained_posthoc.jsonl\\nee_mistral_wikievents_grammar_only_v3.jsonl\\nee_qwen_wikievents_constrained_v3_cf_voted.jsonl\\nee_qwen_wikievents_constrained_v3_full.jsonl\\nee_qwen_wikievents_constrained_v3_posthoc.jsonl\\nee_qwen_wikievents_posthoc.jsonl\\nee_qwen_wikievents_unconstrained_posthoc.jsonl\\nerror_taxonomy_detail.json\\nerror_taxonomy_summary.json\\neval_constrained.json\\neval_report_llama_constrained.json\\neval_report_llama_full_s1.json\\neval_report_llama_full_s1_r2.json\\neval_report_llama_grammar_only.json\\neval_report_llama_unconstrained.json\\neval_report_llama_unconstrained_r2.json\\neval_report_qwen_constrained.json\\neval_report_qwen_retry_16k.json\\neval_report_qwen_unconstrained.json\\neval_unconstrained.json\\nf1_report_docred_unconstrained_phase2.json\\nfallback_estimation_results.json\\ngollie_scierc\\nllama_constrained_full.log\\nllama_docred_full_s1.jsonl\\nllama_docred_full_s1_cf_corrected.jsonl\\nllama_docred_full_s1_mt6144.jsonl\\nllama_docred_greedy_matched50.jsonl\\nllama_docred_unconstrained.jsonl\\nllama_docred_unconstrained_mt6144.jsonl\\nllama_scierc_beam_full_s1_551.jsonl\\nllama_scierc_beam_full_s1_551.log\\nllama_scierc_full_s1.jsonl\\nllama_scierc_full_s1_cf_corrected.jsonl\\nllama_scierc_unconstrained.jsonl\\nllama_scierc_unconstrained_violation_report.json\\nmistral_collision_fix_dryrun_5doc.jsonl\\nphase2_analysis_results.json\\nphase2_batch.log\\nphase2_comparison.json\\nphase2_s2_dryrun.jsonl\\nphase2_s2_pilot50.jsonl\\nphase2_scierc_full_s1.jsonl\\nphase2_scierc_full_s1_v2.jsonl\\nphase2_scierc_full_s1_v2_cf_corrected.jsonl\\nphase2_scierc_full_s2.jsonl\\nphase2_scierc_grammar_only.js\\n\\n... [截断: 输出过长，省略 4577 字符] ...\\n\\ncorrected.json\\nviolation_report_qwen_greedy_matched50.json\\nviolation_report_qwen_scierc_ft_cf_corrected.json\\nviolation_report_qwen_scierc_zs_cf_corrected.json\\nviolation_report_qwen_unconstrained.json\\nviolation_report_r4_phase2_scierc_full_s1_v2.json\\nviolation_report_r4_phase2_scierc_unconstrained.json\\nviolation_report_r4_r4_detailed_full_s1.json\\nviolation_report_r4_r4_detailed_unconstrained.json\\nviolation_report_r4_r4_minimal_full_s1.json\\nviolation_report_r4_r4_minimal_unconstrained.json\\nviolation_report_revert_10doc.json\\nviolation_report_s2_dryrun.json\\nviolation_report_s2_pilot50.json\\nviolation_report_schema.json\\nviolation_report_scierc.json\\nviolation_report_scierc_consensus_v2.json\\nviolation_report_scierc_full_s1_v2.json\\nviolation_report_scierc_full_s2_v2.json\\nviolation_report_scierc_grammar_only_v2.json\\nviolation_report_scierc_semantic_only_v2.json\\nviolation_report_scierc_unconstrained_v2.json\\nviolation_report_semantic_only_v2.json\\nviolation_report_stability_seed123.json\\nviolation_report_stability_seed456.json\\nviolation_report_stability_seed789.json\\nviolation_report_w1_cf_fallback_scierc_pilot.json\\nviolation_report_w5_lora_unconstrained.json\\nviolation_report_w6_mistral_scierc_constrained.json\\nviolation_report_w7_llama_scierc_ft_grammar_only.json\\nviolation_report_w7_llama_scierc_ft_semantic_only.json\\nviolation_report_w7_qwen_scierc_ft_grammar_only.json\\nviolation_report_w7_qwen_scierc_ft_semantic_only.json\\nviolations_constrained.json\\nviolations_unconstrained.json\\nw10_qwen_scierc_ft_beam_k4.jsonl\\nw1_cf_fallback_docred.jsonl\\nw1_cf_fallback_scierc_pilot.jsonl\\nw1_cf_fallback_scierc_pilot_fallback_stats.json\\nw5_llama_docred_lora_constrained_eval.jsonl\\nw5_llama_docred_lora_constrained_eval_cf_corrected.jsonl\\nw5_llama_docred_lora_unconstrained_eval.jsonl\\nw5_llama_lora_scierc_constrained.jsonl\\nw5_llama_lora_scierc_constrained_cf_corrected.jsonl\\nw5_llama_lora_scierc_constrained_report.json\\nw5_llama_lora_scierc_constrained_violation_report.json\\nw5_llama_lora_scierc_unconstrained.jsonl\\nw5_llama_lora_scierc_unconstrained_violations.json\\nw5_lora_scierc_full_s1_eval.jsonl\\nw5_lora_scierc_full_s1_eval_cf_corrected.jsonl\\nw5_lora_scierc_full_s1_violation_report.json\\nw5_lora_scierc_unconstrained_eval.jsonl\\nw5_lora_scierc_unconstrained_eval.log\\nw5_lora_scierc_unconstrained_eval_fallback_stats.json\\nw5_qwen_docred_lora_constrained_eval.jsonl\\nw5_qwen_docred_lora_constrained_eval_cf_corrected.jsonl\\nw5_qwen_docred_lora_unconstrained_eval.jsonl\\nw6_mistral_scierc_constrained.jsonl\\nw6_mistral_scierc_unconstrained.jsonl\\nw7_llama_scierc_ft_grammar_only.jsonl\\nw7_llama_scierc_ft_semantic_only.jsonl\\nw7_qwen_scierc_ft_grammar_only.jsonl\\nw7_qwen_scierc_ft_semantic_only.jsonl\\nw8_ft_posthoc_llama_docred.jsonl\\nw8_ft_posthoc_llama_scierc.jsonl\\nw8_ft_posthoc_qwen_docred.jsonl\\nw8_ft_posthoc_qwen_scierc.jsonl\\nw8_ft_posthoc_report_llama_docred.json\\nw8_ft_posthoc_report_llama_scierc.json\\nw8_ft_posthoc_report_qwen_docred.json\\nw8_ft_posthoc_report_qwen_scierc.json\\nw8_llama_docred_ft_grammar_only.jsonl\\nw8_llama_docred_ft_semantic_only.jsonl\\nw9_qwen_docred_beam_50.jsonl\\nw9_qwen_docred_beam_50.log\\nw9_qwen_docred_zs_sampling_r3.jsonl\\nw9_qwen_scierc_zs_sampling.jsonl\\nw9_scierc_sampling_violation_report.json\\nw9_zs_posthoc_llama_docred.jsonl\\nw9_zs_posthoc_llama_scierc.jsonl\\nw9_zs_posthoc_mistral_scierc.jsonl\\nw9_zs_posthoc_report_llama_docred.json\\nw9_zs_posthoc_report_llama_scierc.json\\nw9_zs_posthoc_report_mistral_scierc.json\\nwikievents_full_s1.jsonl\\nwikievents_full_s1_violations.json\\nwikievents_llama_constrained_full.jsonl\\nwikievents_llama_unconstrained.jsonl\\nwikievents_llama_unconstrained.log\\nwikievents_llama_unconstrained_full.jsonl\\nwikievents_llama_unconstrained_full.log\\nwikievents_qwen_constrained_full.jsonl\\nwikievents_qwen_constrained_full_cf_fixed.jsonl\\nwikievents_qwen_unconstrained.jsonl\\nwikievents_qwen_unconstrained.log\\nwikievents_qwen_unconstrained_full.jsonl\\nwikievents_qwen_unconstrained_full.log\\nwikievents_unconstrained.jsonl\\nwikievents_unconstrained_violations.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "879dd04a-b8a2-423a-9e2f-83ae6cf4a591",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analysis_llama_docred_70b_constrained_v2.json\\\\nanalysis_llama_docred_ft_grammar_only.json\\\\nanalysis_llama_docred_full_s1_mt6144_v2.json\\\\nanalysis_llama_docred_full_s1_v2.json\\\\nanalysis_llama_docred_unconstrained_mt6144_v2.json\\\\nanalysis_llama_docred_unconstrained_v2.json\\\\nanalysis_w5_llama_docred_lora_constrained_v2.json\\\\nbeam_search_50.jsonl\\\\nbeam_search_dryrun_10.jsonl\\\\nbeam_search_full_551.log\\\\nbeam_search_scierc_full_551.jsonl\\\\nbootstrap_ci_ee_ft_llama.json\\\\nbootstrap_ci_ft_composability.json\\\\nbootstrap_ci_results.json\\\\nbootstrap_ci_results_llama.json\\\\nbootstrap_ci_results_v2.json\\\\ncf_analysis\\\\ncf_analysis_w1_pilot\\\\ncf_correction_report_llama_docred_ft.json\\\\ncf_correction_report_llama_docred_zs.json\\\\ncf_correction_report_llama_scierc_ft.json\\\\ncf_correction_report_llama_scierc_zs.json\\\\ncf_correction_report_qwen_docred_ft.json\\\\ncf_correction_report_qwen_docred_zs.json\\\\ncf_correction_report_qwen_scierc_ft.json\\\\ncf_correction_report_qwen_scierc_zs.json\\\\ncf_violation_analysis.json\\\\ncomparison_minimal_vs_schema_informed.json\\\\nd066_docred_zs_grammar.json\\\\nd066_docred_zs_s1.json\\\\nd066_docred_zs_semantic.json\\\\nd066_docred_zs_unc.json\\\\nd066_llama_docred_lora_s1.json\\\\nd066_llama_docred_lora_unc.json\\\\nd066_llama_scierc_lora_s1.json\\\\nd066_llama_scierc_lora_unc.json\\\\nd066_qwen_docred_lora_s1.json\\\\nd066_qwen_docred_lora_unc.json\\\\nd066_qwen_scierc_lora_s1.json\\\\nd066_qwen_scierc_lora_unc.json\\\\nd066_scierc_zs_grammar.json\\\\nd066_scierc_zs_s1.json\\\\nd066_scierc_zs_semantic.json\\\\nd066_scierc_zs_unc.json\\\\nd068_guided_beam\\\\ndebug_final.log\\\\ndebug_semantic.log\\\\ndebug_semantic2.log\\\\ndoc_length_breakdown.json\\\\ndocred_full_s1.jsonl\\\\ndocred_full_s1_cf_corrected.jsonl\\\\ndocred_full_s1_consensus_50.jsonl\\\\ndocred_full_s1_dryrun.jsonl\\\\ndocred_grammar_only.jsonl\\\\ndocred_llama_beam_50.jsonl\\\\ndocred_semantic_only.jsonl\\\\ndocred_semantic_only_dryrun.jsonl\\\\ndocred_unconstrained.jsonl\\\\ndr_residual_analysis.json\\\\ndry_run.jsonl\\\\ndry_run_violations.json\\\\ndryrun_10_log.txt\\\\ndryrun_10docs.log\\\\ndryrun_10docs_fixed.log\\\\ndryrun_10docs_v3.log\\\\ndryrun_consensus_10.jsonl\\\\ndryrun_consensus_10_v2.jsonl\\\\ndryrun_constrained.log\\\\ndryrun_phase2_grammar.jsonl\\\\ndryrun_prompt_sens.jsonl\\\\ndryrun_prompt_sens_full.jsonl\\\\ndryrun_prompt_sens_full2.jsonl\\\\ndryrun_report.md\\\\ndryrun_unconstrained.log\\\\nee_llama_ft_wikievents_full_s1.jsonl\\\\nee_llama_ft_wikievents_full_s1_r2.jsonl\\\\nee_llama_ft_wikievents_unconstrained.jsonl\\\\nee_llama_ft_wikievents_unconstrained_r2.jsonl\\\\nee_llama_wikievents_grammar_only.jsonl\\\\nee_llama_wikievents_unconstrained_posthoc.jsonl\\\\nee_mistral_wikievents_grammar_only_v3.jsonl\\\\nee_qwen_wikievents_constrained_v3_cf_voted.jsonl\\\\nee_qwen_wikievents_constrained_v3_full.jsonl\\\\nee_qwen_wikievents_constrained_v3_posthoc.jsonl\\\\nee_qwen_wikievents_posthoc.jsonl\\\\nee_qwen_wikievents_unconstrained_posthoc.jsonl\\\\nerror_taxonomy_detail.json\\\\nerror_taxonomy_summary.json\\\\neval_constrained.json\\\\neval_report_llama_constrained.json\\\\neval_report_llama_full_s1.json\\\\neval_report_llama_full_s1_r2.json\\\\neval_report_llama_grammar_only.json\\\\neval_report_llama_unconstrained.json\\\\neval_report_llama_unconstrained_r2.json\\\\neval_report_qwen_constrained.json\\\\neval_report_qwen_retry_16k.json\\\\neval_report_qwen_unconstrained.json\\\\neval_unconstrained.json\\\\nf1_report_docred_unconstrained_phase2.json\\\\nfallback_estimation_results.json\\\\ngollie_scierc\\\\nllama_constrained_full.log\\\\nllama_docred_full_s1.jsonl\\\\nllama_docred_full_s1_cf_corrected.jsonl\\\\nllama_docred_full_s1_mt6144.jsonl\\\\nllama_docred_greedy_matched50.jsonl\\\\nllama_docred_unconstrained.jsonl\\\\nllama_docred_unconstrained_mt6144.jsonl\\\\nllama_scierc_beam_full_s1_551.jsonl\\\\nllama_scierc_beam_full_s1_551.log\\\\nllama_scierc_full_s1.jsonl\\\\nllama_scierc_full_s1_cf_corrected.jsonl\\\\nllama_scierc_unconstrained.jsonl\\\\nllama_scierc_unconstrained_violation_report.json\\\\nmistral_collision_fix_dryrun_5doc.jsonl\\\\nphase2_analysis_results.json\\\\nphase2_batch.log\\\\nphase2_comparison.json\\\\nphase2_s2_dryrun.jsonl\\\\nphase2_s2_pilot50.jsonl\\\\nphase2_scierc_full_s1.jsonl\\\\nphase2_scierc_full_s1_v2.jsonl\\\\nphase2_scierc_full_s1_v2_cf_corrected.jsonl\\\\nphase2_scierc_full_s2.jsonl\\\\nphase2_scierc_grammar_only.js\\\\n\\\\n... [截断: 输出过长，省略 4577 字符] ...\\\\n\\\\ncorrected.json\\\\nviolation_report_qwen_greedy_matched50.json\\\\nviolation_report_qwen_scierc_ft_cf_corrected.json\\\\nviolation_report_qwen_scierc_zs_cf_corrected.json\\\\nviolation_report_qwen_unconstrained.json\\\\nviolation_report_r4_phase2_scierc_full_s1_v2.json\\\\nviolation_report_r4_phase2_scierc_unconstrained.json\\\\nviolation_report_r4_r4_detailed_full_s1.json\\\\nviolation_report_r4_r4_detailed_unconstrained.json\\\\nviolation_report_r4_r4_minimal_full_s1.json\\\\nviolation_report_r4_r4_minimal_unconstrained.json\\\\nviolation_report_revert_10doc.json\\\\nviolation_report_s2_dryrun.json\\\\nviolation_report_s2_pilot50.json\\\\nviolation_report_schema.json\\\\nviolation_report_scierc.json\\\\nviolation_report_scierc_consensus_v2.json\\\\nviolation_report_scierc_full_s1_v2.json\\\\nviolation_report_scierc_full_s2_v2.json\\\\nviolation_report_scierc_grammar_only_v2.json\\\\nviolation_report_scierc_semantic_only_v2.json\\\\nviolation_report_scierc_unconstrained_v2.json\\\\nviolation_report_semantic_only_v2.json\\\\nviolation_report_stability_seed123.json\\\\nviolation_report_stability_seed456.json\\\\nviolation_report_stability_seed789.json\\\\nviolation_report_w1_cf_fallback_scierc_pilot.json\\\\nviolation_report_w5_lora_unconstrained.json\\\\nviolation_report_w6_mistral_scierc_constrained.json\\\\nviolation_report_w7_llama_scierc_ft_grammar_only.json\\\\nviolation_report_w7_llama_scierc_ft_semantic_only.json\\\\nviolation_report_w7_qwen_scierc_ft_grammar_only.json\\\\nviolation_report_w7_qwen_scierc_ft_semantic_only.json\\\\nviolations_constrained.json\\\\nviolations_unconstrained.json\\\\nw10_qwen_scierc_ft_beam_k4.jsonl\\\\nw1_cf_fallback_docred.jsonl\\\\nw1_cf_fallback_scierc_pilot.jsonl\\\\nw1_cf_fallback_scierc_pilot_fallback_stats.json\\\\nw5_llama_docred_lora_constrained_eval.jsonl\\\\nw5_llama_docred_lora_constrained_eval_cf_corrected.jsonl\\\\nw5_llama_docred_lora_unconstrained_eval.jsonl\\\\nw5_llama_lora_scierc_constrained.jsonl\\\\nw5_llama_lora_scierc_constrained_cf_corrected.jsonl\\\\nw5_llama_lora_scierc_constrained_report.json\\\\nw5_llama_lora_scierc_constrained_violation_report.json\\\\nw5_llama_lora_scierc_unconstrained.jsonl\\\\nw5_llama_lora_scierc_unconstrained_violations.json\\\\nw5_lora_scierc_full_s1_eval.jsonl\\\\nw5_lora_scierc_full_s1_eval_cf_corrected.jsonl\\\\nw5_lora_scierc_full_s1_violation_report.json\\\\nw5_lora_scierc_unconstrained_eval.jsonl\\\\nw5_lora_scierc_unconstrained_eval.log\\\\nw5_lora_scierc_unconstrained_eval_fallback_stats.json\\\\nw5_qwen_docred_lora_constrained_eval.jsonl\\\\nw5_qwen_docred_lora_constrained_eval_cf_corrected.jsonl\\\\nw5_qwen_docred_lora_unconstrained_eval.jsonl\\\\nw6_mistral_scierc_constrained.jsonl\\\\nw6_mistral_scierc_unconstrained.jsonl\\\\nw7_llama_scierc_ft_grammar_only.jsonl\\\\nw7_llama_scierc_ft_semantic_only.jsonl\\\\nw7_qwen_scierc_ft_grammar_only.jsonl\\\\nw7_qwen_scierc_ft_semantic_only.jsonl\\\\nw8_ft_posthoc_llama_docred.jsonl\\\\nw8_ft_posthoc_llama_scierc.jsonl\\\\nw8_ft_posthoc_qwen_docred.jsonl\\\\nw8_ft_posthoc_qwen_scierc.jsonl\\\\nw8_ft_posthoc_report_llama_docred.json\\\\nw8_ft_posthoc_report_llama_scierc.json\\\\nw8_ft_posthoc_report_qwen_docred.json\\\\nw8_ft_posthoc_report_qwen_scierc.json\\\\nw8_llama_docred_ft_grammar_only.jsonl\\\\nw8_llama_docred_ft_semantic_only.jsonl\\\\nw9_qwen_docred_beam_50.jsonl\\\\nw9_qwen_docred_beam_50.log\\\\nw9_qwen_docred_zs_sampling_r3.jsonl\\\\nw9_qwen_scierc_zs_sampling.jsonl\\\\nw9_scierc_sampling_violation_report.json\\\\nw9_zs_posthoc_llama_docred.jsonl\\\\nw9_zs_posthoc_llama_scierc.jsonl\\\\nw9_zs_posthoc_mistral_scierc.jsonl\\\\nw9_zs_posthoc_report_llama_docred.json\\\\nw9_zs_posthoc_report_llama_scierc.json\\\\nw9_zs_posthoc_report_mistral_scierc.json\\\\nwikievents_full_s1.jsonl\\\\nwikievents_full_s1_violations.json\\\\nwikievents_llama_constrained_full.jsonl\\\\nwikievents_llama_unconstrained.jsonl\\\\nwikievents_llama_unconstrained.log\\\\nwikievents_llama_unconstrained_full.jsonl\\\\nwikievents_llama_unconstrained_full.log\\\\nwikievents_qwen_constrained_full.jsonl\\\\nwikievents_qwen_constrained_full_cf_fixed.jsonl\\\\nwikievents_qwen_unconstrained.jsonl\\\\nwikievents_qwen_unconstrained.log\\\\nwikievents_qwen_unconstrained_full.jsonl\\\\nwikievents_qwen_unconstrained_full.log\\\\nwikievents_unconstrained.jsonl\\\\nwikievents_unconstrained_violations.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"analysis_llama_docred_70b_constrained_v2.json\\nanalysis_llama_docred_ft_grammar_only.json\\nanalysis_llama_docred_full_s1_mt6144_v2.json\\nanalysis_llama_docred_full_s1_v2.json\\nanalysis_llama_docred_unconstrained_mt6144_v2.json\\nanalysis_llama_docred_unconstrained_v2.json\\nanalysis_w5_llama_docred_lora_constrained_v2.json\\nbeam_search_50.jsonl\\nbeam_search_dryrun_10.jsonl\\nbeam_search_full_551.log\\nbeam_search_scierc_full_551.jsonl\\nbootstrap_ci_ee_ft_llama.json\\nbootstrap_ci_ft_composability.json\\nbootstrap_ci_results.json\\nbootstrap_ci_results_llama.json\\nbootstrap_ci_results_v2.json\\ncf_analysis\\ncf_analysis_w1_pilot\\ncf_correction_report_llama_docred_ft.json\\ncf_correction_report_llama_docred_zs.json\\ncf_correction_report_llama_scierc_ft.json\\ncf_correction_report_llama_scierc_zs.json\\ncf_correction_report_qwen_docred_ft.json\\ncf_correction_report_qwen_docred_zs.json\\ncf_correction_report_qwen_scierc_ft.json\\ncf_correction_report_qwen_scierc_zs.json\\ncf_violation_analysis.json\\ncomparison_minimal_vs_schema_informed.json\\nd066_docred_zs_grammar.json\\nd066_docred_zs_s1.json\\nd066_docred_zs_semantic.json\\nd066_docred_zs_unc.json\\nd066_llama_docred_lora_s1.json\\nd066_llama_docred_lora_unc.json\\nd066_llama_scierc_lora_s1.json\\nd066_llama_scierc_lora_unc.json\\nd066_qwen_docred_lora_s1.json\\nd066_qwen_docred_lora_unc.json\\nd066_qwen_scierc_lora_s1.json\\nd066_qwen_scierc_lora_unc.json\\nd066_scierc_zs_grammar.json\\nd066_scierc_zs_s1.json\\nd066_scierc_zs_semantic.json\\nd066_scierc_zs_unc.json\\nd068_guided_beam\\ndebug_final.log\\ndebug_semantic.log\\ndebug_semantic2.log\\ndoc_length_breakdown.json\\ndocred_full_s1.jsonl\\ndocred_full_s1_cf_corrected.jsonl\\ndocred_full_s1_consensus_50.jsonl\\ndocred_full_s1_dryrun.jsonl\\ndocred_grammar_only.jsonl\\ndocred_llama_beam_50.jsonl\\ndocred_semantic_only.jsonl\\ndocred_semantic_only_dryrun.jsonl\\ndocred_unconstrained.jsonl\\ndr_residual_analysis.json\\ndry_run.jsonl\\ndry_run_violations.json\\ndryrun_10_log.txt\\ndryrun_10docs.log\\ndryrun_10docs_fixed.log\\ndryrun_10docs_v3.log\\ndryrun_consensus_10.jsonl\\ndryrun_consensus_10_v2.jsonl\\ndryrun_constrained.log\\ndryrun_phase2_grammar.jsonl\\ndryrun_prompt_sens.jsonl\\ndryrun_prompt_sens_full.jsonl\\ndryrun_prompt_sens_full2.jsonl\\ndryrun_report.md\\ndryrun_unconstrained.log\\nee_llama_ft_wikievents_full_s1.jsonl\\nee_llama_ft_wikievents_full_s1_r2.jsonl\\nee_llama_ft_wikievents_unconstrained.jsonl\\nee_llama_ft_wikievents_unconstrained_r2.jsonl\\nee_llama_wikievents_grammar_only.jsonl\\nee_llama_wikievents_unconstrained_posthoc.jsonl\\nee_mistral_wikievents_grammar_only_v3.jsonl\\nee_qwen_wikievents_constrained_v3_cf_voted.jsonl\\nee_qwen_wikievents_constrained_v3_full.jsonl\\nee_qwen_wikievents_constrained_v3_posthoc.jsonl\\nee_qwen_wikievents_posthoc.jsonl\\nee_qwen_wikievents_unconstrained_posthoc.jsonl\\nerror_taxonomy_detail.json\\nerror_taxonomy_summary.json\\neval_constrained.json\\neval_report_llama_constrained.json\\neval_report_llama_full_s1.json\\neval_report_llama_full_s1_r2.json\\neval_report_llama_grammar_only.json\\neval_report_llama_unconstrained.json\\neval_report_llama_unconstrained_r2.json\\neval_report_qwen_constrained.json\\neval_report_qwen_retry_16k.json\\neval_report_qwen_unconstrained.json\\neval_unconstrained.json\\nf1_report_docred_unconstrained_phase2.json\\nfallback_estimation_results.json\\ngollie_scierc\\nllama_constrained_full.log\\nllama_docred_full_s1.jsonl\\nllama_docred_full_s1_cf_corrected.jsonl\\nllama_docred_full_s1_mt6144.jsonl\\nllama_docred_greedy_matched50.jsonl\\nllama_docred_unconstrained.jsonl\\nllama_docred_unconstrained_mt6144.jsonl\\nllama_scierc_beam_full_s1_551.jsonl\\nllama_scierc_beam_full_s1_551.log\\nllama_scierc_full_s1.jsonl\\nllama_scierc_full_s1_cf_corrected.jsonl\\nllama_scierc_unconstrained.jsonl\\nllama_scierc_unconstrained_violation_report.json\\nmistral_collision_fix_dryrun_5doc.jsonl\\nphase2_analysis_results.json\\nphase2_batch.log\\nphase2_comparison.json\\nphase2_s2_dryrun.jsonl\\nphase2_s2_pilot50.jsonl\\nphase2_scierc_full_s1.jsonl\\nphase2_scierc_full_s1_v2.jsonl\\nphase2_scierc_full_s1_v2_cf_corrected.jsonl\\nphase2_scierc_full_s2.jsonl\\nphase2_scierc_grammar_only.js\\n\\n... [截断: 输出过长，省略 4577 字符] ...\\n\\ncorrected.json\\nviolation_report_qwen_greedy_matched50.json\\nviolation_report_qwen_scierc_ft_cf_corrected.json\\nviolation_report_qwen_scierc_zs_cf_corrected.json\\nviolation_report_qwen_unconstrained.json\\nviolation_report_r4_phase2_scierc_full_s1_v2.json\\nviolation_report_r4_phase2_scierc_unconstrained.json\\nviolation_report_r4_r4_detailed_full_s1.json\\nviolation_report_r4_r4_detailed_unconstrained.json\\nviolation_report_r4_r4_minimal_full_s1.json\\nviolation_report_r4_r4_minimal_unconstrained.json\\nviolation_report_revert_10doc.json\\nviolation_report_s2_dryrun.json\\nviolation_report_s2_pilot50.json\\nviolation_report_schema.json\\nviolation_report_scierc.json\\nviolation_report_scierc_consensus_v2.json\\nviolation_report_scierc_full_s1_v2.json\\nviolation_report_scierc_full_s2_v2.json\\nviolation_report_scierc_grammar_only_v2.json\\nviolation_report_scierc_semantic_only_v2.json\\nviolation_report_scierc_unconstrained_v2.json\\nviolation_report_semantic_only_v2.json\\nviolation_report_stability_seed123.json\\nviolation_report_stability_seed456.json\\nviolation_report_stability_seed789.json\\nviolation_report_w1_cf_fallback_scierc_pilot.json\\nviolation_report_w5_lora_unconstrained.json\\nviolation_report_w6_mistral_scierc_constrained.json\\nviolation_report_w7_llama_scierc_ft_grammar_only.json\\nviolation_report_w7_llama_scierc_ft_semantic_only.json\\nviolation_report_w7_qwen_scierc_ft_grammar_only.json\\nviolation_report_w7_qwen_scierc_ft_semantic_only.json\\nviolations_constrained.json\\nviolations_unconstrained.json\\nw10_qwen_scierc_ft_beam_k4.jsonl\\nw1_cf_fallback_docred.jsonl\\nw1_cf_fallback_scierc_pilot.jsonl\\nw1_cf_fallback_scierc_pilot_fallback_stats.json\\nw5_llama_docred_lora_constrained_eval.jsonl\\nw5_llama_docred_lora_constrained_eval_cf_corrected.jsonl\\nw5_llama_docred_lora_unconstrained_eval.jsonl\\nw5_llama_lora_scierc_constrained.jsonl\\nw5_llama_lora_scierc_constrained_cf_corrected.jsonl\\nw5_llama_lora_scierc_constrained_report.json\\nw5_llama_lora_scierc_constrained_violation_report.json\\nw5_llama_lora_scierc_unconstrained.jsonl\\nw5_llama_lora_scierc_unconstrained_violations.json\\nw5_lora_scierc_full_s1_eval.jsonl\\nw5_lora_scierc_full_s1_eval_cf_corrected.jsonl\\nw5_lora_scierc_full_s1_violation_report.json\\nw5_lora_scierc_unconstrained_eval.jsonl\\nw5_lora_scierc_unconstrained_eval.log\\nw5_lora_scierc_unconstrained_eval_fallback_stats.json\\nw5_qwen_docred_lora_constrained_eval.jsonl\\nw5_qwen_docred_lora_constrained_eval_cf_corrected.jsonl\\nw5_qwen_docred_lora_unconstrained_eval.jsonl\\nw6_mistral_scierc_constrained.jsonl\\nw6_mistral_scierc_unconstrained.jsonl\\nw7_llama_scierc_ft_grammar_only.jsonl\\nw7_llama_scierc_ft_semantic_only.jsonl\\nw7_qwen_scierc_ft_grammar_only.jsonl\\nw7_qwen_scierc_ft_semantic_only.jsonl\\nw8_ft_posthoc_llama_docred.jsonl\\nw8_ft_posthoc_llama_scierc.jsonl\\nw8_ft_posthoc_qwen_docred.jsonl\\nw8_ft_posthoc_qwen_scierc.jsonl\\nw8_ft_posthoc_report_llama_docred.json\\nw8_ft_posthoc_report_llama_scierc.json\\nw8_ft_posthoc_report_qwen_docred.json\\nw8_ft_posthoc_report_qwen_scierc.json\\nw8_llama_docred_ft_grammar_only.jsonl\\nw8_llama_docred_ft_semantic_only.jsonl\\nw9_qwen_docred_beam_50.jsonl\\nw9_qwen_docred_beam_50.log\\nw9_qwen_docred_zs_sampling_r3.jsonl\\nw9_qwen_scierc_zs_sampling.jsonl\\nw9_scierc_sampling_violation_report.json\\nw9_zs_posthoc_llama_docred.jsonl\\nw9_zs_posthoc_llama_scierc.jsonl\\nw9_zs_posthoc_mistral_scierc.jsonl\\nw9_zs_posthoc_report_llama_docred.json\\nw9_zs_posthoc_report_llama_scierc.json\\nw9_zs_posthoc_report_mistral_scierc.json\\nwikievents_full_s1.jsonl\\nwikievents_full_s1_violations.json\\nwikievents_llama_constrained_full.jsonl\\nwikievents_llama_unconstrained.jsonl\\nwikievents_llama_unconstrained.log\\nwikievents_llama_unconstrained_full.jsonl\\nwikievents_llama_unconstrained_full.log\\nwikievents_qwen_constrained_full.jsonl\\nwikievents_qwen_constrained_full_cf_fixed.jsonl\\nwikievents_qwen_unconstrained.jsonl\\nwikievents_qwen_unconstrained.log\\nwikievents_qwen_unconstrained_full.jsonl\\nwikievents_qwen_unconstrained_full.log\\nwikievents_unconstrained.jsonl\\nwikievents_unconstrained_violations.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-22T07:10:18.226Z_
+
+<details><summary>↩ Tool result · `toolu_016rvwRkruDGpBXbigVqcNJW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_results.json\\n/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_results_v2.json\\n/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_results_llama.json\\n/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_ft_composability.json\\n/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_ee_ft_llama.json\\n/root/schema_semantic_constrained_ie/__pycache__/compute_bootstrap_ci.cpython-312.pyc\\n/root/schema_semantic_constrained_ie/scripts/bootstrap_ci_ee_ft_llama.py\\n/root/schema_semantic_constrained_ie/scripts/bootstrap_wikievents_ci.py\\n/root/schema_semantic_constrained_ie/scripts/r12_bootstrap_ci_table2.py\\n/root/schema_semantic_constrained_ie/compute_bootstrap_ci.py\\n/root/schema_semantic_constrained_ie/run_bootstrap_llama.py\\n/root/schema_semantic_constrained_ie/compute_bootstrap_ci_llama.py\\n/root/schema_semantic_constrained_ie/compute_bootstrap_ci_ft.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "a7ecc11a-8134-4ac8-8ffc-c5e464d05664",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_results.json\\\\n/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_results_v2.json\\\\n/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_results_llama.json\\\\n/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_ft_composability.json\\\\n/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_ee_ft_llama.json\\\\n/root/schema_semantic_constrained_ie/__pycache__/compute_bootstrap_ci.cpython-312.pyc\\\\n/root/schema_semantic_constrained_ie/scripts/bootstrap_ci_ee_ft_llama.py\\\\n/root/schema_semantic_constrained_ie/scripts/bootstrap_wikievents_ci.py\\\\n/root/schema_semantic_constrained_ie/scripts/r12_bootstrap_ci_table2.py\\\\n/root/schema_semantic_constrained_ie/compute_bootstrap_ci.py\\\\n/root/schema_semantic_constrained_ie/run_bootstrap_llama.py\\\\n/root/schema_semantic_constrained_ie/compute_bootstrap_ci_llama.py\\\\n/root/schema_semantic_constrained_ie/compute_bootstrap_ci_ft.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_results.json\\n/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_results_v2.json\\n/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_results_llama.json\\n/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_ft_composability.json\\n/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_ee_ft_llama.json\\n/root/schema_semantic_constrained_ie/__pycache__/compute_bootstrap_ci.cpython-312.pyc\\n/root/schema_semantic_constrained_ie/scripts/bootstrap_ci_ee_ft_llama.py\\n/root/schema_semantic_constrained_ie/scripts/bootstrap_wikievents_ci.py\\n/root/schema_semantic_constrained_ie/scripts/r12_bootstrap_ci_table2.py\\n/root/schema_semantic_constrained_ie/compute_bootstrap_ci.py\\n/root/schema_semantic_constrained_ie/run_bootstrap_llama.py\\n/root/schema_semantic_constrained_ie/compute_bootstrap_ci_llama.py\\n/root/schema_semantic_constrained_ie/compute_bootstrap_ci_ft.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, there are existing bootstrap scripts and results. Let me look at:
+
+1. The existing bootstrap scripts to understand the pattern
+2. The unified_eval files which seem like the FT evaluation results
+3. The d066 files which look like lora (FT) results
+
+Key files I see:
+- `unified_eval/scierc_qwen_unc.json`, `scierc_qwen_con.json`, `scierc_llama_unc.json`, `scierc_llama_con.json` - these look like SciERC FT results
+
+
+- `unified_eval/w5_qwen_docred_unc.json`, `w5_qwen_docred_con.json`, `w5_llama_docred_unc.json`, `w5_llama_docred_con.json` - DocRED FT results
+- Plus d066 files in outputs/ like `d066_qwen_scierc_lora_s1.json`, `d066_qwen_scierc_lora_unc.json` - these appear to be LoRA results
+
+I need to understand the directory structure better. The unified_eval files seem to be evaluation results, but I'm not entirely clear on what the naming convention means or how they relate to the d066 outputs.
+
+Looking at the existing bootstrap script and the actual prediction files, I can see the outputs directory contains per-sample prediction files in jsonl format for both SciERC and DocRED tasks across different model variants (Qwen and Llama) with constrained and unconstrained settings. I need to identify which of these files correspond to the unified_eval results so I can compute the bootstrap confidence intervals correctly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "89c54b49-1c8b-47bd-9a71-cb170fb2f162",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012URqG3zUMLLRQxJWfykw1j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6819,
+      "cache_read_input_tokens": 26239,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6819
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+Found existing bootstrap scripts. Let me examine the FT bootstrap script and the relevant prediction files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "e90872cc-4bc5-40ec-9e40-9f1129ef63b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012URqG3zUMLLRQxJWfykw1j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6819,
+      "cache_read_input_tokens": 26239,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6819
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JToxWxU8umCpaZkAQ3vTGc`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/schema_semantic_constrained_ie/compute_bootstrap_ci_ft.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "d2388bc2-5939-4e2c-a7d2-f19401a46322",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012URqG3zUMLLRQxJWfykw1j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6819,
+      "cache_read_input_tokens": 26239,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6819
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012vLSuGRTGdnp2DKyMe9Gq4`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/schema_semantic_constrained_ie/outputs/bootstrap_ci_ft_composability.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "37e1e1dd-9912-4f59-bb15-7f801fd35545",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012URqG3zUMLLRQxJWfykw1j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6819,
+      "cache_read_input_tokens": 26239,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6819
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KCYgrmza7G2EUFieHkcBqS`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/schema_semantic_constrained_ie/outputs/bootstrap_ci_results_v2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "d7675dfc-7231-4fba-ab72-6ca9b13f221c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012URqG3zUMLLRQxJWfykw1j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6819,
+      "cache_read_input_tokens": 26239,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6819
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-22T07:10:33.267Z_
+
+<details><summary>↩ Tool result · `toolu_01JToxWxU8umCpaZkAQ3vTGc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Bootstrap CI for FT (LoRA) composability: constrained vs unconstrained.\\\"\\\"\\\"\\n\\nimport json\\nimport numpy as np\\nfrom pathlib import Path\\n\\n# --- Normalization (reuse from ZS script) ---\\n\\nSCIERC_TYPE_MAP = {\\n    \\\"otherscientificterm\\\": \\\"OtherScientificTerm\\\",\\n    \\\"other-scientificterm\\\": \\\"OtherScientificTerm\\\",\\n    \\\"other_scientific_term\\\": \\\"OtherScientificTerm\\\",\\n    \\\"scientificterm\\\": \\\"OtherScientificTerm\\\",\\n    \\\"other\\\": \\\"OtherScientificTerm\\\",\\n}\\n\\ndef scierc_normalize_type(t, valid_types):\\n    t_lower = t.strip().lower().replace(\\\" \\\", \\\"\\\").replace(\\\"_\\\", \\\"\\\").replace(\\\"-\\\", \\\"\\\")\\n    for vt in valid_types:\\n        if t_lower == vt.lower().replace(\\\" \\\", \\\"\\\").replace(\\\"_\\\", \\\"\\\").replace(\\\"-\\\", \\\"\\\"):\\n            return vt\\n    if t_lower in SCIERC_TYPE_MAP:\\n        return SCIERC_TYPE_MAP[t_lower]\\n    return None\\n\\nDOCRED_VALID_ENTITY_TYPES = {\\\"PER\\\", \\\"ORG\\\", \\\"LOC\\\", \\\"TIME\\\", \\\"NUM\\\", \\\"MISC\\\"}\\nDOCRED_ENTITY_TYPE_ALIASES = {\\n    'PERSON': 'PER', 'PEOPLE': 'PER',\\n    'ORGANIZATION': 'ORG', 'ORGANISATION': 'ORG',\\n    'LOCATION': 'LOC',\\n    'NUMBER': 'NUM', 'NUMERICAL': 'NUM',\\n    'MISCELLANEOUS': 'MISC',\\n}\\n\\ndef docred_normalize_entity_type(raw_type):\\n    t = raw_type.strip().upper()\\n    return DOCRED_ENTITY_TYPE_ALIASES.get(t, t)\\n\\ndef _levenshtein(s1, s2):\\n    if len(s1) < len(s2):\\n        return _levenshtein(s2, s1)\\n    if len(s2) == 0:\\n        return len(s1)\\n    prev_row = list(range(len(s2) + 1))\\n    for i, c1 in enumerate(s1):\\n        curr_row = [i + 1]\\n        for j, c2 in enumerate(s2):\\n            curr_row.append(min(prev_row[j + 1] + 1, curr_row[j] + 1, prev_row[j] + (c1 != c2)))\\n        prev_row = curr_row\\n    return prev_row[-1]\\n\\ndef build_name_to_id(rel_types):\\n    name_to_id = {}\\n    for rid, rname in rel_types.items():\\n        name_to_id[rname.lower().strip()] = rid\\n        name_to_id[rid.lower()] = rid\\n    return name_to_id\\n\\ndef docred_normalize_relation(rel_name, rel_types, name_to_id):\\n    rel_key = name_to_id.get(rel_name.lower().strip())\\n    if rel_key:\\n        return rel_key\\n    rel_tokens = set(rel_name.strip().lower().split())\\n    best_pid, best_overlap = None, 0.0\\n    for rid, rname in rel_types.items():\\n        rname_tokens = set(rname.lower().split())\\n        if rel_tokens and rname_tokens:\\n            ratio = len(rel_tokens & rname_tokens) / len(rel_tokens | rname_tokens)\\n            if ratio > 0.8 and ratio > best_overlap:\\n                best_overlap = ratio\\n                best_pid = rid\\n    if best_pid:\\n        return best_pid\\n    for rid, rname in rel_types.items():\\n        if _levenshtein(rel_name.strip().lower(), rname.lower()) <= 2:\\n            return rid\\n    return None\\n\\n# --- Per-sample stats ---\\n\\ndef scierc_sample_stats(rec, valid_entity_types):\\n    parsed = rec.get(\\\"parsed_output\\\")\\n    gold_ents = rec.get(\\\"gold_entities\\\", [])\\n    gold_rels = rec.get(\\\"gold_relations\\\", [])\\n\\n    gold_ent_set = set((e[\\\"text\\\"].lower().strip(), e[\\\"type\\\"]) for e in gold_ents)\\n    gold_rel_set = set((r[\\\"head\\\"].lower().strip(), r[\\\"tail\\\"].lower().strip(), r[\\\"type\\\"]) for r in gold_rels)\\n\\n    if parsed is None:\\n        return {\\\"ent_tp\\\": 0, \\\"ent_gold\\\": len(gold_ent_set), \\\"ent_pred\\\": 0,\\n                \\\"rel_tp\\\": 0, \\\"rel_gold\\\": len(gold_rel_set), \\\"rel_pred\\\": 0}\\n\\n    entities = parsed.get(\\\"entities\\\", [])\\n    relations = parsed.get(\\\"relations\\\", [])\\n\\n    pred_ent_set = set()\\n    for e in entities:\\n        nt = scierc_normalize_type(e.get(\\\"type\\\", \\\"\\\"), valid_entity_types)\\n        if nt:\\n            pred_ent_set.add((e.get(\\\"text\\\", \\\"\\\").lower().strip(), nt))\\n\\n    pred_rel_set = set((r.get(\\\"head\\\", \\\"\\\").lower().strip(), r.get(\\\"tail\\\", \\\"\\\").lower().strip(), r.get(\\\"type\\\", \\\"\\\")) for r in relations)\\n\\n    return {\\n        \\\"ent_tp\\\": len(gold_ent_set & pred_ent_set), \\\"ent_gold\\\": len(gold_ent_set), \\\"ent_pred\\\": len(pred_ent_set),\\n        \\\"rel_tp\\\": len(gold_rel_set & pred_rel_set), \\\"rel_gold\\\": len(gold_rel_set), \\\"rel_pred\\\": len(pred_rel_set),\\n    }\\n\\ndef docred_sample_stats(rec, rel_types, name_to_id):\\n    parsed = rec.get(\\\"parsed_output\\\")\\n    gold_ents = rec.get(\\\"gold_entities\\\", [])\\n    g\\n\\n... [截断: 输出过长，省略 7163 字符] ...\\n\\nids, f\\\"Doc ID mismatch in {setting_name}!\\\"\\n\\n        # Compute per-sample stats\\n        if cfg[\\\"dataset\\\"] == \\\"scierc\\\":\\n            unc_stats = [scierc_sample_stats(r, scierc_valid_types) for r in unc_records]\\n            con_stats = [scierc_sample_stats(r, scierc_valid_types) for r in con_records]\\n        else:\\n            unc_stats = [docred_sample_stats(r, docred_rel_types, docred_name_to_id) for r in unc_records]\\n            con_stats = [docred_sample_stats(r, docred_rel_types, docred_name_to_id) for r in con_records]\\n\\n        # Bootstrap CI for each config\\n        for label, stats in [(\\\"unconstrained\\\", unc_stats), (\\\"constrained\\\", con_stats)]:\\n            ent_ci = bootstrap_f1(extract_stats(stats, \\\"entity\\\"))\\n            rel_ci = bootstrap_f1(extract_stats(stats, \\\"relation\\\"))\\n            print(f\\\"  {label}: E-F1={100*ent_ci['point_estimate']:.2f}% [{100*ent_ci['ci_lower']:.2f}, {100*ent_ci['ci_upper']:.2f}], \\\"\\n                  f\\\"R-F1={100*rel_ci['point_estimate']:.2f}% [{100*rel_ci['ci_lower']:.2f}, {100*rel_ci['ci_upper']:.2f}]\\\")\\n\\n        # Paired test: constrained - unconstrained\\n        ent_test = paired_bootstrap_test(\\n            extract_stats(unc_stats, \\\"entity\\\"),\\n            extract_stats(con_stats, \\\"entity\\\"))\\n        rel_test = paired_bootstrap_test(\\n            extract_stats(unc_stats, \\\"relation\\\"),\\n            extract_stats(con_stats, \\\"relation\\\"))\\n\\n        print(f\\\"\\\\n  Paired test (constrained - unconstrained):\\\")\\n        print(f\\\"    ΔE-F1 = {100*ent_test['delta_point']:+.2f}pp  95%CI [{100*ent_test['ci_lower']:+.2f}, {100*ent_test['ci_upper']:+.2f}]  p={ent_test['p_value']:.4f}\\\")\\n        print(f\\\"    ΔR-F1 = {100*rel_test['delta_point']:+.2f}pp  95%CI [{100*rel_test['ci_lower']:+.2f}, {100*rel_test['ci_upper']:+.2f}]  p={rel_test['p_value']:.4f}\\\")\\n\\n        sig_rel = \\\"***\\\" if rel_test['p_value'] < 0.001 else \\\"**\\\" if rel_test['p_value'] < 0.01 else \\\"*\\\" if rel_test['p_value'] < 0.05 else \\\"n.s.\\\"\\n        sig_ent = \\\"***\\\" if ent_test['p_value'] < 0.001 else \\\"**\\\" if ent_test['p_value'] < 0.01 else \\\"*\\\" if ent_test['p_value'] < 0.05 else \\\"n.s.\\\"\\n        print(f\\\"    Significance: E-F1 {sig_ent}, R-F1 {sig_rel}\\\")\\n\\n        all_results[setting_name] = {\\n            \\\"n_samples\\\": len(unc_records),\\n            \\\"ent_test\\\": ent_test,\\n            \\\"rel_test\\\": rel_test,\\n        }\\n\\n    # Summary table\\n    print(f\\\"\\\\n\\\\n{'='*70}\\\")\\n    print(\\\"  SUMMARY TABLE\\\")\\n    print(f\\\"{'='*70}\\\")\\n    print(f\\\"{'Setting':<22} {'ΔR-F1 (pp)':<12} {'95% CI':<22} {'p-value':<10} {'Sig':<5}\\\")\\n    print(f\\\"{'─'*70}\\\")\\n    for name, res in all_results.items():\\n        rt = res[\\\"rel_test\\\"]\\n        sig = \\\"***\\\" if rt['p_value'] < 0.001 else \\\"**\\\" if rt['p_value'] < 0.01 else \\\"*\\\" if rt['p_value'] < 0.05 else \\\"n.s.\\\"\\n        print(f\\\"{name:<22} {100*rt['delta_point']:+.2f}        [{100*rt['ci_lower']:+.2f}, {100*rt['ci_upper']:+.2f}]    {rt['p_value']:.4f}     {sig}\\\")\\n\\n    print(f\\\"\\\\n{'Setting':<22} {'ΔE-F1 (pp)':<12} {'95% CI':<22} {'p-value':<10} {'Sig':<5}\\\")\\n    print(f\\\"{'─'*70}\\\")\\n    for name, res in all_results.items():\\n        et = res[\\\"ent_test\\\"]\\n        sig = \\\"***\\\" if et['p_value'] < 0.001 else \\\"**\\\" if et['p_value'] < 0.01 else \\\"*\\\" if et['p_value'] < 0.05 else \\\"n.s.\\\"\\n        print(f\\\"{name:<22} {100*et['delta_point']:+.2f}        [{100*et['ci_lower']:+.2f}, {100*et['ci_upper']:+.2f}]    {et['p_value']:.4f}     {sig}\\\")\\n\\n    # Save JSON\\n    output = {\\n        \\\"settings\\\": {k: {\\n            \\\"n_samples\\\": v[\\\"n_samples\\\"],\\n            \\\"rel_f1\\\": v[\\\"rel_test\\\"],\\n            \\\"ent_f1\\\": v[\\\"ent_test\\\"],\\n        } for k, v in all_results.items()},\\n        \\\"metadata\\\": {\\n            \\\"n_bootstrap\\\": 10000,\\n            \\\"ci_method\\\": \\\"percentile\\\",\\n            \\\"ci_level\\\": 0.95,\\n            \\\"seed\\\": 42,\\n            \\\"test_type\\\": \\\"paired_bootstrap\\\",\\n            \\\"comparison\\\": \\\"constrained - unconstrained\\\",\\n        }\\n    }\\n    with open(\\\"outputs/bootstrap_ci_ft_composability.json\\\", \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nJSON saved to outputs/bootstrap_ci_ft_composability.json\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "26a79c2b-919c-4460-8eea-8a0f93070638",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Bootstrap CI for FT (LoRA) composability: constrained vs unconstrained.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport numpy as np\\\\nfrom pathlib import Path\\\\n\\\\n# --- Normalization (reuse from ZS script) ---\\\\n\\\\nSCIERC_TYPE_MAP = {\\\\n    \\\\\\\"otherscientificterm\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n    \\\\\\\"other-scientificterm\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n    \\\\\\\"other_scientific_term\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n    \\\\\\\"scientificterm\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n    \\\\\\\"other\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n}\\\\n\\\\ndef scierc_normalize_type(t, valid_types):\\\\n    t_lower = t.strip().lower().replace(\\\\\\\" \\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"-\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    for vt in valid_types:\\\\n        if t_lower == vt.lower().replace(\\\\\\\" \\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"-\\\\\\\", \\\\\\\"\\\\\\\"):\\\\n            return vt\\\\n    if t_lower in SCIERC_TYPE_MAP:\\\\n        return SCIERC_TYPE_MAP[t_lower]\\\\n    return None\\\\n\\\\nDOCRED_VALID_ENTITY_TYPES = {\\\\\\\"PER\\\\\\\", \\\\\\\"ORG\\\\\\\", \\\\\\\"LOC\\\\\\\", \\\\\\\"TIME\\\\\\\", \\\\\\\"NUM\\\\\\\", \\\\\\\"MISC\\\\\\\"}\\\\nDOCRED_ENTITY_TYPE_ALIASES = {\\\\n    'PERSON': 'PER', 'PEOPLE': 'PER',\\\\n    'ORGANIZATION': 'ORG', 'ORGANISATION': 'ORG',\\\\n    'LOCATION': 'LOC',\\\\n    'NUMBER': 'NUM', 'NUMERICAL': 'NUM',\\\\n    'MISCELLANEOUS': 'MISC',\\\\n}\\\\n\\\\ndef docred_normalize_entity_type(raw_type):\\\\n    t = raw_type.strip().upper()\\\\n    return DOCRED_ENTITY_TYPE_ALIASES.get(t, t)\\\\n\\\\ndef _levenshtein(s1, s2):\\\\n    if len(s1) < len(s2):\\\\n        return _levenshtein(s2, s1)\\\\n    if len(s2) == 0:\\\\n        return len(s1)\\\\n    prev_row = list(range(len(s2) + 1))\\\\n    for i, c1 in enumerate(s1):\\\\n        curr_row = [i + 1]\\\\n        for j, c2 in enumerate(s2):\\\\n            curr_row.append(min(prev_row[j + 1] + 1, curr_row[j] + 1, prev_row[j] + (c1 != c2)))\\\\n        prev_row = curr_row\\\\n    return prev_row[-1]\\\\n\\\\ndef build_name_to_id(rel_types):\\\\n    name_to_id = {}\\\\n    for rid, rname in rel_types.items():\\\\n        name_to_id[rname.lower().strip()] = rid\\\\n        name_to_id[rid.lower()] = rid\\\\n    return name_to_id\\\\n\\\\ndef docred_normalize_relation(rel_name, rel_types, name_to_id):\\\\n    rel_key = name_to_id.get(rel_name.lower().strip())\\\\n    if rel_key:\\\\n        return rel_key\\\\n    rel_tokens = set(rel_name.strip().lower().split())\\\\n    best_pid, best_overlap = None, 0.0\\\\n    for rid, rname in rel_types.items():\\\\n        rname_tokens = set(rname.lower().split())\\\\n        if rel_tokens and rname_tokens:\\\\n            ratio = len(rel_tokens & rname_tokens) / len(rel_tokens | rname_tokens)\\\\n            if ratio > 0.8 and ratio > best_overlap:\\\\n                best_overlap = ratio\\\\n                best_pid = rid\\\\n    if best_pid:\\\\n        return best_pid\\\\n    for rid, rname in rel_types.items():\\\\n        if _levenshtein(rel_name.strip().lower(), rname.lower()) <= 2:\\\\n            return rid\\\\n    return None\\\\n\\\\n# --- Per-sample stats ---\\\\n\\\\ndef scierc_sample_stats(rec, valid_entity_types):\\\\n    parsed = rec.get(\\\\\\\"parsed_output\\\\\\\")\\\\n    gold_ents = rec.get(\\\\\\\"gold_entities\\\\\\\", [])\\\\n    gold_rels = rec.get(\\\\\\\"gold_relations\\\\\\\", [])\\\\n\\\\n    gold_ent_set = set((e[\\\\\\\"text\\\\\\\"].lower().strip(), e[\\\\\\\"type\\\\\\\"]) for e in gold_ents)\\\\n    gold_rel_set = set((r[\\\\\\\"head\\\\\\\"].lower().strip(), r[\\\\\\\"tail\\\\\\\"].lower().strip(), r[\\\\\\\"type\\\\\\\"]) for r in gold_rels)\\\\n\\\\n    if parsed is None:\\\\n        return {\\\\\\\"ent_tp\\\\\\\": 0, \\\\\\\"ent_gold\\\\\\\": len(gold_ent_set), \\\\\\\"ent_pred\\\\\\\": 0,\\\\n                \\\\\\\"rel_tp\\\\\\\": 0, \\\\\\\"rel_gold\\\\\\\": len(gold_rel_set), \\\\\\\"rel_pred\\\\\\\": 0}\\\\n\\\\n    entities = parsed.get(\\\\\\\"entities\\\\\\\", [])\\\\n    relations = parsed.get(\\\\\\\"relations\\\\\\\", [])\\\\n\\\\n    pred_ent_set = set()\\\\n    for e in entities:\\\\n        nt = scierc_normalize_type(e.get(\\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\"), valid_entity_types)\\\\n        if nt:\\\\n            pred_ent_set.add((e.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\").lower().strip(), nt))\\\\n\\\\n    pred_rel_set = set((r.get(\\\\\\\"head\\\\\\\", \\\\\\\"\\\\\\\").lower().strip(), r.get(\\\\\\\"tail\\\\\\\", \\\\\\\"\\\\\\\").lower().strip(), r.get(\\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\")) for r in relations)\\\\n\\\\n    return {\\\\n        \\\\\\\"ent_tp\\\\\\\": len(gold_ent_set & pred_ent_set), \\\\\\\"ent_gold\\\\\\\": len(gold_ent_set), \\\\\\\"ent_pred\\\\\\\": len(pred_ent_set),\\\\n        \\\\\\\"rel_tp\\\\\\\": len(gold_rel_set & pred_rel_set), \\\\\\\"rel_gold\\\\\\\": len(gold_rel_set), \\\\\\\"rel_pred\\\\\\\": len(pred_rel_set),\\\\n    }\\\\n\\\\ndef docred_sample_stats(rec, rel_types, name_to_id):\\\\n    parsed = rec.get(\\\\\\\"parsed_output\\\\\\\")\\\\n    gold_ents = rec.get(\\\\\\\"gold_entities\\\\\\\", [])\\\\n    g\\\\n\\\\n... [截断: 输出过长，省略 7163 字符] ...\\\\n\\\\nids, f\\\\\\\"Doc ID mismatch in {setting_name}!\\\\\\\"\\\\n\\\\n        # Compute per-sample stats\\\\n        if cfg[\\\\\\\"dataset\\\\\\\"] == \\\\\\\"scierc\\\\\\\":\\\\n            unc_stats = [scierc_sample_stats(r, scierc_valid_types) for r in unc_records]\\\\n            con_stats = [scierc_sample_stats(r, scierc_valid_types) for r in con_records]\\\\n        else:\\\\n            unc_stats = [docred_sample_stats(r, docred_rel_types, docred_name_to_id) for r in unc_records]\\\\n            con_stats = [docred_sample_stats(r, docred_rel_types, docred_name_to_id) for r in con_records]\\\\n\\\\n        # Bootstrap CI for each config\\\\n        for label, stats in [(\\\\\\\"unconstrained\\\\\\\", unc_stats), (\\\\\\\"constrained\\\\\\\", con_stats)]:\\\\n            ent_ci = bootstrap_f1(extract_stats(stats, \\\\\\\"entity\\\\\\\"))\\\\n            rel_ci = bootstrap_f1(extract_stats(stats, \\\\\\\"relation\\\\\\\"))\\\\n            print(f\\\\\\\"  {label}: E-F1={100*ent_ci['point_estimate']:.2f}% [{100*ent_ci['ci_lower']:.2f}, {100*ent_ci['ci_upper']:.2f}], \\\\\\\"\\\\n                  f\\\\\\\"R-F1={100*rel_ci['point_estimate']:.2f}% [{100*rel_ci['ci_lower']:.2f}, {100*rel_ci['ci_upper']:.2f}]\\\\\\\")\\\\n\\\\n        # Paired test: constrained - unconstrained\\\\n        ent_test = paired_bootstrap_test(\\\\n            extract_stats(unc_stats, \\\\\\\"entity\\\\\\\"),\\\\n            extract_stats(con_stats, \\\\\\\"entity\\\\\\\"))\\\\n        rel_test = paired_bootstrap_test(\\\\n            extract_stats(unc_stats, \\\\\\\"relation\\\\\\\"),\\\\n            extract_stats(con_stats, \\\\\\\"relation\\\\\\\"))\\\\n\\\\n        print(f\\\\\\\"\\\\\\\\n  Paired test (constrained - unconstrained):\\\\\\\")\\\\n        print(f\\\\\\\"    ΔE-F1 = {100*ent_test['delta_point']:+.2f}pp  95%CI [{100*ent_test['ci_lower']:+.2f}, {100*ent_test['ci_upper']:+.2f}]  p={ent_test['p_value']:.4f}\\\\\\\")\\\\n        print(f\\\\\\\"    ΔR-F1 = {100*rel_test['delta_point']:+.2f}pp  95%CI [{100*rel_test['ci_lower']:+.2f}, {100*rel_test['ci_upper']:+.2f}]  p={rel_test['p_value']:.4f}\\\\\\\")\\\\n\\\\n        sig_rel = \\\\\\\"***\\\\\\\" if rel_test['p_value'] < 0.001 else \\\\\\\"**\\\\\\\" if rel_test['p_value'] < 0.01 else \\\\\\\"*\\\\\\\" if rel_test['p_value'] < 0.05 else \\\\\\\"n.s.\\\\\\\"\\\\n        sig_ent = \\\\\\\"***\\\\\\\" if ent_test['p_value'] < 0.001 else \\\\\\\"**\\\\\\\" if ent_test['p_value'] < 0.01 else \\\\\\\"*\\\\\\\" if ent_test['p_value'] < 0.05 else \\\\\\\"n.s.\\\\\\\"\\\\n        print(f\\\\\\\"    Significance: E-F1 {sig_ent}, R-F1 {sig_rel}\\\\\\\")\\\\n\\\\n        all_results[setting_name] = {\\\\n            \\\\\\\"n_samples\\\\\\\": len(unc_records),\\\\n            \\\\\\\"ent_test\\\\\\\": ent_test,\\\\n            \\\\\\\"rel_test\\\\\\\": rel_test,\\\\n        }\\\\n\\\\n    # Summary table\\\\n    print(f\\\\\\\"\\\\\\\\n\\\\\\\\n{'='*70}\\\\\\\")\\\\n    print(\\\\\\\"  SUMMARY TABLE\\\\\\\")\\\\n    print(f\\\\\\\"{'='*70}\\\\\\\")\\\\n    print(f\\\\\\\"{'Setting':<22} {'ΔR-F1 (pp)':<12} {'95% CI':<22} {'p-value':<10} {'Sig':<5}\\\\\\\")\\\\n    print(f\\\\\\\"{'─'*70}\\\\\\\")\\\\n    for name, res in all_results.items():\\\\n        rt = res[\\\\\\\"rel_test\\\\\\\"]\\\\n        sig = \\\\\\\"***\\\\\\\" if rt['p_value'] < 0.001 else \\\\\\\"**\\\\\\\" if rt['p_value'] < 0.01 else \\\\\\\"*\\\\\\\" if rt['p_value'] < 0.05 else \\\\\\\"n.s.\\\\\\\"\\\\n        print(f\\\\\\\"{name:<22} {100*rt['delta_point']:+.2f}        [{100*rt['ci_lower']:+.2f}, {100*rt['ci_upper']:+.2f}]    {rt['p_value']:.4f}     {sig}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'Setting':<22} {'ΔE-F1 (pp)':<12} {'95% CI':<22} {'p-value':<10} {'Sig':<5}\\\\\\\")\\\\n    print(f\\\\\\\"{'─'*70}\\\\\\\")\\\\n    for name, res in all_results.items():\\\\n        et = res[\\\\\\\"ent_test\\\\\\\"]\\\\n        sig = \\\\\\\"***\\\\\\\" if et['p_value'] < 0.001 else \\\\\\\"**\\\\\\\" if et['p_value'] < 0.01 else \\\\\\\"*\\\\\\\" if et['p_value'] < 0.05 else \\\\\\\"n.s.\\\\\\\"\\\\n        print(f\\\\\\\"{name:<22} {100*et['delta_point']:+.2f}        [{100*et['ci_lower']:+.2f}, {100*et['ci_upper']:+.2f}]    {et['p_value']:.4f}     {sig}\\\\\\\")\\\\n\\\\n    # Save JSON\\\\n    output = {\\\\n        \\\\\\\"settings\\\\\\\": {k: {\\\\n            \\\\\\\"n_samples\\\\\\\": v[\\\\\\\"n_samples\\\\\\\"],\\\\n            \\\\\\\"rel_f1\\\\\\\": v[\\\\\\\"rel_test\\\\\\\"],\\\\n            \\\\\\\"ent_f1\\\\\\\": v[\\\\\\\"ent_test\\\\\\\"],\\\\n        } for k, v in all_results.items()},\\\\n        \\\\\\\"metadata\\\\\\\": {\\\\n            \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n            \\\\\\\"ci_method\\\\\\\": \\\\\\\"percentile\\\\\\\",\\\\n            \\\\\\\"ci_level\\\\\\\": 0.95,\\\\n            \\\\\\\"seed\\\\\\\": 42,\\\\n            \\\\\\\"test_type\\\\\\\": \\\\\\\"paired_bootstrap\\\\\\\",\\\\n            \\\\\\\"comparison\\\\\\\": \\\\\\\"constrained - unconstrained\\\\\\\",\\\\n        }\\\\n    }\\\\n    with open(\\\\\\\"outputs/bootstrap_ci_ft_composability.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nJSON saved to outputs/bootstrap_ci_ft_composability.json\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Bootstrap CI for FT (LoRA) composability: constrained vs unconstrained.\\\"\\\"\\\"\\n\\nimport json\\nimport numpy as np\\nfrom pathlib import Path\\n\\n# --- Normalization (reuse from ZS script) ---\\n\\nSCIERC_TYPE_MAP = {\\n    \\\"otherscientificterm\\\": \\\"OtherScientificTerm\\\",\\n    \\\"other-scientificterm\\\": \\\"OtherScientificTerm\\\",\\n    \\\"other_scientific_term\\\": \\\"OtherScientificTerm\\\",\\n    \\\"scientificterm\\\": \\\"OtherScientificTerm\\\",\\n    \\\"other\\\": \\\"OtherScientificTerm\\\",\\n}\\n\\ndef scierc_normalize_type(t, valid_types):\\n    t_lower = t.strip().lower().replace(\\\" \\\", \\\"\\\").replace(\\\"_\\\", \\\"\\\").replace(\\\"-\\\", \\\"\\\")\\n    for vt in valid_types:\\n        if t_lower == vt.lower().replace(\\\" \\\", \\\"\\\").replace(\\\"_\\\", \\\"\\\").replace(\\\"-\\\", \\\"\\\"):\\n            return vt\\n    if t_lower in SCIERC_TYPE_MAP:\\n        return SCIERC_TYPE_MAP[t_lower]\\n    return None\\n\\nDOCRED_VALID_ENTITY_TYPES = {\\\"PER\\\", \\\"ORG\\\", \\\"LOC\\\", \\\"TIME\\\", \\\"NUM\\\", \\\"MISC\\\"}\\nDOCRED_ENTITY_TYPE_ALIASES = {\\n    'PERSON': 'PER', 'PEOPLE': 'PER',\\n    'ORGANIZATION': 'ORG', 'ORGANISATION': 'ORG',\\n    'LOCATION': 'LOC',\\n    'NUMBER': 'NUM', 'NUMERICAL': 'NUM',\\n    'MISCELLANEOUS': 'MISC',\\n}\\n\\ndef docred_normalize_entity_type(raw_type):\\n    t = raw_type.strip().upper()\\n    return DOCRED_ENTITY_TYPE_ALIASES.get(t, t)\\n\\ndef _levenshtein(s1, s2):\\n    if len(s1) < len(s2):\\n        return _levenshtein(s2, s1)\\n    if len(s2) == 0:\\n        return len(s1)\\n    prev_row = list(range(len(s2) + 1))\\n    for i, c1 in enumerate(s1):\\n        curr_row = [i + 1]\\n        for j, c2 in enumerate(s2):\\n            curr_row.append(min(prev_row[j + 1] + 1, curr_row[j] + 1, prev_row[j] + (c1 != c2)))\\n        prev_row = curr_row\\n    return prev_row[-1]\\n\\ndef build_name_to_id(rel_types):\\n    name_to_id = {}\\n    for rid, rname in rel_types.items():\\n        name_to_id[rname.lower().strip()] = rid\\n        name_to_id[rid.lower()] = rid\\n    return name_to_id\\n\\ndef docred_normalize_relation(rel_name, rel_types, name_to_id):\\n    rel_key = name_to_id.get(rel_name.lower().strip())\\n    if rel_key:\\n        return rel_key\\n    rel_tokens = set(rel_name.strip().lower().split())\\n    best_pid, best_overlap = None, 0.0\\n    for rid, rname in rel_types.items():\\n        rname_tokens = set(rname.lower().split())\\n        if rel_tokens and rname_tokens:\\n            ratio = len(rel_tokens & rname_tokens) / len(rel_tokens | rname_tokens)\\n            if ratio > 0.8 and ratio > best_overlap:\\n                best_overlap = ratio\\n                best_pid = rid\\n    if best_pid:\\n        return best_pid\\n    for rid, rname in rel_types.items():\\n        if _levenshtein(rel_name.strip().lower(), rname.lower()) <= 2:\\n            return rid\\n    return None\\n\\n# --- Per-sample stats ---\\n\\ndef scierc_sample_stats(rec, valid_entity_types):\\n    parsed = rec.get(\\\"parsed_output\\\")\\n    gold_ents = rec.get(\\\"gold_entities\\\", [])\\n    gold_rels = rec.get(\\\"gold_relations\\\", [])\\n\\n    gold_ent_set = set((e[\\\"text\\\"].lower().strip(), e[\\\"type\\\"]) for e in gold_ents)\\n    gold_rel_set = set((r[\\\"head\\\"].lower().strip(), r[\\\"tail\\\"].lower().strip(), r[\\\"type\\\"]) for r in gold_rels)\\n\\n    if parsed is None:\\n        return {\\\"ent_tp\\\": 0, \\\"ent_gold\\\": len(gold_ent_set), \\\"ent_pred\\\": 0,\\n                \\\"rel_tp\\\": 0, \\\"rel_gold\\\": len(gold_rel_set), \\\"rel_pred\\\": 0}\\n\\n    entities = parsed.get(\\\"entities\\\", [])\\n    relations = parsed.get(\\\"relations\\\", [])\\n\\n    pred_ent_set = set()\\n    for e in entities:\\n        nt = scierc_normalize_type(e.get(\\\"type\\\", \\\"\\\"), valid_entity_types)\\n        if nt:\\n            pred_ent_set.add((e.get(\\\"text\\\", \\\"\\\").lower().strip(), nt))\\n\\n    pred_rel_set = set((r.get(\\\"head\\\", \\\"\\\").lower().strip(), r.get(\\\"tail\\\", \\\"\\\").lower().strip(), r.get(\\\"type\\\", \\\"\\\")) for r in relations)\\n\\n    return {\\n        \\\"ent_tp\\\": len(gold_ent_set & pred_ent_set), \\\"ent_gold\\\": len(gold_ent_set), \\\"ent_pred\\\": len(pred_ent_set),\\n        \\\"rel_tp\\\": len(gold_rel_set & pred_rel_set), \\\"rel_gold\\\": len(gold_rel_set), \\\"rel_pred\\\": len(pred_rel_set),\\n    }\\n\\ndef docred_sample_stats(rec, rel_types, name_to_id):\\n    parsed = rec.get(\\\"parsed_output\\\")\\n    gold_ents = rec.get(\\\"gold_entities\\\", [])\\n    g\\n\\n... [截断: 输出过长，省略 7163 字符] ...\\n\\nids, f\\\"Doc ID mismatch in {setting_name}!\\\"\\n\\n        # Compute per-sample stats\\n        if cfg[\\\"dataset\\\"] == \\\"scierc\\\":\\n            unc_stats = [scierc_sample_stats(r, scierc_valid_types) for r in unc_records]\\n            con_stats = [scierc_sample_stats(r, scierc_valid_types) for r in con_records]\\n        else:\\n            unc_stats = [docred_sample_stats(r, docred_rel_types, docred_name_to_id) for r in unc_records]\\n            con_stats = [docred_sample_stats(r, docred_rel_types, docred_name_to_id) for r in con_records]\\n\\n        # Bootstrap CI for each config\\n        for label, stats in [(\\\"unconstrained\\\", unc_stats), (\\\"constrained\\\", con_stats)]:\\n            ent_ci = bootstrap_f1(extract_stats(stats, \\\"entity\\\"))\\n            rel_ci = bootstrap_f1(extract_stats(stats, \\\"relation\\\"))\\n            print(f\\\"  {label}: E-F1={100*ent_ci['point_estimate']:.2f}% [{100*ent_ci['ci_lower']:.2f}, {100*ent_ci['ci_upper']:.2f}], \\\"\\n                  f\\\"R-F1={100*rel_ci['point_estimate']:.2f}% [{100*rel_ci['ci_lower']:.2f}, {100*rel_ci['ci_upper']:.2f}]\\\")\\n\\n        # Paired test: constrained - unconstrained\\n        ent_test = paired_bootstrap_test(\\n            extract_stats(unc_stats, \\\"entity\\\"),\\n            extract_stats(con_stats, \\\"entity\\\"))\\n        rel_test = paired_bootstrap_test(\\n            extract_stats(unc_stats, \\\"relation\\\"),\\n            extract_stats(con_stats, \\\"relation\\\"))\\n\\n        print(f\\\"\\\\n  Paired test (constrained - unconstrained):\\\")\\n        print(f\\\"    ΔE-F1 = {100*ent_test['delta_point']:+.2f}pp  95%CI [{100*ent_test['ci_lower']:+.2f}, {100*ent_test['ci_upper']:+.2f}]  p={ent_test['p_value']:.4f}\\\")\\n        print(f\\\"    ΔR-F1 = {100*rel_test['delta_point']:+.2f}pp  95%CI [{100*rel_test['ci_lower']:+.2f}, {100*rel_test['ci_upper']:+.2f}]  p={rel_test['p_value']:.4f}\\\")\\n\\n        sig_rel = \\\"***\\\" if rel_test['p_value'] < 0.001 else \\\"**\\\" if rel_test['p_value'] < 0.01 else \\\"*\\\" if rel_test['p_value'] < 0.05 else \\\"n.s.\\\"\\n        sig_ent = \\\"***\\\" if ent_test['p_value'] < 0.001 else \\\"**\\\" if ent_test['p_value'] < 0.01 else \\\"*\\\" if ent_test['p_value'] < 0.05 else \\\"n.s.\\\"\\n        print(f\\\"    Significance: E-F1 {sig_ent}, R-F1 {sig_rel}\\\")\\n\\n        all_results[setting_name] = {\\n            \\\"n_samples\\\": len(unc_records),\\n            \\\"ent_test\\\": ent_test,\\n            \\\"rel_test\\\": rel_test,\\n        }\\n\\n    # Summary table\\n    print(f\\\"\\\\n\\\\n{'='*70}\\\")\\n    print(\\\"  SUMMARY TABLE\\\")\\n    print(f\\\"{'='*70}\\\")\\n    print(f\\\"{'Setting':<22} {'ΔR-F1 (pp)':<12} {'95% CI':<22} {'p-value':<10} {'Sig':<5}\\\")\\n    print(f\\\"{'─'*70}\\\")\\n    for name, res in all_results.items():\\n        rt = res[\\\"rel_test\\\"]\\n        sig = \\\"***\\\" if rt['p_value'] < 0.001 else \\\"**\\\" if rt['p_value'] < 0.01 else \\\"*\\\" if rt['p_value'] < 0.05 else \\\"n.s.\\\"\\n        print(f\\\"{name:<22} {100*rt['delta_point']:+.2f}        [{100*rt['ci_lower']:+.2f}, {100*rt['ci_upper']:+.2f}]    {rt['p_value']:.4f}     {sig}\\\")\\n\\n    print(f\\\"\\\\n{'Setting':<22} {'ΔE-F1 (pp)':<12} {'95% CI':<22} {'p-value':<10} {'Sig':<5}\\\")\\n    print(f\\\"{'─'*70}\\\")\\n    for name, res in all_results.items():\\n        et = res[\\\"ent_test\\\"]\\n        sig = \\\"***\\\" if et['p_value'] < 0.001 else \\\"**\\\" if et['p_value'] < 0.01 else \\\"*\\\" if et['p_value'] < 0.05 else \\\"n.s.\\\"\\n        print(f\\\"{name:<22} {100*et['delta_point']:+.2f}        [{100*et['ci_lower']:+.2f}, {100*et['ci_upper']:+.2f}]    {et['p_value']:.4f}     {sig}\\\")\\n\\n    # Save JSON\\n    output = {\\n        \\\"settings\\\": {k: {\\n            \\\"n_samples\\\": v[\\\"n_samples\\\"],\\n            \\\"rel_f1\\\": v[\\\"rel_test\\\"],\\n            \\\"ent_f1\\\": v[\\\"ent_test\\\"],\\n        } for k, v in all_results.items()},\\n        \\\"metadata\\\": {\\n            \\\"n_bootstrap\\\": 10000,\\n            \\\"ci_method\\\": \\\"percentile\\\",\\n            \\\"ci_level\\\": 0.95,\\n            \\\"seed\\\": 42,\\n            \\\"test_type\\\": \\\"paired_bootstrap\\\",\\n            \\\"comparison\\\": \\\"constrained - unconstrained\\\",\\n        }\\n    }\\n    with open(\\\"outputs/bootstrap_ci_ft_composability.json\\\", \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nJSON saved to outputs/bootstrap_ci_ft_composability.json\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T07:10:33.808Z_
+
+<details><summary>↩ Tool result · `toolu_012vLSuGRTGdnp2DKyMe9Gq4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"settings\\\": {\\n    \\\"Qwen-LoRA-SciERC\\\": {\\n      \\\"n_samples\\\": 551,\\n      \\\"rel_f1\\\": {\\n        \\\"f1_a\\\": 0.4386298763082778,\\n        \\\"f1_b\\\": 0.43767840152235965,\\n        \\\"delta_point\\\": -0.0009514747859181716,\\n        \\\"delta_mean\\\": -0.0009561921675813286,\\n        \\\"ci_lower\\\": -0.002967359050445098,\\n        \\\"ci_upper\\\": 0.0,\\n        \\\"p_value\\\": 0.726\\n      },\\n      \\\"ent_f1\\\": {\\n        \\\"f1_a\\\": 0.6705403834979663,\\n        \\\"f1_b\\\": 0.6705403834979663,\\n        \\\"delta_point\\\": 0.0,\\n        \\\"delta_mean\\\": 0.0,\\n        \\\"ci_lower\\\": 0.0,\\n        \\\"ci_upper\\\": 0.0,\\n        \\\"p_value\\\": 1.0\\n      }\\n    },\\n    \\\"Qwen-LoRA-DocRED\\\": {\\n      \\\"n_samples\\\": 998,\\n      \\\"rel_f1\\\": {\\n        \\\"f1_a\\\": 0.40967427063374423,\\n        \\\"f1_b\\\": 0.4059783992145169,\\n        \\\"delta_point\\\": -0.0036958714192273368,\\n        \\\"delta_mean\\\": -0.0037055378165787153,\\n        \\\"ci_lower\\\": -0.007592290105293843,\\n        \\\"ci_upper\\\": -0.0005354787439645679,\\n        \\\"p_value\\\": 0.014\\n      },\\n      \\\"ent_f1\\\": {\\n        \\\"f1_a\\\": 0.8222435487310727,\\n        \\\"f1_b\\\": 0.8149601010236707,\\n        \\\"delta_point\\\": -0.00728344770740208,\\n        \\\"delta_mean\\\": -0.007301595654623452,\\n        \\\"ci_lower\\\": -0.012111950558267803,\\n        \\\"ci_upper\\\": -0.003041898819680814,\\n        \\\"p_value\\\": 0.0004\\n      }\\n    },\\n    \\\"Llama-LoRA-SciERC\\\": {\\n      \\\"n_samples\\\": 551,\\n      \\\"rel_f1\\\": {\\n        \\\"f1_a\\\": 0.4545012165450121,\\n        \\\"f1_b\\\": 0.45472249269717624,\\n        \\\"delta_point\\\": 0.00022127615216416263,\\n        \\\"delta_mean\\\": 0.00022208035589220865,\\n        \\\"ci_lower\\\": 0.0,\\n        \\\"ci_upper\\\": 0.000705289319757152,\\n        \\\"p_value\\\": 0.7364\\n      },\\n      \\\"ent_f1\\\": {\\n        \\\"f1_a\\\": 0.6776084407971864,\\n        \\\"f1_b\\\": 0.6776084407971864,\\n        \\\"delta_point\\\": 0.0,\\n        \\\"delta_mean\\\": 0.0,\\n        \\\"ci_lower\\\": 0.0,\\n        \\\"ci_upper\\\": 0.0,\\n        \\\"p_value\\\": 1.0\\n      }\\n    },\\n    \\\"Llama-LoRA-DocRED\\\": {\\n      \\\"n_samples\\\": 998,\\n      \\\"rel_f1\\\": {\\n        \\\"f1_a\\\": 0.43806668094524165,\\n        \\\"f1_b\\\": 0.4382884174311926,\\n        \\\"delta_point\\\": 0.00022173648595097406,\\n        \\\"delta_mean\\\": 0.00021390097127442823,\\n        \\\"ci_lower\\\": -0.0014921138208722497,\\n        \\\"ci_upper\\\": 0.002155864233342271,\\n        \\\"p_value\\\": 0.8506\\n      },\\n      \\\"ent_f1\\\": {\\n        \\\"f1_a\\\": 0.840090382567592,\\n        \\\"f1_b\\\": 0.8400998076623174,\\n        \\\"delta_point\\\": 9.425094725346028e-06,\\n        \\\"delta_mean\\\": 2.7109307882730494e-05,\\n        \\\"ci_lower\\\": -0.0015434694575261615,\\n        \\\"ci_upper\\\": 0.0017849557158172837,\\n        \\\"p_value\\\": 0.9844\\n      }\\n    }\\n  },\\n  \\\"metadata\\\": {\\n    \\\"n_bootstrap\\\": 10000,\\n    \\\"ci_method\\\": \\\"percentile\\\",\\n    \\\"ci_level\\\": 0.95,\\n    \\\"seed\\\": 42,\\n    \\\"test_type\\\": \\\"paired_bootstrap\\\",\\n    \\\"comparison\\\": \\\"constrained - unconstrained\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "c91aa662-b3be-4282-bb46-104b09b652d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"settings\\\\\\\": {\\\\n    \\\\\\\"Qwen-LoRA-SciERC\\\\\\\": {\\\\n      \\\\\\\"n_samples\\\\\\\": 551,\\\\n      \\\\\\\"rel_f1\\\\\\\": {\\\\n        \\\\\\\"f1_a\\\\\\\": 0.4386298763082778,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.43767840152235965,\\\\n        \\\\\\\"delta_point\\\\\\\": -0.0009514747859181716,\\\\n        \\\\\\\"delta_mean\\\\\\\": -0.0009561921675813286,\\\\n        \\\\\\\"ci_lower\\\\\\\": -0.002967359050445098,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0,\\\\n        \\\\\\\"p_value\\\\\\\": 0.726\\\\n      },\\\\n      \\\\\\\"ent_f1\\\\\\\": {\\\\n        \\\\\\\"f1_a\\\\\\\": 0.6705403834979663,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.6705403834979663,\\\\n        \\\\\\\"delta_point\\\\\\\": 0.0,\\\\n        \\\\\\\"delta_mean\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0,\\\\n        \\\\\\\"p_value\\\\\\\": 1.0\\\\n      }\\\\n    },\\\\n    \\\\\\\"Qwen-LoRA-DocRED\\\\\\\": {\\\\n      \\\\\\\"n_samples\\\\\\\": 998,\\\\n      \\\\\\\"rel_f1\\\\\\\": {\\\\n        \\\\\\\"f1_a\\\\\\\": 0.40967427063374423,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.4059783992145169,\\\\n        \\\\\\\"delta_point\\\\\\\": -0.0036958714192273368,\\\\n        \\\\\\\"delta_mean\\\\\\\": -0.0037055378165787153,\\\\n        \\\\\\\"ci_lower\\\\\\\": -0.007592290105293843,\\\\n        \\\\\\\"ci_upper\\\\\\\": -0.0005354787439645679,\\\\n        \\\\\\\"p_value\\\\\\\": 0.014\\\\n      },\\\\n      \\\\\\\"ent_f1\\\\\\\": {\\\\n        \\\\\\\"f1_a\\\\\\\": 0.8222435487310727,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.8149601010236707,\\\\n        \\\\\\\"delta_point\\\\\\\": -0.00728344770740208,\\\\n        \\\\\\\"delta_mean\\\\\\\": -0.007301595654623452,\\\\n        \\\\\\\"ci_lower\\\\\\\": -0.012111950558267803,\\\\n        \\\\\\\"ci_upper\\\\\\\": -0.003041898819680814,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0004\\\\n      }\\\\n    },\\\\n    \\\\\\\"Llama-LoRA-SciERC\\\\\\\": {\\\\n      \\\\\\\"n_samples\\\\\\\": 551,\\\\n      \\\\\\\"rel_f1\\\\\\\": {\\\\n        \\\\\\\"f1_a\\\\\\\": 0.4545012165450121,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.45472249269717624,\\\\n        \\\\\\\"delta_point\\\\\\\": 0.00022127615216416263,\\\\n        \\\\\\\"delta_mean\\\\\\\": 0.00022208035589220865,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.000705289319757152,\\\\n        \\\\\\\"p_value\\\\\\\": 0.7364\\\\n      },\\\\n      \\\\\\\"ent_f1\\\\\\\": {\\\\n        \\\\\\\"f1_a\\\\\\\": 0.6776084407971864,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.6776084407971864,\\\\n        \\\\\\\"delta_point\\\\\\\": 0.0,\\\\n        \\\\\\\"delta_mean\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0,\\\\n        \\\\\\\"p_value\\\\\\\": 1.0\\\\n      }\\\\n    },\\\\n    \\\\\\\"Llama-LoRA-DocRED\\\\\\\": {\\\\n      \\\\\\\"n_samples\\\\\\\": 998,\\\\n      \\\\\\\"rel_f1\\\\\\\": {\\\\n        \\\\\\\"f1_a\\\\\\\": 0.43806668094524165,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.4382884174311926,\\\\n        \\\\\\\"delta_point\\\\\\\": 0.00022173648595097406,\\\\n        \\\\\\\"delta_mean\\\\\\\": 0.00021390097127442823,\\\\n        \\\\\\\"ci_lower\\\\\\\": -0.0014921138208722497,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.002155864233342271,\\\\n        \\\\\\\"p_value\\\\\\\": 0.8506\\\\n      },\\\\n      \\\\\\\"ent_f1\\\\\\\": {\\\\n        \\\\\\\"f1_a\\\\\\\": 0.840090382567592,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.8400998076623174,\\\\n        \\\\\\\"delta_point\\\\\\\": 9.425094725346028e-06,\\\\n        \\\\\\\"delta_mean\\\\\\\": 2.7109307882730494e-05,\\\\n        \\\\\\\"ci_lower\\\\\\\": -0.0015434694575261615,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0017849557158172837,\\\\n        \\\\\\\"p_value\\\\\\\": 0.9844\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n    \\\\\\\"ci_method\\\\\\\": \\\\\\\"percentile\\\\\\\",\\\\n    \\\\\\\"ci_level\\\\\\\": 0.95,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"test_type\\\\\\\": \\\\\\\"paired_bootstrap\\\\\\\",\\\\n    \\\\\\\"comparison\\\\\\\": \\\\\\\"constrained - unconstrained\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"settings\\\": {\\n    \\\"Qwen-LoRA-SciERC\\\": {\\n      \\\"n_samples\\\": 551,\\n      \\\"rel_f1\\\": {\\n        \\\"f1_a\\\": 0.4386298763082778,\\n        \\\"f1_b\\\": 0.43767840152235965,\\n        \\\"delta_point\\\": -0.0009514747859181716,\\n        \\\"delta_mean\\\": -0.0009561921675813286,\\n        \\\"ci_lower\\\": -0.002967359050445098,\\n        \\\"ci_upper\\\": 0.0,\\n        \\\"p_value\\\": 0.726\\n      },\\n      \\\"ent_f1\\\": {\\n        \\\"f1_a\\\": 0.6705403834979663,\\n        \\\"f1_b\\\": 0.6705403834979663,\\n        \\\"delta_point\\\": 0.0,\\n        \\\"delta_mean\\\": 0.0,\\n        \\\"ci_lower\\\": 0.0,\\n        \\\"ci_upper\\\": 0.0,\\n        \\\"p_value\\\": 1.0\\n      }\\n    },\\n    \\\"Qwen-LoRA-DocRED\\\": {\\n      \\\"n_samples\\\": 998,\\n      \\\"rel_f1\\\": {\\n        \\\"f1_a\\\": 0.40967427063374423,\\n        \\\"f1_b\\\": 0.4059783992145169,\\n        \\\"delta_point\\\": -0.0036958714192273368,\\n        \\\"delta_mean\\\": -0.0037055378165787153,\\n        \\\"ci_lower\\\": -0.007592290105293843,\\n        \\\"ci_upper\\\": -0.0005354787439645679,\\n        \\\"p_value\\\": 0.014\\n      },\\n      \\\"ent_f1\\\": {\\n        \\\"f1_a\\\": 0.8222435487310727,\\n        \\\"f1_b\\\": 0.8149601010236707,\\n        \\\"delta_point\\\": -0.00728344770740208,\\n        \\\"delta_mean\\\": -0.007301595654623452,\\n        \\\"ci_lower\\\": -0.012111950558267803,\\n        \\\"ci_upper\\\": -0.003041898819680814,\\n        \\\"p_value\\\": 0.0004\\n      }\\n    },\\n    \\\"Llama-LoRA-SciERC\\\": {\\n      \\\"n_samples\\\": 551,\\n      \\\"rel_f1\\\": {\\n        \\\"f1_a\\\": 0.4545012165450121,\\n        \\\"f1_b\\\": 0.45472249269717624,\\n        \\\"delta_point\\\": 0.00022127615216416263,\\n        \\\"delta_mean\\\": 0.00022208035589220865,\\n        \\\"ci_lower\\\": 0.0,\\n        \\\"ci_upper\\\": 0.000705289319757152,\\n        \\\"p_value\\\": 0.7364\\n      },\\n      \\\"ent_f1\\\": {\\n        \\\"f1_a\\\": 0.6776084407971864,\\n        \\\"f1_b\\\": 0.6776084407971864,\\n        \\\"delta_point\\\": 0.0,\\n        \\\"delta_mean\\\": 0.0,\\n        \\\"ci_lower\\\": 0.0,\\n        \\\"ci_upper\\\": 0.0,\\n        \\\"p_value\\\": 1.0\\n      }\\n    },\\n    \\\"Llama-LoRA-DocRED\\\": {\\n      \\\"n_samples\\\": 998,\\n      \\\"rel_f1\\\": {\\n        \\\"f1_a\\\": 0.43806668094524165,\\n        \\\"f1_b\\\": 0.4382884174311926,\\n        \\\"delta_point\\\": 0.00022173648595097406,\\n        \\\"delta_mean\\\": 0.00021390097127442823,\\n        \\\"ci_lower\\\": -0.0014921138208722497,\\n        \\\"ci_upper\\\": 0.002155864233342271,\\n        \\\"p_value\\\": 0.8506\\n      },\\n      \\\"ent_f1\\\": {\\n        \\\"f1_a\\\": 0.840090382567592,\\n        \\\"f1_b\\\": 0.8400998076623174,\\n        \\\"delta_point\\\": 9.425094725346028e-06,\\n        \\\"delta_mean\\\": 2.7109307882730494e-05,\\n        \\\"ci_lower\\\": -0.0015434694575261615,\\n        \\\"ci_upper\\\": 0.0017849557158172837,\\n        \\\"p_value\\\": 0.9844\\n      }\\n    }\\n  },\\n  \\\"metadata\\\": {\\n    \\\"n_bootstrap\\\": 10000,\\n    \\\"ci_method\\\": \\\"percentile\\\",\\n    \\\"ci_level\\\": 0.95,\\n    \\\"seed\\\": 42,\\n    \\\"test_type\\\": \\\"paired_bootstrap\\\",\\n    \\\"comparison\\\": \\\"constrained - unconstrained\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-22T07:10:34.344Z_
+
+<details><summary>↩ Tool result · `toolu_01KCYgrmza7G2EUFieHkcBqS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scierc\\\": {\\n    \\\"per_config\\\": {\\n      \\\"unconstrained\\\": {\\n        \\\"ent_f1\\\": {\\n          \\\"point_estimate\\\": 0.310111,\\n          \\\"bootstrap_mean\\\": 0.310169,\\n          \\\"ci_lower\\\": 0.288275,\\n          \\\"ci_upper\\\": 0.332452,\\n          \\\"std\\\": 0.011217\\n        },\\n        \\\"rel_f1\\\": {\\n          \\\"point_estimate\\\": 0.082283,\\n          \\\"bootstrap_mean\\\": 0.082357,\\n          \\\"ci_lower\\\": 0.064876,\\n          \\\"ci_upper\\\": 0.10089,\\n          \\\"std\\\": 0.009112\\n        }\\n      },\\n      \\\"grammar_only\\\": {\\n        \\\"ent_f1\\\": {\\n          \\\"point_estimate\\\": 0.309846,\\n          \\\"bootstrap_mean\\\": 0.309905,\\n          \\\"ci_lower\\\": 0.288045,\\n          \\\"ci_upper\\\": 0.332121,\\n          \\\"std\\\": 0.011184\\n        },\\n        \\\"rel_f1\\\": {\\n          \\\"point_estimate\\\": 0.082253,\\n          \\\"bootstrap_mean\\\": 0.082321,\\n          \\\"ci_lower\\\": 0.064896,\\n          \\\"ci_upper\\\": 0.10087,\\n          \\\"std\\\": 0.009103\\n        }\\n      },\\n      \\\"semantic_only\\\": {\\n        \\\"ent_f1\\\": {\\n          \\\"point_estimate\\\": 0.310111,\\n          \\\"bootstrap_mean\\\": 0.310169,\\n          \\\"ci_lower\\\": 0.288275,\\n          \\\"ci_upper\\\": 0.332452,\\n          \\\"std\\\": 0.011217\\n        },\\n        \\\"rel_f1\\\": {\\n          \\\"point_estimate\\\": 0.081481,\\n          \\\"bootstrap_mean\\\": 0.081547,\\n          \\\"ci_lower\\\": 0.064367,\\n          \\\"ci_upper\\\": 0.100038,\\n          \\\"std\\\": 0.009066\\n        }\\n      },\\n      \\\"full_s1\\\": {\\n        \\\"ent_f1\\\": {\\n          \\\"point_estimate\\\": 0.309846,\\n          \\\"bootstrap_mean\\\": 0.309905,\\n          \\\"ci_lower\\\": 0.288045,\\n          \\\"ci_upper\\\": 0.332121,\\n          \\\"std\\\": 0.011184\\n        },\\n        \\\"rel_f1\\\": {\\n          \\\"point_estimate\\\": 0.083611,\\n          \\\"bootstrap_mean\\\": 0.083708,\\n          \\\"ci_lower\\\": 0.065828,\\n          \\\"ci_upper\\\": 0.102677,\\n          \\\"std\\\": 0.009354\\n        }\\n      }\\n    },\\n    \\\"comparisons\\\": {\\n      \\\"unconstrained_vs_grammar_only\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": -0.000266,\\n          \\\"delta_mean\\\": -0.000264,\\n          \\\"ci_lower\\\": -0.001065,\\n          \\\"ci_upper\\\": 0.000823,\\n          \\\"p_value\\\": 0.5266\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": -3e-05,\\n          \\\"delta_mean\\\": -3.6e-05,\\n          \\\"ci_lower\\\": -0.002234,\\n          \\\"ci_upper\\\": 0.002185,\\n          \\\"p_value\\\": 0.9798\\n        }\\n      },\\n      \\\"unconstrained_vs_semantic_only\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.0,\\n          \\\"delta_mean\\\": 0.0,\\n          \\\"ci_lower\\\": 0.0,\\n          \\\"ci_upper\\\": 0.0,\\n          \\\"p_value\\\": 1.0\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": -0.000802,\\n          \\\"delta_mean\\\": -0.000811,\\n          \\\"ci_lower\\\": -0.003592,\\n          \\\"ci_upper\\\": 0.001478,\\n          \\\"p_value\\\": 0.4236\\n        }\\n      },\\n      \\\"unconstrained_vs_full_s1\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": -0.000266,\\n          \\\"delta_mean\\\": -0.000264,\\n          \\\"ci_lower\\\": -0.001065,\\n          \\\"ci_upper\\\": 0.000823,\\n          \\\"p_value\\\": 0.5266\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.001328,\\n          \\\"delta_mean\\\": 0.001351,\\n          \\\"ci_lower\\\": -0.00235,\\n          \\\"ci_upper\\\": 0.005828,\\n          \\\"p_value\\\": 0.5824\\n        }\\n      },\\n      \\\"grammar_only_vs_full_s1\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.0,\\n          \\\"delta_mean\\\": 0.0,\\n          \\\"ci_lower\\\": 0.0,\\n          \\\"ci_upper\\\": 0.0,\\n          \\\"p_value\\\": 1.0\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.001358,\\n          \\\"delta_mean\\\": 0.001387,\\n          \\\"ci_lower\\\": -0.0016,\\n          \\\"ci_upper\\\": 0.00536,\\n          \\\"p_value\\\": 0.5108\\n        }\\n      },\\n      \\\"semantic_only_vs_full_s1\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": -0.000266,\\n          \\\"delta_mean\\\": -0.000264,\\n          \\\"ci_lower\\\": -0.001065,\\n          \\\"ci_upper\\\": 0.000823,\\n          \\\"p_value\\\": 0.5266\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.002129,\\n          \\\"delta_mean\\\": 0.002162,\\n          \\\"ci_lower\\\": -0.002094,\\n          \\\"ci_upper\\\": 0.00727,\\n          \\\"p_value\\\": 0.393\\n        }\\n      }\\n    }\\n  },\\n  \\\"docred\\\": {\\n    \\\"per_config\\\": {\\n      \\\"unconstrained\\\":\\n\\n... [截断: 输出过长，省略 1809 字符] ...\\n\\n   \\\"delta_mean\\\": 0.01228,\\n          \\\"ci_lower\\\": 0.009322,\\n          \\\"ci_upper\\\": 0.015463,\\n          \\\"p_value\\\": 0.0\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.005718,\\n          \\\"delta_mean\\\": 0.005738,\\n          \\\"ci_lower\\\": 0.003157,\\n          \\\"ci_upper\\\": 0.008757,\\n          \\\"p_value\\\": 0.0\\n        }\\n      },\\n      \\\"unconstrained_vs_semantic_only\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": 2.9e-05,\\n          \\\"delta_mean\\\": 2.9e-05,\\n          \\\"ci_lower\\\": 0.0,\\n          \\\"ci_upper\\\": 0.0001,\\n          \\\"p_value\\\": 0.7378\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": -7.9e-05,\\n          \\\"delta_mean\\\": -7.9e-05,\\n          \\\"ci_lower\\\": -0.001015,\\n          \\\"ci_upper\\\": 0.000873,\\n          \\\"p_value\\\": 0.8546\\n        }\\n      },\\n      \\\"unconstrained_vs_full_s1\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.012309,\\n          \\\"delta_mean\\\": 0.012317,\\n          \\\"ci_lower\\\": 0.009362,\\n          \\\"ci_upper\\\": 0.015503,\\n          \\\"p_value\\\": 0.0\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.004961,\\n          \\\"delta_mean\\\": 0.00498,\\n          \\\"ci_lower\\\": 0.002276,\\n          \\\"ci_upper\\\": 0.00812,\\n          \\\"p_value\\\": 0.0\\n        }\\n      },\\n      \\\"grammar_only_vs_full_s1\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": 3.7e-05,\\n          \\\"delta_mean\\\": 3.7e-05,\\n          \\\"ci_lower\\\": -7.4e-05,\\n          \\\"ci_upper\\\": 0.000187,\\n          \\\"p_value\\\": 0.6556\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": -0.000757,\\n          \\\"delta_mean\\\": -0.000758,\\n          \\\"ci_lower\\\": -0.001706,\\n          \\\"ci_upper\\\": 0.000189,\\n          \\\"p_value\\\": 0.115\\n        }\\n      },\\n      \\\"semantic_only_vs_full_s1\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.01228,\\n          \\\"delta_mean\\\": 0.012288,\\n          \\\"ci_lower\\\": 0.009322,\\n          \\\"ci_upper\\\": 0.015469,\\n          \\\"p_value\\\": 0.0\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.00504,\\n          \\\"delta_mean\\\": 0.005058,\\n          \\\"ci_lower\\\": 0.002408,\\n          \\\"ci_upper\\\": 0.008147,\\n          \\\"p_value\\\": 0.0\\n        }\\n      }\\n    }\\n  },\\n  \\\"metadata\\\": {\\n    \\\"n_bootstrap\\\": 10000,\\n    \\\"ci_method\\\": \\\"percentile\\\",\\n    \\\"ci_level\\\": 0.95,\\n    \\\"seed\\\": 42,\\n    \\\"resample_unit\\\": \\\"sentence (SciERC) / document (DocRED)\\\",\\n    \\\"fix_applied\\\": \\\"Removed entity type filter (DOCRED_VALID_ENTITY_TYPES) and entity type normalization from docred_sample_stats pred_ent_set. Parse-failure documents now return all zeros (matching registry posthoc_filter.py behavior).\\\",\\n    \\\"fix_lines\\\": \\\"compute_bootstrap_ci.py:117 (gold_ent_set), 127 (pred_ent_set), 119-120 (parse failure return)\\\"\\n  },\\n  \\\"registry_alignment\\\": {\\n    \\\"docred\\\": {\\n      \\\"unconstrained\\\": {\\n        \\\"registry_ent_f1\\\": 58.15,\\n        \\\"bootstrap_ent_f1\\\": 58.15,\\n        \\\"delta\\\": 0.0,\\n        \\\"registry_rel_f1\\\": 7.74,\\n        \\\"bootstrap_rel_f1\\\": 7.74,\\n        \\\"delta_rel\\\": 0.0\\n      },\\n      \\\"full_s1\\\": {\\n        \\\"registry_ent_f1\\\": 59.37,\\n        \\\"bootstrap_ent_f1\\\": 59.38,\\n        \\\"delta\\\": 0.01,\\n        \\\"registry_rel_f1\\\": 8.23,\\n        \\\"bootstrap_rel_f1\\\": 8.24,\\n        \\\"delta_rel\\\": 0.01\\n      }\\n    },\\n    \\\"scierc\\\": {\\n      \\\"unconstrained\\\": {\\n        \\\"registry_ent_f1\\\": 31.01,\\n        \\\"bootstrap_ent_f1\\\": 31.01,\\n        \\\"delta\\\": 0.0,\\n        \\\"registry_rel_f1\\\": 8.23,\\n        \\\"bootstrap_rel_f1\\\": 8.23,\\n        \\\"delta_rel\\\": 0.0\\n      },\\n      \\\"full_s1\\\": {\\n        \\\"registry_ent_f1\\\": 30.98,\\n        \\\"bootstrap_ent_f1\\\": 30.98,\\n        \\\"delta\\\": 0.0,\\n        \\\"registry_rel_f1\\\": 8.36,\\n        \\\"bootstrap_rel_f1\\\": 8.36,\\n        \\\"delta_rel\\\": 0.0\\n      }\\n    },\\n    \\\"note\\\": \\\"All deltas <= 0.01pp (rounding). Registry alignment verified.\\\"\\n  },\\n  \\\"grammar_only_entity_f1\\\": {\\n    \\\"docred\\\": {\\n      \\\"entity_f1\\\": 59.38,\\n      \\\"entity_precision\\\": 58.47,\\n      \\\"entity_recall\\\": 60.32,\\n      \\\"tp\\\": 11590,\\n      \\\"gold\\\": 19215,\\n      \\\"pred\\\": 19823,\\n      \\\"note\\\": \\\"Previously null in registry. Grammar constraint (JSON schema enum) enforces valid entity types, improving entity F1 by +1.23pp over unconstrained (p<0.001).\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "cd7689fd-7425-4cc7-9b46-23187170e50a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scierc\\\\\\\": {\\\\n    \\\\\\\"per_config\\\\\\\": {\\\\n      \\\\\\\"unconstrained\\\\\\\": {\\\\n        \\\\\\\"ent_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.310111,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.310169,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.288275,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.332452,\\\\n          \\\\\\\"std\\\\\\\": 0.011217\\\\n        },\\\\n        \\\\\\\"rel_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.082283,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.082357,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.064876,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.10089,\\\\n          \\\\\\\"std\\\\\\\": 0.009112\\\\n        }\\\\n      },\\\\n      \\\\\\\"grammar_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.309846,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.309905,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.288045,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.332121,\\\\n          \\\\\\\"std\\\\\\\": 0.011184\\\\n        },\\\\n        \\\\\\\"rel_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.082253,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.082321,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.064896,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.10087,\\\\n          \\\\\\\"std\\\\\\\": 0.009103\\\\n        }\\\\n      },\\\\n      \\\\\\\"semantic_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.310111,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.310169,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.288275,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.332452,\\\\n          \\\\\\\"std\\\\\\\": 0.011217\\\\n        },\\\\n        \\\\\\\"rel_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.081481,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.081547,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.064367,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.100038,\\\\n          \\\\\\\"std\\\\\\\": 0.009066\\\\n        }\\\\n      },\\\\n      \\\\\\\"full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.309846,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.309905,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.288045,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.332121,\\\\n          \\\\\\\"std\\\\\\\": 0.011184\\\\n        },\\\\n        \\\\\\\"rel_f1\\\\\\\": {\\\\n          \\\\\\\"point_estimate\\\\\\\": 0.083611,\\\\n          \\\\\\\"bootstrap_mean\\\\\\\": 0.083708,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.065828,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.102677,\\\\n          \\\\\\\"std\\\\\\\": 0.009354\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"comparisons\\\\\\\": {\\\\n      \\\\\\\"unconstrained_vs_grammar_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -0.000266,\\\\n          \\\\\\\"delta_mean\\\\\\\": -0.000264,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.001065,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.000823,\\\\n          \\\\\\\"p_value\\\\\\\": 0.5266\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -3e-05,\\\\n          \\\\\\\"delta_mean\\\\\\\": -3.6e-05,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.002234,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.002185,\\\\n          \\\\\\\"p_value\\\\\\\": 0.9798\\\\n        }\\\\n      },\\\\n      \\\\\\\"unconstrained_vs_semantic_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.0,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.0,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.0,\\\\n          \\\\\\\"p_value\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -0.000802,\\\\n          \\\\\\\"delta_mean\\\\\\\": -0.000811,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.003592,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.001478,\\\\n          \\\\\\\"p_value\\\\\\\": 0.4236\\\\n        }\\\\n      },\\\\n      \\\\\\\"unconstrained_vs_full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -0.000266,\\\\n          \\\\\\\"delta_mean\\\\\\\": -0.000264,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.001065,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.000823,\\\\n          \\\\\\\"p_value\\\\\\\": 0.5266\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.001328,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.001351,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.00235,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.005828,\\\\n          \\\\\\\"p_value\\\\\\\": 0.5824\\\\n        }\\\\n      },\\\\n      \\\\\\\"grammar_only_vs_full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.0,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.0,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.0,\\\\n          \\\\\\\"p_value\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.001358,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.001387,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.0016,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.00536,\\\\n          \\\\\\\"p_value\\\\\\\": 0.5108\\\\n        }\\\\n      },\\\\n      \\\\\\\"semantic_only_vs_full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -0.000266,\\\\n          \\\\\\\"delta_mean\\\\\\\": -0.000264,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.001065,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.000823,\\\\n          \\\\\\\"p_value\\\\\\\": 0.5266\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.002129,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.002162,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.002094,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.00727,\\\\n          \\\\\\\"p_value\\\\\\\": 0.393\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"docred\\\\\\\": {\\\\n    \\\\\\\"per_config\\\\\\\": {\\\\n      \\\\\\\"unconstrained\\\\\\\":\\\\n\\\\n... [截断: 输出过长，省略 1809 字符] ...\\\\n\\\\n   \\\\\\\"delta_mean\\\\\\\": 0.01228,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.009322,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.015463,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.005718,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.005738,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.003157,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.008757,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"unconstrained_vs_semantic_only\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 2.9e-05,\\\\n          \\\\\\\"delta_mean\\\\\\\": 2.9e-05,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.0001,\\\\n          \\\\\\\"p_value\\\\\\\": 0.7378\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -7.9e-05,\\\\n          \\\\\\\"delta_mean\\\\\\\": -7.9e-05,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.001015,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.000873,\\\\n          \\\\\\\"p_value\\\\\\\": 0.8546\\\\n        }\\\\n      },\\\\n      \\\\\\\"unconstrained_vs_full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.012309,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.012317,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.009362,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.015503,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.004961,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.00498,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.002276,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.00812,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"grammar_only_vs_full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 3.7e-05,\\\\n          \\\\\\\"delta_mean\\\\\\\": 3.7e-05,\\\\n          \\\\\\\"ci_lower\\\\\\\": -7.4e-05,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.000187,\\\\n          \\\\\\\"p_value\\\\\\\": 0.6556\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": -0.000757,\\\\n          \\\\\\\"delta_mean\\\\\\\": -0.000758,\\\\n          \\\\\\\"ci_lower\\\\\\\": -0.001706,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.000189,\\\\n          \\\\\\\"p_value\\\\\\\": 0.115\\\\n        }\\\\n      },\\\\n      \\\\\\\"semantic_only_vs_full_s1\\\\\\\": {\\\\n        \\\\\\\"ent_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.01228,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.012288,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.009322,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.015469,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"rel_f1_delta\\\\\\\": {\\\\n          \\\\\\\"delta_point\\\\\\\": 0.00504,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.005058,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.002408,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.008147,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n    \\\\\\\"ci_method\\\\\\\": \\\\\\\"percentile\\\\\\\",\\\\n    \\\\\\\"ci_level\\\\\\\": 0.95,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"resample_unit\\\\\\\": \\\\\\\"sentence (SciERC) / document (DocRED)\\\\\\\",\\\\n    \\\\\\\"fix_applied\\\\\\\": \\\\\\\"Removed entity type filter (DOCRED_VALID_ENTITY_TYPES) and entity type normalization from docred_sample_stats pred_ent_set. Parse-failure documents now return all zeros (matching registry posthoc_filter.py behavior).\\\\\\\",\\\\n    \\\\\\\"fix_lines\\\\\\\": \\\\\\\"compute_bootstrap_ci.py:117 (gold_ent_set), 127 (pred_ent_set), 119-120 (parse failure return)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"registry_alignment\\\\\\\": {\\\\n    \\\\\\\"docred\\\\\\\": {\\\\n      \\\\\\\"unconstrained\\\\\\\": {\\\\n        \\\\\\\"registry_ent_f1\\\\\\\": 58.15,\\\\n        \\\\\\\"bootstrap_ent_f1\\\\\\\": 58.15,\\\\n        \\\\\\\"delta\\\\\\\": 0.0,\\\\n        \\\\\\\"registry_rel_f1\\\\\\\": 7.74,\\\\n        \\\\\\\"bootstrap_rel_f1\\\\\\\": 7.74,\\\\n        \\\\\\\"delta_rel\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"full_s1\\\\\\\": {\\\\n        \\\\\\\"registry_ent_f1\\\\\\\": 59.37,\\\\n        \\\\\\\"bootstrap_ent_f1\\\\\\\": 59.38,\\\\n        \\\\\\\"delta\\\\\\\": 0.01,\\\\n        \\\\\\\"registry_rel_f1\\\\\\\": 8.23,\\\\n        \\\\\\\"bootstrap_rel_f1\\\\\\\": 8.24,\\\\n        \\\\\\\"delta_rel\\\\\\\": 0.01\\\\n      }\\\\n    },\\\\n    \\\\\\\"scierc\\\\\\\": {\\\\n      \\\\\\\"unconstrained\\\\\\\": {\\\\n        \\\\\\\"registry_ent_f1\\\\\\\": 31.01,\\\\n        \\\\\\\"bootstrap_ent_f1\\\\\\\": 31.01,\\\\n        \\\\\\\"delta\\\\\\\": 0.0,\\\\n        \\\\\\\"registry_rel_f1\\\\\\\": 8.23,\\\\n        \\\\\\\"bootstrap_rel_f1\\\\\\\": 8.23,\\\\n        \\\\\\\"delta_rel\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"full_s1\\\\\\\": {\\\\n        \\\\\\\"registry_ent_f1\\\\\\\": 30.98,\\\\n        \\\\\\\"bootstrap_ent_f1\\\\\\\": 30.98,\\\\n        \\\\\\\"delta\\\\\\\": 0.0,\\\\n        \\\\\\\"registry_rel_f1\\\\\\\": 8.36,\\\\n        \\\\\\\"bootstrap_rel_f1\\\\\\\": 8.36,\\\\n        \\\\\\\"delta_rel\\\\\\\": 0.0\\\\n      }\\\\n    },\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"All deltas <= 0.01pp (rounding). Registry alignment verified.\\\\\\\"\\\\n  },\\\\n  \\\\\\\"grammar_only_entity_f1\\\\\\\": {\\\\n    \\\\\\\"docred\\\\\\\": {\\\\n      \\\\\\\"entity_f1\\\\\\\": 59.38,\\\\n      \\\\\\\"entity_precision\\\\\\\": 58.47,\\\\n      \\\\\\\"entity_recall\\\\\\\": 60.32,\\\\n      \\\\\\\"tp\\\\\\\": 11590,\\\\n      \\\\\\\"gold\\\\\\\": 19215,\\\\n      \\\\\\\"pred\\\\\\\": 19823,\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"Previously null in registry. Grammar constraint (JSON schema enum) enforces valid entity types, improving entity F1 by +1.23pp over unconstrained (p<0.001).\\\\\\\"\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scierc\\\": {\\n    \\\"per_config\\\": {\\n      \\\"unconstrained\\\": {\\n        \\\"ent_f1\\\": {\\n          \\\"point_estimate\\\": 0.310111,\\n          \\\"bootstrap_mean\\\": 0.310169,\\n          \\\"ci_lower\\\": 0.288275,\\n          \\\"ci_upper\\\": 0.332452,\\n          \\\"std\\\": 0.011217\\n        },\\n        \\\"rel_f1\\\": {\\n          \\\"point_estimate\\\": 0.082283,\\n          \\\"bootstrap_mean\\\": 0.082357,\\n          \\\"ci_lower\\\": 0.064876,\\n          \\\"ci_upper\\\": 0.10089,\\n          \\\"std\\\": 0.009112\\n        }\\n      },\\n      \\\"grammar_only\\\": {\\n        \\\"ent_f1\\\": {\\n          \\\"point_estimate\\\": 0.309846,\\n          \\\"bootstrap_mean\\\": 0.309905,\\n          \\\"ci_lower\\\": 0.288045,\\n          \\\"ci_upper\\\": 0.332121,\\n          \\\"std\\\": 0.011184\\n        },\\n        \\\"rel_f1\\\": {\\n          \\\"point_estimate\\\": 0.082253,\\n          \\\"bootstrap_mean\\\": 0.082321,\\n          \\\"ci_lower\\\": 0.064896,\\n          \\\"ci_upper\\\": 0.10087,\\n          \\\"std\\\": 0.009103\\n        }\\n      },\\n      \\\"semantic_only\\\": {\\n        \\\"ent_f1\\\": {\\n          \\\"point_estimate\\\": 0.310111,\\n          \\\"bootstrap_mean\\\": 0.310169,\\n          \\\"ci_lower\\\": 0.288275,\\n          \\\"ci_upper\\\": 0.332452,\\n          \\\"std\\\": 0.011217\\n        },\\n        \\\"rel_f1\\\": {\\n          \\\"point_estimate\\\": 0.081481,\\n          \\\"bootstrap_mean\\\": 0.081547,\\n          \\\"ci_lower\\\": 0.064367,\\n          \\\"ci_upper\\\": 0.100038,\\n          \\\"std\\\": 0.009066\\n        }\\n      },\\n      \\\"full_s1\\\": {\\n        \\\"ent_f1\\\": {\\n          \\\"point_estimate\\\": 0.309846,\\n          \\\"bootstrap_mean\\\": 0.309905,\\n          \\\"ci_lower\\\": 0.288045,\\n          \\\"ci_upper\\\": 0.332121,\\n          \\\"std\\\": 0.011184\\n        },\\n        \\\"rel_f1\\\": {\\n          \\\"point_estimate\\\": 0.083611,\\n          \\\"bootstrap_mean\\\": 0.083708,\\n          \\\"ci_lower\\\": 0.065828,\\n          \\\"ci_upper\\\": 0.102677,\\n          \\\"std\\\": 0.009354\\n        }\\n      }\\n    },\\n    \\\"comparisons\\\": {\\n      \\\"unconstrained_vs_grammar_only\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": -0.000266,\\n          \\\"delta_mean\\\": -0.000264,\\n          \\\"ci_lower\\\": -0.001065,\\n          \\\"ci_upper\\\": 0.000823,\\n          \\\"p_value\\\": 0.5266\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": -3e-05,\\n          \\\"delta_mean\\\": -3.6e-05,\\n          \\\"ci_lower\\\": -0.002234,\\n          \\\"ci_upper\\\": 0.002185,\\n          \\\"p_value\\\": 0.9798\\n        }\\n      },\\n      \\\"unconstrained_vs_semantic_only\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.0,\\n          \\\"delta_mean\\\": 0.0,\\n          \\\"ci_lower\\\": 0.0,\\n          \\\"ci_upper\\\": 0.0,\\n          \\\"p_value\\\": 1.0\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": -0.000802,\\n          \\\"delta_mean\\\": -0.000811,\\n          \\\"ci_lower\\\": -0.003592,\\n          \\\"ci_upper\\\": 0.001478,\\n          \\\"p_value\\\": 0.4236\\n        }\\n      },\\n      \\\"unconstrained_vs_full_s1\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": -0.000266,\\n          \\\"delta_mean\\\": -0.000264,\\n          \\\"ci_lower\\\": -0.001065,\\n          \\\"ci_upper\\\": 0.000823,\\n          \\\"p_value\\\": 0.5266\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.001328,\\n          \\\"delta_mean\\\": 0.001351,\\n          \\\"ci_lower\\\": -0.00235,\\n          \\\"ci_upper\\\": 0.005828,\\n          \\\"p_value\\\": 0.5824\\n        }\\n      },\\n      \\\"grammar_only_vs_full_s1\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.0,\\n          \\\"delta_mean\\\": 0.0,\\n          \\\"ci_lower\\\": 0.0,\\n          \\\"ci_upper\\\": 0.0,\\n          \\\"p_value\\\": 1.0\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.001358,\\n          \\\"delta_mean\\\": 0.001387,\\n          \\\"ci_lower\\\": -0.0016,\\n          \\\"ci_upper\\\": 0.00536,\\n          \\\"p_value\\\": 0.5108\\n        }\\n      },\\n      \\\"semantic_only_vs_full_s1\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": -0.000266,\\n          \\\"delta_mean\\\": -0.000264,\\n          \\\"ci_lower\\\": -0.001065,\\n          \\\"ci_upper\\\": 0.000823,\\n          \\\"p_value\\\": 0.5266\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.002129,\\n          \\\"delta_mean\\\": 0.002162,\\n          \\\"ci_lower\\\": -0.002094,\\n          \\\"ci_upper\\\": 0.00727,\\n          \\\"p_value\\\": 0.393\\n        }\\n      }\\n    }\\n  },\\n  \\\"docred\\\": {\\n    \\\"per_config\\\": {\\n      \\\"unconstrained\\\":\\n\\n... [截断: 输出过长，省略 1809 字符] ...\\n\\n   \\\"delta_mean\\\": 0.01228,\\n          \\\"ci_lower\\\": 0.009322,\\n          \\\"ci_upper\\\": 0.015463,\\n          \\\"p_value\\\": 0.0\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.005718,\\n          \\\"delta_mean\\\": 0.005738,\\n          \\\"ci_lower\\\": 0.003157,\\n          \\\"ci_upper\\\": 0.008757,\\n          \\\"p_value\\\": 0.0\\n        }\\n      },\\n      \\\"unconstrained_vs_semantic_only\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": 2.9e-05,\\n          \\\"delta_mean\\\": 2.9e-05,\\n          \\\"ci_lower\\\": 0.0,\\n          \\\"ci_upper\\\": 0.0001,\\n          \\\"p_value\\\": 0.7378\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": -7.9e-05,\\n          \\\"delta_mean\\\": -7.9e-05,\\n          \\\"ci_lower\\\": -0.001015,\\n          \\\"ci_upper\\\": 0.000873,\\n          \\\"p_value\\\": 0.8546\\n        }\\n      },\\n      \\\"unconstrained_vs_full_s1\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.012309,\\n          \\\"delta_mean\\\": 0.012317,\\n          \\\"ci_lower\\\": 0.009362,\\n          \\\"ci_upper\\\": 0.015503,\\n          \\\"p_value\\\": 0.0\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.004961,\\n          \\\"delta_mean\\\": 0.00498,\\n          \\\"ci_lower\\\": 0.002276,\\n          \\\"ci_upper\\\": 0.00812,\\n          \\\"p_value\\\": 0.0\\n        }\\n      },\\n      \\\"grammar_only_vs_full_s1\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": 3.7e-05,\\n          \\\"delta_mean\\\": 3.7e-05,\\n          \\\"ci_lower\\\": -7.4e-05,\\n          \\\"ci_upper\\\": 0.000187,\\n          \\\"p_value\\\": 0.6556\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": -0.000757,\\n          \\\"delta_mean\\\": -0.000758,\\n          \\\"ci_lower\\\": -0.001706,\\n          \\\"ci_upper\\\": 0.000189,\\n          \\\"p_value\\\": 0.115\\n        }\\n      },\\n      \\\"semantic_only_vs_full_s1\\\": {\\n        \\\"ent_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.01228,\\n          \\\"delta_mean\\\": 0.012288,\\n          \\\"ci_lower\\\": 0.009322,\\n          \\\"ci_upper\\\": 0.015469,\\n          \\\"p_value\\\": 0.0\\n        },\\n        \\\"rel_f1_delta\\\": {\\n          \\\"delta_point\\\": 0.00504,\\n          \\\"delta_mean\\\": 0.005058,\\n          \\\"ci_lower\\\": 0.002408,\\n          \\\"ci_upper\\\": 0.008147,\\n          \\\"p_value\\\": 0.0\\n        }\\n      }\\n    }\\n  },\\n  \\\"metadata\\\": {\\n    \\\"n_bootstrap\\\": 10000,\\n    \\\"ci_method\\\": \\\"percentile\\\",\\n    \\\"ci_level\\\": 0.95,\\n    \\\"seed\\\": 42,\\n    \\\"resample_unit\\\": \\\"sentence (SciERC) / document (DocRED)\\\",\\n    \\\"fix_applied\\\": \\\"Removed entity type filter (DOCRED_VALID_ENTITY_TYPES) and entity type normalization from docred_sample_stats pred_ent_set. Parse-failure documents now return all zeros (matching registry posthoc_filter.py behavior).\\\",\\n    \\\"fix_lines\\\": \\\"compute_bootstrap_ci.py:117 (gold_ent_set), 127 (pred_ent_set), 119-120 (parse failure return)\\\"\\n  },\\n  \\\"registry_alignment\\\": {\\n    \\\"docred\\\": {\\n      \\\"unconstrained\\\": {\\n        \\\"registry_ent_f1\\\": 58.15,\\n        \\\"bootstrap_ent_f1\\\": 58.15,\\n        \\\"delta\\\": 0.0,\\n        \\\"registry_rel_f1\\\": 7.74,\\n        \\\"bootstrap_rel_f1\\\": 7.74,\\n        \\\"delta_rel\\\": 0.0\\n      },\\n      \\\"full_s1\\\": {\\n        \\\"registry_ent_f1\\\": 59.37,\\n        \\\"bootstrap_ent_f1\\\": 59.38,\\n        \\\"delta\\\": 0.01,\\n        \\\"registry_rel_f1\\\": 8.23,\\n        \\\"bootstrap_rel_f1\\\": 8.24,\\n        \\\"delta_rel\\\": 0.01\\n      }\\n    },\\n    \\\"scierc\\\": {\\n      \\\"unconstrained\\\": {\\n        \\\"registry_ent_f1\\\": 31.01,\\n        \\\"bootstrap_ent_f1\\\": 31.01,\\n        \\\"delta\\\": 0.0,\\n        \\\"registry_rel_f1\\\": 8.23,\\n        \\\"bootstrap_rel_f1\\\": 8.23,\\n        \\\"delta_rel\\\": 0.0\\n      },\\n      \\\"full_s1\\\": {\\n        \\\"registry_ent_f1\\\": 30.98,\\n        \\\"bootstrap_ent_f1\\\": 30.98,\\n        \\\"delta\\\": 0.0,\\n        \\\"registry_rel_f1\\\": 8.36,\\n        \\\"bootstrap_rel_f1\\\": 8.36,\\n        \\\"delta_rel\\\": 0.0\\n      }\\n    },\\n    \\\"note\\\": \\\"All deltas <= 0.01pp (rounding). Registry alignment verified.\\\"\\n  },\\n  \\\"grammar_only_entity_f1\\\": {\\n    \\\"docred\\\": {\\n      \\\"entity_f1\\\": 59.38,\\n      \\\"entity_precision\\\": 58.47,\\n      \\\"entity_recall\\\": 60.32,\\n      \\\"tp\\\": 11590,\\n      \\\"gold\\\": 19215,\\n      \\\"pred\\\": 19823,\\n      \\\"note\\\": \\\"Previously null in registry. Grammar constraint (JSON schema enum) enforces valid entity types, improving entity F1 by +1.23pp over unconstrained (p<0.001).\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found existing bootstrap CI results. Let me analyze what's available:
+
+1. `bootstrap_ci_ft_composability.json` - This has FT (LoRA) results with constrained vs unconstrained for all 4 combinations. Let me check what "constrained" means here - looking at the script, it uses files like `d066_qwen_scierc_lora_unc.json` and `d066_qwen_scierc_lora_s1.json`.
+
+2. `bootstrap_ci_results_v2.json` - This seems to be for ZS (zero-shot), not FT. 
+
+The R-F1 values are very low (8.23% for SciERC) confirming this is zero-shot data. So `bootstrap_ci_ft_composability.json` already has the FT results I need. Looking at the structure, it provides point estimates for both unconstrained and constrained conditions plus delta CIs, but it's missing the individual confidence intervals for each condition separately.
+
+The user needs unconstrained R-F1 with its CI, S1 R-F1 with its CI, the delta with its CI, and a p-value. The `compute_bootstrap_ci_ft.py` script does calculate individual CIs for both conditions, but it only saves the paired test results to JSON. Let me trace through what the script actually outputs and whether those individual CIs were persisted. the saved JSON, it only saves the paired test results (`ent_test` and `rel_test`).
+
+I need to either re-run the existing script with modifications to also save individual CIs, or write a new script that computes both. The `bootstrap_ci_ft_composability.json` already has `f1_a` and `f1_b` which are point estimates for unconstrained and constrained, but it doesn't have CIs for each individual config.
+
+Looking at the prediction files being used in the script config, these are the d066 unified eval files. I should check what format they're in and whether they contain per-sample data. Actually, the easiest approach is to just re-run the existing script since it already prints individual CIs to stdout — I just need to capture that output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "d669b19d-87de-4ef4-974c-905409994e36",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019TG6weM9FLq4Vow6E5GPXw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11124,
+      "cache_read_input_tokens": 33058,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11124
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+The existing `bootstrap_ci_ft_composability.json` already has paired delta results but is missing individual CIs per config. Let me check the script's data files and then re-run it to capture the full output including individual CIs.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "30d77970-e4db-4b27-a42a-71a72d9637d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019TG6weM9FLq4Vow6E5GPXw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11124,
+      "cache_read_input_tokens": 33058,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11124
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017Cv8FzrZbtjK9rrBV7CVku`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "head -5 /root/schema_semantic_constrained_ie/outputs/d066_qwen_scierc_lora_unc.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "e4e83750-8e33-41da-b559-5fb1fe75d597",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019TG6weM9FLq4Vow6E5GPXw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11124,
+      "cache_read_input_tokens": 33058,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11124
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012cie17PwNDigcnGVUAiAJN`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "head -80 /root/schema_semantic_constrained_ie/compute_bootstrap_ci_ft.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "4d0057c0-4d76-4b91-8b2f-52b38fd8ad39",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019TG6weM9FLq4Vow6E5GPXw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11124,
+      "cache_read_input_tokens": 33058,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11124
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-22T07:11:00.211Z_
+
+<details><summary>↩ Tool result · `toolu_017Cv8FzrZbtjK9rrBV7CVku`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"label\\\": \\\"Qwen_SciERC_LoRA_unc\\\",\\n  \\\"total_samples\\\": 551,\\n  \\\"parse_failures\\\": 0,\\n  \\\"parse_fail_pct\\\": 0.0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "3be7a035-21af-4f83-baa2-d7e43fbdc86b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"label\\\\\\\": \\\\\\\"Qwen_SciERC_LoRA_unc\\\\\\\",\\\\n  \\\\\\\"total_samples\\\\\\\": 551,\\\\n  \\\\\\\"parse_failures\\\\\\\": 0,\\\\n  \\\\\\\"parse_fail_pct\\\\\\\": 0.0,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"label\\\": \\\"Qwen_SciERC_LoRA_unc\\\",\\n  \\\"total_samples\\\": 551,\\n  \\\"parse_failures\\\": 0,\\n  \\\"parse_fail_pct\\\": 0.0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-22T07:11:00.736Z_
+
+<details><summary>↩ Tool result · `toolu_012cie17PwNDigcnGVUAiAJN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Bootstrap CI for FT (LoRA) composability: constrained vs unconstrained.\\\"\\\"\\\"\\n\\nimport json\\nimport numpy as np\\nfrom pathlib import Path\\n\\n# --- Normalization (reuse from ZS script) ---\\n\\nSCIERC_TYPE_MAP = {\\n    \\\"otherscientificterm\\\": \\\"OtherScientificTerm\\\",\\n    \\\"other-scientificterm\\\": \\\"OtherScientificTerm\\\",\\n    \\\"other_scientific_term\\\": \\\"OtherScientificTerm\\\",\\n    \\\"scientificterm\\\": \\\"OtherScientificTerm\\\",\\n    \\\"other\\\": \\\"OtherScientificTerm\\\",\\n}\\n\\ndef scierc_normalize_type(t, valid_types):\\n    t_lower = t.strip().lower().replace(\\\" \\\", \\\"\\\").replace(\\\"_\\\", \\\"\\\").replace(\\\"-\\\", \\\"\\\")\\n    for vt in valid_types:\\n        if t_lower == vt.lower().replace(\\\" \\\", \\\"\\\").replace(\\\"_\\\", \\\"\\\").replace(\\\"-\\\", \\\"\\\"):\\n            return vt\\n    if t_lower in SCIERC_TYPE_MAP:\\n        return SCIERC_TYPE_MAP[t_lower]\\n    return None\\n\\nDOCRED_VALID_ENTITY_TYPES = {\\\"PER\\\", \\\"ORG\\\", \\\"LOC\\\", \\\"TIME\\\", \\\"NUM\\\", \\\"MISC\\\"}\\nDOCRED_ENTITY_TYPE_ALIASES = {\\n    'PERSON': 'PER', 'PEOPLE': 'PER',\\n    'ORGANIZATION': 'ORG', 'ORGANISATION': 'ORG',\\n    'LOCATION': 'LOC',\\n    'NUMBER': 'NUM', 'NUMERICAL': 'NUM',\\n    'MISCELLANEOUS': 'MISC',\\n}\\n\\ndef docred_normalize_entity_type(raw_type):\\n    t = raw_type.strip().upper()\\n    return DOCRED_ENTITY_TYPE_ALIASES.get(t, t)\\n\\ndef _levenshtein(s1, s2):\\n    if len(s1) < len(s2):\\n        return _levenshtein(s2, s1)\\n    if len(s2) == 0:\\n        return len(s1)\\n    prev_row = list(range(len(s2) + 1))\\n    for i, c1 in enumerate(s1):\\n        curr_row = [i + 1]\\n        for j, c2 in enumerate(s2):\\n            curr_row.append(min(prev_row[j + 1] + 1, curr_row[j] + 1, prev_row[j] + (c1 != c2)))\\n        prev_row = curr_row\\n    return prev_row[-1]\\n\\ndef build_name_to_id(rel_types):\\n    name_to_id = {}\\n    for rid, rname in rel_types.items():\\n        name_to_id[rname.lower().strip()] = rid\\n        name_to_id[rid.lower()] = rid\\n    return name_to_id\\n\\ndef docred_normalize_relation(rel_name, rel_types, name_to_id):\\n    rel_key = name_to_id.get(rel_name.lower().strip())\\n    if rel_key:\\n        return rel_key\\n    rel_tokens = set(rel_name.strip().lower().split())\\n    best_pid, best_overlap = None, 0.0\\n    for rid, rname in rel_types.items():\\n        rname_tokens = set(rname.lower().split())\\n        if rel_tokens and rname_tokens:\\n            ratio = len(rel_tokens & rname_tokens) / len(rel_tokens | rname_tokens)\\n            if ratio > 0.8 and ratio > best_overlap:\\n                best_overlap = ratio\\n                best_pid = rid\\n    if best_pid:\\n        return best_pid\\n    for rid, rname in rel_types.items():\\n        if _levenshtein(rel_name.strip().lower(), rname.lower()) <= 2:\\n            return rid\\n    return None\\n\\n# --- Per-sample stats ---\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "3a356a42-417f-408a-94a6-9b06438d7534",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Bootstrap CI for FT (LoRA) composability: constrained vs unconstrained.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport numpy as np\\\\nfrom pathlib import Path\\\\n\\\\n# --- Normalization (reuse from ZS script) ---\\\\n\\\\nSCIERC_TYPE_MAP = {\\\\n    \\\\\\\"otherscientificterm\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n    \\\\\\\"other-scientificterm\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n    \\\\\\\"other_scientific_term\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n    \\\\\\\"scientificterm\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n    \\\\\\\"other\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n}\\\\n\\\\ndef scierc_normalize_type(t, valid_types):\\\\n    t_lower = t.strip().lower().replace(\\\\\\\" \\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"-\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    for vt in valid_types:\\\\n        if t_lower == vt.lower().replace(\\\\\\\" \\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"-\\\\\\\", \\\\\\\"\\\\\\\"):\\\\n            return vt\\\\n    if t_lower in SCIERC_TYPE_MAP:\\\\n        return SCIERC_TYPE_MAP[t_lower]\\\\n    return None\\\\n\\\\nDOCRED_VALID_ENTITY_TYPES = {\\\\\\\"PER\\\\\\\", \\\\\\\"ORG\\\\\\\", \\\\\\\"LOC\\\\\\\", \\\\\\\"TIME\\\\\\\", \\\\\\\"NUM\\\\\\\", \\\\\\\"MISC\\\\\\\"}\\\\nDOCRED_ENTITY_TYPE_ALIASES = {\\\\n    'PERSON': 'PER', 'PEOPLE': 'PER',\\\\n    'ORGANIZATION': 'ORG', 'ORGANISATION': 'ORG',\\\\n    'LOCATION': 'LOC',\\\\n    'NUMBER': 'NUM', 'NUMERICAL': 'NUM',\\\\n    'MISCELLANEOUS': 'MISC',\\\\n}\\\\n\\\\ndef docred_normalize_entity_type(raw_type):\\\\n    t = raw_type.strip().upper()\\\\n    return DOCRED_ENTITY_TYPE_ALIASES.get(t, t)\\\\n\\\\ndef _levenshtein(s1, s2):\\\\n    if len(s1) < len(s2):\\\\n        return _levenshtein(s2, s1)\\\\n    if len(s2) == 0:\\\\n        return len(s1)\\\\n    prev_row = list(range(len(s2) + 1))\\\\n    for i, c1 in enumerate(s1):\\\\n        curr_row = [i + 1]\\\\n        for j, c2 in enumerate(s2):\\\\n            curr_row.append(min(prev_row[j + 1] + 1, curr_row[j] + 1, prev_row[j] + (c1 != c2)))\\\\n        prev_row = curr_row\\\\n    return prev_row[-1]\\\\n\\\\ndef build_name_to_id(rel_types):\\\\n    name_to_id = {}\\\\n    for rid, rname in rel_types.items():\\\\n        name_to_id[rname.lower().strip()] = rid\\\\n        name_to_id[rid.lower()] = rid\\\\n    return name_to_id\\\\n\\\\ndef docred_normalize_relation(rel_name, rel_types, name_to_id):\\\\n    rel_key = name_to_id.get(rel_name.lower().strip())\\\\n    if rel_key:\\\\n        return rel_key\\\\n    rel_tokens = set(rel_name.strip().lower().split())\\\\n    best_pid, best_overlap = None, 0.0\\\\n    for rid, rname in rel_types.items():\\\\n        rname_tokens = set(rname.lower().split())\\\\n        if rel_tokens and rname_tokens:\\\\n            ratio = len(rel_tokens & rname_tokens) / len(rel_tokens | rname_tokens)\\\\n            if ratio > 0.8 and ratio > best_overlap:\\\\n                best_overlap = ratio\\\\n                best_pid = rid\\\\n    if best_pid:\\\\n        return best_pid\\\\n    for rid, rname in rel_types.items():\\\\n        if _levenshtein(rel_name.strip().lower(), rname.lower()) <= 2:\\\\n            return rid\\\\n    return None\\\\n\\\\n# --- Per-sample stats ---\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Bootstrap CI for FT (LoRA) composability: constrained vs unconstrained.\\\"\\\"\\\"\\n\\nimport json\\nimport numpy as np\\nfrom pathlib import Path\\n\\n# --- Normalization (reuse from ZS script) ---\\n\\nSCIERC_TYPE_MAP = {\\n    \\\"otherscientificterm\\\": \\\"OtherScientificTerm\\\",\\n    \\\"other-scientificterm\\\": \\\"OtherScientificTerm\\\",\\n    \\\"other_scientific_term\\\": \\\"OtherScientificTerm\\\",\\n    \\\"scientificterm\\\": \\\"OtherScientificTerm\\\",\\n    \\\"other\\\": \\\"OtherScientificTerm\\\",\\n}\\n\\ndef scierc_normalize_type(t, valid_types):\\n    t_lower = t.strip().lower().replace(\\\" \\\", \\\"\\\").replace(\\\"_\\\", \\\"\\\").replace(\\\"-\\\", \\\"\\\")\\n    for vt in valid_types:\\n        if t_lower == vt.lower().replace(\\\" \\\", \\\"\\\").replace(\\\"_\\\", \\\"\\\").replace(\\\"-\\\", \\\"\\\"):\\n            return vt\\n    if t_lower in SCIERC_TYPE_MAP:\\n        return SCIERC_TYPE_MAP[t_lower]\\n    return None\\n\\nDOCRED_VALID_ENTITY_TYPES = {\\\"PER\\\", \\\"ORG\\\", \\\"LOC\\\", \\\"TIME\\\", \\\"NUM\\\", \\\"MISC\\\"}\\nDOCRED_ENTITY_TYPE_ALIASES = {\\n    'PERSON': 'PER', 'PEOPLE': 'PER',\\n    'ORGANIZATION': 'ORG', 'ORGANISATION': 'ORG',\\n    'LOCATION': 'LOC',\\n    'NUMBER': 'NUM', 'NUMERICAL': 'NUM',\\n    'MISCELLANEOUS': 'MISC',\\n}\\n\\ndef docred_normalize_entity_type(raw_type):\\n    t = raw_type.strip().upper()\\n    return DOCRED_ENTITY_TYPE_ALIASES.get(t, t)\\n\\ndef _levenshtein(s1, s2):\\n    if len(s1) < len(s2):\\n        return _levenshtein(s2, s1)\\n    if len(s2) == 0:\\n        return len(s1)\\n    prev_row = list(range(len(s2) + 1))\\n    for i, c1 in enumerate(s1):\\n        curr_row = [i + 1]\\n        for j, c2 in enumerate(s2):\\n            curr_row.append(min(prev_row[j + 1] + 1, curr_row[j] + 1, prev_row[j] + (c1 != c2)))\\n        prev_row = curr_row\\n    return prev_row[-1]\\n\\ndef build_name_to_id(rel_types):\\n    name_to_id = {}\\n    for rid, rname in rel_types.items():\\n        name_to_id[rname.lower().strip()] = rid\\n        name_to_id[rid.lower()] = rid\\n    return name_to_id\\n\\ndef docred_normalize_relation(rel_name, rel_types, name_to_id):\\n    rel_key = name_to_id.get(rel_name.lower().strip())\\n    if rel_key:\\n        return rel_key\\n    rel_tokens = set(rel_name.strip().lower().split())\\n    best_pid, best_overlap = None, 0.0\\n    for rid, rname in rel_types.items():\\n        rname_tokens = set(rname.lower().split())\\n        if rel_tokens and rname_tokens:\\n            ratio = len(rel_tokens & rname_tokens) / len(rel_tokens | rname_tokens)\\n            if ratio > 0.8 and ratio > best_overlap:\\n                best_overlap = ratio\\n                best_pid = rid\\n    if best_pid:\\n        return best_pid\\n    for rid, rname in rel_types.items():\\n        if _levenshtein(rel_name.strip().lower(), rname.lower()) <= 2:\\n            return rid\\n    return None\\n\\n# --- Per-sample stats ---\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The existing script already has everything. Let me just run it and capture the full output. The script prints both individual CIs and paired test results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "a715b861-ec4d-412a-8933-478cad9f7285",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0183SU4SC5bmPLbTS2HZ3gqd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2619,
+      "cache_read_input_tokens": 44182,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2619
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+The existing script has all the logic. Let me run it to get the full output including individual CIs.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "d4e46fae-7cc4-46fb-b548-5ac3b2856ac9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0183SU4SC5bmPLbTS2HZ3gqd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2619,
+      "cache_read_input_tokens": 44182,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2619
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01UggW2CToJFRbsHwpiEJAeZ`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python compute_bootstrap_ci_ft.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "5b89d3d2-68c7-4bde-83dc-376e492480c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0183SU4SC5bmPLbTS2HZ3gqd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2619,
+      "cache_read_input_tokens": 44182,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2619
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-22T07:11:12.923Z_
+
+<details><summary>↩ Tool result · `toolu_01UggW2CToJFRbsHwpiEJAeZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\n  FT (LoRA) Composability Bootstrap Test: Constrained vs Unconstrained\\n  N_bootstrap = 10000, seed = 42, CI = 95% percentile\\n======================================================================\\n\\n──────────────────────────────────────────────────\\n  Qwen-LoRA-SciERC\\n──────────────────────────────────────────────────\\n  Samples: unconstrained=551, constrained=551\\n  unconstrained: E-F1=67.05% [64.76, 69.33], R-F1=43.86% [39.90, 47.78]\\n  constrained: E-F1=67.05% [64.76, 69.33], R-F1=43.77% [39.80, 47.66]\\n\\n  Paired test (constrained - unconstrained):\\n    ΔE-F1 = +0.00pp  95%CI [+0.00, +0.00]  p=1.0000\\n    ΔR-F1 = -0.10pp  95%CI [-0.30, +0.00]  p=0.7260\\n    Significance: E-F1 n.s., R-F1 n.s.\\n\\n──────────���───────────────────────────────────────\\n  Qwen-LoRA-DocRED\\n──────────────────────────────────────────────────\\n  Samples: unconstrained=998, constrained=998\\n  unconstrained: E-F1=82.22% [81.14, 83.24], R-F1=40.97% [39.32, 42.58]\\n  constrained: E-F1=81.50% [80.33, 82.58], R-F1=40.60% [38.94, 42.23]\\n\\n  Paired test (constrained - unconstrained):\\n    ΔE-F1 = -0.73pp  95%CI [-1.21, -0.30]  p=0.0004\\n    ΔR-F1 = -0.37pp  95%CI [-0.76, -0.05]  p=0.0140\\n    Significance: E-F1 ***, R-F1 *\\n\\n──────────────────────────────────────────────────\\n  Llama-LoRA-SciERC\\n──────────────────────────────────────────────────\\n  Samples: unconstrained=551, constrained=551\\n  unconstrained: E-F1=67.76% [65.51, 70.02], R-F1=45.45% [41.41, 49.41]\\n  constrained: E-F1=67.76% [65.51, 70.02], R-F1=45.47% [41.42, 49.47]\\n\\n  Paired test (constrained - unconstrained):\\n    ΔE-F1 = +0.00pp  95%CI [+0.00, +0.00]  p=1.0000\\n    ΔR-F1 = +0.02pp  95%CI [+0.00, +0.07]  p=0.7364\\n    Significance: E-F1 n.s., R-F1 n.s.\\n\\n──────────────────────────────────────────────────\\n  Llama-LoRA-DocRED\\n──────────────────────────────────────────────────\\n  Samples: unconstrained=998, constrained=998\\n  unconstrained: E-F1=84.01% [83.19, 84.79], R-F1=43.81% [42.18, 45.46]\\n  constrained: E-F1=84.01% [83.20, 84.79], R-F1=43.83% [42.21, 45.48]\\n\\n  Paired test (constrained - unconstrained):\\n    ΔE-F1 = +0.00pp  95%CI [-0.15, +0.18]  p=0.9844\\n    ΔR-F1 = +0.02pp  95%CI [-0.15, +0.22]  p=0.8506\\n    Significance: E-F1 n.s., R-F1 n.s.\\n\\n\\n======================================================================\\n  SUMMARY TABLE\\n======================================================================\\nSetting                ΔR-F1 (pp)   95% CI                 p-value    Sig  \\n──────────────────────────────────────────────────────────────────────\\nQwen-LoRA-SciERC       -0.10        [-0.30, +0.00]    0.7260     n.s.\\nQwen-LoRA-DocRED       -0.37        [-0.76, -0.05]    0.0140     *\\nLlama-LoRA-SciERC      +0.02        [+0.00, +0.07]    0.7364     n.s.\\nLlama-LoRA-DocRED      +0.02        [-0.15, +0.22]    0.8506     n.s.\\n\\nSetting                ΔE-F1 (pp)   95% CI                 p-value    Sig  \\n──────────────────────────────────────────��───────────────────────────\\nQwen-LoRA-SciERC       +0.00        [+0.00, +0.00]    1.0000     n.s.\\nQwen-LoRA-DocRED       -0.73        [-1.21, -0.30]    0.0004     ***\\nLlama-LoRA-SciERC      +0.00        [+0.00, +0.00]    1.0000     n.s.\\nLlama-LoRA-DocRED      +0.00        [-0.15, +0.18]    0.9844     n.s.\\n\\nJSON saved to outputs/bootstrap_ci_ft_composability.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "94ff2636-4175-4ca8-a994-dee42b13a3be",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"======================================================================\\\\n  FT (LoRA) Composability Bootstrap Test: Constrained vs Unconstrained\\\\n  N_bootstrap = 10000, seed = 42, CI = 95% percentile\\\\n======================================================================\\\\n\\\\n──────────────────────────────────────────────────\\\\n  Qwen-LoRA-SciERC\\\\n──────────────────────────────────────────────────\\\\n  Samples: unconstrained=551, constrained=551\\\\n  unconstrained: E-F1=67.05% [64.76, 69.33], R-F1=43.86% [39.90, 47.78]\\\\n  constrained: E-F1=67.05% [64.76, 69.33], R-F1=43.77% [39.80, 47.66]\\\\n\\\\n  Paired test (constrained - unconstrained):\\\\n    ΔE-F1 = +0.00pp  95%CI [+0.00, +0.00]  p=1.0000\\\\n    ΔR-F1 = -0.10pp  95%CI [-0.30, +0.00]  p=0.7260\\\\n    Significance: E-F1 n.s., R-F1 n.s.\\\\n\\\\n──────────���───────────────────────────────────────\\\\n  Qwen-LoRA-DocRED\\\\n──────────────────────────────────────────────────\\\\n  Samples: unconstrained=998, constrained=998\\\\n  unconstrained: E-F1=82.22% [81.14, 83.24], R-F1=40.97% [39.32, 42.58]\\\\n  constrained: E-F1=81.50% [80.33, 82.58], R-F1=40.60% [38.94, 42.23]\\\\n\\\\n  Paired test (constrained - unconstrained):\\\\n    ΔE-F1 = -0.73pp  95%CI [-1.21, -0.30]  p=0.0004\\\\n    ΔR-F1 = -0.37pp  95%CI [-0.76, -0.05]  p=0.0140\\\\n    Significance: E-F1 ***, R-F1 *\\\\n\\\\n──────────────────────────────────────────────────\\\\n  Llama-LoRA-SciERC\\\\n──────────────────────────────────────────────────\\\\n  Samples: unconstrained=551, constrained=551\\\\n  unconstrained: E-F1=67.76% [65.51, 70.02], R-F1=45.45% [41.41, 49.41]\\\\n  constrained: E-F1=67.76% [65.51, 70.02], R-F1=45.47% [41.42, 49.47]\\\\n\\\\n  Paired test (constrained - unconstrained):\\\\n    ΔE-F1 = +0.00pp  95%CI [+0.00, +0.00]  p=1.0000\\\\n    ΔR-F1 = +0.02pp  95%CI [+0.00, +0.07]  p=0.7364\\\\n    Significance: E-F1 n.s., R-F1 n.s.\\\\n\\\\n──────────────────────────────────────────────────\\\\n  Llama-LoRA-DocRED\\\\n──────────────────────────────────────────────────\\\\n  Samples: unconstrained=998, constrained=998\\\\n  unconstrained: E-F1=84.01% [83.19, 84.79], R-F1=43.81% [42.18, 45.46]\\\\n  constrained: E-F1=84.01% [83.20, 84.79], R-F1=43.83% [42.21, 45.48]\\\\n\\\\n  Paired test (constrained - unconstrained):\\\\n    ΔE-F1 = +0.00pp  95%CI [-0.15, +0.18]  p=0.9844\\\\n    ΔR-F1 = +0.02pp  95%CI [-0.15, +0.22]  p=0.8506\\\\n    Significance: E-F1 n.s., R-F1 n.s.\\\\n\\\\n\\\\n======================================================================\\\\n  SUMMARY TABLE\\\\n======================================================================\\\\nSetting                ΔR-F1 (pp)   95% CI                 p-value    Sig  \\\\n──────────────────────────────────────────────────────────────────────\\\\nQwen-LoRA-SciERC       -0.10        [-0.30, +0.00]    0.7260     n.s.\\\\nQwen-LoRA-DocRED       -0.37        [-0.76, -0.05]    0.0140     *\\\\nLlama-LoRA-SciERC      +0.02        [+0.00, +0.07]    0.7364     n.s.\\\\nLlama-LoRA-DocRED      +0.02        [-0.15, +0.22]    0.8506     n.s.\\\\n\\\\nSetting                ΔE-F1 (pp)   95% CI                 p-value    Sig  \\\\n──────────────────────────────────────────��───────────────────────────\\\\nQwen-LoRA-SciERC       +0.00        [+0.00, +0.00]    1.0000     n.s.\\\\nQwen-LoRA-DocRED       -0.73        [-1.21, -0.30]    0.0004     ***\\\\nLlama-LoRA-SciERC      +0.00        [+0.00, +0.00]    1.0000     n.s.\\\\nLlama-LoRA-DocRED      +0.00        [-0.15, +0.18]    0.9844     n.s.\\\\n\\\\nJSON saved to outputs/bootstrap_ci_ft_composability.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\n  FT (LoRA) Composability Bootstrap Test: Constrained vs Unconstrained\\n  N_bootstrap = 10000, seed = 42, CI = 95% percentile\\n======================================================================\\n\\n──────────────────────────────────────────────────\\n  Qwen-LoRA-SciERC\\n──────────────────────────────────────────────────\\n  Samples: unconstrained=551, constrained=551\\n  unconstrained: E-F1=67.05% [64.76, 69.33], R-F1=43.86% [39.90, 47.78]\\n  constrained: E-F1=67.05% [64.76, 69.33], R-F1=43.77% [39.80, 47.66]\\n\\n  Paired test (constrained - unconstrained):\\n    ΔE-F1 = +0.00pp  95%CI [+0.00, +0.00]  p=1.0000\\n    ΔR-F1 = -0.10pp  95%CI [-0.30, +0.00]  p=0.7260\\n    Significance: E-F1 n.s., R-F1 n.s.\\n\\n──────────���───────────────────────────────────────\\n  Qwen-LoRA-DocRED\\n──────────────────────────────────────────────────\\n  Samples: unconstrained=998, constrained=998\\n  unconstrained: E-F1=82.22% [81.14, 83.24], R-F1=40.97% [39.32, 42.58]\\n  constrained: E-F1=81.50% [80.33, 82.58], R-F1=40.60% [38.94, 42.23]\\n\\n  Paired test (constrained - unconstrained):\\n    ΔE-F1 = -0.73pp  95%CI [-1.21, -0.30]  p=0.0004\\n    ΔR-F1 = -0.37pp  95%CI [-0.76, -0.05]  p=0.0140\\n    Significance: E-F1 ***, R-F1 *\\n\\n──────────────────────────────────────────────────\\n  Llama-LoRA-SciERC\\n──────────────────────────────────────────────────\\n  Samples: unconstrained=551, constrained=551\\n  unconstrained: E-F1=67.76% [65.51, 70.02], R-F1=45.45% [41.41, 49.41]\\n  constrained: E-F1=67.76% [65.51, 70.02], R-F1=45.47% [41.42, 49.47]\\n\\n  Paired test (constrained - unconstrained):\\n    ΔE-F1 = +0.00pp  95%CI [+0.00, +0.00]  p=1.0000\\n    ΔR-F1 = +0.02pp  95%CI [+0.00, +0.07]  p=0.7364\\n    Significance: E-F1 n.s., R-F1 n.s.\\n\\n──────────────────────────────────────────────────\\n  Llama-LoRA-DocRED\\n──────────────────────────────────────────────────\\n  Samples: unconstrained=998, constrained=998\\n  unconstrained: E-F1=84.01% [83.19, 84.79], R-F1=43.81% [42.18, 45.46]\\n  constrained: E-F1=84.01% [83.20, 84.79], R-F1=43.83% [42.21, 45.48]\\n\\n  Paired test (constrained - unconstrained):\\n    ΔE-F1 = +0.00pp  95%CI [-0.15, +0.18]  p=0.9844\\n    ΔR-F1 = +0.02pp  95%CI [-0.15, +0.22]  p=0.8506\\n    Significance: E-F1 n.s., R-F1 n.s.\\n\\n\\n======================================================================\\n  SUMMARY TABLE\\n======================================================================\\nSetting                ΔR-F1 (pp)   95% CI                 p-value    Sig  \\n──────────────────────────────────────────────────────────────────────\\nQwen-LoRA-SciERC       -0.10        [-0.30, +0.00]    0.7260     n.s.\\nQwen-LoRA-DocRED       -0.37        [-0.76, -0.05]    0.0140     *\\nLlama-LoRA-SciERC      +0.02        [+0.00, +0.07]    0.7364     n.s.\\nLlama-LoRA-DocRED      +0.02        [-0.15, +0.22]    0.8506     n.s.\\n\\nSetting                ΔE-F1 (pp)   95% CI                 p-value    Sig  \\n──────────────────────────────────────────��───────────────────────────\\nQwen-LoRA-SciERC       +0.00        [+0.00, +0.00]    1.0000     n.s.\\nQwen-LoRA-DocRED       -0.73        [-1.21, -0.30]    0.0004     ***\\nLlama-LoRA-SciERC      +0.00        [+0.00, +0.00]    1.0000     n.s.\\nLlama-LoRA-DocRED      +0.00        [-0.15, +0.18]    0.9844     n.s.\\n\\nJSON saved to outputs/bootstrap_ci_ft_composability.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The results are already computed. Let me format them in the requested format. The user wanted:
+
+For each of 4 combinations:
+- Unconstrained R-F1 [95% CI]
+- S1 R-F1 [95% CI]
+- Δ R-F1 [95% CI]
+- p-value (paired bootstrap)
+
+From the output:
+
+**SciERC Qwen FT:** unc R-F1 = 43.86 [39.90, 47.78], S1 R-F1 = 43.77 [39.80, 47.66], Δ = -0.10 [-0.30, +0.00], p = 0.726
+
+
+**SciERC Llama FT:** unc R-F1 = 45.45 [41.41, 49.41], S1 R-F1 = 45.47 [41.42, 49.47], Δ = +0.02 [+0.00, +0.07], p = 0.736
+**DocRED Qwen FT:** unc R-F1 = 40.97 [39.32, 42.58], S1 R-F1 = 40.60 [38.94, 42.23], Δ = -0.37 [-0.76, -0.05], p = 0.014
+**DocRED Llama FT:** unc R-F1 = 43.81 [42.18, 45.46], S1 R-F1 = 43.83 [42.21, 45.48], Δ = +0.02 [-0.15, +0.22], p = 0.851
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "a3290cf8-26fb-4f3d-a808-b35f00f6eac2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013SKdAxep2cCwb3cvnpioit",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1842,
+      "cache_read_input_tokens": 46801,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1842
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+结果（10,000 bootstrap iterations, seed=42, 95% percentile CI）:
+
+```
+SciERC Qwen FT:  unc R-F1 = 43.86 [39.90, 47.78], S1 R-F1 = 43.77 [39.80, 47.66], Δ = -0.10 [-0.30, +0.00], p = 0.726 (n.s.)
+SciERC Llama FT: unc R-F1 = 45.45 [41.41, 49.41], S1 R-F1 = 45.47 [41.42, 49.47], Δ = +0.02 [+0.00, +0.07], p = 0.736 (n.s.)
+DocRED Qwen FT:  unc R-F1 = 40.97 [39.32, 42.58], S1 R-F1 = 40.60 [38.94, 42.23], Δ = -0.37 [-0.76, -0.05], p = 0.014 *
+DocRED Llama FT: unc R-F1 = 43.81 [42.18, 45.46], S1 R-F1 = 43.83 [42.21, 45.48], Δ = +0.02 [-0.15, +0.22], p = 0.851 (n.s.)
+```
+
+已有脚本 `compute_bootstrap_ci_ft.py` 直接复用，结果已保存到 `outputs/bootstrap_ci_ft_composability.json`。
+
+关键发现：4 组 FT 中仅 DocRED Qwen 的 S1 约束显著降低了 R-F1（-0.37pp, p=0.014），其余 3 组差异均不显著（p > 0.7）。SciERC 两个模型的 Δ 几乎为零。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "uuid": "694a7266-ac55-4701-9260-7b919fb67f9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013SKdAxep2cCwb3cvnpioit",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1842,
+      "cache_read_input_tokens": 46801,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1842
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 44_
+
+结果（10,000 bootstrap iterations, seed=42, 95% percentile CI）:
+
+```
+SciERC Qwen FT:  unc R-F1 = 43.86 [39.90, 47.78], S1 R-F1 = 43.77 [39.80, 47.66], Δ = -0.10 [-0.30, +0.00], p = 0.726 (n.s.)
+SciERC Llama FT: unc R-F1 = 45.45 [41.41, 49.41], S1 R-F1 = 45.47 [41.42, 49.47], Δ = +0.02 [+0.00, +0.07], p = 0.736 (n.s.)
+DocRED Qwen FT:  unc R-F1 = 40.97 [39.32, 42.58], S1 R-F1 = 40.60 [38.94, 42.23], Δ = -0.37 [-0.76, -0.05], p = 0.014 *
+DocRED Llama FT: unc R-F1 = 43.81 [42.18, 45.46], S1 R-F1 = 43.83 [42.21, 45.48], Δ = +0.02 [-0.15, +0.22], p = 0.851 (n.s.)
+```
+
+已有脚本 `compute_bootstrap_ci_ft.py` 直接复用，结果已保存到 `outputs/bootstrap_ci_ft_composability.json`。
+
+关键发现：4 组 FT 中仅 DocRED Qwen 的 S1 约束显著降低了 R-F1（-0.37pp, p=0.014），其余 3 组差异均不显著（p > 0.7）。SciERC 两个模型的 Δ 几乎为零。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 84972,
+  "duration_api_ms": 75115,
+  "num_turns": 15,
+  "stop_reason": "end_turn",
+  "session_id": "c5d41e8c-a011-47fc-8fe6-28045310b7a4",
+  "total_cost_usd": 0.44094500000000003,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 36802,
+    "cache_read_input_tokens": 212325,
+    "output_tokens": 4110,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 36802,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 962,
+        "cache_read_input_tokens": 46801,
+        "cache_creation_input_tokens": 1842,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1842
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1865,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0019649999999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 4110,
+      "cacheReadInputTokens": 212325,
+      "cacheCreationInputTokens": 36802,
+      "webSearchRequests": 0,
+      "costUSD": 0.43898000000000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "c4a4a004-e2d9-4941-ba38-b1198a017f12"
+}
+```
+
+</details>
+
+---

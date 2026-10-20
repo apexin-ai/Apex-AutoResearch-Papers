@@ -1,0 +1,15 @@
+{
+  "exp_id": "r14_llama_docred_beam4_998",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:47:34.166Z",
+    "updated_at": "2026-05-20T21:47:43.519Z",
+    "hypothesis": "Beam=4 S1 constrained on full DocRED 998-doc with Llama-3.1-8B will confirm DR elimination and R-F1 stability seen in 50-doc subset, providing second model evidence for SF3"
+  },
+  "timestamp": "2026-05-20T21:47:43.866459+00:00",
+  "trigger": "update_registry"
+}

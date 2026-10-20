@@ -1,0 +1,15 @@
+{
+  "exp_id": "phase2_scierc_grammar_only",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T21:48:43.487Z",
+    "updated_at": "2026-05-13T21:52:56.418Z",
+    "hypothesis": "Grammar-only constrained decoding (XGrammar JSON schema + enum) 能否消除 relation vocabulary violations 同时不影响 F1？预期 rv_violation→0%, dr_violation 不变"
+  },
+  "timestamp": "2026-05-13T21:52:56.458584+00:00",
+  "trigger": "update_registry"
+}

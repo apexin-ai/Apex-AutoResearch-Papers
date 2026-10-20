@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19875e0c40fc011761a1",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code docred lora eval prep",
+  "task_key": "worker_code_docred_lora_eval_prep_20260515T182621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_docred_lora_eval_prep_20260515T182621_result.json",
+    "occurrence": 1,
+    "bytes": 1630,
+    "sha256": "0305c25b35728b45cae609620ef3b29e3a03106d49002013ca63876b76eca80e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已就绪。汇总：\n\n**脚本路径**: `scripts/run_docred_lora_eval.sh`\n\n**Merged checkpoint 路径**:\n- Qwen: `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged`\n- Llama: `/root/autodl-tmp/checkpoints/llama_lora_docred_merged`\n\n**4 个 eval 命令**:\n\n| 命令 | mode | model | device | output |\n|------|------|-------|--------|--------|\n| `qwen_unconstrained` | unconstrained | qwen_lora_docred_merged | cuda:1 | `outputs/w5_qwen_docred_lora_unconstrained_eval.jsonl` |\n| `qwen_constrained` | full_s1 | qwen_lora_docred_merged | cuda:1 | `outputs/w5_qwen_docred_lora_constrained_eval.jsonl` |\n| `llama_unconstrained` | unconstrained | llama_lora_docred_merged | cuda:0 | `outputs/w5_llama_docred_lora_unconstrained_eval.jsonl` |\n| `llama_constrained` | full_s1 | llama_lora_docred_merged | cuda:0 | `outputs/w5_llama_docred_lora_constrained_eval.jsonl` |\n\n所有命令：`--dataset docred`, `--data_path data/docred/dev.json`, `--constraints_path data/docred/ontology_constraints_docred.json`, `--max_new_tokens 4096`, `--batch_size 1`\n\n**DocRED vs SciERC 差异**:\n- 无特殊处理差异。`run_constrained_extraction.py` 通过 `--dataset docred` 参数切换数据加载函数 (`load_docred_data`) 和 prompt 模板，约束文件也是独立的 `ontology_constraints_docred.json`\n- SciERC 的 merged model 在 `checkpoints/` 下有 symlink → autodl-tmp；DocRED 训练完成后需要确认 merged 目录是否正确写入（或手动创建 symlink）\n\n**用法**: `bash scripts/run_docred_lora_eval.sh qwen_unconstrained` 单跑，或 `all` 全跑。语法校验通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-docred-lora-eval-prep-copy-3.md"
+}

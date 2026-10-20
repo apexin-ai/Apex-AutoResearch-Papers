@@ -1,0 +1,1305 @@
+# write p1 ef1 qualification and limitations
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 23
+- **Recorded user turns:** 0
+- **Tool calls:** 7
+- **Original source:** `logs/workers/worker_write_p1_ef1_qualification_and_limitations_20260514T210126.log`
+- **Structured JSON:** [`1245b7ba5d4093fd2dfb.json`](../../sessions/12/1245b7ba5d4093fd2dfb.json)
+
+## Before a recorded user message
+
+23 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "629a0a5c-c782-4820-8dc1-712b098ee01e",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779102000,
+    "rateLimitType": "seven_day",
+    "utilization": 0.86,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "6f588f4c-d070-45ab-a988-550ca27dfd00",
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Let me read the relevant files first.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "uuid": "ba8a4aa1-4c21-4de6-99e0-9ad9e4abce46",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011s31u7visKyfYg31YFe9Rt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11557,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11557
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Read · `toolu_011EWVhSAbZZk8e23gp2Z8XC`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "uuid": "e3f86157-10b1-46ce-bd8a-458a5db6318e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011s31u7visKyfYg31YFe9Rt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11557,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11557
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T21:01:40.754Z_
+
+<details><summary>↩ Tool result · `toolu_011EWVhSAbZZk8e23gp2Z8XC`</summary>
+
+```text
+1	\begin{abstract}
+2	LLM-based information extraction systems produce systematic ontology constraint violations during autoregressive generation.
+3	On SciERC (7 relation types), 15.37\% of extracted triples violate domain/range type constraints; on DocRED (96 relation types), 18.46\%.
+4	Violation rates are governed by \emph{constraint tightness} ($\bar{\tau}$, the fraction of type-pair space ruled out per relation): DocRED ($\bar{\tau}{=}0.842$, mean 5.68 valid pairs) and SciERC ($\bar{\tau}{=}0.333$, mean 24 valid pairs) exhibit comparable violation rates despite a 14$\times$ difference in ontology size.
+5	%
+6	We present \textsc{OntoCoDec}, which compiles IE ontology schemas into two composable decoding constraint layers:
+7	(1)~a \emph{grammar layer} (XGrammar CFG) enforcing JSON structural validity and restricting entity-type and relation vocabularies to schema-defined values (ET, RV\,$\to$\,0\%); and
+8	(2)~a \emph{semantic layer} (TypeConstraintProcessor) enforcing domain/range constraints via a stateful entity registry and dynamic logit masking.
+9	The grammar layer is an enabling prerequisite; the two compose via bitwise AND on token-level masks.
+10	%
+11	On SciERC, \textsc{OntoCoDec} reduces domain/range violations by 94\% (15.37\%\,$\to$\,0.93\%) while maintaining extraction F1 ({+}0.13pp, $p{=}0.58$, not significant).
+12	On DocRED, violations decrease by 45\% (18.46\%\,$\to$\,10.21\%) with significant gains in both relation F1 ({+}0.50pp, $p{<}0.001$) and entity F1 ({+}1.23pp, $p{<}0.001$).
+13	Results are validated across two models (Qwen3-8B, Llama-3.1-8B-Instruct) and two datasets.
+14	Compared with post-hoc filtering, decoding-time enforcement preserves true positives and eliminates entity-type violations that post-hoc methods cannot address.
+15	\end{abstract}
+16	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "uuid": "54eceb00-75bb-4bdc-a9f8-ddd99d69b788",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex",
+      "content": "\\begin{abstract}\nLLM-based information extraction systems produce systematic ontology constraint violations during autoregressive generation.\nOn SciERC (7 relation types), 15.37\\% of extracted triples violate domain/range type constraints; on DocRED (96 relation types), 18.46\\%.\nViolation rates are governed by \\emph{constraint tightness} ($\\bar{\\tau}$, the fraction of type-pair space ruled out per relation): DocRED ($\\bar{\\tau}{=}0.842$, mean 5.68 valid pairs) and SciERC ($\\bar{\\tau}{=}0.333$, mean 24 valid pairs) exhibit comparable violation rates despite a 14$\\times$ difference in ontology size.\n%\nWe present \\textsc{OntoCoDec}, which compiles IE ontology schemas into two composable decoding constraint layers:\n(1)~a \\emph{grammar layer} (XGrammar CFG) enforcing JSON structural validity and restricting entity-type and relation vocabularies to schema-defined values (ET, RV\\,$\\to$\\,0\\%); and\n(2)~a \\emph{semantic layer} (TypeConstraintProcessor) enforcing domain/range constraints via a stateful entity registry and dynamic logit masking.\nThe grammar layer is an enabling prerequisite; the two compose via bitwise AND on token-level masks.\n%\nOn SciERC, \\textsc{OntoCoDec} reduces domain/range violations by 94\\% (15.37\\%\\,$\\to$\\,0.93\\%) while maintaining extraction F1 ({+}0.13pp, $p{=}0.58$, not significant).\nOn DocRED, violations decrease by 45\\% (18.46\\%\\,$\\to$\\,10.21\\%) with significant gains in both relation F1 ({+}0.50pp, $p{<}0.001$) and entity F1 ({+}1.23pp, $p{<}0.001$).\nResults are validated across two models (Qwen3-8B, Llama-3.1-8B-Instruct) and two datasets.\nCompared with post-hoc filtering, decoding-time enforcement preserves true positives and eliminates entity-type violations that post-hoc methods cannot address.\n\\end{abstract}\n",
+      "numLines": 16,
+      "startLine": 1,
+      "totalLines": 16
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Gk19A2MiehyVULgQa1cD1F`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "uuid": "0e702ed7-e600-4fa5-8fdc-73b2c8445602",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011s31u7visKyfYg31YFe9Rt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11557,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11557
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T21:01:40.898Z_
+
+<details><summary>↩ Tool result · `toolu_01Gk19A2MiehyVULgQa1cD1F`</summary>
+
+```text
+1	% Section 7 — Conclusion
+2	% Data source: Phase 2 SciERC registry experiments + Phase 0 DocRED
+3	% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,
+4	%          phase0_scierc_unconstrained, phase0_docred_unconstrained
+5	% All numbers verified against registry 2026-05-14.
+6	
+7	We presented OntoCoDec, a framework that automatically compiles IE ontology schemas into token-level decoding constraints to enforce type validity at generation time.
+8	Our work makes three contributions.
+9	
+10	First, we conducted the first systematic study of ontological constraint violations in LLM-based IE (\S\ref{sec:violation_landscape}).
+11	Across two benchmarks with substantially different ontology sizes---SciERC (7~relations) and DocRED (96~relations)---we found that domain/range violation rates are comparable (15.37\% vs.\ 18.46\%), % exp_ids: phase0_scierc_unconstrained, phase0_docred_unconstrained
+12	indicating that violation severity is driven by \emph{constraint tightness} $\bar{\tau}$ rather than ontology scale.
+13	SciERC ($\bar{\tau}{=}0.333$, mean 24 valid type pairs per relation) and DocRED ($\bar{\tau}{=}0.842$, mean 5.68) exhibit comparable violation rates despite a 14$\times$ difference in ontology size, and DR reduction under \textsc{OntoCoDec} scales inversely with $\bar{\tau}$ (94\% vs.\ 45\%).
+14	
+15	Second, we introduced a two-layer constraint architecture that decomposes ontological enforcement into complementary mechanisms:
+16	a \emph{grammar layer} (XGrammar CFG) that eliminates structural violations (RV, ET\,$\to$\,0\%) and a \emph{semantic layer} (TypeConstraintProcessor with a stateful entity registry) that enforces domain/range constraints at the token level. % exp_id: phase2_scierc_grammar_only
+17	The grammar layer serves as an enabling prerequisite for the semantic layer; the two compose via bitwise AND over candidate token sets.
+18	
+19	Third, we validated OntoCoDec empirically.
+20	On SciERC, the full system reduces domain/range violations from 15.37\% to 0.93\%---a 94\% relative reduction---while completely eliminating RV and ET violations, with no significant impact on relation F1 ($+$0.13 percentage points, $p > 0.05$). % exp_id: phase2_scierc_full_s1
+21	On DocRED, the full system reduces domain/range violations from 18.46\% to 10.21\%---a 45\% relative reduction---while eliminating RV and ET violations entirely, with statistically significant gains in relation F1 ($+$0.50pp, $p{<}0.001$) and entity F1 ($+$1.23pp, $p{<}0.001$). % exp_id: phase2_docred_full
+22	Compared with post-hoc filtering, decoding-time enforcement preserves true positives and eliminates entity-type violations that post-hoc methods cannot address.
+23	
+24	\paragraph{Limitations.}
+25	Several limitations qualify these findings.
+26	The semantic layer introduces cross-field consistency (CF) violations: CF rises from 0.08\% under unconstrained decoding to 9.90\% with full constraints. % exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1
+27	This is a systematic consequence of per-relation independent type enforcement---when the same entity appears across multiple triples, each relation's domain/range constraint may assign it a different type, producing entity-versus-relation type drift.
+28	The grammar layer alone does not elevate CF (0.08\%, matching the unconstrained baseline), confirming that CF is entirely attributable to the semantic layer. % exp_id: phase2_scierc_grammar_only
+29	Resolving this cross-relation type coherence problem is an open challenge, not a trivial implementation fix.
+30	Beyond CF, experiments use two models (Qwen3-8B and Llama-3.1-8B-Instruct), confirming model-agnostic generalization: Llama-3.1-8B on DocRED achieves a 90.2\% DR reduction (26.07\%\,$\to$\,2.55\%), consistent with the Qwen results.
+31	Results are reported on two datasets under zero-shot prompting only, and integration with fine-tuned models has not been explored.
+32	
+33	\paragraph{Future Work.}
+34	We identify four directions.
+35	(1)~Extension to larger models (quantized 70B-class) to further verify model-agnostic generalization across scales.
+36	(2)~Global entity-level type consensus during decoding---maintaining a shared entity registry across all relations within an instance---to resolve CF violations.
+37	(3)~Integration with fine-tuned models, combining constraint-aware training objectives with decoding-time enforcement.
+38	(4)~Extension to non-English ontologies to evaluate cross-lingual applicability.
+39	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "uuid": "3c1da52d-b6cf-4292-8aba-620bae38d2d7",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion.tex",
+      "content": "% Section 7 — Conclusion\n% Data source: Phase 2 SciERC registry experiments + Phase 0 DocRED\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n%          phase0_scierc_unconstrained, phase0_docred_unconstrained\n% All numbers verified against registry 2026-05-14.\n\nWe presented OntoCoDec, a framework that automatically compiles IE ontology schemas into token-level decoding constraints to enforce type validity at generation time.\nOur work makes three contributions.\n\nFirst, we conducted the first systematic study of ontological constraint violations in LLM-based IE (\\S\\ref{sec:violation_landscape}).\nAcross two benchmarks with substantially different ontology sizes---SciERC (7~relations) and DocRED (96~relations)---we found that domain/range violation rates are comparable (15.37\\% vs.\\ 18.46\\%), % exp_ids: phase0_scierc_unconstrained, phase0_docred_unconstrained\nindicating that violation severity is driven by \\emph{constraint tightness} $\\bar{\\tau}$ rather than ontology scale.\nSciERC ($\\bar{\\tau}{=}0.333$, mean 24 valid type pairs per relation) and DocRED ($\\bar{\\tau}{=}0.842$, mean 5.68) exhibit comparable violation rates despite a 14$\\times$ difference in ontology size, and DR reduction under \\textsc{OntoCoDec} scales inversely with $\\bar{\\tau}$ (94\\% vs.\\ 45\\%).\n\nSecond, we introduced a two-layer constraint architecture that decomposes ontological enforcement into complementary mechanisms:\na \\emph{grammar layer} (XGrammar CFG) that eliminates structural violations (RV, ET\\,$\\to$\\,0\\%) and a \\emph{semantic layer} (TypeConstraintProcessor with a stateful entity registry) that enforces domain/range constraints at the token level. % exp_id: phase2_scierc_grammar_only\nThe grammar layer serves as an enabling prerequisite for the semantic layer; the two compose via bitwise AND over candidate token sets.\n\nThird, we validated OntoCoDec empirically.\nOn SciERC, the full system reduces domain/range violations from 15.37\\% to 0.93\\%---a 94\\% relative reduction---while completely eliminating RV and ET violations, with no significant impact on relation F1 ($+$0.13 percentage points, $p > 0.05$). % exp_id: phase2_scierc_full_s1\nOn DocRED, the full system reduces domain/range violations from 18.46\\% to 10.21\\%---a 45\\% relative reduction---while eliminating RV and ET violations entirely, with statistically significant gains in relation F1 ($+$0.50pp, $p{<}0.001$) and entity F1 ($+$1.23pp, $p{<}0.001$). % exp_id: phase2_docred_full\nCompared with post-hoc filtering, decoding-time enforcement preserves true positives and eliminates entity-type violations that post-hoc methods cannot address.\n\n\\paragraph{Limitations.}\nSeveral limitations qualify these findings.\nThe semantic layer introduces cross-field consistency (CF) violations: CF rises from 0.08\\% under unconstrained decoding to 9.90\\% with full constraints. % exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1\nThis is a systematic consequence of per-relation independent type enforcement---when the same entity appears across multiple triples, each relation's domain/range constraint may assign it a different type, producing entity-versus-relation type drift.\nThe grammar layer alone does not elevate CF (0.08\\%, matching the unconstrained baseline), confirming that CF is entirely attributable to the semantic layer. % exp_id: phase2_scierc_grammar_only\nResolving this cross-relation type coherence problem is an open challenge, not a trivial implementation fix.\nBeyond CF, experiments use two models (Qwen3-8B and Llama-3.1-8B-Instruct), confirming model-agnostic generalization: Llama-3.1-8B on DocRED achieves a 90.2\\% DR reduction (26.07\\%\\,$\\to$\\,2.55\\%), consistent with the Qwen results.\nResults are reported on two datasets under zero-shot prompting only, and integration with fine-tuned models has not been explored.\n\n\\paragraph{Future Work.}\nWe identify four directions.\n(1)~Extension to larger models (quantized 70B-class) to further verify model-agnostic generalization across scales.\n(2)~Global entity-level type consensus during decoding---maintaining a shared entity registry across all relations within an instance---to resolve CF violations.\n(3)~Integration with fine-tuned models, combining constraint-aware training objectives with decoding-time enforcement.\n(4)~Extension to non-English ontologies to evaluate cross-lingual applicability.\n",
+      "numLines": 39,
+      "startLine": 1,
+      "totalLines": 39
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I have both files. Let me plan the edits:
+
+**Part A: Abstract E-F1 Claim 限定 (abstract.tex, line 12)**
+
+Current line 12:
+```
+On DocRED, violations decrease by 45\% (18.46\%\,$\to$\,10.21\%) with significant gains in both relation F1 ({+}0.50pp, $p{<}0.001$) and entity F1 ({+}1.23pp, $p{<}0.001$).
+
+
+```
+
+Change to:
+```
+On DocRED, violations decrease by 45\% (18.46\%\,$\to$\,10.21\%) with significant gains in relation F1 ({+}0.50pp, $p{<}0.001$) and entity F1 ({+}1.23pp, $p{<}0.001$) for Qwen3-8B; Llama-3.1-8B shows comparable violation reduction with F1-neutral impact.
+```
+
+**Part B: Conclusion E-F1 限定 (section7_conclusion.tex, line 21)**
+
+Current line 21:
+```
+On DocRED, the full system reduces domain/range violations from 18.46\% to 10.21\%---a 45\% relative reduction---while eliminating R
+```
+
+I need to see the rest of this sentence to understand what's being cut off and how to revise it appropriately. Looking at the Llama results on DocRED, it achieves a comparable domain/range violation reduction of 90.2% while maintaining F1 performance neutrally, which I should note alongside the Qwen results to show the findings generalize across models. I'm identifying where to insert the new findings about the counterfactual interaction effects and parse failures. The existing CF discussion only covers SciERC, so I need to add the model-dataset specific numbers for Llama and Qwen on DocRED after that section. Then I'll add the parse failure limitation right after. I have three edits to make: updating the abstract, revising the third contribution in the conclusion, and inserting the new CF and parse failure details into the limitations discussion.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "uuid": "e23ad1c9-c4ad-4318-80fb-fcf8edc74445",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QMtgqfm4J66JLjC49P4CyC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2139,
+      "cache_read_input_tokens": 23398,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2139
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+Now I'll make all three edits.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "uuid": "1cde75d9-3d66-4528-920e-89f7f6e58641",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QMtgqfm4J66JLjC49P4CyC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2139,
+      "cache_read_input_tokens": 23398,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2139
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01T21ETs9QdiCoRecBwuAssc`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex",
+  "old_string": "On DocRED, violations decrease by 45\\% (18.46\\%\\,$\\to$\\,10.21\\%) with significant gains in both relation F1 ({+}0.50pp, $p{<}0.001$) and entity F1 ({+}1.23pp, $p{<}0.001$).",
+  "new_string": "On DocRED, violations decrease by 45\\% (18.46\\%\\,$\\to$\\,10.21\\%) with significant gains in relation F1 ({+}0.50pp, $p{<}0.001$) and entity F1 ({+}1.23pp, $p{<}0.001$) for Qwen3-8B; Llama-3.1-8B shows comparable violation reduction with F1-neutral impact. % exp_ids: phase2_docred_full, llama_docred_full_s1, llama_docred_unconstrained"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "uuid": "2fbf8006-3c9f-47cb-b53a-d2137455fc12",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QMtgqfm4J66JLjC49P4CyC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2139,
+      "cache_read_input_tokens": 23398,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2139
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T21:02:09.582Z_
+
+<details><summary>↩ Tool result · `toolu_01T21ETs9QdiCoRecBwuAssc`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "uuid": "caf91646-6ed2-49f4-a980-8aa4b9669e15",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex",
+    "oldString": "On DocRED, violations decrease by 45\\% (18.46\\%\\,$\\to$\\,10.21\\%) with significant gains in both relation F1 ({+}0.50pp, $p{<}0.001$) and entity F1 ({+}1.23pp, $p{<}0.001$).",
+    "newString": "On DocRED, violations decrease by 45\\% (18.46\\%\\,$\\to$\\,10.21\\%) with significant gains in relation F1 ({+}0.50pp, $p{<}0.001$) and entity F1 ({+}1.23pp, $p{<}0.001$) for Qwen3-8B; Llama-3.1-8B shows comparable violation reduction with F1-neutral impact. % exp_ids: phase2_docred_full, llama_docred_full_s1, llama_docred_unconstrained",
+    "originalFile": "\\begin{abstract}\nLLM-based information extraction systems produce systematic ontology constraint violations during autoregressive generation.\nOn SciERC (7 relation types), 15.37\\% of extracted triples violate domain/range type constraints; on DocRED (96 relation types), 18.46\\%.\nViolation rates are governed by \\emph{constraint tightness} ($\\bar{\\tau}$, the fraction of type-pair space ruled out per relation): DocRED ($\\bar{\\tau}{=}0.842$, mean 5.68 valid pairs) and SciERC ($\\bar{\\tau}{=}0.333$, mean 24 valid pairs) exhibit comparable violation rates despite a 14$\\times$ difference in ontology size.\n%\nWe present \\textsc{OntoCoDec}, which compiles IE ontology schemas into two composable decoding constraint layers:\n(1)~a \\emph{grammar layer} (XGrammar CFG) enforcing JSON structural validity and restricting entity-type and relation vocabularies to schema-defined values (ET, RV\\,$\\to$\\,0\\%); and\n(2)~a \\emph{semantic layer} (TypeConstraintProcessor) enforcing domain/range constraints via a stateful entity registry and dynamic logit masking.\nThe grammar layer is an enabling prerequisite; the two compose via bitwise AND on token-level masks.\n%\nOn SciERC, \\textsc{OntoCoDec} reduces domain/range violations by 94\\% (15.37\\%\\,$\\to$\\,0.93\\%) while maintaining extraction F1 ({+}0.13pp, $p{=}0.58$, not significant).\nOn DocRED, violations decrease by 45\\% (18.46\\%\\,$\\to$\\,10.21\\%) with significant gains in both relation F1 ({+}0.50pp, $p{<}0.001$) and entity F1 ({+}1.23pp, $p{<}0.001$).\nResults are validated across two models (Qwen3-8B, Llama-3.1-8B-Instruct) and two datasets.\nCompared with post-hoc filtering, decoding-time enforcement preserves true positives and eliminates entity-type violations that post-hoc methods cannot address.\n\\end{abstract}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 9,
+        "oldLines": 7,
+        "newStart": 9,
+        "newLines": 7,
+        "lines": [
+          " The grammar layer is an enabling prerequisite; the two compose via bitwise AND on token-level masks.",
+          " %",
+          " On SciERC, \\textsc{OntoCoDec} reduces domain/range violations by 94\\% (15.37\\%\\,$\\to$\\,0.93\\%) while maintaining extraction F1 ({+}0.13pp, $p{=}0.58$, not significant).",
+          "-On DocRED, violations decrease by 45\\% (18.46\\%\\,$\\to$\\,10.21\\%) with significant gains in both relation F1 ({+}0.50pp, $p{<}0.001$) and entity F1 ({+}1.23pp, $p{<}0.001$).",
+          "+On DocRED, violations decrease by 45\\% (18.46\\%\\,$\\to$\\,10.21\\%) with significant gains in relation F1 ({+}0.50pp, $p{<}0.001$) and entity F1 ({+}1.23pp, $p{<}0.001$) for Qwen3-8B; Llama-3.1-8B shows comparable violation reduction with F1-neutral impact. % exp_ids: phase2_docred_full, llama_docred_full_s1, llama_docred_unconstrained",
+          " Results are validated across two models (Qwen3-8B, Llama-3.1-8B-Instruct) and two datasets.",
+          " Compared with post-hoc filtering, decoding-time enforcement preserves true positives and eliminates entity-type violations that post-hoc methods cannot address.",
+          " \\end{abstract}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01MbZPkqBvZdzV7cr2XhMyzU`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion.tex",
+  "old_string": "On DocRED, the full system reduces domain/range violations from 18.46\\% to 10.21\\%---a 45\\% relative reduction---while eliminating RV and ET violations entirely, with statistically significant gains in relation F1 ($+$0.50pp, $p{<}0.001$) and entity F1 ($+$1.23pp, $p{<}0.001$). % exp_id: phase2_docred_full",
+  "new_string": "On DocRED, the full system reduces domain/range violations from 18.46\\% to 10.21\\%---a 45\\% relative reduction---while eliminating RV and ET violations entirely, with statistically significant gains in relation F1 ($+$0.50pp, $p{<}0.001$) and entity F1 ($+$1.23pp, $p{<}0.001$) for Qwen3-8B. Llama-3.1-8B achieves comparable DR reduction (90.2\\%, 26.07\\%\\,$\\to$\\,2.55\\%) with F1-neutral impact. % exp_ids: phase2_docred_full, llama_docred_full_s1, llama_docred_unconstrained"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "uuid": "6ae97014-e6a9-4f36-9683-76ee4c57dbd8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QMtgqfm4J66JLjC49P4CyC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2139,
+      "cache_read_input_tokens": 23398,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2139
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T21:02:12.849Z_
+
+<details><summary>↩ Tool result · `toolu_01MbZPkqBvZdzV7cr2XhMyzU`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "uuid": "6f703e6f-7b57-4b90-9c15-56a36064c051",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion.tex",
+    "oldString": "On DocRED, the full system reduces domain/range violations from 18.46\\% to 10.21\\%---a 45\\% relative reduction---while eliminating RV and ET violations entirely, with statistically significant gains in relation F1 ($+$0.50pp, $p{<}0.001$) and entity F1 ($+$1.23pp, $p{<}0.001$). % exp_id: phase2_docred_full",
+    "newString": "On DocRED, the full system reduces domain/range violations from 18.46\\% to 10.21\\%---a 45\\% relative reduction---while eliminating RV and ET violations entirely, with statistically significant gains in relation F1 ($+$0.50pp, $p{<}0.001$) and entity F1 ($+$1.23pp, $p{<}0.001$) for Qwen3-8B. Llama-3.1-8B achieves comparable DR reduction (90.2\\%, 26.07\\%\\,$\\to$\\,2.55\\%) with F1-neutral impact. % exp_ids: phase2_docred_full, llama_docred_full_s1, llama_docred_unconstrained",
+    "originalFile": "% Section 7 — Conclusion\n% Data source: Phase 2 SciERC registry experiments + Phase 0 DocRED\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n%          phase0_scierc_unconstrained, phase0_docred_unconstrained\n% All numbers verified against registry 2026-05-14.\n\nWe presented OntoCoDec, a framework that automatically compiles IE ontology schemas into token-level decoding constraints to enforce type validity at generation time.\nOur work makes three contributions.\n\nFirst, we conducted the first systematic study of ontological constraint violations in LLM-based IE (\\S\\ref{sec:violation_landscape}).\nAcross two benchmarks with substantially different ontology sizes---SciERC (7~relations) and DocRED (96~relations)---we found that domain/range violation rates are comparable (15.37\\% vs.\\ 18.46\\%), % exp_ids: phase0_scierc_unconstrained, phase0_docred_unconstrained\nindicating that violation severity is driven by \\emph{constraint tightness} $\\bar{\\tau}$ rather than ontology scale.\nSciERC ($\\bar{\\tau}{=}0.333$, mean 24 valid type pairs per relation) and DocRED ($\\bar{\\tau}{=}0.842$, mean 5.68) exhibit comparable violation rates despite a 14$\\times$ difference in ontology size, and DR reduction under \\textsc{OntoCoDec} scales inversely with $\\bar{\\tau}$ (94\\% vs.\\ 45\\%).\n\nSecond, we introduced a two-layer constraint architecture that decomposes ontological enforcement into complementary mechanisms:\na \\emph{grammar layer} (XGrammar CFG) that eliminates structural violations (RV, ET\\,$\\to$\\,0\\%) and a \\emph{semantic layer} (TypeConstraintProcessor with a stateful entity registry) that enforces domain/range constraints at the token level. % exp_id: phase2_scierc_grammar_only\nThe grammar layer serves as an enabling prerequisite for the semantic layer; the two compose via bitwise AND over candidate token sets.\n\nThird, we validated OntoCoDec empirically.\nOn SciERC, the full system reduces domain/range violations from 15.37\\% to 0.93\\%---a 94\\% relative reduction---while completely eliminating RV and ET violations, with no significant impact on relation F1 ($+$0.13 percentage points, $p > 0.05$). % exp_id: phase2_scierc_full_s1\nOn DocRED, the full system reduces domain/range violations from 18.46\\% to 10.21\\%---a 45\\% relative reduction---while eliminating RV and ET violations entirely, with statistically significant gains in relation F1 ($+$0.50pp, $p{<}0.001$) and entity F1 ($+$1.23pp, $p{<}0.001$). % exp_id: phase2_docred_full\nCompared with post-hoc filtering, decoding-time enforcement preserves true positives and eliminates entity-type violations that post-hoc methods cannot address.\n\n\\paragraph{Limitations.}\nSeveral limitations qualify these findings.\nThe semantic layer introduces cross-field consistency (CF) violations: CF rises from 0.08\\% under unconstrained decoding to 9.90\\% with full constraints. % exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1\nThis is a systematic consequence of per-relation independent type enforcement---when the same entity appears across multiple triples, each relation's domain/range constraint may assign it a different type, producing entity-versus-relation type drift.\nThe grammar layer alone does not elevate CF (0.08\\%, matching the unconstrained baseline), confirming that CF is entirely attributable to the semantic layer. % exp_id: phase2_scierc_grammar_only\nResolving this cross-relation type coherence problem is an open challenge, not a trivial implementation fix.\nBeyond CF, experiments use two models (Qwen3-8B and Llama-3.1-8B-Instruct), confirming model-agnostic generalization: Llama-3.1-8B on DocRED achieves a 90.2\\% DR reduction (26.07\\%\\,$\\to$\\,2.55\\%), consistent with the Qwen results.\nResults are reported on two datasets under zero-shot prompting only, and integration with fine-tuned models has not been explored.\n\n\\paragraph{Future Work.}\nWe identify four directions.\n(1)~Extension to larger models (quantized 70B-class) to further verify model-agnostic generalization across scales.\n(2)~Global entity-level type consensus during decoding---maintaining a shared entity registry across all relations within an instance---to resolve CF violations.\n(3)~Integration with fine-tuned models, combining constraint-aware training objectives with decoding-time enforcement.\n(4)~Extension to non-English ontologies to evaluate cross-lingual applicability.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 18,
+        "oldLines": 7,
+        "newStart": 18,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " Third, we validated OntoCoDec empirically.",
+          " On SciERC, the full system reduces domain/range violations from 15.37\\% to 0.93\\%---a 94\\% relative reduction---while completely eliminating RV and ET violations, with no significant impact on relation F1 ($+$0.13 percentage points, $p > 0.05$). % exp_id: phase2_scierc_full_s1",
+          "-On DocRED, the full system reduces domain/range violations from 18.46\\% to 10.21\\%---a 45\\% relative reduction---while eliminating RV and ET violations entirely, with statistically significant gains in relation F1 ($+$0.50pp, $p{<}0.001$) and entity F1 ($+$1.23pp, $p{<}0.001$). % exp_id: phase2_docred_full",
+          "+On DocRED, the full system reduces domain/range violations from 18.46\\% to 10.21\\%---a 45\\% relative reduction---while eliminating RV and ET violations entirely, with statistically significant gains in relation F1 ($+$0.50pp, $p{<}0.001$) and entity F1 ($+$1.23pp, $p{<}0.001$) for Qwen3-8B. Llama-3.1-8B achieves comparable DR reduction (90.2\\%, 26.07\\%\\,$\\to$\\,2.55\\%) with F1-neutral impact. % exp_ids: phase2_docred_full, llama_docred_full_s1, llama_docred_unconstrained",
+          " Compared with post-hoc filtering, decoding-time enforcement preserves true positives and eliminates entity-type violations that post-hoc methods cannot address.",
+          " ",
+          " \\paragraph{Limitations.}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01FxZPiUX7GKDAcNBxfNWDEB`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion.tex",
+  "old_string": "The grammar layer alone does not elevate CF (0.08\\%, matching the unconstrained baseline), confirming that CF is entirely attributable to the semantic layer. % exp_id: phase2_scierc_grammar_only\nResolving this cross-relation type coherence problem is an open challenge, not a trivial implementation fix.\nBeyond CF, experiments use two models (Qwen3-8B and Llama-3.1-8B-Instruct), confirming model-agnostic generalization: Llama-3.1-8B on DocRED achieves a 90.2\\% DR reduction (26.07\\%\\,$\\to$\\,2.55\\%), consistent with the Qwen results.\nResults are reported on two datasets under zero-shot prompting only, and integration with fine-tuned models has not been explored.",
+  "new_string": "The grammar layer alone does not elevate CF (0.08\\%, matching the unconstrained baseline), confirming that CF is entirely attributable to the semantic layer. % exp_id: phase2_scierc_grammar_only\nResolving this cross-relation type coherence problem is an open challenge, not a trivial implementation fix.\nCross-field consistency violations increase with constraint strength and vary across models: CF reaches 12.02\\% for Llama-3.1-8B on DocRED under full constraints, compared with 2.57\\% for Qwen3-8B on the same dataset, suggesting that per-relation independent enforcement interacts with model-specific generation patterns. % exp_ids: llama_docred_full_s1, phase2_docred_full\nConstrained decoding can increase parse failure rates for some model-dataset combinations: Llama-3.1-8B on DocRED shows 91 parse failures under full constraints versus 68 unconstrained (9.1\\% vs.\\ 6.8\\%), likely due to max-token truncation of longer constrained outputs. All F1 metrics are computed over successfully parsed documents only. % exp_ids: llama_docred_full_s1, llama_docred_unconstrained\nBeyond CF, experiments use two models (Qwen3-8B and Llama-3.1-8B-Instruct), confirming model-agnostic generalization: Llama-3.1-8B on DocRED achieves a 90.2\\% DR reduction (26.07\\%\\,$\\to$\\,2.55\\%), consistent with the Qwen results.\nResults are reported for two models and two datasets under zero-shot prompting only, and integration with fine-tuned models has not been explored."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "uuid": "bb531621-01b9-4770-badc-ca51be4b4dd4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QMtgqfm4J66JLjC49P4CyC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2139,
+      "cache_read_input_tokens": 23398,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2139
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T21:02:21.725Z_
+
+<details><summary>↩ Tool result · `toolu_01FxZPiUX7GKDAcNBxfNWDEB`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "uuid": "36d11a9c-b3e0-4cb4-9b96-c5afec51c976",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion.tex",
+    "oldString": "The grammar layer alone does not elevate CF (0.08\\%, matching the unconstrained baseline), confirming that CF is entirely attributable to the semantic layer. % exp_id: phase2_scierc_grammar_only\nResolving this cross-relation type coherence problem is an open challenge, not a trivial implementation fix.\nBeyond CF, experiments use two models (Qwen3-8B and Llama-3.1-8B-Instruct), confirming model-agnostic generalization: Llama-3.1-8B on DocRED achieves a 90.2\\% DR reduction (26.07\\%\\,$\\to$\\,2.55\\%), consistent with the Qwen results.\nResults are reported on two datasets under zero-shot prompting only, and integration with fine-tuned models has not been explored.",
+    "newString": "The grammar layer alone does not elevate CF (0.08\\%, matching the unconstrained baseline), confirming that CF is entirely attributable to the semantic layer. % exp_id: phase2_scierc_grammar_only\nResolving this cross-relation type coherence problem is an open challenge, not a trivial implementation fix.\nCross-field consistency violations increase with constraint strength and vary across models: CF reaches 12.02\\% for Llama-3.1-8B on DocRED under full constraints, compared with 2.57\\% for Qwen3-8B on the same dataset, suggesting that per-relation independent enforcement interacts with model-specific generation patterns. % exp_ids: llama_docred_full_s1, phase2_docred_full\nConstrained decoding can increase parse failure rates for some model-dataset combinations: Llama-3.1-8B on DocRED shows 91 parse failures under full constraints versus 68 unconstrained (9.1\\% vs.\\ 6.8\\%), likely due to max-token truncation of longer constrained outputs. All F1 metrics are computed over successfully parsed documents only. % exp_ids: llama_docred_full_s1, llama_docred_unconstrained\nBeyond CF, experiments use two models (Qwen3-8B and Llama-3.1-8B-Instruct), confirming model-agnostic generalization: Llama-3.1-8B on DocRED achieves a 90.2\\% DR reduction (26.07\\%\\,$\\to$\\,2.55\\%), consistent with the Qwen results.\nResults are reported for two models and two datasets under zero-shot prompting only, and integration with fine-tuned models has not been explored.",
+    "originalFile": "% Section 7 — Conclusion\n% Data source: Phase 2 SciERC registry experiments + Phase 0 DocRED\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n%          phase0_scierc_unconstrained, phase0_docred_unconstrained\n% All numbers verified against registry 2026-05-14.\n\nWe presented OntoCoDec, a framework that automatically compiles IE ontology schemas into token-level decoding constraints to enforce type validity at generation time.\nOur work makes three contributions.\n\nFirst, we conducted the first systematic study of ontological constraint violations in LLM-based IE (\\S\\ref{sec:violation_landscape}).\nAcross two benchmarks with substantially different ontology sizes---SciERC (7~relations) and DocRED (96~relations)---we found that domain/range violation rates are comparable (15.37\\% vs.\\ 18.46\\%), % exp_ids: phase0_scierc_unconstrained, phase0_docred_unconstrained\nindicating that violation severity is driven by \\emph{constraint tightness} $\\bar{\\tau}$ rather than ontology scale.\nSciERC ($\\bar{\\tau}{=}0.333$, mean 24 valid type pairs per relation) and DocRED ($\\bar{\\tau}{=}0.842$, mean 5.68) exhibit comparable violation rates despite a 14$\\times$ difference in ontology size, and DR reduction under \\textsc{OntoCoDec} scales inversely with $\\bar{\\tau}$ (94\\% vs.\\ 45\\%).\n\nSecond, we introduced a two-layer constraint architecture that decomposes ontological enforcement into complementary mechanisms:\na \\emph{grammar layer} (XGrammar CFG) that eliminates structural violations (RV, ET\\,$\\to$\\,0\\%) and a \\emph{semantic layer} (TypeConstraintProcessor with a stateful entity registry) that enforces domain/range constraints at the token level. % exp_id: phase2_scierc_grammar_only\nThe grammar layer serves as an enabling prerequisite for the semantic layer; the two compose via bitwise AND over candidate token sets.\n\nThird, we validated OntoCoDec empirically.\nOn SciERC, the full system reduces domain/range violations from 15.37\\% to 0.93\\%---a 94\\% relative reduction---while completely eliminating RV and ET violations, with no significant impact on relation F1 ($+$0.13 percentage points, $p > 0.05$). % exp_id: phase2_scierc_full_s1\nOn DocRED, the full system reduces domain/range violations from 18.46\\% to 10.21\\%---a 45\\% relative reduction---while eliminating RV and ET violations entirely, with statistically significant gains in relation F1 ($+$0.50pp, $p{<}0.001$) and entity F1 ($+$1.23pp, $p{<}0.001$) for Qwen3-8B. Llama-3.1-8B achieves comparable DR reduction (90.2\\%, 26.07\\%\\,$\\to$\\,2.55\\%) with F1-neutral impact. % exp_ids: phase2_docred_full, llama_docred_full_s1, llama_docred_unconstrained\nCompared with post-hoc filtering, decoding-time enforcement preserves true positives and eliminates entity-type violations that post-hoc methods cannot address.\n\n\\paragraph{Limitations.}\nSeveral limitations qualify these findings.\nThe semantic layer introduces cross-field consistency (CF) violations: CF rises from 0.08\\% under unconstrained decoding to 9.90\\% with full constraints. % exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1\nThis is a systematic consequence of per-relation independent type enforcement---when the same entity appears across multiple triples, each relation's domain/range constraint may assign it a different type, producing entity-versus-relation type drift.\nThe grammar layer alone does not elevate CF (0.08\\%, matching the unconstrained baseline), confirming that CF is entirely attributable to the semantic layer. % exp_id: phase2_scierc_grammar_only\nResolving this cross-relation type coherence problem is an open challenge, not a trivial implementation fix.\nBeyond CF, experiments use two models (Qwen3-8B and Llama-3.1-8B-Instruct), confirming model-agnostic generalization: Llama-3.1-8B on DocRED achieves a 90.2\\% DR reduction (26.07\\%\\,$\\to$\\,2.55\\%), consistent with the Qwen results.\nResults are reported on two datasets under zero-shot prompting only, and integration with fine-tuned models has not been explored.\n\n\\paragraph{Future Work.}\nWe identify four directions.\n(1)~Extension to larger models (quantized 70B-class) to further verify model-agnostic generalization across scales.\n(2)~Global entity-level type consensus during decoding---maintaining a shared entity registry across all relations within an instance---to resolve CF violations.\n(3)~Integration with fine-tuned models, combining constraint-aware training objectives with decoding-time enforcement.\n(4)~Extension to non-English ontologies to evaluate cross-lingual applicability.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 27,
+        "oldLines": 8,
+        "newStart": 27,
+        "newLines": 10,
+        "lines": [
+          " This is a systematic consequence of per-relation independent type enforcement---when the same entity appears across multiple triples, each relation's domain/range constraint may assign it a different type, producing entity-versus-relation type drift.",
+          " The grammar layer alone does not elevate CF (0.08\\%, matching the unconstrained baseline), confirming that CF is entirely attributable to the semantic layer. % exp_id: phase2_scierc_grammar_only",
+          " Resolving this cross-relation type coherence problem is an open challenge, not a trivial implementation fix.",
+          "+Cross-field consistency violations increase with constraint strength and vary across models: CF reaches 12.02\\% for Llama-3.1-8B on DocRED under full constraints, compared with 2.57\\% for Qwen3-8B on the same dataset, suggesting that per-relation independent enforcement interacts with model-specific generation patterns. % exp_ids: llama_docred_full_s1, phase2_docred_full",
+          "+Constrained decoding can increase parse failure rates for some model-dataset combinations: Llama-3.1-8B on DocRED shows 91 parse failures under full constraints versus 68 unconstrained (9.1\\% vs.\\ 6.8\\%), likely due to max-token truncation of longer constrained outputs. All F1 metrics are computed over successfully parsed documents only. % exp_ids: llama_docred_full_s1, llama_docred_unconstrained",
+          " Beyond CF, experiments use two models (Qwen3-8B and Llama-3.1-8B-Instruct), confirming model-agnostic generalization: Llama-3.1-8B on DocRED achieves a 90.2\\% DR reduction (26.07\\%\\,$\\to$\\,2.55\\%), consistent with the Qwen results.",
+          "-Results are reported on two datasets under zero-shot prompting only, and integration with fine-tuned models has not been explored.",
+          "+Results are reported for two models and two datasets under zero-shot prompting only, and integration with fine-tuned models has not been explored.",
+          " ",
+          " \\paragraph{Future Work.}",
+          " We identify four directions."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+验证最终结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "uuid": "8bc42935-8c12-44e2-9288-ff22bb277b36",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H1JUjjVdkimiT1wZV9MeZT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2968,
+      "cache_read_input_tokens": 25537,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2968
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Wh4jgxSsQwPLzYTyonTfXS`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "uuid": "7fd4e4c2-53dc-489e-9e1f-84612c5c3831",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H1JUjjVdkimiT1wZV9MeZT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2968,
+      "cache_read_input_tokens": 25537,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2968
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T21:02:24.512Z_
+
+<details><summary>↩ Tool result · `toolu_01Wh4jgxSsQwPLzYTyonTfXS`</summary>
+
+```text
+1	\begin{abstract}
+2	LLM-based information extraction systems produce systematic ontology constraint violations during autoregressive generation.
+3	On SciERC (7 relation types), 15.37\% of extracted triples violate domain/range type constraints; on DocRED (96 relation types), 18.46\%.
+4	Violation rates are governed by \emph{constraint tightness} ($\bar{\tau}$, the fraction of type-pair space ruled out per relation): DocRED ($\bar{\tau}{=}0.842$, mean 5.68 valid pairs) and SciERC ($\bar{\tau}{=}0.333$, mean 24 valid pairs) exhibit comparable violation rates despite a 14$\times$ difference in ontology size.
+5	%
+6	We present \textsc{OntoCoDec}, which compiles IE ontology schemas into two composable decoding constraint layers:
+7	(1)~a \emph{grammar layer} (XGrammar CFG) enforcing JSON structural validity and restricting entity-type and relation vocabularies to schema-defined values (ET, RV\,$\to$\,0\%); and
+8	(2)~a \emph{semantic layer} (TypeConstraintProcessor) enforcing domain/range constraints via a stateful entity registry and dynamic logit masking.
+9	The grammar layer is an enabling prerequisite; the two compose via bitwise AND on token-level masks.
+10	%
+11	On SciERC, \textsc{OntoCoDec} reduces domain/range violations by 94\% (15.37\%\,$\to$\,0.93\%) while maintaining extraction F1 ({+}0.13pp, $p{=}0.58$, not significant).
+12	On DocRED, violations decrease by 45\% (18.46\%\,$\to$\,10.21\%) with significant gains in relation F1 ({+}0.50pp, $p{<}0.001$) and entity F1 ({+}1.23pp, $p{<}0.001$) for Qwen3-8B; Llama-3.1-8B shows comparable violation reduction with F1-neutral impact. % exp_ids: phase2_docred_full, llama_docred_full_s1, llama_docred_unconstrained
+13	Results are validated across two models (Qwen3-8B, Llama-3.1-8B-Instruct) and two datasets.
+14	Compared with post-hoc filtering, decoding-time enforcement preserves true positives and eliminates entity-type violations that post-hoc methods cannot address.
+15	\end{abstract}
+16	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "uuid": "9de8e5a9-d11d-4c08-8999-1ba627291ee6",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex",
+      "content": "\\begin{abstract}\nLLM-based information extraction systems produce systematic ontology constraint violations during autoregressive generation.\nOn SciERC (7 relation types), 15.37\\% of extracted triples violate domain/range type constraints; on DocRED (96 relation types), 18.46\\%.\nViolation rates are governed by \\emph{constraint tightness} ($\\bar{\\tau}$, the fraction of type-pair space ruled out per relation): DocRED ($\\bar{\\tau}{=}0.842$, mean 5.68 valid pairs) and SciERC ($\\bar{\\tau}{=}0.333$, mean 24 valid pairs) exhibit comparable violation rates despite a 14$\\times$ difference in ontology size.\n%\nWe present \\textsc{OntoCoDec}, which compiles IE ontology schemas into two composable decoding constraint layers:\n(1)~a \\emph{grammar layer} (XGrammar CFG) enforcing JSON structural validity and restricting entity-type and relation vocabularies to schema-defined values (ET, RV\\,$\\to$\\,0\\%); and\n(2)~a \\emph{semantic layer} (TypeConstraintProcessor) enforcing domain/range constraints via a stateful entity registry and dynamic logit masking.\nThe grammar layer is an enabling prerequisite; the two compose via bitwise AND on token-level masks.\n%\nOn SciERC, \\textsc{OntoCoDec} reduces domain/range violations by 94\\% (15.37\\%\\,$\\to$\\,0.93\\%) while maintaining extraction F1 ({+}0.13pp, $p{=}0.58$, not significant).\nOn DocRED, violations decrease by 45\\% (18.46\\%\\,$\\to$\\,10.21\\%) with significant gains in relation F1 ({+}0.50pp, $p{<}0.001$) and entity F1 ({+}1.23pp, $p{<}0.001$) for Qwen3-8B; Llama-3.1-8B shows comparable violation reduction with F1-neutral impact. % exp_ids: phase2_docred_full, llama_docred_full_s1, llama_docred_unconstrained\nResults are validated across two models (Qwen3-8B, Llama-3.1-8B-Instruct) and two datasets.\nCompared with post-hoc filtering, decoding-time enforcement preserves true positives and eliminates entity-type violations that post-hoc methods cannot address.\n\\end{abstract}\n",
+      "numLines": 16,
+      "startLine": 1,
+      "totalLines": 16
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01GR8HvmMZ7Lm5VvwKiBu5k7`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "uuid": "09d2dfdf-9f9b-4db2-8f40-ce2212a1bf0a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H1JUjjVdkimiT1wZV9MeZT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2968,
+      "cache_read_input_tokens": 25537,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2968
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T21:02:25.016Z_
+
+<details><summary>↩ Tool result · `toolu_01GR8HvmMZ7Lm5VvwKiBu5k7`</summary>
+
+```text
+1	% Section 7 — Conclusion
+2	% Data source: Phase 2 SciERC registry experiments + Phase 0 DocRED
+3	% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,
+4	%          phase0_scierc_unconstrained, phase0_docred_unconstrained
+5	% All numbers verified against registry 2026-05-14.
+6	
+7	We presented OntoCoDec, a framework that automatically compiles IE ontology schemas into token-level decoding constraints to enforce type validity at generation time.
+8	Our work makes three contributions.
+9	
+10	First, we conducted the first systematic study of ontological constraint violations in LLM-based IE (\S\ref{sec:violation_landscape}).
+11	Across two benchmarks with substantially different ontology sizes---SciERC (7~relations) and DocRED (96~relations)---we found that domain/range violation rates are comparable (15.37\% vs.\ 18.46\%), % exp_ids: phase0_scierc_unconstrained, phase0_docred_unconstrained
+12	indicating that violation severity is driven by \emph{constraint tightness} $\bar{\tau}$ rather than ontology scale.
+13	SciERC ($\bar{\tau}{=}0.333$, mean 24 valid type pairs per relation) and DocRED ($\bar{\tau}{=}0.842$, mean 5.68) exhibit comparable violation rates despite a 14$\times$ difference in ontology size, and DR reduction under \textsc{OntoCoDec} scales inversely with $\bar{\tau}$ (94\% vs.\ 45\%).
+14	
+15	Second, we introduced a two-layer constraint architecture that decomposes ontological enforcement into complementary mechanisms:
+16	a \emph{grammar layer} (XGrammar CFG) that eliminates structural violations (RV, ET\,$\to$\,0\%) and a \emph{semantic layer} (TypeConstraintProcessor with a stateful entity registry) that enforces domain/range constraints at the token level. % exp_id: phase2_scierc_grammar_only
+17	The grammar layer serves as an enabling prerequisite for the semantic layer; the two compose via bitwise AND over candidate token sets.
+18	
+19	Third, we validated OntoCoDec empirically.
+20	On SciERC, the full system reduces domain/range violations from 15.37\% to 0.93\%---a 94\% relative reduction---while completely eliminating RV and ET violations, with no significant impact on relation F1 ($+$0.13 percentage points, $p > 0.05$). % exp_id: phase2_scierc_full_s1
+21	On DocRED, the full system reduces domain/range violations from 18.46\% to 10.21\%---a 45\% relative reduction---while eliminating RV and ET violations entirely, with statistically significant gains in relation F1 ($+$0.50pp, $p{<}0.001$) and entity F1 ($+$1.23pp, $p{<}0.001$) for Qwen3-8B. Llama-3.1-8B achieves comparable DR reduction (90.2\%, 26.07\%\,$\to$\,2.55\%) with F1-neutral impact. % exp_ids: phase2_docred_full, llama_docred_full_s1, llama_docred_unconstrained
+22	Compared with post-hoc filtering, decoding-time enforcement preserves true positives and eliminates entity-type violations that post-hoc methods cannot address.
+23	
+24	\paragraph{Limitations.}
+25	Several limitations qualify these findings.
+26	The semantic layer introduces cross-field consistency (CF) violations: CF rises from 0.08\% under unconstrained decoding to 9.90\% with full constraints. % exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1
+27	This is a systematic consequence of per-relation independent type enforcement---when the same entity appears across multiple triples, each relation's domain/range constraint may assign it a different type, producing entity-versus-relation type drift.
+28	The grammar layer alone does not elevate CF (0.08\%, matching the unconstrained baseline), confirming that CF is entirely attributable to the semantic layer. % exp_id: phase2_scierc_grammar_only
+29	Resolving this cross-relation type coherence problem is an open challenge, not a trivial implementation fix.
+30	Cross-field consistency violations increase with constraint strength and vary across models: CF reaches 12.02\% for Llama-3.1-8B on DocRED under full constraints, compared with 2.57\% for Qwen3-8B on the same dataset, suggesting that per-relation independent enforcement interacts with model-specific generation patterns. % exp_ids: llama_docred_full_s1, phase2_docred_full
+31	Constrained decoding can increase parse failure rates for some model-dataset combinations: Llama-3.1-8B on DocRED shows 91 parse failures under full constraints versus 68 unconstrained (9.1\% vs.\ 6.8\%), likely due to max-token truncation of longer constrained outputs. All F1 metrics are computed over successfully parsed documents only. % exp_ids: llama_docred_full_s1, llama_docred_unconstrained
+32	Beyond CF, experiments use two models (Qwen3-8B and Llama-3.1-8B-Instruct), confirming model-agnostic generalization: Llama-3.1-8B on DocRED achieves a 90.2\% DR reduction (26.07\%\,$\to$\,2.55\%), consistent with the Qwen results.
+33	Results are reported for two models and two datasets under zero-shot prompting only, and integration with fine-tuned models has not been explored.
+34	
+35	\paragraph{Future Work.}
+36	We identify four directions.
+37	(1)~Extension to larger models (quantized 70B-class) to further verify model-agnostic generalization across scales.
+38	(2)~Global entity-level type consensus during decoding---maintaining a shared entity registry across all relations within an instance---to resolve CF violations.
+39	(3)~Integration with fine-tuned models, combining constraint-aware training objectives with decoding-time enforcement.
+40	(4)~Extension to non-English ontologies to evaluate cross-lingual applicability.
+41	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "uuid": "f68268d0-8b77-4da5-b959-e492523aba3e",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion.tex",
+      "content": "% Section 7 — Conclusion\n% Data source: Phase 2 SciERC registry experiments + Phase 0 DocRED\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n%          phase0_scierc_unconstrained, phase0_docred_unconstrained\n% All numbers verified against registry 2026-05-14.\n\nWe presented OntoCoDec, a framework that automatically compiles IE ontology schemas into token-level decoding constraints to enforce type validity at generation time.\nOur work makes three contributions.\n\nFirst, we conducted the first systematic study of ontological constraint violations in LLM-based IE (\\S\\ref{sec:violation_landscape}).\nAcross two benchmarks with substantially different ontology sizes---SciERC (7~relations) and DocRED (96~relations)---we found that domain/range violation rates are comparable (15.37\\% vs.\\ 18.46\\%), % exp_ids: phase0_scierc_unconstrained, phase0_docred_unconstrained\nindicating that violation severity is driven by \\emph{constraint tightness} $\\bar{\\tau}$ rather than ontology scale.\nSciERC ($\\bar{\\tau}{=}0.333$, mean 24 valid type pairs per relation) and DocRED ($\\bar{\\tau}{=}0.842$, mean 5.68) exhibit comparable violation rates despite a 14$\\times$ difference in ontology size, and DR reduction under \\textsc{OntoCoDec} scales inversely with $\\bar{\\tau}$ (94\\% vs.\\ 45\\%).\n\nSecond, we introduced a two-layer constraint architecture that decomposes ontological enforcement into complementary mechanisms:\na \\emph{grammar layer} (XGrammar CFG) that eliminates structural violations (RV, ET\\,$\\to$\\,0\\%) and a \\emph{semantic layer} (TypeConstraintProcessor with a stateful entity registry) that enforces domain/range constraints at the token level. % exp_id: phase2_scierc_grammar_only\nThe grammar layer serves as an enabling prerequisite for the semantic layer; the two compose via bitwise AND over candidate token sets.\n\nThird, we validated OntoCoDec empirically.\nOn SciERC, the full system reduces domain/range violations from 15.37\\% to 0.93\\%---a 94\\% relative reduction---while completely eliminating RV and ET violations, with no significant impact on relation F1 ($+$0.13 percentage points, $p > 0.05$). % exp_id: phase2_scierc_full_s1\nOn DocRED, the full system reduces domain/range violations from 18.46\\% to 10.21\\%---a 45\\% relative reduction---while eliminating RV and ET violations entirely, with statistically significant gains in relation F1 ($+$0.50pp, $p{<}0.001$) and entity F1 ($+$1.23pp, $p{<}0.001$) for Qwen3-8B. Llama-3.1-8B achieves comparable DR reduction (90.2\\%, 26.07\\%\\,$\\to$\\,2.55\\%) with F1-neutral impact. % exp_ids: phase2_docred_full, llama_docred_full_s1, llama_docred_unconstrained\nCompared with post-hoc filtering, decoding-time enforcement preserves true positives and eliminates entity-type violations that post-hoc methods cannot address.\n\n\\paragraph{Limitations.}\nSeveral limitations qualify these findings.\nThe semantic layer introduces cross-field consistency (CF) violations: CF rises from 0.08\\% under unconstrained decoding to 9.90\\% with full constraints. % exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1\nThis is a systematic consequence of per-relation independent type enforcement---when the same entity appears across multiple triples, each relation's domain/range constraint may assign it a different type, producing entity-versus-relation type drift.\nThe grammar layer alone does not elevate CF (0.08\\%, matching the unconstrained baseline), confirming that CF is entirely attributable to the semantic layer. % exp_id: phase2_scierc_grammar_only\nResolving this cross-relation type coherence problem is an open challenge, not a trivial implementation fix.\nCross-field consistency violations increase with constraint strength and vary across models: CF reaches 12.02\\% for Llama-3.1-8B on DocRED under full constraints, compared with 2.57\\% for Qwen3-8B on the same dataset, suggesting that per-relation independent enforcement interacts with model-specific generation patterns. % exp_ids: llama_docred_full_s1, phase2_docred_full\nConstrained decoding can increase parse failure rates for some model-dataset combinations: Llama-3.1-8B on DocRED shows 91 parse failures under full constraints versus 68 unconstrained (9.1\\% vs.\\ 6.8\\%), likely due to max-token truncation of longer constrained outputs. All F1 metrics are computed over successfully parsed documents only. % exp_ids: llama_docred_full_s1, llama_docred_unconstrained\nBeyond CF, experiments use two models (Qwen3-8B and Llama-3.1-8B-Instruct), confirming model-agnostic generalization: Llama-3.1-8B on DocRED achieves a 90.2\\% DR reduction (26.07\\%\\,$\\to$\\,2.55\\%), consistent with the Qwen results.\nResults are reported for two models and two datasets under zero-shot prompting only, and integration with fine-tuned models has not been explored.\n\n\\paragraph{Future Work.}\nWe identify four directions.\n(1)~Extension to larger models (quantized 70B-class) to further verify model-agnostic generalization across scales.\n(2)~Global entity-level type consensus during decoding---maintaining a shared entity registry across all relations within an instance---to resolve CF violations.\n(3)~Integration with fine-tuned models, combining constraint-aware training objectives with decoding-time enforcement.\n(4)~Extension to non-English ontologies to evaluate cross-lingual applicability.\n",
+      "numLines": 41,
+      "startLine": 1,
+      "totalLines": 41
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+全部完成。修改总结：
+
+**Part A (abstract.tex:12)**: E-F1 claim 限定为 Qwen3-8B，补充 "Llama-3.1-8B shows comparable violation reduction with F1-neutral impact"。
+
+**Part B (section7_conclusion.tex:21)**: 第三贡献段 DocRED E-F1 claim 限定为 Qwen3-8B，补充 Llama DR↓90.2% + F1-neutral。
+
+**Part C (section7_conclusion.tex:30-33)**: Limitations 新增：
+- CF 交互效应（Llama 12.02% vs Qwen 2.57%，模型差异显著）
+- Parse failure（Llama DocRED 91 vs 68，9.1% vs 6.8%）
+- Scope 表述已更新为 "two models and two datasets"
+
+所有新增内容均带 exp_id 注释追溯，未改动其他段落。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "uuid": "acbcefee-7eac-4555-a2ee-7e23df3284b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NMmT5aBQ8MQvbHpnvjY1fw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2601,
+      "cache_read_input_tokens": 28505,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2601
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 23_
+
+全部完成。修改总结：
+
+**Part A (abstract.tex:12)**: E-F1 claim 限定为 Qwen3-8B，补充 "Llama-3.1-8B shows comparable violation reduction with F1-neutral impact"。
+
+**Part B (section7_conclusion.tex:21)**: 第三贡献段 DocRED E-F1 claim 限定为 Qwen3-8B，补充 Llama DR↓90.2% + F1-neutral。
+
+**Part C (section7_conclusion.tex:30-33)**: Limitations 新增：
+- CF 交互效应（Llama 12.02% vs Qwen 2.57%，模型差异显著）
+- Parse failure（Llama DocRED 91 vs 68，9.1% vs 6.8%）
+- Scope 表述已更新为 "two models and two datasets"
+
+所有新增内容均带 exp_id 注释追溯，未改动其他段落。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 56485,
+  "duration_api_ms": 58269,
+  "num_turns": 8,
+  "stop_reason": "end_turn",
+  "session_id": "63e6cf81-ef09-43e1-8063-61e613c3d457",
+  "total_cost_usd": 0.24937274999999998,
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 19265,
+    "cache_read_input_tokens": 89281,
+    "output_tokens": 3312,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 19265,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 267,
+        "cache_read_input_tokens": 28505,
+        "cache_creation_input_tokens": 2601,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2601
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1406,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001501,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 5,
+      "outputTokens": 3312,
+      "cacheReadInputTokens": 89281,
+      "cacheCreationInputTokens": 19265,
+      "webSearchRequests": 0,
+      "costUSD": 0.24787175,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "404a94cc-d8bd-4ec8-9057-6b018d7265d1"
+}
+```
+
+</details>
+
+---

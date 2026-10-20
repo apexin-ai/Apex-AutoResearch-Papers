@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ab9702d1874c20ad11f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code revert cf fallback",
+  "task_key": "worker_code_revert_cf_fallback_20260515T152255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_revert_cf_fallback_20260515T152255_result.json",
+    "occurrence": 1,
+    "bytes": 1346,
+    "sha256": "b858e7df9c93f87f741d49969515177d87a661935fcbe918bcd9568e4694e1c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "回退完成。\n\n**1. 回退方式**：项目不是 git 仓库，无法用 `git checkout`。使用 `compiler/type_mask_processor.py.bak`（May 14 11:06，CF fallback 引入前的版本）覆盖恢复。\n\n**2. 差异确认**（CF fallback 版本 → 原始版本）：\n- 行数：490 → 399（删除 91 行 CF fallback 代码）\n- 大小：20195 → 15666 bytes\n- CF fallback 标记位置（已删除）：\n  - `self._cf_fallback_count = 0` (init, line 228)\n  - 两处 `self._cf_fallback_count += 1`（lines 332, 376，对应 `_mask_head_type` 和 `_mask_tail_type` 中放松 DR 的分支）\n  - logger 计数报告 (lines 451-454)\n\n**3. 验证结果**：\n- `grep cf_fallback` → 无匹配\n- `grep registry_type` → 无匹配\n- 核心 DR 逻辑完整：`valid_tail_types_for_head` 在 line 319，`_apply_type_mask` 在 line 336\n- `from compiler.type_mask_processor import TypeConstraintProcessor` → `Import OK`\n- `__pycache__` 已清除避免加载旧字节码\n\n**4. 产物**：\n- `compiler/type_mask_processor.py` (15666 bytes, 23:24 写入) — 已回退\n- `compiler/type_mask_processor_cf_fallback.py` (20195 bytes) — CF fallback 版本备份\n- `compiler/type_mask_processor.py.bak` (15666 bytes) — 原始备份（保留）\n\n未触碰 `scripts/train_lora_scierc.py` 及任何训练相关文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-revert-cf-fallback.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "sf2_qwen_int4_docred_s1",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T05:52:58.757Z",
+    "updated_at": "2026-05-23T05:53:09.357Z",
+    "hypothesis": "AWQ INT4 quantization of fine-tuned Qwen3-8B does not significantly affect constraint enforcement or extraction quality on DocRED S1, maintaining DR=0% and R-F1 within 2pp of FP16 baseline",
+    "parent": "d065_qwen_greedy_4096_r2"
+  },
+  "timestamp": "2026-05-23T05:53:09.746513+00:00",
+  "trigger": "update_registry"
+}

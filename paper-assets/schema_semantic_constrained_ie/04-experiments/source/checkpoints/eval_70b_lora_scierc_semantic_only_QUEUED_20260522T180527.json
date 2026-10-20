@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_70b_lora_scierc_semantic_only",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:04:55.672Z",
+    "updated_at": "2026-05-22T18:05:27.623Z",
+    "hypothesis": "Semantic-only constraints on 70B LoRA SciERC will reduce DR from 1.5% (unconstrained) toward 0%, consistent with the 70B ZS pattern where semantic layer is the primary DR reduction mechanism. Without grammar layer, some RV violations may appear.",
+    "parent": "eval_70b_lora_scierc_unconstrained"
+  },
+  "timestamp": "2026-05-22T18:05:27.929655+00:00",
+  "trigger": "update_registry"
+}

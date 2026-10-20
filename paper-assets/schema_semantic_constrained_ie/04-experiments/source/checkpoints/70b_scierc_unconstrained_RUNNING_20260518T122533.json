@@ -1,0 +1,27 @@
+{
+  "exp_id": "70b_scierc_unconstrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T12:25:09.814Z",
+    "updated_at": "2026-05-18T12:25:33.052Z",
+    "hypothesis": "70B AWQ-INT4 model on SciERC unconstrained baseline will establish violation rates and F1 for large model, testing whether model scale alone reduces ontology violations without constrained decoding",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python run_constrained_extraction.py --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4 --output_path /root/autodl-tmp/schema_outputs/70b_scierc_unconstrained.jsonl --mode unconstrained --max_new_tokens 4096 --skip_on_error",
+      "server": "westd-21461",
+      "data_path": "data/scierc/test.jsonl",
+      "data_count": 551,
+      "model_name": "Meta-Llama-3.1-70B-Instruct-AWQ-INT4",
+      "seed": "default",
+      "gpu": "cuda:0",
+      "pid": 24552,
+      "gpu_model": "NVIDIA RTX PRO 6000 Blackwell 98GB",
+      "log_path": "/tmp/70b_unconstrained.log"
+    }
+  },
+  "timestamp": "2026-05-18T12:25:33.288438+00:00",
+  "trigger": "update_registry"
+}

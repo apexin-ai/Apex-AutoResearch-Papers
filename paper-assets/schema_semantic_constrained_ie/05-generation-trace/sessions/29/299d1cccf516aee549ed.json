@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "299d1cccf516aee549ed",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents phase2 semantic eval",
+  "task_key": "worker_code_wikievents_phase2_semantic_eval_20260517T145310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_phase2_semantic_eval_20260517T145310_result.json",
+    "occurrence": 1,
+    "bytes": 2346,
+    "sha256": "1c8e6a9256ab233d732fac0b960d57c83c9b02f8970588d79f4edd95e69af637"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All tasks complete. Here's the summary:\n\n---\n\n## 改动总结\n\n### 1. `compiler/ontology_compiler.py` — 扩展 ConstraintSpec 支持 EE\n\n- `ConstraintSpec` 新增字段: `event_types`, `all_roles`, `argument_constraints`, `event_type_first_token`, `role_first_token` 等\n- 新增属性 `has_event_constraints` 自动检测 RE/EE 模式\n- 新增方法 `get_valid_roles(event_type)`, `get_valid_entity_types_for_role(event_type, role)`\n- `_build_spec()` 自动加载 `event_types` + `argument_constraints`（如果 ontology JSON 中存在）\n- 新增 `compile_event_type_constraints()`, `compile_role_constraints()`, `compile_event_json_schema()`\n- RE 功能完全不受影响（24 个现有测试全部通过）\n\n### 2. `compiler/type_mask_processor.py` — Semantic Layer EE 支持\n\n- `FieldPosition` 新增: `EVENT_TYPE`, `ARGUMENT_ROLE`, `ARGUMENT_ENTITY_TYPE`\n- `GenerationState` 新增: `current_event_type`, `current_argument_role`, `in_events_section`\n- `PositionDetector` 新增 regex: 检测 `\"event_type\"`, `\"role\"`, `\"entity_type\"` 位置\n- 新增 mask 函数: `_mask_event_type()`, `_mask_argument_role()`, `_mask_argument_entity_type()`\n- 新增通用 `_apply_first_token_mask()` 用于 event type/role 的 first-token masking\n- `__call__()` 自动处理 EE 位置类型\n\n### 3. `violation_checker_wikievents.py` — 5 类 violation 检查\n\n| 缩写 | 检测内容 | 分母 |\n|------|---------|------|\n| ET | entity type 不在 ontology | entities |\n| EV | event_type 不在 ontology | events |\n| RoV | role 不在 event_type 允许列表 | arguments |\n| AC | (event_type, role) 的 entity_type 不在约束 | arguments |\n| CF | 同一 entity 跨 event type 不一致 | entities |\n\n### 4. `eval_event_extraction.py` — Event F1 评估\n\n- Trigger Identification F1: `(trigger_text, event_type)` 匹配\n- Argument Extraction F1: `(trigger_text, event_type, arg_text, role)` 匹配\n- Entity F1: `(entity_text, entity_type)` 匹配\n- Micro P/R/F1 聚合\n\n### 验证结果\n\n- 所有 24 个现有 RE 单元测试通过\n- 4 个模块 import 验证全部通过\n- EE PositionDetector 5 个功能测试通过\n- Violation checker 合成数据验证通过（5 类 violation 均正确检出）\n- Eval 脚本合成数据验证通过（Entity/Trigger/Argument F1 计算正确）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-phase2-semantic-eval.md"
+}

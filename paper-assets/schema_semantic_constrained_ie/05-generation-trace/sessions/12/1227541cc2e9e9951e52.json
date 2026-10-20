@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1227541cc2e9e9951e52",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "knowledge paper writing prep",
+  "task_key": "worker_knowledge_paper_writing_prep_20260514T032255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_paper_writing_prep_20260514T032255_result.json",
+    "occurrence": 1,
+    "bytes": 766,
+    "sha256": "84e15cf00c13ec965bfd668795eeea9d097effa0e56831437f129a129b1117a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/paper_writing_readiness.md` 并注册。\n\n核心结论：\n\n**整体就绪度 ~75%**。4 个 Core Claims 中，Claim 1-2 (Violation Landscape + Prompt Insufficiency) 证据完备，Claim 3 (Composable Framework) SciERC 完备但 DocRED 待跑完，Claim 4 (S1/S2) 已定性为 ablation。\n\n**关键瓶颈**: DocRED Phase 2 两个实验（grammar_only 29/998, full_s1 89/998）正在跑，预计 May 16-17 完成。\n\n**现在可以动手写的**: Introduction、Background、Violation Landscape (Section 3)、Method (Section 4)、Related Work、Conclusion — 共 7 个 section，约 17 小时工作量。\n\n**缺失素材**: 5 张 figure 需创建（数据全部就绪）、DocRED Phase 2 结果表、Bootstrap CI。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-paper-writing-prep.md"
+}

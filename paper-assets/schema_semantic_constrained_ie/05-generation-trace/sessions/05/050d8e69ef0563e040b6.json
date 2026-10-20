@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "050d8e69ef0563e040b6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code llama beam scierc 551",
+  "task_key": "worker_code_llama_beam_scierc_551_20260517T025416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama_beam_scierc_551_20260517T025416_result.json",
+    "occurrence": 1,
+    "bytes": 701,
+    "sha256": "32fb989cb996177427bd601a6250e09493bcd172b74a74af4a40766ba60bf3e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已启动，汇报状态：\n\n**运行中 - Llama SciERC Beam Search 551 docs**\n\n| 项目 | 值 |\n|------|-----|\n| Model | Llama-3.1-8B-Instruct (ZS) |\n| Path | `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct` |\n| Decoding | beam_size=4, full_s1 |\n| Dataset | SciERC 551 docs |\n| PID | 406047 |\n| tmux session | `llama_beam` |\n| Output | `outputs/llama_scierc_beam_full_s1_551.jsonl` |\n| Log | `outputs/llama_scierc_beam_full_s1_551.log` |\n| GPU | cuda:0, 16.5GB used, 82% util |\n| Progress | 14/551 processed (~2.5 min elapsed) |\n| ETA | ~50 min |\n\n预计运行约 50 分钟。完成后需运行 violation_checker + F1 eval 收集最终结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-beam-scierc-551.md"
+}

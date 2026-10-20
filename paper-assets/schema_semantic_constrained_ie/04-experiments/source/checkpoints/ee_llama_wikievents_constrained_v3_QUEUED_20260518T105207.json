@@ -1,0 +1,15 @@
+{
+  "exp_id": "ee_llama_wikievents_constrained_v3",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:52:02.423Z",
+    "updated_at": "2026-05-18T10:52:06.639Z",
+    "hypothesis": "938-line fixed code (collision group + exact-match fix) will maintain RoV=0% and reduce AC for Llama on WikiEvents full 246 docs, confirming cross-model generalization of the fix"
+  },
+  "timestamp": "2026-05-18T10:52:07.024102+00:00",
+  "trigger": "update_registry"
+}

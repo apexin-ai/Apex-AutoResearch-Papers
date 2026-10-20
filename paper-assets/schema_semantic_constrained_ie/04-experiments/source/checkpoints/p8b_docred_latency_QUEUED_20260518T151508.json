@@ -1,0 +1,16 @@
+{
+  "exp_id": "p8b_docred_latency",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T15:14:28.888Z",
+    "updated_at": "2026-05-18T15:15:07.897Z",
+    "hypothesis": "OntoCoDec constrained decoding overhead on Qwen3-8B DocRED (200-doc subset) measured on same GPU as P8 SciERC will confirm moderate overhead (<2x), providing consistent timing data for paper",
+    "parent": "p8_latency_overhead"
+  },
+  "timestamp": "2026-05-18T15:15:08.783074+00:00",
+  "trigger": "update_registry"
+}

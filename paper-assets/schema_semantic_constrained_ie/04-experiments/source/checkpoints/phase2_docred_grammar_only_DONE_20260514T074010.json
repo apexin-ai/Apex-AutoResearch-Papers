@@ -1,0 +1,43 @@
+{
+  "exp_id": "phase2_docred_grammar_only",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T01:55:50.031Z",
+    "updated_at": "2026-05-14T07:40:10.382Z",
+    "hypothesis": "Grammar-only constrained decoding 在 DocRED (96 relation types) 上能否消除 RV violations (28.9%) 和 ET violations (7.5%)？与 SciERC grammar_only (RV 1.4%→0%, ET 0.4%→0%) 对比，验证 grammar 层在复杂 schema 上的泛化性。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 nohup python3 run_constrained_extraction.py --mode grammar_only --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_grammar_only.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "150766",
+      "data_path": "/root/schema_semantic_constrained_ie/data/docred/dev.json",
+      "data_count": 998,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "log_path": "/root/runs/schema_semantic_constrained_ie/docred_grammar_only.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "documents": 985,
+      "parse_failures": 13,
+      "entities": 20150,
+      "triples": 17341,
+      "ET_violation_rate": 0,
+      "RV_violation_rate": 0.0003,
+      "DR_violation_rate": 0.2617,
+      "cross_field_violations": 14,
+      "RV_violations": 5,
+      "DR_violations": 4539
+    },
+    "checkpoint_path": "/root/schema_semantic_constrained_ie/outputs/docred_grammar_only.jsonl",
+    "completed_at": "2026-05-14T07:40:10.382Z"
+  },
+  "timestamp": "2026-05-14T07:40:10.429446+00:00",
+  "trigger": "update_registry"
+}

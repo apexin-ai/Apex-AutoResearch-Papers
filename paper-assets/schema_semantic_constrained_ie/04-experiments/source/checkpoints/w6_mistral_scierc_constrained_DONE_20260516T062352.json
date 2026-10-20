@@ -1,0 +1,60 @@
+{
+  "exp_id": "w6_mistral_scierc_constrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-16T02:59:03.181Z",
+    "updated_at": "2026-05-16T06:23:52.469Z",
+    "hypothesis": "Mistral-7B constrained SciERC (full_s1 mode) - test if schema constraints reduce violations and improve F1 vs unconstrained baseline (E_F1=0.2728, R_F1=0.0366, DR=56.94%)",
+    "failure_reason": "TypeError: xgrammar.GrammarMatcher.accept_token expected int but got ffi.Tensor. xgrammar/tvm version mismatch on westd-21461. Crashed 10s after start.",
+    "completed_at": "2026-05-16T05:28:06.343Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w6_mistral_scierc_constrained.jsonl --batch_size 1 --max_new_tokens 4096",
+      "server": "westd-16980",
+      "gpu": 0,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "data_path": "data/processed_data/test.json",
+      "data_count": 551,
+      "seed": 42,
+      "pid": 334606,
+      "log_path": "~/runs/schema_semantic_constrained_ie/w6_mistral_scierc_constrained.log"
+    },
+    "metrics": {
+      "E_P": 0.2437,
+      "E_R": 0.3144,
+      "E_F1": 0.2746,
+      "R_P": 0.0292,
+      "R_R": 0.0493,
+      "R_F1": 0.0367,
+      "ET_pct": 0,
+      "RV_pct": 0,
+      "DR_pct": 13.4,
+      "CF_count": 21,
+      "parse_fail_rate": 0,
+      "total_samples": 551,
+      "total_pred_entities": 2162,
+      "total_pred_relations": 1647,
+      "delta_vs_unconstrained": {
+        "delta_E_F1": 0.0018,
+        "delta_R_F1": 0.0001,
+        "delta_ET": -1.5,
+        "delta_RV": 0,
+        "delta_DR": -43.54,
+        "note": "Constrained - unconstrained. Baseline: E_F1=0.2728, R_F1=0.0366, DR=56.94%, ET=1.5%, RV=0%"
+      }
+    },
+    "notes": "Mistral-7B constrained SciERC: 551/551 complete, 0 failures. OntoCoDec eliminated ET (1.5%→0%) and RV (0%→0%), reduced DR massively (56.94%→13.4%, -43.54pp). F1 unchanged (E_F1=0.2746 vs 0.2728, R_F1=0.0367 vs 0.0366). Residual DR 13.4% much higher than FT models (~1-2%), consistent with zero-shot regime needing stronger semantic constraints.",
+    "conclusion": "success",
+    "checkpoint_path": "N/A"
+  },
+  "timestamp": "2026-05-16T06:23:52.592398+00:00",
+  "trigger": "update_registry"
+}

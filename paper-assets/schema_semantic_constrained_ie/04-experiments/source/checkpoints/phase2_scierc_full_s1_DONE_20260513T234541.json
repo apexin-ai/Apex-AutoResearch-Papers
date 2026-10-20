@@ -1,0 +1,43 @@
+{
+  "exp_id": "phase2_scierc_full_s1",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T21:48:44.785Z",
+    "updated_at": "2026-05-13T23:45:41.906Z",
+    "hypothesis": "Grammar + Semantic 双层约束 (S1 单通道) 能否同时消除 rv + dr violations？F1 变化是关键：<2pp 降=完美，2-5pp=可接受 trade-off，>5pp=需要 S2 策略",
+    "notes": "Dry-run 验证通过 (5/13 23:36): E=4, R=1, 7.4s。XGrammar + TypeConstraintProcessor 双层约束正常工作，额外有 grammar 编译步骤。代码就绪，等 grammar_only/unconstrained 完成后提交。参数名是 --max_samples（非 --num_samples）。",
+    "server": "westd-16980",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-16980",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-13T23:45:08.749Z",
+      "command": "python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s1.jsonl --device cuda:0 --batch_size 1",
+      "finished_at": "2026-05-13T23:45:41.138Z",
+      "training_hours": 0.01
+    },
+    "spec": {
+      "command": "python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s1.jsonl --device cuda:0 --batch_size 1",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "/root/schema_semantic_constrained_ie/data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "Qwen3-8B",
+      "seed": 42
+    },
+    "pid": "unknown",
+    "log_path": "~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s1.log",
+    "failure_reason": "EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-13T23:45:41.906Z"
+  },
+  "timestamp": "2026-05-13T23:45:41.947781+00:00",
+  "trigger": "update_registry"
+}

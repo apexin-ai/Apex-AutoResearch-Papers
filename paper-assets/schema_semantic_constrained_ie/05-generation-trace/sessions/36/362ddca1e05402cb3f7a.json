@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "362ddca1e05402cb3f7a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis w1 cf fallback scierc pilot",
+  "task_key": "worker_analysis_w1_cf_fallback_scierc_pilot_20260515T144938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w1_cf_fallback_scierc_pilot_20260515T144938_result.json",
+    "occurrence": 1,
+    "bytes": 890,
+    "sha256": "4fe5d5ae371350c94a294b14a6ba7f521bc2a17c8788e62f0f0edf2bf165102b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。总结：\n\n## w1_cf_fallback_scierc_pilot — **NEGATIVE**\n\n| 指标 | Pilot | Baseline (full_s1) | Δ | 判定 |\n|------|-------|--------------------|----|------|\n| DR | **14.78%** | 0.93% | +13.85pp | **✗** |\n| CF | **0.04%** | 9.90% | -9.86pp | ✓ |\n| R-F1 | 8.23% | 8.36% | -0.13pp | ✓ |\n| E-F1 | 30.98% | 30.98% | 0.00pp | ✓ |\n\n**核心问题**：Fallback 触发率过高（41.12% 的 mask calls），模型实质退化为 unconstrained 行为。CF violations 确实被消除，但代价是 DR violations 从 0.93% 飙升到 14.78%（与 unconstrained baseline 的 15.37% 几乎一致）。违反没有减少，只是从 CF 转移到了 DR，总违反预算还增加了 3.99pp。\n\n**W1 改进方向**：当前的 grammar-first 全量回退太粗暴，应改为仅放松 CF mask 而保留 DR enforcement 的 partial relaxation 方案。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w1-cf-fallback-scierc-pilot.md"
+}

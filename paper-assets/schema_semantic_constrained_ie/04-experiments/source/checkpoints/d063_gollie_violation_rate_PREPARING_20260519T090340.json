@@ -1,0 +1,14 @@
+{
+  "exp_id": "d063_gollie_violation_rate",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T09:03:40.297Z",
+    "updated_at": "2026-05-19T09:03:40.298Z"
+  },
+  "timestamp": "2026-05-19T09:03:40.532056+00:00",
+  "trigger": "update_registry"
+}

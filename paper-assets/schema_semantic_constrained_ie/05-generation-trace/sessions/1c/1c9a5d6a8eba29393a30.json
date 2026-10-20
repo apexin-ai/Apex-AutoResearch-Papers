@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c9a5d6a8eba29393a30",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis latex compile check",
+  "task_key": "worker_analysis_latex_compile_check_20260519T191953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_latex_compile_check_20260519T191953_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "6e4b431033e7e5e13644402161e3786edff0eb76519e694818608e6bc30e8882"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/_project/report/latex_compile_check.md`。\n\n**检查结果汇总：全部通过。**\n\n| 检查项 | 结果 |\n|--------|------|\n| BibTeX 完整性 | ✅ 58 entries，58 citations，完美 1:1 匹配 |\n| Label/Ref 一致性 | ✅ 无断裂引用（28 个 unused labels，非错误） |\n| TODO/TBD 残留 | ✅ 活跃文件无残留（仅废弃文件有） |\n| 页数 | ✅ Main body = 8 页，Limitations 从第 9 页起，符合 EMNLP 2026 |\n| 图片文件 | ✅ 2 个引用均存在 |\n| `??` 残留 | ✅ 活跃文件无 |\n\n可选改进：28 个未引用的 `\\label`（主要是 appendix 表格和节）可以在主文或其他 appendix 中添加交叉引用以提高可导航性；paper 目录有 14 个废弃文件可清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-latex-compile-check.md"
+}

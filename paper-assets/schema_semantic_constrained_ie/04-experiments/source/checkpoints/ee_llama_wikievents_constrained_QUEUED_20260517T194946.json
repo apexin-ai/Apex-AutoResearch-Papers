@@ -1,0 +1,15 @@
+{
+  "exp_id": "ee_llama_wikievents_constrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T19:49:20.228Z",
+    "updated_at": "2026-05-17T19:49:46.335Z",
+    "hypothesis": "WikiEvents constrained decoding (full_s1 + continuation masking v2) will eliminate EV violations (10.5%→0%) and dramatically reduce RoV (88.8%→near 0%) with minimal F1 impact, demonstrating cross-task generalizability of OntoCoDec from RE to EE"
+  },
+  "timestamp": "2026-05-17T19:49:46.503406+00:00",
+  "trigger": "update_registry"
+}

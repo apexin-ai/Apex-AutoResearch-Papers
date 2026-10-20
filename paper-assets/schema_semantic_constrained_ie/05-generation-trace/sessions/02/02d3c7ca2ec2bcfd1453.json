@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02d3c7ca2ec2bcfd1453",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops gpu diagnostic both servers",
+  "task_key": "worker_ops_gpu_diagnostic_both_servers_20260516T053336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_diagnostic_both_servers_20260516T053336_result.json",
+    "occurrence": 1,
+    "bytes": 2101,
+    "sha256": "950db8ff06826e7512c9806bed30c5383643bea321021f67156d80baf4d50910"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果\n\n### westd-16980 (2× RTX PRO 6000 Blackwell, 98GB each)\n\n| GPU | 显存使用 | GPU利用率 | 进程PID | 进程命令 |\n|-----|---------|----------|---------|---------|\n| GPU 0 | 14701 / 97887 MiB (15%) | 86% | **334612** | `w6_mistral_scierc_constrained` — Mistral-7B SciERC constrained eval |\n| GPU 1 | 17427 / 97887 MiB (18%) | 84% | **321568** | `w5_qwen_docred_lora_constrained_eval` — Qwen LoRA DocRED constrained eval |\n\n**关键进程：**\n- PID 321568 (`w5_qwen_docred_lora_constrained_eval`) — **存活**，CUDA_VISIBLE_DEVICES=1，运行 219 分钟，CPU 100%\n- PID 334612 (`w6_mistral_scierc_constrained`) — **存活**，CUDA_VISIBLE_DEVICES=0，运行 4 分钟，CPU 102%\n\n---\n\n### westd-21461 (2× RTX PRO 6000 Blackwell, 98GB each)\n\n| GPU | 显存使用 | GPU利用率 | 进程PID | 进程命令 |\n|-----|---------|----------|---------|---------|\n| GPU 0 | 15291 / 97887 MiB (16%) | 90% | **7740** | `w6_mistral_docred_unconstrained` — Mistral-7B DocRED unconstrained eval |\n| GPU 1 | 15361 / 97887 MiB (16%) | 87% | **7813** | `w6_mistral_scierc_constrained` — Mistral-7B SciERC constrained eval |\n\n**关键进程：**\n- PID 6789 (`w6_mistral_docred_constrained`) — **已死亡**，不存在\n- PID 5571 (`w6_mistral_docred_unconstrained`) — **已死亡**，不存在\n- 但有**新进程**替代：PID 7740 (unconstrained, GPU 0) 和 PID 7813 (constrained SciERC, GPU 1)，均运行约 3.5 分钟\n- `/tmp/w6_mistral_docred_constrained.log` 内容显示只有 pad_token_id 警告，说明旧进程已结束（或被重启）\n\n---\n\n### 总结\n\n| 服务器 | GPU 0 | GPU 1 |\n|--------|-------|-------|\n| westd-16980 | **忙** — w6_mistral_scierc_constrained (PID 334612) | **忙** — w5_qwen_docred_lora_constrained_eval (PID 321568) |\n| westd-21461 | **忙** — w6_mistral_docred_unconstrained (PID 7740) | **忙** — w6_mistral_scierc_constrained (PID 7813) |\n\n**4 块 GPU 全部在用，无空闲 GPU。** 原 PID 6789 和 5571 已不存在，westd-21461 上当前跑的是新启动的进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-diagnostic-both-servers.md"
+}

@@ -1,0 +1,134 @@
+{
+  "timestamp": "2026-05-21T19:55:00Z",
+  "servers": {
+    "westd-21461": {
+      "gpus": {
+        "cuda:0": {
+          "status": "FREE",
+          "memory_used_MiB": 0,
+          "memory_total_MiB": 97887,
+          "utilization_pct": 0
+        },
+        "cuda:1": {
+          "status": "BUSY",
+          "memory_used_MiB": 39789,
+          "memory_total_MiB": 97887,
+          "utilization_pct": 92,
+          "process": {
+            "pid": 247853,
+            "elapsed": "06:44:07",
+            "experiment": "r16_70b_docred_zs_unconstrained",
+            "note": "Registry says r16_70b_docred_zs_s1 but actual process is running --mode unconstrained. The constrained (s1) run has NOT started yet.",
+            "model": "Meta-Llama-3.1-70B-Instruct-AWQ-INT4",
+            "device_in_cmd": "cuda:0 (CUDA_VISIBLE_DEVICES likely remaps to physical GPU 1)",
+            "output_file": "/root/autodl-tmp/schema_outputs/r16_70b_docred_zs_unconstrained.jsonl"
+          }
+        }
+      }
+    },
+    "westd-16980": {
+      "gpus": {
+        "cuda:0": {
+          "status": "FREE",
+          "memory_used_MiB": 0,
+          "memory_total_MiB": 97887,
+          "utilization_pct": 0
+        },
+        "cuda:1": {
+          "status": "FREE",
+          "memory_used_MiB": 0,
+          "memory_total_MiB": 97887,
+          "utilization_pct": 0
+        }
+      }
+    }
+  },
+  "70b_docred_progress": {
+    "experiment": "r16_70b_docred_zs_unconstrained",
+    "docs_completed": 750,
+    "docs_total": 998,
+    "progress_pct": 75.2,
+    "elapsed_hours": 6.74,
+    "estimated_remaining_hours": 2.2,
+    "rate_min_per_doc": 0.54,
+    "status": "RUNNING — ~75% done, ETA ~2h remaining"
+  },
+  "free_gpus": [
+    "westd-21461:cuda:0",
+    "westd-16980:cuda:0",
+    "westd-16980:cuda:1"
+  ],
+  "registry_summary": {
+    "total_experiments": 132,
+    "DONE": 128,
+    "RUNNING": 1,
+    "PREPARING": 2,
+    "ANALYZING": 1,
+    "running_detail": "r16_70b_docred_zs_s1 (actually unconstrained, see note above)",
+    "preparing_detail": ["d066_sweep_llama_docred_beam4_s1", "p1_llama_ee_ft"],
+    "analyzing_detail": ["d066_beam_sweep"]
+  },
+  "key_completed_experiments": {
+    "trie_baseline_4configs": {
+      "status": "ALL DONE",
+      "results": {
+        "r16_trie_llama_zs_scierc": {"E_F1": 23.23, "R_F1": 2.9, "DR_pct": 84.4},
+        "r16_trie_llama_ft_scierc": {"E_F1": 65.37, "R_F1": 41.42, "DR_pct": 15.2},
+        "r16_trie_qwen_zs_scierc":  {"E_F1": 30.97, "R_F1": 8.64, "DR_pct": 29.3},
+        "r16_trie_qwen_ft_scierc":  {"E_F1": 66.73, "R_F1": 42.57, "DR_pct": 95.5}
+      },
+      "note": "Trie has massive DR in zero-shot (29-84%) and even fine-tuned Qwen (95.5%). Strong evidence for OntoCoDec advantage."
+    },
+    "beam_998doc": {
+      "status": "ALL DONE",
+      "results": {
+        "r14_llama_docred_beam4_998": {"E_F1": 57.81, "R_F1": 8.83, "DR_pct": 0, "CF_pct": 1},
+        "r14_qwen_docred_beam4_998":  {"E_F1": 58.19, "R_F1": 8.72, "DR_pct": 0}
+      }
+    },
+    "gollie": {
+      "status": "PARTIAL — only 100 docs tested",
+      "results": {
+        "d063_gollie_violation_rate": {"DR": 0, "RV": 0, "ET": 0, "CF": 0.67, "docs": 100}
+      },
+      "note": "Need full SciERC 551-doc head-to-head comparison"
+    },
+    "70b_scierc": {
+      "status": "DONE",
+      "results": {
+        "r16_70b_scierc_zs_s1": {"E_F1": 35.19, "R_F1": 11.24, "DR_pct": 0}
+      }
+    }
+  },
+  "recommendations": {
+    "priority_order": [
+      {
+        "rank": "P0",
+        "task": "70B DocRED constrained (s1)",
+        "suggested_gpu": "westd-16980:cuda:0 or cuda:1",
+        "reason": "Unconstrained is still running on westd-21461. Can load 70B AWQ model on westd-16980 and start constrained run in parallel instead of waiting. ~39GB VRAM fits easily in 96GB GPU.",
+        "estimated_time": "~9h (998 docs × 0.54 min/doc)"
+      },
+      {
+        "rank": "P0",
+        "task": "GoLLIE SciERC full 551-doc head-to-head",
+        "suggested_gpu": "westd-16980:cuda:1 (or whichever not used by 70B)",
+        "reason": "Only 100-doc pilot exists (d063). ROADMAP P0 task. Need same-model code-style prompt comparison on full test set.",
+        "estimated_time": "1-3h depending on model"
+      },
+      {
+        "rank": "P1-P2",
+        "task": "Triple validity analysis OR 70B LoRA SciERC",
+        "suggested_gpu": "westd-21461:cuda:0",
+        "reason": "Triple validity may be CPU-only analysis. 70B LoRA SciERC condition met (trie done). Use whichever is more urgent for paper.",
+        "note": "70B LoRA requires model loading (~39GB) + LoRA adapter"
+      }
+    ],
+    "immediate_actions": [
+      "Fix registry: r16_70b_docred_zs_s1 is actually running unconstrained mode — update registry or create separate entry",
+      "Start 70B constrained on westd-16980 to parallelize with unconstrained on westd-21461",
+      "Dispatch GoLLIE 551-doc experiment on remaining free GPU",
+      "Extract beam 998-doc results into paper tables if not already done"
+    ]
+  }
+}

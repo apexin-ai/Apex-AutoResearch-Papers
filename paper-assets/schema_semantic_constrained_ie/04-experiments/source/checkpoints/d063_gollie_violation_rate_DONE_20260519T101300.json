@@ -1,0 +1,29 @@
+{
+  "exp_id": "d063_gollie_violation_rate",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T09:03:40.297Z",
+    "updated_at": "2026-05-19T10:13:00.612Z",
+    "hypothesis": "GoLLIE's code-generation IE approach (dataclass instantiation with type annotations) will still produce schema violations (DR/RV/ET) because its type annotations are soft hints in the prompt, not hard token-level constraints during decoding. This demonstrates OntoCoDec's complementary value even for schema-aware IE systems.",
+    "conclusion": "success",
+    "metrics": {
+      "gollie_DR": 0,
+      "gollie_RV": 0,
+      "gollie_ET": 0,
+      "gollie_CF": 0.67,
+      "gollie_entities": 300,
+      "gollie_relations": 7,
+      "gollie_empty_docs_pct": 45,
+      "docs_tested": 100
+    },
+    "checkpoint_path": "outputs/gollie_scierc/violation_results.json",
+    "log_path": "outputs/gollie_scierc/raw_outputs.jsonl",
+    "completed_at": "2026-05-19T10:13:00.612Z"
+  },
+  "timestamp": "2026-05-19T10:13:00.860663+00:00",
+  "trigger": "update_registry"
+}

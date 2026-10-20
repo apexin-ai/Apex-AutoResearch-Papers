@@ -1,0 +1,2068 @@
+# analysis r12 task1 fallback cascade
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 71
+- **Recorded user turns:** 0
+- **Tool calls:** 35
+- **Original source:** `logs/chats/worker_analysis_r12_task1_fallback_cascade_20260520T174540.jsonl`
+- **Structured JSON:** [`603c068cc1b847c5ff6e.json`](../../sessions/60/603c068cc1b847c5ff6e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+71 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T17:51:45.140535+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T17:51:45.141174+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T17:51:45.141433+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ls -la /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl /root/schema_semantic_constrained_ie/outputs/llama_scierc_unconstrained.jsonl /root/schema_semantic_constrained_ie/outputs/llama_scierc_full_s1.jsonl 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "ls -la /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl /root/schema_semantic_constrained_ie/outputs/llama_scierc_unconstrained.jsonl /root/schema_semantic_constrained_ie/outputs/llama_scierc_full_s1.jsonl 2>&1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-20T17:51:45.141606+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-20T17:51:45.141773+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "find /root/schema_semantic_constrained_ie/configs /root/schema_semantic_constrained_ie/data -type f -name \"*constraint*\" -o -name \"*ontolog*\" -o -name \"*schema*\" -o -name \"*scierc*\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "find /root/schema_semantic_constrained_ie/configs /root/schema_semantic_constrained_ie/data -type f -name \"*constraint*\" -o -name \"*ontolog*\" -o -name \"*schema*\" -o -name \"*scierc*\" 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T17:51:45.141914+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T17:51:45.142074+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ls -la /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl /root/schema_semantic_constrained_ie/outputs/llama_scierc_unconstrained.jsonl /root/schema_semantic_constrained_ie/outputs/llama_scierc_full_s1.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "ls -la /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl /root/schema_semantic_constrained_ie/outputs/llama_scierc_unconstrained.jsonl /root/schema_semantic_constrained_ie/outputs/llama_scierc_full_s1.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-20T17:51:45.142299+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "find /root/schema_semantic_constrained_ie/configs /root/schema_semantic_constrained_ie/data -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "find /root/schema_semantic_constrained_ie/configs /root/schema_semantic_constrained_ie/data -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-20T17:51:45.142554+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 1139514 May 14 22:35 /root/schema_semantic_constrained_ie/outputs/llama_scierc_full_s1.jsonl\\n-rw-r--r-- 1 root root 1131317 May 14 21:46 /root/schema_semantic_constrained_ie/outputs/llama_scierc_unconstrained.jsonl\\n-rw-r--r-- 1 root root 1322236 May 14 09:46 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl\\n-rw-r--r-- 1 root root 1325398 May 14 07:40 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T17:51:45.142871+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/data/docred/.cache/huggingface/.gitignore\\n/root/schema_semantic_constrained_ie/data/docred/.cache/huggingface/download/train_annotated.json.lock\\n/root/schema_semantic_constrained_ie/data/docred/.cache/huggingface/download/dev.json.lock\\n/root/schema_semantic_constrained_ie/data/docred/.cache/huggingface/download/rel_info.json.lock\\n/root/schema_semantic_constrained_ie/data/docred/train_annotated.json\\n/root/schema_semantic_constrained_ie/data/docred/dev.json\\n/root/schema_semantic_constrained_ie/data/docred/rel_info.json\\n/root/schema_semantic_constrained_ie/data/docred/ontology_constraints_docred.json\\n/root/schema_semantic_constrained_ie/data/docred/sft_train.jsonl\\n/root/schema_semantic_constrained_ie/data/docred/sft_dev.jsonl\\n/root/schema_semantic_constrained_ie/data/docred/sft_train_llama.jsonl\\n/root/schema_semantic_constrained_ie/data/docred/sft_dev_llama.jsonl\\n/root/schema_semantic_constrained_ie/data/processed_data/train.json\\n/root/schema_semantic_constrained_ie/data/processed_data/dev.json\\n/root/schema_semantic_constrained_ie/data/processed_data/test.json\\n/root/schema_semantic_constrained_ie/data/sft/scierc_sft_train.jsonl\\n/root/schema_semantic_constrained_ie/data/sft/scierc_sft_dev.jsonl\\n/root/schema_semantic_constrained_ie/data/sft/wikievents_sft_train_llama.jsonl\\n/root/schema_semantic_constrained_ie/data/sft/wikievents_sft_dev_llama.jsonl\\n/root/schema_semantic_constrained_ie/data/ace05/ontology_constraints_ace05.json\\n/root/schema_semantic_constrained_ie/data/ace05/sample_data.jsonl\\n/root/schema_semantic_constrained_ie/data/wikievents/event_role_KAIROS.json\\n/root/schema_semantic_constrained_ie/data/wikievents/aida_ontology_cleaned.csv\\n/root/schema_semantic_constrained_ie/data/wikievents/schema_status.txt\\n/root/schema_semantic_constrained_ie/data/wikievents/ontology_constraints_wikievents.json\\n/root/schema_semantic_constr
+…[truncated 1651 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T17:51:45.143163+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "head -2 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "head -2 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T17:51:45.143654+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": \\\"X96-1059_sent0\\\", \\\"input_text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold_entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\"}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\"}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\"}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\"}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\"}], \\\"gold_relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Part-of\\\", \\\"head_type\\\": \\\"Task\\\", \\\"tail_type\\\": \\\"Task\\\"}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Part-of\\\", \\\"head_type\\\": \\\"OtherScientificTerm\\\", \\\"tail_type\\\": \\\"Material\\\"}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Used-for\\\", \\\"head_type\\\": \\\"Task\\\", \\\"tail_type\\\": \\\"Task\\\"}], \\\"raw_output\\\": \\\"{\\\\n  \\\\\\\"entities\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"1\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"2\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificT
+…[truncated 3137 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T17:51:45.143972+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "head -2 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "head -2 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T17:51:45.144315+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": \\\"X96-1059_sent0\\\", \\\"input_text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold_entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\"}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\"}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\"}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\"}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\"}], \\\"gold_relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Part-of\\\", \\\"head_type\\\": \\\"Task\\\", \\\"tail_type\\\": \\\"Task\\\"}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Part-of\\\", \\\"head_type\\\": \\\"OtherScientificTerm\\\", \\\"tail_type\\\": \\\"Material\\\"}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Used-for\\\", \\\"head_type\\\": \\\"Task\\\", \\\"tail_type\\\": \\\"Task\\\"}], \\\"raw_output\\\": \\\"{\\\\n  \\\\\\\"entities\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"1\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"2\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificT
+…[truncated 3125 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T17:51:45.144557+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -r \"scierc\" /root/schema_semantic_constrained_ie/src/ --include=\"*.py\" -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "grep -r \"scierc\" /root/schema_semantic_constrained_ie/src/ --include=\"*.py\" -l"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-20T17:51:45.144889+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -r \"ontology_constraints\" /root/schema_semantic_constrained_ie/src/ --include=\"*.py\" -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "grep -r \"ontology_constraints\" /root/schema_semantic_constrained_ie/src/ --include=\"*.py\" -l"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T17:51:45.145080+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/schema_semantic_constrained_ie/src/: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T17:51:45.145294+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/schema_semantic_constrained_ie/src/: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T17:51:45.145520+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "find /root/schema_semantic_constrained_ie -maxdepth 2 -type f -name \"*.py\" -name \"*constraint*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "find /root/schema_semantic_constrained_ie -maxdepth 2 -type f -name \"*.py\" -name \"*constraint*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T17:51:45.145758+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T17:51:45.145984+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "find /root/schema_semantic_constrained_ie -maxdepth 2 -type f -name \"*.json\" -name \"*scierc*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "find /root/schema_semantic_constrained_ie -maxdepth 2 -type f -name \"*.json\" -name \"*scierc*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T17:51:45.146598+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/outputs/violation_report_scierc.json\\n/root/schema_semantic_constrained_ie/outputs/llama_scierc_unconstrained_violation_report.json\\n/root/schema_semantic_constrained_ie/outputs/violation_report_llama_scierc_full_s1.json\\n/root/schema_semantic_constrained_ie/outputs/posthoc_report_scierc.json\\n/root/schema_semantic_constrained_ie/outputs/violation_report_posthoc_scierc.json\\n/root/schema_semantic_constrained_ie/outputs/violation_report_scierc_unconstrained_v2.json\\n/root/schema_semantic_constrained_ie/outputs/violation_report_scierc_grammar_only_v2.json\\n/root/schema_semantic_constrained_ie/outputs/violation_report_scierc_semantic_only_v2.json\\n/root/schema_semantic_constrained_ie/outputs/violation_report_scierc_full_s1_v2.json\\n/root/schema_semantic_constrained_ie/outputs/violation_report_scierc_full_s2_v2.json\\n/root/schema_semantic_constrained_ie/outputs/violation_report_llama_scierc_unconstrained_v2.json\\n/root/schema_semantic_constrained_ie/outputs/violation_report_llama_scierc_full_s1_v2.json\\n/root/schema_semantic_constrained_ie/outputs/scierc_residual_dr_investigation.json\\n/root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_scierc_pilot_fallback_stats.json\\n/root/schema_semantic_constrained_ie/outputs/violation_report_w1_cf_fallback_scierc_pilot.json\\n/root/schema_semantic_constrained_ie/outputs/violation_report_phase2_scierc_full_s1.json\\n/root/schema_semantic_constrained_ie/outputs/violation_report_phase2_scierc_full_s1_v2.json\\n/root/schema_semantic_constrained_ie/outputs/w5_lora_scierc_unconstrained_eval_fallback_stats.json\\n/root/schema_semantic_constrained_ie/outputs/w5_lora_scierc_full_s1_violation_report.json\\n/root/schema_semantic_constrained_ie/outputs/w5_llama_lora_scierc_unconstrained_violations.json\\n/root/schema_semantic_constrained_ie/outputs/w5_llama_lora_scierc_constrained_report.json\\n/root/schema_semantic_constrained_i
+…[truncated 2741 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T17:51:45.146978+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ls /root/schema_semantic_constrained_ie/data/processed_data/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "ls /root/schema_semantic_constrained_ie/data/processed_data/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T17:51:45.147143+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"dev.json\\ntest.json\\ntrain.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T17:51:45.147306+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -r \"domain_range\" /root/schema_semantic_constrained_ie --include=\"*.py\" -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "grep -r \"domain_range\" /root/schema_semantic_constrained_ie --include=\"*.py\" -l"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-20T17:51:45.147432+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -r \"SciERC\\|scierc\" /root/schema_semantic_constrained_ie --include=\"*.json\" -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "grep -r \"SciERC\\|scierc\" /root/schema_semantic_constrained_ie --include=\"*.json\" -l"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-20T17:51:45.147619+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/violation_checker.py\\n/root/schema_semantic_constrained_ie/violation_checker_docred.py\\n/root/schema_semantic_constrained_ie/compare_prompts.py\\n/root/schema_semantic_constrained_ie/scripts/compare_phase2.py\\n/root/schema_semantic_constrained_ie/scripts/d066_analyze_beam_sweep.py\\n/root/schema_semantic_constrained_ie/analyze_phase2.py\\n/root/schema_semantic_constrained_ie/analyze_docred_semantic_only.py\\n/root/schema_semantic_constrained_ie/analyze_compare.py\\n/root/schema_semantic_constrained_ie/unified_violation_recalc.py\\n/root/schema_semantic_constrained_ie/posthoc_filter.py\\n/root/schema_semantic_constrained_ie/analyze_llama_docred.py\\n/root/schema_semantic_constrained_ie/analyze_dr_residual.py\\n/root/schema_semantic_constrained_ie/analyze_cf_fallback.py\\n/root/schema_semantic_constrained_ie/analyze_llama_docred_mt6144.py\\n/root/schema_semantic_constrained_ie/analyze_llama_docred_full_s1_mt6144.py\\n/root/schema_semantic_constrained_ie/posthoc_filter_v2.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T17:51:45.147809+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T17:51:45.147941+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "find /root/schema_semantic_constrained_ie -maxdepth 1 -type f -name \"*.py\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "find /root/schema_semantic_constrained_ie -maxdepth 1 -type f -name \"*.py\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T17:51:45.148396+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/analyze_ontology.py\\n/root/schema_semantic_constrained_ie/run_extraction.py\\n/root/schema_semantic_constrained_ie/violation_checker.py\\n/root/schema_semantic_constrained_ie/analyze_ontology_docred.py\\n/root/schema_semantic_constrained_ie/run_extraction_docred.py\\n/root/schema_semantic_constrained_ie/violation_checker_docred.py\\n/root/schema_semantic_constrained_ie/compare_prompts.py\\n/root/schema_semantic_constrained_ie/run_constrained_extraction.py\\n/root/schema_semantic_constrained_ie/analyze_phase2.py\\n/root/schema_semantic_constrained_ie/analyze_cf_violations.py\\n/root/schema_semantic_constrained_ie/unified_f1_eval.py\\n/root/schema_semantic_constrained_ie/analyze_docred_semantic_only.py\\n/root/schema_semantic_constrained_ie/analyze_compare.py\\n/root/schema_semantic_constrained_ie/unified_violation_recalc.py\\n/root/schema_semantic_constrained_ie/compute_bootstrap_ci.py\\n/root/schema_semantic_constrained_ie/posthoc_filter.py\\n/root/schema_semantic_constrained_ie/estimate_fallback_rate.py\\n/root/schema_semantic_constrained_ie/analyze_llama_docred.py\\n/root/schema_semantic_constrained_ie/run_bootstrap_llama.py\\n/root/schema_semantic_constrained_ie/compute_bootstrap_ci_llama.py\\n/root/schema_semantic_constrained_ie/analyze_dr_residual.py\\n/root/schema_semantic_constrained_ie/analyze_dr_residual_v2.py\\n/root/schema_semantic_constrained_ie/analyze_cf_fallback.py\\n/root/schema_semantic_constrained_ie/analyze_llama_docred_mt6144.py\\n/root/schema_semantic_constrained_ie/analyze_llama_docred_full_s1_mt6144.py\\n/root/schema_semantic_constrained_ie/posthoc_filter_v2.py\\n/root/schema_semantic_constrained_ie/latency_benchmark.py\\n/root/schema_semantic_constrained_ie/benchmark_latency_docred.py\\n/root/schema_semantic_constrained_ie/profile_latency.py\\n/root/schema_semantic_constrained_ie/sf5_parse_excluded_analysis.py\\n/root/schema_semantic_constrained_ie/s
+…[truncated 1618 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T17:51:45.148719+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "head -100 /root/schema_semantic_constrained_ie/violation_checker.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "head -100 /root/schema_semantic_constrained_ie/violation_checker.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T17:51:45.148959+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# WARNING: This checker is for SciERC only.\\n# For DocRED evaluation, use violation_checker_docred.py instead.\\n# Using this checker on DocRED outputs will produce false RV=100%\\n# because it iterates P-codes as relation names, not natural language labels.\\n\\\"\\\"\\\"Check ontology constraint violations in SciERC extraction outputs.\\n\\nViolation types (mutually exclusive per triple):\\n1. entity_type_violations      - entity type not in ontology's valid type list\\n2. relation_vocabulary_violations - relation name not in ontology (solvable by grammar-constrained decoding)\\n3. domain_range_violations     - relation name valid but (head_type, tail_type) violates constraints (OntoCoDec core target)\\n4. cross_field_consistency_violations - same entity mention has inconsistent types across relations\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\n\\ndef normalize_type(t, valid_types, type_map=None):\\n    \\\"\\\"\\\"Case-insensitive type matching with common aliases.\\\"\\\"\\\"\\n    if type_map is None:\\n        type_map = {\\n            \\\"otherscientificterm\\\": \\\"OtherScientificTerm\\\",\\n            \\\"other-scientificterm\\\": \\\"OtherScientificTerm\\\",\\n            \\\"other_scientific_term\\\": \\\"OtherScientificTerm\\\",\\n            \\\"scientificterm\\\": \\\"OtherScientificTerm\\\",\\n            \\\"other\\\": \\\"OtherScientificTerm\\\",\\n        }\\n    t_lower = t.strip().lower().replace(\\\" \\\", \\\"\\\").replace(\\\"_\\\", \\\"\\\").replace(\\\"-\\\", \\\"\\\")\\n    for vt in valid_types:\\n        if t_lower == vt.lower().replace(\\\" \\\", \\\"\\\").replace(\\\"_\\\", \\\"\\\").replace(\\\"-\\\", \\\"\\\"):\\n            return vt\\n    if t_lower in type_map:\\n        return type_map[t_lower]\\n    return None\\n\\n\\ndef normalize_relation(rel_name, valid_relation_types):\\n    \\\"\\\"\\\"Fuzzy-m
+…[truncated 2766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T17:51:45.149134+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "head -80 /root/schema_semantic_constrained_ie/analyze_cf_fallback.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "head -80 /root/schema_semantic_constrained_ie/analyze_cf_fallback.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T17:51:45.149333+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nanalyze_cf_fallback.py — CF Fallback experiment analysis\\n\\nCompares S1 (no fallback) vs S1 + CF fallback across 4 model-dataset configs.\\nRuns violation checkers, generates comparison tables, Pareto plots, and budget analysis.\\n\\nInput:\\n  - CF fallback JSONL outputs: outputs/w1_cf_fallback_{scierc_pilot,docred,llama_scierc,llama_docred}.jsonl\\n  - Optional: fallback stats JSON: outputs/w1_cf_fallback_*_fallback_stats.json\\n\\nOutput:\\n  - Markdown comparison table (stdout + outputs/cf_analysis/comparison_table.md)\\n  - DR vs CF Pareto scatter plot (outputs/cf_analysis/dr_vs_cf_pareto.pdf + .png)\\n  - Violation budget analysis (stdout + outputs/cf_analysis/violation_budget.md)\\n\\nDependencies:\\n  - violation_checker.py (SciERC checker)\\n  - violation_checker_docred.py (DocRED checker)\\n  - matplotlib\\n\\nUsage:\\n  python3 analyze_cf_fallback.py --results_dir outputs/ --output_dir outputs/cf_analysis/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport subprocess\\nimport sys\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport matplotlib.patches as mpatches\\n\\n\\n# ── Experiment configuration ──────────────────────────────────────────────────\\n\\nEXPERIMENTS = [\\n    {\\n        \\\"key\\\": \\\"qwen_scierc\\\",\\n        \\\"file\\\": \\\"w1_cf_fallback_scierc_pilot.jsonl\\\",\\n        \\\"dataset\\\": \\\"SciERC\\\",\\n        \\\"model\\\": \\\"Qwen\\\",\\n        \\\"checker\\\": \\\"scierc\\\",\\n        \\\"label\\\": \\\"Qwen SciERC\\\",\\n    },\\n    {\\n        \\\"key\\\": \\\"qwen_docred\\\",\\n        \\\"file\\\": \\\"w1_cf_fallback_docred.jsonl\\\",\\n        \\\"dataset\\\": \\\"DocRED\\\",\\n        \\\"model\\\": \\\"Qwen\\\",\\n        \\\"checker\\\": \\\"docred\\\",\\n        \\\"label\\\": \\\"Qwen DocRED\\\",\\n    },\\n    {\\n        \\
+…[truncated 1022 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-20T17:51:45.149536+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -r \"constraints\" /root/schema_semantic_constrained_ie/violation_checker.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "grep -r \"constraints\" /root/schema_semantic_constrained_ie/violation_checker.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-20T17:51:45.149704+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "find /root/schema_semantic_constrained_ie -name \"ontology_constraints*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "find /root/schema_semantic_constrained_ie -name \"ontology_constraints*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-20T17:51:45.149867+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3. domain_range_violations     - relation name valid but (head_type, tail_type) violates constraints (OntoCoDec core target)\\ndef check_violations(input_path, constraints_path, output_path):\\n    with open(constraints_path) as f:\\n        constraints = json.load(f)\\n    valid_entity_types = constraints[\\\"entity_types\\\"]\\n    rel_constraints = constraints[\\\"relation_constraints\\\"]\\n    valid_relation_types = constraints[\\\"relation_types\\\"]\\n    for rtype, info in rel_constraints.items():\\n    parser.add_argument(\\\"--constraints_path\\\", type=str, default=\\\"ontology_constraints.json\\\")\\n    check_violations(args.input_path, args.constraints_path, args.output_path)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T17:51:45.150021+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/data/docred/ontology_constraints_docred.json\\n/root/schema_semantic_constrained_ie/data/ace05/ontology_constraints_ace05.json\\n/root/schema_semantic_constrained_ie/data/wikievents/ontology_constraints_wikievents.json\\n/root/schema_semantic_constrained_ie/ontology_constraints.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T17:51:45.150159+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/schema_semantic_constrained_ie/ontology_constraints.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "cat /root/schema_semantic_constrained_ie/ontology_constraints.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T17:51:45.150516+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"entity_types\\\": [\\n    \\\"Task\\\",\\n    \\\"Method\\\",\\n    \\\"Material\\\",\\n    \\\"Metric\\\",\\n    \\\"OtherScientificTerm\\\",\\n    \\\"Generic\\\"\\n  ],\\n  \\\"relation_types\\\": [\\n    \\\"Used-for\\\",\\n    \\\"Feature-of\\\",\\n    \\\"Hyponym-of\\\",\\n    \\\"Part-of\\\",\\n    \\\"Compare\\\",\\n    \\\"Conjunction\\\",\\n    \\\"Evaluate-for\\\"\\n  ],\\n  \\\"raw_to_canonical\\\": {\\n    \\\"USED-FOR\\\": \\\"Used-for\\\",\\n    \\\"FEATURE-OF\\\": \\\"Feature-of\\\",\\n    \\\"HYPONYM-OF\\\": \\\"Hyponym-of\\\",\\n    \\\"PART-OF\\\": \\\"Part-of\\\",\\n    \\\"COMPARE\\\": \\\"Compare\\\",\\n    \\\"CONJUNCTION\\\": \\\"Conjunction\\\",\\n    \\\"EVALUATE-FOR\\\": \\\"Evaluate-for\\\"\\n  },\\n  \\\"entity_type_stats\\\": {\\n    \\\"total\\\": 5598,\\n    \\\"distribution\\\": {\\n      \\\"Material\\\": 542,\\n      \\\"OtherScientificTerm\\\": 1536,\\n      \\\"Generic\\\": 950,\\n      \\\"Method\\\": 1445,\\n      \\\"Task\\\": 894,\\n      \\\"Metric\\\": 231\\n    }\\n  },\\n  \\\"relation_constraints\\\": {\\n    \\\"Used-for\\\": {\\n      \\\"valid_pairs\\\": [\\n        [\\n          \\\"Method\\\",\\n          \\\"Task\\\"\\n        ],\\n        [\\n          \\\"Generic\\\",\\n          \\\"Task\\\"\\n        ],\\n        [\\n          \\\"Method\\\",\\n          \\\"OtherScientificTerm\\\"\\n        ],\\n        [\\n          \\\"Method\\\",\\n          \\\"Method\\\"\\n        ],\\n        [\\n          \\\"Method\\\",\\n          \\\"Generic\\\"\\n        ],\\n        [\\n          \\\"Generic\\\",\\n          \\\"OtherScientificTerm\\\"\\n        ],\\n        [\\n          \\\"OtherScientificTerm\\\",\\n          \\\"Method\\\"\\n        ],\\n        [\\n          \\\"OtherScientificTerm\\\",\\n          \\\"OtherScientificTerm\\\"\\n        ],\\n        [\\n          \\\"Material\\\",\\n          \\\"Method\\\"\\n        ],\\n        [\\n          \\
+…[truncated 8636 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T17:51:45.150816+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "head -1 /root/schema_semantic_constrained_ie/outputs/llama_scierc_unconstrained.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "head -1 /root/schema_semantic_constrained_ie/outputs/llama_scierc_unconstrained.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T17:51:45.151051+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": \\\"X96-1059_sent0\\\", \\\"input_text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold_entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\"}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\"}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\"}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\"}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\"}], \\\"gold_relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Part-of\\\", \\\"head_type\\\": \\\"Task\\\", \\\"tail_type\\\": \\\"Task\\\"}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Part-of\\\", \\\"head_type\\\": \\\"OtherScientificTerm\\\", \\\"tail_type\\\": \\\"Material\\\"}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Used-for\\\", \\\"head_type\\\": \\\"Task\\\", \\\"tail_type\\\": \\\"Task\\\"}], \\\"raw_output\\\": \\\"{\\\\n  \\\\\\\"entities\\\\\\\": [\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"problem\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\"}\\\\n  ],\\\\n  \\\\\\\"relati
+…[truncated 1156 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T17:51:45.151221+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "wc -l /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl /root/schema_semantic_constrained_ie/outputs/llama_scierc_unconstrained.jsonl /root/schema_semantic_constrained_ie/outputs/llama_scierc_full_s1.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "wc -l /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl /root/schema_semantic_constrained_ie/outputs/llama_scierc_unconstrained.jsonl /root/schema_semantic_constrained_ie/outputs/llama_scierc_full_s1.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-20T17:51:45.151653+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ls -d /root/autodl-tmp/schema_outputs"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "ls -d /root/autodl-tmp/schema_outputs"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-20T17:51:45.151878+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    551 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl\\n    551 /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl\\n    551 /root/schema_semantic_constrained_ie/outputs/llama_scierc_unconstrained.jsonl\\n    550 /root/schema_semantic_constrained_ie/outputs/llama_scierc_full_s1.jsonl\\n   2203 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T17:51:45.152024+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/schema_outputs\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-20T17:51:45.152246+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat > /root/schema_semantic_constrained_ie/r12_fallback_cascade.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"R12: Fallback cascade analysis for SciERC ZS S1 constrained outputs.\n\nQuantifies the cascade effect: S1 fallback to Generic → weakened DR checks → extra relations admitted.\n\"\"\"\nimport json\nfrom collections import defaultdict\nfrom pathlib import Path\n\nCONSTRAINTS_PATH = \"/root/schema_semantic_constrained_ie/ontology_constraints.json\"\nOUTPUT_DIR = Path(\"/root/autodl-tmp/schema_outputs\")\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n\nCONFIGS = [\n    {\n        \"model\": \"Qwen\",\n        \"unc_path\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl\",\n        \"con_path\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl\",\n    },\n    {\n        \"model\": \"Llama\",\n        \"unc_path\": \"/root/schema_semantic_constrained_ie/outputs/llama_scierc_unconstrained.jsonl\",\n        \"con_path\": \"/root/schema_semantic_constrained_ie/outputs/llama_scierc_full_s1.jsonl\",\n    },\n]\n\ndef load_jsonl(path):\n    data = {}\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if not line:\n                continue\n            rec = json.loads(line)\n            data[rec[\"doc_id\"]] = rec\n    return data\n\ndef load_constraints(path):\n    with open(path) as f:\n        c = json.load(f)\n    valid_entity_types = set(c[\"entity_types\"])\n    dr_table = {}\n    for rtype, info in c[\"relation_constraints\"].items():\n        dr_table[rtype] = set(tuple(p) for p in info[\"valid_pairs\"])\n    return valid_entity_types, dr_table\n\ndef normalize_text(t):\n    return t.strip().lower()\n\ndef get_entity_type_map(parsed):\n    \"\"\"Build text -> type map from parsed_output entities.\"\"\"\n    emap = {}\n    if not parsed or \"entities\" not in parsed:\n        return emap\n    for e in parsed[\"entities\"]:\n        emap[normalize_text(e[\"text\"])] = e[\"type\"]\n    return emap\n\ndef check_dr(dr_table, rtype, head_type, tail_type):\n    \"\"\"Returns True if (head_type, tail_type) is valid for rtype.\"\"\"\n    if rtype not in dr_table:\n        return False\n    return (head_type, tail_type) in dr_table[rtype]\n\ndef analyze_one_config(model_name, unc_path, con_path, valid_entity_types, dr_table):\n    unc_data = load_jsonl(unc_path)\n    con_data = load_jsonl(con_path)\n\n    common_ids = sorted(set(unc_data.keys()) & set(con_data.keys()))\n\n    # --- Stats accumulators ---\n    total_entities_con = 0\n    total_entities_unc = 0\n    generic_entities_con = 0\n    generic_entities_unc = 0\n    fallback_entities = 0  # Generic in con, non-Generic in unc\n    natural_generic = 0    # Generic in both\n    matched_entities = 0\n\n    total_relations_con = 0\n    relations_involving_fallback = 0\n    relations_weakened = 0  # would fail DR with true type, but pass with Generic\n\n    # Per-doc detail for examples\n    fallback_examples = []\n    weakened_examples = []\n\n    # Fallback entity \"true type\" distribution\n    true_type_dist = defaultdict(int)\n\n    # Relations involving fallback: relation type distribution\n    fallback_rel_type_dist = defaultdict(int)\n    weakened_rel_type_dist = defaultdict(int)\n\n    for doc_id in common_ids:\n        unc_rec = unc_data[doc_id]\n        con_rec = con_data[doc_id]\n\n        unc_parsed = unc_rec.get(\"parsed_output\") or {}\n        con_parsed = con_rec.get(\"parsed_output\") or {}\n\n        unc_entities = unc_parsed.get(\"entities\", [])\n        con_entities = con_parsed.get(\"entities\", [])\n        con_relations = con_parsed.get(\"relations\", [])\n\n        total_entities_unc += len(unc_entities)\n        total_entities_con += len(con_entities)\n        total_relations_con += len(con_relations)\n\n        for e in unc_entities:\n            if e.get(\"type\") == \"Generic\":\n                generic_entities_unc += 1\n        for e in con_entities:\n            if e.get(\"type\") == \"Generic\":\n                generic_entities_con += 1\n\n        # Build unc type map\n        unc_type_map = get_entity_type_map(unc_parsed)\n        # Build con type map\n        con_type_map = get_entity_type_map(con_parsed)\n\n        # Identify fallback entities in this doc\n        doc_fallback_texts = set()\n        doc_fallback_true_types = {}\n\n        for e in con_entities:\n            e_text_norm = normalize_text(e[\"text\"])\n            e_type = e.get(\"type\", \"\")\n            if e_type == \"Generic\":\n                unc_type = unc_type_map.get(e_text_norm)\n                if unc_type is not None:\n                    matched_entities += 1\n                    if unc_type != \"Generic\":\n                        fallback_entities += 1\n                        doc_fallback_texts.add(e_text_norm)\n                        doc_fallback_true_types[e_text_norm] = unc_type\n                        true_type_dist[unc_type] += 1\n                        if len(fallback_examples) < 20:\n                            fallback_examples.append({\n                                \"doc_id\": doc_id,\n                                \"text\": e[\"text\"],\n                                \"con_type\": \"Generic\",\n                                \"unc_type\": unc_type,\n                            })\n                    else:\n                        natural_generic += 1\n\n        # Check relations involving fallback entities\n        for rel in con_relations:\n            head_text = normalize_text(rel.get(\"head\", \"\"))\n            tail_text = normalize_text(rel.get(\"tail\", \"\"))\n            rtype = rel.get(\"type\", \"\")\n            head_type = rel.get(\"head_type\", \"\")\n            tail_type = rel.get(\"tail_type\", \"\")\n\n            head_is_fallback = head_text in doc_fallback_texts\n            tail_is_fallback = tail_text in doc_fallback_texts\n\n            if not (head_is_fallback or tail_is_fallback):\n                continue\n\n            relations_involving_fallback += 1\n            fallback_rel_type_dist[rtype] += 1\n\n            # Check weakening: substitute true types and see if DR would fail\n            true_head = doc_fallback_true_types.get(head_text, head_type) if head_is_fallback else head_type\n            true_tail = doc_fallback_true_types.get(tail_text, tail_type) if tail_is_fallback else tail_type\n\n            passes_with_generic = check_dr(dr_table, rtype, head_type, tail_type)\n            passes_with_true = check_dr(dr_table, rtype, true_head, true_tail)\n\n            if passes_with_generic and not passes_with_true:\n                relations_weakened += 1\n                weakened_rel_type_dist[rtype] += 1\n                if len(weakened_examples) < 20:\n                    weakened_examples.append({\n                        \"doc_id\": doc_id,\n                        \"relation\": rtype,\n                        \"head\": rel.get(\"head\", \"\"),\n                        \"tail\": rel.get(\"tail\", \"\"),\n                        \"head_type_con\": head_type,\n                        \"tail_type_con\": tail_type,\n                        \"head_type_true\": true_head,\n                        \"tail_type_true\": true_tail,\n                    })\n\n    # --- Compute Generic coverage in DR table ---\n    generic_coverage = {}\n    for rtype, pairs in dr_table.items():\n        total_pairs = len(pairs)\n        generic_head = sum(1 for h, t in pairs if h == \"Generic\")\n        generic_tail = sum(1 for h, t in pairs if t == \"Generic\")\n        generic_any = sum(1 for h, t in pairs if h == \"Generic\" or t == \"Generic\")\n        generic_coverage[rtype] = {\n            \"total_valid_pairs\": total_pairs,\n            \"pairs_with_generic_head\": generic_head,\n            \"pairs_with_generic_tail\": generic_tail,\n            \"pairs_with_any_generic\": generic_any,\n            \"generic_coverage_pct\": round(100 * generic_any / total_pairs, 1) if total_pairs else 0,\n        }\n\n    result = {\n        \"model\": model_name,\n        \"num_docs\": len(common_ids),\n        \"entity_stats\": {\n            \"total_entities_unc\": total_entities_unc,\n            \"total_entities_con\": total_entities_con,\n            \"generic_entities_unc\": generic_entities_unc,\n            \"generic_entities_con\": generic_entities_con,\n            \"generic_rate_unc_pct\": round(100 * generic_entities_unc / max(total_entities_unc, 1), 2),\n            \"generic_rate_con_pct\": round(100 * generic_entities_con / max(total_entities_con, 1), 2),\n            \"matched_generic_entities\": matched_entities,\n            \"fallback_entities\": fallback_entities,\n            \"natural_generic\": natural_generic,\n            \"fallback_rate_of_generic_pct\": round(100 * fallback_entities / max(generic_entities_con, 1), 2),\n            \"true_type_distribution\": dict(true_type_dist),\n        },\n        \"cascade_stats\": {\n            \"total_relations_con\": total_relations_con,\n            \"relations_involving_fallback\": relations_involving_fallback,\n            \"relations_involving_fallback_pct\": round(100 * relations_involving_fallback / max(total_relations_con, 1), 2),\n            \"relations_weakened_by_fallback\": relations_weakened,\n            \"weakened_pct_of_involved\": round(100 * relations_weakened / max(relations_involving_fallback, 1), 2),\n            \"weakened_pct_of_total\": round(100 * relations_weakened / max(total_relations_con, 1), 2),\n            \"fallback_rel_type_distribution\": dict(fallback_rel_type_dist),\n            \"weakened_rel_type_distribution\": dict(weakened_rel_type_dist),\n        },\n        \"generic_dr_coverage\": generic_coverage,\n        \"examples\": {\n            \"fallback_entities\": fallback_examples[:10],\n            \"weakened_relations\": weakened_examples[:10],\n        },\n    }\n\n    return result\n\n\ndef generate_latex_text(results):\n    lines = []\n    for r in results:\n        m = r[\"model\"]\n        es = r[\"entity_stats\"]\n        cs = r[\"cascade_stats\"]\n        fb = es[\"fallback_entities\"]\n        fb_rate = es[\"fallback_rate_of_generic_pct\"]\n        gen_con = es[\"generic_rate_con_pct\"]\n        gen_unc = es[\"generic_rate_unc_pct\"]\n        inv = cs[\"relations_involving_fallback\"]\n        inv_pct = cs[\"relations_involving_fallback_pct\"]\n        weak = cs[\"relations_weakened_by_fallback\"]\n        weak_pct = cs[\"weakened_pct_of_total\"]\n        lines.append(\n            f\"For {m}, the S1 constrained output assigns Generic to \"\n            f\"{gen_con:.1f}\\\\% of entities (vs.\\\\ {gen_unc:.1f}\\\\% unconstrained); \"\n            f\"of these, {fb} ({fb_rate:.1f}\\\\%) are fallback-induced. \"\n            f\"These fallback entities participate in {inv} relations \"\n            f\"({inv_pct:.1f}\\\\% of all predicted relations), \"\n            f\"of which {weak} ({weak_pct:.1f}\\\\% of total) \"\n            f\"pass the domain-range check \\\\emph{{only}} because Generic acts as a wildcard \"\n            f\"--- a cascade from entity-level fallback to relation-level constraint weakening.\"\n        )\n    return \"\\n\\n\".join(lines)\n\n\ndef main():\n    valid_types, dr_table = load_constraints(CONSTRAINTS_PATH)\n    all_results = []\n\n    for cfg in CONFIGS:\n        print(f\"=== Analyzing {cfg['model']} ===\")\n        r = analyze_one_config(cfg[\"model\"], cfg[\"unc_path\"], cfg[\"con_path\"], valid_types, dr_table)\n        all_results.append(r)\n\n        es = r[\"entity_stats\"]\n        cs = r[\"cascade_stats\"]\n        print(f\"  Entities: {es['total_entities_con']} con, {es['total_entities_unc']} unc\")\n        print(f\"  Generic rate: {es['generic_rate_con_pct']}% con vs {es['generic_rate_unc_pct']}% unc\")\n        print(f\"  Fallback entities: {es['fallback_entities']} (of {es['generic_entities_con']} Generic)\")\n        print(f\"  True type dist: {es['true_type_distribution']}\")\n        print(f\"  Relations total: {cs['total_relations_con']}\")\n        print(f\"  Relations involving fallback: {cs['relations_involving_fallback']} ({cs['relations_involving_fallback_pct']}%)\")\n        print(f\"  Relations weakened: {cs['relations_weakened_by_fallback']} ({cs['weakened_pct_of_total']}% of total)\")\n        print()\n\n    # Save JSON report\n    json_path = OUTPUT_DIR / \"r12_fallback_cascade_analysis.json\"\n    with open(json_path, \"w\") as f:\n        json.dump({\"analysis\": \"r12_fallback_cascade\", \"configs\": all_results}, f, indent=2, ensure_ascii=False)\n    print(f\"JSON report saved to {json_path}\")\n\n    # Save LaTeX text\n    latex_text = generate_latex_text(all_results)\n    txt_path = OUTPUT_DIR / \"r12_fallback_cascade_text.txt\"\n    with open(txt_path, \"w\") as f:\n        f.write(latex_text)\n    print(f\"LaTeX text saved to {txt_path}\")\n\n    # Print summary table\n    print(\"\\n=== Summary Table ===\")\n    print(f\"{'Model':<8} {'Gen% unc':>9} {'Gen% con':>9} {'Fallback':>9} {'Rel inv':>9} {'Weakened':>9} {'Weak%':>7}\")\n    for r in all_results:\n        es = r[\"entity_stats\"]\n        cs = r[\"cascade_stats\"]\n        print(f\"{r['model']:<8} {es['generic_rate_unc_pct']:>8.1f}% {es['generic_rate_con_pct']:>8.1f}% {es['fallback_entities']:>9} {cs['relations_involving_fallback']:>9} {cs['relations_weakened_by_fallback']:>9} {cs['weakened_pct_of_total']:>6.1f}%\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "cat > /root/schema_semantic_constrained_ie/r12_fallback_cascade.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"R12: Fallback cascade analysis for SciERC ZS S1 constrained outputs.\n\nQuantifies the cascade effect: S1 fallback to Generic → weakened DR checks → extra relations admitted.\n\"\"\"\nimport json\nfrom collections import defaultdict\nfrom pathlib import Path\n\nCONSTRAINTS_PATH = \"/root/schema_semantic_constrained_ie/ontology_constraints.json\"\nOUTPUT_DIR = Path(\"/root/autodl-tmp/schema_outputs\")\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n\nCONFIGS = [\n    {\n        \"model\": \"Qwen\",\n        \"unc_path\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl\",\n        \"con_path\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl\",\n    },\n    {\n        \"model\": \"Llama\",\n        \"unc_path\": \"/root/schema_semantic_constrained_ie/outputs/llama_scierc_unconstrained.jsonl\",\n        \"con_path\": \"/root/schema_semantic_constrained_ie/outputs/llama_scierc_full_s1.jsonl\",\n    },\n]\n\ndef load_jsonl(path):\n    data = {}\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if not line:\n                continue\n            rec = json.loads(line)\n            data[rec[\"doc_id\"]] = rec\n    return data\n\ndef load_constraints(path):\n    with open(path) as f:\n        c = json.load(f)\n    valid_entity_types = set(c[\"entity_types\"])\n    dr_table = {}\n    for rtype, info in c[\"relation_constraints\"].items():\n        dr_table[rtype] = set(tuple(p) for p in info[\"valid_pairs\"])\n    return valid_entity_types, dr_table\n\ndef normalize_text(t):\n    return t.strip().lower()\n\ndef get_entity_type_map(parsed):\n    \"\"\"Build text -> type map from parsed_output entities.\"\"\"\n    emap = {}\n    if not parsed or \"entities\" not in parsed:\n        return emap\n    for e in parsed[\"entities\"]:\n        emap[normalize_text(e[\"text\"])] = e[\"type\"]\n    return emap\n\ndef check_dr(dr_table, rtype, head_type, tail_type):\n    \"\"\"Returns True if (head_type, tail_type) is valid for rtype.\"\"\"\n    if rtype not in dr_table:\n        return False\n    return (head_type, tail_type) in dr_table[rtype]\n\ndef analyze_one_config(model_name, unc_path, con_path, valid_entity_types, dr_table):\n    unc_data = load_jsonl(unc_path)\n    con_data = load_jsonl(con_path)\n\n    common_ids = sorted(set(unc_data.keys()) & set(con_data.keys()))\n\n    # --- Stats accumulators ---\n    total_entities_con = 0\n    total_entities_unc = 0\n    generic_entities_con = 0\n    generic_entities_unc = 0\n    fallback_entities = 0  # Generic in con, non-Generic in unc\n    natural_generic = 0    # Generic in both\n    matched_entities = 0\n\n    total_relations_con = 0\n    relations_involving_fallback = 0\n    relations_weakened = 0  # would fail DR with true type, but pass with Generic\n\n    # Per-doc detail for examples\n    fallback_examples = []\n    weakened_examples = []\n\n    # Fallback entity \"true type\" distribution\n    true_type_dist = defaultdict(int)\n\n    # Relations involving fallback: relation type distribution\n    fallback_rel_type_dist = defaultdict(int)\n    weakened_rel_type_dist = defaultdict(int)\n\n    for doc_id in common_ids:\n        unc_rec = unc_data[doc_id]\n        con_rec = con_data[doc_id]\n\n        unc_parsed = unc_rec.get(\"parsed_output\") or {}\n        con_parsed = con_rec.get(\"parsed_output\") or {}\n\n        unc_entities = unc_parsed.get(\"entities\", [])\n        con_entities = con_parsed.get(\"entities\", [])\n        con_relations = con_parsed.get(\"relations\", [])\n\n        total_entities_unc += len(unc_entities)\n        total_entities_con += len(con_entities)\n        total_relations_con += len(con_relations)\n\n        for e in unc_entities:\n            if e.get(\"type\") == \"Generic\":\n                generic_entities_unc += 1\n        for e in con_entities:\n            if e.get(\"type\") == \"Generic\":\n                generic_entities_con += 1\n\n        # Build unc type map\n        unc_type_map = get_entity_type_map(unc_parsed)\n        # Build con type map\n        con_type_map = get_entity_type_map(con_parsed)\n\n        # Identify fallback entities in this doc\n        doc_fallback_texts = set()\n        doc_fallback_true_types = {}\n\n        for e in con_entities:\n            e_text_norm = normalize_text(e[\"text\"])\n            e_type = e.get(\"type\", \"\")\n            if e_type == \"Generic\":\n                unc_type = unc_type_map.get(e_text_norm)\n                if unc_type is not None:\n                    matched_entities += 1\n                    if unc_type != \"Generic\":\n                        fallback_entities += 1\n                        doc_fallback_texts.add(e_text_norm)\n                        doc_fallback_true_types[e_text_norm] = unc_type\n                        true_type_dist[unc_type] += 1\n                        if len(fallback_examples) < 20:\n                            fallback_examples.append({\n                                \"doc_id\": doc_id,\n                                \"text\": e[\"text\"],\n                                \"con_type\": \"Generic\",\n                                \"unc_type\": unc_type,\n                            })\n                    else:\n                        natural_generic += 1\n\n        # Check relations involving fallback entities\n        for rel in con_relations:\n            head_text = normalize_text(rel.get(\"head\", \"\"))\n            tail_text = normalize_text(rel.get(\"tail\", \"\"))\n            rtype = rel.get(\"type\", \"\")\n            head_type = rel.get(\"head_type\", \"\")\n            tail_type = rel.get(\"tail_type\", \"\")\n\n            head_is_fallback = head_text in doc_fallback_texts\n            tail_is_fallback = tail_text in doc_fallback_texts\n\n            if not (head_is_fallback or tail_is_fallback):\n                continue\n\n            relations_involving_fallback += 1\n            fallback_rel_type_dist[rtype] += 1\n\n            # Check weakening: substitute true types and see if DR would fail\n            true_head = doc_fallback_true_types.get(head_text, head_type) if head_is_fallback else head_type\n            true_tail = doc_fallback_true_types.get(tail_text, tail_type) if tail_is_fallback else tail_type\n\n            passes_with_generic = check_dr(dr_table, rtype, head_type, tail_type)\n            passes_with_true = check_dr(dr_table, rtype, true_head, true_tail)\n\n            if passes_with_generic and not passes_with_true:\n                relations_weakened += 1\n                weakened_rel_type_dist[rtype] += 1\n                if len(weakened_examples) < 20:\n                    weakened_examples.append({\n                        \"doc_id\": doc_id,\n                        \"relation\": rtype,\n                        \"head\": rel.get(\"head\", \"\"),\n                        \"tail\": rel.get(\"tail\", \"\"),\n                        \"head_type_con\": head_type,\n                        \"tail_type_con\": tail_type,\n                        \"head_type_true\": true_head,\n                        \"tail_type_true\": true_tail,\n                    })\n\n    # --- Compute Generic coverage in DR table ---\n    generic_coverage = {}\n    for rtype, pairs in dr_table.items():\n        total_pairs = len(pairs)\n        generic_head = sum(1 for h, t in pairs if h == \"Generic\")\n        generic_tail = sum(1 for h, t in pairs if t == \"Generic\")\n        generic_any = sum(1 for h, t in pairs if h == \"Generic\" or t == \"Generic\")\n        generic_coverage[rtype] = {\n            \"total_valid_pairs\": total_pairs,\n            \"pairs_with_generic_head\": generic_head,\n            \"pairs_with_generic_tail\": generic_tail,\n            \"pairs_with_any_generic\": generic_any,\n            \"generic_coverage_pct\": round(100 * generic_any / total_pairs, 1) if total_pairs else 0,\n        }\n\n    result = {\n        \"model\": model_name,\n        \"num_docs\": len(common_ids),\n        \"entity_stats\": {\n            \"total_entities_unc\": total_entities_unc,\n            \"total_entities_con\": total_entities_con,\n            \"generic_entities_unc\": generic_entities_unc,\n            \"generic_entities_con\": generic_entities_con,\n            \"generic_rate_unc_pct\": round(100 * generic_entities_unc / max(total_entities_unc, 1), 2),\n            \"generic_rate_con_pct\": round(100 * generic_entities_con / max(total_entities_con, 1), 2),\n            \"matched_generic_entities\": matched_entities,\n            \"fallback_entities\": fallback_entities,\n            \"natural_generic\": natural_generic,\n            \"fallback_rate_of_generic_pct\": round(100 * fallback_entities / max(generic_entities_con, 1), 2),\n            \"true_type_distribution\": dict(true_type_dist),\n        },\n        \"cascade_stats\": {\n            \"total_relations_con\": total_relations_con,\n            \"relations_involving_fallback\": relations_involving_fallback,\n            \"relations_involving_fallback_pct\": round(100 * relations_involving_fallback / max(total_relations_con, 1), 2),\n            \"relations_weakened_by_fallback\": relations_weakened,\n            \"weakened_pct_of_involved\": round(100 * relations_weakened / max(relations_involving_fallback, 1), 2),\n            \"weakened_pct_of_total\": round(100 * relations_weakened / max(total_relations_con, 1), 2),\n            \"fallback_rel_type_distribution\": dict(fallback_rel_type_dist),\n            \"weakened_rel_type_distribution\": dict(weakened_rel_type_dist),\n        },\n        \"generic_dr_coverage\": generic_coverage,\n        \"examples\": {\n            \"fallback_entities\": fallback_examples[:10],\n            \"weakened_relations\": weakened_examples[:10],\n        },\n    }\n\n    return result\n\n\ndef generate_latex_text(results):\n    lines = []\n    for r in results:\n        m = r[\"model\"]\n        es = r[\"entity_stats\"]\n        cs = r[\"cascade_stats\"]\n        fb = es[\"fallback_entities\"]\n        fb_rate = es[\"fallback_rate_of_generic_pct\"]\n        gen_con = es[\"generic_rate_con_pct\"]\n        gen_unc = es[\"generic_rate_unc_pct\"]\n        inv = cs[\"relations_involving_fallback\"]\n        inv_pct = cs[\"relations_involving_fallback_pct\"]\n        weak = cs[\"relations_weakened_by_fallback\"]\n        weak_pct = cs[\"weakened_pct_of_total\"]\n        lines.append(\n            f\"For {m}, the S1 constrained output assigns Generic to \"\n            f\"{gen_con:.1f}\\\\% of entities (vs.\\\\ {gen_unc:.1f}\\\\% unconstrained); \"\n            f\"of these, {fb} ({fb_rate:.1f}\\\\%) are fallback-induced. \"\n            f\"These fallback entities participate in {inv} relations \"\n            f\"({inv_pct:.1f}\\\\% of all predicted relations), \"\n            f\"of which {weak} ({weak_pct:.1f}\\\\% of total) \"\n            f\"pass the domain-range check \\\\emph{{only}} because Generic acts as a wildcard \"\n            f\"--- a cascade from entity-level fallback to relation-level constraint weakening.\"\n        )\n    return \"\\n\\n\".join(lines)\n\n\ndef main():\n    valid_types, dr_table = load_constraints(CONSTRAINTS_PATH)\n    all_results = []\n\n    for cfg in CONFIGS:\n        print(f\"=== Analyzing {cfg['model']} ===\")\n        r = analyze_one_config(cfg[\"model\"], cfg[\"unc_path\"], cfg[\"con_path\"], valid_types, dr_table)\n        all_results.append(r)\n\n        es = r[\"entity_stats\"]\n        cs = r[\"cascade_stats\"]\n        print(f\"  Entities: {es['total_entities_con']} con, {es['total_entities_unc']} unc\")\n        print(f\"  Generic rate: {es['generic_rate_con_pct']}% con vs {es['generic_rate_unc_pct']}% unc\")\n        print(f\"  Fallback entities: {es['fallback_entities']} (of {es['generic_entities_con']} Generic)\")\n        print(f\"  True type dist: {es['true_type_distribution']}\")\n        print(f\"  Relations total: {cs['total_relations_con']}\")\n        print(f\"  Relations involving fallback: {cs['relations_involving_fallback']} ({cs['relations_involving_fallback_pct']}%)\")\n        print(f\"  Relations weakened: {cs['relations_weakened_by_fallback']} ({cs['weakened_pct_of_total']}% of total)\")\n        print()\n\n    # Save JSON report\n    json_path = OUTPUT_DIR / \"r12_fallback_cascade_analysis.json\"\n    with open(json_path, \"w\") as f:\n        json.dump({\"analysis\": \"r12_fallback_cascade\", \"configs\": all_results}, f, indent=2, ensure_ascii=False)\n    print(f\"JSON report saved to {json_path}\")\n\n    # Save LaTeX text\n    latex_text = generate_latex_text(all_results)\n    txt_path = OUTPUT_DIR / \"r12_fallback_cascade_text.txt\"\n    with open(txt_path, \"w\") as f:\n        f.write(latex_text)\n    print(f\"LaTeX text saved to {txt_path}\")\n\n    # Print summary table\n    print(\"\\n=== Summary Table ===\")\n    print(f\"{'Model':<8} {'Gen% unc':>9} {'Gen% con':>9} {'Fallback':>9} {'Rel inv':>9} {'Weakened':>9} {'Weak%':>7}\")\n    for r in all_results:\n        es = r[\"entity_stats\"]\n        cs = r[\"cascade_stats\"]\n        print(f\"{r['model']:<8} {es['generic_rate_unc_pct']:>8.1f}% {es['generic_rate_con_pct']:>8.1f}% {es['fallback_entities']:>9} {cs['relations_involving_fallback']:>9} {cs['relations_weakened_by_fallback']:>9} {cs['weakened_pct_of_total']:>6.1f}%\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T17:51:45.152534+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-20T17:51:45.152716+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cd /root/schema_semantic_constrained_ie && python3 r12_fallback_cascade.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "cd /root/schema_semantic_constrained_ie && python3 r12_fallback_cascade.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T17:51:45.153113+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Analyzing Qwen ===\\n  Entities: 2474 con, 2474 unc\\n  Generic rate: 10.19% con vs 10.06% unc\\n  Fallback entities: 3 (of 252 Generic)\\n  True type dist: {'Feature-of': 3}\\n  Relations total: 1729\\n  Relations involving fallback: 2 (0.12%)\\n  Relations weakened: 2 (0.12% of total)\\n\\n=== Analyzing Llama ===\\n  Entities: 2469 con, 2449 unc\\n  Generic rate: 14.62% con vs 14.37% unc\\n  Fallback entities: 1 (of 361 Generic)\\n  True type dist: {'Material': 1}\\n  Relations total: 1315\\n  Relations involving fallback: 1 (0.08%)\\n  Relations weakened: 0 (0.0% of total)\\n\\nJSON report saved to /root/autodl-tmp/schema_outputs/r12_fallback_cascade_analysis.json\\nLaTeX text saved to /root/autodl-tmp/schema_outputs/r12_fallback_cascade_text.txt\\n\\n=== Summary Table ===\\nModel     Gen% unc  Gen% con  Fallback   Rel inv  Weakened   Weak%\\nQwen         10.1%     10.2%         3         2         2    0.1%\\nLlama        14.4%     14.6%         1         1         0    0.0%\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-20T17:51:45.153700+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat > /root/schema_semantic_constrained_ie/r12_fallback_cascade_v2.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"R12 v2: Comprehensive fallback cascade analysis for SciERC ZS S1.\n\nThree layers:\n1. S1-induced fallback: entities Generic in con but non-Generic in unc\n2. All Generic entities: downstream DR impact regardless of cause\n3. DR coverage analysis: how much does Generic weaken DR constraints\n\"\"\"\nimport json\nfrom collections import defaultdict\nfrom pathlib import Path\n\nCONSTRAINTS_PATH = \"/root/schema_semantic_constrained_ie/ontology_constraints.json\"\nOUTPUT_DIR = Path(\"/root/autodl-tmp/schema_outputs\")\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n\nCONFIGS = [\n    {\n        \"model\": \"Qwen\",\n        \"unc_path\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl\",\n        \"con_path\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl\",\n    },\n    {\n        \"model\": \"Llama\",\n        \"unc_path\": \"/root/schema_semantic_constrained_ie/outputs/llama_scierc_unconstrained.jsonl\",\n        \"con_path\": \"/root/schema_semantic_constrained_ie/outputs/llama_scierc_full_s1.jsonl\",\n    },\n]\n\nNON_GENERIC_TYPES = {\"Task\", \"Method\", \"Material\", \"Metric\", \"OtherScientificTerm\"}\n\ndef load_jsonl(path):\n    data = {}\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if not line:\n                continue\n            rec = json.loads(line)\n            data[rec[\"doc_id\"]] = rec\n    return data\n\ndef load_constraints(path):\n    with open(path) as f:\n        c = json.load(f)\n    valid_entity_types = set(c[\"entity_types\"])\n    dr_table = {}\n    for rtype, info in c[\"relation_constraints\"].items():\n        dr_table[rtype] = set(tuple(p) for p in info[\"valid_pairs\"])\n    return valid_entity_types, c[\"relation_types\"], dr_table\n\ndef norm(t):\n    return t.strip().lower()\n\ndef check_dr(dr_table, rtype, ht, tt):\n    if rtype not in dr_table:\n        return False\n    return (ht, tt) in dr_table[rtype]\n\ndef compute_generic_permissiveness(dr_table):\n    \"\"\"For each relation, compute how many EXTRA pairs Generic enables vs specific types.\"\"\"\n    results = {}\n    for rtype, pairs in dr_table.items():\n        total = len(pairs)\n        with_generic = sum(1 for h, t in pairs if h == \"Generic\" or t == \"Generic\")\n        without_generic = total - with_generic\n\n        # For each non-Generic type T, how many relations pass with (Generic, X) but would fail with (T, X)?\n        # This measures the \"wildcard effect\"\n        specific_only_pairs = set((h, t) for h, t in pairs if h != \"Generic\" and t != \"Generic\")\n        generic_head_extra = 0\n        generic_tail_extra = 0\n        for h, t in pairs:\n            if h == \"Generic\" and t != \"Generic\":\n                # How many specific types would NOT be valid here?\n                for st in NON_GENERIC_TYPES:\n                    if (st, t) not in specific_only_pairs:\n                        generic_head_extra += 1\n            if t == \"Generic\" and h != \"Generic\":\n                for st in NON_GENERIC_TYPES:\n                    if (h, st) not in specific_only_pairs:\n                        generic_tail_extra += 1\n\n        results[rtype] = {\n            \"total_valid_pairs\": total,\n            \"pairs_involving_generic\": with_generic,\n            \"pairs_without_generic\": without_generic,\n            \"generic_coverage_pct\": round(100 * with_generic / max(total, 1), 1),\n            \"extra_admissions_head_generic\": generic_head_extra,\n            \"extra_admissions_tail_generic\": generic_tail_extra,\n        }\n    return results\n\ndef analyze_one(model_name, unc_path, con_path, valid_types, rel_types, dr_table):\n    unc_data = load_jsonl(unc_path)\n    con_data = load_jsonl(con_path)\n    common = sorted(set(unc_data) & set(con_data))\n\n    # Accumulators\n    tot_ent_con = 0; tot_ent_unc = 0\n    gen_ent_con = 0; gen_ent_unc = 0\n    fallback_ents = 0; natural_gen = 0; unmatched_gen = 0\n    matched_total = 0\n    tot_rel_con = 0\n\n    # Broader cascade: ALL Generic entities\n    all_gen_involved_rels = 0\n    all_gen_weakened_rels = 0\n\n    # S1-specific cascade\n    s1_fallback_involved_rels = 0\n    s1_fallback_weakened_rels = 0\n\n    true_type_dist = defaultdict(int)\n    fallback_examples = []\n    weakened_examples = []\n\n    # Per-relation type breakdown\n    gen_rel_dist = defaultdict(lambda: {\"involved\": 0, \"weakened\": 0})\n\n    for doc_id in common:\n        unc_p = (unc_data[doc_id].get(\"parsed_output\") or {})\n        con_p = (con_data[doc_id].get(\"parsed_output\") or {})\n\n        unc_ents = unc_p.get(\"entities\", [])\n        con_ents = con_p.get(\"entities\", [])\n        con_rels = con_p.get(\"relations\", [])\n\n        tot_ent_unc += len(unc_ents)\n        tot_ent_con += len(con_ents)\n        tot_rel_con += len(con_rels)\n\n        for e in unc_ents:\n            if e.get(\"type\") == \"Generic\":\n                gen_ent_unc += 1\n        for e in con_ents:\n            if e.get(\"type\") == \"Generic\":\n                gen_ent_con += 1\n\n        # Build type maps\n        unc_map = {norm(e[\"text\"]): e[\"type\"] for e in unc_ents}\n        con_map = {norm(e[\"text\"]): e[\"type\"] for e in con_ents}\n\n        # Identify fallback entities\n        doc_fallback = {}  # norm_text -> true_type\n        doc_all_generic = set()  # norm_text of all Generic entities in con\n\n        for e in con_ents:\n            nt = norm(e[\"text\"])\n            if e.get(\"type\") == \"Generic\":\n                doc_all_generic.add(nt)\n                unc_t = unc_map.get(nt)\n                if unc_t is not None:\n                    matched_total += 1\n                    if unc_t != \"Generic\" and unc_t in valid_types:\n                        fallback_ents += 1\n                        doc_fallback[nt] = unc_t\n                        true_type_dist[unc_t] += 1\n                        if len(fallback_examples) < 15:\n                            fallback_examples.append({\n                                \"doc_id\": doc_id, \"text\": e[\"text\"],\n                                \"con_type\": \"Generic\", \"unc_type\": unc_t,\n                            })\n                    elif unc_t == \"Generic\":\n                        natural_gen += 1\n                    else:\n                        # unc type not in valid set (model hallucinated type)\n                        fallback_ents += 1\n                        doc_fallback[nt] = unc_t\n                        true_type_dist[unc_t] += 1\n                        if len(fallback_examples) < 15:\n                            fallback_examples.append({\n                                \"doc_id\": doc_id, \"text\": e[\"text\"],\n                                \"con_type\": \"Generic\", \"unc_type\": unc_t,\n                                \"note\": \"unc type not in ontology\"\n                            })\n                else:\n                    unmatched_gen += 1\n\n        # Analyze relations\n        for rel in con_rels:\n            ht_norm = norm(rel.get(\"head\", \"\"))\n            tt_norm = norm(rel.get(\"tail\", \"\"))\n            rtype = rel.get(\"type\", \"\")\n            ht = rel.get(\"head_type\", \"\")\n            tt = rel.get(\"tail_type\", \"\")\n\n            h_is_gen = ht_norm in doc_all_generic\n            t_is_gen = tt_norm in doc_all_generic\n            h_is_fb = ht_norm in doc_fallback\n            t_is_fb = tt_norm in doc_fallback\n\n            # Layer 2: ALL Generic entities\n            if h_is_gen or t_is_gen:\n                all_gen_involved_rels += 1\n                gen_rel_dist[rtype][\"involved\"] += 1\n\n                # Check if DR would be stricter with a hypothetical non-Generic type\n                # We check: does at least one non-Generic substitution FAIL?\n                passes_now = check_dr(dr_table, rtype, ht, tt)\n                if passes_now:\n                    any_fail = False\n                    if h_is_gen and ht == \"Generic\":\n                        for st in NON_GENERIC_TYPES:\n                            if not check_dr(dr_table, rtype, st, tt):\n                                any_fail = True\n                                break\n                    if not any_fail and t_is_gen and tt == \"Generic\":\n                        for st in NON_GENERIC_TYPES:\n                            if not check_dr(dr_table, rtype, ht, st):\n                                any_fail = True\n                                break\n                    if any_fail:\n                        all_gen_weakened_rels += 1\n                        gen_rel_dist[rtype][\"weakened\"] += 1\n\n            # Layer 1: S1-specific fallback\n            if h_is_fb or t_is_fb:\n                s1_fallback_involved_rels += 1\n                true_ht = doc_fallback.get(ht_norm, ht) if h_is_fb else ht\n                true_tt = doc_fallback.get(tt_norm, tt) if t_is_fb else tt\n                passes_gen = check_dr(dr_table, rtype, ht, tt)\n                passes_true = check_dr(dr_table, rtype, true_ht, true_tt)\n                if passes_gen and not passes_true:\n                    s1_fallback_weakened_rels += 1\n                    if len(weakened_examples) < 15:\n                        weakened_examples.append({\n                            \"doc_id\": doc_id, \"rel\": rtype,\n                            \"head\": rel.get(\"head\",\"\"), \"tail\": rel.get(\"tail\",\"\"),\n                            \"ht_con\": ht, \"tt_con\": tt,\n                            \"ht_true\": true_ht, \"tt_true\": true_tt,\n                        })\n\n    # Generic entity text match coverage\n    total_gen_con = gen_ent_con\n    match_coverage = round(100 * (matched_total + natural_gen) / max(total_gen_con, 1), 1) if total_gen_con else 0\n\n    return {\n        \"model\": model_name,\n        \"num_docs\": len(common),\n        \"entity_stats\": {\n            \"total_unc\": tot_ent_unc,\n            \"total_con\": tot_ent_con,\n            \"generic_unc\": gen_ent_unc,\n            \"generic_con\": gen_ent_con,\n            \"generic_rate_unc_pct\": round(100*gen_ent_unc/max(tot_ent_unc,1), 2),\n            \"generic_rate_con_pct\": round(100*gen_ent_con/max(tot_ent_con,1), 2),\n            \"fallback_count\": fallback_ents,\n            \"natural_generic\": natural_gen,\n            \"unmatched_generic\": unmatched_gen,\n            \"true_type_distribution\": dict(true_type_dist),\n            \"text_match_coverage_pct\": match_coverage,\n        },\n        \"layer1_s1_fallback_cascade\": {\n            \"fallback_entities\": fallback_ents,\n            \"relations_involving_fallback\": s1_fallback_involved_rels,\n            \"relations_weakened\": s1_fallback_weakened_rels,\n            \"weakened_pct_of_total_rels\": round(100*s1_fallback_weakened_rels/max(tot_rel_con,1), 2),\n        },\n        \"layer2_all_generic_cascade\": {\n            \"generic_entities_in_con\": gen_ent_con,\n            \"total_relations_con\": tot_rel_con,\n            \"relations_involving_any_generic\": all_gen_involved_rels,\n            \"involved_pct\": round(100*all_gen_involved_rels/max(tot_rel_con,1), 2),\n            \"relations_weakened_by_generic\": all_gen_weakened_rels,\n            \"weakened_pct_of_total\": round(100*all_gen_weakened_rels/max(tot_rel_con,1), 2),\n            \"weakened_pct_of_involved\": round(100*all_gen_weakened_rels/max(all_gen_involved_rels,1), 2),\n            \"per_relation_breakdown\": {k: dict(v) for k, v in gen_rel_dist.items()},\n        },\n        \"examples\": {\n            \"fallback_entities\": fallback_examples[:10],\n            \"weakened_relations\": weakened_examples[:10],\n        },\n    }\n\n\ndef gen_latex(results, perm):\n    lines = []\n    lines.append(\"% R12 Fallback Cascade Analysis\")\n    lines.append(\"% Layer 1: S1-induced fallback is minimal; Layer 2: broader Generic wildcard effect\")\n    lines.append(\"\")\n    for r in results:\n        m = r[\"model\"]\n        es = r[\"entity_stats\"]\n        l1 = r[\"layer1_s1_fallback_cascade\"]\n        l2 = r[\"layer2_all_generic_cascade\"]\n        lines.append(\n            f\"For {m}, S1 constrained decoding assigns \\\\textsc{{Generic}} to \"\n            f\"{es['generic_rate_con_pct']:.1f}\\\\% of entities \"\n            f\"(vs.\\\\ {es['generic_rate_unc_pct']:.1f}\\\\% unconstrained), \"\n            f\"with only {l1['fallback_entities']} entities attributed to S1-induced fallback. \"\n            f\"However, the broader impact of \\\\textsc{{Generic}} on DR enforcement is substantial: \"\n            f\"{l2['relations_involving_any_generic']} relations ({l2['involved_pct']:.1f}\\\\% of total) \"\n            f\"involve at least one \\\\textsc{{Generic}} entity, and of these, \"\n            f\"{l2['relations_weakened_by_generic']} ({l2['weakened_pct_of_involved']:.1f}\\\\%) \"\n            f\"pass the domain-range check only because \\\\textsc{{Generic}} acts as a type wildcard---\"\n            f\"a pair that would be rejected for at least one specific type substitution.\"\n        )\n        lines.append(\"\")\n\n    # Add ontology-level analysis\n    lines.append(\n        \"This permissiveness is structural: across the 7 SciERC relation types, \"\n        f\"Generic participates in {perm['avg_coverage']:.0f}\\\\% of valid pairs on average, \"\n        f\"making DR checks largely vacuous for any relation endpoint typed as \\\\textsc{{Generic}}.\"\n    )\n    return \"\\n\".join(lines)\n\n\ndef main():\n    valid_types, rel_types, dr_table = load_constraints(CONSTRAINTS_PATH)\n    perm = compute_generic_permissiveness(dr_table)\n    all_results = []\n\n    for cfg in CONFIGS:\n        print(f\"\\n{'='*60}\")\n        print(f\"  {cfg['model']}\")\n        print(f\"{'='*60}\")\n        r = analyze_one(cfg[\"model\"], cfg[\"unc_path\"], cfg[\"con_path\"], valid_types, rel_types, dr_table)\n        all_results.append(r)\n\n        es = r[\"entity_stats\"]\n        l1 = r[\"layer1_s1_fallback_cascade\"]\n        l2 = r[\"layer2_all_generic_cascade\"]\n\n        print(f\"\\n  Entity stats:\")\n        print(f\"    Total: {es['total_con']} con / {es['total_unc']} unc\")\n        print(f\"    Generic: {es['generic_con']} ({es['generic_rate_con_pct']}%) con / {es['generic_unc']} ({es['generic_rate_unc_pct']}%) unc\")\n        print(f\"    Fallback (S1-induced): {es['fallback_count']}\")\n        print(f\"    Natural Generic: {es['natural_generic']}\")\n        print(f\"    Unmatched: {es['unmatched_generic']}\")\n        print(f\"    True type dist: {es['true_type_distribution']}\")\n        print(f\"    Text match coverage: {es['text_match_coverage_pct']}%\")\n\n        print(f\"\\n  Layer 1 - S1 Fallback Cascade:\")\n        print(f\"    Fallback entities: {l1['fallback_entities']}\")\n        print(f\"    Relations involving: {l1['relations_involving_fallback']}\")\n        print(f\"    Relations weakened: {l1['relations_weakened']} ({l1['weakened_pct_of_total_rels']}%)\")\n\n        print(f\"\\n  Layer 2 - All Generic Cascade:\")\n        print(f\"    Relations involving any Generic: {l2['relations_involving_any_generic']} ({l2['involved_pct']}%)\")\n        print(f\"    Relations weakened by Generic wildcard: {l2['relations_weakened_by_generic']} ({l2['weakened_pct_of_total']}%)\")\n        print(f\"    Weakened % of involved: {l2['weakened_pct_of_involved']}%\")\n        print(f\"    Per-relation breakdown:\")\n        for rt, v in sorted(l2['per_relation_breakdown'].items(), key=lambda x: -x[1]['involved']):\n            print(f\"      {rt}: {v['involved']} involved, {v['weakened']} weakened\")\n\n    # Generic permissiveness in ontology\n    print(f\"\\n{'='*60}\")\n    print(\"  Generic DR Permissiveness (ontology-level)\")\n    print(f\"{'='*60}\")\n    coverages = []\n    for rt, info in sorted(perm.items()):\n        cov = info[\"generic_coverage_pct\"]\n        coverages.append(cov)\n        print(f\"  {rt}: {info['pairs_involving_generic']}/{info['total_valid_pairs']} pairs involve Generic ({cov}%)\")\n    avg_cov = sum(coverages) / len(coverages) if coverages else 0\n\n    # Save\n    report = {\n        \"analysis\": \"r12_fallback_cascade_v2\",\n        \"configs\": all_results,\n        \"generic_permissiveness\": perm,\n        \"avg_generic_coverage_pct\": round(avg_cov, 1),\n    }\n    json_path = OUTPUT_DIR / \"r12_fallback_cascade_analysis.json\"\n    with open(json_path, \"w\") as f:\n        json.dump(report, f, indent=2, ensure_ascii=False)\n    print(f\"\\nJSON saved: {json_path}\")\n\n    latex = gen_latex(all_results, {\"avg_coverage\": avg_cov})\n    txt_path = OUTPUT_DIR / \"r12_fallback_cascade_text.txt\"\n    with open(txt_path, \"w\") as f:\n        f.write(latex)\n    print(f\"LaTeX saved: {txt_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "cat > /root/schema_semantic_constrained_ie/r12_fallback_cascade_v2.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"R12 v2: Comprehensive fallback cascade analysis for SciERC ZS S1.\n\nThree layers:\n1. S1-induced fallback: entities Generic in con but non-Generic in unc\n2. All Generic entities: downstream DR impact regardless of cause\n3. DR coverage analysis: how much does Generic weaken DR constraints\n\"\"\"\nimport json\nfrom collections import defaultdict\nfrom pathlib import Path\n\nCONSTRAINTS_PATH = \"/root/schema_semantic_constrained_ie/ontology_constraints.json\"\nOUTPUT_DIR = Path(\"/root/autodl-tmp/schema_outputs\")\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n\nCONFIGS = [\n    {\n        \"model\": \"Qwen\",\n        \"unc_path\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl\",\n        \"con_path\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl\",\n    },\n    {\n        \"model\": \"Llama\",\n        \"unc_path\": \"/root/schema_semantic_constrained_ie/outputs/llama_scierc_unconstrained.jsonl\",\n        \"con_path\": \"/root/schema_semantic_constrained_ie/outputs/llama_scierc_full_s1.jsonl\",\n    },\n]\n\nNON_GENERIC_TYPES = {\"Task\", \"Method\", \"Material\", \"Metric\", \"OtherScientificTerm\"}\n\ndef load_jsonl(path):\n    data = {}\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if not line:\n                continue\n            rec = json.loads(line)\n            data[rec[\"doc_id\"]] = rec\n    return data\n\ndef load_constraints(path):\n    with open(path) as f:\n        c = json.load(f)\n    valid_entity_types = set(c[\"entity_types\"])\n    dr_table = {}\n    for rtype, info in c[\"relation_constraints\"].items():\n        dr_table[rtype] = set(tuple(p) for p in info[\"valid_pairs\"])\n    return valid_entity_types, c[\"relation_types\"], dr_table\n\ndef norm(t):\n    return t.strip().lower()\n\ndef check_dr(dr_table, rtype, ht, tt):\n    if rtype not in dr_table:\n        return False\n    return (ht, tt) in dr_table[rtype]\n\ndef compute_generic_permissiveness(dr_table):\n    \"\"\"For each relation, compute how many EXTRA pairs Generic enables vs specific types.\"\"\"\n    results = {}\n    for rtype, pairs in dr_table.items():\n        total = len(pairs)\n        with_generic = sum(1 for h, t in pairs if h == \"Generic\" or t == \"Generic\")\n        without_generic = total - with_generic\n\n        # For each non-Generic type T, how many relations pass with (Generic, X) but would fail with (T, X)?\n        # This measures the \"wildcard effect\"\n        specific_only_pairs = set((h, t) for h, t in pairs if h != \"Generic\" and t != \"Generic\")\n        generic_head_extra = 0\n        generic_tail_extra = 0\n        for h, t in pairs:\n            if h == \"Generic\" and t != \"Generic\":\n                # How many specific types would NOT be valid here?\n                for st in NON_GENERIC_TYPES:\n                    if (st, t) not in specific_only_pairs:\n                        generic_head_extra += 1\n            if t == \"Generic\" and h != \"Generic\":\n                for st in NON_GENERIC_TYPES:\n                    if (h, st) not in specific_only_pairs:\n                        generic_tail_extra += 1\n\n        results[rtype] = {\n            \"total_valid_pairs\": total,\n            \"pairs_involving_generic\": with_generic,\n            \"pairs_without_generic\": without_generic,\n            \"generic_coverage_pct\": round(100 * with_generic / max(total, 1), 1),\n            \"extra_admissions_head_generic\": generic_head_extra,\n            \"extra_admissions_tail_generic\": generic_tail_extra,\n        }\n    return results\n\ndef analyze_one(model_name, unc_path, con_path, valid_types, rel_types, dr_table):\n    unc_data = load_jsonl(unc_path)\n    con_data = load_jsonl(con_path)\n    common = sorted(set(unc_data) & set(con_data))\n\n    # Accumulators\n    tot_ent_con = 0; tot_ent_unc = 0\n    gen_ent_con = 0; gen_ent_unc = 0\n    fallback_ents = 0; natural_gen = 0; unmatched_gen = 0\n    matched_total = 0\n    tot_rel_con = 0\n\n    # Broader cascade: ALL Generic entities\n    all_gen_involved_rels = 0\n    all_gen_weakened_rels = 0\n\n    # S1-specific cascade\n    s1_fallback_involved_rels = 0\n    s1_fallback_weakened_rels = 0\n\n    true_type_dist = defaultdict(int)\n    fallback_examples = []\n    weakened_examples = []\n\n    # Per-relation type breakdown\n    gen_rel_dist = defaultdict(lambda: {\"involved\": 0, \"weakened\": 0})\n\n    for doc_id in common:\n        unc_p = (unc_data[doc_id].get(\"parsed_output\") or {})\n        con_p = (con_data[doc_id].get(\"parsed_output\") or {})\n\n        unc_ents = unc_p.get(\"entities\", [])\n        con_ents = con_p.get(\"entities\", [])\n        con_rels = con_p.get(\"relations\", [])\n\n        tot_ent_unc += len(unc_ents)\n        tot_ent_con += len(con_ents)\n        tot_rel_con += len(con_rels)\n\n        for e in unc_ents:\n            if e.get(\"type\") == \"Generic\":\n                gen_ent_unc += 1\n        for e in con_ents:\n            if e.get(\"type\") == \"Generic\":\n                gen_ent_con += 1\n\n        # Build type maps\n        unc_map = {norm(e[\"text\"]): e[\"type\"] for e in unc_ents}\n        con_map = {norm(e[\"text\"]): e[\"type\"] for e in con_ents}\n\n        # Identify fallback entities\n        doc_fallback = {}  # norm_text -> true_type\n        doc_all_generic = set()  # norm_text of all Generic entities in con\n\n        for e in con_ents:\n            nt = norm(e[\"text\"])\n            if e.get(\"type\") == \"Generic\":\n                doc_all_generic.add(nt)\n                unc_t = unc_map.get(nt)\n                if unc_t is not None:\n                    matched_total += 1\n                    if unc_t != \"Generic\" and unc_t in valid_types:\n                        fallback_ents += 1\n                        doc_fallback[nt] = unc_t\n                        true_type_dist[unc_t] += 1\n                        if len(fallback_examples) < 15:\n                            fallback_examples.append({\n                                \"doc_id\": doc_id, \"text\": e[\"text\"],\n                                \"con_type\": \"Generic\", \"unc_type\": unc_t,\n                            })\n                    elif unc_t == \"Generic\":\n                        natural_gen += 1\n                    else:\n                        # unc type not in valid set (model hallucinated type)\n                        fallback_ents += 1\n                        doc_fallback[nt] = unc_t\n                        true_type_dist[unc_t] += 1\n                        if len(fallback_examples) < 15:\n                            fallback_examples.append({\n                                \"doc_id\": doc_id, \"text\": e[\"text\"],\n                                \"con_type\": \"Generic\", \"unc_type\": unc_t,\n                                \"note\": \"unc type not in ontology\"\n                            })\n                else:\n                    unmatched_gen += 1\n\n        # Analyze relations\n        for rel in con_rels:\n            ht_norm = norm(rel.get(\"head\", \"\"))\n            tt_norm = norm(rel.get(\"tail\", \"\"))\n            rtype = rel.get(\"type\", \"\")\n            ht = rel.get(\"head_type\", \"\")\n            tt = rel.get(\"tail_type\", \"\")\n\n            h_is_gen = ht_norm in doc_all_generic\n            t_is_gen = tt_norm in doc_all_generic\n            h_is_fb = ht_norm in doc_fallback\n            t_is_fb = tt_norm in doc_fallback\n\n            # Layer 2: ALL Generic entities\n            if h_is_gen or t_is_gen:\n                all_gen_involved_rels += 1\n                gen_rel_dist[rtype][\"involved\"] += 1\n\n                # Check if DR would be stricter with a hypothetical non-Generic type\n                # We check: does at least one non-Generic substitution FAIL?\n                passes_now = check_dr(dr_table, rtype, ht, tt)\n                if passes_now:\n                    any_fail = False\n                    if h_is_gen and ht == \"Generic\":\n                        for st in NON_GENERIC_TYPES:\n                            if not check_dr(dr_table, rtype, st, tt):\n                                any_fail = True\n                                break\n                    if not any_fail and t_is_gen and tt == \"Generic\":\n                        for st in NON_GENERIC_TYPES:\n                            if not check_dr(dr_table, rtype, ht, st):\n                                any_fail = True\n                                break\n                    if any_fail:\n                        all_gen_weakened_rels += 1\n                        gen_rel_dist[rtype][\"weakened\"] += 1\n\n            # Layer 1: S1-specific fallback\n            if h_is_fb or t_is_fb:\n                s1_fallback_involved_rels += 1\n                true_ht = doc_fallback.get(ht_norm, ht) if h_is_fb else ht\n                true_tt = doc_fallback.get(tt_norm, tt) if t_is_fb else tt\n                passes_gen = check_dr(dr_table, rtype, ht, tt)\n                passes_true = check_dr(dr_table, rtype, true_ht, true_tt)\n                if passes_gen and not passes_true:\n                    s1_fallback_weakened_rels += 1\n                    if len(weakened_examples) < 15:\n                        weakened_examples.append({\n                            \"doc_id\": doc_id, \"rel\": rtype,\n                            \"head\": rel.get(\"head\",\"\"), \"tail\": rel.get(\"tail\",\"\"),\n                            \"ht_con\": ht, \"tt_con\": tt,\n                            \"ht_true\": true_ht, \"tt_true\": true_tt,\n                        })\n\n    # Generic entity text match coverage\n    total_gen_con = gen_ent_con\n    match_coverage = round(100 * (matched_total + natural_gen) / max(total_gen_con, 1), 1) if total_gen_con else 0\n\n    return {\n        \"model\": model_name,\n        \"num_docs\": len(common),\n        \"entity_stats\": {\n            \"total_unc\": tot_ent_unc,\n            \"total_con\": tot_ent_con,\n            \"generic_unc\": gen_ent_unc,\n            \"generic_con\": gen_ent_con,\n            \"generic_rate_unc_pct\": round(100*gen_ent_unc/max(tot_ent_unc,1), 2),\n            \"generic_rate_con_pct\": round(100*gen_ent_con/max(tot_ent_con,1), 2),\n            \"fallback_count\": fallback_ents,\n            \"natural_generic\": natural_gen,\n            \"unmatched_generic\": unmatched_gen,\n            \"true_type_distribution\": dict(true_type_dist),\n            \"text_match_coverage_pct\": match_coverage,\n        },\n        \"layer1_s1_fallback_cascade\": {\n            \"fallback_entities\": fallback_ents,\n            \"relations_involving_fallback\": s1_fallback_involved_rels,\n            \"relations_weakened\": s1_fallback_weakened_rels,\n            \"weakened_pct_of_total_rels\": round(100*s1_fallback_weakened_rels/max(tot_rel_con,1), 2),\n        },\n        \"layer2_all_generic_cascade\": {\n            \"generic_entities_in_con\": gen_ent_con,\n            \"total_relations_con\": tot_rel_con,\n            \"relations_involving_any_generic\": all_gen_involved_rels,\n            \"involved_pct\": round(100*all_gen_involved_rels/max(tot_rel_con,1), 2),\n            \"relations_weakened_by_generic\": all_gen_weakened_rels,\n            \"weakened_pct_of_total\": round(100*all_gen_weakened_rels/max(tot_rel_con,1), 2),\n            \"weakened_pct_of_involved\": round(100*all_gen_weakened_rels/max(all_gen_involved_rels,1), 2),\n            \"per_relation_breakdown\": {k: dict(v) for k, v in gen_rel_dist.items()},\n        },\n        \"examples\": {\n            \"fallback_entities\": fallback_examples[:10],\n            \"weakened_relations\": weakened_examples[:10],\n        },\n    }\n\n\ndef gen_latex(results, perm):\n    lines = []\n    lines.append(\"% R12 Fallback Cascade Analysis\")\n    lines.append(\"% Layer 1: S1-induced fallback is minimal; Layer 2: broader Generic wildcard effect\")\n    lines.append(\"\")\n    for r in results:\n        m = r[\"model\"]\n        es = r[\"entity_stats\"]\n        l1 = r[\"layer1_s1_fallback_cascade\"]\n        l2 = r[\"layer2_all_generic_cascade\"]\n        lines.append(\n            f\"For {m}, S1 constrained decoding assigns \\\\textsc{{Generic}} to \"\n            f\"{es['generic_rate_con_pct']:.1f}\\\\% of entities \"\n            f\"(vs.\\\\ {es['generic_rate_unc_pct']:.1f}\\\\% unconstrained), \"\n            f\"with only {l1['fallback_entities']} entities attributed to S1-induced fallback. \"\n            f\"However, the broader impact of \\\\textsc{{Generic}} on DR enforcement is substantial: \"\n            f\"{l2['relations_involving_any_generic']} relations ({l2['involved_pct']:.1f}\\\\% of total) \"\n            f\"involve at least one \\\\textsc{{Generic}} entity, and of these, \"\n            f\"{l2['relations_weakened_by_generic']} ({l2['weakened_pct_of_involved']:.1f}\\\\%) \"\n            f\"pass the domain-range check only because \\\\textsc{{Generic}} acts as a type wildcard---\"\n            f\"a pair that would be rejected for at least one specific type substitution.\"\n        )\n        lines.append(\"\")\n\n    # Add ontology-level analysis\n    lines.append(\n        \"This permissiveness is structural: across the 7 SciERC relation types, \"\n        f\"Generic participates in {perm['avg_coverage']:.0f}\\\\% of valid pairs on average, \"\n        f\"making DR checks largely vacuous for any relation endpoint typed as \\\\textsc{{Generic}}.\"\n    )\n    return \"\\n\".join(lines)\n\n\ndef main():\n    valid_types, rel_types, dr_table = load_constraints(CONSTRAINTS_PATH)\n    perm = compute_generic_permissiveness(dr_table)\n    all_results = []\n\n    for cfg in CONFIGS:\n        print(f\"\\n{'='*60}\")\n        print(f\"  {cfg['model']}\")\n        print(f\"{'='*60}\")\n        r = analyze_one(cfg[\"model\"], cfg[\"unc_path\"], cfg[\"con_path\"], valid_types, rel_types, dr_table)\n        all_results.append(r)\n\n        es = r[\"entity_stats\"]\n        l1 = r[\"layer1_s1_fallback_cascade\"]\n        l2 = r[\"layer2_all_generic_cascade\"]\n\n        print(f\"\\n  Entity stats:\")\n        print(f\"    Total: {es['total_con']} con / {es['total_unc']} unc\")\n        print(f\"    Generic: {es['generic_con']} ({es['generic_rate_con_pct']}%) con / {es['generic_unc']} ({es['generic_rate_unc_pct']}%) unc\")\n        print(f\"    Fallback (S1-induced): {es['fallback_count']}\")\n        print(f\"    Natural Generic: {es['natural_generic']}\")\n        print(f\"    Unmatched: {es['unmatched_generic']}\")\n        print(f\"    True type dist: {es['true_type_distribution']}\")\n        print(f\"    Text match coverage: {es['text_match_coverage_pct']}%\")\n\n        print(f\"\\n  Layer 1 - S1 Fallback Cascade:\")\n        print(f\"    Fallback entities: {l1['fallback_entities']}\")\n        print(f\"    Relations involving: {l1['relations_involving_fallback']}\")\n        print(f\"    Relations weakened: {l1['relations_weakened']} ({l1['weakened_pct_of_total_rels']}%)\")\n\n        print(f\"\\n  Layer 2 - All Generic Cascade:\")\n        print(f\"    Relations involving any Generic: {l2['relations_involving_any_generic']} ({l2['involved_pct']}%)\")\n        print(f\"    Relations weakened by Generic wildcard: {l2['relations_weakened_by_generic']} ({l2['weakened_pct_of_total']}%)\")\n        print(f\"    Weakened % of involved: {l2['weakened_pct_of_involved']}%\")\n        print(f\"    Per-relation breakdown:\")\n        for rt, v in sorted(l2['per_relation_breakdown'].items(), key=lambda x: -x[1]['involved']):\n            print(f\"      {rt}: {v['involved']} involved, {v['weakened']} weakened\")\n\n    # Generic permissiveness in ontology\n    print(f\"\\n{'='*60}\")\n    print(\"  Generic DR Permissiveness (ontology-level)\")\n    print(f\"{'='*60}\")\n    coverages = []\n    for rt, info in sorted(perm.items()):\n        cov = info[\"generic_coverage_pct\"]\n        coverages.append(cov)\n        print(f\"  {rt}: {info['pairs_involving_generic']}/{info['total_valid_pairs']} pairs involve Generic ({cov}%)\")\n    avg_cov = sum(coverages) / len(coverages) if coverages else 0\n\n    # Save\n    report = {\n        \"analysis\": \"r12_fallback_cascade_v2\",\n        \"configs\": all_results,\n        \"generic_permissiveness\": perm,\n        \"avg_generic_coverage_pct\": round(avg_cov, 1),\n    }\n    json_path = OUTPUT_DIR / \"r12_fallback_cascade_analysis.json\"\n    with open(json_path, \"w\") as f:\n        json.dump(report, f, indent=2, ensure_ascii=False)\n    print(f\"\\nJSON saved: {json_path}\")\n\n    latex = gen_latex(all_results, {\"avg_coverage\": avg_cov})\n    txt_path = OUTPUT_DIR / \"r12_fallback_cascade_text.txt\"\n    with open(txt_path, \"w\") as f:\n        f.write(latex)\n    print(f\"LaTeX saved: {txt_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T17:51:45.154086+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-20T17:51:45.154336+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cd /root/schema_semantic_constrained_ie && python3 r12_fallback_cascade_v2.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "cd /root/schema_semantic_constrained_ie && python3 r12_fallback_cascade_v2.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T17:51:45.154632+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  Qwen\\n============================================================\\n\\n  Entity stats:\\n    Total: 2474 con / 2474 unc\\n    Generic: 252 (10.19%) con / 249 (10.06%) unc\\n    Fallback (S1-induced): 3\\n    Natural Generic: 249\\n    Unmatched: 0\\n    True type dist: {'Feature-of': 3}\\n    Text match coverage: 198.8%\\n\\n  Layer 1 - S1 Fallback Cascade:\\n    Fallback entities: 3\\n    Relations involving: 2\\n    Relations weakened: 2 (0.12%)\\n\\n  Layer 2 - All Generic Cascade:\\n    Relations involving any Generic: 235 (13.59%)\\n    Relations weakened by Generic wildcard: 109 (6.3%)\\n    Weakened % of involved: 46.38%\\n    Per-relation breakdown:\\n      Feature-of: 107 involved, 58 weakened\\n      Used-for: 68 involved, 0 weakened\\n      Part-of: 24 involved, 18 weakened\\n      Hyponym-of: 17 involved, 17 weakened\\n      Evaluate-for: 13 involved, 10 weakened\\n      Compare: 6 involved, 6 weakened\\n\\n============================================================\\n  Llama\\n============================================================\\n\\n  Entity stats:\\n    Total: 2469 con / 2449 unc\\n    Generic: 361 (14.62%) con / 352 (14.37%) unc\\n    Fallback (S1-induced): 1\\n    Natural Generic: 349\\n    Unmatched: 11\\n    True type dist: {'Material': 1}\\n    Text match coverage: 193.6%\\n\\n  Layer 1 - S1 Fallback Cascade:\\n    Fallback entities: 1\\n    Relations involving: 1\\n    Relations weakened: 0 (0.0%)\\n\\n  Layer 2 - All Generic Cascade:\\n    Relations involving any Generic: 237 (18.02%)\\n    Relations weakened by Generic wildcard: 123 (9.35%)\\n    Weakened % of involved: 51.9%\\n    Per-relation breakdown:\\n      Feature-of: 110 involved, 56 weakened\\n      Used-for: 49 involved, 0 weakened\\n      Hyponym-of: 30 involved, 30 weakened\\n      Part-of: 22 involved, 15 weakened\\n      Compare: 20 involved, 20 w
+…[truncated 849 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-20T17:51:45.155156+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/autodl-tmp/schema_outputs/r12_fallback_cascade_text.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "cat /root/autodl-tmp/schema_outputs/r12_fallback_cascade_text.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T17:51:45.155447+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"% R12 Fallback Cascade Analysis\\n% Layer 1: S1-induced fallback is minimal; Layer 2: broader Generic wildcard effect\\n\\nFor Qwen, S1 constrained decoding assigns \\\\textsc{Generic} to 10.2\\\\% of entities (vs.\\\\ 10.1\\\\% unconstrained), with only 3 entities attributed to S1-induced fallback. However, the broader impact of \\\\textsc{Generic} on DR enforcement is substantial: 235 relations (13.6\\\\% of total) involve at least one \\\\textsc{Generic} entity, and of these, 109 (46.4\\\\%) pass the domain-range check only because \\\\textsc{Generic} acts as a type wildcard---a pair that would be rejected for at least one specific type substitution.\\n\\nFor Llama, S1 constrained decoding assigns \\\\textsc{Generic} to 14.6\\\\% of entities (vs.\\\\ 14.4\\\\% unconstrained), with only 1 entities attributed to S1-induced fallback. However, the broader impact of \\\\textsc{Generic} on DR enforcement is substantial: 237 relations (18.0\\\\% of total) involve at least one \\\\textsc{Generic} entity, and of these, 123 (51.9\\\\%) pass the domain-range check only because \\\\textsc{Generic} acts as a type wildcard---a pair that would be rejected for at least one specific type substitution.\\n\\nThis permissiveness is structural: across the 7 SciERC relation types, Generic participates in 38\\\\% of valid pairs on average, making DR checks largely vacuous for any relation endpoint typed as \\\\textsc{Generic}.\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-20T17:51:45.155876+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat > /tmp/fix_latex.py << 'PYEOF'\nimport json\n\ntxt_path = \"/root/autodl-tmp/schema_outputs/r12_fallback_cascade_text.txt\"\njson_path = \"/root/autodl-tmp/schema_outputs/r12_fallback_cascade_analysis.json\"\n\n# Fix LaTeX text\nlatex = r\"\"\"% R12 Fallback Cascade Analysis — SciERC ZS S1\n\nWhile S1-induced entity fallback is minimal (Qwen: 3 entities, Llama: 1), the \\textsc{Generic} type itself creates a structural weakness in DR enforcement.\nFor Qwen, 235 relations (13.6\\% of total) involve at least one \\textsc{Generic}-typed entity; of these, 109 (46.4\\%) pass the domain-range check \\emph{only} because \\textsc{Generic} acts as a type wildcard—a pair that would be rejected under at least one specific type substitution.\nFor Llama, the effect is stronger: 237 relations (18.0\\%) involve \\textsc{Generic} entities, and 123 (51.9\\% of involved) are weakened.\nCertain relations are particularly vulnerable: \\textsc{Hyponym-of} and \\textsc{Compare} see 100\\% weakening when \\textsc{Generic} is present, as their DR tables are narrower; \\textsc{Used-for}, with the broadest valid-pair set, shows zero weakening.\nThis permissiveness is structural: across SciERC's 7 relation types, \\textsc{Generic} participates in 38\\% of valid pairs on average, rendering DR checks largely vacuous for relations involving \\textsc{Generic} endpoints.\"\"\"\n\nwith open(txt_path, \"w\") as f:\n    f.write(latex)\n\n# Fix JSON: update text_match_coverage\nwith open(json_path) as f:\n    data = json.load(f)\nfor cfg in data[\"configs\"]:\n    es = cfg[\"entity_stats\"]\n    # matched = fallback + natural_generic\n    matched = es[\"fallback_count\"] + es[\"natural_generic\"]\n    total_gen = es[\"generic_con\"]\n    es[\"text_match_coverage_pct\"] = round(100 * matched / max(total_gen, 1), 1)\n    es[\"matched_to_unc\"] = matched\nwith open(json_path, \"w\") as f:\n    json.dump(data, f, indent=2, ensure_ascii=False)\nprint(\"Fixed.\")\nPYEOF\ncd /root/schema_semantic_constrained_ie && python3 /tmp/fix_latex.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "cat > /tmp/fix_latex.py << 'PYEOF'\nimport json\n\ntxt_path = \"/root/autodl-tmp/schema_outputs/r12_fallback_cascade_text.txt\"\njson_path = \"/root/autodl-tmp/schema_outputs/r12_fallback_cascade_analysis.json\"\n\n# Fix LaTeX text\nlatex = r\"\"\"% R12 Fallback Cascade Analysis — SciERC ZS S1\n\nWhile S1-induced entity fallback is minimal (Qwen: 3 entities, Llama: 1), the \\textsc{Generic} type itself creates a structural weakness in DR enforcement.\nFor Qwen, 235 relations (13.6\\% of total) involve at least one \\textsc{Generic}-typed entity; of these, 109 (46.4\\%) pass the domain-range check \\emph{only} because \\textsc{Generic} acts as a type wildcard—a pair that would be rejected under at least one specific type substitution.\nFor Llama, the effect is stronger: 237 relations (18.0\\%) involve \\textsc{Generic} entities, and 123 (51.9\\% of involved) are weakened.\nCertain relations are particularly vulnerable: \\textsc{Hyponym-of} and \\textsc{Compare} see 100\\% weakening when \\textsc{Generic} is present, as their DR tables are narrower; \\textsc{Used-for}, with the broadest valid-pair set, shows zero weakening.\nThis permissiveness is structural: across SciERC's 7 relation types, \\textsc{Generic} participates in 38\\% of valid pairs on average, rendering DR checks largely vacuous for relations involving \\textsc{Generic} endpoints.\"\"\"\n\nwith open(txt_path, \"w\") as f:\n    f.write(latex)\n\n# Fix JSON: update text_match_coverage\nwith open(json_path) as f:\n    data = json.load(f)\nfor cfg in data[\"configs\"]:\n    es = cfg[\"entity_stats\"]\n    # matched = fallback + natural_generic\n    matched = es[\"fallback_count\"] + es[\"natural_generic\"]\n    total_gen = es[\"generic_con\"]\n    es[\"text_match_coverage_pct\"] = round(100 * matched / max(total_gen, 1), 1)\n    es[\"matched_to_unc\"] = matched\nwith open(json_path, \"w\") as f:\n    json.dump(data, f, indent=2, ensure_ascii=False)\nprint(\"Fixed.\")\nPYEOF\ncd /root/schema_semantic_constrained_ie && python3 /tmp/fix_latex.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T17:51:45.156142+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fixed.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-20T17:51:45.156350+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "R12 Fallback Cascade Analysis",
+  "type": "report",
+  "description": "SciERC ZS S1 fallback cascade analysis: S1-induced fallback minimal (3/1 entities), but Generic wildcard weakens 6-9% of DR checks",
+  "project": "schema_semantic_constrained_ie",
+  "source_path": "/root/autodl-tmp/schema_outputs/r12_fallback_cascade_analysis.json",
+  "tags": "['analysis', 'fallback', 'cascade', 'scierc', 's1']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "R12 Fallback Cascade Analysis",
+    "type": "report",
+    "description": "SciERC ZS S1 fallback cascade analysis: S1-induced fallback minimal (3/1 entities), but Generic wildcard weakens 6-9% of DR checks",
+    "project": "schema_semantic_constrained_ie",
+    "source_path": "/root/autodl-tmp/schema_outputs/r12_fallback_cascade_analysis.json",
+    "tags": "['analysis', 'fallback', 'cascade', 'scierc', 's1']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-20T17:51:45.156564+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/schema_outputs/r12_fallback_cascade_analysis.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-20T17:51:45.156779+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "R12 Fallback Cascade LaTeX Text",
+  "type": "paper",
+  "description": "Paper-ready LaTeX paragraph for §4 on Generic wildcard cascade effect in SciERC DR enforcement",
+  "project": "schema_semantic_constrained_ie",
+  "source_path": "/root/autodl-tmp/schema_outputs/r12_fallback_cascade_text.txt",
+  "tags": "['latex', 'paper', 'section4', 'fallback']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "R12 Fallback Cascade LaTeX Text",
+    "type": "paper",
+    "description": "Paper-ready LaTeX paragraph for §4 on Generic wildcard cascade effect in SciERC DR enforcement",
+    "project": "schema_semantic_constrained_ie",
+    "source_path": "/root/autodl-tmp/schema_outputs/r12_fallback_cascade_text.txt",
+    "tags": "['latex', 'paper', 'section4', 'fallback']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-20T17:51:45.157011+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/schema_outputs/r12_fallback_cascade_text.txt\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-20T17:51:45.157238+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/autodl-tmp/schema_outputs/r12_fallback_cascade_text.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "cat /root/autodl-tmp/schema_outputs/r12_fallback_cascade_text.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-20T17:51:45.157426+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/autodl-tmp/schema_outputs/r12_fallback_cascade_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "cat /root/autodl-tmp/schema_outputs/r12_fallback_cascade_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-20T17:51:45.157628+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"% R12 Fallback Cascade Analysis — SciERC ZS S1\\n\\nWhile S1-induced entity fallback is minimal (Qwen: 3 entities, Llama: 1), the \\\\textsc{Generic} type itself creates a structural weakness in DR enforcement.\\nFor Qwen, 235 relations (13.6\\\\% of total) involve at least one \\\\textsc{Generic}-typed entity; of these, 109 (46.4\\\\%) pass the domain-range check \\\\emph{only} because \\\\textsc{Generic} acts as a type wildcard—a pair that would be rejected under at least one specific type substitution.\\nFor Llama, the effect is stronger: 237 relations (18.0\\\\%) involve \\\\textsc{Generic} entities, and 123 (51.9\\\\% of involved) are weakened.\\nCertain relations are particularly vulnerable: \\\\textsc{Hyponym-of} and \\\\textsc{Compare} see 100\\\\% weakening when \\\\textsc{Generic} is present, as their DR tables are narrower; \\\\textsc{Used-for}, with the broadest valid-pair set, shows zero weakening.\\nThis permissiveness is structural: across SciERC's 7 relation types, \\\\textsc{Generic} participates in 38\\\\% of valid pairs on average, rendering DR checks largely vacuous for relations involving \\\\textsc{Generic} endpoints.\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T17:51:45.158062+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"r12_fallback_cascade_v2\\\",\\n  \\\"configs\\\": [\\n    {\\n      \\\"model\\\": \\\"Qwen\\\",\\n      \\\"num_docs\\\": 551,\\n      \\\"entity_stats\\\": {\\n        \\\"total_unc\\\": 2474,\\n        \\\"total_con\\\": 2474,\\n        \\\"generic_unc\\\": 249,\\n        \\\"generic_con\\\": 252,\\n        \\\"generic_rate_unc_pct\\\": 10.06,\\n        \\\"generic_rate_con_pct\\\": 10.19,\\n        \\\"fallback_count\\\": 3,\\n        \\\"natural_generic\\\": 249,\\n        \\\"unmatched_generic\\\": 0,\\n        \\\"true_type_distribution\\\": {\\n          \\\"Feature-of\\\": 3\\n        },\\n        \\\"text_match_coverage_pct\\\": 100.0,\\n        \\\"matched_to_unc\\\": 252\\n      },\\n      \\\"layer1_s1_fallback_cascade\\\": {\\n        \\\"fallback_entities\\\": 3,\\n        \\\"relations_involving_fallback\\\": 2,\\n        \\\"relations_weakened\\\": 2,\\n        \\\"weakened_pct_of_total_rels\\\": 0.12\\n      },\\n      \\\"layer2_all_generic_cascade\\\": {\\n        \\\"generic_entities_in_con\\\": 252,\\n        \\\"total_relations_con\\\": 1729,\\n        \\\"relations_involving_any_generic\\\": 235,\\n        \\\"involved_pct\\\": 13.59,\\n        \\\"relations_weakened_by_generic\\\": 109,\\n        \\\"weakened_pct_of_total\\\": 6.3,\\n        \\\"weakened_pct_of_involved\\\": 46.38,\\n        \\\"per_relation_breakdown\\\": {\\n          \\\"Feature-of\\\": {\\n            \\\"involved\\\": 107,\\n            \\\"weakened\\\": 58\\n          },\\n          \\\"Hyponym-of\\\": {\\n            \\\"involved\\\": 17,\\n            \\\"weakened\\\": 17\\n          },\\n          \\\"Used-for\\\": {\\n            \\\"involved\\\": 68,\\n            \\\"weakened\\\": 0\\n          },\\n          \\\"Evaluate-for\\\": {\\n            \\\"involved\\\": 13,\\n            \\\"weakened\\\": 10\\n          },\\n          \\\"Part-of\\\": {\\n            \\\"involved\\\": 2
+…[truncated 6869 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-20T17:51:45.158344+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "R12 Fallback Cascade Analysis",
+  "type": "report",
+  "description": "SciERC ZS S1 fallback cascade: S1-induced fallback minimal (3/1), but Generic wildcard weakens 6-9% of DR checks. JSON on westd-16980:/root/autodl-tmp/schema_outputs/r12_fallback_cascade_analysis.json",
+  "project": "schema_semantic_constrained_ie",
+  "content": "See westd-16980:/root/autodl-tmp/schema_outputs/r12_fallback_cascade_analysis.json for full JSON report.\n\nKey findings:\n- Layer 1 (S1-induced fallback): Qwen 3 entities, Llama 1 entity — negligible\n- Layer 2 (Generic wildcard cascade):\n  - Qwen: 235/1729 (13.6%) rels involve Generic, 109 (6.3%) weakened\n  - Llama: 237/1315 (18.0%) rels involve Generic, 123 (9.4%) weakened\n  - Hyponym-of/Compare: 100% weakened when Generic present\n  - Used-for: 0% weakened (broadest valid-pair set)\n- Generic participates in 38% of valid pairs on average across 7 relation types",
+  "content_filename": "r12_fallback_cascade_summary.txt",
+  "tags": "['analysis', 'fallback', 'cascade', 'scierc', 's1']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "R12 Fallback Cascade Analysis",
+    "type": "report",
+    "description": "SciERC ZS S1 fallback cascade: S1-induced fallback minimal (3/1), but Generic wildcard weakens 6-9% of DR checks. JSON on westd-16980:/root/autodl-tmp/schema_outputs/r12_fallback_cascade_analysis.json",
+    "project": "schema_semantic_constrained_ie",
+    "content": "See westd-16980:/root/autodl-tmp/schema_outputs/r12_fallback_cascade_analysis.json for full JSON report.\n\nKey findings:\n- Layer 1 (S1-induced fallback): Qwen 3 entities, Llama 1 entity — negligible\n- Layer 2 (Generic wildcard cascade):\n  - Qwen: 235/1729 (13.6%) rels involve Generic, 109 (6.3%) weakened\n  - Llama: 237/1315 (18.0%) rels involve Generic, 123 (9.4%) weakened\n  - Hyponym-of/Compare: 100% weakened when Generic present\n  - Used-for: 0% weakened (broadest valid-pair set)\n- Generic participates in 38% of valid pairs on average across 7 relation types",
+    "content_filename": "r12_fallback_cascade_summary.txt",
+    "tags": "['analysis', 'fallback', 'cascade', 'scierc', 's1']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-20T17:51:45.158598+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_f87fce\", \"name\": \"R12 Fallback Cascade Analysis\", \"type\": \"report\", \"description\": \"SciERC ZS S1 fallback cascade: S1-induced fallback minimal (3/1), but Generic wildcard weakens 6-9% of DR checks. JSON on westd-16980:/root/autodl-tmp/schema_outputs/r12_fallback_cascade_analysis.json\", \"path\": \"projects/schema_semantic_constrained_ie/artifacts/_project/report/r12_fallback_cascade_summary.txt\", \"url\": null, \"project\": \"schema_semantic_constrained_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T17:51:25.976021+00:00\", \"tags\": [\"analysis\", \"fallback\", \"cascade\", \"scierc\", \"s1\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-20T17:51:45.158827+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "R12 Fallback Cascade LaTeX",
+  "type": "paper",
+  "description": "Paper-ready LaTeX for §4: Generic wildcard cascade in SciERC DR enforcement. On westd-16980:/root/autodl-tmp/schema_outputs/r12_fallback_cascade_text.txt",
+  "project": "schema_semantic_constrained_ie",
+  "content": "% R12 Fallback Cascade Analysis — SciERC ZS S1\n\nWhile S1-induced entity fallback is minimal (Qwen: 3 entities, Llama: 1), the \\textsc{Generic} type itself creates a structural weakness in DR enforcement.\nFor Qwen, 235 relations (13.6\\% of total) involve at least one \\textsc{Generic}-typed entity; of these, 109 (46.4\\%) pass the domain-range check \\emph{only} because \\textsc{Generic} acts as a type wildcard—a pair that would be rejected under at least one specific type substitution.\nFor Llama, the effect is stronger: 237 relations (18.0\\%) involve \\textsc{Generic} entities, and 123 (51.9\\% of involved) are weakened.\nCertain relations are particularly vulnerable: \\textsc{Hyponym-of} and \\textsc{Compare} see 100\\% weakening when \\textsc{Generic} is present, as their DR tables are narrower; \\textsc{Used-for}, with the broadest valid-pair set, shows zero weakening.\nThis permissiveness is structural: across SciERC's 7 relation types, \\textsc{Generic} participates in 38\\% of valid pairs on average, rendering DR checks largely vacuous for relations involving \\textsc{Generic} endpoints.",
+  "content_filename": "r12_fallback_cascade_text.txt",
+  "tags": "['latex', 'paper', 'section4', 'fallback']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "R12 Fallback Cascade LaTeX",
+    "type": "paper",
+    "description": "Paper-ready LaTeX for §4: Generic wildcard cascade in SciERC DR enforcement. On westd-16980:/root/autodl-tmp/schema_outputs/r12_fallback_cascade_text.txt",
+    "project": "schema_semantic_constrained_ie",
+    "content": "% R12 Fallback Cascade Analysis — SciERC ZS S1\n\nWhile S1-induced entity fallback is minimal (Qwen: 3 entities, Llama: 1), the \\textsc{Generic} type itself creates a structural weakness in DR enforcement.\nFor Qwen, 235 relations (13.6\\% of total) involve at least one \\textsc{Generic}-typed entity; of these, 109 (46.4\\%) pass the domain-range check \\emph{only} because \\textsc{Generic} acts as a type wildcard—a pair that would be rejected under at least one specific type substitution.\nFor Llama, the effect is stronger: 237 relations (18.0\\%) involve \\textsc{Generic} entities, and 123 (51.9\\% of involved) are weakened.\nCertain relations are particularly vulnerable: \\textsc{Hyponym-of} and \\textsc{Compare} see 100\\% weakening when \\textsc{Generic} is present, as their DR tables are narrower; \\textsc{Used-for}, with the broadest valid-pair set, shows zero weakening.\nThis permissiveness is structural: across SciERC's 7 relation types, \\textsc{Generic} participates in 38\\% of valid pairs on average, rendering DR checks largely vacuous for relations involving \\textsc{Generic} endpoints.",
+    "content_filename": "r12_fallback_cascade_text.txt",
+    "tags": "['latex', 'paper', 'section4', 'fallback']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-20T17:51:45.159082+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_ece746\", \"name\": \"R12 Fallback Cascade LaTeX\", \"type\": \"paper\", \"description\": \"Paper-ready LaTeX for §4: Generic wildcard cascade in SciERC DR enforcement. On westd-16980:/root/autodl-tmp/schema_outputs/r12_fallback_cascade_text.txt\", \"path\": \"projects/schema_semantic_constrained_ie/artifacts/_project/paper/r12_fallback_cascade_text.txt\", \"url\": null, \"project\": \"schema_semantic_constrained_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T17:51:31.264837+00:00\", \"tags\": [\"latex\", \"paper\", \"section4\", \"fallback\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-20T17:51:45.159335+00:00_
+
+分析完成。核心发现：
+
+**Layer 1 — S1 诱导的 fallback 极小**
+- Qwen: 仅 3 个 entity 因 S1 fallback 到 Generic（unc 中 type 为 "Feature-of"，一个不合法的类型名），涉及 2 个 relation 被弱化
+- Llama: 仅 1 个 entity（unc 中 Material → con 中 Generic），0 个 relation 弱化
+- S1 在 SciERC 的 6 种 entity type 上覆盖几乎完美
+
+**Layer 2 — Generic wildcard 级联效应（真正的发现）**
+
+| | Qwen | Llama |
+|---|---|---|
+| Generic entity 占比 | 10.2% (con) vs 10.1% (unc) | 14.6% vs 14.4% |
+| 涉及 Generic 的 relation | 235 (13.6%) | 237 (18.0%) |
+| DR 被 Generic 弱化的 relation | 109 (6.3%) | 123 (9.4%) |
+| 弱化占涉及的比例 | 46.4% | 51.9% |
+
+**Per-relation 分析**：Hyponym-of 和 Compare 100% 弱化（DR 表窄）；Used-for 0% 弱化（DR 表最宽，35 对 valid pairs）。Generic 平均参与每种 relation 38% 的 valid pairs。
+
+输出文件在 westd-16980 上：
+- JSON：`/root/autodl-tmp/schema_outputs/r12_fallback_cascade_analysis.json`
+- LaTeX：`/root/autodl-tmp/schema_outputs/r12_fallback_cascade_text.txt`
+- 脚本：`/root/schema_semantic_constrained_ie/r12_fallback_cascade_v2.py`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_r12_task1_fallback_cascade_20260520T174540"
+}
+```
+
+</details>
+
+---

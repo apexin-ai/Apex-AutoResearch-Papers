@@ -1,0 +1,63 @@
+{
+  "exp_id": "w6_mistral_scierc_unconstrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:59:02.565Z",
+    "updated_at": "2026-05-16T05:29:01.251Z",
+    "hypothesis": "Mistral (3rd model) SciERC unconstrained baseline — 获取 zero-shot violation profile (DR/RV/ET) 和 F1，验证 OntoCoDec 三模型泛化性",
+    "spec": {
+      "command": "python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w6_mistral_scierc_unconstrained.jsonl --batch_size 1 --max_new_tokens 4096",
+      "server": "westd-16980",
+      "gpu": 0,
+      "pid": 332156,
+      "log_path": "~/runs/schema_semantic_constrained_ie/w6_mistral_scierc_unconstrained.log",
+      "submitted_at": "2026-05-16T04:53:56.502Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "data_path": "data/processed_data/test.json",
+      "data_count": 551,
+      "seed": 42,
+      "wall_clock_seconds": 2104.7,
+      "gpu_hours": 0.58
+    },
+    "notes": "Mistral-7B unconstrained SciERC: E_F1=0.2728, R_F1=0.0366. 0% parse failures. 56.94% dangling relations, 1.5% ET violations, 0% RV violations. Poor IE performance typical of unconstrained 7B model on SciERC.",
+    "reproduce": {
+      "finished_at": "2026-05-16T05:27:35.554Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T05:27:39.086911+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "E_P": 0.2402,
+      "E_R": 0.3156,
+      "E_F1": 0.2728,
+      "R_P": 0.0295,
+      "R_R": 0.0483,
+      "R_F1": 0.0366,
+      "ET_pct": 1.5,
+      "RV_pct": 0,
+      "DR_pct": 56.94,
+      "parse_fail_rate": 0,
+      "total_samples": 551,
+      "total_pred_entities": 2202,
+      "total_pred_relations": 1593
+    },
+    "conclusion": "success",
+    "checkpoint_path": "outputs/w6_mistral_scierc_unconstrained.jsonl",
+    "completed_at": "2026-05-16T05:29:01.251Z"
+  },
+  "timestamp": "2026-05-16T05:29:01.385994+00:00",
+  "trigger": "update_registry"
+}

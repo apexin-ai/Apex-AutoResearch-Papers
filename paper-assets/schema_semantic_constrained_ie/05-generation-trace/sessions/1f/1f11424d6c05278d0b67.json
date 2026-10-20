@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f11424d6c05278d0b67",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "write section6 reviewer fixes",
+  "task_key": "worker_write_section6_reviewer_fixes_20260514T184201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_section6_reviewer_fixes_20260514T184201_result.json",
+    "occurrence": 1,
+    "bytes": 1973,
+    "sha256": "3e7357822bf03e1d8b68d6f075381c9cd3e569e01516a5c5e0363dca445b1758"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 5 项修复已完成。汇总：\n\n---\n\n### 修复汇总\n\n**Fix 1 — 双数据集报告**（3 处）\n\n| 位置 | 原文 | 修改后 |\n|------|------|--------|\n| L85 (Post-hoc段末) | `near-complete elimination (DR↓94%, from 15.37% to 0.93%)` | `near-complete to substantial elimination (DR↓94% on SciERC, ↓45% on DocRED)` |\n| L98 (Quality段) | `violations decrease from 15.37% to 0.93% (↓94%)` + 仅SciERC F1 | `violations decrease by 94% on SciERC (15.37%→0.93%) and 45% on DocRED` + 标注 F1 为 SciERC |\n| L108 (Our Approach) | `near-complete elimination ... (DR 15.37%→0.93%)` | `near-complete to substantial elimination (DR↓94% on SciERC, ↓45% on DocRED)` + 标注 quality cost 为 SciERC |\n\n**Fix 2 — S2 降级**\n- 原：`OntoCoDec's S2 (two-pass) strategy can also be viewed as an instantiation of CRANE's alternating approach: the first pass performs...`\n- 改：`A two-pass variant (S2), explored in ablation (Section~5), separates extraction and constraint enforcement into distinct passes, analogous to CRANE's alternating strategy; however, our primary single-pass approach already avoids reasoning interference...`\n\n**Fix 3 — \"First\" claims 防御性修改**（2 处）\n- L33：`first to migrate` → `first to \\emph{automatically compile} IE ontology axioms...into token-level decoding masks`\n- L106：加 `\\emph{automatically compile}` 和 `without manually authored rules`（与 EnriCo 的手动 ASP 规则区分）\n\n**Fix 4 — Our Approach 补充**\n- L108 新增：`This approach is orthogonal to supervised IE methods and applicable to any autoregressive LM without model modification or additional training.`\n\n**Fix 5 — Bib cite key**\n- `synchromesh_neurips2022` → `synchromesh_iclr2022`（已更新 3 个文件：`relwork_new_entries.bib`、`section6_related_work.tex`、`section6_relwork_outline.tex`）\n- `roth_yih_2004` 确认 venue 为 CoNLL-2004 at HLT-NAACL 2004 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-section6-reviewer-fixes.md"
+}

@@ -1,0 +1,43 @@
+{
+  "exp_id": "w5_llama_docred_lora_unconstrained_eval",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:58:07.956Z",
+    "updated_at": "2026-05-15T23:14:40.098Z",
+    "hypothesis": "Fine-tuned Llama-3.1-8B DocRED LoRA unconstrained eval — 获取 fine-tuned baseline DR/R-F1，与 constrained eval 对比计算 composability delta",
+    "parent": "w5_llama_docred_lora_training",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w5_llama_docred_lora_unconstrained_eval.jsonl --batch_size 1 --max_new_tokens 4096\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "303525",
+      "log_path": "~/runs/schema_semantic_constrained_ie/w5_llama_docred_lora_unconstrained_eval.log",
+      "submitted_at": "2026-05-15T19:58:23.664Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/docred/dev.json",
+      "data_count": 998,
+      "model_name": "Meta-Llama-3.1-8B-Instruct-LoRA-DocRED",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/llama_lora_docred_merged",
+      "eval_data": "data/docred/dev.json",
+      "wall_clock_seconds": 11775.2,
+      "gpu_hours": 3.27
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T23:14:37.945Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T23:14:38.851Z"
+  },
+  "timestamp": "2026-05-15T23:14:40.278934+00:00",
+  "trigger": "update_registry"
+}

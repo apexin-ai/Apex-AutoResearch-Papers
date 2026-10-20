@@ -1,0 +1,14 @@
+{
+  "exp_id": "d062_cf_majority_voting",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:15:34.085Z",
+    "updated_at": "2026-05-19T03:15:34.085Z"
+  },
+  "timestamp": "2026-05-19T03:15:34.318829+00:00",
+  "trigger": "update_registry"
+}

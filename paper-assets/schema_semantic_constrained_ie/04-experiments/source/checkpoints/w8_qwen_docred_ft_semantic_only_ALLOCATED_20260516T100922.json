@@ -1,0 +1,16 @@
+{
+  "exp_id": "w8_qwen_docred_ft_semantic_only",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T10:08:59.297Z",
+    "updated_at": "2026-05-16T10:09:22.061Z",
+    "hypothesis": "FT Qwen DocRED + semantic_only eval: 与 grammar_only 配对，验证 semantic 层在 FT+DocRED regime 下能否独立降低 DR。预期 DR 从 0.76% 降至 ~0.3-0.5%（参照 SciERC 模式：semantic_only 降 DR 68%��。完成后 DocRED FT ablation 有 Qwen 双模式数据。",
+    "parent": "w5_qwen_docred_lora_training"
+  },
+  "timestamp": "2026-05-16T10:09:22.217033+00:00",
+  "trigger": "update_registry"
+}

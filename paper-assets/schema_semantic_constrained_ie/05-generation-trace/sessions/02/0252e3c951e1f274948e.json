@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0252e3c951e1f274948e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops d066 llama scierc beam2 s1 check",
+  "task_key": "worker_ops_d066_llama_scierc_beam2_s1_check_20260520T150551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d066_llama_scierc_beam2_s1_check_20260520T150551_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "220fd400f52c3c226ec0c85bd28c9a75f9756a22dd313b4e98b285f027a93735"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**beam4 s1 eval (完成，已 DONE)**\n\n| Metric | P | R | F1 |\n|--------|------|------|------|\n| Entity | 65.96 | 70.29 | **68.06** |\n| Relation | 42.10 | 51.13 | **46.18** |\n\nSchema 合规：ET=100%, RV=100%, DR=0%, CF=0%。0 parse failures。\n\n**beam2 s1 — 原始运行失败**，缺少 `--constraints_path`。已被重新启动（PID 769697, GPU1），带正确参数 `--constraints_path ontology_constraints.json`，正在运行中。已注册新 cron 监控。\n\n**beam8 s1 暂无法启动**——两个 GPU 都在跑：\n- GPU0: beam8 unc (PID 769000)\n- GPU1: beam2 s1 重跑 (PID 769697)\n\nbeam2 完成后 GPU1 释放，再启动 beam8 s1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d066-llama-scierc-beam2-s1-check.md"
+}

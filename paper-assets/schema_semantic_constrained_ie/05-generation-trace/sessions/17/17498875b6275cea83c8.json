@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17498875b6275cea83c8",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops d066 llama scierc beam1 unc check relay",
+  "task_key": "worker_ops_d066_llama_scierc_beam1_unc_check_relay_20260520T122433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d066_llama_scierc_beam1_unc_check_relay_20260520T122433_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "9ae43ef94e3a8629f199fc1b4b553458159c1b5f402301d0c7f344531bdc75fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已开始推理（3 docs written）。\n\n## 报告\n\n| 项目 | 状态 |\n|------|------|\n| **Llama SciERC beam1 unc** | 完成 ✓ — 275/275 samples, 0 failures, 490KB JSONL |\n| **新启动配置** | `llama_docred_200_beam1_unconstrained` — PID 206397, GPU1 |\n| **GPU0** | PID 194615 (d065_qwen_greedy_4096_r2), 18910 MiB |\n| **GPU1** | PID 206397 (llama_docred_beam1_unc), 18266 MiB |\n\n注意：SciERC 输出 275 行而非预期的 551 行。这可能是 SciERC dev set 在 document-level 有 275 个 doc（每个 doc 多个 sentence 但按 doc 聚合），或 `--max_samples` 等参数导致。需要确认数据集实际大小。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d066-llama-scierc-beam1-unc-check-relay.md"
+}

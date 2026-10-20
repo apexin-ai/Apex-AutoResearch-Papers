@@ -1,0 +1,16 @@
+{
+  "exp_id": "d066_sweep_llama_scierc_beam1_unc",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T12:13:08.565Z",
+    "updated_at": "2026-05-20T12:13:16.256Z",
+    "hypothesis": "d066 SciERC beam sweep sub-task: Llama beam1 (greedy) unconstrained on 551-doc full set (westd-21461 GPU1). Part of d066_beam_sweep. Extends Qwen-only SciERC sweep to Llama model family.",
+    "parent": "d066_beam_sweep"
+  },
+  "timestamp": "2026-05-20T12:13:16.507082+00:00",
+  "trigger": "update_registry"
+}

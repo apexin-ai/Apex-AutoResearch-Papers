@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f9fdc7e11ee221fe9e1",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops check w6 mistral scierc unconstrained",
+  "task_key": "worker_ops_check_w6_mistral_scierc_unconstrained_20260516T051529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_w6_mistral_scierc_unconstrained_20260516T051529_result.json",
+    "occurrence": 1,
+    "bytes": 187,
+    "sha256": "8d1a28b390252721eeace9c9a95bd4497e59310027d88b145a910c5b62ef1f45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态**：实验仍在运行中，370/551 句子已处理（67%），预计约 14 分钟后完成。已设置 15 分钟后自动检查并运行 violation 分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-w6-mistral-scierc-unconstrained.md"
+}

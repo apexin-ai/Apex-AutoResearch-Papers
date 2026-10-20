@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "129eebf27d28b802fe19",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code docred sft data prep",
+  "task_key": "worker_code_docred_sft_data_prep_20260515T172731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_docred_sft_data_prep_20260515T172731_result.json",
+    "occurrence": 1,
+    "bytes": 1310,
+    "sha256": "88391e1edf0651395fccf6df97756d39740ad4e8c17aac89b2da553489316763"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有脚本和数据均已就绪，dry-run 成功。汇总：\n\n### 产出\n\n**1. SFT 数据统计**\n| 指标 | 值 |\n|------|-----|\n| 样本数 | 3053 (train), 998 (dev) |\n| 平均 chars | 5535 |\n| 估算平均 tokens | ~1384 |\n| 估算最大 tokens | ~3326 |\n| 超 4096 tokens | 0 (0.0%) |\n| 平均 entities/doc | 19.5, max 41 |\n| 平均 relations/doc | 12.5, max 70 |\n\n**2. 脚本路径**\n- 数据生成：`/root/schema_semantic_constrained_ie/scripts/prepare_sft_data_docred.py`\n- 训练脚本：`/root/schema_semantic_constrained_ie/scripts/train_lora_docred.py`\n\n**3. Dry-run 结果**\n- 2 steps 完成，耗时 32.9s（~16.4s/step）\n- loss=0.34, mean_token_accuracy=0.956\n- 无报错，模型加载和数据流正常\n- `completion_only_loss=True` 生效\n\n**4. 关键配置确认**\n- max_length=4096（实际最大 ~3326 tokens，充裕）\n- batch_size=2, grad_accum=8 (effective=16)\n- merged 模型输出到数据盘 `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged`\n- prompt 通过 import `run_constrained_extraction.py` 的 `build_messages` 保证 train/eval byte-identical\n\n全训练预计 3053 samples × 3 epochs / 16 effective_bs ≈ 573 steps，按 ~16s/step 约 **2.5 小时**（比预估 40-60min 长，因为 max_length=4096 序列更长）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-docred-sft-data-prep.md"
+}

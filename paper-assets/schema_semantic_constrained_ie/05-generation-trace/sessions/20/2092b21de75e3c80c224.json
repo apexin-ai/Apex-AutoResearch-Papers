@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2092b21de75e3c80c224",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops status check westd21461",
+  "task_key": "worker_ops_status_check_westd21461_20260516T053814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status_check_westd21461_20260516T053814_result.json",
+    "occurrence": 1,
+    "bytes": 863,
+    "sha256": "b982c2eb4e0cda5c7b2f4fd4cfa91f603d749a14d06e84aa9fcf21c8f00dc753"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-21461 状态汇总\n\n| 实验 | GPU | PID | --mode | --dataset | 进度 | 状态 |\n|------|-----|-----|--------|-----------|------|------|\n| w6_mistral_docred_unconstrained | GPU 0 (90%, 15.3/97.9GB) | 7740 | `unconstrained` | `docred` | 49/998 (5%) | 运行中 |\n| w6_mistral_docred_constrained | GPU 1 (86%, 15.3/97.9GB) | 8347 | `full_s1` | `docred` | 10/998 (1%) | 运行中（刚启动） |\n\n### 关键回答\n\n1. **PID 7813 已不存在**（被成功 kill）— 原先跑的什么无法追溯\n2. **DocRED constrained 新进程已在跑** — PID 8341(bash wrapper) → PID 8347(python3)，`CUDA_VISIBLE_DEVICES=1`，`--mode full_s1 --dataset docred`，输出到 `w6_mistral_docred_constrained.jsonl`\n3. **每个 GPU 恰好一个实验**，无冲突\n4. `w6_mistral_scierc_constrained.jsonl` 尚未创建（实验未启动）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-check-westd21461.md"
+}

@@ -1,0 +1,25 @@
+{
+  "exp_id": "r14_llama_docred_beam4_998",
+  "project": "schema_semantic_constrained_ie",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:47:34.166Z",
+    "updated_at": "2026-05-20T21:47:52.541Z",
+    "hypothesis": "Beam=4 S1 constrained on full DocRED 998-doc with Llama-3.1-8B will confirm DR elimination and R-F1 stability seen in 50-doc subset, providing second model evidence for SF3",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --output_path /root/autodl-tmp/schema_outputs/r14_llama_docred_beam4_998.jsonl --max_new_tokens 4096 --seed 42 --decoding_strategy beam --num_beams 4 --skip_on_error",
+      "server": "westd-16980",
+      "data_path": "data/docred/dev.json",
+      "data_count": 998,
+      "model_name": "Llama-3.1-8B-Instruct (zero-shot)",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "/root/autodl-tmp/schema_outputs/r14_llama_docred_beam4_998.log"
+    }
+  },
+  "timestamp": "2026-05-20T21:47:52.991430+00:00",
+  "trigger": "update_registry"
+}

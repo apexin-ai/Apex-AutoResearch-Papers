@@ -1,0 +1,15 @@
+{
+  "exp_id": "d062_beam_latency",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:15:35.458Z",
+    "updated_at": "2026-05-19T03:20:25.414Z",
+    "hypothesis": "Beam search (k=4) with constrained decoding will have higher latency overhead relative to greedy than unconstrained beam search, because the constraint processor must independently track and validate grammar/semantic state for each of the 4 beams at every decoding step."
+  },
+  "timestamp": "2026-05-19T03:20:25.703430+00:00",
+  "trigger": "update_registry"
+}

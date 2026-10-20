@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1341392761b120301f19",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis reconcile cf metrics",
+  "task_key": "worker_analysis_reconcile_cf_metrics_20260514T021912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_reconcile_cf_metrics_20260514T021912_result.json",
+    "occurrence": 1,
+    "bytes": 4633,
+    "sha256": "9b8bcea3eb59a4c04d007e9dc735f2109fea7e831e6c09869b4f3934badf4806"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了。`eigenvectors` 在 entity list 里有两个条目（OtherScientificTerm + Material），但 analyze 的 `entity_type_map` 后者覆盖前者，导致 EVR 漏掉了这个 conflict。\n\n现在数据全对上了，输出对账表。\n\n---\n\n## CF Violation 对账表\n\n### 定义对比\n\n| 维度 | violation_checker.py | analyze_cf_violations.py |\n|------|---------------------|--------------------------|\n| **CF 定义** | 同一 mention text（lowered+stripped）在同一 record 内，合并 entity list 和 relation head/tail 所有 type 后，出现 >1 种 type | **WR**: 同一 (entity, role) 在不同 relation 中被赋予不同 type（仅看 relations）<br>**EVR**: entity list 中的 type ≠ relation 中同一 span 的 head/tail type |\n| **type 来源** | entity list + relation head/tail **合并** 到一个 pool | WR: 仅 relation head/tail<br>EVR: entity list vs relation head/tail **对比** |\n| **分母** | `total_pred_entities`（entity 实例总数） | WR: unique (entity, role) pairs<br>EVR: matched (relation, role) slots |\n| **分子** | unique mention with >1 type（per record） | WR: (entity, role) pairs with >1 type<br>EVR: 每个 type 不匹配的 slot 各计 1 次 |\n| **text 归一化** | `.lower().strip()` | 原始文本，无归一化 |\n| **type 归一化** | `normalize_type()` 模糊匹配 | 精确字符串比较 |\n\n### 集合关系（已验证）\n\n```\nviolation_checker_CF ≡ EVR_unique ∪ WR_unique ∪ entity_list_internal_conflicts\n```\n\n- **WR ⊂ EVR**（100% 重叠）：所有 within-relation 冲突的 mention，都同时被 EVR 检测到\n- EVR 漏检 entity list 内部冲突（Bug：`entity_type_map[text] = type` 后者覆盖前者）\n\n### 数值对比 (S1: phase2_scierc_full_s1_v2.jsonl)\n\n| 口径 | 分子 | 分母 | Rate |\n|------|------|------|------|\n| **violation_checker CF** | 245 unique mentions | 2474 (total entities) | **9.90%** |\n| analyze WR | 10 (entity, role) pairs | 2754 (unique entity-role pairs) | 0.36% |\n| analyze EVR (slot-level) | 248 slots | 3380 (checked slots) | 7.34% |\n| analyze EVR (unique entities) | **245** | — | — |\n| WR ∪ EVR (unique, lowered) | **245** | — | — |\n| vc − (WR∪EVR) | **0** | — | 完美匹配 |\n\n### 数值对比 (S2: phase2_scierc_full_s2.jsonl)\n\n| 口径 | 分子 | 分母 | Rate |\n|------|------|------|------|\n| **violation_checker CF** | 179 unique mentions | 2228 (total entities) | **8.03%** |\n| analyze WR | 18 (entity, role) pairs | 2485 (unique entity-role pairs) | 0.72% |\n| analyze EVR (slot-level) | 182 slots | 3288 (checked slots) | 5.54% |\n| analyze EVR (unique entities) | **178** | — | — |\n| WR ∪ EVR (unique, lowered) | **178** | — | — |\n| vc − (WR∪EVR) | **1** | — | 差 1：`eigenvectors`@P06-2012_sent1 |\n\n### 差 1 的根因\n\n`eigenvectors` 在 entity list 中出现两次，类型分别为 `OtherScientificTerm` 和 `Material`。Relations 中全部标为 `Material`。\n- violation_checker：合并所有来源 → `{OtherScientificTerm, Material}` → 检出\n- analyze EVR：`entity_type_map[\"eigenvectors\"]` 被第二条覆盖为 `Material`，与 relation 一致 → **漏检**\n- analyze WR：relations 内部一致（全是 Material）→ 不触发\n\n**这是 analyze_cf_violations.py 的 bug**：`entity_type_map` 字典对重复 span 只保留最后一个 type，丢失了 entity list 内部的 type 冲突。\n\n### 差异来源汇总\n\n| 差异因素 | 影响程度 | 说明 |\n|----------|---------|------|\n| **分母不同** | 主因（9.90% vs 7.34%） | vc 用 total_entities=2474；EVR 用 checked_slots=3380 |\n| **WR+EVR 拆分** | 展示差异 | 加总后分子相同（245=245），但分开报告 |\n| **entity_type_map 覆盖 bug** | 微小（S2 差 1） | 重复 span 只保留最后 type |\n| **WR ⊂ EVR** | 无实际影响 | 两维度完全重叠，WR 不贡献额外 violation |\n\n### 建议论文口径\n\n**用 violation_checker 的口径**（unique inconsistent mentions / total entities），理由：\n1. 分子是 ground truth 级别准确的（合并所有 type 来源，无遗漏）\n2. 分母用 total entities 直观易理解，且与 entity type violation rate 等其他指标分母一致\n3. analyze 的 WR+EVR 拆分虽然有助于根因分析，但 WR⊂EVR 导致分开报告时容易误导（看起来像两个独立维度，实际完全重叠）\n\n如需在论文中做根因拆解（\"CF violation 主要来自 Pass1/Pass2 type 不一致\"），可以引用 EVR 的分析结果作为补充说明，但主数字用 violation_checker 的 9.90%/8.03%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-reconcile-cf-metrics.md"
+}

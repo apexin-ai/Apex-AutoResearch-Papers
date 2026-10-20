@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06bc1af767b9d08b241e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d064 eval llama greedy con",
+  "task_key": "worker_ssh_d064_eval_llama_greedy_con_20260520T004046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d064_eval_llama_greedy_con_20260520T004046_result.json",
+    "occurrence": 1,
+    "bytes": 384,
+    "sha256": "210ee160b7792690d99289052cbd64c3282f1f0f7d5db9aadfa9ed4e8b92ad18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成。结果：\n\n| Metric | Value |\n|--------|-------|\n| ET% | 0.00 |\n| RV% | 0.00 |\n| DR% | 0.00 |\n| CF% | 0.16 |\n| E-F1 | 83.40 |\n| R-F1 | 44.83 |\n| PF% | 5.01 |\n\nConstrained decoding (w5) 将 ET/RV/DR 全部压到 0%，CF% 仅剩 0.16%（30 个 cross-field 冲突）。报告已写入 `artifacts/_project/report/d064_eval_llama_greedy_con.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d064-eval-llama-greedy-con.md"
+}

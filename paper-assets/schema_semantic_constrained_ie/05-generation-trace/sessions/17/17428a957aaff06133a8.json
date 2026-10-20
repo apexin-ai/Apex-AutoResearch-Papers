@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17428a957aaff06133a8",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_13_1778937186.md",
+  "task_key": "loop_13_1778937186",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778937186.md",
+    "occurrence": 1,
+    "bytes": 5119,
+    "sha256": "aedbd65cf751a062fe3f7eca5ef837d383d25efcfd40990cf33aa09fc65033e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-16T12:34:20+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-16980 GPU 分配需查 `get_project_resource_usage`，当前 report.md 显示无 GPU 信息——reconcile 后 allocated_gpus=[]，说明可能已被回收或重新分配，**提交前必须确认**\n- westd-21461 有 cuda:0, cuda:1，当前跑 w6_mistral_docred_{unconstrained,constrained}，不要抢占\n- Qwen tokenizer 有 regex warning（Reviewer 发现），影响 w7 结果可比性——分析 Qwen 实验时注意标注此风险\n- DocRED 有 96 relation types，constrained decoding 极慢（~6h+ per eval），排 GPU 时间时按此估算\n- 模型路径在 `/root/autodl-tmp/checkpoints/`，数据在 `/root/schema_semantic_constrained_ie/data/`，**不要混淆根分区和数据盘**\n\n### 2. 🖥️ 基础设施快照\n- **westd-16980**: 工作目录 `/root/schema_semantic_constrained_ie`，Python `/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **westd-21461**: 同上布局，跑 Mistral DocRED 实验\n- 模型路径: Qwen LoRA DocRED merged → `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged`；Llama LoRA DocRED merged → `/root/autodl-tmp/checkpoints/llama_lora_docred_merged`\n- 数据: DocRED dev → `data/docred/dev.json` (998 samples)；SciERC → `data/scierc/`\n- 活跃 cron: w6_mistral_docred_unconstrained (pid=7740), w6_mistral_docred_constrained (pid=8347)，均在 westd-21461\n- W&B: 实验多为 WANDB_MODE=disabled，metrics 从日志/输出文件提取\n\n### 3. 📊 当前状态\n**刚收到 CRON 回调**: `w5_qwen_docred_lora_constrained_eval` 进程正常退出，状态 ANALYZING。已派 Worker (`worker_analysis_w5_qwen_docred_lora_constrained_eval_20260516T080646`) 去 SSH 读日志提取 metrics——**Worker 尚未回调，结果未知**。\n\n这是 Qwen DocRED composability 2×2 矩阵的最后一格（constrained eval）。unconstrained baseline 已完成: DR=0.76%, R_F1=40.86, parse_fail_rate=7.11%。\n\n**Registry 状态**:\n- ANALYZING: `w5_qwen_docred_lora_constrained_eval`（等 Worker 分析）\n- RUNNING (cron 监控中): `w6_mistral_docred_unconstrained`, `w6_mistral_docred_constrained`（westd-21461）\n- PREPARING: `w8_ft_posthoc_baseline`, `w8_llama_docred_ft_grammar_only`\n- report.md 还列了 `w7_llama_scierc_ft_semantic_only` 和 Mistral 两个在运行中，但 reconcile 只发现 2 个 active cron\n\n**等待中**:\n1. Worker 回调 → 拿到 constrained eval metrics → update_registry → 汇报 Director\n2. w6_mistral_docred 两个 cron 回调 → 分析 Mistral DocRED 结果\n3. w7 FT ablation 排队中（等 GPU 空出）\n\n### 4. 📋 待办\n- **Worker 回调到达** → 提取 metrics，update_registry(status=DONE, conclusion=success/negative, metrics={...})，设置 checkpoint_path 和 log_path → 刷新 report.md → 汇报 Director composability 2×2 完整结果（Qwen+Llama × SciERC+DocRED）\n- **constrained DR ≈ 0% 且 R_F1 持平/微升** → conclusion=success，Qwen DocRED composability 确认，2×2 矩阵全绿 → 向 Director 汇报 Claim 3 (composability) 全部验证通过\n- **constrained DR 仍高或 R_F1 大幅下降** → conclusion=negative，走 red-section framing 提案流程，**禁止默默跑下一个**\n- **w6_mistral_docred cron 回调** → 派 Worker 分析 → 完成 3rd model 验证矩阵 → 汇报\n- **GPU 空出后** → 按优先级提交: w7_llama_scierc_ft_semantic_only > w8_llama_docred_ft_grammar_only > w8_ft_posthoc_baseline\n- **所有 composability + 3rd model 完成后** → 触发论文更新（实验表格、结果讨论），但写 paper 前必须读 red-section skill\n\n### 5. 🎯 战略上下文\n- **核心结论链**: OntoCoDec 两层约束（grammar+semantic）在 zero-shot 下大幅降低 DR（Qwen SciERC 15.37%→0.93%, Llama DocRED 26.07%→2.55%）。FT 后 DR 残留（0.49%-1.95%），FT+OntoCoDec 进一步压到接近 0 且不损 F1 = **composability 成立**（Claim 3）。\n- **当前填的是 Qwen DocRED composability 最后一格**。Llama DocRED 已确认: DR 0.49%→0.20%, ΔF1=+0.51pp。Qwen 的 unconstrained DR=0.76%，预期 constrained 应降至 <0.3%。\n- **Mistral (3rd model)** 是 SciERC 最高 violation 模型（DR=56.94%），constrained 降到 13.4%（仍较高，DocRED 结果待出），这是审稿人关心的泛化性证据。\n- **Dream 审稿暴露 5 个结构性问题**（ROADMAP 有详细列表），w7 FT ablation 和 w8 post-hoc baseline 正在修复其中两个。\n- **易错点**: (1) Qwen parse_fail_rate=7.11% 远高于 Llama 2.3%，对比时必须同时看 excl_fail 指标；(2) constrained eval 的 parse_fail_rate 可能不同于 unconstrained，delta 计算要用同口径；(3) 不要把 Mistral SciERC 的高 DR reduction 外推到 DocRED——96 relation types 的 schema 复杂度完全不同。\n- **决策 D031**: 不加 NYT29 第三数据集；FT post-hoc baseline 必做。**决策 D032**: ZS post-hoc 已确认 C2 framing 成立。\n- **DDL**: EMNLP 2026 ARR May 25，内部稿 May 19。时间紧，GPU 不能空。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778937186.md"
+}

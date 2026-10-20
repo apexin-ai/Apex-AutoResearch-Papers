@@ -1,0 +1,59 @@
+{
+  "exp_id": "mvp_phase0_scierc_schema",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T17:58:17.259Z",
+    "updated_at": "2026-05-13T20:12:16.044Z",
+    "hypothesis": "Schema-informed prompt（显式给出 domain/range 约束）能否降低违规率？与 minimal prompt 对比，若违规率仍 >5% 则证明 prompt 级干预不足以替代 decoding-time enforcement",
+    "spec": {
+      "command": "python3 run_extraction.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --output_path outputs/raw_outputs_schema.jsonl --backend transformers --prompt_mode schema_informed --constraints_path ontology_constraints.json",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "110676",
+      "log_path": "~/runs/schema_semantic_constrained_ie/mvp_phase0_scierc_schema.log",
+      "submitted_at": "2026-05-13T19:11:32.249Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/schema_semantic_constrained_ie/data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "Qwen3-8B",
+      "seed": 42
+    },
+    "metrics": {
+      "domain_range_violation_rate": 0.0578,
+      "relation_vocabulary_violation_rate": 0.003,
+      "entity_type_violation_rate": 0,
+      "total_violation_rate": 0.0253,
+      "go_nogo_metric": 0.0578,
+      "vs_minimal_dr_reduction": -0.624,
+      "per_relation": {
+        "Used-for": {
+          "rate": "TBD"
+        },
+        "Feature-of": {
+          "delta_pp": -22.3
+        },
+        "Part-of": {
+          "delta_pp": -22.5
+        },
+        "Compare": {
+          "delta_pp": -14.8
+        },
+        "Evaluate-for": {
+          "delta_pp": 5.8
+        }
+      },
+      "mcnemar_all_significant": true
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-13T20:12:16.056207+00:00",
+  "trigger": "update_registry"
+}

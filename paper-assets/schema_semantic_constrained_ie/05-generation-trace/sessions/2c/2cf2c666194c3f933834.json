@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cf2c666194c3f933834",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper data integration",
+  "task_key": "worker_paper_data_integration_20260521T115741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_data_integration_20260521T115741_result.json",
+    "occurrence": 1,
+    "bytes": 1240,
+    "sha256": "ca41af0f7b626278562503f4fc9b18899eb602513af95bbd9083436d05ee3b07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Zero errors. Here's the summary of all modifications:\n\n### Modified files and changes\n\n| File | Lines | Change |\n|------|-------|--------|\n| `appendix_discussion.tex` | ~492-519 | Expanded trie-only table: DR-only → full metrics (ET/RV/DR/CF/R-F1/PF) + S1 vs trie DR gap comparison |\n| `section6_related_work.tex` | ~12 | Added GoLLIE-7B experimental data (E-F1=9.17, R-F1=0.0, 46% empty docs) + explicit complementarity argument |\n| `appendix_beam_search.tex` | ~142 | Added Table `beam-docred-998-zs` for 998-doc DocRED ZS beam=4 results (Qwen: DR=0%, CF=4.94%, R-F1=8.72; Llama: DR=0%, CF=1.00%, R-F1=8.83) |\n| `section7_conclusion_compressed.tex` | 3 | Added KG value reference: \"100% schema compliance at <0.5% recall cost\" |\n| `section5_runtime.tex` | 15-19 | Updated 70B paragraph: Llama-3.3-70B SciERC (DR 6.41%→0%, E-F1=35.19, R-F1=11.24) + Llama-3.1-70B DocRED, separated by model |\n| `abstract.tex` | 8 | \"four\" → \"five\" autoregressive LMs |\n| `section1_introduction_draft.tex` | 19, 27 | \"four models\" → \"five models\" (×2) |\n| `checklist.tex` | 20 | Added Llama-3.3-70B to model list |\n\nCompilation: 0 errors, main text fits in 8 pages (§7 ends on p8, Limitations starts on p9)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-data-integration.md"
+}

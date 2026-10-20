@@ -1,0 +1,95 @@
+{
+  "exp_id": "d066_beam_sweep",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T23:44:23.637Z",
+    "updated_at": "2026-05-22T10:33:56.316Z",
+    "hypothesis": "Beam width k∈{1,2,4,8} on SciERC (LoRA, Qwen3-8B) will show monotonic DR/CF reduction with diminishing returns past k=4, establishing the cost-effectiveness trade-off for the beam search appendix Pareto analysis.",
+    "spec": {
+      "command": "d066 DocRED beam sweep (k=1,2,4,8 x unc/s1 x Qwen/Llama, 200 docs each)",
+      "server": "westd-16980 + westd-21461",
+      "data_path": "data/docred/dev.json (200-doc subset)",
+      "data_count": 200,
+      "model_name": "Qwen3-8B + Llama-3.1-8B LoRA DocRED (merged)",
+      "seed": 42,
+      "note": "ANALYZING->RUNNING transition blocked. Actual status: DocRED sweep actively running on both servers. SciERC sweep complete."
+    },
+    "notes": "全部 8 配置完成 + eval 齐全。beam8 con: E-F1=66.36, R-F1=43.65, DR=0%, CF=0%, avg_time=5.058s。Pareto optimal: k=2 con (E-F1=67.71, R-F1=44.60, DR=0%)。k=8 相比 k=2 F1 下降 ~1.3pp 且推理慢 46%，收益递减明确。可入稿。",
+    "metrics": {
+      "scierc_qwen3_8b": {
+        "k1_unc": {
+          "E_F1": 66.88,
+          "R_F1": 42.95,
+          "DR_pct": 2.11,
+          "CF_pct": 0,
+          "avg_time": 2.494
+        },
+        "k1_con": {
+          "E_F1": 66.88,
+          "R_F1": 42.95,
+          "DR_pct": 0,
+          "CF_pct": 0.5,
+          "avg_time": 2.932
+        },
+        "k2_unc": {
+          "E_F1": 67.79,
+          "R_F1": 44.75,
+          "DR_pct": 1.54,
+          "CF_pct": 0,
+          "avg_time": 2.954
+        },
+        "k2_con": {
+          "E_F1": 67.71,
+          "R_F1": 44.6,
+          "DR_pct": 0,
+          "CF_pct": 0.11,
+          "avg_time": 3.463
+        },
+        "k4_unc": {
+          "E_F1": 67.49,
+          "R_F1": 43.72,
+          "DR_pct": 1.89,
+          "CF_pct": 0,
+          "avg_time": 3.485
+        },
+        "k4_con": {
+          "E_F1": 67.22,
+          "R_F1": 43.6,
+          "DR_pct": 0,
+          "CF_pct": 0,
+          "avg_time": 4.069
+        },
+        "k8_unc": {
+          "E_F1": 66.4,
+          "R_F1": 43.17,
+          "DR_pct": 1.77,
+          "CF_pct": 0,
+          "avg_time": 4.194
+        },
+        "k8_con": {
+          "E_F1": 66.36,
+          "R_F1": 43.65,
+          "DR_pct": 0,
+          "CF_pct": 0,
+          "avg_time": 5.058
+        }
+      },
+      "pareto_optimal": "k=2 con",
+      "best_E_F1": {
+        "config": "k=2 unc",
+        "value": 67.79
+      },
+      "best_R_F1": {
+        "config": "k=2 unc",
+        "value": 44.75
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T10:33:56.588790+00:00",
+  "trigger": "update_registry"
+}

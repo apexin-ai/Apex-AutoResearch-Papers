@@ -1,0 +1,27 @@
+{
+  "exp_id": "ee_mistral_wikievents_constrained_v3",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:55:31.905Z",
+    "updated_at": "2026-05-18T10:56:02.188Z",
+    "hypothesis": "938-line fixed code with collision group continuation mask will reduce Mistral AC from 16.6% to near 0% by disambiguating SentencePiece entity type collisions at second+ token steps",
+    "spec": {
+      "command": "python run_constrained_extraction.py --dataset wikievents --model_path Mistral-7B-Instruct-v0.3 --mode full_s1 --data_path data/wikievents/all.jsonl --output_path outputs/ee_mistral_wikievents_constrained_v3_full.jsonl --max_new_tokens 16384 --skip_on_error",
+      "server": "westd-21461",
+      "data_path": "data/wikievents/all.jsonl",
+      "data_count": 246,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": "default",
+      "checkpoint_path": "westd-21461:/root/schema_semantic_constrained_ie/outputs/ee_mistral_wikievents_constrained_v3_full.jsonl",
+      "log_path": "westd-21461:/root/schema_semantic_constrained_ie/outputs/violation_report_mistral_v3.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-18T10:56:02.188Z"
+  },
+  "timestamp": "2026-05-18T10:56:02.394304+00:00",
+  "trigger": "update_registry"
+}

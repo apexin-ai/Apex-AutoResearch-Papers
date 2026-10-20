@@ -1,0 +1,49 @@
+{
+  "exp_id": "eval_70b_zs_docred_200_semantic_only",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:35:21.150Z",
+    "updated_at": "2026-05-22T22:55:11.458Z",
+    "hypothesis": "Semantic-only constraints on 70B ZS DocRED will significantly reduce DR violations from zero-shot baseline, demonstrating the semantic layer's effectiveness on document-level RE without fine-tuning.",
+    "parent": "70b_docred_unconstrained",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python run_constrained_extraction.py --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4 --data_path data/docred/dev.json --dataset docred --mode semantic_only --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/70b_zs_docred_200_semantic_only.jsonl --max_docs 200 --max_new_tokens 4096",
+      "server": "westd-21461",
+      "gpu": "cuda:0",
+      "data_path": "data/docred/dev.json",
+      "data_count": 200,
+      "model_name": "Llama-3.1-70B-Instruct-AWQ-INT4 (zero-shot)",
+      "seed": 42,
+      "checkpoint_source": "N/A (zero-shot)",
+      "eval_data": "DocRED dev 200 docs",
+      "checkpoint_path": "N/A",
+      "log_path": "/tmp/70b_zs_docred_200_semantic_only.log"
+    },
+    "metrics": {
+      "samples": 200,
+      "parse_failures": 0,
+      "entities": 3240,
+      "relations": 2596,
+      "ET_pct": 0.12,
+      "RV_pct": 8.24,
+      "DR_pct": 1.66,
+      "CF_count": 132,
+      "CF_pct": 4.07,
+      "E_F1": 70.1,
+      "E_P": 75.87,
+      "E_R": 65.15,
+      "R_F1": 13.05,
+      "R_P": 12.88,
+      "R_R": 13.23,
+      "fuzzy_matches": 8
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T22:55:11.459Z"
+  },
+  "timestamp": "2026-05-22T22:55:11.781852+00:00",
+  "trigger": "update_registry"
+}

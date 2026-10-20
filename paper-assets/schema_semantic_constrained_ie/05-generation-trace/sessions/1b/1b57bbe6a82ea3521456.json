@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b57bbe6a82ea3521456",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check all experiments progress",
+  "task_key": "worker_check_all-experiments-progress_20260523T055811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_all-experiments-progress_20260523T055811_result.json",
+    "occurrence": 1,
+    "bytes": 801,
+    "sha256": "0d84df7ec4982ac2de1bdb961ad2bec422e64ba55f61772579ce9d9ec340dc75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-21461\nGPU 0: 占用 79% | 39267/97887 MiB | S2 DocRED 推理 (70B AWQ + LoRA)\nGPU 1: 占用 80% | 41607/97887 MiB | Prompt Sensitivity 推理 (70B AWQ + LoRA)\n\nS2 DocRED: **145/200 行 (72.5%)** — 运行中\nPrompt Sensitivity (minimal_constrained): **103/551 行 (18.7%)** — 运行中\n\n## westd-16980\nGPU 0: 占用 97% | 8167/97887 MiB | quantize_qwen_docred.py\nGPU 1: 占用 85% | 8699/97887 MiB | quantize_llama_docred.py\n\nDocRED INT4 Qwen: **量化完成，正在写入模型分片** → `/root/autodl-tmp/models/Qwen3-8B-DocRED-FT-AWQ-INT4/`\nDocRED INT4 Llama: **量化中 AWQ 88% (28/32 层)** — 预计 ~37s 完成，之后写入分片\n\n两台机器 4 块 GPU 全部在跑。westd-16980 的量化即将完成，之后需要启动 DocRED 推理任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-all-experiments-progress.md"
+}

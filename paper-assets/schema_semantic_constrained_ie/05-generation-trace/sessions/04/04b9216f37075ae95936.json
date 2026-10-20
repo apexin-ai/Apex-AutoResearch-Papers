@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04b9216f37075ae95936",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis w1 cf fallback pilot detailed",
+  "task_key": "worker_analysis_w1_cf_fallback_pilot_detailed_20260515T150442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w1_cf_fallback_pilot_detailed_20260515T150442_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "f14308f1701c4ea7e844278cf53f65f642867078eb0a2112c1108c9074f4f0a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已更新并注册。核心发现：\n\n**Pilot DR = 96.2% of unconstrained DR** — CF fallback 不是\"部分降级\"语义约束，而是**有效地消除了约束**。逐 relation 的 recovery rate：\n- Feature-of 95.3%, Compare 93.0%, Part-of 93.5%, Hyponym-of 99.2%, Evaluate-for 96.1%\n- 唯一保留约束效力的是 Used-for（tightness=0.03，极宽松）\n\n报告包含完整的：\n1. Per-relation DR 对比表（含 tightness 关联 + unconstrained 对照）\n2. Attempted vs Effective 分解（58.9% / 36.6% / 4.5%）\n3. CF 残余分析（唯一残余：eigenvectors，Material↔OtherScientificTerm）\n4. DR 恶化根因（grammar-first fallback 占主导，完整 type-pair 分布）\n5. 四条论文可用 claims（含新增的 \"hierarchical fallback ≈ no constraint\"）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w1-cf-fallback-pilot-detailed.md"
+}

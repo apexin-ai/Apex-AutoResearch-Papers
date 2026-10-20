@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3202dc6d1e5b8e3323ae",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis phase2 docred full s1",
+  "task_key": "worker_analysis_phase2_docred_full_s1_20260514T083040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_docred_full_s1_20260514T083040_result.json",
+    "occurrence": 1,
+    "bytes": 1412,
+    "sha256": "faedb9adf966440ed5699fa58e853d0d064366d4c336d164d05fd2085e0136b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果汇总：\n\n## phase2_docred_full_s1 结果\n\n### 基本统计\n| 指标 | 值 |\n|------|-----|\n| Documents | 988 checked / 11 parse failures |\n| Entities | 20,218 |\n| Triples | 17,372 |\n\n### 违规率\n\n| 指标 | full_s1 | unconstrained | schema_informed | grammar_only |\n|------|---------|---------------|-----------------|--------------|\n| **ET** | **0%** | 7.5% | 0.61% | 0% |\n| **RV** | **0.03%** | 28.9% | 18.4% | 0.03% |\n| **DR** | **10.19%** | 18.7% | 12.8% | 26.17% |\n| **CF** | 2.57% | — | — | — |\n\n### F1 指标\n- Entity F1: P=0.645 R=0.662 **F1=0.653** (typed: 0.590)\n- Relation F1: P=0.070 R=0.099 **F1=0.082**\n\n### 判断\n**Conclusion: success**（DR 5-15% 区间）。DR 从 unconstrained 18.7% 降到 10.19%（-8.5pp, -45.5% relative），但远未达到 SciERC full_s1 的 0.93%。\n\n### 残留 DR 违规集中在\n- P190 sister city (58%), P582 end time (43.5%), P205 basin country (37%), P576 dissolved (36.3%), P276 location (28.4%) — 这些关系的 domain/range 约束较宽泛，模型生成的 entity type 组合容易越界。\n\n### 关键发现\nGrammar 层完美消除了 ET (0%) 和 RV (0.03%)，但 semantic 层在 DocRED 96 关系上的 DR 约束效果弱于 SciERC (7 关系)。安全回退机制（allowed_types 与 grammar-valid tokens 无交集时跳过 semantic masking）可能是 DR 残留的重要原因。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase2-docred-full-s1.md"
+}

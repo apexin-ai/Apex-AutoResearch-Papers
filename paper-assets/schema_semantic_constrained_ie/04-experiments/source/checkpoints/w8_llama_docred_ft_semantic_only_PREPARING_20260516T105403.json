@@ -1,0 +1,14 @@
+{
+  "exp_id": "w8_llama_docred_ft_semantic_only",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T10:54:02.910Z",
+    "updated_at": "2026-05-16T10:54:02.910Z"
+  },
+  "timestamp": "2026-05-16T10:54:03.156589+00:00",
+  "trigger": "update_registry"
+}

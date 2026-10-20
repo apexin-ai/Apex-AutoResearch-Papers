@@ -1,0 +1,14 @@
+{
+  "exp_id": "mvp_phase0_violation_rate_docred",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T17:38:05.075Z",
+    "updated_at": "2026-05-13T17:38:05.076Z"
+  },
+  "timestamp": "2026-05-13T17:38:05.086018+00:00",
+  "trigger": "update_registry"
+}

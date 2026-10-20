@@ -1,0 +1,24 @@
+{
+  "exp_id": "tcr_beam4_qwen_scierc",
+  "project": "schema_semantic_constrained_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:37:32.074Z",
+    "updated_at": "2026-05-22T15:37:43.573Z",
+    "hypothesis": "TCR reranking of beam search candidates will reduce CF violations while preserving F1, by selecting candidates with higher entity type consistency over pure log-probability ranking.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python beam_tcr_rerank.py --model_path /root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged --data_path data/processed_data/test.json --dataset scierc --beam_width 4 --alpha 0.7 --output_path outputs/beam4_tcr_qwen_scierc.jsonl --skip_on_error",
+      "server": "westd-16980",
+      "data_path": "data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "Qwen3-8B-LoRA-SciERC-merged",
+      "seed": 42
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-22T15:37:43.855806+00:00",
+  "trigger": "update_registry"
+}

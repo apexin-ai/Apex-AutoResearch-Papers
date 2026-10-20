@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ca2b3d08216eb570c22",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "monitor docred s1 progress 21461",
+  "task_key": "worker_monitor_docred-s1-progress-21461_20260522T070239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_docred-s1-progress-21461_20260522T070239_result.json",
+    "occurrence": 1,
+    "bytes": 422,
+    "sha256": "c18ac9b5bf3edf33e2c965f1f7eb89604bf501337c2ea415e542a38a1c59fdce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**DocRED LoRA S1 Constrained 推理状态：**\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **64 / 200** (32%) |\n| PID 11466 | **存活** |\n| GPU 0 | 77% 利用率, 40857 MiB 显存占用 |\n| GPU 1 | 空闲 |\n| 日志 | 正常，无错误（重复的 `pad_token_id` 设置为 info 级别，可忽略） |\n\n推理正在正常进行中，按当前速度预计还需一段时间完成剩余 136 条。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-docred-s1-progress-21461.md"
+}

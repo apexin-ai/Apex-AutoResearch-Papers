@@ -1,0 +1,15 @@
+{
+  "exp_id": "r16_70b_scierc_zs_s1",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:11:52.091Z",
+    "updated_at": "2026-05-21T04:12:02.365Z",
+    "hypothesis": "Llama-3.1-70B-Instruct-AWQ-INT4 with Full S1 constrained decoding on SciERC ZS will achieve DR→0% with R-F1 stable vs unconstrained, extending 70B DocRED results to SciERC and confirming scale-independent constraint effectiveness"
+  },
+  "timestamp": "2026-05-21T04:12:02.687951+00:00",
+  "trigger": "update_registry"
+}

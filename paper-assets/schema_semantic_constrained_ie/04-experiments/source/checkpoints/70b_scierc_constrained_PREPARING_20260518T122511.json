@@ -1,0 +1,14 @@
+{
+  "exp_id": "70b_scierc_constrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T12:25:10.903Z",
+    "updated_at": "2026-05-18T12:25:10.903Z"
+  },
+  "timestamp": "2026-05-18T12:25:11.091185+00:00",
+  "trigger": "update_registry"
+}

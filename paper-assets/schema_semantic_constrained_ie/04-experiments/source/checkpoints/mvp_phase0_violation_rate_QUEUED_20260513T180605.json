@@ -1,0 +1,28 @@
+{
+  "exp_id": "mvp_phase0_violation_rate",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T17:35:38.680Z",
+    "updated_at": "2026-05-13T18:06:05.406Z",
+    "hypothesis": "Unconstrained LLM (Qwen3-8B) 在 SciERC zero-shot IE 任务上的本体类型约束违反率 >5%，证明解码时约束强制的必要性",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_extraction.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --output_path outputs/raw_outputs.jsonl --backend transformers\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "106528",
+      "log_path": "~/runs/schema_semantic_constrained_ie/mvp_phase0_violation_rate.log",
+      "submitted_at": "2026-05-13T18:05:45.748Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-13T18:06:05.463404+00:00",
+  "trigger": "update_registry"
+}

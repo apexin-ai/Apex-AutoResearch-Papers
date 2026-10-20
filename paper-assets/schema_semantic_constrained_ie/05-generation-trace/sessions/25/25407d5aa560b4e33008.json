@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25407d5aa560b4e33008",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh p1 ee check training alive",
+  "task_key": "worker_ssh_p1_ee_check_training_alive_20260518T200014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p1_ee_check_training_alive_20260518T200014_result.json",
+    "occurrence": 1,
+    "bytes": 568,
+    "sha256": "54564284545dbf0ff376a359379e04effc9cbf2243dfd20abb0746d6801dda56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/p1_ee_training_check.md`。\n\n**结论**: PID 55834 已崩溃，从未进入训练循环。\n\n- 进程在模型加载完成后，`adjust_generation_fn()` 尝试从 HuggingFace Hub 下载 `custom_generate/generate.py` 时因网络不可达 (`Errno 101`) 崩溃\n- GPU 0 完全空闲 (0% util, 0 MiB)，无 checkpoint 产出\n- Log 显示进程仅存活约 9 分钟\n\n**重启前需解决**: 设置 `TRANSFORMERS_OFFLINE=1` 环境变量，让 transformers 跳过远程下载，仅用本地缓存。是否现在重启训练？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p1-ee-check-training-alive.md"
+}

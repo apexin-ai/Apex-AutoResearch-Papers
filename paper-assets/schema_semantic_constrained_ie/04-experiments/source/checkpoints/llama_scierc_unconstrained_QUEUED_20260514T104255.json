@@ -1,0 +1,21 @@
+{
+  "exp_id": "llama_scierc_unconstrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T10:42:55.421Z",
+    "updated_at": "2026-05-14T10:42:55.421Z",
+    "spec": {
+      "server": "westd-16980",
+      "data_path": "/root/schema_semantic_constrained_ie/data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "Llama-3.1-8B-Instruct",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T10:42:55.489113+00:00",
+  "trigger": "update_registry"
+}

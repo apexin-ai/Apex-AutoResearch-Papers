@@ -1,0 +1,41 @@
+{
+  "exp_id": "p8c_ft_scierc_latency",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T18:43:08.206Z",
+    "updated_at": "2026-05-18T18:45:14.302Z",
+    "metrics": {
+      "unconstrained_mean_s": 2.612,
+      "constrained_mean_s": 2.873,
+      "unconstrained_median_s": 2.355,
+      "constrained_median_s": 2.624,
+      "overhead_mean_pct": 10,
+      "overhead_median_pct": 11.42,
+      "per_doc_ratio_mean": 1.205,
+      "per_doc_ratio_median": 1.117,
+      "num_docs": 551,
+      "unconstrained_total_s": 1439,
+      "constrained_total_s": 1582.9
+    },
+    "hypothesis": "OntoCoDec constrained decoding on fine-tuned Qwen3-8B SciERC has low latency overhead (~10%), confirming practical deployability for fine-tuned models",
+    "spec": {
+      "command": "python3 run_constrained_extraction.py unconstrained+full_s1 then analyze_latency.py (FT Qwen3-8B SciERC)",
+      "server": "westd-21461",
+      "data_path": "data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "Qwen3-8B-LoRA-SciERC-FT",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen_lora_scierc_merged",
+      "eval_data": "data/processed_data/test.json"
+    },
+    "checkpoint_path": "/root/autodl-tmp/schema_outputs/p8c_timing_ft_constrained.jsonl",
+    "log_path": "/root/autodl-tmp/schema_outputs/p8c_latency_report.json",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T18:45:14.513521+00:00",
+  "trigger": "update_registry"
+}

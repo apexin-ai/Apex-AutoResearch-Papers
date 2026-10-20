@@ -1,0 +1,5 @@
+Remote path: westd-16980:/root/schema_semantic_constrained_ie/outputs/beam4_tcr_qwen_scierc.jsonl
+Samples: 551, Format: JSONL
+TCR changed selection: 0/551 (0%)
+All beam candidates TCR=1.0
+DR=1.84% (23/1250), CF=1, E-F1=67.26, R-F1=44.24

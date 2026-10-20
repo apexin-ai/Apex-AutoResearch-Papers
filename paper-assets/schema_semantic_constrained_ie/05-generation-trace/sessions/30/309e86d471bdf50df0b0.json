@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "309e86d471bdf50df0b0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops check full s1 fallback stats",
+  "task_key": "worker_ops_check_full_s1_fallback_stats_20260514T042645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_full_s1_fallback_stats_20260514T042645_result.json",
+    "occurrence": 1,
+    "bytes": 878,
+    "sha256": "3024f975be5f1a3bedc4bcaa5af68615f367959c71f9891cb193ccf9fbc5f475"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n| 指标 | 值 |\n|------|-----|\n| **full_s1 进度** | 304/998 (30.5%) |\n| **grammar_only 进度** | 443/998 (44.4%) |\n| **方案 A fallback 触发** | **0 次** |\n| **方案 B skip 触发** | 无日志可查（静默方案），但所有日志条目均显示 \"OK\"，无异常 |\n| **WARNING 数量** | 0 |\n\n### 进程健康\n\n| PID | 状态 | 运行时间 | GPU 显存 |\n|-----|------|---------|---------|\n| 157047 (full_s1) | **Rl** (运行中) | 1h10m | 17394 MiB |\n| 150766 (grammar_only) | 运行中 | — | 17442 MiB |\n\n日志最新条目为 `[249/998] Cry for Help: OK E=25 R=20 21.9s`，每条约 15-25 秒，全部 \"OK\"。\n\n修复后 fallback 触发次数为 0，说明修复方案完全消除了原来的断言错误，运行正常。按当前速度 (~18s/doc)，full_s1 剩余 ~694 条预计还需约 3.5 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-full-s1-fallback-stats.md"
+}

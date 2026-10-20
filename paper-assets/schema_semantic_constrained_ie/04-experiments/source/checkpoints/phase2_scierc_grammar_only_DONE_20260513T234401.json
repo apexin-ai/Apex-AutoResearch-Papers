@@ -1,0 +1,115 @@
+{
+  "exp_id": "phase2_scierc_grammar_only",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-13T21:48:43.487Z",
+    "updated_at": "2026-05-13T23:44:01.434Z",
+    "hypothesis": "Grammar-only constrained decoding (XGrammar JSON schema + enum) 能否消除 relation vocabulary violations 同时不影响 F1？预期 rv_violation→0%, dr_violation 不变",
+    "reproduce": {
+      "finished_at": "2026-05-13T23:39:02.641Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-13T22:38:46.650Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-13T22:38:47.328842+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-13T23:39:03.395560+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "诊断中: 进程到 176/551 无 traceback 静默退出。cron 追踪 stale PID 导致 5× dead 判定。已派 Worker diagnose:phase2_scierc_grammar_only 深查。"
+      }
+    },
+    "notes": "进程从未崩溃。原 'crash' 判定是 cron 追踪 stale PID 123425（已杀的 batch script）导致 5× dead 误报。实际进程 PID 126473 一直在 GPU 1 正常运行。nvidia-smi 确认: GPU 1 上 grammar_only(126473) + unconstrained(126948) 共享，各占 ~16.5GB，利用率 92%。",
+    "spec": {
+      "command": "python3 run_constrained_extraction.py --mode grammar_only --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_grammar_only.jsonl --device cuda:0 --batch_size 1",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "126473",
+      "data_path": "/root/schema_semantic_constrained_ie/data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "log_path": "~/runs/schema_semantic_constrained_ie/phase2_scierc_grammar_only.log",
+      "note": "CUDA_VISIBLE_DEVICES=1 by submit_training_job. 进程从未崩溃 — 'crash' 是 cron 追踪 stale PID 123425 的误报。PID 126473 一直在跑。两个 Phase 2 实验共享 GPU 1（各 ~16.5GB），利用率 92%。"
+    },
+    "metrics": {
+      "total_samples": 551,
+      "total_triples": 1725,
+      "total_entities": 2474,
+      "json_parse_rate": 1,
+      "entity_type_violation_rate": 0,
+      "relation_vocabulary_violation_rate": 0,
+      "domain_range_violation_rate": 0.1484,
+      "cross_field_consistency_violation_rate": 0.0008,
+      "entity_f1": 0.3098,
+      "entity_precision": 0.2598,
+      "entity_recall": 0.3837,
+      "relation_f1": 0.0823,
+      "relation_precision": 0.0643,
+      "relation_recall": 0.114,
+      "delta_vs_phase0": {
+        "entity_f1": -0.0003,
+        "relation_f1": 0,
+        "rv_violation_rate": -0.0139,
+        "dr_violation_rate": -0.0053,
+        "entity_type_violation_rate": -0.004
+      },
+      "per_relation_dr_violations": {
+        "Used-for": {
+          "total": 791,
+          "violations": 2,
+          "rate": 0.0025
+        },
+        "Feature-of": {
+          "total": 494,
+          "violations": 158,
+          "rate": 0.3198
+        },
+        "Evaluate-for": {
+          "total": 134,
+          "violations": 31,
+          "rate": 0.2313
+        },
+        "Hyponym-of": {
+          "total": 125,
+          "violations": 18,
+          "rate": 0.144
+        },
+        "Part-of": {
+          "total": 77,
+          "violations": 18,
+          "rate": 0.2338
+        },
+        "Compare": {
+          "total": 71,
+          "violations": 29,
+          "rate": 0.4085
+        },
+        "Conjunction": {
+          "total": 33,
+          "violations": 0,
+          "rate": 0
+        }
+      }
+    },
+    "checkpoint_path": "/root/schema_semantic_constrained_ie/outputs/phase2_scierc_grammar_only.jsonl",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-13T23:44:01.459863+00:00",
+  "trigger": "update_registry"
+}

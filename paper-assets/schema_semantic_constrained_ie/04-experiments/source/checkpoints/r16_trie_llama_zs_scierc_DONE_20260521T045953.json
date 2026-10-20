@@ -1,0 +1,39 @@
+{
+  "exp_id": "r16_trie_llama_zs_scierc",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T03:44:40.697Z",
+    "updated_at": "2026-05-21T04:59:53.422Z",
+    "hypothesis": "Trie-only vocabulary constraint (GCD-equivalent, no JSON structure) on Llama ZS SciERC will show high DR, proving grammar layer is prerequisite for vocabulary membership enforcement",
+    "spec": {
+      "command": "python3 run_constrained_extraction.py --mode trie_only --dataset scierc (Llama ZS)",
+      "server": "westd-21461",
+      "gpu": "cuda:1",
+      "pid": 241846,
+      "data_path": "data/scierc/test.json",
+      "data_count": 551,
+      "model_name": "Llama-3.1-8B-Instruct (zero-shot)",
+      "seed": 42,
+      "checkpoint_path": "N/A (trie eval)",
+      "log_path": "/root/autodl-tmp/schema_outputs/r16_trie_llama_zs.log"
+    },
+    "metrics": {
+      "E_F1": 23.23,
+      "R_F1": 2.9,
+      "ET_pct": 0,
+      "RV_pct": 0,
+      "DR_pct": 84.4,
+      "CF_pct": 0.36,
+      "parse_fail_pct": 0,
+      "samples": 551
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T04:59:53.422Z"
+  },
+  "timestamp": "2026-05-21T04:59:53.973773+00:00",
+  "trigger": "update_registry"
+}

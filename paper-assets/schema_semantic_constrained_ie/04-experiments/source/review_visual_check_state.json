@@ -1,0 +1,37 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:16:38.989379+00:00",
+  "completed_at": "2026-05-25T21:20:29.968146+00:00",
+  "findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 1-2",
+      "message": "连续 2 页纯文本无任何 display item，首个视觉锚点（Figure 1）到 page 3 才出现。对于实证贡献为主的论文，在 page 1 或 2 加入 teaser figure 或核心结果 preview 可强化审稿人第一印象"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Figure 5 的 x 轴 relation type 标签旋转后字号偏小（约为正文 60-70%），建议适当增大或使用缩写"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Figure 2 和 Figure 3 使用红色和蓝/绿色组合，大部分情况可区分，但红绿搭配对 deuteranopia 色盲可能有风险；建议改用 blue+orange 双色方案"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 12-16",
+      "message": "Appendix B（Extended Related Work）+ C（Extended Discussion）连续 5 页纯文本，虽为 appendix 可接受，但密度极高"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 39",
+      "message": "末页内容约占 80%，Section T (Use of AI Assistants) 列表较简短，整体可接受"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 1,
+    "info": 4
+  }
+}

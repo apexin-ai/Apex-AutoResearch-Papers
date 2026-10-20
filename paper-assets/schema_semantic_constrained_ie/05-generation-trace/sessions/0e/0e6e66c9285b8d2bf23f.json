@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e6e66c9285b8d2bf23f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops full status check 20260516T13",
+  "task_key": "worker_ops_full_status_check_20260516T13_20260516T131245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full_status_check_20260516T13_20260516T131245_result.json",
+    "occurrence": 1,
+    "bytes": 992,
+    "sha256": "6be6b6427c51d6ebe725d3c2e6b1c38ced908d3a188433f2ee6e5f5602812bac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n```\n=== westd-16980 ===\nGPU utilization: [gpu0: 0%, gpu1: 87%]\nGPU memory: [gpu0: 0/98GB, gpu1: 17/98GB]\n\nw8_llama_docred_ft_semantic_only: 170/998 (17%) [PID 361202 alive, running 40min]\nDocRED latency benchmark: ✅ completed (100 samples each)\n\n  grammar_compile_time: 0.044s\n  unconstrained:  mean=21.023s\n  grammar_only:   mean=21.366s  (+1.63%)\n  semantic_only:  mean=21.912s  (+4.23%)\n  full_s1:        mean=22.147s  (+5.35%)\n\n=== westd-21461 ===\nGPU utilization: [gpu0: 86%, gpu1: 82%]\nGPU memory: [gpu0: 19/98GB, gpu1: 19/98GB]\n\nw8_qwen_docred_ft_grammar_only:  642/998 (64%) [PID 18555 alive, running 3h45m]\nw8_qwen_docred_ft_semantic_only: 494/998 (49%) [PID 20035 alive, running 3h04m]\n```\n\nDocRED latency benchmark 结果很理想——grammar_only 仅 1.63% overhead，semantic_only 4.23%，full (grammar+semantic) 5.35%。比 SciERC 的 overhead 低很多，说明在长文本场景下约束解码的相对开销更小。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-status-check-20260516t13.md"
+}

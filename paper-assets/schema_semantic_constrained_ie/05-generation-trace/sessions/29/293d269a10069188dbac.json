@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "293d269a10069188dbac",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops cleanup gpu1 orphans",
+  "task_key": "worker_ops_cleanup_gpu1_orphans_20260513T235434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_gpu1_orphans_20260513T235434_result.json",
+    "occurrence": 1,
+    "bytes": 950,
+    "sha256": "5bab6693f221ec99ee314368612ceada9e6fb37b49b52618d0f2b47afe425574"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. PID 身份\n\n| PID | 实验 | GPU | 显存 | 状态 |\n|-----|------|-----|------|------|\n| 134450 | 未知 | — | — | **已退出**（不存在） |\n| 134886 | 未知 | — | — | **已退出**（不存在） |\n| 134598 | **full_s1** | GPU 1 | 16.5GB | 正常运行，进程链完整 (→134597→134593) |\n| 134207 | semantic_only | GPU 0 | 16.5GB | 正常运行，进程链完整 (→134206→134202) |\n| 116365 | docred_schema | GPU 0 | 25.3GB | 正常运行，tmux session 存在 |\n\n### 2. Kill 操作\n**无需 kill。** 两个孤儿 PID（134450, 134886）已自行退出。\n\n### 3. GPU 1 当前状态\n- 仅 full_s1（PID 134598）占用 16.5GB / 97.9GB，GPU-Util 84%\n- 已从 ~49.4GB 降至 ~16.5GB，释放了 ~33GB\n\n### 4. full_s1 运行状态\n正常运行。进程树完整：PID 134593 (registry) → 134597 (timeout) → 134598 (python3)，`CUDA_VISIBLE_DEVICES=1`，GPU-Util 84%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-gpu1-orphans.md"
+}

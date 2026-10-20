@@ -1,0 +1,16 @@
+{
+  "exp_id": "d065_tcr_pilot",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:26:25.109Z",
+    "updated_at": "2026-05-19T11:32:17.259Z",
+    "hypothesis": "Post-hoc Type Consistency Resolution (TCR) can reduce CF violations by ≥30% in zero-shot and ≥50% in LoRA settings without increasing DR, by resolving cross-triple entity type conflicts using global relation constraint satisfaction scoring. During-decoding consensus failed (100% skip rate) due to lack of global information; post-hoc TCR has full document context and should succeed where per-token approaches cannot.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T11:32:17.526876+00:00",
+  "trigger": "update_registry"
+}

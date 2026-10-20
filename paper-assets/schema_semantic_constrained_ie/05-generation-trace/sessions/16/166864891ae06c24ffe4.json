@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "166864891ae06c24ffe4",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research related work survey",
+  "task_key": "worker_research_related_work_survey_20260514T023514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related_work_survey_20260514T023514_result.json",
+    "occurrence": 1,
+    "bytes": 1271,
+    "sha256": "ae83095588a6f5d72d20ace128bb52daae2bca94f56d1a9299d742390c3fc7a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出文件已写入并注册：\n`artifacts/related_work_survey.md`\n\n**覆盖 5 个 paradigm，共 20 篇论文：**\n\n| Paradigm | 论文数 | 代表工作 |\n|----------|--------|----------|\n| Grammar-constrained decoding | 5 | XGrammar (MLSys'25), Outlines, LMQL (PLDI'23), DOMINO (ICML'24), ASAp (NeurIPS'24) |\n| Vocabulary/type-constrained generation | 4 | GENRE (ICLR'21), GenIE (NAACL'22), NeuroLogic (NAACL'21), GCD (EMNLP'23) |\n| Structural constraints for IE | 5 | UIE (ACL'22), GoLLIE (ICLR'24), CodeIE (ACL'23), InstructUIE, ADELIE (EMNLP'24) |\n| Ontology validation | 4 | ODKE+ (Apple'25), OpenIE w/ entity constraints (EACL'23), EnriCo, KG validation (GenAIK'25) |\n| Constrained decoding quality | 4 | Let Me Speak Freely (EMNLP'24), CRANE (ICML'25), Structure Snowballing, Hidden Cost (RANLP'25) |\n\n**OntoCoDec 定位总结（3 个差异化维度）：**\n1. **约束层次**：从格式（grammar）扩展到语义（domain/range）\n2. **执行时机**：decoding-time preventive enforcement vs post-hoc validation / training-time soft guidance\n3. **质量保持**：F1 无损 + S2 两通道策略符合 CRANE 的 alternating approach 理论\n\n注意：CRANE 实际是 ICML 2025 而非 NeurIPS 2024，已在文档中修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-survey-copy-2.md"
+}

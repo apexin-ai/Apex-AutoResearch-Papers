@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1635212b848639e8cf1d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "harvest sf2 70b prompt sensitivity",
+  "task_key": "worker_harvest_sf2_70b_prompt_sensitivity_20260523T112153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_sf2_70b_prompt_sensitivity_20260523T112153_result.json",
+    "occurrence": 1,
+    "bytes": 1486,
+    "sha256": "ab7e2546de934ce0b38cb11368398e81a458d2017c1bc055908d319ee66239cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。总结如下：\n\n## sf2_70b_prompt_sensitivity — 实验完成 (success)\n\n**模型**: LLaMA-3.1-70B-Instruct-AWQ-INT4 | **数据**: SciERC test 551 samples | **服务器**: westd-21461\n\n### 指标汇总\n\n| Variant | E-F1 | R-F1 | ET% | RV% | DR% | CF% |\n|---|---|---|---|---|---|---|\n| minimal / constrained | 37.22 | 11.35 | 0.00 | 0.00 | **0.00** | 0.62 |\n| minimal / unconstrained | 37.51 | 13.42 | 0.27 | 5.88 | 0.22 | 0.00 |\n| detailed / constrained | 40.35 | 11.16 | 0.00 | 0.00 | **0.00** | 0.75 |\n| detailed / unconstrained | 40.42 | 11.12 | 0.00 | 0.26 | **4.57** | 0.00 |\n\n### 关键发现\n\n1. **Constrained decoding 完全消除 ET/RV/DR violations**，无论 prompt 风格如何（两种 prompt 下均 0.00%），验证了假设\n2. **Prompt 风格影响 extraction 质量**：detailed prompt 比 minimal 高 ~3pp E-F1（40.4 vs 37.4），但 R-F1 无显著差异（~11）\n3. **Unconstrained + minimal prompt 导致格式漂移**：62/1395 relations 使用了嵌套 dict 格式（`head: {text, type}`）而非扁平格式，constrained grammar 避免了这个问题\n4. **CF% 仅在 constrained 模式出现**（0.62-0.75%），unconstrained 为 0%——这是 grammar 允许同一 entity text 出现在多个 relation 中且被分配不同 type 导致的\n\n### 产出路径\n- 日志: `/tmp/prompt_sensitivity_70b.log`\n- 输出: `/root/schema_semantic_constrained_ie/outputs/prompt_sensitivity_70b/` (4 个 JSONL)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-sf2-70b-prompt-sensitivity.md"
+}

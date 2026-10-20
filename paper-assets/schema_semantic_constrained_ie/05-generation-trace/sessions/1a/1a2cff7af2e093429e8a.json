@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a2cff7af2e093429e8a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis p3 error analysis case study",
+  "task_key": "worker_analysis_p3_error_analysis_case_study_20260518T142239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_p3_error_analysis_case_study_20260518T142239_result.json",
+    "occurrence": 1,
+    "bytes": 934,
+    "sha256": "20b49da05f23b0ce975dc80938a06cb24671fa80bc68c58c57f5029de26840bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "P3 Error Analysis 完成。产出：\n\n**`artifacts/p3_error_analysis.md`** -- 结构化分析报告，包含：\n- 全模型全数据集违规率汇总表（SciERC + DocRED, 8B x3 + 70B）\n- DR 违规按关系类型分布（Feature-of 是 SciERC 头号违规源，占 50-60%）\n- 模型间差异：Mistral BPE 碰撞导致 constrained DR 不降反稳（13.4% SciERC, 33.2% DocRED）\n- 70B vs 8B：70B unconstrained 已比 8B 低 58% DR，70B+OntoCoDec 达到 0% DR\n- CF tradeoff 量化：constrained 下 CF 实体数增加 27-179x\n\n**`artifacts/p3_case_studies.tex`** -- 4 个 LaTeX-ready case study：\n1. **DR 纠正**（Feature-of Task→OtherScientificTerm → Task→Task）\n2. **RV+DR 消除**（DocRED 自然语言关系名 → P-code + 类型修正）\n3. **Scale 效应**（同一输入 8B vs 70B 的违规模式差异）\n4. **Limitation**（constrained 改变生成轨迹导致丢失正确 triple）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-p3-error-analysis-case-study.md"
+}

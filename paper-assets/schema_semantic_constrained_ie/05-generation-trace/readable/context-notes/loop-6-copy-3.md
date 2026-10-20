@@ -1,0 +1,74 @@
+# reviewer / loop_6.md
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_6.md`
+- **Structured JSON:** [`8801cf7f98f277171420.json`](../../sessions/88/8801cf7f98f277171420.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 6
+reason: max_wall_time
+updated: '2026-05-14T22:23:49+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：cuda:0 + cuda:1（westd-16980）。当前全部实验已完成，GPU 空闲，但如有新实验仍必须限制在这两张卡。
+- 论文数字必须带 exp_id 注释追溯——任何定量 claim 无注释即 warning。
+- Llama 实验 exp_id 格式为 `llama_*`（不是 `phase2_*_llama_*`），§5 crossmodel 已统一修正。
+- E-F1 improvement claim 必须限定为 Qwen-specific（abstract/§5/§7 已修正，但 crossmodel L97 有符号错误待修）。
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-16980 (root)，工作目录 `/root/schema_semantic_constrained_ie`
+- 论文文件（本地 workspace）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/`
+- Registry：`/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/registry.yaml`（20 实验，19 DONE + 1 killed）
+- 活跃进程：无。全部实验已完成，GPU 空闲。
+- Dream：`dream_20260514T205155` reviewing 阶段，等待结果注入。
+- main.tex 已编译通过：8 页正文 + 6 页 appendix + refs。
+
+### 3. 📊 当前状态
+刚完成 D014 跨文件一致性审查 + 6 个 worker 审查（cross-model fixes / discussion Llama data / compilation readiness / related work 压缩 / conclusion 压缩 / method 压缩）。全部 PASS。
+
+Registry：0 RUNNING，0 PREPARING，20 总计（19 DONE + 1 killed）。
+
+等待中：
+- Dream 结果注入（dream_20260514T205155）
+- Director 对"额外实验评估"的决策（我建议了 P0 Llama bootstrap CI + P1 per-relation 分析）
+
+### 4. 📋 待办
+- **§4 L43-44 修复 worker 完成** → 验证 tightness 段已改为双因素叙事（范围 45–90% / 94–99% + RV baseline 归因）。当前 ROADMAP 错误标记为 ✅。
+- **crossmodel L97 E-F1 符号修复 worker 完成** → 验证 "+0.03" 已改为 "-0.03"（Qwen SciERC E-F1: 31.01→30.98）。
+- **Llama bootstrap CI worker 完成** → 审查 4 个比较的 p-value，特别关注 E-F1 -0.64pp 是否显著——若显著需修改 "F1-neutral" 措辞。
+- **Dream 结果注入** → 逐条审查 action items，评估是否有新的 critical 问题。
+- **最终全文审查请求** → Mode B 全文写作审查（8 页压缩版），出评分模板。
+
+### 5. 🎯 战略上下文
+**核心叙事**：OntoCoDec 两层约束解码，grammar 消除 RV/ET，semantic 减 DR 45–99%，F1 preserved。CF trade-off 是已知 limitation。
+
+**决策链关键节点**：
+- D014：tightness scaling 从单因素改双因素（tightness × RV baseline）。Llama DocRED DR↓90.2% vs Qwen 45% 在同一 ontology 上打破了纯 tightness 归因。**§4 是唯一未同步的文件。**
+- D013：post-hoc baseline 不以 F1 论高低（post-hoc F1 更高但丢 TP）。
+- D007：S2 降级为 appendix，S1 为主推策略。
+
+**易错点**：
+1. crossmodel L92 Qwen DocRED R-F1 写 "+0.49pp"（表格减法），其他文件统一写 "+0.50pp"（bootstrap delta）——两者均可辩护但不一致，info 级。
+2. "comparable" 一词：用于 baseline violation rate 可比性（15.37% vs 18.46%）时正确，用于 DR reduction 可比性（90.2% vs 45%）时错误。abstract/conclusion 已改为 "substantial"，但审新文本时需警惕回退。
+3. Llama DocRED parse failures 91 vs 68（+34%）是已知 limitation，文中已归因于 max-token truncation。F1 仅在成功解析文档上计算——这是 selection bias 但已在 limitations 中透明披露。
+4. Registry 中 Llama SciERC 的 CF_rate 存储为 0.0656（6.56%），但 CF 原始 count=6，violation_report_v2 中 CF_rate=0.0024（0.24%）才是 unconstrained 的正确值。表格已修正为 0.24%。注意区分 unconstrained CF（0.24%）和 full_s1 CF（6.56%）。
+
+
+---

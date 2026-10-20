@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a54740c989cd81ceec2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper conclusion draft",
+  "task_key": "worker_paper_conclusion_draft_20260514T061814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_conclusion_draft_20260514T061814_result.json",
+    "occurrence": 1,
+    "bytes": 1165,
+    "sha256": "f4117e045b6f7835bf47809ed61922ca8e6f6a08bc8817d1a117fcc2816bbcd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 工具不在当前可用工具列表中，无法注册。文件已写入：\n\n`/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion.tex`\n\n**内容概要（~400 words）：**\n\n- **Para 1 — 三个贡献**：(1) Violation landscape study，发现 DR 由 constraint tightness 驱动而非 ontology size；(2) 两层 constraint 架构（grammar + semantic），grammar 是 semantic 的 enabling prerequisite；(3) SciERC 实证验证 DR 15.37%→0.93%（↓94%），RV/ET→0%，F1-neutral。DocRED 用 `\\placeholder{}` 占位。\n- **Para 2 — Limitations**：CF 从 0.08%→9.90%，归因于 per-relation independent type enforcement 导致的 EVR drift，grammar 层不引入 CF（0.08%=baseline），明确为 open challenge。单模型、两数据集、zero-shot only。\n- **Para 3 — Future Work**：cross-model validation、global entity type consensus 解决 CF、fine-tuned model integration、跨语言 IE。\n\n所有定量 claim 均附 `% exp_id:` 注释。需要你手动执行 `register_artifact` 或告诉我替代注册方式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-conclusion-draft.md"
+}

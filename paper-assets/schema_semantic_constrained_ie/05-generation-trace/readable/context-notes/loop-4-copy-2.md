@@ -1,0 +1,74 @@
+# agent / loop_4.md
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/agent/loop_4.md`
+- **Structured JSON:** [`cfeaee16184c2581e51e.json`](../../sessions/cf/cfeaee16184c2581e51e.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 4
+reason: idle_timeout
+updated: '2026-05-14T09:43:58+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单: 仅 westd-16980 的 cuda:0 + cuda:1，其他 GPU 一律 push back Director
+- submit_training_job 命令必须 `bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ..."` 包裹，裸 python3 会 EXIT_CODE=127
+- 禁止在 allocate_and_submit 命令内放 `tmux kill-session -t <同名session>`（会自杀导致假失败循环）
+- Cron PID 追踪不可靠（已导致 4 次假失败 + 误杀），长跑实验用 `wc -l &lt;output.jsonl>` 判断完成（行数=目标样本数）
+- 重提交前必须先清理旧 tmux session，否则双进程写同一 JSONL 导致 null bytes 污染
+- 脚本内 `--device cuda:0` 始终写 0（框架注入 CUDA_VISIBLE_DEVICES 做映射）
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: westd-16980，2× NVIDIA RTX PRO 6000 Blackwell (94GB each)，CUDA 12.8
+- **工作目录**: `/root/schema_semantic_constrained_ie`
+- **Python**: `/root/miniconda3/bin/python`（conda base），torch 2.10.0+cu128, transformers 4.57.6, XGrammar v2
+- **Qwen3-8B**: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`
+- **Llama-3.1-8B**: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`（已验证兼容，零代码修改可跑）
+- **数据**: SciERC `data/processed_data/test.json` (551), DocRED `data/docred/dev.json` (998)
+- **约束文件**: SciERC `ontology_constraints.json`, DocRED `data/docred/ontology_constraints_docred.json`
+- **活跃进程**: phase2_docred_unconstrained (PID 170502, tmux=phase2_docred_unconstrained, cuda:0) + phase2_docred_semantic_only (PID 172859, tmux=phase2_docred_semantic_only, cuda:1)
+- **Cron**: 2 active crons 追踪上述两个实验
+
+### 3. 📊 当前状态
+DocRED 4 实验消融的前 2 个已完成（grammar_only success, full_s1 success），后 2 个正在跑（unconstrained cuda:0, semantic_only cuda:1）。SciERC Phase 2 全部 5 个实验已完成，核心结果: full_s1 DR 15.37%→0.93% (↓94%) F1 无损。DocRED full_s1 DR 18.7%→10.19% (↓45.5%)，ET/RV→0%。
+
+**Registry 状态**: 13 DONE (12 success + 1 killed), 2 RUNNING, 0 PREPARING/PENDING/QUEUED。Worker 池 = 0（两个 RUNNING 由 cron 监控，无需 Worker）。
+
+**论文写作**: §1-§4, §6 RelWork, Tables×4, Figs×3, §2 Background, §3 Violation Landscape, .bib, Abstract 初稿, §7 Conclusion 初稿 均已完成。缺 §5 DocRED subsection（等实验）+ §5 Cross-model（等 Llama）。
+
+**等待中**: 2 个 cron 回调（docred_unconstrained + docred_semantic_only 完成）。无 Worker 回调。无 Director 待决策。
+
+### 4. 📋 待办（条件触发式）
+- phase2_docred_unconstrained cron 回调 → update_registry + 记录 metrics → 检查是否 4 实验全齐
+- phase2_docred_semantic_only cron 回调 → update_registry + 记录 metrics → 检查是否 4 实验全齐
+- DocRED 4 实验全部完成 → spawn Worker 写 §5 DocRED subsection（填 placeholder）+ 更新 Abstract/Conclusion 中 DocRED 数字 → 向 Director 汇报 DocRED 完整结果
+- §5 DocRED 写完 → 立即启动 Llama-3.1-8B cross-model (D009): 两个实验 unconstrained + full_s1 on SciERC，两卡并行 → §5 Cross-model subsection
+- Llama 结果出来 → 全文校对 + 一致性检查 → May 19 内部稿
+
+### 5. 🎯 战略上下文
+- **投稿目标**: EMNLP 2026 ARR May 25，内部初稿 DDL May 19（距今 5 天）
+- **核心 narrative**: OntoCoDec = grammar + semantic 双层约束，near-complete elimination（SciERC ↓94%），复杂 schema 上 significant reduction（DocRED ↓45.5%）。S1 是主推策略，S2 降级为 ablation (D007)
+- **最重要的 insight（容易判断错的）**: DocRED DR 降幅不如 SciERC 不是 negative——根因是 constraint tightness（DocRED avg 5.68 valid pairs vs SciERC 26.1），这是 **contribution**（首个 constraint scaling 实证），不是 weakness。paper_framing.md Claim 1 已据此调整
+- **CF violation 是已知 limitation**: semantic 层 per-relation 独立 type enforcement 导致 entity-vs-relation type drift (S1=9.9%, S2=8.03%)。论文定位为 future work，不是 bug
+- **Grammar-Semantic 空集 fallback 已修复**: type_mask_processor.py 增加安全检查，semantic∩grammar=∅ 时降级到 grammar-only。SciERC 从未触发，DocRED 触发 1/998 (0.1%)。定位为 engineering robustness，不是 formal invariant
+- **决策链**: D001(EMNLP目标) → D002(GO) → D003(进Research) → D004-D006(SciERC确认) → D007(S2降级) → D008(DocRED消融+论文并行) → D009(Llama should-have)
+- **易踩坑**: 不要把 Phase 0 violation rate 直接和 Phase 2 对比（pipeline/prompt 不同），用 phase2_docred_unconstrained 作为 DocRED baseline；DocRED grammar_only DR=26.17% 高于 unconstrained 18.7% 是正常现象（grammar 强制合法 relation name 改变了 triple 分布）
+
+
+---

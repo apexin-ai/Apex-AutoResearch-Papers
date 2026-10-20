@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "301219fee9958fe1961e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check full gpu status and harvest",
+  "task_key": "worker_check_full-gpu-status-and-harvest_20260522T225045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_full-gpu-status-and-harvest_20260522T225045_result.json",
+    "occurrence": 1,
+    "bytes": 1635,
+    "sha256": "7e3ffee230baaeef8612242661506ec4fb451498ee2b217ed348b07c789daaaf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n---\n\n## GPU 状态\n\n### westd-16980（2× RTX PRO 6000 Black 98GB）\n| GPU | 显存 | Util | 任务 | 进度 |\n|-----|------|------|------|------|\n| 0 | 40.8/97.9 GB | 81% | `70b_lora_docred_200_semantic_only` | **96/200** docs |\n| 1 | 40.9/97.9 GB | 76% | `70b_lora_docred_200_grammar_only` | **93/200** docs |\n\n### westd-21461（2× RTX PRO 6000 Black 98GB）\n| GPU | 显存 | Util | 任务 | 进度 |\n|-----|------|------|------|------|\n| 0 | 39.1/97.9 GB | 92% | `70b_zs_docred_200_unconstrained` | **刚启动** (PID 84588) |\n| 1 | 40.3/97.9 GB | 92% | `70b_zs_docred_200_grammar_only` | **166/200** docs |\n\n---\n\n## 已完成实验收割\n\n### eval_70b_zs_docred_200_semantic_only → **DONE (success)**\n\n| 指标 | 值 | vs unconstrained baseline (DR=15%) |\n|------|-----|-----|\n| DR% | **1.66%** | ↓ 89% relative reduction |\n| RV% | 8.24% | (semantic layer 不约束 RV) |\n| ET% | 0.12% | — |\n| CF | 132 (4.07%) | — |\n| E-F1 | 70.10 | ≈持平 (69.03 baseline) |\n| R-F1 | 13.05 | ≈持平 (13.03 baseline) |\n\nHypothesis 验证：semantic layer 在 70B ZS DocRED 上显著降低 DR (15% → 1.66%)，且不损失 F1。\n\n### eval_70b_zs_scierc_unconstrained — 已在之前收割（DONE）\n\n---\n\n## 新启动实验\n\n| exp_id | 服务器 | GPU | PID | 说明 |\n|--------|--------|-----|-----|------|\n| `eval_70b_zs_docred_200_unconstrained` | westd-21461 | 0 | 84588 | 200-doc unconstrained baseline，补全消融矩阵 |\n\n**4/4 GPU 全部在跑。** westd-21461 grammar_only 约 30 min 后完成（166/200），届时可启动下一个实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-full-gpu-status-and-harvest.md"
+}

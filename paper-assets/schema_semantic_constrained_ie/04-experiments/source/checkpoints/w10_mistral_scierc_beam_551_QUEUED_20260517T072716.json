@@ -1,0 +1,15 @@
+{
+  "exp_id": "w10_mistral_scierc_beam_551",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T07:24:10.347Z",
+    "updated_at": "2026-05-17T07:27:16.597Z",
+    "hypothesis": "Beam search (k=4) on Mistral SciERC will reduce DR from greedy baseline (13.4%) through broader token-level exploration, but entity type misclassification may limit improvement compared to calibrated models (Qwen/Llama achieve DR=0% with beam). Completes the 3x2 beam search matrix."
+  },
+  "timestamp": "2026-05-17T07:27:16.770371+00:00",
+  "trigger": "update_registry"
+}

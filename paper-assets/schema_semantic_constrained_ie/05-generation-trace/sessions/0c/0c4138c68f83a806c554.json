@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c4138c68f83a806c554",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code w5 llama lora scierc training",
+  "task_key": "worker_code_w5_llama_lora_scierc_training_20260515T163426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w5_llama_lora_scierc_training_20260515T163426_result.json",
+    "occurrence": 1,
+    "bytes": 819,
+    "sha256": "be188268ebbedb13059fd80a932ec942cc4f2a2e968562e26a06c40a2d53350e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动。\n\n**关键信息:**\n- 脚本: `/root/schema_semantic_constrained_ie/scripts/train_lora_llama_scierc.py` (235 行)\n- 关键改动: 用 regex 从 Qwen `<|im_start|>` 包裹的 prompt 中提取 system/user 内容，再通过 `tokenizer.apply_chat_template()` 重渲染为 Llama 格式（无需重写数据文件）\n- LoRA 配置: r=16, alpha=32, dropout=0.05, target=q/k/v/o/gate/up/down_proj\n- Dry-run (2 步): loss=0.2769, token_acc=92.9% ✓\n- 训练: PID 285172, cuda:0, 32GB VRAM 占用, 333 steps × ~1.8s ≈ 10 min + eval/save + 合并\n- 输出: `checkpoints/llama_lora_scierc/`（adapter）+ `llama_lora_scierc_merged/`（fp16 合并模型）\n- 日志: `logs/w5_llama_lora_scierc_training.log`\n- Registry: PREPARING → QUEUED → RUNNING + 详细 notes\n- cuda:1 未碰"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w5-llama-lora-scierc-training.md"
+}

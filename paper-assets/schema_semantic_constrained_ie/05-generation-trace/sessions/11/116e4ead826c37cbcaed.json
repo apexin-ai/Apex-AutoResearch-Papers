@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "116e4ead826c37cbcaed",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "analysis llama docred dr residual",
+  "task_key": "worker_analysis_llama_docred_dr_residual_20260515T063059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama_docred_dr_residual_20260515T063059.log",
+    "occurrence": 1,
+    "bytes": 816284,
+    "sha256": "4a7b36e9dc0ddd45df9be9c5a7b7b3db5e4a08703f8dee7e36b680d8266795df"
+  },
+  "statistics": {
+    "messages": 120,
+    "user_turns": 0,
+    "tool_calls": 40,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 36,
+      "tool_call": 40,
+      "tool_result": 40,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 120,
+      "chunks": [
+        {
+          "path": "116e4ead826c37cbcaed-part-0001.json",
+          "message_count": 87
+        },
+        {
+          "path": "116e4ead826c37cbcaed-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-llama-docred-dr-residual.md"
+}

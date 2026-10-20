@@ -1,0 +1,45 @@
+{
+  "exp_id": "ee_mistral_wikievents_constrained_v2",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T21:42:15.493Z",
+    "updated_at": "2026-05-18T01:42:46.453Z",
+    "hypothesis": "WikiEvents constrained decoding with fixed tokenizer-agnostic continuation masking (full_s1 + vocab-scan prefix map) will eliminate EV (37.3%→0%) and RoV (63.9%→0%) for Mistral-7B, confirming the fix generalizes OntoCoDec across all three tokenizer families (byte-level BPE + SentencePiece)",
+    "parent": "ee_mistral_wikievents_constrained",
+    "spec": {
+      "command": "HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python run_constrained_extraction.py --mode full_s1 --dataset wikievents --model_path /root/autodl-tmp/.ms_cache/mistralai/Mistral-7B-Instruct-v0___3/ --constraints_path data/wikievents/ontology_constraints_wikievents.json --data_path data/wikievents/all.jsonl --output_path outputs/ee_mistral_wikievents_constrained_v2_full.jsonl --skip_on_error --resume",
+      "server": "westd-21461",
+      "data_path": "data/wikievents/all.jsonl",
+      "data_count": 246,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": "default",
+      "gpu": "cuda:0",
+      "pid": 40830,
+      "checkpoint_source": "base_model:Mistral-7B-Instruct-v0.3",
+      "eval_data": "data/wikievents/all.jsonl",
+      "checkpoint_path": "outputs/ee_mistral_wikievents_constrained_v2_full.jsonl",
+      "log_path": "logs/mistral_constrained_v2_full.log"
+    },
+    "metrics": {
+      "parse_success": "178/246 (72.4%)",
+      "ET": 0,
+      "EV": 0,
+      "RoV": 0.1,
+      "AC": 16.6,
+      "CF": 13.9,
+      "trigger_f1": 0.0508,
+      "argument_f1": 0.0047,
+      "entity_f1": 0.1245,
+      "parse_failures": 68,
+      "go_no_go": 16.7
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-18T01:42:46.453Z"
+  },
+  "timestamp": "2026-05-18T01:42:46.635036+00:00",
+  "trigger": "update_registry"
+}

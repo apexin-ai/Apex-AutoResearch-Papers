@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a94f9a62a8759edb3dd",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "cleanup tmux llama scierc full s1",
+  "task_key": "worker_cleanup_tmux_llama_scierc_full_s1_20260514T134915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_tmux_llama_scierc_full_s1_20260514T134915_result.json",
+    "occurrence": 1,
+    "bytes": 261,
+    "sha256": "21f4db0ca56b1c5adfe92ae45b8922f53fc54ad398292aaf1fd9d929e2945ec9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完毕。\n\n**已清理：**\n- `llama_scierc_full_s1` — 已杀掉\n\n**未找到（无需操作）：**\n- `llama_scierc_unconstrained` — 不存在\n\n**剩余 session：**\n- `phase2_docred_semantic_only` — 保留（正在运行）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-tmux-llama-scierc-full-s1.md"
+}

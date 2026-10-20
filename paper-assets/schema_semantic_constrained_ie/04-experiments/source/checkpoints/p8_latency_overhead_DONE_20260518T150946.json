@@ -1,0 +1,59 @@
+{
+  "exp_id": "p8_latency_overhead",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:40:32.126Z",
+    "updated_at": "2026-05-18T15:09:46.707Z",
+    "hypothesis": "OntoCoDec constrained decoding overhead on Qwen3-8B SciERC is moderate (<2x), demonstrating practical deployability",
+    "spec": {
+      "command": "bash -c \"cd /root/schema_semantic_constrained_ie && export HF_HUB_OFFLINE=1 && export CUDA_VISIBLE_DEVICES=1 && /root/miniconda3/bin/python3.12 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/.cache/huggingface/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path /root/autodl-tmp/schema_outputs/p8_timing_unconstrained.jsonl --max_new_tokens 4096 --skip_on_error --device cuda:0 && echo '=== UNCONSTRAINED DONE ===' && /root/miniconda3/bin/python3.12 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/.cache/huggingface/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path /root/autodl-tmp/schema_outputs/p8_timing_constrained.jsonl --max_new_tokens 4096 --skip_on_error --device cuda:0 && echo '=== CONSTRAINED DONE ===' && /root/miniconda3/bin/python3.12 analyze_latency.py /root/autodl-tmp/schema_outputs/p8_timing_unconstrained.jsonl /root/autodl-tmp/schema_outputs/p8_timing_constrained.jsonl\"",
+      "server": "westd-21461",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "30982",
+      "log_path": "~/runs/schema_semantic_constrained_ie/p8_latency_overhead.log",
+      "submitted_at": "2026-05-18T13:43:58.889Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 5147.8,
+      "gpu_hours": 1.43
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T15:07:41.806Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T15:07:45.438951+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "samples": 551,
+      "unconstrained_mean_s": 4.163,
+      "unconstrained_median_s": 4.106,
+      "unconstrained_total_s": 2293.7,
+      "constrained_mean_s": 4.71,
+      "constrained_median_s": 4.644,
+      "constrained_total_s": 2595,
+      "overhead_ratio_mean": 1.131,
+      "overhead_ratio_median": 1.131,
+      "overhead_ratio_p95_perdoc": 1.262,
+      "overhead_pct": 13.1
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/schema_outputs/p8_timing_constrained.jsonl",
+    "log_path": "~/runs/schema_semantic_constrained_ie/p8_latency_overhead.log",
+    "completed_at": "2026-05-18T15:09:46.707Z"
+  },
+  "timestamp": "2026-05-18T15:09:46.982053+00:00",
+  "trigger": "update_registry"
+}

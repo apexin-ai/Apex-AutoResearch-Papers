@@ -1,0 +1,15 @@
+{
+  "exp_id": "r16_trie_llama_zs_scierc",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T03:44:40.697Z",
+    "updated_at": "2026-05-21T04:58:58.585Z",
+    "hypothesis": "Trie-only vocabulary constraint (GCD-equivalent, no JSON structure) on Llama ZS SciERC will show high DR, proving grammar layer is prerequisite for vocabulary membership enforcement"
+  },
+  "timestamp": "2026-05-21T04:58:58.893760+00:00",
+  "trigger": "update_registry"
+}

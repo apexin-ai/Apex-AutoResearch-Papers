@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "174a4de126ab94147638",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops fix duplicate constrained eval",
+  "task_key": "worker_ops_fix_duplicate_constrained_eval_20260516T002551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_duplicate_constrained_eval_20260516T002551_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "483cb4ded8b67b6040d5056c584b17becaccaf510d1995bf8945466d692daeeb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n**汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| 重复进程 PID 316888 | 已杀 |\n| 原进程 PID 316355 | 已杀（输出文件损坏） |\n| 输出文件 | 已删除并从头重跑 |\n| 新进程 PID | **317464**（实际 GPU 子进程 317469），cuda:0 独占，已运行 ~1min |\n| cuda:0 | 仅 1 个 python 进程（317469, 16264 MiB） |\n| cuda:1 | 无关实验（304011），不受影响 |\n| Registry | 已修复：status=RUNNING, spec 含正确 PID/server/gpu/log_path/command |\n| 预计产出 | 998 行 JSONL，预计运行 ~50-60min（按 9min/17行 推算） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-duplicate-constrained-eval.md"
+}

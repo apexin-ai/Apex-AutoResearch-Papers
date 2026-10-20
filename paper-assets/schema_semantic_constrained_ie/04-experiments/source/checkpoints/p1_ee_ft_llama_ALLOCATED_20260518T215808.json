@@ -1,0 +1,16 @@
+{
+  "exp_id": "p1_ee_ft_llama",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:57:43.193Z",
+    "updated_at": "2026-05-18T21:58:08.522Z",
+    "hypothesis": "LoRA fine-tuning Llama-3.1-8B-Instruct on WikiEvents EE (same config as Qwen) will produce a model whose unconstrained output has schema violations that are reduced by constrained decoding (full_s1), providing dual-model validation of OntoCoDec composability with fine-tuned models.",
+    "parent": "p1_ee_ft_composability_r4"
+  },
+  "timestamp": "2026-05-18T21:58:08.754843+00:00",
+  "trigger": "update_registry"
+}

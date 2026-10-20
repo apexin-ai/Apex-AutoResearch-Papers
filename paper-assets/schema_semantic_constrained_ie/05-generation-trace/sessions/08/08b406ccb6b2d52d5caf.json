@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08b406ccb6b2d52d5caf",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents first token mask bugfix",
+  "task_key": "worker_code_wikievents_first_token_mask_bugfix_20260517T153956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_first_token_mask_bugfix_20260517T153956_result.json",
+    "occurrence": 1,
+    "bytes": 987,
+    "sha256": "d152aae8559752b3e22a16ed1c2efad9b6d23ba0af7fe0528886c85649e34632"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Import 验证通过。\n\n### 修复总结\n\n**修改文件**: `compiler/type_mask_processor.py`\n\n**修改了 2 个函数**:\n\n1. **`_apply_type_mask`** (line 478-481) — RE 路径使用（`_mask_entity_type`, `_mask_head_type`, `_mask_tail_type`, `_mask_argument_entity_type`）\n   - 新增 `allowed_first_tokens` 集合，disallowed 列表增加 `tid not in allowed_first_tokens` 条件\n\n2. **`_apply_first_token_mask`** (line 496-499) — EE 路径使用（`_mask_event_type`, `_mask_argument_role`）\n   - 新增 `allowed_tokens` 集合，disallowed 列表增加 `tid not in allowed_tokens` 条件\n\n**RE 路径是否有同样的 bug**: **是**。`_apply_type_mask` 使用完全相同的有 bug 的模式（`if etype not in allowed_types` 不检查 token 是否被其他 allowed type 共享）。虽然当前 RE 数据集（SciERC/DocRED）的 entity type first tokens 恰好唯一没触发，但逻辑上存在相同的 collision 风险，已一并修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-first-token-mask-bugfix.md"
+}

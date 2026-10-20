@@ -1,0 +1,36 @@
+{
+  "exp_id": "phase2_scierc_unconstrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:19:07.120Z",
+    "updated_at": "2026-05-13T23:44:02.864Z",
+    "hypothesis": "Phase 2 unconstrained baseline — 使用与 constrained 实验完全相同的代码路径和 prompt，确保 F1 对比公平。预期结果接近 Phase 0 (entity_f1=0.31, relation_f1=0.08)",
+    "spec": {
+      "command": "python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_unconstrained.jsonl --device cuda:0 --batch_size 1",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "126948",
+      "log_path": "~/runs/schema_semantic_constrained_ie/phase2_scierc_unconstrained.log",
+      "submitted_at": "2026-05-13T22:20:28.660Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/schema_semantic_constrained_ie/data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "note": "CUDA_VISIBLE_DEVICES=1 injected by submit_training_job. Progress 353/551 at 23:10 UTC"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-13T23:44:02.820Z"
+    }
+  },
+  "timestamp": "2026-05-13T23:44:02.909438+00:00",
+  "trigger": "update_registry"
+}

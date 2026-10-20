@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11fa7038578adc98e626",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis r15 taskA paper verification",
+  "task_key": "worker_analysis_r15_taskA_paper_verification_20260521T014620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r15_taskA_paper_verification_20260521T014620_result.json",
+    "occurrence": 1,
+    "bytes": 1051,
+    "sha256": "8354e733d817068dd8763fabd32f14ba38e0fcb3617dd87f13a5ad8f6fa5df5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `artifacts/r15_verification/task_a_verification.json`。\n\n**摘要：**\n\n1. **\"guarantee\" 用词** — 19 处匹配，分布在 9 个 .tex 文件中（含 2 个 DEPRECATED 版本的 abstract）。主要用法：\n   - 描述 grammar layer \"guarantees\" 结构合法性（~7 处）\n   - 对比 training-based 方法 \"cannot guarantee\" / \"no guarantee\"（~5 处）\n   - Contribution 1 中 \"formal guarantees at each level\"\n   - `section6_relwork_additions.tex:25` 是注释行，非正文\n\n2. **Contributions** — 共 2 条 contribution。**κ̄ (kappa bar) 仍在 contribution 1 中**，描述为 \"descriptive metric correlating schema restrictiveness with DR reduction\"。\n\n3. **BibTeX 验证** — 两个 key 均正常：\n   - `chen2024agentre`: bib 中存在（`relwork_new_entries.bib:617`），被 `section5_scierc_draft.tex:108` 引用 ✓\n   - `fan2024fsn`: bib 中存在（`relwork_new_entries.bib:626`），被 `section5_scierc_draft.tex:108` 引用 ✓\n   - 无 orphan，无 missing"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r15-taska-paper-verification.md"
+}

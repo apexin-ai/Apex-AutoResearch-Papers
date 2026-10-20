@@ -1,0 +1,14 @@
+{
+  "exp_id": "p1_ee_ft_composability_r4",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:50:56.983Z",
+    "updated_at": "2026-05-18T21:50:56.983Z"
+  },
+  "timestamp": "2026-05-18T21:50:57.220772+00:00",
+  "trigger": "update_registry"
+}

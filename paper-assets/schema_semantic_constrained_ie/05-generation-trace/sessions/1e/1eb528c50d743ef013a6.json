@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1eb528c50d743ef013a6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents llama crash fix",
+  "task_key": "worker_code_wikievents_llama_crash_fix_20260517T181343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_llama_crash_fix_20260517T181343_result.json",
+    "occurrence": 1,
+    "bytes": 410,
+    "sha256": "562bef7b7eeaca948a0b162232ee2c2c62fe0c44575ac57d0e9983b7bb2bdc3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n- **修复**：在 `run_constrained_extraction.py:968` 添加了 `if isinstance(parsed, list): parsed = {}`，位于 `record` 赋值和 `parsed.get` 调用之前\n- **重启**：tmux session `llama_restart` 运行中，使用 `--resume` 从 doc 52 继续\n- **输出**：已从 52 行增长到 55 行，推理正常进行\n- **GPU 0**：16GB 显存占用，89% 利用率"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-llama-crash-fix.md"
+}

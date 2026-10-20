@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_70b_zs_scierc_unconstrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:45:13.928Z",
+    "updated_at": "2026-05-22T18:45:24.086Z",
+    "hypothesis": "Independent 70B ZS SciERC unconstrained baseline to verify prior DR and R-F1 numbers from r16_70b_scierc_zs_s1 experiment. Expect DR~6-8% and R-F1~11 consistent with earlier measurements."
+  },
+  "timestamp": "2026-05-22T18:45:24.399343+00:00",
+  "trigger": "update_registry"
+}

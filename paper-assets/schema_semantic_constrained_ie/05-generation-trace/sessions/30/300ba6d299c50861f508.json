@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "300ba6d299c50861f508",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research pair based impl plan",
+  "task_key": "worker_research_pair_based_impl_plan_20260515T141200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_pair_based_impl_plan_20260515T141200_result.json",
+    "occurrence": 1,
+    "bytes": 1332,
+    "sha256": "694c9348dbb1fa9bdd6c2e1af3efa7bd4db0303253ef094f40abb810abc2c594"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成，实现方案已写入 `artifacts/pair_based_enforcement_plan.md`。\n\n核心发现与方案摘要：\n\n**关键发现**：JSON schema 生成顺序是 `head → tail → type → head_type → tail_type`，relation type 在 entity types 之前生成——不需要 schema reorder。\n\n**三处改动点**：\n\n1. **P0 `_mask_head_type` pair-based**（L321, 最高收益）：当前用 `valid_head_types()`（独立 dom 投影），改为当 tail entity type 从 registry 已知时用 `valid_head_types_for_tail(tail_type)`。`RelationConstraint` 已有此方法但从未被调用。\n\n2. **P1 数据结构**：`RelationConstraint` 添加 `_valid_pair_set` (frozenset) + `is_valid_pair()` 方法实现 O(1) pair 查询。`GenerationState` 新增 `current_tail_type`，`PositionDetector` 新增 tail_type 值提取 regex。\n\n3. **P2 `_mask_relation_type`（新增）**：在 `RELATION_TYPE` 位置基于 entity registry 的 head/tail types 过滤 relation types。SciERC 可直接启用；DocRED 因 P-code first token 全部相同需跳过或用 human-readable names。\n\n**CF fallback 交互**：CF 一致性优先级不变（> pair 约束），新增 `pair_cf_conflict_count` 统计。\n\n**改动量**：~98 行，涉及 `ontology_compiler.py` (+10行) 和 `type_mask_processor.py` (+88行)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-pair-based-impl-plan.md"
+}

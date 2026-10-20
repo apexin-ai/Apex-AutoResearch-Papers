@@ -1,0 +1,2816 @@
+# cron hook phase2 scierc full s1 20260514T042713 322945
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 88
+- **Recorded user turns:** 3
+- **Tool calls:** 42
+- **Original source:** `logs/chats/archive/cron_hook_phase2_scierc_full_s1_20260514T042713_322945.jsonl`
+- **Structured JSON:** [`b4ad4a528aa734d8f34d.json`](../../sessions/b4/b4ad4a528aa734d8f34d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+60 recorded events
+
+### User
+
+_source line 1 · 2026-05-13T23:45:42.789669+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: phase2_scierc_full_s1
+- project: schema_semantic_constrained_ie
+- server: westd-16980
+- log_path: ~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s1.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-13T23:45:55.488880+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker",
+  "max_results": "7"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker",
+    "max_results": "7"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-13T23:45:55.489377+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-13T23:45:58.963820+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-13T23:45:59.420845+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-13T23:45:59.422072+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"phase2_scierc_full_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T21:48:44.785Z\", \"updated_at\": \"2026-05-13T23:45:41.906Z\", \"hypothesis\": \"Grammar + Semantic 双层约束 (S1 单通道) 能否同时消除 rv + dr violations？F1 变化是关键：<2pp 降=完美，2-5pp=可接受 trade-off，>5pp=需要 S2 策略\", \"notes\": \"Dry-run 验证通过 (5/13 23:36): E=4, R=1, 7.4s。XGrammar + TypeConstraintProcessor 双层约束正常工作，额外有 grammar 编译步骤。代码就绪，等 grammar_only/unconstrained 完成后提交。参数名是 --max_samples（非 --num_samples）。\", \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T23:45:08.749Z\", \"command\": \"python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s1.jsonl --device cuda:0 --batch_size 1\", \"finished_at\": \"2026-05-13T23:45:41.138Z\", \"training_hours\": 0.01}, \"spec\": {\"command\": \"python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s1.jsonl --device cuda:0 --batch_size 1\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"data_path\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Qwen3-8B\", \"seed\": 42}, \"pid\": \"unknown\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s1.log\", \"failure_reason\": \"EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:45:41.906Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\",
+…[truncated 15295 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 458
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-13T23:45:59.879245+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-13T23:46:00.130371+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-13T23:46:01.793400+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"mvp_phase0_docred_schema\", \"success\": true, \"actions\": [\"Job still running (pid=116365)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 2372
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-13T23:46:01.793968+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-13T23:45:42Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 9 个实验 — ANALYZING 1, DONE 7, RUNNING 1\\n**DONE 分布**: failed 2, success 5\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-16980:cuda:0, westd-16980:cuda:1\\n- **实际运行**: 1 张 — westd-16980:cuda:0(mvp_phase0_docred_schema)\\n- **空闲（分配了没跑）**: westd-16980:cuda:1\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `mvp_phase0_docred_schema` | westd-16980 | cuda:0 | 116365 | `…schema_semantic_constrained_ie/mvp_phase0_docred_schema.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `phase2_scierc_full_s1` [failed] — 2026-05-13T23:45:41 — EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\\n- `phase2_scierc_semantic_only` [failed] — 2026-05-13T23:45:39 — EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\\n- `phase2_scierc_grammar_only` [success] — 2026-05-13T23:44:01 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `phase2_s2_pilot50` [success] — 2026-05-13T23:26:16\\n- `mvp_phase0_violation_rate_docred` [success] — 2026-05-13T21:46:35\\n\\n### 🔴 最近失败原因 (top 3)\\n- `phase2_scierc_full_s1`: EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\\n- `phase2_scierc_semantic_only`: EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-13\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| mvp_phase0_docred_schema | Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心 | — | — | — |\\n| phase2_scierc_unconstrained | Phase
+…[truncated 1106 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1914
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T23:46:01.844654+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md\", \"content\": \"# schema_semantic_constrained_ie — Research Dashboard\\n\\n> 最后更新: 2026-05-13 21:49 UTC | 更新原因: MVP 通过，进入 Research 阶段，Phase 2 实验启动\\n\\n## 核心方向\\nOntoCoDec: 自动编译 IE 本体 schema 为解码时约束，保证 LLM 生成的提取结果满足类型有效性。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research（MVP 2026-05-13 通过，D003）\\n- **Phase 0 完成**: SciERC DR=15.4%/5.78%, DocRED DR=18.7%（schema-informed 运行中）\\n- **Phase 1 Compiler**: 代码就绪，36 tests 通过。S2 bug 修复中。\\n- **Phase 2**: SciERC grammar_only/semantic_only/full_s1 已批准启动 (cuda:1)\\n- **Paper framing**: paper_framing.md 已写，Reviewer 审阅通过\\n- **Experiment plan**: experiment_plan.yaml 已创建\\n\\n## Phase 0 核心数据\\n\\n| 数据集 | Minimal DR | Schema-informed DR | Vocab Violation |\\n|--------|-----------|-------------------|----------------|\\n| SciERC (7 rels) | 15.4% | 5.78% (-62.4%) | 1.4% |\\n| DocRED (96 rels) | 18.7% | 运行中 | 28.9% |\\n\\nKey insight: violation rate 由 constraint tightness 驱动，非 ontology size。\\n\\n## 近期任务（按优先级）\\n- [ ] Phase 2 SciERC: grammar_only → semantic_only → full_s1 (cuda:1)\\n- [ ] S2 PositionDetector bug 修复 (relation-only JSON)\\n- [ ] DocRED schema-informed 完成 + violation analysis (cuda:0, ~2h)\\n- [ ] Phase 2 SciERC full_s2 (S2 bug 修复后)\\n- [ ] Phase 2 DocRED: grammar_only + full_s1\\n- [ ] Llama-3.1-8B cross-model validation (stretch)\\n- [ ] Paper 写作 (May 21-24)\\n\\n## 时间线 (EMNLP ARR 5/25)\\n- **5/13** ✅ Phase 0 完成, MVP 通过\\n- **5/14**: Phase 2 SciERC S1 路径实验\\n- **5/15-16**: Phase 2 DocRED + S2 修复 + 实验\\n- **5/17-18**: Cross-model validation (Llama-3.1-8B) if time\\n- **5/19-20**: 结果分析 + ablation\\n- **5/21-24**: Paper 写作 + 提交\\n\\n## GPU 预算\\n- 分配: westd-16980 cuda:0, cuda:1 (2× RTX PRO 6000 96GB)\\n- GPU 白名单: gpu_ids [0, 1]\\n- Phase 0 已用: ~6 GPU-hours\\n- Phase 2 预估: ~18 GPU-hours\\n- 总预估: ~24 GPU-hours / 576 可用 → 充裕\\n\\n## 目标会议\\n- **主目标**: EMNLP 2026 ARR (2026-0
+…[truncated 756 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 1714
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-13T23:46:29.017533+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-13T23:46:29.119624+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_f205ce00.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "Read",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-13T23:46:29.170447+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-13T23:46:29.221410+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_f205ce00.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-13T23:46:35.004877+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-13T23:46:35.155820+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "Glob",
+  "elapsed_ms": 150
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-13T23:46:35.206487+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-13T23:46:35.307223+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "Glob",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-13T23:46:40.034464+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed.skill.md",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed.skill.md",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-13T23:46:40.336242+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "Glob",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-13T23:46:40.336840+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-13T23:46:40.488552+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "Glob",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-13T23:46:43.149784+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-13T23:46:43.200850+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-13T23:46:43.201604+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-13T23:46:43.201944+00:00_
+
+1	---
+2	name: on-experiment-failed
+3	description: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。
+4	scope: global
+5	tags:
+6	- workflow
+7	- diagnosis
+8	- cron-hook
+9	tools:
+10	- read_registry
+11	- tail_training_logs
+12	- update_registry
+13	- append_idea
+14	- feishu_send_result_card
+15	- spawn_worker
+16	- check_job_status
+17	version: 4
+18	heavy: true
+19	roles:
+20	- agent
+21	---
+22	
+23	# 实验失败诊断工作流
+24	
+25	## 触发方式
+26	由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。
+27	
+28	## 步骤
+29	
+30	### Step 0: 读取项目上下文（诊断前必须执行）
+31	先读文档，再看日志——否则诊断方向可能完全错误：
+32	
+33	- `read_project_file("memory.md")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案
+34	- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构
+35	
+36	读完后检查：
+37	- memory.md 里有没有"此类实验曾失败，原因是 X"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程
+38	- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）
+39	
+40	### Step 1: 了解失败背景
+41	- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path
+42	
+43	### Step 2: 浅层日志诊断
+44	有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)
+45	- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback
+46	- 没找到 → 增加行数再查
+47	
+48	### Step 2.5: 深查（满足以下任一条件时 spawn_worker）
+49	- 运行时长 < 5 分钟（初始化阶段崩溃）
+50	- tail 日志中未见明确 Traceback 或错误行
+51	- 同类实验连续失败 ≥ 2 次
+52	
+53	```python
+54	spawn_worker(
+55	    task_type="diagnose:{exp_id}",
+56	    task_prompt="""SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。
+57	
+58	项目路径：{project_path}（绝对路径）
+59	日志路径：{log_path}（可能为空）
+60	
+61	执行步骤（按顺序，有结论就停）：
+62	
+63	1. 如果有日志路径：
+64	   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）
+65	   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）
+66	   - 日志文件不存在：说明任务启动即失败，跳到步骤 2
+67	
+68	2. 日志无错误或无日志时，检查基础设施：
+69	   - 入口文件是否存在
+70	   - 激活环境并验证 import
+71	   - 检查 configs/ 目录
+72	
+73	3. 检查磁盘/内存（OOM 类）
+74	
+75	最后输出一行 JSON：
+76	{"root_cause":"<引用具体报错行>","error_type":"infrastructure|hyperparameter|resource|data","fix_steps":["步骤1","步骤2"],"can_auto_fix":true}""",
+77	    tool_groups=["ssh"],
+78	)
+79	```
+80	
+81	Worker 返回后，以其结论作为 Step 3 的诊断依据。
+82	
+83	### 
+…[truncated 1766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "Read",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-13T23:47:06.902123+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-13T23:47:06.902802+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/memory.md\", \"content\": \"# Memory — schema_semantic_constrained_ie\\n\\n## 文献调研 (2026-05-13)\\n\\n### 核心结论: OntoCoDec 的 novelty 成立\\n**没有人做过 \\\"compile IE ontology domain/range → decoding-time logits masking\\\" 的完整 pipeline。**\\n\\nGap 结构：\\n- Syntactic constrained decoding for IE: well-explored (GCD, XGrammar, Outlines)\\n- Vocabulary-level: exists (GENRE, iNERD, AdaKGC)\\n- **Semantic (domain/range) decoding for IE: OPEN GAP** ← OntoCoDec\\n- Semantic type checking at decode time: only for code gen (MGD NeurIPS'23, PLDI'25)\\n- Ontology compliance for IE: only post-processing (ODKE+ Apple'25, OntoLogX'25)\\n\\n最近竞争者：PLDI'25 Type-Constrained Code Gen（同机制但领域是代码生成，必须引用并区分）\\n\\n风险：CRANE (ICML'25) 严格约束可能降低推理质量；Grammar-Aligned Decoding (NeurIPS'24) naive masking 扭曲分布\\n\\nNovelty 定位：\\\"OntoCoDec 将 type-constrained generation 引入信息抽取，编译 IE ontology axioms 为解码时语义约束，预防而非检测 type violations。\\\"\\n\\n详细报告: `artifacts/literature_map.yaml`, `artifacts/literature_survey_*.md`\\n\\n## 实验发现\\n\\n### SciERC Phase 0 — Minimal (2026-05-13)\\n- **go_nogo_metric = 15.4%** (domain_range_violation_rate), 3× 超过 5% 阈值 → GO\\n- Violation 分布极不均匀: Used-for 0.76% vs Compare 42.4% vs Feature-of 33.5%\\n- Feature-of + Compare 贡献 72% 的 domain/range violations\\n- Relation vocabulary violations 仅 1.4%\\n- 关键 insight: OntoCoDec 的价值在于精确靶向高违规 relation types\\n\\n### SciERC Phase 0 — Schema-informed (2026-05-13)\\n- **domain_range_violation_rate = 5.78%**（vs minimal 15.37%, -62.4%）\\n- 仍高于 5% 阈值 → prompt 级干预不足以替代 decoding-time enforcement\\n- Entity type violations 降到 0%，relation vocabulary 降到 0.30%\\n- Per-relation: Feature-of -22.3pp, Part-of -22.5pp, Compare -14.8pp\\n- ⚠️ Evaluate-for 反而退步 +5.8pp — prompt 复杂度反而干扰\\n- McNemar 四类全显著 p<0.01\\n- **论文 story**: LLM 能理解约束（-62%）但执行不完美（仍>5%），需要 hard constraint\\n\\n### DocRED Phase 0 — Minimal (2026-05-13)\\n-
+…[truncated 3316 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-13T23:47:07.933134+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__feishu_send_result_card",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__feishu_send_result_card",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-13T23:47:07.987944+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 54
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-13T23:47:18.039889+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "exp_id": "phase2_scierc_full_s1",
+  "project": "schema_semantic_constrained_ie",
+  "n": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "westd-16980",
+    "exp_id": "phase2_scierc_full_s1",
+    "project": "schema_semantic_constrained_ie",
+    "n": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-13T23:47:18.999438+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"bash: line 1: python3: command not found\", \"EXIT_CODE=127\"], \"line_count\": 2, \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s1.log\", \"anomalies\": []}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 959
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-13T23:47:19.150365+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "exp_id": "phase2_scierc_semantic_only",
+  "project": "schema_semantic_constrained_ie",
+  "n": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "westd-16980",
+    "exp_id": "phase2_scierc_semantic_only",
+    "project": "schema_semantic_constrained_ie",
+    "n": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-13T23:47:19.251928+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-13T23:47:19.607852+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"bash: line 1: python3: command not found\", \"EXIT_CODE=127\"], \"line_count\": 2, \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_semantic_only.log\", \"anomalies\": []}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 457
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-13T23:47:19.658591+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"westd-16980\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"westd-16980\", \"gpu_id\": \"cuda:1\"}], \"actually_running_gpus\": [{\"server\": \"westd-16980\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"mvp_phase0_docred_schema\"}], \"allocated_but_idle\": [{\"server\": \"westd-16980\", \"gpu_id\": \"cuda:1\", \"idle_min\": null}], \"running_experiments\": [{\"exp_id\": \"mvp_phase0_docred_schema\", \"gpus\": [\"cuda:0\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 1, \"gpu_tasks\": 0, \"cpu_tasks\": 1, \"details\": [{\"worker_id\": \"worker_analysis_s2_relation_f1_rootcause_20260513T223355\", \"task\": \"analysis:s2_relation_f1_rootcause\"}]}, \"summary\": \"分配 2 张, 实际跑 1 张 ⚠️ | Worker 1 (GPU 0 / CPU 1)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 406
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-13T23:48:23.998653+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "phase2_scierc_full_s1",
+  "field": "notes",
+  "value": "诊断完成: EXIT_CODE=127, bash: line 1: python3: command not found。Root cause: submit_training_job 未在命令前加 conda 环境激活。修复方案: 命令前缀加 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base。retry_count=0, 自动重试中。",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "phase2_scierc_full_s1",
+    "field": "notes",
+    "value": "诊断完成: EXIT_CODE=127, bash: line 1: python3: command not found。Root cause: submit_training_job 未在命令前加 conda 环境激活。修复方案: 命令前缀加 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base。retry_count=0, 自动重试中。",
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-13T23:48:24.451108+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"phase2_scierc_full_s1\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T21:48:44.785Z\", \"updated_at\": \"2026-05-13T23:48:23.996Z\", \"hypothesis\": \"Grammar + Semantic 双层约束 (S1 单通道) 能否同时消除 rv + dr violations？F1 变化是关键：<2pp 降=完美，2-5pp=可接受 trade-off，>5pp=需要 S2 策略\", \"notes\": \"诊断完成: EXIT_CODE=127, bash: line 1: python3: command not found。Root cause: submit_training_job 未在命令前加 conda 环境激活。修复方案: 命令前缀加 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base。retry_count=0, 自动重试中。\", \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T23:45:08.749Z\", \"command\": \"python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s1.jsonl --device cuda:0 --batch_size 1\", \"finished_at\": \"2026-05-13T23:45:41.138Z\", \"training_hours\": 0.01}, \"spec\": {\"command\": \"python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s1.jsonl --device cuda:0 --batch_size 1\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"data_path\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Qwen3-8B\", \"seed\": 42}, \"pid\": \"unknown\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s1.log\", \"failure_reason\": \"EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:45:41.906Z\", \"extra\":
+…[truncated 184 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-13T23:48:25.455616+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "phase2_scierc_semantic_only",
+  "field": "notes",
+  "value": "诊断完成: EXIT_CODE=127, bash: line 1: python3: command not found。Root cause: 同 phase2_scierc_full_s1, submit 未激活 conda。修复方案同上。retry_count=0, 自动重试中。",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "phase2_scierc_semantic_only",
+    "field": "notes",
+    "value": "诊断完成: EXIT_CODE=127, bash: line 1: python3: command not found。Root cause: 同 phase2_scierc_full_s1, submit 未激活 conda。修复方案同上。retry_count=0, 自动重试中。",
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-13T23:48:25.558139+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"phase2_scierc_semantic_only\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T21:48:44.427Z\", \"updated_at\": \"2026-05-13T23:48:25.488Z\", \"hypothesis\": \"Semantic-only constrained decoding (TypeConstraintProcessor) 能否消除 domain/range violations？预期 dr_violation→0%，但可能影响 F1（约束过强导致生成偏移）\", \"notes\": \"诊断完成: EXIT_CODE=127, bash: line 1: python3: command not found。Root cause: 同 phase2_scierc_full_s1, submit 未激活 conda。修复方案同上。retry_count=0, 自动重试中。\", \"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-13T23:45:06.174Z\", \"command\": \"python3 run_constrained_extraction.py --mode semantic_only --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_semantic_only.jsonl --device cuda:0 --batch_size 1\", \"finished_at\": \"2026-05-13T23:45:38.627Z\", \"training_hours\": 0.01}, \"spec\": {\"command\": \"python3 run_constrained_extraction.py --mode semantic_only --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_semantic_only.jsonl --device cuda:0 --batch_size 1\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_semantic_only.log\", \"submitted_at\": \"2026-05-13T23:45:36.687Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2.6, \"gpu_hours\": 0.0}, \"pid\": \"unknown\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_semantic_only.log\", \"failure_reason\": \"EXIT_CODE=127 (command not found —
+…[truncated 313 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-13T23:48:54.448892+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "phase2_scierc_full_s1",
+  "field": "retry_count",
+  "value": "1",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "phase2_scierc_full_s1",
+    "field": "retry_count",
+    "value": "1",
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-13T23:48:54.951437+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"phase2_scierc_full_s1\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-13T21:48:44.785Z\", \"updated_at\": \"2026-05-13T23:48:54.502Z\", \"hypothesis\": \"Grammar + Semantic 双层约束 (S1 单通道) 能否同时消除 rv + dr violations？F1 变化是关键：<2pp 降=完美，2-5pp=可接受 trade-off，>5pp=需要 S2 策略\", \"notes\": \"诊断完成: EXIT_CODE=127, bash: line 1: python3: command not found。Root cause: submit_training_job 未在命令前加 conda 环境激活。修复方案: 命令前缀加 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base。retry_count=0, 自动重试中。\", \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T23:45:08.749Z\", \"command\": \"python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s1.jsonl --device cuda:0 --batch_size 1\", \"finished_at\": \"2026-05-13T23:45:41.138Z\", \"training_hours\": 0.01}, \"spec\": {\"command\": \"python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s1.jsonl --device cuda:0 --batch_size 1\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"data_path\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Qwen3-8B\", \"seed\": 42}, \"pid\": \"unknown\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s1.log\", \"failure_reason\": \"EXIT_CODE=127: python3 not found. tmux session 未激活 conda 环境，source/conda activate 是 bash built-in，需要 bash -c 包裹。\", \"conclusion\": \"failed\", \"completed_at\": \
+…[truncated 222 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-13T23:48:55.404162+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "phase2_scierc_semantic_only",
+  "field": "retry_count",
+  "value": "1",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "phase2_scierc_semantic_only",
+    "field": "retry_count",
+    "value": "1",
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-13T23:48:56.358477+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"phase2_scierc_semantic_only\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-13T21:48:44.427Z\", \"updated_at\": \"2026-05-13T23:48:55.435Z\", \"hypothesis\": \"Semantic-only constrained decoding (TypeConstraintProcessor) 能否消除 domain/range violations？预期 dr_violation→0%，但可能影响 F1（约束过强导致生成偏移）\", \"notes\": \"诊断完成: EXIT_CODE=127, bash: line 1: python3: command not found。Root cause: 同 phase2_scierc_full_s1, submit 未激活 conda。修复方案同上。retry_count=0, 自动重试中。\", \"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-13T23:45:06.174Z\", \"command\": \"python3 run_constrained_extraction.py --mode semantic_only --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_semantic_only.jsonl --device cuda:0 --batch_size 1\", \"finished_at\": \"2026-05-13T23:45:38.627Z\", \"training_hours\": 0.01}, \"spec\": {\"command\": \"python3 run_constrained_extraction.py --mode semantic_only --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_semantic_only.jsonl --device cuda:0 --batch_size 1\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_semantic_only.log\", \"submitted_at\": \"2026-05-13T23:45:36.687Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2.6, \"gpu_hours\": 0.0}, \"pid\": \"unknown\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_semantic_only.log\", \"failure_reason\": \"EXIT_CODE=127: python3 not found. 
+…[truncated 352 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 954
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-13T23:49:11.869054+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "retry:phase2_scierc_full_s1_semantic_only",
+  "project": "schema_semantic_constrained_ie",
+  "task_prompt": "## 任务：重新提交两个失败实验\n\n两个 Phase 2 实验因 EXIT_CODE=127 (python3: command not found) 失败，原因是 submit 时未激活 conda 环境。你需要在 westd-16980 上用正确的环境激活命令重新提交。\n\n### 服务器信息\n- Server: westd-16980\n- 项目路径: /root/schema_semantic_constrained_ie\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- GPU: cuda:1 可用（cuda:0 正在运行 docred_schema 实验）\n- GPU 内存: 94GB，可以同时跑两个实验（每个约 16.5GB）\n\n### 步骤\n\n1. SSH 到 westd-16980，验证环境:\n   ```\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && which python3 && python3 --version\n   ```\n\n2. 验证项目目录和脚本存在:\n   ```\n   ls /root/schema_semantic_constrained_ie/run_constrained_extraction.py\n   ```\n\n3. 用 `submit_training_job` 提交**两个**实验，命令必须带环境激活前缀。注意 `--device cuda:0`（框架自动注入 CUDA_VISIBLE_DEVICES 映射物理 GPU）。\n\n   **实验 1: phase2_scierc_semantic_only**\n   - exp_id: phase2_scierc_semantic_only\n   - server: westd-16980\n   - gpu_id: 1\n   - command: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode semantic_only --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_semantic_only.jsonl --device cuda:0 --batch_size 1`\n\n   **实验 2: phase2_scierc_full_s1**\n   - exp_id: phase2_scierc_full_s1\n   - server: westd-16980\n   - gpu_id: 1 (与 semantic_only 共享，94GB 足够)\n   - command: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s1.jsonl --device cuda:0 --batch_size 1`\n\n4. 提交后用 ssh_read_only 验证两个进程都在运行:\n   ```\n   nvidia-smi | grep python\n   ```\n\n5. 输出最终状态确认。",
+  "tool_groups": "['ssh', 'registry']",
+  "context": "环境: westd-16980, aml-train 镜像, conda base 环境, Python 3.12.3, torch 2.10.0+cu128。GPU: 2× RTX PRO 6000 94GB。cuda:0 正在跑 mvp_phase0_docred_schema，cuda:1 空闲。"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "retry:phase2_scierc_full_s1_semantic_only",
+    "project": "schema_semantic_constrained_ie",
+    "task_prompt": "## 任务：重新提交两个失败实验\n\n两个 Phase 2 实验因 EXIT_CODE=127 (python3: command not found) 失败，原因是 submit 时未激活 conda 环境。你需要在 westd-16980 上用正确的环境激活命令重新提交。\n\n### 服务器信息\n- Server: westd-16980\n- 项目路径: /root/schema_semantic_constrained_ie\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- GPU: cuda:1 可用（cuda:0 正在运行 docred_schema 实验）\n- GPU 内存: 94GB，可以同时跑两个实验（每个约 16.5GB）\n\n### 步骤\n\n1. SSH 到 westd-16980，验证环境:\n   ```\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && which python3 && python3 --version\n   ```\n\n2. 验证项目目录和脚本存在:\n   ```\n   ls /root/schema_semantic_constrained_ie/run_constrained_extraction.py\n   ```\n\n3. 用 `submit_training_job` 提交**两个**实验，命令必须带环境激活前缀。注意 `--device cuda:0`（框架自动注入 CUDA_VISIBLE_DEVICES 映射物理 GPU）。\n\n   **实验 1: phase2_scierc_semantic_only**\n   - exp_id: phase2_scierc_semantic_only\n   - server: westd-16980\n   - gpu_id: 1\n   - command: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode semantic_only --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_semantic_only.jsonl --device cuda:0 --batch_size 1`\n\n   **实验 2: phase2_scierc_full_s1**\n   - exp_id: phase2_scierc_full_s1\n   - server: westd-16980\n   - gpu_id: 1 (与 semantic_only 共享，94GB 足够)\n   - command: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s1.jsonl --device cuda:0 --batch_size 1`\n\n4. 提交后用 ssh_read_only 验证两个进程都在运行:\n   ```\n   nvidia-smi | grep python\n   ```\n\n5. 输出最终状态确认。",
+    "tool_groups": "['ssh', 'registry']",
+    "context": "环境: westd-16980, aml-train 镜像, conda base 环境, Python 3.12.3, torch 2.10.0+cu128。GPU: 2× RTX PRO 6000 94GB。cuda:0 正在跑 mvp_phase0_docred_schema，cuda:1 空闲。"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-13T23:49:26.914863+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_retry_phase2_scierc_full_s1_semantic_only_20260513T234912\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_retry_phase2_scierc_full_s1_semantic_only_20260513T234912.log\", \"setup_data\": {}, \"message\": \"Worker worker_retry_phase2_scierc_full_s1_semantic_only_20260513T234912 started. Use get_worker_status('worker_retry_phase2_scierc_full_s1_semantic_only_20260513T234912') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 15045
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-13T23:49:27.919006+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "analysis:phase2_scierc_unconstrained",
+  "project": "schema_semantic_constrained_ie",
+  "task_prompt": "## 任务：分析 phase2_scierc_unconstrained 实验结果\n\n实验已完成（ANALYZING 状态），需要分析结果并更新 registry。\n\n### 背景\n这是 Phase 2 unconstrained baseline，使用与 constrained 实验完全相同的代码路径和 prompt，确保 F1 对比公平。预期结果接近 Phase 0 (entity_f1=0.31, relation_f1=0.08)。\n\n### 服务器信息\n- Server: westd-16980\n- 项目路径: /root/schema_semantic_constrained_ie\n- 输出文件: /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### Phase 0 baseline 指标（对比用）\n- entity_f1: 0.3101, relation_f1: 0.0823\n- dr_violation: 15.37%, rv_violation: 1.39%, et_violation: 0.4%\n- total_triples: 1724\n\n### Phase 2 grammar_only 指标（对比用）\n- entity_f1: 0.3098, relation_f1: 0.0823\n- dr_violation: 14.84%, rv_violation: 0%, et_violation: 0%\n- total_triples: 1725\n\n### 步骤\n\n1. SSH 到 westd-16980，检查输出文件存在且非空:\n   ```\n   wc -l /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl\n   ```\n\n2. 运行 violation_checker 分析:\n   ```\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n   cd /root/schema_semantic_constrained_ie\n   python3 violation_checker.py --predictions outputs/phase2_scierc_unconstrained.jsonl --gold data/processed_data/test.json --constraints ontology_constraints.json\n   ```\n   如果 violation_checker.py 不支持这些参数，先看 `python3 violation_checker.py --help` 确认用法。\n\n3. 记录所有 metrics:\n   - json_parse_rate, entity_f1, relation_f1\n   - entity_type_violation_rate, relation_vocabulary_violation_rate\n   - domain_range_violation_rate, cross_field_consistency_violation_rate\n   - per_relation DR violation breakdown\n   - total_triples, total_entities\n\n4. 用 `update_registry` 更新:\n   - metrics: 完整的 metrics dict（包含 delta_vs_phase0）\n   - conclusion: 根据结果判断（预期 success，因为是 baseline 复现）\n   - status: DONE\n   - checkpoint_path: /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl\n   - log_path: ~/runs/schema_semantic_constrained_ie/phase2_scierc_unconstrained.log\n\n5. 计算与 Phase 0 的 delta 并包含在 metrics 中。\n\n6. 输出完整分析结果的 JSON。",
+  "tool_groups": "['ssh', 'registry']",
+  "context": "环境: westd-16980, aml-train 镜像, conda base 环境, Python 3.12.3。分析脚本可能在 violation_checker.py 或类似文件中。registry 项目: schema_semantic_constrained_ie, exp_id: phase2_scierc_unconstrained。"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:phase2_scierc_unconstrained",
+    "project": "schema_semantic_constrained_ie",
+    "task_prompt": "## 任务：分析 phase2_scierc_unconstrained 实验结果\n\n实验已完成（ANALYZING 状态），需要分析结果并更新 registry。\n\n### 背景\n这是 Phase 2 unconstrained baseline，使用与 constrained 实验完全相同的代码路径和 prompt，确保 F1 对比公平。预期结果接近 Phase 0 (entity_f1=0.31, relation_f1=0.08)。\n\n### 服务器信息\n- Server: westd-16980\n- 项目路径: /root/schema_semantic_constrained_ie\n- 输出文件: /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### Phase 0 baseline 指标（对比用）\n- entity_f1: 0.3101, relation_f1: 0.0823\n- dr_violation: 15.37%, rv_violation: 1.39%, et_violation: 0.4%\n- total_triples: 1724\n\n### Phase 2 grammar_only 指标（对比用）\n- entity_f1: 0.3098, relation_f1: 0.0823\n- dr_violation: 14.84%, rv_violation: 0%, et_violation: 0%\n- total_triples: 1725\n\n### 步骤\n\n1. SSH 到 westd-16980，检查输出文件存在且非空:\n   ```\n   wc -l /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl\n   ```\n\n2. 运行 violation_checker 分析:\n   ```\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n   cd /root/schema_semantic_constrained_ie\n   python3 violation_checker.py --predictions outputs/phase2_scierc_unconstrained.jsonl --gold data/processed_data/test.json --constraints ontology_constraints.json\n   ```\n   如果 violation_checker.py 不支持这些参数，先看 `python3 violation_checker.py --help` 确认用法。\n\n3. 记录所有 metrics:\n   - json_parse_rate, entity_f1, relation_f1\n   - entity_type_violation_rate, relation_vocabulary_violation_rate\n   - domain_range_violation_rate, cross_field_consistency_violation_rate\n   - per_relation DR violation breakdown\n   - total_triples, total_entities\n\n4. 用 `update_registry` 更新:\n   - metrics: 完整的 metrics dict（包含 delta_vs_phase0）\n   - conclusion: 根据结果判断（预期 success，因为是 baseline 复现）\n   - status: DONE\n   - checkpoint_path: /root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl\n   - log_path: ~/runs/schema_semantic_constrained_ie/phase2_scierc_unconstrained.log\n\n5. 计算与 Phase 0 的 delta 并包含在 metrics 中。\n\n6. 输出完整分析结果的 JSON。",
+    "tool_groups": "['ssh', 'registry']",
+    "context": "环境: westd-16980, aml-train 镜像, conda base 环境, Python 3.12.3。分析脚本可能在 violation_checker.py 或类似文件中。registry 项目: schema_semantic_constrained_ie, exp_id: phase2_scierc_unconstrained。"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-13T23:49:30.236082+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_phase2_scierc_unconstrained_20260513T234927\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_analysis_phase2_scierc_unconstrained_20260513T234927.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_phase2_scierc_unconstrained_20260513T234927 started. Use get_worker_status('worker_analysis_phase2_scierc_unconstrained_20260513T234927') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2317
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-13T23:49:43.763198+00:00_
+
+called mcp__agent-ml-research__feishu_send_result_card
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__feishu_send_result_card</summary>
+
+```json
+{
+  "exp_id": "phase2_scierc_full_s1",
+  "conclusion": "failed",
+  "key_metrics": "{}",
+  "baseline_comparison": "EXIT_CODE=127: python3 command not found。Root cause: submit_training_job 未激活 conda 环境。已自动修复（重试 #1），Worker 正在重新提交。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__feishu_send_result_card",
+  "tool_args": {
+    "exp_id": "phase2_scierc_full_s1",
+    "conclusion": "failed",
+    "key_metrics": "{}",
+    "baseline_comparison": "EXIT_CODE=127: python3 command not found。Root cause: submit_training_job 未激活 conda 环境。已自动修复（重试 #1），Worker 正在重新提交。"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-13T23:49:45.806878+00:00_
+
+called mcp__agent-ml-research__feishu_send_result_card
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__feishu_send_result_card</summary>
+
+```json
+{
+  "exp_id": "phase2_scierc_semantic_only",
+  "conclusion": "failed",
+  "key_metrics": "{}",
+  "baseline_comparison": "EXIT_CODE=127: python3 command not found。Root cause: 同 full_s1，submit 未激活 conda。已自动修复（重试 #1），Worker 正在重新提交。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__feishu_send_result_card",
+  "tool_args": {
+    "exp_id": "phase2_scierc_semantic_only",
+    "conclusion": "failed",
+    "key_metrics": "{}",
+    "baseline_comparison": "EXIT_CODE=127: python3 command not found。Root cause: 同 full_s1，submit 未激活 conda。已自动修复（重试 #1），Worker 正在重新提交。"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-13T23:49:57.324952+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6f64af60a8a8c24abcd925c0f35\", \"chat_id\": \"oc_2216d5b8b87a9472ce204aba11481390\", \"msg_type\": \"interactive\", \"next_required_steps\": \"飞书卡片已发出。请立即完成剩余步骤（不可跳过）： (1) 如有跨实验价值的教训/约定 → save_project_file(file='memory.md', ...) 追加一行； (2) move_idea — 将实验从 IN_PROGRESS 移到对应区块。\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__feishu_send_result_card",
+  "elapsed_ms": 13561
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-13T23:49:57.325446+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6f64af7b70a4c3c38b2f7f7596e\", \"chat_id\": \"oc_2216d5b8b87a9472ce204aba11481390\", \"msg_type\": \"interactive\", \"next_required_steps\": \"飞书卡片已发出。请立即完成剩余步骤（不可跳过）： (1) 如有跨实验价值的教训/约定 → save_project_file(file='memory.md', ...) 追加一行； (2) move_idea — 将实验从 IN_PROGRESS 移到对应区块。\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__feishu_send_result_card",
+  "elapsed_ms": 11518
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-13T23:49:57.479026+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际在跑 1 (cuda:0 docred_schema) | Worker 池 3 (GPU 0 / CPU 3)\n\n## Phase 2 失败诊断 + 自动重试\n\n**phase2_scierc_full_s1 + phase2_scierc_semantic_only** 同时以 EXIT_CODE=127 失败。\n\n**Root cause**: `submit_training_job` 包裹的 bash -c 命令未激活 conda 环境，`python3` 不在 PATH 中（位于 `/root/miniconda3/bin/`）。\n\n**已采取行动**:\n1. 诊断完成，registry notes 已更新\n2. Worker `retry:phase2_scierc_full_s1_semantic_only` 已启动，正在用 `source conda && conda activate base` 前缀重新提交两个实验到 cuda:1\n3. Worker `analysis:phase2_scierc_unconstrained` 已启动，正在分析已完成的 unconstrained baseline 结果\n4. retry_count 已更新为 1（自动修复上限 1 次，若再失败需人工介入）\n\n**当前实验状态**:\n- mvp_phase0_docred_schema: RUNNING (cuda:0, pid=116365)\n- phase2_scierc_unconstrained: ANALYZING → Worker 正在分析\n- phase2_scierc_grammar_only: DONE/success ✅ (rv=0%, dr=14.84%, entity_f1=0.3098)\n- phase2_scierc_full_s1: 重试中 → cuda:1\n- phase2_scierc_semantic_only: 重试中 → cuda:1\n\n**预计**: 两个实验约 1-1.5h 完成（551 samples, batch_size=1）。cuda:1 有 94GB 足够两个实验共享。",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 2 / 实际在跑 1 (cuda:0 docred_schema) | Worker 池 3 (GPU 0 / CPU 3)\n\n## Phase 2 失败诊断 + 自动重试\n\n**phase2_scierc_full_s1 + phase2_scierc_semantic_only** 同时以 EXIT_CODE=127 失败。\n\n**Root cause**: `submit_training_job` 包裹的 bash -c 命令未激活 conda 环境，`python3` 不在 PATH 中（位于 `/root/miniconda3/bin/`）。\n\n**已采取行动**:\n1. 诊断完成，registry notes 已更新\n2. Worker `retry:phase2_scierc_full_s1_semantic_only` 已启动，正在用 `source conda && conda activate base` 前缀重新提交两个实验到 cuda:1\n3. Worker `analysis:phase2_scierc_unconstrained` 已启动，正在分析已完成的 unconstrained baseline 结果\n4. retry_count 已更新为 1（自动修复上限 1 次，若再失败需人工介入）\n\n**当前实验状态**:\n- mvp_phase0_docred_schema: RUNNING (cuda:0, pid=116365)\n- phase2_scierc_unconstrained: ANALYZING → Worker 正在分析\n- phase2_scierc_grammar_only: DONE/success ✅ (rv=0%, dr=14.84%, entity_f1=0.3098)\n- phase2_scierc_full_s1: 重试中 → cuda:1\n- phase2_scierc_semantic_only: 重试中 → cuda:1\n\n**预计**: 两个实验约 1-1.5h 完成（551 samples, batch_size=1）。cuda:1 有 94GB 足够两个实验共享。",
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-13T23:49:58.755121+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 1276
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-13T23:50:06.514144+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-13T23:50:06.615230+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/memory.md\", \"content\": \"# Memory — schema_semantic_constrained_ie\\n\\n## 文献调研 (2026-05-13)\\n\\n### 核心结论: OntoCoDec 的 novelty 成立\\n**没有人做过 \\\"compile IE ontology domain/range → decoding-time logits masking\\\" 的完整 pipeline。**\\n\\nGap 结构：\\n- Syntactic constrained decoding for IE: well-explored (GCD, XGrammar, Outlines)\\n- Vocabulary-level: exists (GENRE, iNERD, AdaKGC)\\n- **Semantic (domain/range) decoding for IE: OPEN GAP** ← OntoCoDec\\n- Semantic type checking at decode time: only for code gen (MGD NeurIPS'23, PLDI'25)\\n- Ontology compliance for IE: only post-processing (ODKE+ Apple'25, OntoLogX'25)\\n\\n最近竞争者：PLDI'25 Type-Constrained Code Gen（同机制但领域是代码生成，必须引用并区分）\\n\\n风险：CRANE (ICML'25) 严格约束可能降低推理质量；Grammar-Aligned Decoding (NeurIPS'24) naive masking 扭曲分布\\n\\nNovelty 定位：\\\"OntoCoDec 将 type-constrained generation 引入信息抽取，编译 IE ontology axioms 为解码时语义约束，预防而非检测 type violations。\\\"\\n\\n详细报告: `artifacts/literature_map.yaml`, `artifacts/literature_survey_*.md`\\n\\n## 实验发现\\n\\n### SciERC Phase 0 — Minimal (2026-05-13)\\n- **go_nogo_metric = 15.4%** (domain_range_violation_rate), 3× 超过 5% 阈值 → GO\\n- Violation 分布极不均匀: Used-for 0.76% vs Compare 42.4% vs Feature-of 33.5%\\n- Feature-of + Compare 贡献 72% 的 domain/range violations\\n- Relation vocabulary violations 仅 1.4%\\n- 关键 insight: OntoCoDec 的价值在于精确靶向高违规 relation types\\n\\n### SciERC Phase 0 — Schema-informed (2026-05-13)\\n- **domain_range_violation_rate = 5.78%**（vs minimal 15.37%, -62.4%）\\n- 仍高于 5% 阈值 → prompt 级干预不足以替代 decoding-time enforcement\\n- Entity type violations 降到 0%，relation vocabulary 降到 0.30%\\n- Per-relation: Feature-of -22.3pp, Part-of -22.5pp, Compare -14.8pp\\n- ⚠️ Evaluate-for 反而退步 +5.8pp — prompt 复杂度反而干扰\\n- McNemar 四类全显著 p<0.01\\n- **论文 story**: LLM 能理解约束（-62%）但执行不完美（仍>5%），需要 hard constraint\\n\\n### DocRED Phase 0 — Minimal (2026-05-13)\\n-
+…[truncated 3316 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-13T23:51:06.760509+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "file": "memory.md",
+  "content": "# Memory — schema_semantic_constrained_ie\n\n## 文献调研 (2026-05-13)\n\n### 核心结论: OntoCoDec 的 novelty 成立\n**没有人做过 \"compile IE ontology domain/range → decoding-time logits masking\" 的完整 pipeline。**\n\nGap 结构：\n- Syntactic constrained decoding for IE: well-explored (GCD, XGrammar, Outlines)\n- Vocabulary-level: exists (GENRE, iNERD, AdaKGC)\n- **Semantic (domain/range) decoding for IE: OPEN GAP** ← OntoCoDec\n- Semantic type checking at decode time: only for code gen (MGD NeurIPS'23, PLDI'25)\n- Ontology compliance for IE: only post-processing (ODKE+ Apple'25, OntoLogX'25)\n\n最近竞争者：PLDI'25 Type-Constrained Code Gen（同机制但领域是代码生成，必须引用并区分）\n\n风险：CRANE (ICML'25) 严格约束可能降低推理质量；Grammar-Aligned Decoding (NeurIPS'24) naive masking 扭曲分布\n\nNovelty 定位：\"OntoCoDec 将 type-constrained generation 引入信息抽取，编译 IE ontology axioms 为解码时语义约束，预防而非检测 type violations。\"\n\n详细报告: `artifacts/literature_map.yaml`, `artifacts/literature_survey_*.md`\n\n## 实验发现\n\n### SciERC Phase 0 — Minimal (2026-05-13)\n- **go_nogo_metric = 15.4%** (domain_range_violation_rate), 3× 超过 5% 阈值 → GO\n- Violation 分布极不均匀: Used-for 0.76% vs Compare 42.4% vs Feature-of 33.5%\n- Feature-of + Compare 贡献 72% 的 domain/range violations\n- Relation vocabulary violations 仅 1.4%\n- 关键 insight: OntoCoDec 的价值在于精确靶向高违规 relation types\n\n### SciERC Phase 0 — Schema-informed (2026-05-13)\n- **domain_range_violation_rate = 5.78%**（vs minimal 15.37%, -62.4%）\n- 仍高于 5% 阈值 → prompt 级干预不足以替代 decoding-time enforcement\n- Entity type violations 降到 0%，relation vocabulary 降到 0.30%\n- Per-relation: Feature-of -22.3pp, Part-of -22.5pp, Compare -14.8pp\n- ⚠️ Evaluate-for 反而退步 +5.8pp — prompt 复杂度反而干扰\n- McNemar 四类全显著 p<0.01\n- **论文 story**: LLM 能理解约束（-62%）但执行不完美（仍>5%），需要 hard constraint\n\n### DocRED Phase 0 — Minimal (2026-05-13)\n- **domain_range_violation_rate = 18.7%** (16,540 triples, 998 docs)\n- Relation vocabulary violation = 28.9% (4,775 triples) — 远高于 SciERC 1.4%\n- Entity type violation = 7.5% (vs SciERC 0.4%)\n- JSON parse rate = 96.4% (36 docs 解析失败)\n- Top violators: P31 instance_of (60.4%, 322/533), P1001 applies_to_jurisdiction (44.4%)\n- 约束更紧(avg 5.68 pairs)确实导致更高违规(18.7% vs 15.4%)\n\n### SciERC vs DocRED 对比 (2026-05-13)\n| 指标 | SciERC (7 rels) | DocRED (96 rels) |\n|------|----------------|-----------------|\n| D/R violation | 15.4% | 18.7% (+3.3pp) |\n| Relation vocab | 1.4% | 28.9% (+27.5pp) |\n| Entity type | 0.4% | 7.5% (+7.1pp) |\n| Avg valid pairs | 26.1 | 5.68 |\n两个数据集都远超 5% 阈值 → 强 GO 信号。Vocabulary layer 在复杂 schema 上尤为关键。\n\n### SciERC Phase 2 — Grammar-only (2026-05-13)\n- **Grammar 层约束是\"免费\"的**：零 F1 代价完全消除 rv (1.4%→0%) 和 et (0.4%→0%) violations\n- entity_f1 delta = -0.03pp ≈ 0，relation_f1 delta = 0\n- **论文 claim**: \"Structural constraints can be enforced at zero quality cost\"\n- DR violation 基本不变 (15.37%→14.84%, -0.53pp) — 符合预期，grammar 不含 D/R 约束\n- DR 热点: Compare 40.85%, Feature-of 31.98%, Part-of 23.38% — 这些是 semantic 层的目标\n- **决策依据**: grammar 层可以 always-on，无需 ablation 它的\"代价\"。论文只需关注 semantic 层的 F1 trade-off。\n\n## 技术路线决策\n\n### Phase 1 Compiler 完成 (2026-05-13)\n**HF transformers + XGrammar (standalone)**，代码在 `/root/schema_semantic_constrained_ie/compiler/`：\n- `ontology_compiler.py`: compile_type_constraints() + build_processor()\n- `type_mask_processor.py`: _build_first_token_map(), _mask_entity_type/head/tail_type(), _detect_position()\n- 24 单元测试 + 12 e2e 测试全部通过\n- SGLang 作为后续性能优化路径，vLLM 暂不可用\n\n### Phase 2 脚本完成 (2026-05-13)\n`run_constrained_extraction.py` (652 行) 支持 5 模式：unconstrained/grammar_only/semantic_only/full_s1/full_s2\n- 所有模式 dry-run 通过 + violation_checker 兼容\n- ⚠️ full_s2 Pass 2 有 bug：D/R violations 未被 semantic layer 阻止，修复中\n\n### First-token masking 验证 (2026-05-13)\n简单 first-token masking 安全可用，不需要 trie-based 方案。\nSciERC: Task=6262, Method=3523, Material=13415, Metric=54310, OtherScientificTerm=11409, Generic=19964\nDocRED: PER=9654, ORG=44927, LOC=12052, TIME=18129, NUM=17488, MISC=44\n上下文无关性已验证。\n\n## 方法论决策\n\n### Violation 分类体系 (2026-05-13)\n4 类独立计数：entity_type / relation_vocabulary / domain_range / cross_field_consistency\ngo/no-go 阈值 (5%) 基于 domain_range_violation_rate\n\n### Fuzzy Matching (2026-05-13)\nDocRED: token overlap >80% 或 Levenshtein ≤2\n\n## 失败模式记录\n\n- [失败模式] infrastructure (2026-05-13)：submit_training_job 提交命令未含 conda 环境激活，导致 EXIT_CODE=127 (python3: command not found)。westd-16980 的 python3 在 /root/miniconda3/bin/ 下 → 修复方案：命令前缀必须加 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&`。影响 phase2_scierc_full_s1 + phase2_scierc_semantic_only。\n- [失败模式] cron 误报 (2026-05-13)：cron 追踪 stale PID（已杀的 batch script PID）导致 5× dead 误判，实际进程一直正常运行。影响 phase2_scierc_grammar_only → 解决：确认 cron 追踪正确的 PID，手动检查 nvidia-smi 验证。\n\n## 环境信息\n\n### westd-16980 (2026-05-13)\n- GPU: 2× NVIDIA RTX PRO 6000 Blackwell (94GB each)\n- CUDA 12.8, Python 3.12.3 (conda base)\n- torch 2.10.0+cu128, transformers 4.57.6\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n- XGrammar v2 已安装\n\n## 数据信息\n\n### SciERC\n- HuggingFace `zj88zj/SCIERC`, 551 sentences, 7 relation types, 17-35 valid pairs each（约束松散）\n\n### DocRED\n- HuggingFace Hub .gz, 998 docs, 96 relation types, avg 5.68 valid pairs/relation (约束紧)\n\n## 分析工具 (2026-05-13)\n- `compare_prompts.py`: minimal vs schema-informed 对比 + McNemar 检验\n- `violation_checker.py` / `violation_checker_docred.py`: 4 类 violation 分析\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie",
+    "file": "memory.md",
+    "content": "# Memory — schema_semantic_constrained_ie\n\n## 文献调研 (2026-05-13)\n\n### 核心结论: OntoCoDec 的 novelty 成立\n**没有人做过 \"compile IE ontology domain/range → decoding-time logits masking\" 的完整 pipeline。**\n\nGap 结构：\n- Syntactic constrained decoding for IE: well-explored (GCD, XGrammar, Outlines)\n- Vocabulary-level: exists (GENRE, iNERD, AdaKGC)\n- **Semantic (domain/range) decoding for IE: OPEN GAP** ← OntoCoDec\n- Semantic type checking at decode time: only for code gen (MGD NeurIPS'23, PLDI'25)\n- Ontology compliance for IE: only post-processing (ODKE+ Apple'25, OntoLogX'25)\n\n最近竞争者：PLDI'25 Type-Constrained Code Gen（同机制但领域是代码生成，必须引用并区分）\n\n风险：CRANE (ICML'25) 严格约束可能降低推理质量；Grammar-Aligned Decoding (NeurIPS'24) naive masking 扭曲分布\n\nNovelty 定位：\"OntoCoDec 将 type-constrained generation 引入信息抽取，编译 IE ontology axioms 为解码时语义约束，预防而非检测 type violations。\"\n\n详细报告: `artifacts/literature_map.yaml`, `artifacts/literature_survey_*.md`\n\n## 实验发现\n\n### SciERC Phase 0 — Minimal (2026-05-13)\n- **go_nogo_metric = 15.4%** (domain_range_violation_rate), 3× 超过 5% 阈值 → GO\n- Violation 分布极不均匀: Used-for 0.76% vs Compare 42.4% vs Feature-of 33.5%\n- Feature-of + Compare 贡献 72% 的 domain/range violations\n- Relation vocabulary violations 仅 1.4%\n- 关键 insight: OntoCoDec 的价值在于精确靶向高违规 relation types\n\n### SciERC Phase 0 — Schema-informed (2026-05-13)\n- **domain_range_violation_rate = 5.78%**（vs minimal 15.37%, -62.4%）\n- 仍高于 5% 阈值 → prompt 级干预不足以替代 decoding-time enforcement\n- Entity type violations 降到 0%，relation vocabulary 降到 0.30%\n- Per-relation: Feature-of -22.3pp, Part-of -22.5pp, Compare -14.8pp\n- ⚠️ Evaluate-for 反而退步 +5.8pp — prompt 复杂度反而干扰\n- McNemar 四类全显著 p<0.01\n- **论文 story**: LLM 能理解约束（-62%）但执行不完美（仍>5%），需要 hard constraint\n\n### DocRED Phase 0 — Minimal (2026-05-13)\n- **domain_range_violation_rate = 18.7%** (16,540 triples, 998 docs)\n- Relation vocabulary violation = 28.9% (4,775 triples) — 远高于 SciERC 1.4%\n- Entity type violation = 7.5% (vs SciERC 0.4%)\n- JSON parse rate = 96.4% (36 docs 解析失败)\n- Top violators: P31 instance_of (60.4%, 322/533), P1001 applies_to_jurisdiction (44.4%)\n- 约束更紧(avg 5.68 pairs)确实导致更高违规(18.7% vs 15.4%)\n\n### SciERC vs DocRED 对比 (2026-05-13)\n| 指标 | SciERC (7 rels) | DocRED (96 rels) |\n|------|----------------|-----------------|\n| D/R violation | 15.4% | 18.7% (+3.3pp) |\n| Relation vocab | 1.4% | 28.9% (+27.5pp) |\n| Entity type | 0.4% | 7.5% (+7.1pp) |\n| Avg valid pairs | 26.1 | 5.68 |\n两个数据集都远超 5% 阈值 → 强 GO 信号。Vocabulary layer 在复杂 schema 上尤为关键。\n\n### SciERC Phase 2 — Grammar-only (2026-05-13)\n- **Grammar 层约束是\"免费\"的**：零 F1 代价完全消除 rv (1.4%→0%) 和 et (0.4%→0%) violations\n- entity_f1 delta = -0.03pp ≈ 0，relation_f1 delta = 0\n- **论文 claim**: \"Structural constraints can be enforced at zero quality cost\"\n- DR violation 基本不变 (15.37%→14.84%, -0.53pp) — 符合预期，grammar 不含 D/R 约束\n- DR 热点: Compare 40.85%, Feature-of 31.98%, Part-of 23.38% — 这些是 semantic 层的目标\n- **决策依据**: grammar 层可以 always-on，无需 ablation 它的\"代价\"。论文只需关注 semantic 层的 F1 trade-off。\n\n## 技术路线决策\n\n### Phase 1 Compiler 完成 (2026-05-13)\n**HF transformers + XGrammar (standalone)**，代码在 `/root/schema_semantic_constrained_ie/compiler/`：\n- `ontology_compiler.py`: compile_type_constraints() + build_processor()\n- `type_mask_processor.py`: _build_first_token_map(), _mask_entity_type/head/tail_type(), _detect_position()\n- 24 单元测试 + 12 e2e 测试全部通过\n- SGLang 作为后续性能优化路径，vLLM 暂不可用\n\n### Phase 2 脚本完成 (2026-05-13)\n`run_constrained_extraction.py` (652 行) 支持 5 模式：unconstrained/grammar_only/semantic_only/full_s1/full_s2\n- 所有模式 dry-run 通过 + violation_checker 兼容\n- ⚠️ full_s2 Pass 2 有 bug：D/R violations 未被 semantic layer 阻止，修复中\n\n### First-token masking 验证 (2026-05-13)\n简单 first-token masking 安全可用，不需要 trie-based 方案。\nSciERC: Task=6262, Method=3523, Material=13415, Metric=54310, OtherScientificTerm=11409, Generic=19964\nDocRED: PER=9654, ORG=44927, LOC=12052, TIME=18129, NUM=17488, MISC=44\n上下文无关性已验证。\n\n## 方法论决策\n\n### Violation 分类体系 (2026-05-13)\n4 类独立计数：entity_type / relation_vocabulary / domain_range / cross_field_consistency\ngo/no-go 阈值 (5%) 基于 domain_range_violation_rate\n\n### Fuzzy Matching (2026-05-13)\nDocRED: token overlap >80% 或 Levenshtein ≤2\n\n## 失败模式记录\n\n- [失败模式] infrastructure (2026-05-13)：submit_training_job 提交命令未含 conda 环境激活，导致 EXIT_CODE=127 (python3: command not found)。westd-16980 的 python3 在 /root/miniconda3/bin/ 下 → 修复方案：命令前缀必须加 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&`。影响 phase2_scierc_full_s1 + phase2_scierc_semantic_only。\n- [失败模式] cron 误报 (2026-05-13)：cron 追踪 stale PID（已杀的 batch script PID）导致 5× dead 误判，实际进程一直正常运行。影响 phase2_scierc_grammar_only → 解决：确认 cron 追踪正确的 PID，手动检查 nvidia-smi 验证。\n\n## 环境信息\n\n### westd-16980 (2026-05-13)\n- GPU: 2× NVIDIA RTX PRO 6000 Blackwell (94GB each)\n- CUDA 12.8, Python 3.12.3 (conda base)\n- torch 2.10.0+cu128, transformers 4.57.6\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n- XGrammar v2 已安装\n\n## 数据信息\n\n### SciERC\n- HuggingFace `zj88zj/SCIERC`, 551 sentences, 7 relation types, 17-35 valid pairs each（约束松散）\n\n### DocRED\n- HuggingFace Hub .gz, 998 docs, 96 relation types, avg 5.68 valid pairs/relation (约束紧)\n\n## 分析工具 (2026-05-13)\n- `compare_prompts.py`: minimal vs schema-informed 对比 + McNemar 检验\n- `violation_checker.py` / `violation_checker_docred.py`: 4 类 violation 分析\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-13T23:51:06.811416+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-13T23:51:15.638050+00:00_
+
+诊断和恢复流程完成。总结：
+
+**诊断结果**: `phase2_scierc_full_s1` 和 `phase2_scierc_semantic_only` 同时以 EXIT_CODE=127 失败——`submit_training_job` 的 tmux session 中 `python3` 不在 PATH（未激活 conda 环境）。
+
+**已执行操作**:
+1. Registry notes 和 failure_reason 已更新
+2. Worker `retry:phase2_scierc_full_s1_semantic_only` 已启动，正在用 conda 激活前缀重新提交两个实验到 cuda:1
+3. Worker `analysis:phase2_scierc_unconstrained` 已启动，分析已完成的 unconstrained baseline
+4. 飞书结果卡片已发送，Director 已汇报
+5. 失败模式已记入 memory.md，下次同类问题可直接命中
+
+Worker 完成后系统会自动回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:phase2_scierc_full_s1"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+26 recorded events
+
+### User
+
+_source line 61 · 2026-05-14T00:33:49.231272+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: phase2_scierc_full_s1
+- project: schema_semantic_constrained_ie
+- server: westd-16980
+- log_path: ~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s1.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-14T00:34:04.749578+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "exp_id": "phase2_scierc_full_s1",
+  "project": "schema_semantic_constrained_ie",
+  "n": "100"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "westd-16980",
+    "exp_id": "phase2_scierc_full_s1",
+    "project": "schema_semantic_constrained_ie",
+    "n": "100"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-14T00:34:05.506141+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "filters": "{'status': 'DONE'}",
+  "fields": "['status', 'conclusion', 'retry_count', 'failure_reason', 'updated_at']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie",
+    "filters": "{'status': 'DONE'}",
+    "fields": "['status', 'conclusion', 'retry_count', 'failure_reason', 'updated_at']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-14T00:34:06.059478+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"[456/551] I05-4010_sent2: OK E=4 R=3 4.5s\", \"[457/551] I05-4010_sent3: OK E=1 R=0 0.6s\", \"[458/551] I05-4010_sent4: OK E=3 R=2 3.1s\", \"[459/551] ICCV_2013_47_abs_sent0: OK E=4 R=3 3.6s\", \"[460/551] ICCV_2013_47_abs_sent1: OK E=5 R=5 6.9s\", \"[461/551] ICCV_2013_47_abs_sent2: OK E=7 R=5 6.8s\", \"[462/551] ICCV_2013_47_abs_sent3: OK E=3 R=2 3.1s\", \"[463/551] ICCV_2013_47_abs_sent4: OK E=4 R=2 3.1s\", \"[464/551] ICCV_2013_47_abs_sent5: OK E=5 R=5 6.2s\", \"[465/551] ICCV_2013_47_abs_sent6: OK E=4 R=3 5.3s\", \"[466/551] ICCV_2013_47_abs_sent7: OK E=8 R=7 7.3s\", \"[467/551] H05-1095_sent0: OK E=3 R=2 3.5s\", \"[468/551] H05-1095_sent1: OK E=4 R=3 4.1s\", \"[469/551] H05-1095_sent2: OK E=5 R=3 4.6s\", \"[470/551] H05-1095_sent3: OK E=2 R=1 1.4s\", \"[471/551] H05-1095_sent4: OK E=3 R=2 2.4s\", \"[472/551] A97-1020_sent0: OK E=4 R=3 3.2s\", \"[473/551] A97-1020_sent1: OK E=5 R=4 4.7s\", \"[474/551] A97-1020_sent2: OK E=4 R=3 3.5s\", \"[475/551] A97-1020_sent3: OK E=8 R=6 8.9s\", \"[476/551] N03-1033_sent0: OK E=5 R=4 5.6s\", \"[477/551] N03-1033_sent1: OK E=6 R=5 5.5s\", \"[478/551] ECCV_2016_212_abs_sent0: OK E=5 R=4 5.7s\", \"[479/551] ECCV_2016_212_abs_sent1: OK E=6 R=3 5.3s\", \"[480/551] ECCV_2016_212_abs_sent2: OK E=3 R=2 2.5s\", \"[481/551] ECCV_2016_212_abs_sent3: OK E=2 R=1 1.5s\", \"[482/551] ECCV_2016_212_abs_sent4: OK E=6 R=5 5.5s\", \"[483/551] ECCV_2016_212_abs_sent5: OK E=6 R=4 4.6s\", \"[484/551] ECCV_2016_212_abs_sent6: OK E=4 R=3 4.3s\", \"[485/551] ECCV_2016_212_abs_sent7: OK E=4 R=2 3.3s\", \"[486/551] ECCV_2016_212_abs_sent8: OK E=8 R=7 7.3s\", \"[487/551] ECCV_2016_212_abs_sent9: OK E=3 R=2 2.9s\", \"[488/551] ICASSP_1997_706_abs_sent0: OK E=8 R=6 7.0s\", \"[489/551] ICASSP_1997_706_abs_sent1: OK E=6 R=4 4.8s\", \"[490/551] ICASSP_1997_706_abs_sent2: OK E=3 R=2 3.2s\", \"[491/551] ICASSP_1997_706_abs_sent3: OK E=5 R=4 4.3s\", \"[492/551] ICASSP_1997_706_abs_sent4: OK E=9 R=5 6.4s\"
+…[truncated 3595 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 1309
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-14T00:34:06.110299+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"phase2_scierc_full_s1\": {\"status\": \"DONE\", \"retry_count\": 2, \"updated_at\": \"2026-05-14T00:33:48.168Z\", \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"failed\"}, \"phase2_scierc_semantic_only\": {\"status\": \"DONE\", \"retry_count\": 2, \"updated_at\": \"2026-05-14T00:33:33.285Z\", \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"failed\"}, \"mvp_phase0_docred_schema\": {\"status\": \"DONE\", \"retry_count\": 0, \"updated_at\": \"2026-05-14T00:00:57.435Z\", \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"failed\"}, \"phase2_scierc_unconstrained\": {\"status\": \"DONE\", \"retry_count\": 0, \"updated_at\": \"2026-05-13T23:50:17.609Z\", \"conclusion\": \"success\"}, \"phase2_s2_pilot50\": {\"status\": \"DONE\", \"retry_count\": 0, \"updated_at\": \"2026-05-13T23:47:47.918Z\", \"conclusion\": \"success\"}, \"phase2_scierc_grammar_only\": {\"status\": \"DONE\", \"retry_count\": 1, \"updated_at\": \"2026-05-13T23:44:01.434Z\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\"}, \"mvp_phase0_violation_rate_docred\": {\"status\": \"DONE\", \"retry_count\": 0, \"updated_at\": \"2026-05-13T21:46:35.193Z\", \"conclusion\": \"success\"}, \"mvp_phase0_scierc_schema\": {\"status\": \"DONE\", \"retry_count\": 0, \"updated_at\": \"2026-05-13T20:58:13.410Z\", \"conclusion\": \"success\"}, \"mvp_phase0_violation_rate\": {\"status\": \"DONE\", \"retry_count\": 0, \"updated_at\": \"2026-05-13T19:13:34.510Z\", \"conclusion\": \"success\"}}, \"count\": 9, \"total\": 9, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0392}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 604
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-14T00:34:22.756527+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "exp_id": "phase2_scierc_semantic_only",
+  "project": "schema_semantic_constrained_ie",
+  "n": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "westd-16980",
+    "exp_id": "phase2_scierc_semantic_only",
+    "project": "schema_semantic_constrained_ie",
+    "n": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-14T00:34:23.258987+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"[536/551] CVPR_2004_30_abs_sent3: OK E=4 R=2 3.3s\", \"[537/551] CVPR_2004_30_abs_sent4: OK E=3 R=2 3.2s\", \"[538/551] CVPR_2004_30_abs_sent5: OK E=6 R=4 4.5s\", \"[539/551] CVPR_2004_30_abs_sent6: OK E=4 R=3 4.0s\", \"[540/551] INTERSPEECH_2007_40_abs_sent0: OK E=7 R=6 7.4s\", \"[541/551] INTERSPEECH_2007_40_abs_sent1: OK E=3 R=2 2.3s\", \"[542/551] INTERSPEECH_2007_40_abs_sent2: OK E=3 R=2 3.5s\", \"[543/551] INTERSPEECH_2007_40_abs_sent3: OK E=6 R=4 5.6s\", \"[544/551] CVPR_2003_30_abs_sent0: OK E=3 R=2 3.2s\", \"[545/551] CVPR_2003_30_abs_sent1: OK E=10 R=8 8.6s\", \"[546/551] CVPR_2003_30_abs_sent2: OK E=3 R=2 3.1s\", \"[547/551] CVPR_2003_30_abs_sent3: OK E=3 R=3 3.7s\", \"[548/551] NIPS_2016_80_abs_sent0: OK E=5 R=4 5.2s\", \"[549/551] NIPS_2016_80_abs_sent1: OK E=6 R=4 4.2s\", \"[550/551] NIPS_2016_80_abs_sent2: OK E=5 R=3 4.7s\", \"[551/551] NIPS_2016_80_abs_sent3: OK E=5 R=3 4.3s\", \"\", \"Done: 551 new samples, success=551, fail=0 (skipped 0 already processed)\", \"Output: outputs/phase2_scierc_semantic_only.jsonl\", \"EXIT_CODE=129\"], \"line_count\": 20, \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_semantic_only.log\", \"anomalies\": []}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-14T00:34:23.309730+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "exp_id": "mvp_phase0_docred_schema",
+  "project": "schema_semantic_constrained_ie",
+  "n": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "westd-16980",
+    "exp_id": "mvp_phase0_docred_schema",
+    "project": "schema_semantic_constrained_ie",
+    "n": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-14T00:34:23.762199+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"[797/998] Lisa Mona Lisa: OK, extracted 15 rels, 2557 tok, 9.7s\", \"[798/998] Rock n Roll (Avril Lavigne song): OK, extracted 19 rels, 2642 tok, 9.7s\", \"[799/998] P. D. T. Acharya: OK, extracted 10 rels, 2537 tok, 9.7s\", \"[800/998] Francis Pipe-Wolferstan: OK, extracted 16 rels, 2583 tok, 9.7s\", \"[801/998] Watts Station: OK, extracted 13 rels, 2519 tok, 12.7s\", \"[802/998] List of colleges and universities in Connecticut: OK, extracted 12 rels, 2528 tok, 12.7s\", \"[803/998] Luis Roche: OK, extracted 23 rels, 2574 tok, 12.7s\", \"[804/998] Jirō Shiizaki: OK, extracted 12 rels, 2696 tok, 12.7s\", \"[805/998] Breakout (video game): OK, extracted 23 rels, 2630 tok, 11.5s\", \"[806/998] Operator Toll Dialing: OK, extracted 15 rels, 2627 tok, 11.5s\", \"[807/998] Mola di Bari: OK, extracted 13 rels, 2680 tok, 11.5s\", \"[808/998] Carl Buchheister: OK, extracted 14 rels, 2575 tok, 11.5s\", \"[809/998] Alexeni: OK, extracted 12 rels, 2569 tok, 12.5s\", \"[810/998] Paradise Cracked: OK, extracted 15 rels, 2693 tok, 12.5s\", \"[811/998] Eleonora Vallone: OK, extracted 22 rels, 2568 tok, 12.5s\", \"[812/998] List of regional railway stations in Victoria: OK, extracted 5 rels, 2582 tok, 12.5s\", \"[813/998] Cesare Mori: OK, extracted 19 rels, 2631 tok, 18.4s\", \"[814/998] In the Mood: OK, extracted 22 rels, 2614 tok, 18.4s\", \"Terminated\", \"EXIT_CODE=143\"], \"line_count\": 20, \"log_path\": \"~/runs/schema_semantic_constrained_ie/mvp_phase0_docred_schema.log\", \"anomalies\": []}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-14T00:34:54.863741+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "phase2_scierc_full_s1",
+  "field": "conclusion",
+  "value": "success",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "phase2_scierc_full_s1",
+    "field": "conclusion",
+    "value": "success",
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-14T00:34:55.216290+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"phase2_scierc_full_s1\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-13T21:48:44.785Z\", \"updated_at\": \"2026-05-14T00:34:54.917Z\", \"hypothesis\": \"Grammar + Semantic 双层约束 (S1 单通道) 能否同时消除 rv + dr violations？F1 变化是关键：<2pp 降=完美，2-5pp=可接受 trade-off，>5pp=需要 S2 策略\", \"notes\": \"诊断完成: EXIT_CODE=127, bash: line 1: python3: command not found。Root cause: submit_training_job 未在命令前加 conda 环境激活。修复方案: 命令前缀加 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base。retry_count=0, 自动重试中。\", \"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-13T23:49:56.383Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && which python3 && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s1.jsonl --device cuda:0 --batch_size 1\\\"\", \"finished_at\": \"2026-05-14T00:33:47.489Z\", \"training_hours\": 0.73}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-13T23:45:41.906Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:45:42.821098+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T00:33:48.999924+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"诊断完成: EXIT_CODE=127, bash: line 1: python3: command not found。Root cause: submit_training_job 未在命令前加 conda 环境激活。修复方案: 命令前缀加 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base。retry_count=0, 自动重试中。\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && 
+…[truncated 791 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 352
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-14T00:34:55.669701+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "phase2_scierc_semantic_only",
+  "field": "conclusion",
+  "value": "success",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "phase2_scierc_semantic_only",
+    "field": "conclusion",
+    "value": "success",
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-14T00:34:56.172851+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"phase2_scierc_semantic_only\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-13T21:48:44.427Z\", \"updated_at\": \"2026-05-14T00:34:55.712Z\", \"hypothesis\": \"Semantic-only constrained decoding (TypeConstraintProcessor) 能否消除 domain/range violations？预期 dr_violation→0%，但可能影响 F1（约束过强导致生成偏移）\", \"notes\": \"诊断完成: EXIT_CODE=127, bash: line 1: python3: command not found。Root cause: 同 phase2_scierc_full_s1, submit 未激活 conda。修复方案同上。retry_count=0, 自动重试中。\", \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T23:49:33.935Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && which python3 && python3 run_constrained_extraction.py --mode semantic_only --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_semantic_only.jsonl --device cuda:0 --batch_size 1\\\"\", \"finished_at\": \"2026-05-14T00:33:32.617Z\", \"training_hours\": 0.73}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-13T23:45:39.272Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:45:40.115539+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T00:33:34.349694+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"诊断完成: EXIT_CODE=127, bash: line 1: python3: command not found。Root cause: 同 phase2_scierc_full_s1, submit 未激活 conda。修复方案同上。retry_count=0, 自动重试中。\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 run_constrained_extraction.py --mode semantic_only ...\\\"\", \"server\": \"westd-16980\", \"gpu\"
+…[truncated 703 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 503
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-14T00:34:58.634013+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "phase2_scierc_full_s1",
+  "field": "notes",
+  "value": "551/551 samples 全部完成 (success=551, fail=0)。EXIT_CODE=129 (SIGHUP) 是 cron 误判 — 进程正常完成工作后收到 HUP 信号。输出: outputs/phase2_scierc_full_s1.jsonl。等待 violation 分析。",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "phase2_scierc_full_s1",
+    "field": "notes",
+    "value": "551/551 samples 全部完成 (success=551, fail=0)。EXIT_CODE=129 (SIGHUP) 是 cron 误判 — 进程正常完成工作后收到 HUP 信号。输出: outputs/phase2_scierc_full_s1.jsonl。等待 violation 分析。",
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-14T00:34:58.985895+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"phase2_scierc_full_s1\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-13T21:48:44.785Z\", \"updated_at\": \"2026-05-14T00:34:58.671Z\", \"hypothesis\": \"Grammar + Semantic 双层约束 (S1 单通道) 能否同时消除 rv + dr violations？F1 变化是关键：<2pp 降=完美，2-5pp=可接受 trade-off，>5pp=需要 S2 策略\", \"notes\": \"551/551 samples 全部完成 (success=551, fail=0)。EXIT_CODE=129 (SIGHUP) 是 cron 误判 — 进程正常完成工作后收到 HUP 信号。输出: outputs/phase2_scierc_full_s1.jsonl。等待 violation 分析。\", \"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-13T23:49:56.383Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && which python3 && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s1.jsonl --device cuda:0 --batch_size 1\\\"\", \"finished_at\": \"2026-05-14T00:33:47.489Z\", \"training_hours\": 0.73}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-13T23:45:41.906Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:45:42.821098+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T00:33:48.999924+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"诊断完成: EXIT_CODE=127, bash: line 1: python3: command not found。Root cause: submit_training_job 未在命令前加 conda 环境激活。修复方案: 命令前缀加 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base。retry_count=0, 自动重试中。\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 run_constrained_extraction.py --mode full_s1 ...\\\"\"
+…[truncated 467 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 351
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-14T00:34:59.941427+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "phase2_scierc_semantic_only",
+  "field": "notes",
+  "value": "551/551 samples 全部完成 (success=551, fail=0)。EXIT_CODE=129 (SIGHUP) 是 cron 误判 — 进程正常完成工作后收到 HUP 信号。输出: outputs/phase2_scierc_semantic_only.jsonl。等待 violation 分析。",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "phase2_scierc_semantic_only",
+    "field": "notes",
+    "value": "551/551 samples 全部完成 (success=551, fail=0)。EXIT_CODE=129 (SIGHUP) 是 cron 误判 — 进程正常完成工作后收到 HUP 信号。输出: outputs/phase2_scierc_semantic_only.jsonl。等待 violation 分析。",
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-14T00:35:00.042509+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"phase2_scierc_semantic_only\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-13T21:48:44.427Z\", \"updated_at\": \"2026-05-14T00:34:59.984Z\", \"hypothesis\": \"Semantic-only constrained decoding (TypeConstraintProcessor) 能否消除 domain/range violations？预期 dr_violation→0%，但可能影响 F1（约束过强导致生成偏移）\", \"notes\": \"551/551 samples 全部完成 (success=551, fail=0)。EXIT_CODE=129 (SIGHUP) 是 cron 误判 — 进程正常完成工作后收到 HUP 信号。输出: outputs/phase2_scierc_semantic_only.jsonl。等待 violation 分析。\", \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T23:49:33.935Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && which python3 && python3 run_constrained_extraction.py --mode semantic_only --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_semantic_only.jsonl --device cuda:0 --batch_size 1\\\"\", \"finished_at\": \"2026-05-14T00:33:32.617Z\", \"training_hours\": 0.73}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-13T23:45:39.272Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:45:40.115539+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T00:33:34.349694+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"诊断完成: EXIT_CODE=127, bash: line 1: python3: command not found。Root cause: 同 phase2_scierc_full_s1, submit 未激活 conda。修复方案同上。retry_count=0, 自动重试中。\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 run_constrained_extraction.py --mode semantic_only ...\\\"\", \"server\": \"westd-1
+…[truncated 449 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-14T00:35:17.882344+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "mvp_phase0_docred_schema",
+  "field": "notes",
+  "value": "814/998 docs 处理后被 SIGTERM (EXIT_CODE=143) 杀掉。进程未自然完成。需要 --resume 续跑剩余 184 docs。",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "mvp_phase0_docred_schema",
+    "field": "notes",
+    "value": "814/998 docs 处理后被 SIGTERM (EXIT_CODE=143) 杀掉。进程未自然完成。需要 --resume 续跑剩余 184 docs。",
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-14T00:35:18.335128+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp_phase0_docred_schema\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:58:18.184Z\", \"updated_at\": \"2026-05-14T00:35:18.012Z\", \"hypothesis\": \"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心\", \"spec\": {\"command\": \"python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"116365\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/mvp_phase0_docred_schema.log\", \"submitted_at\": \"2026-05-13T20:13:18.695Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"wall_clock_seconds\": 13513.6, \"gpu_hours\": 3.75}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:58:31.565Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:58:32.325Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:58:33.241310+00:00\"}]}, \"notes\": \"814/998 docs 处理后被 SIGTERM (EXIT_CODE=143) 杀掉。进程未自然完成。需要 --resume 续跑剩余 184 docs。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1866}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-14T00:35:43.641887+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "analysis:phase2_scierc_s1_semantic",
+  "project": "schema_semantic_constrained_ie",
+  "task_prompt": "## 任务：分析 Phase 2 SciERC 的 full_s1 和 semantic_only 实验结果\n\n两个实验都已完成 551/551 samples。你需要对两者运行 violation 分析并更新 registry。\n\n### 服务器信息\n- Server: westd-16980\n- 项目路径: /root/schema_semantic_constrained_ie\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 输出文件\n- full_s1: `/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1.jsonl`\n- semantic_only: `/root/schema_semantic_constrained_ie/outputs/phase2_scierc_semantic_only.jsonl`\n\n### Baseline 对比数据\n**Phase 0 minimal (unconstrained)**:\n- entity_f1: 0.3101, relation_f1: 0.0823\n- dr_violation: 15.37%, rv_violation: 1.39%, et_violation: 0.4%\n- total_triples: 1724\n\n**Phase 2 grammar_only**:\n- entity_f1: 0.3098, relation_f1: 0.0823\n- dr_violation: 14.84%, rv_violation: 0%, et_violation: 0%\n- total_triples: 1725\n- per_relation DR: Used-for 0.25%, Feature-of 31.98%, Evaluate-for 23.13%, Hyponym-of 14.4%, Part-of 23.38%, Compare 40.85%, Conjunction 0%\n\n**Phase 2 unconstrained (同代码路径)**:\n- 刚由另一个 Worker 分析完，请从 registry 读取 phase2_scierc_unconstrained 的 metrics 作为最公平 baseline。\n\n### 步骤\n\n1. SSH 到 westd-16980，确认两个输出文件存在且行数 = 551:\n   ```\n   wc -l outputs/phase2_scierc_full_s1.jsonl outputs/phase2_scierc_semantic_only.jsonl\n   ```\n\n2. 先检查 violation_checker.py 的用法:\n   ```\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n   cd /root/schema_semantic_constrained_ie\n   python3 violation_checker.py --help\n   ```\n\n3. 对两个文件分别运行 violation_checker:\n   ```\n   python3 violation_checker.py [正确参数] --predictions outputs/phase2_scierc_semantic_only.jsonl\n   python3 violation_checker.py [正确参数] --predictions outputs/phase2_scierc_full_s1.jsonl\n   ```\n\n4. 从 registry 读取 phase2_scierc_unconstrained 的 metrics，用作 delta 计算的 baseline。\n\n5. 对每个实验，用 `update_registry` 写入:\n   - **metrics**: 完整 dict，包含:\n     - total_samples, total_triples, total_entities\n     - json_parse_rate\n     - entity_type_violation_rate, relation_vocabulary_violation_rate\n     - domain_range_violation_rate, cross_field_consistency_violation_rate\n     - entity_f1, entity_precision, entity_recall\n     - relation_f1, relation_precision, relation_recall\n     - per_relation_dr_violations (每个 relation 的 total, violations, rate)\n     - delta_vs_phase0: entity_f1 差值, relation_f1 差值, rv/dr/et violation rate 差值\n     - delta_vs_grammar_only: 与 grammar_only 对比的 dr 差值\n   - **checkpoint_path**: 对应的 .jsonl 文件绝对路径\n   - **log_path**: ~/runs/schema_semantic_constrained_ie/phase2_scierc_{mode}.log\n\n6. 关键分析（输出到最终报告）:\n   - **semantic_only**: dr_violation 是否降到 0%？如果不是，残余来自哪些 relation？F1 变化多少 pp？\n   - **full_s1**: 相比 grammar_only，dr_violation 额外降了多少？相比 semantic_only，F1 有变化吗？\n   - 两层约束 vs 单层的增量价值是什么？\n\n7. 输出完整 JSON 格式的分析结果。",
+  "tool_groups": "['ssh', 'registry']",
+  "context": "环境: westd-16980, aml-train 镜像, conda base, Python 3.12.3, torch 2.10.0+cu128。项目: schema_semantic_constrained_ie。violation_checker.py 在项目根目录。registry 项目名: schema_semantic_constrained_ie。exp_ids: phase2_scierc_full_s1, phase2_scierc_semantic_only。"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:phase2_scierc_s1_semantic",
+    "project": "schema_semantic_constrained_ie",
+    "task_prompt": "## 任务：分析 Phase 2 SciERC 的 full_s1 和 semantic_only 实验结果\n\n两个实验都已完成 551/551 samples。你需要对两者运行 violation 分析并更新 registry。\n\n### 服务器信息\n- Server: westd-16980\n- 项目路径: /root/schema_semantic_constrained_ie\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 输出文件\n- full_s1: `/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1.jsonl`\n- semantic_only: `/root/schema_semantic_constrained_ie/outputs/phase2_scierc_semantic_only.jsonl`\n\n### Baseline 对比数据\n**Phase 0 minimal (unconstrained)**:\n- entity_f1: 0.3101, relation_f1: 0.0823\n- dr_violation: 15.37%, rv_violation: 1.39%, et_violation: 0.4%\n- total_triples: 1724\n\n**Phase 2 grammar_only**:\n- entity_f1: 0.3098, relation_f1: 0.0823\n- dr_violation: 14.84%, rv_violation: 0%, et_violation: 0%\n- total_triples: 1725\n- per_relation DR: Used-for 0.25%, Feature-of 31.98%, Evaluate-for 23.13%, Hyponym-of 14.4%, Part-of 23.38%, Compare 40.85%, Conjunction 0%\n\n**Phase 2 unconstrained (同代码路径)**:\n- 刚由另一个 Worker 分析完，请从 registry 读取 phase2_scierc_unconstrained 的 metrics 作为最公平 baseline。\n\n### 步骤\n\n1. SSH 到 westd-16980，确认两个输出文件存在且行数 = 551:\n   ```\n   wc -l outputs/phase2_scierc_full_s1.jsonl outputs/phase2_scierc_semantic_only.jsonl\n   ```\n\n2. 先检查 violation_checker.py 的用法:\n   ```\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n   cd /root/schema_semantic_constrained_ie\n   python3 violation_checker.py --help\n   ```\n\n3. 对两个文件分别运行 violation_checker:\n   ```\n   python3 violation_checker.py [正确参数] --predictions outputs/phase2_scierc_semantic_only.jsonl\n   python3 violation_checker.py [正确参数] --predictions outputs/phase2_scierc_full_s1.jsonl\n   ```\n\n4. 从 registry 读取 phase2_scierc_unconstrained 的 metrics，用作 delta 计算的 baseline。\n\n5. 对每个实验，用 `update_registry` 写入:\n   - **metrics**: 完整 dict，包含:\n     - total_samples, total_triples, total_entities\n     - json_parse_rate\n     - entity_type_violation_rate, relation_vocabulary_violation_rate\n     - domain_range_violation_rate, cross_field_consistency_violation_rate\n     - entity_f1, entity_precision, entity_recall\n     - relation_f1, relation_precision, relation_recall\n     - per_relation_dr_violations (每个 relation 的 total, violations, rate)\n     - delta_vs_phase0: entity_f1 差值, relation_f1 差值, rv/dr/et violation rate 差值\n     - delta_vs_grammar_only: 与 grammar_only 对比的 dr 差值\n   - **checkpoint_path**: 对应的 .jsonl 文件绝对路径\n   - **log_path**: ~/runs/schema_semantic_constrained_ie/phase2_scierc_{mode}.log\n\n6. 关键分析（输出到最终报告）:\n   - **semantic_only**: dr_violation 是否降到 0%？如果不是，残余来自哪些 relation？F1 变化多少 pp？\n   - **full_s1**: 相比 grammar_only，dr_violation 额外降了多少？相比 semantic_only，F1 有变化吗？\n   - 两层约束 vs 单层的增量价值是什么？\n\n7. 输出完整 JSON 格式的分析结果。",
+    "tool_groups": "['ssh', 'registry']",
+    "context": "环境: westd-16980, aml-train 镜像, conda base, Python 3.12.3, torch 2.10.0+cu128。项目: schema_semantic_constrained_ie。violation_checker.py 在项目根目录。registry 项目名: schema_semantic_constrained_ie。exp_ids: phase2_scierc_full_s1, phase2_scierc_semantic_only。"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-14T00:35:53.250889+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_phase2_scierc_s1_semantic_20260514T003544\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_analysis_phase2_scierc_s1_semantic_20260514T003544.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_phase2_scierc_s1_semantic_20260514T003544 started. Use get_worker_status('worker_analysis_phase2_scierc_s1_semantic_20260514T003544') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 9608
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-14T00:35:55.466013+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "resume:mvp_phase0_docred_schema",
+  "project": "schema_semantic_constrained_ie",
+  "task_prompt": "## 任务：续跑 DocRED schema-informed 实验\n\n实验 mvp_phase0_docred_schema 在 814/998 docs 时被 SIGTERM 杀掉。需要 --resume 续跑剩余 184 docs。\n\n### 服务器信息\n- Server: westd-16980\n- 项目路径: /root/schema_semantic_constrained_ie\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- GPU: cuda:0 和 cuda:1 现在都空闲（所有 SciERC Phase 2 实验已完成）\n\n### 原始命令\n```\npython3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4\n```\n\n### 步骤\n\n1. SSH 到 westd-16980，检查输出文件有多少行（已处理的 docs）:\n   ```\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n   cd /root/schema_semantic_constrained_ie\n   wc -l outputs/raw_outputs_docred_schema.jsonl\n   ```\n\n2. 检查脚本是否支持 --resume 参数:\n   ```\n   python3 run_extraction_docred.py --help\n   ```\n\n3. 用 submit_training_job 提交续跑任务。命令必须带环境激活前缀和 --resume:\n   - exp_id: mvp_phase0_docred_schema\n   - server: westd-16980\n   - gpu_id: 0\n   - command: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4 --resume`\n\n4. 提交后验证进程启动:\n   ```\n   nvidia-smi | grep python\n   ```\n\n5. 输出状态确认。",
+  "tool_groups": "['ssh', 'registry']",
+  "context": "环境: westd-16980, aml-train 镜像, conda base, Python 3.12.3。GPU 2× RTX PRO 6000 94GB，目前都空闲。exp_id: mvp_phase0_docred_schema, project: schema_semantic_constrained_ie。之前在 cuda:0 跑，PID 116365 已死。"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "resume:mvp_phase0_docred_schema",
+    "project": "schema_semantic_constrained_ie",
+    "task_prompt": "## 任务：续跑 DocRED schema-informed 实验\n\n实验 mvp_phase0_docred_schema 在 814/998 docs 时被 SIGTERM 杀掉。需要 --resume 续跑剩余 184 docs。\n\n### 服务器信息\n- Server: westd-16980\n- 项目路径: /root/schema_semantic_constrained_ie\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- GPU: cuda:0 和 cuda:1 现在都空闲（所有 SciERC Phase 2 实验已完成）\n\n### 原始命令\n```\npython3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4\n```\n\n### 步骤\n\n1. SSH 到 westd-16980，检查输出文件有多少行（已处理的 docs）:\n   ```\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n   cd /root/schema_semantic_constrained_ie\n   wc -l outputs/raw_outputs_docred_schema.jsonl\n   ```\n\n2. 检查脚本是否支持 --resume 参数:\n   ```\n   python3 run_extraction_docred.py --help\n   ```\n\n3. 用 submit_training_job 提交续跑任务。命令必须带环境激活前缀和 --resume:\n   - exp_id: mvp_phase0_docred_schema\n   - server: westd-16980\n   - gpu_id: 0\n   - command: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4 --resume`\n\n4. 提交后验证进程启动:\n   ```\n   nvidia-smi | grep python\n   ```\n\n5. 输出状态确认。",
+    "tool_groups": "['ssh', 'registry']",
+    "context": "环境: westd-16980, aml-train 镜像, conda base, Python 3.12.3。GPU 2× RTX PRO 6000 94GB，目前都空闲。exp_id: mvp_phase0_docred_schema, project: schema_semantic_constrained_ie。之前在 cuda:0 跑，PID 116365 已死。"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-14T00:35:57.886955+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_resume_mvp_phase0_docred_schema_20260514T003555\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_resume_mvp_phase0_docred_schema_20260514T003555.log\", \"setup_data\": {}, \"message\": \"Worker worker_resume_mvp_phase0_docred_schema_20260514T003555 started. Use get_worker_status('worker_resume_mvp_phase0_docred_schema_20260514T003555') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2420
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-14T00:36:22.015915+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际在跑 0 (两卡刚空出) | Worker 池 4 (GPU 0 / CPU 4)\n\n## Phase 2 SciERC: full_s1 + semantic_only 实际完成，cron 误判修正\n\n**关键发现**: 两个实验 551/551 samples 全部处理完成，输出文件已写入。EXIT_CODE=129 (SIGHUP) 是进程正常完成后收到信号导致的假失败。Registry 已从 failed 更正为 success。\n\n**已派 Worker**:\n1. `analysis:phase2_scierc_s1_semantic` — 正在运行 violation_checker 分析 full_s1 + semantic_only 的 metrics，与 grammar_only/unconstrained baseline 对比\n2. `resume:mvp_phase0_docred_schema` — DocRED schema-informed 在 814/998 时被 SIGTERM 杀掉（原因待查），正在 --resume 续跑剩余 184 docs\n\n**当前全实验状态**:\n| 实验 | 状态 | 要点 |\n|------|------|------|\n| phase2_scierc_grammar_only | ✅ success | rv=0%, dr=14.84%, F1 无损 |\n| phase2_scierc_unconstrained | ✅ success | 分析完成，metrics 待确认 |\n| phase2_scierc_semantic_only | ✅ success (误判修正) | 551/551 完成，violation 分析中 |\n| phase2_scierc_full_s1 | ✅ success (误判修正) | 551/551 完成，violation 分析中 |\n| mvp_phase0_docred_schema | 续跑中 | 814/998 → 续跑 184 docs |\n\n**预计**: violation 分析 Worker 数分钟内完成，核心 Phase 2 SciERC ablation 数据即将齐全（grammar_only / semantic_only / full_s1 / unconstrained 四组对比）。",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 2 / 实际在跑 0 (两卡刚空出) | Worker 池 4 (GPU 0 / CPU 4)\n\n## Phase 2 SciERC: full_s1 + semantic_only 实际完成，cron 误判修正\n\n**关键发现**: 两个实验 551/551 samples 全部处理完成，输出文件已写入。EXIT_CODE=129 (SIGHUP) 是进程正常完成后收到信号导致的假失败。Registry 已从 failed 更正为 success。\n\n**已派 Worker**:\n1. `analysis:phase2_scierc_s1_semantic` — 正在运行 violation_checker 分析 full_s1 + semantic_only 的 metrics，与 grammar_only/unconstrained baseline 对比\n2. `resume:mvp_phase0_docred_schema` — DocRED schema-informed 在 814/998 时被 SIGTERM 杀掉（原因待查），正在 --resume 续跑剩余 184 docs\n\n**当前全实验状态**:\n| 实验 | 状态 | 要点 |\n|------|------|------|\n| phase2_scierc_grammar_only | ✅ success | rv=0%, dr=14.84%, F1 无损 |\n| phase2_scierc_unconstrained | ✅ success | 分析完成，metrics 待确认 |\n| phase2_scierc_semantic_only | ✅ success (误判修正) | 551/551 完成，violation 分析中 |\n| phase2_scierc_full_s1 | ✅ success (误判修正) | 551/551 完成，violation 分析中 |\n| mvp_phase0_docred_schema | 续跑中 | 814/998 → 续跑 184 docs |\n\n**预计**: violation 分析 Worker 数分钟内完成，核心 Phase 2 SciERC ablation 数据即将齐全（grammar_only / semantic_only / full_s1 / unconstrained 四组对比）。",
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-14T00:36:22.016551+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86 · 2026-05-14T00:53:49.570049+00:00_
+
+Workers 已派出。向 Director 汇报状态更正。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:phase2_scierc_full_s1"
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+2 recorded events
+
+### User
+
+_source line 87 · 2026-05-14T04:26:17.225351+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:phase2_scierc_full_s1",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 88 · 2026-05-14T04:27:13.320308+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单: westd-16980 cuda:0, cuda:1 **只有这两张**，禁止用其他 GPU
+- submit_training_job 命令**必须**带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀，否则 EXIT_CODE=127 (python3 not found)。已连续踩坑 2 次
+- EXIT_CODE=129 (SIGHUP) 是 cron 误判——进程可能已正常完成，**必须先查日志确认 "Done: N samples" 再判定成功/失败**，不要盲信 cron conclusion
+- `--device cuda:0` 是固定的（框架注入 CUDA_VISIBLE_DEVICES 做物理映射），不要改成 cuda:1
+
+### 2. 🖥️ 基础设施快照
+- 服务器: westd-16980, 工作目录 `/root/schema_semantic_constrained_ie`
+- Python: `/root/miniconda3/bin/python3` (conda base, Python 3.12.3)
+- 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- torch 2.10.0+cu128, transformers 4.57.6, CUDA 12.8, XGrammar v2
+- GPU: 2× NVIDIA RTX PRO 6000 Blackwell 94GB each
+- 模型: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`
+- SciERC 数据: `data/processed_data/test.json` (551 sentences)
+- DocRED 数据: `data/docred/dev.json` (998 docs)
+- 分析工具: `violation_checker.py` (SciERC), `violation_checker_docred.py` (DocRED)
+- 活跃进程: 无确认活跃 GPU 进程（所有 SciERC Phase 2 已完成，docred_schema 被 SIGTERM 杀掉）
+
+### 3. 📊 当前状态
+**刚做完**: 诊断 phase2_scierc_full_s1 + semantic_only 的 EXIT_CODE=129 假失败。日志确认 551/551 全部完成。已更正 registry conclusion→success。
+
+**等待中的 Worker 回调**:
+1. `worker_analysis_phase2_scierc_s1_semantic` — 正在对 full_s1 + semantic_only 运行 violation_checker 分析，结果将写入 registry metrics
+2. `worker_resume_mvp_phase0_docred_schema` — 正在 --resume 续跑 docred_schema (814/998→998)，用 cuda:0
+3. `worker_analysis_phase2_scierc_unconstrained` — 之前派的，分析 unconstrained baseline（应已完成或即将完成）
+4. `worker_analysis_s2_relation_f1_rootcause` — 调查 S2 pilot50 relation_f1=0.0 的 root cause
+
+**Registry 关键状态**:
+- phase2_scierc_grammar_only: DONE/success ✅ (rv=0%, dr=14.84%, F1 无损)
+- phase2_scierc_unconstrained: DONE/success ✅ (metrics 待 Worker 回写)
+- phase2_scierc_full_s1: DONE/success ✅ (metrics 待 Worker 分析)
+- phase2_scierc_semantic_only: DONE/success ✅ (metrics 待 Worker 分析)
+- phase2_s2_pilot50: DONE/success ✅ (dr=0% 但 relation_f1=0.0，root cause 调查中)
+- mvp_phase0_docred_schema: DONE/failed → Worker 正在 resume 续跑
+
+### 4. 📋 待办（条件触发式）
+- **Worker analysis:phase2_scierc_s1_semantic 回调** → 读 metrics，按 on-experiment-done 流程：更新 memory.md，向 Director 汇报 Phase 2 SciERC 全部 4 路对比（unconstrained/grammar_only/semantic_only/full_s1）。**关键判定**: dr_violation 降幅 + F1 trade-off 决定论文 story
+- **Worker resume:docred_schema 回调** → 998 docs 全部完成后跑 violation_checker_docred.py 分析 schema-informed 效果，对比 minimal (dr=18.7%)
+- **Worker s2_relation_f1_rootcause 回调** → 如果 root cause 可修 → 修 S2 代码 → 重跑 full_s2 full 551
+- **Phase 2 SciERC 全部完成 + DocRED schema 完成** → 向 Director 提交完整 Phase 2 结论 + 建议是否启动 Phase 2 DocRED / Llama cross-model
+- **semantic_only 的 dr_violation 仍 >0%** → 检查是否 PositionDetector 有 edge case 遗漏（S2 pilot 已验证 dr=0%，S1 可能有残余）
+- **full_s1 的 F1 降 >5pp vs unconstrained** → 触发 red-section，产出 Framing 调整提案
+
+### 5. 🎯 战略上下文
+- **D001**: 主目标 EMNLP 2026 ARR (5/25)，后备 AAAI 2027
+- **D002**: Phase 0 GO 通过 (dr=15.4% >> 5%)
+- **D003**: MVP 通过，进入 Research 阶段
+- **核心 story**: OntoCoDec = compile IE ontology → decoding-time constraints。Grammar 层"免费"(零 F1 代价消除 rv+et)。Semantic 层是关键贡献——dr violation 能降多少、F1 代价多大
+- **grammar_only 已证明**: rv 1.4%→0%, et 0.4%→0%, F1 delta ≈ 0。这是 "structural constraints at zero cost" claim
+- **最易判断错的事**: Phase 2 有两套 baseline——Phase 0 minimal 和 Phase 2 unconstrained。Phase 2 unconstrained 用的是**相同代码路径和 prompt**，是更公平的 baseline。Delta 计算应优先用 Phase 2 unconstrained
+- **S2 (两通道) vs S1 (单通道)**: S2 pilot50 验证 dr=0% 但 relation_f1=0.0，有 bug 在查。S1 是保底方案
+- **时间压力**: EMNLP deadline 5/25，只剩 11 天。Phase 2 SciERC 实验数据已齐（等分析），DocRED + cross-model 是 stretch goal
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:phase2_scierc_full_s1"
+}
+```
+
+</details>
+
+---

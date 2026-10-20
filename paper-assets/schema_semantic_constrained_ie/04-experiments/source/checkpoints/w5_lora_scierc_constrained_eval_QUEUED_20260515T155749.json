@@ -1,0 +1,28 @@
+{
+  "exp_id": "w5_lora_scierc_constrained_eval",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:57:42.154Z",
+    "updated_at": "2026-05-15T15:57:49.883Z",
+    "spec": {
+      "hypothesis": "OntoCoDec constrained decoding composable with fine-tuning: eliminates remaining 1.95% DR violations (esp. Evaluate-for 13.1%) that fine-tuning alone cannot resolve. Completes 2×2 matrix (unconstrained/constrained × base/fine-tuned).",
+      "parent": "w5_lora_scierc_training",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path checkpoints/qwen3_8b_lora_scierc_merged --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w5_lora_scierc_full_s1_eval.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\"",
+      "server": "westd-16980",
+      "data_path": "data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "Qwen3-8B-LoRA-SciERC",
+      "model_path": "/root/schema_semantic_constrained_ie/checkpoints/qwen3_8b_lora_scierc_merged",
+      "seed": null,
+      "checkpoint_source": "/root/schema_semantic_constrained_ie/checkpoints/qwen3_8b_lora_scierc_merged",
+      "eval_data": "SciERC test set (551 samples)",
+      "gpu": "cuda:0"
+    }
+  },
+  "timestamp": "2026-05-15T15:57:49.964076+00:00",
+  "trigger": "update_registry"
+}

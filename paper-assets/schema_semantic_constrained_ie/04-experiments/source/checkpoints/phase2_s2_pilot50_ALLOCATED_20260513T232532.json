@@ -1,0 +1,14 @@
+{
+  "exp_id": "phase2_s2_pilot50",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T23:25:10.566Z",
+    "updated_at": "2026-05-13T23:25:32.382Z"
+  },
+  "timestamp": "2026-05-13T23:25:32.401924+00:00",
+  "trigger": "update_registry"
+}

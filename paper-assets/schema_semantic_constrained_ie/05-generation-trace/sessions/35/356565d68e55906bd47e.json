@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "356565d68e55906bd47e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code qwen scierc stability 3seeds",
+  "task_key": "worker_code_qwen_scierc_stability_3seeds_20260517T025633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen_scierc_stability_3seeds_20260517T025633_result.json",
+    "occurrence": 1,
+    "bytes": 175,
+    "sha256": "c3327e3bd0ff93515d1fff0a211ea361ea41c93d7cef0e4b4581e791f2f4c319"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Stability test is running on westd-16980 cuda:1. Processing at ~20 samples/min (551 docs × 3 seeds ≈ 1.5h total). I'll check back in ~4 minutes for progress."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen-scierc-stability-3seeds.md"
+}

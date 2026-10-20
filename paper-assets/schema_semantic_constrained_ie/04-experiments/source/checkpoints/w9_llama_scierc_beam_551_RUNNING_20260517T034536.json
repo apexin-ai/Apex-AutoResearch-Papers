@@ -1,0 +1,52 @@
+{
+  "exp_id": "w9_llama_scierc_beam_551",
+  "project": "schema_semantic_constrained_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:18:21.758Z",
+    "updated_at": "2026-05-17T03:45:36.364Z",
+    "hypothesis": "Beam search (k=4) with full_s1 constraints on Llama-3.1-8B SciERC 551 docs will show DR reduction similar to Qwen (0.93%→0%), confirming beam search compatibility is model-agnostic",
+    "spec": {
+      "command": "python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --beam_size 4 --output_path outputs/llama_scierc_beam_full_s1_551.jsonl",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "406047",
+      "model_name": "Llama-3.1-8B-Instruct",
+      "data_path": "data/scierc/test.json",
+      "data_count": 551,
+      "seed": 42
+    },
+    "metrics": {
+      "ET_pct": 0,
+      "RV_pct": 0,
+      "DR_pct": 0,
+      "CF_pct": 0.93,
+      "CF_count": 15,
+      "E_F1": 25.04,
+      "E_P": 21.27,
+      "E_R": 30.42,
+      "R_F1": 3.33,
+      "R_P": 2.68,
+      "R_R": 4.41,
+      "total_entities": 2398,
+      "total_relations": 1606,
+      "parse_fail_rate": 0,
+      "total_samples": 551,
+      "vs_greedy_full_s1": {
+        "DR_delta": -0.08,
+        "CF_delta": -5.63,
+        "E_F1_delta": 1.55,
+        "R_F1_delta": 0.79,
+        "note": "Greedy: DR=0.08%, CF=6.56%, E_F1=23.49%, R_F1=2.54%"
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T03:45:36.518402+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,48 @@
+{
+  "exp_id": "eval_70b_lora_scierc_s1_constrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T05:46:31.480Z",
+    "updated_at": "2026-05-22T06:47:38.556Z",
+    "hypothesis": "70B LoRA SciERC with Full S1 constrained decoding will achieve DR→0% while maintaining R-F1 comparable to unconstrained (44.73), confirming scale-independent constraint effectiveness at 70B with fine-tuning",
+    "parent": "eval_70b_lora_scierc_unconstrained",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4 --lora_path /root/autodl-tmp/checkpoints/70b_lora_scierc/checkpoint-663 --output_path /root/autodl-tmp/schema_outputs/r16_70b_lora_scierc/scierc_s1.jsonl --max_new_tokens 4096 --seed 42",
+      "server": "westd-16980",
+      "gpu": "cuda:0",
+      "data_path": "data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "Llama-3.1-70B-AWQ-INT4 + LoRA r16 (checkpoint-663)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/70b_lora_scierc/checkpoint-663",
+      "eval_data": "SciERC test (551 sentences)",
+      "checkpoint_path": "westd-16980:/root/autodl-tmp/schema_outputs/r16_70b_lora_scierc/scierc_s1.jsonl",
+      "log_path": "westd-16980:/root/autodl-tmp/schema_outputs/r16_70b_lora_scierc/scierc_s1.log"
+    },
+    "metrics": {
+      "entity_f1": 0.6476,
+      "entity_precision": 0.6266,
+      "entity_recall": 0.6701,
+      "relation_f1": 0.4453,
+      "relation_precision": 0.4149,
+      "relation_recall": 0.4805,
+      "ET_pct": 0,
+      "RV_pct": 0,
+      "DR_pct": 0,
+      "CF_count": 15,
+      "parse_fail_pct": 0,
+      "fuzzy_matches": 0,
+      "num_samples": 551,
+      "num_entities": 1805,
+      "num_relations": 1129
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T06:47:38.556Z"
+  },
+  "timestamp": "2026-05-22T06:47:38.853964+00:00",
+  "trigger": "update_registry"
+}

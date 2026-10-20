@@ -1,0 +1,66 @@
+{
+  "exp_id": "w8_llama_docred_ft_semantic_only",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T10:54:02.910Z",
+    "updated_at": "2026-05-16T16:55:22.088Z",
+    "hypothesis": "FT Llama DocRED + semantic_only eval: 与 grammar_only 配对，验证 semantic 层在 FT+DocRED regime 下能否独立降低 DR。预期 DR 从 0.49% 降至 ~0.2-0.3%（参照 SciERC 模式：semantic_only 降 DR 42%）。完成后 DocRED FT ablation 有 Llama 双模式数据，2 模型 ×2 模式全部完备。",
+    "parent": "w5_llama_docred_lora_training",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode semantic_only --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w8_llama_docred_ft_semantic_only.jsonl --batch_size 1 --max_new_tokens 4096\"",
+      "server": "westd-16980",
+      "gpu": 1,
+      "pid": 361202,
+      "model_name": "Llama-3.1-8B-LoRA-DocRED",
+      "data_path": "data/docred/dev.json",
+      "data_count": 998,
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/llama_lora_docred_merged",
+      "eval_data": "data/docred/dev.json"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T16:49:59.199Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T16:50:01.253379+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "E_F1": 84.02,
+      "E_P": 85.01,
+      "E_R": 83.06,
+      "R_F1": 43.9,
+      "R_P": 38.89,
+      "R_R": 50.4,
+      "ET_pct": 0,
+      "RV_pct": 0.15,
+      "DR_pct": 0.3,
+      "CF_pct": 0.16,
+      "parse_fail_rate": 2.4,
+      "total_samples": 998,
+      "parse_failures": 24,
+      "documents_checked": 974,
+      "total_entities": 19099,
+      "total_relations": 16038,
+      "DR_violations": 48,
+      "RV_violations": 24,
+      "ET_violations": 0,
+      "CF_violations": 31
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/llama_lora_docred_merged",
+    "log_path": "outputs/w8_llama_docred_ft_semantic_only.jsonl",
+    "completed_at": "2026-05-16T16:55:22.088Z"
+  },
+  "timestamp": "2026-05-16T16:55:22.225364+00:00",
+  "trigger": "update_registry"
+}

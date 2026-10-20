@@ -1,0 +1,26 @@
+{
+  "exp_id": "d066_sweep_llama_scierc_beam8_s1_551",
+  "project": "schema_semantic_constrained_ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:38:34.783Z",
+    "updated_at": "2026-05-20T15:39:05.057Z",
+    "hypothesis": "d066 SciERC beam sweep: Llama beam8 constrained (full_s1) on 551-sentence test set. Last Llama SciERC config.",
+    "parent": "d066_beam_sweep",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 8 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam8_full_s1.jsonl",
+      "server": "westd-16980",
+      "data_path": "data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "llama_lora_scierc_merged",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/llama_lora_scierc_merged",
+      "eval_data": "scierc test set (551 sentences)"
+    }
+  },
+  "timestamp": "2026-05-20T15:39:05.325869+00:00",
+  "trigger": "update_registry"
+}

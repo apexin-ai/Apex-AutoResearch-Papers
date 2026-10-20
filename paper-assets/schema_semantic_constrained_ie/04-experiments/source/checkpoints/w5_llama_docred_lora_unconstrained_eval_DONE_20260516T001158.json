@@ -1,0 +1,50 @@
+{
+  "exp_id": "w5_llama_docred_lora_unconstrained_eval",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 2,
+    "created_at": "2026-05-15T19:58:07.956Z",
+    "updated_at": "2026-05-16T00:11:58.601Z",
+    "hypothesis": "Fine-tuned Llama-3.1-8B DocRED LoRA unconstrained eval — 获取 fine-tuned baseline DR/R-F1，与 constrained eval 对比计算 composability delta",
+    "parent": "w5_llama_docred_lora_training",
+    "reproduce": {
+      "finished_at": "2026-05-16T00:11:57.356Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "completed_at": "2026-05-15T23:14:38.851Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T23:14:41.289164+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: SIGTERM (exit 143) — 外部 kill，非 OOM/崩溃。日志尾部无 Traceback，正常生成中被终止。运行 3.27h (998 samples, batch=1, max_tokens=4096)。已有 ops worker (ops:llama_eval_timeout_fix) 在处理修复重提。| 已有成果: 可能有部分输出 (outputs/w5_llama_docred_lora_unconstrained_eval.jsonl) | 建议: 等 ops worker 完成后确认重提结果"
+      }
+    },
+    "notes": "Resume #2 (PID 312930, cuda:0): nohup 断点续跑，无 timeout wrapper。从 783/998 继续 append。原进程(PID 303530)因 kill timeout wrapper 时信号传播被杀(exit 143)。预计 ~50min 完成。",
+    "spec": {
+      "command": "nohup python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w5_llama_docred_lora_unconstrained_eval.jsonl --batch_size 1 --max_new_tokens 4096",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "312930",
+      "data_path": "data/docred/dev.json",
+      "data_count": 998,
+      "model_name": "Meta-Llama-3.1-8B-Instruct-LoRA-DocRED",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/llama_lora_docred_merged",
+      "eval_data": "data/docred/dev.json"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-16T00:11:58.718612+00:00",
+  "trigger": "update_registry"
+}

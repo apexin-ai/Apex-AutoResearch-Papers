@@ -1,0 +1,41 @@
+{
+  "exp_id": "w1_cf_fallback_docred",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:32:53.234Z",
+    "updated_at": "2026-05-15T15:47:59.075Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w1_cf_fallback_docred.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "276932",
+      "log_path": "~/runs/schema_semantic_constrained_ie/w1_cf_fallback_docred.log",
+      "submitted_at": "2026-05-15T15:03:45.864Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "N/A",
+      "wall_clock_seconds": 2653.2,
+      "gpu_hours": 0.74
+    },
+    "server": "westd-16980",
+    "gpu": "cuda:1",
+    "account": "root",
+    "pid": "276932",
+    "log_path": "~/runs/schema_semantic_constrained_ie/w1_cf_fallback_docred.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w1_cf_fallback_docred.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\""
+    },
+    "conclusion": "killed",
+    "notes": "D020: Director 取消全部 CF fallback 实验。改用 Analytical Finding 方案——pilot negative 本身作为论文素材。仅跑约 30s 即被终止。",
+    "completed_at": "2026-05-15T15:47:59.075Z"
+  },
+  "timestamp": "2026-05-15T15:47:59.213328+00:00",
+  "trigger": "update_registry"
+}

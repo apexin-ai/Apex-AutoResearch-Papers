@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f3251bdfbc818da0919",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_12_1778928671.md",
+  "task_key": "loop_12_1778928671",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778928671.md",
+    "occurrence": 1,
+    "bytes": 5284,
+    "sha256": "838bff27ba610968bb04558431535d7b7476d2abf9a80abc584ec02efe5e324a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T06:08:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-16980 cuda:0/1, westd-21461 cuda:0/1。其他 GPU 一律 push back Director\n- westd-21461 上 xgrammar 0.2.0 + transformers 5.8.1 与 Mistral tokenizer 有兼容性问题（accept_token 类型错误），westd-16980 环境正常——Mistral constrained 实验优先用 westd-16980\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && ...`\n- GPU 编号始终从 0 开始（框架注入 CUDA_VISIBLE_DEVICES 映射物理卡）\n- 禁止 nohup 启动训练——必须走 submit_training_job（tmux + cron 监控）\n- May 19 内部稿 → May 25 EMNLP ARR 提交，时间极紧，不容 GPU 空转\n\n### 2. 🖥️ 基础设施快照\n- **westd-16980**: 工作目录 `/root/schema_semantic_constrained_ie`，Python `/root/miniconda3/bin/python`，conda base 环境\n  - 模型路径: `/root/autodl-tmp/` 下（Qwen/Llama/Mistral checkpoints, LoRA merged checkpoints）\n  - LoRA merged checkpoints: `/root/autodl-tmp/checkpoints/llama_lora_scierc_merged`, `/root/autodl-tmp/checkpoints/qwen_lora_scierc_merged` 等\n  - 活跃进程: `w5_qwen_docred_lora_constrained_eval` PID 321568 (cuda 上)\n- **westd-21461**: 工作目录 `/root/schema_semantic_constrained_ie`，同样 miniconda3 环境\n  - 活跃进程: `w6_mistral_docred_unconstrained` PID 7740, `w6_mistral_docred_constrained` PID 8347\n- **Cron 活跃**: 4 个（w5_qwen_docred_lora_constrained_eval, w6_mistral_scierc_constrained, w6_mistral_docred_unconstrained, w6_mistral_docred_constrained）\n- **W&B**: 项目 `schema_semantic_constrained_ie`\n\n### 3. 📊 当前状态\n\n**刚完成**: w6_mistral_scierc_unconstrained (success)——Mistral SciERC unconstrained baseline: DR=56.94%, RV=0%, R-F1=3.66%。三模型违规 profile 对比已写入 memory.md。\n\n**RUNNING (4)**:\n| exp_id | 服务器 | PID | 说明 |\n|--------|--------|-----|------|\n| w5_qwen_docred_lora_constrained_eval | westd-16980 | 321568 | Qwen DocRED LoRA+constrained eval，composability matrix 关键格 |\n| w6_mistral_scierc_constrained | westd-16980 | ⚠️ gone | **进程消失**，cron miss 1/5，需立即排查 |\n| w6_mistral_docred_unconstrained | westd-21461 | 7740 | Mistral DocRED unconstrained baseline |\n| w6_mistral_docred_constrained | westd-21461 | 8347 | Mistral DocRED constrained eval |\n\n**PREPARING (4)**: w7 ablation 系列（semantic_only / grammar_only × Llama/Qwen FT SciERC），命令已写好，等 GPU 空出\n\n**活跃 Worker**: 2 个 ops Worker 正在跑（westd-16980 检查+提交, westd-21461 检查），可能是上一轮 session 派出的\n\n**⚠️ 关键告警**: `w6_mistral_scierc_constrained` 进程消失（no sentinel, no W&B），需要立即 spawn worker 排查——可能是 xgrammar 兼容性崩溃（memory.md 记录过 westd-21461 上有此问题，但这个跑在 westd-16980 上）\n\n### 4. 📋 待办（条件触发式）\n- **w6_mistral_scierc_constrained 进程消失** → spawn worker 查 tmux 日志 / stderr，确认是否 xgrammar 崩溃 → 修复后重提交\n- **w5_qwen_docred_lora_constrained_eval 完成 (success)** → 收集 metrics → 更新 ROADMAP composability matrix Qwen×DocRED FT+constrained 格 → 与 unconstrained eval (已完成) 对比 → 更新论文 Table 5 + §5.5 → 汇报 Director\n- **w6_mistral_docred_unconstrained + w6_mistral_docred_constrained 完成** → 收集 metrics → 填 Mistral×DocRED 2×2 ZS 行 → 与 SciERC 结果合并汇报\n- **所有 w6 Mistral 实验完成** → 更新论文 Table 3 (三模型 ZS) → 验证 Claim 1 (cross-model generalization)\n- **westd-16980 GPU 空出** → 立即提交 w7 ablation 系列（4 个 PREPARING 实验，按优先级排 2 个一批上 cuda:0/1）\n- **Qwen DocRED composability matrix 补完 + Mistral ZS 全完** → 全文数字一致性审查 → 向 Director 汇报 May 19 内部稿就绪度\n\n### 5. 🎯 战略上下文\n- **项目核心**: OntoCoDec = grammar + semantic 双层约束解码，自动编译 IE ontology schema 为 token-level constraints。Round 1 审稿应对阶段，扩展 composability matrix\n- **论文 3 个 Core Claims**: (1) 跨模型泛化 (2) grammar+semantic 互补 (3) FT+constrained composability\n- **D030**: 第三模型选定 Mistral-7B-Instruct-v0.3，补强 Claim 1 跨模型泛化\n- **Mistral 是 semantic 层极端测试**: RV=0% (grammar 层无事可做), DR=56.94% (全部靠 semantic 层)。如果 constrained 大幅降 DR，是 semantic 层独立有效的铁证\n- **Composability matrix 进展**: Qwen SciERC ✅, Llama SciERC ✅, Qwen DocRED FT 训练 ✅ (eval 跑中), Llama DocRED FT 训练 ✅ (constrained eval 已完成 success)\n- **最易判断错的事**: (1) w6_mistral_scierc_constrained 崩溃可能不是简单重跑能解决的——先查日志确认根因 (2) w7 ablation 实验依赖 w5 LoRA merged checkpoints，不要假设路径，从 registry spec 里取 (3) Llama DocRED composability R-F1 +0.51pp 是正向提升（非仅无损），论文 claim 可以更强，但 parse_fail_rate 2.51% 需披露\n- **deadline**: May 19 内部稿 → May 25 EMNLP ARR。距提交 9 天，GPU 不能空一秒\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778928671.md"
+}

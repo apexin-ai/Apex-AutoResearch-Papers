@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34c80590b3ab68a0f9fe",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research d015 missing references",
+  "task_key": "worker_research_d015_missing_references_20260514T223133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_d015_missing_references_20260514T223133_result.json",
+    "occurrence": 1,
+    "bytes": 1361,
+    "sha256": "d3cab249ff3b31edf1c06198fe044776b59d48fbe8de456b13e36a2b837da9b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有编辑完成。汇总：\n\n### 已有（无需操作）\n| 引用 | Cite key | 状态 |\n|------|----------|------|\n| NeuroLogic (Lu et al., NAACL 2021) | `lu2021neurologic` | bib 已有，但 §6 未引用 → **已补入** P3 vocabulary constraint 列表 |\n\n### 新增 bib entries（5 条）\n| 引用 | Cite key | Venue |\n|------|----------|-------|\n| Guidance | `guidance2023` | GitHub / Microsoft Research, 2023 |\n| TANL | `paolini2021tanl` | ICLR 2021 |\n| REBEL | `cabot2021rebel` | Findings of EMNLP 2021 |\n| TKRL | `xie2016tkrl` | IJCAI 2016 |\n| SGD | `rastogi2020sgd` | AAAI 2020 |\n\n### §6 正文引用插入（4 处）\n| 位置 | 插入内容 |\n|------|----------|\n| P1 Grammar-Constrained Decoding | `Guidance~\\cite{guidance2023}` 加入工具列表 |\n| P3 Vocabulary and Type-Constrained | `NeuroLogic~\\cite{lu2021neurologic}` 加入 vocabulary constraint 列表 |\n| P3 Vocabulary and Type-Constrained | `; see also~\\cite{xie2016tkrl}` 附在 Roth & Yih ILP 句后 |\n| P4 Structural Constraints via Training | `TANL~\\cite{paolini2021tanl}, REBEL~\\cite{cabot2021rebel}` 加入 seq2seq IE 列表 |\n\n### 未加入 §6 正文\n- **SGD** (`rastogi2020sgd`): bib 已添加，但 SGD 是对话系统工作，与 IE 段落无自然契合点，未强行插入。如需引用可放在 P4 或 closing paragraph。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-d015-missing-references.md"
+}

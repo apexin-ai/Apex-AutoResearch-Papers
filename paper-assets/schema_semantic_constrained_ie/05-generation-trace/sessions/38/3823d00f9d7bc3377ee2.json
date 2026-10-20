@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3823d00f9d7bc3377ee2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "infra gpu1 parallel check and submit",
+  "task_key": "worker_infra_gpu1_parallel_check_and_submit_20260513T221926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu1_parallel_check_and_submit_20260513T221926_result.json",
+    "occurrence": 1,
+    "bytes": 624,
+    "sha256": "f5db36fbc78d0a6748b4b4fdd98527da1d38a4b0b283d05b0d7dc9881e796bbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 1 显存状态\n\n| 指标 | 值 |\n|------|-----|\n| 已用 | 16,489 MiB |\n| 总量 | 97,887 MiB |\n| 剩余 | **~81,398 MiB (79.5 GB)** |\n| 利用率 | 83% |\n| 进程 | PID 126473, 占 16,480 MiB |\n\n## 并行建议\n\n**可以并行。** GPU 1 剩余 ~79.5GB，远超 20GB 阈值。即使加载一个 7B 模型（~16GB）做 unconstrained baseline 推理，总占用也只到 ~33GB，GPU 1 仍有大量余量。\n\n两个推理进程共享 GPU 会有 30-50% 速度下降，但总吞吐高于串行。建议主 Agent 在 GPU 1 上提交 unconstrained baseline，指定 `CUDA_VISIBLE_DEVICES=1`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu1-parallel-check-and-submit.md"
+}

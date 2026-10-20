@@ -1,0 +1,137 @@
+{
+  "exp_id": "phase2_docred_full_s1",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-14T02:07:20.166Z",
+    "updated_at": "2026-05-14T08:33:26.491Z",
+    "hypothesis": "Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上能否复现 SciERC 的 DR 消除效果 (15.37%→0.93%)？DocRED 约束更紧 (avg 5.68 valid pairs)，DR baseline 更高 (18.7%)，验证 OntoCoDec 在复杂 schema 上的泛化性。",
+    "notes": "修复后重启 (PID 157042, tmux: phase2_docred_full_s1, cuda:1)。根因: TypeConstraintProcessor._apply_type_mask 在 allowed_types 与 grammar-valid tokens 无交集时，把所有 grammar-valid tokens 设为 -inf，导致 argmax 选中 grammar-invalid token (logit=-1e10 > -inf)。修复: _apply_type_mask 增加安全检查，若无 semantically-allowed type 有非 grammar-masked logit，跳过 semantic masking 交由 grammar 控制。Dry-run 验证 doc 88(原崩溃点)+7 docs 全部通过。--resume 从 87 继续，当前 89/998。",
+    "completed_at": "2026-05-14T02:55:47.271Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "修复后重启 (PID 157042, tmux: phase2_docred_full_s1, cuda:1)。根因: TypeConstraintProcessor._apply_type_mask 在 allowed_types 与 grammar-valid tokens 无交集时，把所有 grammar-valid tokens 设为 -inf，导致 argmax 选中 grammar-invalid token (logit=-1e10 > -inf)。修复: _apply_type_mask 增加安全检查，若无 semantically-allowed type 有非 grammar-masked logit，跳过 semantic masking 交由 grammar 控制。Dry-run 验证 doc 88(原崩溃点)+7 docs 全部通过。--resume 从 87 继续，当前 89/998。"
+      },
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T08:29:08.943533+00:00"
+        }
+      ]
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096 --resume\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "157042",
+      "data_path": "/root/schema_semantic_constrained_ie/data/docred/dev.json",
+      "data_count": 998,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "log_path": "~/runs/schema_semantic_constrained_ie/phase2_docred_full_s1.log",
+      "fix_applied": "type_mask_processor.py: semantic mask safety check — skip semantic masking when allowed_types have no non-grammar-masked logits"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T08:29:07.765Z"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/schema_semantic_constrained_ie/outputs/docred_full_s1.jsonl",
+    "log_path": "~/runs/schema_semantic_constrained_ie/phase2_docred_full_s1.log",
+    "metrics": {
+      "documents_total": 999,
+      "documents_checked": 988,
+      "parse_failures": 11,
+      "json_parse_rate": 0.989,
+      "total_entities": 20218,
+      "total_triples": 17372,
+      "entity_type_violation_rate": 0,
+      "relation_vocabulary_violation_rate": 0.0003,
+      "domain_range_violation_rate": 0.1019,
+      "domain_range_violations": 1771,
+      "cross_field_consistency_violation_rate": 0.0257,
+      "entity_f1": 0.6534,
+      "entity_precision": 0.6453,
+      "entity_recall": 0.6618,
+      "entity_typed_f1": 0.5904,
+      "relation_f1": 0.082,
+      "relation_precision": 0.0699,
+      "relation_recall": 0.0991,
+      "per_relation_dr_top10": {
+        "P190_sister_city": {
+          "total": 50,
+          "violations": 29,
+          "rate": 0.58
+        },
+        "P582_end_time": {
+          "total": 186,
+          "violations": 81,
+          "rate": 0.435
+        },
+        "P205_basin_country": {
+          "total": 108,
+          "violations": 40,
+          "rate": 0.37
+        },
+        "P576_dissolved": {
+          "total": 146,
+          "violations": 53,
+          "rate": 0.363
+        },
+        "P1056_product_produced": {
+          "total": 156,
+          "violations": 48,
+          "rate": 0.308
+        },
+        "P86_composer": {
+          "total": 94,
+          "violations": 28,
+          "rate": 0.298
+        },
+        "P276_location": {
+          "total": 451,
+          "violations": 128,
+          "rate": 0.284
+        },
+        "P1365_replaces": {
+          "total": 69,
+          "violations": 18,
+          "rate": 0.261
+        },
+        "P1366_replaced_by": {
+          "total": 120,
+          "violations": 31,
+          "rate": 0.258
+        },
+        "P840_narrative_location": {
+          "total": 86,
+          "violations": 22,
+          "rate": 0.256
+        }
+      },
+      "delta_vs_unconstrained": {
+        "DR": -0.0851,
+        "RV": -0.2887,
+        "ET": -0.075
+      },
+      "delta_vs_grammar_only": {
+        "DR": -0.1598,
+        "RV": 0,
+        "ET": 0
+      },
+      "delta_vs_schema_informed": {
+        "DR": -0.0261,
+        "RV": -0.1837,
+        "ET": -0.0061
+      }
+    }
+  },
+  "timestamp": "2026-05-14T08:33:26.543567+00:00",
+  "trigger": "update_registry"
+}

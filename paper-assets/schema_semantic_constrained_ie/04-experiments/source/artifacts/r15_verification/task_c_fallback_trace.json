@@ -1,0 +1,179 @@
+{
+  "config": "SciERC Qwen FT S1",
+  "total_type_positions": 2256,
+  "fallback_count": 0,
+  "fallback_rate": 0.0,
+  "triples_with_fallback": 0,
+  "triples_without_fallback": 1128,
+  "violations_in_fallback_triples": 0,
+  "violations_in_non_fallback_triples": 0,
+  "fallback_violation_rate": 0.0,
+  "non_fallback_violation_rate": 0.0,
+  "causal_attribution": {
+    "dr_caused_by_fallback": 0,
+    "dr_independent_of_fallback": 0,
+    "total_dr_violations": 0,
+    "explanation": "In S1 constrained decoding, DR violation implies S(t)∩G(t)=∅ fallback. Active semantic mask prevents DR violations, so dr_independent = 0 by construction."
+  },
+  "all_configs": {
+    "scierc_qwen_ft_s1": {
+      "config": "scierc_qwen_ft_s1",
+      "setting": "FT",
+      "n_docs": 551,
+      "total_triples": 1128,
+      "total_type_positions": 2256,
+      "fallback_count": 0,
+      "fallback_rate": 0.0,
+      "triples_with_fallback": 0,
+      "triples_without_fallback": 1128,
+      "violations_in_fallback_triples": 0,
+      "violations_in_non_fallback_triples": 0,
+      "fallback_violation_rate": 0.0,
+      "non_fallback_violation_rate": 0.0,
+      "position_breakdown": {
+        "head_fallback": 0,
+        "tail_fallback": 0,
+        "both_fallback": 0
+      },
+      "causal_attribution": {
+        "dr_caused_by_fallback": 0,
+        "dr_independent_of_fallback": 0,
+        "total_dr_violations": 0,
+        "explanation": "In S1 constrained decoding, DR violation implies S(t)∩G(t)=∅ fallback. Active semantic mask prevents DR violations, so dr_independent = 0 by construction."
+      },
+      "violation_examples": []
+    },
+    "scierc_qwen_zs_s1": {
+      "config": "scierc_qwen_zs_s1",
+      "setting": "ZS",
+      "n_docs": 551,
+      "total_triples": 1729,
+      "total_type_positions": 3458,
+      "fallback_count": 16,
+      "fallback_rate": 0.004627,
+      "triples_with_fallback": 16,
+      "triples_without_fallback": 1713,
+      "violations_in_fallback_triples": 16,
+      "violations_in_non_fallback_triples": 0,
+      "fallback_violation_rate": 1.0,
+      "non_fallback_violation_rate": 0.0,
+      "position_breakdown": {
+        "head_fallback": 0,
+        "tail_fallback": 16,
+        "both_fallback": 0
+      },
+      "causal_attribution": {
+        "dr_caused_by_fallback": 16,
+        "dr_independent_of_fallback": 0,
+        "total_dr_violations": 16,
+        "explanation": "In S1 constrained decoding, DR violation implies S(t)∩G(t)=∅ fallback. Active semantic mask prevents DR violations, so dr_independent = 0 by construction."
+      },
+      "violation_examples": [
+        {
+          "doc_id": "P85-1019_sent3",
+          "relation": "Evaluate-for",
+          "head": "Plume",
+          "tail": "syntactic coverage",
+          "head_type": "OtherScientificTerm",
+          "tail_type": "Metric",
+          "head_fallback": false,
+          "tail_fallback": true,
+          "valid_heads": ["Generic", "Material", "Method", "Metric", "OtherScientificTerm", "Task"],
+          "valid_tails_for_head": ["Method"]
+        },
+        {
+          "doc_id": "INTERSPEECH_2008_20_abs_sent5",
+          "relation": "Evaluate-for",
+          "head": "results",
+          "tail": "mismatch",
+          "head_type": "OtherScientificTerm",
+          "tail_type": "Generic",
+          "head_fallback": false,
+          "tail_fallback": true,
+          "valid_heads": ["Generic", "Material", "Method", "Metric", "OtherScientificTerm", "Task"],
+          "valid_tails_for_head": ["Method"]
+        }
+      ]
+    },
+    "scierc_llama_ft_s1": {
+      "config": "scierc_llama_ft_s1",
+      "setting": "FT",
+      "n_docs": 551,
+      "total_triples": 1081,
+      "total_type_positions": 2162,
+      "fallback_count": 1,
+      "fallback_rate": 0.000463,
+      "triples_with_fallback": 1,
+      "triples_without_fallback": 1080,
+      "violations_in_fallback_triples": 1,
+      "violations_in_non_fallback_triples": 0,
+      "fallback_violation_rate": 1.0,
+      "non_fallback_violation_rate": 0.0,
+      "position_breakdown": {
+        "head_fallback": 0,
+        "tail_fallback": 1,
+        "both_fallback": 0
+      },
+      "causal_attribution": {
+        "dr_caused_by_fallback": 1,
+        "dr_independent_of_fallback": 0,
+        "total_dr_violations": 1,
+        "explanation": "In S1 constrained decoding, DR violation implies S(t)∩G(t)=∅ fallback. Active semantic mask prevents DR violations, so dr_independent = 0 by construction."
+      },
+      "violation_examples": [
+        {
+          "doc_id": "NIPS_2001_11_abs_sent4",
+          "relation": "Evaluate-for",
+          "head": "CID/DRAM analog array prototype",
+          "tail": "approach",
+          "head_type": "OtherScientificTerm",
+          "tail_type": "Generic",
+          "head_fallback": false,
+          "tail_fallback": true,
+          "valid_heads": ["Generic", "Material", "Method", "Metric", "OtherScientificTerm", "Task"],
+          "valid_tails_for_head": ["Method"]
+        }
+      ]
+    },
+    "scierc_llama_zs_s1": {
+      "config": "scierc_llama_zs_s1",
+      "setting": "ZS",
+      "n_docs": 550,
+      "total_triples": 1315,
+      "total_type_positions": 2630,
+      "fallback_count": 1,
+      "fallback_rate": 0.00038,
+      "triples_with_fallback": 1,
+      "triples_without_fallback": 1314,
+      "violations_in_fallback_triples": 1,
+      "violations_in_non_fallback_triples": 0,
+      "fallback_violation_rate": 1.0,
+      "non_fallback_violation_rate": 0.0,
+      "position_breakdown": {
+        "head_fallback": 0,
+        "tail_fallback": 1,
+        "both_fallback": 0
+      },
+      "causal_attribution": {
+        "dr_caused_by_fallback": 1,
+        "dr_independent_of_fallback": 0,
+        "total_dr_violations": 1,
+        "explanation": "In S1 constrained decoding, DR violation implies S(t)∩G(t)=∅ fallback. Active semantic mask prevents DR violations, so dr_independent = 0 by construction."
+      },
+      "violation_examples": [
+        {
+          "doc_id": "CVPR_2011_11_abs_sent2",
+          "relation": "Compare",
+          "head": "approach",
+          "tail": "problems",
+          "head_type": "Task",
+          "tail_type": "Generic",
+          "head_fallback": false,
+          "tail_fallback": true,
+          "valid_heads": ["Generic", "Material", "Method", "Metric", "OtherScientificTerm", "Task"],
+          "valid_tails_for_head": ["Task"]
+        }
+      ]
+    }
+  }
+}

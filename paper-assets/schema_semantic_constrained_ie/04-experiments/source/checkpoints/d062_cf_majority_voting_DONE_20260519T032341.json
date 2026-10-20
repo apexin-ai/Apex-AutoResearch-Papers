@@ -1,0 +1,78 @@
+{
+  "exp_id": "d062_cf_majority_voting",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:15:34.085Z",
+    "updated_at": "2026-05-19T03:23:41.243Z",
+    "hypothesis": "Majority voting over entity types within each document can reduce CF violations without significantly increasing DR violations, because the most frequent type assignment for each entity is likely the ontology-consistent one.",
+    "spec": {
+      "command": "python3 scripts/cf_majority_voting.py",
+      "server": "westd-16980",
+      "data_path": "/root/schema_semantic_constrained_ie/outputs/",
+      "data_count": 8,
+      "model_name": "n/a (post-hoc)",
+      "seed": 0,
+      "checkpoint_source": "n/a",
+      "checkpoint_path": "n/a",
+      "log_path": "outputs/cf_correction_report_*.json"
+    },
+    "metrics": {
+      "qwen_scierc_zs": {
+        "cf_before": 245,
+        "cf_after": 201,
+        "dr_rate_before": 0.0093,
+        "dr_rate_after": 0.0324
+      },
+      "llama_scierc_zs": {
+        "cf_before": 162,
+        "cf_after": 123,
+        "dr_rate_before": 0.0008,
+        "dr_rate_after": 0.0236
+      },
+      "qwen_docred_zs": {
+        "cf_before": 518,
+        "cf_after": 21,
+        "dr_rate_before": 0.1021,
+        "dr_rate_after": 0.1466
+      },
+      "llama_docred_zs": {
+        "cf_before": 1358,
+        "cf_after": 107,
+        "dr_rate_before": 0.0255,
+        "dr_rate_after": 0.1665
+      },
+      "qwen_scierc_ft": {
+        "cf_before": 21,
+        "cf_after": 12,
+        "dr_rate_before": 0,
+        "dr_rate_after": 0.0071
+      },
+      "llama_scierc_ft": {
+        "cf_before": 8,
+        "cf_after": 4,
+        "dr_rate_before": 0.0009,
+        "dr_rate_after": 0.0037
+      },
+      "qwen_docred_ft": {
+        "cf_before": 48,
+        "cf_after": 3,
+        "dr_rate_before": 0.0001,
+        "dr_rate_after": 0.0044
+      },
+      "llama_docred_ft": {
+        "cf_before": 41,
+        "cf_after": 2,
+        "dr_rate_before": 0.0021,
+        "dr_rate_after": 0.005
+      }
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-19T03:23:41.243Z"
+  },
+  "timestamp": "2026-05-19T03:23:41.480211+00:00",
+  "trigger": "update_registry"
+}

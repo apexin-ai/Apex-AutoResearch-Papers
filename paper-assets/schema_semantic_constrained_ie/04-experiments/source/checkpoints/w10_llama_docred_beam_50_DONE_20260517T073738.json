@@ -1,0 +1,49 @@
+{
+  "exp_id": "w10_llama_docred_beam_50",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T07:11:24.746Z",
+    "updated_at": "2026-05-17T07:37:38.035Z",
+    "hypothesis": "Beam search (k=4) on Llama DocRED will reduce DR and CF violations, completing the beam search matrix (3rd model-dataset combination). Llama's weaker entity typing on DocRED may limit DR elimination compared to Qwen.",
+    "spec": {
+      "command": "python run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_llama_beam_50.jsonl --decoding_strategy beam --num_beams 4 --device cuda:0 --max_samples 50",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "424211",
+      "model_name": "Llama-3.1-8B-Instruct (ZS)",
+      "data_path": "data/docred/dev.json",
+      "data_count": 50,
+      "seed": 42
+    },
+    "metrics": {
+      "ET_pct": 0,
+      "RV_pct": 0,
+      "DR_pct": 0,
+      "CF_pct": 0.94,
+      "E_F1": 55.62,
+      "R_F1": 9.47,
+      "parse_failures": 3,
+      "parse_fail_rate": 6,
+      "total_samples": 50,
+      "vs_greedy_full_s1": {
+        "DR_delta": -2.55,
+        "CF_delta": -11.08,
+        "E_F1_delta": 0.61,
+        "R_F1_delta": 3.2,
+        "note": "Greedy baseline from 998-doc full eval: DR=2.55%, CF=12.02%, E_F1=55.01, R_F1=6.27"
+      }
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/schema_semantic_constrained_ie/outputs/docred_llama_beam_50.jsonl",
+    "log_path": "~/runs/schema_semantic_constrained_ie/w10_llama_docred_beam_50.log",
+    "completed_at": "2026-05-17T07:37:38.035Z"
+  },
+  "timestamp": "2026-05-17T07:37:38.204996+00:00",
+  "trigger": "update_registry"
+}

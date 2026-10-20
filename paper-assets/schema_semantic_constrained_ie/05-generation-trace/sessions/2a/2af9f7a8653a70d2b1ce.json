@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2af9f7a8653a70d2b1ce",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code p1 llama ee ft prep",
+  "task_key": "worker_code_p1_llama_ee_ft_prep_20260518T214636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_p1_llama_ee_ft_prep_20260518T214636_result.json",
+    "occurrence": 1,
+    "bytes": 704,
+    "sha256": "31084aa10c14ee4e10b70a00a54d95095d526c74181bf60ff8689356775d22a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。westd-16980 上创建了 3 个文件：\n\n| 文件 | 说明 |\n|------|------|\n| `scripts/prepare_sft_data_wikievents_llama.py` | 用 Llama tokenizer 生成 SFT 数据 |\n| `scripts/train_lora_wikievents_llama.py` | LoRA 训练脚本，report_to=\"none\" |\n| `scripts/run_p1_ee_ft_llama.sh` | 全流程 bash 脚本（数据准备→训练→推理→评估→违规检查） |\n\n关键点：\n- 模型: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n- Qwen SFT 数据不兼容 Llama（chat template 不同），bash 脚本 Step 0 会自动生成 Llama 格式数据\n- 训练超参与 Qwen 版完全一致\n- 产出报告: `artifacts/p1_llama_ee_ft_prep.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-p1-llama-ee-ft-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b513b432721715f51d2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check 70b inference readonly",
+  "task_key": "worker_check_70b_inference_readonly_20260522T034921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_70b_inference_readonly_20260522T034921_result.json",
+    "occurrence": 1,
+    "bytes": 503,
+    "sha256": "be8e75eb4e0fe8595a630cd4698104c5458acdcfc4b526ccc2298986606e94fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nSciERC (cuda:0, PID 879994): 存活 (运行 1h29m), 已完成 315/551 样本 (57.2%)\nDocRED (cuda:1, PID 881085): 存活 (运行 1h16m), 已完成 56/998 样本 (5.6%)\nGPU0: VRAM 79190/97887 MiB, util 94%\nGPU1: VRAM 40921/97887 MiB, util 81%\n--max_samples 支持: 是 (line 858, 默认0=全部, 也支持 --max_docs 别名)\n```\n\nSciERC 进度正常，按当前速率预估还需约 1h 完成。DocRED 进度较慢（文档级 RE 每条样本更长），预估还需约 20h+。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-70b-inference-readonly.md"
+}

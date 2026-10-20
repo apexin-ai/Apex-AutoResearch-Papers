@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05b88b6a8cdbfab5b10e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh kill cascade start d067",
+  "task_key": "worker_ssh_kill_cascade_start_d067_20260519T232254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_cascade_start_d067_20260519T232254_result.json",
+    "occurrence": 1,
+    "bytes": 490,
+    "sha256": "e85d2aea52c8cb557a7a5830c07cc7392ffb6ba72a016e0c89261e85127611fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **Killed**: d064 llama docred beam4 cascade（PID 122747/99652/99651），已运行 4.5h\n- **Started**: d067 seed variance on GPU0（PID 132647），6 配置串行（qwen_scierc/llama_scierc/qwen_docred × seeds 123,456），每个跑 unconstrained + full_s1\n- **GPU 分配**: GPU0 → d067, GPU1 → d066 beam sweep（不干扰）\n- 因 GPU1 被 d066 占用，d067 全串行在 GPU0，预计 ~9h\n- 报告已写入 `artifacts/_project/report/d067_start.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-cascade-start-d067.md"
+}

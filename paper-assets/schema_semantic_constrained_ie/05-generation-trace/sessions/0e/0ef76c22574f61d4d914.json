@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0ef76c22574f61d4d914",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code w10 type consensus impl",
+  "task_key": "worker_code_w10_type_consensus_impl_20260517T050801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w10_type_consensus_impl_20260517T050801.log",
+    "occurrence": 1,
+    "bytes": 607497,
+    "sha256": "5ddeff6cb31ae56ba2d3762fe5ad11d283946fc09a3f566b797415bb2181d307"
+  },
+  "statistics": {
+    "messages": 173,
+    "user_turns": 0,
+    "tool_calls": 67,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 67,
+      "tool_result": 67,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 173,
+      "chunks": [
+        {
+          "path": "0ef76c22574f61d4d914-part-0001.json",
+          "message_count": 164
+        },
+        {
+          "path": "0ef76c22574f61d4d914-part-0002.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-w10-type-consensus-impl.md"
+}

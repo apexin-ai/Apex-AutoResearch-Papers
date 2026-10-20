@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34a1f92beaf0b30af8f4",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops submit w7 llama ft grammar only",
+  "task_key": "worker_ops_submit_w7_llama_ft_grammar_only_20260516T072603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_w7_llama_ft_grammar_only_20260516T072603_result.json",
+    "occurrence": 1,
+    "bytes": 588,
+    "sha256": "c67942790dad7c9d5d9a3652f7b8463dbb45fe25c5916f33f3284c842f56372d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动并在推理中。\n\n**提交结果**:\n- **实验 ID**: w7_llama_scierc_ft_grammar_only\n- **Checkpoint**: `/root/autodl-tmp/checkpoints/llama_lora_scierc_merged`\n- **PID**: 342707\n- **GPU**: cuda:0, 利用率 89%, 显存 17165 MiB / 97887 MiB\n- **tmux session**: `w7_llama_ft_grammar`\n- **日志**: `/tmp/w7_llama_scierc_ft_grammar_only.log`\n- **输出**: `outputs/w7_llama_scierc_ft_grammar_only.jsonl`\n- **样本数**: 551\n- **状态**: 推理进行中（已处理多个样本，pad_token_id 设置日志重复出现说明在逐条生成）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-w7-llama-ft-grammar-only.md"
+}

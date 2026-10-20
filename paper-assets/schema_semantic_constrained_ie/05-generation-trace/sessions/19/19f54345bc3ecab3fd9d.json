@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19f54345bc3ecab3fd9d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "diagnose d062 full ft scierc",
+  "task_key": "worker_diagnose_d062_full_ft_scierc_20260519T051152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_d062_full_ft_scierc_20260519T051152_result.json",
+    "occurrence": 1,
+    "bytes": 709,
+    "sha256": "92376b534ff583febf26d61dcb7f46bdf4f7849dc6404302298eedc9ec89c17d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**d062_full_ft_scierc 实验全流程已成功完成，cron 是误报。**\n\n关键事实：\n- 训练 333/333 steps 完成，eval_loss=0.0946，token accuracy=97.61%\n- 中间因磁盘空间不足导致首次 checkpoint 保存失败，但后续恢复保存成功（16.3GB model.safetensors）\n- 推理完成 551/551 samples（unconstrained + constrained 两个模式）\n- Constrained decoding 将 domain-range violation rate 从 2.74% 降至 0.0%\n- Entity F1=0.6478，Relation F1=0.3789\n\nCron 误报原因：脚本禁用了 W&B (`WANDB_DISABLED=true`) 且无 sentinel 文件，监控系统无法探测到进程存活。建议后续脚本加入 sentinel 文件写入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-d062-full-ft-scierc.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0cc6737ac95a4e761d88",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis w9 scierc sampling results",
+  "task_key": "worker_analysis_w9_scierc_sampling_results_20260516T203238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w9_scierc_sampling_results_20260516T203238_result.json",
+    "occurrence": 1,
+    "bytes": 489,
+    "sha256": "fbeeddb660b5d67fc215d4cecf37263f916a3ba91f72d0552abbcc47918b09cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结论：\n\n**Constraints 在 sampling 解码下完全 robust。** ET/RV 保持 0%，DR 从 0.93% 微降到 0.75%，CF 不变（~9.9%）。Entity F1 基本持平（+0.30），Relation F1 小幅下降（-0.94）。\n\n注意：v2 checker 计算的 greedy baseline F1（E=30.98, R=8.36）与任务描述中的数值（E=35.38, R=18.59）不一致，可能是之前使用了不同的评估方法。报告中已用同一 checker 做了 apples-to-apples 对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w9-scierc-sampling-results.md"
+}

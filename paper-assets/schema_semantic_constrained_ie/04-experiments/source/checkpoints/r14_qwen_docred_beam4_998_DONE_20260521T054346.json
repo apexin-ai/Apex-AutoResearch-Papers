@@ -1,0 +1,40 @@
+{
+  "exp_id": "r14_qwen_docred_beam4_998",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:20:43.999Z",
+    "updated_at": "2026-05-21T05:43:45.941Z",
+    "hypothesis": "Beam=4 S1 constrained on full DocRED 998-doc test set will show consistent DR elimination and R-F1 stability compared to 50-doc subset, addressing reviewer concern about subset representativeness",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path /root/autodl-tmp/schema_outputs/r14_qwen_docred_beam4_998.jsonl --device cuda:0 --max_new_tokens 4096 --seed 42 --decoding_strategy beam --num_beams 4 --skip_on_error",
+      "server": "westd-21461",
+      "data_path": "data/docred/dev.json",
+      "data_count": 998,
+      "model_name": "Qwen3-8B (zero-shot)",
+      "seed": 42,
+      "checkpoint_source": "N/A (zero-shot)",
+      "log_path": "/root/autodl-tmp/schema_outputs/r14_qwen_docred_beam4_998.log",
+      "checkpoint_path": "N/A"
+    },
+    "metrics": {
+      "E_F1": 58.19,
+      "R_F1": 8.72,
+      "DR_pct": 0,
+      "RV_pct": 0,
+      "ET_pct": 0,
+      "CF_pct": 4.94,
+      "parse_fail_pct": 3.51,
+      "samples": 998,
+      "success": 963,
+      "fail": 35
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T05:43:45.941Z"
+  },
+  "timestamp": "2026-05-21T05:43:46.436924+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "exp_id": "eval_70b_zs_docred_200_full_s1",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:41:26.371Z",
+    "updated_at": "2026-05-23T02:30:50.739Z",
+    "hypothesis": "Full S1 (grammar+semantic) constraints on 70B ZS DocRED should achieve DR close to semantic_only (1.66%) since grammar adds zero DR contribution in ZS setting. R_F1 should remain ~13 (matching unconstrained 13.25). This completes the ZS DocRED ablation matrix.",
+    "parent": "eval_70b_zs_docred_200_unconstrained",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python run_constrained_extraction.py --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-70B-Instruct-AWQ-INT4 --data_path data/docred/dev.json --dataset docred --mode full_s1 --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/70b_zs_docred_200_full_s1.jsonl --max_new_tokens 4096 --max_samples 200",
+      "server": "westd-21461",
+      "gpu": "cuda:0",
+      "pid": 88678,
+      "data_path": "data/docred/dev.json",
+      "data_count": 200,
+      "model_name": "Llama-3.1-70B-Instruct-AWQ-INT4 (zero-shot)",
+      "seed": 42,
+      "checkpoint_source": "N/A (zero-shot)",
+      "eval_data": "DocRED dev 200 docs",
+      "checkpoint_path": "N/A",
+      "log_path": "/tmp/70b_zs_docred_200_full_s1.log"
+    },
+    "metrics": {
+      "DR%": 0,
+      "RV%": 0,
+      "ET%": 0,
+      "CF%": 5.34,
+      "E-F1": 70.05,
+      "R-F1": 13.25,
+      "PF%": 0,
+      "entities_pred": 3234,
+      "relations_pred": 2637,
+      "triples_checked": 2642
+    },
+    "checkpoint_path": "/root/schema_semantic_constrained_ie/outputs/70b_zs_docred_200_full_s1.jsonl",
+    "log_path": "/tmp/70b_zs_docred_200_full_s1.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-23T02:30:50.739Z"
+  },
+  "timestamp": "2026-05-23T02:30:51.069733+00:00",
+  "trigger": "update_registry"
+}

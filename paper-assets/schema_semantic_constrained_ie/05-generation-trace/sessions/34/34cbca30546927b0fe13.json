@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34cbca30546927b0fe13",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "exp 70b lora docred beam4",
+  "task_key": "worker_exp_70b-lora-docred-beam4_20260522T170455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_70b-lora-docred-beam4_20260522T170455_result.json",
+    "occurrence": 1,
+    "bytes": 529,
+    "sha256": "ae9232cd3f41728c10c3eaf021b2150bf4362a063a5b04b913e6bd36cd32d28d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动并配置完成：\n\n- **实验**: `eval_70b_lora_docred_200_beam4_s1`\n- **服务器**: westd-21461, GPU1 (CUDA_VISIBLE_DEVICES=1)\n- **PID**: 70638\n- **配置**: 70B AWQ+LoRA, DocRED 200-doc, beam k=4, full_s1\n- **预计时长**: ~1.8h（32s/sample）\n- **修复**: PEFT `awq.py` 和 `tuners_utils.py` 已 patch 以支持 AwqMarlinLinear + LoRA（原始文件备份为 `.bak`）\n- **Registry**: RUNNING，parent = eval_70b_lora_docred_200_s1_constrained\n- **Cron**: 每 12 分钟监控进度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-70b-lora-docred-beam4.md"
+}

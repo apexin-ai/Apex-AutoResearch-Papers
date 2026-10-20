@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c39b541db8fad4c9ec3",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops progress check 20260516T134",
+  "task_key": "worker_ops_progress_check_20260516T134_20260516T145835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_progress_check_20260516T134_20260516T145835_result.json",
+    "occurrence": 1,
+    "bytes": 809,
+    "sha256": "0b321cb7831dde0b1180b3e65ccc5b3f126a489c15b278bddb68a493845155df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== westd-16980 ===\nw8_llama_docred_ft_semantic_only:\n  PID: alive (2h26m, cuda:1)\n  GPU util: 87%, 16.9/97.9 GB\n  Progress: 582/998 (58.3%)\n  Last log: [488/998] Peace on Earth/Little Drummer Boy: OK E=24 R=10 11.7s\n  ETA: ~1.5h\n\n=== westd-21461 ===\nw8_qwen_docred_ft_grammar_only:\n  PID: alive (5h31m, cuda:0)\n  GPU util: 86%, 18.9/97.9 GB\n  Progress: 943/998 (94.5%)\n  Last log: [823/998] O'Shaughnessy Dam (Ohio): OK E=13 R=15 13.7s\n  ETA: ~20min\n\nw8_qwen_docred_ft_semantic_only:\n  PID: alive (4h49m, cuda:1)\n  GPU util: 85%, 18.9/97.9 GB\n  Progress: 777/998 (77.9%)\n  Last log: [656/998] Brazil–Pakistan relations: FAIL E=0 R=0 76.9s\n  ETA: ~1.4h\n```\n\n三个实验都在正常运行。`grammar_only` 即将完成（~20min），另两个预计 1.5h 左右。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-progress-check-20260516t134.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fecf818d98339e3062a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code d064 beam sweep prep",
+  "task_key": "worker_code_d064_beam_sweep_prep_20260519T151214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d064_beam_sweep_prep_20260519T151214_result.json",
+    "occurrence": 1,
+    "bytes": 926,
+    "sha256": "694f7104fe6c2007ed2a41bbbf32c1c975552f5c09f88e73d07f1b117de85e4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**已部署 3 个脚本到两台服务器**，dry-run 全部通过：\n\n| 服务器 | 脚本 | 任务 | 预估耗时 |\n|--------|------|------|---------|\n| westd-21461 | `d066_beam_sweep_scierc.sh` | Llama+Qwen × SciERC × beam 1,2,4,8 × unc/con | ~1h |\n| westd-16980 | `d066_beam_sweep_docred.sh` | Llama+Qwen × DocRED × beam 1,2,4,8 × unc/con | ~45h |\n| 两台 | `d066_analyze_beam_sweep.py` | 汇总 latency + violation rates + F1 | <1min |\n\n**关键设计**：\n- 推理脚本已内置 per-sample `inference_time_seconds`，无需额外计时\n- Violation checker 集成在 sweep 脚本末尾自动运行\n- 支持 resume（检查已完成输出，跳过）\n- 两 GPU 并行（GPU0=Llama, GPU1=Qwen）\n\n**启动方式**：d064 GPU 释放后直接 `nohup bash scripts/d066_beam_sweep_*.sh &`\n\n报告已写入 `artifacts/_project/report/d066_beam_sweep_prep.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d064-beam-sweep-prep.md"
+}

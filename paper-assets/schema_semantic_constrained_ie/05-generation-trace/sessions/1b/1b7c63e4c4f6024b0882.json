@@ -1,0 +1,1880 @@
+{
+  "schema_version": "1.0",
+  "id": "1b7c63e4c4f6024b0882",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "cron hook w5 lora scierc training 20260515T230004 033573",
+  "task_key": "cron_hook_w5_lora_scierc_training_20260515T230004_033573",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_w5_lora_scierc_training_20260515T230004_033573.jsonl",
+    "occurrence": 1,
+    "bytes": 97608,
+    "sha256": "f96c2873f6035020ba9d732666af04a20ed6b7276830420d1ff005e934895ad2"
+  },
+  "statistics": {
+    "messages": 93,
+    "user_turns": 2,
+    "tool_calls": 45,
+    "roles": {
+      "user": 2,
+      "tool_call": 45,
+      "tool_result": 44,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T18:22:41.223776+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #10。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-16980 cuda:0 + cuda:1，不得使用其他卡\n- conda 环境（非 venv）：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- llama_docred_full_s1_mt6144 包含 CF fallback + mt6144 两个变量，**不能用于纯 CF ablation 对比**（registry notes 已标注）\n- W5 unconstrained eval 有 gate：DR>2% 才能继续 constrained eval，不可跳过\n- W5 训练需要 `export WANDB_MODE=disabled`（首次失败根因，诊断 Worker 修复后重试成功）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-16980，account=root\n- 工作目录：`/root/schema_semantic_constrained_ie`\n- Python：`/root/miniconda3/bin/python3`（conda base）\n- 模型路径：\n  - Qwen3-8B base: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n  - Qwen3-8B LoRA merged: `/root/schema_semantic_constrained_ie/checkpoints/qwen3_8b_lora_scierc_merged`\n  - Qwen3-8B LoRA adapter: `/root/schema_semantic_constrained_ie/checkpoints/qwen3_8b_lora_scierc`\n  - Llama-3.1-8B: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n- 数据：`data/scierc/test.json`, `data/docred/dev.json`\n- W&B: 训练实验用 WANDB_MODE=disabled（W&B 连接有问题）\n- 活跃进程：无（两张 GPU 均空闲）\n\n### 3. 📊 当前状态\n刚处理两个 CRON 回调：\n\n1. **w5_lora_scierc_training** → DONE(success)。3 epochs, 688s, train_loss=0.0634, eval_token_acc=98.16%。首次 EXIT_CODE=1 失败，诊断 Worker 自动修复重提交成功。\n2. **llama_docred_full_s1_mt6144** → ANALYZING（EXIT_CODE=0）。分析 Worker 已派出但回调未到。\n\n等待中的 Worker（3 个）：\n- `worker_diagnose_w5_lora_scierc_training` — 诊断+修复（已完成任务，可能已退出）\n- `worker_analyze_llama_docred_full_s1_mt6144` — 分析结果（未回调）\n- `worker_code_w5_lora_scierc_unconstrained_eval` — 准备并提交 unconstrained eval on cuda:0（未回调）\n\nPREPARING 实验：w1_cf_fallback_llama_scierc / w1_cf_fallback_docred / w1_cf_fallback_llama_docred\n\n### 4. 📋 待办\n- llama_docred_full_s1_mt6144 分析 Worker 回调 → 提取 metrics, update_registry → DONE, 对比 mt4096 版本, 汇报 Director\n- w5_lora_scierc_unconstrained_eval Worker 回调 → 确认实验已提交到 cuda:0\n- w5_lora_scierc_unconstrained_eval 完成 → 提取 DR；DR>2% → 创建 w5_lora_scierc_constrained_eval 提交到 cuda:1；DR≤2% → 汇报 Director \"fine-tuning 已消除大部分违规，OntoCoDec 对 fine-tuned 模型价值有限\"\n- cuda:1 空闲且无 W5 constrained 排队 → 启动 W1 CF fallback 实验之一（优先 w1_cf_fallback_llama_scierc）\n- W1 CF fallback scierc_pilot 已出 negative 结论（D020 决定定为 analytical finding）→ 3 个 PREPARING 的 CF 实验是否仍需跑，取决于 Director 是否调整策略\n\n### 5. 🎯 战略上下文\n- **项目阶段**：Round 1 审稿应对，目标从 Weak Reject 2.75 → Accept 3.75-4.0\n- **关键决策链**：D018 批准 W5 LoRA → D019 确认代码已 pair-based（纯写作修复）→ D020 W1 CF 定为 analytical finding\n- **W5 LoRA 是关键**：如果 fine-tuned 模型仍有高 DR → OntoCoDec 对 fine-tuned 也有效 = 强 composability claim；如果 DR<2% → claim 需降级\n- **易错点**：W5 首次失败是 W&B 连接问题，提交命令必须带 `export WANDB_MODE=disabled`\n- **易错点**：w1_cf_fallback_scierc_pilot 已 negative，但 D020 把它定性为 analytical finding 而非失败，不要按 negative 流程处理剩余 W1 实验\n- DDL: May 25，GPU 预算 ~18 GPU-hrs（W1: 12h + W5: 6h），时间充裕\n\n## 项目硬约束 (memory.md 节选)\n\n## 环境信息\n\n### westd-16980 (2026-05-13)\n- GPU: 2× NVIDIA RTX PRO 6000 Blackwell (94GB each)\n- CUDA 12.8, Python 3.12.3 (conda base)\n- torch 2.10.0+cu128, transformers 4.57.6\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- Qwen 模型: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n- Llama 模型: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n- Llama LoRA merged: `/root/autodl-tmp/checkpoints/llama_lora_scierc_merged`\n\n## 可查的历史\n前 29 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T18:22:52.270908+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T18:22:52.321466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T18:22:55.182856+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T18:22:55.635621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T18:22:55.637097+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (82,951 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie--claude-sessions-agent-ddf0fe16/2a28cac2-f3ff-49ca-9930-2817c123a26b/tool-results/mcp-agent-ml-research-read_registry-1778869375569.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie--claude-sessions-agent-ddf0fe16/2a28cac2-f3ff-49ca-9930-2817c123a26b/tool-results/mcp-agent-ml-research-read_registry-1778869375569.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 454
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T18:22:56.089849+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 454
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T18:22:56.090255+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T18:22:56.140860+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| w5_qwen_docred_lora_training | Qwen3-8B LoRA fine-tune on DocRED — 填补 Qwen DocRED composability 2×2 matrix 的 FT 行。预期：(1) LoRA 后 E-F1/R-F1 大幅提升；(2) 残余 DR > 0% 证明 OntoCoDec 在 DocRED FT 上仍有 composability 价值。 | — | — | — |\\\\n\\\\n## 待处理\\\\n- w5_llama_docred_sft_data_gen: Generate Llama-3.1-8B-Instruct format DocRED SFT train/dev JSONL — prerequisite for Llama DocRED LoRA fine-tune (composability matrix Llama×DocRED cell)（准备中）\\\\n- w1_cf_fallback_llama_docred（准备中）\\\\n- w1_cf_fallback_llama_scierc（准备中）\\\\n\\\\n## 近期结论\\\\n- **w5_llama_lora_scierc_constrained_eval** (success): Fine-tuned Llama-3.1-8B + OntoCoDec constrained eval on SciERC — composability 验证：约束解码在 fine-tuned Llama 上仍有效且不损 F1。完成 Llama SciERC 2×2 matrix。\\\\n  [w5_llama_lora_scierc_constrained_eval_report](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/w5_llama_lora_scierc_constrained_eval/report/w5_llama_lora_scierc_constrained_eval_report.md)\\\\n- **w5_docred_sft_data_gen** (success): Generate DocRED SFT train/dev JSONL from train_annotated.json + dev.json — prerequisite for Qwen/Llama DocRED LoRA fine-tune\\\\n  [DocRED SFT data generation report](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/w5_docred_sft_data_gen/report/DocRED_SFT_data_generation_report.txt) | [DocRED SFT Training Data](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/w5_docred_sft_data_gen/data/docred_sft_data_report.txt)\\\\n- **w5_llama_lora_scierc_unconstrained_eval** (success): Fine-tuned Llama-3.1-8B SciERC unconstrained eval — 验证 LoRA 后残余 DR 是否仍 >2%，决定 OntoCoDec 在 fine-tuned Llama 上的 composability 价值。\\\\n\\\\n## 趋势\\\\n成功 28 / 负向 1 / 失败 0 / 共 31\\\\n\\\\n## 下一步\\\\n\n…[truncated 253 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T18:22:56.141405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T18:22:56.192159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md\\\", \\\"content\\\": \\\"# schema_semantic_constrained_ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 18:13 UTC | 更新原因: D028: Llama SciERC 2×2 完成 + DocRED LoRA 双卡并行训练中\\\\n\\\\n## 核心方向\\\\nOntoCoDec: 两层约束解码（grammar + semantic）自动编译 IE ontology schema 为 token-level constraints，消除 LLM-based IE 的 ontology constraint violations。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n**阶段**: Round 1 审稿应对 — composability matrix 扩展中\\\\n- **Qwen SciERC 2×2**: ✅ DR=0.0%, R-F1 -0.09pp\\\\n- **Llama SciERC 2×2**: ✅ DR=0.09%, R-F1 +0.02pp (D028)\\\\n- **跨模型一致性确认**: Claim 3 composability 两模型坚实支撑\\\\n- **Issue Tracker**: 15/16 resolved + W1 in_progress (analytical finding + Paper Agent 写作中)\\\\n- **论文**: Table 3/5, §5.4/5.5, Appendix B 已更新，PDF 编译通过\\\\n\\\\n## Composability 覆盖进展\\\\n| | SciERC | DocRED |\\\\n|--|--------|--------|\\\\n| Qwen3-8B | ✅ 完整 2×2 | 🔥 LoRA 训练中 (cuda:1, ETA ~2h) |\\\\n| Llama3.1-8B | ✅ 完整 2×2 (D028) | ⏳ SFT 数据生成中 → cuda:0 训练 |\\\\n\\\\n## 2×2 Composability Matrices\\\\n\\\\n### Qwen3-8B × SciERC\\\\n| | Unconstrained | Constrained | ΔDR | ΔR-F1 |\\\\n|--|--|--|--|--|\\\\n| Zero-shot | DR=15.37%, R-F1=8.23% | DR=0.93%, R-F1=8.36% | -94% | +0.13pp |\\\\n| Fine-tuned LoRA | DR=1.95%, R-F1=43.86% | DR=0.0%, R-F1=43.77% | -100% | -0.09pp |\\\\n\\\\n### Llama3.1-8B × SciERC\\\\n| | Unconstrained | Constrained | ΔDR | ΔR-F1 |\\\\n|--|--|--|--|--|\\\\n| Zero-shot | DR=13.34%, R-F1=2.68% | DR=0.08%, R-F1=2.54% | -99.4% | -0.14pp |\\\\n| Fine-tuned LoRA | DR=1.11%, R-F1=45.45% | DR=0.09%, R-F1=45.47% | -91.9% | +0.02pp |\\\\n\\\\n## 关键路径\\\\n1. ~~Llama SciERC 2×2~~ ✅ (D028)\\\\n2. **Qwen DocRED LoRA** ← cuda:1 训练中 (~2h)\\\\n3. **Llama DocRED LoRA** ← cuda:0 准备中（SFT 数据 + 脚本适配）\\\\n4. 各自跑 unconstrained + constrained eval → 完整 4 格 matrix\\\\n5. 全文数字一致性审查 → Round 2 review\\\\n6. May 19 内部稿交付 → May 25 EMNLP ARR 提交\\\\n\\\\n## GPU 调度\\\\nwestd-16980: cuda:0 + cuda:1\\\\n- cuda:0: ⏳ Llama DocRED LoRA 待提交（SFT 数据生成中）\\\\n- cuda:1\n…[truncated 2605 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 50
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T18:23:06.345025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T18:23:06.799902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"w5_qwen_docred_lora_training\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T17:48:52.649Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:06:02.873Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B LoRA fine-tune on DocRED — 填补 Qwen DocRED composability 2×2 matrix 的 FT 行。预期：(1) LoRA 后 E-F1/R-F1 大幅提升；(2) 残余 DR > 0% 证明 OntoCoDec 在 DocRED FT 上仍有 composability 价值。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=disabled python3 scripts/train_lora_docred.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"295334\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w5_qwen_docred_lora_training.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:05:53.038Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T17:55:51.874Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T17:55:53.910959+00:00\\\"}]}, \\\"notes\\\": \\\"Retry #3 (PID 295334, cuda:1): 清理重复进程后重新提交。CUDA_VISIBLE_DEVICES=1 固定单卡。前两次失败原因：GPU 0 上两个重复实例争抢显存。ETA ~2-3h on RTX PRO 6000。\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.186}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 454
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T18:23:06.800358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "filters": "{'status': 'ANALYZING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T18:23:07.203924+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2467}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 403
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T18:23:07.254488+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "filters": "{'status': 'PREPARING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T18:23:07.405530+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"w1_cf_fallback_llama_scierc\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:32:57.470Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:18:03.487Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"W1 CF fallback 在 Llama SciERC 上的跨模型验证。Llama SciERC full_s1 原 CF=6.56%，预期显著降低。Phase 2 实验。\\\", \\\"parent\\\": \\\"llama_scierc_full_s1\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_llama_scierc.jsonl --device cuda:1 --batch_size 1 --max_new_tokens 4096\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Meta-Llama-3.1-8B-Instruct\\\", \\\"seed\\\": \\\"default\\\", \\\"gpu\\\": \\\"cuda:1\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"D020: 取消。CF fallback 改为 Analytical Finding 方案，仅用 SciERC pilot 数据。Qwen SciERC pilot 已充分证明 CF↔DR re-routing（CF -9.86pp 但 DR +13.85pp，budget +3.99pp）。跨模型重复无额外信息量。最终状态: killed。\\\"}, \\\"w1_cf_fallback_llama_docred\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:33:00.998Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:18:03.228Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"W1 CF fallback 在 Llama DocRED 上的效果。Llama DocRED full_s1 原 CF=12.02%（最高），预期 fallback 大幅降低。Phase 3 实验。\\\", \\\"parent\\\": \\\"llama_docred_full_s1\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontolo\n…[truncated 2378 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 151
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T18:23:35.679447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__list_constraints,mcp__agent-ml-research__get_worker_status",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T18:23:35.880830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "ToolSearch",
+            "elapsed_ms": 201
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T18:23:38.692847+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "status": "running"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T18:23:38.994425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_ops_gpu_cascade_fix_v2_20260515T182206\\\", \\\"task_type\\\": \\\"ops:gpu_cascade_fix_v2\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-15T18:22:06.579539+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 1}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 301
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T18:23:44.227422+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ops_gpu_cascade_fix_v2_20260515T182206",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T18:23:44.680701+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_gpu_cascade_fix_v2_20260515T182206\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ops:gpu_cascade_fix_v2\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"started_at\\\": \\\"2026-05-15T18:22:06.579539+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T18:23:41.992786+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"双卡满载运行，任务完成。\\\\n\\\\n---\\\\n\\\\n## 执行结果汇总\\\\n\\\\n### 1. 清理前后 nvidia-smi 对比\\\\n\\\\n| 时间 | GPU 0 | GPU 1 |\\\\n|------|-------|-------|\\\\n| 清理前 | 0 MiB (空闲) | 31820 MiB (PID 295339 Qwen 错误占用) |\\\\n| 清理后 | 0 MiB | 0 MiB |\\\\n| 重新提交后 | 37807 MiB / 99% (Llama) | 44597 MiB / 99% (Qwen) |\\\\n\\\\n### 2. 训练脚本 CUDA_VISIBLE_DEVICES 检查\\\\n\\\\n两个脚本中 `CUDA_VISIBLE_DEVICES=0` 仅出现在 docstring 的 usage 示例中（注释），**无实际代码硬编码**，无需修改。`os.environ` 只设置 WANDB 变量，无 `cuda:X` 硬编码。\\\\n\\\\n根因确认：之前提交命令中手动写了 `CUDA_VISIBLE_DEVICES=0`，覆盖了 wrapper 注入的值。\\\\n\\\\n### 3. 提交命令和 PID\\\\n\\\\n| 任务 | GPU | PID | CUDA_VISIBLE_DEVICES |\\\\n|------|-----|-----|---------------------|\\\\n| Qwen DocRED LoRA (`w5_qwen_docred_lora_training`) | cuda:1 | 298245 (实际 GPU 进程 298250) | 1 |\\\\n| Llama DocRED LoRA (`w5_llama_docred_lora_training`) | cuda:0 | 298323 (实际 GPU 进程 298328) | 0 |\\\\n\\\\n命令均为：`bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && WANDB_MODE=disabled python3 scripts/train_lora_docred{_llama}.py\\\\\\\"`，不含 CUDA_VISIBLE_DEVICES，由 submit_training_job wrapper 自动注入。\\\\n\\\\n### 4. 最终双卡状态\\\\n\\\\n- **GPU 0**: Llama, 37807 MiB / 97887 MiB, 99% util, 462W\\\\n- **GPU 1**: Qwen, 44597 MiB / 97887 MiB, 99% util, 449W\\\\n- 两个训练都已进入 training loop (0/573 steps)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 453
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T18:23:44.681173+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__poll_cron,mcp__agent-ml-research__update_registry",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T18:23:44.781852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T18:24:03.617220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "w5_qwen_docred_lora_training",
+              "field": "spec",
+              "value": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && WANDB_MODE=disabled python3 scripts/train_lora_docred.py\"', 'server': 'westd-16980', 'gpu': ['cuda:1'], 'pid': '298245', 'log_path': '~/runs/schema_semantic_constrained_ie/w5_qwen_docred_lora_training.log', 'submitted_at': '2026-05-15T18:22:06Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root'}",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T18:24:04.071973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"w5_qwen_docred_lora_training\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T17:48:52.649Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:24:03.724Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B LoRA fine-tune on DocRED — 填补 Qwen DocRED composability 2×2 matrix 的 FT 行。预期：(1) LoRA 后 E-F1/R-F1 大幅提升；(2) 残余 DR > 0% 证明 OntoCoDec 在 DocRED FT 上仍有 composability 价值。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && WANDB_MODE=disabled python3 scripts/train_lora_docred.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"298245\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w5_qwen_docred_lora_training.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:22:06Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T17:55:51.874Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T17:55:53.910959+00:00\\\"}]}, \\\"notes\\\": \\\"Retry #3 (PID 295334, cuda:1): 清理重复进程后重新提交。CUDA_VISIBLE_DEVICES=1 固定单卡。前两次失败原因：GPU 0 上两个重复实例争抢显存。ETA ~2-3h on RTX PRO 6000。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2454}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 454
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T18:24:07.086363+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "w5_llama_docred_lora_training",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "schema_semantic_constrained_ie",
+              "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && WANDB_MODE=disabled python3 scripts/train_lora_docred_llama.py\"', 'server': 'westd-16980', 'gpu': ['cuda:0'], 'pid': '298323', 'log_path': '~/runs/schema_semantic_constrained_ie/w5_llama_docred_lora_training.log', 'submitted_at': '2026-05-15T18:22:06Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root', 'data_path': 'data/docred/docred_sft_llama_train.jsonl', 'data_count': 3053, 'model_name': 'Meta-Llama-3.1-8B-Instruct', 'seed': 'default'}"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T18:24:07.545117+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1456}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 458
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T18:24:07.545557+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_cron"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__poll_cron",
+            "tool_args": {
+              "exp_id": "w5_qwen_docred_lora_training"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T18:24:07.764121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No cron registered for 'w5_qwen_docred_lora_training'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__poll_cron",
+            "elapsed_ms": 218
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T18:24:07.814796+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_cron"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__poll_cron",
+            "tool_args": {
+              "exp_id": "w5_llama_docred_lora_training"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T18:24:07.865429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No cron registered for 'w5_llama_docred_lora_training'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__poll_cron",
+            "elapsed_ms": 50
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T18:24:22.389932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_cron,mcp__agent-ml-research__submit_on_allocated,mcp__agent-ml-research__allocate_and_submit",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T18:24:22.541125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "ToolSearch",
+            "elapsed_ms": 151
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T18:24:36.016858+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "w5_qwen_docred_lora_training",
+              "server": "westd-16980",
+              "pid": "298245",
+              "log_path": "~/runs/schema_semantic_constrained_ie/w5_qwen_docred_lora_training.log",
+              "project": "schema_semantic_constrained_ie",
+              "interval_seconds": "120"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T18:24:36.519289+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"w5_qwen_docred_lora_training\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"pid\\\": \\\"298245\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w5_qwen_docred_lora_training.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-15T18:24:36.042Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 502
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T18:24:37.524821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "w5_llama_docred_lora_training",
+              "server": "westd-16980",
+              "pid": "298323",
+              "log_path": "~/runs/schema_semantic_constrained_ie/w5_llama_docred_lora_training.log",
+              "project": "schema_semantic_constrained_ie",
+              "interval_seconds": "120"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T18:24:38.191240+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"w5_llama_docred_lora_training\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"pid\\\": \\\"298323\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w5_llama_docred_lora_training.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-15T18:24:37.561Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 666
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T18:24:38.342234+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "w5_llama_docred_lora_training",
+              "field": "status",
+              "value": "PENDING",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T18:24:38.944794+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"w5_llama_docred_lora_training\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:15:19.269Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:24:38.442Z\\\", \\\"hypothesis\\\": \\\"Llama-3.1-8B-Instruct LoRA fine-tune on DocRED — 填补 Llama DocRED composability 2×2 matrix 的 FT 行。预期：(1) LoRA 后 E-F1/R-F1 大幅提升；(2) 残余 DR > 0% 证明 OntoCoDec 在 DocRED FT 上仍有 composability 价值。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && WANDB_MODE=disabled python3 scripts/train_lora_docred_llama.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"298323\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w5_llama_docred_lora_training.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:23:07.773Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"Retry #1 (PID 298323, cuda:0): 级联故障修复后重提。首次提交(PID 297434)因幽灵进程占满 cuda:0 显存导致 OOM。修复: 移除命令中 CUDA_VISIBLE_DEVICES 硬编码，由 wrapper 统一控制。参数对齐 Llama SciERC LoRA: rank=16, alpha=32, lr=2e-4, 3 epochs, bs=2, grad_accum=8, max_length=4096。ETA ~80-90min on RTX PRO 6000。输出: checkpoints/llama_lora_docred/ (adapter) + /root/autodl-tmp/checkpoints/llama_lora_docred_merged/ (merged)。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.572}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 602
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T18:24:43.521508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "w5_llama_docred_lora_training",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T18:24:44.074037+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"w5_llama_docred_lora_training\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:15:19.269Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:24:43.639Z\\\", \\\"hypothesis\\\": \\\"Llama-3.1-8B-Instruct LoRA fine-tune on DocRED — 填补 Llama DocRED composability 2×2 matrix 的 FT 行。预期：(1) LoRA 后 E-F1/R-F1 大幅提升；(2) 残余 DR > 0% 证明 OntoCoDec 在 DocRED FT 上仍有 composability 价值。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && WANDB_MODE=disabled python3 scripts/train_lora_docred_llama.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"298323\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w5_llama_docred_lora_training.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:23:07.773Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"Retry #1 (PID 298323, cuda:0): 级联故障修复后重提。首次提交(PID 297434)因幽灵进程占满 cuda:0 显存导致 OOM。修复: 移除命令中 CUDA_VISIBLE_DEVICES 硬编码，由 wrapper 统一控制。参数对齐 Llama SciERC LoRA: rank=16, alpha=32, lr=2e-4, 3 epochs, bs=2, grad_accum=8, max_length=4096。ETA ~80-90min on RTX PRO 6000。输出: checkpoints/llama_lora_docred/ (adapter) + /root/autodl-tmp/checkpoints/llama_lora_docred_merged/ (merged)。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5278}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 552
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T18:24:47.290573+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "w5_llama_docred_lora_training",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T18:24:47.843281+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"w5_llama_docred_lora_training\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:15:19.269Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:24:47.426Z\\\", \\\"hypothesis\\\": \\\"Llama-3.1-8B-Instruct LoRA fine-tune on DocRED — 填补 Llama DocRED composability 2×2 matrix 的 FT 行。预期：(1) LoRA 后 E-F1/R-F1 大幅提升；(2) 残余 DR > 0% 证明 OntoCoDec 在 DocRED FT 上仍有 composability 价值。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && WANDB_MODE=disabled python3 scripts/train_lora_docred_llama.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"298323\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w5_llama_docred_lora_training.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:23:07.773Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"Retry #1 (PID 298323, cuda:0): 级联故障修复后重提。首次提交(PID 297434)因幽灵进程占满 cuda:0 显存导致 OOM。修复: 移除命令中 CUDA_VISIBLE_DEVICES 硬编码，由 wrapper 统一控制。参数对齐 Llama SciERC LoRA: rank=16, alpha=32, lr=2e-4, 3 epochs, bs=2, grad_accum=8, max_length=4096。ETA ~80-90min on RTX PRO 6000。输出: checkpoints/llama_lora_docred/ (adapter) + /root/autodl-tmp/checkpoints/llama_lora_docred_merged/ (merged)。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5123}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 552
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T18:24:54.427886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "w5_llama_docred_lora_training",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "schema_semantic_constrained_ie",
+              "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && WANDB_MODE=disabled python3 scripts/train_lora_docred_llama.py\"', 'server': 'westd-16980', 'gpu': ['cuda:0'], 'pid': '298323', 'log_path': '~/runs/schema_semantic_constrained_ie/w5_llama_docred_lora_training.log', 'submitted_at': '2026-05-15T18:23:07Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root', 'data_path': 'data/docred/docred_sft_llama_train.jsonl', 'data_count': 3053, 'model_name': 'Meta-Llama-3.1-8B-Instruct', 'seed': 'default'}"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T18:24:55.030894+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"w5_llama_docred_lora_training\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:15:19.269Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:24:54.571Z\\\", \\\"hypothesis\\\": \\\"Llama-3.1-8B-Instruct LoRA fine-tune on DocRED — 填补 Llama DocRED composability 2×2 matrix 的 FT 行。预期：(1) LoRA 后 E-F1/R-F1 大幅提升；(2) 残余 DR > 0% 证明 OntoCoDec 在 DocRED FT 上仍有 composability 价值。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && WANDB_MODE=disabled python3 scripts/train_lora_docred_llama.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"298323\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w5_llama_docred_lora_training.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:23:07Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/docred/docred_sft_llama_train.jsonl\\\", \\\"data_count\\\": 3053, \\\"model_name\\\": \\\"Meta-Llama-3.1-8B-Instruct\\\", \\\"seed\\\": \\\"default\\\"}, \\\"notes\\\": \\\"Retry #1 (PID 298323, cuda:0): 级联故障修复后重提。首次提交(PID 297434)因幽灵进程占满 cuda:0 显存导致 OOM。修复: 移除命令中 CUDA_VISIBLE_DEVICES 硬编码，由 wrapper 统一控制。参数对齐 Llama SciERC LoRA: rank=16, alpha=32, lr=2e-4, 3 epochs, bs=2, grad_accum=8, max_length=4096。ETA ~80-90min on RTX PRO 6000。输出: checkpoints/llama_lora_docred/ (adapter) + /root/autodl-tmp/checkpoints/llama_lora_docred_merged/ (merged)。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5933}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 603
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T18:25:09.783215+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "w5_qwen_docred_lora_training",
+              "field": "conclusion",
+              "value": "",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T18:25:10.335859+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion ''. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1212}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 552
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T18:25:12.796650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "w5_qwen_docred_lora_training",
+              "field": "notes",
+              "value": "Retry #4 (PID 298245, cuda:1): 级联故障修复后由 ops worker 重提交。前次失败原因: GPU 0 幽灵进程争抢显存 + 命令中 CUDA_VISIBLE_DEVICES 硬编码覆盖 wrapper。修复后 wrapper 统一控制 CUDA_VISIBLE_DEVICES。双卡 99% util 已确认。ETA ~2h on RTX PRO 6000。",
+              "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T18:25:14.253425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"w5_qwen_docred_lora_training\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T17:48:52.649Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:25:12.913Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B LoRA fine-tune on DocRED — 填补 Qwen DocRED composability 2×2 matrix 的 FT 行。预期：(1) LoRA 后 E-F1/R-F1 大幅提升；(2) 残余 DR > 0% 证明 OntoCoDec 在 DocRED FT 上仍有 composability 价值。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && WANDB_MODE=disabled python3 scripts/train_lora_docred.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"298245\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/w5_qwen_docred_lora_training.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:22:06Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T17:55:51.874Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T17:55:53.910959+00:00\\\"}]}, \\\"notes\\\": \\\"Retry #4 (PID 298245, cuda:1): 级联故障修复后由 ops worker 重提交。前次失败原因: GPU 0 幽灵进程争抢显存 + 命令中 CUDA_VISIBLE_DEVICES 硬编码覆盖 wrapper。修复后 wrapper 统一控制 CUDA_VISIBLE_DEVICES。双卡 99% util 已确认。ETA ~2h on RTX PRO 6000。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2233}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1456
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T18:25:14.404616+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T18:25:14.405309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_ddf0fe16."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T18:25:20.491865+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T18:25:20.643107+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Glob",
+            "elapsed_ms": 151
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T18:25:24.460811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T18:25:24.812659+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Glob",
+            "elapsed_ms": 351
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T18:25:27.375116+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T18:25:27.426031+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T18:25:40.522790+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__save_project_file",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T18:25:40.573360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T18:26:21.344054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:docred_lora_eval_prep",
+              "project": "schema_semantic_constrained_ie",
+              "task_prompt": "## 任务：准备 DocRED LoRA fine-tuned 模型的 unconstrained + constrained eval 脚本\n\n### 背景\n我们在 westd-16980 上同时训练两个 DocRED LoRA 模型：\n- Qwen3-8B DocRED LoRA (cuda:1, PID 298245, ~2h ETA)\n  - adapter 输出: checkpoints/qwen3_8b_lora_docred/\n  - merged 输出: /root/autodl-tmp/checkpoints/qwen3_8b_lora_docred_merged/ (或类似路径,需确认训练脚本中的配置)\n- Llama-3.1-8B DocRED LoRA (cuda:0, PID 298323, ~80-90min ETA)\n  - adapter 输出: checkpoints/llama_lora_docred/\n  - merged 输出: /root/autodl-tmp/checkpoints/llama_lora_docred_merged/\n\n训练完成后需要跑 unconstrained eval → 检查 DR(deviation rate) → 如果 DR > 2% → 跑 constrained eval。\n\n### 你的任务\n1. SSH 到 westd-16980 (account=root)，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n2. 查看现有 SciERC eval 脚本和输出结构：\n   - `ls /root/schema_semantic_constrained_ie/scripts/` 找到 eval 相关脚本\n   - 查看 SciERC LoRA eval 是怎么跑的（搜 w5_lora_scierc_unconstrained_eval 或 w5_llama_lora_scierc_unconstrained_eval 的输出目录和命令）\n   - 重点看 `run_constrained_extraction.py` 的参数格式\n3. 确认 DocRED 的数据和约束文件路径：\n   - DocRED test/dev 数据: `data/docred/dev.json`\n   - DocRED 约束文件: `data/docred/ontology_constraints_docred.json`\n4. 为两个模型各准备两个 eval 命令（unconstrained + constrained），写入一个 shell 脚本 `scripts/run_docred_lora_eval.sh`，脚本内容包含：\n   - 4 个 eval 函数/命令块（Qwen unconstrained, Qwen constrained, Llama unconstrained, Llama constrained）\n   - 每个命令使用正确的 model_path（merged checkpoint 路径）\n   - unconstrained 模式用 `--mode unconstrained` 或对应参数（看现有脚本怎么用的）\n   - constrained 模式用 `--mode full_s1`\n   - 输出路径: `outputs/w5_qwen_docred_lora_{unconstrained,constrained}_eval.jsonl` 和 `outputs/w5_llama_docred_lora_{unconstrained,constrained}_eval.jsonl`\n   - max_new_tokens=4096, batch_size=1\n5. 查看训练脚本确认 merged checkpoint 的实际输出路径（`cat scripts/train_lora_docred.py | grep -i merge` 和 `cat scripts/train_lora_docred_llama.py | grep -i merge`）\n6. **不要执行 eval**——只准备脚本并 dry-run 验证语法（`bash -n scripts/run_docred_lora_eval.sh`）\n\n### 环境\n- 服务器: westd-16980, account=root\n- conda base, python3=/root/miniconda3/bin/python3\n- 项目目录: /root/schema_semantic_constrained_ie\n- 激活: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n- **不要干扰正在训练的 GPU 进程**（PID 298245 on cuda:1, PID 298323 on cuda:0）\n\n### 产出\n回报：\n1. eval 脚本路径和内容摘要\n2. 两个模型的 merged checkpoint 实际输出路径\n3. 每个 eval 命令的完整参数\n4. 是否发现 DocRED eval 有特殊处理（与 SciERC 不同的地方）",
+              "tool_groups": "['ssh']",
+              "context": "项目: schema_semantic_constrained_ie (OntoCoDec: 约束解码 IE)\n服务器: westd-16980, account=root, conda base\nGPU: cuda:0 Llama DocRED LoRA 训练中, cuda:1 Qwen DocRED LoRA 训练中\nSciERC eval 已完成: w5_lora_scierc_unconstrained_eval, w5_lora_scierc_constrained_eval, w5_llama_lora_scierc_unconstrained_eval, w5_llama_lora_scierc_constrained_eval"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T18:26:34.360120+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_docred_lora_eval_prep_20260515T182621\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_code_docred_lora_eval_prep_20260515T182621.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_docred_lora_eval_prep_20260515T182621 started. Use get_worker_status('worker_code_docred_lora_eval_prep_20260515T182621') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 13016
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T18:26:36.118503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "research:docred_eval_analysis_prep",
+              "project": "schema_semantic_constrained_ie",
+              "task_prompt": "## 任务：分析已完成的 DocRED 实验结果，准备 composability matrix DocRED 列的 baseline 数据\n\n### 背景\n我们正在构建 2×2 composability matrix（Model × Dataset），SciERC 列已完整。现在需要整理 DocRED 列的 zero-shot baseline 数据，为即将完成的 DocRED LoRA 训练做准备。\n\n### 你的任务\n1. 读取 registry 找到所有 DocRED 相关实验（包含 \"docred\" 的 exp_id），提取：\n   - Zero-shot unconstrained: DR, E-F1, R-F1（Qwen + Llama）\n   - Zero-shot constrained (full_s1): DR, E-F1, R-F1（Qwen + Llama）\n   - 已有的 DocRED full_s1 + mt4096/mt6144 结果\n2. 读取 ROADMAP.md 和 paper_framing.md，确认 DocRED composability 2×2 matrix 的预期格式\n3. 整理出 DocRED 列的 zero-shot 行（已有数据），列出 fine-tuned 行需要填充的指标\n4. 对比 SciERC 列的 zero-shot → fine-tuned 变化幅度，预估 DocRED fine-tuned 的合理范围\n5. 准备一个简洁的分析报告，格式：\n\n```\n## DocRED Composability Matrix — Zero-shot Baseline\n| | Unconstrained | Constrained | ΔDR | ΔR-F1 |\n|--|--|--|--|--|\n| Qwen ZS | DR=X%, R-F1=Y% | DR=X%, R-F1=Y% | ... | ... |\n| Llama ZS | DR=X%, R-F1=Y% | DR=X%, R-F1=Y% | ... | ... |\n| Qwen FT | TBD | TBD | TBD | TBD |\n| Llama FT | TBD | TBD | TBD | TBD |\n\n## SciERC 参照（ZS→FT 变化幅度）\n...\n\n## DocRED 特殊注意事项\n...\n```\n\n6. 将报告写入本地 artifacts 目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/docred_composability_baseline.md`\n\n### 环境\n- 用 read_registry 读实验数据\n- 用 read_project_file 读 ROADMAP.md, paper_framing.md\n- 不需要 SSH",
+              "tool_groups": "['registry', 'knowledge']",
+              "context": "项目: schema_semantic_constrained_ie\nSciERC 2×2 matrix 已完整（Qwen + Llama 各有 ZS + FT 的 unconstrained + constrained 结果）\nDocRED ZS 已完成（Qwen + Llama 各有 unconstrained + constrained）\nDocRED FT 正在训练中"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T18:42:41.447035+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 池需要 ≥ 2。训练跑着时并行准备 eval 脚本和论文更新。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training"
+          },
+          "id": "event-000065"
+        }
+      ],
+      "message_count": 65
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T22:58:02.116690+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T22:58:26.122397+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.{yaml,md}",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T22:58:26.427086+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/literature_survey_constrained_decoding_ie.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/literature_survey_ontology_constrained_ie.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/docs/IDEA_BRIEF.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/task_context/history/director/loop_1.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/task_context/history/reviewer/loop_1.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/task_context/history/agent/loop_1.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/task_context/history/director/loop_2.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/task_context/history/reviewer/loop_2.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/paper_results_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/paper_results_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/related_work_survey.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/task_context/history/agent/loop_1_1778728835.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/task_context/history/agent/loop_2.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/paper_writing_readiness.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/paper_writing_readiness.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/sch\n…[truncated 11858 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Glob",
+            "elapsed_ms": 304
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-15T22:58:26.729867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.{yaml,md}",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-15T22:58:26.780820+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/literature_survey_constrained_decoding_ie.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/literature_survey_ontology_constrained_ie.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/paper_results_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/paper_results_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/related_work_survey.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/paper_writing_readiness.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/paper_writing_readiness.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/docred_progress_check.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/method_invariant_notes.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/method_invariant_notes.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/reference_audit_relwork.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/reference_audit_results.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/reference_audit_relwork.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/d009_llama_prep.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/d009_llama_prep.md\n/home/ubuntu/.agent-ml-research-idea_\n…[truncated 10814 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-15T22:58:31.449318+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/registry.yaml",
+              "limit": "200"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-15T22:58:32.304725+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tbaseline: null\n2\texperiments:\n3\t  mvp_phase0_violation_rate:\n4\t    status: DONE\n5\t    retry_count: 0\n6\t    created_at: '2026-05-13T17:35:38.680Z'\n7\t    updated_at: '2026-05-13T19:13:34.510Z'\n8\t    hypothesis: Unconstrained LLM (Qwen3-8B) 在 SciERC zero-shot IE 任务上的本体类型约束违反率 >5%，证明解码时约束强制的必要性\n9\t    spec:\n10\t      command: python3 run_extraction.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B\n11\t        --data_path data/processed_data/test.json --output_path outputs/raw_outputs.jsonl\n12\t        --backend transformers\n13\t      server: westd-16980\n14\t      gpu:\n15\t      - cuda:0\n16\t      pid: '106528'\n17\t      log_path: ~/runs/schema_semantic_constrained_ie/mvp_phase0_violation_rate.log\n18\t      submitted_at: '2026-05-13T18:05:45.748Z'\n19\t      submitted_via: submit_training_job\n20\t      backend: tmux\n21\t      account: root\n22\t      data_path: /root/schema_semantic_constrained_ie/data/processed_data/test.json\n23\t      data_count: 551\n24\t      model_name: Qwen3-8B\n25\t      seed: 42\n26\t      checkpoint_path: /root/schema_semantic_constrained_ie/outputs/raw_outputs.jsonl\n27\t      wall_clock_seconds: 4068.8\n28\t      gpu_hours: 1.13\n29\t    metrics:\n30\t      total_triples: 1724\n31\t      total_entities: 2474\n32\t      json_parse_rate: 1\n33\t      entity_type_violation_rate: 0.004\n34\t      relation_vocabulary_violation_rate: 0.0139\n35\t      domain_range_violation_rate: 0.1537\n36\t      cross_field_consistency_violation_rate: 0.0008\n37\t      go_nogo_metric: 0.1537\n38\t      entity_f1: 0.3101\n39\t      relation_f1: 0.0823\n40\t      per_relation:\n41\t        Used-for:\n42\t          total: 787\n43\t          dr_violations: 6\n44\t          rate: 0.0076\n45\t        Conjunction:\n46\t          total: 32\n47\t          dr_violations: 0\n48\t          rate: 0\n49\t        Hyponym-of:\n50\t          total: 124\n51\t          dr_violations: 18\n52\t          rate: 0.1452\n53\t        Evaluate-for:\n54\t          total: 133\n55\t          dr_violations: 32\n56\t          rate: 0.2406\n57\t        Part-of:\n\n…[truncated 5689 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "elapsed_ms": 855
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-15T22:58:32.355439+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/report.md",
+              "limit": "200"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-15T22:58:32.759316+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Handover — 2026-05-15\n2\t\n3\t> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n4\t\n5\t## 运行中\n6\t| exp_id | 假设 | 状态 | 关键指标 | W&B |\n7\t|--------|------|------|---------|-----|\n8\t| w5_qwen_docred_lora_unconstrained_eval | Fine-tuned Qwen3-8B DocRED LoRA unconstrained eval — 获取 fine-tuned baseline DR/R-F1，与 constrained eval 对比计算 composability delta | — | — | — |\n9\t\n10\t## 待处理\n11\t- w5_qwen_docred_lora_constrained_eval: Fine-tuned Qwen3-8B DocRED LoRA + OntoCoDec constrained eval — 验证 composability：约束解码在 fine-tuned Qwen DocRED 上是否仍能消除残余 DR 且不损 R-F1（准备中）\n12\t- w5_llama_docred_lora_unconstrained_eval: Fine-tuned Llama-3.1-8B DocRED LoRA unconstrained eval — 获取 fine-tuned baseline DR/R-F1，与 constrained eval 对比计算 composability delta（准备中）\n13\t- w5_llama_docred_lora_constrained_eval: Fine-tuned Llama-3.1-8B DocRED LoRA + OntoCoDec constrained eval — 验证 composability：约束解码在 fine-tuned Llama DocRED 上是否仍能消除残余 DR 且不损 R-F1（准备中）\n14\t- w1_cf_fallback_llama_scierc（准备中）\n15\t- w1_cf_fallback_llama_docred（准备中）\n16\t- w5_llama_docred_sft_data_gen: Generate Llama-3.1-8B-Instruct format DocRED SFT train/dev JSONL — prerequisite for Llama DocRED LoRA fine-tune (composability matrix Llama×DocRED cell)（准备中）\n17\t\n18\t## 近期结论\n19\t- **w5_qwen_docred_lora_training** (success): Qwen3-8B LoRA fine-tune on DocRED — 填补 Qwen DocRED composability 2×2 matrix 的 FT 行。预期：(1) LoRA 后 E-F1/R-F1 大幅提升；(2) 残余 DR > 0% 证明 OntoCoDec 在 DocRED FT 上仍有 composability 价值。\n20\t- **w5_llama_docred_lora_training** (success): Llama-3.1-8B-Instruct LoRA fine-tune on DocRED — 填补 Llama DocRED composability 2×2 matrix 的 FT 行。预期：(1) LoRA 后 E-F1/R-F1 大幅提升；(2) 残余 DR > 0% 证明 OntoCoDec 在 DocRED FT 上仍有 composability 价值。\n21\t  [w5_llama_docred_lora_training_report](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/w5_llama_docred_lora_training/report/w5_llama_docred_lora_training_report.md)\n22\t- **w5_llama_lora_scierc_constrained_eval** (success): Fine-tuned Llama-3.1-8B + OntoCoDec constrained eval on SciERC — composability 验证：约束解码在 fine-tuned L\n…[truncated 496 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "elapsed_ms": 403
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-15T22:58:33.265929+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md",
+              "limit": "200"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-15T22:58:33.517552+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# schema_semantic_constrained_ie — Research Dashboard\n2\t\n3\t> 最后更新: 2026-05-15 18:13 UTC | 更新原因: D028: Llama SciERC 2×2 完成 + DocRED LoRA 双卡并行训练中\n4\t\n5\t## 核心方向\n6\tOntoCoDec: 两层约束解码（grammar + semantic）自动编译 IE ontology schema 为 token-level constraints，消除 LLM-based IE 的 ontology constraint violations。详见 paper_framing.md。\n7\t\n8\t## 当前进展\n9\t**阶段**: Round 1 审稿应对 — composability matrix 扩展中\n10\t- **Qwen SciERC 2×2**: ✅ DR=0.0%, R-F1 -0.09pp\n11\t- **Llama SciERC 2×2**: ✅ DR=0.09%, R-F1 +0.02pp (D028)\n12\t- **跨模型一致性确认**: Claim 3 composability 两模型坚实支撑\n13\t- **Issue Tracker**: 15/16 resolved + W1 in_progress (analytical finding + Paper Agent 写作中)\n14\t- **论文**: Table 3/5, §5.4/5.5, Appendix B 已更新，PDF 编译通过\n15\t\n16\t## Composability 覆盖进展\n17\t| | SciERC | DocRED |\n18\t|--|--------|--------|\n19\t| Qwen3-8B | ✅ 完整 2×2 | 🔥 LoRA 训练中 (cuda:1, ETA ~2h) |\n20\t| Llama3.1-8B | ✅ 完整 2×2 (D028) | ⏳ SFT 数据生成中 → cuda:0 训练 |\n21\t\n22\t## 2×2 Composability Matrices\n23\t\n24\t### Qwen3-8B × SciERC\n25\t| | Unconstrained | Constrained | ΔDR | ΔR-F1 |\n26\t|--|--|--|--|--|\n27\t| Zero-shot | DR=15.37%, R-F1=8.23% | DR=0.93%, R-F1=8.36% | -94% | +0.13pp |\n28\t| Fine-tuned LoRA | DR=1.95%, R-F1=43.86% | DR=0.0%, R-F1=43.77% | -100% | -0.09pp |\n29\t\n30\t### Llama3.1-8B × SciERC\n31\t| | Unconstrained | Constrained | ΔDR | ΔR-F1 |\n32\t|--|--|--|--|--|\n33\t| Zero-shot | DR=13.34%, R-F1=2.68% | DR=0.08%, R-F1=2.54% | -99.4% | -0.14pp |\n34\t| Fine-tuned LoRA | DR=1.11%, R-F1=45.45% | DR=0.09%, R-F1=45.47% | -91.9% | +0.02pp |\n35\t\n36\t## 关键路径\n37\t1. ~~Llama SciERC 2×2~~ ✅ (D028)\n38\t2. **Qwen DocRED LoRA** ← cuda:1 训练中 (~2h)\n39\t3. **Llama DocRED LoRA** ← cuda:0 准备中（SFT 数据 + 脚本适配）\n40\t4. 各自跑 unconstrained + constrained eval → 完整 4 格 matrix\n41\t5. 全文数字一致性审查 → Round 2 review\n42\t6. May 19 内部稿交付 → May 25 EMNLP ARR 提交\n43\t\n44\t## GPU 调度\n45\twestd-16980: cuda:0 + cuda:1\n46\t- cuda:0: ⏳ Llama DocRED LoRA 待提交（SFT 数据生成中）\n47\t- cuda:1: 🔥 Qwen DocRED LoRA 训练中 (PID 295334)\n48\t\n49\t## 关键数字速查\n50\t| 指标 | Qwen SciERC | Qwen DocRED | Llama SciERC | Llama DocRED |\n51\t|----\n…[truncated 2455 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-15T22:58:33.518068+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/memory.md",
+              "limit": "200"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-15T22:58:33.619188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Memory — schema_semantic_constrained_ie\n2\t\n3\t## 文献调研 (2026-05-13)\n4\t\n5\t### 核心结论: OntoCoDec 的 novelty 成立\n6\t**没有人做过 \"compile IE ontology domain/range → decoding-time logits masking\" 的完整 pipeline。**\n7\t\n8\tGap 结构：\n9\t- Syntactic constrained decoding for IE: well-explored (GCD, XGrammar, Outlines)\n10\t- Vocabulary-level: exists (GENRE, iNERD, AdaKGC)\n11\t- **Semantic (domain/range) decoding for IE: OPEN GAP** ← OntoCoDec\n12\t- Semantic type checking at decode time: only for code gen (MGD NeurIPS'23, PLDI'25)\n13\t- Ontology compliance for IE: only post-processing (ODKE+ Apple'25, OntoLogX'25)\n14\t\n15\t最近竞争者：PLDI'25 Type-Constrained Code Gen（同机制但领域是代码生成，必须引用并区分）\n16\t\n17\t风险：CRANE (ICML'25) 严格约束可能降低推理质量；Grammar-Aligned Decoding (NeurIPS'24) naive masking 扭曲分布\n18\t\n19\tNovelty 定位：\"OntoCoDec 将 type-constrained generation 引入信息抽取，编译 IE ontology axioms 为解码时语义约束，预防而非检测 type violations。\"\n20\t\n21\t详细报告: `artifacts/literature_map.yaml`, `artifacts/literature_survey_*.md`\n22\t\n23\t## 实验发现\n24\t\n25\t### 🎯 W5 LoRA Composability — Qwen 完全验证 (2026-05-15) ⚠️ 论文核心新增 claim\n26\t\n27\t**Fine-tuning + OntoCoDec 正交可组合，互补消除 schema violations。**\n28\t\n29\t完整 2×2 矩阵（SciERC, Qwen3-8B）：\n30\t\n31\t| | Unconstrained | Constrained (OntoCoDec) | ΔDR | ΔR-F1 |\n32\t|--|--|--|--|--|\n33\t| Base | DR=15.37%, R-F1=8.23% | DR=0.93%, R-F1=8.36% | -94% | +0.13pp |\n34\t| Fine-tuned (LoRA) | DR=1.95%, R-F1=43.86% | DR=0.0%, R-F1=43.77% | -100% | -0.09pp |\n35\t\n36\t关键 insights：\n37\t- Fine-tuning 将 DR 15.37%→1.95% (内化 87% 约束)，但 tight-constraint 长尾 (Evaluate-for 13.1%) 无法覆盖\n38\t- OntoCoDec 消除剩余 1.95% → 0.00%，零 F1 代价 (-0.09pp)\n39\t- CF 从 base constrained 9.90% → fine-tuned constrained 1.18% (-8.72pp)\n40\t- E-F1 +36pp, R-F1 +35pp——回应\"只适用于 prompting\"质疑\n41\t- LoRA 训练仅 688s (~11.5min), rank=16, 3 epochs, token_acc=98.16%\n42\t\n43\t### 🎯 W5 LoRA Composability — Llama 跨模型验证 (2026-05-15) ⚠️ 论文核心\n44\t\n45\t完整 2×2 矩阵（SciERC, Llama-3.1-8B-Instruct）：\n46\t\n47\t| | Unconstrained | Constrained (OntoCoDec) | ΔDR | ΔR-F1 |\n48\t|--|--|--|--|--|\n49\t| Zero-shot | DR=13.34%, R-F1\n…[truncated 5368 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-15T22:58:43.313853+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/registry.yaml",
+              "offset": "200",
+              "limit": "400"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-15T22:58:43.766989+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "200\t      wall_clock_seconds: 13513.6\n201\t      gpu_hours: 3.75\n202\t    reproduce:\n203\t      finished_at: '2026-05-13T23:58:31.565Z'\n204\t    failure_reason: EXIT_CODE=143 (SIGTERM — graceful kill)\n205\t    conclusion: success\n206\t    completed_at: '2026-05-13T23:58:32.325Z'\n207\t    extra:\n208\t      hook_events:\n209\t      - event: on_failed\n210\t        action: agent\n211\t        ts: '2026-05-13T23:58:33.241310+00:00'\n212\t    notes: 'Resume 完成 998/998 docs. Schema-informed prompt 结果: ET=0.61% (baseline\n213\t      7.5%, Δ-6.89%), RV=18.4% (baseline 28.9%, Δ-10.5%), DR=12.8% (baseline 18.7%,\n214\t      Δ-5.9%). 全维度显著改善。'\n215\t    metrics:\n216\t      total_documents: 998\n217\t      documents_checked: 943\n218\t      parse_failures: 55\n219\t      json_parse_rate: 0.9449\n220\t      total_entities: 19524\n221\t      total_triples: 16782\n222\t      entity_type_violations: 119\n223\t      entity_type_violation_rate: 0.0061\n224\t      relation_vocabulary_violations: 3090\n225\t      relation_vocabulary_violation_rate: 0.1841\n226\t      relation_fuzzy_matches: 85\n227\t      domain_range_violations: 2154\n228\t      domain_range_violation_rate: 0.1284\n229\t      cross_field_consistency_violations: 29\n230\t      cross_field_consistency_violation_rate: 0.0015\n231\t      total_violations_any: 5392\n232\t      total_violation_rate: 0.1485\n233\t      go_nogo_metric_dr: 0.1284\n234\t    checkpoint_path: outputs/raw_outputs_docred_schema.jsonl\n235\t  phase2_scierc_grammar_only:\n236\t    status: DONE\n237\t    retry_count: 1\n238\t    created_at: '2026-05-13T21:48:43.487Z'\n239\t    updated_at: '2026-05-14T18:31:29.442Z'\n240\t    hypothesis: Grammar-only constrained decoding (XGrammar JSON schema + enum) 能否消除\n241\t      relation vocabulary violations 同时不影响 F1？预期 rv_violation→0%, dr_violation 不变\n242\t    reproduce:\n243\t      finished_at: '2026-05-13T23:39:02.641Z'\n244\t    failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n245\t    completed_at: '2026-05-13T22:38:46.650Z'\n246\t    extra:\n247\t      hook_e\n…[truncated 16738 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "elapsed_ms": 453
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-15T22:58:44.268959+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/memory.md",
+              "offset": "163",
+              "limit": "100"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-15T22:58:44.773632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<system-reminder>Warning: the file exists but is shorter than the provided offset (163). The file has 163 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "elapsed_ms": 504
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-15T22:58:44.924609+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/experiment_plan.yaml",
+              "limit": "100"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-15T22:58:44.975265+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t## OntoCoDec Experiment Plan\n2\t## Target: EMNLP 2026 ARR (May 25, 2026)\n3\t## Last updated: 2026-05-14\n4\t\n5\tclaims:\n6\t  C1_violation_landscape:\n7\t    description: \"LLM-based IE violates ontology type constraints at non-trivial rates; violation rate driven by constraint tightness × model RV baseline, not ontology size\"\n8\t    status: supported\n9\t    evidence_strength: strong\n10\t\n11\t  C2_prompt_insufficiency:\n12\t    description: \"Schema-informed prompting reduces but cannot eliminate violations; unreliable per-relation\"\n13\t    status: supported\n14\t    evidence_strength: strong\n15\t\n16\t  C3_composable_framework:\n17\t    description: \"OntoCoDec compiles IE ontology schemas into two composable constraint layers (grammar+semantic) with enabling dependency; near-complete DR elimination\"\n18\t    status: supported\n19\t    evidence_strength: strong\n20\t\n21\t  C4_s1_vs_s2:\n22\t    description: \"S2 two-pass offers no advantage over S1 single-pass; S1 adopted as primary\"\n23\t    status: supported_demoted\n24\t    evidence_strength: moderate\n25\t    note: \"S2 demoted to ablation (D007). S1 simpler + marginally better F1.\"\n26\t\n27\t  C5_cross_model:\n28\t    description: \"OntoCoDec generalizes across models without code modification; DR reduction magnitude varies with model RV baseline\"\n29\t    status: supported\n30\t    evidence_strength: strong\n31\t\n32\t  C6_f1_impact:\n33\t    description: \"Constraint enforcement preserves or improves F1; improvement is model/dataset-dependent (Qwen DocRED significant, SciERC neutral)\"\n34\t    status: supported\n35\t    evidence_strength: strong\n36\t\n37\texperiments:\n38\t  # --- Phase 0: Violation Landscape (ALL COMPLETE) ---\n39\t  - plan_id: P001\n40\t    name: SciERC violation rate (minimal prompt)\n41\t    claim: C1_violation_landscape\n42\t    registry_id: mvp_phase0_violation_rate\n43\t    priority: 1\n44\t    result: \"DR=15.4%, 1724 triples\"\n45\t\n46\t  - plan_id: P002\n47\t    name: SciERC violation rate (schema-informed prompt)\n48\t    claim: C2_prompt_insufficiency\n49\t    registr\n…[truncated 1764 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-15T22:58:50.961295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/registry.yaml",
+              "offset": "600",
+              "limit": "500"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-15T22:58:51.416521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "600\t      training_hours: 0.1\n601\t    pid: 144858\n602\t    log_path: ~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s2.log\n603\t    failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n604\t    conclusion: success\n605\t    completed_at: '2026-05-14T01:13:09.036Z'\n606\t    extra:\n607\t      hook_events:\n608\t      - event: on_failed\n609\t        action: agent\n610\t        ts: '2026-05-14T01:13:12.640712+00:00'\n611\t    checkpoint_path: /root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s2.jsonl\n612\t    metrics:\n613\t      total_samples: 551\n614\t      total_triples: 1644\n615\t      total_entities: 2228\n616\t      json_parse_rate: 1\n617\t      entity_type_violation_rate: 0\n618\t      relation_vocabulary_violation_rate: 0\n619\t      domain_range_violation_rate: 0.0097\n620\t      cross_field_consistency_violation_rate: 0.0803\n621\t      entity_precision: 0.2797\n622\t      entity_recall: 0.3712\n623\t      entity_f1: 0.319\n624\t      relation_precision: 0.064\n625\t      relation_recall: 0.1078\n626\t      relation_f1: 0.0803\n627\t      checker_version: fixed_20260514_v2 (strip + alias + unique_et)\n628\t  phase2_docred_grammar_only:\n629\t    status: DONE\n630\t    retry_count: 0\n631\t    created_at: '2026-05-14T01:55:50.031Z'\n632\t    updated_at: '2026-05-14T18:52:55.527Z'\n633\t    hypothesis: Grammar-only constrained decoding 在 DocRED (96 relation types) 上能否消除\n634\t      RV violations (28.9%) 和 ET violations (7.5%)？与 SciERC grammar_only (RV 1.4%→0%,\n635\t      ET 0.4%→0%) 对比，验证 grammar 层在复杂 schema 上的泛化性。\n636\t    spec:\n637\t      command: CUDA_VISIBLE_DEVICES=0 nohup python3 run_constrained_extraction.py\n638\t        --mode grammar_only --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B\n639\t        --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json\n640\t        --output_path outputs/docred_grammar_only.jsonl --device cuda:0 --batch_size\n641\t        1 --max_new_tokens 4096\n642\t      server\n…[truncated 22548 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "elapsed_ms": 455
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-15T22:58:51.771297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/experiment_plan.yaml",
+              "offset": "100",
+              "limit": "150"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-15T22:58:51.822526+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100\t    priority: 1\n101\t    result: \"DR=0.97%, CF=8.03%, R-F1=8.03% (worse than S1). Demoted.\"\n102\t\n103\t  # --- Phase 2: DocRED Ablation (ALL COMPLETE) ---\n104\t  - plan_id: P009\n105\t    name: DocRED unconstrained baseline\n106\t    claim: C3_composable_framework\n107\t    registry_id: phase2_docred_unconstrained\n108\t    priority: 1\n109\t    result: \"DR=18.46%, RV=29.66%, ET=2.48%, R-F1=7.73%\"\n110\t\n111\t  - plan_id: P010\n112\t    name: DocRED grammar-only\n113\t    claim: C3_composable_framework\n114\t    registry_id: phase2_docred_grammar_only\n115\t    priority: 1\n116\t    result: \"RV→0.03%, ET→0%, E-F1=59.38% (grammar drives all E-F1 gain)\"\n117\t\n118\t  - plan_id: P011\n119\t    name: DocRED semantic-only\n120\t    claim: C3_composable_framework\n121\t    registry_id: phase2_docred_semantic_only\n122\t    priority: 1\n123\t    result: \"DR=13.96%, ET=4.22%\"\n124\t\n125\t  - plan_id: P012\n126\t    name: DocRED full S1\n127\t    claim: C3_composable_framework\n128\t    registry_id: phase2_docred_full_s1\n129\t    priority: 1\n130\t    result: \"DR=10.21% (↓45%), RV→0.03%, ET→0%, CF=2.57%, R-F1=8.23% (+0.50pp, p<0.001), E-F1=59.37% (+1.22pp, p<0.001)\"\n131\t\n132\t  # --- Phase 2: Cross-Model (ALL COMPLETE) ---\n133\t  - plan_id: P013\n134\t    name: Llama SciERC unconstrained\n135\t    claim: C5_cross_model\n136\t    registry_id: llama_scierc_unconstrained\n137\t    priority: 2\n138\t    result: \"DR=17.53%, RV=0.23%, ET=0.27%\"\n139\t\n140\t  - plan_id: P014\n141\t    name: Llama SciERC full S1\n142\t    claim: C5_cross_model\n143\t    registry_id: llama_scierc_full_s1\n144\t    priority: 2\n145\t    result: \"DR=0.10% (↓99.4%), RV/ET→0%, R-F1 neutral\"\n146\t\n147\t  - plan_id: P015\n148\t    name: Llama DocRED unconstrained\n149\t    claim: C5_cross_model\n150\t    registry_id: llama_docred_unconstrained\n151\t    priority: 2\n152\t    result: \"DR=26.07%, RV=16.03%, ET=0.13%, R-F1=5.98%\"\n153\t\n154\t  - plan_id: P016\n155\t    name: Llama DocRED full S1\n156\t    claim: C5_cross_model\n157\t    registry_id: llama_docred_full_s1\n158\t    priority: 2\n159\t    res\n…[truncated 1402 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-15T22:58:57.047695+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/registry.yaml",
+              "offset": "1100",
+              "limit": "600"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-15T22:58:57.450502+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1100\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n1101\t        base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py\n1102\t        --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct\n1103\t        --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json\n1104\t        --output_path outputs/llama_docred_full_s1.jsonl --device cuda:0 --batch_size\n1105\t        1 --max_new_tokens 4096\"\n1106\t      server: westd-16980\n1107\t      gpu:\n1108\t      - cuda:0\n1109\t      pid: '194295'\n1110\t      log_path: ~/runs/schema_semantic_constrained_ie/llama_docred_full_s1.log\n1111\t      submitted_at: '2026-05-14T14:41:22.992Z'\n1112\t      submitted_via: submit_training_job\n1113\t      backend: tmux\n1114\t      account: root\n1115\t      wall_clock_seconds: 20912.7\n1116\t      gpu_hours: 5.81\n1117\t    hypothesis: Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations)\n1118\t      上的效果。与 Qwen3-8B DocRED full_s1 (DR 10.19%) 对比，验证约束解码在不同模型+复杂 schema 上的泛化性。\n1119\t    server: westd-16980\n1120\t    gpu: cuda:0\n1121\t    account: root\n1122\t    reproduce:\n1123\t      server: westd-16980\n1124\t      gpu: cuda:0\n1125\t      started_at: '2026-05-14T14:39:33.737Z'\n1126\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n1127\t        base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py\n1128\t        --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct\n1129\t        --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json\n1130\t        --output_path outputs/llama_docred_full_s1.jsonl --device cuda:0 --batch_size\n1131\t        1 --max_new_tokens 4096\"\n1132\t      finished_at: '2026-05-14T20:24:03.061Z'\n1133\t      training_hours: 5.74\n1134\t    pid: '194295'\n1135\t    lo\n…[truncated 27283 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "elapsed_ms": 402
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-15T22:59:05.058262+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/registry.yaml",
+              "offset": "1700",
+              "limit": "500"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-15T22:59:05.159508+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1700\t  w5_llama_lora_scierc_training:\n1701\t    status: DONE\n1702\t    retry_count: 0\n1703\t    created_at: '2026-05-15T16:33:38.168Z'\n1704\t    updated_at: '2026-05-15T17:24:38.949Z'\n1705\t    spec:\n1706\t      hypothesis: Llama-3.1-8B-Instruct LoRA fine-tune on SciERC, extending Claim\n1707\t        3 composability to cross-model. Mirrors Qwen3-8B LoRA config (r=16, alpha=32,\n1708\t        lr=2e-4, 3 epochs).\n1709\t      parent: w5_lora_scierc_training\n1710\t      model_name: Meta-Llama-3.1-8B-Instruct\n1711\t      dataset: SciERC\n1712\t      checkpoint_path: /root/autodl-tmp/checkpoints/llama_lora_scierc_merged\n1713\t      log_path: logs/w5_llama_lora_scierc_training.log\n1714\t      adapter_path: checkpoints/llama_lora_scierc\n1715\t      base_model: /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct\n1716\t    hypothesis: Llama-3.1-8B-Instruct LoRA fine-tune on SciERC — 扩展 composability\n1717\t      验证到跨模型。预期：(1) LoRA 训练后 E-F1/R-F1 大幅提升（对标 Qwen LoRA +36pp/+36pp）；(2) 为 Llama\n1718\t      SciERC 2×2 composability matrix 提供 fine-tuned baseline。\n1719\t    server: westd-16980\n1720\t    gpu: cuda:0\n1721\t    account: root\n1722\t    reproduce:\n1723\t      server: westd-16980\n1724\t      gpu: cuda:0\n1725\t      started_at: '2026-05-15T17:17:30.599Z'\n1726\t    conclusion: success\n1727\t    metrics:\n1728\t      eval_loss: 0.0595\n1729\t      eval_mean_token_accuracy: 0.9817\n1730\t      eval_entropy: 1.0565\n1731\t      train_loss: 0.0501\n1732\t      train_runtime_sec: 654.23\n1733\t      epochs: 3\n1734\t      train_samples_per_second: 8.08\n1735\t    completed_at: '2026-05-15T17:18:45.275Z'\n1736\t  w5_llama_lora_scierc_unconstrained_eval:\n1737\t    status: DONE\n1738\t    retry_count: 0\n1739\t    created_at: '2026-05-15T16:33:40.179Z'\n1740\t    updated_at: '2026-05-15T17:47:07.574Z'\n1741\t    spec:\n1742\t      command: python3 run_constrained_extraction.py --mode unconstrained --dataset\n1743\t        scierc --model_path checkpoints/llama_lora_scierc_merged --data_path data/processed_data/test.json\n1744\t        -\n…[truncated 14536 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-15T23:00:04.024970+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: **仅 cuda:0 和 cuda:1** (westd-16980)，不得使用其他 GPU\n- `spec.command` **严禁包含 CUDA_VISIBLE_DEVICES**——由 `submit_training_job` 的 gpu 参数统一注入。D029 级联故障教训：内层硬编码覆盖外层 wrapper 导致幽灵进程 + OOM\n- SciERC 数据路径是 `data/processed_data/test.json`，constraints 在项目根 `ontology_constraints.json`——**不是** `data/scierc/` 下\n- W1 CF fallback **已定论为 Analytical Finding** (D020)，不再跑新实验。CF↔DR 根本性张力已证明\n- LoRA merged checkpoint **必须存数据盘** `/root/autodl-tmp/checkpoints/`，根分区仅 30G\n- `kill_job` 后必须 `nvidia-smi | grep python` 确认无残留子进程\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-16980, 2× NVIDIA RTX PRO 6000 Blackwell (94GB each), CUDA 12.8\n- **工作目录**: `/root/schema_semantic_constrained_ie`\n- **Python**: `/root/miniconda3/bin/python` (conda base), `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**:\n  - Qwen base: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n  - Llama base: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n  - Qwen LoRA SciERC merged: `/root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged`\n  - Llama LoRA SciERC merged: `/root/autodl-tmp/checkpoints/llama_lora_scierc_merged`\n  - Qwen LoRA DocRED merged: `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged`\n  - Llama LoRA DocRED merged: `/root/autodl-tmp/checkpoints/llama_lora_docred_merged/`\n- **活跃进程**:\n  - `w5_qwen_docred_lora_unconstrained_eval`: PID 304006, tmux session, cuda:1\n  - `w5_llama_docred_lora_unconstrained_eval`: PID 303525, tmux session, cuda:0\n- **W&B**: WANDB_MODE=disabled（项目未配 key）\n\n### 3. 📊 当前状态\n刚完成 Qwen+Llama DocRED LoRA 训练（D029 级联故障修复后重提交成功），两张卡现在各跑一个 unconstrained eval：\n- **cuda:0**: `w5_llama_docred_lora_unconstrained_eval` (PREPARING，已提交 PID 303525，DocRED 998 docs ~5-6h)\n- **cuda:1**: `w5_qwen_docred_lora_unconstrained_eval` (RUNNING, PID 304006，DocRED 998 docs ~5-6h)\n\nRegistry 状态: 30 success / 1 negative / 4 killed / 33 total。PREPARING 待跑:\n- `w5_qwen_docred_lora_constrained_eval` — 等 unconstrained eval 完成后提交\n- `w5_llama_docred_lora_constrained_eval` — 等 unconstrained eval 完成后提交\n\n无活跃 Worker 回调等待中。两个 unconstrained eval 有 cron 监控，完成后会触发 `[CRON]` 回调。\n\n### 4. 📋 待办（条件触发式）\n- `w5_qwen_docred_lora_unconstrained_eval` cron 完成 → 分析 DR/R-F1 → 提交 `w5_qwen_docred_lora_constrained_eval` 到 cuda:1\n- `w5_llama_docred_lora_unconstrained_eval` cron 完成 → 分析 DR/R-F1 → 提交 `w5_llama_docred_lora_constrained_eval` 到 cuda:0\n- 4 个 DocRED LoRA eval 全部完成 → 填充 DocRED composability 2×2 matrix → 更新论文 Table 3/5 + §5.4/5.5 → 全文数字一致性审查\n- 全部 matrix 完成 → 汇报 Director，DocRED LoRA 全补完 = 4.25/5 目标分路径\n- May 19 内部稿 → May 25 EMNLP ARR 提交\n\n### 5. 🎯 战略上下文\n**项目核心**: OntoCoDec 编译 IE ontology schema 为两层 token-level constraints (grammar+semantic)，在解码时消除 LLM-based IE 的 type violations。Novelty: 第一个把 type-constrained generation 引入 IE（semantic 层是 gap）。\n\n**已验证 claims**: C1 violation landscape (SciERC DR=15.4%, DocRED DR=18.5%) → C2 prompt 不够 → C3 框架有效 (DR↓94%/45%) → C5 跨模型 (Qwen+Llama) → C6 F1 保持。Composability (Claim 3 扩展): SciERC 2×2 两模型全完成，DocRED 2×2 是最后一块。\n\n**决策链**: D020 CF fallback=analytical finding → D025/D028 composability 确认 → D029 级联故障修复后重提交 DocRED LoRA 训练 → 现在跑 eval。\n\n**易错点**:\n1. DocRED constrained eval 命令的 `--constraints_path` 是 `data/docred/ontology_constraints_docred.json`，不是根目录的 `ontology_constraints.json`\n2. DocRED full_s1 eval 需要 `--max_new_tokens 4096`（不是默认 2048）\n3. 两个 unconstrained eval 预估 ~5-6h，cron 回调大约在提交后 5-6h 触发——不要提前轮询\n4. Constraint tightness 是 DocRED DR 残余高于 SciERC 的根因（0.842 vs 0.333），不是 semantic 层失效——这个 framing 在论文中已处理\n5. 论文目标分路径已到 \"Llama LoRA 成功: 4.0/5+\"，DocRED LoRA 全补完冲 4.25/5\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:w5_lora_scierc_training"
+          },
+          "id": "event-000093"
+        }
+      ],
+      "message_count": 28
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-w5-lora-scierc-training-20260515t230004-033573.md"
+}

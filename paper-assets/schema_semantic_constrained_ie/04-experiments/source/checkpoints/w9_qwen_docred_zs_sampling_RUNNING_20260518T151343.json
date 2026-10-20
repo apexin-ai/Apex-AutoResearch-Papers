@@ -1,0 +1,32 @@
+{
+  "exp_id": "w9_qwen_docred_zs_sampling",
+  "project": "schema_semantic_constrained_ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T19:28:21.393Z",
+    "updated_at": "2026-05-18T15:13:42.896Z",
+    "spec": {
+      "command": "python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/.cache/huggingface/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218 --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path /root/autodl-tmp/schema_outputs/w9_qwen_docred_zs_sampling.jsonl --batch_size 1 --max_new_tokens 4096 --temperature 0.7 --top_p 0.9 --skip_on_error --device cuda:0",
+      "server": "westd-21461",
+      "gpu": "cuda:1",
+      "pid": "40367",
+      "log_path": "/root/autodl-tmp/schema_outputs/w9_qwen_docred_zs_sampling.log",
+      "submitted_at": "2026-05-16T19:29:57.448Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/docred/dev.json",
+      "data_count": 998,
+      "model_name": "Qwen3-8B",
+      "seed": "N/A (sampling)",
+      "tmux_session": "w9_qwen_docred_zs_sampling",
+      "checkpoint_path": "/root/autodl-tmp/schema_outputs/w9_qwen_docred_zs_sampling.jsonl"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-18T15:13:43.135172+00:00",
+  "trigger": "update_registry"
+}

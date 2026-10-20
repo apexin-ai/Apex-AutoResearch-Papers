@@ -1,0 +1,194 @@
+{
+  "task": "D: GoLLIE Head-to-Head Comparison on SciERC",
+  "option_used": 2,
+  "option_decision_reasoning": "Option 1 (running GoLLIE prompt on our model with OntoCoDec constraints) is infeasible because: (1) GoLLIE outputs Python dataclass format (e.g., Task(span='...'), UsedFor(arg1='...', arg2='...')), while OntoCoDec's FSM-based constraint processor is built for JSON output format; adapting it would require rewriting the entire grammar/FSM. (2) We already have GoLLIE-7B experimental results from D063 (ran GoLLIE-7B natively on SciERC). Option 2 enhanced: we use our own GoLLIE-7B experiment data plus published numbers from GoLLIE and KnowCoder papers.",
+
+  "published_numbers_analysis": {
+    "gollie_paper": {
+      "source": "Sainz et al., ICLR 2024 - GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction",
+      "scierc_evaluated": false,
+      "note": "GoLLIE does NOT evaluate on SciERC. SciERC is not among their 18 evaluation datasets. They evaluate on ACE05, BC5CDR, CoNLL03, DIANN, NCBIDisease, Ontonotes5, RAMS, TACRED, WNUT17 (training), and BroadTwitter, CASIE, CrossNER, E3C, FabNER, HarveyNER, MIT Movie/Restaurants, MultiNERD, WikiEvents (zero-shot).",
+      "published_zs_average_f1": {
+        "baseline_7B": 42.3,
+        "gollie_7B": 55.3,
+        "gollie_13B": 56.0,
+        "gollie_34B": 57.2
+      },
+      "schema_compliance": "Both parse failures and hallucinations occur in less than 1% of predictions across all zero-shot datasets (Table 8, Appendix C)."
+    },
+    "knowcoder_paper": {
+      "source": "Li et al., ACL 2024 - KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction",
+      "scierc_re_f1_supervised": 40.0,
+      "model": "KnowCoder-7B (LLaMA2-7B base)",
+      "note": "Supervised (fine-tuned) result. Entity F1 on SciERC not reported. Previous SoTA was 37.4."
+    }
+  },
+
+  "our_gollie_experiment": {
+    "experiment_id": "D063",
+    "setup": {
+      "model": "GoLLIE-7B (HiTZ/GoLLIE-7B, based on CodeLlama-7B)",
+      "dataset": "SciERC test set (100 documents, 551 sentences)",
+      "prompt_format": "Python dataclass definitions with docstring guidelines (GoLLIE native format)",
+      "decoding": "Greedy (num_beams=1, do_sample=False), max_new_tokens=512",
+      "setting": "Zero-shot (GoLLIE was fine-tuned on other IE datasets but NOT on SciERC)"
+    },
+    "results": {
+      "E_F1": 9.17,
+      "E_P": 33.61,
+      "E_R": 5.31,
+      "R_F1": 0.0,
+      "R_P": 0.0,
+      "R_R": 0.0,
+      "ET_pct": 0.0,
+      "RV_pct": 0.0,
+      "DR_pct": 0.0,
+      "CF_pct": 0.83,
+      "total_pred_entities": 241,
+      "total_pred_relations": 5,
+      "total_gold_entities": 1525,
+      "total_gold_relations": 971,
+      "docs_with_output": 54,
+      "docs_with_relations": 2,
+      "evaluation_granularity": "document-level (100 docs)"
+    }
+  },
+
+  "comparison_table_document_level": {
+    "note": "All rows evaluated at document level (100 docs) for consistent comparison. Violation rates (ET%, RV%, DR%, CF%) for OntoCoDec come from per-sentence d066 evaluation which includes DR% computation.",
+    "rows": [
+      {
+        "method": "GoLLIE",
+        "model": "CodeLlama-7B (GoLLIE-7B)",
+        "setting": "ZS",
+        "E_F1": 9.17,
+        "R_F1": 0.0,
+        "ET_pct": 0.0,
+        "RV_pct": 0.0,
+        "DR_pct": 0.0,
+        "CF_pct": 0.83,
+        "pred_entities": 241,
+        "pred_relations": 5
+      },
+      {
+        "method": "OntoCoDec (unc)",
+        "model": "Qwen-3-8B",
+        "setting": "ZS",
+        "E_F1": 31.39,
+        "R_F1": 8.25,
+        "ET_pct": 0.40,
+        "RV_pct": 1.39,
+        "DR_pct": 15.37,
+        "CF_pct": 0.04,
+        "pred_entities": 2342,
+        "pred_relations": 1721
+      },
+      {
+        "method": "OntoCoDec (S1)",
+        "model": "Qwen-3-8B",
+        "setting": "ZS",
+        "E_F1": 31.45,
+        "R_F1": 8.38,
+        "ET_pct": 0.0,
+        "RV_pct": 0.0,
+        "DR_pct": 0.93,
+        "CF_pct": 1.62,
+        "pred_entities": 2342,
+        "pred_relations": 1726
+      },
+      {
+        "method": "KnowCoder",
+        "model": "LLaMA2-7B (KnowCoder-7B)",
+        "setting": "FT",
+        "E_F1": null,
+        "R_F1": 40.0,
+        "ET_pct": null,
+        "RV_pct": null,
+        "DR_pct": null,
+        "CF_pct": null,
+        "pred_entities": null,
+        "pred_relations": null,
+        "source": "published (Li et al., ACL 2024)"
+      },
+      {
+        "method": "OntoCoDec (unc)",
+        "model": "Qwen-3-8B",
+        "setting": "FT",
+        "E_F1": 66.43,
+        "R_F1": 43.79,
+        "ET_pct": 0.0,
+        "RV_pct": 0.0,
+        "DR_pct": 1.95,
+        "CF_pct": 0.0,
+        "pred_entities": 1639,
+        "pred_relations": 1121
+      },
+      {
+        "method": "OntoCoDec (S1)",
+        "model": "Qwen-3-8B",
+        "setting": "FT",
+        "E_F1": 66.43,
+        "R_F1": 43.69,
+        "ET_pct": 0.0,
+        "RV_pct": 0.0,
+        "DR_pct": 0.0,
+        "CF_pct": 0.45,
+        "pred_entities": 1639,
+        "pred_relations": 1121
+      },
+      {
+        "method": "OntoCoDec (unc)",
+        "model": "Llama-3.1-8B",
+        "setting": "FT",
+        "E_F1": 67.09,
+        "R_F1": 45.45,
+        "ET_pct": 0.0,
+        "RV_pct": 0.0,
+        "DR_pct": 1.11,
+        "CF_pct": 0.0,
+        "pred_entities": 1605,
+        "pred_relations": 1071
+      },
+      {
+        "method": "OntoCoDec (S1)",
+        "model": "Llama-3.1-8B",
+        "setting": "FT",
+        "E_F1": 67.09,
+        "R_F1": 45.47,
+        "ET_pct": 0.0,
+        "RV_pct": 0.0,
+        "DR_pct": 0.09,
+        "CF_pct": 0.23,
+        "pred_entities": 1605,
+        "pred_relations": 1070
+      }
+    ]
+  },
+
+  "analysis": {
+    "key_findings": [
+      "GoLLIE-7B achieves perfect type-level compliance (ET=0%, RV=0%, DR=0%) through Python dataclass output format, but at catastrophic cost to extraction coverage: E-F1=9.17%, R-F1=0.0%. Only 241/1525 entities and 5/971 relations extracted.",
+      "OntoCoDec unconstrained (Qwen ZS) achieves 3.4x higher E-F1 (31.39%) and meaningful R-F1 (8.25%) despite having measurable violations (DR=15.37%, ET=0.4%, RV=1.39%).",
+      "OntoCoDec S1 constraints eliminate ET and RV violations completely while reducing DR from 15.37% to 0.93%, with no F1 degradation (actually +0.06 E-F1, +0.13 R-F1).",
+      "With fine-tuning, OntoCoDec (Llama FT+S1) achieves R-F1=45.47% -- surpassing KnowCoder's published 40.0% supervised result, while maintaining DR=0.09%.",
+      "GoLLIE's code-format approach and OntoCoDec's constrained decoding address schema compliance from opposite ends: GoLLIE constrains the output format (structural compliance), while OntoCoDec constrains the content generation (semantic compliance). GoLLIE eliminates type vocabulary violations by construction but cannot ensure domain-range validity or extraction coverage."
+    ],
+    "complementarity_argument": "Schema-aware prompting (GoLLIE-style) and constrained decoding (OntoCoDec) are complementary approaches to schema compliance: (1) GoLLIE ensures structural compliance via output format but provides no coverage guarantee -- 45% of documents produce empty output. (2) OntoCoDec ensures semantic compliance via token-level constraints during generation, maintaining extraction coverage while eliminating violations. (3) In principle, combining both (schema-aware prompts + constrained decoding) could provide both structural and semantic guarantees, though adapting the constraint processor for Python-format output would require significant engineering.",
+    "caveats": [
+      "GoLLIE-7B uses CodeLlama-7B base; our models use Qwen-3-8B and Llama-3.1-8B. While similar in size, architecture differences may affect results.",
+      "GoLLIE was fine-tuned on 9 IE datasets (not including SciERC), so this is a zero-shot transfer evaluation, not a cold zero-shot.",
+      "GoLLIE processes entire documents while our model processes per-sentence. The document-level F1 evaluation reported here uses consistent methodology for both.",
+      "GoLLIE's published paper does not include SciERC results, so our GoLLIE-7B evaluation is an original experiment using their released model.",
+      "KnowCoder's R-F1=40.0 is a supervised result and uses a different relation extraction setup (may not be directly comparable)."
+    ]
+  },
+
+  "artifacts": {
+    "gollie_raw_outputs": "/root/schema_semantic_constrained_ie/outputs/gollie_scierc/raw_outputs.jsonl",
+    "gollie_violation_results": "/root/schema_semantic_constrained_ie/outputs/gollie_scierc/violation_results.json",
+    "gollie_f1_results": "/root/schema_semantic_constrained_ie/outputs/gollie_scierc/eval_f1_results.json",
+    "comparison_results": "/root/schema_semantic_constrained_ie/outputs/gollie_scierc/comparison_results.json",
+    "eval_script": "/root/schema_semantic_constrained_ie/scripts/eval_gollie_scierc.py",
+    "comparison_script": "/root/schema_semantic_constrained_ie/scripts/eval_gollie_comparison.py"
+  }
+}

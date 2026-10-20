@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e1e907bed56136eaee9",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code constrained eval dryrun prep",
+  "task_key": "worker_code_constrained_eval_dryrun_prep_20260515T230350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_constrained_eval_dryrun_prep_20260515T230350_result.json",
+    "occurrence": 1,
+    "bytes": 671,
+    "sha256": "d6132b3d60951e61e6e4700d175be8984e8477d80846852065df489605014eb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成，报告已注册。总结：\n\n**所有 7 项检查全部通过：**\n- 两个 merged model 完整（config.json + 4× safetensors + tokenizer）\n- DocRED dev.json + ontology_constraints_docred.json 存在\n- `run_constrained_extraction.py` 支持 `--model_path` 自定义模型、`--max_samples` 控制样本数\n- Qwen 2-sample dry-run：✅ 加载模型 → 读取约束（6 entity types, 96 relations）→ 输出合法 JSON\n- Llama 2-sample dry-run：✅ 同上\n\n**零阻塞项。** unconstrained eval 完成后可直接用报告中的命令提交 constrained eval，两个模型分别跑在 cuda:0 / cuda:1 上并行执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-constrained-eval-dryrun-prep.md"
+}

@@ -1,0 +1,58 @@
+{
+  "exp_id": "w5_docred_sft_data_gen",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:51:09.748Z",
+    "updated_at": "2026-05-15T17:59:18.623Z",
+    "hypothesis": "Generate DocRED SFT train/dev JSONL from train_annotated.json + dev.json — prerequisite for Qwen/Llama DocRED LoRA fine-tune",
+    "spec": {
+      "command": "python3 scripts/prepare_sft_data_docred.py",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "292314",
+      "log_path": "N/A",
+      "submitted_at": "2026-05-15T17:51:19.316Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/schema_semantic_constrained_ie/data/docred/",
+      "data_count": 4051,
+      "model_name": "Qwen3-8B",
+      "seed": null,
+      "wall_clock_seconds": 379.5,
+      "gpu_hours": 0.11,
+      "checkpoint_path": "N/A"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T17:51:44.980Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T17:51:46.380733+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "train_samples": 3053,
+      "dev_samples": 998,
+      "train_entities": 59493,
+      "train_relations": 38180,
+      "dev_entities": 19528,
+      "dev_relations": 12275
+    },
+    "checkpoint_path": "/root/schema_semantic_constrained_ie/data/docred/sft_train.jsonl,/root/schema_semantic_constrained_ie/data/docred/sft_dev.jsonl",
+    "completed_at": "2026-05-15T17:57:38.825Z"
+  },
+  "timestamp": "2026-05-15T17:59:18.723517+00:00",
+  "trigger": "update_registry"
+}

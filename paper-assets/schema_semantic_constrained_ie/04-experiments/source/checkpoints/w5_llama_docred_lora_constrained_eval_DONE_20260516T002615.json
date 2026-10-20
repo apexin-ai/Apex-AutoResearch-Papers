@@ -1,0 +1,40 @@
+{
+  "exp_id": "w5_llama_docred_lora_constrained_eval",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:58:10.837Z",
+    "updated_at": "2026-05-16T00:26:15.420Z",
+    "hypothesis": "Fine-tuned Llama-3.1-8B DocRED LoRA + OntoCoDec constrained eval — 验证 composability：约束解码在 fine-tuned Llama DocRED 上是否仍能消除残余 DR 且不损 R-F1",
+    "parent": "w5_llama_docred_lora_training",
+    "spec": {
+      "data_path": "data/docred/dev.json",
+      "data_count": 998,
+      "model_name": "Meta-Llama-3.1-8B-Instruct-LoRA-DocRED",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/llama_lora_docred_merged",
+      "eval_data": "data/docred/dev.json"
+    },
+    "server": "westd-16980",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-16980",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-16T00:22:01.892Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w5_llama_docred_lora_constrained_eval.jsonl --batch_size 1 --max_new_tokens 4096\"",
+      "finished_at": "2026-05-16T00:26:14.290Z",
+      "training_hours": 0.07
+    },
+    "pid": "316883",
+    "log_path": "~/runs/schema_semantic_constrained_ie/w5_llama_docred_lora_constrained_eval.log",
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T00:26:15.420Z"
+  },
+  "timestamp": "2026-05-16T00:26:15.517829+00:00",
+  "trigger": "update_registry"
+}

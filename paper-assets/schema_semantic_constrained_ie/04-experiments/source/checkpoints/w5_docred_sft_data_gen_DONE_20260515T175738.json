@@ -1,0 +1,57 @@
+{
+  "exp_id": "w5_docred_sft_data_gen",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:51:09.748Z",
+    "updated_at": "2026-05-15T17:57:38.825Z",
+    "hypothesis": "Generate DocRED SFT train/dev JSONL from train_annotated.json + dev.json — prerequisite for Qwen/Llama DocRED LoRA fine-tune",
+    "spec": {
+      "command": "python scripts/prepare_sft_data_docred.py --input data/docred/{train_annotated,dev}.json --output data/docred/sft_{train,dev}.jsonl --constraints data/docred/ontology_constraints_docred.json --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "292314",
+      "log_path": "~/runs/schema_semantic_constrained_ie/w5_docred_sft_data_gen.log",
+      "submitted_at": "2026-05-15T17:51:19.316Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/schema_semantic_constrained_ie/data/docred/{sft_train,sft_dev}.jsonl",
+      "data_count": 4051,
+      "model_name": "Qwen/Qwen3-8B (tokenizer only)",
+      "seed": 0,
+      "wall_clock_seconds": 379.5,
+      "gpu_hours": 0.11
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T17:51:44.980Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T17:51:46.380733+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "train_samples": 3053,
+      "dev_samples": 998,
+      "train_entities": 59493,
+      "train_relations": 38180,
+      "dev_entities": 19528,
+      "dev_relations": 12275
+    },
+    "checkpoint_path": "/root/schema_semantic_constrained_ie/data/docred/sft_train.jsonl,/root/schema_semantic_constrained_ie/data/docred/sft_dev.jsonl",
+    "completed_at": "2026-05-15T17:57:38.825Z"
+  },
+  "timestamp": "2026-05-15T17:57:38.940817+00:00",
+  "trigger": "update_registry"
+}

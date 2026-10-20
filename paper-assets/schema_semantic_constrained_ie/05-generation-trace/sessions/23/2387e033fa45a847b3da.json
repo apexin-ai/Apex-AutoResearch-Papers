@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2387e033fa45a847b3da",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d064 progress check",
+  "task_key": "worker_ssh_d064_progress_check_20260519T175528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d064_progress_check_20260519T175528_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "cc8cd89dab529e5afef9446554c3dc68bcbc98cfd399d2c755ee1d39124177c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入。总结：\n\n**4 个进程全部正常运行，无异常。**\n\n| 服务器 | 进程 | 进度 | ETA |\n|--------|------|------|-----|\n| 21461 GPU0 | Llama greedy con | 769/998 (77%) | ~50min |\n| 21461 GPU1 | Qwen beam-4 con | 415/998 (42%) | ~4.1h ← **瓶颈** |\n| 16980 GPU0 | Llama beam-4 unc | 684/998 (69%) | ~1.4h |\n| 16980 GPU1 | Llama beam-4 con | 586/998 (59%) | ~2.1h |\n\n已完成：Llama greedy unc (998✓)、Qwen beam-4 unc (998✓)\n\nOption C（16980 补跑 Llama greedy）：beam 完成后约需额外 3.3h（两方向并行）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d064-progress-check.md"
+}

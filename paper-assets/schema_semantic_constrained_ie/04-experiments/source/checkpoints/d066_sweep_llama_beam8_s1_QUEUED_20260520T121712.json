@@ -1,0 +1,16 @@
+{
+  "exp_id": "d066_sweep_llama_beam8_s1",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T12:17:06.965Z",
+    "updated_at": "2026-05-20T12:17:12.103Z",
+    "hypothesis": "d066 DocRED beam sweep sub-task: Llama beam8 constrained (full_s1) on 200-doc subset (westd-16980 GPU0). Part of d066_beam_sweep parent experiment.",
+    "parent": "d066_beam_sweep"
+  },
+  "timestamp": "2026-05-20T12:17:12.394022+00:00",
+  "trigger": "update_registry"
+}

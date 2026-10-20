@@ -1,0 +1,14 @@
+{
+  "exp_id": "mvp_phase0_docred_schema",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T17:58:18.184Z",
+    "updated_at": "2026-05-13T17:58:18.184Z"
+  },
+  "timestamp": "2026-05-13T17:58:18.189825+00:00",
+  "trigger": "update_registry"
+}

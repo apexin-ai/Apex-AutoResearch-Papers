@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32b556c248ffde8ffb0f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code w10 appendix type consensus tex",
+  "task_key": "worker_code_w10_appendix_type_consensus_tex_20260517T060734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w10_appendix_type_consensus_tex_20260517T060734_result.json",
+    "occurrence": 1,
+    "bytes": 224,
+    "sha256": "31eb3292065b223ed08470c3b28e6f30e64e9a4679c05a0f4b9117d1fd99ae56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已创建。结构包含 Motivation、Implementation（含 enumerate 伪代码）、Results（含 booktabs 表格骨架和 10-doc preliminary data）、Discussion（TODO 占位），控制在 1 页内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w10-appendix-type-consensus-tex.md"
+}

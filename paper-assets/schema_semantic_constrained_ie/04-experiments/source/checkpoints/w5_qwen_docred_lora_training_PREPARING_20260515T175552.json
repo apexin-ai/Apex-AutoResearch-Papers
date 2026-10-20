@@ -1,0 +1,40 @@
+{
+  "exp_id": "w5_qwen_docred_lora_training",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:48:52.649Z",
+    "updated_at": "2026-05-15T17:55:52.782Z",
+    "hypothesis": "Qwen3-8B LoRA fine-tune on DocRED — 填补 Qwen DocRED composability 2×2 matrix 的 FT 行。预期：(1) LoRA 后 E-F1/R-F1 大幅提升；(2) 残余 DR > 0% 证明 OntoCoDec 在 DocRED FT 上仍有 composability 价值。",
+    "spec": {
+      "data_path": "data/docred/sft_train.jsonl",
+      "data_count": 3053,
+      "eval_count": 998,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "hyperparams": {
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "lr": 0.0002,
+        "epochs": 3,
+        "batch_size": 2,
+        "grad_accum": 8,
+        "effective_bs": 16,
+        "max_length": 4096,
+        "warmup_ratio": 0.1
+      },
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/qwen_lora_docred",
+      "merged_path": "/root/autodl-tmp/checkpoints/qwen_lora_docred_merged"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T17:55:51.874Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-15T17:55:52.870755+00:00",
+  "trigger": "update_registry"
+}

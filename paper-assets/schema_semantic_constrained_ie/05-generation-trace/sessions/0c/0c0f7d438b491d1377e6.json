@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c0f7d438b491d1377e6",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "infra mistral model prep",
+  "task_key": "worker_infra_mistral_model_prep_20260516T041654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_mistral_model_prep_20260516T041654_result.json",
+    "occurrence": 1,
+    "bytes": 2313,
+    "sha256": "84839c52b8f7602549f72c24124d215d7c33c9ebe9ee55b3828f74f6ccad2e16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 任务完成总结\n\n### 1. 模型下载路径\n```\n/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3  (symlink)\n→ /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3-ms/mistralai/Mistral-7B-Instruct-v0___3/\n```\n- 3 个分片：model-00001 (4.7GB) + model-00002 (4.7GB) + model-00003 (4.3GB) = 13.7GB\n- 通过 ModelScope 下载（HuggingFace 超时失败）\n\n### 2. Tokenizer 兼容性结论：完全兼容，无需修改代码\n\n验证点：\n| 检查项 | 结果 |\n|--------|------|\n| `apply_chat_template` (system+user) | `<s>[INST] {system}\\n\\n{user}[/INST]` |\n| `apply_chat_template` (user only) | `<s>[INST] {user}[/INST]` |\n| `_chat_template_kwargs` | 返回 `{}` (非 Qwen，不传 enable_thinking) |\n| `pad_token` 处理 | None → 已有代码设为 eos_token |\n| XGrammar `TokenizerInfo.from_huggingface` | vocab_size=32768, OK |\n| `GrammarCompiler` | OK |\n| Entity type first token 映射 | 所有 6 种类型正确编码 |\n| 无硬编码特殊 token | 代码全部通过 `apply_chat_template` |\n\n### 3. 代码修改：无\n\n所有 3 个核心脚本 (`run_extraction.py`, `run_extraction_docred.py`, `run_constrained_extraction.py`) 均通过 `--model_path` 参数自动适配，无模型特定逻辑（除 Qwen 的 `enable_thinking=False`，对 Mistral 不触发）。\n\n### 4. Generation config 建议\n\n| 参数 | SciERC | DocRED |\n|------|--------|--------|\n| `max_new_tokens` | 1024 | 4096 |\n| `do_sample` | False | False |\n| `temperature` | None (greedy) | None (greedy) |\n\n与现有 Qwen/Llama 配置一致，无需调整。Mistral 上下文窗口 32K tokens 足够。\n\n### 运行示例\n```bash\n# SciERC\npython run_extraction.py --model_path /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --data_path data/scierc/test.json --output_path outputs/mistral_scierc.jsonl\n\n# DocRED\npython run_extraction_docred.py --model_path /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --data_path data/docred/dev.json --output_path outputs/mistral_docred.jsonl\n\n# Constrained extraction\npython run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --data_path data/scierc/test.json --constraints_path ontology_constraints.json --output_path outputs/mistral_constrained.jsonl\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-mistral-model-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a19f91e470e39931a73",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code cleanup stale v3 files",
+  "task_key": "worker_code_cleanup_stale_v3_files_20260518T081214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cleanup_stale_v3_files_20260518T081214_result.json",
+    "occurrence": 1,
+    "bytes": 485,
+    "sha256": "e399e1f4b53133acdf5889ec13525b2231b42bf70cc15f928cfcea6a0ca61135"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成，最终状态符合预期：\n\n**westd-16980:**\n| 文件 | 行数 |\n|---|---|\n| `ee_qwen_wikievents_constrained_v3_full.jsonl` | 111/246 |\n| `ee_mistral_wikievents_grammar_only_v3.jsonl` | 78/246 |\n\n**westd-21461:**\n| 文件 | 行数 |\n|---|---|\n| `ee_mistral_wikievents_constrained_v3_full.jsonl` | 74/246 |\n| `ee_llama_wikievents_constrained_v3_full.jsonl` | 61/246 |\n\n两个 6 行残留文件已删除，四个正本实验均在进行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cleanup-stale-v3-files.md"
+}

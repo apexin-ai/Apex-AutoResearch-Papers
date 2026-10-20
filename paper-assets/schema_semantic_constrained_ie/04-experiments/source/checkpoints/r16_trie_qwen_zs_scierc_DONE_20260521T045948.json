@@ -1,0 +1,39 @@
+{
+  "exp_id": "r16_trie_qwen_zs_scierc",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T03:44:37.808Z",
+    "updated_at": "2026-05-21T04:59:47.872Z",
+    "hypothesis": "Trie-only vocabulary constraint (GCD-equivalent, no JSON structure) on Qwen ZS SciERC will show high DR, proving grammar layer is prerequisite for vocabulary membership enforcement",
+    "spec": {
+      "command": "python3 run_constrained_extraction.py --mode trie_only --dataset scierc (Qwen ZS)",
+      "server": "westd-21461",
+      "gpu": "cuda:1",
+      "pid": 241846,
+      "data_path": "data/scierc/test.json",
+      "data_count": 551,
+      "model_name": "Qwen3-8B (zero-shot)",
+      "seed": 42,
+      "checkpoint_path": "N/A (trie eval)",
+      "log_path": "/root/autodl-tmp/schema_outputs/r16_trie_qwen_zs.log"
+    },
+    "metrics": {
+      "E_F1": 30.97,
+      "R_F1": 8.64,
+      "ET_pct": 0,
+      "RV_pct": 0,
+      "DR_pct": 29.3,
+      "CF_pct": 0,
+      "parse_fail_pct": 0,
+      "samples": 551
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T04:59:47.872Z"
+  },
+  "timestamp": "2026-05-21T04:59:48.194182+00:00",
+  "trigger": "update_registry"
+}

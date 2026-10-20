@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39106b7ebc4bb92d3ea3",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis r12 task6 table2 bootstrap ci",
+  "task_key": "worker_analysis_r12_task6_table2_bootstrap_ci_20260520T180503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r12_task6_table2_bootstrap_ci_20260520T180503_result.json",
+    "occurrence": 1,
+    "bytes": 2070,
+    "sha256": "50d0fb60bc21ca6201261d77c8eb3f59505c5ffb18710459947608cf68002a6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。以下是结果总结和论文 caption 文本。\n\n## 结果\n\n**R-F1 差异（constrained − unconstrained）：所有 n.s.**\n\n| Setting | ΔR-F1 (pp) | 95% CI | p |\n|---------|-----------|--------|---|\n| Qwen SciERC (n=551) | −0.10 | [−0.30, 0.00] | 0.726 |\n| Llama SciERC (n=551) | +0.02 | [0.00, +0.07] | 0.736 |\n| Qwen DocRED (n=998) | −0.31 | [−0.69, +0.01] | 0.056 |\n| Llama DocRED (n=998) | +0.06 | [−0.11, +0.25] | 0.535 |\n\n**DR% 差异：全部 p < 0.001**\n\n| Setting | ΔDR% (pp) | 95% CI | p |\n|---------|-----------|--------|---|\n| Qwen SciERC | −1.95 | [−2.87, −1.11] | <0.001 |\n| Llama SciERC | −1.02 | [−1.98, −0.29] | <0.001 |\n| Qwen DocRED | −0.75 | [−1.07, −0.48] | <0.001 |\n| Llama DocRED | −0.29 | [−0.53, −0.10] | <0.001 |\n\n**数据验证**：聚合 TP/FP/FN 与 d066_unified eval 完全一致（e.g. Qwen SciERC unc: tp=461, fp=667, fn=513 → R-F1=43.86%）。\n\n## 论文 Caption/Footnote 文本\n\n用于 Table 2 caption（SciERC composability table）：\n\n> Paired bootstrap test (10{,}000 iterations, document-level resampling): $\\Delta$R-F1 between constrained and unconstrained decoding is not statistically significant for either model ($p{>}0.5$, two-sided), while DR reduction is significant for both ($p{<}0.001$, one-sided).\n\n如果需要更详细的 footnote（含 DocRED 的扩展版）：\n\n> Bootstrap significance (10{,}000 iterations, document-level resampling, seed=42): No R-F1 difference reaches significance at $\\alpha{=}0.05$ (Qwen $\\Delta{=}{-}0.10$\\,pp, $p{=}0.73$; Llama $\\Delta{=}{+}0.02$\\,pp, $p{=}0.74$). DR\\% reduction is significant in all settings ($p{<}0.001$). On DocRED (998 docs), results are consistent: R-F1 $\\Delta$ ranges from $-0.31$ to $+0.06$\\,pp (all $p{>}0.05$) while DR\\% reduction remains significant.\n\n**文件位置**：\n- JSON: `westd-16980:/root/autodl-tmp/schema_outputs/r12_table2_bootstrap_ci.json`\n- 脚本: `westd-16980:/root/schema_semantic_constrained_ie/scripts/r12_bootstrap_ci_table2.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r12-task6-table2-bootstrap-ci.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1eb2db44fe5e549b96fc",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code 70b docred launch 16980",
+  "task_key": "worker_code_70b_docred_launch_16980_20260518T124003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_70b_docred_launch_16980_20260518T124003_result.json",
+    "occurrence": 1,
+    "bytes": 1181,
+    "sha256": "8cdd6f55a26c13ea6c0a26e9c6ad2522416df64921156e17f6444f784fee2196"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 GPU 都在满负载运行。\n\n**汇报：**\n\n| 实验 | exp_id | GPU | PID | 日志 |\n|------|--------|-----|-----|------|\n| DocRED unconstrained | `70b_docred_unconstrained` | cuda:0 | 556552 | `~/runs/schema_semantic_constrained_ie/70b_docred_unconstrained.log` |\n| DocRED constrained (full_s1) | `70b_docred_constrained` | cuda:1 | 556631 | `~/runs/schema_semantic_constrained_ie/70b_docred_constrained.log` |\n\n**环境修复：**\n- 模型从 westd-21461 scp 完成（38GB，9 个 shard）\n- transformers 从 4.57.6 升级到 5.8.1（4.57.6 的 autoawq 兼容性问题）\n- 安装 gptqmodel 7.0.0（transformers 5.8.1 的 AWQ 后端要求）\n- Marlin fp16 CUDA 扩展已编译缓存\n\n**模型加载正常：** 每张 GPU 占用约 39GB 显存，利用率 ~88%。\n\n**补充说明：** 用户给的命令缺少 `--data_path data/docred/dev.json` 和 `--constraints_path data/docred/ontology_constraints_docred.json`，已自动补上。\n\n**预估运行时间：** DocRED dev 集 998 篇文档，文档长度远大于 SciERC 句子，70B 模型单文档推理较慢，预计 8-15 小时。constrained 模式因额外约束计算会更慢。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-70b-docred-launch-16980.md"
+}

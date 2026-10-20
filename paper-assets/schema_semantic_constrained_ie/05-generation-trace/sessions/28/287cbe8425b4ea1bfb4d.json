@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "287cbe8425b4ea1bfb4d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops eval beam8 con",
+  "task_key": "worker_ops_eval-beam8-con_20260520T035535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-beam8-con_20260520T035535_result.json",
+    "occurrence": 1,
+    "bytes": 537,
+    "sha256": "739fa349a256b54dda3216dce855d2334a362d75c41de02de4375c5fc53c501d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`eval_beam8_con.json` 已生成。结果：\n\n| 指标 | 值 |\n|------|-----|\n| **E-F1** | 66.36 (P=63.73, R=69.22) |\n| **R-F1** | 43.65 (P=38.25, R=50.82) |\n| ET% | 0.00 |\n| RV% | 0.00 |\n| DR% | 0.00 |\n| CF% | 0.00 |\n| Parse Fail | 0/551 (0%) |\n| Avg Inference Time | 5.058s |\n| Total Inference Time | 2786.7s |\n\n所有 violation 指标为 0（constrained 模式下符合预期）。与 beam4 con 对比，E-F1 从 67.22 降至 66.36，R-F1 从 43.60 微升至 43.65，推理时间从 4.069s 增至 5.058s。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-beam8-con.md"
+}

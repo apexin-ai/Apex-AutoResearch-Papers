@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0af3adda8cca698f54d0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper reference audit relwork",
+  "task_key": "worker_paper_reference_audit_relwork_20260514T054831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reference_audit_relwork_20260514T054831_result.json",
+    "occurrence": 1,
+    "bytes": 604,
+    "sha256": "78be8e94777dfcb77130b033ed5a10a25ecc016ff3ecc500b4f6c0fcd9a98212"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 已在 manifest 中注册（id: `art_20260514_9e46de`）。文件已更新为要求的格式。\n\n**验证结果：4/4 全部为真实论文，无幻觉引用。**\n\n| Cite Key | Status | 注意事项 |\n|----------|--------|---------|\n| `zhou2026snowballing` | VERIFIED | arXiv preprint (2604.06066)，bib 需标注无正式 venue |\n| `upadhyay2023openie` | VERIFIED | Findings of EACL 2023，描述完全准确 |\n| `regino2025kgcurator` | VERIFIED | GenAIK 2025 Workshop (COLING)，bib venue 用全称 |\n| `qi2024adelie` | VERIFIED | EMNLP 2024 main，描述完全准确 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-reference-audit-relwork.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20db83a40308d1ac0d47",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code r4 doc length breakdown",
+  "task_key": "worker_code_r4_doc_length_breakdown_20260517T122214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r4_doc_length_breakdown_20260517T122214_result.json",
+    "occurrence": 1,
+    "bytes": 1046,
+    "sha256": "ee57d53d078ac70ac404ab6e9835dfc22c0e8ed8364e0f542dc2d13e0022b9a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。两个 artifact 已注册：\n\n**核心发现：**\n\n| | SciERC | DocRED |\n|---|---|---|\n| Short 减少 | 84.1% | 74.1% |\n| Medium 减少 | 81.5% | 75.2% |\n| Long 减少 | 79.7% | 73.8% |\n\n1. **约束效果跨文档长度一致**：SciERC 80–84%，DocRED 74–75%，长文档无退化\n2. **ET/RV 全部消除**：grammar-constrained decoding 在所有长度桶中 100% 消除这两类违规\n3. **长文档违规更多但约束等比有效**：DocRED long-bin 无约束 3550 violations vs short-bin 2445，但减少率几乎相同\n4. **F1 不受损或略有提升**：DocRED constrained E-F1 提升 +0.9–1.5pp\n5. **CF 违规 trade-off**：SciERC constrained 中 CF 增加（grammar 强制有效类型，但同一 entity 跨 relation 可能被分配不同有效类型）\n\n产出：\n- `r4_doc_length_breakdown_results.md` — 完整数据表格和分析\n- `r4_doc_length_latex_table.tex` — 论文 appendix LaTeX 表格（3 个 table）\n- `outputs/doc_length_breakdown.json` — 原始 JSON 数据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r4-doc-length-breakdown.md"
+}

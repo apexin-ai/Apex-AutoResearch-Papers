@@ -1,0 +1,32 @@
+{
+  "exp_id": "r16_70b_lora_docred",
+  "project": "schema_semantic_constrained_ie",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T12:04:39.980Z",
+    "updated_at": "2026-05-21T12:21:27.309Z",
+    "hypothesis": "70B AWQ INT4 + LoRA fine-tuning on DocRED will achieve higher R-F1 than 8B FT models, and S1 constraints will maintain DR→0% at 70B scale with fine-tuning, confirming scale-independent constraint effectiveness across datasets",
+    "parent": "r16_70b_scierc_zs_s1",
+    "spec": {
+      "command": "python3 train_70b_lora.py --dataset docred --model_path /root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ-INT4 --output_dir /root/autodl-tmp/checkpoints/70b_lora_docred --epochs 3 --lr 2e-4 --lora_r 16 --lora_alpha 32",
+      "server": "westd-16980",
+      "data_path": "data/sft/docred_sft_train.jsonl",
+      "data_count": 3053,
+      "model_name": "Llama-3.3-70B-Instruct-AWQ-INT4",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/70b_lora_docred/",
+      "log_path": "/root/autodl-tmp/checkpoints/70b_lora_docred/train.log",
+      "checkpoint_source": "self-trained",
+      "eval_data": "/root/schema_semantic_constrained_ie/data/docred/sft_dev_llama.jsonl",
+      "pid": 835754,
+      "gpu_ids": [
+        1
+      ]
+    }
+  },
+  "timestamp": "2026-05-21T12:21:27.577173+00:00",
+  "trigger": "update_registry"
+}

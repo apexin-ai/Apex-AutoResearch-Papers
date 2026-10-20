@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "283585edb7ff50794ea3",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code posthoc mistral llama unconstrained",
+  "task_key": "worker_code_posthoc_mistral_llama_unconstrained_20260518T102610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_posthoc_mistral_llama_unconstrained_20260518T102610_result.json",
+    "occurrence": 1,
+    "bytes": 1649,
+    "sha256": "6a469706380f78f6d7c0a42aacf07dab5b83bd89f62ba4e0eebd0c311c8aa6f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下。\n\n---\n\n## Post-hoc Filtering 结果（WikiEvents EE, 246 docs）\n\n| Model | Unconstrained (events / args) | Post-hoc (events / args) | EV removed | RoV removed | AC removed |\n|-------|------|------|------|------|------|\n| **Mistral** | 2405 / 6034 | 1507 / **0** | 898 (37%) | 3858 | 0 |\n| **Llama** | 2447 / 5053 | 2189 / **3** | 258 (11%) | 4486 | 3 |\n| **Qwen** | 3013 / 5467 | 2291 / **23** | 722 (24%) | ~5444 | — |\n\nPost-hoc 几乎删除了所有 arguments（Mistral 100%, Llama 99.9%, Qwen 99.6%），原因是 unconstrained 模型生成的 role 名称（如 \"speaker\"/\"bomb\"/\"bystanders\"）完全不匹配 ontology 定义的合法 role，RoV 过滤直接清空。\n\n---\n\n## V3 进度\n\n| Task | Server | Lines | Status |\n|------|--------|-------|--------|\n| Mistral constrained v3 | westd-21461 | 226/246 | **运行中**（tmux: mistral_v3_full, ~3.5h elapsed） |\n| Llama constrained v3 | westd-21461 | 246/246 | **完成** |\n| Mistral grammar_only v3 | westd-16980 | 242/246 | **完成**（4 条 skip/error） |\n| Qwen constrained v3 | westd-16980 | 246/246 | **完成** |\n\n---\n\n## 70B 下载（westd-21461）\n\n下载 `LLM-Research/Meta-Llama-3.1-70B-Instruct`（全量 FP16, 8 shards x 16.4GB = ~131GB）\n- 当前进度: 每个 shard ~2-3%（~300-450MB）\n- 速度: ~1.5 MB/s per shard\n- ETA: **约 3 小时**\n- 之前的 AWQ-INT4 下载已被取消（^C），当前是全量模型\n\n---\n\nPost-hoc 输出已写入：\n- `westd-16980: outputs/ee_llama_wikievents_unconstrained_posthoc.jsonl`\n- `westd-21461: outputs/ee_mistral_wikievents_unconstrained_posthoc.jsonl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-posthoc-mistral-llama-unconstrained.md"
+}

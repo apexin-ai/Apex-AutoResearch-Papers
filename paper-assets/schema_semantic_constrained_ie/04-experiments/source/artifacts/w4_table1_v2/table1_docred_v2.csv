@@ -1,0 +1,5 @@
+dataset,mode,checker_version,DR_rate,RV_rate,ET_rate,CF_rate,exp_id,note
+DocRED,Unconstrained,v2,18.46,29.66,2.48,0.10,phase2_docred_unconstrained,
+DocRED,Schema-informed,v2,12.84,18.41,0.19,0.15,phase0_docred_schema,ET v1→v2: 0.61→0.19
+DocRED,Unconstrained,v1,18.46,29.66,8.18,0.10,phase2_docred_unconstrained,v1 triple-count ET
+DocRED,Schema-informed,v1,12.84,18.41,0.61,0.15,phase0_docred_schema,v1 triple-count ET

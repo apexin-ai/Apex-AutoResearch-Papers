@@ -1,0 +1,110 @@
+{
+  "exp_id": "phase2_scierc_full_s2",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:36:35.941Z",
+    "updated_at": "2026-05-14T02:04:44.897Z",
+    "spec": {
+      "command": "bash -c \"tmux kill-session -t phase2_scierc_full_s2 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s2 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s2.jsonl --device cuda:0 --batch_size 1 --resume\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s2.log",
+      "submitted_at": "2026-05-14T01:07:00.401Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 368.6,
+      "gpu_hours": 0.1
+    },
+    "hypothesis": "S2 两通道约束解码全量验证 — Grammar (Pass 1) + Semantic (Pass 2) 分离式约束。S2 pilot50 已验证 D/R violation=0%，全量运行检验 F1 稳定性和 per-relation 效果。与 S1 对比验证两种架构的 F1-violation trade-off。",
+    "notes": "✅ 全量完成 551/551 via --resume. S2 两通道约束解码结果。DR=0.97% (vs S1 0.93%), RV=0%, ET=0%, R-F1=0.0803, E-F1=0.319.",
+    "server": "westd-16980",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-16980",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-14T01:06:58.685Z",
+      "command": "bash -c \"tmux kill-session -t phase2_scierc_full_s2 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s2 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s2.jsonl --device cuda:0 --batch_size 1 --resume\"",
+      "finished_at": "2026-05-14T01:13:08.809Z",
+      "training_hours": 0.1
+    },
+    "pid": 144858,
+    "log_path": "~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s2.log",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-14T01:13:09.036Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T01:13:12.640712+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s2.jsonl",
+    "metrics": {
+      "total_samples": 551,
+      "total_triples": 1644,
+      "total_entities": 2228,
+      "json_parse_rate": 1,
+      "entity_type_violation_rate": 0,
+      "relation_vocabulary_violation_rate": 0,
+      "domain_range_violation_rate": 0.0097,
+      "cross_field_consistency_violation_rate": 0.0803,
+      "entity_precision": 0.2797,
+      "entity_recall": 0.3712,
+      "entity_f1": 0.319,
+      "relation_precision": 0.064,
+      "relation_recall": 0.1078,
+      "relation_f1": 0.0803,
+      "per_relation_DR": {
+        "Compare": {
+          "total": 87,
+          "violations": 4,
+          "rate": 0.046
+        },
+        "Conjunction": {
+          "total": 79,
+          "violations": 0,
+          "rate": 0
+        },
+        "Evaluate-for": {
+          "total": 118,
+          "violations": 6,
+          "rate": 0.0508
+        },
+        "Feature-of": {
+          "total": 328,
+          "violations": 4,
+          "rate": 0.0122
+        },
+        "Hyponym-of": {
+          "total": 97,
+          "violations": 0,
+          "rate": 0
+        },
+        "Part-of": {
+          "total": 80,
+          "violations": 1,
+          "rate": 0.0125
+        },
+        "Used-for": {
+          "total": 855,
+          "violations": 1,
+          "rate": 0.0012
+        }
+      }
+    }
+  },
+  "timestamp": "2026-05-14T02:04:44.938023+00:00",
+  "trigger": "update_registry"
+}

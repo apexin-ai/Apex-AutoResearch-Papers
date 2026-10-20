@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b1e5dee735c55d69efb",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops scierc eval fix 16980",
+  "task_key": "worker_ops_scierc_eval_fix_16980_20260520T154125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scierc_eval_fix_16980_20260520T154125_result.json",
+    "occurrence": 1,
+    "bytes": 1303,
+    "sha256": "95f8f53730e8b1c87b82d027b8e676f0e8a03e1f96ce722145b1f09009d24725"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### 根因\n`eval_d064.py` 第 10 行硬编码 `ONTOLOGY_FILE = \".../docred/ontology_constraints_docred.json\"`，DocRED entity types（`LOC/ORG/PER/NUM/MISC/TIME`）和 relation types（Wikidata P-codes）与 SciERC 的完全不重叠，导致 ET=100%、RV=100%。另外 `normalize_etype()` 做 `.upper()` 但 `VALID_ENTITY_TYPES` 未统一大小写也会导致不匹配。\n\n### 修复\n- 新增 `--dataset` 参数（`docred/scierc/ace05/wikievents`），映射到对应 ontology 文件\n- `VALID_ENTITY_TYPES` 和 `valid_pairs` 统一做 `.upper()` 以匹配 `normalize_etype`\n- 自动检测 `relation_types` 格式（dict=DocRED P-code, list=SciERC 直接名称）\n- 两台服务器已同步部署\n\n### 修正后的 SciERC eval 结果\n\n| Config | ET% | RV% | DR% | CF% | E-F1 | R-F1 |\n|---|---|---|---|---|---|---|\n| **beam2 s1** | 0.00 | 0.00 | 0.00 | 0.17 | 68.34 | 46.12 |\n| **beam4 s1** | 0.00 | 0.00 | 0.00 | 0.00 | 68.06 | 46.18 |\n| **beam8 s1** (111样本) | 0.00 | 0.00 | 0.00 | 0.00 | 72.07 | 54.39 |\n| **beam8 unconstrained** | 0.00 | 0.00 | 1.04 | 0.00 | 67.59 | 45.14 |\n\nbeam8 unconstrained 的 DR%=1.04% 是唯一非零违规指标，符合预期（无约束解码允许不合法 entity type pair）。beam8 s1 仅 111 样本（未完成）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scierc-eval-fix-16980.md"
+}

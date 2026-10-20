@@ -1,0 +1,33 @@
+{
+  "exp_id": "w8_qwen_docred_ft_semantic_only",
+  "project": "schema_semantic_constrained_ie",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T10:08:59.297Z",
+    "updated_at": "2026-05-16T10:09:42.312Z",
+    "hypothesis": "FT Qwen DocRED + semantic_only eval: 与 grammar_only 配对，验证 semantic 层在 FT+DocRED regime 下能否独立降低 DR。预期 DR 从 0.76% 降至 ~0.3-0.5%（参照 SciERC 模式：semantic_only 降 DR 68%��。完成后 DocRED FT ablation 有 Qwen 双模式数据。",
+    "parent": "w5_qwen_docred_lora_training",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode semantic_only --dataset docred --model_path /root/autodl-tmp/checkpoints/qwen_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w8_qwen_docred_ft_semantic_only.jsonl --batch_size 1 --max_new_tokens 4096\"",
+      "server": "westd-21461",
+      "gpu": 1,
+      "pid": 20035,
+      "log_path": "~/runs/schema_semantic_constrained_ie/w8_qwen_docred_ft_semantic_only.log",
+      "submitted_at": "2026-05-16T10:09:32.938Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "Qwen3-8B-LoRA-DocRED",
+      "data_path": "data/docred/dev.json",
+      "data_count": 998,
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen_lora_docred_merged",
+      "eval_data": "data/docred/dev.json"
+    }
+  },
+  "timestamp": "2026-05-16T10:09:42.448280+00:00",
+  "trigger": "update_registry"
+}

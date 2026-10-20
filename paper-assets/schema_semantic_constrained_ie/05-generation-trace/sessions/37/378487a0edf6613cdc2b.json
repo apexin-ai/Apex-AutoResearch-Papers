@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "378487a0edf6613cdc2b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code constraint guided beam",
+  "task_key": "worker_code_constraint_guided_beam_20260519T161042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_constraint_guided_beam_20260519T161042.log",
+    "occurrence": 1,
+    "bytes": 781468,
+    "sha256": "76045b1de622f5aed9a012bd953d33f874ec026e486372606a293d7749db2489"
+  },
+  "statistics": {
+    "messages": 206,
+    "user_turns": 1,
+    "tool_calls": 74,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 50,
+      "tool_call": 74,
+      "tool_result": 74,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 161,
+      "chunks": [
+        {
+          "path": "378487a0edf6613cdc2b-part-0001.json",
+          "message_count": 127
+        },
+        {
+          "path": "378487a0edf6613cdc2b-part-0002.json",
+          "message_count": 34
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 45,
+      "chunks": [
+        {
+          "path": "378487a0edf6613cdc2b-part-0002.json",
+          "message_count": 45
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-constraint-guided-beam.md"
+}

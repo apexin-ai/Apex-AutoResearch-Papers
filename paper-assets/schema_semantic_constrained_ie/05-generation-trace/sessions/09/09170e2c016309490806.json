@@ -1,0 +1,936 @@
+{
+  "schema_version": "1.0",
+  "id": "09170e2c016309490806",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "analysis scierc violation",
+  "task_key": "worker_analysis_scierc_violation_20260513T191114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_scierc_violation_20260513T191114.log",
+    "occurrence": 1,
+    "bytes": 54835,
+    "sha256": "9fd60f47df473324d00aff627e0369396fae6675d2e54d29b06088a9423b00eb"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "session_id": "628d91fb-b42d-400e-b393-71cf5bad288e",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "a344b801-4dfe-48d3-bb97-426453879d4a",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778711400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "73905a01-423d-49a2-ab5a-bc8bde517296",
+                "session_id": "628d91fb-b42d-400e-b393-71cf5bad288e"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by running the steps as outlined in the task.",
+              "signature": "EvUBClkIDRgCKkD1EiRAZ5cHpdOYrmmgN1HYA67oc2DEFjCrH2ZHlkOz/GvZRoB+MttyJo30G1v+ZHBGqdCzypfuAk+oWOFF6eTxMg9jbGF1ZGUtb3B1cy00LTY4ABIM6RXzLDTdH4HVJ625Ggx4YXrYmJgGKAF3U8EiMLxTSdSdX14tvY7oTShXLA/WuTcfuyb+6tJpdaDSSATW7W1IeHE6fBmi3B/ly32h2SpKfMtQUPCMhfRvRXy3yPccR9EmqSD2LExDaJ4Vshna5CiiWiho4OKAe7lTUMhPN/qG+kX9GCbYzMzz5iSw5iEhiEtcNRIOxYrDUwYYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "628d91fb-b42d-400e-b393-71cf5bad288e",
+            "uuid": "e3afdf79-b69e-4e57-b9c8-0779eb991489",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012KTdiPyaVpNhtzQij1PEU7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11936,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11936
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K7aytmDNUoYVA7bjikCNi2",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "628d91fb-b42d-400e-b393-71cf5bad288e",
+            "uuid": "fdaf08e9-8883-4c40-965f-6a47157ec2e6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012KTdiPyaVpNhtzQij1PEU7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11936,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11936
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T19:11:31.304Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01K7aytmDNUoYVA7bjikCNi2",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "628d91fb-b42d-400e-b393-71cf5bad288e",
+            "uuid": "c030681f-48ff-4625-b8a7-442ddd878bd3",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先确认输出文件状态。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "628d91fb-b42d-400e-b393-71cf5bad288e",
+            "uuid": "cb9a0192-5e91-447b-8969-c6e2d176d3e0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bikgjn1RuTy7Bvf6Av85dy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 699,
+                "cache_read_input_tokens": 23383,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 699
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0128MturmmqZKKcK2qCcehcx",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16980",
+                "command": "wc -l /root/schema_semantic_constrained_ie/outputs/raw_outputs.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "628d91fb-b42d-400e-b393-71cf5bad288e",
+            "uuid": "80c62c1e-ffb2-4b73-9cc0-fad01ef5876e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bikgjn1RuTy7Bvf6Av85dy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 699,
+                "cache_read_input_tokens": 23383,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 699
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ChJEybm9mpZCCuDxx3H9EJ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16980",
+                "command": "ls -la /root/schema_semantic_constrained_ie/outputs/raw_outputs.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "628d91fb-b42d-400e-b393-71cf5bad288e",
+            "uuid": "f79092fe-c87b-4753-a356-82f423955d30",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bikgjn1RuTy7Bvf6Av85dy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 699,
+                "cache_read_input_tokens": 23383,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 699
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Kywcb22w9w6o7kDAPvoYwz",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16980",
+                "command": "head -30 /root/schema_semantic_constrained_ie/violation_checker.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "628d91fb-b42d-400e-b393-71cf5bad288e",
+            "uuid": "e9860683-9e42-4501-8212-b00ea76c09be",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bikgjn1RuTy7Bvf6Av85dy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 699,
+                "cache_read_input_tokens": 23383,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 699
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T19:11:42.218Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0128MturmmqZKKcK2qCcehcx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"551 /root/schema_semantic_constrained_ie/outputs/raw_outputs.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "628d91fb-b42d-400e-b393-71cf5bad288e",
+            "uuid": "7ad92052-ad1a-46f2-a64d-5093ad0913cb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"551 /root/schema_semantic_constrained_ie/outputs/raw_outputs.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"551 /root/schema_semantic_constrained_ie/outputs/raw_outputs.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T19:11:42.734Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ChJEybm9mpZCCuDxx3H9EJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 1293316 May 14 02:44 /root/schema_semantic_constrained_ie/outputs/raw_outputs.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "628d91fb-b42d-400e-b393-71cf5bad288e",
+            "uuid": "be471ca5-7eaa-41b1-9ef1-eadf8ada9373",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 1293316 May 14 02:44 /root/schema_semantic_constrained_ie/outputs/raw_outputs.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 1293316 May 14 02:44 /root/schema_semantic_constrained_ie/outputs/raw_outputs.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T19:11:43.263Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Kywcb22w9w6o7kDAPvoYwz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Check ontology constraint violations in SciERC extraction outputs.\\\\n\\\\nViolation types (mutually exclusive per triple):\\\\n1. entity_type_violations      - entity type not in ontology's valid type list\\\\n2. relation_vocabulary_violations - relation name not in ontology (solvable by grammar-constrained decoding)\\\\n3. domain_range_violations     - relation name valid but (head_type, tail_type) violates constraints (OntoCoDec core target)\\\\n4. cross_field_consistency_violations - same entity mention has inconsistent types across relations\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\n\\\\ndef normalize_type(t, valid_types, type_map=None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Case-insensitive type matching with common aliases.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if type_map is None:\\\\n        type_map = {\\\\n            \\\\\\\"otherscientificterm\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n            \\\\\\\"other-scientificterm\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n            \\\\\\\"other_scientific_term\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n            \\\\\\\"scientificterm\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n            \\\\\\\"other\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n        }\\\\n    t_lower = t.strip().lower().replace(\\\\\\\" \\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"-\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    for vt in valid_types:\\\\n        if t_lower == vt.lower().replace(\\\\\\\" \\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"-\\\\\\\", \\\\\\\"\\\\\\\"):\\\\n            return vt\\\\n    if t_lower in type_map:\\\\n        return type_map[t_lower]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "628d91fb-b42d-400e-b393-71cf5bad288e",
+            "uuid": "7275c816-b592-4f8f-a297-3ff22bac8005",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Check ontology constraint violations in SciERC extraction outputs.\\\\n\\\\nViolation types (mutually exclusive per triple):\\\\n1. entity_type_violations      - entity type not in ontology's valid type list\\\\n2. relation_vocabulary_violations - relation name not in ontology (solvable by grammar-constrained decoding)\\\\n3. domain_range_violations     - relation name valid but (head_type, tail_type) violates constraints (OntoCoDec core target)\\\\n4. cross_field_consistency_violations - same entity mention has inconsistent types across relations\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\n\\\\ndef normalize_type(t, valid_types, type_map=None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Case-insensitive type matching with common aliases.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if type_map is None:\\\\n        type_map = {\\\\n            \\\\\\\"otherscientificterm\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n            \\\\\\\"other-scientificterm\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n            \\\\\\\"other_scientific_term\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n            \\\\\\\"scientificterm\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n            \\\\\\\"other\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n        }\\\\n    t_lower = t.strip().lower().replace(\\\\\\\" \\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"-\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    for vt in valid_types:\\\\n        if t_lower == vt.lower().replace(\\\\\\\" \\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"-\\\\\\\", \\\\\\\"\\\\\\\"):\\\\n            return vt\\\\n    if t_lower in type_map:\\\\n        return type_map[t_lower]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Check ontology constraint violations in SciERC extraction outputs.\\n\\nViolation types (mutually exclusive per triple):\\n1. entity_type_violations      - entity type not in ontology's valid type list\\n2. relation_vocabulary_violations - relation name not in ontology (solvable by grammar-constrained decoding)\\n3. domain_range_violations     - relation name valid but (head_type, tail_type) violates constraints (OntoCoDec core target)\\n4. cross_field_consistency_violations - same entity mention has inconsistent types across relations\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\n\\ndef normalize_type(t, valid_types, type_map=None):\\n    \\\"\\\"\\\"Case-insensitive type matching with common aliases.\\\"\\\"\\\"\\n    if type_map is None:\\n        type_map = {\\n            \\\"otherscientificterm\\\": \\\"OtherScientificTerm\\\",\\n            \\\"other-scientificterm\\\": \\\"OtherScientificTerm\\\",\\n            \\\"other_scientific_term\\\": \\\"OtherScientificTerm\\\",\\n            \\\"scientificterm\\\": \\\"OtherScientificTerm\\\",\\n            \\\"other\\\": \\\"OtherScientificTerm\\\",\\n        }\\n    t_lower = t.strip().lower().replace(\\\" \\\", \\\"\\\").replace(\\\"_\\\", \\\"\\\").replace(\\\"-\\\", \\\"\\\")\\n    for vt in valid_types:\\n        if t_lower == vt.lower().replace(\\\" \\\", \\\"\\\").replace(\\\"_\\\", \\\"\\\").replace(\\\"-\\\", \\\"\\\"):\\n            return vt\\n    if t_lower in type_map:\\n        return type_map[t_lower]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件确认：551 行，1.29MB。violation_checker.py 是修复版（4 类独立计数）。运行 violation analysis。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "628d91fb-b42d-400e-b393-71cf5bad288e",
+            "uuid": "72069b4b-7c88-493c-93f2-791878c190a7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R3YYxGPi86UkqdYTXksqiR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1247,
+                "cache_read_input_tokens": 24082,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1247
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015dBXGA762KVJYfHy1AacNw",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 violation_checker.py --input_path outputs/raw_outputs.jsonl --constraints_path ontology_constraints.json --output_path outputs/violation_report_scierc.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "628d91fb-b42d-400e-b393-71cf5bad288e",
+            "uuid": "8e060f65-2770-4a32-8b4f-cd34ad3f83c6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R3YYxGPi86UkqdYTXksqiR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1247,
+                "cache_read_input_tokens": 24082,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1247
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T19:11:50.148Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015dBXGA762KVJYfHy1AacNw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Violation Report (SciERC) ===\\\\nSamples: 551, JSON failures: 0 (0.0%)\\\\nEntities: 2474, Relations: 1724\\\\n\\\\nEntity type violations: 10/2474 (0.4%)\\\\nRelation vocab violations: 24/1724 (1.4%)\\\\nDomain/range violations: 265/1724 (15.4%)\\\\nCross-field consistency violations: 2\\\\nFuzzy relation matches: 0\\\\n\\\\nGo/No-go metric (D/R violation rate): 0.1537\\\\n\\\\nEntity F1: P=0.2605 R=0.3831 F1=0.3101\\\\nRelation F1: P=0.0644 R=0.1140 F1=0.0823\\\\n\\\\nReport saved to outputs/violation_report_scierc.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "628d91fb-b42d-400e-b393-71cf5bad288e",
+            "uuid": "87b03bf3-82f6-432f-bc50-6a186ebc947a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Violation Report (SciERC) ===\\\\nSamples: 551, JSON failures: 0 (0.0%)\\\\nEntities: 2474, Relations: 1724\\\\n\\\\nEntity type violations: 10/2474 (0.4%)\\\\nRelation vocab violations: 24/1724 (1.4%)\\\\nDomain/range violations: 265/1724 (15.4%)\\\\nCross-field consistency violations: 2\\\\nFuzzy relation matches: 0\\\\n\\\\nGo/No-go metric (D/R violation rate): 0.1537\\\\n\\\\nEntity F1: P=0.2605 R=0.3831 F1=0.3101\\\\nRelation F1: P=0.0644 R=0.1140 F1=0.0823\\\\n\\\\nReport saved to outputs/violation_report_scierc.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"=== Violation Report (SciERC) ===\\nSamples: 551, JSON failures: 0 (0.0%)\\nEntities: 2474, Relations: 1724\\n\\nEntity type violations: 10/2474 (0.4%)\\nRelation vocab violations: 24/1724 (1.4%)\\nDomain/range violations: 265/1724 (15.4%)\\nCross-field consistency violations: 2\\nFuzzy relation matches: 0\\n\\nGo/No-go metric (D/R violation rate): 0.1537\\n\\nEntity F1: P=0.2605 R=0.3831 F1=0.3101\\nRelation F1: P=0.0644 R=0.1140 F1=0.0823\\n\\nReport saved to outputs/violation_report_scierc.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行成功。读取完整 JSON 报告。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "628d91fb-b42d-400e-b393-71cf5bad288e",
+            "uuid": "a8b496e5-540b-4b86-9e51-5baa91ae2241",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DDrnTK8KoKFks8JT1jNVKP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 518,
+                "cache_read_input_tokens": 25329,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 518
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TdbjnzyETQfM5QwbKrXxdN",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16980",
+                "command": "cat /root/schema_semantic_constrained_ie/outputs/violation_report_scierc.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "628d91fb-b42d-400e-b393-71cf5bad288e",
+            "uuid": "9beefd97-ee1b-41fc-98af-2a96a4418e6a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DDrnTK8KoKFks8JT1jNVKP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 518,
+                "cache_read_input_tokens": 25329,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 518
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T19:11:54.103Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TdbjnzyETQfM5QwbKrXxdN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"total_samples\\\\\\\": 551,\\\\n    \\\\\\\"total_triples_extracted\\\\\\\": 1724,\\\\n    \\\\\\\"total_entities_extracted\\\\\\\": 2474,\\\\n    \\\\\\\"json_parse_failures\\\\\\\": 0,\\\\n    \\\\\\\"json_parse_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"entity_type_violations\\\\\\\": 10,\\\\n    \\\\\\\"entity_type_violation_rate\\\\\\\": 0.004,\\\\n    \\\\\\\"relation_vocabulary_violations\\\\\\\": 24,\\\\n    \\\\\\\"relation_vocabulary_violation_rate\\\\\\\": 0.0139,\\\\n    \\\\\\\"relation_fuzzy_matches\\\\\\\": 0,\\\\n    \\\\\\\"domain_range_violations\\\\\\\": 265,\\\\n    \\\\\\\"domain_range_violation_rate\\\\\\\": 0.1537,\\\\n    \\\\\\\"cross_field_consistency_violations\\\\\\\": 2,\\\\n    \\\\\\\"cross_field_consistency_violation_rate\\\\\\\": 0.0008,\\\\n    \\\\\\\"total_violations_any\\\\\\\": 301,\\\\n    \\\\\\\"total_violation_rate\\\\\\\": 0.0717,\\\\n    \\\\\\\"go_nogo_metric\\\\\\\": 0.1537,\\\\n    \\\\\\\"go_nogo_metric_description\\\\\\\": \\\\\\\"per-triple domain_range_violation_rate (excludes relation_vocabulary_violations)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"per_relation_type\\\\\\\": {\\\\n    \\\\\\\"Compare\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 66,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 28,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.4242\\\\n    },\\\\n    \\\\\\\"Conjunction\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 32,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"Evaluate-for\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 133,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 32,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.2406\\\\n    },\\\\n    \\\\\\\"Feature-of\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 486,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 163,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.3354\\\\n    },\\\\n    \\\\\\\"Hyponym-of\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 124,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 18,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.1452\\\\n    },\\\\n    \\\\\\\"Part-of\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 72,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 18,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.25\\\\n    },\\\\n    \\\\\\\"Used-for\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 787,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 6,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0076\\\\n    }\\\\n  },\\\\n  \\\\\\\"examples\\\\\\\": {\\\\n    \\\\\\\"entity_type_violations\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"NIPS_2001_11_abs_sent1\\\\\\\",\\\\n        \\\\\\\"entity\\\\\\\": \\\\\\\"high-density\\\\\\\",\\\\n        \\\\\\\"invalid_type\\\\\\\": \\\\\\\"Feature-of\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"NIPS_2001_11_abs_sent1\\\\\\\",\\\\n        \\\\\\\"entity\\\\\\\": \\\\\\\"low-power\\\\\\\",\\\\n        \\\\\\\"invalid_type\\\\\\\": \\\\\\\"Feature-of\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"CVPR_2009_10_abs_sent4\\\\\\\",\\\\n        \\\\\\\"entity\\\\\\\": \\\\\\\"explicit correspondences of parts\\\\\\\",\\\\n        \\\\\\\"invalid_type\\\\\\\": \\\\\\\"Feature-of\\\\\\\"\\\\n      }\\\\n    ],\\\\n    \\\\\\\"relation_vocabulary_violations\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"N06-1037_sent3\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": {\\\\n          \\\\\\\"head\\\\\\\": \\\\\\\"method\\\\\\\",\\\\n          \\\\\\\"tail\\\\\\\": \\\\\\\"previous two dependency tree kernels\\\\\\\",\\\\n          \\\\\\\"type\\\\\\\": \\\\\\\"Outperforms\\\\\\\",\\\\n          \\\\\\\"head_type\\\\\\\": \\\\\\\"Method\\\\\\\",\\\\n          \\\\\\\"tail_type\\\\\\\": \\\\\\\"Method\\\\\\\"\\\\n        },\\\\n        \\\\\\\"reason\\\\\\\": \\\\\\\"unknown relation type: Outperforms\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"P05-2013_sent2\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": {\\\\n          \\\\\\\"head\\\\\\\": \\\\\\\"compact lexicon\\\\\\\",\\\\n          \\\\\\\"tail\\\\\\\": \\\\\\\"CCG principles\\\\\\\",\\\\n          \\\\\\\"type\\\\\\\": \\\\\\\"Consistent-with\\\\\\\",\\\\n          \\\\\\\"head_type\\\\\\\": \\\\\\\"Task\\\\\\\",\\\\n          \\\\\\\"tail_type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\"\\\\n        },\\\\n        \\\\\\\"reason\\\\\\\": \\\\\\\"unknown relation type: Consistent-with\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"P05-2013_sent2\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": {\\\\n          \\\\\\\"head\\\\\\\": \\\\\\\"treebank\\\\\\\",\\\\n          \\\\\\\"tail\\\\\\\": \\\\\\\"Penn WSJ\\\\\\\",\\\\n          \\\\\\\"type\\\\\\\": \\\\\\\"Smaller-than\\\\\\\",\\\\n          \\\\\\\"head_type\\\\\\\": \\\\\\\"Material\\\\\\\",\\\\n          \\\\\\\"tail_type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\"\\\\n        },\\\\n        \\\\\\\"reason\\\\\\\": \\\\\\\"unknown relation type: Smaller-than\\\\\\\"\\\\n      }\\\\n    ],\\\\n    \\\\\\\"domain_range_violations\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"X96-1059_sent2\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": {\\\\n          \\\\\\\"head\\\\\\\": \\\\\\\"Multi-lingual Evaluation Task\\\\\\\",\\\\n          \\\\\\\"tail\\\\\\\": \\\\\\\"MET\\\\\\\",\\\\n          \\\\\\\"type\\\\\\\": \\\\\\\"Hyponym-of\\\\\\\",\\\\n          \\\\\\\"head_type\\\\\\\": \\\\\\\"Task\\\\\\\",\\\\n          \\\\\\\"tail_type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\"\\\\n        },\\\\n        \\\\\\\"matched_relation\\\\\\\": \\\\\\\"Hyponym-of\\\\\\\",\\\\n        \\\\\\\"reason\\\\\\\": \\\\\\\"(Task, OtherScientificTerm) not in valid pairs for Hyponym-of\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"X96-1059_sent6\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": {\\\\n          \\\\\\\"head\\\\\\\": \\\\\\\"segment\\\\\\\",\\\\n          \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese character strings\\\\\\\",\\\\n          \\\\\\\"type\\\\\\\": \\\\\\\"Feature-of\\\\\\\",\\\\n          \\\\\\\"head_type\\\\\\\": \\\\\\\"Task\\\\\\\",\\\\n          \\\\\\\"tail_type\\\\\\\": \\\\\\\"Material\\\\\\\"\\\\n        },\\\\n        \\\\\\\"matched_relation\\\\\\\": \\\\\\\"Feature-of\\\\\\\",\\\\n        \\\\\\\"reason\\\\\\\": \\\\\\\"(Task, Material) not in valid pairs for Feature-of\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"X96-1059_sent6\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": {\\\\n          \\\\\\\"head\\\\\\\": \\\\\\\"tag\\\\\\\",\\\\n          \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese character strings\\\\\\\",\\\\n          \\\\\\\"type\\\\\\\": \\\\\\\"Feature-of\\\\\\\",\\\\n          \\\\\\\"head_type\\\\\\\": \\\\\\\"Task\\\\\\\",\\\\n          \\\\\\\"tail_type\\\\\\\": \\\\\\\"Material\\\\\\\"\\\\n        },\\\\n        \\\\\\\"matched_relation\\\\\\\": \\\\\\\"Feature-of\\\\\\\",\\\\n        \\\\\\\"reason\\\\\\\": \\\\\\\"(Task, Material) not in valid pairs for Feature-of\\\\\\\"\\\\n      }\\\\n    ],\\\\n    \\\\\\\"cross_field_consistency_violations\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"P06-2012_sent1\\\\\\\",\\\\n        \\\\\\\"mention\\\\\\\": \\\\\\\"eigenvectors\\\\\\\",\\\\n        \\\\\\\"conflicting_types\\\\\\\": [\\\\n          \\\\\\\"Material\\\\\\\",\\\\n          \\\\\\\"OtherScientificTerm\\\\\\\"\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"P04-2005_sent2\\\\\\\",\\\\n        \\\\\\\"mention\\\\\\\": \\\\\\\"nlp\\\\\\\",\\\\n        \\\\\\\"conflicting_types\\\\\\\": [\\\\n          \\\\\\\"Generic\\\\\\\",\\\\n          \\\\\\\"OtherScientificTerm\\\\\\\"\\\\n        ]\\\\n      }\\\\n    ]\\\\n  },\\\\n  \\\\\\\"quality\\\\\\\": {\\\\n    \\\\\\\"entity_f1\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.2605,\\\\n      \\\\\\\"recall\\\\\\\": 0.3831,\\\\n      \\\\\\\"f1\\\\\\\": 0.3101,\\\\n      \\\\\\\"tp\\\\\\\": 641,\\\\n      \\\\\\\"gold\\\\\\\": 1673,\\\\n      \\\\\\\"pred\\\\\\\": 2461\\\\n    },\\\\n    \\\\\\\"relation_f1\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.0644,\\\\n      \\\\\\\"recall\\\\\\\": 0.114,\\\\n      \\\\\\\"f1\\\\\\\": 0.0823,\\\\n      \\\\\\\"tp\\\\\\\": 111,\\\\n      \\\\\\\"gold\\\\\\\": 974,\\\\n      \\\\\\\"pred\\\\\\\": 1724\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "628d91fb-b42d-400e-b393-71cf5bad288e",
+            "uuid": "a084e842-e5bb-4db3-b4c5-fd22fa1aa96d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"total_samples\\\\\\\": 551,\\\\n    \\\\\\\"total_triples_extracted\\\\\\\": 1724,\\\\n    \\\\\\\"total_entities_extracted\\\\\\\": 2474,\\\\n    \\\\\\\"json_parse_failures\\\\\\\": 0,\\\\n    \\\\\\\"json_parse_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"entity_type_violations\\\\\\\": 10,\\\\n    \\\\\\\"entity_type_violation_rate\\\\\\\": 0.004,\\\\n    \\\\\\\"relation_vocabulary_violations\\\\\\\": 24,\\\\n    \\\\\\\"relation_vocabulary_violation_rate\\\\\\\": 0.0139,\\\\n    \\\\\\\"relation_fuzzy_matches\\\\\\\": 0,\\\\n    \\\\\\\"domain_range_violations\\\\\\\": 265,\\\\n    \\\\\\\"domain_range_violation_rate\\\\\\\": 0.1537,\\\\n    \\\\\\\"cross_field_consistency_violations\\\\\\\": 2,\\\\n    \\\\\\\"cross_field_consistency_violation_rate\\\\\\\": 0.0008,\\\\n    \\\\\\\"total_violations_any\\\\\\\": 301,\\\\n    \\\\\\\"total_violation_rate\\\\\\\": 0.0717,\\\\n    \\\\\\\"go_nogo_metric\\\\\\\": 0.1537,\\\\n    \\\\\\\"go_nogo_metric_description\\\\\\\": \\\\\\\"per-triple domain_range_violation_rate (excludes relation_vocabulary_violations)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"per_relation_type\\\\\\\": {\\\\n    \\\\\\\"Compare\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 66,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 28,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.4242\\\\n    },\\\\n    \\\\\\\"Conjunction\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 32,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 0,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"Evaluate-for\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 133,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 32,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.2406\\\\n    },\\\\n    \\\\\\\"Feature-of\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 486,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 163,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.3354\\\\n    },\\\\n    \\\\\\\"Hyponym-of\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 124,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 18,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.1452\\\\n    },\\\\n    \\\\\\\"Part-of\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 72,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 18,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.25\\\\n    },\\\\n    \\\\\\\"Used-for\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 787,\\\\n      \\\\\\\"domain_range_violations\\\\\\\": 6,\\\\n      \\\\\\\"violation_rate\\\\\\\": 0.0076\\\\n    }\\\\n  },\\\\n  \\\\\\\"examples\\\\\\\": {\\\\n    \\\\\\\"entity_type_violations\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"NIPS_2001_11_abs_sent1\\\\\\\",\\\\n        \\\\\\\"entity\\\\\\\": \\\\\\\"high-density\\\\\\\",\\\\n        \\\\\\\"invalid_type\\\\\\\": \\\\\\\"Feature-of\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"NIPS_2001_11_abs_sent1\\\\\\\",\\\\n        \\\\\\\"entity\\\\\\\": \\\\\\\"low-power\\\\\\\",\\\\n        \\\\\\\"invalid_type\\\\\\\": \\\\\\\"Feature-of\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"CVPR_2009_10_abs_sent4\\\\\\\",\\\\n        \\\\\\\"entity\\\\\\\": \\\\\\\"explicit correspondences of parts\\\\\\\",\\\\n        \\\\\\\"invalid_type\\\\\\\": \\\\\\\"Feature-of\\\\\\\"\\\\n      }\\\\n    ],\\\\n    \\\\\\\"relation_vocabulary_violations\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"N06-1037_sent3\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": {\\\\n          \\\\\\\"head\\\\\\\": \\\\\\\"method\\\\\\\",\\\\n          \\\\\\\"tail\\\\\\\": \\\\\\\"previous two dependency tree kernels\\\\\\\",\\\\n          \\\\\\\"type\\\\\\\": \\\\\\\"Outperforms\\\\\\\",\\\\n          \\\\\\\"head_type\\\\\\\": \\\\\\\"Method\\\\\\\",\\\\n          \\\\\\\"tail_type\\\\\\\": \\\\\\\"Method\\\\\\\"\\\\n        },\\\\n        \\\\\\\"reason\\\\\\\": \\\\\\\"unknown relation type: Outperforms\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"P05-2013_sent2\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": {\\\\n          \\\\\\\"head\\\\\\\": \\\\\\\"compact lexicon\\\\\\\",\\\\n          \\\\\\\"tail\\\\\\\": \\\\\\\"CCG principles\\\\\\\",\\\\n          \\\\\\\"type\\\\\\\": \\\\\\\"Consistent-with\\\\\\\",\\\\n          \\\\\\\"head_type\\\\\\\": \\\\\\\"Task\\\\\\\",\\\\n          \\\\\\\"tail_type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\"\\\\n        },\\\\n        \\\\\\\"reason\\\\\\\": \\\\\\\"unknown relation type: Consistent-with\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"P05-2013_sent2\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": {\\\\n          \\\\\\\"head\\\\\\\": \\\\\\\"treebank\\\\\\\",\\\\n          \\\\\\\"tail\\\\\\\": \\\\\\\"Penn WSJ\\\\\\\",\\\\n          \\\\\\\"type\\\\\\\": \\\\\\\"Smaller-than\\\\\\\",\\\\n          \\\\\\\"head_type\\\\\\\": \\\\\\\"Material\\\\\\\",\\\\n          \\\\\\\"tail_type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\"\\\\n        },\\\\n        \\\\\\\"reason\\\\\\\": \\\\\\\"unknown relation type: Smaller-than\\\\\\\"\\\\n      }\\\\n    ],\\\\n    \\\\\\\"domain_range_violations\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"X96-1059_sent2\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": {\\\\n          \\\\\\\"head\\\\\\\": \\\\\\\"Multi-lingual Evaluation Task\\\\\\\",\\\\n          \\\\\\\"tail\\\\\\\": \\\\\\\"MET\\\\\\\",\\\\n          \\\\\\\"type\\\\\\\": \\\\\\\"Hyponym-of\\\\\\\",\\\\n          \\\\\\\"head_type\\\\\\\": \\\\\\\"Task\\\\\\\",\\\\n          \\\\\\\"tail_type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\"\\\\n        },\\\\n        \\\\\\\"matched_relation\\\\\\\": \\\\\\\"Hyponym-of\\\\\\\",\\\\n        \\\\\\\"reason\\\\\\\": \\\\\\\"(Task, OtherScientificTerm) not in valid pairs for Hyponym-of\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"X96-1059_sent6\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": {\\\\n          \\\\\\\"head\\\\\\\": \\\\\\\"segment\\\\\\\",\\\\n          \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese character strings\\\\\\\",\\\\n          \\\\\\\"type\\\\\\\": \\\\\\\"Feature-of\\\\\\\",\\\\n          \\\\\\\"head_type\\\\\\\": \\\\\\\"Task\\\\\\\",\\\\n          \\\\\\\"tail_type\\\\\\\": \\\\\\\"Material\\\\\\\"\\\\n        },\\\\n        \\\\\\\"matched_relation\\\\\\\": \\\\\\\"Feature-of\\\\\\\",\\\\n        \\\\\\\"reason\\\\\\\": \\\\\\\"(Task, Material) not in valid pairs for Feature-of\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"X96-1059_sent6\\\\\\\",\\\\n        \\\\\\\"relation\\\\\\\": {\\\\n          \\\\\\\"head\\\\\\\": \\\\\\\"tag\\\\\\\",\\\\n          \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese character strings\\\\\\\",\\\\n          \\\\\\\"type\\\\\\\": \\\\\\\"Feature-of\\\\\\\",\\\\n          \\\\\\\"head_type\\\\\\\": \\\\\\\"Task\\\\\\\",\\\\n          \\\\\\\"tail_type\\\\\\\": \\\\\\\"Material\\\\\\\"\\\\n        },\\\\n        \\\\\\\"matched_relation\\\\\\\": \\\\\\\"Feature-of\\\\\\\",\\\\n        \\\\\\\"reason\\\\\\\": \\\\\\\"(Task, Material) not in valid pairs for Feature-of\\\\\\\"\\\\n      }\\\\n    ],\\\\n    \\\\\\\"cross_field_consistency_violations\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"P06-2012_sent1\\\\\\\",\\\\n        \\\\\\\"mention\\\\\\\": \\\\\\\"eigenvectors\\\\\\\",\\\\n        \\\\\\\"conflicting_types\\\\\\\": [\\\\n          \\\\\\\"Material\\\\\\\",\\\\n          \\\\\\\"OtherScientificTerm\\\\\\\"\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"doc_id\\\\\\\": \\\\\\\"P04-2005_sent2\\\\\\\",\\\\n        \\\\\\\"mention\\\\\\\": \\\\\\\"nlp\\\\\\\",\\\\n        \\\\\\\"conflicting_types\\\\\\\": [\\\\n          \\\\\\\"Generic\\\\\\\",\\\\n          \\\\\\\"OtherScientificTerm\\\\\\\"\\\\n        ]\\\\n      }\\\\n    ]\\\\n  },\\\\n  \\\\\\\"quality\\\\\\\": {\\\\n    \\\\\\\"entity_f1\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.2605,\\\\n      \\\\\\\"recall\\\\\\\": 0.3831,\\\\n      \\\\\\\"f1\\\\\\\": 0.3101,\\\\n      \\\\\\\"tp\\\\\\\": 641,\\\\n      \\\\\\\"gold\\\\\\\": 1673,\\\\n      \\\\\\\"pred\\\\\\\": 2461\\\\n    },\\\\n    \\\\\\\"relation_f1\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.0644,\\\\n      \\\\\\\"recall\\\\\\\": 0.114,\\\\n      \\\\\\\"f1\\\\\\\": 0.0823,\\\\n      \\\\\\\"tp\\\\\\\": 111,\\\\n      \\\\\\\"gold\\\\\\\": 974,\\\\n      \\\\\\\"pred\\\\\\\": 1724\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"total_samples\\\": 551,\\n    \\\"total_triples_extracted\\\": 1724,\\n    \\\"total_entities_extracted\\\": 2474,\\n    \\\"json_parse_failures\\\": 0,\\n    \\\"json_parse_rate\\\": 1.0,\\n    \\\"entity_type_violations\\\": 10,\\n    \\\"entity_type_violation_rate\\\": 0.004,\\n    \\\"relation_vocabulary_violations\\\": 24,\\n    \\\"relation_vocabulary_violation_rate\\\": 0.0139,\\n    \\\"relation_fuzzy_matches\\\": 0,\\n    \\\"domain_range_violations\\\": 265,\\n    \\\"domain_range_violation_rate\\\": 0.1537,\\n    \\\"cross_field_consistency_violations\\\": 2,\\n    \\\"cross_field_consistency_violation_rate\\\": 0.0008,\\n    \\\"total_violations_any\\\": 301,\\n    \\\"total_violation_rate\\\": 0.0717,\\n    \\\"go_nogo_metric\\\": 0.1537,\\n    \\\"go_nogo_metric_description\\\": \\\"per-triple domain_range_violation_rate (excludes relation_vocabulary_violations)\\\"\\n  },\\n  \\\"per_relation_type\\\": {\\n    \\\"Compare\\\": {\\n      \\\"total\\\": 66,\\n      \\\"domain_range_violations\\\": 28,\\n      \\\"violation_rate\\\": 0.4242\\n    },\\n    \\\"Conjunction\\\": {\\n      \\\"total\\\": 32,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"Evaluate-for\\\": {\\n      \\\"total\\\": 133,\\n      \\\"domain_range_violations\\\": 32,\\n      \\\"violation_rate\\\": 0.2406\\n    },\\n    \\\"Feature-of\\\": {\\n      \\\"total\\\": 486,\\n      \\\"domain_range_violations\\\": 163,\\n      \\\"violation_rate\\\": 0.3354\\n    },\\n    \\\"Hyponym-of\\\": {\\n      \\\"total\\\": 124,\\n      \\\"domain_range_violations\\\": 18,\\n      \\\"violation_rate\\\": 0.1452\\n    },\\n    \\\"Part-of\\\": {\\n      \\\"total\\\": 72,\\n      \\\"domain_range_violations\\\": 18,\\n      \\\"violation_rate\\\": 0.25\\n    },\\n    \\\"Used-for\\\": {\\n      \\\"total\\\": 787,\\n      \\\"domain_range_violations\\\": 6,\\n      \\\"violation_rate\\\": 0.0076\\n    }\\n  },\\n  \\\"examples\\\": {\\n    \\\"entity_type_violations\\\": [\\n      {\\n        \\\"doc_id\\\": \\\"NIPS_2001_11_abs_sent1\\\",\\n        \\\"entity\\\": \\\"high-density\\\",\\n        \\\"invalid_type\\\": \\\"Feature-of\\\"\\n      },\\n      {\\n        \\\"doc_id\\\": \\\"NIPS_2001_11_abs_sent1\\\",\\n        \\\"entity\\\": \\\"low-power\\\",\\n        \\\"invalid_type\\\": \\\"Feature-of\\\"\\n      },\\n      {\\n        \\\"doc_id\\\": \\\"CVPR_2009_10_abs_sent4\\\",\\n        \\\"entity\\\": \\\"explicit correspondences of parts\\\",\\n        \\\"invalid_type\\\": \\\"Feature-of\\\"\\n      }\\n    ],\\n    \\\"relation_vocabulary_violations\\\": [\\n      {\\n        \\\"doc_id\\\": \\\"N06-1037_sent3\\\",\\n        \\\"relation\\\": {\\n          \\\"head\\\": \\\"method\\\",\\n          \\\"tail\\\": \\\"previous two dependency tree kernels\\\",\\n          \\\"type\\\": \\\"Outperforms\\\",\\n          \\\"head_type\\\": \\\"Method\\\",\\n          \\\"tail_type\\\": \\\"Method\\\"\\n        },\\n        \\\"reason\\\": \\\"unknown relation type: Outperforms\\\"\\n      },\\n      {\\n        \\\"doc_id\\\": \\\"P05-2013_sent2\\\",\\n        \\\"relation\\\": {\\n          \\\"head\\\": \\\"compact lexicon\\\",\\n          \\\"tail\\\": \\\"CCG principles\\\",\\n          \\\"type\\\": \\\"Consistent-with\\\",\\n          \\\"head_type\\\": \\\"Task\\\",\\n          \\\"tail_type\\\": \\\"OtherScientificTerm\\\"\\n        },\\n        \\\"reason\\\": \\\"unknown relation type: Consistent-with\\\"\\n      },\\n      {\\n        \\\"doc_id\\\": \\\"P05-2013_sent2\\\",\\n        \\\"relation\\\": {\\n          \\\"head\\\": \\\"treebank\\\",\\n          \\\"tail\\\": \\\"Penn WSJ\\\",\\n          \\\"type\\\": \\\"Smaller-than\\\",\\n          \\\"head_type\\\": \\\"Material\\\",\\n          \\\"tail_type\\\": \\\"OtherScientificTerm\\\"\\n        },\\n        \\\"reason\\\": \\\"unknown relation type: Smaller-than\\\"\\n      }\\n    ],\\n    \\\"domain_range_violations\\\": [\\n      {\\n        \\\"doc_id\\\": \\\"X96-1059_sent2\\\",\\n        \\\"relation\\\": {\\n          \\\"head\\\": \\\"Multi-lingual Evaluation Task\\\",\\n          \\\"tail\\\": \\\"MET\\\",\\n          \\\"type\\\": \\\"Hyponym-of\\\",\\n          \\\"head_type\\\": \\\"Task\\\",\\n          \\\"tail_type\\\": \\\"OtherScientificTerm\\\"\\n        },\\n        \\\"matched_relation\\\": \\\"Hyponym-of\\\",\\n        \\\"reason\\\": \\\"(Task, OtherScientificTerm) not in valid pairs for Hyponym-of\\\"\\n      },\\n      {\\n        \\\"doc_id\\\": \\\"X96-1059_sent6\\\",\\n        \\\"relation\\\": {\\n          \\\"head\\\": \\\"segment\\\",\\n          \\\"tail\\\": \\\"Japanese character strings\\\",\\n          \\\"type\\\": \\\"Feature-of\\\",\\n          \\\"head_type\\\": \\\"Task\\\",\\n          \\\"tail_type\\\": \\\"Material\\\"\\n        },\\n        \\\"matched_relation\\\": \\\"Feature-of\\\",\\n        \\\"reason\\\": \\\"(Task, Material) not in valid pairs for Feature-of\\\"\\n      },\\n      {\\n        \\\"doc_id\\\": \\\"X96-1059_sent6\\\",\\n        \\\"relation\\\": {\\n          \\\"head\\\": \\\"tag\\\",\\n          \\\"tail\\\": \\\"Japanese character strings\\\",\\n          \\\"type\\\": \\\"Feature-of\\\",\\n          \\\"head_type\\\": \\\"Task\\\",\\n          \\\"tail_type\\\": \\\"Material\\\"\\n        },\\n        \\\"matched_relation\\\": \\\"Feature-of\\\",\\n        \\\"reason\\\": \\\"(Task, Material) not in valid pairs for Feature-of\\\"\\n      }\\n    ],\\n    \\\"cross_field_consistency_violations\\\": [\\n      {\\n        \\\"doc_id\\\": \\\"P06-2012_sent1\\\",\\n        \\\"mention\\\": \\\"eigenvectors\\\",\\n        \\\"conflicting_types\\\": [\\n          \\\"Material\\\",\\n          \\\"OtherScientificTerm\\\"\\n        ]\\n      },\\n      {\\n        \\\"doc_id\\\": \\\"P04-2005_sent2\\\",\\n        \\\"mention\\\": \\\"nlp\\\",\\n        \\\"conflicting_types\\\": [\\n          \\\"Generic\\\",\\n          \\\"OtherScientificTerm\\\"\\n        ]\\n      }\\n    ]\\n  },\\n  \\\"quality\\\": {\\n    \\\"entity_f1\\\": {\\n      \\\"precision\\\": 0.2605,\\n      \\\"recall\\\": 0.3831,\\n      \\\"f1\\\": 0.3101,\\n      \\\"tp\\\": 641,\\n      \\\"gold\\\": 1673,\\n      \\\"pred\\\": 2461\\n    },\\n    \\\"relation_f1\\\": {\\n      \\\"precision\\\": 0.0644,\\n      \\\"recall\\\": 0.114,\\n      \\\"f1\\\": 0.0823,\\n      \\\"tp\\\": 111,\\n      \\\"gold\\\": 974,\\n      \\\"pred\\\": 1724\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## SciERC 全量 Violation Analysis 结果\n\n### 1. 总体统计\n\n| 指标 | 值 |\n|------|-----|\n| 样本数 | 551 |\n| 提取三元组数 | 1,724 |\n| 提取实体数 | 2,474 |\n| JSON 解析失败 | 0 (0.0%) |\n| Fuzzy matches | 0 |\n\n### 2. 四类 Violation 计数与率\n\n| Violation 类型 | 计数 | 分母 | Rate |\n|---------------|------|------|------|\n| Entity type violations | 10 / 2,474 | entities | **0.40%** |\n| Relation vocabulary violations | 24 / 1,724 | triples | **1.39%** |\n| Domain/range violations | 265 / 1,724 | triples | **15.37%** |\n| Cross-field consistency violations | 2 | entities | **0.08%** |\n\n**总违规三元组**: 301, 总违规率: 7.17%\n\n### 3. Go/No-Go Metric\n\n**domain_range_violation_rate = 0.1537 (15.4%)**\n\n这是 OntoCoDec 核心目标指标——每 6.5 个三元组就有 1 个违反 domain/range 约束，说明 unconstrained LLM 在 schema 一致性上存在显著问题，constrained decoding 有明确改进空间。\n\n### 4. Per-Relation Type Breakdown\n\n| Relation | Total | D/R Violations | Rate |\n|----------|-------|----------------|------|\n| **Used-for** | 787 | 6 | **0.76%** ✅ |\n| **Conjunction** | 32 | 0 | **0.00%** ✅ |\n| **Hyponym-of** | 124 | 18 | **14.52%** |\n| **Evaluate-for** | 133 | 32 | **24.06%** ⚠️ |\n| **Part-of** | 72 | 18 | **25.00%** ⚠️ |\n| **Feature-of** | 486 | 163 | **33.54%** 🔴 |\n| **Compare** | 66 | 28 | **42.42%** 🔴 |\n\n**Feature-of** 和 **Compare** 是重灾区，合计贡献 191/265 = 72% 的 domain/range violations。Used-for 约束最宽松，违规率极低。\n\n### 5. 典型违规示例\n\n**Entity type violations** — 模型将 relation type 误填为 entity type：\n- `\"high-density\"` → type `\"Feature-of\"` (应为 Material/OtherScientificTerm 等)\n- `\"low-power\"` → type `\"Feature-of\"`\n\n**Relation vocabulary violations** — 模型幻觉出 ontology 外的关系：\n- `Outperforms` (method outperforms method)\n- `Consistent-with`, `Smaller-than`\n\n**Domain/range violations** — 关系名合法但 head/tail type 组合不合法：\n- `Hyponym-of(Task, OtherScientificTerm)` — 不在合法 type pair 中\n- `Feature-of(Task, Material)` — Feature-of 大量出现 (Task, Material) 违规组合\n\n**Cross-field consistency violations** — 同一 mention 被标注为不同 type：\n- `\"eigenvectors\"` → Material vs OtherScientificTerm\n- `\"nlp\"` → Generic vs OtherScientificTerm\n\n### 6. 附加质量指标 (Entity/Relation F1)\n\n| | Precision | Recall | F1 | TP | Gold | Pred |\n|--|-----------|--------|-----|-----|------|------|\n| Entity | 0.2605 | 0.3831 | 0.3101 | 641 | 1,673 | 2,461 |\n| Relation | 0.0644 | 0.1140 | 0.0823 | 111 | 974 | 1,724 |\n\nRelation F1 仅 8.2%，说明 unconstrained baseline 在 SciERC 上的精确匹配性能较弱，进一步验证了 constrained decoding 方向的必要性。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "628d91fb-b42d-400e-b393-71cf5bad288e",
+            "uuid": "0713a82e-4fc9-4bd4-aa63-8d0a86831cf2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FY2k5yEKJ3idbQ6mJHowMs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2921,
+                "cache_read_input_tokens": 25847,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2921
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## SciERC 全量 Violation Analysis 结果\n\n### 1. 总体统计\n\n| 指标 | 值 |\n|------|-----|\n| 样本数 | 551 |\n| 提取三元组数 | 1,724 |\n| 提取实体数 | 2,474 |\n| JSON 解析失败 | 0 (0.0%) |\n| Fuzzy matches | 0 |\n\n### 2. 四类 Violation 计数与率\n\n| Violation 类型 | 计数 | 分母 | Rate |\n|---------------|------|------|------|\n| Entity type violations | 10 / 2,474 | entities | **0.40%** |\n| Relation vocabulary violations | 24 / 1,724 | triples | **1.39%** |\n| Domain/range violations | 265 / 1,724 | triples | **15.37%** |\n| Cross-field consistency violations | 2 | entities | **0.08%** |\n\n**总违规三元组**: 301, 总违规率: 7.17%\n\n### 3. Go/No-Go Metric\n\n**domain_range_violation_rate = 0.1537 (15.4%)**\n\n这是 OntoCoDec 核心目标指标——每 6.5 个三元组就有 1 个违反 domain/range 约束，说明 unconstrained LLM 在 schema 一致性上存在显著问题，constrained decoding 有明确改进空间。\n\n### 4. Per-Relation Type Breakdown\n\n| Relation | Total | D/R Violations | Rate |\n|----------|-------|----------------|------|\n| **Used-for** | 787 | 6 | **0.76%** ✅ |\n| **Conjunction** | 32 | 0 | **0.00%** ✅ |\n| **Hyponym-of** | 124 | 18 | **14.52%** |\n| **Evaluate-for** | 133 | 32 | **24.06%** ⚠️ |\n| **Part-of** | 72 | 18 | **25.00%** ⚠️ |\n| **Feature-of** | 486 | 163 | **33.54%** 🔴 |\n| **Compare** | 66 | 28 | **42.42%** 🔴 |\n\n**Feature-of** 和 **Compare** 是重灾区，合计贡献 191/265 = 72% 的 domain/range violations。Used-for 约束最宽松，违规率极低。\n\n### 5. 典型违规示例\n\n**Entity type violations** — 模型将 relation type 误填为 entity type：\n- `\"high-density\"` → type `\"Feature-of\"` (应为 Material/OtherScientificTerm 等)\n- `\"low-power\"` → type `\"Feature-of\"`\n\n**Relation vocabulary violations** — 模型幻觉出 ontology 外的关系：\n- `Outperforms` (method outperforms method)\n- `Consistent-with`, `Smaller-than`\n\n**Domain/range violations** — 关系名合法但 head/tail type 组合不合法：\n- `Hyponym-of(Task, OtherScientificTerm)` — 不在合法 type pair 中\n- `Feature-of(Task, Material)` — Feature-of 大量出现 (Task, Material) 违规组合\n\n**Cross-field consistency violations** — 同一 mention 被标注为不同 type：\n- `\"eigenvectors\"` → Material vs OtherScientificTerm\n- `\"nlp\"` → Generic vs OtherScientificTerm\n\n### 6. 附加质量指标 (Entity/Relation F1)\n\n| | Precision | Recall | F1 | TP | Gold | Pred |\n|--|-----------|--------|-----|-----|------|------|\n| Entity | 0.2605 | 0.3831 | 0.3101 | 641 | 1,673 | 2,461 |\n| Relation | 0.0644 | 0.1140 | 0.0823 | 111 | 974 | 1,724 |\n\nRelation F1 仅 8.2%，说明 unconstrained baseline 在 SciERC 上的精确匹配性能较弱，进一步验证了 constrained decoding 方向的必要性。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 58274,
+            "duration_api_ms": 57148,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "628d91fb-b42d-400e-b393-71cf5bad288e",
+            "total_cost_usd": 0.21540325,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 17321,
+              "cache_read_input_tokens": 110088,
+              "output_tokens": 2024,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 17321,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1184,
+                  "cache_read_input_tokens": 25847,
+                  "cache_creation_input_tokens": 2921,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2921
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1373,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001458,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 2024,
+                "cacheReadInputTokens": 110088,
+                "cacheCreationInputTokens": 17321,
+                "webSearchRequests": 0,
+                "costUSD": 0.21394525,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "c4fbbffe-c3a2-4155-a9a3-02846ed24a0a"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-scierc-violation.md"
+}

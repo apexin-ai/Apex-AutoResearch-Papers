@@ -1,0 +1,15 @@
+{
+  "exp_id": "ee_mistral_wikievents_unconstrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T20:51:09.310Z",
+    "updated_at": "2026-05-17T20:51:44.198Z",
+    "hypothesis": "WikiEvents zero-shot unconstrained baseline: Mistral-7B-Instruct-v0.3 will produce significant EV and RoV violations due to lack of schema constraints, establishing baseline violation rates for cross-task generalizability evaluation"
+  },
+  "timestamp": "2026-05-17T20:51:44.374036+00:00",
+  "trigger": "update_registry"
+}

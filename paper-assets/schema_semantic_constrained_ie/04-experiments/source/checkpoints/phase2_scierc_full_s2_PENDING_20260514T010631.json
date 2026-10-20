@@ -1,0 +1,29 @@
+{
+  "exp_id": "phase2_scierc_full_s2",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:36:35.941Z",
+    "updated_at": "2026-05-14T01:06:31.548Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s2 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s2.jsonl --device cuda:0 --batch_size 1\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "138131",
+      "log_path": "~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s2.log",
+      "submitted_at": "2026-05-14T00:36:35.876Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "S2 两通道约束解码全量验证 — Grammar (Pass 1) + Semantic (Pass 2) 分离式约束。S2 pilot50 已验证 D/R violation=0%，全量运行检验 F1 稳定性和 per-relation 效果。与 S1 对比验证两种架构的 F1-violation trade-off。",
+    "notes": "PID 138136 被 cleanup Worker 误杀，输出仅 88/551 行。需 --resume 从断点继续。"
+  },
+  "timestamp": "2026-05-14T01:06:31.581955+00:00",
+  "trigger": "update_registry"
+}

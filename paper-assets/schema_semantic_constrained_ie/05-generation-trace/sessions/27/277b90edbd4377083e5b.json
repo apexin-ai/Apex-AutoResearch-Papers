@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "277b90edbd4377083e5b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis s2 pilot f1 investigation",
+  "task_key": "worker_analysis_s2_pilot_f1_investigation_20260513T234025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_s2_pilot_f1_investigation_20260513T234025_result.json",
+    "occurrence": 1,
+    "bytes": 2885,
+    "sha256": "fb7660dfbb5870f3e6bdd5054d8a443130316a88e152d27e40a6d3bc866dde71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。以下是诊断结果：\n\n---\n\n## 根因诊断\n\n**relation_f1≈0 的根因是 base model 的 entity span 提取质量太差（entity F1=0.31），不是 S2 约束解码架构的问题。** relation 评估要求 head+tail+type 三元组完全匹配，entity 错误以平方级放大到 relation。\n\n注：用户引用的\"25 pred, 0 TP, 21 gold\"实际来自 `violation_report_s2_dryrun.json`（10 样本），不是 pilot50。pilot50 实际 relation_f1=0.1008（13 TP/146 pred/112 gold），与 unconstrained baseline 的 0.0823 基本持平。\n\n## 证据\n\n**1. FP 错误分类（133 个 FP，pilot50）：**\n\n| 类别 | 数量 | 占比 |\n|------|------|------|\n| head+tail 都不匹配 gold | 70 | 52.6% |\n| head 对但 tail 错 | 30 | 22.6% |\n| tail 对但 head 错 | 16 | 12.0% |\n| head+tail 互换 | 7 | 5.3% |\n| head+tail 对但 type 错 | 4 | 3.0% |\n| 自引用 (head==tail) | 6 | 4.5% |\n\n**2. 具体对比（dryrun 样本）：**\n\n```\nX96-1059_sent3:\n  Gold: (morphological analyzer, Used-for, recognition and classification of proper names , numerical and temporal expressions)\n  Pred: (morphological analyzer, Used-for, proper names)   ← tail 是 gold 的子串\n  Pred: (morphological analyzer, Used-for, numerical and temporal expressions)  ← 拆分了\n\nX96-1059_sent2:\n  Gold: (approach, Used-for, Multi-lingual Evaluation Task -LRB- MET -RRB-)\n  Pred: (Multi-lingual Evaluation Task, Conjunction, MET)  ← 把缩写拆成两个 entity 造 Conjunction\n\nX96-1059_sent5:\n  Gold: (Amorph, Used-for, NE items)\n  Pred: (Amorph, Used-for, dictionary lookup)  ← 正确 head 但选错 tail\n\nX96-1059_sent8:\n  Pred: (NE item, Feature-of, NE item)  ← 自引用\n```\n\n**3. Entity 层面的质量指标：**\n- text+type 匹配：57/197 pred（P=0.29）\n- text-only 匹配（忽略 type）：99/197（50%）\n- 42 个 entity text 对了但 type 标错 → Pass2 的 head_type/tail_type 也跟着错\n\n**4. S2 vs unconstrained 同样本对比（dryrun 10 样本）：**\n- S2: 0 TP, unconstrained: 1 TP — 基本一样差，不是 S2 引入的退化\n\n## 修复建议\n\n1. **核心问题（entity 质量）**：在 Pass1 entity prompt 中加 2-3 个 few-shot 示例（从 SciERC train 抽），示范正确的 span 边界（特别是含 `-LRB-`/`-RRB-` 的长 span）。当前是 zero-shot，7B 模型没能力猜对 span 边界\n\n2. **快速修复**：\n   - `build_relation_only_schema` 中加约束阻止 head==tail 的自引用关系（6 个无意义 FP）\n   - 评估时做 entity text normalization：strip `-LRB-`/`-RRB-` 括号，统一子串匹配，提升 recall 上限\n\n3. **结构性改进**：Pass2 prompt 中把 entity list 改为编号引用格式（`[E1] morphological analyzer (Method)`），让模型通过引用 ID 选 entity 而非重新生成文本，避免 span 抄写错误"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-s2-pilot-f1-investigation.md"
+}

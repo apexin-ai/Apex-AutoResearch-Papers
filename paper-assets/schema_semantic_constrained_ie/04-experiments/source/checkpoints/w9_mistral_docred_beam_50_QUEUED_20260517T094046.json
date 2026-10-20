@@ -1,0 +1,15 @@
+{
+  "exp_id": "w9_mistral_docred_beam_50",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T09:40:36.971Z",
+    "updated_at": "2026-05-17T09:40:46.089Z",
+    "hypothesis": "Beam search (k=4) on Mistral-7B DocRED (50 docs) will reduce DR from greedy baseline (33.21%) through broader token exploration, but entity type misclassification limits improvement. Boundary condition for beam search effectiveness."
+  },
+  "timestamp": "2026-05-17T09:40:46.268988+00:00",
+  "trigger": "update_registry"
+}

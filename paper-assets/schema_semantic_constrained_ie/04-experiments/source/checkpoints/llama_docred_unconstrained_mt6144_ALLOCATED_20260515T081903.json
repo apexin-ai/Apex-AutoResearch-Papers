@@ -1,0 +1,25 @@
+{
+  "exp_id": "llama_docred_unconstrained_mt6144",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T08:17:33.154Z",
+    "updated_at": "2026-05-15T08:19:03.840Z",
+    "spec": {
+      "hypothesis": "验证 Llama DocRED parse failure 增加是否由 max_tokens 截断导致。增大 max_new_tokens 4096→6144 (1.5x)，unconstrained 组。预期 parse failures ≤68（与原值持平或更低）。",
+      "parent": "llama_docred_unconstrained",
+      "command": "python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144",
+      "server": "westd-16980",
+      "data_path": "data/docred/dev.json",
+      "data_count": 998,
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "seed": "default",
+      "gpu": "cuda:0"
+    }
+  },
+  "timestamp": "2026-05-15T08:19:03.919965+00:00",
+  "trigger": "update_registry"
+}

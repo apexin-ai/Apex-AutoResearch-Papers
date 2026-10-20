@@ -1,0 +1,15 @@
+{
+  "exp_id": "w10_type_consensus_prototype",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T05:07:18.638Z",
+    "updated_at": "2026-05-17T05:34:10.897Z",
+    "hypothesis": "Document-level type consensus constraint (forcing same entity text to receive identical type across all relation triples) will eliminate CF violations caused by inconsistent type assignment, reducing CF from ~9.90% toward 0% on SciERC without increasing DR"
+  },
+  "timestamp": "2026-05-17T05:34:11.069691+00:00",
+  "trigger": "update_registry"
+}

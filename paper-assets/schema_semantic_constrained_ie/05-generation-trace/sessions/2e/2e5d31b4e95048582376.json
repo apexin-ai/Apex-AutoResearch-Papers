@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e5d31b4e95048582376",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code stability 3seeds collect",
+  "task_key": "worker_code_stability_3seeds_collect_20260517T050223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_stability_3seeds_collect_20260517T050223_result.json",
+    "occurrence": 1,
+    "bytes": 777,
+    "sha256": "e3be56cebe0005834cb292ca6db31a0803d36930e45cebf5b06301cfdf0d1e4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件都完整（各 551 行），且日志已包含完整汇总。结果：\n\n## Stability 3-Seeds 结果\n\n| Seed | ET% | RV% | DR% | CF% | E_F1 | R_F1 |\n|------|-----|-----|-----|-----|------|------|\n| 123 | 0.00 | 0.00 | 0.93 | 9.90 | 30.98 | 8.36 |\n| 456 | 0.00 | 0.00 | 0.93 | 9.90 | 30.98 | 8.36 |\n| 789 | 0.00 | 0.00 | 0.93 | 9.90 | 30.98 | 8.36 |\n\n**跨 seed 统计：**\n- DR 范围：0（三个 seed 完全一致 0.93%）\n- DR 标准差：0.0000\n- 所有指标标准差均为 0\n\n**结论**：greedy decoding + full_s1 模式下，Qwen3-8B 输出完全确定性（MD5 不同说明 JSON 格式/字段顺序有微小差异，但 violation 指标和 F1 完全一致）。DR=0.93% 跨 seed 完全稳定，与 baseline (seed=42) 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-stability-3seeds-collect.md"
+}

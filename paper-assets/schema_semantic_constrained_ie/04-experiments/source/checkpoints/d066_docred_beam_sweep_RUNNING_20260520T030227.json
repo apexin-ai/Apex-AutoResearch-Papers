@@ -1,0 +1,27 @@
+{
+  "exp_id": "d066_docred_beam_sweep",
+  "project": "schema_semantic_constrained_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T02:42:56.730Z",
+    "updated_at": "2026-05-20T03:02:27.072Z",
+    "hypothesis": "DocRED beam width sweep (k=2,8) on Qwen LoRA 200-doc subset will show the same Pareto pattern as SciERC — k=2 as sweet spot with diminishing returns at k=8 — confirming the beam width recommendation generalizes across datasets with different schema complexity (DocRED: 96 relation types vs SciERC: 7).",
+    "spec": {
+      "command": "python run_constrained_extraction.py --dataset docred --decoding_strategy beam --num_beams {2,8} --mode {unconstrained,full_s1} (4 runs serial)",
+      "server": "westd-21461 GPU0",
+      "data_path": "data/docred/dev.json (200-doc subset)",
+      "data_count": 200,
+      "model_name": "Qwen3-8B LoRA DocRED (merged)",
+      "seed": 42,
+      "claim": "Claim 3 + deployment guidance",
+      "paper_usage": "DocRED Pareto curve in appendix"
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-20T03:02:27.399713+00:00",
+  "trigger": "update_registry"
+}

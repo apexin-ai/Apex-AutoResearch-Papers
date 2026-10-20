@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32bb77e4449a0036aa4f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code constraint guided beam",
+  "task_key": "worker_code_constraint_guided_beam_20260519T161042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_constraint_guided_beam_20260519T161042_result.json",
+    "occurrence": 1,
+    "bytes": 156,
+    "sha256": "5df60d62c5556e6ca914f7c1d00e93e8da0e445b12f33864ef6653ae4e3efa6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 pilot experiments are running across 2 servers in parallel. Will check progress in ~20 minutes and proceed with analysis once complete."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-constraint-guided-beam.md"
+}

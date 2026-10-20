@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "042969249cf0a4448d54",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops d065 docred reeval",
+  "task_key": "worker_ops_d065_docred_reeval_20260520T141926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d065_docred_reeval_20260520T141926_result.json",
+    "occurrence": 1,
+    "bytes": 1432,
+    "sha256": "2eb58370eb86e8b5ab09be053f06172265cd1694b68e63b4c041d38cb34c0afd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 d065 完整文件评估完毕。Qwen con rerun 还在跑（714/998），预计约 1h45m 后完成。\n\nd065 评估结果（eval_d064.py）：\n\n| Source | Model | Mode | E-F1 | R-F1 | DR% | CF% | PF% |\n|--------|-------|------|------|------|-----|-----|-----|\n| d065 | Llama | unc | 84.77 | 44.55 | 0.49 | 0.08 | 2.3 |\n| d065 | Llama | con | 84.71 | 44.70 | 0.00 | 0.26 | 2.6 |\n| d065 | Qwen | unc | 82.35 | 40.89 | 0.56 | 0.08 | 6.8 |\n| d065 | Qwen | con | *running* (714/998, ~00:06 完成) | | | | |\n\n与 w5 Table 2 当前值对比：\n\n| Model | Mode | 指标 | w5 | d065 | 差值 |\n|-------|------|------|----|------|------|\n| Llama | unc | E-F1 | 83.93 | 84.77 | **+0.84** |\n| Llama | unc | R-F1 | 43.72 | 44.55 | **+0.83** |\n| Llama | con | E-F1 | 83.94 | 84.71 | **+0.77** |\n| Llama | con | R-F1 | 43.78 | 44.70 | **+0.92** |\n| Qwen | unc | E-F1 | 82.15 | 82.35 | +0.20 |\n| Qwen | unc | R-F1 | 40.86 | 40.89 | +0.03 |\n\nLlama d065 比 w5 高约 0.8-0.9 个点（E-F1 和 R-F1 均是），Qwen unc 差异很小。差异来源可能是：\n1. d065 新代码（May 18 grammar fix）改善了输出解析\n2. eval_d064.py 与 w5 时期用的 eval 脚本不同（entity type alias 归一化等）\n\nw5 原始输出文件在两台服务器上未找到明确标记的 w5 文件（没有 `w5_` 前缀的 DocRED greedy jsonl），无法用 eval_d064.py 重评 w5 数据来确认差异来源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d065-docred-reeval.md"
+}

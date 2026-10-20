@@ -1,0 +1,29 @@
+{
+  "exp_id": "d065_qwen_greedy_4096",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:15:26.700Z",
+    "updated_at": "2026-05-20T03:24:19.389Z",
+    "hypothesis": "Qwen3-8B LoRA on full DocRED dev (998 docs) with greedy 4096 tokens will show comparable DR elimination under constrained decoding as seen in SciERC, confirming schema-semantic constraints generalize to high-cardinality relation extraction (96 types).",
+    "spec": {
+      "command": "bash scripts/d065_qwen_greedy_4096_21461.sh (unc then con, sequential)",
+      "server": "westd-21461 GPU0",
+      "data_path": "data/docred/dev.json (998 docs)",
+      "data_count": 998,
+      "model_name": "Qwen3-8B LoRA DocRED (merged)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen_lora_docred_merged",
+      "checkpoint_path": "westd-21461:/root/autodl-tmp/schema_outputs/d065_qwen_docred_greedy_*_4096.jsonl",
+      "log_path": "westd-21461:/root/autodl-tmp/schema_outputs/d065_qwen_greedy_4096.log"
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "failed",
+    "completed_at": "2026-05-20T03:24:19.389Z"
+  },
+  "timestamp": "2026-05-20T03:24:19.646731+00:00",
+  "trigger": "update_registry"
+}

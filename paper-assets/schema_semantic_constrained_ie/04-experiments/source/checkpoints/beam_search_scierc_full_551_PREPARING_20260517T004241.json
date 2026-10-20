@@ -1,0 +1,14 @@
+{
+  "exp_id": "beam_search_scierc_full_551",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T00:42:41.314Z",
+    "updated_at": "2026-05-17T00:42:41.314Z"
+  },
+  "timestamp": "2026-05-17T00:42:41.449235+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "363536981b101610ebf1",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis runtime benchmark",
+  "task_key": "worker_analysis_runtime_benchmark_20260515T140233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_runtime_benchmark_20260515T140233_result.json",
+    "occurrence": 1,
+    "bytes": 2002,
+    "sha256": "0ee4750e019a19e8e00cbd229a41294d5085dc61245fd0b44e381f0b236dd7ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出完成。以下是 Markdown 表格：\n\n---\n\n### Qwen3-8B Runtime Benchmark (single RTX PRO 6000 Blackwell)\n\n**数据来源**: 从 JSONL 输出文件的 `inference_time_seconds` 字段逐条求和，token 数用 Qwen3-8B tokenizer 对 `raw_output` 精确计数。posthoc filter 时间为 `posthoc_filter.py` 端到端执行。\n\n#### SciERC (551 docs)\n\n| Mode | Total (s) | Avg/doc (s) | Tokens | Tok/s | Overhead |\n|------|-----------|-------------|--------|-------|----------|\n| Unconstrained | 4,790.3 | 8.694 | 131,797 | 27.51 | — |\n| Grammar-only | 4,856.8 | 8.815 | 131,821 | 27.14 | +1.4% |\n| Semantic-only | 3,981.5 | 7.226 | 131,771 | 33.10 | **-16.9%** |\n| Full (G+S) | 3,725.2 | 6.761 | 131,843 | 35.39 | **-22.2%** |\n| Post-hoc | 4,790.4 | 8.694 | 131,797 | 27.51 | +0.0% |\n\n#### DocRED (998 docs)\n\n| Mode | Total (s) | Avg/doc (s) | Tokens | Tok/s | Overhead |\n|------|-----------|-------------|--------|-------|----------|\n| Unconstrained | 19,715.2 | 19.755 | 1,121,442 | 56.88 | — |\n| Grammar-only | 20,535.0 | 20.576 | 1,124,288 | 54.75 | +4.2% |\n| Semantic-only | 20,486.6 | 20.528 | 1,120,340 | 54.69 | +3.9% |\n| Full (G+S) | 20,354.0 | 20.395 | 1,116,251 | 54.84 | +3.2% |\n| Post-hoc | 19,737.4 | 19.777 | 1,121,442 | 56.88 | +0.1% |\n\n*(Post-hoc filter time: SciERC 0.06s, DocRED 22.3s)*\n\n---\n\n**关键发现**:\n- **DocRED**: constrained decoding 开销 3-4%，符合预期\n- **SciERC**: full_s1 反而比 unconstrained **快 22%**（同样的 token 数量，但 tok/s 从 27.5 → 35.4）。可能原因：SciERC 文档短，semantic constraints 的 token mask 裁剪了搜索空间导致每步 sampling 更快；也可能受 GPU 负载波动影响（这些实验跑在不同时间段）\n- **Post-hoc filter** 几乎零开销（SciERC <0.1s, DocRED 22s 主要来自 Levenshtein 匹配）\n- 所有模式生成的 token 总数几乎一致（~131.8K for SciERC, ~1.12M for DocRED），说明 constraints 不改变输出长度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-runtime-benchmark.md"
+}

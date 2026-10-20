@@ -1,0 +1,2684 @@
+# check harvest llama int4
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 53
+- **Recorded user turns:** 0
+- **Tool calls:** 17
+- **Original source:** `logs/workers/worker_check_harvest-llama-int4_20260523T050828.log`
+- **Structured JSON:** [`55e0ae3bdcd775885bbd.json`](../../sessions/55/55e0ae3bdcd775885bbd.json)
+
+## Before a recorded user message
+
+53 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "4b1a15bc-25a8-4632-acef-3bad31232679",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779523800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a394dc8a-282a-4d89-888a-857bb32197d8",
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Looking at the task, I need to check the inference progress on the remote server and collect results. Let me start by checking the server state and registry.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "22d378ad-f9ec-44d3-907c-5a7d18097bcf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R25YAn1Lpdt9itsgsWfCk1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12938,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12938
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01BYss7ssr7a6LV3345EzpLW`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "24cf51fb-f98f-4965-a147-3337d4f5131a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R25YAn1Lpdt9itsgsWfCk1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12938,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12938
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T05:08:43.426Z_
+
+<details><summary>↩ Tool result · `toolu_01BYss7ssr7a6LV3345EzpLW`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "7cd57e68-d995-4437-8cdc-bbe632a8a3f7",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking the server state and registry in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "dcdbfc04-8b36-4f30-95bc-d55c39e431d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TMvmGDSNhjku6wTUFuSoKi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2154,
+      "cache_read_input_tokens": 24385,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2154
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EPkvLB8VgB1MifeUzW3m3t`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "56278ac1-a6f2-4ed6-8a7b-76f5238baf48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TMvmGDSNhjku6wTUFuSoKi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2154,
+      "cache_read_input_tokens": 24385,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2154
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JD2TxFy4dsj2PSfTwV2YKf`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ps aux | grep -E \"python|eval\" | grep -v grep"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "5bdc54ba-3b44-453e-af9c-8c2240f6b2e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TMvmGDSNhjku6wTUFuSoKi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2154,
+      "cache_read_input_tokens": 24385,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2154
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T05:08:49.380Z_
+
+<details><summary>↩ Tool result · `toolu_01EPkvLB8VgB1MifeUzW3m3t`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 36 %, 6781 MiB\\n1, 43 %, 6401 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "b29d78d9-6f88-40d3-8270-a5fe2196f817",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 36 %, 6781 MiB\\\\n1, 43 %, 6401 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 36 %, 6781 MiB\\n1, 43 %, 6401 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T05:08:49.388Z_
+
+<details><summary>↩ Tool result · `toolu_01JD2TxFy4dsj2PSfTwV2YKf`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "aee628bc-79f3-424b-934a-b724cbafe5f3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ad6DgDSEmA14aXxGN6AfEQ`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "find /root/schema_semantic_constrained_ie/outputs/ -name \"*llama*\" -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "e9c04c1d-ca1e-467a-88d9-e5f866da7ee3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TMvmGDSNhjku6wTUFuSoKi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2154,
+      "cache_read_input_tokens": 24385,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2154
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T05:08:50.639Z_
+
+<details><summary>↩ Tool result · `toolu_01Ad6DgDSEmA14aXxGN6AfEQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/outputs/sf2_llama_int4_scierc_s1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "2122f24b-388b-4a69-895d-b9f4c61cf34b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/outputs/sf2_llama_int4_scierc_s1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/outputs/sf2_llama_int4_scierc_s1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01BB9jcwH8QG5TEndK3JXBnD`</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "filters": {
+    "status": "DONE"
+  },
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "53c71eda-93c8-461f-9d85-283fb58fe693",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TMvmGDSNhjku6wTUFuSoKi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2154,
+      "cache_read_input_tokens": 24385,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2154
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-23T05:08:51.375Z_
+
+<details><summary>↩ Tool result · `toolu_01BB9jcwH8QG5TEndK3JXBnD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_70b_zs_docred_200_full_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T00:41:26.371Z\", \"updated_at\": \"2026-05-23T02:30:50.739Z\", \"hypothesis\": \"Full S1 (grammar+semantic) constraints on 70B ZS DocRED should achieve DR close to semantic_only (1.66%) since grammar adds zero DR contribution in ZS setting. R_F1 should remain ~13 (matching unconstrained 13.25). This completes the ZS DocRED ablation matrix.\", \"parent\": \"eval_70b_zs_docred_200_unconstrained\", \"metrics\": {\"DR%\": 0, \"RV%\": 0, \"ET%\": 0, \"CF%\": 5.34, \"E-F1\": 70.05, \"R-F1\": 13.25, \"PF%\": 0, \"entities_pred\": 3234, \"relations_pred\": 2637, \"triples_checked\": 2642}, \"conclusion\": \"success\"}, \"eval_70b_lora_docred_200_grammar_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T20:35:19.975Z\", \"updated_at\": \"2026-05-23T01:55:24.472Z\", \"hypothesis\": \"Grammar-only constraints on 70B LoRA DocRED will eliminate RV violations but not reduce DR, mirroring the SciERC ablation pattern where grammar layer provides zero DR contribution at fine-tuned scale.\", \"parent\": \"eval_70b_lora_docred_200_unconstrained\", \"metrics\": {\"samples\": 200, \"parse_fail_pct\": 10.5, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.38, \"CF_pct\": 0.06, \"E_F1\": 80.13, \"E_P\": 85.16, \"E_R\": 75.66, \"R_F1\": 43.96, \"R_P\": 39.78, \"R_R\": 49.11, \"entities_pred\": 3362, \"relations_pred\": 3154}, \"conclusion\": \"negative\"}, \"eval_70b_lora_docred_200_semantic_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T20:35:17.601Z\", \"updated_at\": \"2026-05-23T01:20:56.659Z\", \"hypothesis\": \"Semantic-only constraints on 70B LoRA DocRED will reduce DR violations from unconstrained baseline (DR=0.88%) with minimal F1 impact, isolating the semantic layer's contribution in document-level RE at 70B fine-tuned scale.\", \"parent\": \"eval_70b_lora_docred_200_unconstrained\", \"metrics\": {\"samples\": 200, \"parse_fail_pct\": 11, \"ET_pct\": 0, \"RV_pct\": 0.51, \"DR_pct\": 0, \"CF_pct\": 0.21, \"E_F1\": 80.06, \"E_P\": 85.21, \"E_R\": 75.5, \"R_F1\": 43.61, \"R_P\": 39.44, \"R_R\": 48.75, \"entities_pred\": 3351, \"relations_pred\": 3148}, \"conclusion\": \"success\"}, \"eval_70b_zs_docred_200_unconstrained\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T22:55:27.332Z\", \"updated_at\": \"2026-05-23T00:38:42.757Z\", \"hypothesis\": \"70B ZS DocRED unconstrained 200-doc baseline to complete the ablation matrix. Expect DR~15% and R-F1~13 consistent with prior 99-doc measurement, providing matched-subset comparison for semantic_only (DR=1.66%) and grammar_only experiments.\", \"parent\": \"70b_docred_unconstrained\", \"metrics\": {\"samples\": 200, \"parse_failures\": 0, \"entities_pred\": 3242, \"relations_pred\": 2637, \"ET_pct\": 0, \"RV_pct\": 7.88, \"DR_pct\": 13.45, \"CF_count\": 0, \"fuzzy_matches\": 8, \"E_F1\": 70.14, \"E_P\": 75.85, \"E_R\": 65.23, \"R_F1\": 13.25, \"R_P\": 12.97, \"R_R\": 13.54}, \"conclusion\": \"success\"}, \"eval_70b_zs_docred_200_grammar_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T21:24:11.190Z\", \"updated_at\": \"2026-05-23T00:37:43.935Z\", \"hypothesis\": \"Grammar-only constraints on 70B ZS DocRED will show minimal DR reduction (similar to SciERC 70B ZS pattern where grammar_only DR≈unconstrained), confirming that grammar layer's negligible contribution at 70B scale generalizes across datasets.\", \"parent\": \"r16_70b_docred_zs_s1\", \"metrics\": {\"samples\": 200, \"parse_failures\": 1, \"entities_pred\": 3221, \"relations_pred\": 2609, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 17.03, \"CF_count\": 0, \"fuzzy_matches\": 0, \"E_F1\": 70.12, \"E_P\": 75.88, \"E_R\": 65.17, \"R_F1\": 13.23, \"R_P\": 12.99, \"R_R\": 13.47}, \"conclusion\": \"negative\"}, \"eval_70b_zs_docred_200_semantic_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T20:35:21.150Z\", \"updated_at\": \"2026-05-22T22:55:11.458Z\", \"hypothesis\": \"Semantic-only constraints on 70B ZS DocRED will significantly reduce DR violations from zero-shot baseline, demonstrating the semantic layer's effectiveness on document-level RE without fine-tuning.\", \"parent\": \"70b_docred_unconstrained\", \"metrics\": {\"samples\": 200, \"parse_failures\": 0, \"entities\": 3240, \"relations\": 2596, \"ET_pct\": 0.12, \"RV_pct\": 8.24, \"DR_pct\": 1.66, \"CF_count\": 132, \"CF_pct\": 4.07, \"E_F1\": 70.1, \"E_P\": 75.87, \"E_R\": 65.15, \"R_F1\": 13.05, \"R_P\": 12.88, \"R_R\": 13.23, \"fuzzy_matches\": 8}, \"conclusion\": \"success\"}, \"eval_70b_lora_docred_200_beam4_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T17:15:28.977Z\", \"updated_at\": \"2026-05-22T21:21:11.254Z\", \"hypothesis\": \"70B LoRA DocRED with beam search (k=4) + full_s1 on 200-doc subset will achieve DR=0% and CF≈0% while maintaining R-F1 comparable to greedy S1 (43.95), consistent with 8B beam search pattern.\", \"parent\": \"eval_70b_lora_docred_200_s1_constrained\", \"metrics\": {\"E-F1\": 85.57, \"E-P\": 85.45, \"E-R\": 85.68, \"R-F1\": 48.14, \"R-P\": 44.24, \"R-R\": 52.79, \"ET%\": 0, \"RV%\": 0, \"DR%\": 0, \"CF%\": 0, \"parse_fail\": \"1/200 (0.5%)\", \"entities_pred\": 3790, \"relations_pred\": 3030}, \"conclusion\": \"success\"}, \"eval_70b_lora_scierc_grammar_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T17:13:55.324Z\", \"updated_at\": \"2026-05-22T20:31:32.878Z\", \"hypothesis\": \"70B LoRA SciERC with grammar-only constrained decoding will reduce DR violations compared to unconstrained (DR=1.5%) but less than full_s1 (DR=0%), isolating grammar layer's independent contribution at 70B fine-tuned scale.\", \"parent\": \"eval_70b_lora_scierc_unconstrained\", \"conclusion\": \"negative\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"json_failure_rate\": 0, \"entities\": 1805, \"relations\": 1133, \"entity_type_violations\": 0, \"entity_type_violation_rate\": 0, \"relation_vocab_violations\": 0, \"relation_vocab_violation_rate\": 0, \"domain_range_violations\": 17, \"domain_range_violation_rate\": 0.015, \"cross_field_consistency_violations\": 0, \"fuzzy_relation_matches\": 0, \"entity_P\": 0.6272, \"entity_R\": 0.6707, \"entity_F1\": 0.6482, \"relation_P\": 0.4152, \"relation_R\": 0.4825, \"relation_F1\": 0.4463}}, \"eval_70b_zs_scierc_unconstrained\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T18:45:13.928Z\", \"updated_at\": \"2026-05-22T20:30:18.431Z\", \"hypothesis\": \"Independent 70B ZS SciERC unconstrained baseline to verify prior DR and R-F1 numbers from r16_70b_scierc_zs_s1 experiment. Expect DR~6-8% and R-F1~11 consistent with earlier measurements.\", \"conclusion\": \"success\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 2353, \"relations\": 1483, \"ET_pct\": 0, \"RV_pct\": 0.6, \"DR_pct\": 6.4, \"CF_count\": 0, \"E_F1\": 35.22, \"E_P\": 30.13, \"E_R\": 42.38, \"R_F1\": 11.23, \"R_P\": 9.31, \"R_R\": 14.17, \"parse_fail_pct\": 0}}, \"eval_70b_lora_scierc_full_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T18:04:58.305Z\", \"updated_at\": \"2026-05-22T20:30:16.494Z\", \"hypothesis\": \"Full S2 constrained decoding on 70B LoRA SciERC achieves DR=0% like S1, with potentially fewer CF violations due to S2's enhanced cross-field consistency checking. R-F1 should be comparable to S1 (44.53-44.81).\", \"parent\": \"eval_70b_lora_scierc_s1_constrained\", \"conclusion\": \"negative\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1531, \"relations\": 1027, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0, \"CF_count\": 18, \"E_F1\": 62.35, \"E_P\": 65.44, \"E_R\": 59.53, \"R_F1\": 36.28, \"R_P\": 35.35, \"R_R\": 37.27, \"parse_fail_pct\": 0}}, \"eval_70b_lora_scierc_semantic_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T18:04:55.672Z\", \"updated_at\": \"2026-05-22T20:30:13.188Z\", \"hypothesis\": \"Semantic-only constraints on 70B LoRA SciERC will reduce DR from 1.5% (unconstrained) toward 0%, consistent with the 70B ZS pattern where semantic layer is the primary DR reduction mechanism. Without grammar layer, some RV violations may appear.\", \"parent\": \"eval_70b_lora_scierc_unconstrained\", \"conclusion\": \"success\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1806, \"relations\": 1133, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.6, \"CF_count\": 9, \"E_F1\": 64.86, \"E_P\": 62.74, \"E_R\": 67.12, \"R_F1\": 44.73, \"R_P\": 41.61, \"R_R\": 48.36, \"parse_fail_pct\": 0}}, \"entity_order_ablation_qwen_scierc\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T16:48:40.066Z\", \"updated_at\": \"2026-05-22T18:16:23.650Z\", \"hypothesis\": \"Shuffling entity type order in the constraint schema (seed=42) does not significantly change constrained decoding results (R-F1 within ±0.5pp, violation rates identical), confirming that OntoCoDec is order-invariant. This addresses R19-W3 reviewer concern about entity registry ordering sensitivity.\", \"parent\": \"w5_lora_scierc_constrained_eval\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 67.05, \"E_P\": 65.23, \"E_R\": 68.98, \"R_F1\": 43.77, \"R_P\": 40.78, \"R_R\": 47.23, \"DR_pct\": 0, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_count\": 21, \"parse_fail_pct\": 0, \"samples\": 551, \"entities\": 1784, \"relations\": 1128, \"corrected_original_R_F1\": 43.77, \"corrected_original_E_F1\": 67.05, \"corrected_original_DR_pct\": 0, \"corrected_original_CF_count\": 21, \"corrected_delta_R_F1\": 0, \"corrected_delta_E_F1\": 0, \"raw_output_identical\": true, \"parsed_output_identical\": true, \"note\": \"CORRECTED 2026-05-22: Fair comparison with fixed violation_checker shows ZERO difference. raw_output and parsed_output are byte-identical across all 551 samples. Previous -3.38pp delta was entirely due to comparing old-checker original (47.15) vs new-checker shuffled (43.77). Entity ordering is confirmed order-invariant.\"}}, \"eval_70b_zs_scierc_semantic_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T14:39:36.807Z\", \"updated_at\": \"2026-05-22T18:09:49.840Z\", \"hypothesis\": \"Semantic-only constraints on 70B ZS will reduce DR partially (similar to 8B pattern: ~24% reduction) without eliminating RV/ET, isolating semantic layer's independent contribution at 70B scale.\", \"parent\": \"r16_70b_scierc_zs_s1\", \"conclusion\": \"success\", \"metrics\": {\"R_F1\": 11.37, \"DR_pct\": 1.01, \"RV_pct\": 0.6, \"ET_pct\": 0, \"CF_count\": 76, \"samples\": 551}}, \"eval_70b_zs_scierc_grammar_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T14:39:44.901Z\", \"updated_at\": \"2026-05-22T18:09:48.056Z\", \"hypothesis\": \"Grammar-only constraints on 70B ZS reduce domain-range violations compared to unconstrained baseline (DR=6.41%) but less effectively than full_s1 (DR=0%), isolating grammar layer's contribution to constraint enforcement.\", \"conclusion\": \"negative\", \"metrics\": {\"R_F1\": 11.23, \"DR_pct\": 6.33, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_count\": 0, \"samples\": 551}}, \"eval_70b_lora_scierc_beam4_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T14:39:43.218Z\", \"updated_at\": \"2026-05-22T18:04:29.880Z\", \"hypothesis\": \"70B LoRA fine-tuned model with beam search (k=4) and full_s1 constrained decoding on SciERC achieves DR=0% and CF=0%, matching 8B beam search behavior, while maintaining or improving extraction F1.\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 64.89, \"E_P\": 62.29, \"E_R\": 67.72, \"R_F1\": 44.81, \"R_P\": 39.45, \"R_R\": 51.85, \"DR_pct\": 0, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_count\": 1, \"parse_fail_pct\": 0, \"samples\": 551, \"entities\": 1839, \"relations\": 1283}}, \"tcr_beam4_llama_scierc\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T15:48:16.222Z\", \"updated_at\": \"2026-05-22T16:27:25.157Z\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1803, \"relations\": 1194, \"entity_type_violations\": \"0/1803 (0.0%)\", \"relation_vocab_violations\": \"0/1194 (0.0%)\", \"domain_range_violations\": \"13/1194 (1.1%)\", \"cross_field_consistency\": 0, \"DR_pct\": 1.09, \"E_F1\": 68.02, \"E_P\": 65.88, \"E_R\": 70.29, \"R_F1\": 46.05, \"R_P\": 41.83, \"R_R\": 51.23, \"tcr_changed_selection\": \"0/551 (0.0%)\"}, \"conclusion\": \"negative\", \"hypothesis\": \"TCR reranking on beam4 outputs will change beam selection for LLaMA-SciERC by penalizing constraint-violating candidates, improving DR violation rate and overall F1 compared to vanilla beam4.\"}, \"tcr_beam4_qwen_scierc\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T14:37:32.074Z\", \"updated_at\": \"2026-05-22T15:49:03.706Z\", \"hypothesis\": \"TCR (Type Consistency Reranking) with beam search (k=4) on Qwen3-8B LoRA SciERC will reduce domain/range violations compared to standard beam search by reranking candidates based on type consistency scores, while maintaining or improving Entity/Relation F1.\", \"conclusion\": \"negative\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1802, \"relations\": 1250, \"entity_type_violations\": \"0/1802 (0.0%)\", \"relation_vocab_violations\": \"0/1250 (0.0%)\", \"domain_range_violations\": \"23/1250 (1.8%)\", \"cross_field_consistency_violations\": 1, \"DR_pct\": 1.84, \"E_P\": 65.05, \"E_R\": 69.64, \"E_F1\": 67.26, \"R_P\": 39.36, \"R_R\": 50.51, \"R_F1\": 44.24, \"TCR_changed_selection\": \"0/551 (0.0%)\", \"all_candidates_TCR_1.0\": true}, \"parent\": \"d066_beam_sweep\"}, \"vllm_guided_json_scierc_zs\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T13:29:07.493Z\", \"updated_at\": \"2026-05-22T13:30:06.224Z\", \"hypothesis\": \"vLLM's guided_json (JSON schema-constrained decoding) produces equivalent violation rates and F1 scores to our XGrammar grammar-only ablation, confirming that guided_json ≈ GCD (grammar-constrained decoding) without semantic constraints.\", \"metrics\": {\"DR%\": 15.26, \"RV%\": 0, \"ET%\": 0, \"CF%\": 0.04, \"R-F1\": 8.75, \"E-F1\": 30.91, \"parse_fail%\": 0, \"total_samples\": 551, \"total_entities\": 2485, \"total_relations\": 1724, \"inference_time_s\": 108.5}, \"conclusion\": \"success\"}, \"eval_70b_lora_docred_200_s1_constrained\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T05:47:05.464Z\", \"updated_at\": \"2026-05-22T10:34:22.854Z\", \"hypothesis\": \"70B LoRA DocRED with Full S1 constrained decoding on 200-doc subset will achieve DR→0% while maintaining R-F1 comparable to unconstrained, confirming scale-independent constraint composability on DocRED at 70B scale\", \"parent\": \"eval_70b_lora_docred_200_unconstrained\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 79.38, \"E_P\": 85.24, \"E_R\": 74.28, \"R_F1\": 43.95, \"R_P\": 40.48, \"R_R\": 48.08, \"DR_pct\": 0, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_pct\": 0.18, \"parse_fail_pct\": 12.5, \"samples\": 200}}, \"d066_beam_sweep\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T23:44:23.637Z\", \"updated_at\": \"2026-05-22T10:34:14.027Z\", \"hypothesis\": \"Beam width k∈{1,2,4,8} on SciERC (LoRA, Qwen3-8B) will show monotonic DR/CF reduction with diminishing returns past k=4, establishing the cost-effectiveness trade-off for the beam search appendix Pareto analysis.\", \"notes\": \"全部 8 配置完成 + eval 齐全。beam8 con: E-F1=66.36, R-F1=43.65, DR=0%, CF=0%, avg_time=5.058s。Pareto optimal: k=2 con (E-F1=67.71, R-F1=44.60, DR=0%)。k=8 相比 k=2 F1 下降 ~1.3pp 且推理慢 46%，收益递减明确。可入稿。\", \"metrics\": {\"scierc_qwen3_8b\": {\"k1_unc\": {\"E_F1\": 66.88, \"R_F1\": 42.95, \"DR_pct\": 2.11, \"CF_pct\": 0, \"avg_time\": 2.494}, \"k1_con\": {\"E_F1\": 66.88, \"R_F1\": 42.95, \"DR_pct\": 0, \"CF_pct\": 0.5, \"avg_time\": 2.932}, \"k2_unc\": {\"E_F1\": 67.79, \"R_F1\": 44.75, \"DR_pct\": 1.54, \"CF_pct\": 0, \"avg_time\": 2.954}, \"k2_con\": {\"E_F1\": 67.71, \"R_F1\": 44.6, \"DR_pct\": 0, \"CF_pct\": 0.11, \"avg_time\": 3.463}, \"k4_unc\": {\"E_F1\": 67.49, \"R_F1\": 43.72, \"DR_pct\": 1.89, \"CF_pct\": 0, \"avg_time\": 3.485}, \"k4_con\": {\"E_F1\": 67.22, \"R_F1\": 43.6, \"DR_pct\": 0, \"CF_pct\": 0, \"avg_time\": 4.069}, \"k8_unc\": {\"E_F1\": 66.4, \"R_F1\": 43.17, \"DR_pct\": 1.77, \"CF_pct\": 0, \"avg_time\": 4.194}, \"k8_con\": {\"E_F1\": 66.36, \"R_F1\": 43.65, \"DR_pct\": 0, \"CF_pct\": 0, \"avg_time\": 5.058}}, \"pareto_optimal\": \"k=2 con\", \"best_E_F1\": {\"config\": \"k=2 unc\", \"value\": 67.79}, \"best_R_F1\": {\"config\": \"k=2 unc\", \"value\": 44.75}}, \"conclusion\": \"success\"}}, \"count\": 20, \"total\": 155, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.506}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "9e0aa5a6-aad2-4af7-ac9a-ac3bef88d168",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_70b_zs_docred_200_full_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T00:41:26.371Z\\\", \\\"updated_at\\\": \\\"2026-05-23T02:30:50.739Z\\\", \\\"hypothesis\\\": \\\"Full S1 (grammar+semantic) constraints on 70B ZS DocRED should achieve DR close to semantic_only (1.66%) since grammar adds zero DR contribution in ZS setting. R_F1 should remain ~13 (matching unconstrained 13.25). This completes the ZS DocRED ablation matrix.\\\", \\\"parent\\\": \\\"eval_70b_zs_docred_200_unconstrained\\\", \\\"metrics\\\": {\\\"DR%\\\": 0, \\\"RV%\\\": 0, \\\"ET%\\\": 0, \\\"CF%\\\": 5.34, \\\"E-F1\\\": 70.05, \\\"R-F1\\\": 13.25, \\\"PF%\\\": 0, \\\"entities_pred\\\": 3234, \\\"relations_pred\\\": 2637, \\\"triples_checked\\\": 2642}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_70b_lora_docred_200_grammar_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T20:35:19.975Z\\\", \\\"updated_at\\\": \\\"2026-05-23T01:55:24.472Z\\\", \\\"hypothesis\\\": \\\"Grammar-only constraints on 70B LoRA DocRED will eliminate RV violations but not reduce DR, mirroring the SciERC ablation pattern where grammar layer provides zero DR contribution at fine-tuned scale.\\\", \\\"parent\\\": \\\"eval_70b_lora_docred_200_unconstrained\\\", \\\"metrics\\\": {\\\"samples\\\": 200, \\\"parse_fail_pct\\\": 10.5, \\\"ET_pct\\\": 0, \\\"RV_pct\\\": 0, \\\"DR_pct\\\": 0.38, \\\"CF_pct\\\": 0.06, \\\"E_F1\\\": 80.13, \\\"E_P\\\": 85.16, \\\"E_R\\\": 75.66, \\\"R_F1\\\": 43.96, \\\"R_P\\\": 39.78, \\\"R_R\\\": 49.11, \\\"entities_pred\\\": 3362, \\\"relations_pred\\\": 3154}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval_70b_lora_docred_200_semantic_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T20:35:17.601Z\\\", \\\"updated_at\\\": \\\"2026-05-23T01:20:56.659Z\\\", \\\"hypothesis\\\": \\\"Semantic-only constraints on 70B LoRA DocRED will reduce DR violations from unconstrained baseline (DR=0.88%) with minimal F1 impact, isolating the semantic layer's contribution in document-level RE at 70B fine-tuned scale.\\\", \\\"parent\\\": \\\"eval_70b_lora_docred_200_unconstrained\\\", \\\"metrics\\\": {\\\"samples\\\": 200, \\\"parse_fail_pct\\\": 11, \\\"ET_pct\\\": 0, \\\"RV_pct\\\": 0.51, \\\"DR_pct\\\": 0, \\\"CF_pct\\\": 0.21, \\\"E_F1\\\": 80.06, \\\"E_P\\\": 85.21, \\\"E_R\\\": 75.5, \\\"R_F1\\\": 43.61, \\\"R_P\\\": 39.44, \\\"R_R\\\": 48.75, \\\"entities_pred\\\": 3351, \\\"relations_pred\\\": 3148}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_70b_zs_docred_200_unconstrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T22:55:27.332Z\\\", \\\"updated_at\\\": \\\"2026-05-23T00:38:42.757Z\\\", \\\"hypothesis\\\": \\\"70B ZS DocRED unconstrained 200-doc baseline to complete the ablation matrix. Expect DR~15% and R-F1~13 consistent with prior 99-doc measurement, providing matched-subset comparison for semantic_only (DR=1.66%) and grammar_only experiments.\\\", \\\"parent\\\": \\\"70b_docred_unconstrained\\\", \\\"metrics\\\": {\\\"samples\\\": 200, \\\"parse_failures\\\": 0, \\\"entities_pred\\\": 3242, \\\"relations_pred\\\": 2637, \\\"ET_pct\\\": 0, \\\"RV_pct\\\": 7.88, \\\"DR_pct\\\": 13.45, \\\"CF_count\\\": 0, \\\"fuzzy_matches\\\": 8, \\\"E_F1\\\": 70.14, \\\"E_P\\\": 75.85, \\\"E_R\\\": 65.23, \\\"R_F1\\\": 13.25, \\\"R_P\\\": 12.97, \\\"R_R\\\": 13.54}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_70b_zs_docred_200_grammar_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T21:24:11.190Z\\\", \\\"updated_at\\\": \\\"2026-05-23T00:37:43.935Z\\\", \\\"hypothesis\\\": \\\"Grammar-only constraints on 70B ZS DocRED will show minimal DR reduction (similar to SciERC 70B ZS pattern where grammar_only DR≈unconstrained), confirming that grammar layer's negligible contribution at 70B scale generalizes across datasets.\\\", \\\"parent\\\": \\\"r16_70b_docred_zs_s1\\\", \\\"metrics\\\": {\\\"samples\\\": 200, \\\"parse_failures\\\": 1, \\\"entities_pred\\\": 3221, \\\"relations_pred\\\": 2609, \\\"ET_pct\\\": 0, \\\"RV_pct\\\": 0, \\\"DR_pct\\\": 17.03, \\\"CF_count\\\": 0, \\\"fuzzy_matches\\\": 0, \\\"E_F1\\\": 70.12, \\\"E_P\\\": 75.88, \\\"E_R\\\": 65.17, \\\"R_F1\\\": 13.23, \\\"R_P\\\": 12.99, \\\"R_R\\\": 13.47}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval_70b_zs_docred_200_semantic_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T20:35:21.150Z\\\", \\\"updated_at\\\": \\\"2026-05-22T22:55:11.458Z\\\", \\\"hypothesis\\\": \\\"Semantic-only constraints on 70B ZS DocRED will significantly reduce DR violations from zero-shot baseline, demonstrating the semantic layer's effectiveness on document-level RE without fine-tuning.\\\", \\\"parent\\\": \\\"70b_docred_unconstrained\\\", \\\"metrics\\\": {\\\"samples\\\": 200, \\\"parse_failures\\\": 0, \\\"entities\\\": 3240, \\\"relations\\\": 2596, \\\"ET_pct\\\": 0.12, \\\"RV_pct\\\": 8.24, \\\"DR_pct\\\": 1.66, \\\"CF_count\\\": 132, \\\"CF_pct\\\": 4.07, \\\"E_F1\\\": 70.1, \\\"E_P\\\": 75.87, \\\"E_R\\\": 65.15, \\\"R_F1\\\": 13.05, \\\"R_P\\\": 12.88, \\\"R_R\\\": 13.23, \\\"fuzzy_matches\\\": 8}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_70b_lora_docred_200_beam4_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T17:15:28.977Z\\\", \\\"updated_at\\\": \\\"2026-05-22T21:21:11.254Z\\\", \\\"hypothesis\\\": \\\"70B LoRA DocRED with beam search (k=4) + full_s1 on 200-doc subset will achieve DR=0% and CF≈0% while maintaining R-F1 comparable to greedy S1 (43.95), consistent with 8B beam search pattern.\\\", \\\"parent\\\": \\\"eval_70b_lora_docred_200_s1_constrained\\\", \\\"metrics\\\": {\\\"E-F1\\\": 85.57, \\\"E-P\\\": 85.45, \\\"E-R\\\": 85.68, \\\"R-F1\\\": 48.14, \\\"R-P\\\": 44.24, \\\"R-R\\\": 52.79, \\\"ET%\\\": 0, \\\"RV%\\\": 0, \\\"DR%\\\": 0, \\\"CF%\\\": 0, \\\"parse_fail\\\": \\\"1/200 (0.5%)\\\", \\\"entities_pred\\\": 3790, \\\"relations_pred\\\": 3030}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_70b_lora_scierc_grammar_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T17:13:55.324Z\\\", \\\"updated_at\\\": \\\"2026-05-22T20:31:32.878Z\\\", \\\"hypothesis\\\": \\\"70B LoRA SciERC with grammar-only constrained decoding will reduce DR violations compared to unconstrained (DR=1.5%) but less than full_s1 (DR=0%), isolating grammar layer's independent contribution at 70B fine-tuned scale.\\\", \\\"parent\\\": \\\"eval_70b_lora_scierc_unconstrained\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"samples\\\": 551, \\\"json_failures\\\": 0, \\\"json_failure_rate\\\": 0, \\\"entities\\\": 1805, \\\"relations\\\": 1133, \\\"entity_type_violations\\\": 0, \\\"entity_type_violation_rate\\\": 0, \\\"relation_vocab_violations\\\": 0, \\\"relation_vocab_violation_rate\\\": 0, \\\"domain_range_violations\\\": 17, \\\"domain_range_violation_rate\\\": 0.015, \\\"cross_field_consistency_violations\\\": 0, \\\"fuzzy_relation_matches\\\": 0, \\\"entity_P\\\": 0.6272, \\\"entity_R\\\": 0.6707, \\\"entity_F1\\\": 0.6482, \\\"relation_P\\\": 0.4152, \\\"relation_R\\\": 0.4825, \\\"relation_F1\\\": 0.4463}}, \\\"eval_70b_zs_scierc_unconstrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T18:45:13.928Z\\\", \\\"updated_at\\\": \\\"2026-05-22T20:30:18.431Z\\\", \\\"hypothesis\\\": \\\"Independent 70B ZS SciERC unconstrained baseline to verify prior DR and R-F1 numbers from r16_70b_scierc_zs_s1 experiment. Expect DR~6-8% and R-F1~11 consistent with earlier measurements.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"samples\\\": 551, \\\"json_failures\\\": 0, \\\"entities\\\": 2353, \\\"relations\\\": 1483, \\\"ET_pct\\\": 0, \\\"RV_pct\\\": 0.6, \\\"DR_pct\\\": 6.4, \\\"CF_count\\\": 0, \\\"E_F1\\\": 35.22, \\\"E_P\\\": 30.13, \\\"E_R\\\": 42.38, \\\"R_F1\\\": 11.23, \\\"R_P\\\": 9.31, \\\"R_R\\\": 14.17, \\\"parse_fail_pct\\\": 0}}, \\\"eval_70b_lora_scierc_full_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T18:04:58.305Z\\\", \\\"updated_at\\\": \\\"2026-05-22T20:30:16.494Z\\\", \\\"hypothesis\\\": \\\"Full S2 constrained decoding on 70B LoRA SciERC achieves DR=0% like S1, with potentially fewer CF violations due to S2's enhanced cross-field consistency checking. R-F1 should be comparable to S1 (44.53-44.81).\\\", \\\"parent\\\": \\\"eval_70b_lora_scierc_s1_constrained\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"samples\\\": 551, \\\"json_failures\\\": 0, \\\"entities\\\": 1531, \\\"relations\\\": 1027, \\\"ET_pct\\\": 0, \\\"RV_pct\\\": 0, \\\"DR_pct\\\": 0, \\\"CF_count\\\": 18, \\\"E_F1\\\": 62.35, \\\"E_P\\\": 65.44, \\\"E_R\\\": 59.53, \\\"R_F1\\\": 36.28, \\\"R_P\\\": 35.35, \\\"R_R\\\": 37.27, \\\"parse_fail_pct\\\": 0}}, \\\"eval_70b_lora_scierc_semantic_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T18:04:55.672Z\\\", \\\"updated_at\\\": \\\"2026-05-22T20:30:13.188Z\\\", \\\"hypothesis\\\": \\\"Semantic-only constraints on 70B LoRA SciERC will reduce DR from 1.5% (unconstrained) toward 0%, consistent with the 70B ZS pattern where semantic layer is the primary DR reduction mechanism. Without grammar layer, some RV violations may appear.\\\", \\\"parent\\\": \\\"eval_70b_lora_scierc_unconstrained\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"samples\\\": 551, \\\"json_failures\\\": 0, \\\"entities\\\": 1806, \\\"relations\\\": 1133, \\\"ET_pct\\\": 0, \\\"RV_pct\\\": 0, \\\"DR_pct\\\": 0.6, \\\"CF_count\\\": 9, \\\"E_F1\\\": 64.86, \\\"E_P\\\": 62.74, \\\"E_R\\\": 67.12, \\\"R_F1\\\": 44.73, \\\"R_P\\\": 41.61, \\\"R_R\\\": 48.36, \\\"parse_fail_pct\\\": 0}}, \\\"entity_order_ablation_qwen_scierc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T16:48:40.066Z\\\", \\\"updated_at\\\": \\\"2026-05-22T18:16:23.650Z\\\", \\\"hypothesis\\\": \\\"Shuffling entity type order in the constraint schema (seed=42) does not significantly change constrained decoding results (R-F1 within ±0.5pp, violation rates identical), confirming that OntoCoDec is order-invariant. This addresses R19-W3 reviewer concern about entity registry ordering sensitivity.\\\", \\\"parent\\\": \\\"w5_lora_scierc_constrained_eval\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"E_F1\\\": 67.05, \\\"E_P\\\": 65.23, \\\"E_R\\\": 68.98, \\\"R_F1\\\": 43.77, \\\"R_P\\\": 40.78, \\\"R_R\\\": 47.23, \\\"DR_pct\\\": 0, \\\"RV_pct\\\": 0, \\\"ET_pct\\\": 0, \\\"CF_count\\\": 21, \\\"parse_fail_pct\\\": 0, \\\"samples\\\": 551, \\\"entities\\\": 1784, \\\"relations\\\": 1128, \\\"corrected_original_R_F1\\\": 43.77, \\\"corrected_original_E_F1\\\": 67.05, \\\"corrected_original_DR_pct\\\": 0, \\\"corrected_original_CF_count\\\": 21, \\\"corrected_delta_R_F1\\\": 0, \\\"corrected_delta_E_F1\\\": 0, \\\"raw_output_identical\\\": true, \\\"parsed_output_identical\\\": true, \\\"note\\\": \\\"CORRECTED 2026-05-22: Fair comparison with fixed violation_checker shows ZERO difference. raw_output and parsed_output are byte-identical across all 551 samples. Previous -3.38pp delta was entirely due to comparing old-checker original (47.15) vs new-checker shuffled (43.77). Entity ordering is confirmed order-invariant.\\\"}}, \\\"eval_70b_zs_scierc_semantic_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T14:39:36.807Z\\\", \\\"updated_at\\\": \\\"2026-05-22T18:09:49.840Z\\\", \\\"hypothesis\\\": \\\"Semantic-only constraints on 70B ZS will reduce DR partially (similar to 8B pattern: ~24% reduction) without eliminating RV/ET, isolating semantic layer's independent contribution at 70B scale.\\\", \\\"parent\\\": \\\"r16_70b_scierc_zs_s1\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"R_F1\\\": 11.37, \\\"DR_pct\\\": 1.01, \\\"RV_pct\\\": 0.6, \\\"ET_pct\\\": 0, \\\"CF_count\\\": 76, \\\"samples\\\": 551}}, \\\"eval_70b_zs_scierc_grammar_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T14:39:44.901Z\\\", \\\"updated_at\\\": \\\"2026-05-22T18:09:48.056Z\\\", \\\"hypothesis\\\": \\\"Grammar-only constraints on 70B ZS reduce domain-range violations compared to unconstrained baseline (DR=6.41%) but less effectively than full_s1 (DR=0%), isolating grammar layer's contribution to constraint enforcement.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"R_F1\\\": 11.23, \\\"DR_pct\\\": 6.33, \\\"RV_pct\\\": 0, \\\"ET_pct\\\": 0, \\\"CF_count\\\": 0, \\\"samples\\\": 551}}, \\\"eval_70b_lora_scierc_beam4_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T14:39:43.218Z\\\", \\\"updated_at\\\": \\\"2026-05-22T18:04:29.880Z\\\", \\\"hypothesis\\\": \\\"70B LoRA fine-tuned model with beam search (k=4) and full_s1 constrained decoding on SciERC achieves DR=0% and CF=0%, matching 8B beam search behavior, while maintaining or improving extraction F1.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"E_F1\\\": 64.89, \\\"E_P\\\": 62.29, \\\"E_R\\\": 67.72, \\\"R_F1\\\": 44.81, \\\"R_P\\\": 39.45, \\\"R_R\\\": 51.85, \\\"DR_pct\\\": 0, \\\"RV_pct\\\": 0, \\\"ET_pct\\\": 0, \\\"CF_count\\\": 1, \\\"parse_fail_pct\\\": 0, \\\"samples\\\": 551, \\\"entities\\\": 1839, \\\"relations\\\": 1283}}, \\\"tcr_beam4_llama_scierc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T15:48:16.222Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:27:25.157Z\\\", \\\"metrics\\\": {\\\"samples\\\": 551, \\\"json_failures\\\": 0, \\\"entities\\\": 1803, \\\"relations\\\": 1194, \\\"entity_type_violations\\\": \\\"0/1803 (0.0%)\\\", \\\"relation_vocab_violations\\\": \\\"0/1194 (0.0%)\\\", \\\"domain_range_violations\\\": \\\"13/1194 (1.1%)\\\", \\\"cross_field_consistency\\\": 0, \\\"DR_pct\\\": 1.09, \\\"E_F1\\\": 68.02, \\\"E_P\\\": 65.88, \\\"E_R\\\": 70.29, \\\"R_F1\\\": 46.05, \\\"R_P\\\": 41.83, \\\"R_R\\\": 51.23, \\\"tcr_changed_selection\\\": \\\"0/551 (0.0%)\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"hypothesis\\\": \\\"TCR reranking on beam4 outputs will change beam selection for LLaMA-SciERC by penalizing constraint-violating candidates, improving DR violation rate and overall F1 compared to vanilla beam4.\\\"}, \\\"tcr_beam4_qwen_scierc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T14:37:32.074Z\\\", \\\"updated_at\\\": \\\"2026-05-22T15:49:03.706Z\\\", \\\"hypothesis\\\": \\\"TCR (Type Consistency Reranking) with beam search (k=4) on Qwen3-8B LoRA SciERC will reduce domain/range violations compared to standard beam search by reranking candidates based on type consistency scores, while maintaining or improving Entity/Relation F1.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"samples\\\": 551, \\\"json_failures\\\": 0, \\\"entities\\\": 1802, \\\"relations\\\": 1250, \\\"entity_type_violations\\\": \\\"0/1802 (0.0%)\\\", \\\"relation_vocab_violations\\\": \\\"0/1250 (0.0%)\\\", \\\"domain_range_violations\\\": \\\"23/1250 (1.8%)\\\", \\\"cross_field_consistency_violations\\\": 1, \\\"DR_pct\\\": 1.84, \\\"E_P\\\": 65.05, \\\"E_R\\\": 69.64, \\\"E_F1\\\": 67.26, \\\"R_P\\\": 39.36, \\\"R_R\\\": 50.51, \\\"R_F1\\\": 44.24, \\\"TCR_changed_selection\\\": \\\"0/551 (0.0%)\\\", \\\"all_candidates_TCR_1.0\\\": true}, \\\"parent\\\": \\\"d066_beam_sweep\\\"}, \\\"vllm_guided_json_scierc_zs\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T13:29:07.493Z\\\", \\\"updated_at\\\": \\\"2026-05-22T13:30:06.224Z\\\", \\\"hypothesis\\\": \\\"vLLM's guided_json (JSON schema-constrained decoding) produces equivalent violation rates and F1 scores to our XGrammar grammar-only ablation, confirming that guided_json ≈ GCD (grammar-constrained decoding) without semantic constraints.\\\", \\\"metrics\\\": {\\\"DR%\\\": 15.26, \\\"RV%\\\": 0, \\\"ET%\\\": 0, \\\"CF%\\\": 0.04, \\\"R-F1\\\": 8.75, \\\"E-F1\\\": 30.91, \\\"parse_fail%\\\": 0, \\\"total_samples\\\": 551, \\\"total_entities\\\": 2485, \\\"total_relations\\\": 1724, \\\"inference_time_s\\\": 108.5}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_70b_lora_docred_200_s1_constrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T05:47:05.464Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:34:22.854Z\\\", \\\"hypothesis\\\": \\\"70B LoRA DocRED with Full S1 constrained decoding on 200-doc subset will achieve DR→0% while maintaining R-F1 comparable to unconstrained, confirming scale-independent constraint composability on DocRED at 70B scale\\\", \\\"parent\\\": \\\"eval_70b_lora_docred_200_unconstrained\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"E_F1\\\": 79.38, \\\"E_P\\\": 85.24, \\\"E_R\\\": 74.28, \\\"R_F1\\\": 43.95, \\\"R_P\\\": 40.48, \\\"R_R\\\": 48.08, \\\"DR_pct\\\": 0, \\\"RV_pct\\\": 0, \\\"ET_pct\\\": 0, \\\"CF_pct\\\": 0.18, \\\"parse_fail_pct\\\": 12.5, \\\"samples\\\": 200}}, \\\"d066_beam_sweep\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T23:44:23.637Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:34:14.027Z\\\", \\\"hypothesis\\\": \\\"Beam width k∈{1,2,4,8} on SciERC (LoRA, Qwen3-8B) will show monotonic DR/CF reduction with diminishing returns past k=4, establishing the cost-effectiveness trade-off for the beam search appendix Pareto analysis.\\\", \\\"notes\\\": \\\"全部 8 配置完成 + eval 齐全。beam8 con: E-F1=66.36, R-F1=43.65, DR=0%, CF=0%, avg_time=5.058s。Pareto optimal: k=2 con (E-F1=67.71, R-F1=44.60, DR=0%)。k=8 相比 k=2 F1 下降 ~1.3pp 且推理慢 46%，收益递减明确。可入稿。\\\", \\\"metrics\\\": {\\\"scierc_qwen3_8b\\\": {\\\"k1_unc\\\": {\\\"E_F1\\\": 66.88, \\\"R_F1\\\": 42.95, \\\"DR_pct\\\": 2.11, \\\"CF_pct\\\": 0, \\\"avg_time\\\": 2.494}, \\\"k1_con\\\": {\\\"E_F1\\\": 66.88, \\\"R_F1\\\": 42.95, \\\"DR_pct\\\": 0, \\\"CF_pct\\\": 0.5, \\\"avg_time\\\": 2.932}, \\\"k2_unc\\\": {\\\"E_F1\\\": 67.79, \\\"R_F1\\\": 44.75, \\\"DR_pct\\\": 1.54, \\\"CF_pct\\\": 0, \\\"avg_time\\\": 2.954}, \\\"k2_con\\\": {\\\"E_F1\\\": 67.71, \\\"R_F1\\\": 44.6, \\\"DR_pct\\\": 0, \\\"CF_pct\\\": 0.11, \\\"avg_time\\\": 3.463}, \\\"k4_unc\\\": {\\\"E_F1\\\": 67.49, \\\"R_F1\\\": 43.72, \\\"DR_pct\\\": 1.89, \\\"CF_pct\\\": 0, \\\"avg_time\\\": 3.485}, \\\"k4_con\\\": {\\\"E_F1\\\": 67.22, \\\"R_F1\\\": 43.6, \\\"DR_pct\\\": 0, \\\"CF_pct\\\": 0, \\\"avg_time\\\": 4.069}, \\\"k8_unc\\\": {\\\"E_F1\\\": 66.4, \\\"R_F1\\\": 43.17, \\\"DR_pct\\\": 1.77, \\\"CF_pct\\\": 0, \\\"avg_time\\\": 4.194}, \\\"k8_con\\\": {\\\"E_F1\\\": 66.36, \\\"R_F1\\\": 43.65, \\\"DR_pct\\\": 0, \\\"CF_pct\\\": 0, \\\"avg_time\\\": 5.058}}, \\\"pareto_optimal\\\": \\\"k=2 con\\\", \\\"best_E_F1\\\": {\\\"config\\\": \\\"k=2 unc\\\", \\\"value\\\": 67.79}, \\\"best_R_F1\\\": {\\\"config\\\": \\\"k=2 unc\\\", \\\"value\\\": 44.75}}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 20, \\\"total\\\": 155, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.506}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_70b_zs_docred_200_full_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T00:41:26.371Z\", \"updated_at\": \"2026-05-23T02:30:50.739Z\", \"hypothesis\": \"Full S1 (grammar+semantic) constraints on 70B ZS DocRED should achieve DR close to semantic_only (1.66%) since grammar adds zero DR contribution in ZS setting. R_F1 should remain ~13 (matching unconstrained 13.25). This completes the ZS DocRED ablation matrix.\", \"parent\": \"eval_70b_zs_docred_200_unconstrained\", \"metrics\": {\"DR%\": 0, \"RV%\": 0, \"ET%\": 0, \"CF%\": 5.34, \"E-F1\": 70.05, \"R-F1\": 13.25, \"PF%\": 0, \"entities_pred\": 3234, \"relations_pred\": 2637, \"triples_checked\": 2642}, \"conclusion\": \"success\"}, \"eval_70b_lora_docred_200_grammar_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T20:35:19.975Z\", \"updated_at\": \"2026-05-23T01:55:24.472Z\", \"hypothesis\": \"Grammar-only constraints on 70B LoRA DocRED will eliminate RV violations but not reduce DR, mirroring the SciERC ablation pattern where grammar layer provides zero DR contribution at fine-tuned scale.\", \"parent\": \"eval_70b_lora_docred_200_unconstrained\", \"metrics\": {\"samples\": 200, \"parse_fail_pct\": 10.5, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.38, \"CF_pct\": 0.06, \"E_F1\": 80.13, \"E_P\": 85.16, \"E_R\": 75.66, \"R_F1\": 43.96, \"R_P\": 39.78, \"R_R\": 49.11, \"entities_pred\": 3362, \"relations_pred\": 3154}, \"conclusion\": \"negative\"}, \"eval_70b_lora_docred_200_semantic_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T20:35:17.601Z\", \"updated_at\": \"2026-05-23T01:20:56.659Z\", \"hypothesis\": \"Semantic-only constraints on 70B LoRA DocRED will reduce DR violations from unconstrained baseline (DR=0.88%) with minimal F1 impact, isolating the semantic layer's contribution in document-level RE at 70B fine-tuned scale.\", \"parent\": \"eval_70b_lora_docred_200_unconstrained\", \"metrics\": {\"samples\": 200, \"parse_fail_pct\": 11, \"ET_pct\": 0, \"RV_pct\": 0.51, \"DR_pct\": 0, \"CF_pct\": 0.21, \"E_F1\": 80.06, \"E_P\": 85.21, \"E_R\": 75.5, \"R_F1\": 43.61, \"R_P\": 39.44, \"R_R\": 48.75, \"entities_pred\": 3351, \"relations_pred\": 3148}, \"conclusion\": \"success\"}, \"eval_70b_zs_docred_200_unconstrained\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T22:55:27.332Z\", \"updated_at\": \"2026-05-23T00:38:42.757Z\", \"hypothesis\": \"70B ZS DocRED unconstrained 200-doc baseline to complete the ablation matrix. Expect DR~15% and R-F1~13 consistent with prior 99-doc measurement, providing matched-subset comparison for semantic_only (DR=1.66%) and grammar_only experiments.\", \"parent\": \"70b_docred_unconstrained\", \"metrics\": {\"samples\": 200, \"parse_failures\": 0, \"entities_pred\": 3242, \"relations_pred\": 2637, \"ET_pct\": 0, \"RV_pct\": 7.88, \"DR_pct\": 13.45, \"CF_count\": 0, \"fuzzy_matches\": 8, \"E_F1\": 70.14, \"E_P\": 75.85, \"E_R\": 65.23, \"R_F1\": 13.25, \"R_P\": 12.97, \"R_R\": 13.54}, \"conclusion\": \"success\"}, \"eval_70b_zs_docred_200_grammar_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T21:24:11.190Z\", \"updated_at\": \"2026-05-23T00:37:43.935Z\", \"hypothesis\": \"Grammar-only constraints on 70B ZS DocRED will show minimal DR reduction (similar to SciERC 70B ZS pattern where grammar_only DR≈unconstrained), confirming that grammar layer's negligible contribution at 70B scale generalizes across datasets.\", \"parent\": \"r16_70b_docred_zs_s1\", \"metrics\": {\"samples\": 200, \"parse_failures\": 1, \"entities_pred\": 3221, \"relations_pred\": 2609, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 17.03, \"CF_count\": 0, \"fuzzy_matches\": 0, \"E_F1\": 70.12, \"E_P\": 75.88, \"E_R\": 65.17, \"R_F1\": 13.23, \"R_P\": 12.99, \"R_R\": 13.47}, \"conclusion\": \"negative\"}, \"eval_70b_zs_docred_200_semantic_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T20:35:21.150Z\", \"updated_at\": \"2026-05-22T22:55:11.458Z\", \"hypothesis\": \"Semantic-only constraints on 70B ZS DocRED will significantly reduce DR violations from zero-shot baseline, demonstrating the semantic layer's effectiveness on document-level RE without fine-tuning.\", \"parent\": \"70b_docred_unconstrained\", \"metrics\": {\"samples\": 200, \"parse_failures\": 0, \"entities\": 3240, \"relations\": 2596, \"ET_pct\": 0.12, \"RV_pct\": 8.24, \"DR_pct\": 1.66, \"CF_count\": 132, \"CF_pct\": 4.07, \"E_F1\": 70.1, \"E_P\": 75.87, \"E_R\": 65.15, \"R_F1\": 13.05, \"R_P\": 12.88, \"R_R\": 13.23, \"fuzzy_matches\": 8}, \"conclusion\": \"success\"}, \"eval_70b_lora_docred_200_beam4_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T17:15:28.977Z\", \"updated_at\": \"2026-05-22T21:21:11.254Z\", \"hypothesis\": \"70B LoRA DocRED with beam search (k=4) + full_s1 on 200-doc subset will achieve DR=0% and CF≈0% while maintaining R-F1 comparable to greedy S1 (43.95), consistent with 8B beam search pattern.\", \"parent\": \"eval_70b_lora_docred_200_s1_constrained\", \"metrics\": {\"E-F1\": 85.57, \"E-P\": 85.45, \"E-R\": 85.68, \"R-F1\": 48.14, \"R-P\": 44.24, \"R-R\": 52.79, \"ET%\": 0, \"RV%\": 0, \"DR%\": 0, \"CF%\": 0, \"parse_fail\": \"1/200 (0.5%)\", \"entities_pred\": 3790, \"relations_pred\": 3030}, \"conclusion\": \"success\"}, \"eval_70b_lora_scierc_grammar_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T17:13:55.324Z\", \"updated_at\": \"2026-05-22T20:31:32.878Z\", \"hypothesis\": \"70B LoRA SciERC with grammar-only constrained decoding will reduce DR violations compared to unconstrained (DR=1.5%) but less than full_s1 (DR=0%), isolating grammar layer's independent contribution at 70B fine-tuned scale.\", \"parent\": \"eval_70b_lora_scierc_unconstrained\", \"conclusion\": \"negative\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"json_failure_rate\": 0, \"entities\": 1805, \"relations\": 1133, \"entity_type_violations\": 0, \"entity_type_violation_rate\": 0, \"relation_vocab_violations\": 0, \"relation_vocab_violation_rate\": 0, \"domain_range_violations\": 17, \"domain_range_violation_rate\": 0.015, \"cross_field_consistency_violations\": 0, \"fuzzy_relation_matches\": 0, \"entity_P\": 0.6272, \"entity_R\": 0.6707, \"entity_F1\": 0.6482, \"relation_P\": 0.4152, \"relation_R\": 0.4825, \"relation_F1\": 0.4463}}, \"eval_70b_zs_scierc_unconstrained\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T18:45:13.928Z\", \"updated_at\": \"2026-05-22T20:30:18.431Z\", \"hypothesis\": \"Independent 70B ZS SciERC unconstrained baseline to verify prior DR and R-F1 numbers from r16_70b_scierc_zs_s1 experiment. Expect DR~6-8% and R-F1~11 consistent with earlier measurements.\", \"conclusion\": \"success\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 2353, \"relations\": 1483, \"ET_pct\": 0, \"RV_pct\": 0.6, \"DR_pct\": 6.4, \"CF_count\": 0, \"E_F1\": 35.22, \"E_P\": 30.13, \"E_R\": 42.38, \"R_F1\": 11.23, \"R_P\": 9.31, \"R_R\": 14.17, \"parse_fail_pct\": 0}}, \"eval_70b_lora_scierc_full_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T18:04:58.305Z\", \"updated_at\": \"2026-05-22T20:30:16.494Z\", \"hypothesis\": \"Full S2 constrained decoding on 70B LoRA SciERC achieves DR=0% like S1, with potentially fewer CF violations due to S2's enhanced cross-field consistency checking. R-F1 should be comparable to S1 (44.53-44.81).\", \"parent\": \"eval_70b_lora_scierc_s1_constrained\", \"conclusion\": \"negative\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1531, \"relations\": 1027, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0, \"CF_count\": 18, \"E_F1\": 62.35, \"E_P\": 65.44, \"E_R\": 59.53, \"R_F1\": 36.28, \"R_P\": 35.35, \"R_R\": 37.27, \"parse_fail_pct\": 0}}, \"eval_70b_lora_scierc_semantic_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T18:04:55.672Z\", \"updated_at\": \"2026-05-22T20:30:13.188Z\", \"hypothesis\": \"Semantic-only constraints on 70B LoRA SciERC will reduce DR from 1.5% (unconstrained) toward 0%, consistent with the 70B ZS pattern where semantic layer is the primary DR reduction mechanism. Without grammar layer, some RV violations may appear.\", \"parent\": \"eval_70b_lora_scierc_unconstrained\", \"conclusion\": \"success\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1806, \"relations\": 1133, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.6, \"CF_count\": 9, \"E_F1\": 64.86, \"E_P\": 62.74, \"E_R\": 67.12, \"R_F1\": 44.73, \"R_P\": 41.61, \"R_R\": 48.36, \"parse_fail_pct\": 0}}, \"entity_order_ablation_qwen_scierc\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T16:48:40.066Z\", \"updated_at\": \"2026-05-22T18:16:23.650Z\", \"hypothesis\": \"Shuffling entity type order in the constraint schema (seed=42) does not significantly change constrained decoding results (R-F1 within ±0.5pp, violation rates identical), confirming that OntoCoDec is order-invariant. This addresses R19-W3 reviewer concern about entity registry ordering sensitivity.\", \"parent\": \"w5_lora_scierc_constrained_eval\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 67.05, \"E_P\": 65.23, \"E_R\": 68.98, \"R_F1\": 43.77, \"R_P\": 40.78, \"R_R\": 47.23, \"DR_pct\": 0, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_count\": 21, \"parse_fail_pct\": 0, \"samples\": 551, \"entities\": 1784, \"relations\": 1128, \"corrected_original_R_F1\": 43.77, \"corrected_original_E_F1\": 67.05, \"corrected_original_DR_pct\": 0, \"corrected_original_CF_count\": 21, \"corrected_delta_R_F1\": 0, \"corrected_delta_E_F1\": 0, \"raw_output_identical\": true, \"parsed_output_identical\": true, \"note\": \"CORRECTED 2026-05-22: Fair comparison with fixed violation_checker shows ZERO difference. raw_output and parsed_output are byte-identical across all 551 samples. Previous -3.38pp delta was entirely due to comparing old-checker original (47.15) vs new-checker shuffled (43.77). Entity ordering is confirmed order-invariant.\"}}, \"eval_70b_zs_scierc_semantic_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T14:39:36.807Z\", \"updated_at\": \"2026-05-22T18:09:49.840Z\", \"hypothesis\": \"Semantic-only constraints on 70B ZS will reduce DR partially (similar to 8B pattern: ~24% reduction) without eliminating RV/ET, isolating semantic layer's independent contribution at 70B scale.\", \"parent\": \"r16_70b_scierc_zs_s1\", \"conclusion\": \"success\", \"metrics\": {\"R_F1\": 11.37, \"DR_pct\": 1.01, \"RV_pct\": 0.6, \"ET_pct\": 0, \"CF_count\": 76, \"samples\": 551}}, \"eval_70b_zs_scierc_grammar_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T14:39:44.901Z\", \"updated_at\": \"2026-05-22T18:09:48.056Z\", \"hypothesis\": \"Grammar-only constraints on 70B ZS reduce domain-range violations compared to unconstrained baseline (DR=6.41%) but less effectively than full_s1 (DR=0%), isolating grammar layer's contribution to constraint enforcement.\", \"conclusion\": \"negative\", \"metrics\": {\"R_F1\": 11.23, \"DR_pct\": 6.33, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_count\": 0, \"samples\": 551}}, \"eval_70b_lora_scierc_beam4_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T14:39:43.218Z\", \"updated_at\": \"2026-05-22T18:04:29.880Z\", \"hypothesis\": \"70B LoRA fine-tuned model with beam search (k=4) and full_s1 constrained decoding on SciERC achieves DR=0% and CF=0%, matching 8B beam search behavior, while maintaining or improving extraction F1.\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 64.89, \"E_P\": 62.29, \"E_R\": 67.72, \"R_F1\": 44.81, \"R_P\": 39.45, \"R_R\": 51.85, \"DR_pct\": 0, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_count\": 1, \"parse_fail_pct\": 0, \"samples\": 551, \"entities\": 1839, \"relations\": 1283}}, \"tcr_beam4_llama_scierc\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T15:48:16.222Z\", \"updated_at\": \"2026-05-22T16:27:25.157Z\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1803, \"relations\": 1194, \"entity_type_violations\": \"0/1803 (0.0%)\", \"relation_vocab_violations\": \"0/1194 (0.0%)\", \"domain_range_violations\": \"13/1194 (1.1%)\", \"cross_field_consistency\": 0, \"DR_pct\": 1.09, \"E_F1\": 68.02, \"E_P\": 65.88, \"E_R\": 70.29, \"R_F1\": 46.05, \"R_P\": 41.83, \"R_R\": 51.23, \"tcr_changed_selection\": \"0/551 (0.0%)\"}, \"conclusion\": \"negative\", \"hypothesis\": \"TCR reranking on beam4 outputs will change beam selection for LLaMA-SciERC by penalizing constraint-violating candidates, improving DR violation rate and overall F1 compared to vanilla beam4.\"}, \"tcr_beam4_qwen_scierc\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T14:37:32.074Z\", \"updated_at\": \"2026-05-22T15:49:03.706Z\", \"hypothesis\": \"TCR (Type Consistency Reranking) with beam search (k=4) on Qwen3-8B LoRA SciERC will reduce domain/range violations compared to standard beam search by reranking candidates based on type consistency scores, while maintaining or improving Entity/Relation F1.\", \"conclusion\": \"negative\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1802, \"relations\": 1250, \"entity_type_violations\": \"0/1802 (0.0%)\", \"relation_vocab_violations\": \"0/1250 (0.0%)\", \"domain_range_violations\": \"23/1250 (1.8%)\", \"cross_field_consistency_violations\": 1, \"DR_pct\": 1.84, \"E_P\": 65.05, \"E_R\": 69.64, \"E_F1\": 67.26, \"R_P\": 39.36, \"R_R\": 50.51, \"R_F1\": 44.24, \"TCR_changed_selection\": \"0/551 (0.0%)\", \"all_candidates_TCR_1.0\": true}, \"parent\": \"d066_beam_sweep\"}, \"vllm_guided_json_scierc_zs\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T13:29:07.493Z\", \"updated_at\": \"2026-05-22T13:30:06.224Z\", \"hypothesis\": \"vLLM's guided_json (JSON schema-constrained decoding) produces equivalent violation rates and F1 scores to our XGrammar grammar-only ablation, confirming that guided_json ≈ GCD (grammar-constrained decoding) without semantic constraints.\", \"metrics\": {\"DR%\": 15.26, \"RV%\": 0, \"ET%\": 0, \"CF%\": 0.04, \"R-F1\": 8.75, \"E-F1\": 30.91, \"parse_fail%\": 0, \"total_samples\": 551, \"total_entities\": 2485, \"total_relations\": 1724, \"inference_time_s\": 108.5}, \"conclusion\": \"success\"}, \"eval_70b_lora_docred_200_s1_constrained\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T05:47:05.464Z\", \"updated_at\": \"2026-05-22T10:34:22.854Z\", \"hypothesis\": \"70B LoRA DocRED with Full S1 constrained decoding on 200-doc subset will achieve DR→0% while maintaining R-F1 comparable to unconstrained, confirming scale-independent constraint composability on DocRED at 70B scale\", \"parent\": \"eval_70b_lora_docred_200_unconstrained\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 79.38, \"E_P\": 85.24, \"E_R\": 74.28, \"R_F1\": 43.95, \"R_P\": 40.48, \"R_R\": 48.08, \"DR_pct\": 0, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_pct\": 0.18, \"parse_fail_pct\": 12.5, \"samples\": 200}}, \"d066_beam_sweep\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T23:44:23.637Z\", \"updated_at\": \"2026-05-22T10:34:14.027Z\", \"hypothesis\": \"Beam width k∈{1,2,4,8} on SciERC (LoRA, Qwen3-8B) will show monotonic DR/CF reduction with diminishing returns past k=4, establishing the cost-effectiveness trade-off for the beam search appendix Pareto analysis.\", \"notes\": \"全部 8 配置完成 + eval 齐全。beam8 con: E-F1=66.36, R-F1=43.65, DR=0%, CF=0%, avg_time=5.058s。Pareto optimal: k=2 con (E-F1=67.71, R-F1=44.60, DR=0%)。k=8 相比 k=2 F1 下降 ~1.3pp 且推理慢 46%，收益递减明确。可入稿。\", \"metrics\": {\"scierc_qwen3_8b\": {\"k1_unc\": {\"E_F1\": 66.88, \"R_F1\": 42.95, \"DR_pct\": 2.11, \"CF_pct\": 0, \"avg_time\": 2.494}, \"k1_con\": {\"E_F1\": 66.88, \"R_F1\": 42.95, \"DR_pct\": 0, \"CF_pct\": 0.5, \"avg_time\": 2.932}, \"k2_unc\": {\"E_F1\": 67.79, \"R_F1\": 44.75, \"DR_pct\": 1.54, \"CF_pct\": 0, \"avg_time\": 2.954}, \"k2_con\": {\"E_F1\": 67.71, \"R_F1\": 44.6, \"DR_pct\": 0, \"CF_pct\": 0.11, \"avg_time\": 3.463}, \"k4_unc\": {\"E_F1\": 67.49, \"R_F1\": 43.72, \"DR_pct\": 1.89, \"CF_pct\": 0, \"avg_time\": 3.485}, \"k4_con\": {\"E_F1\": 67.22, \"R_F1\": 43.6, \"DR_pct\": 0, \"CF_pct\": 0, \"avg_time\": 4.069}, \"k8_unc\": {\"E_F1\": 66.4, \"R_F1\": 43.17, \"DR_pct\": 1.77, \"CF_pct\": 0, \"avg_time\": 4.194}, \"k8_con\": {\"E_F1\": 66.36, \"R_F1\": 43.65, \"DR_pct\": 0, \"CF_pct\": 0, \"avg_time\": 5.058}}, \"pareto_optimal\": \"k=2 con\", \"best_E_F1\": {\"config\": \"k=2 unc\", \"value\": 67.79}, \"best_R_F1\": {\"config\": \"k=2 unc\", \"value\": 44.75}}, \"conclusion\": \"success\"}}, \"count\": 20, \"total\": 155, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.506}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both GPUs are active with memory in use. Let me check the running processes, tmux sessions, and output files more carefully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "3c2954fa-e54d-4227-bb12-9dbd0ae5aff3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014HtRtZC27a5csEK9wqFvc7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8067,
+      "cache_read_input_tokens": 26539,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8067
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+Both GPUs active. Let me check processes, tmux sessions, and the output file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "b95b89a0-3d2a-4944-b469-b8a4f2240199",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014HtRtZC27a5csEK9wqFvc7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8067,
+      "cache_read_input_tokens": 26539,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8067
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KKBszkGjYAEW5H55hssdur`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ls -lt /root/schema_semantic_constrained_ie/outputs/sf2_llama_int4_scierc_s1/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "15fed6dc-cf9b-4c10-9582-bb1773e8e600",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014HtRtZC27a5csEK9wqFvc7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8067,
+      "cache_read_input_tokens": 26539,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8067
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G8uxFH5iRVgs2Ht3shdnqM`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "tmux ls"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "39573a4b-bdc9-4ddd-924c-0af3b3fbd6b6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014HtRtZC27a5csEK9wqFvc7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8067,
+      "cache_read_input_tokens": 26539,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8067
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T05:09:00.732Z_
+
+<details><summary>↩ Tool result · `toolu_01KKBszkGjYAEW5H55hssdur`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 448\\n-rw-r--r-- 1 root root 419211 May 23 13:09 raw_outputs.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "7f3fbc3d-17b8-4995-8b21-966ae6bc74c7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 448\\\\n-rw-r--r-- 1 root root 419211 May 23 13:09 raw_outputs.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 448\\n-rw-r--r-- 1 root root 419211 May 23 13:09 raw_outputs.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-23T05:09:00.742Z_
+
+<details><summary>↩ Tool result · `toolu_01G8uxFH5iRVgs2Ht3shdnqM`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "6e5ae675-20f0-4872-8803-0f0e696c190e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01C3wtkYi4rcNjjjYNs2mSwa`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "wc -l /root/schema_semantic_constrained_ie/outputs/sf2_llama_int4_scierc_s1/raw_outputs.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "f1281e3a-d930-4174-aa00-3435c5a73d04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MCj6abjBhZ4a73zvgGTPiH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 513,
+      "cache_read_input_tokens": 34606,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 513
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-23T05:09:03.847Z_
+
+<details><summary>↩ Tool result · `toolu_01C3wtkYi4rcNjjjYNs2mSwa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"220 /root/schema_semantic_constrained_ie/outputs/sf2_llama_int4_scierc_s1/raw_outputs.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "65c6fab1-4a83-4266-9838-e812998b0450",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"220 /root/schema_semantic_constrained_ie/outputs/sf2_llama_int4_scierc_s1/raw_outputs.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"220 /root/schema_semantic_constrained_ie/outputs/sf2_llama_int4_scierc_s1/raw_outputs.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Suu83wXTKcEhyN1N6gGwh1`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ps aux | grep -E \"python|eval\" | grep -v grep"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "b42f6d8c-19ec-497e-beef-88809aa3fba0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MCj6abjBhZ4a73zvgGTPiH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 513,
+      "cache_read_input_tokens": 34606,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 513
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-23T05:09:04.371Z_
+
+<details><summary>↩ Tool result · `toolu_01Suu83wXTKcEhyN1N6gGwh1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root        907  0.0  0.0 191560 100940 ?       S    May12   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        915  0.0  0.0 3328672 69672 ?       Sl   May12   7:51 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        997  0.1  0.0 28341192 8208 ?       Sl   May12  15:51 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_uza1cc63/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_uza1cc63/startup_error\\nroot      16696  0.0  0.0   4364  2116 ?        S    12:57   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && mkdir -p outputs/sf2_qwen_int4_scierc_s1 && nohup env CUDA_VISIBLE_DEVICES=0 python run_constrained_extraction.py \\\\   --mode full_s1 \\\\   --dataset scierc \\\\   --model_path /root/autodl-tmp/models/Qwen3-8B-SciERC-FT-AWQ-INT4/ \\\\   --data_path data/processed_data/test.json \\\\   --constraints_path ontology_constraints.json \\\\   --output_path outputs/sf2_qwen_int4_scierc_s1/output.jsonl \\\\   --device cuda:0 \\\\   --seed 42 \\\\   > /tmp/sf2_int4_eval.log 2>&1 & echo \\\"PID=$!\\\"\\nroot      16702  107  0.2 68153688 2393660 ?    Rl   12:57  12:37 python run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-SciERC-FT-AWQ-INT4/ --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/sf2_qwen_int4_scierc_s1/output.jsonl --device cuda:0 --seed 42\\nroot      17383  0.0  0.0   4364  2180 ?        S    12:58   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && mkdir -p outputs/sf2_llama_int4_scierc_s1 && nohup env CUDA_VISIBLE_DEVICES=1 python run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Llama-8B-SciERC-FT-AWQ-INT4/ --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/sf2_llama_int4_scierc_s1/raw_outputs.jsonl --device cuda:0 > /tmp/sf2_llama_int4_eval.log 2>&1 & echo \\\"PID=$!\\\"\\nroot      17389  103  0.2 57027544 2311192 ?    Rl   12:58  10:43 python run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Llama-8B-SciERC-FT-AWQ-INT4/ --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/sf2_llama_int4_scierc_s1/raw_outputs.jsonl --device cuda:0\\nroot     349350  0.0  0.0  24844 14444 ?        S    May16   2:28 python3 -c  import http.server, os os.chdir('/root/autodl-tmp/checkpoints/qwen_lora_docred_merged') s = http.server.HTTPServer(('0.0.0.0', 18888), http.server.SimpleHTTPRequestHandler) s.serve_forever() \\nroot     451275  0.0  0.0  24492 14928 ?        S    May17   0:00 python3 /tmp/download_wiki.py\\nroot     485171  0.0  0.0  24956 14968 ?        S    May18   2:13 python3 -m http.server 18080\\nroot     492102  0.0  0.0  24928 14696 ?        S    May18   2:14 /usr/bin/python3 -m http.server 38980 --directory /tmp --bind 0.0.0.0\\nroot     912926  0.0  0.0  23736 17212 ?        S    May22   0:00 python3 -c  import http.server, threading, os, time os.chdir('/tmp') for port in range(19000, 19100):     try:         server = http.server.HTTPServer(('0.0.0.0', port), http.server.SimpleHTTPRequestHandler)         print(f'PORT={port}')         # handle 2 requests then exit         server.handle_request()         server.handle_request()         break     except OSError:         continue \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "b8a9032b-3570-479d-9fd1-f8f78b7bbffc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root        907  0.0  0.0 191560 100940 ?       S    May12   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        915  0.0  0.0 3328672 69672 ?       Sl   May12   7:51 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        997  0.1  0.0 28341192 8208 ?       Sl   May12  15:51 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_uza1cc63/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_uza1cc63/startup_error\\\\nroot      16696  0.0  0.0   4364  2116 ?        S    12:57   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && mkdir -p outputs/sf2_qwen_int4_scierc_s1 && nohup env CUDA_VISIBLE_DEVICES=0 python run_constrained_extraction.py \\\\\\\\   --mode full_s1 \\\\\\\\   --dataset scierc \\\\\\\\   --model_path /root/autodl-tmp/models/Qwen3-8B-SciERC-FT-AWQ-INT4/ \\\\\\\\   --data_path data/processed_data/test.json \\\\\\\\   --constraints_path ontology_constraints.json \\\\\\\\   --output_path outputs/sf2_qwen_int4_scierc_s1/output.jsonl \\\\\\\\   --device cuda:0 \\\\\\\\   --seed 42 \\\\\\\\   > /tmp/sf2_int4_eval.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\nroot      16702  107  0.2 68153688 2393660 ?    Rl   12:57  12:37 python run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-SciERC-FT-AWQ-INT4/ --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/sf2_qwen_int4_scierc_s1/output.jsonl --device cuda:0 --seed 42\\\\nroot      17383  0.0  0.0   4364  2180 ?        S    12:58   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && mkdir -p outputs/sf2_llama_int4_scierc_s1 && nohup env CUDA_VISIBLE_DEVICES=1 python run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Llama-8B-SciERC-FT-AWQ-INT4/ --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/sf2_llama_int4_scierc_s1/raw_outputs.jsonl --device cuda:0 > /tmp/sf2_llama_int4_eval.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\nroot      17389  103  0.2 57027544 2311192 ?    Rl   12:58  10:43 python run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Llama-8B-SciERC-FT-AWQ-INT4/ --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/sf2_llama_int4_scierc_s1/raw_outputs.jsonl --device cuda:0\\\\nroot     349350  0.0  0.0  24844 14444 ?        S    May16   2:28 python3 -c  import http.server, os os.chdir('/root/autodl-tmp/checkpoints/qwen_lora_docred_merged') s = http.server.HTTPServer(('0.0.0.0', 18888), http.server.SimpleHTTPRequestHandler) s.serve_forever() \\\\nroot     451275  0.0  0.0  24492 14928 ?        S    May17   0:00 python3 /tmp/download_wiki.py\\\\nroot     485171  0.0  0.0  24956 14968 ?        S    May18   2:13 python3 -m http.server 18080\\\\nroot     492102  0.0  0.0  24928 14696 ?        S    May18   2:14 /usr/bin/python3 -m http.server 38980 --directory /tmp --bind 0.0.0.0\\\\nroot     912926  0.0  0.0  23736 17212 ?        S    May22   0:00 python3 -c  import http.server, threading, os, time os.chdir('/tmp') for port in range(19000, 19100):     try:         server = http.server.HTTPServer(('0.0.0.0', port), http.server.SimpleHTTPRequestHandler)         print(f'PORT={port}')         # handle 2 requests then exit         server.handle_request()         server.handle_request()         break     except OSError:         continue \\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"root        907  0.0  0.0 191560 100940 ?       S    May12   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        915  0.0  0.0 3328672 69672 ?       Sl   May12   7:51 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        997  0.1  0.0 28341192 8208 ?       Sl   May12  15:51 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_uza1cc63/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_uza1cc63/startup_error\\nroot      16696  0.0  0.0   4364  2116 ?        S    12:57   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && mkdir -p outputs/sf2_qwen_int4_scierc_s1 && nohup env CUDA_VISIBLE_DEVICES=0 python run_constrained_extraction.py \\\\   --mode full_s1 \\\\   --dataset scierc \\\\   --model_path /root/autodl-tmp/models/Qwen3-8B-SciERC-FT-AWQ-INT4/ \\\\   --data_path data/processed_data/test.json \\\\   --constraints_path ontology_constraints.json \\\\   --output_path outputs/sf2_qwen_int4_scierc_s1/output.jsonl \\\\   --device cuda:0 \\\\   --seed 42 \\\\   > /tmp/sf2_int4_eval.log 2>&1 & echo \\\"PID=$!\\\"\\nroot      16702  107  0.2 68153688 2393660 ?    Rl   12:57  12:37 python run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-SciERC-FT-AWQ-INT4/ --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/sf2_qwen_int4_scierc_s1/output.jsonl --device cuda:0 --seed 42\\nroot      17383  0.0  0.0   4364  2180 ?        S    12:58   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && mkdir -p outputs/sf2_llama_int4_scierc_s1 && nohup env CUDA_VISIBLE_DEVICES=1 python run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Llama-8B-SciERC-FT-AWQ-INT4/ --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/sf2_llama_int4_scierc_s1/raw_outputs.jsonl --device cuda:0 > /tmp/sf2_llama_int4_eval.log 2>&1 & echo \\\"PID=$!\\\"\\nroot      17389  103  0.2 57027544 2311192 ?    Rl   12:58  10:43 python run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Llama-8B-SciERC-FT-AWQ-INT4/ --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/sf2_llama_int4_scierc_s1/raw_outputs.jsonl --device cuda:0\\nroot     349350  0.0  0.0  24844 14444 ?        S    May16   2:28 python3 -c  import http.server, os os.chdir('/root/autodl-tmp/checkpoints/qwen_lora_docred_merged') s = http.server.HTTPServer(('0.0.0.0', 18888), http.server.SimpleHTTPRequestHandler) s.serve_forever() \\nroot     451275  0.0  0.0  24492 14928 ?        S    May17   0:00 python3 /tmp/download_wiki.py\\nroot     485171  0.0  0.0  24956 14968 ?        S    May18   2:13 python3 -m http.server 18080\\nroot     492102  0.0  0.0  24928 14696 ?        S    May18   2:14 /usr/bin/python3 -m http.server 38980 --directory /tmp --bind 0.0.0.0\\nroot     912926  0.0  0.0  23736 17212 ?        S    May22   0:00 python3 -c  import http.server, threading, os, time os.chdir('/tmp') for port in range(19000, 19100):     try:         server = http.server.HTTPServer(('0.0.0.0', port), http.server.SimpleHTTPRequestHandler)         print(f'PORT={port}')         # handle 2 requests then exit         server.handle_request()         server.handle_request()         break     except OSError:         continue \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The Llama INT4 inference is still running (PID 17389), at 220/551 samples. There's also a Qwen INT4 inference running on cuda:0. Both started around 12:57-12:58.
+
+Let me check the Qwen INT4 progress too, and also check the logs.
+
+I need to wait for the Llama process to finish. Let me also check the Llama FP16 S1 SciERC baseline from the registry. Let me look for it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "2559de22-6d62-4b18-98e5-6f3322973a50",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JkPJZxMMALbAgrxW6n7cr6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2089,
+      "cache_read_input_tokens": 35119,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2089
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+Llama INT4 inference is running (PID 17389), at 220/551. Qwen INT4 also running on cuda:0. Let me check logs and find the FP16 baseline.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "8af46231-b7ec-4f7d-bbbc-2f45ac06cbba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JkPJZxMMALbAgrxW6n7cr6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2089,
+      "cache_read_input_tokens": 35119,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2089
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GcpZ5RAERuqZUg9DesXnXR`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "tail -5 /tmp/sf2_llama_int4_eval.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "e9eb0b42-4a38-492a-a050-81622d5921fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JkPJZxMMALbAgrxW6n7cr6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2089,
+      "cache_read_input_tokens": 35119,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2089
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-23T05:09:13.063Z_
+
+<details><summary>↩ Tool result · `toolu_01GcpZ5RAERuqZUg9DesXnXR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "75879430-ed0f-42e5-b4e1-02a7ee7f4159",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Wksz1zDmDEaW3AA7QF5k4m`</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "filters": {
+    "status": "DONE"
+  },
+  "limit": 20,
+  "fields": [
+    "status",
+    "metrics",
+    "conclusion",
+    "hypothesis"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "b797e5a4-2ce5-4445-8e87-3476b6a1f4a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JkPJZxMMALbAgrxW6n7cr6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2089,
+      "cache_read_input_tokens": 35119,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2089
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01N99hqBapL5i5EHeXhpBe5u`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "wc -l /root/schema_semantic_constrained_ie/outputs/sf2_qwen_int4_scierc_s1/output.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "2c9d2219-0220-4c6e-a7e7-9db0aa286218",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JkPJZxMMALbAgrxW6n7cr6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2089,
+      "cache_read_input_tokens": 35119,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2089
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T05:09:14.731Z_
+
+<details><summary>↩ Tool result · `toolu_01Wksz1zDmDEaW3AA7QF5k4m`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_70b_zs_docred_200_full_s1\": {\"status\": \"DONE\", \"hypothesis\": \"Full S1 (grammar+semantic) constraints on 70B ZS DocRED should achieve DR close to semantic_only (1.66%) since grammar adds zero DR contribution in ZS setting. R_F1 should remain ~13 (matching unconstrained 13.25). This completes the ZS DocRED ablation matrix.\", \"metrics\": {\"DR%\": 0, \"RV%\": 0, \"ET%\": 0, \"CF%\": 5.34, \"E-F1\": 70.05, \"R-F1\": 13.25, \"PF%\": 0, \"entities_pred\": 3234, \"relations_pred\": 2637, \"triples_checked\": 2642}, \"conclusion\": \"success\"}, \"eval_70b_lora_docred_200_grammar_only\": {\"status\": \"DONE\", \"hypothesis\": \"Grammar-only constraints on 70B LoRA DocRED will eliminate RV violations but not reduce DR, mirroring the SciERC ablation pattern where grammar layer provides zero DR contribution at fine-tuned scale.\", \"metrics\": {\"samples\": 200, \"parse_fail_pct\": 10.5, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.38, \"CF_pct\": 0.06, \"E_F1\": 80.13, \"E_P\": 85.16, \"E_R\": 75.66, \"R_F1\": 43.96, \"R_P\": 39.78, \"R_R\": 49.11, \"entities_pred\": 3362, \"relations_pred\": 3154}, \"conclusion\": \"negative\"}, \"eval_70b_lora_docred_200_semantic_only\": {\"status\": \"DONE\", \"hypothesis\": \"Semantic-only constraints on 70B LoRA DocRED will reduce DR violations from unconstrained baseline (DR=0.88%) with minimal F1 impact, isolating the semantic layer's contribution in document-level RE at 70B fine-tuned scale.\", \"metrics\": {\"samples\": 200, \"parse_fail_pct\": 11, \"ET_pct\": 0, \"RV_pct\": 0.51, \"DR_pct\": 0, \"CF_pct\": 0.21, \"E_F1\": 80.06, \"E_P\": 85.21, \"E_R\": 75.5, \"R_F1\": 43.61, \"R_P\": 39.44, \"R_R\": 48.75, \"entities_pred\": 3351, \"relations_pred\": 3148}, \"conclusion\": \"success\"}, \"eval_70b_zs_docred_200_unconstrained\": {\"status\": \"DONE\", \"hypothesis\": \"70B ZS DocRED unconstrained 200-doc baseline to complete the ablation matrix. Expect DR~15% and R-F1~13 consistent with prior 99-doc measurement, providing matched-subset comparison for semantic_only (DR=1.66%) and grammar_only experiments.\", \"metrics\": {\"samples\": 200, \"parse_failures\": 0, \"entities_pred\": 3242, \"relations_pred\": 2637, \"ET_pct\": 0, \"RV_pct\": 7.88, \"DR_pct\": 13.45, \"CF_count\": 0, \"fuzzy_matches\": 8, \"E_F1\": 70.14, \"E_P\": 75.85, \"E_R\": 65.23, \"R_F1\": 13.25, \"R_P\": 12.97, \"R_R\": 13.54}, \"conclusion\": \"success\"}, \"eval_70b_zs_docred_200_grammar_only\": {\"status\": \"DONE\", \"hypothesis\": \"Grammar-only constraints on 70B ZS DocRED will show minimal DR reduction (similar to SciERC 70B ZS pattern where grammar_only DR≈unconstrained), confirming that grammar layer's negligible contribution at 70B scale generalizes across datasets.\", \"metrics\": {\"samples\": 200, \"parse_failures\": 1, \"entities_pred\": 3221, \"relations_pred\": 2609, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 17.03, \"CF_count\": 0, \"fuzzy_matches\": 0, \"E_F1\": 70.12, \"E_P\": 75.88, \"E_R\": 65.17, \"R_F1\": 13.23, \"R_P\": 12.99, \"R_R\": 13.47}, \"conclusion\": \"negative\"}, \"eval_70b_zs_docred_200_semantic_only\": {\"status\": \"DONE\", \"hypothesis\": \"Semantic-only constraints on 70B ZS DocRED will significantly reduce DR violations from zero-shot baseline, demonstrating the semantic layer's effectiveness on document-level RE without fine-tuning.\", \"metrics\": {\"samples\": 200, \"parse_failures\": 0, \"entities\": 3240, \"relations\": 2596, \"ET_pct\": 0.12, \"RV_pct\": 8.24, \"DR_pct\": 1.66, \"CF_count\": 132, \"CF_pct\": 4.07, \"E_F1\": 70.1, \"E_P\": 75.87, \"E_R\": 65.15, \"R_F1\": 13.05, \"R_P\": 12.88, \"R_R\": 13.23, \"fuzzy_matches\": 8}, \"conclusion\": \"success\"}, \"eval_70b_lora_docred_200_beam4_s1\": {\"status\": \"DONE\", \"hypothesis\": \"70B LoRA DocRED with beam search (k=4) + full_s1 on 200-doc subset will achieve DR=0% and CF≈0% while maintaining R-F1 comparable to greedy S1 (43.95), consistent with 8B beam search pattern.\", \"metrics\": {\"E-F1\": 85.57, \"E-P\": 85.45, \"E-R\": 85.68, \"R-F1\": 48.14, \"R-P\": 44.24, \"R-R\": 52.79, \"ET%\": 0, \"RV%\": 0, \"DR%\": 0, \"CF%\": 0, \"parse_fail\": \"1/200 (0.5%)\", \"entities_pred\": 3790, \"relations_pred\": 3030}, \"conclusion\": \"success\"}, \"eval_70b_lora_scierc_grammar_only\": {\"status\": \"DONE\", \"hypothesis\": \"70B LoRA SciERC with grammar-only constrained decoding will reduce DR violations compared to unconstrained (DR=1.5%) but less than full_s1 (DR=0%), isolating grammar layer's independent contribution at 70B fine-tuned scale.\", \"conclusion\": \"negative\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"json_failure_rate\": 0, \"entities\": 1805, \"relations\": 1133, \"entity_type_violations\": 0, \"entity_type_violation_rate\": 0, \"relation_vocab_violations\": 0, \"relation_vocab_violation_rate\": 0, \"domain_range_violations\": 17, \"domain_range_violation_rate\": 0.015, \"cross_field_consistency_violations\": 0, \"fuzzy_relation_matches\": 0, \"entity_P\": 0.6272, \"entity_R\": 0.6707, \"entity_F1\": 0.6482, \"relation_P\": 0.4152, \"relation_R\": 0.4825, \"relation_F1\": 0.4463}}, \"eval_70b_zs_scierc_unconstrained\": {\"status\": \"DONE\", \"hypothesis\": \"Independent 70B ZS SciERC unconstrained baseline to verify prior DR and R-F1 numbers from r16_70b_scierc_zs_s1 experiment. Expect DR~6-8% and R-F1~11 consistent with earlier measurements.\", \"conclusion\": \"success\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 2353, \"relations\": 1483, \"ET_pct\": 0, \"RV_pct\": 0.6, \"DR_pct\": 6.4, \"CF_count\": 0, \"E_F1\": 35.22, \"E_P\": 30.13, \"E_R\": 42.38, \"R_F1\": 11.23, \"R_P\": 9.31, \"R_R\": 14.17, \"parse_fail_pct\": 0}}, \"eval_70b_lora_scierc_full_s2\": {\"status\": \"DONE\", \"hypothesis\": \"Full S2 constrained decoding on 70B LoRA SciERC achieves DR=0% like S1, with potentially fewer CF violations due to S2's enhanced cross-field consistency checking. R-F1 should be comparable to S1 (44.53-44.81).\", \"conclusion\": \"negative\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1531, \"relations\": 1027, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0, \"CF_count\": 18, \"E_F1\": 62.35, \"E_P\": 65.44, \"E_R\": 59.53, \"R_F1\": 36.28, \"R_P\": 35.35, \"R_R\": 37.27, \"parse_fail_pct\": 0}}, \"eval_70b_lora_scierc_semantic_only\": {\"status\": \"DONE\", \"hypothesis\": \"Semantic-only constraints on 70B LoRA SciERC will reduce DR from 1.5% (unconstrained) toward 0%, consistent with the 70B ZS pattern where semantic layer is the primary DR reduction mechanism. Without grammar layer, some RV violations may appear.\", \"conclusion\": \"success\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1806, \"relations\": 1133, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.6, \"CF_count\": 9, \"E_F1\": 64.86, \"E_P\": 62.74, \"E_R\": 67.12, \"R_F1\": 44.73, \"R_P\": 41.61, \"R_R\": 48.36, \"parse_fail_pct\": 0}}, \"entity_order_ablation_qwen_scierc\": {\"status\": \"DONE\", \"hypothesis\": \"Shuffling entity type order in the constraint schema (seed=42) does not significantly change constrained decoding results (R-F1 within ±0.5pp, violation rates identical), confirming that OntoCoDec is order-invariant. This addresses R19-W3 reviewer concern about entity registry ordering sensitivity.\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 67.05, \"E_P\": 65.23, \"E_R\": 68.98, \"R_F1\": 43.77, \"R_P\": 40.78, \"R_R\": 47.23, \"DR_pct\": 0, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_count\": 21, \"parse_fail_pct\": 0, \"samples\": 551, \"entities\": 1784, \"relations\": 1128, \"corrected_original_R_F1\": 43.77, \"corrected_original_E_F1\": 67.05, \"corrected_original_DR_pct\": 0, \"corrected_original_CF_count\": 21, \"corrected_delta_R_F1\": 0, \"corrected_delta_E_F1\": 0, \"raw_output_identical\": true, \"parsed_output_identical\": true, \"note\": \"CORRECTED 2026-05-22: Fair comparison with fixed violation_checker shows ZERO difference. raw_output and parsed_output are byte-identical across all 551 samples. Previous -3.38pp delta was entirely due to comparing old-checker original (47.15) vs new-checker shuffled (43.77). Entity ordering is confirmed order-invariant.\"}}, \"eval_70b_zs_scierc_semantic_only\": {\"status\": \"DONE\", \"hypothesis\": \"Semantic-only constraints on 70B ZS will reduce DR partially (similar to 8B pattern: ~24% reduction) without eliminating RV/ET, isolating semantic layer's independent contribution at 70B scale.\", \"conclusion\": \"success\", \"metrics\": {\"R_F1\": 11.37, \"DR_pct\": 1.01, \"RV_pct\": 0.6, \"ET_pct\": 0, \"CF_count\": 76, \"samples\": 551}}, \"eval_70b_zs_scierc_grammar_only\": {\"status\": \"DONE\", \"hypothesis\": \"Grammar-only constraints on 70B ZS reduce domain-range violations compared to unconstrained baseline (DR=6.41%) but less effectively than full_s1 (DR=0%), isolating grammar layer's contribution to constraint enforcement.\", \"conclusion\": \"negative\", \"metrics\": {\"R_F1\": 11.23, \"DR_pct\": 6.33, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_count\": 0, \"samples\": 551}}, \"eval_70b_lora_scierc_beam4_s1\": {\"status\": \"DONE\", \"hypothesis\": \"70B LoRA fine-tuned model with beam search (k=4) and full_s1 constrained decoding on SciERC achieves DR=0% and CF=0%, matching 8B beam search behavior, while maintaining or improving extraction F1.\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 64.89, \"E_P\": 62.29, \"E_R\": 67.72, \"R_F1\": 44.81, \"R_P\": 39.45, \"R_R\": 51.85, \"DR_pct\": 0, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_count\": 1, \"parse_fail_pct\": 0, \"samples\": 551, \"entities\": 1839, \"relations\": 1283}}, \"tcr_beam4_llama_scierc\": {\"status\": \"DONE\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1803, \"relations\": 1194, \"entity_type_violations\": \"0/1803 (0.0%)\", \"relation_vocab_violations\": \"0/1194 (0.0%)\", \"domain_range_violations\": \"13/1194 (1.1%)\", \"cross_field_consistency\": 0, \"DR_pct\": 1.09, \"E_F1\": 68.02, \"E_P\": 65.88, \"E_R\": 70.29, \"R_F1\": 46.05, \"R_P\": 41.83, \"R_R\": 51.23, \"tcr_changed_selection\": \"0/551 (0.0%)\"}, \"conclusion\": \"negative\", \"hypothesis\": \"TCR reranking on beam4 outputs will change beam selection for LLaMA-SciERC by penalizing constraint-violating candidates, improving DR violation rate and overall F1 compared to vanilla beam4.\"}, \"tcr_beam4_qwen_scierc\": {\"status\": \"DONE\", \"hypothesis\": \"TCR (Type Consistency Reranking) with beam search (k=4) on Qwen3-8B LoRA SciERC will reduce domain/range violations compared to standard beam search by reranking candidates based on type consistency scores, while maintaining or improving Entity/Relation F1.\", \"conclusion\": \"negative\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1802, \"relations\": 1250, \"entity_type_violations\": \"0/1802 (0.0%)\", \"relation_vocab_violations\": \"0/1250 (0.0%)\", \"domain_range_violations\": \"23/1250 (1.8%)\", \"cross_field_consistency_violations\": 1, \"DR_pct\": 1.84, \"E_P\": 65.05, \"E_R\": 69.64, \"E_F1\": 67.26, \"R_P\": 39.36, \"R_R\": 50.51, \"R_F1\": 44.24, \"TCR_changed_selection\": \"0/551 (0.0%)\", \"all_candidates_TCR_1.0\": true}}, \"vllm_guided_json_scierc_zs\": {\"status\": \"DONE\", \"hypothesis\": \"vLLM's guided_json (JSON schema-constrained decoding) produces equivalent violation rates and F1 scores to our XGrammar grammar-only ablation, confirming that guided_json ≈ GCD (grammar-constrained decoding) without semantic constraints.\", \"metrics\": {\"DR%\": 15.26, \"RV%\": 0, \"ET%\": 0, \"CF%\": 0.04, \"R-F1\": 8.75, \"E-F1\": 30.91, \"parse_fail%\": 0, \"total_samples\": 551, \"total_entities\": 2485, \"total_relations\": 1724, \"inference_time_s\": 108.5}, \"conclusion\": \"success\"}, \"eval_70b_lora_docred_200_s1_constrained\": {\"status\": \"DONE\", \"hypothesis\": \"70B LoRA DocRED with Full S1 constrained decoding on 200-doc subset will achieve DR→0% while maintaining R-F1 comparable to unconstrained, confirming scale-independent constraint composability on DocRED at 70B scale\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 79.38, \"E_P\": 85.24, \"E_R\": 74.28, \"R_F1\": 43.95, \"R_P\": 40.48, \"R_R\": 48.08, \"DR_pct\": 0, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_pct\": 0.18, \"parse_fail_pct\": 12.5, \"samples\": 200}}, \"d066_beam_sweep\": {\"status\": \"DONE\", \"hypothesis\": \"Beam width k∈{1,2,4,8} on SciERC (LoRA, Qwen3-8B) will show monotonic DR/CF reduction with diminishing returns past k=4, establishing the cost-effectiveness trade-off for the beam search appendix Pareto analysis.\", \"metrics\": {\"scierc_qwen3_8b\": {\"k1_unc\": {\"E_F1\": 66.88, \"R_F1\": 42.95, \"DR_pct\": 2.11, \"CF_pct\": 0, \"avg_time\": 2.494}, \"k1_con\": {\"E_F1\": 66.88, \"R_F1\": 42.95, \"DR_pct\": 0, \"CF_pct\": 0.5, \"avg_time\": 2.932}, \"k2_unc\": {\"E_F1\": 67.79, \"R_F1\": 44.75, \"DR_pct\": 1.54, \"CF_pct\": 0, \"avg_time\": 2.954}, \"k2_con\": {\"E_F1\": 67.71, \"R_F1\": 44.6, \"DR_pct\": 0, \"CF_pct\": 0.11, \"avg_time\": 3.463}, \"k4_unc\": {\"E_F1\": 67.49, \"R_F1\": 43.72, \"DR_pct\": 1.89, \"CF_pct\": 0, \"avg_time\": 3.485}, \"k4_con\": {\"E_F1\": 67.22, \"R_F1\": 43.6, \"DR_pct\": 0, \"CF_pct\": 0, \"avg_time\": 4.069}, \"k8_unc\": {\"E_F1\": 66.4, \"R_F1\": 43.17, \"DR_pct\": 1.77, \"CF_pct\": 0, \"avg_time\": 4.194}, \"k8_con\": {\"E_F1\": 66.36, \"R_F1\": 43.65, \"DR_pct\": 0, \"CF_pct\": 0, \"avg_time\": 5.058}}, \"pareto_optimal\": \"k=2 con\", \"best_E_F1\": {\"config\": \"k=2 unc\", \"value\": 67.79}, \"best_R_F1\": {\"config\": \"k=2 unc\", \"value\": 44.75}}, \"conclusion\": \"success\"}}, \"count\": 20, \"total\": 155, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5129}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "daa8dca2-5ac2-497b-94aa-fd691f40842e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_70b_zs_docred_200_full_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Full S1 (grammar+semantic) constraints on 70B ZS DocRED should achieve DR close to semantic_only (1.66%) since grammar adds zero DR contribution in ZS setting. R_F1 should remain ~13 (matching unconstrained 13.25). This completes the ZS DocRED ablation matrix.\\\", \\\"metrics\\\": {\\\"DR%\\\": 0, \\\"RV%\\\": 0, \\\"ET%\\\": 0, \\\"CF%\\\": 5.34, \\\"E-F1\\\": 70.05, \\\"R-F1\\\": 13.25, \\\"PF%\\\": 0, \\\"entities_pred\\\": 3234, \\\"relations_pred\\\": 2637, \\\"triples_checked\\\": 2642}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_70b_lora_docred_200_grammar_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Grammar-only constraints on 70B LoRA DocRED will eliminate RV violations but not reduce DR, mirroring the SciERC ablation pattern where grammar layer provides zero DR contribution at fine-tuned scale.\\\", \\\"metrics\\\": {\\\"samples\\\": 200, \\\"parse_fail_pct\\\": 10.5, \\\"ET_pct\\\": 0, \\\"RV_pct\\\": 0, \\\"DR_pct\\\": 0.38, \\\"CF_pct\\\": 0.06, \\\"E_F1\\\": 80.13, \\\"E_P\\\": 85.16, \\\"E_R\\\": 75.66, \\\"R_F1\\\": 43.96, \\\"R_P\\\": 39.78, \\\"R_R\\\": 49.11, \\\"entities_pred\\\": 3362, \\\"relations_pred\\\": 3154}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval_70b_lora_docred_200_semantic_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Semantic-only constraints on 70B LoRA DocRED will reduce DR violations from unconstrained baseline (DR=0.88%) with minimal F1 impact, isolating the semantic layer's contribution in document-level RE at 70B fine-tuned scale.\\\", \\\"metrics\\\": {\\\"samples\\\": 200, \\\"parse_fail_pct\\\": 11, \\\"ET_pct\\\": 0, \\\"RV_pct\\\": 0.51, \\\"DR_pct\\\": 0, \\\"CF_pct\\\": 0.21, \\\"E_F1\\\": 80.06, \\\"E_P\\\": 85.21, \\\"E_R\\\": 75.5, \\\"R_F1\\\": 43.61, \\\"R_P\\\": 39.44, \\\"R_R\\\": 48.75, \\\"entities_pred\\\": 3351, \\\"relations_pred\\\": 3148}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_70b_zs_docred_200_unconstrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"70B ZS DocRED unconstrained 200-doc baseline to complete the ablation matrix. Expect DR~15% and R-F1~13 consistent with prior 99-doc measurement, providing matched-subset comparison for semantic_only (DR=1.66%) and grammar_only experiments.\\\", \\\"metrics\\\": {\\\"samples\\\": 200, \\\"parse_failures\\\": 0, \\\"entities_pred\\\": 3242, \\\"relations_pred\\\": 2637, \\\"ET_pct\\\": 0, \\\"RV_pct\\\": 7.88, \\\"DR_pct\\\": 13.45, \\\"CF_count\\\": 0, \\\"fuzzy_matches\\\": 8, \\\"E_F1\\\": 70.14, \\\"E_P\\\": 75.85, \\\"E_R\\\": 65.23, \\\"R_F1\\\": 13.25, \\\"R_P\\\": 12.97, \\\"R_R\\\": 13.54}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_70b_zs_docred_200_grammar_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Grammar-only constraints on 70B ZS DocRED will show minimal DR reduction (similar to SciERC 70B ZS pattern where grammar_only DR≈unconstrained), confirming that grammar layer's negligible contribution at 70B scale generalizes across datasets.\\\", \\\"metrics\\\": {\\\"samples\\\": 200, \\\"parse_failures\\\": 1, \\\"entities_pred\\\": 3221, \\\"relations_pred\\\": 2609, \\\"ET_pct\\\": 0, \\\"RV_pct\\\": 0, \\\"DR_pct\\\": 17.03, \\\"CF_count\\\": 0, \\\"fuzzy_matches\\\": 0, \\\"E_F1\\\": 70.12, \\\"E_P\\\": 75.88, \\\"E_R\\\": 65.17, \\\"R_F1\\\": 13.23, \\\"R_P\\\": 12.99, \\\"R_R\\\": 13.47}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval_70b_zs_docred_200_semantic_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Semantic-only constraints on 70B ZS DocRED will significantly reduce DR violations from zero-shot baseline, demonstrating the semantic layer's effectiveness on document-level RE without fine-tuning.\\\", \\\"metrics\\\": {\\\"samples\\\": 200, \\\"parse_failures\\\": 0, \\\"entities\\\": 3240, \\\"relations\\\": 2596, \\\"ET_pct\\\": 0.12, \\\"RV_pct\\\": 8.24, \\\"DR_pct\\\": 1.66, \\\"CF_count\\\": 132, \\\"CF_pct\\\": 4.07, \\\"E_F1\\\": 70.1, \\\"E_P\\\": 75.87, \\\"E_R\\\": 65.15, \\\"R_F1\\\": 13.05, \\\"R_P\\\": 12.88, \\\"R_R\\\": 13.23, \\\"fuzzy_matches\\\": 8}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_70b_lora_docred_200_beam4_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"70B LoRA DocRED with beam search (k=4) + full_s1 on 200-doc subset will achieve DR=0% and CF≈0% while maintaining R-F1 comparable to greedy S1 (43.95), consistent with 8B beam search pattern.\\\", \\\"metrics\\\": {\\\"E-F1\\\": 85.57, \\\"E-P\\\": 85.45, \\\"E-R\\\": 85.68, \\\"R-F1\\\": 48.14, \\\"R-P\\\": 44.24, \\\"R-R\\\": 52.79, \\\"ET%\\\": 0, \\\"RV%\\\": 0, \\\"DR%\\\": 0, \\\"CF%\\\": 0, \\\"parse_fail\\\": \\\"1/200 (0.5%)\\\", \\\"entities_pred\\\": 3790, \\\"relations_pred\\\": 3030}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_70b_lora_scierc_grammar_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"70B LoRA SciERC with grammar-only constrained decoding will reduce DR violations compared to unconstrained (DR=1.5%) but less than full_s1 (DR=0%), isolating grammar layer's independent contribution at 70B fine-tuned scale.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"samples\\\": 551, \\\"json_failures\\\": 0, \\\"json_failure_rate\\\": 0, \\\"entities\\\": 1805, \\\"relations\\\": 1133, \\\"entity_type_violations\\\": 0, \\\"entity_type_violation_rate\\\": 0, \\\"relation_vocab_violations\\\": 0, \\\"relation_vocab_violation_rate\\\": 0, \\\"domain_range_violations\\\": 17, \\\"domain_range_violation_rate\\\": 0.015, \\\"cross_field_consistency_violations\\\": 0, \\\"fuzzy_relation_matches\\\": 0, \\\"entity_P\\\": 0.6272, \\\"entity_R\\\": 0.6707, \\\"entity_F1\\\": 0.6482, \\\"relation_P\\\": 0.4152, \\\"relation_R\\\": 0.4825, \\\"relation_F1\\\": 0.4463}}, \\\"eval_70b_zs_scierc_unconstrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Independent 70B ZS SciERC unconstrained baseline to verify prior DR and R-F1 numbers from r16_70b_scierc_zs_s1 experiment. Expect DR~6-8% and R-F1~11 consistent with earlier measurements.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"samples\\\": 551, \\\"json_failures\\\": 0, \\\"entities\\\": 2353, \\\"relations\\\": 1483, \\\"ET_pct\\\": 0, \\\"RV_pct\\\": 0.6, \\\"DR_pct\\\": 6.4, \\\"CF_count\\\": 0, \\\"E_F1\\\": 35.22, \\\"E_P\\\": 30.13, \\\"E_R\\\": 42.38, \\\"R_F1\\\": 11.23, \\\"R_P\\\": 9.31, \\\"R_R\\\": 14.17, \\\"parse_fail_pct\\\": 0}}, \\\"eval_70b_lora_scierc_full_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Full S2 constrained decoding on 70B LoRA SciERC achieves DR=0% like S1, with potentially fewer CF violations due to S2's enhanced cross-field consistency checking. R-F1 should be comparable to S1 (44.53-44.81).\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"samples\\\": 551, \\\"json_failures\\\": 0, \\\"entities\\\": 1531, \\\"relations\\\": 1027, \\\"ET_pct\\\": 0, \\\"RV_pct\\\": 0, \\\"DR_pct\\\": 0, \\\"CF_count\\\": 18, \\\"E_F1\\\": 62.35, \\\"E_P\\\": 65.44, \\\"E_R\\\": 59.53, \\\"R_F1\\\": 36.28, \\\"R_P\\\": 35.35, \\\"R_R\\\": 37.27, \\\"parse_fail_pct\\\": 0}}, \\\"eval_70b_lora_scierc_semantic_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Semantic-only constraints on 70B LoRA SciERC will reduce DR from 1.5% (unconstrained) toward 0%, consistent with the 70B ZS pattern where semantic layer is the primary DR reduction mechanism. Without grammar layer, some RV violations may appear.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"samples\\\": 551, \\\"json_failures\\\": 0, \\\"entities\\\": 1806, \\\"relations\\\": 1133, \\\"ET_pct\\\": 0, \\\"RV_pct\\\": 0, \\\"DR_pct\\\": 0.6, \\\"CF_count\\\": 9, \\\"E_F1\\\": 64.86, \\\"E_P\\\": 62.74, \\\"E_R\\\": 67.12, \\\"R_F1\\\": 44.73, \\\"R_P\\\": 41.61, \\\"R_R\\\": 48.36, \\\"parse_fail_pct\\\": 0}}, \\\"entity_order_ablation_qwen_scierc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Shuffling entity type order in the constraint schema (seed=42) does not significantly change constrained decoding results (R-F1 within ±0.5pp, violation rates identical), confirming that OntoCoDec is order-invariant. This addresses R19-W3 reviewer concern about entity registry ordering sensitivity.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"E_F1\\\": 67.05, \\\"E_P\\\": 65.23, \\\"E_R\\\": 68.98, \\\"R_F1\\\": 43.77, \\\"R_P\\\": 40.78, \\\"R_R\\\": 47.23, \\\"DR_pct\\\": 0, \\\"RV_pct\\\": 0, \\\"ET_pct\\\": 0, \\\"CF_count\\\": 21, \\\"parse_fail_pct\\\": 0, \\\"samples\\\": 551, \\\"entities\\\": 1784, \\\"relations\\\": 1128, \\\"corrected_original_R_F1\\\": 43.77, \\\"corrected_original_E_F1\\\": 67.05, \\\"corrected_original_DR_pct\\\": 0, \\\"corrected_original_CF_count\\\": 21, \\\"corrected_delta_R_F1\\\": 0, \\\"corrected_delta_E_F1\\\": 0, \\\"raw_output_identical\\\": true, \\\"parsed_output_identical\\\": true, \\\"note\\\": \\\"CORRECTED 2026-05-22: Fair comparison with fixed violation_checker shows ZERO difference. raw_output and parsed_output are byte-identical across all 551 samples. Previous -3.38pp delta was entirely due to comparing old-checker original (47.15) vs new-checker shuffled (43.77). Entity ordering is confirmed order-invariant.\\\"}}, \\\"eval_70b_zs_scierc_semantic_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Semantic-only constraints on 70B ZS will reduce DR partially (similar to 8B pattern: ~24% reduction) without eliminating RV/ET, isolating semantic layer's independent contribution at 70B scale.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"R_F1\\\": 11.37, \\\"DR_pct\\\": 1.01, \\\"RV_pct\\\": 0.6, \\\"ET_pct\\\": 0, \\\"CF_count\\\": 76, \\\"samples\\\": 551}}, \\\"eval_70b_zs_scierc_grammar_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Grammar-only constraints on 70B ZS reduce domain-range violations compared to unconstrained baseline (DR=6.41%) but less effectively than full_s1 (DR=0%), isolating grammar layer's contribution to constraint enforcement.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"R_F1\\\": 11.23, \\\"DR_pct\\\": 6.33, \\\"RV_pct\\\": 0, \\\"ET_pct\\\": 0, \\\"CF_count\\\": 0, \\\"samples\\\": 551}}, \\\"eval_70b_lora_scierc_beam4_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"70B LoRA fine-tuned model with beam search (k=4) and full_s1 constrained decoding on SciERC achieves DR=0% and CF=0%, matching 8B beam search behavior, while maintaining or improving extraction F1.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"E_F1\\\": 64.89, \\\"E_P\\\": 62.29, \\\"E_R\\\": 67.72, \\\"R_F1\\\": 44.81, \\\"R_P\\\": 39.45, \\\"R_R\\\": 51.85, \\\"DR_pct\\\": 0, \\\"RV_pct\\\": 0, \\\"ET_pct\\\": 0, \\\"CF_count\\\": 1, \\\"parse_fail_pct\\\": 0, \\\"samples\\\": 551, \\\"entities\\\": 1839, \\\"relations\\\": 1283}}, \\\"tcr_beam4_llama_scierc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"samples\\\": 551, \\\"json_failures\\\": 0, \\\"entities\\\": 1803, \\\"relations\\\": 1194, \\\"entity_type_violations\\\": \\\"0/1803 (0.0%)\\\", \\\"relation_vocab_violations\\\": \\\"0/1194 (0.0%)\\\", \\\"domain_range_violations\\\": \\\"13/1194 (1.1%)\\\", \\\"cross_field_consistency\\\": 0, \\\"DR_pct\\\": 1.09, \\\"E_F1\\\": 68.02, \\\"E_P\\\": 65.88, \\\"E_R\\\": 70.29, \\\"R_F1\\\": 46.05, \\\"R_P\\\": 41.83, \\\"R_R\\\": 51.23, \\\"tcr_changed_selection\\\": \\\"0/551 (0.0%)\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"hypothesis\\\": \\\"TCR reranking on beam4 outputs will change beam selection for LLaMA-SciERC by penalizing constraint-violating candidates, improving DR violation rate and overall F1 compared to vanilla beam4.\\\"}, \\\"tcr_beam4_qwen_scierc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"TCR (Type Consistency Reranking) with beam search (k=4) on Qwen3-8B LoRA SciERC will reduce domain/range violations compared to standard beam search by reranking candidates based on type consistency scores, while maintaining or improving Entity/Relation F1.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"samples\\\": 551, \\\"json_failures\\\": 0, \\\"entities\\\": 1802, \\\"relations\\\": 1250, \\\"entity_type_violations\\\": \\\"0/1802 (0.0%)\\\", \\\"relation_vocab_violations\\\": \\\"0/1250 (0.0%)\\\", \\\"domain_range_violations\\\": \\\"23/1250 (1.8%)\\\", \\\"cross_field_consistency_violations\\\": 1, \\\"DR_pct\\\": 1.84, \\\"E_P\\\": 65.05, \\\"E_R\\\": 69.64, \\\"E_F1\\\": 67.26, \\\"R_P\\\": 39.36, \\\"R_R\\\": 50.51, \\\"R_F1\\\": 44.24, \\\"TCR_changed_selection\\\": \\\"0/551 (0.0%)\\\", \\\"all_candidates_TCR_1.0\\\": true}}, \\\"vllm_guided_json_scierc_zs\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"vLLM's guided_json (JSON schema-constrained decoding) produces equivalent violation rates and F1 scores to our XGrammar grammar-only ablation, confirming that guided_json ≈ GCD (grammar-constrained decoding) without semantic constraints.\\\", \\\"metrics\\\": {\\\"DR%\\\": 15.26, \\\"RV%\\\": 0, \\\"ET%\\\": 0, \\\"CF%\\\": 0.04, \\\"R-F1\\\": 8.75, \\\"E-F1\\\": 30.91, \\\"parse_fail%\\\": 0, \\\"total_samples\\\": 551, \\\"total_entities\\\": 2485, \\\"total_relations\\\": 1724, \\\"inference_time_s\\\": 108.5}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_70b_lora_docred_200_s1_constrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"70B LoRA DocRED with Full S1 constrained decoding on 200-doc subset will achieve DR→0% while maintaining R-F1 comparable to unconstrained, confirming scale-independent constraint composability on DocRED at 70B scale\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"E_F1\\\": 79.38, \\\"E_P\\\": 85.24, \\\"E_R\\\": 74.28, \\\"R_F1\\\": 43.95, \\\"R_P\\\": 40.48, \\\"R_R\\\": 48.08, \\\"DR_pct\\\": 0, \\\"RV_pct\\\": 0, \\\"ET_pct\\\": 0, \\\"CF_pct\\\": 0.18, \\\"parse_fail_pct\\\": 12.5, \\\"samples\\\": 200}}, \\\"d066_beam_sweep\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Beam width k∈{1,2,4,8} on SciERC (LoRA, Qwen3-8B) will show monotonic DR/CF reduction with diminishing returns past k=4, establishing the cost-effectiveness trade-off for the beam search appendix Pareto analysis.\\\", \\\"metrics\\\": {\\\"scierc_qwen3_8b\\\": {\\\"k1_unc\\\": {\\\"E_F1\\\": 66.88, \\\"R_F1\\\": 42.95, \\\"DR_pct\\\": 2.11, \\\"CF_pct\\\": 0, \\\"avg_time\\\": 2.494}, \\\"k1_con\\\": {\\\"E_F1\\\": 66.88, \\\"R_F1\\\": 42.95, \\\"DR_pct\\\": 0, \\\"CF_pct\\\": 0.5, \\\"avg_time\\\": 2.932}, \\\"k2_unc\\\": {\\\"E_F1\\\": 67.79, \\\"R_F1\\\": 44.75, \\\"DR_pct\\\": 1.54, \\\"CF_pct\\\": 0, \\\"avg_time\\\": 2.954}, \\\"k2_con\\\": {\\\"E_F1\\\": 67.71, \\\"R_F1\\\": 44.6, \\\"DR_pct\\\": 0, \\\"CF_pct\\\": 0.11, \\\"avg_time\\\": 3.463}, \\\"k4_unc\\\": {\\\"E_F1\\\": 67.49, \\\"R_F1\\\": 43.72, \\\"DR_pct\\\": 1.89, \\\"CF_pct\\\": 0, \\\"avg_time\\\": 3.485}, \\\"k4_con\\\": {\\\"E_F1\\\": 67.22, \\\"R_F1\\\": 43.6, \\\"DR_pct\\\": 0, \\\"CF_pct\\\": 0, \\\"avg_time\\\": 4.069}, \\\"k8_unc\\\": {\\\"E_F1\\\": 66.4, \\\"R_F1\\\": 43.17, \\\"DR_pct\\\": 1.77, \\\"CF_pct\\\": 0, \\\"avg_time\\\": 4.194}, \\\"k8_con\\\": {\\\"E_F1\\\": 66.36, \\\"R_F1\\\": 43.65, \\\"DR_pct\\\": 0, \\\"CF_pct\\\": 0, \\\"avg_time\\\": 5.058}}, \\\"pareto_optimal\\\": \\\"k=2 con\\\", \\\"best_E_F1\\\": {\\\"config\\\": \\\"k=2 unc\\\", \\\"value\\\": 67.79}, \\\"best_R_F1\\\": {\\\"config\\\": \\\"k=2 unc\\\", \\\"value\\\": 44.75}}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 20, \\\"total\\\": 155, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5129}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_70b_zs_docred_200_full_s1\": {\"status\": \"DONE\", \"hypothesis\": \"Full S1 (grammar+semantic) constraints on 70B ZS DocRED should achieve DR close to semantic_only (1.66%) since grammar adds zero DR contribution in ZS setting. R_F1 should remain ~13 (matching unconstrained 13.25). This completes the ZS DocRED ablation matrix.\", \"metrics\": {\"DR%\": 0, \"RV%\": 0, \"ET%\": 0, \"CF%\": 5.34, \"E-F1\": 70.05, \"R-F1\": 13.25, \"PF%\": 0, \"entities_pred\": 3234, \"relations_pred\": 2637, \"triples_checked\": 2642}, \"conclusion\": \"success\"}, \"eval_70b_lora_docred_200_grammar_only\": {\"status\": \"DONE\", \"hypothesis\": \"Grammar-only constraints on 70B LoRA DocRED will eliminate RV violations but not reduce DR, mirroring the SciERC ablation pattern where grammar layer provides zero DR contribution at fine-tuned scale.\", \"metrics\": {\"samples\": 200, \"parse_fail_pct\": 10.5, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.38, \"CF_pct\": 0.06, \"E_F1\": 80.13, \"E_P\": 85.16, \"E_R\": 75.66, \"R_F1\": 43.96, \"R_P\": 39.78, \"R_R\": 49.11, \"entities_pred\": 3362, \"relations_pred\": 3154}, \"conclusion\": \"negative\"}, \"eval_70b_lora_docred_200_semantic_only\": {\"status\": \"DONE\", \"hypothesis\": \"Semantic-only constraints on 70B LoRA DocRED will reduce DR violations from unconstrained baseline (DR=0.88%) with minimal F1 impact, isolating the semantic layer's contribution in document-level RE at 70B fine-tuned scale.\", \"metrics\": {\"samples\": 200, \"parse_fail_pct\": 11, \"ET_pct\": 0, \"RV_pct\": 0.51, \"DR_pct\": 0, \"CF_pct\": 0.21, \"E_F1\": 80.06, \"E_P\": 85.21, \"E_R\": 75.5, \"R_F1\": 43.61, \"R_P\": 39.44, \"R_R\": 48.75, \"entities_pred\": 3351, \"relations_pred\": 3148}, \"conclusion\": \"success\"}, \"eval_70b_zs_docred_200_unconstrained\": {\"status\": \"DONE\", \"hypothesis\": \"70B ZS DocRED unconstrained 200-doc baseline to complete the ablation matrix. Expect DR~15% and R-F1~13 consistent with prior 99-doc measurement, providing matched-subset comparison for semantic_only (DR=1.66%) and grammar_only experiments.\", \"metrics\": {\"samples\": 200, \"parse_failures\": 0, \"entities_pred\": 3242, \"relations_pred\": 2637, \"ET_pct\": 0, \"RV_pct\": 7.88, \"DR_pct\": 13.45, \"CF_count\": 0, \"fuzzy_matches\": 8, \"E_F1\": 70.14, \"E_P\": 75.85, \"E_R\": 65.23, \"R_F1\": 13.25, \"R_P\": 12.97, \"R_R\": 13.54}, \"conclusion\": \"success\"}, \"eval_70b_zs_docred_200_grammar_only\": {\"status\": \"DONE\", \"hypothesis\": \"Grammar-only constraints on 70B ZS DocRED will show minimal DR reduction (similar to SciERC 70B ZS pattern where grammar_only DR≈unconstrained), confirming that grammar layer's negligible contribution at 70B scale generalizes across datasets.\", \"metrics\": {\"samples\": 200, \"parse_failures\": 1, \"entities_pred\": 3221, \"relations_pred\": 2609, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 17.03, \"CF_count\": 0, \"fuzzy_matches\": 0, \"E_F1\": 70.12, \"E_P\": 75.88, \"E_R\": 65.17, \"R_F1\": 13.23, \"R_P\": 12.99, \"R_R\": 13.47}, \"conclusion\": \"negative\"}, \"eval_70b_zs_docred_200_semantic_only\": {\"status\": \"DONE\", \"hypothesis\": \"Semantic-only constraints on 70B ZS DocRED will significantly reduce DR violations from zero-shot baseline, demonstrating the semantic layer's effectiveness on document-level RE without fine-tuning.\", \"metrics\": {\"samples\": 200, \"parse_failures\": 0, \"entities\": 3240, \"relations\": 2596, \"ET_pct\": 0.12, \"RV_pct\": 8.24, \"DR_pct\": 1.66, \"CF_count\": 132, \"CF_pct\": 4.07, \"E_F1\": 70.1, \"E_P\": 75.87, \"E_R\": 65.15, \"R_F1\": 13.05, \"R_P\": 12.88, \"R_R\": 13.23, \"fuzzy_matches\": 8}, \"conclusion\": \"success\"}, \"eval_70b_lora_docred_200_beam4_s1\": {\"status\": \"DONE\", \"hypothesis\": \"70B LoRA DocRED with beam search (k=4) + full_s1 on 200-doc subset will achieve DR=0% and CF≈0% while maintaining R-F1 comparable to greedy S1 (43.95), consistent with 8B beam search pattern.\", \"metrics\": {\"E-F1\": 85.57, \"E-P\": 85.45, \"E-R\": 85.68, \"R-F1\": 48.14, \"R-P\": 44.24, \"R-R\": 52.79, \"ET%\": 0, \"RV%\": 0, \"DR%\": 0, \"CF%\": 0, \"parse_fail\": \"1/200 (0.5%)\", \"entities_pred\": 3790, \"relations_pred\": 3030}, \"conclusion\": \"success\"}, \"eval_70b_lora_scierc_grammar_only\": {\"status\": \"DONE\", \"hypothesis\": \"70B LoRA SciERC with grammar-only constrained decoding will reduce DR violations compared to unconstrained (DR=1.5%) but less than full_s1 (DR=0%), isolating grammar layer's independent contribution at 70B fine-tuned scale.\", \"conclusion\": \"negative\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"json_failure_rate\": 0, \"entities\": 1805, \"relations\": 1133, \"entity_type_violations\": 0, \"entity_type_violation_rate\": 0, \"relation_vocab_violations\": 0, \"relation_vocab_violation_rate\": 0, \"domain_range_violations\": 17, \"domain_range_violation_rate\": 0.015, \"cross_field_consistency_violations\": 0, \"fuzzy_relation_matches\": 0, \"entity_P\": 0.6272, \"entity_R\": 0.6707, \"entity_F1\": 0.6482, \"relation_P\": 0.4152, \"relation_R\": 0.4825, \"relation_F1\": 0.4463}}, \"eval_70b_zs_scierc_unconstrained\": {\"status\": \"DONE\", \"hypothesis\": \"Independent 70B ZS SciERC unconstrained baseline to verify prior DR and R-F1 numbers from r16_70b_scierc_zs_s1 experiment. Expect DR~6-8% and R-F1~11 consistent with earlier measurements.\", \"conclusion\": \"success\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 2353, \"relations\": 1483, \"ET_pct\": 0, \"RV_pct\": 0.6, \"DR_pct\": 6.4, \"CF_count\": 0, \"E_F1\": 35.22, \"E_P\": 30.13, \"E_R\": 42.38, \"R_F1\": 11.23, \"R_P\": 9.31, \"R_R\": 14.17, \"parse_fail_pct\": 0}}, \"eval_70b_lora_scierc_full_s2\": {\"status\": \"DONE\", \"hypothesis\": \"Full S2 constrained decoding on 70B LoRA SciERC achieves DR=0% like S1, with potentially fewer CF violations due to S2's enhanced cross-field consistency checking. R-F1 should be comparable to S1 (44.53-44.81).\", \"conclusion\": \"negative\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1531, \"relations\": 1027, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0, \"CF_count\": 18, \"E_F1\": 62.35, \"E_P\": 65.44, \"E_R\": 59.53, \"R_F1\": 36.28, \"R_P\": 35.35, \"R_R\": 37.27, \"parse_fail_pct\": 0}}, \"eval_70b_lora_scierc_semantic_only\": {\"status\": \"DONE\", \"hypothesis\": \"Semantic-only constraints on 70B LoRA SciERC will reduce DR from 1.5% (unconstrained) toward 0%, consistent with the 70B ZS pattern where semantic layer is the primary DR reduction mechanism. Without grammar layer, some RV violations may appear.\", \"conclusion\": \"success\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1806, \"relations\": 1133, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.6, \"CF_count\": 9, \"E_F1\": 64.86, \"E_P\": 62.74, \"E_R\": 67.12, \"R_F1\": 44.73, \"R_P\": 41.61, \"R_R\": 48.36, \"parse_fail_pct\": 0}}, \"entity_order_ablation_qwen_scierc\": {\"status\": \"DONE\", \"hypothesis\": \"Shuffling entity type order in the constraint schema (seed=42) does not significantly change constrained decoding results (R-F1 within ±0.5pp, violation rates identical), confirming that OntoCoDec is order-invariant. This addresses R19-W3 reviewer concern about entity registry ordering sensitivity.\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 67.05, \"E_P\": 65.23, \"E_R\": 68.98, \"R_F1\": 43.77, \"R_P\": 40.78, \"R_R\": 47.23, \"DR_pct\": 0, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_count\": 21, \"parse_fail_pct\": 0, \"samples\": 551, \"entities\": 1784, \"relations\": 1128, \"corrected_original_R_F1\": 43.77, \"corrected_original_E_F1\": 67.05, \"corrected_original_DR_pct\": 0, \"corrected_original_CF_count\": 21, \"corrected_delta_R_F1\": 0, \"corrected_delta_E_F1\": 0, \"raw_output_identical\": true, \"parsed_output_identical\": true, \"note\": \"CORRECTED 2026-05-22: Fair comparison with fixed violation_checker shows ZERO difference. raw_output and parsed_output are byte-identical across all 551 samples. Previous -3.38pp delta was entirely due to comparing old-checker original (47.15) vs new-checker shuffled (43.77). Entity ordering is confirmed order-invariant.\"}}, \"eval_70b_zs_scierc_semantic_only\": {\"status\": \"DONE\", \"hypothesis\": \"Semantic-only constraints on 70B ZS will reduce DR partially (similar to 8B pattern: ~24% reduction) without eliminating RV/ET, isolating semantic layer's independent contribution at 70B scale.\", \"conclusion\": \"success\", \"metrics\": {\"R_F1\": 11.37, \"DR_pct\": 1.01, \"RV_pct\": 0.6, \"ET_pct\": 0, \"CF_count\": 76, \"samples\": 551}}, \"eval_70b_zs_scierc_grammar_only\": {\"status\": \"DONE\", \"hypothesis\": \"Grammar-only constraints on 70B ZS reduce domain-range violations compared to unconstrained baseline (DR=6.41%) but less effectively than full_s1 (DR=0%), isolating grammar layer's contribution to constraint enforcement.\", \"conclusion\": \"negative\", \"metrics\": {\"R_F1\": 11.23, \"DR_pct\": 6.33, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_count\": 0, \"samples\": 551}}, \"eval_70b_lora_scierc_beam4_s1\": {\"status\": \"DONE\", \"hypothesis\": \"70B LoRA fine-tuned model with beam search (k=4) and full_s1 constrained decoding on SciERC achieves DR=0% and CF=0%, matching 8B beam search behavior, while maintaining or improving extraction F1.\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 64.89, \"E_P\": 62.29, \"E_R\": 67.72, \"R_F1\": 44.81, \"R_P\": 39.45, \"R_R\": 51.85, \"DR_pct\": 0, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_count\": 1, \"parse_fail_pct\": 0, \"samples\": 551, \"entities\": 1839, \"relations\": 1283}}, \"tcr_beam4_llama_scierc\": {\"status\": \"DONE\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1803, \"relations\": 1194, \"entity_type_violations\": \"0/1803 (0.0%)\", \"relation_vocab_violations\": \"0/1194 (0.0%)\", \"domain_range_violations\": \"13/1194 (1.1%)\", \"cross_field_consistency\": 0, \"DR_pct\": 1.09, \"E_F1\": 68.02, \"E_P\": 65.88, \"E_R\": 70.29, \"R_F1\": 46.05, \"R_P\": 41.83, \"R_R\": 51.23, \"tcr_changed_selection\": \"0/551 (0.0%)\"}, \"conclusion\": \"negative\", \"hypothesis\": \"TCR reranking on beam4 outputs will change beam selection for LLaMA-SciERC by penalizing constraint-violating candidates, improving DR violation rate and overall F1 compared to vanilla beam4.\"}, \"tcr_beam4_qwen_scierc\": {\"status\": \"DONE\", \"hypothesis\": \"TCR (Type Consistency Reranking) with beam search (k=4) on Qwen3-8B LoRA SciERC will reduce domain/range violations compared to standard beam search by reranking candidates based on type consistency scores, while maintaining or improving Entity/Relation F1.\", \"conclusion\": \"negative\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1802, \"relations\": 1250, \"entity_type_violations\": \"0/1802 (0.0%)\", \"relation_vocab_violations\": \"0/1250 (0.0%)\", \"domain_range_violations\": \"23/1250 (1.8%)\", \"cross_field_consistency_violations\": 1, \"DR_pct\": 1.84, \"E_P\": 65.05, \"E_R\": 69.64, \"E_F1\": 67.26, \"R_P\": 39.36, \"R_R\": 50.51, \"R_F1\": 44.24, \"TCR_changed_selection\": \"0/551 (0.0%)\", \"all_candidates_TCR_1.0\": true}}, \"vllm_guided_json_scierc_zs\": {\"status\": \"DONE\", \"hypothesis\": \"vLLM's guided_json (JSON schema-constrained decoding) produces equivalent violation rates and F1 scores to our XGrammar grammar-only ablation, confirming that guided_json ≈ GCD (grammar-constrained decoding) without semantic constraints.\", \"metrics\": {\"DR%\": 15.26, \"RV%\": 0, \"ET%\": 0, \"CF%\": 0.04, \"R-F1\": 8.75, \"E-F1\": 30.91, \"parse_fail%\": 0, \"total_samples\": 551, \"total_entities\": 2485, \"total_relations\": 1724, \"inference_time_s\": 108.5}, \"conclusion\": \"success\"}, \"eval_70b_lora_docred_200_s1_constrained\": {\"status\": \"DONE\", \"hypothesis\": \"70B LoRA DocRED with Full S1 constrained decoding on 200-doc subset will achieve DR→0% while maintaining R-F1 comparable to unconstrained, confirming scale-independent constraint composability on DocRED at 70B scale\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 79.38, \"E_P\": 85.24, \"E_R\": 74.28, \"R_F1\": 43.95, \"R_P\": 40.48, \"R_R\": 48.08, \"DR_pct\": 0, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_pct\": 0.18, \"parse_fail_pct\": 12.5, \"samples\": 200}}, \"d066_beam_sweep\": {\"status\": \"DONE\", \"hypothesis\": \"Beam width k∈{1,2,4,8} on SciERC (LoRA, Qwen3-8B) will show monotonic DR/CF reduction with diminishing returns past k=4, establishing the cost-effectiveness trade-off for the beam search appendix Pareto analysis.\", \"metrics\": {\"scierc_qwen3_8b\": {\"k1_unc\": {\"E_F1\": 66.88, \"R_F1\": 42.95, \"DR_pct\": 2.11, \"CF_pct\": 0, \"avg_time\": 2.494}, \"k1_con\": {\"E_F1\": 66.88, \"R_F1\": 42.95, \"DR_pct\": 0, \"CF_pct\": 0.5, \"avg_time\": 2.932}, \"k2_unc\": {\"E_F1\": 67.79, \"R_F1\": 44.75, \"DR_pct\": 1.54, \"CF_pct\": 0, \"avg_time\": 2.954}, \"k2_con\": {\"E_F1\": 67.71, \"R_F1\": 44.6, \"DR_pct\": 0, \"CF_pct\": 0.11, \"avg_time\": 3.463}, \"k4_unc\": {\"E_F1\": 67.49, \"R_F1\": 43.72, \"DR_pct\": 1.89, \"CF_pct\": 0, \"avg_time\": 3.485}, \"k4_con\": {\"E_F1\": 67.22, \"R_F1\": 43.6, \"DR_pct\": 0, \"CF_pct\": 0, \"avg_time\": 4.069}, \"k8_unc\": {\"E_F1\": 66.4, \"R_F1\": 43.17, \"DR_pct\": 1.77, \"CF_pct\": 0, \"avg_time\": 4.194}, \"k8_con\": {\"E_F1\": 66.36, \"R_F1\": 43.65, \"DR_pct\": 0, \"CF_pct\": 0, \"avg_time\": 5.058}}, \"pareto_optimal\": \"k=2 con\", \"best_E_F1\": {\"config\": \"k=2 unc\", \"value\": 67.79}, \"best_R_F1\": {\"config\": \"k=2 unc\", \"value\": 44.75}}, \"conclusion\": \"success\"}}, \"count\": 20, \"total\": 155, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5129}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-23T05:09:15.180Z_
+
+<details><summary>↩ Tool result · `toolu_01N99hqBapL5i5EHeXhpBe5u`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"188 /root/schema_semantic_constrained_ie/outputs/sf2_qwen_int4_scierc_s1/output.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "d30f86dc-7423-4c1a-85a8-baad9e94087e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"188 /root/schema_semantic_constrained_ie/outputs/sf2_qwen_int4_scierc_s1/output.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"188 /root/schema_semantic_constrained_ie/outputs/sf2_qwen_int4_scierc_s1/output.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Llama INT4: 220/551, Qwen INT4: 188/551 — both still running. I need to find the Llama FP16 S1 SciERC baseline. Let me search the registry for it. The first batch of 20 results didn't include it — I need to look further.
+
+Let me search for Llama-related experiments specifically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "01e7a7b5-ef28-469c-85c7-aa631b2d10d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uj6xN8EEpyJtKm4Dc6QGve",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6794,
+      "cache_read_input_tokens": 37208,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6794
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+Llama INT4: 220/551, Qwen INT4: 188/551 — both still running. Need to find Llama FP16 baseline. Let me search deeper in the registry.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "c0fa6df9-0dcb-4258-aace-6242d0644f50",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uj6xN8EEpyJtKm4Dc6QGve",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6794,
+      "cache_read_input_tokens": 37208,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6794
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_0154b8MbRzt5vxJcAFXNsXdU`</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "limit": 0,
+  "fields": [
+    "status",
+    "metrics",
+    "conclusion"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "81576bb7-8db8-49ad-a55f-85137c300ff6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uj6xN8EEpyJtKm4Dc6QGve",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6794,
+      "cache_read_input_tokens": 37208,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6794
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-23T05:09:22.224Z_
+
+<details><summary>↩ Tool result · `toolu_0154b8MbRzt5vxJcAFXNsXdU`</summary>
+
+```text
+Error: result (70,051 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/9ed68498-cb78-485f-8683-41d0040aa399/tool-results/mcp-agent-ml-research-read_registry-1779512962208.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/9ed68498-cb78-485f-8683-41d0040aa399/tool-results/mcp-agent-ml-research-read_registry-1779512962208.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "20c7d425-1982-472c-8739-126d442bbf0d",
+  "tool_use_result": {
+    "content": "Error: result (70,051 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/9ed68498-cb78-485f-8683-41d0040aa399/tool-results/mcp-agent-ml-research-read_registry-1779512962208.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/9ed68498-cb78-485f-8683-41d0040aa399/tool-results/mcp-agent-ml-research-read_registry-1779512962208.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"sf2_llama_int4_scierc_s1\": {\"status\": \"RUNNING\"}, \"sf2_qwen_int4_scierc_s1\": {\"status\": \"RUNNING\"}, \"eval_70b_zs_docred_200_full_s1\": {\"status\": \"DONE\", \"metrics\": {\"DR%\": 0, \"RV%\": 0, \"ET%\": 0, \"CF%\": 5.34, \"E-F1\": 70.05, \"R-F1\": 13.25, \"PF%\": 0, \"entities_pred\": 3234, \"relations_pred\": 2637, \"triples_checked\": 2642}, \"conclusion\": \"success\"}, \"eval_70b_lora_docred_200_grammar_only\": {\"status\": \"DONE\", \"metrics\": {\"samples\": 200, \"parse_fail_pct\": 10.5, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.38, \"CF_pct\": 0.06, \"E_F1\": 80.13, \"E_P\": 85.16, \"E_R\": 75.66, \"R_F1\": 43.96, \"R_P\": 39.78, \"R_R\": 49.11, \"entities_pred\": 3362, \"relations_pred\": 3154}, \"conclusion\": \"negative\"}, \"eval_70b_lora_docred_200_semantic_only\": {\"status\": \"DONE\", \"metrics\": {\"samples\": 200, \"parse_fail_pct\": 11, \"ET_pct\": 0, \"RV_pct\": 0.51, \"DR_pct\": 0, \"CF_pct\": 0.21, \"E_F1\": 80.06, \"E_P\": 85.21, \"E_R\": 75.5, \"R_F1\": 43.61, \"R_P\": 39.44, \"R_R\": 48.75, \"entities_pred\": 3351, \"relations_pred\": 3148}, \"conclusion\": \"success\"}, \"eval_70b_lora_docred_200_full_s2\": {\"status\": \"RUNNING\"}, \"eval_70b_zs_docred_200_unconstrained\": {\"status\": \"DONE\", \"metrics\": {\"samples\": 200, \"parse_failures\": 0, \"entities_pred\": 3242, \"relations_pred\": 2637, \"ET_pct\": 0, \"RV_pct\": 7.88, \"DR_pct\": 13.45, \"CF_count\": 0, \"fuzzy_matches\": 8, \"E_F1\": 70.14, \"E_P\": 75.85, \"E_R\": 65.23, \"R_F1\": 13.25, \"R_P\": 12.97, \"R_R\": 13.54}, \"conclusion\": \"success\"}, \"eval_70b_zs_docred_200_grammar_only\": {\"status\": \"DONE\", \"metrics\": {\"samples\": 200, \"parse_failures\": 1, \"entities_pred\": 3221, \"relations_pred\": 2609, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 17.03, \"CF_count\": 0, \"fuzzy_matches\": 0, \"E_F1\": 70.12, \"E_P\": 75.88, \"E_R\": 65.17, \"R_F1\": 13.23, \"R_P\": 12.99, \"R_R\": 13.47}, \"conclusion\": \"negative\"}, \"eval_70b_zs_docred_200_semantic_only\": {\"status\": \"DONE\", \"metrics\": {\"samples\": 200, \"parse_failures\": 0, \"entities\": 3240, \"relations\": 2596, \"ET_pct\": 0.12, \"RV_pct\": 8.24, \"DR_pct\": 1.66, \"CF_count\": 132, \"CF_pct\": 4.07, \"E_F1\": 70.1, \"E_P\": 75.87, \"E_R\": 65.15, \"R_F1\": 13.05, \"R_P\": 12.88, \"R_R\": 13.23, \"fuzzy_matches\": 8}, \"conclusion\": \"success\"}, \"eval_70b_lora_docred_200_beam4_s1\": {\"status\": \"DONE\", \"metrics\": {\"E-F1\": 85.57, \"E-P\": 85.45, \"E-R\": 85.68, \"R-F1\": 48.14, \"R-P\": 44.24, \"R-R\": 52.79, \"ET%\": 0, \"RV%\": 0, \"DR%\": 0, \"CF%\": 0, \"parse_fail\": \"1/200 (0.5%)\", \"entities_pred\": 3790, \"relations_pred\": 3030}, \"conclusion\": \"success\"}, \"eval_70b_lora_scierc_grammar_only\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"json_failure_rate\": 0, \"entities\": 1805, \"relations\": 1133, \"entity_type_violations\": 0, \"entity_type_violation_rate\": 0, \"relation_vocab_violations\": 0, \"relation_vocab_violation_rate\": 0, \"domain_range_violations\": 17, \"domain_range_violation_rate\": 0.015, \"cross_field_consistency_violations\": 0, \"fuzzy_relation_matches\": 0, \"entity_P\": 0.6272, \"entity_R\": 0.6707, \"entity_F1\": 0.6482, \"relation_P\": 0.4152, \"relation_R\": 0.4825, \"relation_F1\": 0.4463}}, \"eval_70b_zs_scierc_unconstrained\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 2353, \"relations\": 1483, \"ET_pct\": 0, \"RV_pct\": 0.6, \"DR_pct\": 6.4, \"CF_count\": 0, \"E_F1\": 35.22, \"E_P\": 30.13, \"E_R\": 42.38, \"R_F1\": 11.23, \"R_P\": 9.31, \"R_R\": 14.17, \"parse_fail_pct\": 0}}, \"eval_70b_lora_scierc_full_s2\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1531, \"relations\": 1027, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0, \"CF_count\": 18, \"E_F1\": 62.35, \"E_P\": 65.44, \"E_R\": 59.53, \"R_F1\": 36.28, \"R_P\": 35.35, \"R_R\": 37.27, \"parse_fail_pct\": 0}}, \"eval_70b_lora_scierc_semantic_only\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1806, \"relations\": 1133, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.6, \"CF_count\": 9, \"E_F1\": 64.86, \"E_P\": 62.74, \"E_R\": 67.12, \"R_F1\": 44.73, \"R_P\": 41.61, \"R_R\": 48.36, \"parse_fail_pct\": 0}}, \"entity_order_ablation_qwen_scierc\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 67.05, \"E_P\": 65.23, \"E_R\": 68.98, \"R_F1\": 43.77, \"R_P\": 40.78, \"R_R\": 47.23, \"DR_pct\": 0, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_count\": 21, \"parse_fail_pct\": 0, \"samples\": 551, \"entities\": 1784, \"relations\": 1128, \"corrected_original_R_F1\": 43.77, \"corrected_original_E_F1\": 67.05, \"corrected_original_DR_pct\": 0, \"corrected_original_CF_count\": 21, \"corrected_delta_R_F1\": 0, \"corrected_delta_E_F1\": 0, \"raw_output_identical\": true, \"parsed_output_identical\": true, \"note\": \"CORRECTED 2026-05-22: Fair comparison with fixed violation_checker shows ZERO difference. raw_output and parsed_output are byte-identical across all 551 samples. Previous -3.38pp delta was entirely due to comparing old-checker original (47.15) vs new-checker shuffled (43.77). Entity ordering is confirmed order-invariant.\"}}, \"eval_70b_zs_scierc_semantic_only\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"R_F1\": 11.37, \"DR_pct\": 1.01, \"RV_pct\": 0.6, \"ET_pct\": 0, \"CF_count\": 76, \"samples\": 551}}, \"eval_70b_zs_scierc_grammar_only\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"R_F1\": 11.23, \"DR_pct\": 6.33, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_count\": 0, \"samples\": 551}}, \"eval_70b_lora_scierc_beam4_s1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 64.89, \"E_P\": 62.29, \"E_R\": 67.72, \"R_F1\": 44.81, \"R_P\": 39.45, \"R_R\": 51.85, \"DR_pct\": 0, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_count\": 1, \"parse_fail_pct\": 0, \"samples\": 551, \"entities\": 1839, \"relations\": 1283}}, \"tcr_beam4_llama_scierc\": {\"status\": \"DONE\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1803, \"relations\": 1194, \"entity_type_violations\": \"0/1803 (0.0%)\", \"relation_vocab_violations\": \"0/1194 (0.0%)\", \"domain_range_violations\": \"13/1194 (1.1%)\", \"cross_field_consistency\": 0, \"DR_pct\": 1.09, \"E_F1\": 68.02, \"E_P\": 65.88, \"E_R\": 70.29, \"R_F1\": 46.05, \"R_P\": 41.83, \"R_R\": 51.23, \"tcr_changed_selection\": \"0/551 (0.0%)\"}, \"conclusion\": \"negative\"}, \"tcr_beam4_qwen_scierc\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1802, \"relations\": 1250, \"entity_type_violations\": \"0/1802 (0.0%)\", \"relation_vocab_violations\": \"0/1250 (0.0%)\", \"domain_range_violations\": \"23/1250 (1.8%)\", \"cross_field_consistency_violations\": 1, \"DR_pct\": 1.84, \"E_P\": 65.05, \"E_R\": 69.64, \"E_F1\": 67.26, \"R_P\": 39.36, \"R_R\": 50.51, \"R_F1\": 44.24, \"TCR_changed_selection\": \"0/551 (0.0%)\", \"all_candidates_TCR_1.0\": true}}, \"vllm_guided_json_scierc_zs\": {\"status\": \"DONE\", \"metrics\": {\"DR%\": 15.26, \"RV%\": 0, \"ET%\": 0, \"CF%\": 0.04, \"R-F1\": 8.75, \"E-F1\": 30.91, \"parse_fail%\": 0, \"total_samples\": 551, \"total_entities\": 2485, \"total_relations\": 1724, \"inference_time_s\": 108.5}, \"conclusion\": \"success\"}, \"eval_70b_lora_docred_200_s1_constrained\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 79.38, \"E_P\": 85.24, \"E_R\": 74.28, \"R_F1\": 43.95, \"R_P\": 40.48, \"R_R\": 48.08, \"DR_pct\": 0, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_pct\": 0.18, \"parse_fail_pct\": 12.5, \"samples\": 200}}, \"d066_beam_sweep\": {\"status\": \"DONE\", \"metrics\": {\"scierc_qwen3_8b\": {\"k1_unc\": {\"E_F1\": 66.88, \"R_F1\": 42.95, \"DR_pct\": 2.11, \"CF_pct\": 0, \"avg_time\": 2.494}, \"k1_con\": {\"E_F1\": 66.88, \"R_F1\": 42.95, \"DR_pct\": 0, \"CF_pct\": 0.5, \"avg_time\": 2.932}, \"k2_unc\": {\"E_F1\": 67.79, \"R_F1\": 44.75, \"DR_pct\": 1.54, \"CF_pct\": 0, \"avg_time\": 2.954}, \"k2_con\": {\"E_F1\": 67.71, \"R_F1\": 44.6, \"DR_pct\": 0, \"CF_pct\": 0.11, \"avg_time\": 3.463}, \"k4_unc\": {\"E_F1\": 67.49, \"R_F1\": 43.72, \"DR_pct\": 1.89, \"CF_pct\": 0, \"avg_time\": 3.485}, \"k4_con\": {\"E_F1\": 67.22, \"R_F1\": 43.6, \"DR_pct\": 0, \"CF_pct\": 0, \"avg_time\": 4.069}, \"k8_unc\": {\"E_F1\": 66.4, \"R_F1\": 43.17, \"DR_pct\": 1.77, \"CF_pct\": 0, \"avg_time\": 4.194}, \"k8_con\": {\"E_F1\": 66.36, \"R_F1\": 43.65, \"DR_pct\": 0, \"CF_pct\": 0, \"avg_time\": 5.058}}, \"pareto_optimal\": \"k=2 con\", \"best_E_F1\": {\"config\": \"k=2 unc\", \"value\": 67.79}, \"best_R_F1\": {\"config\": \"k=2 unc\", \"value\": 44.75}}, \"conclusion\": \"success\"}, \"w8_llama_docred_ft_grammar_only\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"R_F1\": 43.72, \"R_P\": 38.57, \"R_R\": 50.44, \"parse_fail_pct\": 2.3, \"samples\": 998, \"note\": \"Re-verified 2026-05-22 with eval_d064.py (no bug). Old registry value 43.77 was from unified_f1_eval.py (delta -0.05pp).\"}}, \"w8_llama_docred_ft_semantic_only\": {\"status\": \"DONE\", \"metrics\": {\"R_F1\": 43.85, \"R_P\": 38.85, \"R_R\": 50.31, \"parse_fail_pct\": 2.4, \"samples\": 998, \"note\": \"Re-verified 2026-05-22 with eval_d064.py (no bug). Old registry value 43.90 was from unified_f1_eval.py (delta -0.05pp).\"}, \"conclusion\": \"success\"}, \"w8_qwen_docred_ft_semantic_only\": {\"status\": \"DONE\", \"metrics\": {\"R_F1\": 40.85, \"R_P\": 36.33, \"R_R\": 46.65, \"parse_fail_pct\": 7.52, \"samples\": 998, \"note\": \"Re-verified 2026-05-22 with eval_d064.py (no bug). Old registry value 40.89 was from unified_f1_eval.py (had same parse-failure bug, delta -0.04pp).\"}, \"conclusion\": \"success\"}, \"r16_trie_qwen_ft_scierc\": {\"status\": \"DONE\", \"metrics\": {\"E_F1\": 64.4, \"E_P\": 66.8, \"E_R\": 62.16, \"R_F1\": 41.16, \"R_P\": 38.24, \"R_R\": 44.56, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 95.5, \"CF_pct\": 0.09, \"parse_fail_pct\": 9.1, \"samples\": 551, \"note\": \"CORRECTED 2026-05-22: violation_checker.py parse-failure bug fixed. Old R-F1=42.57 was inflated. Old E-F1=66.73 also inflated.\"}, \"conclusion\": \"success\"}, \"r16_trie_llama_ft_scierc\": {\"status\": \"DONE\", \"metrics\": {\"E_F1\": 36.66, \"E_P\": 67.47, \"E_R\": 25.16, \"R_F1\": 19.95, \"R_P\": 41.42, \"R_R\": 13.14, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 15.2, \"CF_pct\": 0, \"parse_fail_pct\": 50.8, \"samples\": 551, \"note\": \"CORRECTED 2026-05-22: violation_checker.py parse-failure bug fixed. Old R-F1=41.42 was inflated (gold dropped for parse failures). Old E-F1=65.37 also inflated.\"}, \"conclusion\": \"success\"}, \"eval_70b_lora_docred_200_unconstrained\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 80.34, \"E_P\": 85.13, \"E_R\": 76.05, \"R_F1\": 43.8, \"R_P\": 39.6, \"R_R\": 48.99, \"ET_pct\": 0, \"RV_pct\": 0.57, \"DR_pct\": 0.22, \"CF_pct\": 0.06, \"parse_fail_pct\": 10, \"samples\": 200, \"relations\": 3159, \"RV_count\": 18, \"DR_count\": 7, \"CF_count\": 2}}, \"eval_70b_lora_scierc_s1_constrained\": {\"status\": \"DONE\", \"metrics\": {\"entity_f1\": 0.6476, \"entity_precision\": 0.6266, \"entity_recall\": 0.6701, \"relation_f1\": 0.4453, \"relation_precision\": 0.4149, \"relation_recall\": 0.4805, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0, \"CF_count\": 15, \"parse_fail_pct\": 0, \"fuzzy_matches\": 0, \"num_samples\": 551, \"num_entities\": 1805, \"num_relations\": 1129}, \"conclusion\": \"success\"}, \"eval_70b_lora_scierc_unconstrained\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 64.86, \"E_P\": 62.74, \"E_R\": 67.12, \"R_F1\": 44.73, \"R_P\": 41.61, \"R_R\": 48.36, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 1.5, \"CF_pct\": 0, \"parse_fail_pct\": 0, \"samples\": 551, \"entities\": 1806, \"relations\": 1133}}, \"r16_70b_docred_zs_s1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 69.11, \"R_F1\": 13.05, \"DR_pct\": 0, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_pct\": 0.04, \"parse_fail_pct\": 0.1, \"samples\": 998, \"total_entities\": 16599, \"total_triples\": 13239, \"baseline_unc_DR_pct\": 14.98, \"baseline_unc_R_F1\": 13.01, \"note\": \"Metrics corrected via eval_d064.py with DocRED schema mapping. Original violation_checker.py gave R-F1=0 due to SciERC schema mismatch.\"}}, \"d066_sweep_llama_beam8_unc\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 85.77, \"E_P\": 85.7, \"E_R\": 85.84, \"R_F1\": 51.97, \"R_P\": 49.76, \"R_R\": 54.38, \"DR_pct\": 0, \"CF_pct\": 0.05, \"ET_pct\": 0, \"RV_pct\": 0.07, \"parse_fail_pct\": 0.5, \"total_samples\": 200, \"total_entities_pred\": 3788, \"total_relations_pred\": 2779}}, \"d066_sweep_llama_beam2_s1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 85.6, \"E_P\": 85.29, \"E_R\": 85.92, \"R_F1\": 51.17, \"R_P\": 48.51, \"R_R\": 54.14, \"DR_pct\": 0, \"CF_pct\": 0, \"ET_pct\": 0, \"RV_pct\": 0, \"parse_fail_pct\": 0.5, \"total_samples\": 200, \"total_entities_pred\": 3814, \"total_relations_pred\": 2839}}, \"d066_sweep_llama_docred_beam4_s1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"E-F1\": 85.61, \"E-P\": 85.48, \"E-R\": 85.73, \"R-F1\": 51.89, \"R-P\": 51.59, \"R-R\": 52.2, \"DR_pct\": 0, \"CF_pct\": 0, \"PF_pct\": 0.5, \"ET_pct\": 0, \"RV_pct\": 0, \"samples\": 200, \"parse_fail\": 1}}, \"r16_70b_lora_scierc_eval\": {\"status\": \"PREPARING\"}, \"r16_70b_lora_docred\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_loss\": 0.0635, \"token_acc\": 97.94, \"steps_completed\": 1146, \"epochs\": 3, \"train_loss_start\": 0.147, \"train_loss_end\": 0.056}}, \"r16_70b_lora_scierc\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_loss\": 0.0611, \"token_acc\": 97.78, \"steps_completed\": 663, \"epochs\": 3, \"train_loss_start\": 0.183, \"train_loss_end\": 0.041}}, \"r16_70b_scierc_zs_s1\": {\"status\": \"DONE\", \"metrics\": {\"E_F1\": 35.19, \"R_F1\": 11.24, \"DR_pct\": 0, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_pct\": 3.5, \"parse_fail_pct\": 0, \"samples\": 551, \"baseline_unc_E_F1\": 35.21, \"baseline_unc_R_F1\": 11.15, \"baseline_unc_DR_pct\": 6.41, \"baseline_unc_RV_pct\": 0.61, \"baseline_unc_CF_pct\": 0}, \"conclusion\": \"success\"}, \"r14_qwen_docred_beam4_998\": {\"status\": \"DONE\", \"metrics\": {\"E_F1\": 58.19, \"R_F1\": 8.72, \"DR_pct\": 0, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_pct\": 4.94, \"parse_fail_pct\": 3.51, \"samples\": 998, \"success\": 963, \"fail\": 35}, \"conclusion\": \"success\"}, \"r16_trie_llama_zs_scierc\": {\"status\": \"DONE\", \"metrics\": {\"E_F1\": 23.23, \"R_F1\": 2.9, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 84.4, \"CF_pct\": 0.36, \"parse_fail_pct\": 0, \"samples\": 551}, \"conclusion\": \"success\"}, \"r16_trie_qwen_zs_scierc\": {\"status\": \"DONE\", \"metrics\": {\"E_F1\": 30.97, \"R_F1\": 8.64, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 29.3, \"CF_pct\": 0, \"parse_fail_pct\": 0, \"samples\": 551}, \"conclusion\": \"success\"}, \"r14_llama_docred_beam4_998\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"R_F1\": 8.83, \"E_F1\": 57.81, \"DR_pct\": 0, \"CF_pct\": 1, \"ET_pct\": 0, \"RV_pct\": 0, \"parse_fail_pct\": 3.91, \"samples\": 998, \"success\": 959, \"fail\": 39, \"baseline_ZS_greedy_R_F1\": 6.27, \"baseline_ZS_greedy_E_F1\": 54.93, \"baseline_ZS_greedy_DR_pct\": 2.55, \"baseline_ZS_greedy_CF_pct\": 8.54}}, \"d066_sweep_llama_scierc_beam8_s1_551\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"E-F1\": 67.51, \"E-P\": 64.99, \"E-R\": 70.23, \"R-F1\": 44.95, \"R-P\": 40.1, \"R-R\": 51.13, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0, \"CF_pct\": 0, \"PF_pct\": 0, \"samples\": 551, \"note\": \"Reconcile false positive corrected. Eval with --dataset scierc confirmed.\"}}, \"d066_sweep_llama_scierc_beam4_s1_551\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"E-F1\": 68.06, \"E-P\": 65.96, \"E-R\": 70.29, \"R-F1\": 46.18, \"R-P\": 42.1, \"R-R\": 51.13, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0, \"CF_pct\": 0, \"parse_fail\": 0, \"samples\": 551, \"note\": \"ET/RV corrected from 100→0: original eval used hardcoded DocRED ontology, re-evaled with --dataset scierc\"}}, \"d066_sweep_llama_docred_beam4_unc\": {\"status\": \"DONE\", \"metrics\": {\"E-F1\": 85.67, \"R-F1\": 52.65, \"DR_pct\": 0.04, \"CF_pct\": 0.08, \"PF_pct\": 0.5, \"samples\": 200}, \"conclusion\": \"success\"}, \"d066_sweep_llama_docred_beam1_s1\": {\"status\": \"DONE\", \"metrics\": {\"E-F1\": 85.43, \"R-F1\": 47.35, \"DR_pct\": 0, \"CF_pct\": 0.19, \"PF_pct\": 2, \"samples\": 200}, \"conclusion\": \"success\"}, \"d066_sweep_llama_beam8_s1\": {\"status\": \"DONE\", \"metrics\": {\"E-F1\": 85.76, \"R-F1\": 51.74, \"DR_pct\": 0, \"CF_pct\": 0, \"PF_pct\": 0.5, \"samples\": 200}, \"conclusion\": \"success\"}, \"d065_qwen_greedy_4096_r2\": {\"status\": \"DONE\", \"metrics\": {\"E-F1\": 81.87, \"R-F1\": 40.79, \"DR_pct\": 0, \"CF_pct\": 0.22, \"ET_pct\": 0, \"RV_pct\": 0, \"PF_pct\": 8.52, \"samples\": 998}, \"conclusion\": \"success\"}, \"d066_sweep_llama_scierc_beam2_s1_551\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"entity_f1\": 68.34, \"entity_p\": 66.59, \"entity_r\": 70.17, \"relation_f1\": 46.12, \"relation_p\": 42.73, \"relation_r\": 50.1, \"parse_fail_pct\": 0, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0, \"CF_pct\": 0.17, \"note\": \"ET/RV corrected from 100→0: original eval used hardcoded DocRED ontology, re-evaled with --dataset scierc\"}}, \"d066_sweep_llama_scierc_beam1_unc\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"total\": 275, \"success\": 275, \"fail\": 0, \"output_file\": \"llama_scierc_beam1_unconstrained.jsonl\", \"note\": \"INVALIDATED: Used dev set (275 docs) instead of test set (551 docs). Not comparable with other beam sweep results. Llama SciERC beam sweep deprioritized — must use scripts/d066_beam_sweep_scierc.sh with --data_path data/processed_data/test.json if rerun.\"}}, \"d066_sweep_llama_docred_beam1_unc\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total\": 200, \"success\": 196, \"fail\": 4, \"output_file\": \"llama_docred_200_beam1_unconstrained.jsonl\"}}, \"d066_sweep_21461_gpu1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total\": 551, \"E_F1\": 66.36, \"R_F1\": 43.65, \"DR_pct\": 0, \"CF_pct\": 0, \"ET_pct\": 0, \"RV_pct\": 0, \"avg_time_s\": 5.058, \"output_file\": \"qwen_scierc_beam8_full_s1.jsonl\", \"note\": \"Actually ran on SciERC 551 docs (not DocRED 200 as originally recorded in hypothesis)\"}}, \"w5_llama_docred_lora_constrained_eval\": {\"status\": \"DONE\", \"metrics\": {\"total\": 998, \"parse_failures\": 25, \"parse_fail_rate\": 2.51, \"entities\": 19077, \"relations\": 16074, \"entity_f1\": 83.94, \"entity_precision\": 85, \"entity_recall\": 84.13, \"relation_f1_all_set\": 43.78, \"relation_precision_all_set\": 38.79, \"relation_recall_all_set\": 50.81, \"et_violations\": 0, \"et_violation_rate\": 0, \"rv_violations\": 0, \"rv_violation_rate\": 0, \"dr_violations\": 33, \"dr_violation_rate\": 0.21, \"CF_pct\": 0.21, \"delta_vs_unconstrained\": {\"delta_e_f1\": 0.01, \"delta_r_f1\": 0.06, \"delta_dr\": -0.28, \"note\": \"Authoritative values from eval_d064.py on w5_llama_docred_lora_constrained_eval.jsonl (998 lines). Updated 2026-05-20.\"}, \"provenance\": \"eval_d064.py on westd-16980:/root/schema_semantic_constrained_ie/outputs/w5_llama_docred_lora_constrained_eval.jsonl, 2026-05-20. P/R corrected 2026-05-20 per Director.\"}, \"conclusion\": \"success\"}, \"d066_sweep_16980_gpu1\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"d065_qwen_greedy_4096\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"d066_docred_beam_sweep\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"d067_seed_variance\": {\"status\": \"DONE\", \"metrics\": {\"qwen_scierc_unc\": {\"E_F1\": \"66.94 ± 0.08\", \"R_F1\": \"43.25 ± 0.43\", \"DR\": \"2.06 ± 0.08\", \"CF\": \"0.00 ± 0.00\"}, \"qwen_scierc_con\": {\"E_F1\": \"66.94 ± 0.08\", \"R_F1\": \"43.22 ± 0.39\", \"DR\": \"0.00 ± 0.00\", \"CF\": \"0.48 ± 0.02\"}, \"llama_scierc_unc\": {\"E_F1\": \"67.99 ± 0.16\", \"R_F1\": \"45.38 ± 0.05\", \"DR\": \"1.04 ± 0.05\", \"CF\": \"0.00 ± 0.00\"}, \"llama_scierc_con\": {\"E_F1\": \"67.99 ± 0.16\", \"R_F1\": \"45.40 ± 0.05\", \"DR\": \"0.03 ± 0.04\", \"CF\": \"0.26 ± 0.02\"}, \"max_sigma_pp\": 0.43, \"greedy_deterministic\": true, \"snr_dr_improvement\": \">12x\", \"qwen_docred_status\": \"pending (not started)\", \"llama_scierc_seed456_con_status\": \"running (407/551)\"}, \"conclusion\": \"success\"}, \"d068_constraint_guided_beam_pilot\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"d064_docred_full_beam\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"d065_tcr_full\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"configs_tested\": 10, \"all_cf_eliminated\": true, \"scierc_all_dr_delta_max\": 0.28, \"docred_lora_dr_delta_max\": 0.14, \"docred_zs_llama_dr_delta\": 9.38, \"docred_zs_70b_dr_delta\": 4.2, \"docred_zs_qwen_dr_delta\": 1.53, \"fund_conflict_scierc_max\": 2.04, \"fund_conflict_docred_zs_max\": 22.78, \"fund_conflict_docred_lora_max\": 12.16, \"lora_ef1_cost_max\": 0.0075, \"zs_docred_ef1_cost_max\": 0.0598}}, \"d065_tcr_pilot\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"scierc_zs_qwen\": {\"cf_before\": 9.75, \"cf_after\": 0, \"dr_before\": 0.93, \"dr_after\": 1.21, \"ef1_delta\": -0.0129, \"fund_pct\": 2.04}, \"scierc_zs_llama\": {\"cf_before\": 6.4, \"cf_after\": 0, \"dr_before\": 0.08, \"dr_after\": 0.3, \"ef1_delta\": -0.0178, \"fund_pct\": 1.85}, \"scierc_lora_qwen\": {\"cf_before\": 1.19, \"cf_after\": 0, \"dr_before\": 0, \"dr_after\": 0, \"ef1_delta\": -0.0075, \"fund_pct\": 0}, \"scierc_lora_llama\": {\"cf_before\": 0.46, \"cf_after\": 0, \"dr_before\": 0.09, \"dr_after\": 0.09, \"ef1_delta\": -0.0018, \"fund_pct\": 0}, \"scierc_zs_mistral\": {\"cf_before\": 0.67, \"cf_after\": 0, \"dr_before\": 13.36, \"dr_after\": 12.87, \"ef1_delta\": 0.0005, \"fund_pct\": 0}, \"docred_zs_qwen\": {\"cf_before\": 13.11, \"cf_after\": 0, \"dr_before\": 10.21, \"dr_after\": 11.74, \"ef1_delta\": -0.0344, \"fund_pct\": 13.52}, \"docred_zs_llama\": {\"cf_before\": 23.71, \"cf_after\": 0, \"dr_before\": 2.55, \"dr_after\": 11.93, \"ef1_delta\": -0.0521, \"fund_pct\": 22.78}, \"docred_zs_70b\": {\"cf_before\": 11.61, \"cf_after\": 0, \"dr_before\": 0, \"dr_after\": 4.2, \"ef1_delta\": -0.0598, \"fund_pct\": 18.26}, \"docred_lora_qwen\": {\"cf_before\": 0.42, \"cf_after\": 0, \"dr_before\": 0.01, \"dr_after\": 0.14, \"ef1_delta\": -0.0016, \"fund_pct\": 12.16}, \"docred_lora_llama\": {\"cf_before\": 0.36, \"cf_after\": 0, \"dr_before\": 0.21, \"dr_after\": 0.2, \"ef1_delta\": -0.0017, \"fund_pct\": 11.59}, \"total_configs\": 10, \"all_cf_eliminated\": true}}, \"d063_gollie_violation_rate\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"gollie_DR\": 0, \"gollie_RV\": 0, \"gollie_ET\": 0, \"gollie_CF\": 0.67, \"gollie_entities\": 300, \"gollie_relations\": 7, \"gollie_empty_docs_pct\": 45, \"docs_tested\": 100}}, \"d062_full_ft_scierc\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"unconstrained\": {\"entity_f1\": 0.6478, \"relation_f1\": 0.3789, \"DR_pct\": 2.74, \"RV_pct\": 0.18, \"ET_pct\": 0, \"CF_pct\": 0}, \"constrained\": {\"entity_f1\": 0.6478, \"relation_f1\": 0.3789, \"DR_pct\": 0, \"RV_pct\": 0, \"ET_pct\": 0, \"CF_pct\": 1.31}, \"training\": {\"eval_loss_final\": 0.09459, \"epochs\": 3, \"total_steps\": 333, \"training_time\": \"21m49s\"}}}, \"d062_beam_latency\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"beam4_unconstrained_s_per_doc\": 3.446, \"beam4_constrained_s_per_doc\": 4.013, \"beam4_unconstrained_total_s\": 1898.7, \"beam4_constrained_total_s\": 2211, \"beam_greedy_ratio_unconstrained\": 1.319, \"beam_greedy_ratio_constrained\": 1.397, \"constraint_overhead_beam\": 1.165, \"constraint_overhead_greedy\": 1.1, \"greedy_unconstrained_s_per_doc\": 2.612, \"greedy_constrained_s_per_doc\": 2.873}}, \"d062_ontology_scalability\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"compile_small_total_s\": 0.334, \"compile_medium_total_s\": 0.322, \"compile_large_total_s\": 0.345, \"compile_xlarge_total_s\": 0.42, \"grammar_small_s\": 0.333, \"grammar_xlarge_s\": 0.365, \"semantic_small_s\": 0.0004, \"semantic_xlarge_s\": 0.017, \"overhead_small\": 1.02, \"overhead_medium\": 1.03, \"overhead_large\": 1.03, \"overhead_xlarge\": 1.03, \"failures\": 0}}, \"d062_cf_majority_voting\": {\"status\": \"DONE\", \"metrics\": {\"qwen_scierc_zs\": {\"cf_before\": 245, \"cf_after\": 201, \"dr_rate_before\": 0.0093, \"dr_rate_after\": 0.0324}, \"llama_scierc_zs\": {\"cf_before\": 162, \"cf_after\": 123, \"dr_rate_before\": 0.0008, \"dr_rate_after\": 0.0236}, \"qwen_docred_zs\": {\"cf_before\": 518, \"cf_after\": 21, \"dr_rate_before\": 0.1021, \"dr_rate_after\": 0.1466}, \"llama_docred_zs\": {\"cf_before\": 1358, \"cf_after\": 107, \"dr_rate_before\": 0.0255, \"dr_rate_after\": 0.1665}, \"qwen_scierc_ft\": {\"cf_before\": 21, \"cf_after\": 12, \"dr_rate_before\": 0, \"dr_rate_after\": 0.0071}, \"llama_scierc_ft\": {\"cf_before\": 8, \"cf_after\": 4, \"dr_rate_before\": 0.0009, \"dr_rate_after\": 0.0037}, \"qwen_docred_ft\": {\"cf_before\": 48, \"cf_after\": 3, \"dr_rate_before\": 0.0001, \"dr_rate_after\": 0.0044}, \"llama_docred_ft\": {\"cf_before\": 41, \"cf_after\": 2, \"dr_rate_before\": 0.0021, \"dr_rate_after\": 0.005}}, \"conclusion\": \"negative\"}, \"p1_ee_ft_llama_r2\": {\"status\": \"DONE\", \"metrics\": {\"parse_rate_unconstrained\": 1, \"parse_rate_constrained\": 1, \"trigger_f1_unconstrained\": 0.2752, \"trigger_f1_constrained\": 0.2691, \"argument_f1_unconstrained\": 0.0998, \"argument_f1_constrained\": 0.0891, \"entity_f1\": 0, \"rov_rate_unconstrained\": 0.088, \"rov_rate_constrained\": 0, \"ac_rate_unconstrained\": 0.035, \"ac_rate_constrained\": 0.008, \"go_nogo_unconstrained\": 0.122, \"go_nogo_constrained\": 0.0078}, \"conclusion\": \"success\"}, \"p1_ee_ft_composability_r5\": {\"status\": \"DONE\", \"metrics\": {\"unconstrained\": {\"parse_rate\": 0.85, \"trigger_f1\": 0.3208, \"argument_f1\": 0.0785, \"rov_rate\": 0.3831, \"ac_rate\": 0.0268, \"go_nogo\": 0.41}, \"full_s1\": {\"parse_rate\": 0.95, \"trigger_f1\": 0.2672, \"argument_f1\": 0.0818, \"rov_rate\": 0, \"ac_rate\": 0, \"go_nogo\": 0}}, \"conclusion\": \"success\"}, \"p1_ee_ft_llama\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"p1_ee_ft_composability_r4\": {\"status\": \"DONE\", \"metrics\": {\"unconstrained\": {\"entity_f1\": 0, \"trigger_f1\": 0.4598, \"argument_f1\": 0.1581, \"rov\": 0.251, \"ac\": 0.06, \"cf\": 0, \"parse_rate\": 0.25}, \"full_s1\": {\"entity_f1\": 0.5823, \"trigger_f1\": 0.6, \"argument_f1\": 0.4667, \"rov\": 0, \"ac\": 0, \"cf\": 0.03, \"parse_rate\": 0.1}}, \"conclusion\": \"failed\"}, \"p1_llama_ee_ft\": {\"status\": \"PREPARING\"}, \"w9_qwen_docred_zs_sampling_r2\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"70b_docred_constrained\": {\"status\": \"DONE\", \"metrics\": {\"ET_violation\": 0, \"RV_violation\": 0, \"DR_violation\": 0, \"CF_violation\": 7.01, \"entity_f1\": 69.05, \"entity_precision\": 75.03, \"entity_recall\": 63.95, \"relation_f1\": 13.07, \"relation_precision\": 12.54, \"relation_recall\": 13.64, \"parse_failures\": 1, \"docs_processed\": 997, \"total_docs\": 998, \"unique_entities\": 12207, \"total_triples\": 13249}, \"conclusion\": \"success\"}, \"70b_docred_unconstrained\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"entity_f1\": 69.03, \"entity_precision\": 75.03, \"entity_recall\": 63.92, \"relation_f1\": 13.03, \"relation_precision\": 12.43, \"relation_recall\": 13.69, \"ET_violation\": 0.02, \"RV_violation\": 7.8, \"DR_violation\": 15, \"CF_violation\": 0.07, \"parse_failures\": 0, \"docs_processed\": 998}}, \"p1_ee_ft_composability_r3\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"p1_ee_ft_composability_r2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"p1_ee_ft_composability\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"p8c_ft_scierc_latency\": {\"status\": \"DONE\", \"metrics\": {\"unconstrained_mean_s\": 2.612, \"constrained_mean_s\": 2.873, \"unconstrained_median_s\": 2.355, \"constrained_median_s\": 2.624, \"overhead_mean_pct\": 10, \"overhead_median_pct\": 11.42, \"per_doc_ratio_mean\": 1.205, \"per_doc_ratio_median\": 1.117, \"num_docs\": 551, \"unconstrained_total_s\": 1439, \"constrained_total_s\": 1582.9}, \"conclusion\": \"success\"}, \"p8b_docred_latency\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"w9_qwen_docred_zs_sampling\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"w9_qwen_scierc_zs_sampling\": {\"status\": \"DONE\", \"metrics\": {\"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.75, \"CF_pct\": 9.9, \"E_F1\": 31.28, \"R_F1\": 7.42, \"parse_fail_rate\": 0, \"total_samples\": 551, \"note\": \"F1 computed by v2 checker; greedy baseline with same checker: E_F1=30.98, R_F1=8.36\"}, \"conclusion\": \"success\"}, \"p8_latency_overhead\": {\"status\": \"DONE\", \"metrics\": {\"samples\": 551, \"unconstrained_mean_s\": 4.163, \"unconstrained_median_s\": 4.106, \"unconstrained_total_s\": 2293.7, \"constrained_mean_s\": 4.71, \"constrained_median_s\": 4.644, \"constrained_total_s\": 2595, \"overhead_ratio_mean\": 1.131, \"overhead_ratio_median\": 1.131, \"overhead_ratio_p95_perdoc\": 1.262, \"overhead_pct\": 13.1}, \"conclusion\": \"success\"}, \"q1_llama_lora_scierc_beam4\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ET_violation_rate\": 0, \"RV_violation_rate\": 0, \"DR_violation_rate\": 0, \"CF_violation_rate\": 0, \"entity_f1\": 67.94, \"relation_f1\": 46.11, \"samples\": 551, \"total_entities\": 1853, \"total_relations\": 727}}, \"70b_scierc_unconstrained\": {\"status\": \"DONE\", \"metrics\": {\"ET_pct\": 0, \"RV_pct\": 0.6, \"DR_pct\": 6.5, \"CF_count\": 0, \"CF_pct\": 0, \"E_F1\": 0.3517, \"E_P\": 0.3009, \"E_R\": 0.4232, \"R_F1\": 0.1122, \"R_P\": 0.0929, \"R_R\": 0.1417, \"total_entities\": 2353, \"total_relations\": 1485, \"parse_failures\": 0, \"samples\": 551}, \"conclusion\": \"success\"}, \"70b_scierc_constrained\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0, \"CF_count\": 86, \"CF_pct\": 3.66, \"E_F1\": 0.3514, \"E_P\": 0.3007, \"E_R\": 0.4226, \"R_F1\": 0.1124, \"R_P\": 0.0932, \"R_R\": 0.1417, \"total_entities\": 2351, \"total_relations\": 1481, \"parse_failures\": 0, \"samples\": 551}}, \"ee_mistral_wikievents_grammar_only_v3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"parse_success\": \"218/246 (88.6%)\", \"parse_failures\": 28, \"ET\": 0, \"EV\": 0, \"RoV\": 64, \"AC\": 13.8, \"CF\": 1.1, \"go_no_go\": 77.73, \"entity_f1\": 0.1192, \"trigger_f1\": 0.0337, \"argument_f1\": 0.0027, \"code_version\": \"938-line (collision+exact-match fix)\", \"mode\": \"grammar_only\"}}, \"ee_mistral_wikievents_constrained_v3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"parse_success\": \"218/246 (88.6%)\", \"parse_failures\": 28, \"ET\": 0, \"EV\": 0, \"RoV\": 0, \"AC\": 1.3, \"CF\": 14.9, \"go_no_go\": 1.26, \"entity_f1\": 0.1171, \"trigger_f1\": 0.0387, \"argument_f1\": 0.0031, \"code_version\": \"938-line (collision+exact-match fix)\", \"posthoc_args_removed\": 86, \"posthoc_ac_after\": 0}}, \"ee_llama_wikievents_constrained_v3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"parse_success\": \"207/246 (84.1%)\", \"parse_failures\": 39, \"ET\": 0, \"EV\": 0, \"RoV\": 0, \"AC\": 3.8, \"CF\": 17.2, \"go_no_go\": 3.8, \"entity_f1\": 0.1763, \"trigger_f1\": 0.0748, \"argument_f1\": 0.0118, \"code_version\": \"938-line (collision+exact-match fix)\", \"posthoc_args_removed\": 173, \"posthoc_arg_f1\": 0.0118}}, \"ee_qwen_wikievents_constrained_v3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"parse_success\": \"206/246 (83.7%)\", \"parse_failures\": 40, \"ET\": 0, \"EV\": 0, \"RoV\": 0, \"AC\": 2.1, \"CF\": 21.1, \"go_no_go\": 2.05, \"entity_f1\": 0.1409, \"trigger_f1\": 0.1339, \"argument_f1\": 0.0168, \"code_version\": \"938-line (collision+exact-match fix)\", \"posthoc_args_removed\": 109, \"posthoc_arg_f1\": 0.017, \"cf_voting_fix_rate\": \"15.9%\", \"cf_voting_entity_f1\": 0.1352}}, \"ee_mistral_wikievents_constrained_v2\": {\"status\": \"DONE\", \"metrics\": {\"parse_success\": \"178/246 (72.4%)\", \"ET\": 0, \"EV\": 0, \"RoV\": 0.1, \"AC\": 16.6, \"CF\": 13.9, \"trigger_f1\": 0.0508, \"argument_f1\": 0.0047, \"entity_f1\": 0.1245, \"parse_failures\": 68, \"go_no_go\": 16.7}, \"conclusion\": \"success\"}, \"ee_qwen_wikievents_constrained\": {\"status\": \"DONE\", \"metrics\": {\"parse_success\": \"206/246 (83.7%)\", \"ET\": 0, \"EV\": 0, \"RoV\": 0.3, \"AC\": 2.1, \"CF\": 21.1, \"trigger_f1\": 0.1339, \"argument_f1\": 0.0168, \"entity_f1\": 0.1409, \"parse_failures\": 40, \"go_no_go\": 2.4, \"note\": \"after retry with max_new_tokens=8192\"}, \"conclusion\": \"success\"}, \"ee_mistral_wikievents_constrained\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"parse_success\": \"184/246 (74.8%)\", \"ET\": 0, \"EV\": 0, \"RoV\": 54.8, \"AC\": 19.2, \"CF\": 0.7, \"note\": \"grammar_only baseline (old code without semantic mask fix)\"}}, \"ee_llama_wikievents_constrained\": {\"status\": \"DONE\", \"metrics\": {\"parse_success\": \"215/246 (87.4%)\", \"ET\": 0, \"EV\": 0, \"RoV\": 0, \"AC\": 3.4, \"CF\": 15.5, \"trigger_f1\": 0.078, \"argument_f1\": 0.011, \"entity_f1\": 0.178, \"parse_failures\": 31, \"go_no_go\": 3.4, \"note\": \"after retry with max_new_tokens=8192\"}, \"conclusion\": \"success\"}, \"ee_mistral_wikievents_unconstrained\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"parse_success\": \"194/246 (78.9%)\", \"ET\": 0, \"EV\": 37.3, \"RoV\": 63.9, \"AC\": 0, \"CF\": 0, \"trigger_f1\": 0.0241, \"argument_f1\": 0, \"entity_f1\": 0}}, \"ee_llama_wikievents_unconstrained\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"parse_success\": \"226/246 (91.9%)\", \"ET\": 0, \"EV\": 10.5, \"RoV\": 88.8, \"AC\": 0.1, \"CF\": 0, \"trigger_f1\": 0.0572, \"argument_f1\": 0, \"entity_f1\": 0}}, \"ee_qwen_wikievents_unconstrained\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"parse_success\": \"218/246 (88.6%)\", \"ET\": 0, \"EV\": 24, \"RoV\": 74.9, \"AC\": 0.3, \"CF\": 0, \"trigger_f1\": 0.1184, \"argument_f1\": 0.0009, \"entity_f1\": 0}}, \"r4_prompt_detailed\": {\"status\": \"DONE\", \"metrics\": {\"unconstrained\": {\"ET_pct\": 0.22, \"RV_pct\": 0.45, \"DR_pct\": 11.07, \"E_F1\": 33.55, \"R_F1\": 10.48}, \"constrained\": {\"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.64, \"E_F1\": 33.56, \"R_F1\": 10.48}, \"DR_reduction_pct\": 94.2, \"delta_R_F1_pp\": 0, \"delta_E_F1_pp\": 0.01}, \"conclusion\": \"success\"}, \"r4_prompt_minimal\": {\"status\": \"DONE\", \"metrics\": {\"unconstrained\": {\"ET_pct\": 0.58, \"RV_pct\": 1.16, \"DR_pct\": 16.91, \"E_F1\": 31.98, \"R_F1\": 7.91}, \"constrained\": {\"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.92, \"E_F1\": 31.99, \"R_F1\": 7.85}, \"DR_reduction_pct\": 94.6, \"delta_R_F1_pp\": -0.06, \"delta_E_F1_pp\": 0.01}, \"conclusion\": \"success\"}, \"w10_qwen_scierc_ft_beam_4\": {\"status\": \"DONE\", \"metrics\": {\"DR\": 0, \"CF\": 0, \"total_violation_rate\": 0, \"entity_type_violation_rate\": 0, \"relation_vocab_violation_rate\": 0, \"domain_range_violation_rate\": 0, \"cross_field_consistency_violation_rate\": 0, \"E_F1\": 66.88, \"E_P\": 64.69, \"E_R\": 69.22, \"R_F1\": 44.23, \"R_P\": 39.41, \"R_R\": 50.41, \"total_samples\": 551, \"json_parse_failures\": 0, \"total_entities\": 1802, \"total_relations\": 1246, \"vs_ft_greedy\": {\"baseline\": \"w5_lora_scierc_constrained_eval\", \"DR_delta\": \"0% → 0% (same)\", \"CF_delta\": \"1.18% → 0.0% (eliminated all violations)\", \"E_F1_delta\": \"67.05 → 66.88 (-0.17, negligible)\", \"R_F1_delta\": \"43.77 → 44.23 (+0.46, slight improvement)\"}, \"vs_zs_beam_k4\": {\"DR_delta\": \"0% → 0% (same)\", \"CF_delta\": \"0.53% → 0.0% (eliminated)\", \"E_F1_delta\": \"32.00 → 66.88 (+34.88)\", \"R_F1_delta\": \"8.56 → 44.23 (+35.67)\"}}, \"conclusion\": \"success\"}, \"w10_beam_ablation_k8\": {\"status\": \"DONE\", \"metrics\": {\"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0, \"CF_pct\": 0.08, \"CF_count\": 2, \"E_F1\": 32.18, \"R_F1\": 8.39, \"E_P\": 26.95, \"E_R\": 39.93, \"R_P\": 6.54, \"R_R\": 11.7, \"parse_failures\": 0, \"total_samples\": 551, \"total_triples\": 1744, \"total_entities\": 2483, \"vs_greedy\": {\"DR_delta\": -0.93, \"CF_delta\": -9.82, \"E_F1_delta\": 1.2, \"R_F1_delta\": 0.03}, \"vs_beam_k4\": {\"DR_delta\": 0, \"CF_delta\": -0.45, \"E_F1_delta\": 0.18, \"R_F1_delta\": -0.17}}, \"conclusion\": \"success\"}, \"w9_mistral_docred_beam_50\": {\"status\": \"DONE\", \"metrics\": {\"ET_violation_rate\": 0, \"RV_violation_rate\": 0, \"DR_violation_rate\": 21.37, \"CF_violations\": 1, \"total_triples\": 524, \"total_entities\": 597, \"docs_checked\": 49, \"parse_failures\": 1, \"E_F1\": 51.78, \"E_P\": 65.2, \"E_R\": 42.94, \"R_F1\": 5.7, \"R_P\": 6.49, \"R_R\": 5.08, \"R_tp\": 34, \"R_gold\": 669, \"R_pred\": 524}, \"conclusion\": \"success\"}, \"w10_beam_ablation_k2\": {\"status\": \"DONE\", \"metrics\": {\"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.35, \"CF_count\": 71, \"CF_pct\": 4.12, \"E_F1\": 31.54, \"R_F1\": 8.75, \"parse_failures\": 0, \"total_samples\": 551, \"total_triples\": 1724, \"vs_greedy\": {\"DR_delta\": -0.58, \"CF_delta\": -5.78, \"E_F1_delta\": 0.56, \"R_F1_delta\": 0.39, \"note\": \"Greedy: DR=0.93%, CF=9.90%, E_F1=30.98, R_F1=8.36\"}, \"vs_beam_k4\": {\"DR_delta\": 0.35, \"CF_delta\": 3.59, \"E_F1_delta\": -0.46, \"R_F1_delta\": 0.19, \"note\": \"k=4: DR=0%, CF=0.53%, E_F1=32.00, R_F1=8.56\"}}, \"conclusion\": \"success\"}, \"w10_mistral_scierc_beam_551\": {\"status\": \"DONE\", \"metrics\": {\"total_samples\": 551, \"parse_failures\": 1, \"parse_rate\": 0.9982, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 13.79, \"CF_pct\": 0.57, \"E_P\": 23.04, \"E_R\": 31.64, \"E_F1\": 26.66, \"R_P\": 3.13, \"R_R\": 7.22, \"R_F1\": 4.37, \"total_entities\": 2294, \"total_triples\": 2241, \"vs_greedy\": {\"baseline\": \"w6_mistral_scierc_constrained\", \"greedy_DR\": 13.4, \"greedy_CF\": 1.27, \"greedy_E_F1\": 27.46, \"greedy_R_F1\": 3.67, \"delta_DR\": \"+0.39pp\", \"delta_CF\": \"-0.70pp\", \"delta_E_F1\": \"-0.80pp\", \"delta_R_F1\": \"+0.70pp\"}}, \"conclusion\": \"negative\"}, \"w10_llama_docred_beam_50\": {\"status\": \"DONE\", \"metrics\": {\"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0, \"CF_pct\": 0.94, \"E_F1\": 55.62, \"R_F1\": 9.47, \"parse_failures\": 3, \"parse_fail_rate\": 6, \"total_samples\": 50, \"vs_greedy_full_s1\": {\"DR_delta\": -2.57, \"CF_delta\": -11.19, \"E_F1_delta\": 0.61, \"R_F1_delta\": 3.2, \"note\": \"Greedy baseline: DR=2.57%, CF=12.13%, E_F1=55.01, R_F1=6.27\"}, \"checker_note\": \"Must use violation_checker_docred.py for DocRED (not violation_checker.py)\"}, \"conclusion\": \"success\"}, \"w10_type_consensus_docred_50\": {\"status\": \"DONE\", \"metrics\": {\"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 8.69, \"CF_pct\": 2.4, \"E_F1\": 59.08, \"R_F1\": 8.33, \"gtc_skip_total\": 601, \"gtc_skip_unique_entities\": 213, \"gtc_effective_corrections\": 0, \"delta_DR\": 0, \"delta_CF\": 0}, \"conclusion\": \"negative\"}, \"w10_type_consensus_prototype\": {\"status\": \"DONE\", \"metrics\": {\"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.93, \"CF_pct\": 9.9, \"E_F1\": 30.98, \"R_F1\": 8.36, \"gtc_skip_total\": 672, \"gtc_skip_unique_entities\": 258, \"gtc_effective_corrections\": 0, \"delta_DR\": 0, \"delta_CF\": 0}, \"conclusion\": \"negative\"}, \"w9_qwen_scierc_stability_3seeds\": {\"status\": \"DONE\", \"metrics\": {\"seed_123\": {\"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.93, \"CF_pct\": 9.9, \"E_F1\": 30.98, \"R_F1\": 8.36}, \"seed_456\": {\"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.93, \"CF_pct\": 9.9, \"E_F1\": 30.98, \"R_F1\": 8.36}, \"seed_789\": {\"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.93, \"CF_pct\": 9.9, \"E_F1\": 30.98, \"R_F1\": 8.36}, \"cross_seed_DR_std\": 0, \"cross_seed_DR_range\": 0, \"conclusion_note\": \"Greedy decoding is fully deterministic - seed has no effect on output. All metrics identical across 3 seeds.\"}, \"conclusion\": \"success\"}, \"w9_qwen_docred_beam_50\": {\"status\": \"DONE\", \"metrics\": {\"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0, \"CF_pct\": 0.55, \"E_F1\": 58.64, \"R_F1\": 9.37, \"total_samples\": 50, \"parse_failures\": 3, \"parse_fail_rate\": 6, \"vs_greedy_full_s1\": {\"DR_delta\": -10.21, \"CF_delta\": -2.02, \"E_F1_delta\": -0.73, \"R_F1_delta\": 1.14, \"note\": \"Greedy full_s1 998 docs: DR=10.21%, CF=2.57%, E_F1=59.37, R_F1=8.23. Beam eliminates ALL DR on DocRED 96-type schema.\"}}, \"conclusion\": \"success\"}, \"w9_llama_scierc_beam_551\": {\"status\": \"DONE\", \"metrics\": {\"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0, \"CF_pct\": 0.93, \"CF_count\": 15, \"E_F1\": 25.04, \"E_P\": 21.27, \"E_R\": 30.42, \"R_F1\": 3.33, \"R_P\": 2.68, \"R_R\": 4.41, \"total_entities\": 2398, \"total_relations\": 1606, \"parse_fail_rate\": 0, \"total_samples\": 551, \"vs_greedy_full_s1\": {\"DR_delta\": -0.08, \"CF_delta\": -5.63, \"E_F1_delta\": 1.55, \"R_F1_delta\": 0.79, \"note\": \"Greedy: DR=0.08%, CF=6.56%, E_F1=23.49%, R_F1=2.54%\"}}, \"conclusion\": \"success\"}, \"posthoc_filtering_baseline\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"docred_f1_before\": 7.74, \"docred_f1_after\": 9.61, \"docred_precision_before\": 6.55, \"docred_precision_after\": 11.22, \"docred_recall_before\": 9.46, \"docred_recall_after\": 8.4, \"docred_rejection_rate\": 0.481, \"docred_tp_before\": 1137, \"docred_tp_after\": 1010, \"docred_tp_lost\": 127, \"docred_et_residual\": 0.0247, \"scierc_f1_before\": 8.23, \"scierc_f1_after\": 8.63, \"scierc_rejection_rate\": 0.168, \"scierc_recall_before\": 11.4, \"scierc_recall_after\": 10.68, \"scierc_tp_before\": 111, \"scierc_tp_after\": 104}}, \"phase2_scierc_full_s2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1644, \"total_entities\": 2228, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.0097, \"cross_field_consistency_violation_rate\": 0.0803, \"entity_precision\": 0.2797, \"entity_recall\": 0.3712, \"entity_f1\": 0.319, \"relation_precision\": 0.064, \"relation_recall\": 0.1078, \"relation_f1\": 0.0803, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"llama_docred_unconstrained_mt6144\": {\"status\": \"DONE\", \"metrics\": {\"ET_rate\": 0.13, \"RV_rate\": 15.89, \"DR_rate\": 26.18, \"DR_rate_eligible\": 31.15, \"CF_rate\": 0.17, \"entity_precision\": 61.19, \"entity_recall\": 51.06, \"entity_f1\": 55.67, \"relation_precision\": 5.18, \"relation_recall\": 7, \"relation_f1\": 5.95, \"parse_failures\": 67, \"documents_checked\": 931, \"total_documents\": 998, \"unique_entities\": 11534, \"total_triples\": 16584, \"dr_eligible_triples\": 13936, \"fuzzy_relation_matches\": 121}, \"conclusion\": \"success\"}, \"llama_docred_full_s1_mt6144\": {\"status\": \"DONE\", \"metrics\": {\"DR_rate_pct\": 2.57, \"RV_rate_pct\": 0, \"ET_rate_pct\": 0, \"CF_rate_pct\": 12.13, \"R_F1\": 6.25, \"R_precision\": 5.45, \"R_recall\": 7.32, \"E_F1\": 55.04, \"E_precision\": 61.41, \"E_recall\": 49.87, \"documents_total\": 998, \"documents_checked\": 908, \"parse_failures\": 90, \"triples\": 16471, \"unique_entities\": 11307, \"fallback_events\": 67911, \"wall_clock_seconds\": 23926, \"vs_unconstrained_mt6144\": {\"DR_delta_pp\": -23.61, \"DR_reduction_pct\": -90.2, \"R_F1_delta_pp\": 0.3, \"E_F1_delta_pp\": -0.63}, \"vs_full_s1_mt4096\": {\"DR_delta_pp\": 0.02, \"R_F1_delta_pp\": -0.02, \"E_F1_delta_pp\": 0.03, \"CF_delta_pp\": 0.11, \"parse_fail_delta\": -1}}, \"conclusion\": \"success\"}, \"beam_search_scierc_full_551\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0, \"CF_pct\": 0.53, \"E_F1\": 32, \"R_F1\": 8.56, \"E_P\": 26.83, \"E_R\": 39.63, \"R_P\": 6.69, \"R_R\": 11.91, \"parse_fail_rate\": 0, \"total_entities\": 2476, \"total_relations\": 1737}}, \"w7_llama_scierc_ft_semantic_only\": {\"status\": \"DONE\", \"metrics\": {\"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.65, \"CF_count\": 2, \"E_F1\": 67.76, \"E_P\": 66.47, \"E_R\": 69.1, \"R_F1\": 45.47, \"R_P\": 43.24, \"R_R\": 47.95, \"total_entities\": 1757, \"total_relations\": 1081, \"json_parse_failures\": 0}, \"conclusion\": \"success\"}, \"w7_llama_scierc_ft_grammar_only\": {\"status\": \"DONE\", \"metrics\": {\"total_samples\": 551, \"json_parse_failures\": 0, \"total_entities\": 1757, \"total_relations\": 1082, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.0111, \"cross_field_consistency_violation_rate\": 0, \"entity_f1\": {\"precision\": 0.6647, \"recall\": 0.691, \"f1\": 0.6776}, \"relation_f1\": {\"precision\": 0.432, \"recall\": 0.4795, \"f1\": 0.4545}}, \"conclusion\": \"success\"}, \"w7_qwen_scierc_ft_semantic_only\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.6, \"CF_count\": 15, \"parse_fail_rate\": 0, \"total_samples\": 551, \"total_entities\": 1784, \"total_relations\": 1128, \"E_P\": 0.6523, \"E_R\": 0.6898, \"E_F1\": 0.6705, \"R_P\": 0.4073, \"R_R\": 0.4713, \"R_F1\": 0.4369, \"DR_violations\": 7, \"delta_vs_grammar_only\": {\"DR_delta\": -1.3, \"note\": \"semantic_only DR=0.6% vs grammar_only DR=1.9%, semantic layer reduces DR by 68%\"}, \"delta_vs_unconstrained\": {\"DR_delta\": -1.35, \"note\": \"unconstrained DR=1.95% → semantic_only 0.6%\"}}}, \"w7_qwen_scierc_ft_grammar_only\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 1.9, \"CF_pct\": 0, \"parse_fail_rate\": 0, \"total_samples\": 551, \"total_entities\": 1784, \"total_relations\": 1128, \"E_P\": 0.6523, \"E_R\": 0.6898, \"E_F1\": 0.6705, \"R_P\": 0.4087, \"R_R\": 0.4733, \"R_F1\": 0.4386, \"DR_violations\": 22, \"tokenizer_warning\": \"false_positive_transformers_4.57.6\"}}, \"w5_llama_lora_scierc_unconstrained_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_entities\": 1757, \"total_relations\": 1082, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.0111, \"cross_field_consistency_violation_rate\": 0, \"total_violation_rate\": 0.0042, \"entity_precision\": 0.6647, \"entity_recall\": 0.691, \"entity_f1\": 0.6776, \"relation_precision\": 0.432, \"relation_recall\": 0.4795, \"relation_f1\": 0.4545}}, \"w5_llama_lora_scierc_constrained_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"domain_range_violation_rate\": 0.0009, \"relation_vocabulary_violation_rate\": 0, \"entity_type_violation_rate\": 0, \"cross_field_consistency_violation_rate\": 0.0046, \"relation_f1\": 0.4547, \"relation_precision\": 0.432, \"relation_recall\": 0.4795, \"entity_f1\": 0.6776, \"entity_precision\": 0.6647, \"entity_recall\": 0.691, \"total_relations\": 1081, \"total_entities\": 1757, \"total_samples\": 551, \"parse_failures\": 0}}, \"w5_lora_scierc_constrained_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0, \"cross_field_consistency_violation_rate\": 0.0118, \"entity_f1\": 0.6705, \"entity_precision\": 0.6523, \"entity_recall\": 0.6898, \"relation_f1\": 0.4377, \"relation_precision\": 0.4078, \"relation_recall\": 0.4723, \"total_entities\": 1784, \"total_relations\": 1128, \"total_samples\": 551, \"cross_field_consistency_violations\": 21}}, \"w1_cf_fallback_scierc_pilot\": {\"status\": \"DONE\", \"metrics\": {\"ET\": 0, \"RV\": 0, \"DR\": 0.1478, \"CF\": 0.0004, \"R_F1\": 0.0823, \"R_P\": 0.0643, \"R_R\": 0.114, \"E_F1\": 0.3098, \"E_P\": 0.2598, \"E_R\": 0.3837, \"entities\": 2474, \"relations\": 1725, \"samples\": 551, \"grammar_first_fallback_rate\": 0.3664, \"cf_registry_fallback_rate\": 0.0448, \"total_mask_calls\": 17024, \"violation_budget_DR_CF\": 0.1482}, \"conclusion\": \"negative\"}, \"w5_lora_scierc_training\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 0.0634, \"eval_loss\": 0.0586, \"eval_token_accuracy\": 0.9816, \"eval_entropy\": 0.9635, \"train_runtime_sec\": 688.4, \"epochs\": 3, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/checkpoints/qwen3_8b_lora_scierc\", \"merged_model_path\": \"/root/schema_semantic_constrained_ie/checkpoints/qwen3_8b_lora_scierc_merged\"}, \"conclusion\": \"success\"}, \"w8_qwen_docred_ft_grammar_only\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"E_F1\": 82.19, \"E_P\": 85.47, \"E_R\": 79.16, \"R_F1\": 40.85, \"R_P\": 36.27, \"R_R\": 46.77, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.61, \"CF_pct\": 0.11, \"parse_fail_rate\": 7.01, \"total_samples\": 998, \"parse_failures\": 70}}, \"w6_mistral_scierc_unconstrained\": {\"status\": \"DONE\", \"metrics\": {\"E_P\": 0.2402, \"E_R\": 0.3156, \"E_F1\": 0.2728, \"R_P\": 0.0295, \"R_R\": 0.0483, \"R_F1\": 0.0366, \"ET_pct\": 1.5, \"RV_pct\": 0, \"DR_pct\": 56.94, \"CF_pct\": 56.87, \"parse_fail_rate\": 0, \"total_samples\": 551, \"total_pred_entities\": 2202, \"total_pred_relations\": 1593}, \"conclusion\": \"success\"}, \"w6_mistral_scierc_constrained\": {\"status\": \"DONE\", \"metrics\": {\"E_P\": 0.2437, \"E_R\": 0.3144, \"E_F1\": 0.2746, \"R_P\": 0.0292, \"R_R\": 0.0493, \"R_F1\": 0.0367, \"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 13.4, \"CF_pct\": 1.27, \"CF_count\": 21, \"parse_fail_rate\": 0, \"total_samples\": 551, \"total_pred_entities\": 2162, \"total_pred_relations\": 1647, \"delta_vs_unconstrained\": {\"delta_E_F1\": 0.0018, \"delta_R_F1\": 0.0001, \"delta_ET\": -1.5, \"delta_RV\": 0, \"delta_DR\": -43.54, \"note\": \"Constrained - unconstrained. Baseline: E_F1=0.2728, R_F1=0.0366, DR=56.94%, ET=1.5%, RV=0%\"}}, \"conclusion\": \"success\"}, \"w8_ft_posthoc_baseline\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ft_regime\": {\"qwen_scierc\": {\"R_F1_before\": 43.86, \"R_F1_posthoc\": 43.94, \"R_F1_constrained\": 43.77, \"reject_rate_pct\": 1.95, \"TP_lost\": 4}, \"llama_scierc\": {\"R_F1_before\": 45.45, \"R_F1_posthoc\": 45.23, \"R_F1_constrained\": 45.47, \"reject_rate_pct\": 1.11, \"TP_lost\": 5}, \"qwen_docred\": {\"R_F1_before\": 40.91, \"R_F1_posthoc\": 41.11, \"R_F1_constrained\": \"TBD\", \"reject_rate_pct\": 1.03, \"TP_lost\": 1}, \"llama_docred\": {\"R_F1_before\": 43.77, \"R_F1_posthoc\": 43.92, \"R_F1_constrained\": 44.23, \"reject_rate_pct\": 0.64, \"TP_lost\": 1}}, \"zs_regime\": {\"mistral_scierc\": {\"triples\": 1584, \"reject_pct\": 20.27, \"R_F1_before\": 0.0376, \"R_F1_posthoc\": 0.0394, \"R_F1_constrained\": 0.0367, \"TP_before\": 48, \"TP_after\": 44, \"TP_lost\": 4}, \"qwen_scierc\": {\"triples\": 1724, \"reject_pct\": 16.76, \"R_F1_before\": 0.0823, \"R_F1_posthoc\": 0.0863, \"R_F1_constrained\": 0.0836, \"TP_before\": 111, \"TP_after\": 104, \"TP_lost\": 7}, \"llama_scierc\": {\"triples\": 1274, \"reject_pct\": 13.89, \"R_F1_before\": 0.0268, \"R_F1_posthoc\": 0.0271, \"R_F1_constrained\": 0.0254, \"TP_before\": 30, \"TP_after\": 28, \"TP_lost\": 2}, \"qwen_docred\": {\"triples\": 17497, \"reject_pct\": 48.12, \"R_F1_before\": 0.0774, \"R_F1_posthoc\": 0.0961, \"R_F1_constrained\": 0.0823, \"TP_before\": 1137, \"TP_after\": 1010, \"TP_lost\": 127}, \"llama_docred\": {\"triples\": 16437, \"reject_pct\": 42.18, \"R_F1_before\": 0.0598, \"R_F1_posthoc\": 0.0744, \"R_F1_constrained\": 0.0627, \"TP_before\": 850, \"TP_after\": 802, \"TP_lost\": 48}, \"mistral_docred\": {\"triples\": 11836, \"reject_pct\": 73.73, \"R_F1_before\": 0.0434, \"R_F1_posthoc\": 0.0385, \"R_F1_constrained\": 0.0552, \"TP_before\": 518, \"TP_after\": 292, \"TP_lost\": 226, \"removed_RV\": 4172, \"removed_ET\": 3382, \"removed_DR\": 1173, \"note\": \"Only ZS case where posthoc HURTS R_F1 — 73.7% rejection rate loses 43.6% of TPs\"}}, \"key_finding\": \"ZS: post-hoc R_F1 >= constrained R_F1 in 5/6 groups. Exception: Mistral DocRED where extreme rejection rate (73.7%) causes net F1 loss. Constrained decoding value is in structural guarantee (0% violations) and composability, not F1 preservation.\"}}, \"w6_mistral_docred_unconstrained\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 998, \"parse_failures\": 7, \"parse_fail_rate\": 0.7, \"total_pred_entities\": 12580, \"total_pred_relations\": 11879, \"ET_pct\": 7.58, \"RV_pct\": 42.35, \"DR_pct\": 57.42, \"CF_pct\": 24.78, \"E_P\": 0.6221, \"E_R\": 0.3975, \"E_F1\": 0.4851, \"R_P\": 0.0447, \"R_R\": 0.0432, \"R_F1\": 0.0434, \"f1_method\": \"fuzzy_normalized\", \"f1_note\": \"Relation matching uses case-insensitive normalization with token-overlap >80% and edit-distance ≤2 fallback. Strict R_F1=3.50% (delta +0.84pp from 98 additional TPs via fuzzy matching of Mistral underscore/abbreviation variants).\"}}, \"w6_mistral_docred_constrained\": {\"status\": \"DONE\", \"metrics\": {\"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 33.2, \"CF_pct\": 0.19, \"E_P\": 65.02, \"E_R\": 41.4, \"E_F1\": 50.59, \"R_P\": 5.67, \"R_R\": 5.37, \"R_F1\": 5.52, \"parse_fail_rate\": 0.8, \"total_samples\": 998, \"total_pred_entities\": 12535, \"total_pred_relations\": 11554, \"delta_vs_unconstrained\": {\"ET_pct\": -7.58, \"RV_pct\": -42.35, \"DR_pct\": -24.22, \"CF_pct\": -24.59, \"E_F1\": 2.08, \"R_F1\": 2.02}}, \"conclusion\": \"success\"}, \"w5_qwen_docred_lora_constrained_eval\": {\"status\": \"DONE\", \"metrics\": {\"ET_pct\": 0, \"RV_pct\": 0, \"DR_pct\": 0.01, \"CF_pct\": 0.41, \"E_F1\": 81.43, \"E_P\": 85.41, \"E_R\": 77.81, \"R_F1\": 40.56, \"R_P\": 36.35, \"R_R\": 45.86, \"parse_fail_rate\": 8.52, \"total_samples\": 998, \"success_samples\": 913, \"fail_samples\": 85, \"total_entities_pred\": 17799, \"total_relations_pred\": 15563, \"E_F1_excl_fail\": 85.69, \"R_F1_excl_fail\": 42.23, \"delta_vs_unconstrained\": {\"delta_DR\": -0.75, \"delta_RV\": -0.27, \"delta_R_F1\": -0.3, \"delta_R_F1_excl_fail\": 0.03, \"DR_reduction_pct\": 98.7, \"note\": \"Constrained - unconstrained. Unconstrained: DR=0.76%, R_F1=40.86, R_F1_excl_fail=42.20\"}}, \"conclusion\": \"success\"}, \"w5_llama_docred_sft_data_gen\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_samples\": 3053, \"dev_samples\": 998, \"train_size_mb\": 19, \"dev_size_mb\": 6.1}}, \"w1_cf_fallback_llama_docred\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"w1_cf_fallback_llama_scierc\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"w5_qwen_docred_lora_unconstrained_eval\": {\"status\": \"DONE\", \"metrics\": {\"ET_pct\": 0, \"RV_pct\": 0.27, \"DR_pct\": 0.76, \"CF_pct\": 0.12, \"E_F1\": 82.15, \"E_P\": 85.44, \"E_R\": 79.11, \"R_F1\": 40.86, \"R_P\": 36.41, \"R_R\": 46.56, \"parse_fail_rate\": 7.11, \"total_samples\": 998, \"success_samples\": 927, \"fail_samples\": 71, \"total_entities_pred\": 18091, \"total_relations_pred\": 15870, \"ET_pct_excl_fail\": 0, \"RV_pct_excl_fail\": 0.27, \"DR_pct_excl_fail\": 0.76, \"CF_pct_excl_fail\": 0.12, \"E_F1_excl_fail\": 85.72, \"E_P_excl_fail\": 85.44, \"E_R_excl_fail\": 86, \"R_F1_excl_fail\": 42.2, \"R_P_excl_fail\": 36.41, \"R_R_excl_fail\": 50.17}, \"conclusion\": \"success\"}, \"w5_llama_docred_lora_unconstrained_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ET_pct\": 0, \"RV_pct\": 0.15, \"DR_pct\": 0.49, \"E_F1\": 83.93, \"E_P\": 84.93, \"E_R\": 82.96, \"R_F1\": 43.72, \"R_P\": 38.59, \"R_R\": 50.41, \"parse_fail_rate\": 2.3, \"total_samples\": 998, \"total_entities_pred\": 19106, \"total_relations_pred\": 16171}}, \"w5_qwen_docred_lora_training\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_loss\": 0.0614, \"eval_mean_token_accuracy\": 0.9804, \"eval_entropy\": 0.715, \"train_loss\": 0.0682, \"train_runtime_s\": 5825.6, \"epochs\": 3, \"adapter_path\": \"/root/schema_semantic_constrained_ie/checkpoints/qwen_lora_docred\", \"merged_path\": \"/root/autodl-tmp/checkpoints/qwen_lora_docred_merged\"}}, \"w5_llama_docred_lora_training\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.0572, \"eval_loss\": 0.0624, \"token_acc\": 98.06}}, \"w5_docred_sft_data_gen\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_samples\": 3053, \"dev_samples\": 998, \"train_entities\": 59493, \"train_relations\": 38180, \"dev_entities\": 19528, \"dev_relations\": 12275}}, \"w5_llama_lora_scierc_training\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_loss\": 0.0595, \"eval_mean_token_accuracy\": 0.9817, \"eval_entropy\": 1.0565, \"train_loss\": 0.0501, \"train_runtime_sec\": 654.23, \"epochs\": 3, \"train_samples_per_second\": 8.08}}, \"w1_cf_fallback_docred\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"w5_lora_scierc_unconstrained_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.0195, \"cross_field_consistency_violation_rate\": 0, \"entity_f1\": 0.6705, \"entity_precision\": 0.6523, \"entity_recall\": 0.6898, \"relation_f1\": 0.4386, \"relation_precision\": 0.4087, \"relation_recall\": 0.4733, \"total_entities\": 1784, \"total_relations\": 1128, \"domain_range_violations\": 22, \"go_nogo_metric\": 0.0195, \"dr_gate\": \"FAILED\"}}, \"llama_docred_full_s1\": {\"status\": \"DONE\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"f1_method\": \"all_set\", \"violations\": {\"ET\": 0, \"RV\": 0, \"DR\": 2.55, \"CF\": 12.02}, \"f1\": {\"entity_f1\": 55.01, \"entity_precision\": 61.41, \"entity_recall\": 49.82, \"relation_f1\": 6.27, \"relation_precision\": 5.49, \"relation_recall\": 7.32}, \"counts\": {\"documents\": 998, \"documents_checked\": 907, \"parse_failures\": 91, \"unique_entities\": 11296, \"triples\": 16368}}, \"conclusion\": \"success\"}, \"llama_docred_unconstrained\": {\"status\": \"DONE\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2\", \"f1_method\": \"all_set\", \"documents\": 998, \"documents_checked\": 930, \"parse_failures\": 68, \"unique_entities\": 11525, \"total_triples\": 16437, \"dr_eligible_triples\": 13789, \"ET_rate_pct\": 0.13, \"RV_rate_pct\": 16.03, \"DR_rate_pct\": 26.07, \"CF_rate_pct\": 0.17, \"entity_precision\": 61.22, \"entity_recall\": 51.02, \"entity_f1\": 55.65, \"relation_precision\": 5.22, \"relation_recall\": 7, \"relation_f1\": 5.98, \"fuzzy_relation_matches\": 121}, \"conclusion\": \"success\"}, \"phase2_docred_grammar_only\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 985, \"parse_failures\": 13, \"total_entities\": 20150, \"total_triples\": 17341, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0.0003, \"domain_range_violation_rate\": 0.2617, \"cross_field_consistency_violation_rate\": 0.0007, \"relation_f1\": 8.31, \"relation_precision\": 7.06, \"relation_recall\": 10.12, \"entity_f1\": 59.38, \"entity_precision\": 58.47, \"entity_recall\": 60.32, \"unrecognized_relations\": 5, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"llama_scierc_full_s1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"samples\": 550, \"entities_extracted\": 2469, \"relations_extracted\": 1315, \"domain_range_violation_rate\": 0.0008, \"relation_vocab_violation_rate\": 0, \"entity_type_violation_rate\": 0, \"cross_field_consistency_violation_rate\": 0.0656, \"total_violation_rate\": 0.0431, \"entity_f1\": 0.2349, \"entity_precision\": 0.1972, \"entity_recall\": 0.2902, \"relation_f1\": 0.0254, \"relation_precision\": 0.0221, \"relation_recall\": 0.0298, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"llama_scierc_unconstrained\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"entity_type_violation_rate\": 0, \"relation_vocab_violation_rate\": 0.0055, \"domain_range_violation_rate\": 0.1334, \"cross_field_consistency_violations\": 6, \"entity_f1\": 0.2356, \"entity_precision\": 0.1983, \"entity_recall\": 0.2902, \"relation_f1\": 0.0268, \"relation_precision\": 0.0236, \"relation_recall\": 0.031, \"total_entities\": 2451, \"total_relations\": 1274, \"json_parse_failures\": 1, \"samples\": 551, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_scierc_full_s1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1729, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.0093, \"cross_field_consistency_violation_rate\": 0.099, \"entity_f1\": 0.3098, \"entity_precision\": 0.2598, \"entity_recall\": 0.3837, \"relation_f1\": 0.0836, \"relation_precision\": 0.0654, \"relation_recall\": 0.116, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_scierc_semantic_only\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1726, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0151, \"domain_range_violation_rate\": 0.1165, \"cross_field_consistency_violation_rate\": 0.0271, \"entity_f1\": 0.3101, \"entity_precision\": 0.2605, \"entity_recall\": 0.3831, \"relation_f1\": 0.0815, \"relation_precision\": 0.0637, \"relation_recall\": 0.1129, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_scierc_grammar_only\": {\"status\": \"DONE\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1725, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.1484, \"cross_field_consistency_violation_rate\": 0.0008, \"entity_f1\": 0.3098, \"entity_precision\": 0.2598, \"entity_recall\": 0.3837, \"relation_f1\": 0.0823, \"relation_precision\": 0.0643, \"relation_recall\": 0.114, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"conclusion\": \"success\"}, \"phase2_scierc_unconstrained\": {\"status\": \"DONE\", \"metrics\": {\"json_parse_rate\": 1, \"entity_f1\": 0.3101, \"entity_precision\": 0.2605, \"entity_recall\": 0.3831, \"relation_f1\": 0.0823, \"relation_precision\": 0.0644, \"relation_recall\": 0.114, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0139, \"domain_range_violation_rate\": 0.1537, \"cross_field_consistency_violation_rate\": 0.0008, \"total_triples\": 1724, \"total_entities\": 2474, \"total_samples\": 551, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"conclusion\": \"success\"}, \"phase2_docred_full_s1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 987, \"parse_failures\": 11, \"total_entities\": 20187, \"total_triples\": 17341, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0.0003, \"domain_range_violation_rate\": 0.1021, \"cross_field_consistency_violation_rate\": 0.0257, \"entity_f1\": 59.37, \"entity_precision\": 58.45, \"entity_recall\": 59.63, \"relation_f1\": 8.23, \"relation_precision\": 6.99, \"relation_recall\": 10.01, \"unrecognized_relations\": 5, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_docred_semantic_only\": {\"status\": \"DONE\", \"metrics\": {\"documents_checked\": 987, \"parse_failures\": 11, \"total_entities\": 20185, \"total_triples\": 17571, \"entity_type_violation_rate\": 0.0422, \"relation_vocabulary_violation_rate\": 0.2987, \"domain_range_violation_rate\": 0.1384, \"cross_field_consistency_violation_rate\": 0.0105, \"entity_f1\": 57.81, \"entity_precision\": 57.27, \"entity_recall\": 58.37, \"relation_f1\": 7.7, \"relation_precision\": 6.54, \"relation_recall\": 9.37, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"et_v1\": 0.1044, \"et_fix_note\": \"v1 triple-counted ET across entity_list + relation head/tail; v2 deduplicates by (text, normalized_type)\"}, \"conclusion\": \"success\"}, \"phase2_docred_unconstrained\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 986, \"parse_failures\": 12, \"total_entities\": 20171, \"total_triples\": 17497, \"entity_type_violation_rate\": 0.0248, \"relation_vocabulary_violation_rate\": 0.2966, \"domain_range_violation_rate\": 0.1846, \"cross_field_consistency_violation_rate\": 0.001, \"entity_f1\": 58.15, \"entity_precision\": 57.26, \"entity_recall\": 58.32, \"relation_f1\": 7.74, \"relation_precision\": 6.55, \"relation_recall\": 9.46, \"unrecognized_relations\": 5189, \"f1_method\": \"all_set (includes OOV predictions in denominator)\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"et_v1\": 0.0818, \"et_fix_note\": \"v1 triple-counted ET across entity_list + relation head/tail; v2 deduplicates by (text, normalized_type)\"}}, \"mvp_phase0_docred_schema_r2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"phase2_s2_pilot50\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"domain_range_violation_rate\": 0.0205, \"relation_vocabulary_violation_rate\": 0, \"relation_f1\": 0.1008, \"samples\": 50, \"predicted_relations\": 146, \"true_positives\": 13, \"gold_relations\": 112, \"entity_f1_approx\": 0.29, \"note\": \"DR 修正: 原值 0 来自 dryrun (n=25 triples)。实际 pilot50 DR=3/146=2.05% (来自 violation_report_s2_pilot50.json)。\"}}, \"mvp_phase0_docred_schema\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_documents\": 998, \"documents_checked\": 943, \"parse_failures\": 55, \"json_parse_rate\": 0.9449, \"total_entities\": 19524, \"total_triples\": 16782, \"entity_type_violations\": 119, \"entity_type_violation_rate\": 0.0061, \"relation_vocabulary_violations\": 3090, \"relation_vocabulary_violation_rate\": 0.1841, \"relation_fuzzy_matches\": 85, \"domain_range_violations\": 2154, \"domain_range_violation_rate\": 0.1284, \"cross_field_consistency_violations\": 29, \"cross_field_consistency_violation_rate\": 0.0015, \"total_violations_any\": 5392, \"total_violation_rate\": 0.1485, \"go_nogo_metric_dr\": 0.1284}}, \"mvp_phase0_violation_rate_docred\": {\"status\": \"DONE\", \"metrics\": {\"total_docs\": 998, \"parsed_docs\": 962, \"json_parse_rate\": 0.964, \"total_entities\": 19099, \"total_triples\": 16540, \"entity_type_violation_rate\": 0.075, \"relation_vocabulary_violation_rate\": 0.289, \"domain_range_violation_rate\": 0.187, \"cross_field_consistency_violation_rate\": 0.0008, \"go_nogo_metric\": 0.187, \"fuzzy_matches\": 126, \"top_dr_violations_by_rate\": {\"P35_head_of_state\": 1, \"P710_participant\": 0.919, \"P172_ethnic_group\": 0.875}, \"top_dr_violations_by_count\": {\"P31_instance_of\": {\"violations\": 322, \"total\": 533, \"rate\": 0.604}, \"P1001_applies_to_jurisdiction\": {\"violations\": 264, \"total\": 594, \"rate\": 0.444}, \"P1344_participant_in\": {\"violations\": 194, \"total\": 312, \"rate\": 0.622}}}, \"conclusion\": \"success\"}, \"mvp_phase0_scierc_schema\": {\"status\": \"DONE\", \"metrics\": {\"domain_range_violation_rate\": 0.0578, \"relation_vocabulary_violation_rate\": 0.003, \"entity_type_violation_rate\": 0, \"total_violation_rate\": 0.0253, \"go_nogo_metric\": 0.0578, \"total_triples\": 1661, \"vs_minimal_dr_reduction\": -0.624, \"per_relation\": {\"Used-for\": {\"rate\": \"TBD\"}, \"Feature-of\": {\"delta_pp\": -22.3}, \"Part-of\": {\"delta_pp\": -22.5}, \"Compare\": {\"delta_pp\": -14.8}, \"Evaluate-for\": {\"delta_pp\": 5.8}}, \"mcnemar_all_significant\": true}, \"conclusion\": \"success\"}, \"mvp_phase0_violation_rate\": {\"status\": \"DONE\", \"metrics\": {\"total_triples\": 1724, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0139, \"domain_range_violation_rate\": 0.1537, \"cross_field_consistency_violation_rate\": 0.0008, \"go_nogo_metric\": 0.1537, \"entity_f1\": 0.3101, \"relation_f1\": 0.0823, \"per_relation\": {\"Used-for\": {\"total\": 787, \"dr_violations\": 6, \"rate\": 0.0076}, \"Conjunction\": {\"total\": 32, \"dr_violations\": 0, \"rate\": 0}, \"Hyponym-of\": {\"total\": 124, \"dr_violations\": 18, \"rate\": 0.1452}, \"Evaluate-for\": {\"total\": 133, \"dr_violations\": 32, \"rate\": 0.2406}, \"Part-of\": {\"total\": 72, \"dr_violations\": 18, \"rate\": 0.25}, \"Feature-of\": {\"total\": 486, \"dr_violations\": 163, \"rate\": 0.3354}, \"Compare\": {\"total\": 66, \"dr_violations\": 28, \"rate\": 0.4242}}}, \"conclusion\": \"success\"}}, \"count\": 160, \"total\": 160, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4994}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry is too large. Let me search for Llama-specific experiments with a filter.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "d6e50e16-127b-46c0-a163-3ba660a9f8d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rr82WnNF2xRQMgUCyBWqqR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 626,
+      "cache_read_input_tokens": 44002,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+Let me search specifically for the Llama FP16 baseline.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "442d2b41-359a-4557-b0d9-bb22a2dfef57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rr82WnNF2xRQMgUCyBWqqR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 626,
+      "cache_read_input_tokens": 44002,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_013SD6eAJPpxgsP9iWWbc9CW`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/9ed68498-cb78-485f-8683-41d0040aa399/tool-results/mcp-agent-ml-research-read_registry-1779512962208.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\nexps = data['data']['experiments']\n# Find llama-related experiments with scierc\nfor k, v in exps.items():\n    if 'llama' in k.lower() and 'scierc' in k.lower():\n        print(f\\\"{k}: status={v.get('status')}, conclusion={v.get('conclusion')}\\\")\n        m = v.get('metrics', {})\n        # Print key metrics\n        dr = m.get('DR_pct', m.get('DR%', m.get('domain_range_violation_rate', 'N/A')))\n        rf1 = m.get('R_F1', m.get('R-F1', m.get('relation_F1', 'N/A')))\n        ef1 = m.get('E_F1', m.get('E-F1', m.get('entity_F1', 'N/A')))\n        cf = m.get('CF_count', m.get('CF%', m.get('CF_pct', m.get('cross_field_consistency_violations', 'N/A'))))\n        rv = m.get('RV_pct', m.get('RV%', m.get('relation_vocab_violation_rate', 'N/A')))\n        print(f'  DR={dr}, RV={rv}, CF={cf}, R-F1={rf1}, E-F1={ef1}')\n        print()\n\"\n",
+  "description": "Find Llama SciERC experiments in registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "7ef21140-a534-48ee-93c1-e214a69c47df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rr82WnNF2xRQMgUCyBWqqR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 626,
+      "cache_read_input_tokens": 44002,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-23T05:09:33.642Z_
+
+<details><summary>↩ Tool result · `toolu_013SD6eAJPpxgsP9iWWbc9CW`</summary>
+
+```text
+sf2_llama_int4_scierc_s1: status=RUNNING, conclusion=None
+  DR=N/A, RV=N/A, CF=N/A, R-F1=N/A, E-F1=N/A
+
+tcr_beam4_llama_scierc: status=DONE, conclusion=negative
+  DR=1.09, RV=N/A, CF=N/A, R-F1=46.05, E-F1=68.02
+
+r16_trie_llama_ft_scierc: status=DONE, conclusion=success
+  DR=15.2, RV=0, CF=0, R-F1=19.95, E-F1=36.66
+
+r16_trie_llama_zs_scierc: status=DONE, conclusion=success
+  DR=84.4, RV=0, CF=0.36, R-F1=2.9, E-F1=23.23
+
+d066_sweep_llama_scierc_beam8_s1_551: status=DONE, conclusion=success
+  DR=0, RV=0, CF=0, R-F1=44.95, E-F1=67.51
+
+d066_sweep_llama_scierc_beam4_s1_551: status=DONE, conclusion=success
+  DR=0, RV=0, CF=0, R-F1=46.18, E-F1=68.06
+
+d066_sweep_llama_scierc_beam2_s1_551: status=DONE, conclusion=success
+  DR=0, RV=0, CF=0.17, R-F1=N/A, E-F1=N/A
+
+d066_sweep_llama_scierc_beam1_unc: status=DONE, conclusion=failed
+  DR=N/A, RV=N/A, CF=N/A, R-F1=N/A, E-F1=N/A
+
+q1_llama_lora_scierc_beam4: status=DONE, conclusion=success
+  DR=N/A, RV=N/A, CF=N/A, R-F1=N/A, E-F1=N/A
+
+w9_llama_scierc_beam_551: status=DONE, conclusion=success
+  DR=0, RV=0, CF=15, R-F1=3.33, E-F1=25.04
+
+w7_llama_scierc_ft_semantic_only: status=DONE, conclusion=success
+  DR=0.65, RV=0, CF=2, R-F1=45.47, E-F1=67.76
+
+w7_llama_scierc_ft_grammar_only: status=DONE, conclusion=success
+  DR=0.0111, RV=N/A, CF=N/A, R-F1=N/A, E-F1=N/A
+
+w5_llama_lora_scierc_unconstrained_eval: status=DONE, conclusion=success
+  DR=0.0111, RV=N/A, CF=N/A, R-F1=N/A, E-F1=N/A
+
+w5_llama_lora_scierc_constrained_eval: status=DONE, conclusion=success
+  DR=0.0009, RV=N/A, CF=N/A, R-F1=N/A, E-F1=N/A
+
+w1_cf_fallback_llama_scierc: status=DONE, conclusion=killed
+  DR=N/A, RV=N/A, CF=N/A, R-F1=N/A, E-F1=N/A
+
+w5_llama_lora_scierc_training: status=DONE, conclusion=success
+  DR=N/A, RV=N/A, CF=N/A, R-F1=N/A, E-F1=N/A
+
+llama_scierc_full_s1: status=DONE, conclusion=success
+  DR=0.0008, RV=0, CF=N/A, R-F1=N/A, E-F1=N/A
+
+llama_scierc_unconstrained: status=DONE, conclusion=success
+  DR=0.1334, RV=0.0055, CF=6, R-F1=N/A, E-F1=N/A
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "e6edc2dd-d1be-44b9-9e18-64cc0012afad",
+  "tool_use_result": {
+    "stdout": "sf2_llama_int4_scierc_s1: status=RUNNING, conclusion=None\n  DR=N/A, RV=N/A, CF=N/A, R-F1=N/A, E-F1=N/A\n\ntcr_beam4_llama_scierc: status=DONE, conclusion=negative\n  DR=1.09, RV=N/A, CF=N/A, R-F1=46.05, E-F1=68.02\n\nr16_trie_llama_ft_scierc: status=DONE, conclusion=success\n  DR=15.2, RV=0, CF=0, R-F1=19.95, E-F1=36.66\n\nr16_trie_llama_zs_scierc: status=DONE, conclusion=success\n  DR=84.4, RV=0, CF=0.36, R-F1=2.9, E-F1=23.23\n\nd066_sweep_llama_scierc_beam8_s1_551: status=DONE, conclusion=success\n  DR=0, RV=0, CF=0, R-F1=44.95, E-F1=67.51\n\nd066_sweep_llama_scierc_beam4_s1_551: status=DONE, conclusion=success\n  DR=0, RV=0, CF=0, R-F1=46.18, E-F1=68.06\n\nd066_sweep_llama_scierc_beam2_s1_551: status=DONE, conclusion=success\n  DR=0, RV=0, CF=0.17, R-F1=N/A, E-F1=N/A\n\nd066_sweep_llama_scierc_beam1_unc: status=DONE, conclusion=failed\n  DR=N/A, RV=N/A, CF=N/A, R-F1=N/A, E-F1=N/A\n\nq1_llama_lora_scierc_beam4: status=DONE, conclusion=success\n  DR=N/A, RV=N/A, CF=N/A, R-F1=N/A, E-F1=N/A\n\nw9_llama_scierc_beam_551: status=DONE, conclusion=success\n  DR=0, RV=0, CF=15, R-F1=3.33, E-F1=25.04\n\nw7_llama_scierc_ft_semantic_only: status=DONE, conclusion=success\n  DR=0.65, RV=0, CF=2, R-F1=45.47, E-F1=67.76\n\nw7_llama_scierc_ft_grammar_only: status=DONE, conclusion=success\n  DR=0.0111, RV=N/A, CF=N/A, R-F1=N/A, E-F1=N/A\n\nw5_llama_lora_scierc_unconstrained_eval: status=DONE, conclusion=success\n  DR=0.0111, RV=N/A, CF=N/A, R-F1=N/A, E-F1=N/A\n\nw5_llama_lora_scierc_constrained_eval: status=DONE, conclusion=success\n  DR=0.0009, RV=N/A, CF=N/A, R-F1=N/A, E-F1=N/A\n\nw1_cf_fallback_llama_scierc: status=DONE, conclusion=killed\n  DR=N/A, RV=N/A, CF=N/A, R-F1=N/A, E-F1=N/A\n\nw5_llama_lora_scierc_training: status=DONE, conclusion=success\n  DR=N/A, RV=N/A, CF=N/A, R-F1=N/A, E-F1=N/A\n\nllama_scierc_full_s1: status=DONE, conclusion=success\n  DR=0.0008, RV=0, CF=N/A, R-F1=N/A, E-F1=N/A\n\nllama_scierc_unconstrained: status=DONE, conclusion=success\n  DR=0.1334, RV=0.0055, CF=6, R-F1=N/A, E-F1=N/A",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The Llama FP16 S1 SciERC results are in experiments like `llama_scierc_full_s1`, `w5_llama_lora_scierc_constrained_eval`, `w7_llama_scierc_ft_semantic_only`, etc. But the metrics formats are inconsistent and some are missing key values.
+
+Let me look at the most relevant ones more carefully. The key experiments for comparison are:
+- `w5_llama_lora_scierc_constrained_eval` - this seems to be the FP16 constrained eval
+
+
+- `w5_llama_lora_scierc_unconstrained_eval` - FP16 unconstrained
+- `llama_scierc_full_s1` - possibly the main S1 result
+
+Now I need to pull the full metrics from these experiments to compare them properly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "2ee8dfdb-df9b-48e6-856c-59a7916a62cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JZTaN1Bvajsngvt9LrXjZW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1722,
+      "cache_read_input_tokens": 44628,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1722
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_013izFhN5qdDrtXCJ5LmkPLk`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/9ed68498-cb78-485f-8683-41d0040aa399/tool-results/mcp-agent-ml-research-read_registry-1779512962208.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\nexps = data['data']['experiments']\nfor k in ['w5_llama_lora_scierc_constrained_eval', 'w5_llama_lora_scierc_unconstrained_eval', 'llama_scierc_full_s1', 'w7_llama_scierc_ft_semantic_only', 'w7_llama_scierc_ft_grammar_only', 'sf2_llama_int4_scierc_s1']:\n    if k in exps:\n        print(f'=== {k} ===')\n        print(json.dumps(exps[k], indent=2))\n        print()\n\"\n",
+  "description": "Get full details for Llama SciERC experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "8a8b25a9-4769-4591-9270-c5d9c15cdf2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JZTaN1Bvajsngvt9LrXjZW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1722,
+      "cache_read_input_tokens": 44628,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1722
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-23T05:09:48.500Z_
+
+<details><summary>↩ Tool result · `toolu_013izFhN5qdDrtXCJ5LmkPLk`</summary>
+
+```text
+=== w5_llama_lora_scierc_constrained_eval ===
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "domain_range_violation_rate": 0.0009,
+    "relation_vocabulary_violation_rate": 0,
+    "entity_type_violation_rate": 0,
+    "cross_field_consistency_violation_rate": 0.0046,
+    "relation_f1": 0.4547,
+    "relation_precision": 0.432,
+    "relation_recall": 0.4795,
+    "entity_f1": 0.6776,
+    "entity_precision": 0.6647,
+    "entity_recall": 0.691,
+    "total_relations": 1081,
+    "total_entities": 1757,
+    "total_samples": 551,
+    "parse_failures": 0
+  }
+}
+
+=== w5_llama_lora_scierc_unconstrained_eval ===
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "total_samples": 551,
+    "total_entities": 1757,
+    "total_relations": 1082,
+    "json_parse_rate": 1,
+    "entity_type_violation_rate": 0,
+    "relation_vocabulary_violation_rate": 0,
+    "domain_range_violation_rate": 0.0111,
+    "cross_field_consistency_violation_rate": 0,
+    "total_violation_rate": 0.0042,
+    "entity_precision": 0.6647,
+    "entity_recall": 0.691,
+    "entity_f1": 0.6776,
+    "relation_precision": 0.432,
+    "relation_recall": 0.4795,
+    "relation_f1": 0.4545
+  }
+}
+
+=== llama_scierc_full_s1 ===
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "samples": 550,
+    "entities_extracted": 2469,
+    "relations_extracted": 1315,
+    "domain_range_violation_rate": 0.0008,
+    "relation_vocab_violation_rate": 0,
+    "entity_type_violation_rate": 0,
+    "cross_field_consistency_violation_rate": 0.0656,
+    "total_violation_rate": 0.0431,
+    "entity_f1": 0.2349,
+    "entity_precision": 0.1972,
+    "entity_recall": 0.2902,
+    "relation_f1": 0.0254,
+    "relation_precision": 0.0221,
+    "relation_recall": 0.0298,
+    "checker_version": "fixed_20260514_v2 (strip + alias + unique_et)"
+  }
+}
+
+=== w7_llama_scierc_ft_semantic_only ===
+{
+  "status": "DONE",
+  "metrics": {
+    "ET_pct": 0,
+    "RV_pct": 0,
+    "DR_pct": 0.65,
+    "CF_count": 2,
+    "E_F1": 67.76,
+    "E_P": 66.47,
+    "E_R": 69.1,
+    "R_F1": 45.47,
+    "R_P": 43.24,
+    "R_R": 47.95,
+    "total_entities": 1757,
+    "total_relations": 1081,
+    "json_parse_failures": 0
+  },
+  "conclusion": "success"
+}
+
+=== w7_llama_scierc_ft_grammar_only ===
+{
+  "status": "DONE",
+  "metrics": {
+    "total_samples": 551,
+    "json_parse_failures": 0,
+    "total_entities": 1757,
+    "total_relations": 1082,
+    "entity_type_violation_rate": 0,
+    "relation_vocabulary_violation_rate": 0,
+    "domain_range_violation_rate": 0.0111,
+    "cross_field_consistency_violation_rate": 0,
+    "entity_f1": {
+      "precision": 0.6647,
+      "recall": 0.691,
+      "f1": 0.6776
+    },
+    "relation_f1": {
+      "precision": 0.432,
+      "recall": 0.4795,
+      "f1": 0.4545
+    }
+  },
+  "conclusion": "success"
+}
+
+=== sf2_llama_int4_scierc_s1 ===
+{
+  "status": "RUNNING"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "996635a4-62df-4fac-b565-8a59e00eee10",
+  "tool_use_result": {
+    "stdout": "=== w5_llama_lora_scierc_constrained_eval ===\n{\n  \"status\": \"DONE\",\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"domain_range_violation_rate\": 0.0009,\n    \"relation_vocabulary_violation_rate\": 0,\n    \"entity_type_violation_rate\": 0,\n    \"cross_field_consistency_violation_rate\": 0.0046,\n    \"relation_f1\": 0.4547,\n    \"relation_precision\": 0.432,\n    \"relation_recall\": 0.4795,\n    \"entity_f1\": 0.6776,\n    \"entity_precision\": 0.6647,\n    \"entity_recall\": 0.691,\n    \"total_relations\": 1081,\n    \"total_entities\": 1757,\n    \"total_samples\": 551,\n    \"parse_failures\": 0\n  }\n}\n\n=== w5_llama_lora_scierc_unconstrained_eval ===\n{\n  \"status\": \"DONE\",\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"total_samples\": 551,\n    \"total_entities\": 1757,\n    \"total_relations\": 1082,\n    \"json_parse_rate\": 1,\n    \"entity_type_violation_rate\": 0,\n    \"relation_vocabulary_violation_rate\": 0,\n    \"domain_range_violation_rate\": 0.0111,\n    \"cross_field_consistency_violation_rate\": 0,\n    \"total_violation_rate\": 0.0042,\n    \"entity_precision\": 0.6647,\n    \"entity_recall\": 0.691,\n    \"entity_f1\": 0.6776,\n    \"relation_precision\": 0.432,\n    \"relation_recall\": 0.4795,\n    \"relation_f1\": 0.4545\n  }\n}\n\n=== llama_scierc_full_s1 ===\n{\n  \"status\": \"DONE\",\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"samples\": 550,\n    \"entities_extracted\": 2469,\n    \"relations_extracted\": 1315,\n    \"domain_range_violation_rate\": 0.0008,\n    \"relation_vocab_violation_rate\": 0,\n    \"entity_type_violation_rate\": 0,\n    \"cross_field_consistency_violation_rate\": 0.0656,\n    \"total_violation_rate\": 0.0431,\n    \"entity_f1\": 0.2349,\n    \"entity_precision\": 0.1972,\n    \"entity_recall\": 0.2902,\n    \"relation_f1\": 0.0254,\n    \"relation_precision\": 0.0221,\n    \"relation_recall\": 0.0298,\n    \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"\n  }\n}\n\n=== w7_llama_scierc_ft_semantic_only ===\n{\n  \"status\": \"DONE\",\n  \"metrics\": {\n    \"ET_pct\": 0,\n    \"RV_pct\": 0,\n    \"DR_pct\": 0.65,\n    \"CF_count\": 2,\n    \"E_F1\": 67.76,\n    \"E_P\": 66.47,\n    \"E_R\": 69.1,\n    \"R_F1\": 45.47,\n    \"R_P\": 43.24,\n    \"R_R\": 47.95,\n    \"total_entities\": 1757,\n    \"total_relations\": 1081,\n    \"json_parse_failures\": 0\n  },\n  \"conclusion\": \"success\"\n}\n\n=== w7_llama_scierc_ft_grammar_only ===\n{\n  \"status\": \"DONE\",\n  \"metrics\": {\n    \"total_samples\": 551,\n    \"json_parse_failures\": 0,\n    \"total_entities\": 1757,\n    \"total_relations\": 1082,\n    \"entity_type_violation_rate\": 0,\n    \"relation_vocabulary_violation_rate\": 0,\n    \"domain_range_violation_rate\": 0.0111,\n    \"cross_field_consistency_violation_rate\": 0,\n    \"entity_f1\": {\n      \"precision\": 0.6647,\n      \"recall\": 0.691,\n      \"f1\": 0.6776\n    },\n    \"relation_f1\": {\n      \"precision\": 0.432,\n      \"recall\": 0.4795,\n      \"f1\": 0.4545\n    }\n  },\n  \"conclusion\": \"success\"\n}\n\n=== sf2_llama_int4_scierc_s1 ===\n{\n  \"status\": \"RUNNING\"\n}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the FP16 baseline. The key comparison for Llama FP16 S1 is `w5_llama_lora_scierc_constrained_eval`:
+- DR: 0.09% (0.0009)
+- RV: 0%
+- ET: 0%
+- CF: 0.46% (0.0046)
+- R-F1: 45.47
+- E-F1: 67.76
+- Relations: 1081
+
+
+- Entities: 1757
+
+The unconstrained version shows similar performance with R-F1 at 45.45 and E-F1 at 67.76, though DR increases to 1.11%. Now I'm waiting for the INT4 inference to finish—it's at 220 out of 551 samples, running at about 20 samples per minute since it started around 12:58.
+
+Based on that pace, the remaining 331 samples should take roughly 16-17 minutes, putting completion around 13:26. I'll check the progress more carefully with timestamps to get a better estimate.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "eee3e2ab-834b-41b4-ab83-741c5fad5132",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B5L7eWqmHR4mhdFmk6VugY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1820,
+      "cache_read_input_tokens": 46350,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1820
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+FP16 baseline found: `w5_llama_lora_scierc_constrained_eval` with DR=0.09%, R-F1=45.47, E-F1=67.76. Inference at 220/551 (~40%), should take ~15 more minutes. Let me poll.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "59c139e4-90a6-4c30-be03-c16b027cd102",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B5L7eWqmHR4mhdFmk6VugY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1820,
+      "cache_read_input_tokens": 46350,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1820
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01M6BA8BUWeiLbahQdZTbAHB`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "wc -l /root/schema_semantic_constrained_ie/outputs/sf2_llama_int4_scierc_s1/raw_outputs.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "e30efe02-a6c9-48dd-a4e3-6d35fe8779ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B5L7eWqmHR4mhdFmk6VugY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1820,
+      "cache_read_input_tokens": 46350,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1820
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-23T05:10:03.200Z_
+
+<details><summary>↩ Tool result · `toolu_01M6BA8BUWeiLbahQdZTbAHB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"243 /root/schema_semantic_constrained_ie/outputs/sf2_llama_int4_scierc_s1/raw_outputs.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "3a0551ce-1215-403c-a949-7983f8e58bdb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"243 /root/schema_semantic_constrained_ie/outputs/sf2_llama_int4_scierc_s1/raw_outputs.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"243 /root/schema_semantic_constrained_ie/outputs/sf2_llama_int4_scierc_s1/raw_outputs.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+243/551 now (was 220 a minute ago). ~23 samples/min → ~13 more minutes. Let me schedule a wakeup to check when it should be near completion.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "6b6b517b-84ac-4472-95d3-5b9e84567fbd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2ywojQ2r5MHy7FmHLnVEz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 804,
+      "cache_read_input_tokens": 48170,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 804
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — ScheduleWakeup · `toolu_012rcFVUk2yEjJpHuwak6sRP`</summary>
+
+````json
+{
+  "delaySeconds": 270,
+  "reason": "Llama INT4 inference at 243/551, ~23 samples/min, should finish in ~13min. Checking at 270s to stay in cache window.",
+  "prompt": "## 任务：接力 Llama INT4 SciERC S1 推理，收割结果\n\n上一个 Worker 已完成量化并启动推理（167/551），但退出前未注册 cron 或 registry。\n\n### 步骤\n\n1. SSH 到 westd-16980，检查 cuda:1 上的推理进度：\n```bash\nnvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader\nps aux | grep -E \"python|eval\" | grep -v grep\n```\n\n2. 找到推理进程和输出文件：\n```bash\ntmux ls 2>/dev/null\n\n# 找 Llama INT4 输出文件\nfind /root/schema_semantic_constrained_ie/outputs/ -name \"*llama*int4*\" -o -name \"*llama*quant*\" -o -name \"*sf2*llama*\" 2>/dev/null\nls -lt /root/schema_semantic_constrained_ie/outputs/sf2_llama_int4_scierc_s1/ 2>/dev/null\nfind /root/ -name \"*.jsonl\" -newer /root/schema_semantic_constrained_ie/scripts/ -mmin -60 2>/dev/null | head -10\n```\n\n3. 检查已完成多少 samples：\n```bash\nwc -l &lt;output_file>\n```\n\n4. 如果仍在运行（<551行），轮询等待完成：\n```bash\nwhile true; do\n  count=$(wc -l < &lt;output_file> 2>/dev/null || echo 0)\n  echo \"$(date): $count/551 samples\"\n  if [ \"$count\" -ge 551 ]; then break; fi\n  sleep 30\ndone\n```\n\n5. 推理完成后（551行），运行 violation_checker.py：\n```bash\ncd /root/schema_semantic_constrained_ie\npython violation_checker.py --pred &lt;output_file> --gold &lt;gold_file> --ontology &lt;ontology_file>\n```\n\n找到 gold 和 ontology 文件：\n```bash\nfind /root/schema_semantic_constrained_ie/ -name \"*scierc*gold*\" -o -name \"*scierc*test*\" 2>/dev/null | head -10\nfind /root/schema_semantic_constrained_ie/ -name \"ontology_constraints*.json\" 2>/dev/null | head -5\n```\n\n6. 创建 registry 条目 `sf2_llama_int4_scierc_s1`：\n- status: DONE\n- conclusion: 基于 DR/CF 差异判断（<1pp → success，>1pp → negative）\n- hypothesis: \"AWQ INT4 quantization of fine-tuned Llama-3.1-8B does not significantly affect constraint enforcement (DR/CF) on SciERC S1\"\n- metrics: 完整的 DR/RV/ET/CF/R-F1/E-F1\n\n7. 报告 FP16 vs INT4 对比表。\n\n### 对比基准\n从 registry 查 Llama FP16 S1 SciERC 结果（实验名可能是 llama_scierc_full_s1 或类似）。\n\n### 注意\n- 如果进程已退出且行数 < 551，检查错误日志\n- 量化模型在 `/root/autodl-tmp/models/Llama-8B-SciERC-FT-AWQ-INT4/` 或类似路径"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "ceb32973-b051-4d1b-b960-629859185813",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2ywojQ2r5MHy7FmHLnVEz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 804,
+      "cache_read_input_tokens": 48170,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 804
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-23T05:10:26.296Z_
+
+<details><summary>↩ Tool result · `toolu_012rcFVUk2yEjJpHuwak6sRP`</summary>
+
+```text
+Next wakeup scheduled for 05:15:00 (in 274s).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "db79b6b7-3507-4870-a16e-658bb13faca8",
+  "tool_use_result": {
+    "scheduledFor": 1779513300000,
+    "clampedDelaySeconds": 270,
+    "wasClamped": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+Llama INT4 inference at 243/551, advancing ~23 samples/min. Scheduled check in ~4.5min when it should be near completion. FP16 baseline ready for comparison.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "uuid": "f99d31ce-a426-4e1b-b74c-dd824e3b427e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0127F5WmQENXJwiqEMMswqdB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1121,
+      "cache_read_input_tokens": 48974,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1121
+      },
+      "output_tokens": 7,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 53_
+
+Llama INT4 inference at 243/551, advancing ~23 samples/min. Scheduled check in ~4.5min when it should be near completion. FP16 baseline ready for comparison.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 110436,
+  "duration_api_ms": 108968,
+  "num_turns": 18,
+  "stop_reason": "end_turn",
+  "session_id": "9ed68498-cb78-485f-8683-41d0040aa399",
+  "total_cost_usd": 0.562051,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 38648,
+    "cache_read_input_tokens": 401428,
+    "output_tokens": 4724,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 38648,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 49,
+        "cache_read_input_tokens": 48974,
+        "cache_creation_input_tokens": 1121,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1121
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1502,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0016170000000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 4724,
+      "cacheReadInputTokens": 401428,
+      "cacheCreationInputTokens": 38648,
+      "webSearchRequests": 0,
+      "costUSD": 0.560434,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "1c95df34-6199-4816-90de-8132085edfc6"
+}
+```
+
+</details>
+
+---

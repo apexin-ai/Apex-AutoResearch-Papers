@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2560a39eee4d3fc8d815",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "director / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_4.md",
+    "occurrence": 1,
+    "bytes": 4454,
+    "sha256": "d754a1ebf6cb2833f1e4f3c1d9416d0135a881c1f3210c2b2b6fc15f12b1e33a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_messages\nupdated: '2026-05-15T14:02:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1（westd-16980 分配给本项目的卡）。不可用其他 GPU\n- 论文 .tex 真源在本地 `artifacts/_project/paper/`，不在远程服务器。写作修改操作本地文件\n- 训练代码/数据/checkpoint 真源在远程 `/root/schema_semantic_constrained_ie/`\n- mt6144 实验正在跑（cuda:0 + cuda:1 各一个），CF fallback 实验必须等 mt6144 完成后才能启动，不可抢占\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-16980 (connect.westd.seetacloud.com)，用户 root\n- 工作目录：`/root/schema_semantic_constrained_ie`\n- Python/conda：aml-train 镜像，`/root/miniconda3/bin/python`，conda base 环境\n- 模型：Qwen3-8B + Llama-3.1-8B-Instruct（路径见远程项目配置）\n- 数据：SciERC (7 relations) + DocRED (96 relations)\n- W&B：未配置\n- 活跃进程：mt6144 两组实验 RUNNING（llama_docred_full_s1_mt6144 + llama_docred_unconstrained_mt6144），预计 unconstrained ~30min 内完成，full_s1 ~1-1.5h\n- 本地 paper 路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex`\n\n### 3. 📊 当前状态\n**刚做完**：收到 Round 2 审稿报告（weak reject，4 个 Must-Fix + 5 个 Should-Fix）。已审查完整报告内容。Agent 已并行派发 2 个 Worker（CF fallback 日志修复 + CF 分析脚本框架），等待回调。\n\n**RUNNING**：\n- `llama_docred_full_s1_mt6144` — Llama DocRED max_new_tokens=6144 重跑（unconstrained 92%, full_s1 78%）\n- `llama_docred_unconstrained_mt6144` — 同上 unconstrained 对照\n\n**PREPARING（4 个 W1 CF fallback 实验）**：\n- `w1_cf_fallback_llama_docred` / `w1_cf_fallback_llama_scierc` / `w1_cf_fallback_docred` / `w1_cf_fallback_scierc_pilot` — 等 mt6144 完成后立即启动\n\n**等待中**：\n- 2 个 Worker 回调（CF fallback 日志修复 + CF 分析脚本）\n- mt6144 完成 cron 回调\n\n### 4. 📋 待办\n**⚠️ 用户最新指令（最高优先级）**：\n> \"仔细和reviewer一起反思需要怎么提升写作质量，哪怕是大实验，不要仅盯着小改小动，你的时间和资源都够，和reviewer也说明这一点，需要补的实验是肯定要补的，别等到最后再补实验\"\n\n**这条指令尚未执行——我在准备行动时触发了 WRITE HANDOFF。下一个\"你\"必须立即处理：**\n\n1. **post_to_reviewer** 做全面反思：不限于 W1 CF fallback 小修，要求 Reviewer 评估所有审稿意见的写作质量提升方案，特别是大实验（W5 fine-tuned 模型验证、W6 latency 分析、W2 形式化重写）\n2. **派 Agent 立即启动可并行的大实验**，不等 CF fallback 结果：\n   - W3/W6：runtime/latency 测量（可用已有实验输出计时）\n   - W5：fine-tuned 模型实验（如 GoLLIE + OntoCoDec，验证 composability claim）— 这是审稿最大短板，zero-shot R-F1~8% vs SOTA~50%\n   - W9：Llama tokenizer single-token 唯一性验证\n3. CF fallback Worker 回调 → 确认日志修复 + 分析脚本就绪\n4. mt6144 完成 → 启动 4 个 W1 CF fallback 实验\n5. 所有实验 + 写作修改完成 → `submit_paper_to_review(recommended_review_mode=\"continue\")` 重新投稿\n\n**用户还说了\"论文修改出来之后再投一次稿\"——已确认会在修改完成后自动触发重新投稿。**\n\n### 5. 🎯 战略上下文\n- **审稿总评 weak reject**，4 个 Must-Fix（W1 CF爆炸、W2 形式化不一致、W3 post-hoc F1更优、W4 表间数据不一致）+ 5 个 Should-Fix\n- W1 CF fallback 实验已在推进，但**用户明确要求不要只盯小修**——W5（fine-tuned 模型）和 W6（latency）是拉开差距的关键，必须立即并行启动\n- paper_framing.md 中 C2 已有 post-hoc 多维对比 framing，但缺 runtime 数据（W3/W6 共同需要）\n- experiment_plan.yaml 为空——之前未维护，所有实验信息在 registry 和 paper_framing.md 中\n- 目标 venue：EMNLP 2026 (ARR May 2026)，DDL May 25。时间足够做大实验\n- **易错点**：不要觉得\"时间紧只能修小问题\"——用户已明确说时间资源够，大胆做。不要 fallback 思维\n- **易错点**：W2 形式化问题（pair vs independent）需要确认 SciERC/DocRED 约束是否 rectangular——这是 Reviewer 最关键的 Q1，可能需要代码验证而非纯写作修改\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4.md"
+}

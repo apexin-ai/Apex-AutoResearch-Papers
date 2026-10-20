@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "086371d3037e3d003680",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "paper composability llama writeup",
+  "task_key": "worker_paper_composability_llama_writeup_20260515T175614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_composability_llama_writeup_20260515T175614.jsonl",
+    "occurrence": 1,
+    "bytes": 190,
+    "sha256": "065ed262db6713d96fbe238b16c4c6e5c4f767fd4b0754ec8d4a11a894e4108b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T17:56:21.270777+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 18, 11am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_composability_llama_writeup_20260515T175614"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/paper-composability-llama-writeup.md"
+}

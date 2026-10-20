@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "2908ff7e26dfb970c221",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code beam search dryrun",
+  "task_key": "worker_code_beam_search_dryrun_20260517T002228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_beam_search_dryrun_20260517T002228.log",
+    "occurrence": 1,
+    "bytes": 642569,
+    "sha256": "3ca438c088d7757e50862f59bf725dc98ff2df6605eda2e2300bb6889438d291"
+  },
+  "statistics": {
+    "messages": 279,
+    "user_turns": 0,
+    "tool_calls": 111,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 53,
+      "tool_call": 111,
+      "tool_result": 111,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 279,
+      "chunks": [
+        {
+          "path": "2908ff7e26dfb970c221-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2908ff7e26dfb970c221-part-0002.json",
+          "message_count": 99
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-beam-search-dryrun.md"
+}

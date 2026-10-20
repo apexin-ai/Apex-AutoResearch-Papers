@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a74a750a7157e09fe09",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis w6 mistral docred unconstrained metrics",
+  "task_key": "worker_analysis_w6_mistral_docred_unconstrained_metrics_20260516T085043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w6_mistral_docred_unconstrained_metrics_20260516T085043_result.json",
+    "occurrence": 1,
+    "bytes": 1340,
+    "sha256": "d5a9560404d75e166e8f7d41f9b33d42ef86d81193e929d8637b25ec152457b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。以下是完整 metrics 和三模型对比：\n\n## w6_mistral_docred_unconstrained Metrics\n\n| Metric | Value |\n|--------|-------|\n| ET_pct | 7.58% |\n| **RV_pct** | **42.35%** |\n| DR_pct | 33.10% |\n| CF_pct | 34.94% |\n| parse_fail_rate | 0.70% |\n| E_F1 / E_P / E_R | 48.43 / 62.14 / 39.67 |\n| R_F1 / R_P / R_R | 3.48 / 3.53 / 3.44 |\n| total_entities | 12,580 |\n| total_relations | 11,879 |\n| total_samples | 998 |\n\n## DocRED Unconstrained 三模型对比\n\n| Metric | Qwen-2.5-7B | Llama-3.1-8B | Mistral-7B |\n|--------|:-----------:|:------------:|:----------:|\n| **RV_pct** | 29.66% | 16.03% | **42.35%** |\n| **DR_pct** | 18.46% | 26.07% | **33.10%** |\n| **ET_pct** | 2.48% | 0.13% | **7.58%** |\n| CF_pct | — | — | 34.94% |\n| E_F1 | — | — | 48.43 |\n| R_F1 | — | — | 3.48 |\n\nMistral 在所有违规维度上都是最高的。RV=42.35% 是因为 Mistral 大量生成自然语言关系名（\"located in\", \"cast_member\", \"place_of_birth\" 等）而非 DocRED ontology 定义的名称。Top violators: `located in`(369), `cast_member`(100), `applies to`(81)。R_F1 仅 3.48%——关系几乎全部匹配失败。\n\n对论文是好消息：约束效果越戏剧化，Mistral 作为\"最不遵守 schema\"的模型，constrained 版本的改善幅度会最大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w6-mistral-docred-unconstrained-metrics.md"
+}

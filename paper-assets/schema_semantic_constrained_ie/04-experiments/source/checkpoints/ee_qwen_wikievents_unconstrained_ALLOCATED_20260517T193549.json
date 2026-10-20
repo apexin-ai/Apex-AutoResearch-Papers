@@ -1,0 +1,15 @@
+{
+  "exp_id": "ee_qwen_wikievents_unconstrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T19:35:34.282Z",
+    "updated_at": "2026-05-17T19:35:49.522Z",
+    "hypothesis": "WikiEvents zero-shot unconstrained baseline: Qwen3-8B will produce significant EV and RoV violations due to lack of schema constraints, establishing baseline violation rates for cross-task generalizability evaluation"
+  },
+  "timestamp": "2026-05-17T19:35:49.685143+00:00",
+  "trigger": "update_registry"
+}

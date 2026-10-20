@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17eef4d0fc5a77c787fe",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops w7 llama semantic complete and next",
+  "task_key": "worker_ops_w7_llama_semantic_complete_and_next_20260516T083046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_w7_llama_semantic_complete_and_next_20260516T083046_result.json",
+    "occurrence": 1,
+    "bytes": 820,
+    "sha256": "d03f9606883d0f2e4f0ae5c07f71291b89a6f333ec2ba8b4a24fb738641d47bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Registry 已更新为 DONE/success。\n\n## 结果汇总\n\n**w7_llama_scierc_ft_semantic_only** — 551/551 samples, 0 parse failures\n\n| Metric | Unconstrained | Grammar-only | **Semantic-only** | Full S1 |\n|--------|:---:|:---:|:---:|:---:|\n| ET% | 0% | 0% | **0%** | 0% |\n| RV% | 0% | 0% | **0%** | 0% |\n| DR% | 1.11% | 1.11% | **0.65%** | 0.09% |\n| CF | 0 | 0 | **2** | - |\n| E_F1 | - | 67.76% | **67.76%** | - |\n| R_F1 | 45.45% | 45.45% | **45.47%** | - |\n\n**结论**: Semantic-only 约束将 DR 从 1.11% 降至 0.65%（-42%），R_F1 完全持平。说明 semantic 层在 FT Llama 上独立贡献约束效果，但单独不够——需要与 grammar 联合 (full_s1=0.09%) 才能接近消除 DR。Grammar 层对 DR 无直接作用（1.11%→1.11%），它主要保证 ET/RV=0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-w7-llama-semantic-complete-and-next.md"
+}

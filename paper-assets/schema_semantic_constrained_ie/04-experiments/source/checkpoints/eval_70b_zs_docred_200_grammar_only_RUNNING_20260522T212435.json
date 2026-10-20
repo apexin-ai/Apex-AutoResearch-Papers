@@ -1,0 +1,27 @@
+{
+  "exp_id": "eval_70b_zs_docred_200_grammar_only",
+  "project": "schema_semantic_constrained_ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T21:24:11.190Z",
+    "updated_at": "2026-05-22T21:24:34.634Z",
+    "hypothesis": "Grammar-only constraints on 70B ZS DocRED will show minimal DR reduction (similar to SciERC 70B ZS pattern where grammar_only DR≈unconstrained), confirming that grammar layer's negligible contribution at 70B scale generalizes across datasets.",
+    "parent": "r16_70b_docred_zs_s1",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python run_constrained_extraction.py --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-70B-Instruct-AWQ-INT4 --data_path data/docred/dev.json --dataset docred --mode grammar_only --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/70b_zs_docred_200_grammar_only.jsonl --max_new_tokens 4096 --max_samples 200",
+      "server": "westd-21461",
+      "data_path": "data/docred/dev.json",
+      "data_count": 200,
+      "model_name": "Meta-Llama-3.1-70B-Instruct-AWQ-INT4",
+      "seed": 42,
+      "eval_data": "DocRED dev 200-doc subset",
+      "checkpoint_source": "n/a (zero-shot)",
+      "log_path": "/tmp/70b_zs_docred_200_grammar_only.log"
+    }
+  },
+  "timestamp": "2026-05-22T21:24:35.201531+00:00",
+  "trigger": "update_registry"
+}

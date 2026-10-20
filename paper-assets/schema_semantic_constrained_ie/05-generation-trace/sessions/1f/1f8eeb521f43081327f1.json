@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f8eeb521f43081327f1",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research paper metrics consolidation",
+  "task_key": "worker_research_paper_metrics_consolidation_20260515T230405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper_metrics_consolidation_20260515T230405_result.json",
+    "occurrence": 1,
+    "bytes": 906,
+    "sha256": "4ffad45150961b732f66f7338dd59175454324b99a3a67bcbafba22e07f29dad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已保存至 `artifacts/_project/report/paper_tables_consolidated.md` (art_20260515_4687fa)。\n\n关键数字摘要：\n\n**Table 3 (Zero-shot)** — 12/12 格子已填：\n- DR reduction: 44.7%–99.4%，SciERC 两个模型均 >93%，DocRED Llama 90.2% 但 Qwen 仅 44.7%（最弱格子）\n- 所有 ΔR-F1 在 ±0.5pp 内，ΔE-F1 在 ±1.22pp 内\n\n**Table 5 (Fine-tuned)** — 4/8 格子已填，4 个 DocRED 待完成：\n- SciERC: DR reduction 91.9%–100%，ΔF1 几乎为零（最大 ±0.09pp）\n- DocRED: 4 个实验仍在 RUNNING/PREPARING\n\n**需要关注的点：**\n1. Qwen-DocRED zero-shot DR reduction 仅 44.7%，论文需要解释（schema 复杂度论点）\n2. CF% trade-off：constrained 引入 CF 违规（zero-shot 平均 ~7-8%），但 fine-tuning 大幅缓解至 <1%\n3. 4 个 DocRED fine-tuned 实验需在 May 19 前完成以支撑 cross-dataset 一致性 claim"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-metrics-consolidation.md"
+}

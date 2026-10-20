@@ -1,0 +1,43 @@
+{
+  "total_bib_keys": 60,
+  "total_cited": 60,
+  "orphan_keys": [],
+  "orphan_count": 0,
+  "active_tex_files": [
+    "abstract.tex",
+    "appendix_beam_search.tex",
+    "appendix_case_studies.tex",
+    "appendix_discussion.tex",
+    "appendix_doc_length.tex",
+    "appendix_full_ft.tex",
+    "appendix_kappa_case_study.tex",
+    "appendix_llama_per_relation.tex",
+    "appendix_prompt_sensitivity.tex",
+    "appendix_prompts.tex",
+    "appendix_pumping_lemma.tex",
+    "appendix_related_work.tex",
+    "appendix_reproducibility.tex",
+    "appendix_sampling_table.tex",
+    "appendix_scalability.tex",
+    "appendix_tcr.tex",
+    "checklist.tex",
+    "fig1_framework.tex",
+    "main.tex",
+    "section1_introduction_draft.tex",
+    "section2_background.tex",
+    "section3_method_draft.tex",
+    "section3_violation_landscape.tex",
+    "section4_composition_draft.tex",
+    "section5_crossmodel_draft.tex",
+    "section5_docred_draft.tex",
+    "section5_runtime.tex",
+    "section5_scierc_draft.tex",
+    "section5_wikievents_draft.tex",
+    "section6_related_work.tex",
+    "section7_conclusion_compressed.tex"
+  ],
+  "bib_files_scanned": [
+    "relwork_new_entries.bib",
+    "new_citations.bib"
+  ]
+}

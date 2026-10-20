@@ -1,0 +1,48 @@
+{
+  "exp_id": "r4_prompt_detailed",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:33:16.258Z",
+    "updated_at": "2026-05-17T17:02:02.761Z",
+    "spec": {
+      "command": "bash -c \"cd /root/schema_semantic_constrained_ie && /root/miniconda3/bin/python run_prompt_sensitivity.py --prompt_variant detailed --mode unconstrained --output_path outputs/r4_detailed_unconstrained.jsonl --device cuda:0 && /root/miniconda3/bin/python run_prompt_sensitivity.py --prompt_variant detailed --mode full_s1 --output_path outputs/r4_detailed_full_s1.jsonl --device cuda:0\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "443521",
+      "log_path": "~/runs/schema_semantic_constrained_ie/r4_prompt_detailed.log",
+      "submitted_at": "2026-05-17T12:33:16.038Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "OntoCoDec constraint enforcement is robust to prompt variation: a detailed prompt (with type definitions and extraction guidelines) should achieve similar DR reduction as the default prompt",
+    "metrics": {
+      "unconstrained": {
+        "ET_pct": 0.22,
+        "RV_pct": 0.45,
+        "DR_pct": 11.07,
+        "E_F1": 33.55,
+        "R_F1": 10.48
+      },
+      "constrained": {
+        "ET_pct": 0,
+        "RV_pct": 0,
+        "DR_pct": 0.64,
+        "E_F1": 33.56,
+        "R_F1": 10.48
+      },
+      "DR_reduction_pct": 94.2,
+      "delta_R_F1_pp": 0,
+      "delta_E_F1_pp": 0.01
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T17:02:02.932346+00:00",
+  "trigger": "update_registry"
+}

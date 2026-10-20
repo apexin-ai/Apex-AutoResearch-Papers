@@ -1,0 +1,51 @@
+{
+  "exp_id": "w5_qwen_docred_lora_training",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:48:52.649Z",
+    "updated_at": "2026-05-15T20:02:28.767Z",
+    "hypothesis": "Qwen3-8B LoRA fine-tune on DocRED — 填补 Qwen DocRED composability 2×2 matrix 的 FT 行。预期：(1) LoRA 后 E-F1/R-F1 大幅提升；(2) 残余 DR > 0% 证明 OntoCoDec 在 DocRED FT 上仍有 composability 价值。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && WANDB_MODE=disabled python3 scripts/train_lora_docred.py\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "298245",
+      "log_path": "~/runs/schema_semantic_constrained_ie/w5_qwen_docred_lora_training.log",
+      "submitted_at": "2026-05-15T18:22:06Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 6015.9,
+      "gpu_hours": 1.67
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T20:01:28.494Z"
+    },
+    "failure_reason": "",
+    "conclusion": "success",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T17:55:53.910959+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T20:01:30.155403+00:00"
+        }
+      ]
+    },
+    "notes": "Retry #4 (PID 298245, cuda:1): 级联故障修复后由 ops worker 重提交。前次失败原因: GPU 0 幽灵进程争抢显存 + 命令中 CUDA_VISIBLE_DEVICES 硬编码覆盖 wrapper。修复后 wrapper 统一控制 CUDA_VISIBLE_DEVICES。双卡 99% util 已确认。ETA ~2h on RTX PRO 6000。",
+    "completed_at": "2026-05-15T20:02:21.920Z"
+  },
+  "timestamp": "2026-05-15T20:02:28.860341+00:00",
+  "trigger": "update_registry"
+}

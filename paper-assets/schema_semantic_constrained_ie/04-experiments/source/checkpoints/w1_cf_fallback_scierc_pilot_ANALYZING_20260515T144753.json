@@ -1,0 +1,36 @@
+{
+  "exp_id": "w1_cf_fallback_scierc_pilot",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:32:48.425Z",
+    "updated_at": "2026-05-15T14:47:53.846Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "270088",
+      "log_path": "~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log",
+      "submitted_at": "2026-05-15T14:07:14.512Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-16980",
+    "gpu": "cuda:0",
+    "account": "root",
+    "pid": "270088",
+    "log_path": "~/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_scierc_pilot.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\"",
+      "finished_at": "2026-05-15T14:47:53.690Z"
+    }
+  },
+  "timestamp": "2026-05-15T14:47:53.914523+00:00",
+  "trigger": "update_registry"
+}

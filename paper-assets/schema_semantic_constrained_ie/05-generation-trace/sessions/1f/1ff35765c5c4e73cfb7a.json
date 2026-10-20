@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "1ff35765c5c4e73cfb7a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "infra mistral model prep",
+  "task_key": "worker_infra_mistral_model_prep_20260516T041654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_mistral_model_prep_20260516T041654.log",
+    "occurrence": 1,
+    "bytes": 858540,
+    "sha256": "7e4383493a2a09cea0706164cd8f58f592cafe6f956779780532c69d9cfcfb7d"
+  },
+  "statistics": {
+    "messages": 527,
+    "user_turns": 0,
+    "tool_calls": 207,
+    "roles": {
+      "log": 1,
+      "system": 2,
+      "record": 3,
+      "assistant": 106,
+      "tool_call": 207,
+      "tool_result": 207,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 527,
+      "chunks": [
+        {
+          "path": "1ff35765c5c4e73cfb7a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1ff35765c5c4e73cfb7a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1ff35765c5c4e73cfb7a-part-0003.json",
+          "message_count": 167
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-mistral-model-prep.md"
+}

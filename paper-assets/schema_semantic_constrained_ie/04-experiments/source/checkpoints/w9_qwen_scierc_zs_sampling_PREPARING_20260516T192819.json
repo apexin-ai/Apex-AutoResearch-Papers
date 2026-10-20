@@ -1,0 +1,22 @@
+{
+  "exp_id": "w9_qwen_scierc_zs_sampling",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T19:28:19.627Z",
+    "updated_at": "2026-05-16T19:28:19.627Z",
+    "spec": {
+      "hypothesis": "Sampling validation: 验证 OntoCoDec constraint 在 stochastic decoding (temperature=0.7, top_p=0.9) 下仍 robust。对比 greedy baseline (DR=0.93%, ET=0%, RV=0%)，预期 DR/RV/ET 差异 <1pp。如果成立，Limitation 'greedy only' 转化为 Validation。",
+      "parent": "phase2_scierc_full_s1",
+      "model_name": "Qwen3-8B",
+      "data_path": "data/scierc/test.json",
+      "data_count": 551,
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-16T19:28:19.785879+00:00",
+  "trigger": "update_registry"
+}

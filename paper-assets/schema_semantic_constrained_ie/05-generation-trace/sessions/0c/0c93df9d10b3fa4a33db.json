@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c93df9d10b3fa4a33db",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis eval scierc phase2 v2",
+  "task_key": "worker_analysis_eval_scierc_phase2_v2_20260514T014906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_scierc_phase2_v2_20260514T014906_result.json",
+    "occurrence": 1,
+    "bytes": 1333,
+    "sha256": "81f0d39e23e19e3a78254b04c3dd90576cf3dc4f9f693c849fe7f51ff60c12de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总结果：\n\n## SciERC Phase 2 实验结果汇总\n\n| Mode | Samples | R-F1 | E-F1 | DR% | RV% | ET% | DR delta |\n|------|---------|------|------|-----|-----|-----|----------|\n| unconstrained | 551 | 0.0823 | 0.3101 | 15.37% | 1.39% | 0.4% | baseline |\n| grammar_only | 551 | 0.0823 | 0.3098 | 14.84% | 0% | 0% | -0.53pp |\n| semantic_only | 551 | 0.0815 | 0.3101 | 11.65% | 1.51% | 0.4% | **-3.72pp** |\n| full_s1 | 551 | 0.0836 | 0.3098 | 0.93% | 0% | 0% | **-14.44pp** |\n| full_s2 | 415/551 | — | — | — | — | — | 未完成 |\n\n### 关键发现\n\n**full_s1（Grammar + Semantic 双层约束）** 是论文核心结果：\n- DR violation 从 15.37% 降至 **0.93%**（降幅 14.44pp，消除 94%）\n- ET=0%, RV=0%（完全消除）\n- R-F1 **微升** 0.0013（0.0823→0.0836），E-F1 基本持平（-0.0003）\n- F1 无损甚至略升 + violations 近乎清零 → 完美 trade-off\n\n**semantic_only** 仅靠语义约束：\n- DR 只降到 11.65%（-3.72pp），远不如双层\n- RV=1.51%、ET=0.4% 未消除（因为没有 grammar 层）\n- R-F1 略降 0.0008\n\n**Per-relation DR（full_s1）**：Used-for/Hyponym-of/Part-of/Conjunction = 0%，Evaluate-for 5.76% 和 Compare 2.82% 残留最多，Feature-of 1.21%。\n\n**full_s2** 仅完成 415/551，跳过评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-scierc-phase2-v2.md"
+}

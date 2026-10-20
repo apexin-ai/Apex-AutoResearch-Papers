@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_70b_lora_scierc_full_s2",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:04:58.305Z",
+    "updated_at": "2026-05-22T18:05:29.281Z",
+    "hypothesis": "Full S2 constrained decoding on 70B LoRA SciERC achieves DR=0% like S1, with potentially fewer CF violations due to S2's enhanced cross-field consistency checking. R-F1 should be comparable to S1 (44.53-44.81).",
+    "parent": "eval_70b_lora_scierc_s1_constrained"
+  },
+  "timestamp": "2026-05-22T18:05:29.567195+00:00",
+  "trigger": "update_registry"
+}

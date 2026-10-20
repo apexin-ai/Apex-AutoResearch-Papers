@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26053a6eda02007f141f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code w1 cf registry consistent fallback",
+  "task_key": "worker_code_w1_cf_registry_consistent_fallback_20260515T095943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w1_cf_registry_consistent_fallback_20260515T095943_result.json",
+    "occurrence": 1,
+    "bytes": 1789,
+    "sha256": "7227fd2b1238e7d758526aeb0cf1629b41dd817b7dc868d8b676031f4ca1a200"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完成，**0 CF violations**（10 样本，21 relations）。\n\n---\n\n## 修改总结\n\n**文件**: `/root/schema_semantic_constrained_ie/compiler/type_mask_processor.py`（435 → 462 行，+27 行）\n\n### Diff 概要\n\n| 位置 | 修改 |\n|------|------|\n| L205 | `__init__` 新增 `self._cf_fallback_count = 0` |\n| L291-292 | `_mask_head_type` docstring: \"use D/R constraint\" → \"force registered type (W1: registry consistency > DR compliance)\" |\n| L307-316 | `_mask_head_type` 新增 `else` 分支：当 `actual_type ∉ allowed_dr` 时，强制 `_apply_type_mask(logits, {actual_type})`，计数并 debug 日志 |\n| L327-328 | `_mask_tail_type` docstring: 同上 |\n| L349-359 | `_mask_tail_type` 新增 `else` 分支：同理，当 tail entity 注册类型与 `range(r, head_type)` 冲突时强制注册类型 |\n| L423-424 | `reset()` 新增 CF fallback 日志输出 |\n| L426 | `reset()` 新增 `self._cf_fallback_count = 0` |\n\n### 逻辑变更\n\n**修改前**: entity 注册类型 ∉ dom(r)/range(r) → fall through 到 DR mask → 模型被迫选 dom(r) 中的类型 → 同一 entity 在不同 relation 中被分配不同类型 → CF violation\n\n**修改后**: entity 注册类型 ∉ dom(r)/range(r) → **强制使用注册类型**（`_apply_type_mask(logits, {actual_type})`）→ 类型跨 relation 一致 → CF violation 消除\n\n安全性：`_apply_type_mask` 内部有 grammar-first safety check，若注册类型被 grammar 层 mask 会自动 fallback 到无约束状态。\n\n### Dry-run 结果\n\n- SciERC 10 样本，**0 crash，0 CF violations**，21 relations 正常输出\n- CF fallback 未触发（SciERC 约束松散，预期行为）\n- DocRED（约束紧密）预期会触发 CF fallback，需全量实验验证"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w1-cf-registry-consistent-fallback.md"
+}

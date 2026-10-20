@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "233d6df15cfcd4fe0bf3",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh check 16980 gpu status",
+  "task_key": "worker_ssh_check_16980_gpu_status_20260518T223946",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_16980_gpu_status_20260518T223946_result.json",
+    "occurrence": 1,
+    "bytes": 1394,
+    "sha256": "d69fe404b3de36e325463dfe04385fff63d5f57d931e5e48aa35f4168a52e15e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**GPU 状态**\n| GPU | 型号 | 显存 | GPU-Util | 功耗 |\n|-----|------|------|----------|------|\n| 0 | RTX PRO 6000 Blackwell (96GB) | 18277 / 97887 MiB | **90%** | 335W/600W |\n| 1 | RTX PRO 6000 Blackwell (96GB) | 0 / 97887 MiB | 0% | 空闲 |\n\n**当前活跃进程 (PID 595176, GPU 0)**\n正在运行 **推理** (不是训练)：\n```\npython3 run_constrained_extraction.py \\\n  --dataset wikievents --mode unconstrained \\\n  --model_path .../llama_8b_lora_wikievents_merged \\\n  --output_path outputs/ee_llama_ft_wikievents_unconstrained.jsonl \\\n  --device cuda:0\n```\n这是 tmux 会话 `p1_llama_ee_ft`（刚创建于 06:25）中运行的 wikievents unconstrained 评估。\n\n**tmux 会话**\n- `p1_llama_ee_ft` — 当前活跃，运行上述推理\n- `llama_beam` / `llama_wikievents` / `llama_wikievents_full` / `qwen_wikievents` — 旧会话\n\n**训练日志 `/root/runs/schema_semantic_constrained_ie/p1_ee_ft_llama.log`**\n这个日志是之前失败的训练，结尾是 `EXIT_CODE=1`，报错：\n> `ImportError: gptqmodel requires optimum version 1.24.0 or higher`\n\nPEFT 加载 LoRA adapter 时触发了 AWQ dispatcher 中的 gptqmodel 检查。\n\n**结论**：训练未在跑。GPU 0 上跑的是 Llama wikievents unconstrained 模式的推理评估。GPU 1 空闲。之前的训练因 `optimum` 版本不足导致失败。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-16980-gpu-status.md"
+}

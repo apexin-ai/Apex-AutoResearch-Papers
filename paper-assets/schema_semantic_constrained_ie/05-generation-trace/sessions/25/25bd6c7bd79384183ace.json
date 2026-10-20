@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25bd6c7bd79384183ace",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code mvp scripts",
+  "task_key": "worker_code_mvp_scripts_20260513T173700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_scripts_20260513T173700_result.json",
+    "occurrence": 1,
+    "bytes": 2331,
+    "sha256": "061e8572d867b86c9eb89a183b5fe3c7291320f8f216812dd6b02ba59e2b8d18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n## 产出汇报\n\n### 1. SciERC test set\n- **100 docs, 551 sentences, 1685 entities, 974 relations**\n- 数据来源：HuggingFace `zj88zj/SCIERC`（原始 nlp.cs.washington.edu 的 695MB tar.gz 含 ELMo 嵌入，下载极慢）\n\n### 2. ontology_constraints.json 各关系合法 pair 数\n\n| Relation Type | Valid Pairs | Instances |\n|---|---|---|\n| Used-for | 35 | 1690 |\n| Feature-of | 26 | 173 |\n| Hyponym-of | 21 | 298 |\n| Part-of | 21 | 179 |\n| Compare | 17 | 166 |\n| Conjunction | 25 | 400 |\n| Evaluate-for | 23 | 313 |\n\n### 3. 代码文件\n\n| 文件 | 路径 |\n|---|---|\n| `analyze_ontology.py` | `/root/schema_semantic_constrained_ie/analyze_ontology.py` |\n| `run_extraction.py` | `/root/schema_semantic_constrained_ie/run_extraction.py` |\n| `violation_checker.py` | `/root/schema_semantic_constrained_ie/violation_checker.py` |\n| `ontology_constraints.json` | `/root/schema_semantic_constrained_ie/ontology_constraints.json` |\n\n### 4. Dry-run 结果（3 samples, transformers backend）\n- JSON 解析成功率：3/3 (100%)\n- Entity type violations: 0/10 (0%)\n- Relation D/R violations: 1/5 (20%)\n- Cross-field consistency violations: 0\n- Entity/Relation exact-match F1: 0（zero-shot 下 span 不完全匹配是预期的）\n\n### 5. 问题与解决\n\n| 问题 | 解决 |\n|---|---|\n| 原始 SciERC 下载 695MB（含 ELMo），从中国下载极慢 | 改用 HuggingFace `zj88zj/SCIERC` 只下载 JSON 文件 |\n| 数据中关系类型为全大写（`USED-FOR`），代码预设为 Title-Case | 添加 `RAW_TO_CANONICAL` 映射做标准化 |\n| vLLM 0.18.1 不支持 `Qwen3ForCausalLM` 架构 | 使用 `--backend transformers` 回退，正常运行 |\n| 模型 ModelScope 首次下载中断 | 重新用 `snapshot_download` 下载到 `Qwen3-8B-ms` 目录 |\n\n### 全量运行命令\n\n```bash\ncd /root/schema_semantic_constrained_ie\npython3 run_extraction.py \\\n  --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B \\\n  --data_path data/processed_data/test.json \\\n  --output_path outputs/raw_outputs.jsonl \\\n  --backend transformers\n\npython3 violation_checker.py \\\n  --input_path outputs/raw_outputs.jsonl \\\n  --constraints_path ontology_constraints.json \\\n  --output_path outputs/violation_report.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-scripts.md"
+}

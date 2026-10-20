@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06b339b2722fd40378a2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_13_1778945409.md",
+  "task_key": "loop_13_1778945409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778945409.md",
+    "occurrence": 1,
+    "bytes": 3608,
+    "sha256": "cc82d583c26db21e41c3bead9a1a8175838ac7d148f4260aba8e8ffb309f26fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: max_wall_time\nupdated: '2026-05-16T15:29:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-16980 cuda:0/1, westd-21461 cuda:0/1。westd-37397 已不可用（Connection refused，AutoDL 已释放）\n- DocRED latency 数据**只能**从 `/tmp/latency_benchmark_docred_results.json` 提取。`/tmp/latency_benchmark_results.json` 是 SciERC 旧数据，绝不能混用\n- Qwen tokenizer warning 是 false positive——**绝不能**设 `fix_mistral_regex=True`（会破坏正确的 tokenizer regex）\n- ft_ablation_analysis.md 中模型名已修正为 \"Qwen3-8B\"（不是 Qwen2.5-7B），写论文时注意一致性\n- submit_training_job 的 command 必须包裹 `bash -c \"...\"`（tmux 默认 sh，不支持 source/conda activate）\n\n### 2. 🖥️ 基础设施快照\n- **westd-16980** (2× RTX PRO 6000 Blackwell 98GB)\n  - 工作目录: `/root/schema_semantic_constrained_ie/`\n  - Python: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n  - 模型: Qwen FT `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged`, Llama FT `/root/autodl-tmp/checkpoints/llama_lora_docred_merged`\n  - 活跃: w8_llama_docred_ft_semantic_only (PID 361202, tmux=w8_llama_docred_ft_semantic_only, cuda:1, cron registered)\n  - cuda:0 空闲（latency benchmark 已完成）\n- **westd-21461** (2× RTX PRO 6000 Blackwell 98GB)\n  - 同结构，同 conda 环境\n  - 模型: Qwen FT `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged`\n  - 活跃: w8_qwen_docred_ft_semantic_only (PID 20035, tmux=w8_qwen_docred_ft_semantic_only, cuda:1, cron registered)\n  - cuda:0 空闲（grammar_only 已完成）\n- Latency artifacts: `art_20260516_a3397b` (SciERC), `art_20260516_cb61b8` (DocRED)\n\n### 3. 📊 当前状态\n刚完成 w8_qwen_docred_ft_grammar_only 的 metrics 入库（DONE, success）。DocRED FT ablation 4 格中 grammar_only×2 全部完成，semantic_only×2 仍在跑。\n\nRegistry RUNNING:\n- `w8_llama_docred_ft_semantic_only` — westd-16980 cuda:1, 58% (~1.5h remaining)\n- `w8_qwen_docred_ft_semantic_only` — westd-21461 cuda:1, 78% (~1h remaining)\n\n等待：两个 semantic_only 实验的 cron 完成回调。无 pending Worker。\n\n### 4. 📋 待办\n- w8_qwen_docred_ft_semantic_only cron 回调 → spawn worker 跑 violation checker → update_registry(DONE) → 汇报 Director\n- w8_llama_docred_ft_semantic_only cron 回调 → 同上流程 → 汇报 Director\n- 两个 semantic_only 都完成后 → DocRED FT ablation 4 格全满 → 更新 ft_ablation_analysis.md 中 TBD 行 → 汇报 Director \"ablation 全部完成\"\n- Director 如指示用空闲 GPU (westd-16980 cuda:0, westd-21461 cuda:0) → 按指令提交\n- 不要主动在空闲 GPU 上发明实验（Director 明确指示）\n\n### 5. 🎯 战略上下文\n- 目标: EMNLP 2026 ARR May 25 提交\n- 核心论点: OntoCoDec 两层约束解码，grammar+semantic 互补。FT regime 下 grammar 冗余（ET/RV 已内化），semantic 层提供唯一边际价值（降 DR 41-68%），full 模式才能归零\n- DocRED latency 已入稿 (Round 4): grammar +1.6%, semantic +4.2%, full +5.4%。论文论点\"negligible overhead\"成立\n- Post-hoc crossover point: Mistral DocRED 73.7% rejection rate 导致 post-hoc 反而降 F1，是 constrained decoding 的核心卖点\n- 易踩坑: registry 中 R_F1 用 fuzzy matching（case-insensitive + token-overlap >80%），与 violation checker 的 strict matching 有差异。论文统一用 fuzzy（D033 决策）\n- Paper Agent 已在处理 related work (SynCode/IterGen/BoostCD) 和 latency section，不要重复\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778945409.md"
+}

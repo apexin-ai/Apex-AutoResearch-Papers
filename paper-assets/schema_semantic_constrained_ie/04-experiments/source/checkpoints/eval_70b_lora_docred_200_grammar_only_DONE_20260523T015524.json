@@ -1,0 +1,48 @@
+{
+  "exp_id": "eval_70b_lora_docred_200_grammar_only",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:35:19.975Z",
+    "updated_at": "2026-05-23T01:55:24.472Z",
+    "hypothesis": "Grammar-only constraints on 70B LoRA DocRED will eliminate RV violations but not reduce DR, mirroring the SciERC ablation pattern where grammar layer provides zero DR contribution at fine-tuned scale.",
+    "parent": "eval_70b_lora_docred_200_unconstrained",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python run_constrained_extraction.py --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4 --lora_path /root/autodl-tmp/checkpoints/70b_lora_docred/checkpoint-1146 --data_path data/docred/dev.json --dataset docred --mode grammar_only --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/70b_lora_docred_200_grammar_only.jsonl --max_docs 200 --max_new_tokens 4096",
+      "server": "westd-16980",
+      "gpu": "cuda:1",
+      "pid": 984253,
+      "data_path": "data/docred/dev.json",
+      "data_count": 200,
+      "model_name": "Llama-3.1-70B-Instruct-AWQ-INT4 + LoRA r16 docred",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/70b_lora_docred/checkpoint-1146",
+      "eval_data": "DocRED dev 200 docs",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/70b_lora_docred/checkpoint-1146",
+      "log_path": "/tmp/70b_lora_docred_200_grammar_only.log"
+    },
+    "metrics": {
+      "samples": 200,
+      "parse_fail_pct": 10.5,
+      "ET_pct": 0,
+      "RV_pct": 0,
+      "DR_pct": 0.38,
+      "CF_pct": 0.06,
+      "E_F1": 80.13,
+      "E_P": 85.16,
+      "E_R": 75.66,
+      "R_F1": 43.96,
+      "R_P": 39.78,
+      "R_R": 49.11,
+      "entities_pred": 3362,
+      "relations_pred": 3154
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-23T01:55:24.472Z"
+  },
+  "timestamp": "2026-05-23T01:55:24.924493+00:00",
+  "trigger": "update_registry"
+}

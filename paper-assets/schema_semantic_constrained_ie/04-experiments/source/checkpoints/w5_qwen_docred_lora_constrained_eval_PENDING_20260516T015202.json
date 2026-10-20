@@ -1,0 +1,16 @@
+{
+  "exp_id": "w5_qwen_docred_lora_constrained_eval",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:03:33.642Z",
+    "updated_at": "2026-05-16T01:52:01.864Z",
+    "hypothesis": "Fine-tuned Qwen3-8B DocRED LoRA + OntoCoDec constrained eval — 验证 composability：约束解码在 fine-tuned Qwen DocRED 上是否仍能消除残余 DR 且不损 R-F1",
+    "parent": "w5_qwen_docred_lora_training"
+  },
+  "timestamp": "2026-05-16T01:52:02.001595+00:00",
+  "trigger": "update_registry"
+}

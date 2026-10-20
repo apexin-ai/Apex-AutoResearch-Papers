@@ -1,0 +1,67 @@
+{
+  "exp_id": "p1_ee_ft_composability_r4",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:50:56.983Z",
+    "updated_at": "2026-05-18T23:23:34.632Z",
+    "hypothesis": "LoRA fine-tuning Qwen3-8B on WikiEvents EE with correct train/dev/test splits (no data leakage) will produce a model whose unconstrained output has schema violations that are reduced by constrained decoding (full_s1), demonstrating composability of schema constraints with fine-tuned models.",
+    "parent": "p1_ee_ft_composability_r3",
+    "spec": {
+      "command": "bash /root/schema_semantic_constrained_ie/scripts/run_p1_ee_ft.sh",
+      "server": "westd-21461",
+      "gpu": "cuda:0",
+      "pid": 61838,
+      "log_path": "~/runs/schema_semantic_constrained_ie/p1_ee_ft_composability_r4.log",
+      "submitted_at": "2026-05-18T21:51:25.516Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/schema_semantic_constrained_ie/data/sft/wikievents_sft_train.jsonl",
+      "data_count": 194,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "self (LoRA training from base)",
+      "eval_data": "/root/schema_semantic_constrained_ie/data/wikievents/test.jsonl",
+      "hyperparams": {
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "lora_dropout": 0.05,
+        "lr": 0.0002,
+        "epochs": 3,
+        "batch_size": 1,
+        "grad_accum": 8
+      },
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/qwen3_8b_lora_wikievents_merged/",
+      "wall_clock_seconds": 5008.7,
+      "gpu_hours": 1.39
+    },
+    "metrics": {
+      "unconstrained": {
+        "entity_f1": 0,
+        "trigger_f1": 0.4598,
+        "argument_f1": 0.1581,
+        "rov": 0.251,
+        "ac": 0.06,
+        "cf": 0,
+        "parse_rate": 0.25
+      },
+      "full_s1": {
+        "entity_f1": 0.5823,
+        "trigger_f1": 0.6,
+        "argument_f1": 0.4667,
+        "rov": 0,
+        "ac": 0,
+        "cf": 0.03,
+        "parse_rate": 0.1
+      }
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-18T23:14:54.256Z"
+  },
+  "timestamp": "2026-05-18T23:23:34.923650+00:00",
+  "trigger": "update_registry"
+}

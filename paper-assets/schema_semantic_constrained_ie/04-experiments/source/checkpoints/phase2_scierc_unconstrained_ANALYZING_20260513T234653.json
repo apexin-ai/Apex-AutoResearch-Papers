@@ -1,0 +1,110 @@
+{
+  "exp_id": "phase2_scierc_unconstrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:19:07.120Z",
+    "updated_at": "2026-05-13T23:46:53.732Z",
+    "hypothesis": "Phase 2 unconstrained baseline — 使用与 constrained 实验完全相同的代码路径和 prompt，确保 F1 对比公平。预期结果接近 Phase 0 (entity_f1=0.31, relation_f1=0.08)",
+    "spec": {
+      "command": "python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_unconstrained.jsonl --device cuda:0 --batch_size 1",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "126948",
+      "log_path": "~/runs/schema_semantic_constrained_ie/phase2_scierc_unconstrained.log",
+      "submitted_at": "2026-05-13T22:20:28.660Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/schema_semantic_constrained_ie/data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "note": "CUDA_VISIBLE_DEVICES=1 injected by submit_training_job. Progress 353/551 at 23:10 UTC"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-13T23:44:02.820Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-13T23:44:06.470330+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "total_samples": 551,
+      "total_triples": 1724,
+      "total_entities": 2474,
+      "json_parse_rate": 1,
+      "entity_type_violation_rate": 0.004,
+      "relation_vocabulary_violation_rate": 0.0139,
+      "domain_range_violation_rate": 0.1537,
+      "cross_field_consistency_violation_rate": 0.0008,
+      "total_violation_rate": 0.0717,
+      "entity_f1": 0.3101,
+      "entity_precision": 0.2605,
+      "entity_recall": 0.3831,
+      "relation_f1": 0.0823,
+      "relation_precision": 0.0644,
+      "relation_recall": 0.114,
+      "delta_vs_phase0": {
+        "entity_f1": 0,
+        "relation_f1": 0,
+        "entity_type_violation_rate": 0,
+        "relation_vocabulary_violation_rate": 0,
+        "domain_range_violation_rate": 0,
+        "cross_field_consistency_violation_rate": 0
+      },
+      "per_relation_dr_violations": {
+        "Used-for": {
+          "total": 787,
+          "violations": 6,
+          "rate": 0.0076
+        },
+        "Feature-of": {
+          "total": 486,
+          "violations": 163,
+          "rate": 0.3354
+        },
+        "Evaluate-for": {
+          "total": 133,
+          "violations": 32,
+          "rate": 0.2406
+        },
+        "Hyponym-of": {
+          "total": 124,
+          "violations": 18,
+          "rate": 0.1452
+        },
+        "Part-of": {
+          "total": 72,
+          "violations": 18,
+          "rate": 0.25
+        },
+        "Compare": {
+          "total": 66,
+          "violations": 28,
+          "rate": 0.4242
+        },
+        "Conjunction": {
+          "total": 32,
+          "violations": 0,
+          "rate": 0
+        }
+      }
+    },
+    "checkpoint_path": "/root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl",
+    "log_path": "~/runs/schema_semantic_constrained_ie/phase2_scierc_unconstrained.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-13T23:46:53.766414+00:00",
+  "trigger": "update_registry"
+}

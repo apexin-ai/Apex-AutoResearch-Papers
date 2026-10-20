@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02b720ff97b8a43cd7f5",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "review paper number consistency",
+  "task_key": "worker_review_paper_number_consistency_20260515T192821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_paper_number_consistency_20260515T192821_result.json",
+    "occurrence": 1,
+    "bytes": 853,
+    "sha256": "2f20d002bb641ed3794979a624ad7cfec9f2caca8771be6cfbf233c96401277c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/paper_number_consistency_check.md`。\n\n核心发现：\n\n**Llama SciERC Zero-shot** — Table 5 和 §5.4 正文中全部 6 个数字 + ΔDR/ΔR-F1 完全正确，无需修改。\n\n**Llama SciERC Fine-tuned LoRA** — **完全缺失**。全文 grep 零命中，8 个数字（DR=1.11%/0.09%, R-F1=45.45%/45.47%, E-F1=67.76%/67.76%, ΔDR=-91.9%, ΔR-F1=+0.02pp）不在论文任何位置。Table 3（composability matrix）仅有 Qwen 4 行，无 Llama 行。§5.2 composability 段落、Appendix B 均只讨论 Qwen LoRA。\n\n**下游影响**：如果加入 Llama LoRA 数据，Abstract、Introduction、Limitations 中 \"DR=0%\" 的表述需改为 \"DR≤0.09%\"，因为 Llama LoRA constrained DR 不为零。Composability claim 需从 \"complete DR elimination\" 弱化为 \"91.9–100% DR reduction\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-paper-number-consistency.md"
+}

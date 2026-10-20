@@ -1,0 +1,55 @@
+{
+  "exp_id": "d067_seed_variance",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T23:44:45.500Z",
+    "updated_at": "2026-05-20T02:42:17.608Z",
+    "hypothesis": "Varying random seed (42,123,456) across models (Qwen,Llama) and datasets (SciERC,DocRED) under constrained vs unconstrained decoding will show low F1 variance (σ<1pp), confirming that reported improvements from constraint decoding are robust and not seed-dependent.",
+    "spec": {
+      "command": "bash scripts/d067_run_all.sh (3 configs × 2 seeds × unc/con, 12 runs serial)",
+      "server": "westd-21461 GPU0",
+      "data_path": "data/processed_data/test.json (SciERC) + data/docred/dev.json (DocRED)",
+      "data_count": 551,
+      "model_name": "Qwen3-8B LoRA SciERC + Llama-3.1-8B LoRA SciERC + Qwen3-8B LoRA DocRED",
+      "seed": "123, 456"
+    },
+    "metrics": {
+      "qwen_scierc_unc": {
+        "E_F1": "66.94 ± 0.08",
+        "R_F1": "43.25 ± 0.43",
+        "DR": "2.06 ± 0.08",
+        "CF": "0.00 ± 0.00"
+      },
+      "qwen_scierc_con": {
+        "E_F1": "66.94 ± 0.08",
+        "R_F1": "43.22 ± 0.39",
+        "DR": "0.00 ± 0.00",
+        "CF": "0.48 ± 0.02"
+      },
+      "llama_scierc_unc": {
+        "E_F1": "67.99 ± 0.16",
+        "R_F1": "45.38 ± 0.05",
+        "DR": "1.04 ± 0.05",
+        "CF": "0.00 ± 0.00"
+      },
+      "llama_scierc_con": {
+        "E_F1": "67.99 ± 0.16",
+        "R_F1": "45.40 ± 0.05",
+        "DR": "0.03 ± 0.04",
+        "CF": "0.26 ± 0.02"
+      },
+      "max_sigma_pp": 0.43,
+      "greedy_deterministic": true,
+      "snr_dr_improvement": ">12x",
+      "qwen_docred_status": "pending (not started)",
+      "llama_scierc_seed456_con_status": "running (407/551)"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T02:42:17.879223+00:00",
+  "trigger": "update_registry"
+}

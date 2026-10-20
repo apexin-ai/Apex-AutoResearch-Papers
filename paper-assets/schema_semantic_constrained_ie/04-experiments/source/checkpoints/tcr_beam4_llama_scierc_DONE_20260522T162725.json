@@ -1,0 +1,39 @@
+{
+  "exp_id": "tcr_beam4_llama_scierc",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:48:16.222Z",
+    "updated_at": "2026-05-22T16:27:25.157Z",
+    "spec": {
+      "checkpoint_path": "N/A (eval-only)",
+      "log_path": "/tmp/beam4_tcr_llama_scierc.log"
+    },
+    "metrics": {
+      "samples": 551,
+      "json_failures": 0,
+      "entities": 1803,
+      "relations": 1194,
+      "entity_type_violations": "0/1803 (0.0%)",
+      "relation_vocab_violations": "0/1194 (0.0%)",
+      "domain_range_violations": "13/1194 (1.1%)",
+      "cross_field_consistency": 0,
+      "DR_pct": 1.09,
+      "E_F1": 68.02,
+      "E_P": 65.88,
+      "E_R": 70.29,
+      "R_F1": 46.05,
+      "R_P": 41.83,
+      "R_R": 51.23,
+      "tcr_changed_selection": "0/551 (0.0%)"
+    },
+    "conclusion": "negative",
+    "hypothesis": "TCR reranking on beam4 outputs will change beam selection for LLaMA-SciERC by penalizing constraint-violating candidates, improving DR violation rate and overall F1 compared to vanilla beam4.",
+    "completed_at": "2026-05-22T16:27:25.157Z"
+  },
+  "timestamp": "2026-05-22T16:27:25.466535+00:00",
+  "trigger": "update_registry"
+}

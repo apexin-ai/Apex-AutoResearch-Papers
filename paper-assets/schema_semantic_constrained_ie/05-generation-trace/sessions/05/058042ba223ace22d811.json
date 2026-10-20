@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "058042ba223ace22d811",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis entity order fair comparison",
+  "task_key": "worker_analysis_entity-order-fair-comparison_20260522T181050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_entity-order-fair-comparison_20260522T181050_result.json",
+    "occurrence": 1,
+    "bytes": 811,
+    "sha256": "e24fd6b2477503613644c62ac4bd4734391904a228f7a023a644f038cf471da8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果比预期更强：\n\n**Entity ordering 不仅没有显著影响，而且对输出完全零影响。** 551 个样本的 raw_output 和 parsed_output 在 original 和 shuffled 之间逐字节一致。之前的 -3.38pp R-F1 差异 100% 来自 checker 版本不一致（旧版给 original 算出 47.15，新版给 shuffled 算出 43.77）。\n\n这意味着 shuffling `ontology_constraints.json` 中的 entity/relation type 顺序根本没有改变 constrained decoding 的 token 生成——grammar 在每个类型位置接受的 token 集合与 schema 中的枚举顺序无关，greedy 解码在相同 prompt 下产生完全确定性的输出。\n\nConclusion 已从 `negative` 改为 `success`（order-invariant confirmed），R19-W3 reviewer concern 可安全回应。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-entity-order-fair-comparison.md"
+}

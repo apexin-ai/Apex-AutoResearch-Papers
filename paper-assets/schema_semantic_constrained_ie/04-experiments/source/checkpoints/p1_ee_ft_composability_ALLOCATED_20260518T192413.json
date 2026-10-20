@@ -1,0 +1,21 @@
+{
+  "exp_id": "p1_ee_ft_composability",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ALLOCATED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:21:54.303Z",
+    "updated_at": "2026-05-18T19:24:13.221Z",
+    "server": "westd-21461",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "westd-21461",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-18T19:23:43.507Z"
+    }
+  },
+  "timestamp": "2026-05-18T19:24:13.439636+00:00",
+  "trigger": "update_registry"
+}

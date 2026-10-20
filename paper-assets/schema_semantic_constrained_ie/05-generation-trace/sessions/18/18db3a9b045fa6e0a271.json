@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "18db3a9b045fa6e0a271",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code wikievents xgrammar assertion debug",
+  "task_key": "worker_code_wikievents_xgrammar_assertion_debug_20260517T160241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_xgrammar_assertion_debug_20260517T160241_result.json",
+    "occurrence": 1,
+    "bytes": 2398735,
+    "sha256": "399c60d1235132126bf3cb5dedd87bfd9f51d7b1e300afaaa8ef94ffa8ad52a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2398755,
+                "serialized_sha256": "2e2aec5dfd592b4d0dee4f2927c922db4e8133934b11b3255e1bf122f947ec46",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wikievents-xgrammar-assertion-debug.md"
+}

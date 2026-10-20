@@ -1,0 +1,621 @@
+# eval d065 llama 16980
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 21
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/chats/worker_eval_d065_llama_16980_20260520T095400.jsonl`
+- **Structured JSON:** [`0b3d121d3d666a65a2b0.json`](../../sessions/0b/0b3d121d3d666a65a2b0.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+21 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T09:55:21.812274+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_d065_llama_16980_20260520T095400",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T09:55:21.812636+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_d065_llama_16980_20260520T095400",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T09:55:21.812840+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ls -la /root/autodl-tmp/schema_outputs/ | grep -i \"d065.*llama\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_d065_llama_16980_20260520T095400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "ls -la /root/autodl-tmp/schema_outputs/ | grep -i \"d065.*llama\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-20T09:55:21.812984+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_d065_llama_16980_20260520T095400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-20T09:55:21.813108+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ls -la /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_unc_4096.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_d065_llama_16980_20260520T095400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "ls -la /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_unc_4096.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-20T09:55:21.813229+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ls -la /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_con_4096.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_d065_llama_16980_20260520T095400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "ls -la /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_con_4096.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T09:55:21.813343+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "find /root/autodl-tmp/schema_outputs/ -name \"d065*llama*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_d065_llama_16980_20260520T095400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "find /root/autodl-tmp/schema_outputs/ -name \"d065*llama*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T09:55:21.813462+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 9755865 May 20 13:44 /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_unc_4096.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.61}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_d065_llama_16980_20260520T095400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-20T09:55:21.813586+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 9768818 May 20 14:05 /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_con_4096.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_d065_llama_16980_20260520T095400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T09:55:21.813736+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/schema_outputs/d065_llama_greedy_con.log\\n/root/autodl-tmp/schema_outputs/d065_llama_greedy_unc.log\\n/root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_unc_4096.jsonl\\n/root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_con_4096.jsonl\\n/root/autodl-tmp/schema_outputs/d065_eval_llama_unc_4096.json\\n/root/autodl-tmp/schema_outputs/d065_eval_llama_con_4096.json\\n/root/autodl-tmp/schema_outputs/d065_violation_llama_unc_4096.json\\n/root/autodl-tmp/schema_outputs/d065_violation_llama_con_4096.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_d065_llama_16980_20260520T095400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T09:55:21.813986+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/autodl-tmp/schema_outputs/d065_eval_llama_unc_4096.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_d065_llama_16980_20260520T095400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "cat /root/autodl-tmp/schema_outputs/d065_eval_llama_unc_4096.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-20T09:55:21.814252+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/autodl-tmp/schema_outputs/d065_eval_llama_con_4096.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_d065_llama_16980_20260520T095400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "cat /root/autodl-tmp/schema_outputs/d065_eval_llama_con_4096.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T09:55:21.814401+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/autodl-tmp/schema_outputs/d065_violation_llama_unc_4096.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_d065_llama_16980_20260520T095400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "cat /root/autodl-tmp/schema_outputs/d065_violation_llama_unc_4096.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-20T09:55:21.814518+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/autodl-tmp/schema_outputs/d065_violation_llama_con_4096.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_d065_llama_16980_20260520T095400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "cat /root/autodl-tmp/schema_outputs/d065_violation_llama_con_4096.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T09:55:21.814658+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"label\\\": \\\"d065_llama_greedy_unc_4096\\\",\\n  \\\"total_samples\\\": 998,\\n  \\\"parse_failures\\\": 23,\\n  \\\"parse_fail_pct\\\": 2.3,\\n  \\\"total_entities_pred\\\": 19106,\\n  \\\"total_relations_pred\\\": 16171,\\n  \\\"ET_pct\\\": 0.0,\\n  \\\"RV_pct\\\": 0.15,\\n  \\\"DR_pct\\\": 0.49,\\n  \\\"CF_pct\\\": 0.08,\\n  \\\"E_P\\\": 85.75,\\n  \\\"E_R\\\": 83.82,\\n  \\\"E_F1\\\": 84.77,\\n  \\\"R_P\\\": 39.31,\\n  \\\"R_R\\\": 51.39,\\n  \\\"R_F1\\\": 44.55,\\n  \\\"et_violations\\\": 0,\\n  \\\"rv_violations\\\": 24,\\n  \\\"dr_violations\\\": 80,\\n  \\\"cf_violations\\\": 16\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_d065_llama_16980_20260520T095400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-20T09:55:21.814809+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "wc -l /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_unc_4096.jsonl /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_con_4096.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_d065_llama_16980_20260520T095400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "wc -l /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_unc_4096.jsonl /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_con_4096.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T09:55:21.814948+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"label\\\": \\\"d065_llama_greedy_con_4096\\\",\\n  \\\"total_samples\\\": 998,\\n  \\\"parse_failures\\\": 26,\\n  \\\"parse_fail_pct\\\": 2.61,\\n  \\\"total_entities_pred\\\": 19058,\\n  \\\"total_relations_pred\\\": 16042,\\n  \\\"ET_pct\\\": 0.0,\\n  \\\"RV_pct\\\": 0.0,\\n  \\\"DR_pct\\\": 0.0,\\n  \\\"CF_pct\\\": 0.26,\\n  \\\"E_P\\\": 85.8,\\n  \\\"E_R\\\": 83.66,\\n  \\\"E_F1\\\": 84.71,\\n  \\\"R_P\\\": 39.61,\\n  \\\"R_R\\\": 51.3,\\n  \\\"R_F1\\\": 44.7,\\n  \\\"et_violations\\\": 0,\\n  \\\"rv_violations\\\": 0,\\n  \\\"dr_violations\\\": 0,\\n  \\\"cf_violations\\\": 50\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_d065_llama_16980_20260520T095400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T09:55:21.815326+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\",\\n    \\\"total_documents\\\": 998,\\n    \\\"documents_checked\\\": 975,\\n    \\\"parse_failures\\\": 23,\\n    \\\"json_parse_rate\\\": 0.977,\\n    \\\"total_triples_extracted\\\": 16171,\\n    \\\"total_entities_extracted\\\": 19106,\\n    \\\"entity_type_violations\\\": 0,\\n    \\\"entity_type_violation_rate\\\": 0.0,\\n    \\\"relation_vocabulary_violations\\\": 24,\\n    \\\"relation_vocabulary_violation_rate\\\": 0.0015,\\n    \\\"relation_fuzzy_matches\\\": 0,\\n    \\\"domain_range_violations\\\": 80,\\n    \\\"domain_range_violation_rate\\\": 0.0049,\\n    \\\"cross_field_consistency_violations\\\": 16,\\n    \\\"cross_field_consistency_violation_rate\\\": 0.0008,\\n    \\\"total_violations_any\\\": 120,\\n    \\\"total_violation_rate\\\": 0.0034,\\n    \\\"go_nogo_metric\\\": 0.0049,\\n    \\\"go_nogo_metric_description\\\": \\\"per-triple domain_range_violation_rate (excludes relation_vocabulary_violations)\\\"\\n  },\\n  \\\"per_relation_type\\\": {\\n    \\\"P1001\\\": {\\n      \\\"total\\\": 150,\\n      \\\"domain_range_violations\\\": 1,\\n      \\\"violation_rate\\\": 0.0067\\n    },\\n    \\\"P102\\\": {\\n      \\\"total\\\": 114,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P1056\\\": {\\n      \\\"total\\\": 49,\\n      \\\"domain_range_violations\\\": 8,\\n      \\\"violation_rate\\\": 0.1633\\n    },\\n    \\\"P108\\\": {\\n      \\\"total\\\": 45,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P112\\\": {\\n      \\\"total\\\": 44,\\n      \\\"domain_range_violations\\\": 1,\\n      \\\"violation_rate\\\": 0.0227\\n    },\\n    \\\"P118\\\": {\\n      \\\"total\\\": 102,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P
+…[truncated 8543 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_d065_llama_16980_20260520T095400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T09:55:21.816048+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\",\\n    \\\"total_documents\\\": 998,\\n    \\\"documents_checked\\\": 972,\\n    \\\"parse_failures\\\": 26,\\n    \\\"json_parse_rate\\\": 0.9739,\\n    \\\"total_triples_extracted\\\": 16042,\\n    \\\"total_entities_extracted\\\": 19058,\\n    \\\"entity_type_violations\\\": 0,\\n    \\\"entity_type_violation_rate\\\": 0.0,\\n    \\\"relation_vocabulary_violations\\\": 0,\\n    \\\"relation_vocabulary_violation_rate\\\": 0.0,\\n    \\\"relation_fuzzy_matches\\\": 0,\\n    \\\"domain_range_violations\\\": 0,\\n    \\\"domain_range_violation_rate\\\": 0.0,\\n    \\\"cross_field_consistency_violations\\\": 50,\\n    \\\"cross_field_consistency_violation_rate\\\": 0.0026,\\n    \\\"total_violations_any\\\": 50,\\n    \\\"total_violation_rate\\\": 0.0014,\\n    \\\"go_nogo_metric\\\": 0.0,\\n    \\\"go_nogo_metric_description\\\": \\\"per-triple domain_range_violation_rate (excludes relation_vocabulary_violations)\\\"\\n  },\\n  \\\"per_relation_type\\\": {\\n    \\\"P1001\\\": {\\n      \\\"total\\\": 152,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P102\\\": {\\n      \\\"total\\\": 114,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P1056\\\": {\\n      \\\"total\\\": 49,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P108\\\": {\\n      \\\"total\\\": 44,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P112\\\": {\\n      \\\"total\\\": 42,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P118\\\": {\\n      \\\"total\\\": 102,\\n      \\\"domain_range_violations\\\": 0,\\n      \\\"violation_rate\\\": 0.0\\n    },\\n    \\\"P123\\\": {\\n      \
+…[truncated 8557 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_d065_llama_16980_20260520T095400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T09:55:21.816238+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     998 /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_unc_4096.jsonl\\n     998 /root/autodl-tmp/schema_outputs/d065_llama_docred_greedy_con_4096.jsonl\\n    1996 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_d065_llama_16980_20260520T095400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-20T09:55:21.816426+00:00_
+
+d065 Llama greedy 4096 eval 结果（998 docs, checker v2）：
+
+| Metric | Llama unc | Llama con |
+|--------|-----------|-----------|
+| E-F1 | 84.77 | 84.71 |
+| R-F1 | 44.55 | 44.70 |
+| DR% | 0.49 (80) | 0.00 (0) |
+| RV% | 0.15 (24) | 0.00 (0) |
+| CF% | 0.08 (16) | 0.26 (50) |
+| ET% | 0.00 (0) | 0.00 (0) |
+
+补充信息：
+- **Parse failures**: unc 23 (2.3%), con 26 (2.61%)
+- **Pred triples**: unc 16171, con 16042
+- **Pred entities**: unc 19106, con 19058
+- **E-P/E-R**: unc 85.75/83.82, con 85.80/83.66
+- **R-P/R-R**: unc 39.31/51.39, con 39.61/51.30
+- **Total violation rate**: unc 0.34% (120), con 0.14% (50)
+
+con 模式成功消除了 DR 和 RV 违规（均降至 0），但 CF 违规从 16 增至 50。R-F1 略有提升（44.55→44.70），E-F1 基本持平。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_eval_d065_llama_16980_20260520T095400"
+}
+```
+
+</details>
+
+---

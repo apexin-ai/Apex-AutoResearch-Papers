@@ -1,0 +1,47 @@
+{
+  "exp_id": "w5_llama_lora_scierc_constrained_eval",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:33:42.462Z",
+    "updated_at": "2026-05-15T18:03:08.647Z",
+    "spec": {
+      "command": "cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python run_constrained_extraction.py --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --data_path data/processed_data/test.json --constraint_path ontology_constraints.json --output_path outputs/w5_llama_lora_scierc_constrained.jsonl --mode full_s1",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "290317",
+      "log_path": "~/runs/schema_semantic_constrained_ie/w5_llama_lora_scierc_constrained_eval.log",
+      "submitted_at": "2026-05-15T17:38:56.723Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "llama-3.1-8b-instruct-lora-scierc-merged",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/llama_lora_scierc_merged",
+      "eval_data": "SciERC test set (551 samples)"
+    },
+    "hypothesis": "Fine-tuned Llama-3.1-8B + OntoCoDec constrained eval on SciERC — composability 验证：约束解码在 fine-tuned Llama 上仍有效且不损 F1。完成 Llama SciERC 2×2 matrix。",
+    "reproduce": {
+      "finished_at": "2026-05-15T17:59:25.871Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T17:59:27.794917+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T18:03:08.764259+00:00",
+  "trigger": "update_registry"
+}

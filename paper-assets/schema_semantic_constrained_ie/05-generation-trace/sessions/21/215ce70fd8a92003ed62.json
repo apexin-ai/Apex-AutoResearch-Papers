@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "215ce70fd8a92003ed62",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "worker",
+  "title": "code wikievents per sample fallback",
+  "task_key": "worker_code_wikievents_per_sample_fallback_20260517T164128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wikievents_per_sample_fallback_20260517T164128.log",
+    "occurrence": 1,
+    "bytes": 1069129,
+    "sha256": "e7dfb71b1a5c4ba47d59581e2e6f10f66de98a2fc198cbc2e8832fbfc7b56a74"
+  },
+  "statistics": {
+    "messages": 609,
+    "user_turns": 0,
+    "tool_calls": 253,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 98,
+      "tool_call": 253,
+      "tool_result": 253,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 609,
+      "chunks": [
+        {
+          "path": "215ce70fd8a92003ed62-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "215ce70fd8a92003ed62-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "215ce70fd8a92003ed62-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "215ce70fd8a92003ed62-part-0004.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-wikievents-per-sample-fallback.md"
+}

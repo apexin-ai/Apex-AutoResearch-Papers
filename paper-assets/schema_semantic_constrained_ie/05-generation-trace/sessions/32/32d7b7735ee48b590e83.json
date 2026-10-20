@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32d7b7735ee48b590e83",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "paper section6 relwork outline",
+  "task_key": "worker_paper_section6_relwork_outline_20260514T053338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_section6_relwork_outline_20260514T053338_result.json",
+    "occurrence": 1,
+    "bytes": 1472,
+    "sha256": "1ba8e27339586bf9ccc92aa82e91b2fca87d994d65d28127fa04bed1437e703c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/section6_relwork_outline.tex` 并注册。结构概要：\n\n| Paragraph | Topic Sentence 定位 | Key Citations | Differentiation |\n|-----------|-------------------|---------------|-----------------|\n| **Grammar-Constrained Decoding** | CFG 约束保证结构合法性 | XGrammar, Outlines, LMQL, DOMINO, ASAp | OntoCoDec grammar 层基于此，但这些方法止于语法层，无法处理 domain/range |\n| **Vocabulary/Type-Constrained** | 词汇级限制输出到合法标识符 | GENRE, GenIE, GCD, NeuroLogic | 限制\"哪些 token\"但不限制\"哪些类型组合\"对特定 relation 合法 |\n| **Structural Constraints (Training)** | 通过训练/prompt 编码 IE 结构 | UIE, GoLLIE, CodeIE, ADELIE | Soft guidance vs. OntoCoDec 的 hard enforcement，两者互补 |\n| **Post-hoc Ontology Validation** | 生成后验证 ontology 合规 | ODKE+, Upadhyay'23, Regino'25, EnriCo | Post-hoc 浪费 14-15% 计算（reject），OntoCoDec 在解码时 prevent |\n| **Quality Concerns** | 约束解码降低推理质量的担忧 | Let Me Speak Freely, CRANE (ICML'25), Hidden Cost, Snowballing | OntoCoDec F1 无损实证回应；IE 属 extraction 非 reasoning，影响有限 |\n| **Our Approach** | 三句话定位 OntoCoDec 独特性 | — | 首个 ontology→decoding semantic constraint 编译；stateful cross-field enforcement；training-free + zero cost |\n\n每段末有 `% TODO` 标注需补充完整段落的位置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-section6-relwork-outline.md"
+}

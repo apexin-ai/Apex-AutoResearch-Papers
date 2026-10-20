@@ -1,0 +1,32 @@
+{
+  "exp_id": "d066_sweep_16980_gpu1",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:01:11.031Z",
+    "updated_at": "2026-05-20T11:21:35.106Z",
+    "hypothesis": "d066 DocRED beam sweep sub-task: Llama beam2 unconstrained on 200-doc subset (westd-16980 GPU1). Part of d066_beam_sweep parent experiment.",
+    "parent": "d066_beam_sweep",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 nohup python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path llama_lora_docred_merged --decoding_strategy beam --num_beams 2 --max_docs 200",
+      "server": "westd-16980 GPU1",
+      "data_path": "data/docred/dev.json (200-doc subset)",
+      "data_count": 200,
+      "model_name": "Llama-3.1-8B LoRA DocRED (merged)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/llama_lora_docred_merged",
+      "eval_data": "data/docred/dev.json (200-doc subset)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T11:21:34.505Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-20T11:21:35.106Z"
+  },
+  "timestamp": "2026-05-20T11:21:35.386812+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,27 @@
+{
+  "exp_id": "w1_cf_fallback_llama_scierc",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:32:57.470Z",
+    "updated_at": "2026-05-16T03:19:49.130Z",
+    "spec": {
+      "hypothesis": "W1 CF fallback 在 Llama SciERC 上的跨模型验证。Llama SciERC full_s1 原 CF=6.56%，预期显著降低。Phase 2 实验。",
+      "parent": "llama_scierc_full_s1",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_llama_scierc.jsonl --device cuda:1 --batch_size 1 --max_new_tokens 4096\"",
+      "server": "westd-16980",
+      "data_path": "data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "seed": "default",
+      "gpu": "cuda:1"
+    },
+    "conclusion": "killed",
+    "notes": "D020: 取消。CF fallback 改为 Analytical Finding 方案，仅用 SciERC pilot 数据。Qwen SciERC pilot 已充分证明 CF↔DR re-routing（CF -9.86pp 但 DR +13.85pp，budget +3.99pp）。跨模型重复无额外信息量。最终状态: killed。"
+  },
+  "timestamp": "2026-05-16T03:19:49.289230+00:00",
+  "trigger": "update_registry"
+}

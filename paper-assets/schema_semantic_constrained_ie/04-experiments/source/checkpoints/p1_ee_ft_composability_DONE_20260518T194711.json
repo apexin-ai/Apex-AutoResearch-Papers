@@ -1,0 +1,52 @@
+{
+  "exp_id": "p1_ee_ft_composability",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:21:54.303Z",
+    "updated_at": "2026-05-18T19:47:11.788Z",
+    "server": "westd-21461",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "westd-21461",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-18T19:23:43.507Z",
+      "finished_at": "2026-05-18T19:45:36.540Z",
+      "training_hours": 0.36
+    },
+    "spec": {
+      "command": "bash -c \"cd /root/schema_semantic_constrained_ie && export WANDB_DISABLED=true && export CUDA_VISIBLE_DEVICES=0 && echo '=== Step 1: LoRA Training ===' && python scripts/train_lora_wikievents.py 2>&1 | tee /root/autodl-tmp/schema_outputs/p1_ee_ft_train.log && echo '=== Step 2: Unconstrained Inference ===' && python run_constrained_extraction.py --dataset wikievents --mode unconstrained --model_path checkpoints/qwen3_8b_lora_wikievents_merged --data_path data/wikievents/test.jsonl --output_path outputs/ee_qwen_ft_wikievents_unconstrained.jsonl --device cuda:0 2>&1 | tee /root/autodl-tmp/schema_outputs/p1_ee_ft_unc_infer.log && echo '=== Step 3: Constrained Inference ===' && python run_constrained_extraction.py --dataset wikievents --mode full_s1 --model_path checkpoints/qwen3_8b_lora_wikievents_merged --data_path data/wikievents/test.jsonl --output_path outputs/ee_qwen_ft_wikievents_full_s1.jsonl --device cuda:0 2>&1 | tee /root/autodl-tmp/schema_outputs/p1_ee_ft_con_infer.log && echo '=== Step 4: Evaluation ===' && python eval_event_extraction.py --input_path outputs/ee_qwen_ft_wikievents_unconstrained.jsonl 2>&1 | tee /root/autodl-tmp/schema_outputs/p1_ee_ft_eval_unc.log && python eval_event_extraction.py --input_path outputs/ee_qwen_ft_wikievents_full_s1.jsonl 2>&1 | tee /root/autodl-tmp/schema_outputs/p1_ee_ft_eval_con.log && echo '=== Step 5: Violation Check ===' && python violation_checker_wikievents.py --input_path outputs/ee_qwen_ft_wikievents_unconstrained.jsonl --constraints_path data/wikievents/ontology_constraints_wikievents.json 2>&1 | tee /root/autodl-tmp/schema_outputs/p1_ee_ft_viol_unc.log && python violation_checker_wikievents.py --input_path outputs/ee_qwen_ft_wikievents_full_s1.jsonl --constraints_path data/wikievents/ontology_constraints_wikievents.json 2>&1 | tee /root/autodl-tmp/schema_outputs/p1_ee_ft_viol_con.log && echo '=== ALL DONE ===' | tee /root/autodl-tmp/schema_outputs/p1_ee_ft_COMPLETE\"",
+      "server": "westd-21461",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "unknown",
+      "log_path": "/root/autodl-tmp/schema_outputs/p1_ee_ft_train.log",
+      "submitted_at": "2026-05-18T19:42:39.343Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "N/A",
+      "failure_reason": "python: command not found - tmux PATH lacks python binary, need absolute path /root/miniconda3/bin/python",
+      "wall_clock_seconds": 272.4,
+      "gpu_hours": 0.08
+    },
+    "hypothesis": "LoRA fine-tuning Qwen3-8B on WikiEvents EE with correct train/dev/test splits (no data leakage) will produce a model whose unconstrained output has schema violations that are reduced by constrained decoding (full_s1), demonstrating composability of schema constraints with fine-tuned models.",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T19:45:43.143726+00:00"
+        }
+      ]
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-18T19:47:11.788Z"
+  },
+  "timestamp": "2026-05-18T19:47:11.989203+00:00",
+  "trigger": "update_registry"
+}

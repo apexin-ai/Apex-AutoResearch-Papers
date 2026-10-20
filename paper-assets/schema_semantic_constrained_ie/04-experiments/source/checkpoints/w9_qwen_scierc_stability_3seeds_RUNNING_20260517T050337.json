@@ -1,0 +1,57 @@
+{
+  "exp_id": "w9_qwen_scierc_stability_3seeds",
+  "project": "schema_semantic_constrained_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T02:55:58.164Z",
+    "updated_at": "2026-05-17T05:03:37.763Z",
+    "hypothesis": "Greedy full_s1 constraint results on SciERC are stable across random seeds: DR should remain in 0.7-1.2% range (near the 0.93% baseline), demonstrating that the single-run result is not an outlier",
+    "spec": {
+      "command": "bash run_stability_test.sh (seeds 123,456,789 sequential)",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "406710",
+      "model_name": "Qwen3-8B",
+      "data_path": "data/scierc/test.json",
+      "data_count": 551,
+      "seed": "123,456,789"
+    },
+    "metrics": {
+      "seed_123": {
+        "ET_pct": 0,
+        "RV_pct": 0,
+        "DR_pct": 0.93,
+        "CF_pct": 9.9,
+        "E_F1": 30.98,
+        "R_F1": 8.36
+      },
+      "seed_456": {
+        "ET_pct": 0,
+        "RV_pct": 0,
+        "DR_pct": 0.93,
+        "CF_pct": 9.9,
+        "E_F1": 30.98,
+        "R_F1": 8.36
+      },
+      "seed_789": {
+        "ET_pct": 0,
+        "RV_pct": 0,
+        "DR_pct": 0.93,
+        "CF_pct": 9.9,
+        "E_F1": 30.98,
+        "R_F1": 8.36
+      },
+      "cross_seed_DR_std": 0,
+      "cross_seed_DR_range": 0,
+      "conclusion_note": "Greedy decoding is fully deterministic - seed has no effect on output. All metrics identical across 3 seeds."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T05:03:37.937969+00:00",
+  "trigger": "update_registry"
+}

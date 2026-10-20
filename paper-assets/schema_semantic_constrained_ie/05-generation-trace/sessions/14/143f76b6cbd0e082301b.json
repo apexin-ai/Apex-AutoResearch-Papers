@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "143f76b6cbd0e082301b",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code monitor and launch v3 mistral",
+  "task_key": "worker_code_monitor_and_launch_v3_mistral_20260518T034158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_monitor_and_launch_v3_mistral_20260518T034158_result.json",
+    "occurrence": 1,
+    "bytes": 208,
+    "sha256": "6d28d05f6758f5701117c6f7ab6605a21cb5e2720ff9891ca57a96a32e60f1bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Mistral v2 16K retry is still running on westd-21461 (217 lines completed). Polling every 3 minutes — I'll proceed to Phase 2 (backup + dry-run + full launch) as soon as the session finishes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-monitor-and-launch-v3-mistral.md"
+}

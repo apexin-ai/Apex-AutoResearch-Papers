@@ -1,0 +1,16 @@
+{
+  "exp_id": "d066_sweep_llama_docred_beam4_unc",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T13:22:24.187Z",
+    "updated_at": "2026-05-20T13:22:29.512Z",
+    "hypothesis": "d066 DocRED beam sweep sub-task: Llama beam4 unconstrained on 200-doc subset (westd-16980 GPU1). Part of d066_beam_sweep. DocRED data needed for Pareto dual-panel figure.",
+    "parent": "d066_beam_sweep"
+  },
+  "timestamp": "2026-05-20T13:22:29.771257+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3062d07ead488dd491b0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code w5 lora scierc unconstrained eval",
+  "task_key": "worker_code_w5_lora_scierc_unconstrained_eval_20260515T152053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w5_lora_scierc_unconstrained_eval_20260515T152053_result.json",
+    "occurrence": 1,
+    "bytes": 643,
+    "sha256": "ceecd926d9d7091dccc2f96321a913bf596a6ad95057f282a5c242a7a0351f45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已创建，状态 RUNNING。实验已有记录（包括 PID 278380、hypothesis 和 parent 都已自动填充）。\n\n总结：\n- **W5 LoRA SciERC unconstrained eval 已在运行中**（PID 278385, GPU0）\n- 进度：~67/551 样本，文件持续增长\n- 实际数据路径：`data/processed_data/test.json`（非任务描述中的 `data/scierc/test.json`，该路径不存在）\n- 约束文件：`ontology_constraints.json`（非 `data/scierc/ontology_constraints_scierc.json`）\n- Registry 已注册为 `w5_lora_scierc_unconstrained_eval`，status=RUNNING，parent=w5_lora_scierc_training\n- 无需重复提交"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w5-lora-scierc-unconstrained-eval.md"
+}

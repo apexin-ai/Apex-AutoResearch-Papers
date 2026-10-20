@@ -1,0 +1,39 @@
+{
+  "exp_id": "w6_mistral_docred_unconstrained",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-16T02:59:03.876Z",
+    "updated_at": "2026-05-16T08:36:45.584Z",
+    "hypothesis": "Mistral (3rd model) DocRED unconstrained baseline — 获取复杂 schema (96 relations) 下的 violation profile，与 Qwen/Llama 对比",
+    "notes": "PID 5571 on cuda:0 via nohup. Model loaded from symlink /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 -> ms_cache. 2x RTX PRO 6000 Blackwell 98GB. Log at /tmp/w6_mistral_docred_unconstrained.log.",
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "completed_at": "2026-05-16T05:28:07.908Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "PID 5571 on cuda:0 via nohup. Model loaded from symlink /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 -> ms_cache. 2x RTX PRO 6000 Blackwell 98GB. Log at /tmp/w6_mistral_docred_unconstrained.log."
+      }
+    },
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w6_mistral_docred_unconstrained.jsonl --batch_size 1 --max_new_tokens 4096",
+      "server": "westd-21461",
+      "gpu": 0,
+      "pid": 7740,
+      "log_path": "~/runs/schema_semantic_constrained_ie/w6_mistral_docred_unconstrained.log",
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "data_path": "data/docred/dev.json",
+      "data_count": 998,
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T08:36:44.102Z"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-16T08:36:45.720471+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1220 @@
+{
+  "schema_version": "1.0",
+  "id": "3605257bcce2e65e2f52",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "analysis high kappa relations",
+  "task_key": "worker_analysis_high-kappa-relations_20260522T141222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_high-kappa-relations_20260522T141222.jsonl",
+    "occurrence": 1,
+    "bytes": 81446,
+    "sha256": "b4b55bc152a110ca93e389e2383fdab2b0342717278c5f11a0cc63f8580e30c4"
+  },
+  "statistics": {
+    "messages": 61,
+    "user_turns": 0,
+    "tool_calls": 30,
+    "roles": {
+      "tool_call": 30,
+      "tool_result": 30,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T14:18:51.544040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T14:18:51.544525+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T14:18:51.544757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls /root/schema_semantic_constrained_ie/outputs/"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T14:18:51.544963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls /root/schema_semantic_constrained_ie/artifacts/ 2>/dev/null"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T14:18:51.545268+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analysis_llama_docred_70b_constrained_v2.json\\\\nanalysis_llama_docred_ft_grammar_only.json\\\\nanalysis_llama_docred_full_s1_mt6144_v2.json\\\\nanalysis_llama_docred_full_s1_v2.json\\\\nanalysis_llama_docred_unconstrained_mt6144_v2.json\\\\nanalysis_llama_docred_unconstrained_v2.json\\\\nanalysis_w5_llama_docred_lora_constrained_v2.json\\\\nbeam_search_50.jsonl\\\\nbeam_search_dryrun_10.jsonl\\\\nbeam_search_full_551.log\\\\nbeam_search_scierc_full_551.jsonl\\\\nbootstrap_ci_ee_ft_llama.json\\\\nbootstrap_ci_ft_composability.json\\\\nbootstrap_ci_results.json\\\\nbootstrap_ci_results_llama.json\\\\nbootstrap_ci_results_v2.json\\\\ncf_analysis\\\\ncf_analysis_w1_pilot\\\\ncf_correction_report_llama_docred_ft.json\\\\ncf_correction_report_llama_docred_zs.json\\\\ncf_correction_report_llama_scierc_ft.json\\\\ncf_correction_report_llama_scierc_zs.json\\\\ncf_correction_report_qwen_docred_ft.json\\\\ncf_correction_report_qwen_docred_zs.json\\\\ncf_correction_report_qwen_scierc_ft.json\\\\ncf_correction_report_qwen_scierc_zs.json\\\\ncf_violation_analysis.json\\\\ncomparison_minimal_vs_schema_informed.json\\\\nd066_docred_zs_grammar.json\\\\nd066_docred_zs_s1.json\\\\nd066_docred_zs_semantic.json\\\\nd066_docred_zs_unc.json\\\\nd066_llama_docred_lora_s1.json\\\\nd066_llama_docred_lora_unc.json\\\\nd066_llama_scierc_lora_s1.json\\\\nd066_llama_scierc_lora_unc.json\\\\nd066_qwen_docred_lora_s1.json\\\\nd066_qwen_docred_lora_unc.json\\\\nd066_qwen_scierc_lora_s1.json\\\\nd066_qwen_scierc_lora_unc.json\\\\nd066_scierc_zs_grammar.json\\\\nd066_scierc_zs_s1.json\\\\nd066_scierc_zs_semantic.json\\\\nd066_scierc_zs_unc.json\\\\nd068_guided_beam\\\\ndebug_final.log\\\\ndebug_semantic.log\\\\ndebug_semantic2.log\\\\ndoc_length_breakdown.json\\\\ndocred_full_s1.jsonl\\\\ndocred_full_s1_cf_corrected.jsonl\\\\ndocred_full_s1_consensus_50.jsonl\\\\ndocred_full_s1_dryrun.jsonl\\\\ndocred_grammar_only.jsonl\\\\ndocred_llama_beam_50.jsonl\\\\ndocred_semantic_only.jsonl\\\\ndocred_semantic_only_dryrun.jsonl\\\\ndocred_unconstrained.jsonl\\\\ndr_r\n…[truncated 6651 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T14:18:51.545438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T14:18:51.545582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie/ -name \"*.tex\" -path \"*appendix*\""
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T14:18:51.545757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/paper/appendix_llama_per_relation.tex\\\\n/root/schema_semantic_constrained_ie/paper/appendix_related_work.tex\\\\n/root/schema_semantic_constrained_ie/paper/appendix_discussion.tex\\\\n/root/schema_semantic_constrained_ie/paper/appendix_case_studies.tex\\\\n/root/schema_semantic_constrained_ie/paper/appendix_prompts.tex\\\\n/root/schema_semantic_constrained_ie/paper/appendix_sampling_table.tex\\\\n/root/schema_semantic_constrained_ie/paper/appendix_reproducibility.tex\\\\n/root/schema_semantic_constrained_ie/paper/appendix_beam_search.tex\\\\n/root/schema_semantic_constrained_ie/paper/appendix_doc_length.tex\\\\n/root/schema_semantic_constrained_ie/paper/appendix_prompt_sensitivity.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T14:18:51.545906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie/ -name \"*kappa*\" -o -name \"*schema*\" -o -name \"*ontology*\""
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T14:18:51.546054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/\\\\n/root/schema_semantic_constrained_ie/outputs/raw_outputs_schema.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_schema.json\\\\n/root/schema_semantic_constrained_ie/outputs/comparison_minimal_vs_schema_informed.json\\\\n/root/schema_semantic_constrained_ie/outputs/raw_outputs_docred_schema.jsonl\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_docred_schema.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_docred_schema_v2.json\\\\n/root/schema_semantic_constrained_ie/data/docred/ontology_constraints_docred.json\\\\n/root/schema_semantic_constrained_ie/data/ace05/ontology_constraints_ace05.json\\\\n/root/schema_semantic_constrained_ie/data/wikievents/aida_ontology_cleaned.csv\\\\n/root/schema_semantic_constrained_ie/data/wikievents/schema_status.txt\\\\n/root/schema_semantic_constrained_ie/data/wikievents/ontology_constraints_wikievents.json\\\\n/root/schema_semantic_constrained_ie/data/synthetic/ontology_large_100.json\\\\n/root/schema_semantic_constrained_ie/data/synthetic/ontology_xlarge_200.json\\\\n/root/schema_semantic_constrained_ie/analyze_ontology.py\\\\n/root/schema_semantic_constrained_ie/analyze_ontology_docred.py\\\\n/root/schema_semantic_constrained_ie/ontology_constraints.json\\\\n/root/schema_semantic_constrained_ie/compiler/ontology_compiler.py\\\\n/root/schema_semantic_constrained_ie/compiler/__pycache__/ontology_compiler.cpython-312.pyc\\\\n/root/schema_semantic_constrained_ie/compiler/__pycache__/ontology_compiler.cpython-310.pyc\\\\n/root/schema_semantic_constrained_ie/scripts/build_flattened_ontology.py\\\\n/root/schema_semantic_constrained_ie/scripts/ontology_scalability_benchmark.py\\\\n/root/schema_semantic_constrained_ie/scripts/ontology_scalability_results.json\\\\n/root/schema_semantic_constrained_ie/build_wikievents_ontology.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0\n…[truncated 7 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T14:18:51.546233+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/ontology_constraints.json"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T14:18:51.546585+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"entity_types\\\\\\\": [\\\\n    \\\\\\\"Task\\\\\\\",\\\\n    \\\\\\\"Method\\\\\\\",\\\\n    \\\\\\\"Material\\\\\\\",\\\\n    \\\\\\\"Metric\\\\\\\",\\\\n    \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n    \\\\\\\"Generic\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"relation_types\\\\\\\": [\\\\n    \\\\\\\"Used-for\\\\\\\",\\\\n    \\\\\\\"Feature-of\\\\\\\",\\\\n    \\\\\\\"Hyponym-of\\\\\\\",\\\\n    \\\\\\\"Part-of\\\\\\\",\\\\n    \\\\\\\"Compare\\\\\\\",\\\\n    \\\\\\\"Conjunction\\\\\\\",\\\\n    \\\\\\\"Evaluate-for\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"raw_to_canonical\\\\\\\": {\\\\n    \\\\\\\"USED-FOR\\\\\\\": \\\\\\\"Used-for\\\\\\\",\\\\n    \\\\\\\"FEATURE-OF\\\\\\\": \\\\\\\"Feature-of\\\\\\\",\\\\n    \\\\\\\"HYPONYM-OF\\\\\\\": \\\\\\\"Hyponym-of\\\\\\\",\\\\n    \\\\\\\"PART-OF\\\\\\\": \\\\\\\"Part-of\\\\\\\",\\\\n    \\\\\\\"COMPARE\\\\\\\": \\\\\\\"Compare\\\\\\\",\\\\n    \\\\\\\"CONJUNCTION\\\\\\\": \\\\\\\"Conjunction\\\\\\\",\\\\n    \\\\\\\"EVALUATE-FOR\\\\\\\": \\\\\\\"Evaluate-for\\\\\\\"\\\\n  },\\\\n  \\\\\\\"entity_type_stats\\\\\\\": {\\\\n    \\\\\\\"total\\\\\\\": 5598,\\\\n    \\\\\\\"distribution\\\\\\\": {\\\\n      \\\\\\\"Material\\\\\\\": 542,\\\\n      \\\\\\\"OtherScientificTerm\\\\\\\": 1536,\\\\n      \\\\\\\"Generic\\\\\\\": 950,\\\\n      \\\\\\\"Method\\\\\\\": 1445,\\\\n      \\\\\\\"Task\\\\\\\": 894,\\\\n      \\\\\\\"Metric\\\\\\\": 231\\\\n    }\\\\n  },\\\\n  \\\\\\\"relation_constraints\\\\\\\": {\\\\n    \\\\\\\"Used-for\\\\\\\": {\\\\n      \\\\\\\"valid_pairs\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"Method\\\\\\\",\\\\n          \\\\\\\"Task\\\\\\\"\\\\n        ],\\\\n        [\\\\n          \\\\\\\"Generic\\\\\\\",\\\\n          \\\\\\\"Task\\\\\\\"\\\\n        ],\\\\n        [\\\\n          \\\\\\\"Method\\\\\\\",\\\\n          \\\\\\\"OtherScientificTerm\\\\\\\"\\\\n        ],\\\\n        [\\\\n          \\\\\\\"Method\\\\\\\",\\\\n          \\\\\\\"Method\\\\\\\"\\\\n        ],\\\\n        [\\\\n          \\\\\\\"Method\\\\\\\",\\\\n          \\\\\\\"Generic\\\\\\\"\\\\n        ],\\\\n        [\\\\n          \\\\\\\"Generic\\\\\\\",\\\\n          \\\\\\\"OtherScientificTerm\\\\\\\"\\\\n        ],\\\\n        [\\\\n          \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n          \\\\\\\"Method\\\\\\\"\\\\n        ],\\\\n        [\\\\n          \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n          \\\\\\\"OtherScientificTerm\\\\\\\"\\\\n        ],\\\\n        [\\\\n          \\\\\\\"Material\\\\\\\",\\\\n          \\\\\\\"Method\\\\\\\"\\\\n        ],\\\\n        [\\\\n          \\\\\n…[truncated 8635 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T14:18:51.546777+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/data/docred/ontology_constraints_docred.json"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T14:18:51.546908+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/outputs/dr_residual_analysis.json"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T14:18:51.547298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"entity_types\\\\\\\": [\\\\n    \\\\\\\"LOC\\\\\\\",\\\\n    \\\\\\\"MISC\\\\\\\",\\\\n    \\\\\\\"NUM\\\\\\\",\\\\n    \\\\\\\"ORG\\\\\\\",\\\\n    \\\\\\\"PER\\\\\\\",\\\\n    \\\\\\\"TIME\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"relation_types\\\\\\\": {\\\\n    \\\\\\\"P6\\\\\\\": \\\\\\\"head of government\\\\\\\",\\\\n    \\\\\\\"P17\\\\\\\": \\\\\\\"country\\\\\\\",\\\\n    \\\\\\\"P19\\\\\\\": \\\\\\\"place of birth\\\\\\\",\\\\n    \\\\\\\"P20\\\\\\\": \\\\\\\"place of death\\\\\\\",\\\\n    \\\\\\\"P22\\\\\\\": \\\\\\\"father\\\\\\\",\\\\n    \\\\\\\"P25\\\\\\\": \\\\\\\"mother\\\\\\\",\\\\n    \\\\\\\"P26\\\\\\\": \\\\\\\"spouse\\\\\\\",\\\\n    \\\\\\\"P27\\\\\\\": \\\\\\\"country of citizenship\\\\\\\",\\\\n    \\\\\\\"P30\\\\\\\": \\\\\\\"continent\\\\\\\",\\\\n    \\\\\\\"P31\\\\\\\": \\\\\\\"instance of\\\\\\\",\\\\n    \\\\\\\"P35\\\\\\\": \\\\\\\"head of state\\\\\\\",\\\\n    \\\\\\\"P36\\\\\\\": \\\\\\\"capital\\\\\\\",\\\\n    \\\\\\\"P37\\\\\\\": \\\\\\\"official language\\\\\\\",\\\\n    \\\\\\\"P39\\\\\\\": \\\\\\\"position held\\\\\\\",\\\\n    \\\\\\\"P40\\\\\\\": \\\\\\\"child\\\\\\\",\\\\n    \\\\\\\"P50\\\\\\\": \\\\\\\"author\\\\\\\",\\\\n    \\\\\\\"P54\\\\\\\": \\\\\\\"member of sports team\\\\\\\",\\\\n    \\\\\\\"P57\\\\\\\": \\\\\\\"director\\\\\\\",\\\\n    \\\\\\\"P58\\\\\\\": \\\\\\\"screenwriter\\\\\\\",\\\\n    \\\\\\\"P69\\\\\\\": \\\\\\\"educated at\\\\\\\",\\\\n    \\\\\\\"P86\\\\\\\": \\\\\\\"composer\\\\\\\",\\\\n    \\\\\\\"P102\\\\\\\": \\\\\\\"member of political party\\\\\\\",\\\\n    \\\\\\\"P108\\\\\\\": \\\\\\\"employer\\\\\\\",\\\\n    \\\\\\\"P112\\\\\\\": \\\\\\\"founded by\\\\\\\",\\\\n    \\\\\\\"P118\\\\\\\": \\\\\\\"league\\\\\\\",\\\\n    \\\\\\\"P123\\\\\\\": \\\\\\\"publisher\\\\\\\",\\\\n    \\\\\\\"P127\\\\\\\": \\\\\\\"owned by\\\\\\\",\\\\n    \\\\\\\"P131\\\\\\\": \\\\\\\"located in the administrative territorial entity\\\\\\\",\\\\n    \\\\\\\"P136\\\\\\\": \\\\\\\"genre\\\\\\\",\\\\n    \\\\\\\"P137\\\\\\\": \\\\\\\"operator\\\\\\\",\\\\n    \\\\\\\"P140\\\\\\\": \\\\\\\"religion\\\\\\\",\\\\n    \\\\\\\"P150\\\\\\\": \\\\\\\"contains administrative territorial entity\\\\\\\",\\\\n    \\\\\\\"P155\\\\\\\": \\\\\\\"follows\\\\\\\",\\\\n    \\\\\\\"P156\\\\\\\": \\\\\\\"followed by\\\\\\\",\\\\n    \\\\\\\"P159\\\\\\\": \\\\\\\"headquarters location\\\\\\\",\\\\n    \\\\\\\"P161\\\\\\\": \\\\\\\"cast member\\\\\\\",\\\\n    \\\\\\\"P162\\\\\\\": \\\\\\\"producer\\\\\\\",\\\\n    \\\\\\\"P166\\\\\\\": \\\\\\\"award received\\\\\\\",\\\\n    \\\\\\\"P170\\\\\\\": \\\\\\\"creator\\\\\\\",\\\\n    \\\\\\\"P171\\\\\\\": \\\\\\\"parent taxon\\\\\\\",\\\\n    \\\\\\\"P172\\\\\\\": \\\\\\\"ethnic group\\\\\\\",\\\\n    \\\\\\\"P175\\\\\\\": \\\\\\\"performer\\\\\\\",\\\\\n…[truncated 9363 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T14:18:51.547726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"llama_s1\\\\\\\": {\\\\n    \\\\\\\"docs\\\\\\\": 907,\\\\n    \\\\\\\"pf\\\\\\\": 91,\\\\n    \\\\\\\"triples\\\\\\\": 16368,\\\\n    \\\\\\\"dr_violations\\\\\\\": 418,\\\\n    \\\\\\\"dr_pct\\\\\\\": 2.55\\\\n  },\\\\n  \\\\\\\"llama_unc\\\\\\\": {\\\\n    \\\\\\\"docs\\\\\\\": 930,\\\\n    \\\\\\\"pf\\\\\\\": 68,\\\\n    \\\\\\\"triples\\\\\\\": 13670,\\\\n    \\\\\\\"dr_violations\\\\\\\": 4210,\\\\n    \\\\\\\"dr_pct\\\\\\\": 30.8\\\\n  },\\\\n  \\\\\\\"correlation\\\\\\\": {\\\\n    \\\\\\\"llama_s1\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 90,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.0691,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.5172484784688316,\\\\n      \\\\\\\"pearson_r\\\\\\\": 0.0831,\\\\n      \\\\\\\"pearson_p\\\\\\\": 0.43592005943585616\\\\n    },\\\\n    \\\\\\\"qwen_s1\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 90,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.3565,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.0005630555789375739\\\\n    }\\\\n  },\\\\n  \\\\\\\"tightness\\\\\\\": {\\\\n    \\\\\\\"viol_mean\\\\\\\": 0.8456,\\\\n    \\\\\\\"nonviol_mean\\\\\\\": 0.837\\\\n  },\\\\n  \\\\\\\"per_relation\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"pid\\\\\\\": \\\\\\\"P1001\\\\\\\",\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"applies to jurisdiction\\\\\\\",\\\\n      \\\\\\\"n_valid\\\\\\\": 8,\\\\n      \\\\\\\"tau\\\\\\\": 0.7778,\\\\n      \\\\\\\"ls1_tot\\\\\\\": 637,\\\\n      \\\\\\\"ls1_viol\\\\\\\": 45,\\\\n      \\\\\\\"ls1_rate\\\\\\\": 0.0706436420722135,\\\\n      \\\\\\\"lu_tot\\\\\\\": 509,\\\\n      \\\\\\\"lu_viol\\\\\\\": 318,\\\\n      \\\\\\\"lu_rate\\\\\\\": 0.6247544204322201,\\\\n      \\\\\\\"qs1_tot\\\\\\\": 966,\\\\n      \\\\\\\"qs1_viol\\\\\\\": 194,\\\\n      \\\\\\\"qs1_rate\\\\\\\": 0.20082815734989648,\\\\n      \\\\\\\"qu_tot\\\\\\\": 593,\\\\n      \\\\\\\"qu_viol\\\\\\\": 218,\\\\n      \\\\\\\"qu_rate\\\\\\\": 0.3676222596964587,\\\\n      \\\\\\\"top_pair\\\\\\\": \\\\\\\"LOC->ORG(14)\\\\\\\",\\\\n      \\\\\\\"all_pairs\\\\\\\": {\\\\n        \\\\\\\"LOC->ORG\\\\\\\": 14,\\\\n        \\\\\\\"PER->MISC\\\\\\\": 7,\\\\n        \\\\\\\"MISC->PER\\\\\\\": 1,\\\\n        \\\\\\\"LOC->TIME\\\\\\\": 2,\\\\n        \\\\\\\"PER->NUM\\\\\\\": 8,\\\\n        \\\\\\\"PER->PER\\\\\\\": 12,\\\\n        \\\\\\\"PER->ORG\\\\\\\": 1\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"pid\\\\\\\": \\\\\\\"P102\\\\\\\",\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"member of political party\\\\\\\",\\\\n      \\\\\\\"n_valid\\\\\\\": 7,\\\\n      \\\\\\\"tau\\\\\\\": 0.8056,\\\\n      \\\\\\\"ls1_tot\n…[truncated 9026 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T14:18:51.547907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/paper/appendix_llama_per_relation.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T14:18:51.548037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/schema_semantic_constrained_ie/paper/appendix_case_studies.tex"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T14:18:51.548201+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"% Appendix C — Per-Relation Violation Analysis (Llama-3.1-8B)\\\\n% exp_ids: llama_docred_unconstrained, llama_docred_full_s1\\\\n\\\\n\\\\\\\\section{Per-Relation Violation Analysis (Llama-3.1-8B)}\\\\\\\\label{app:llama-per-relation}\\\\n\\\\nTable~\\\\\\\\ref{tab:llama-per-relation-dr} presents the per-relation domain--range violation breakdown for Llama-3.1-8B on DocRED under full S1 constraints.\\\\nThe Llama baseline exhibits an RV rate of 16.03\\\\\\\\%, substantially lower than Qwen's 29.66\\\\\\\\%, indicating stronger baseline vocabulary compliance.\\\\n% exp_ids: llama_docred_unconstrained (RV=16.03%), qwen_docred_unconstrained (RV=29.66%)\\\\nFull S1 completely eliminates RV violations and reduces the residual DR rate to 2.55\\\\\\\\% (418/16{,}368 triples), with only three relations exceeding 10\\\\\\\\%.\\\\n% exp_ids: llama_docred_full_s1 (DR=2.6%, 418/16368)\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Top 10 per-relation DR violation rates for Llama-3.1-8B on DocRED under full S1 constraints. Relations with $>$20 triples and 0\\\\\\\\% DR (e.g., P131, P206, P361, P170, P86) are omitted.}\\\\n\\\\\\\\label{tab:llama-per-relation-dr}\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{@{}llrrr@{}}\\\\n\\\\\\\\toprule\\\\nRelation & PID & Triples & DR Violations & DR Rate (\\\\\\\\%) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\ndissolved/demolished & P576 & 73 & 24 & 32.9 \\\\\\\\\\\\\\\\\\\\nfollowed by          & P156 & 117 & 24 & 20.5 \\\\\\\\\\\\\\\\\\\\nunemployment rate    & P1198 & 15 & 3 & 20.0 \\\\\\\\\\\\\\\\\\\\nend time             & P582 & 130 & 21 & 16.2 \\\\\\\\\\\\\\\\\\\\ninstance of          & P31  & 290 & 37 & 12.8 \\\\\\\\\\\\\\\\\\\\nproduct/material produced & P1056 & 98 & 11 & 11.2 \\\\\\\\\\\\\\\\\\\\nlocation of formation & P740 & 81 & 8 & 9.9 \\\\\\\\\\\\\\\\\\\\nhead of state        & P35  & 41  & 3  & 7.3 \\\\\\\\\\\\\\\\\\\\napplies to jurisdiction & P1001 & 637 & 45 & 7.1 \\\\\\\\\\\\\\\\\\\\nconflict             & P607 & 453 & 30 & 6.6 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}}\\\\n\\\\\\\\end{table}\\\\n% exp_ids: llama_docred_f\n…[truncated 801 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T14:18:51.548473+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"% Appendix — Error Analysis and Case Studies\\\\n\\\\n\\\\\\\\section{Error Analysis and Case Studies}\\\\n\\\\\\\\label{app:case-studies}\\\\n\\\\n\\\\\\\\definecolor{violation}{RGB}{220,50,50}\\\\n\\\\\\\\definecolor{fixed}{RGB}{34,139,34}\\\\n\\\\\\\\definecolor{cfwarn}{RGB}{200,120,0}\\\\n\\\\nWe present four representative cases illustrating constraint behavior across violation types. Cases 1--3 demonstrate OntoCoDec's corrective mechanisms; Case 4 illustrates a limitation.\\\\n\\\\n\\\\\\\\subsection{Domain-Range Correction}\\\\n\\\\\\\\label{app:case-dr}\\\\n\\\\n\\\\\\\\noindent\\\\\\\\textbf{Input (SciERC, Qwen3-8B):} \\\\\\\\textit{``We present a novel model-based approach to recover the shapes and the poses of transparent objects from known motion.''}\\\\n\\\\nThe unconstrained model assigns \\\\\\\\textsc{OtherScientificTerm} to ``shapes'' and ``poses,'' producing \\\\\\\\textsc{Feature-of}(\\\\\\\\textsc{Task}, \\\\\\\\textsc{OtherScientificTerm}) triples that violate domain/range constraints. The semantic layer redirects the tail type to \\\\\\\\textsc{Task}, yielding schema-compliant triples (Table~\\\\\\\\ref{tab:case1}).\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{OntoCoDec corrects three Feature-of DR violations. \\\\\\\\textcolor{violation}{Red} = violation; \\\\\\\\textcolor{fixed}{green} = corrected.}\\\\n\\\\\\\\label{tab:case1}\\\\n\\\\\\\\begin{tabular}{@{}p{3.2cm}lll@{}}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Triple} & \\\\\\\\textbf{Head} & \\\\\\\\textbf{Tail} & \\\\\\\\textbf{DR} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{4}{@{}l}{\\\\\\\\textit{Unconstrained (3 violations)}} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nFeature-of(recover, shapes) & Task & \\\\\\\\textcolor{violation}{OtherSciTerm} & \\\\\\\\textcolor{violation}{\\\\\\\\ding{55}} \\\\\\\\\\\\\\\\\\\\nFeature-of(recover, poses) & Task & \\\\\\\\textcolor{violation}{OtherSciTerm} & \\\\\\\\textcolor{violation}{\\\\\\\\ding{55}} \\\\\\\\\\\\\\\\\\\\nFeature-of(recover, transp.\\\\\\\\ obj.) & Task & \\\\\\\\textcolor{violation}{OtherSciTerm} & \\\\\\\\textcolor{violation}{\\\\\\\\ding{55}} \\\\\\\\\\\\\\\\\\\\nUsed-for(model app\n…[truncated 6814 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T14:18:51.548689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "python3 -c \"\nimport json\nwith open('/root/schema_semantic_constrained_ie/ontology_constraints.json') as f:\n    ont = json.load(f)\net = ont['entity_types']\ntotal_pairs = len(et) * len(et)\nprint(f'SciERC: {len(et)} entity types, {total_pairs} total pairs, {len(ont[\\\"relation_types\\\"])} relations')\nfor rel in ont['relation_types']:\n    rc = ont['relation_constraints'][rel]\n    n = len(rc['valid_pairs'])\n    kappa = n / total_pairs\n    gold = rc['stats']['total']\n    print(f'{rel}: n_valid={n}, kappa={kappa:.4f}, gold={gold}')\n\"\n"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T14:18:51.548860+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T14:18:51.549056+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "python3 -c \"\nimport json\nwith open('/root/schema_semantic_constrained_ie/data/docred/ontology_constraints_docred.json') as f:\n    ont = json.load(f)\net = ont['entity_types']\ntotal_pairs = len(et) * len(et)\nprint(f'DocRED: {len(et)} entity types, {total_pairs} total pairs, {len(ont[\\\"relation_types\\\"])} relations')\nfor pid, name in sorted(ont['relation_types'].items()):\n    rc = ont['relation_constraints'].get(pid, {})\n    n = len(rc.get('valid_pairs', []))\n    kappa = n / total_pairs\n    gold = rc.get('stats', {}).get('total', 0)\n    if kappa >= 0.36:\n        print(f'{pid} ({name}): n_valid={n}, kappa={kappa:.4f}, gold={gold}')\n\"\n"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T14:18:51.549219+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T14:18:51.549374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cd /root/schema_semantic_constrained_ie && python3 -c \"\nimport json\n\n# SciERC\nwith open('ontology_constraints.json') as f:\n    ont = json.load(f)\net = ont['entity_types']\ntotal_pairs = len(et) * len(et)\ntotal_gold = ont['meta']['total_relations']\nprint(f'=== SciERC: {len(et)} entity types, {total_pairs} total pairs, {len(ont[\\\"relation_types\\\"])} relations, total_gold={total_gold} ===')\nfor rel in ont['relation_types']:\n    rc = ont['relation_constraints'][rel]\n    n = len(rc['valid_pairs'])\n    kappa = n / total_pairs\n    gold = rc['stats']['total']\n    pct = gold / total_gold * 100\n    flag = ' *** HIGH KAPPA' if kappa >= 0.36 else ''\n    print(f'{rel}: n_valid={n}, kappa={kappa:.4f}, gold={gold} ({pct:.1f}%){flag}')\n\nprint()\n\n# DocRED\nwith open('data/docred/ontology_constraints_docred.json') as f:\n    ont2 = json.load(f)\net2 = ont2['entity_types']\ntotal_pairs2 = len(et2) * len(et2)\ntotal_gold2 = ont2['summary']['total_triples']\nprint(f'=== DocRED: {len(et2)} entity types, {total_pairs2} total pairs, {len(ont2[\\\"relation_types\\\"])} relations, total_gold={total_gold2} ===')\nhigh_kappa_rels = []\nfor pid in sorted(ont2['relation_types'].keys()):\n    name = ont2['relation_types'][pid]\n    rc = ont2['relation_constraints'].get(pid, {})\n    n = len(rc.get('valid_pairs', []))\n    kappa = n / total_pairs2\n    gold = rc.get('stats', {}).get('total', 0)\n    pct = gold / total_gold2 * 100\n    if kappa >= 0.36:\n        high_kappa_rels.append((pid, name, n, kappa, gold, pct))\n        print(f'{pid} ({name}): n_valid={n}, kappa={kappa:.4f}, gold={gold} ({pct:.2f}%)')\n\nprint(f'\\nDocRED high-kappa (>=0.36) count: {len(high_kappa_rels)}')\nprint(f'Total gold in high-kappa: {sum(r[4] for r in high_kappa_rels)} / {total_gold2} = {sum(r[4] for r in high_kappa_rels)/total_gold2*100:.1f}%')\n\"\n"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T14:18:51.549530+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== SciERC: 6 entity types, 36 total pairs, 7 relations, total_gold=3219 ===\\\\nUsed-for: n_valid=35, kappa=0.9722, gold=1690 (52.5%) *** HIGH KAPPA\\\\nFeature-of: n_valid=26, kappa=0.7222, gold=173 (5.4%) *** HIGH KAPPA\\\\nHyponym-of: n_valid=21, kappa=0.5833, gold=298 (9.3%) *** HIGH KAPPA\\\\nPart-of: n_valid=21, kappa=0.5833, gold=179 (5.6%) *** HIGH KAPPA\\\\nCompare: n_valid=17, kappa=0.4722, gold=166 (5.2%) *** HIGH KAPPA\\\\nConjunction: n_valid=25, kappa=0.6944, gold=400 (12.4%) *** HIGH KAPPA\\\\nEvaluate-for: n_valid=23, kappa=0.6389, gold=313 (9.7%) *** HIGH KAPPA\\\\n\\\\n=== DocRED: 6 entity types, 36 total pairs, 96 relations, total_gold=38180 ===\\\\nP17 (country): n_valid=13, kappa=0.3611, gold=8921 (23.37%)\\\\nP361 (part of): n_valid=14, kappa=0.3889, gold=596 (1.56%)\\\\nP527 (has part): n_valid=15, kappa=0.4167, gold=632 (1.66%)\\\\n\\\\nDocRED high-kappa (>=0.36) count: 3\\\\nTotal gold in high-kappa: 10149 / 38180 = 26.6%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T14:18:51.549733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cd /root/schema_semantic_constrained_ie && python3 -c \"\nimport json\n\n# Load DR residual analysis (DocRED)\nwith open('outputs/dr_residual_analysis.json') as f:\n    dr = json.load(f)\n\nhigh_kappa_pids = {'P17', 'P361', 'P527'}\n\n# Llama S1 totals\nls1_total = dr['llama_s1']['triples']\nls1_dr_total = dr['llama_s1']['dr_violations']\nls1_dr_pct = dr['llama_s1']['dr_pct']\n\n# Per-relation breakdown\nls1_hk_triples = 0\nls1_hk_viol = 0\nls1_lk_triples = 0\nls1_lk_viol = 0\n\nprint('=== DocRED Llama S1: Per-relation DR for high-kappa rels ===')\nfor r in dr['per_relation']:\n    pid = r['pid']\n    if pid in high_kappa_pids:\n        print(f\\\"{pid} ({r['name']}): triples={r['ls1_tot']}, violations={r['ls1_viol']}, rate={r['ls1_rate']*100:.2f}%\\\")\n        ls1_hk_triples += r['ls1_tot']\n        ls1_hk_viol += r['ls1_viol']\n    else:\n        ls1_lk_triples += r['ls1_tot']\n        ls1_lk_viol += r['ls1_viol']\n\nprint(f'\\nHigh-kappa total: {ls1_hk_triples} triples, {ls1_hk_viol} violations, DR={ls1_hk_viol/max(ls1_hk_triples,1)*100:.2f}%')\nprint(f'Low-kappa total: {ls1_lk_triples} triples, {ls1_lk_viol} violations, DR={ls1_lk_viol/max(ls1_lk_triples,1)*100:.2f}%')\nprint(f'Overall: {ls1_total} triples, {ls1_dr_total} violations, DR={ls1_dr_pct}%')\nprint(f'DR excluding high-kappa: {ls1_lk_viol}/{ls1_lk_triples} = {ls1_lk_viol/max(ls1_lk_triples,1)*100:.2f}%')\n\n# Also for unconstrained baseline\nprint('\\n=== DocRED Llama Unconstrained: high-kappa rels ===')\nlu_hk_triples = 0\nlu_hk_viol = 0\nlu_lk_triples = 0\nlu_lk_viol = 0\nfor r in dr['per_relation']:\n    pid = r['pid']\n    if pid in high_kappa_pids:\n        print(f\\\"{pid} ({r['name']}): triples={r['lu_tot']}, violations={r['lu_viol']}, rate={r['lu_rate']*100:.2f}%\\\")\n        lu_hk_triples += r['lu_tot']\n        lu_hk_viol += r['lu_viol']\n    else:\n        lu_lk_triples += r['lu_tot']\n        lu_lk_viol += r['lu_viol']\n\nprint(f'\\nHigh-kappa total: {lu_hk_triples} triples, {lu_hk_viol} violations, DR={lu_hk_viol/max(lu_hk_triples,1)*100:.2f}%')\nprint(f'Low-kappa total: {lu_lk_triples} triples, {lu_lk_viol} violations, DR={lu_lk_viol/max(lu_lk_triples,1)*100:.2f}%')\nprint(f'Overall: {dr[\\\"llama_unc\\\"][\\\"triples\\\"]} triples, {dr[\\\"llama_unc\\\"][\\\"dr_violations\\\"]} violations, DR={dr[\\\"llama_unc\\\"][\\\"dr_pct\\\"]}%')\nprint(f'DR excluding high-kappa: {lu_lk_viol}/{lu_lk_triples} = {lu_lk_viol/max(lu_lk_triples,1)*100:.2f}%')\n\n# Qwen too\nprint('\\n=== DocRED Qwen S1 + Unconstrained: high-kappa rels ===')\nqs1_hk_t, qs1_hk_v, qs1_lk_t, qs1_lk_v = 0,0,0,0\nqu_hk_t, qu_hk_v, qu_lk_t, qu_lk_v = 0,0,0,0\nfor r in dr['per_relation']:\n    pid = r['pid']\n    if pid in high_kappa_pids:\n        qs1_hk_t += r['qs1_tot']; qs1_hk_v += r['qs1_viol']\n        qu_hk_t += r['qu_tot']; qu_hk_v += r['qu_viol']\n    else:\n        qs1_lk_t += r['qs1_tot']; qs1_lk_v += r['qs1_viol']\n        qu_lk_t += r['qu_tot']; qu_lk_v += r['qu_viol']\n\nprint(f'Qwen S1: high-kappa DR={qs1_hk_v}/{qs1_hk_t}={qs1_hk_v/max(qs1_hk_t,1)*100:.2f}%, low-kappa DR={qs1_lk_v}/{qs1_lk_t}={qs1_lk_v/max(qs1_lk_t,1)*100:.2f}%')\nprint(f'Qwen Unc: high-kappa DR={qu_hk_v}/{qu_hk_t}={qu_hk_v/max(qu_hk_t,1)*100:.2f}%, low-kappa DR={qu_lk_v}/{qu_lk_t}={qu_lk_v/max(qu_lk_t,1)*100:.2f}%')\n\"\n"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T14:18:51.549898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie/outputs -name \"*violation*scierc*\" -name \"*.json\""
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T14:18:51.550037+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== DocRED Llama S1: Per-relation DR for high-kappa rels ===\\\\nP17 (country): triples=14, violations=0, rate=0.00%\\\\nP361 (part of): triples=347, violations=0, rate=0.00%\\\\nP527 (has part): triples=380, violations=1, rate=0.26%\\\\n\\\\nHigh-kappa total: 741 triples, 1 violations, DR=0.13%\\\\nLow-kappa total: 15627 triples, 417 violations, DR=2.67%\\\\nOverall: 16368 triples, 418 violations, DR=2.55%\\\\nDR excluding high-kappa: 417/15627 = 2.67%\\\\n\\\\n=== DocRED Llama Unconstrained: high-kappa rels ===\\\\nP17 (country): triples=12, violations=0, rate=0.00%\\\\nP361 (part of): triples=327, violations=44, rate=13.46%\\\\nP527 (has part): triples=220, violations=67, rate=30.45%\\\\n\\\\nHigh-kappa total: 559 triples, 111 violations, DR=19.86%\\\\nLow-kappa total: 13111 triples, 4099 violations, DR=31.26%\\\\nOverall: 13670 triples, 4210 violations, DR=30.8%\\\\nDR excluding high-kappa: 4099/13111 = 31.26%\\\\n\\\\n=== DocRED Qwen S1 + Unconstrained: high-kappa rels ===\\\\nQwen S1: high-kappa DR=6/912=0.66%, low-kappa DR=1764/16424=10.74%\\\\nQwen Unc: high-kappa DR=75/655=11.45%, low-kappa DR=2463/10961=22.47%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T14:18:51.550188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema_semantic_constrained_ie/outputs/violation_report_scierc.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_llama_scierc_full_s1.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_posthoc_scierc.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_scierc_unconstrained_v2.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_scierc_grammar_only_v2.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_scierc_semantic_only_v2.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_scierc_full_s1_v2.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_scierc_full_s2_v2.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_llama_scierc_unconstrained_v2.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_llama_scierc_full_s1_v2.json\\\\n/root/schema_semantic_constrained_ie/outputs/cf_analysis/violation_report_cf_fb_qwen_scierc.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_w1_cf_fallback_scierc_pilot.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_phase2_scierc_full_s1.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_phase2_scierc_full_s1_v2.json\\\\n/root/schema_semantic_constrained_ie/outputs/cf_analysis_w1_pilot/violation_report_cf_fb_qwen_scierc.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_w6_mistral_scierc_constrained.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_w7_qwen_scierc_ft_semantic_only.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_w7_qwen_scierc_ft_grammar_only.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_w7_llama_scierc_ft_grammar_only.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_report_w7_llama_scierc_ft_semantic_only.json\\\\n/root/schema_semantic_constrained_ie/outputs/violation_rep\n…[truncated 722 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T14:18:51.550373+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cd /root/schema_semantic_constrained_ie && python3 -c \"\nimport json\n\n# SciERC unconstrained violations (Qwen)\nwith open('outputs/violation_report_scierc_unconstrained_v2.json') as f:\n    unc = json.load(f)\nprint('=== SciERC Qwen Unconstrained ===')\nprint(json.dumps({k: unc[k] for k in ['total_triples', 'domain_range_violations', 'relation_vocab_violations'] if k in unc}, indent=2))\n\n# Check for per-relation breakdown\nif 'per_relation' in unc:\n    print('Has per_relation field')\nelif 'per_relation_violations' in unc:\n    print('Has per_relation_violations field')\nelse:\n    print('Available keys:', list(unc.keys()))\n\"\n"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T14:18:51.550510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== SciERC Qwen Unconstrained ===\\\\n{}\\\\nAvailable keys: ['summary', 'per_relation_type', 'examples', 'quality']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T14:18:51.550630+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cd /root/schema_semantic_constrained_ie && python3 -c \"\nimport json\nwith open('outputs/violation_report_scierc_full_s1_v2.json') as f:\n    s1 = json.load(f)\nprint('=== SciERC Qwen S1 ===')\nprint(json.dumps({k: s1[k] for k in ['total_triples', 'domain_range_violations', 'relation_vocab_violations'] if k in s1}, indent=2))\nprint('Keys:', list(s1.keys()))\n\"\n"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T14:18:51.550778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== SciERC Qwen S1 ===\\\\n{}\\\\nKeys: ['summary', 'per_relation_type', 'examples', 'quality']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T14:18:51.550901+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cd /root/schema_semantic_constrained_ie && python3 -c \"\nimport json\n\n# SciERC unconstrained\nwith open('outputs/violation_report_scierc_unconstrained_v2.json') as f:\n    unc = json.load(f)\nprint('=== SciERC Qwen Unconstrained ===')\nprint(json.dumps(unc['summary'], indent=2))\nprint()\nprint('Per-relation:')\nfor rel, data in unc['per_relation_type'].items():\n    print(f'  {rel}: {json.dumps(data)}')\n\nprint()\n# SciERC S1\nwith open('outputs/violation_report_scierc_full_s1_v2.json') as f:\n    s1 = json.load(f)\nprint('=== SciERC Qwen S1 ===')\nprint(json.dumps(s1['summary'], indent=2))\nprint()\nprint('Per-relation:')\nfor rel, data in s1['per_relation_type'].items():\n    print(f'  {rel}: {json.dumps(data)}')\n\"\n"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T14:18:51.551085+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== SciERC Qwen Unconstrained ===\\\\n{\\\\n  \\\\\\\"checker_version\\\\\\\": \\\\\\\"fixed_20260514_v2 (strip + alias + unique_et)\\\\\\\",\\\\n  \\\\\\\"total_samples\\\\\\\": 551,\\\\n  \\\\\\\"total_triples_extracted\\\\\\\": 1724,\\\\n  \\\\\\\"total_entities_extracted\\\\\\\": 2474,\\\\n  \\\\\\\"json_parse_failures\\\\\\\": 0,\\\\n  \\\\\\\"json_parse_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"entity_type_violations\\\\\\\": 10,\\\\n  \\\\\\\"entity_type_violation_rate\\\\\\\": 0.004,\\\\n  \\\\\\\"relation_vocabulary_violations\\\\\\\": 24,\\\\n  \\\\\\\"relation_vocabulary_violation_rate\\\\\\\": 0.0139,\\\\n  \\\\\\\"relation_fuzzy_matches\\\\\\\": 0,\\\\n  \\\\\\\"domain_range_violations\\\\\\\": 265,\\\\n  \\\\\\\"domain_range_violation_rate\\\\\\\": 0.1537,\\\\n  \\\\\\\"cross_field_consistency_violations\\\\\\\": 2,\\\\n  \\\\\\\"cross_field_consistency_violation_rate\\\\\\\": 0.0008,\\\\n  \\\\\\\"total_violations_any\\\\\\\": 301,\\\\n  \\\\\\\"total_violation_rate\\\\\\\": 0.0717,\\\\n  \\\\\\\"go_nogo_metric\\\\\\\": 0.1537,\\\\n  \\\\\\\"go_nogo_metric_description\\\\\\\": \\\\\\\"per-triple domain_range_violation_rate (excludes relation_vocabulary_violations)\\\\\\\"\\\\n}\\\\n\\\\nPer-relation:\\\\n  Compare: {\\\\\\\"total\\\\\\\": 66, \\\\\\\"domain_range_violations\\\\\\\": 28, \\\\\\\"violation_rate\\\\\\\": 0.4242}\\\\n  Conjunction: {\\\\\\\"total\\\\\\\": 32, \\\\\\\"domain_range_violations\\\\\\\": 0, \\\\\\\"violation_rate\\\\\\\": 0.0}\\\\n  Evaluate-for: {\\\\\\\"total\\\\\\\": 133, \\\\\\\"domain_range_violations\\\\\\\": 32, \\\\\\\"violation_rate\\\\\\\": 0.2406}\\\\n  Feature-of: {\\\\\\\"total\\\\\\\": 486, \\\\\\\"domain_range_violations\\\\\\\": 163, \\\\\\\"violation_rate\\\\\\\": 0.3354}\\\\n  Hyponym-of: {\\\\\\\"total\\\\\\\": 124, \\\\\\\"domain_range_violations\\\\\\\": 18, \\\\\\\"violation_rate\\\\\\\": 0.1452}\\\\n  Part-of: {\\\\\\\"total\\\\\\\": 72, \\\\\\\"domain_range_violations\\\\\\\": 18, \\\\\\\"violation_rate\\\\\\\": 0.25}\\\\n  Used-for: {\\\\\\\"total\\\\\\\": 787, \\\\\\\"domain_range_violations\\\\\\\": 6, \\\\\\\"violation_rate\\\\\\\": 0.0076}\\\\n\\\\n=== SciERC Qwen S1 ===\\\\n{\\\\n  \\\\\\\"checker_version\\\\\\\": \\\\\\\"fixed_20260514_v2 (strip + alias + unique_et)\\\\\\\",\\\\n  \\\\\\\"total_samples\\\\\\\": 551,\\\\n  \\\\\\\"total_triples_extracted\\\\\\\": 1729,\\\\n  \\\\\\\"total\n…[truncated 1616 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T14:18:51.551250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cd /root/schema_semantic_constrained_ie && python3 -c \"\nimport json\n\n# Llama SciERC unconstrained\nwith open('outputs/violation_report_llama_scierc_unconstrained_v2.json') as f:\n    unc = json.load(f)\nprint('=== SciERC Llama Unconstrained ===')\ns = unc['summary']\nprint(f'Triples: {s[\\\"total_triples_extracted\\\"]}, DR violations: {s[\\\"domain_range_violations\\\"]}, DR rate: {s[\\\"domain_range_violation_rate\\\"]}')\nfor rel, data in unc['per_relation_type'].items():\n    print(f'  {rel}: total={data[\\\"total\\\"]}, DR={data[\\\"domain_range_violations\\\"]}, rate={data[\\\"violation_rate\\\"]:.4f}')\n\nprint()\n# Llama SciERC S1\nwith open('outputs/violation_report_llama_scierc_full_s1_v2.json') as f:\n    s1 = json.load(f)\nprint('=== SciERC Llama S1 ===')\ns = s1['summary']\nprint(f'Triples: {s[\\\"total_triples_extracted\\\"]}, DR violations: {s[\\\"domain_range_violations\\\"]}, DR rate: {s[\\\"domain_range_violation_rate\\\"]}')\nfor rel, data in s1['per_relation_type'].items():\n    print(f'  {rel}: total={data[\\\"total\\\"]}, DR={data[\\\"domain_range_violations\\\"]}, rate={data[\\\"violation_rate\\\"]:.4f}')\n\"\n"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T14:18:51.551398+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== SciERC Llama Unconstrained ===\\\\nTriples: 1274, DR violations: 170, DR rate: 0.1334\\\\n  Compare: total=80, DR=24, rate=0.3000\\\\n  Conjunction: total=22, DR=5, rate=0.2273\\\\n  Evaluate-for: total=2, DR=0, rate=0.0000\\\\n  Feature-of: total=609, DR=107, rate=0.1757\\\\n  Hyponym-of: total=215, DR=22, rate=0.1023\\\\n  Part-of: total=68, DR=11, rate=0.1618\\\\n  Used-for: total=271, DR=1, rate=0.0037\\\\n\\\\n=== SciERC Llama S1 ===\\\\nTriples: 1315, DR violations: 1, DR rate: 0.0008\\\\n  Compare: total=78, DR=1, rate=0.0128\\\\n  Conjunction: total=28, DR=0, rate=0.0000\\\\n  Evaluate-for: total=4, DR=0, rate=0.0000\\\\n  Feature-of: total=611, DR=0, rate=0.0000\\\\n  Hyponym-of: total=241, DR=0, rate=0.0000\\\\n  Part-of: total=72, DR=0, rate=0.0000\\\\n  Used-for: total=281, DR=0, rate=0.0000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-22T14:18:51.551550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/schema_semantic_constrained_ie/paper -name \"*kappa*\""
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-22T14:18:51.551690+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-22T14:18:51.551817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/artifacts/_project/paper/*kappa*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-22T14:18:51.551933+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/case_study_kappa_dr.tex\nartifacts/_project/paper/appendix_kappa_case_study.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-22T14:18:51.552048+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/artifacts/_project/paper/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-22T14:18:51.552175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/section5_scierc_draft_4796e8.tex\nartifacts/_project/paper/abstract_fd4b26.tex\nartifacts/_project/paper/abstract_d3264e.tex\nartifacts/_project/paper/section7_conclusion_550cbf_DEPRECATED.tex\nartifacts/_project/paper/discussion_paragraphs_cf83d1.tex\nartifacts/_project/paper/section6_relwork_additions.tex\nartifacts/_project/paper/discussion_paragraphs.tex\nartifacts/_project/paper/section6_relwork_outline.tex\nartifacts/_project/paper/section7_conclusion_DEPRECATED.tex\nartifacts/_project/paper/paper_tables_draft.tex\nartifacts/_project/paper/appendix_prompts.tex\nartifacts/_project/paper/section5_docred_draft_9b84f1.tex\nartifacts/_project/paper/p3_case_studies.tex\nartifacts/_project/paper/p3_case_studies_861a0d.tex\nartifacts/_project/paper/appendix_full_ft.tex\nartifacts/_project/paper/appendix_scalability.tex\nartifacts/_project/paper/case_study_kappa_dr.tex\nartifacts/_project/paper/appendix_pumping_lemma.tex\nartifacts/_project/paper/section2_background.tex\nartifacts/_project/paper/appendix_related_work.tex\nartifacts/_project/paper/appendix_kappa_case_study.tex\nartifacts/_project/paper/appendix_tcr.tex\nartifacts/_project/paper/appendix_prompt_sensitivity.tex\nartifacts/_project/paper/fig1_framework.tex\nartifacts/_project/paper/checklist.tex\nartifacts/_project/paper/appendix_reproducibility.tex\nartifacts/_project/paper/appendix_llama_per_relation.tex\nartifacts/_project/paper/appendix_sampling_table.tex\nartifacts/_project/paper/appendix_doc_length.tex\nartifacts/_project/paper/appendix_beam_search.tex\nartifacts/_project/paper/section5_wikievents_draft.tex\nartifacts/_project/paper/appendix_case_studies.tex\nartifacts/_project/paper/section1_introduction_draft.tex\nartifacts/_project/paper/section3_violation_landscape.tex\nartifacts/_project/paper/section5_crossmodel_draft.tex\nartifacts/_project/paper/main.tex\nartifacts/_project/paper/section4_composition_draft.tex\nartifacts/_project/paper/section3_method_draft.tex\nartifacts/_project/paper/section5_docred_dr\n…[truncated 302 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-22T14:18:51.552323+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_kappa_case_study.tex"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-22T14:18:51.552471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Appendix: Constraint Tightness Case Study\n2\t% Data source: case_study_kappa_dr_dddc01.md (Qwen-2.5-7B zero-shot unconstrained)\n3\t\n4\t\\section{Constraint Tightness Case Study}\n5\t\\label{app:kappa-case-study}\n6\t\n7\t\\begin{table}[h]\n8\t\\centering\n9\t\\small\n10\t\\resizebox{\\columnwidth}{!}{%\n11\t\\begin{tabular}{@{}llccc l@{}}\n12\t\\toprule\n13\t\\textbf{Relation} & \\textbf{Dataset} & $\\kappa$ & \\textbf{DR\\%} & $n$ & \\textbf{Explanation} \\\\\n14\t\\midrule\n15\t\\multicolumn{6}{@{}l}{\\textit{Highest DR violation rate}} \\\\\n16\tbasin country        & DocRED & .97 & 74.6 &  63 & Sole valid pair \\textsc{loc}$\\to$\\textsc{loc}; head mistyped as \\textsc{org}/\\textsc{misc} \\\\\n17\tproduct produced     & DocRED & .94 & 67.2 &  61 & Requires \\textsc{org} head; model assigns \\textsc{loc}/\\textsc{per} \\\\\n18\tparticipant of       & DocRED & .81 & 58.6 & 326 & Hallucinated \\textsc{event} type; \\textsc{per}$\\leftrightarrow$event confusion \\\\\n19\t\\textsc{Compare}     & SciERC & .53 & 42.4 &  66 & Cross-category pairs violate same-type constraint \\\\\n20\t\\textsc{Feature-of}  & SciERC & .28 & 33.5 & 486 & Fuzzy Task/OtherScientificTerm boundary \\\\\n21\t\\midrule\n22\t\\multicolumn{6}{@{}l}{\\textit{High $\\kappa$ with zero violations (DR = 0\\%)}} \\\\\n23\tlyrics by            & DocRED & .94 &  0.0 &   9 & Unambiguous \\textsc{per}$\\to$\\textsc{misc}; creative roles rarely mistyped \\\\\n24\tplace of birth       & DocRED & .92 &  0.0 & 157 & Unambiguous \\textsc{per}$\\to$\\textsc{loc}; no type confusion \\\\\n25\tplace of death       & DocRED & .89 &  0.0 &  60 & Strong \\textsc{per}$\\to$\\textsc{loc} prior; mirrors place of birth \\\\\n26\tsubsidiary           & DocRED & .86 &  0.0 &   5 & Clear \\textsc{org}$\\to$\\textsc{org} corporate semantics \\\\\n27\tfather               & DocRED & .81 &  0.0 &  69 & Clear \\textsc{per}$\\to$\\textsc{per} kinship semantics \\\\\n28\t\\bottomrule\n29\t\\end{tabular}}\n30\t\\caption{Per-relation $\\kappa$ vs.\\ DR violation rate (Qwen3-8B, zero-shot, unconstrained).\n31\tHigh $\\kappa$ is necessary but not sufficient for high \n…[truncated 1139 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-22T14:18:51.552615+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/case_study_kappa_dr.tex"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-22T14:18:51.552775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{table}[t]\n2\t\\centering\n3\t\\small\n4\t\\caption{Case study: constraint tightness $\\kappa$ and DR violation rate for selected relations under Qwen-2.5-7B zero-shot greedy decoding (unconstrained). Violation susceptibility is driven by the interaction of constraint tightness and entity type confusability, not tightness alone. All bottom-group relations have $\\kappa \\geq 0.81$ yet DR $= 0$\\%.}\n5\t\\label{tab:kappa-case-study}\n6\t\\begin{tabular}{@{}llccc l@{}}\n7\t\\toprule\n8\t\\textbf{Relation} & \\textbf{Dataset} & $\\kappa$ & \\textbf{DR\\%} & $n$ & \\textbf{Explanation} \\\\\n9\t\\midrule\n10\t\\multicolumn{6}{@{}l}{\\textit{Highest DR violation rate}} \\\\\n11\tbasin country        & DocRED & .97 & 74.6 &  63 & Sole valid pair \\textsc{loc}$\\to$\\textsc{loc}; head mistyped as \\textsc{org}/\\textsc{misc} \\\\\n12\tproduct produced     & DocRED & .94 & 67.2 &  61 & Requires \\textsc{org} head; model assigns \\textsc{loc}/\\textsc{per} to producers \\\\\n13\tparticipant of       & DocRED & .81 & 58.6 & 326 & Hallucinated \\textsc{event} type; \\textsc{per}$\\leftrightarrow$event role confusion \\\\\n14\t\\textsc{Compare}     & SciERC & .53 & 42.4 &  66 & Cross-category pairs (Method$\\leftrightarrow$Task) violate same-type constraint \\\\\n15\t\\textsc{Feature-of}  & SciERC & .28 & 33.5 & 486 & Fuzzy Task/OtherScientificTerm boundary inflates violations \\\\\n16\t\\midrule\n17\t\\multicolumn{6}{@{}l}{\\textit{High $\\kappa$ with zero violations (DR = 0\\%)}} \\\\\n18\tlyrics by            & DocRED & .94 &  0.0 &   9 & Unambiguous \\textsc{per}$\\to$\\textsc{misc}; creative roles rarely mistyped \\\\\n19\tplace of birth       & DocRED & .92 &  0.0 & 157 & Unambiguous \\textsc{per}$\\to$\\textsc{loc}; high $\\kappa$ but no type confusion \\\\\n20\tplace of death       & DocRED & .89 &  0.0 &  60 & Strong \\textsc{per}$\\to$\\textsc{loc} prior; mirrors place of birth \\\\\n21\tsubsidiary           & DocRED & .86 &  0.0 &   5 & Clear \\textsc{org}$\\to$\\textsc{org} corporate semantics \\\\\n22\tfather               & DocRED & .81 &  0.0 &  69 & Clear \\textsc{per}\n…[truncated 89 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-22T14:18:51.553084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cd /root/schema_semantic_constrained_ie && python3 -c \"\nimport json\nfrom collections import defaultdict\n\n# === SciERC ===\nwith open('ontology_constraints.json') as f:\n    ont = json.load(f)\n\net = ont['entity_types']\nrels = ont['relation_types']\ntotal_rels = len(rels)\n\n# Build pair -> valid relations mapping\npair_to_rels = defaultdict(set)\nfor rel in rels:\n    for pair in ont['relation_constraints'][rel]['valid_pairs']:\n        pair_to_rels[(pair[0], pair[1])].add(rel)\n\n# Per-relation kappa (schema ambiguity)\nprint(f'=== SciERC: {len(et)} entity types, {total_rels} relations ===')\nprint(f'Total possible type pairs: {len(et)*len(et)} = {len(et)}^2')\nprint()\nprint('Per type-pair ambiguity (how many relations accept each pair):')\nfor h in et:\n    for t in et:\n        n = len(pair_to_rels.get((h,t), set()))\n        if n > 0:\n            print(f'  ({h}, {t}): {n}/{total_rels} = {n/total_rels:.4f}')\n\nprint()\nprint('Per-relation kappa (avg ambiguity across valid pairs):')\nfor rel in rels:\n    valid_pairs = ont['relation_constraints'][rel]['valid_pairs']\n    gold = ont['relation_constraints'][rel]['stats']['total']\n    ambiguities = []\n    for pair in valid_pairs:\n        n_rels = len(pair_to_rels[(pair[0], pair[1])])\n        ambiguities.append(n_rels / total_rels)\n    kappa = sum(ambiguities) / len(ambiguities) if ambiguities else 0\n    print(f'  {rel}: kappa={kappa:.4f}, n_valid_pairs={len(valid_pairs)}, gold={gold} ({gold/3219*100:.1f}%)')\n\"\n"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-22T14:18:51.553319+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== SciERC: 6 entity types, 7 relations ===\\\\nTotal possible type pairs: 36 = 6^2\\\\n\\\\nPer type-pair ambiguity (how many relations accept each pair):\\\\n  (Task, Task): 7/7 = 1.0000\\\\n  (Task, Method): 4/7 = 0.5714\\\\n  (Task, Material): 1/7 = 0.1429\\\\n  (Task, Metric): 2/7 = 0.2857\\\\n  (Task, OtherScientificTerm): 3/7 = 0.4286\\\\n  (Task, Generic): 5/7 = 0.7143\\\\n  (Method, Task): 5/7 = 0.7143\\\\n  (Method, Method): 7/7 = 1.0000\\\\n  (Method, Material): 1/7 = 0.1429\\\\n  (Method, Metric): 2/7 = 0.2857\\\\n  (Method, OtherScientificTerm): 6/7 = 0.8571\\\\n  (Method, Generic): 7/7 = 1.0000\\\\n  (Material, Task): 6/7 = 0.8571\\\\n  (Material, Method): 4/7 = 0.5714\\\\n  (Material, Material): 6/7 = 0.8571\\\\n  (Material, Metric): 2/7 = 0.2857\\\\n  (Material, OtherScientificTerm): 5/7 = 0.7143\\\\n  (Material, Generic): 6/7 = 0.8571\\\\n  (Metric, Task): 3/7 = 0.4286\\\\n  (Metric, Method): 4/7 = 0.5714\\\\n  (Metric, Material): 4/7 = 0.5714\\\\n  (Metric, Metric): 4/7 = 0.5714\\\\n  (Metric, OtherScientificTerm): 5/7 = 0.7143\\\\n  (Metric, Generic): 6/7 = 0.8571\\\\n  (OtherScientificTerm, Task): 4/7 = 0.5714\\\\n  (OtherScientificTerm, Method): 6/7 = 0.8571\\\\n  (OtherScientificTerm, Material): 6/7 = 0.8571\\\\n  (OtherScientificTerm, Metric): 4/7 = 0.5714\\\\n  (OtherScientificTerm, OtherScientificTerm): 6/7 = 0.8571\\\\n  (OtherScientificTerm, Generic): 6/7 = 0.8571\\\\n  (Generic, Task): 6/7 = 0.8571\\\\n  (Generic, Method): 6/7 = 0.8571\\\\n  (Generic, Material): 4/7 = 0.5714\\\\n  (Generic, Metric): 2/7 = 0.2857\\\\n  (Generic, OtherScientificTerm): 7/7 = 1.0000\\\\n  (Generic, Generic): 6/7 = 0.8571\\\\n\\\\nPer-relation kappa (avg ambiguity across valid pairs):\\\\n  Used-for: kappa=0.6694, n_valid_pairs=35, gold=1690 (52.5%)\\\\n  Feature-of: kappa=0.7637, n_valid_pairs=26, gold=173 (5.4%)\\\\n  Hyponym-of: kappa=0.8299, n_valid_pairs=21, gold=298 (9.3%)\\\\n  Part-of: kappa=0.8299, n_valid_pairs=21, gold=179 (5.6%)\\\\n  Compare: kappa=0.8151, n_valid_pairs=17, gold=166\n…[truncated 246 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-22T14:18:51.553500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cd /root/schema_semantic_constrained_ie && python3 -c \"\nimport json\nfrom collections import defaultdict\n\n# === DocRED ===\nwith open('data/docred/ontology_constraints_docred.json') as f:\n    ont = json.load(f)\n\net = ont['entity_types']\nrel_names = ont['relation_types']\ntotal_rels = len(rel_names)\n\n# Build pair -> valid relations mapping\npair_to_rels = defaultdict(set)\nfor pid in rel_names:\n    rc = ont['relation_constraints'].get(pid, {})\n    for pair in rc.get('valid_pairs', []):\n        pair_to_rels[(pair[0], pair[1])].add(pid)\n\nprint(f'DocRED: {len(et)} entity types, {total_rels} relations')\nprint()\nprint('Per type-pair ambiguity:')\nfor h in et:\n    for t in et:\n        n = len(pair_to_rels.get((h,t), set()))\n        print(f'  ({h}, {t}): {n}/{total_rels} = {n/total_rels:.4f}')\n\nprint()\nprint('Per-relation kappa (avg ambiguity across valid pairs), sorted, showing kappa>=0.36:')\nresults = []\nfor pid in sorted(rel_names.keys()):\n    rc = ont['relation_constraints'].get(pid, {})\n    valid_pairs = rc.get('valid_pairs', [])\n    gold = rc.get('stats', {}).get('total', 0)\n    if not valid_pairs:\n        continue\n    ambiguities = []\n    for pair in valid_pairs:\n        n_rels = len(pair_to_rels[(pair[0], pair[1])])\n        ambiguities.append(n_rels / total_rels)\n    kappa = sum(ambiguities) / len(ambiguities)\n    results.append((pid, rel_names[pid], kappa, len(valid_pairs), gold))\n\nresults.sort(key=lambda x: -x[2])\nfor pid, name, kappa, n_vp, gold in results:\n    if kappa >= 0.36:\n        pct = gold / 38180 * 100\n        print(f'  {pid} ({name}): kappa={kappa:.4f}, n_valid_pairs={n_vp}, gold={gold} ({pct:.2f}%)')\n\nhigh_k = [r for r in results if r[2] >= 0.36]\ntotal_hk_gold = sum(r[4] for r in high_k)\nprint(f'\\nHigh-kappa count: {len(high_k)}')\nprint(f'Total gold in high-kappa: {total_hk_gold} / 38180 = {total_hk_gold/38180*100:.1f}%')\nprint(f'High-kappa relation names: {[r[1] for r in high_k]}')\n\"\n"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-22T14:18:51.553693+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DocRED: 6 entity types, 96 relations\\\\n\\\\nPer type-pair ambiguity:\\\\n  (LOC, LOC): 40/96 = 0.4167\\\\n  (LOC, MISC): 26/96 = 0.2708\\\\n  (LOC, NUM): 1/96 = 0.0104\\\\n  (LOC, ORG): 33/96 = 0.3438\\\\n  (LOC, PER): 20/96 = 0.2083\\\\n  (LOC, TIME): 8/96 = 0.0833\\\\n  (MISC, LOC): 29/96 = 0.3021\\\\n  (MISC, MISC): 37/96 = 0.3854\\\\n  (MISC, NUM): 2/96 = 0.0208\\\\n  (MISC, ORG): 35/96 = 0.3646\\\\n  (MISC, PER): 28/96 = 0.2917\\\\n  (MISC, TIME): 8/96 = 0.0833\\\\n  (NUM, LOC): 4/96 = 0.0417\\\\n  (NUM, MISC): 2/96 = 0.0208\\\\n  (NUM, NUM): 0/96 = 0.0000\\\\n  (NUM, ORG): 1/96 = 0.0104\\\\n  (NUM, PER): 2/96 = 0.0208\\\\n  (NUM, TIME): 2/96 = 0.0208\\\\n  (ORG, LOC): 34/96 = 0.3542\\\\n  (ORG, MISC): 22/96 = 0.2292\\\\n  (ORG, NUM): 0/96 = 0.0000\\\\n  (ORG, ORG): 39/96 = 0.4062\\\\n  (ORG, PER): 18/96 = 0.1875\\\\n  (ORG, TIME): 8/96 = 0.0833\\\\n  (PER, LOC): 32/96 = 0.3333\\\\n  (PER, MISC): 33/96 = 0.3438\\\\n  (PER, NUM): 1/96 = 0.0104\\\\n  (PER, ORG): 34/96 = 0.3542\\\\n  (PER, PER): 24/96 = 0.2500\\\\n  (PER, TIME): 9/96 = 0.0938\\\\n  (TIME, LOC): 1/96 = 0.0104\\\\n  (TIME, MISC): 2/96 = 0.0208\\\\n  (TIME, NUM): 0/96 = 0.0000\\\\n  (TIME, ORG): 1/96 = 0.0104\\\\n  (TIME, PER): 3/96 = 0.0312\\\\n  (TIME, TIME): 6/96 = 0.0625\\\\n\\\\nPer-relation kappa (avg ambiguity across valid pairs), sorted, showing kappa>=0.36:\\\\n  P190 (sister city): kappa=0.4167, n_valid_pairs=1, gold=4 (0.01%)\\\\n  P205 (basin country): kappa=0.4167, n_valid_pairs=1, gold=85 (0.22%)\\\\n  P403 (mouth of the watercourse): kappa=0.4167, n_valid_pairs=1, gold=95 (0.25%)\\\\n  P807 (separated from): kappa=0.4115, n_valid_pairs=2, gold=2 (0.01%)\\\\n  P1365 (replaces): kappa=0.3932, n_valid_pairs=4, gold=18 (0.05%)\\\\n  P1376 (capital of): kappa=0.3715, n_valid_pairs=3, gold=76 (0.20%)\\\\n  P19 (place of birth): kappa=0.3681, n_valid_pairs=3, gold=511 (1.34%)\\\\n  P137 (operator): kappa=0.3631, n_valid_pairs=7, gold=95 (0.25%)\\\\n  P241 (military branch): kappa=0.3625, n_valid_pairs=5, gold=108 (0.28%)\\\\n  P272 (\n…[truncated 626 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-22T14:18:51.553894+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cd /root/schema_semantic_constrained_ie && python3 -c \"\nimport json\nfrom collections import defaultdict\n\n# Load ontology for kappa computation\nwith open('data/docred/ontology_constraints_docred.json') as f:\n    ont = json.load(f)\net = ont['entity_types']\nrel_names = ont['relation_types']\ntotal_rels = len(rel_names)\n\npair_to_rels = defaultdict(set)\nfor pid in rel_names:\n    rc = ont['relation_constraints'].get(pid, {})\n    for pair in rc.get('valid_pairs', []):\n        pair_to_rels[(pair[0], pair[1])].add(pid)\n\n# Compute kappa per relation\nkappa_map = {}\nfor pid in rel_names:\n    rc = ont['relation_constraints'].get(pid, {})\n    valid_pairs = rc.get('valid_pairs', [])\n    if not valid_pairs:\n        kappa_map[pid] = 0\n        continue\n    ambiguities = [len(pair_to_rels[(p[0], p[1])]) / total_rels for p in valid_pairs]\n    kappa_map[pid] = sum(ambiguities) / len(ambiguities)\n\nhigh_kappa_pids = {pid for pid, k in kappa_map.items() if k >= 0.36}\n\n# Load DR residual analysis\nwith open('outputs/dr_residual_analysis.json') as f:\n    dr = json.load(f)\n\n# Compute DR breakdown\nfor label, tot_key, viol_key, rate_key in [\n    ('Llama S1', 'ls1_tot', 'ls1_viol', 'ls1_rate'),\n    ('Llama Unc', 'lu_tot', 'lu_viol', 'lu_rate'),\n    ('Qwen S1', 'qs1_tot', 'qs1_viol', 'qs1_rate'),\n    ('Qwen Unc', 'qu_tot', 'qu_viol', 'qu_rate'),\n]:\n    hk_t, hk_v, lk_t, lk_v = 0, 0, 0, 0\n    for r in dr['per_relation']:\n        pid = r['pid']\n        if pid in high_kappa_pids:\n            hk_t += r[tot_key]; hk_v += r[viol_key]\n        else:\n            lk_t += r[tot_key]; lk_v += r[viol_key]\n    total_t = hk_t + lk_t\n    total_v = hk_v + lk_v\n    print(f'{label}:')\n    print(f'  High-kappa ({len(high_kappa_pids)} rels): {hk_v}/{hk_t} = {hk_v/max(hk_t,1)*100:.2f}%')\n    print(f'  Low-kappa ({total_rels-len(high_kappa_pids)} rels): {lk_v}/{lk_t} = {lk_v/max(lk_t,1)*100:.2f}%')\n    print(f'  All: {total_v}/{total_t} = {total_v/max(total_t,1)*100:.2f}%')\n    print()\n\n# Per high-kappa relation detail for Llama S1\nprint('=== High-kappa relations detail (Llama S1) ===')\nfor r in dr['per_relation']:\n    pid = r['pid']\n    if pid in high_kappa_pids:\n        print(f\\\"  {pid} ({r['name']}): kappa={kappa_map[pid]:.4f}, triples={r['ls1_tot']}, viol={r['ls1_viol']}, rate={r['ls1_rate']*100:.2f}%\\\")\n\"\n"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-22T14:18:51.554063+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Llama S1:\\\\n  High-kappa (12 rels): 33/1043 = 3.16%\\\\n  Low-kappa (84 rels): 385/15325 = 2.51%\\\\n  All: 418/16368 = 2.55%\\\\n\\\\nLlama Unc:\\\\n  High-kappa (12 rels): 377/861 = 43.79%\\\\n  Low-kappa (84 rels): 3833/12809 = 29.92%\\\\n  All: 4210/13670 = 30.80%\\\\n\\\\nQwen S1:\\\\n  High-kappa (12 rels): 224/1119 = 20.02%\\\\n  Low-kappa (84 rels): 1546/16217 = 9.53%\\\\n  All: 1770/17336 = 10.21%\\\\n\\\\nQwen Unc:\\\\n  High-kappa (12 rels): 229/718 = 31.89%\\\\n  Low-kappa (84 rels): 2309/10898 = 21.19%\\\\n  All: 2538/11616 = 21.85%\\\\n\\\\n=== High-kappa relations detail (Llama S1) ===\\\\n  P1365 (replaces): kappa=0.3932, triples=36, viol=0, rate=0.00%\\\\n  P137 (operator): kappa=0.3631, triples=60, viol=0, rate=0.00%\\\\n  P1376 (capital of): kappa=0.3715, triples=144, viol=7, rate=4.86%\\\\n  P19 (place of birth): kappa=0.3681, triples=147, viol=1, rate=0.68%\\\\n  P190 (sister city): kappa=0.4167, triples=26, viol=0, rate=0.00%\\\\n  P20 (place of death): kappa=0.3620, triples=67, viol=1, rate=1.49%\\\\n  P205 (basin country): kappa=0.4167, triples=54, viol=1, rate=1.85%\\\\n  P241 (military branch): kappa=0.3625, triples=5, viol=0, rate=0.00%\\\\n  P272 (production company): kappa=0.3625, triples=27, viol=0, rate=0.00%\\\\n  P276 (location): kappa=0.3604, triples=458, viol=23, rate=5.02%\\\\n  P403 (mouth of the watercourse): kappa=0.4167, triples=18, viol=0, rate=0.00%\\\\n  P807 (separated from): kappa=0.4115, triples=1, viol=0, rate=0.00%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-22T14:18:51.554243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/",
+              "description": "List paper artifacts directory"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-22T14:18:51.554382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_pdf_images\nabstract.tex\nabstract_d3264e.tex\nabstract_fd4b26.tex\nacl.sty\nacl_natbib.bst\nappendix_beam_search.tex\nappendix_case_studies.tex\nappendix_discussion.tex\nappendix_doc_length.tex\nappendix_downstream_analysis.tex\nappendix_full_ft.tex\nappendix_kappa_case_study.tex\nappendix_llama_per_relation.tex\nappendix_power_analysis.tex\nappendix_power_analysis_523cc9.tex\nappendix_prompt_sensitivity.tex\nappendix_prompts.tex\nappendix_pumping_lemma.tex\nappendix_related_work.tex\nappendix_reproducibility.tex\nappendix_sampling_table.tex\nappendix_scalability.tex\nappendix_tcr.tex\nappendix_type_consensus.tex.archived\ncase_study_kappa_dr.tex\nchecklist.tex\ndiscussion_paragraphs.tex\ndiscussion_paragraphs_cf83d1.tex\nerror_analysis_cases.json\nfig1_framework.tex\nfigures\nmain.aux\nmain.bbl\nmain.blg\nmain.fdb_latexmk\nmain.fls\nmain.log\nmain.out\nmain.pdf\nmain.tex\nnew_citations.bib\nontocodec_paper_r10_final.pdf\nontocodec_paper_r9_final.pdf\np3_case_studies.tex\np3_case_studies_861a0d.tex\npaper_tables_draft.tex\nr12_fallback_cascade_text.txt\nrelwork_new_entries.bib\nsection1_introduction_draft.tex\nsection2_background.tex\nsection3_method_draft.tex\nsection3_violation_landscape.tex\nsection4_composition_draft.tex\nsection5_crossmodel_draft.tex\nsection5_docred_draft.tex\nsection5_docred_draft_9b84f1.tex\nsection5_runtime.tex\nsection5_scierc_draft.tex\nsection5_scierc_draft_4796e8.tex\nsection5_wikievents_draft.tex\nsection6_related_work.tex\nsection6_relwork_additions.tex\nsection6_relwork_outline.tex\nsection7_conclusion_550cbf_DEPRECATED.tex\nsection7_conclusion_DEPRECATED.tex\nsection7_conclusion_compressed.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-22T14:18:51.554527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_high_kappa_analysis.tex",
+              "content": "% Appendix: Schema Ambiguity Analysis\n% High-kappa relations and their impact on DR enforcement\n\n\\paragraph{Schema ambiguity analysis.}\n\\label{app:kappa-analysis}\n\nWe define the \\emph{schema ambiguity} of a relation $r$ as the average fraction of relations that share each of $r$'s valid type pairs:\n\\begin{equation}\n\\alpha_r = \\frac{1}{|\\mathcal{P}_r|} \\sum_{(h,t) \\in \\mathcal{P}_r} \\frac{|\\{r' \\in \\mathcal{R} : (h,t) \\in \\mathcal{P}_{r'}\\}|}{|\\mathcal{R}|}\n\\label{eq:schema-ambiguity}\n\\end{equation}\nwhere $\\mathcal{P}_r$ is the set of valid entity type pairs for relation $r$ and $\\mathcal{R}$ is the full relation set.\nHigh $\\alpha_r$ indicates that $r$'s valid type pairs are shared by many other relations, limiting the discriminative power of type constraints for that relation.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Schema ambiguity $\\alpha$ for all SciERC relations and the 12 DocRED relations with $\\alpha \\geq 0.36$. \\textbf{Gold \\%}: fraction of all gold triples belonging to this relation. All SciERC relations exceed the threshold due to the small schema (7 relations, 6 entity types); in DocRED, only 12 of 96 relations qualify, covering 3.8\\% of gold triples.}\n\\label{tab:high-kappa-rels}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llrrrr@{}}\n\\toprule\n\\textbf{Dataset} & \\textbf{Relation} & $\\alpha$ & \\textbf{$|\\mathcal{P}_r|$} & \\textbf{Gold} & \\textbf{Gold \\%} \\\\\n\\midrule\n\\multicolumn{6}{@{}l}{\\textit{SciERC (all 7 relations exceed $\\alpha \\geq 0.36$)}} \\\\\nSciERC & Hyponym-of    & 0.83 & 21 &  298 &  9.3 \\\\\nSciERC & Part-of       & 0.83 & 21 &  179 &  5.6 \\\\\nSciERC & Compare       & 0.82 & 17 &  166 &  5.2 \\\\\nSciERC & Conjunction   & 0.77 & 25 &  400 & 12.4 \\\\\nSciERC & Feature-of    & 0.76 & 26 &  173 &  5.4 \\\\\nSciERC & Evaluate-for  & 0.71 & 23 &  313 &  9.7 \\\\\nSciERC & Used-for      & 0.67 & 35 & 1{,}690 & 52.5 \\\\\n\\midrule\n\\multicolumn{6}{@{}l}{\\textit{DocRED (12 of 96 relations with $\\alpha \\geq 0.36$; 3.8\\% of gold)}} \\\\\nDocRED & sister city (P190)          & 0.42 &  1 &    4 & 0.01 \\\\\nDocRED & basin country (P205)        & 0.42 &  1 &   85 & 0.22 \\\\\nDocRED & mouth of watercourse (P403) & 0.42 &  1 &   95 & 0.25 \\\\\nDocRED & separated from (P807)       & 0.41 &  2 &    2 & 0.01 \\\\\nDocRED & replaces (P1365)            & 0.39 &  4 &   18 & 0.05 \\\\\nDocRED & capital of (P1376)          & 0.37 &  3 &   76 & 0.20 \\\\\nDocRED & place of birth (P19)        & 0.37 &  3 &  511 & 1.34 \\\\\nDocRED & operator (P137)             & 0.36 &  7 &   95 & 0.25 \\\\\nDocRED & military branch (P241)      & 0.36 &  5 &  108 & 0.28 \\\\\nDocRED & production company (P272)   & 0.36 &  5 &   82 & 0.21 \\\\\nDocRED & place of death (P20)        & 0.36 &  4 &  203 & 0.53 \\\\\nDocRED & location (P276)             & 0.36 &  5 &  172 & 0.45 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{DR violation rates partitioned by schema ambiguity. High-$\\alpha$ relations ($\\alpha \\geq 0.36$) start with substantially higher unconstrained DR on DocRED, and retain elevated residual DR under S1 for Qwen but not for Llama.}\n\\label{tab:dr-by-ambiguity}\n\\begin{tabular}{@{}llrrrr@{}}\n\\toprule\n& & \\multicolumn{2}{c}{\\textbf{Unconstrained}} & \\multicolumn{2}{c}{\\textbf{S1 (Constrained)}} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6}\n\\textbf{Model} & \\textbf{Partition} & DR\\% & $n$ & DR\\% & $n$ \\\\\n\\midrule\n\\multirow{2}{*}{Llama-3.1-8B}\n & High-$\\alpha$ (12 rels) & 43.8 &   861 &  3.2 & 1{,}043 \\\\\n & Low-$\\alpha$ (84 rels)  & 29.9 & 12{,}809 &  2.5 & 15{,}325 \\\\\n\\midrule\n\\multirow{2}{*}{Qwen3-8B}\n & High-$\\alpha$ (12 rels) & 31.9 &   718 & 20.0 & 1{,}119 \\\\\n & Low-$\\alpha$ (84 rels)  & 21.2 & 10{,}898 &  9.5 & 16{,}217 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:high-kappa-rels} reveals a structural asymmetry between datasets.\nIn SciERC, all seven relations have $\\alpha \\geq 0.67$: with only 7 relations over $6^2 = 36$ entity type pair slots, extensive overlap is inevitable.\nFor example, the pair (Method, Method) is valid for all 7 relations ($\\alpha = 1.0$).\nIn DocRED, 96 relations spread across the same 36 type pair slots yield much lower per-relation ambiguity; only 12 relations exceed $\\alpha \\geq 0.36$, and these collectively cover just 3.8\\% of gold triples.\n\nTable~\\ref{tab:dr-by-ambiguity} shows the DR impact stratified by ambiguity.\nOn DocRED, high-$\\alpha$ relations exhibit substantially higher unconstrained DR (43.8\\% for Llama vs.\\ 29.9\\% for low-$\\alpha$), reflecting the inherent difficulty of relations whose valid type pairs are shared by dozens of other relations---the model frequently assigns a type combination that, while valid for \\emph{some} relation, violates the constraints of the target relation.\nUnder S1 constraints, Llama reduces both groups to near-parity (3.2\\% vs.\\ 2.5\\%), whereas Qwen retains a 2$\\times$ gap (20.0\\% vs.\\ 9.5\\%), indicating that constraint effectiveness on high-ambiguity relations depends on the model's baseline type accuracy.\nExcluding the 12 high-$\\alpha$ relations from the DocRED evaluation changes the overall S1 DR only marginally---from 2.55\\% to 2.51\\% for Llama and from 10.21\\% to 9.53\\% for Qwen---confirming that their small gold footprint (3.8\\%) limits their aggregate impact despite elevated per-relation rates.\nOn SciERC, where all relations have high $\\alpha$, the exclusion analysis is vacuous; yet OntoCoDec still reduces DR from 15.4\\% to 0.9\\% (Qwen) and from 13.3\\% to 0.08\\% (Llama), demonstrating that high schema ambiguity does not preclude effective constraint enforcement.\n"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-22T14:18:51.554736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_high_kappa_analysis.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-22T14:18:51.554879+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_high_kappa_analysis.tex"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-22T14:18:51.555040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Appendix: Schema Ambiguity Analysis\n2\t% High-kappa relations and their impact on DR enforcement\n3\t\n4\t\\paragraph{Schema ambiguity analysis.}\n5\t\\label{app:kappa-analysis}\n6\t\n7\tWe define the \\emph{schema ambiguity} of a relation $r$ as the average fraction of relations that share each of $r$'s valid type pairs:\n8\t\\begin{equation}\n9\t\\alpha_r = \\frac{1}{|\\mathcal{P}_r|} \\sum_{(h,t) \\in \\mathcal{P}_r} \\frac{|\\{r' \\in \\mathcal{R} : (h,t) \\in \\mathcal{P}_{r'}\\}|}{|\\mathcal{R}|}\n10\t\\label{eq:schema-ambiguity}\n11\t\\end{equation}\n12\twhere $\\mathcal{P}_r$ is the set of valid entity type pairs for relation $r$ and $\\mathcal{R}$ is the full relation set.\n13\tHigh $\\alpha_r$ indicates that $r$'s valid type pairs are shared by many other relations, limiting the discriminative power of type constraints for that relation.\n14\t\n15\t\\begin{table}[h]\n16\t\\centering\n17\t\\small\n18\t\\caption{Schema ambiguity $\\alpha$ for all SciERC relations and the 12 DocRED relations with $\\alpha \\geq 0.36$. \\textbf{Gold \\%}: fraction of all gold triples belonging to this relation. All SciERC relations exceed the threshold due to the small schema (7 relations, 6 entity types); in DocRED, only 12 of 96 relations qualify, covering 3.8\\% of gold triples.}\n19\t\\label{tab:high-kappa-rels}\n20\t\\resizebox{\\columnwidth}{!}{%\n21\t\\begin{tabular}{@{}llrrrr@{}}\n22\t\\toprule\n23\t\\textbf{Dataset} & \\textbf{Relation} & $\\alpha$ & \\textbf{$|\\mathcal{P}_r|$} & \\textbf{Gold} & \\textbf{Gold \\%} \\\\\n24\t\\midrule\n25\t\\multicolumn{6}{@{}l}{\\textit{SciERC (all 7 relations exceed $\\alpha \\geq 0.36$)}} \\\\\n26\tSciERC & Hyponym-of    & 0.83 & 21 &  298 &  9.3 \\\\\n27\tSciERC & Part-of       & 0.83 & 21 &  179 &  5.6 \\\\\n28\tSciERC & Compare       & 0.82 & 17 &  166 &  5.2 \\\\\n29\tSciERC & Conjunction   & 0.77 & 25 &  400 & 12.4 \\\\\n30\tSciERC & Feature-of    & 0.76 & 26 &  173 &  5.4 \\\\\n31\tSciERC & Evaluate-for  & 0.71 & 23 &  313 &  9.7 \\\\\n32\tSciERC & Used-for      & 0.67 & 35 & 1{,}690 & 52.5 \\\\\n33\t\\midrule\n34\t\\multicolumn{6}{@{}l}{\\textit{DocRED (\n…[truncated 3770 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-22T14:18:51.555223+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written to `artifacts/_project/paper/appendix_high_kappa_analysis.tex`.\n\n**Summary of findings:**\n\n- **SciERC**: All 7 relations have α ≥ 0.67 (range 0.67–0.83) — the small schema (7 rels × 6 entity types) makes every relation ambiguous. Exclusion analysis is vacuous, but OntoCoDec still achieves DR 15.4%→0.9% (Qwen), 13.3%→0.08% (Llama).\n\n- **DocRED**: Only 12/96 relations have α ≥ 0.36, covering just 3.8% of gold triples. The highest-ambiguity relations (sister city, basin country, mouth of watercourse, all α=0.42) share the single valid pair LOC→LOC with 40 other relations. These relations have much higher unconstrained DR (43.8% vs 29.9%) but converge under S1 constraints for Llama (3.2% vs 2.5%).\n\n- **Excluding high-α relations** barely changes overall DR: 2.55%→2.51% (Llama), 10.21%→9.53% (Qwen) — their small gold footprint limits aggregate impact despite elevated per-relation rates."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_high-kappa-relations_20260522T141222"
+          },
+          "id": "event-000061"
+        }
+      ],
+      "message_count": 61
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-high-kappa-relations.md"
+}

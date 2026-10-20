@@ -1,0 +1,24 @@
+%% NOTE: Reviewer 2 cited this as "Koldehoff et al. (Frontiers in AI, 2025)"
+%% but no author named "Koldehoff" exists on this paper.
+%% The actual authors are David M. Schmidt and Philipp Cimiano.
+%% "Koldehoff" appears to be a hallucinated author name by the AI reviewer.
+%%
+%% Paper verified at:
+%%   - https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1406857/full
+%%   - https://pmc.ncbi.nlm.nih.gov/articles/PMC11747381/
+%%   - GitHub: https://github.com/ag-sc/Clinical-Trial-IE-GCD
+
+@article{schmidt2025grammar,
+  title     = {Grammar-Constrained Decoding for Structured Information Extraction with Fine-Tuned Generative Models Applied to Clinical Trial Abstracts},
+  author    = {Schmidt, David M. and Cimiano, Philipp},
+  journal   = {Frontiers in Artificial Intelligence},
+  volume    = {7},
+  pages     = {1406857},
+  year      = {2025},
+  month     = jan,
+  doi       = {10.3389/frai.2024.1406857},
+  pmid      = {39839970},
+  pmcid     = {PMC11747381},
+  publisher = {Frontiers Media SA},
+  note      = {Received 2024-03-25; Accepted 2024-12-12; Published 2025-01-07}
+}

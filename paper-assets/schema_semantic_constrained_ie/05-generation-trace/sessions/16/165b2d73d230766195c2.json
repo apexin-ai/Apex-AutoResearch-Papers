@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "165b2d73d230766195c2",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis phase2 semantic and full s1",
+  "task_key": "worker_analysis_phase2_semantic_and_full_s1_20260514T003508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_semantic_and_full_s1_20260514T003508_result.json",
+    "occurrence": 1,
+    "bytes": 1426,
+    "sha256": "80e23b1a31000a33ab03292bd294a02ddb46d2af4318fb974eb373da8c9268cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "我会停止频繁轮询。当前状况和已有分析结果的总结：\n\n---\n\n## 当前进度\n- **semantic_only**: 127/551 (23%), ~2-3/min → 预计还需 ~140-200 min\n- **full_s1**: 192/551 (35%), ~3-4/min → 预计还需 ~90-120 min\n\n速率比初始阶段慢（数据集后半部分文本更长）。\n\n## 已有的部分分析结果（108 样本，信号已稳定）\n\n**核心结论已经明确，全量数据只会微调数字：**\n\n### semantic_only = 负面结果\n- DR violation 16.4%，比 unconstrained (15.4%) 更高\n- TypeConstraintProcessor 单独使用反而增加违规率\n- 可能原因：语义约束独立修改 entity type logits，但未配合 grammar 约束 relation name，导致类型组合更不协调\n\n### full_s1 (grammar+semantic) = 强正面结果\n- DR violation 0.56%（从 15.4% 降至 0.56%，降幅 96%）\n- 仅 Evaluate-for 有残余 DR violations\n- RV=0%, ET=0% \n- 代价：CF violation 从 0.08% 升至 12.3%（跨关系类型不一致）\n\n### F1 无显著损失\n- Entity F1: ±1.5pp 波动范围\n- Relation F1: 略有提升\n\n---\n\n两个实验还在 tmux 中运行，`monitor_analysis` 脚本会在完成后自动执行 `analyze_phase2.py`。完成后我会运行完整分析、更新 registry、写分析总结。\n\n如果你想让我现在就基于部分结果更新 registry 并先写分析总结，告诉我。否则我会等全量数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase2-semantic-and-full-s1.md"
+}

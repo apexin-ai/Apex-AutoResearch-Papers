@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "021e3d698342eec99141",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research constrained decoding literature",
+  "task_key": "worker_research_constrained_decoding_literature_20260513T200558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_constrained_decoding_literature_20260513T200558_result.json",
+    "occurrence": 1,
+    "bytes": 1599,
+    "sha256": "a1aaa9eefc0470482223ba8801c7d63df869fd41d53ca1cf1a58e60f3ec27b3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。三个维度共覆盖 40+ 篇论文，核心结论：\n\n### Novelty 确认\n\n**OntoCoDec 的核心创新点成立** — 没有先前工作在 LLM 解码时对 IE 任务执行 ontology domain/range type constraints。\n\nGap 结构：\n| 约束层级 | IE 任务? | 解码时? | 现有工作 |\n|---------|---------|--------|---------|\n| 句法 (valid JSON) | ✓ | ✓ | GCD, XGrammar, Outlines |\n| 词汇 (valid type names) | ✓ | ✓ | GENRE, iNERD, AdaKGC |\n| **语义 (domain/range 类型兼容性)** | **✗** | **✗** | **空白 ← OntoCoDec** |\n| 语义 (类型检查) | 仅代码生成 | ✓ | MGD, Synchromesh, PLDI'25 |\n| 语义 (ontology 合规) | KG 构建 | 仅后处理 | RELATE, ODKE+, OntoLogX |\n\n### 最近似工作 (must differentiate)\n1. **PLDI'25 Type-Constrained Code Gen** — 同机制（type system → automaton → logits mask）但用于编程语言\n2. **MGD (NeurIPS'23)** — 代码生成的解码时类型检查\n3. **ODKE+ (Apple'25)** — 产品级 ontology-guided IE，但用后处理而非解码约束\n\n### 需注意的风险\n- **CRANE (ICML'25)**: 严格约束可能降低推理质量\n- **Grammar-Aligned Decoding (NeurIPS'24)**: naive masking 会扭曲 token 分布\n\n### 产出文件\n- `artifacts/literature_map.yaml` — 结构化文献地图 + novelty 评估 + 引用建议（16 篇 must-cite）\n- `artifacts/literature_survey_constrained_decoding_ie.md` — 维度 1 详细报告\n- `artifacts/literature_survey_ontology_constrained_ie.md` — 维度 2+3 详细报告\n- `memory.md` — 已更新关键结论"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-constrained-decoding-literature.md"
+}

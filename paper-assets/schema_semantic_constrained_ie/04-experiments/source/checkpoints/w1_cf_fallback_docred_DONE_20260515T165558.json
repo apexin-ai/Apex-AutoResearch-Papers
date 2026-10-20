@@ -1,0 +1,47 @@
+{
+  "exp_id": "w1_cf_fallback_docred",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-15T10:32:53.234Z",
+    "updated_at": "2026-05-15T16:55:58.012Z",
+    "server": "westd-16980",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "command": "bash -c \"rm -f /root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_docred.jsonl && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w1_cf_fallback_docred.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\""
+    },
+    "notes": "Reviewer #12 三次确认: 实际运行 --mode full_s1 (非 CF fallback), 与 phase2_docred_full_s1 重复。CF fallback 代码恢复失败或未生效。命令行明确显示 --mode full_s1。PID 283824 已 kill。W1 CF fallback 整体定论: SciERC pilot (analytical finding) 已充分, DocRED 不再重跑。",
+    "completed_at": "2026-05-15T15:47:59.075Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed",
+        "notes": "D020: Director 取消全部 CF fallback 实验。改用 Analytical Finding 方案——pilot negative 本身作为论文素材。仅跑约 30s 即被终止。"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"rm -f /root/schema_semantic_constrained_ie/outputs/w1_cf_fallback_docred.jsonl && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w1_cf_fallback_docred.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "283824",
+      "log_path": "~/runs/schema_semantic_constrained_ie/w1_cf_fallback_docred.log",
+      "submitted_at": "2026-05-15T16:26:41.953Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "N/A (killed - ran wrong code)",
+      "wall_clock_seconds": 1756.1,
+      "gpu_hours": 0.49
+    },
+    "pid": "283824",
+    "log_path": "~/runs/schema_semantic_constrained_ie/w1_cf_fallback_docred.log",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T16:55:58.094849+00:00",
+  "trigger": "update_registry"
+}

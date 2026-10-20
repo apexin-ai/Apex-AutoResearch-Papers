@@ -1,0 +1,16 @@
+{
+  "exp_id": "sf2_qwen_int4_scierc_s1",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:58:51.930Z",
+    "updated_at": "2026-05-23T04:59:12.771Z",
+    "hypothesis": "AWQ INT4 quantization of fine-tuned Qwen3-8B does not significantly affect constraint enforcement (DR/CF) on SciERC S1, validating that OntoCoDec is robust to quantization. Expect DR=0%, CF~0.5%, R-F1 within 1pp of FP16 baseline (43.77).",
+    "parent": "d066_beam_sweep"
+  },
+  "timestamp": "2026-05-23T04:59:13.114431+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "w9_qwen_scierc_stability_3seeds",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T02:55:58.164Z",
+    "updated_at": "2026-05-17T03:18:34.771Z",
+    "hypothesis": "Greedy full_s1 constraint results on SciERC are stable across random seeds: DR should remain in 0.7-1.2% range (near the 0.93% baseline), demonstrating that the single-run result is not an outlier"
+  },
+  "timestamp": "2026-05-17T03:18:34.920099+00:00",
+  "trigger": "update_registry"
+}

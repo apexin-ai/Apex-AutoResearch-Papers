@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2272fd4ca098d2dbe6e0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "audit data consistency p1",
+  "task_key": "worker_audit_data_consistency_p1_20260517T000138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data_consistency_p1_20260517T000138_result.json",
+    "occurrence": 1,
+    "bytes": 753,
+    "sha256": "ff59e0bc05238efcdde5f008270634834697f5ee33c1f2096b52d49d31064360"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。审计结果：\n\n**修正 1 处错误**：`appendix_sampling_table.tex` 第 9 行 SciERC Greedy CF 从 9.82 改为 9.90（registry `phase2_scierc_full_s1` CF=0.099=9.90%）。\n\n**验证 100+ 数据点全部正确**，覆盖：\n- 所有主表（SciERC ablation、DocRED ablation、cross-model、composability、FT four-way ablation、post-hoc comparison、CF-DR tradeoff、sampling robustness）\n- Abstract 和 Introduction 中引用的所有数字\n- 正文段落中的内联计算（百分比变化、pp 差值、相对减少率）\n\n**无法从 registry 验证**：runtime table（无 latency 实验 metrics）、DocRED sampling 行（实验仍在 QUEUED）。\n\n报告已写入 `artifacts/data_consistency_audit.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-data-consistency-p1.md"
+}

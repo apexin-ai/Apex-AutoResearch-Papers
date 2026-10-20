@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b3f73c930518485d8f8",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check w6 mistral progress",
+  "task_key": "worker_check_w6_mistral_progress_20260516T051855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_w6_mistral_progress_20260516T051855_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "8c477e968bfc9a470783a81a7dcf3c5faf1d35a8b138a562399901fc58df7f93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## w6_mistral_scierc_unconstrained\n- 进程状态: **alive** (pid=332156, 运行 25m17s, CPU 100%)\n- 已完成: **428/551** samples (77.7%)\n- 速度: ~16.9 samples/min (~3.5s/sample)\n- ETA: **~7 分钟后完成**\n- GPU 0: 14703/97887 MiB, 89% util\n- 异常: 无（日志仅有 pad_token_id 警告，正常）\n\n## w5_qwen_docred_lora_constrained_eval\n- 进程状态: **alive** (pid=321568, 运行 3h24m, CPU 100%)\n- 已完成: 日志进度 **486/998**，输出文件 550 行（日志可能有缓冲延迟）\n- 速度: ~3.0 samples/min (~18s/sample，近 20 条平均)\n- ETA: **~2.5 小时后完成**（按剩余 448-512 samples 估算）\n- GPU 1: 17427/97887 MiB, 83% util\n- 异常: sample 486 (Bill Warner) FAIL，E=0 R=0，耗时 76.1s（疑似生成超长/空输出）。其余正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-w6-mistral-progress.md"
+}

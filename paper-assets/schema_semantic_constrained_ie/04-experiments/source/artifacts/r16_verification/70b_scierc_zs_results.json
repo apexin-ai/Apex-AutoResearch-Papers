@@ -1,0 +1,64 @@
+{
+  "experiment": "r16_70b_scierc_zs_s1",
+  "model": "Llama-3.3-70B-Instruct",
+  "dataset": "SciERC",
+  "setting": "zero-shot",
+  "samples": 551,
+  "server": "westd-16980",
+  "evaluated_at": "2026-05-21",
+
+  "unconstrained": {
+    "Entity_P": 0.3014,
+    "Entity_R": 0.4232,
+    "Entity_F1": 35.21,
+    "Relation_P": 0.0924,
+    "Relation_R": 0.1407,
+    "Relation_F1": 11.15,
+    "ET_pct": 0.0,
+    "RV_pct": 0.61,
+    "DR_pct": 6.41,
+    "CF_pct": 0.0,
+    "parse_fail_pct": 0.0,
+    "total_entities": 2349,
+    "total_relations": 1483
+  },
+
+  "s1_constrained": {
+    "Entity_P": 0.3015,
+    "Entity_R": 0.4226,
+    "Entity_F1": 35.19,
+    "Relation_P": 0.0932,
+    "Relation_R": 0.1417,
+    "Relation_F1": 11.24,
+    "ET_pct": 0.0,
+    "RV_pct": 0.0,
+    "DR_pct": 0.0,
+    "CF_pct": 3.50,
+    "parse_fail_pct": 0.0,
+    "total_entities": 2345,
+    "total_relations": 1481
+  },
+
+  "delta_s1_vs_unconstrained": {
+    "Entity_F1": -0.02,
+    "Relation_F1": 0.09,
+    "DR_pct": -6.41,
+    "RV_pct": -0.61,
+    "CF_pct": 3.50,
+    "note": "S1 eliminates all DR and RV violations with negligible F1 change; CF increases due to cross-field consistency checks now being the only remaining violation type"
+  },
+
+  "comparison_vs_8B_qwen_zs_s1": {
+    "model_8B": "Qwen2.5-7B-Instruct",
+    "model_70B": "Llama-3.3-70B-Instruct",
+    "E_F1_8B": 31.45,
+    "E_F1_70B": 35.19,
+    "E_F1_delta": 3.74,
+    "R_F1_8B": 8.38,
+    "R_F1_70B": 11.24,
+    "R_F1_delta": 2.86,
+    "DR_pct_8B": 0.93,
+    "DR_pct_70B": 0.0,
+    "note": "70B improves both E_F1 (+3.74) and R_F1 (+2.86) over 8B, and achieves perfect DR=0% vs 8B's 0.93%"
+  }
+}

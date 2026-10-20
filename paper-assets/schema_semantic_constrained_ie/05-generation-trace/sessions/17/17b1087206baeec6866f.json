@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17b1087206baeec6866f",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "dryrun w1 cf fallback",
+  "task_key": "worker_dryrun_w1_cf_fallback_20260515T131645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_dryrun_w1_cf_fallback_20260515T131645_result.json",
+    "occurrence": 1,
+    "bytes": 1905,
+    "sha256": "0fafc765fe0f202e330932bca56404a5bb1c26fe2e2727754109ec26b4172d51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-Run 验证结果汇总\n\n### 代码集成状态\n- ✅ CF fallback 代码在 `compiler/type_mask_processor.py:295-360` 中，`_mask_head_type` 和 `_mask_tail_type` 均实现了 registry-consistent fallback\n- ✅ 默认集成在 `full_s1` 模式，无需额外 CLI 参数\n- ✅ CLI 参数 `--max_samples`（非 `--num_samples`）\n\n### 4 个 Dry-Run 结果\n\n| # | 实验 | 状态 | 样本 | 详情 |\n|---|------|------|------|------|\n| 1 | Qwen SciERC | ✅ | 2/2 OK | E=4,R=1 (7.1s) / E=2,R=1 (4.0s) |\n| 2 | Qwen DocRED | ✅ | 2/2 OK | E=15,R=14 (48.0s) / E=18,R=18 (42.6s) |\n| 3 | Llama SciERC | ✅ | 2/2 OK | E=5,R=1 (5.2s) / E=3,R=0 (2.0s) |\n| 4 | Llama DocRED | ✅ | 2/2 OK | E=10,R=9 (18.0s) / E=15,R=17 (30.8s) |\n\n### Fallback 触发情况\n- **Grammar-first fallback**: DocRED 上频繁触发（sample 平均 30+ 次），SciERC 上少量触发。符合代码注释描述——DocRED 约束紧（avg 5.68 valid pairs），SciERC 约束松（avg 24 valid pairs）\n- **CF registry-consistent fallback**: 8 个 sample 中均未触发。这不代表代码有问题——CF fallback 仅在 entity registry 类型与 D/R 约束冲突时触发，取决于具体生成内容。全量运行（数百 samples）时预期会触发\n\n### 输出格式\n- ✅ 4 个 JSONL 文件均为有效 JSON\n- ✅ keys: `doc_id`, `input_text`, `gold_entities`, `gold_relations`, `raw_output`, `parsed_output`, `inference_time_seconds`, `mode`\n- ✅ relation 包含 `head`, `tail`, `type`, `head_type`, `tail_type` 五字段\n\n### 注意事项\n1. CF fallback 日志（`logger.info`/`logger.debug`）在当前配置下不显示，因为 `run_constrained_extraction.py` 没有配置 logging 级别（默认 WARNING）。正式运行如需看到 CF fallback 汇总日志，需在脚本入口加 `logging.basicConfig(level=logging.INFO)`\n2. GPU 占用正常，未影响 mt6144 实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/dryrun-w1-cf-fallback.md"
+}

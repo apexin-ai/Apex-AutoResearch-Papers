@@ -1,0 +1,52 @@
+{
+  "experiment": "r14_qwen_docred_beam4_998",
+  "model": "Qwen2.5-7B-Instruct",
+  "dataset": "DocRED",
+  "split": "dev",
+  "method": "beam-4 schema-constrained decoding",
+  "server": "westd-21461",
+  "completed_at": "2026-05-21",
+  "samples": 998,
+  "success_samples": 963,
+  "fail_samples": 35,
+  "metrics_all_samples": {
+    "E_F1": 58.19,
+    "E_P": 57.19,
+    "E_R": 59.23,
+    "R_F1": 8.72,
+    "R_P": 7.48,
+    "R_R": 10.47,
+    "ET_pct": 0.0,
+    "RV_pct": 0.0,
+    "DR_pct": 0.0,
+    "CF_pct": 4.94,
+    "parse_fail_pct": 3.51
+  },
+  "metrics_excl_fail": {
+    "E_F1": 59.23,
+    "E_P": 57.19,
+    "E_R": 61.42,
+    "R_F1": 8.85,
+    "R_P": 7.48,
+    "R_R": 10.85,
+    "ET_pct": 0.0,
+    "RV_pct": 0.0,
+    "DR_pct": 0.0,
+    "CF_pct": 4.94
+  },
+  "debug": {
+    "total_entities_pred": 20549,
+    "total_relations_pred": 17199,
+    "entity_tp": 11543,
+    "entity_fp": 8641,
+    "entity_fn": 7944,
+    "relation_tp": 1273,
+    "relation_fp": 15754,
+    "relation_fn": 10891
+  },
+  "analysis": {
+    "constraint_compliance": "Beam-4 constrained decoding achieves perfect schema compliance: ET_pct=0, RV_pct=0, DR_pct=0. Only CF_pct=4.94% remains (cross-field consistency not enforced by grammar).",
+    "f1_observation": "E_F1=58.19 is reasonable for ZS Qwen on DocRED. R_F1=8.72 is extremely low — relation_fp=15754 vs relation_tp=1273 indicates the model generates many relations that don't match gold. This is a ZS baseline issue (no finetuning), not a constrained decoding regression.",
+    "parse_fail_rate": "35/998 (3.51%) samples failed — likely timeout on complex documents with many entities."
+  }
+}

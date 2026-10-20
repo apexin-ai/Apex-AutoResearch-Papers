@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12fac9ed612d2c9145fc",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code w10 qwen scierc ft beam collect",
+  "task_key": "worker_code_w10_qwen_scierc_ft_beam_collect_20260517T102444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w10_qwen_scierc_ft_beam_collect_20260517T102444_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "2b447849869fe4e45b76478cb509dbcde9c98ae4061032e00a7be7c62319fe45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无活跃 cron，无需删除。\n\n---\n\n## w10_qwen_scierc_ft_beam_4 实验结果\n\n| 指标 | FT greedy (baseline) | ZS beam k=4 | **FT beam k=4 (本实验)** |\n|------|---------------------|-------------|--------------------------|\n| DR | 0% | 0% | **0%** |\n| CF | 1.18% | 0.53% | **0.0%** |\n| E_F1 | 67.05 | 32.00 | **66.88** |\n| R_F1 | 43.77 | 8.56 | **44.23** |\n\n**结论：success**\n\n- CF 从 FT greedy 的 1.18% 降至 0.0%，beam search 完全消除了所有约束违反\n- DR 保持 0%\n- E_F1 几乎无变化（-0.17），R_F1 略有提升（+0.46）\n- FT+beam 组合验证了 composability 假设：beam search 消除残余违反的同时不损失 F1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w10-qwen-scierc-ft-beam-collect.md"
+}

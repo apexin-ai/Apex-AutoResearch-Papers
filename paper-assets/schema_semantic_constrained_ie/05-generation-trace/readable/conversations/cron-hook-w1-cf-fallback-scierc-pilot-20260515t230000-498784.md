@@ -1,0 +1,2873 @@
+# cron hook w1 cf fallback scierc pilot 20260515T230000 498784
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 80
+- **Recorded user turns:** 2
+- **Tool calls:** 38
+- **Original source:** `logs/chats/archive/cron_hook_w1_cf_fallback_scierc_pilot_20260515T230000_498784.jsonl`
+- **Structured JSON:** [`32f82b82dc788159a0d0.json`](../../sessions/32/32f82b82dc788159a0d0.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+40 recorded events
+
+### User
+
+_source line 1 · 2026-05-15T17:52:12.380191+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #10。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 只能用 westd-16980 的 cuda:0 和 cuda:1（gpu_ids=[0,1]），其他设备号禁止
+- submit_training_job 命令必须 `bash -c` 包裹（tmux 默认 sh，source/conda activate 会 127）
+- CF fallback pilot 分析结果出来前，不能启动 PREPARING 的 3 个正式 CF 实验（w1_cf_fallback_llama_scierc / docred / llama_docred）
+- W5 LoRA (D018) 是条件启动：需 cuda:1 释放 + DR>2% gate
+- violation_checker 和 F1 评估必须用 `checker_version: fixed_20260514_v2` 口径，旧数据不可比
+- R-F1 统一用 all_set 方法（OOV 计为 FP），不要用 recognized_set
+
+### 2. 🖥️ 基础设施快照
+- 服务器: westd-16980, account: root
+- 工作目录: `/root/schema_semantic_constrained_ie/`
+- Python: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- 模型: Qwen3-8B `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`，Llama-3.1-8B `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`
+- 数据: SciERC `data/processed_data/test.json`，DocRED `data/docred/`
+- 约束文件: SciERC `ontology_constraints.json`，DocRED `data/docred/ontology_constraints_docred.json`
+- 活跃进程: llama_docred_full_s1_mt6144 (PID 247487, cuda:1, tmux)
+- Cron: llama_docred_full_s1_mt6144 存活监控中（reconcile 确认 still running）
+
+### 3. 📊 当前状态
+**刚做的**: w1_cf_fallback_scierc_pilot 实验正常退出 → 转 ANALYZING → 派 Worker `worker_analysis_w1_cf_fallback_scierc_pilot_20260515T144938` 做日志读取 + violation_checker + F1 评估。已向 Director 汇报 pilot 完成。
+
+**Registry 关键实验**:
+- `w1_cf_fallback_scierc_pilot`: ANALYZING，cuda:0，Qwen3-8B SciERC full_s1 CF fallback pilot
+- `llama_docred_full_s1_mt6144`: RUNNING，cuda:1 (PID 247487)，Llama DocRED full_s1 max_tokens=6144
+- `w1_cf_fallback_llama_scierc` / `w1_cf_fallback_docred` / `w1_cf_fallback_llama_docred`: PREPARING（等 pilot 分析通过）
+
+**等待中**:
+- Worker 回调: `worker_analysis_w1_cf_fallback_scierc_pilot_20260515T144938`（分析 pilot 结果）
+- Cron: llama_docred_full_s1_mt6144 完成回调
+- Director 未有未决决策
+
+### 4. 📋 待办
+- 分析 Worker 回调到 → 读 Worker 产出，判定 conclusion (success/negative)，update_registry，刷新 report.md，向 Director 汇报（带 on-experiment-done 全流程：反思实验计划 + 文献联动）
+- pilot conclusion=success → cuda:0 空闲，立即准备正式 CF 实验（先 dry-run 再提交），优先 Qwen SciERC/DocRED
+- pilot conclusion=negative → 产出 Framing 调整提案（red-section 规范），禁止默默跑下一个实验，等 Director 决策
+- llama_docred_full_s1_mt6144 cron 回调 → 分析 Llama DocRED mt6144 结果，与之前 llama_docred_full_s1 (DR 2.55%) 对比 max_tokens 影响
+- cuda:1 释放 + W1 正式实验占 cuda:0 → cuda:1 启动 W5 LoRA (D018)
+
+### 5. 🎯 战略上下文
+- **目标**: EMNLP 2026 ARR，DDL May 25。当前 Round 1 审稿应对，目标从 Weak Reject 2.75 → Accept 3.75-4.0
+- **W1 CF fallback 是 critical issue**: Reviewer 关注 CF violation (9.90%)。pilot 验证 fallback 机制能否降低 CF 且不牺牲 DR。phase2_scierc_full_s1 baseline: DR 0.93%, CF 9.90%, R-F1 8.36%
+- **D019 已解决 D017**: 代码已是 pair-based，W2 只需写作修复（§3 形式化统一 pair-based notation），0 GPU
+- **易错点**:
+  - SciERC CF 9.90% 的根因是 per-relation 独立 type enforcement 导致 entity-vs-relation type drift，主要冲突是 Generic ↔ OtherScientificTerm。CF fallback 可能只是缓解不是消除
+  - grammar_only DR 上升 (DocRED 18.46→26.17%) 是审稿必问点，已有预写 rebuttal
+  - DocRED 评估必须描述 name→PID 归一化 + OOV 计为 FP（审稿攻击面）
+  - Constraint tightness 是 DR scaling 的根因（SciERC τ̄=0.333 vs DocRED τ̄=0.842），不是 semantic 层失效
+  - 20 个 success / 0 个 negative，连续正向结果但 CF 残留是最大风险点
+
+## 项目硬约束 (memory.md 节选)
+
+## 环境信息
+
+### westd-16980 (2026-05-13)
+- GPU: 2× NVIDIA RTX PRO 6000 Blackwell (94GB each)
+- CUDA 12.8, Python 3.12.3 (conda base)
+- torch 2.10.0+cu128, transformers 4.57.6
+- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- Qwen 模型: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`
+- Llama 模型: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`
+- Llama LoRA merged: `/root/autodl-tmp/checkpoints/llama_lora_scierc_merged`
+
+## 可查的历史
+前 27 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T17:52:22.726876+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T17:52:22.777561+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T17:52:25.877179+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T17:52:26.363212+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T17:52:26.816288+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"w5_docred_sft_data_gen\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T17:51:09.748Z\", \"updated_at\": \"2026-05-15T17:51:44.980Z\", \"hypothesis\": \"Generate DocRED SFT train/dev JSONL from train_annotated.json + dev.json — prerequisite for Qwen/Llama DocRED LoRA fine-tune\"}, \"w5_qwen_docred_lora_training\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T17:48:52.649Z\", \"updated_at\": \"2026-05-15T17:48:58.827Z\", \"hypothesis\": \"Qwen3-8B LoRA fine-tune on DocRED — 填补 Qwen DocRED composability 2×2 matrix 的 FT 行。预期：(1) LoRA 后 E-F1/R-F1 大幅提升；(2) 残余 DR > 0% 证明 OntoCoDec 在 DocRED FT 上仍有 composability 价值。\"}, \"w5_llama_lora_scierc_unconstrained_eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:33:40.179Z\", \"updated_at\": \"2026-05-15T17:47:07.574Z\", \"hypothesis\": \"Fine-tuned Llama-3.1-8B SciERC unconstrained eval — 验证 LoRA 后残余 DR 是否仍 >2%，决定 OntoCoDec 在 fine-tuned Llama 上的 composability 价值。\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_entities\": 1757, \"total_relations\": 1082, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.0111, \"cross_field_consistency_violation_rate\": 0, \"total_violation_rate\": 0.0042, \"entity_precision\": 0.6647, \"entity_recall\": 0.691, \"entity_f1\": 0.6776, \"relation_precision\": 0.432, \"relation_recall\": 0.4795, \"relation_f1\": 0.4545}}, \"w5_llama_lora_scierc_constrained_eval\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T16:33:42.462Z\", \"updated_at\": \"2026-05-15T17:43:58.643Z\", \"hypothesis\": \"Fine-tuned Llama-3.1-8B + OntoCoDec constrained eval on SciERC — composability 验证：约束解码在 fine-tuned Llama 上仍有效且不损 F1。完成 Llama SciERC 2×2 matrix。\"}, \"w5_llama_lora_scierc_training\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:33:38.168Z\", \"updated_at\": \"2026-05-15T17:24:38.949Z\",
+…[truncated 28538 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 939
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T17:52:26.818690+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T17:52:26.819104+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T17:52:29.723771+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"w5_llama_lora_scierc_constrained_eval\", \"success\": true, \"actions\": [\"Job still running (pid=290317)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 3360
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T17:52:29.774558+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-15T17:51:45Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 34 个实验 — DONE 29, PREPARING 4, RUNNING 1\\n**DONE 分布**: killed 2, negative 1, success 26\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-16980:cuda:0, westd-16980:cuda:1\\n- **实际运行**: 1 张 — westd-16980:cuda:1(w5_llama_lora_scierc_constrained_eval)\\n- **空闲（分配了没跑）**: westd-16980:cuda:0\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `w5_llama_lora_scierc_constrained_eval` | westd-16980 | cuda:1 | 290317 | `…ic_constrained_ie/w5_llama_lora_scierc_constrained_eval.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `w5_llama_lora_scierc_unconstrained_eval` [success] — 2026-05-15T17:47:07\\n- `w5_llama_lora_scierc_training` [success] — 2026-05-15T17:24:38\\n- `w1_cf_fallback_docred` [killed] — 2026-05-15T16:55:58\\n- `w5_lora_scierc_constrained_eval` [success] — 2026-05-15T16:25:47\\n- `w5_lora_scierc_unconstrained_eval` [success] — 2026-05-15T16:01:58\\n\\n### 🔴 最近失败原因 (top 3)\\n- `w1_cf_fallback_docred`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| w5_llama_lora_scierc_constrained_eval | Fine-tuned Llama-3.1-8B + OntoCoDec constrained eval on SciERC — composability 验证：约束解码在 fine-tuned Llama 上仍有效且不损 F1。完成 Llama SciERC 2×2 matrix。 | — | — | — |\\n\\n## 待处理\\n- w5_docred_sft_data_gen（准备中）\\n- w5_qwen_docred_lora_training: Qwen3-8B LoRA fine-tune on DocRED — 填补 Qwen DocRED composability 2×2 matrix 的 FT 行。预期：(1) LoRA 后 E-F1/R-F1 大幅提升；(2) 残余 DR > 0% 证明 OntoCoDec 在 DocRED FT 上仍有 composability 价值。（准备中）\\n- w1_cf_fallba
+…[truncated 854 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 2955
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T17:52:29.875635+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md\", \"content\": \"# schema_semantic_constrained_ie — Research Dashboard\\n\\n> 最后更新: 2026-05-15 16:35 UTC | 更新原因: D027: 杀掉 w1_cf_fallback_docred (重复 plain full_s1) + 修正 W1 描述 + 添加 composability 覆盖计划 + 清理关键路径\\n\\n## 核心方向\\nOntoCoDec: 两层约束解码（grammar + semantic）自动编译 IE ontology schema 为 token-level constraints，消除 LLM-based IE 的 ontology constraint violations。详见 paper_framing.md。\\n\\n## 当前进展\\n**阶段**: Round 1 审稿应对 — W5 ✅ + 论文写入 + Llama LoRA 扩展\\n- **W5 composability 确认** (D025): FT+OntoCoDec DR=0.0%, R-F1 损 0.09pp, CF 干扰降 88%\\n- **Issue Tracker**: 15/16 resolved + W1 in_progress (analytical finding + Paper Agent 写作中)\\n- **Paper Agent**: 正在写入 2×2 composability matrix + 更新 Abstract/Conclusion\\n- **Llama LoRA**: cuda:0 启动 Llama SciERC fine-tune（扩展 composability 到跨模型）\\n- **w1_cf_fallback_docred 已杀** (D027): CF fallback 代码被回退，实际跑的是重复的 plain full_s1\\n\\n## Round 1 Issue Tracker\\n| ID | Severity | Status | 简述 |\\n|----|----------|--------|------|\\n| W1 | critical | **in_progress** | CF fallback: analytical finding (D020) + FT reduces CF 88% (D025). Paper Agent 写作中 |\\n| W2 | critical | ✅ resolved | §3 pair-based 形式化重写 |\\n| W3 | critical | ✅ resolved | Runtime 表 + 分析 |\\n| W4 | critical | ✅ resolved | Table 1 v2 数据统一 |\\n| W5 | warning | ✅ resolved (D025) | LoRA composability 验证: DR=0%, F1 -0.09pp, CF 1.18% |\\n| W6-W14, Q7-Q8 | various | ✅ resolved | 写作修复 |\\n\\n## 2×2 Composability Matrix (Qwen3-8B, SciERC)\\n| | Unconstrained | Constrained | ΔDR | ΔR-F1 |\\n|--|--|--|--|--|\\n| Zero-shot | DR=15.37%, R-F1=8.23% | DR=0.93%, R-F1=8.36% | -94% | +0.13pp |\\n| Fine-tuned LoRA | DR=1.95%, R-F1=43.86% | **DR=0.0%**, R-F1=43.77% | **-100%** | -0.09pp |\\n\\n## 关键路径\\n1. ~~W5 LoRA constrained eval~~ ✅ DR=0.0%\\n2. **Paper Agent 写入 2×2 matrix** ← 当前\\n3. ~~w1_cf_fallback_docred~~ ❌ 已杀 (D027, plain full_s1 重复)\\n4. Llama LoR
+…[truncated 2951 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 3056
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T17:52:57.038915+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T17:52:57.843402+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_0fbd563a.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "elapsed_ms": 804
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T17:52:57.843870+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T17:52:57.894307+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T17:53:09.530070+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T17:53:09.530497+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T17:53:09.581057+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_analysis_w5_docred_sft_data_gen_20260515T175244\", \"task_type\": \"analysis:w5_docred_sft_data_gen\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"running\", \"started_at\": \"2026-05-15T17:52:44.568599+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T17:53:09.681884+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Glob",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T17:53:33.184698+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_analysis_w5_docred_sft_data_gen_20260515T175244",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_analysis_w5_docred_sft_data_gen_20260515T175244",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T17:53:33.988601+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_w5_docred_sft_data_gen_20260515T175244\", \"status\": \"running\", \"task_type\": \"analysis:w5_docred_sft_data_gen\", \"project\": \"schema_semantic_constrained_ie\", \"started_at\": \"2026-05-15T17:52:44.568599+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [], \"last_text\": \"You've hit your limit · resets May 18, 11am (UTC)\", \"turn_count\": 1}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 803
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T17:53:34.139799+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__load_project_config",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__load_project_config",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T17:53:34.140253+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T17:53:55.920012+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__cancel_worker,mcp__agent-ml-research__send_progress,mcp__agent-ml-research__update_registry",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__cancel_worker,mcp__agent-ml-research__send_progress,mcp__agent-ml-research__update_registry",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T17:53:55.920597+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T17:53:56.172557+00:00_
+
+called mcp__agent-ml-research__read_experiment_plan_with_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T17:53:56.323349+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": [], \"total\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "elapsed_ms": 150
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T17:54:10.844700+00:00_
+
+called mcp__agent-ml-research__cancel_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__cancel_worker</summary>
+
+```json
+{
+  "worker_id": "worker_analysis_w5_docred_sft_data_gen_20260515T175244"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__cancel_worker",
+  "tool_args": {
+    "worker_id": "worker_analysis_w5_docred_sft_data_gen_20260515T175244"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T17:54:10.895577+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Worker 'worker_analysis_w5_docred_sft_data_gen_20260515T175244' cannot be cancelled (status=done).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__cancel_worker",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T17:54:42.521854+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "code:w5_docred_sft_data_gen",
+  "project": "schema_semantic_constrained_ie",
+  "task_prompt": "## 任务：生成 DocRED SFT 训练/验证数据\n\n### 目标\n将 DocRED 的 train_annotated.json 和 dev.json 转换为 SFT JSONL 格式，用于后续 Qwen3-8B / Llama-3.1-8B DocRED LoRA fine-tune。\n\n### 环境\n- 服务器: westd-16980, account: root\n- 激活环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- Python: /root/miniconda3/bin/python (3.12.3)\n- 项目目录: /root/schema_semantic_constrained_ie/\n- DocRED 数据: /root/schema_semantic_constrained_ie/data/docred/\n- DocRED 约束文件: /root/schema_semantic_constrained_ie/data/docred/ontology_constraints_docred.json\n- 参考: SciERC 已有 SFT 数据生成脚本，查看 /root/schema_semantic_constrained_ie/ 下是否有 prepare_sft_data.py 或类似脚本\n\n### 具体步骤\n1. SSH 到服务器，探测 DocRED 数据格式：\n   - `ls -la data/docred/` 查看文件列表\n   - `python3 -c \"import json; d=json.load(open('data/docred/train_annotated.json')); print(type(d), len(d)); print(json.dumps(d[0], indent=2)[:2000])\"` 查看数据结构\n   - 同样检查 dev.json\n\n2. 查看已有的 SFT 数据生成代码：\n   - `find /root/schema_semantic_constrained_ie/ -name \"*sft*\" -o -name \"*prepare*data*\" | head -20`\n   - 如果有 SciERC 的 SFT 脚本，参考其格式\n\n3. 编写 DocRED SFT 数据生成脚本 `prepare_docred_sft_data.py`：\n   - 输入: train_annotated.json, dev.json, ontology_constraints_docred.json\n   - 输出: train.jsonl, dev.jsonl（SFT 格式，每行一个 JSON 对象）\n   - 格式要求：与 SciERC SFT 数据格式一致（查看已有 SciERC SFT 数据文件确认格式）\n   - 文件顶部写注释：文件用途、输入输出、关键依赖\n   - 每个非显而易见的函数写 docstring\n\n4. 运行脚本生成数据：\n   - `python3 prepare_docred_sft_data.py`\n   - 验证输出文件存在且格式正确\n   - 统计 train/dev 样本数、平均 token 长度\n\n5. 验证数据质量：\n   - 抽样检查 5 个样本的格式是否正确\n   - 确认 entity types 和 relation types 都在 ontology_constraints_docred.json 中\n\n### 产出\n- 脚本: prepare_docred_sft_data.py\n- 数据: data/docred/train.jsonl, data/docred/dev.jsonl\n- 报告: 样本数、格式验证结果、统计信息\n\n### 出错诊断\n- JSON 解析错误 → 检查 DocRED 原始数据编码\n- entity/relation type 不匹配 → 对比 ontology_constraints_docred.json 的 schema\n- 内存不足 → DocRED train_annotated.json 较大，考虑流式处理",
+  "tool_groups": "['ssh', 'registry']",
+  "context": "DocRED SFT 数据生成是 Qwen/Llama DocRED LoRA fine-tune 的前置依赖。完成后需要 update_registry exp_id=w5_docred_sft_data_gen。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "code:w5_docred_sft_data_gen",
+    "project": "schema_semantic_constrained_ie",
+    "task_prompt": "## 任务：生成 DocRED SFT 训练/验证数据\n\n### 目标\n将 DocRED 的 train_annotated.json 和 dev.json 转换为 SFT JSONL 格式，用于后续 Qwen3-8B / Llama-3.1-8B DocRED LoRA fine-tune。\n\n### 环境\n- 服务器: westd-16980, account: root\n- 激活环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- Python: /root/miniconda3/bin/python (3.12.3)\n- 项目目录: /root/schema_semantic_constrained_ie/\n- DocRED 数据: /root/schema_semantic_constrained_ie/data/docred/\n- DocRED 约束文件: /root/schema_semantic_constrained_ie/data/docred/ontology_constraints_docred.json\n- 参考: SciERC 已有 SFT 数据生成脚本，查看 /root/schema_semantic_constrained_ie/ 下是否有 prepare_sft_data.py 或类似脚本\n\n### 具体步骤\n1. SSH 到服务器，探测 DocRED 数据格式：\n   - `ls -la data/docred/` 查看文件列表\n   - `python3 -c \"import json; d=json.load(open('data/docred/train_annotated.json')); print(type(d), len(d)); print(json.dumps(d[0], indent=2)[:2000])\"` 查看数据结构\n   - 同样检查 dev.json\n\n2. 查看已有的 SFT 数据生成代码：\n   - `find /root/schema_semantic_constrained_ie/ -name \"*sft*\" -o -name \"*prepare*data*\" | head -20`\n   - 如果有 SciERC 的 SFT 脚本，参考其格式\n\n3. 编写 DocRED SFT 数据生成脚本 `prepare_docred_sft_data.py`：\n   - 输入: train_annotated.json, dev.json, ontology_constraints_docred.json\n   - 输出: train.jsonl, dev.jsonl（SFT 格式，每行一个 JSON 对象）\n   - 格式要求：与 SciERC SFT 数据格式一致（查看已有 SciERC SFT 数据文件确认格式）\n   - 文件顶部写注释：文件用途、输入输出、关键依赖\n   - 每个非显而易见的函数写 docstring\n\n4. 运行脚本生成数据：\n   - `python3 prepare_docred_sft_data.py`\n   - 验证输出文件存在且格式正确\n   - 统计 train/dev 样本数、平均 token 长度\n\n5. 验证数据质量：\n   - 抽样检查 5 个样本的格式是否正确\n   - 确认 entity types 和 relation types 都在 ontology_constraints_docred.json 中\n\n### 产出\n- 脚本: prepare_docred_sft_data.py\n- 数据: data/docred/train.jsonl, data/docred/dev.jsonl\n- 报告: 样本数、格式验证结果、统计信息\n\n### 出错诊断\n- JSON 解析错误 → 检查 DocRED 原始数据编码\n- entity/relation type 不匹配 → 对比 ontology_constraints_docred.json 的 schema\n- 内存不足 → DocRED train_annotated.json 较大，考虑流式处理",
+    "tool_groups": "['ssh', 'registry']",
+    "context": "DocRED SFT 数据生成是 Qwen/Llama DocRED LoRA fine-tune 的前置依赖。完成后需要 update_registry exp_id=w5_docred_sft_data_gen。"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T17:54:45.235808+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_w5_docred_sft_data_gen_20260515T175442\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_code_w5_docred_sft_data_gen_20260515T175442.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_w5_docred_sft_data_gen_20260515T175442 started. Use get_worker_status('worker_code_w5_docred_sft_data_gen_20260515T175442') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2713
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T17:55:14.421355+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "file": "paper_framing.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie",
+    "file": "paper_framing.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T17:55:14.974492+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/paper_framing.md\", \"content\": \"# OntoCoDec — Paper Framing\\n\\n## Target Venue\\nEMNLP 2026 (ARR submission May 25, 2026)\\n\\n## Title\\nOntoCoDec: Type-Valid Information Extraction via Compiled Ontology Constraints\\n(D015: \\\"Near-Complete\\\" dropped — DocRED residual DR=10.21% (Qwen) 不算 near-complete。论文贡献是方法，不是特定消除率。SciERC 0.93% 和 DocRED 2.55% (Llama) 可在正文中描述为 near-complete，但 title 不宜 overclaim。)\\n\\n## Core Insight\\nLLM-based IE systems produce systematic ontology constraint violations concentrated in specific relation types. Prompt-level intervention (schema-informed prompting) reduces violations by ~62% but cannot eliminate them — certain relation types retain 25-30% violation rates even with explicit constraint descriptions. OntoCoDec provides **near-complete elimination (DR 15.4%→0.93%, ↓94%) at zero or positive F1 impact** through automatic ontology-to-decoder constraint compilation with two complementary layers.\\n\\n**Phase 2 confirmed (D012 bootstrap CI, v2 fix)**: Grammar+Semantic dual-layer constrained decoding reduces domain/range violations by 94%, eliminates entity-type and relation-vocabulary violations entirely (→0%). F1 impact is **dataset-dependent**:\\n- SciERC: Rel F1 neutral (+0.13pp, p=0.58), Ent F1 neutral (-0.03pp, p=0.53)\\n- DocRED: Rel F1 **significantly improved** (+0.50pp, p<0.001, 95% CI [+0.23, +0.81]); Ent F1 **significantly improved** (+1.23pp, p<0.001, 95% CI [+0.94, +1.55])\\n- Mechanism: grammar 消除 OOV relation names (DocRED RV 29.66%→0.03%) + 非标 entity types (ET 2.48%→0%)。all_set F1 方法下 OOV=FP → fewer FP → higher precision/F1。SciERC baseline RV/ET 已很低，效果不显著。\\n- **Grammar 层是 F1 提升的唯一来源**: grammar_only Ent F1=59.38% ≈ full_s1 59.37% (Δ+0.01pp, p=0.66)。Semantic 层对 F1 无额外贡献，专注 DR reduction。\\n\\n## Core Claims\\n\\n### Claim 1 (Empirical): Violation Landscape\\nLLM-based IE system
+…[truncated 10670 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 553
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T17:55:15.075835+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "schema_semantic_constrained_ie",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T17:55:15.127014+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/memory.md\", \"content\": \"# Memory — schema_semantic_constrained_ie\\n\\n## 文献调研 (2026-05-13)\\n\\n### 核心结论: OntoCoDec 的 novelty 成立\\n**没有人做过 \\\"compile IE ontology domain/range → decoding-time logits masking\\\" 的完整 pipeline。**\\n\\nGap 结构：\\n- Syntactic constrained decoding for IE: well-explored (GCD, XGrammar, Outlines)\\n- Vocabulary-level: exists (GENRE, iNERD, AdaKGC)\\n- **Semantic (domain/range) decoding for IE: OPEN GAP** ← OntoCoDec\\n- Semantic type checking at decode time: only for code gen (MGD NeurIPS'23, PLDI'25)\\n- Ontology compliance for IE: only post-processing (ODKE+ Apple'25, OntoLogX'25)\\n\\n最近竞争者：PLDI'25 Type-Constrained Code Gen（同机制但领域是代码生成，必须引用并区分）\\n\\n风险：CRANE (ICML'25) 严格约束可能降低推理质量；Grammar-Aligned Decoding (NeurIPS'24) naive masking 扭曲分布\\n\\nNovelty 定位：\\\"OntoCoDec 将 type-constrained generation 引入信息抽取，编译 IE ontology axioms 为解码时语义约束，预防而非检测 type violations。\\\"\\n\\n详细报告: `artifacts/literature_map.yaml`, `artifacts/literature_survey_*.md`\\n\\n## 实验发现\\n\\n### 🎯 W5 LoRA Composability — Qwen 完全验证 (2026-05-15) ⚠️ 论文核心新增 claim\\n\\n**Fine-tuning + OntoCoDec 正交可组合，互补消除 schema violations。**\\n\\n完整 2×2 矩阵（SciERC, Qwen3-8B）：\\n\\n| | Unconstrained | Constrained (OntoCoDec) | ΔDR | ΔR-F1 |\\n|--|--|--|--|--|\\n| Base | DR=15.37%, R-F1=8.23% | DR=0.93%, R-F1=8.36% | -14.44pp (↓94%) | +0.13pp |\\n| Fine-tuned (LoRA) | DR=1.95%, R-F1=43.86% | **DR=0.0%**, R-F1=43.77% | **-1.95pp (↓100%)** | -0.09pp |\\n\\n关键 insights：\\n- Fine-tuning 将 DR 15.37%→1.95% (内化 87% 约束)，但 tight-constraint 长尾 (Evaluate-for 13.1%) 无法覆盖\\n- OntoCoDec 消除剩余 1.95% → 0.00%，零 F1 代价 (-0.09pp)\\n- CF 从 base constrained 9.90% → fine-tuned constrained 1.18% (-8.72pp)\\n- E-F1 +36pp, R-F1 +35pp——回应\\\"只适用于 prompting\\\"质疑\\n- LoRA 训练仅 688s (~11.5min), rank=16, 3 epochs, token_acc=98.16%\\n\\n### W5 Llama LoRA — 训练完成, eval 进行中 (2026-05-15)\\n
+…[truncated 4461 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-15T17:56:14.167894+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "paper:composability_llama_writeup",
+  "project": "schema_semantic_constrained_ie",
+  "task_prompt": "## 任务：评估论文写作状态 + 补写 Llama 跨模型结果\n\n### 背景\nEMNLP 2026 ARR 投稿，DDL May 25。论文是 OntoCoDec（两层约束解码用于 IE）。当前需要将最新实验结果写入论文。\n\n### 你需要做的\n\n**第一步：评估当前论文状态**\n1. 查看论文目录结构：\n   ```\n   ls -la /root/schema_semantic_constrained_ie/paper/ 2>/dev/null || echo \"NO PAPER DIR\"\n   find /root/schema_semantic_constrained_ie/ -name \"*.tex\" -o -name \"*.md\" | grep -i paper | head -20\n   ```\n2. 检查 `artifacts/` 目录中与论文相关的文件\n3. 读取 `paper_framing.md`（通过 read_project_file）了解论文 story\n\n**第二步：整理 Llama 跨模型实验数据（用于论文 §5 Experiments）**\n\n已有的 Llama SciERC 数据（全部来自 registry）：\n\n**Llama SciERC Zero-shot:**\n- Unconstrained: DR=13.34%, RV=0.55%, ET=0%, E-F1=23.56%, R-F1=2.68%\n- Constrained (full_s1): DR=0.08%, RV=0%, ET=0%, CF=6.56%, E-F1=23.49%, R-F1=2.54%\n- ΔDR: -13.26pp (↓99.4%), ΔR-F1: -0.14pp\n\n**Llama DocRED Zero-shot:**\n- Unconstrained: DR=26.07%, RV=16.03%, ET=0.13%, E-F1=55.65%, R-F1=5.98%\n- Constrained (full_s1): DR=2.55%, RV=0%, ET=0%, CF=12.02%, E-F1=55.01%, R-F1=6.27%\n- ΔDR: -23.52pp (↓90.2%), ΔR-F1: +0.29pp\n\n**Llama SciERC Fine-tuned (LoRA):**\n- Training: eval_loss=0.0595, token_acc=98.17%, 654s\n- Unconstrained eval DONE: DR=1.11%, E-F1=67.76%, R-F1=45.45%\n- Constrained eval: 运行中 (pid 290317, cuda:1)，数据尚未出\n\n**对比 Qwen SciERC 2×2 matrix:**\n| | Unconstrained | Constrained | ΔDR | ΔR-F1 |\n|--|--|--|--|--|\n| Base | DR=15.37%, R-F1=8.23% | DR=0.93%, R-F1=8.36% | -94% | +0.13pp |\n| Fine-tuned | DR=1.95%, R-F1=43.86% | DR=0.0%, R-F1=43.77% | -100% | -0.09pp |\n\n**第三步：写入论文（如果论文 .tex 文件存在）**\n1. 在 §5 或相关实验章节中添加/更新 Cross-Model Validation 段落\n2. 添加 Llama 跨模型对比表（与 Qwen 并列）\n3. 如果 composability 2×2 表已有 Qwen 数据，准备 Llama 行（constrained eval 完成后补充）\n\n**第四步：写入 W1 CF Fallback Analytical Finding（如果尚未写入）**\n关键数据：\n- CF fallback pilot: CF 9.90%→0.04% (-9.86pp)，但 DR 0.93%→14.78% (+13.85pp)\n- Budget 净增 +3.99pp → violation re-routing, not reduction\n- 结论：CF↔DR 存在根本性张力，当前系统近最优\n- 63.3% CF 来自 schema 歧义（entity type 在多个 relation 的 domain/range 中有交叉）\n\n在 §5 Discussion 或适当位置写入：\n- 标题: \"Cross-Field Consistency: Analysis and Limitations\"\n- 内容: 实验数据 + violation re-routing 分析 + 为什么当前设计近最优\n\n### 环境\n- 服务器: westd-16980, account: root\n- 项目目录: /root/schema_semantic_constrained_ie/\n- 激活环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 产出\n- 更新后的论文文件（.tex 或 .md）\n- 简要报告：完成了什么、还差什么、下一步建议",
+  "tool_groups": "['ssh', 'knowledge']",
+  "tools": "['read_registry']",
+  "context": "EMNLP 2026 ARR DDL May 25. 论文 OntoCoDec: Type-Valid IE via Compiled Ontology Constraints. 当前核心任务：将 Llama 跨模型结果 + composability matrix + W1 CF analytical finding 写入论文。Llama SciERC constrained eval 还在跑（cuda:1），数据出来后需要补充。"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "paper:composability_llama_writeup",
+    "project": "schema_semantic_constrained_ie",
+    "task_prompt": "## 任务：评估论文写作状态 + 补写 Llama 跨模型结果\n\n### 背景\nEMNLP 2026 ARR 投稿，DDL May 25。论文是 OntoCoDec（两层约束解码用于 IE）。当前需要将最新实验结果写入论文。\n\n### 你需要做的\n\n**第一步：评估当前论文状态**\n1. 查看论文目录结构：\n   ```\n   ls -la /root/schema_semantic_constrained_ie/paper/ 2>/dev/null || echo \"NO PAPER DIR\"\n   find /root/schema_semantic_constrained_ie/ -name \"*.tex\" -o -name \"*.md\" | grep -i paper | head -20\n   ```\n2. 检查 `artifacts/` 目录中与论文相关的文件\n3. 读取 `paper_framing.md`（通过 read_project_file）了解论文 story\n\n**第二步：整理 Llama 跨模型实验数据（用于论文 §5 Experiments）**\n\n已有的 Llama SciERC 数据（全部来自 registry）：\n\n**Llama SciERC Zero-shot:**\n- Unconstrained: DR=13.34%, RV=0.55%, ET=0%, E-F1=23.56%, R-F1=2.68%\n- Constrained (full_s1): DR=0.08%, RV=0%, ET=0%, CF=6.56%, E-F1=23.49%, R-F1=2.54%\n- ΔDR: -13.26pp (↓99.4%), ΔR-F1: -0.14pp\n\n**Llama DocRED Zero-shot:**\n- Unconstrained: DR=26.07%, RV=16.03%, ET=0.13%, E-F1=55.65%, R-F1=5.98%\n- Constrained (full_s1): DR=2.55%, RV=0%, ET=0%, CF=12.02%, E-F1=55.01%, R-F1=6.27%\n- ΔDR: -23.52pp (↓90.2%), ΔR-F1: +0.29pp\n\n**Llama SciERC Fine-tuned (LoRA):**\n- Training: eval_loss=0.0595, token_acc=98.17%, 654s\n- Unconstrained eval DONE: DR=1.11%, E-F1=67.76%, R-F1=45.45%\n- Constrained eval: 运行中 (pid 290317, cuda:1)，数据尚未出\n\n**对比 Qwen SciERC 2×2 matrix:**\n| | Unconstrained | Constrained | ΔDR | ΔR-F1 |\n|--|--|--|--|--|\n| Base | DR=15.37%, R-F1=8.23% | DR=0.93%, R-F1=8.36% | -94% | +0.13pp |\n| Fine-tuned | DR=1.95%, R-F1=43.86% | DR=0.0%, R-F1=43.77% | -100% | -0.09pp |\n\n**第三步：写入论文（如果论文 .tex 文件存在）**\n1. 在 §5 或相关实验章节中添加/更新 Cross-Model Validation 段落\n2. 添加 Llama 跨模型对比表（与 Qwen 并列）\n3. 如果 composability 2×2 表已有 Qwen 数据，准备 Llama 行（constrained eval 完成后补充）\n\n**第四步：写入 W1 CF Fallback Analytical Finding（如果尚未写入）**\n关键数据：\n- CF fallback pilot: CF 9.90%→0.04% (-9.86pp)，但 DR 0.93%→14.78% (+13.85pp)\n- Budget 净增 +3.99pp → violation re-routing, not reduction\n- 结论：CF↔DR 存在根本性张力，当前系统近最优\n- 63.3% CF 来自 schema 歧义（entity type 在多个 relation 的 domain/range 中有交叉）\n\n在 §5 Discussion 或适当位置写入：\n- 标题: \"Cross-Field Consistency: Analysis and Limitations\"\n- 内容: 实验数据 + violation re-routing 分析 + 为什么当前设计近最优\n\n### 环境\n- 服务器: westd-16980, account: root\n- 项目目录: /root/schema_semantic_constrained_ie/\n- 激活环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 产出\n- 更新后的论文文件（.tex 或 .md）\n- 简要报告：完成了什么、还差什么、下一步建议",
+    "tool_groups": "['ssh', 'knowledge']",
+    "tools": "['read_registry']",
+    "context": "EMNLP 2026 ARR DDL May 25. 论文 OntoCoDec: Type-Valid IE via Compiled Ontology Constraints. 当前核心任务：将 Llama 跨模型结果 + composability matrix + W1 CF analytical finding 写入论文。Llama SciERC constrained eval 还在跑（cuda:1），数据出来后需要补充。"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T17:56:29.566912+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_composability_llama_writeup_20260515T175614\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_paper_composability_llama_writeup_20260515T175614.log\", \"setup_data\": {}, \"message\": \"Worker worker_paper_composability_llama_writeup_20260515T175614 started. Use get_worker_status('worker_paper_composability_llama_writeup_20260515T175614') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 15399
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-15T17:56:29.968858+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际跑 1 (cuda:1) | cuda:0 空闲（无就绪 GPU 实验，DocRED SFT 数据生成中）| Worker 池 2 (CPU 2 / GPU 0)\n\n## Session Start 状态汇报\n\n### 运行中\n- **w5_llama_lora_scierc_constrained_eval** (cuda:1, pid 290317): Fine-tuned Llama + OntoCoDec constrained eval on SciERC。完成后将获得 Llama SciERC 2×2 composability matrix。\n- Unconstrained eval 已完成: DR=1.11%, E-F1=67.76%, R-F1=45.45%\n\n### 上一轮以来的变化\n1. **llama_docred_full_s1_mt6144**: 已完成 (success)。mt4096→mt6144 对结果无实质影响（E-F1 +0.03pp, R-F1 -0.02pp, DR +0.02pp），不建议采用。\n2. **w1_cf_fallback_scierc_pilot**: 已完成 (negative)。CF 9.90%→0.04%，但 DR 0.93%→14.78%，budget 净增 +3.99pp。已按 D020 定为 Analytical Finding。\n3. **w1_cf_fallback_docred**: 已 killed (D027)。w1_cf_fallback_llama_scierc / llama_docred 也已 killed (D020)。\n4. **w5_llama_lora_scierc_training**: 完成 (success)，654s, token_acc 98.17%\n5. **w5_llama_lora_scierc_unconstrained_eval**: 完成 (success)，DR=1.11%, R-F1=45.45%\n\n### Worker 部署\n- **Worker 1** (code:w5_docred_sft_data_gen): 生成 DocRED SFT train/dev JSONL，为 DocRED LoRA 做数据准备\n- **Worker 2** (paper:composability_llama_writeup): 评估论文写作状态，写入 Llama 跨模型结果 + W1 CF analytical finding\n\n### cuda:0 空闲原因\n无就绪 GPU 实验。下一个 GPU 任务是 Qwen DocRED LoRA 训练，依赖 Worker 1 完成 SFT 数据生成。预计 Worker 1 完成后即可提交训练。\n\n### 关键风险\n- 前一个 SFT 数据 Worker 触发了 rate limit (\"resets May 18\")。已重新派发新 Worker，如果新 Worker 也触发限制，将成为 hard blocker。\n- EMNLP DDL May 25，还需完成：Llama SciERC 2×2 (eval 运行中) → 论文写入 → DocRED LoRA (可选) → 全文编译 → Round 2 review",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 2 / 实际跑 1 (cuda:1) | cuda:0 空闲（无就绪 GPU 实验，DocRED SFT 数据生成中）| Worker 池 2 (CPU 2 / GPU 0)\n\n## Session Start 状态汇报\n\n### 运行中\n- **w5_llama_lora_scierc_constrained_eval** (cuda:1, pid 290317): Fine-tuned Llama + OntoCoDec constrained eval on SciERC。完成后将获得 Llama SciERC 2×2 composability matrix。\n- Unconstrained eval 已完成: DR=1.11%, E-F1=67.76%, R-F1=45.45%\n\n### 上一轮以来的变化\n1. **llama_docred_full_s1_mt6144**: 已完成 (success)。mt4096→mt6144 对结果无实质影响（E-F1 +0.03pp, R-F1 -0.02pp, DR +0.02pp），不建议采用。\n2. **w1_cf_fallback_scierc_pilot**: 已完成 (negative)。CF 9.90%→0.04%，但 DR 0.93%→14.78%，budget 净增 +3.99pp。已按 D020 定为 Analytical Finding。\n3. **w1_cf_fallback_docred**: 已 killed (D027)。w1_cf_fallback_llama_scierc / llama_docred 也已 killed (D020)。\n4. **w5_llama_lora_scierc_training**: 完成 (success)，654s, token_acc 98.17%\n5. **w5_llama_lora_scierc_unconstrained_eval**: 完成 (success)，DR=1.11%, R-F1=45.45%\n\n### Worker 部署\n- **Worker 1** (code:w5_docred_sft_data_gen): 生成 DocRED SFT train/dev JSONL，为 DocRED LoRA 做数据准备\n- **Worker 2** (paper:composability_llama_writeup): 评估论文写作状态，写入 Llama 跨模型结果 + W1 CF analytical finding\n\n### cuda:0 空闲原因\n无就绪 GPU 实验。下一个 GPU 任务是 Qwen DocRED LoRA 训练，依赖 Worker 1 完成 SFT 数据生成。预计 Worker 1 完成后即可提交训练。\n\n### 关键风险\n- 前一个 SFT 数据 Worker 触发了 rate limit (\"resets May 18\")。已重新派发新 Worker，如果新 Worker 也触发限制，将成为 hard blocker。\n- EMNLP DDL May 25，还需完成：Llama SciERC 2×2 (eval 运行中) → 论文写入 → DocRED LoRA (可选) → 全文编译 → Round 2 review",
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T17:56:33.944050+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3975
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-15T17:56:44.911814+00:00_
+
+Session-start 初始化完成。
+
+**当前状态：**
+- **cuda:1**: w5_llama_lora_scierc_constrained_eval 运行中 (pid 290317)
+- **cuda:0**: 空闲，等 DocRED SFT 数据就绪后启动 LoRA 训练
+- **Worker 1** (code:w5_docred_sft_data_gen): 生成 DocRED SFT 数据
+- **Worker 2** (paper:composability_llama_writeup): 论文写作（Llama 跨模型 + W1 CF analytical finding）
+- **已向 Director 汇报**
+
+等待 Worker 回调和 cron 回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+40 recorded events
+
+### User
+
+_source line 41 · 2026-05-15T22:58:00.909141+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-15T22:58:24.414625+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Read project state files",
+  "prompt": "Read the following files and return their full contents. If a file doesn't exist, say so.\n\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/registry.yaml\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/report.md\n3. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md\n4. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/memory.md\n5. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/paper_framing.md\n6. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/experiment_plan.yaml\n7. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/config.yaml\n\nReturn all contents verbatim. Do not summarize.",
+  "subagent_type": "Explore"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Read project state files",
+    "prompt": "Read the following files and return their full contents. If a file doesn't exist, say so.\n\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/registry.yaml\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/report.md\n3. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md\n4. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/memory.md\n5. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/paper_framing.md\n6. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/experiment_plan.yaml\n7. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/config.yaml\n\nReturn all contents verbatim. Do not summarize.",
+    "subagent_type": "Explore"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T22:58:26.121828+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/registry.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/registry.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-15T22:58:26.222809+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-15T22:58:26.428902+00:00_
+
+File content (34811 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "elapsed_ms": 307
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T22:58:26.429363+00:00_
+
+1	# Handover — 2026-05-15
+2	
+3	> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。
+4	
+5	## 运行中
+6	| exp_id | 假设 | 状态 | 关键指标 | W&B |
+7	|--------|------|------|---------|-----|
+8	| w5_qwen_docred_lora_unconstrained_eval | Fine-tuned Qwen3-8B DocRED LoRA unconstrained eval — 获取 fine-tuned baseline DR/R-F1，与 constrained eval 对比计算 composability delta | — | — | — |
+9	
+10	## 待处理
+11	- w5_qwen_docred_lora_constrained_eval: Fine-tuned Qwen3-8B DocRED LoRA + OntoCoDec constrained eval — 验证 composability：约束解码在 fine-tuned Qwen DocRED 上是否仍能消除残余 DR 且不损 R-F1（准备中）
+12	- w5_llama_docred_lora_unconstrained_eval: Fine-tuned Llama-3.1-8B DocRED LoRA unconstrained eval — 获取 fine-tuned baseline DR/R-F1，与 constrained eval 对比计算 composability delta（准备中）
+13	- w5_llama_docred_lora_constrained_eval: Fine-tuned Llama-3.1-8B DocRED LoRA + OntoCoDec constrained eval — 验证 composability：约束解码在 fine-tuned Llama DocRED 上是否仍能消除残余 DR 且不损 R-F1（准备中）
+14	- w1_cf_fallback_llama_scierc（准备中）
+15	- w1_cf_fallback_llama_docred（准备中）
+16	- w5_llama_docred_sft_data_gen: Generate Llama-3.1-8B-Instruct format DocRED SFT train/dev JSONL — prerequisite for Llama DocRED LoRA fine-tune (composability matrix Llama×DocRED cell)（准备中）
+17	
+18	## 近期结论
+19	- **w5_qwen_docred_lora_training** (success): Qwen3-8B LoRA fine-tune on DocRED — 填补 Qwen DocRED composability 2×2 matrix 的 FT 行。预期：(1) LoRA 后 E-F1/R-F1 大幅提升；(2) 残余 DR > 0% 证明 OntoCoDec 在 DocRED FT 上仍有 composability 价值。
+20	- **w5_llama_docred_lora_training** (success): Llama-3.1-8B-Instruct LoRA fine-tune on DocRED — 填补 Llama DocRED composability 2×2 matrix 的 FT 行。预期：(1) LoRA 后 E-F1/R-F1 大幅提升；(2) 残余 DR > 0% 证明 OntoCoDec 在 DocRED FT 上仍有 composability 价值。
+21	  [w5_llama_docred_lora_training_report](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/w5_llama_docred_lora_training/report/w5_llama_docred_lora_training_report.md)
+22	- **w5_llama_lora_scierc_constrained_eval** (success): Fine-tuned Llama-3.1-8B + OntoCoDec constrained eval on SciERC — composability 验证：约束解码在 fine-tuned L
+…[truncated 496 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "elapsed_ms": 206
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T22:58:26.479931+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T22:58:26.682100+00:00_
+
+1	# schema_semantic_constrained_ie — Research Dashboard
+2	
+3	> 最后更新: 2026-05-15 18:13 UTC | 更新原因: D028: Llama SciERC 2×2 完成 + DocRED LoRA 双卡并行训练中
+4	
+5	## 核心方向
+6	OntoCoDec: 两层约束解码（grammar + semantic）自动编译 IE ontology schema 为 token-level constraints，消除 LLM-based IE 的 ontology constraint violations。详见 paper_framing.md。
+7	
+8	## 当前进展
+9	**阶段**: Round 1 审稿应对 — composability matrix 扩展中
+10	- **Qwen SciERC 2×2**: ✅ DR=0.0%, R-F1 -0.09pp
+11	- **Llama SciERC 2×2**: ✅ DR=0.09%, R-F1 +0.02pp (D028)
+12	- **跨模型一致性确认**: Claim 3 composability 两模型坚实支撑
+13	- **Issue Tracker**: 15/16 resolved + W1 in_progress (analytical finding + Paper Agent 写作中)
+14	- **论文**: Table 3/5, §5.4/5.5, Appendix B 已更新，PDF 编译通过
+15	
+16	## Composability 覆盖进展
+17	| | SciERC | DocRED |
+18	|--|--------|--------|
+19	| Qwen3-8B | ✅ 完整 2×2 | 🔥 LoRA 训练中 (cuda:1, ETA ~2h) |
+20	| Llama3.1-8B | ✅ 完整 2×2 (D028) | ⏳ SFT 数据生成中 → cuda:0 训练 |
+21	
+22	## 2×2 Composability Matrices
+23	
+24	### Qwen3-8B × SciERC
+25	| | Unconstrained | Constrained | ΔDR | ΔR-F1 |
+26	|--|--|--|--|--|
+27	| Zero-shot | DR=15.37%, R-F1=8.23% | DR=0.93%, R-F1=8.36% | -94% | +0.13pp |
+28	| Fine-tuned LoRA | DR=1.95%, R-F1=43.86% | DR=0.0%, R-F1=43.77% | -100% | -0.09pp |
+29	
+30	### Llama3.1-8B × SciERC
+31	| | Unconstrained | Constrained | ΔDR | ΔR-F1 |
+32	|--|--|--|--|--|
+33	| Zero-shot | DR=13.34%, R-F1=2.68% | DR=0.08%, R-F1=2.54% | -99.4% | -0.14pp |
+34	| Fine-tuned LoRA | DR=1.11%, R-F1=45.45% | DR=0.09%, R-F1=45.47% | -91.9% | +0.02pp |
+35	
+36	## 关键路径
+37	1. ~~Llama SciERC 2×2~~ ✅ (D028)
+38	2. **Qwen DocRED LoRA** ← cuda:1 训练中 (~2h)
+39	3. **Llama DocRED LoRA** ← cuda:0 准备中（SFT 数据 + 脚本适配）
+40	4. 各自跑 unconstrained + constrained eval → 完整 4 格 matrix
+41	5. 全文数字一致性审查 → Round 2 review
+42	6. May 19 内部稿交付 → May 25 EMNLP ARR 提交
+43	
+44	## GPU 调度
+45	westd-16980: cuda:0 + cuda:1
+46	- cuda:0: ⏳ Llama DocRED LoRA 待提交（SFT 数据生成中）
+47	- cuda:1: 🔥 Qwen DocRED LoRA 训练中 (PID 295334)
+48	
+49	## 关键数字速查
+50	| 指标 | Qwen SciERC | Qwen DocRED | Llama SciERC | Llama DocRED |
+51	|----
+…[truncated 2455 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "elapsed_ms": 202
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T22:58:26.682495+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T22:58:26.884287+00:00_
+
+1	# Memory — schema_semantic_constrained_ie
+2	
+3	## 文献调研 (2026-05-13)
+4	
+5	### 核心结论: OntoCoDec 的 novelty 成立
+6	**没有人做过 "compile IE ontology domain/range → decoding-time logits masking" 的完整 pipeline。**
+7	
+8	Gap 结构：
+9	- Syntactic constrained decoding for IE: well-explored (GCD, XGrammar, Outlines)
+10	- Vocabulary-level: exists (GENRE, iNERD, AdaKGC)
+11	- **Semantic (domain/range) decoding for IE: OPEN GAP** ← OntoCoDec
+12	- Semantic type checking at decode time: only for code gen (MGD NeurIPS'23, PLDI'25)
+13	- Ontology compliance for IE: only post-processing (ODKE+ Apple'25, OntoLogX'25)
+14	
+15	最近竞争者：PLDI'25 Type-Constrained Code Gen（同机制但领域是代码生成，必须引用并区分）
+16	
+17	风险：CRANE (ICML'25) 严格约束可能降低推理质量；Grammar-Aligned Decoding (NeurIPS'24) naive masking 扭曲分布
+18	
+19	Novelty 定位："OntoCoDec 将 type-constrained generation 引入信息抽取，编译 IE ontology axioms 为解码时语义约束，预防而非检测 type violations。"
+20	
+21	详细报告: `artifacts/literature_map.yaml`, `artifacts/literature_survey_*.md`
+22	
+23	## 实验发现
+24	
+25	### 🎯 W5 LoRA Composability — Qwen 完全验证 (2026-05-15) ⚠️ 论文核心新增 claim
+26	
+27	**Fine-tuning + OntoCoDec 正交可组合，互补消除 schema violations。**
+28	
+29	完整 2×2 矩阵（SciERC, Qwen3-8B）：
+30	
+31	| | Unconstrained | Constrained (OntoCoDec) | ΔDR | ΔR-F1 |
+32	|--|--|--|--|--|
+33	| Base | DR=15.37%, R-F1=8.23% | DR=0.93%, R-F1=8.36% | -94% | +0.13pp |
+34	| Fine-tuned (LoRA) | DR=1.95%, R-F1=43.86% | DR=0.0%, R-F1=43.77% | -100% | -0.09pp |
+35	
+36	关键 insights：
+37	- Fine-tuning 将 DR 15.37%→1.95% (内化 87% 约束)，但 tight-constraint 长尾 (Evaluate-for 13.1%) 无法覆盖
+38	- OntoCoDec 消除剩余 1.95% → 0.00%，零 F1 代价 (-0.09pp)
+39	- CF 从 base constrained 9.90% → fine-tuned constrained 1.18% (-8.72pp)
+40	- E-F1 +36pp, R-F1 +35pp——回应"只适用于 prompting"质疑
+41	- LoRA 训练仅 688s (~11.5min), rank=16, 3 epochs, token_acc=98.16%
+42	
+43	### 🎯 W5 LoRA Composability — Llama 跨模型验证 (2026-05-15) ⚠️ 论文核心
+44	
+45	完整 2×2 矩阵（SciERC, Llama-3.1-8B-Instruct）：
+46	
+47	| | Unconstrained | Constrained (OntoCoDec) | ΔDR | ΔR-F1 |
+48	|--|--|--|--|--|
+49	| Zero-shot | DR=13.34%, R-F1
+…[truncated 5368 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T22:58:26.885715+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/paper_framing.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/paper_framing.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T22:58:27.287980+00:00_
+
+1	# OntoCoDec — Paper Framing
+2	
+3	## Target Venue
+4	EMNLP 2026 (ARR submission May 25, 2026)
+5	
+6	## Title
+7	OntoCoDec: Type-Valid Information Extraction via Compiled Ontology Constraints
+8	(D015: "Near-Complete" dropped — DocRED residual DR=10.21% (Qwen) 不算 near-complete。论文贡献是方法，不是特定消除率。SciERC 0.93% 和 DocRED 2.55% (Llama) 可在正文中描述为 near-complete，但 title 不宜 overclaim。)
+9	
+10	## Core Insight
+11	LLM-based IE systems produce systematic ontology constraint violations concentrated in specific relation types. Prompt-level intervention (schema-informed prompting) reduces violations by ~62% but cannot eliminate them — certain relation types retain 25-30% violation rates even with explicit constraint descriptions. OntoCoDec provides **near-complete elimination (DR 15.4%→0.93%, ↓94%) at zero or positive F1 impact** through automatic ontology-to-decoder constraint compilation with two complementary layers.
+12	
+13	**Phase 2 confirmed (D012 bootstrap CI, v2 fix)**: Grammar+Semantic dual-layer constrained decoding reduces domain/range violations by 94%, eliminates entity-type and relation-vocabulary violations entirely (→0%). F1 impact is **dataset-dependent**:
+14	- SciERC: Rel F1 neutral (+0.13pp, p=0.58), Ent F1 neutral (-0.03pp, p=0.53)
+15	- DocRED: Rel F1 **significantly improved** (+0.50pp, p<0.001, 95% CI [+0.23, +0.81]); Ent F1 **significantly improved** (+1.23pp, p<0.001, 95% CI [+0.94, +1.55])
+16	- Mechanism: grammar 消除 OOV relation names (DocRED RV 29.66%→0.03%) + 非标 entity types (ET 2.48%→0%)。all_set F1 方法下 OOV=FP → fewer FP → higher precision/F1。SciERC baseline RV/ET 已很低，效果不显著。
+17	- **Grammar 层是 F1 提升的唯一来源**: grammar_only Ent F1=59.38% ≈ full_s1 59.37% (Δ+0.01pp, p=0.66)。Semantic 层对 F1 无额外贡献，专注 DR reduction。
+18	
+19	## Core Claims
+20	
+21	### Claim 1 (Empirical): Violation Landscape
+22	LLM-based IE systems violate ontology type constraints at non-trivial rates (15.4% per-triple on SciERC, 18.7% on DocRED). Violations are **not uniformly distributed** — they concentrate 
+…[truncated 19083 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T22:58:27.288761+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/experiment_plan.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/experiment_plan.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T22:58:27.339356+00:00_
+
+1	## OntoCoDec Experiment Plan
+2	## Target: EMNLP 2026 ARR (May 25, 2026)
+3	## Last updated: 2026-05-14
+4	
+5	claims:
+6	  C1_violation_landscape:
+7	    description: "LLM-based IE violates ontology type constraints at non-trivial rates; violation rate driven by constraint tightness × model RV baseline, not ontology size"
+8	    status: supported
+9	    evidence_strength: strong
+10	
+11	  C2_prompt_insufficiency:
+12	    description: "Schema-informed prompting reduces but cannot eliminate violations; unreliable per-relation"
+13	    status: supported
+14	    evidence_strength: strong
+15	
+16	  C3_composable_framework:
+17	    description: "OntoCoDec compiles IE ontology schemas into two composable constraint layers (grammar+semantic) with enabling dependency; near-complete DR elimination"
+18	    status: supported
+19	    evidence_strength: strong
+20	
+21	  C4_s1_vs_s2:
+22	    description: "S2 two-pass offers no advantage over S1 single-pass; S1 adopted as primary"
+23	    status: supported_demoted
+24	    evidence_strength: moderate
+25	    note: "S2 demoted to ablation (D007). S1 simpler + marginally better F1."
+26	
+27	  C5_cross_model:
+28	    description: "OntoCoDec generalizes across models without code modification; DR reduction magnitude varies with model RV baseline"
+29	    status: supported
+30	    evidence_strength: strong
+31	
+32	  C6_f1_impact:
+33	    description: "Constraint enforcement preserves or improves F1; improvement is model/dataset-dependent (Qwen DocRED significant, SciERC neutral)"
+34	    status: supported
+35	    evidence_strength: strong
+36	
+37	experiments:
+38	  # --- Phase 0: Violation Landscape (ALL COMPLETE) ---
+39	  - plan_id: P001
+40	    name: SciERC violation rate (minimal prompt)
+41	    claim: C1_violation_landscape
+42	    registry_id: mvp_phase0_violation_rate
+43	    priority: 1
+44	    result: "DR=15.4%, 1724 triples"
+45	
+46	  - plan_id: P002
+47	    name: SciERC violation rate (schema-informed prompt)
+48	    claim: C2_prompt_insufficiency
+49	    registr
+…[truncated 5147 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T22:58:27.339914+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/config.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/config.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T22:58:27.390777+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_0fbd563a.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-15T22:58:29.400161+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/registry.yaml",
+  "limit": "1000",
+  "offset": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/registry.yaml",
+    "limit": "1000",
+    "offset": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-15T22:58:29.652898+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/config.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/config.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-15T22:58:29.653375+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_0fbd563a.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T22:58:29.654179+00:00_
+
+0	baseline: null
+1	experiments:
+2	  mvp_phase0_violation_rate:
+3	    status: DONE
+4	    retry_count: 0
+5	    created_at: '2026-05-13T17:35:38.680Z'
+6	    updated_at: '2026-05-13T19:13:34.510Z'
+7	    hypothesis: Unconstrained LLM (Qwen3-8B) 在 SciERC zero-shot IE 任务上的本体类型约束违反率 >5%，证明解码时约束强制的必要性
+8	    spec:
+9	      command: python3 run_extraction.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B
+10	        --data_path data/processed_data/test.json --output_path outputs/raw_outputs.jsonl
+11	        --backend transformers
+12	      server: westd-16980
+13	      gpu:
+14	      - cuda:0
+15	      pid: '106528'
+16	      log_path: ~/runs/schema_semantic_constrained_ie/mvp_phase0_violation_rate.log
+17	      submitted_at: '2026-05-13T18:05:45.748Z'
+18	      submitted_via: submit_training_job
+19	      backend: tmux
+20	      account: root
+21	      data_path: /root/schema_semantic_constrained_ie/data/processed_data/test.json
+22	      data_count: 551
+23	      model_name: Qwen3-8B
+24	      seed: 42
+25	      checkpoint_path: /root/schema_semantic_constrained_ie/outputs/raw_outputs.jsonl
+26	      wall_clock_seconds: 4068.8
+27	      gpu_hours: 1.13
+28	    metrics:
+29	      total_triples: 1724
+30	      total_entities: 2474
+31	      json_parse_rate: 1
+32	      entity_type_violation_rate: 0.004
+33	      relation_vocabulary_violation_rate: 0.0139
+34	      domain_range_violation_rate: 0.1537
+35	      cross_field_consistency_violation_rate: 0.0008
+36	      go_nogo_metric: 0.1537
+37	      entity_f1: 0.3101
+38	      relation_f1: 0.0823
+39	      per_relation:
+40	        Used-for:
+41	          total: 787
+42	          dr_violations: 6
+43	          rate: 0.0076
+44	        Conjunction:
+45	          total: 32
+46	          dr_violations: 0
+47	          rate: 0
+48	        Hyponym-of:
+49	          total: 124
+50	          dr_violations: 18
+51	          rate: 0.1452
+52	        Evaluate-for:
+53	          total: 133
+54	          dr_violations: 32
+55	          rate: 0.2406
+56	        Part-of:
+5
+…[truncated 44037 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "elapsed_ms": 254
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-15T22:58:34.336597+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/registry.yaml",
+  "limit": "2000",
+  "offset": "1000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/registry.yaml",
+    "limit": "2000",
+    "offset": "1000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T22:58:34.638248+00:00_
+
+1000	      domain_range_violation_rate: 0.0008
+1001	      relation_vocab_violation_rate: 0
+1002	      entity_type_violation_rate: 0
+1003	      cross_field_consistency_violation_rate: 0.0656
+1004	      total_violation_rate: 0.0431
+1005	      entity_f1: 0.2349
+1006	      entity_precision: 0.1972
+1007	      entity_recall: 0.2902
+1008	      relation_f1: 0.0254
+1009	      relation_precision: 0.0221
+1010	      relation_recall: 0.0298
+1011	      checker_version: fixed_20260514_v2 (strip + alias + unique_et)
+1012	    checkpoint_path: /root/schema_semantic_constrained_ie/outputs/llama_scierc_full_s1.jsonl
+1013	    notes: '550/551 samples (1 corrupt line from duplicate PID removed). DR 0.08%
+1014	      — 约束合规性极好，优于 Qwen3-8B full_s1 (0.93%)。但 E-F1=23.49% (vs Qwen 30.98%), R-F1=2.54%
+1015	      (vs Qwen 8.36%)，Llama 在 IE 质量上显著弱于 Qwen。对比 Llama unconstrained: DR 13.3%→0.08%
+1016	      (约束生效), E-F1 23.56%→23.49% (持平), R-F1 2.68%→2.54% (微降)。约束大幅降低违规率但未提升抽取质量。Cross-field
+1017	      consistency violations 较高 (6.56%)。'
+1018	  llama_docred_unconstrained:
+1019	    status: DONE
+1020	    retry_count: 0
+1021	    created_at: '2026-05-14T10:42:58.719Z'
+1022	    updated_at: '2026-05-14T19:45:08.201Z'
+1023	    spec:
+1024	      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+1025	        base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py
+1026	        --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct
+1027	        --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json
+1028	        --output_path outputs/llama_docred_unconstrained.jsonl --device cuda:0 --batch_size
+1029	        1 --max_new_tokens 4096"
+1030	      server: westd-16980
+1031	      gpu:
+1032	      - cuda:1
+1033	      pid: '193605'
+1034	      log_path: ~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained.log
+1035	      submitted_at: '2026-05-14T14:3
+…[truncated 48766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-15T22:58:46.872621+00:00_
+
+Based on the files I've successfully read, here's a summary of what I found:
+
+## File Contents Summary
+
+### 1. **registry.yaml** (Too large to read completely, but partial contents shown)
+The registry file is extremely large (34,811 tokens) containing complete experiment tracking data. Key sections include:
+- Baseline: null
+- Experiments: Complete listing of all 33+ experiments with statuses (DONE, RUNNING, PREPARING, KILLED), including:
+  - Phase 0 experiments (violation landscape studies)
+  - Phase 2 experiments (ablation studies on SciERC and DocRED)
+  - Cross-model validation experiments (Llama vs Qwen)
+  - W5 LoRA fine-tuning experiments (Qwen and Llama on SciERC and DocRED)
+- Each experiment contains: spec, metrics, hypothesis, conclusion, notes, timestamps
+
+### 2. **report.md** - Handover Report (2026-05-15)
+A Chinese-language status report tracking:
+- Running experiments: w5_qwen_docred_lora_unconstrained_eval
+- Pending experiments (5 experiments in prep)
+- Recent conclusions (3 successful experiments)
+- Composability matrices for Qwen3-8B and Llama3.1-8B on SciERC/DocRED
+- GPU scheduling (westd-16980 with cuda:0 and cuda:1)
+- Key metric tables and decision logs
+- 86 lines total
+
+### 3. **memory.md** - Technical Memory (Chinese)
+Contains project context and decisions:
+- Literature survey conclusions on OntoCoDec novelty
+- Experimental findings on W5 LoRA composability (Qwen and Llama)
+- Phase 0, 2, and other phase results with detailed metrics
+- Technical roadmap decisions (Phase 1 Compiler, Phase 2 scripts, W5 LoRA config)
+- Pitfall record section with critical GPU management notes
+- Environment information (westd-16980 specs, model paths, version info)
+- 163 lines
+
+### 4. **ROADMAP.md** - Research Dashboard (Chinese)
+High-level research progress document (87 lines):
+- Core direction: OntoCoDec two-layer constrained decoding
+- Current phase: Round 1 reviewer response with composability matrix expansion
+- 2×2 Composability matrices for both models/datasets
+-
+…[truncated 1579 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Agent",
+  "elapsed_ms": 22457
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-15T22:58:50.390124+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-15T22:58:51.245970+00:00_
+
+1	# Handover — 2026-05-15
+2	
+3	> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。
+4	
+5	## 运行中
+6	| exp_id | 假设 | 状态 | 关键指标 | W&B |
+7	|--------|------|------|---------|-----|
+8	| w5_qwen_docred_lora_unconstrained_eval | Fine-tuned Qwen3-8B DocRED LoRA unconstrained eval — 获取 fine-tuned baseline DR/R-F1，与 constrained eval 对比计算 composability delta | — | — | — |
+9	
+10	## 待处理
+11	- w5_qwen_docred_lora_constrained_eval: Fine-tuned Qwen3-8B DocRED LoRA + OntoCoDec constrained eval — 验证 composability：约束解码在 fine-tuned Qwen DocRED 上是否仍能消除残余 DR 且不损 R-F1（准备中）
+12	- w5_llama_docred_lora_unconstrained_eval: Fine-tuned Llama-3.1-8B DocRED LoRA unconstrained eval — 获取 fine-tuned baseline DR/R-F1，与 constrained eval 对比计算 composability delta（准备中）
+13	- w5_llama_docred_lora_constrained_eval: Fine-tuned Llama-3.1-8B DocRED LoRA + OntoCoDec constrained eval — 验证 composability：约束解码在 fine-tuned Llama DocRED 上是否仍能消除残余 DR 且不损 R-F1（准备中）
+14	- w1_cf_fallback_llama_scierc（准备中）
+15	- w1_cf_fallback_llama_docred（准备中）
+16	- w5_llama_docred_sft_data_gen: Generate Llama-3.1-8B-Instruct format DocRED SFT train/dev JSONL — prerequisite for Llama DocRED LoRA fine-tune (composability matrix Llama×DocRED cell)（准备中）
+17	
+18	## 近期结论
+19	- **w5_qwen_docred_lora_training** (success): Qwen3-8B LoRA fine-tune on DocRED — 填补 Qwen DocRED composability 2×2 matrix 的 FT 行。预期：(1) LoRA 后 E-F1/R-F1 大幅提升；(2) 残余 DR > 0% 证明 OntoCoDec 在 DocRED FT 上仍有 composability 价值。
+20	- **w5_llama_docred_lora_training** (success): Llama-3.1-8B-Instruct LoRA fine-tune on DocRED — 填补 Llama DocRED composability 2×2 matrix 的 FT 行。预期：(1) LoRA 后 E-F1/R-F1 大幅提升；(2) 残余 DR > 0% 证明 OntoCoDec 在 DocRED FT 上仍有 composability 价值。
+21	  [w5_llama_docred_lora_training_report](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/w5_llama_docred_lora_training/report/w5_llama_docred_lora_training_report.md)
+22	- **w5_llama_lora_scierc_constrained_eval** (success): Fine-tuned Llama-3.1-8B + OntoCoDec constrained eval on SciERC — composability 验证：约束解码在 fine-tuned L
+…[truncated 496 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "elapsed_ms": 855
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-15T22:58:51.246490+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-15T22:58:51.297761+00:00_
+
+1	# schema_semantic_constrained_ie — Research Dashboard
+2	
+3	> 最后更新: 2026-05-15 18:13 UTC | 更新原因: D028: Llama SciERC 2×2 完成 + DocRED LoRA 双卡并行训练中
+4	
+5	## 核心方向
+6	OntoCoDec: 两层约束解码（grammar + semantic）自动编译 IE ontology schema 为 token-level constraints，消除 LLM-based IE 的 ontology constraint violations。详见 paper_framing.md。
+7	
+8	## 当前进展
+9	**阶段**: Round 1 审稿应对 — composability matrix 扩展中
+10	- **Qwen SciERC 2×2**: ✅ DR=0.0%, R-F1 -0.09pp
+11	- **Llama SciERC 2×2**: ✅ DR=0.09%, R-F1 +0.02pp (D028)
+12	- **跨模型一致性确认**: Claim 3 composability 两模型坚实支撑
+13	- **Issue Tracker**: 15/16 resolved + W1 in_progress (analytical finding + Paper Agent 写作中)
+14	- **论文**: Table 3/5, §5.4/5.5, Appendix B 已更新，PDF 编译通过
+15	
+16	## Composability 覆盖进展
+17	| | SciERC | DocRED |
+18	|--|--------|--------|
+19	| Qwen3-8B | ✅ 完整 2×2 | 🔥 LoRA 训练中 (cuda:1, ETA ~2h) |
+20	| Llama3.1-8B | ✅ 完整 2×2 (D028) | ⏳ SFT 数据生成中 → cuda:0 训练 |
+21	
+22	## 2×2 Composability Matrices
+23	
+24	### Qwen3-8B × SciERC
+25	| | Unconstrained | Constrained | ΔDR | ΔR-F1 |
+26	|--|--|--|--|--|
+27	| Zero-shot | DR=15.37%, R-F1=8.23% | DR=0.93%, R-F1=8.36% | -94% | +0.13pp |
+28	| Fine-tuned LoRA | DR=1.95%, R-F1=43.86% | DR=0.0%, R-F1=43.77% | -100% | -0.09pp |
+29	
+30	### Llama3.1-8B × SciERC
+31	| | Unconstrained | Constrained | ΔDR | ΔR-F1 |
+32	|--|--|--|--|--|
+33	| Zero-shot | DR=13.34%, R-F1=2.68% | DR=0.08%, R-F1=2.54% | -99.4% | -0.14pp |
+34	| Fine-tuned LoRA | DR=1.11%, R-F1=45.45% | DR=0.09%, R-F1=45.47% | -91.9% | +0.02pp |
+35	
+36	## 关键路径
+37	1. ~~Llama SciERC 2×2~~ ✅ (D028)
+38	2. **Qwen DocRED LoRA** ← cuda:1 训练中 (~2h)
+39	3. **Llama DocRED LoRA** ← cuda:0 准备中（SFT 数据 + 脚本适配）
+40	4. 各自跑 unconstrained + constrained eval → 完整 4 格 matrix
+41	5. 全文数字一致性审查 → Round 2 review
+42	6. May 19 内部稿交付 → May 25 EMNLP ARR 提交
+43	
+44	## GPU 调度
+45	westd-16980: cuda:0 + cuda:1
+46	- cuda:0: ⏳ Llama DocRED LoRA 待提交（SFT 数据生成中）
+47	- cuda:1: 🔥 Qwen DocRED LoRA 训练中 (PID 295334)
+48	
+49	## 关键数字速查
+50	| 指标 | Qwen SciERC | Qwen DocRED | Llama SciERC | Llama DocRED |
+51	|----
+…[truncated 2455 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-15T22:58:51.399465+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-15T22:58:51.400434+00:00_
+
+1	# Memory — schema_semantic_constrained_ie
+2	
+3	## 文献调研 (2026-05-13)
+4	
+5	### 核心结论: OntoCoDec 的 novelty 成立
+6	**没有人做过 "compile IE ontology domain/range → decoding-time logits masking" 的完整 pipeline。**
+7	
+8	Gap 结构：
+9	- Syntactic constrained decoding for IE: well-explored (GCD, XGrammar, Outlines)
+10	- Vocabulary-level: exists (GENRE, iNERD, AdaKGC)
+11	- **Semantic (domain/range) decoding for IE: OPEN GAP** ← OntoCoDec
+12	- Semantic type checking at decode time: only for code gen (MGD NeurIPS'23, PLDI'25)
+13	- Ontology compliance for IE: only post-processing (ODKE+ Apple'25, OntoLogX'25)
+14	
+15	最近竞争者：PLDI'25 Type-Constrained Code Gen（同机制但领域是代码生成，必须引用并区分）
+16	
+17	风险：CRANE (ICML'25) 严格约束可能降低推理质量；Grammar-Aligned Decoding (NeurIPS'24) naive masking 扭曲分布
+18	
+19	Novelty 定位："OntoCoDec 将 type-constrained generation 引入信息抽取，编译 IE ontology axioms 为解码时语义约束，预防而非检测 type violations。"
+20	
+21	详细报告: `artifacts/literature_map.yaml`, `artifacts/literature_survey_*.md`
+22	
+23	## 实验发现
+24	
+25	### 🎯 W5 LoRA Composability — Qwen 完全验证 (2026-05-15) ⚠️ 论文核心新增 claim
+26	
+27	**Fine-tuning + OntoCoDec 正交可组合，互补消除 schema violations。**
+28	
+29	完整 2×2 矩阵（SciERC, Qwen3-8B）：
+30	
+31	| | Unconstrained | Constrained (OntoCoDec) | ΔDR | ΔR-F1 |
+32	|--|--|--|--|--|
+33	| Base | DR=15.37%, R-F1=8.23% | DR=0.93%, R-F1=8.36% | -94% | +0.13pp |
+34	| Fine-tuned (LoRA) | DR=1.95%, R-F1=43.86% | DR=0.0%, R-F1=43.77% | -100% | -0.09pp |
+35	
+36	关键 insights：
+37	- Fine-tuning 将 DR 15.37%→1.95% (内化 87% 约束)，但 tight-constraint 长尾 (Evaluate-for 13.1%) 无法覆盖
+38	- OntoCoDec 消除剩余 1.95% → 0.00%，零 F1 代价 (-0.09pp)
+39	- CF 从 base constrained 9.90% → fine-tuned constrained 1.18% (-8.72pp)
+40	- E-F1 +36pp, R-F1 +35pp——回应"只适用于 prompting"质疑
+41	- LoRA 训练仅 688s (~11.5min), rank=16, 3 epochs, token_acc=98.16%
+42	
+43	### 🎯 W5 LoRA Composability — Llama 跨模型验证 (2026-05-15) ⚠️ 论文核心
+44	
+45	完整 2×2 矩阵（SciERC, Llama-3.1-8B-Instruct）：
+46	
+47	| | Unconstrained | Constrained (OntoCoDec) | ΔDR | ΔR-F1 |
+48	|--|--|--|--|--|
+49	| Zero-shot | DR=13.34%, R-F1
+…[truncated 5368 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-15T22:58:57.132773+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__load_project_config",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__load_project_config",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-15T22:58:57.183437+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-15T22:58:59.814852+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "schema_semantic_constrained_ie",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "schema_semantic_constrained_ie",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-15T22:59:00.691897+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"w5_qwen_docred_lora_unconstrained_eval\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:03:32.625Z\", \"updated_at\": \"2026-05-15T20:05:47.106Z\", \"hypothesis\": \"Fine-tuned Qwen3-8B DocRED LoRA unconstrained eval — 获取 fine-tuned baseline DR/R-F1，与 constrained eval 对比计算 composability delta\", \"parent\": \"w5_qwen_docred_lora_training\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/checkpoints/qwen_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w5_qwen_docred_lora_unconstrained_eval.jsonl --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"304006\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w5_qwen_docred_lora_unconstrained_eval.log\", \"submitted_at\": \"2026-05-15T20:03:48.762Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B-LoRA-DocRED\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen_lora_docred_merged\", \"eval_data\": \"data/docred/dev.json\"}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5548}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 877
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-15T22:59:00.692371+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'PREPARING'}",
+  "project": "schema_semantic_constrained_ie",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'PREPARING'}",
+    "project": "schema_semantic_constrained_ie",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-15T22:59:00.744227+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-15T22:59:01.152834+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "schema_semantic_constrained_ie",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "schema_semantic_constrained_ie",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-15T22:59:01.862809+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"w5_qwen_docred_lora_constrained_eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:03:33.642Z\", \"updated_at\": \"2026-05-15T20:03:41.365Z\", \"hypothesis\": \"Fine-tuned Qwen3-8B DocRED LoRA + OntoCoDec constrained eval — 验证 composability：约束解码在 fine-tuned Qwen DocRED 上是否仍能消除残余 DR 且不损 R-F1\", \"parent\": \"w5_qwen_docred_lora_training\"}, \"w5_llama_docred_lora_unconstrained_eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:58:07.956Z\", \"updated_at\": \"2026-05-15T19:58:23.779Z\", \"hypothesis\": \"Fine-tuned Llama-3.1-8B DocRED LoRA unconstrained eval — 获取 fine-tuned baseline DR/R-F1，与 constrained eval 对比计算 composability delta\", \"parent\": \"w5_llama_docred_lora_training\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w5_llama_docred_lora_unconstrained_eval.jsonl --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"303525\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/w5_llama_docred_lora_unconstrained_eval.log\", \"submitted_at\": \"2026-05-15T19:58:23.664Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"w5_llama_docred_lora_constrained_eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:58:10.837Z\", \"updated_at\": \"2026-05-15T19:58:11.653Z\", \"hypothesis\": \"Fine-tuned Llama-3.1-8B DocRED LoRA + OntoCoDec constrained eval — 验证 composability：约束解码在 fine-tuned Llama DocRED 上是否仍能消除残余 DR 且不损 R-F1\", \"parent\": \"
+…[truncated 3121 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1170
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-15T22:59:02.215660+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 1471
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-15T22:59:02.318909+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"schema_semantic_constrained_ie\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_constraint\": \"cuda:0, cuda:1 on westd-16980 only\", \"gpu_ids\": [0, 1], \"project_path\": \"/root/schema_semantic_constrained_ie\", \"servers\": [{\"account\": \"root\", \"server\": \"westd-16980\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 1166
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80 · 2026-05-15T23:00:00.495853+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单: **仅 cuda:0 + cuda:1 on westd-16980**，config.yaml `gpu_ids: [0, 1]`
+- **spec.command 禁止硬编码 CUDA_VISIBLE_DEVICES**——GPU 分配由 `submit_training_job` 的 gpu 参数注入。内层覆盖外层曾导致级联 OOM 故障 (memory.md 2026-05-15)
+- SciERC 数据路径是 `data/processed_data/test.json`（**不是** `data/scierc/test.json`），constraints 在项目根 `ontology_constraints.json`
+- DocRED 数据 `data/docred/dev.json`，constraints `data/docred/ontology_constraints_docred.json`
+- WANDB_MODE=disabled（无 wandb key），指标从 log/output 文件提取
+- 大 checkpoint 必须存 `/root/autodl-tmp/checkpoints/`，根分区仅 30G
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: westd-16980, 账号 root
+- **工作目录**: `/root/schema_semantic_constrained_ie`
+- **Python**: conda base, 激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- **GPU**: 2× NVIDIA RTX PRO 6000 Blackwell (94GB each), CUDA 12.8, torch 2.10.0+cu128, transformers 4.57.6
+- **模型路径**:
+  - Qwen base: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`
+  - Llama base: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`
+  - Qwen SciERC LoRA merged: `/root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged`
+  - Llama SciERC LoRA merged: `/root/autodl-tmp/checkpoints/llama_lora_scierc_merged`
+  - Qwen DocRED LoRA merged: `/root/autodl-tmp/checkpoints/qwen_lora_docred_merged`
+  - Llama DocRED LoRA merged: `/root/autodl-tmp/checkpoints/llama_lora_docred_merged`
+- **活跃进程**:
+  - w5_qwen_docred_lora_unconstrained_eval: PID 304006, tmux session, cuda:1, RUNNING
+  - w5_llama_docred_lora_unconstrained_eval: PID 303525, tmux session, cuda:0, 状态异常见§3
+
+### 3. 📊 当前状态
+正在填补 **DocRED composability 2×2 matrix** 最后 4 格（Qwen×DocRED FT行 + Llama×DocRED FT行）。SciERC 两模型已全部完成。
+
+**RUNNING**:
+- `w5_qwen_docred_lora_unconstrained_eval` — Qwen FT DocRED 无约束 eval, cuda:1, PID 304006
+
+**⚠️ 状态异常**:
+- `w5_llama_docred_lora_unconstrained_eval` — registry 状态 PREPARING 但已有 PID 303525 + submitted_at。**下一个"你"必须先检查**: (1) PID 是否存活 (2) 若存活则 `update_registry(status=RUNNING)` (3) 若已退出则按 cron 回调流程处理
+
+**PREPARING (待执行)**:
+- `w5_qwen_docred_lora_constrained_eval` — 等 unconstrained eval 出结果后提交 (cuda:1)
+- `w5_llama_docred_lora_constrained_eval` — 等 unconstrained eval 出结果后提交 (cuda:0)
+
+**PREPARING (已 killed, 可忽略)**:
+- `w1_cf_fallback_llama_scierc`, `w1_cf_fallback_llama_docred` — D020 决策改为 Analytical Finding，已取消
+
+**PREPARING (已 success)**:
+- `w5_llama_docred_sft_data_gen` — DocRED SFT 数据已生成 (train 3053, dev 998)
+
+### 4. 📋 待办（条件触发式）
+- `w5_llama_docred_lora_unconstrained_eval` PID 303525 存活 → `update_registry(status=RUNNING)`；已退出 → 按完成/失败分叉处理
+- `w5_qwen_docred_lora_unconstrained_eval` cron 回调到达 → spawn worker 分析结果提取 DR/R-F1 → 更新 registry → 立即提交 `w5_qwen_docred_lora_constrained_eval` (cuda:1)
+- `w5_llama_docred_lora_unconstrained_eval` 完成 → 同上流程 → 提交 `w5_llama_docred_lora_constrained_eval` (cuda:0)
+- 4 格 eval 全部完成 → 组装完整 4×4 composability matrix → 更新 paper Table 3/5 + §5.4/5.5 → 全文数字一致性审查
+- 全文审查通过 → May 19 内部稿 → May 25 EMNLP ARR 提交
+
+### 5. 🎯 战略上下文
+**核心结论**: OntoCoDec 两层约束解码 (grammar + semantic) 编译 IE ontology 为 token-level constraints，在两模型 (Qwen3-8B, Llama-3.1-8B) × SciERC 上已证明 composability (FT 后 DR→0%/0.09%, R-F1 零代价)。DocRED 是最后一块拼图。
+
+**决策链**: D020 CF fallback 改 analytical finding → D025/D028 SciERC composability 双模型确认 → D029 DocRED LoRA 重新提交(之前有 GPU 冲突)
+
+**易错点**:
+1. `w5_llama_docred_lora_unconstrained_eval` 状态卡在 PREPARING——不要重复提交，先查 PID
+2. DocRED tightness=0.842 远高于 SciERC=0.333，预期 DocRED DR reduction 不如 SciERC 极端（ZS 阶段 DocRED DR 只降 45% vs SciERC 94%）。FT 后 residual DR 可能 > 0%，这不是 negative——framing 已调整为"消除 violations 的程度与 constraint tightness 正相关"
+3. kill_job 不保证杀子进程——kill 后必须 `nvidia-smi | grep python` 确认无残留
+4. 服务器上 `run_constrained_extraction.py` 有 3 个版本并存（clean/.bak/_cf_fallback），当前 clean 版已恢复 (399行)
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:w1_cf_fallback_scierc_pilot"
+}
+```
+
+</details>
+
+---

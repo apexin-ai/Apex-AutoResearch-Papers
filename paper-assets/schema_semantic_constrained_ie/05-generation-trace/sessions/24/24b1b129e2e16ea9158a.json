@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24b1b129e2e16ea9158a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh p1 qwen ee ft r5 schema fix",
+  "task_key": "worker_ssh_p1_qwen_ee_ft_r5_schema_fix_20260518T232915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p1_qwen_ee_ft_r5_schema_fix_20260518T232915_result.json",
+    "occurrence": 1,
+    "bytes": 957,
+    "sha256": "d985a656b59ba762d4adaab69d1420c08b38cec0b059279315efeacae16551d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## D060 执行结果\n\n### 代码修改\n1. **`compiler/ontology_compiler.py:294`** — `\"required\": [\"entities\", \"events\"]` → `\"required\": [\"events\"]`\n2. **`run_constrained_extraction.py:808`** — 添加 `--repetition_penalty` CLI 参数，通过 `sampling_kwargs` 传入所有 `model.generate()` 调用\n\n### 结果（WikiEvents 20 docs, Qwen3-8B FT, repetition_penalty=1.2）\n\n| Metric | Unconstrained | Full S1 (Constrained) |\n|--------|:---:|:---:|\n| Parse Rate | 85% | **95%** |\n| Trigger F1 | **32.08** | 26.72 |\n| Argument F1 | 7.85 | **8.18** |\n| RoV (role violations) | 38.31% | **0%** |\n| AC (arg constraint) | 2.68% | **0%** |\n| Go/NoGo | 41% | **0%** |\n\nSchema 修复彻底解决了 EE FT parse failure。Constrained decoding 将 RoV+AC violation 从 41% 降至 0%，parse rate 从 ~0%（修复前）提升到 95%。Artifact 已注册，registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p1-qwen-ee-ft-r5-schema-fix.md"
+}

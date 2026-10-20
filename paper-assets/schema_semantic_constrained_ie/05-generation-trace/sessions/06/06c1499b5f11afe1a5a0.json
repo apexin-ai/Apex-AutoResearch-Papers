@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06c1499b5f11afe1a5a0",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "history",
+  "title": "agent / loop_6_1778844141.md",
+  "task_key": "loop_6_1778844141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778844141.md",
+    "occurrence": 1,
+    "bytes": 3896,
+    "sha256": "7561cc7d07a38b2d9fb6c561b3d78d7980458abf517c5dc1e13edf8007a87598"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_wall_time\nupdated: '2026-05-15T00:49:05+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-16980 的 cuda:0 / cuda:1（gpu_ids=[0,1]）\n- 论文正文严格 ≤8 页（当前刚好 8 页，零余量，任何文本增加必须同时压缩）\n- Llama bootstrap 必须用 `compute_bootstrap_ci_llama.py`（v2 修复版），**不要用** `run_bootstrap_llama.py`（entity eval bug，E-F1 差 2-3pp）\n- 所有定量 claim 必须附 exp_id，数字必须追溯到 registry\n- crossmodel_draft.tex 由 Director 直接编辑过多次，不要覆盖——改之前先 Read 确认最新版本\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-16980, root@westd-16980\n- 工作目录：/root/schema_semantic_constrained_ie\n- Python：/root/miniconda3/bin/python（激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型路径：Qwen3-8B `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`，Llama `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n- 数据：SciERC `data/processed_data/test.json` (551 docs)，DocRED `data/docred/dev.json` (998 docs)\n- 论文目录（本地）：`artifacts/_project/paper/`，服务器编译目录：`/root/schema_semantic_constrained_ie/paper/`\n- Bib 文件：`relwork_new_entries.bib`（47 entries，37 unique cite keys，全部 matched）\n- 活跃进程：无（全部 20 实验 DONE，无 RUNNING）\n- Bootstrap 修复脚本：`/root/schema_semantic_constrained_ie/compute_bootstrap_ci_llama.py`（修复了 3 个 bug：str() 转换、0.05pp 容差、parsed=None gold 计数）\n\n### 3. 📊 当前状态\n**刚完成**：D016 论文最终编译验证通过（8 页正文，0 undefined refs，0 missing citations）。\n\n**全部 20 实验 DONE**，无 RUNNING/PREPARING。Registry 完整。\n\n**D015+D016 论文修改全部完成**：\n- D015: Title 改为 \"Type-Valid\"（去掉 Near-Complete）、5 条 missing references 补入 §6、near-complete 文本清理\n- D016: Llama bootstrap CI 修复（registry-aligned p-values）、crossmodel/abstract/conclusion 写入修正后数据、parse failure confound、E-F1 model-dependent framing\n\n**等待**：Director 决定是否 submit_paper_to_review。无未处理的 Worker 回调或 Cron。\n\n### 4. 📋 待办\n- Director 说 \"submit review\" → 执行 submit_paper_to_review 流程\n- 如果 Reviewer 返回修改意见 → 按意见修改，注意正文零页数余量\n- 如果需要重新编译 → 必须先同步本地 .tex 到服务器 `/root/schema_semantic_constrained_ie/paper/` 再 `latexmk -pdf main.tex`\n- appendix overfull hbox（4 处，全在 appendix_related_work，最大 21.55pt）→ 如 Reviewer 要求修复，加 `\\url{}` 断行或缩短引用\n\n### 5. 🎯 战略上下文\n**核心结论**：OntoCoDec 两层约束（grammar + semantic）在 2 模型 × 2 数据集上实现 45-99% DR 降低，R-F1 显著提升或 neutral。\n\n**决策链**：\n- D012: Qwen bootstrap CI 修复（entity filter bug）\n- D014: Tightness 单因素 → tightness × RV 双因素 narrative（Llama DocRED DR↓90.2% 打破单因素）\n- D015: Title/references/near-complete cleanup\n- D016: Llama bootstrap CI 修复 + parse failure confound + E-F1 model-dependent\n\n**易错点**：\n- E-F1 impact 是 model-dependent：Qwen DocRED +1.22pp (p<0.001) vs Llama DocRED -0.64pp (p=0.022)。**不要说 \"F1-neutral\"**——R-F1 是 neutral/positive，E-F1 因模型而异\n- Llama DocRED E-F1 下降部分归因于 parse failure 增加（68→91 docs, 6.8%→9.1%）——这是 confound，不是纯方法问题\n- crossmodel 说 \"three of four settings\" R-F1 preserved（Llama SciERC -0.14pp 是唯一下降）\n- main.tex 引用的是 `section7_conclusion_compressed.tex`（不是 `section7_conclusion.tex`）\n- 本地 artifacts 和服务器 paper/ 目录是分离的，改本地文件后必须手动同步到服务器才能编译\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778844141.md"
+}

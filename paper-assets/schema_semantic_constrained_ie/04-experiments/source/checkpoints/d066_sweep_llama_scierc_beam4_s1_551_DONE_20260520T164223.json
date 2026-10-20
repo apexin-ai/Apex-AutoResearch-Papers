@@ -1,0 +1,42 @@
+{
+  "exp_id": "d066_sweep_llama_scierc_beam4_s1_551",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:04:24.318Z",
+    "updated_at": "2026-05-20T16:42:22.936Z",
+    "conclusion": "success",
+    "metrics": {
+      "E-F1": 68.06,
+      "E-P": 65.96,
+      "E-R": 70.29,
+      "R-F1": 46.18,
+      "R-P": 42.1,
+      "R-R": 51.13,
+      "ET_pct": 0,
+      "RV_pct": 0,
+      "DR_pct": 0,
+      "CF_pct": 0,
+      "parse_fail": 0,
+      "samples": 551,
+      "note": "ET/RV corrected from 100→0: original eval used hardcoded DocRED ontology, re-evaled with --dataset scierc"
+    },
+    "log_path": "/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_beam4_s1_551.log",
+    "checkpoint_path": "/root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam4_full_s1.jsonl",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --decoding_strategy beam --num_beams 4 --max_new_tokens 4096 --seed 42 --data_path data/processed_data/test.json --output_path /root/autodl-tmp/schema_outputs/d066_beam_sweep/llama_scierc_551_beam4_full_s1.jsonl",
+      "server": "westd-21461",
+      "data_path": "data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "llama_lora_scierc_merged",
+      "seed": 42
+    },
+    "hypothesis": "d066 SciERC beam sweep: Llama beam4 constrained (full_s1) on 551-sentence test set. Beam width k=4 with schema constraints should eliminate all four violation types (ET/RV/DR/CF=0) while maintaining R-F1 within ±1pp of unconstrained.",
+    "completed_at": "2026-05-20T16:42:22.936Z"
+  },
+  "timestamp": "2026-05-20T16:42:23.196348+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,29 @@
+{
+  "exp_id": "phase2_s2_pilot50",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T23:25:10.566Z",
+    "updated_at": "2026-05-13T23:25:56.909Z",
+    "spec": {
+      "command": "python3 run_constrained_extraction.py --mode full_s2 --dataset scierc --num_samples 50 --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --device cuda:0",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "/root/schema_semantic_constrained_ie/data/processed_data/test.json",
+      "data_count": 50,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_path": "/root/schema_semantic_constrained_ie/outputs/phase2_s2_pilot50.jsonl",
+      "log_path": "~/runs/schema_semantic_constrained_ie/phase2_s2_pilot50.log",
+      "note": "S2 50-sample pilot run. D/R violation=0% verified. relation_f1=0.0 root cause under investigation by Worker analysis:s2_relation_f1_rootcause."
+    },
+    "hypothesis": "S2 两通道约束解码 50 样本 pilot — 验证 PositionDetector 修复后 D/R violation=0%，评估 relation_f1 质量"
+  },
+  "timestamp": "2026-05-13T23:25:56.930492+00:00",
+  "trigger": "update_registry"
+}

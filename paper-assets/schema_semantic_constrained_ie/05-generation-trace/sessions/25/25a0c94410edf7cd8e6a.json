@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25a0c94410edf7cd8e6a",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code r16 trie baseline",
+  "task_key": "worker_code_r16_trie_baseline_20260521T025735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r16_trie_baseline_20260521T025735_result.json",
+    "occurrence": 1,
+    "bytes": 525,
+    "sha256": "962944cc0a7f6919087e842988d2669ae20f9122159653c5b6fdf0608ec7b53b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiments still running (PID 241846). Current status:\n\n| Config | Progress | Status |\n|--------|----------|--------|\n| Qwen FT | 551/551 | Done |\n| Qwen ZS | ~148/551 | Running (~5s/sample) |\n| Llama FT | — | Queued |\n| Llama ZS | — | Queued |\n\nEstimated remaining time: ~2 hours total (Qwen ZS ~34min + Llama FT ~28min + Llama ZS ~55min).\n\nThe process is running fine in the background. Ask me to check again when you'd like a status update, or I'll collect results once everything completes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r16-trie-baseline.md"
+}

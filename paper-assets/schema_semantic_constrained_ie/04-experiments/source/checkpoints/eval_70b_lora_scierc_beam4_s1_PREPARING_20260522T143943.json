@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_70b_lora_scierc_beam4_s1",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:39:43.218Z",
+    "updated_at": "2026-05-22T14:39:43.219Z"
+  },
+  "timestamp": "2026-05-22T14:39:43.527897+00:00",
+  "trigger": "update_registry"
+}

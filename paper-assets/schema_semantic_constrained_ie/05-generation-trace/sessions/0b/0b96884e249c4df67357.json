@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b96884e249c4df67357",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "check p1 ee data fix verify",
+  "task_key": "worker_check_p1_ee_data_fix_verify_20260518T193606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_p1_ee_data_fix_verify_20260518T193606_result.json",
+    "occurrence": 1,
+    "bytes": 1103,
+    "sha256": "fd5b4ff8c1a4b834a939054e91265eae6c79e333d865fab5dcd80b68216ab0ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nSFT splits: train=194, dev=20, test=20\n文件修改时间：修复后（SFT文件 May 19 03:29 服务器时间 ≈ 19:29 UTC May 18，晚于修复时间）\n重叠验证：train∩dev=0 OK, train∩test=0 OK, dev∩test=0 OK\ntotal unique docs: 234\nscenario_en_kairos_30: test.jsonl=1, all.jsonl=1, train/dev=0（正确排除）\n训练状态：p1_ee_ft session 存在，但有报错\nGPU 利用率：GPU1 85%, 18923MiB/97887MiB\n```\n\n**数据泄漏修复验证通过** — 三组 split 零重叠，scenario_en_kairos_30 仅在 test/all 中，未泄漏到 SFT 训练集。\n\n**训练有问题** — tmux 捕获显示两个错误：\n1. `RuntimeError: WandbCallback requires wandb` — 缺少 wandb\n2. `[Errno 101] Network is unreachable` — 尝试从 HuggingFace 下载 `qwen3_8b_lora_wikievents_merged/config.json` 失败，正在重试 (Retry 1/5)\n\nGPU1 有进程在跑（85% 利用率），但 tmux 最后输出停在网络重试。可能是训练脚本尝试从远程加载 merged checkpoint 而服务器无外网。需要确认模型路径是否应指向本地路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-p1-ee-data-fix-verify.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3729e26c0c3e257c1de7",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "research first token masking",
+  "task_key": "worker_research_first_token_masking_20260513T193339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_first_token_masking_20260513T193339_result.json",
+    "occurrence": 1,
+    "bytes": 1571,
+    "sha256": "d4734bcc5a7e5af84d59a640e06a313232b16593a9225ed0c7ddf4423d8460af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n### SciERC Entity Types (Qwen3-8B tokenizer)\n\n| Type | Token IDs | Decoded | First Token ID |\n|------|-----------|---------|---------------|\n| Task | [6262] | ['Task'] | 6262 |\n| Method | [3523] | ['Method'] | 3523 |\n| Material | [13415] | ['Material'] | 13415 |\n| Metric | [54310] | ['Metric'] | 54310 |\n| OtherScientificTerm | [11409, 50565, 1086, 17249] | ['Other', 'Scient', 'ific', 'Term'] | 11409 |\n| Generic | [19964] | ['Generic'] | 19964 |\n\n**SciERC: 6 个 type 的 first token 全部唯一，SAFE。** Reviewer 担心的 Method/Material/Metric 首字母都是 \"M\"，但 Qwen3 tokenizer 把它们各自编码为完整单词 token，不存在冲突。\n\n### DocRED Entity Types\n\n| Type | Token IDs | Decoded | First Token ID |\n|------|-----------|---------|---------------|\n| PER | [9654] | ['PER'] | 9654 |\n| ORG | [44927] | ['ORG'] | 44927 |\n| LOC | [12052] | ['LOC'] | 12052 |\n| TIME | [18129] | ['TIME'] | 18129 |\n| NUM | [17488] | ['NUM'] | 17488 |\n| MISC | [44, 27629] | ['M', 'ISC'] | 44 |\n\n**DocRED: 6 个 type 的 first token 全部唯一，SAFE。** MISC 被拆为 ['M', 'ISC']，但 first token id=44 ('M') 与其他 type 无冲突。\n\n### Context-dependent Tokenization\n\n所有 12 个 type 在 JSON 上下文（`\"type\": \"` 之后）的 tokenization 与独立 tokenization **完全一致**。First-token masking 在实际生成场景中不会因上下文改变而失效。\n\n### 结论\n\nFirst-token masking 对 SciERC 和 DocRED 两个数据集均安全，无需 trie-based 方案。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-first-token-masking.md"
+}

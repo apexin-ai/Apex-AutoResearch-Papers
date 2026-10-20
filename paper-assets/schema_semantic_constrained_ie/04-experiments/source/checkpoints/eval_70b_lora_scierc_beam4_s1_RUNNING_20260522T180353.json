@@ -1,0 +1,26 @@
+{
+  "exp_id": "eval_70b_lora_scierc_beam4_s1",
+  "project": "schema_semantic_constrained_ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:39:43.218Z",
+    "updated_at": "2026-05-22T18:03:53.276Z",
+    "hypothesis": "70B LoRA fine-tuned model with beam search (k=4) and full_s1 constrained decoding on SciERC achieves DR=0% and CF=0%, matching 8B beam search behavior, while maintaining or improving extraction F1.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python run_constrained_extraction.py --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4 --lora_path /root/autodl-tmp/checkpoints/70b_lora_scierc/checkpoint-663 --data_path data/processed_data/test.json --dataset scierc --mode full_s1 --decoding_strategy beam --num_beams 4 --constraints_path ontology_constraints.json --output_path outputs/70b_lora_scierc_beam4_s1.jsonl --max_new_tokens 2048",
+      "server": "westd-16980",
+      "data_path": "data/processed_data/test.json",
+      "data_count": 551,
+      "model_name": "Llama-3.1-70B-Instruct-AWQ-INT4 + LoRA r16 scierc",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/70b_lora_scierc/checkpoint-663",
+      "eval_data": "SciERC test 551 docs"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T18:03:53.605414+00:00",
+  "trigger": "update_registry"
+}

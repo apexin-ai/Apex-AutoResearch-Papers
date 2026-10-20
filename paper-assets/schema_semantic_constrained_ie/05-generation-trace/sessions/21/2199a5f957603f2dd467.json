@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2199a5f957603f2dd467",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis eval docred schema",
+  "task_key": "worker_analysis_eval_docred_schema_20260514T014843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_docred_schema_20260514T014843_result.json",
+    "occurrence": 1,
+    "bytes": 925,
+    "sha256": "92c849157a7cd86c801e755812d9b3d559beb6b7786708fd6dfd738fbcd32653"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n---\n\n## DocRED Schema-Informed Prompt 实验结果\n\n| 指标 | Schema | Minimal Baseline | Delta |\n|------|--------|-----------------|-------|\n| **Entity Type Violation** | **0.61%** | 7.5% | **-6.89%** |\n| **Relation Vocab Violation** | **18.4%** | 28.9% | **-10.5%** |\n| **Domain/Range Violation** | **12.8%** | 18.7% | **-5.9%** |\n| Cross-field Consistency | 0.15% | — | — |\n| JSON Parse Rate | 94.5% | — | — |\n| Total Entities | 19,524 | — | — |\n| Total Triples | 16,782 | 16,540 | +242 |\n| Docs Checked | 943/998 | — | 55 parse failures |\n\n**三个核心违规维度全部显著下降**，schema-informed prompt 在 96 relation types 的大约束空间下依然有效。DR violation 从 18.7%→12.8%（go/no-go metric），ET 改善最大（降幅 92%）。\n\n仍在运行的实验：`phase2_scierc_full_s2.jsonl` 410/551（GPU 0 占用 16.5GB）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-docred-schema.md"
+}

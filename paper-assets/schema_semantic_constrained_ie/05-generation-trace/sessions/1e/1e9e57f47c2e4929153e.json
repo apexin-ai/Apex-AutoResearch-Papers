@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e9e57f47c2e4929153e",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops check llama docred constrained eval",
+  "task_key": "worker_ops_check_llama_docred_constrained_eval_20260516T021038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_llama_docred_constrained_eval_20260516T021038_result.json",
+    "occurrence": 1,
+    "bytes": 579,
+    "sha256": "9773217c4c4b1e094b19cdac0c0eaac739dca4f053f6b4f6b688755a01826a9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果汇报：**\n\n| 指标 | 状态 |\n|------|------|\n| 输出行数 | 410 / 998 (41%) |\n| 进程 317464 | **ALIVE** |\n| 进程 317469 | **ALIVE** |\n| 日志 | 正常运行中（pad_token_id 设置消息） |\n\n**决策：无需 resubmit。**\n\n实验仍在正常运行（进程存活，日志正常输出）。EXIT_CODE=143 的告警可能是误报或来自一个旧的 wrapper 进程，实际推理进程仍在 cuda:0 上处理。当前进度 410/998，按速率预计还需数小时完成。\n\nRegistry 状态保持 RUNNING 不变，无需操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-llama-docred-constrained-eval.md"
+}

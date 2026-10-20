@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3285a71cf4d6b747c9ee",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ssh d064 option c start",
+  "task_key": "worker_ssh_d064_option_c_start_20260519T194449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d064_option_c_start_20260519T194449_result.json",
+    "occurrence": 1,
+    "bytes": 419,
+    "sha256": "d11c7c9fd4d8fae6a8dd7aebb51761246fed332291a4ac8a89e8d39250983c05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**已启动的任务：**\n- **GPU0**: Greedy unconstrained 已在跑（PID 663859），9/998 samples 完成，预计 ~2-2.5h\n- **GPU1**: Cascade 脚本（PID 664150）等待 beam-4 constrained（916/998）完成后自动启动 greedy constrained\n\nCheckpoint: `/root/autodl-tmp/checkpoints/llama_lora_docred_merged`\n\n报告已写到 `artifacts/_project/report/d064_option_c_start.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d064-option-c-start.md"
+}

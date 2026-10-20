@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28d1da42d952890fd589",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "write crossmodel subsection draft",
+  "task_key": "worker_write_crossmodel_subsection_draft_20260514T204113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_crossmodel_subsection_draft_20260514T204113_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "24a0e854213edccedbd80d605e29febc3a5d9975a76584a184afda91fa59f508"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已创建：`artifacts/_project/paper/section5_crossmodel_draft.tex`\n\n内容：1 个 `\\subsection` + 1 张 cross-model 表 + 4 个 `\\paragraph`（grammar model-agnostic / DR reduction generalizes / Llama > Qwen asymmetry / CF trade-off）。约 280 words。所有数字附 exp_id 注释，Llama DR reduction 差异处标记了 `[TIGHTNESS-NARRATIVE-TBD]` 待 Director 决策。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-crossmodel-subsection-draft.md"
+}

@@ -1,0 +1,68 @@
+{
+  "exp_id": "w5_qwen_docred_lora_unconstrained_eval",
+  "project": "schema_semantic_constrained_ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:03:32.625Z",
+    "updated_at": "2026-05-16T01:52:50.220Z",
+    "hypothesis": "Fine-tuned Qwen3-8B DocRED LoRA unconstrained eval — 获取 fine-tuned baseline DR/R-F1，与 constrained eval 对比计算 composability delta",
+    "parent": "w5_qwen_docred_lora_training",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/checkpoints/qwen_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w5_qwen_docred_lora_unconstrained_eval.jsonl --batch_size 1 --max_new_tokens 4096\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "304006",
+      "log_path": "~/runs/schema_semantic_constrained_ie/w5_qwen_docred_lora_unconstrained_eval.log",
+      "submitted_at": "2026-05-15T20:03:48.762Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/docred/dev.json",
+      "data_count": 998,
+      "model_name": "Qwen3-8B-LoRA-DocRED",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen_lora_docred_merged",
+      "eval_data": "data/docred/dev.json",
+      "wall_clock_seconds": 20941.5,
+      "gpu_hours": 5.82
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T01:49:51.884Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T01:49:53.877179+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ET_pct": 0,
+      "RV_pct": 0.27,
+      "DR_pct": 0.76,
+      "E_F1": 82.15,
+      "E_P": 85.44,
+      "E_R": 79.11,
+      "R_F1": 40.86,
+      "R_P": 36.41,
+      "R_R": 46.56,
+      "parse_fail_rate": 7.11,
+      "total_samples": 998,
+      "total_entities_pred": 18091,
+      "total_relations_pred": 15870
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/qwen_lora_docred_merged",
+    "log_path": "~/runs/schema_semantic_constrained_ie/w5_qwen_docred_lora_unconstrained_eval.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-16T01:52:50.220Z"
+  },
+  "timestamp": "2026-05-16T01:52:50.326513+00:00",
+  "trigger": "update_registry"
+}

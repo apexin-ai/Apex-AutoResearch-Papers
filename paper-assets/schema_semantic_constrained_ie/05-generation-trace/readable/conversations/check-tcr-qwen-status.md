@@ -1,0 +1,1489 @@
+# check tcr qwen status
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 51
+- **Recorded user turns:** 0
+- **Tool calls:** 25
+- **Original source:** `logs/chats/worker_check_tcr-qwen-status_20260522T154715.jsonl`
+- **Structured JSON:** [`1d620b69a490a1dd2251.json`](../../sessions/1d/1d620b69a490a1dd2251.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+51 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T15:49:16.750993+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__update_registry",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__update_registry",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T15:49:16.751353+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T15:49:16.751540+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ps aux | grep beam_tcr_rerank | grep -v grep"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "ps aux | grep beam_tcr_rerank | grep -v grep"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-22T15:49:16.751702+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T15:49:16.751838+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ls -la /root/autodl-tmp/schema_semantic_constrained_ie/outputs/beam4_tcr_qwen_scierc.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "ls -la /root/autodl-tmp/schema_semantic_constrained_ie/outputs/beam4_tcr_qwen_scierc.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-22T15:49:16.751963+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "wc -l /root/autodl-tmp/schema_semantic_constrained_ie/outputs/beam4_tcr_qwen_scierc.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "wc -l /root/autodl-tmp/schema_semantic_constrained_ie/outputs/beam4_tcr_qwen_scierc.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T15:49:16.752081+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "tail -20 /tmp/beam4_tcr_qwen_scierc.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "tail -20 /tmp/beam4_tcr_qwen_scierc.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-22T15:49:16.752196+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "nvidia-smi --query-gpu=index,name,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "nvidia-smi --query-gpu=index,name,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T15:49:16.752311+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ps aux | grep run_constrained_extraction | grep -v grep"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "ps aux | grep run_constrained_extraction | grep -v grep"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T15:49:16.752431+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/schema_semantic_constrained_ie/outputs/beam4_tcr_qwen_scierc.jsonl': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T15:49:16.752550+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"wc: /root/autodl-tmp/schema_semantic_constrained_ie/outputs/beam4_tcr_qwen_scierc.jsonl: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T15:49:16.752693+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/tmp/beam4_tcr_qwen_scierc.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T15:49:16.752827+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 81 %, 40433 MiB, 97887 MiB\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 91 %, 18275 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T15:49:16.752974+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-22T15:49:16.753114+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ps aux | grep beam_tcr_rerank | grep -v grep",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "ps aux | grep beam_tcr_rerank | grep -v grep",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T15:49:16.753243+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     963523  0.0  0.0   4364  2136 ?        S    23:47   0:00 bash -c cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup env CUDA_VISIBLE_DEVICES=1 python beam_tcr_rerank.py --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --data_path data/processed_data/test.json --dataset scierc --beam_width 4 --alpha 0.7 --output_path outputs/beam4_tcr_llama_scierc.jsonl --skip_on_error > /tmp/beam4_tcr_llama_scierc.log 2>&1 & echo \\\"PID=$!\\\"\\nroot     963528 1552  0.2 71669140 2702088 ?    Rl   23:47   7:45 python beam_tcr_rerank.py --model_path /root/autodl-tmp/checkpoints/llama_lora_scierc_merged --data_path data/processed_data/test.json --dataset scierc --beam_width 4 --alpha 0.7 --output_path outputs/beam4_tcr_llama_scierc.jsonl --skip_on_error\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-22T15:49:16.753388+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ps aux | grep run_constrained_extraction | grep -v grep",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "ps aux | grep run_constrained_extraction | grep -v grep",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T15:49:16.753588+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     957036  0.0  0.0   4364  2040 ?        S    22:40   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python run_constrained_extraction.py --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4 --lora_path /root/autodl-tmp/checkpoints/70b_lora_scierc/checkpoint-663 --data_path data/processed_data/test.json --dataset scierc --mode full_s1 --decoding_strategy beam --num_beams 4 --constraints_path ontology_constraints.json --output_path outputs/70b_lora_scierc_beam4_s1.jsonl --max_new_tokens 2048' > /tmp/exp_a_beam4.log 2>&1 & echo \\\"PID=$!\\\"\\nroot     957041  102  0.3 95095132 3899980 ?    Rl   22:40  68:12 python run_constrained_extraction.py --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4 --lora_path /root/autodl-tmp/checkpoints/70b_lora_scierc/checkpoint-663 --data_path data/processed_data/test.json --dataset scierc --mode full_s1 --decoding_strategy beam --num_beams 4 --constraints_path ontology_constraints.json --output_path outputs/70b_lora_scierc_beam4_s1.jsonl --max_new_tokens 2048\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-22T15:49:16.753774+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ls -la /root/schema_semantic_constrained_ie/outputs/beam4_tcr_qwen_scierc.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "ls -la /root/schema_semantic_constrained_ie/outputs/beam4_tcr_qwen_scierc.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T15:49:16.753910+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 1340267 May 22 23:36 /root/schema_semantic_constrained_ie/outputs/beam4_tcr_qwen_scierc.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-22T15:49:16.754031+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "find /root -name \"beam4_tcr_qwen_scierc*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "find /root -name \"beam4_tcr_qwen_scierc*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-22T15:49:16.754149+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "find /root -name \"beam4_tcr_qwen_scierc*.log\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "find /root -name \"beam4_tcr_qwen_scierc*.log\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-22T15:49:16.754267+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/outputs/beam4_tcr_qwen_scierc.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T15:49:16.754384+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-22T15:49:16.754496+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "find /tmp -name \"*beam*tcr*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "find /tmp -name \"*beam*tcr*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T15:49:16.754614+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/tmp/beam_tcr_run.log\\n/tmp/beam4_tcr_llama_scierc.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-22T15:49:16.754792+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "wc -l /root/schema_semantic_constrained_ie/outputs/beam4_tcr_qwen_scierc.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "wc -l /root/schema_semantic_constrained_ie/outputs/beam4_tcr_qwen_scierc.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-22T15:49:16.754917+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "tail -20 /tmp/beam_tcr_run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "tail -20 /tmp/beam_tcr_run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-22T15:49:16.755034+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"551 /root/schema_semantic_constrained_ie/outputs/beam4_tcr_qwen_scierc.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T15:49:16.755162+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[536/551] CVPR_2004_30_abs_sent3: E=2 R=1 TCR=1.00 5.6s\\n[537/551] CVPR_2004_30_abs_sent4: E=4 R=3 TCR=1.00 7.5s\\n[538/551] CVPR_2004_30_abs_sent5: E=5 R=3 TCR=1.00 7.5s\\n[539/551] CVPR_2004_30_abs_sent6: E=1 R=0 TCR=1.00 5.5s\\n[540/551] INTERSPEECH_2007_40_abs_sent0: E=2 R=1 TCR=1.00 4.9s\\n[541/551] INTERSPEECH_2007_40_abs_sent1: E=4 R=3 TCR=1.00 6.2s\\n[542/551] INTERSPEECH_2007_40_abs_sent2: E=3 R=2 TCR=1.00 6.1s\\n[543/551] INTERSPEECH_2007_40_abs_sent3: E=6 R=4 TCR=1.00 9.3s\\n[544/551] CVPR_2003_30_abs_sent0: E=4 R=4 TCR=1.00 9.0s\\n[545/551] CVPR_2003_30_abs_sent1: E=9 R=6 TCR=1.00 15.4s\\n[546/551] CVPR_2003_30_abs_sent2: E=3 R=2 TCR=1.00 4.6s\\n[547/551] CVPR_2003_30_abs_sent3: E=2 R=1 TCR=1.00 2.8s\\n[548/551] NIPS_2016_80_abs_sent0: E=3 R=1 TCR=1.00 5.4s\\n[549/551] NIPS_2016_80_abs_sent1: E=2 R=1 TCR=1.00 3.0s\\n[550/551] NIPS_2016_80_abs_sent2: E=4 R=4 TCR=1.00 9.3s\\n[551/551] NIPS_2016_80_abs_sent3: E=3 R=1 TCR=1.00 4.8s\\n\\nDone: 551 samples, success=551, fail=0\\nTCR changed selection: 0/551 (0.0%)\\nOutput: outputs/beam4_tcr_qwen_scierc.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-22T15:49:16.755317+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python violation_checker.py --pred_path outputs/beam4_tcr_qwen_scierc.jsonl --gold_path data/processed_data/test.json --dataset scierc"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python violation_checker.py --pred_path outputs/beam4_tcr_qwen_scierc.jsonl --gold_path data/processed_data/test.json --dataset scierc"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T15:49:16.755447+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python violation_checker.py --pred_path outputs/beam4_tcr_qwen_scierc.jsonl --gold_path data/processed_data/test.json --dataset scierc'\\n\\nExit code: 2\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nusage: violation_checker.py [-h] [--input_path INPUT_PATH]\\n                            [--constraints_path CONSTRAINTS_PATH]\\n                            [--output_path OUTPUT_PATH]\\nviolation_checker.py: error: unrecognized arguments: --pred_path outputs/beam4_tcr_qwen_scierc.jsonl --gold_path data/processed_data/test.json --dataset scierc\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-22T15:49:16.755603+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python violation_checker.py --help"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python violation_checker.py --help"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-22T15:49:16.755794+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: violation_checker.py [-h] [--input_path INPUT_PATH]\\n                            [--constraints_path CONSTRAINTS_PATH]\\n                            [--output_path OUTPUT_PATH]\\n\\nCheck ontology constraint violations (SciERC)\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --input_path INPUT_PATH\\n  --constraints_path CONSTRAINTS_PATH\\n  --output_path OUTPUT_PATH\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-22T15:49:16.755951+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python violation_checker.py --input_path outputs/beam4_tcr_qwen_scierc.jsonl --constraints_path ontology_constraints.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python violation_checker.py --input_path outputs/beam4_tcr_qwen_scierc.jsonl --constraints_path ontology_constraints.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-22T15:49:16.756085+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Violation Report (SciERC) ===\\nSamples: 551, JSON failures: 0 (0.0%)\\nEntities: 1802, Relations: 1250\\n\\nEntity type violations: 0/1802 (0.0%)\\nRelation vocab violations: 0/1250 (0.0%)\\nDomain/range violations: 23/1250 (1.8%)\\nCross-field consistency violations: 1\\nFuzzy relation matches: 0\\n\\nGo/No-go metric (D/R violation rate): 0.0184\\n\\nEntity F1: P=0.6505 R=0.6964 F1=0.6726\\nRelation F1: P=0.3936 R=0.5051 F1=0.4424\\n\\nReport saved to outputs/violation_report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-22T15:49:16.756206+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "find /root/schema_semantic_constrained_ie -maxdepth 1 -name \"eval*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "find /root/schema_semantic_constrained_ie -maxdepth 1 -name \"eval*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T15:49:16.756325+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/eval_event_extraction.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-22T15:49:16.756473+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "tail -5 /tmp/beam4_tcr_llama_scierc.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "tail -5 /tmp/beam4_tcr_llama_scierc.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-22T15:49:16.756607+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-22T15:49:16.756751+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "tail -5 /tmp/exp_a_beam4.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "tail -5 /tmp/exp_a_beam4.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-22T15:49:16.756889+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-22T15:49:16.757025+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "wc -l /root/schema_semantic_constrained_ie/outputs/beam4_tcr_llama_scierc.jsonl /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_beam4_s1.jsonl 2>/dev/null; grep -c \"TCR=\" /tmp/beam4_tcr_llama_scierc.log 2>/dev/null; grep -c \"Processing\\|sample\" /tmp/exp_a_beam4.log 2>/dev/null",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16980",
+    "command": "wc -l /root/schema_semantic_constrained_ie/outputs/beam4_tcr_llama_scierc.jsonl /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_beam4_s1.jsonl 2>/dev/null; grep -c \"TCR=\" /tmp/beam4_tcr_llama_scierc.log 2>/dev/null; grep -c \"Processing\\|sample\" /tmp/exp_a_beam4.log 2>/dev/null",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-22T15:49:16.757149+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"    25 /root/schema_semantic_constrained_ie/outputs/beam4_tcr_llama_scierc.jsonl\\n   183 /root/schema_semantic_constrained_ie/outputs/70b_lora_scierc_beam4_s1.jsonl\\n   208 total\\n0\\n0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-22T15:49:16.757295+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "tcr_beam4_qwen_scierc",
+  "field": "hypothesis",
+  "value": "TCR (Type Consistency Reranking) with beam search (k=4) on Qwen3-8B LoRA SciERC will reduce domain/range violations compared to standard beam search by reranking candidates based on type consistency scores, while maintaining or improving Entity/Relation F1.",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "tcr_beam4_qwen_scierc",
+    "field": "hypothesis",
+    "value": "TCR (Type Consistency Reranking) with beam search (k=4) on Qwen3-8B LoRA SciERC will reduce domain/range violations compared to standard beam search by reranking candidates based on type consistency scores, while maintaining or improving Entity/Relation F1.",
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-22T15:49:16.757438+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"tcr_beam4_qwen_scierc\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T14:37:32.074Z\", \"updated_at\": \"2026-05-22T15:48:56.050Z\", \"hypothesis\": \"TCR (Type Consistency Reranking) with beam search (k=4) on Qwen3-8B LoRA SciERC will reduce domain/range violations compared to standard beam search by reranking candidates based on type consistency scores, while maintaining or improving Entity/Relation F1.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python beam_tcr_rerank.py --model_path /root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged --data_path data/processed_data/test.json --dataset scierc --beam_width 4 --alpha 0.7 --output_path outputs/beam4_tcr_qwen_scierc.jsonl --skip_on_error\", \"server\": \"westd-16980\", \"data_path\": \"data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Qwen3-8B-LoRA-SciERC-merged\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged\", \"log_path\": \"/tmp/beam_tcr_run.log\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-22T15:37:47.865Z\", \"metrics\": {\"DR_pct\": 1.84, \"CF_count\": 1, \"E_F1\": 67.26, \"R_F1\": 44.24, \"TCR_changed_selection\": \"0/551 (0%)\", \"all_candidates_TCR_1.0\": true}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7312}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-22T15:49:16.757586+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "tcr_beam4_qwen_scierc",
+  "field": "parent",
+  "value": "d066_beam_sweep",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "tcr_beam4_qwen_scierc",
+    "field": "parent",
+    "value": "d066_beam_sweep",
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-22T15:49:16.757746+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"tcr_beam4_qwen_scierc\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T14:37:32.074Z\", \"updated_at\": \"2026-05-22T15:49:00.483Z\", \"hypothesis\": \"TCR (Type Consistency Reranking) with beam search (k=4) on Qwen3-8B LoRA SciERC will reduce domain/range violations compared to standard beam search by reranking candidates based on type consistency scores, while maintaining or improving Entity/Relation F1.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python beam_tcr_rerank.py --model_path /root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged --data_path data/processed_data/test.json --dataset scierc --beam_width 4 --alpha 0.7 --output_path outputs/beam4_tcr_qwen_scierc.jsonl --skip_on_error\", \"server\": \"westd-16980\", \"data_path\": \"data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Qwen3-8B-LoRA-SciERC-merged\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged\", \"log_path\": \"/tmp/beam_tcr_run.log\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-22T15:37:47.865Z\", \"metrics\": {\"DR_pct\": 1.84, \"CF_count\": 1, \"E_F1\": 67.26, \"R_F1\": 44.24, \"TCR_changed_selection\": \"0/551 (0%)\", \"all_candidates_TCR_1.0\": true}, \"parent\": \"d066_beam_sweep\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7592}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-22T15:49:16.757888+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "tcr_beam4_qwen_scierc",
+  "field": "metrics",
+  "value": "{'samples': 551, 'json_failures': 0, 'entities': 1802, 'relations': 1250, 'entity_type_violations': '0/1802 (0.0%)', 'relation_vocab_violations': '0/1250 (0.0%)', 'domain_range_violations': '23/1250 (1.8%)', 'cross_field_consistency_violations': 1, 'DR_pct': 1.84, 'E_P': 65.05, 'E_R': 69.64, 'E_F1': 67.26, 'R_P': 39.36, 'R_R': 50.51, 'R_F1': 44.24, 'TCR_changed_selection': '0/551 (0.0%)', 'all_candidates_TCR_1.0': True}",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "tcr_beam4_qwen_scierc",
+    "field": "metrics",
+    "value": "{'samples': 551, 'json_failures': 0, 'entities': 1802, 'relations': 1250, 'entity_type_violations': '0/1802 (0.0%)', 'relation_vocab_violations': '0/1250 (0.0%)', 'domain_range_violations': '23/1250 (1.8%)', 'cross_field_consistency_violations': 1, 'DR_pct': 1.84, 'E_P': 65.05, 'E_R': 69.64, 'E_F1': 67.26, 'R_P': 39.36, 'R_R': 50.51, 'R_F1': 44.24, 'TCR_changed_selection': '0/551 (0.0%)', 'all_candidates_TCR_1.0': True}",
+    "project": "schema_semantic_constrained_ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-22T15:49:16.758063+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"tcr_beam4_qwen_scierc\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T14:37:32.074Z\", \"updated_at\": \"2026-05-22T15:49:03.706Z\", \"hypothesis\": \"TCR (Type Consistency Reranking) with beam search (k=4) on Qwen3-8B LoRA SciERC will reduce domain/range violations compared to standard beam search by reranking candidates based on type consistency scores, while maintaining or improving Entity/Relation F1.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python beam_tcr_rerank.py --model_path /root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged --data_path data/processed_data/test.json --dataset scierc --beam_width 4 --alpha 0.7 --output_path outputs/beam4_tcr_qwen_scierc.jsonl --skip_on_error\", \"server\": \"westd-16980\", \"data_path\": \"data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Qwen3-8B-LoRA-SciERC-merged\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/qwen3_8b_lora_scierc_merged\", \"log_path\": \"/tmp/beam_tcr_run.log\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-22T15:37:47.865Z\", \"metrics\": {\"samples\": 551, \"json_failures\": 0, \"entities\": 1802, \"relations\": 1250, \"entity_type_violations\": \"0/1802 (0.0%)\", \"relation_vocab_violations\": \"0/1250 (0.0%)\", \"domain_range_violations\": \"23/1250 (1.8%)\", \"cross_field_consistency_violations\": 1, \"DR_pct\": 1.84, \"E_P\": 65.05, \"E_R\": 69.64, \"E_F1\": 67.26, \"R_P\": 39.36, \"R_R\": 50.51, \"R_F1\": 44.24, \"TCR_changed_selection\": \"0/551 (0.0%)\", \"all_candidates_TCR_1.0\": true}, \"parent\": \"d066_beam_sweep\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7181}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_tcr-qwen-status_20260522T154715",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-22T15:49:16.758245+00:00_
+
+## 汇总
+
+### TCR Beam4 Qwen SciERC — 已完成 (DONE, negative)
+
+| 指标 | 值 |
+|------|-----|
+| Entity F1 | 67.26 (P=65.05, R=69.64) |
+| Relation F1 | 44.24 (P=39.36, R=50.51) |
+| D/R violations | 23/1250 (1.84%) |
+| Entity type violations | 0/1802 (0%) |
+| Relation vocab violations | 0/1250 (0%) |
+| Cross-field violations | 1 |
+| JSON failures | 0 |
+| **TCR changed selection** | **0/551 (0.0%)** |
+
+**关键发现**：TCR 完全没有生效——所有 551 个样本的 beam candidates 的 TCR score 都是 1.0，意味着 Qwen beam search 产出的所有候选序列本身就已经满足 type consistency，reranking 无事可做。结论标记为 negative。
+
+---
+
+### GPU 状态
+
+| GPU | 型号 | 利用率 | 显存 |
+|-----|------|--------|------|
+| 0 | RTX PRO 6000 Blackwell | 81% | 40.4 / 97.9 GB |
+| 1 | RTX PRO 6000 Blackwell | 91% | 18.3 / 97.9 GB |
+
+### 其他实验进度
+
+| 实验 | GPU | 进度 | 状态 |
+|------|-----|------|------|
+| `beam4_tcr_llama_scierc` | GPU 1 | 25/551 (~5%) | RUNNING |
+| `70b_lora_scierc_beam4_s1` | GPU 0 | 183/551 (~33%) | RUNNING |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_check_tcr-qwen-status_20260522T154715"
+}
+```
+
+</details>
+
+---

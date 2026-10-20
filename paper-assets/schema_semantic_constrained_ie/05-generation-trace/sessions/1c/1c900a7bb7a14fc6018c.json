@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c900a7bb7a14fc6018c",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "code llama beam 551 collect",
+  "task_key": "worker_code_llama_beam_551_collect_20260517T034253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama_beam_551_collect_20260517T034253_result.json",
+    "occurrence": 1,
+    "bytes": 748,
+    "sha256": "cdb7cc2a69cfb913ba8293e6700babe8505c0a3e4e5e535721033d35289dc644"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "unified_f1_eval.py 的文件路径是硬编码的 docred 文件，不接受命令行参数。violation_checker 已经输出了 Entity F1 和 Relation F1。结果已完整。\n\n## 结果汇报\n\n**状态: SUCCESS** (551/551 docs, 0 failures)\n\n| 指标 | 值 |\n|------|-----|\n| ET% (Entity Type Violations) | 0.0% (0/2398) |\n| RV% (Relation Vocab Violations) | 0.0% (0/1606) |\n| DR% (Domain/Range Violations) | 0.0% (0/1606) |\n| CF (Cross-field Consistency) | 15 violations |\n| E_F1 | 0.2504 (P=0.2127, R=0.3042) |\n| R_F1 | 0.0333 (P=0.0268, R=0.0441) |\n| total_entities | 2398 |\n| total_relations | 1606 |\n\nBeam search 的约束满足率完美 (ET/RV/DR 均为 0%)，但 F1 非常低，尤其是 Relation F1 仅 3.3%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-beam-551-collect.md"
+}

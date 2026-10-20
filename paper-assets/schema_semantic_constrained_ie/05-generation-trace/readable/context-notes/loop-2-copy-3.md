@@ -1,0 +1,75 @@
+# reviewer / loop_2.md
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_2.md`
+- **Structured JSON:** [`76172e001fcb0ce6182d.json`](../../sessions/76/76172e001fcb0ce6182d.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 2
+reason: max_wall_time
+updated: '2026-05-14T01:58:53+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：cuda:0, cuda:1（westd-16980）。之前无越界但多次出现重复进程占用。
+- submit_training_job 在此服务器上**不支持裸 python3**——必须用 `bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 ..."` 包裹，否则 EXIT_CODE=127。这个坑已踩 3 次。
+- Cron PID 追踪极不可靠：已产生 4 次假失败（grammar_only/semantic_only/full_s1/full_s2）。收到 on_failed 通知时**先查 nvidia-smi + 输出文件行数**再判定，不要直接信 cron。
+- paper_framing.md 写了 "guaranteed 0% violation by construction"，但实际 full_s1 DR=0.93%、CF=9.9%。**已提交 warning 要求修正措辞**，下一个"你"审章节时注意此 claim 是否被修正。
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-16980 (root)，2× NVIDIA RTX PRO 6000 Blackwell 96GB（ROADMAP 误写 A100 80GB，已提醒修正）
+- 工作目录：`/root/schema_semantic_constrained_ie`
+- Python：`/root/miniconda3/bin/python3`（conda base 环境）
+- 模型：`/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`
+- 数据：SciERC `data/processed_data/test.json` (551 samples)，DocRED `data/docred/dev.json` (998 docs)
+- 无 W&B 配置（不检查 W&B）
+- 活跃进程（截至 handoff）：
+  - PID 150766: DocRED grammar_only, GPU 0, ~刚启动
+  - PID 144858: SciERC full_s2, GPU 1, 497/551
+
+### 3. 📊 当前状态
+刚完成 Phase 2 SciERC 全面审查（5 维度回应 + ROADMAP 审查），报告已提交 Director。
+
+**核心结论已确认**：full_s1 DR 15.37%→0.93% (↓94%), F1 neutral。
+
+Registry 状态：
+- `phase2_scierc_full_s2`: DONE(failed) 但实际 PID 144858 在跑 497/551——又一次 cron 假失败
+- `phase2_scierc_unconstrained/grammar_only/semantic_only/full_s1`: 全 DONE(success)，metrics 已核实一致
+- `mvp_phase0_docred_schema`: DONE(success)，998/998 完成
+- DocRED grammar_only: 刚启动（尚未注册到 registry？需确认）
+
+无等待中的 Worker 回调。
+
+### 4. 📋 待办
+- full_s2 完成 (551/551) → **重点审查 S2 是否天然缓解 CF violation**（如果 S2 CF < S1 的 9.9%，这是 S2 架构的关键优势，影响论文叙事）
+- full_s2 完成 → 对比 S1 vs S2 的 DR/F1 trade-off，验证 S2 pilot50 的 DR=0% 是否在全量上保持
+- DocRED grammar_only 完成 → 审查 metrics，特别关注 RV 是否→0%（DocRED 有 96 relation types，grammar enum 约束更有价值）
+- DocRED full_s1 启动后 → 验证 GPU 边界 + 单进程（防止重复进程问题再发）
+- Agent 提交论文章节审查请求 → 按 5.1 维度审查，**特别检查 "guaranteed 0%" 措辞是否修正、CF limitation 是否正面报告**
+- 收到 cron:on_failed → 先查 nvidia-smi + wc -l 输出文件，大概率是假失败
+
+### 5. 🎯 战略上下文
+- 项目方向：OntoCoDec，IE ontology schema → 解码时约束。EMNLP ARR 5/25 截稿。
+- 决策链：D001 (EMNLP 主目标) → D002 (SciERC GO) → D003 (MVP 通过) → D004/D005/D006 (Phase 2 核心结果确认)
+- **最关键未解决问题**：CF violation 从 0.08%→9.9%。这是 semantic 约束按 relation 独立强制 entity type 的副作用。如果 S2（两遍式：Pass 1 固定 entity types → Pass 2 用固定 types 约束 relations）能缓解此问题，则 S2 成为论文推荐架构。如果 S2 也有高 CF，则 CF 是方法的固有 limitation，需论文正面讨论。
+- **易判断错的事**：(1) 不要把 R-F1 +0.13pp 当显著改进——TP 差异仅 2 个，是噪声，正确 claim 是 "F1 neutral"；(2) "协同效应" 更准确的描述是 "prerequisite-enabling"——grammar 单独 DR 仅 -0.53pp，不是对称协同；(3) 绝对 R-F1≈8% 是 zero-shot SciERC 预期水平，不是 bug。
+- **易踩的坑**：Agent 的进程管理反复出问题（重复进程、cleanup 误杀、cron 假失败循环）。审查 RUNNING 实验时永远先 nvidia-smi 核实真实 GPU 进程，不信 registry PID。
+
+
+---

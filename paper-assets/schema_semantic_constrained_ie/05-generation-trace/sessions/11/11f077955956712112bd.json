@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11f077955956712112bd",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "ops gpu1 qwen con launch",
+  "task_key": "worker_ops_gpu1-qwen-con-launch_20260520T035455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu1-qwen-con-launch_20260520T035455_result.json",
+    "occurrence": 1,
+    "bytes": 743,
+    "sha256": "c90cfe88905a2d9a3db39fde6546837e290c162d0d98fbacb0cf94713990dda9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功，双 GPU 并行运行。\n\n**汇总**：\n\n| 项目 | 状态 |\n|------|------|\n| d066 beam8 con | 551/551 完整 ✓ |\n| sleep-loop PID 169446 | 已杀 ✓ |\n| GPU0 (unc) | PID 167691, 18919 MiB, ~80% util |\n| GPU1 (con full_s1) | 18905 MiB, 模型已加载，开始推理 |\n| tmux session | `d065_qwen_con` |\n| 日志 | `/root/autodl-tmp/schema_outputs/d065_qwen_greedy_con_4096.log` |\n| 输出 | `/root/autodl-tmp/schema_outputs/d065_qwen_docred_greedy_con_4096.jsonl` |\n| 数据集 | docred dev, 998 samples |\n| 模式 | `--mode full_s1` (con 对应的实际参数) |\n\n注意：`--mode constrained` 不是有效参数，实际用了 `full_s1`（与 d066 beam sweep 的 con 文件命名一致）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu1-qwen-con-launch.md"
+}

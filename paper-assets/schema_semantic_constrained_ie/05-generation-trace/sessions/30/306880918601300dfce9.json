@@ -1,0 +1,755 @@
+{
+  "schema_version": "1.0",
+  "id": "306880918601300dfce9",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "conversation",
+  "title": "status 21461 d066 d067 v2",
+  "task_key": "worker_status_21461_d066_d067_v2_20260520T015738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_status_21461_d066_d067_v2_20260520T015738.jsonl",
+    "occurrence": 1,
+    "bytes": 23410,
+    "sha256": "28536a0431cd9117567e2009aea25e9a078a985515ba1d13967ad6c4660118bf"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 0,
+    "tool_calls": 18,
+    "roles": {
+      "tool_call": 18,
+      "tool_result": 18,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T01:59:20.141998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T01:59:20.142477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T01:59:20.142901+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/d066_beam_sweep/*.jsonl"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T01:59:20.143108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "tail -10 /root/autodl-tmp/schema_outputs/d066_beam_sweep.log"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T01:59:20.143294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/d067_seed_variance/*.jsonl"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T01:59:20.143488+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "tail -10 /root/autodl-tmp/schema_outputs/d067_seed_variance.log"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T01:59:20.143712+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"wc: '/root/schema_semantic_constrained_ie/outputs/d066_beam_sweep/*.jsonl': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T01:59:20.143912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T01:59:20.144104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"tail: cannot open '/root/autodl-tmp/schema_outputs/d066_beam_sweep.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T01:59:20.144300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    551 /root/schema_semantic_constrained_ie/outputs/d067_seed_variance/llama_scierc_seed123_full_s1.jsonl\\\\n    551 /root/schema_semantic_constrained_ie/outputs/d067_seed_variance/llama_scierc_seed123_unconstrained.jsonl\\\\n    233 /root/schema_semantic_constrained_ie/outputs/d067_seed_variance/llama_scierc_seed456_unconstrained.jsonl\\\\n    551 /root/schema_semantic_constrained_ie/outputs/d067_seed_variance/qwen_scierc_seed123_full_s1.jsonl\\\\n    551 /root/schema_semantic_constrained_ie/outputs/d067_seed_variance/qwen_scierc_seed123_unconstrained.jsonl\\\\n    551 /root/schema_semantic_constrained_ie/outputs/d067_seed_variance/qwen_scierc_seed456_full_s1.jsonl\\\\n    551 /root/schema_semantic_constrained_ie/outputs/d067_seed_variance/qwen_scierc_seed456_unconstrained.jsonl\\\\n   3539 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T01:59:20.144527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T01:59:20.144748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 89 %, 18347 MiB\\\\n1, 79 %, 18919 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T01:59:20.144967+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "find /root/schema_semantic_constrained_ie/outputs -type d -name \"*d066*\""
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T01:59:20.145153+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T01:59:20.145333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "find /root/autodl-tmp -name \"*d066*\" -type f"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T01:59:20.145516+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/schema_outputs/d066_beam_sweep/d066_summary.json\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep_scierc_gpu1.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T01:59:20.145710+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls /root/schema_semantic_constrained_ie/outputs/"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T01:59:20.145968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bootstrap_ci_ee_ft_qwen.json\\\\nconstrained_dryrun.log\\\\nconstrained_dryrun_v2.log\\\\nd067_seed_variance\\\\nd068_guided_beam\\\\ndocred_semantic_only.jsonl\\\\nee_llama_wikievents_constrained_v3_full.jsonl\\\\nee_llama_wikievents_constrained_v3_posthoc.jsonl\\\\nee_mistral_wikievents_constrained_v2_full.jsonl\\\\nee_mistral_wikievents_constrained_v2_full.jsonl.bak_before16k\\\\nee_mistral_wikievents_constrained_v3_full.jsonl\\\\nee_mistral_wikievents_constrained_v3_posthoc.jsonl\\\\nee_mistral_wikievents_unconstrained_posthoc.jsonl\\\\nee_qwen_ft_wikievents_full_s1.jsonl\\\\nee_qwen_ft_wikievents_full_s1_r5.jsonl\\\\nee_qwen_ft_wikievents_unconstrained.jsonl\\\\nee_qwen_ft_wikievents_unconstrained_r5.jsonl\\\\nee_qwen_wikievents_grammar_only.jsonl\\\\neval_report_full_s1.json\\\\neval_report_full_s1_r5.json\\\\neval_report_unconstrained.json\\\\neval_report_unconstrained_r5.json\\\\nmistral_constrained_fix_dryrun.jsonl\\\\nmistral_constrained_full.jsonl\\\\nmistral_docred_greedy_matched50.jsonl\\\\nqwen_constrained_regression_test.jsonl\\\\nre_qwen_full_ft_scierc_full_s1.jsonl\\\\nre_qwen_full_ft_scierc_unconstrained.jsonl\\\\nscierc_mistral_beam_551.jsonl\\\\nviolation_report.json\\\\nviolation_report_constrained_v2.json\\\\nviolation_report_docred.json\\\\nviolation_report_ee.json\\\\nviolation_report_ft_full_s1.json\\\\nviolation_report_ft_full_s1_r5.json\\\\nviolation_report_ft_unconstrained.json\\\\nviolation_report_ft_unconstrained_r5.json\\\\nviolation_report_mistral_greedy_matched50.json\\\\nviolation_report_mistral_v2_partial.json\\\\nviolation_report_qwen_full_ft_full_s1.json\\\\nviolation_report_qwen_full_ft_unconstrained.json\\\\nviolation_report_w6_mistral_docred_constrained.json\\\\nw6_mistral_docred_constrained.jsonl\\\\nw6_mistral_docred_unconstrained.jsonl\\\\nw6_mistral_docred_unconstrained_fixed.jsonl\\\\nw8_mistral_docred_posthoc.jsonl\\\\nw8_mistral_docred_posthoc_report.json\\\\nw8_qwen_docred_ft_grammar_only.jsonl\\\\nw8_qwen_docred_ft_semantic_only.jsonl\\\\nw9_mistral_docred_be\n…[truncated 435 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T01:59:20.146187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "grep -r d067 /root/autodl-tmp/schema_outputs/d067_seed_variance.log"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T01:59:20.146410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"d067 Seed Variance: qwen_scierc seed=123 GPU=0\\\\nOutput: outputs/d067_seed_variance/qwen_scierc_seed123_unconstrained.jsonl\\\\nReport saved to outputs/d067_seed_variance/qwen_scierc_seed123_unconstrained_violations.json\\\\nOutput: outputs/d067_seed_variance/qwen_scierc_seed123_full_s1.jsonl\\\\nReport saved to outputs/d067_seed_variance/qwen_scierc_seed123_full_s1_violations.json\\\\nd067 complete: qwen_scierc seed=123\\\\n  outputs/d067_seed_variance/qwen_scierc_seed123_unconstrained.jsonl\\\\n  outputs/d067_seed_variance/qwen_scierc_seed123_full_s1.jsonl\\\\nd067 Seed Variance: qwen_scierc seed=456 GPU=0\\\\nOutput: outputs/d067_seed_variance/qwen_scierc_seed456_unconstrained.jsonl\\\\nReport saved to outputs/d067_seed_variance/qwen_scierc_seed456_unconstrained_violations.json\\\\nOutput: outputs/d067_seed_variance/qwen_scierc_seed456_full_s1.jsonl\\\\nReport saved to outputs/d067_seed_variance/qwen_scierc_seed456_full_s1_violations.json\\\\nd067 complete: qwen_scierc seed=456\\\\n  outputs/d067_seed_variance/qwen_scierc_seed456_unconstrained.jsonl\\\\n  outputs/d067_seed_variance/qwen_scierc_seed456_full_s1.jsonl\\\\nd067 Seed Variance: llama_scierc seed=123 GPU=0\\\\nOutput: outputs/d067_seed_variance/llama_scierc_seed123_unconstrained.jsonl\\\\nReport saved to outputs/d067_seed_variance/llama_scierc_seed123_unconstrained_violations.json\\\\nOutput: outputs/d067_seed_variance/llama_scierc_seed123_full_s1.jsonl\\\\nReport saved to outputs/d067_seed_variance/llama_scierc_seed123_full_s1_violations.json\\\\nd067 complete: llama_scierc seed=123\\\\n  outputs/d067_seed_variance/llama_scierc_seed123_unconstrained.jsonl\\\\n  outputs/d067_seed_variance/llama_scierc_seed123_full_s1.jsonl\\\\nd067 Seed Variance: llama_scierc seed=456 GPU=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T01:59:20.146700+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "cat /root/autodl-tmp/schema_outputs/d066_beam_sweep/d066_summary.json"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T01:59:20.146909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"configs\\\\\\\": [],\\\\n  \\\\\\\"total_configs\\\\\\\": 0\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T01:59:20.147091+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "tail -20 /root/autodl-tmp/schema_outputs/d066_beam_sweep_scierc_gpu1.log"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T01:59:20.147291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[157/551] C86-1081_sent0: OK E=5 R=2 3.9s\\\\n[158/551] C86-1081_sent1: OK E=2 R=0 2.1s\\\\n[159/551] C86-1081_sent2: OK E=2 R=1 2.3s\\\\n[160/551] P03-1070_sent0: OK E=6 R=4 6.1s\\\\n[161/551] P03-1070_sent1: OK E=4 R=5 7.0s\\\\n[162/551] P03-1070_sent2: OK E=2 R=0 1.7s\\\\n[163/551] P03-1070_sent3: OK E=3 R=2 3.5s\\\\n[164/551] P05-1056_sent0: OK E=3 R=2 2.8s\\\\n[165/551] P05-1056_sent1: OK E=4 R=5 7.8s\\\\n[166/551] P05-1056_sent2: OK E=2 R=1 3.4s\\\\n[167/551] P05-1056_sent3: OK E=5 R=6 7.2s\\\\n[168/551] P05-1056_sent4: OK E=6 R=6 7.4s\\\\n[169/551] P05-1056_sent5: OK E=2 R=1 1.9s\\\\n[170/551] CVPR_2011_11_abs_sent0: OK E=4 R=4 5.0s\\\\n[171/551] CVPR_2011_11_abs_sent1: OK E=6 R=4 6.3s\\\\n[172/551] CVPR_2011_11_abs_sent2: OK E=4 R=2 3.4s\\\\n[173/551] CVPR_2011_11_abs_sent3: OK E=4 R=4 6.2s\\\\n[174/551] CVPR_2011_11_abs_sent4: OK E=4 R=4 5.0s\\\\n[175/551] ICML_2016_10_abs_sent0: OK E=3 R=2 3.0s\\\\n[176/551] ICML_2016_10_abs_sent1: OK E=3 R=3 3.5s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T01:59:20.147500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/d067_seed_variance/llama_scierc_seed456_unconstrained.jsonl"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T01:59:20.147710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"241 /root/schema_semantic_constrained_ie/outputs/d067_seed_variance/llama_scierc_seed456_unconstrained.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T01:59:20.147909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "find /root/autodl-tmp/schema_outputs/d066_beam_sweep -name \"*.jsonl\" -type f"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T01:59:20.148105+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_scierc_beam1_unconstrained.jsonl\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_scierc_beam1_full_s1.jsonl\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_scierc_beam2_unconstrained.jsonl\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_scierc_beam2_full_s1.jsonl\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_scierc_beam4_unconstrained.jsonl\\\\n/root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_scierc_beam4_full_s1.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T01:59:20.148291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "ls /root/schema_semantic_constrained_ie/outputs/d068_guided_beam/"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T01:59:20.148468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"qwen_scierc_beam4_beta1.0.jsonl\\\\nqwen_scierc_beam4_beta2.0.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T01:59:20.148666+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/autodl-tmp/schema_outputs/d066_beam_sweep/*.jsonl"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T01:59:20.148887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    551 /root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_scierc_beam1_full_s1.jsonl\\\\n    551 /root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_scierc_beam1_unconstrained.jsonl\\\\n    551 /root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_scierc_beam2_full_s1.jsonl\\\\n    551 /root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_scierc_beam2_unconstrained.jsonl\\\\n    192 /root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_scierc_beam4_full_s1.jsonl\\\\n    551 /root/autodl-tmp/schema_outputs/d066_beam_sweep/qwen_scierc_beam4_unconstrained.jsonl\\\\n   2947 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T01:59:20.149078+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "wc -l /root/schema_semantic_constrained_ie/outputs/d068_guided_beam/*.jsonl"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T01:59:20.149265+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   138 /root/schema_semantic_constrained_ie/outputs/d068_guided_beam/qwen_scierc_beam4_beta1.0.jsonl\\\\n   141 /root/schema_semantic_constrained_ie/outputs/d068_guided_beam/qwen_scierc_beam4_beta2.0.jsonl\\\\n   279 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T01:59:20.149456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-21461",
+              "command": "tail -5 /root/autodl-tmp/schema_outputs/d067_seed_variance.log"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T01:59:20.149649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T01:59:20.149995+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 进度汇报\n\n### d066 beam sweep (GPU 1)\n\n| config | 进度 | 状态 |\n|--------|------|------|\n| qwen_scierc_beam1_unconstrained | 551/551 | ✅ |\n| qwen_scierc_beam1_full_s1 | 551/551 | ✅ |\n| qwen_scierc_beam2_unconstrained | 551/551 | ✅ |\n| qwen_scierc_beam2_full_s1 | 551/551 | ✅ |\n| qwen_scierc_beam4_unconstrained | 551/551 | ✅ |\n| **qwen_scierc_beam4_full_s1** | **192/551 (34.8%)** | 🔄 运行中 |\n\n日志显示 ~4.5s/sample，剩余 359 样本。**ETA ≈ 27 分钟**。这是 d066 最后一个 config。\n\n### d067 seed variance (GPU 0)\n\n| config | 进度 | 状态 |\n|--------|------|------|\n| qwen_scierc_seed123_unconstrained | 551/551 | ✅ |\n| qwen_scierc_seed123_full_s1 | 551/551 | ✅ |\n| qwen_scierc_seed456_unconstrained | 551/551 | ✅ |\n| qwen_scierc_seed456_full_s1 | 551/551 | ✅ |\n| llama_scierc_seed123_unconstrained | 551/551 | ✅ |\n| llama_scierc_seed123_full_s1 | 551/551 | ✅ |\n| **llama_scierc_seed456_unconstrained** | **241/551 (43.7%)** | 🔄 运行中 |\n| llama_scierc_seed456_full_s1 | 0/551 | ⏳ 排队 |\n\n剩余 310 + 551 = 861 样本。**ETA ≈ 60-70 分钟**。\n\n### GPU 利用率\n- GPU 0: 89%, 18347 MiB — d067\n- GPU 1: 79%, 18919 MiB — d066\n\n### 额外发现\nd068_guided_beam 也有产出（beta1.0: 138/551, beta2.0: 141/551），但当前未活跃，可能是之前跑的或等 GPU 空闲后继续。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_status_21461_d066_d067_v2_20260520T015738"
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/conversations/status-21461-d066-d067-v2.md"
+}

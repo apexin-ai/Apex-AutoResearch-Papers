@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d58dd810d51eb3d9843",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "analysis docred dr consistency check",
+  "task_key": "worker_analysis_docred-dr-consistency-check_20260523T015919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_docred-dr-consistency-check_20260523T015919_result.json",
+    "occurrence": 1,
+    "bytes": 1133,
+    "sha256": "85e0eaa8807e95c8c7c653cf2fd2c998c593ea24972b12fb3fbf9fa2c0404731"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务都完成。结果如下：\n\n## 任务 1：70B LoRA DocRED 200 Unconstrained\n\n| 指标 | 分子/分母 | 百分比 |\n|------|-----------|--------|\n| **DR** | 7/3159 | **0.22%** |\n| **RV** | 18/3159 | **0.57%** |\n| **ET** | 0/3381 | **0.00%** |\n| **CF** | 2 (entities) | 0.06% |\n| **E-F1** | 80.34 (P=85.13, R=76.05) | |\n| **R-F1** | 43.80 (P=39.60, R=48.99) | |\n| PF | 20/200 | 10.0% |\n| max_samples | **200 行** | |\n\nDR = 0.22% 与之前的报告一致（不是 0.88%）。差异可能来自不同的 violation_checker 版本或不同的 DR 计算基数（有的版本用 total_triples 含 RV-invalid 的三元组作分母，有的版本只在 RV-valid 子集上算 DR）。\n\n## 任务 2：70B LoRA DocRED 200 Grammar-only\n\n| 指标 | 分子/分母 | 百分比 |\n|------|-----------|--------|\n| **DR** | 12/3154 | **0.38%** |\n| **RV** | 0/3154 | **0.00%** |\n| **ET** | 0/3362 | **0.00%** |\n| **CF** | 2 | 0.06% |\n| **E-F1** | **80.13** (P=85.16, R=75.66) | |\n| **R-F1** | 43.96 (P=39.78, R=49.11) | |\n| PF | 21/200 | 10.5% |\n\nE-F1=80.13 确认与之前 worker 报告一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-docred-dr-consistency-check.md"
+}

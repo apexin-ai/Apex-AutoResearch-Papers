@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "2e77e7b26168c922612d",
+  "project": "schema_semantic_constrained_ie",
+  "kind": "result",
+  "title": "diagnose phase2 scierc grammar only",
+  "task_key": "worker_diagnose_phase2_scierc_grammar_only_20260513T224135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_phase2_scierc_grammar_only_20260513T224135_result.json",
+    "occurrence": 1,
+    "bytes": 1105,
+    "sha256": "e6833c193c55fa5ff921fdb7c3f45514e2ed42e0d7199dfa9fb9c50709acf2e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**误报确认。** 进程 126473 正常运行中。\n\n- **状态**: `Rl`（运行中），已运行 24 分 28 秒\n- **当前进度**: 176/551（输出文件 174 行，每样本 6-10 秒）\n- **根本原因**: cron 追踪的是 stale PID 123425，实际进程 126473 从未退出\n\n```json\n{\"root_cause\":\"false_alarm - cron tracked stale PID 123425, actual PID 126473 is still running (stat=Rl, elapsed=24:28)\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"更新 cron 监控的 PID 为 126473\",\"等待实验自然完成，预计还需 ~55 分钟 (375 samples × ~9s)\"],\"can_auto_fix\":true,\"actual_progress\":\"176/551\",\"output_file_exists\":true}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "false_alarm - cron tracked stale PID 123425, actual PID 126473 is still running (stat=Rl, elapsed=24:28)",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "更新 cron 监控的 PID 为 126473",
+                "等待实验自然完成，预计还需 ~55 分钟 (375 samples × ~9s)"
+              ],
+              "can_auto_fix": true,
+              "actual_progress": "176/551",
+              "output_file_exists": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-phase2-scierc-grammar-only.md"
+}
