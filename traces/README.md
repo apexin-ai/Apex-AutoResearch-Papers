@@ -1,6 +1,6 @@
 # Research Trace Atlas
 
-Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **92 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **93 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
 [Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
@@ -36,6 +36,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [diff_collision_sdf](../paper-assets/diff_collision_sdf/05-generation-trace/README.md) | 292 | 790 | 746 | 36 | 149,990 | [Read](../paper-assets/diff_collision_sdf/05-generation-trace/readable/README.md) |
 | [distill_kv_rag_cache](../paper-assets/distill_kv_rag_cache/05-generation-trace/README.md) | 9 | 32 | 24 | 0 | 6,102 | [Read](../paper-assets/distill_kv_rag_cache/05-generation-trace/readable/README.md) |
 | [distill_sparse_swiglu](../paper-assets/distill_sparse_swiglu/05-generation-trace/README.md) | 582 | 1,072 | 867 | 125 | 197,700 | [Read](../paper-assets/distill_sparse_swiglu/05-generation-trace/readable/README.md) |
+| [distill_sparse_swiglu--export-20260712](../research-snapshots/distill_sparse_swiglu/2026-07-12/05-generation-trace/README.md) | 1,746 | 0 | 0 | 0 | 256,776 | [Read](../research-snapshots/distill_sparse_swiglu/2026-07-12/05-generation-trace/readable/README.md) |
 | [distrib_canary_collapse](../paper-assets/distrib_canary_collapse/05-generation-trace/README.md) | 570 | 1,011 | 975 | 104 | 222,729 | [Read](../paper-assets/distrib_canary_collapse/05-generation-trace/readable/README.md) |
 | [distrib_canary_collapse--export-20260712](../research-snapshots/distrib_canary_collapse/2026-07-12/05-generation-trace/README.md) | 1,948 | 0 | 0 | 0 | 447,459 | [Read](../research-snapshots/distrib_canary_collapse/2026-07-12/05-generation-trace/readable/README.md) |
 | [div_cal_verify](../paper-assets/div_cal_verify/05-generation-trace/README.md) | 53 | 137 | 136 | 10 | 19,867 | [Read](../paper-assets/div_cal_verify/05-generation-trace/readable/README.md) |
@@ -101,6 +102,6 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [xling_calab_direction](../paper-assets/xling_calab_direction/05-generation-trace/README.md) | 0 | 1 | 1 | 0 | 404 | [Read](../paper-assets/xling_calab_direction/05-generation-trace/readable/README.md) |
 | [xling_calib_direction](../paper-assets/xling_calib_direction/05-generation-trace/README.md) | 48 | 123 | 119 | 0 | 27,260 | [Read](../paper-assets/xling_calib_direction/05-generation-trace/readable/README.md) |
 
-**99,798 source records · 8,312,059 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
+**101,544 source records · 8,568,835 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
 
 Source language and order are retained. A user-role message can originate from another agent or system and does not identify a human author. Missing prompts and timestamps are not reconstructed. Credentials and embedded attachment payloads are redacted.

@@ -34,6 +34,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 443
+        },
+        "distill_sparse_swiglu": {
+          "status": "uploaded",
+          "project": "distill_sparse_swiglu",
+          "collection": "distill_sparse_swiglu--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "d18a423d7b275f3225acaee867b0363b0b46427fe5326e805a4ddde422b4cc68",
+          "indexed_members": 1751,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 1746
         }
       },
       "status": "in_progress",

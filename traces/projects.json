@@ -392,6 +392,19 @@
       }
     },
     {
+      "project": "distill_sparse_swiglu--export-20260712",
+      "title": "Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs (July export snapshot)",
+      "catalog": "../research-snapshots/distill_sparse_swiglu/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1746,
+        "messages": 256776,
+        "user_turns": 11731,
+        "tool_calls": 67046,
+        "unparsed_lines": 7,
+        "conversation": 1746
+      }
+    },
+    {
       "project": "distrib_canary_collapse",
       "title": "Characterizing the Detectability Landscape of Iterative Model Collapse",
       "catalog": "../paper-assets/distrib_canary_collapse/05-generation-trace/catalog.json",
