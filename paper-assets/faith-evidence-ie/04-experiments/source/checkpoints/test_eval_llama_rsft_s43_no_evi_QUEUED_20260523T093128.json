@@ -1,0 +1,29 @@
+{
+  "exp_id": "test_eval_llama_rsft_s43_no_evi",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:11:44.805Z",
+    "updated_at": "2026-05-23T09:31:27.771Z",
+    "hypothesis": "LLaMA-3.1-8B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 s43 with-evi ign_f1=0.3488 计算 LLaMA s43 evidence tax。s42 tax=-2.65pp。",
+    "parent": "test_eval_llama_rsft_s43_with_evi",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s43 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_llama_rsft_s43_no_evi\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "240099",
+      "log_path": "~/runs/faith-evidence-ie/test_eval_llama_rsft_s43_no_evi.log",
+      "submitted_at": "2026-05-23T09:12:00.365Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-23T09:31:28.443688+00:00",
+  "trigger": "update_registry"
+}

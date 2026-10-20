@@ -1,0 +1,49 @@
+{
+  "exp_id": "plan_012_dpo_ced_1ep",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:50:44.852Z",
+    "updated_at": "2026-05-15T20:17:44.844Z",
+    "spec": {
+      "hypothesis": "DPO+CED 1-epoch 重训：修复 3-epoch 过拟合问题。epochs=1 (~167 steps, <10min)，其余超参不变（β=0.1, lr=5e-7, loss=sigmoid, seed=42, pairs=2666）。让 DPO 数据点可用于论文。",
+      "parent": "plan_012_dpo_ced",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 WANDB_PROJECT=freige-dpo PYTHONUNBUFFERED=1 python -m freige.training.dpo_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --dpo_data_path /root/autodl-tmp/dpo_data/dpo_pairs.jsonl --output_dir /root/autodl-tmp/dpo_output_1ep --beta 0.1 --num_epochs 1 --seed 42 --loss_type sigmoid --per_device_batch_size 1 --gradient_accumulation_steps 16 --wandb_run_name plan_012_dpo_ced_1ep\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "245103",
+      "log_path": "~/runs/faith-evidence-ie/plan_012_dpo_ced_1ep.log",
+      "submitted_at": "2026-05-15T19:43:02.707Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/dpo_data/dpo_pairs.jsonl",
+      "data_count": 2666,
+      "model_name": "Qwen3-4B + SFT + CED-DPO (1ep)",
+      "seed": 42,
+      "base_model": "/root/autodl-tmp/models/Qwen3-4B",
+      "sft_adapter": "/root/autodl-tmp/sft_output",
+      "beta": 0.1,
+      "num_epochs": 1,
+      "loss_type": "sigmoid",
+      "checkpoint_path": "/root/autodl-tmp/dpo_output_1ep"
+    },
+    "gpu_ids": [
+      3
+    ],
+    "hypothesis": "DPO+CED 1 epoch retraining: plan_012_dpo_ced 3 epochs 严重过拟合 (rewards_accuracy=1.0, margins 9x膨胀, entropy崩塌)。重训 1 epoch 验证 early stopping 是否消除 overfitting confound。对比 plan_012 3ep + RSFT (rel_f1=0.46) + SFT baseline (rel_f1=0.4057)。",
+    "gpu": "cuda:3",
+    "account": "root",
+    "notes": "提交就绪性检查 (2026-05-15):\n\n✅ 前置条件全部满足:\n- 基础模型: /root/autodl-tmp/models/Qwen3-4B ✓\n- SFT adapter: /root/autodl-tmp/sft_output ✓\n- DPO 数据: /root/autodl-tmp/dpo_data/dpo_pairs.jsonl (2666 pairs) ✓\n- 输出目录: /root/autodl-tmp/dpo_output_1ep/ (已创建, 为空) ✓\n\n⚠️ 阻塞: cuda:3 被 plan_008_rsft_topk3 (pid=234494, 20093 MiB) 占用, 需等其完成。\n\n📝 前次提交 (pid=240426) 失败: 日志仅到 \"Loaded 2666 DPO pairs\" 即停, 疑因 cuda:3 被占用导致 OOM。\n\n📋 提交命令 (cuda:3 空出后直接用):\nCUDA_VISIBLE_DEVICES=3 bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.dpo_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --dpo_data_path /root/autodl-tmp/dpo_data/dpo_pairs.jsonl --output_dir /root/autodl-tmp/dpo_output_1ep --beta 0.1 --num_epochs 1 --seed 42 --loss_type sigmoid --wandb_run_name plan_012_dpo_ced_1ep\"\n\n预期: ~167 steps, ~35 min (基于 3ep 用时 ~1h44m)\n输出: /root/autodl-tmp/dpo_output_1ep/\n\n🔍 附加发现:\n- checkpoint-400 存在: /root/autodl-tmp/dpo_output/checkpoint-400/ (完整, 含 adapter + optimizer)\n- eval_plan_012_dpo_ced_ckpt400 之前因 OOM 失败, 需在空闲 GPU 重跑",
+    "reproduce": {
+      "finished_at": "2026-05-15T20:17:44.285Z"
+    }
+  },
+  "timestamp": "2026-05-15T20:17:45.063554+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_flat_nli_seed44",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:12:38.199Z",
+    "updated_at": "2026-05-15T23:26:54.416Z",
+    "hypothesis": "Full dev eval of flat-NLI RSFT seed=44 checkpoint WITH --sft_adapter。对比 flat-NLI s42 (rel_f1=0.4539)、s43 (re-eval中) 和 CED RSFT mean (0.4596)。seed44 中间 eval (训练中) 待确认。",
+    "parent": "plan_001_flat_nli_seed44"
+  },
+  "timestamp": "2026-05-15T23:26:54.713969+00:00",
+  "trigger": "update_registry"
+}

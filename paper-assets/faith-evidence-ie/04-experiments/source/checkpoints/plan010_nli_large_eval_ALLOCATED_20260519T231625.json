@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan010_nli_large_eval",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T23:16:12.179Z",
+    "updated_at": "2026-05-19T23:16:25.106Z",
+    "hypothesis": "NLI v3-large ablation eval: 评估用 DeBERTa-v3-large CED scorer 训练的 RSFT 模型。Baseline: v3-base scored RSFT ign_f1=0.4517 (CED s42)。如 v3-large 更好=当前有提升空间 / 持平=NLI选择鲁棒 / 更差=over-confident scoring引入噪声。",
+    "parent": "plan010_nli_large_ablation"
+  },
+  "timestamp": "2026-05-19T23:16:25.654574+00:00",
+  "trigger": "update_registry"
+}

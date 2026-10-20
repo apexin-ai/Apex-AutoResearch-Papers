@@ -1,0 +1,57 @@
+{
+  "exp_id": "mvp2_eval_ced_kl001_r4_step90",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:19:58.623Z",
+    "updated_at": "2026-05-14T20:01:45.201Z",
+    "hypothesis": "Eval true best checkpoint (step 90, reward=1.370). Critical after ckpt-50 showed reward hacking (rel_f1 -24.9pp). If step 90 also fails, CED reward design has fundamental issue.",
+    "parent": "mvp2_grpo_ced_kl001_r4",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && ... && python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 90 --quantize\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "83207",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT + GRPO ced_kl001 step-90",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/grpo_ced_kl001/checkpoint-90",
+      "eval_data": "DocRED dev set",
+      "checkpoint_path": "/root/autodl-tmp/grpo_ced_kl001/checkpoint-90",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_step90.log"
+    },
+    "notes": "2026-05-15 03:20 UTC: ckpt-90 inference 31/62 (50%), ~45 min remaining. Started 02:32 UTC.",
+    "reproduce": {
+      "finished_at": "2026-05-14T19:57:37.435Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T19:57:39.702949+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "rel_f1": 0.2108,
+      "ign_f1": 0.2108,
+      "evi_f1": 0.5666,
+      "edcr": 0.8584,
+      "pred_count": 11160,
+      "n_truncated": 22,
+      "format_ok_rate": 1,
+      "n_documents": 985
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-14T20:01:45.201Z"
+  },
+  "timestamp": "2026-05-14T20:01:45.344299+00:00",
+  "trigger": "update_registry"
+}

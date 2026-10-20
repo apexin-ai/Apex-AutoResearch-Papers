@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_plan_008_rsft_topk3",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:09:51.464Z",
+    "updated_at": "2026-05-15T21:09:56.410Z",
+    "hypothesis": "RSFT top_k=3 dev eval: 对比 top_k=1 RSFT (rel_f1≈0.46) 和 SFT baseline (rel_f1≈0.4057)。验证更多候选是否提升证据质量。",
+    "parent": "plan_008_rsft_topk3"
+  },
+  "timestamp": "2026-05-15T21:09:56.647733+00:00",
+  "trigger": "update_registry"
+}

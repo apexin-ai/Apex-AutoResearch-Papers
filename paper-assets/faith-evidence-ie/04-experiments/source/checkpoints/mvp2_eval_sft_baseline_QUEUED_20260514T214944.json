@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp2_eval_sft_baseline",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:47:41.356Z",
+    "updated_at": "2026-05-14T21:49:44.530Z",
+    "hypothesis": "SFT baseline eval using identical eval protocol as GRPO evals (eval_lr5e6_ckpt20.sh). Required for MVP-2 core comparison: CED_Evi-F1 − SFT_Evi-F1 ≥ 2pp. Prior SFT eval (r3) used different eval path; this ensures apple-to-apple comparison.",
+    "parent": "mvp2_sft_warmup"
+  },
+  "timestamp": "2026-05-14T21:49:44.693791+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan019_1_7b_rsft_s44",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:02:05.852Z",
+    "updated_at": "2026-05-19T03:02:22.024Z",
+    "hypothesis": "1.7B RSFT k=1 s44 (Option A seed expansion): 复用 s42 SFT adapter + s42 CED k=1 scored data，只变 RSFT 训练 seed 为 44。验证 1.7B 尺度 RSFT 增益跨 seed 稳健性。",
+    "parent": "plan019_1_7b_sft_s44"
+  },
+  "timestamp": "2026-05-19T03:02:22.568191+00:00",
+  "trigger": "update_registry"
+}

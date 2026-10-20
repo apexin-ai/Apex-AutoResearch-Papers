@@ -1,0 +1,37 @@
+{
+  "exp_id": "plan_006_qwen3_8b_rsft_train",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T05:57:56.689Z",
+    "updated_at": "2026-05-17T08:25:26.201Z",
+    "spec": {
+      "command": "python -m freige.training.rsft_trainer --base_model Qwen3-8B --sft_adapter sft_output_qwen3_8b_bf16 --rsft_data_path rsft_scored_qwen3_8b/rsft_train.jsonl --num_epochs 3 --bf16 --gradient_checkpointing --per_device_batch_size 1 --gradient_accumulation_steps 8",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:3",
+      "pid": 418278,
+      "log_path": "~/runs/faith-evidence-ie/plan_006_qwen3_8b_rsft_train.log",
+      "submitted_at": "2026-05-17T05:57:56.172Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/rsft_scored_qwen3_8b/rsft_train.jsonl",
+      "data_count": 9041,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_qwen3_8b_bf16",
+      "checkpoint_path": "/root/autodl-tmp/rsft_output_qwen3_8b/checkpoint-1000",
+      "failure_reason": "Disk full - RuntimeError unexpected pos at step 1000/3393",
+      "wall_clock_seconds": 8850.0,
+      "gpu_hours": 2.46
+    },
+    "hypothesis": "RSFT with CED-scored data (9041 samples) on Qwen3-8B will improve rel_f1 over SFT baseline. At 8B scale with near-zero evidence tax, CED-filtered RSFT should achieve the highest absolute performance in the model scaling study.",
+    "conclusion": "failed",
+    "completed_at": "2026-05-17T08:25:26.201Z"
+  },
+  "timestamp": "2026-05-17T08:25:26.574277+00:00",
+  "trigger": "update_registry"
+}

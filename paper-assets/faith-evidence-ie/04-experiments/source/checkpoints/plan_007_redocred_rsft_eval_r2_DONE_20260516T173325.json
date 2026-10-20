@@ -1,0 +1,42 @@
+{
+  "exp_id": "plan_007_redocred_rsft_eval_r2",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T16:25:37.094Z",
+    "updated_at": "2026-05-16T17:33:25.061Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r2",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:1",
+      "pid": 363317,
+      "data_path": "/root/autodl-tmp/data/re-docred",
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510",
+      "eval_data": "re-docred/dev",
+      "hypothesis": "Re-DocRED RSFT eval r2: verify CED-RSFT improvement transfers cross-dataset. Compare vs SFT baseline Ign-F1=0.3659 (D080).",
+      "plan_id": "plan_007",
+      "parent": "plan_007_redocred_4b_sft_eval_r2",
+      "log_path": "/tmp/plan_007_redocred_rsft_eval_r2.log"
+    },
+    "pid": 363317,
+    "metrics": {
+      "F1": 0.0025,
+      "Ign-F1": 0.0026,
+      "Evi-F1": 0.8837,
+      "EDCR": 0.9978,
+      "format_ok": "489/493",
+      "truncated": "117/493",
+      "predictions": 8461
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r2",
+    "completed_at": "2026-05-16T17:33:20.838Z"
+  },
+  "timestamp": "2026-05-16T17:33:25.394580+00:00",
+  "trigger": "update_registry"
+}

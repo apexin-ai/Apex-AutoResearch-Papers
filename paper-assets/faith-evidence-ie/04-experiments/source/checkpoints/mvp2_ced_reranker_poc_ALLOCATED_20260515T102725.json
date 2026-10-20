@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp2_ced_reranker_poc",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:55:03.414Z",
+    "updated_at": "2026-05-15T10:27:25.491Z",
+    "hypothesis": "CED-as-reranker: no fine-tuning, use CED to select best of N=8 SFT candidates at inference time. If rel_f1 > 0.4057 (SFT greedy), CED adds value without training risk. Oracle reranker as upper bound."
+  },
+  "timestamp": "2026-05-15T10:27:25.646881+00:00",
+  "trigger": "update_registry"
+}

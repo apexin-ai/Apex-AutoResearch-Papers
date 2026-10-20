@@ -1,0 +1,40 @@
+{
+  "exp_id": "mvp2_grpo_flatnli_r6",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T17:25:07.083Z",
+    "updated_at": "2026-05-14T18:15:23.353Z",
+    "hypothesis": "Flat-NLI reward with kl_coef=0.01 + num_generations=8 from SFT scratch (not resume). 100-step probe to verify stability. Same D020 config as ced_kl001_r4 (which is healthy). Tests whether flat-NLI reward type works under stable training config.",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && ... && PYTHONUNBUFFERED=1 python -m freige.training.grpo_trainer --stage 2 --kl_coef 0.01 --num_generations 8 --max_steps 100 --wandb_run_name grpo-s2-flatnli-r6\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "76958",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_grpo_flatnli_r6.log",
+      "submitted_at": "2026-05-14T17:25:30.099Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": {
+        "train": 3027,
+        "dev": 985
+      },
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json"
+    },
+    "parent": "mvp2_grpo_flatnli_r5",
+    "notes": "D020 配置：kl_coef=0.01 + num_generations=8 + save_steps=10 + max_steps=100。从 SFT 全新训练。加 PYTHONUNBUFFERED=1 + --wandb_run_name grpo-s2-flatnli-r6。\n\n**Step 25 COLLAPSE_CONFIRMED ⚠️**:\n- frac_zero_std: 0.1→0.4→0.6→0.7→0.9 (单调上升，已破 0.8 阈值)\n- f1_reward: 0.023→0.012→0.0 (抽取完全死亡)\n- flat_nli_reward: 0.018→0.023→0.0 (也死亡)\n- reward 100% 来自 format (0.29)\n- completion_length: 773→586→399 (持续缩短)\n- KL: step 5 爆炸至 1.23 亿后回落至 0.036-0.056\n- 与 extract_r4 collapse 模式一致：step 5 KL spike → task reward 归零 → format hacking\n- **建议 kill**",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-14T18:15:23.680025+00:00",
+  "trigger": "update_registry"
+}

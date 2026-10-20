@@ -1,0 +1,30 @@
+{
+  "exp_id": "plan019_1_7b_rsft_no_evidence_eval",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:42:59.170Z",
+    "updated_at": "2026-05-19T14:44:14.087Z",
+    "spec": {
+      "command": "bash -c \"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\"",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:3",
+      "pid": 679713,
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 998,
+      "model_name": "Qwen3-1.7B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_qwen3_1_7b_k1",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json"
+    },
+    "hypothesis": "1.7B RSFT s42 no-evidence eval: 测量 evidence tax。移除 evidence 输出后，模型可以将全部容量用于关系预测，预期 ign_f1 高于 with-evidence 的 0.5122，验证 evidence 输出对 RE 性能的代价。",
+    "reproduce": {
+      "finished_at": "2026-05-19T14:44:13.014Z"
+    }
+  },
+  "timestamp": "2026-05-19T14:44:14.558996+00:00",
+  "trigger": "update_registry"
+}

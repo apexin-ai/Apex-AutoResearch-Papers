@@ -1,0 +1,33 @@
+{
+  "exp_id": "lead1_ced_evidence_filter",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:54:50.206Z",
+    "updated_at": "2026-05-17T12:55:31.590Z",
+    "spec": {
+      "command": "python -m eval.ced_evidence_filter --predictions_path /root/autodl-tmp/eval_results/rsft_s43_dev_eval_preds/predictions.json --tau_values 0.3 0.5 0.7 --output_dir /root/autodl-tmp/lead1_ced_filter_results",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "441954",
+      "log_path": "/root/autodl-tmp/lead1_ced_filter_results/summary.json",
+      "submitted_at": "2026-05-17T11:54:49.626Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_source": "rsft_s43_dev_eval_preds",
+      "checkpoint_path": "/root/autodl-tmp/lead1_ced_filter_results/",
+      "model_name": "NLI-filter-on-rsft_s43",
+      "data_path": "/root/autodl-tmp/eval_results/rsft_s43_dev_eval_preds/predictions.json",
+      "data_count": 14976,
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-17T12:55:32.016430+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "mvp2_eval_rsft_r2b_maxtok1536_r2",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:54:57.156Z",
+    "updated_at": "2026-05-15T11:54:57.156Z"
+  },
+  "timestamp": "2026-05-15T11:54:57.308602+00:00",
+  "trigger": "update_registry"
+}

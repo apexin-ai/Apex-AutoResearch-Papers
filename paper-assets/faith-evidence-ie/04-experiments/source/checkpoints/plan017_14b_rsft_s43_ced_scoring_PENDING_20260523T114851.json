@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan017_14b_rsft_s43_ced_scoring",
+  "project": "faith-evidence-ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T11:48:18.347Z",
+    "updated_at": "2026-05-23T11:48:50.382Z",
+    "hypothesis": "14B RSFT s43 CED scoring: 对 24216 candidates 用 NLI 模型 (nli-deberta-v3-base) 打分，top_k=1 筛选生成 RSFT 训练数据。Pipeline: generation → [CED scoring] → RSFT train → eval。",
+    "parent": "plan017_14b_rsft_s43_generate"
+  },
+  "timestamp": "2026-05-23T11:48:51.055656+00:00",
+  "trigger": "update_registry"
+}

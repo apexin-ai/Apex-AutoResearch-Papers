@@ -1,0 +1,58 @@
+{
+  "exp_id": "plan017_14b_rsft_s43_train",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T13:47:43.837Z",
+    "updated_at": "2026-05-23T14:59:51.773Z",
+    "spec": {
+      "command": "python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --rsft_data_path /root/autodl-tmp/rsft_scored_14b_s43/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_14b_s43 --seed 43",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "257025",
+      "log_path": "~/runs/faith-evidence-ie/plan017_14b_rsft_s43_train.log",
+      "submitted_at": "2026-05-23T13:47:42.922Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/rsft_scored_14b_s43/rsft_train.jsonl",
+      "data_count": 3017,
+      "model_name": "Qwen3-14B",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_14b_s43",
+      "checkpoint_path": "/root/autodl-tmp/rsft_output_14b_s43",
+      "wall_clock_seconds": 4253.0,
+      "gpu_hours": 1.18
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T14:56:13.434Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T14:56:21.591730+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "train_loss": 0.5076,
+      "mean_token_accuracy": 0.8743,
+      "total_steps": 567,
+      "num_epochs": 3,
+      "wall_clock_seconds": 3990
+    },
+    "hypothesis": "14B RSFT s43 training with CED-scored data (3017 samples, top_k=1) will produce a model with comparable quality to s42, enabling 2-seed reproducibility analysis.",
+    "parent": "plan017_14b_rsft_s43_ced_scoring",
+    "completed_at": "2026-05-23T14:58:35.909Z"
+  },
+  "timestamp": "2026-05-23T14:59:52.490210+00:00",
+  "trigger": "update_registry"
+}

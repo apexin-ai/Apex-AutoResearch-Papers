@@ -1,0 +1,31 @@
+{
+  "exp_id": "d112_rsft_s44_train_bf16",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:19:27.034Z",
+    "updated_at": "2026-05-19T13:04:56.446Z",
+    "hypothesis": "D112 step 3 bf16 重跑：RSFT training on SFT s44 base using CED k=1 scored data，使用 bf16 LoRA（非 QLoRA）与其他所有 RSFT 实验一致。修正原 d112_rsft_s44_train 的 QLoRA confound（--quantize 导致 adapter 适应 4-bit 量化误差，bf16 eval 下 ign_f1=0.2181 灾难性崩溃）。",
+    "parent": "",
+    "spec": {
+      "command": "bash -c \"bash /root/autodl-tmp/scripts/d112/step3_k1_filter_and_train_bf16.sh\"",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:0",
+      "pid": 675161,
+      "data_path": "/root/autodl-tmp/rsft_scored_4b_sft_s44/rsft_train.jsonl",
+      "data_count": 3014,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "d112_rsft_s44_ced_score (CED k=1 scored samples, bf16 LoRA rerun)",
+      "checkpoint_path": "/root/autodl-tmp/rsft_output_4b_sft_s44_bf16/checkpoint-567",
+      "log_path": "~/runs/faith-evidence-ie/d112_rsft_s44_train_bf16.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T13:04:56.446Z"
+  },
+  "timestamp": "2026-05-19T13:04:57.036941+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,25 @@
+{
+  "exp_id": "d140_4b_sft_s42_no_evi_2048",
+  "project": "faith-evidence-ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:35:19.229Z",
+    "updated_at": "2026-05-21T07:36:27.957Z",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T07:35:26.802863+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-21T07:36:29.274075+00:00",
+  "trigger": "update_registry"
+}

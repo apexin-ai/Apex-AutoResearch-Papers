@@ -1,0 +1,511 @@
+narrative_guidance: 'Reframe 为分析/诊断贡献论文。Test set RSFT vs SFT 增益不显著（<2pp）， decoupling
+  可能是 Qwen-specific（LLaMA 不复现 catastrophic failure）， evidence tax 在不同模型规模下不一致（1.7B/8B
+  远小于 4B 的 7pp）。 核心叙事转向 "Understanding the cost of faithfulness in generative IE"——
+  evidence generation 代价存在但 magnitude 是 model-specific，EDCR 作为方法级诊断工具仍有独立价值。 Scope
+  收缩为 Qwen3-4B 深度 case study + 跨规模/跨家族的辅助验证显示 findings 不完全泛化。 目标降级为 EMNLP Findings
+  track。
+
+  '
+imagined_experiments:
+- name: Test set evaluation (RSFT CED s44)
+  plan_id: plan_002
+  description: '在 DocRED 官方 test set 上评估 RSFT CED s44，提交 CodaLab 获取官方 Ign-F1/F1。 同时评估
+    SFT baseline 和 SFT no-evidence 作为对照。
+
+    '
+  expected_results:
+    test_sft_ign_f1: 39.2
+    test_sft_f1: 40.8
+    test_sft_evi_f1_cond: 79.5
+    test_rsft_ced_s44_ign_f1: 40.5
+    test_rsft_ced_s44_f1: 42.1
+    test_rsft_ced_s44_evi_f1_cond: 79.8
+    test_rsft_vs_sft_ign_f1_delta: 1.3
+    test_rsft_vs_sft_f1_delta: 1.3
+    test_edcr_sft: 0.71
+    test_edcr_rsft: 0.66
+    test_no_evidence_ign_f1: 45.8
+    dev_test_ign_f1_gap_sft: 0.8
+    dev_test_ign_f1_gap_rsft: 4.6
+    bootstrap_p_value: 0.12
+  result_rationale: 'DocRED test set 由不同标注者完成，Tan et al. (2022) 已报告 test 标注一致性低于 dev。
+    SFT baseline 跨 dev→test 下降小（~0.8pp），因其直接学习 gold label 分布，泛化稳定。 但 RSFT 增益高度依赖 dev
+    set 分布：CED scoring 在 dev gold 上计算 F1 过滤训练样本， scoring function 隐式过拟合 dev 的 relation
+    type 分布和 evidence pattern。 具体机制——RSFT 选出的 2718 训练样本中，高 F1 的 relation types（如 country,
+    instance_of） 被系统性富集，这些 types 在 dev 上频率高但 test 上分布可能不同。 当 test set 的 relation type
+    长尾分布偏移时，RSFT 学到的 dev-aligned self-improvement 信号失效， 增益从 dev +5.1pp（s44 reeval）压缩到
+    test +1.3pp。 Evidence 质量（evi_f1）跨集相对稳定（~79.5-79.8），因为 evidence 引用模式依赖 文档结构而非 relation
+    分布。 Bootstrap p=0.12，未达 0.05 显著性门槛。
+
+    '
+  tables:
+  - name: 'Table: Test Set Main Results'
+    headers:
+    - Config
+    - Ign-F1
+    - F1
+    - Δ Ign-F1 vs SFT
+    - Evi-F1 (cond)
+    - EDCR
+    rows:
+    - - SFT no-evidence
+      - '45.8'
+      - '47.2'
+      - +6.6pp
+      - —
+      - —
+    - - SFT baseline
+      - '39.2'
+      - '40.8'
+      - —
+      - '79.5'
+      - '0.71'
+    - - RSFT CED s44
+      - '40.5'
+      - '42.1'
+      - +1.3pp
+      - '79.8'
+      - '0.66'
+  - name: 'Table: Dev-Test Generalization Gap'
+    headers:
+    - Config
+    - Dev Ign-F1
+    - Test Ign-F1
+    - Gap
+    rows:
+    - - SFT
+      - '39.74'
+      - '39.2'
+      - -0.5pp
+    - - RSFT CED s44
+      - '45.11'
+      - '40.5'
+      - -4.6pp
+    - - No-evidence SFT
+      - '47.21'
+      - '45.8'
+      - -1.4pp
+  figures_description:
+  - Dev vs Test gap grouped bar chart：SFT gap 0.5pp vs RSFT gap 4.6pp，直观展示 RSFT 的
+    dev-overfitting
+  analysis: 'RSFT dev-test gap（4.6pp）远大于 SFT（0.5pp），说明 CED scoring 导致的 dev-specific
+    样本选择是 gap 的主因。Delta 1.3pp 在 paired bootstrap test 下 p≈0.12（基于 DocRED test ~700
+    docs 和 RSFT 在 dev 上 4-seed std ~0.5pp）。 核心问题：RSFT 本质是 dev-set-aware 的 semi-supervised
+    learning—— 用 dev gold 计算 F1 来选 training data，泛化到分布不同的 test set 时增益被压缩是结构性的。 Reframe
+    方向：不以 "RSFT significantly outperforms SFT" 为核心 claim， 转向 evidence tax 量化（test
+    上 SFT 39.2 vs no-evidence 45.8 = 6.6pp，与 dev 接近） 和 decoupling 分析。Evidence tax
+    在 test 上仍然显著，这是可保留的 finding。
+
+    '
+- name: Model size ablation (Qwen3-1.7B / 8B)
+  plan_id: plan_006
+  description: '在 Qwen3-1.7B 和 8B 上复现完整 pipeline：SFT → no-evidence SFT → RSFT → eval。
+    验证 evidence tax 和 RSFT 增益跨模型规模的一致性。 1.7B SFT eval 已完成（ign_f1=47.86），结果反常地高于 4B（39.74）。
+
+    '
+  expected_results:
+    qwen3_1_7b_sft_ign_f1: 47.86
+    qwen3_1_7b_sft_evi_f1: 83.16
+    qwen3_1_7b_no_evidence_ign_f1: 49.0
+    qwen3_1_7b_evidence_tax_pp: 1.1
+    qwen3_1_7b_rsft_ced_ign_f1: 48.5
+    qwen3_1_7b_rsft_vs_sft_delta_pp: 0.6
+    qwen3_1_7b_rsft_evi_f1: 83.5
+    qwen3_8b_sft_ign_f1: 49.5
+    qwen3_8b_sft_evi_f1: 82.8
+    qwen3_8b_no_evidence_ign_f1: 51.0
+    qwen3_8b_evidence_tax_pp: 1.5
+    qwen3_8b_rsft_ced_ign_f1: 50.3
+    qwen3_8b_rsft_vs_sft_delta_pp: 0.8
+    qwen3_8b_rsft_evi_f1: 83.0
+    cross_model_evidence_tax_range: 1.1pp ~ 7.0pp
+    cross_model_rsft_sft_delta_min: 0.6
+  result_rationale: '1.7B SFT ign_f1=47.86 反常高于 4B（39.74）已经是实际观测。可能原因： Qwen3 不同规模模型使用不同
+    pre-training data mixture 和 recipe——1.7B 可能在 Wikipedia/knowledge-intensive 任务上有更好的数据配比（小模型训
+    token 数/参数量比值更高）。 Evidence tax 与 capacity bottleneck 相关：4B 的 7pp tax 反映模型同时处理
+    RE + evidence 生成时的 severe capacity competition。1.7B 本身 RE 能力更强（隐含其语言理解 在 DocRE
+    域更好），evidence 生成的 marginal 负担更小→ tax 仅 1.1pp。 8B 容量最大，evidence tax 也小（~1.5pp），但
+    RSFT 增益被压缩到 0.8pp—— 因为 SFT 已经接近模型上限（ign_f1 49.5），self-improvement 空间极小。 Evidence
+    tax 跨规模从 7.0pp（4B）到 1.1pp（1.7B）到 1.5pp（8B）， 没有 monotonic trend——4B 是 anomalous
+    peak 而非 representative baseline。 RSFT 增益跨规模从 +5.5pp（4B）到 +0.6pp（1.7B）到 +0.8pp（8B），
+    说明 RSFT 有效性高度依赖 SFT 与模型上限间的 gap 大小。
+
+    '
+  tables:
+  - name: 'Table: Model Size Ablation (Worst Tier)'
+    headers:
+    - Model
+    - SFT Ign-F1
+    - No-Evi Ign-F1
+    - Evi Tax
+    - RSFT Ign-F1
+    - RSFT Δ
+    rows:
+    - - Qwen3-1.7B
+      - '47.86'
+      - '49.0'
+      - 1.1pp
+      - '48.5'
+      - +0.6pp
+    - - Qwen3-4B
+      - 40.36†
+      - '47.36'
+      - 7.0pp
+      - 45.85*
+      - +5.5pp
+    - - Qwen3-8B
+      - '49.5'
+      - '51.0'
+      - 1.5pp
+      - '50.3'
+      - +0.8pp
+  figures_description:
+  - Evidence tax vs model size：非 monotonic（4B 是 peak），无法 claim tax 是 universal constant
+  - RSFT Δ vs SFT-ceiling gap scatter：RSFT 增益与 SFT→ceiling gap 正相关，增益非方法固有
+  analysis: '4B 的 7pp evidence tax 是三个规模中的极端值（1.7B 1.1pp, 8B 1.5pp）， 无法支撑 "evidence
+    generation 有 ~7pp fundamental cost" 的 claim。 论文需改为："evidence tax exists across
+    scales（方向一致）but magnitude is model-and-scale-specific"——这是弱得多的 claim。 1.7B > 4B
+    的反常结果（Qwen3 系列内部的 scaling 非 monotonic）给 reviewer 增加攻击面："你的 baseline model choice
+    可能是 cherry-picked worst case"。 RSFT 增益跨规模不一致使得 RSFT 作为方法的价值降低——它只在 SFT 表现差 （有大
+    gap 可填补）时有效。 Reframe：evidence tax 的 *existence* 是一致发现（所有规模 no-evi > with-evi），
+    magnitude 分析展示了 model capacity 与 multi-task generation 的交互效应。
+
+    '
+- name: Re-DocRED cross-dataset evaluation
+  plan_id: plan_007
+  description: '在 Re-DocRED 上完整 pipeline（SFT → RSFT → eval）。Re-DocRED 与 DocRED 共享
+    96 relation types 但重标注修正了 false negatives。~55% triples 无 evidence 标注，需 evidence_only
+    和 full 两种模式评估。
+
+    '
+  expected_results:
+    re_docred_sft_ign_f1: 38.5
+    re_docred_sft_rel_f1: 39.2
+    re_docred_sft_evi_f1_evidence_only: 75.3
+    re_docred_rsft_ign_f1: 39.8
+    re_docred_rsft_rel_f1: 40.5
+    re_docred_rsft_evi_f1_evidence_only: 76.1
+    re_docred_rsft_vs_sft_ign_f1_delta: 1.3
+    re_docred_no_evidence_ign_f1: 44.0
+    re_docred_evidence_tax_pp: 5.5
+    evidence_only_triple_coverage: 0.43
+    re_docred_edcr_sft: 0.73
+    re_docred_edcr_rsft: 0.68
+    bootstrap_p_rsft_vs_sft: 0.18
+  result_rationale: 'Re-DocRED RSFT 增益不迁移有两层原因： (1) CED scoring function 在 DocRED
+    gold 上校准。Re-DocRED 重标注修正了大量 DocRED 的 false negative triples，evidence 标注也相应变化——CED
+    学到的 "what constitutes good evidence" 在 Re-DocRED 语境下 miscalibrated。具体表现：DocRED
+    中被 CED 评为高分的 evidence pattern（往往是简单、直接的 relation mention），在 Re-DocRED 的更完整标注下
+    不再具有代表性——Re-DocRED 有更多 complex reasoning chain 型 evidence。 (2) Re-DocRED 的 relation
+    distribution 更均匀（修正 false negative 后长尾被填充）， 而 RSFT 在 DocRED 偏态分布上选出的训练样本集偏向 head
+    relations， 这种 distributional bias 在 Re-DocRED 上构成 negative transfer。 Evidence-only
+    评估仅覆盖 43% triples（~5200 of ~12000），evi_f1 低于 DocRED（75 vs 80） 因为 Re-DocRED evidence
+    标注更严格。Sample size 不足导致 bootstrap p=0.18。 Evidence tax 在 Re-DocRED 上 ~5.5pp（vs
+    DocRED 7pp），进一步说明 tax 是 data-specific。
+
+    '
+  tables:
+  - name: 'Table: Re-DocRED Results'
+    headers:
+    - Config
+    - Ign-F1
+    - Rel-F1
+    - Evi-F1 (evi-only)
+    - Δ vs SFT
+    rows:
+    - - SFT no-evidence
+      - '44.0'
+      - '44.8'
+      - —
+      - +5.5pp
+    - - SFT baseline
+      - '38.5'
+      - '39.2'
+      - '75.3'
+      - —
+    - - RSFT CED
+      - '39.8'
+      - '40.5'
+      - '76.1'
+      - +1.3pp
+  - name: 'Table: Cross-Dataset Comparison'
+    headers:
+    - Metric
+    - DocRED Dev
+    - DocRED Test†
+    - Re-DocRED
+    rows:
+    - - Evidence Tax
+      - 7.0pp
+      - 6.6pp
+      - 5.5pp
+    - - RSFT Δ vs SFT
+      - +5.1pp
+      - +1.3pp
+      - +1.3pp
+    - - Evi-F1 (cond)
+      - 81%
+      - ~80%
+      - 76%
+  figures_description:
+  - Cross-dataset RSFT delta comparison：三个 eval 条件（dev/test/Re-DocRED）下 RSFT 增益的衰减趋势
+  analysis: 'Re-DocRED delta 1.3pp 与 DocRED test delta 1.3pp 高度一致——两个 out-of-distribution
+    评估得到相同结论：RSFT-CED 增益是 DocRED-dev-specific。 Evidence tax 跨数据集不恒定（7pp→5.5pp）进一步支撑
+    "tax magnitude is data-specific"。 43% evidence coverage 使 evidence 评估可信度不足（单独作为
+    cross-dataset 验证不够 compelling）。 论文可以诚实报告两组 OOD 数据一致表明 RSFT 增益泛化有限， 但 evidence
+    tax 的 *existence* 和 *direction* 在 Re-DocRED 上复现。
+
+    '
+- name: LLaMA-3.1-8B cross-family validation
+  plan_id: plan_016
+  description: '在 LLaMA-3.1-8B 上复现 SFT → RSFT → GRPO QLoRA pipeline。 核心验证：decoupling
+    spectrum 是否跨模型家族成立——尤其是 GRPO QLoRA 是否也 catastrophic。
+
+    '
+  expected_results:
+    llama_sft_ign_f1: 42.5
+    llama_sft_rel_f1: 43.0
+    llama_sft_evi_f1: 80.2
+    llama_sft_edcr: 0.7
+    llama_no_evidence_ign_f1: 48.0
+    llama_evidence_tax_pp: 5.5
+    llama_rsft_ced_ign_f1: 44.8
+    llama_rsft_rel_f1: 45.5
+    llama_rsft_evi_f1: 81.0
+    llama_rsft_vs_sft_delta_pp: 2.3
+    llama_grpo_qlora_rel_f1: 0.28
+    llama_grpo_qlora_ign_f1: 27.5
+    llama_grpo_qlora_evi_f1: 0.82
+    llama_grpo_qlora_edcr: 0.78
+    decoupling_severity: moderate, not catastrophic
+    qwen_grpo_qlora_rel_f1_for_reference: 0.0138
+  result_rationale: 'LLaMA-3.1-8B GRPO QLoRA 不出现 catastrophic decoupling（rel_f1 0.28
+    vs Qwen 0.0138）： (1) Quantization robustness：LLaMA 系列是 4-bit 量化研究的主要 testbed（GPTQ/AWQ/bitsandbytes
+    论文大多以 LLaMA 为实验对象），其权重分布经社区广泛验证在 4-bit 下保持较好精度—— QuRL (2024) 发现 quantized-full
+    precision divergence 在不同 architecture 间差异巨大。 Qwen3 的中英双语 embedding 层在 4-bit 量化下可能有更大信息损失。
+    (2) Tokenizer efficiency：LLaMA tokenizer 对英文 Wikipedia 文档的 token/word ratio 更低（~1.2
+    vs Qwen ~1.4），相同 max_new_tokens 下 LLaMA 有更多有效容量 同时编码 RE triples 和 evidence sentences——capacity
+    bottleneck 更宽松。 (3) Pre-training RL alignment：LLaMA-3.1 经过更 heavy 的 RLHF 阶段， 模型对
+    RL 优化压力的鲁棒性更强（optimization landscape 更平坦）， 不易在 RL fine-tuning 中发生 sudden mode
+    collapse。 结果：LLaMA GRPO QLoRA rel_f1=0.28（退化 ~15pp，moderate），EDCR=0.78（moderate
+    decoupling）， 远非 Qwen 的 catastrophic（rel_f1=0.0138，EDCR=0.99）。 Decoupling 确实存在（rel_f1
+    下降），但 severity 与 Qwen 完全不同级别。 这意味着 "QLoRA amplifies to catastrophic" 是 Qwen-specific，不是
+    universal。
+
+    '
+  tables:
+  - name: 'Table: Cross-Family Decoupling Comparison'
+    headers:
+    - Config
+    - Qwen3-4B
+    - LLaMA-3.1-8B
+    - Pattern Consistent?
+    rows:
+    - - SFT Ign-F1
+      - '40.36'
+      - '42.5'
+      - ✓ similar range
+    - - Evidence Tax
+      - 7.0pp
+      - 5.5pp
+      - ~ direction same, magnitude differs
+    - - RSFT Δ vs SFT
+      - +5.5pp
+      - +2.3pp
+      - ✗ magnitude halved
+    - - GRPO QLoRA rel_f1
+      - '0.014'
+      - '0.28'
+      - ✗✗ catastrophic NOT reproduced
+    - - GRPO QLoRA EDCR
+      - '0.99'
+      - '0.78'
+      - ✗ moderate vs catastrophic
+    - - GRPO QLoRA evi_f1
+      - '0.85'
+      - '0.82'
+      - ✓ both high
+  - name: 'Table: LLaMA Full Pipeline'
+    headers:
+    - Config
+    - Ign-F1
+    - Evi-F1
+    - EDCR
+    - Δ vs SFT
+    rows:
+    - - SFT no-evidence
+      - '48.0'
+      - —
+      - —
+      - +5.5pp
+    - - SFT baseline
+      - '42.5'
+      - '80.2'
+      - '0.70'
+      - —
+    - - RSFT CED
+      - '44.8'
+      - '81.0'
+      - '0.65'
+      - +2.3pp
+    - - GRPO QLoRA
+      - '27.5'
+      - '82.0'
+      - '0.78'
+      - -15.0pp
+  figures_description:
+  - Decoupling spectrum 并排对比图：Qwen（catastrophic drop）vs LLaMA（moderate drop），GRPO
+    QLoRA 行为完全不同
+  - GRPO training dynamics 对比：Qwen rel_f1 急剧归零 vs LLaMA rel_f1 缓慢下降但 plateau
+  analysis: 'LLaMA 数据根本性地改变 Claim 2 的叙事范围。 Catastrophic decoupling 不跨家族复现 → "RL optimization
+    pressure 与 decoupling severity 正相关" 的 universal claim 不成立。可保留的弱版 claim： "Decoupling
+    exists across model families（LLaMA 也有 15pp 退化）but catastrophic amplification by
+    QLoRA is architecture-dependent"。 论文 reframe 方向： (1) 将 "Why RL fails for multi-objective
+    IE" 改为 "When and why RL degrades multi-objective IE: architecture and quantization
+    as moderating factors" (2) Qwen case study 保留完整 spectrum（QLoRA catastrophic →
+    bf16 mild → DPO gradual → RSFT none）， LLaMA 作为对比 case 展示 spectrum 的 architecture-dependence
+    (3) 新增分析：为什么 Qwen 脆弱——tokenizer efficiency 假说可检验 （比较两个模型在 DocRE 上的 token 使用效率），quantization
+    sensitivity 假说可引用 QuRL/QaRL 此发现虽然削弱论文原始 scope，但 "architecture-dependent decoupling"
+    本身是有价值的发现—— 如果论文能提供充分的机制分析（不仅仅是 "it happens differently"）， Findings track 仍可接受。
+
+    '
+- name: EDCR human validation (100 samples)
+  plan_id: plan_013
+  description: '100 个样本人工标注：对每个 cited evidence sentence 判断是否真正支持对应 relation。 计算 EDCR
+    与人工判断的 Spearman ρ，验证 EDCR 作为自动诊断指标的可信度。
+
+    '
+  expected_results:
+    n_annotated: 100
+    inter_annotator_kappa: 0.55
+    edcr_human_spearman_rho: 0.42
+    edcr_human_pvalue: 0.028
+    ambiguous_cases_pct: 28
+    clear_correct_pct: 52
+    clear_wrong_pct: 20
+    false_positive_rate: 0.18
+    false_negative_rate: 0.22
+    per_relation_type_agreement: 0.38
+  result_rationale: 'EDCR-human 相关偏低（ρ=0.42）的结构性原因： (1) Evidence 标注主观性高——IE 中 "一个句子是否支持一个关系"
+    不是二元判断。 例如 "The university was established in 1905 by the local government" 是否支持
+    (university, inception, 1905)？大多数人说是。是否支持 (university, founded_by, local_government)？约
+    60% 说是——"founded by" vs "established by" 的语义等价性存在争议。 ~28% 样本落入这种 ambiguous zone，这直接压低
+    ρ 的上限。 (2) NLI-IE calibration gap：EDCR 基于 DeBERTa NLI 的 entailment score， NLI
+    训练数据（SNLI/MNLI）是 sentence-pair 自然语言推理，与 IE 的 "entity-relation-evidence" 三元组语义不完全对齐。NLI
+    对 "implicit support"（需要 world knowledge 的推理链） 系统性低估，导致 false negative（人觉得 evidence
+    有效但 NLI 分低）。 (3) 方法级 EDCR 高相关（ρ=-0.965）受极端值驱动（GRPO QLoRA EDCR≈1.0）， 去掉极端值后 sample-level
+    相关自然下降。 Inter-annotator κ=0.55 也说明任务主观性——这是 ρ 的自然上限约束。
+
+    '
+  tables:
+  - name: 'Table: EDCR Human Validation'
+    headers:
+    - Category
+    - Count
+    - Pct
+    rows:
+    - - Clear correct (human agrees with EDCR)
+      - '52'
+      - 52%
+    - - Clear wrong (human disagrees with EDCR)
+      - '20'
+      - 20%
+    - - Ambiguous (annotators disagree)
+      - '28'
+      - 28%
+  - name: 'Table: Correlation Summary'
+    headers:
+    - Metric
+    - Value
+    rows:
+    - - Spearman ρ (EDCR vs human)
+      - '0.42'
+    - - p-value
+      - '0.028'
+    - - Inter-annotator Cohen's κ
+      - '0.55'
+    - - EDCR false positive rate
+      - '0.18'
+    - - EDCR false negative rate
+      - '0.22'
+  figures_description:
+  - 'Scatter plot: EDCR auto score (x) vs human binary judgment (y) with ambiguous
+    cases marked gray'
+  - 'Error analysis: 典型 false positive/negative 案例展示 NLI-IE gap'
+  analysis: 'ρ=0.42 statistically significant（p<0.05）但 moderate。 审稿人攻击点："If EDCR correlates
+    only 0.42 with human judgment, how reliable is your per-relation diagnostic (Claim
+    4)?" 应对策略： (1) 强调 EDCR 的方法级诊断仍然有效——识别 catastrophic failure（EDCR≈1.0） 不需要 sample-level
+    精度，只需要 monotonicity（方法越病态 EDCR 越高）， 而方法级 ρ=-0.965 已经验证这一点。 (2) per-relation 诊断降级为
+    "exploratory analysis"——提供方向性信号但非精确度量。 (3) κ=0.55 解释为 "task inherent ambiguity"
+    而非 EDCR 缺陷—— 任何自动指标在这种主观性任务上都无法远超 annotator agreement。 (4) Limitation 段诚实讨论 NLI-IE
+    calibration gap 和 improvement direction （domain-adapted NLI, direct evidence evaluation
+    model）。 此结果不致命但削弱 Claim 4 的 "diagnostic tool" 定位—— EDCR 更适合定位为 "decoupling severity
+    indicator"（方法级）而非 "evidence quality judge"（sample 级）。
+
+    '
+- name: NLI model ablation (DeBERTa base vs large)
+  plan_id: plan_010
+  description: '对比 DeBERTa-v3-base (86M) 和 DeBERTa-v3-large (304M) 作为 CED scorer，
+    评估 NLI backbone 能力对 CED scoring 质量和下游 RSFT 性能的影响。
+
+    '
+  expected_results:
+    deberta_base_ced_discrimination_acc: 0.78
+    deberta_large_ced_discrimination_acc: 0.815
+    deberta_base_ced_mean_margin: 0.41
+    deberta_large_ced_mean_margin: 0.48
+    deberta_base_rsft_ign_f1: 44.8
+    deberta_large_rsft_ign_f1: 45.3
+    deberta_base_rsft_evi_f1: 80.8
+    deberta_large_rsft_evi_f1: 81.4
+    delta_ign_f1_base_vs_large: -0.5
+    p_value_base_vs_large: 0.45
+    rsft_selection_overlap: 0.82
+  result_rationale: 'DeBERTa base vs large 差异不显著（Δ=0.5pp, p=0.45）的原因： (1) CED 的瓶颈不在
+    NLI 模型——scoring 过程是 "将 (head, rel, tail, evidence_sentence) 构造为 NLI hypothesis-premise
+    pair" → NLI 打分。信息损失发生在 IE→NLI 的转换步骤， 而非 NLI 模型本身。base 和 large 模型对同一组 (premise,
+    hypothesis) 对的 ranking 高度一致（Kendall τ > 0.9），因为 easy case 两者都能区分，差异只在 hard negative
+    的 fine-grained ordering 上——而 top_k=1 的 harsh selection 策略抹平了这种 marginal 差异。 (2)
+    82% 的 selected samples 重叠——两个 scorer 选出的 rank-1 response 大部分相同。 只有 18% 的 doc 换了不同的
+    candidate，这 18% 中 base 选错（F1 更低）的比例仅稍高。 (3) RSFT 本身对训练数据的 marginal 质量差异不敏感——top_k=1
+    已确保所有 selected samples 都是 "reasonably good"，base vs large 的区别仅在 "good vs slightly
+    better"，对 3-epoch SFT 的最终性能影响可忽略。
+
+    '
+  tables:
+  - name: 'Table: NLI Model Ablation'
+    headers:
+    - NLI Backbone
+    - Params
+    - CED Discr.
+    - Mean Margin
+    - RSFT Ign-F1
+    - RSFT Evi-F1
+    rows:
+    - - DeBERTa-v3-base
+      - 86M
+      - '0.78'
+      - '0.41'
+      - '44.8'
+      - '80.8'
+    - - DeBERTa-v3-large
+      - 304M
+      - '0.815'
+      - '0.48'
+      - '45.3'
+      - '81.4'
+    - - Δ (base-large)
+      - —
+      - '-0.035'
+      - '-0.07'
+      - -0.5pp
+      - -0.6pp
+  figures_description: []
+  analysis: 不显著差异（p=0.45）意味着 CED 的工程选择（base vs large）对论文结论无实质影响—— 对 paper 是 neutral
+    finding。 但审稿人可能追问两个方向： (1) "If NLI model quality doesn't matter, what does CED
+    actually capture?" → 回答：CED 的价值在 contrastive structure（gold vs distractor 对比 scoring），
+    不在 NLI 模型的 absolute calibration。换言之，CED 是 structural contribution， NLI 只是提供了 similarity
+    metric 的一个 reasonable instantiation。 (2) "Could you replace NLI with a simpler
+    metric?" → 这是有力的 follow-up question，如果 base 和 large 无区别， BM25 或 TF-IDF 可能也无区别——这会进一步削弱
+    CED 的 "NLI-based" 标签。 在 worst tier 下此实验是低风险低收益——不伤论文但也不帮论文。 建议在论文中作为 appendix
+    ablation 简短报告，不占 main text 篇幅。

@@ -1,0 +1,14 @@
+LLaMA-8B SFT → RSFT Per-Relation Analysis
+
+micro-F1: 0.5514 → 0.5839 (+3.25pp)
+89 high-frequency relations: 57 improved, 26 degraded
+
+Top improvements: operator (+0.305), participant of (+0.163), mother/screenwriter (+0.114)
+Top degradations: genre (-0.301), chairperson (-0.267), capital of (-0.152)
+Average improvement: +0.052, average degradation: -0.061
+
+Hallucinated relations (0 gold, FP only): 25 types — significantly more than 1.7B Qwen (6 types)
+
+Server files:
+- /root/autodl-tmp/freige/scripts/analysis/results/per_relation_llama.txt
+- /root/autodl-tmp/freige/scripts/analysis/results/per_relation_llama.csv

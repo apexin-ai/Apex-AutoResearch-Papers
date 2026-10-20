@@ -1,0 +1,68 @@
+{
+  "exp_id": "eval_llama_rsft_s42_no_evi_2048",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T09:39:33.016Z",
+    "updated_at": "2026-05-21T15:51:41.123Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference ... --no_evidence --seed 42",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "95606",
+      "log_path": "~/runs/faith-evidence-ie/eval_llama_rsft_s42_no_evi_2048.log",
+      "submitted_at": "2026-05-21T09:39:32.197Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Meta-Llama-3.1-8B + SFT + RSFT(k1)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_llama_3_1_8b_k1",
+      "eval_data": "docred-dev",
+      "wall_clock_seconds": 16057.1,
+      "gpu_hours": 4.46
+    },
+    "hypothesis": "matched@2048 methodology: LLaMA RSFT s42 no-evi@2048。配对 eval_llama_rsft_s42_with_evidence_2048 (ign_f1=0.5774)，计算 LLaMA RSFT matched@2048 evidence tax。@1024 RSFT tax=-1.14±0.76pp (3-seed)，验证 @2048 budget 下 RSFT evidence tax 是否稳定。",
+    "reproduce": {
+      "finished_at": "2026-05-21T14:02:23.805Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T14:02:35.331422+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ign_f1": 0.5559,
+      "f1": 0.5703,
+      "evi_f1_dreeam": 0.0006,
+      "evi_f1_tp": 0.0007,
+      "edcr": 0.625,
+      "format_ok": "984/985",
+      "truncated": "140/985",
+      "n_predictions": 24365,
+      "inference_time_s": 15710.3,
+      "fair_tax_pp": 2.1721,
+      "fair_subset_size": 983,
+      "fair_with_evi_ign_f1": 0.5779,
+      "fair_no_evi_ign_f1": 0.5562,
+      "raw_tax_pp": 2.191
+    },
+    "log_path": "~/runs/faith-evidence-ie/eval_llama_rsft_s42_no_evi_2048.log",
+    "checkpoint_path": "/root/autodl-tmp/rsft_output_llama_3_1_8b_k1",
+    "conclusion": "success",
+    "completed_at": "2026-05-21T14:07:09.307Z"
+  },
+  "timestamp": "2026-05-21T15:51:41.771196+00:00",
+  "trigger": "update_registry"
+}

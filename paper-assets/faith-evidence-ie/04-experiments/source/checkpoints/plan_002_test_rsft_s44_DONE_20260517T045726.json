@@ -1,0 +1,43 @@
+{
+  "exp_id": "plan_002_test_rsft_s44",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T01:05:59.263Z",
+    "updated_at": "2026-05-17T04:57:25.850Z",
+    "hypothesis": "RSFT-CED s44 (best dev config, rel_f1=0.4655) maintains improvement over SFT on held-out test set, confirming CED-filtered rejection sampling gains are not dev-set overfitting. Test Ign-F1 should exceed SFT test baseline.",
+    "parent": "mvp2_rsft_train_r1_s44",
+    "spec": {
+      "command": "python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s44/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_002_test_rsft_s44",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "396333",
+      "log_path": "~/runs/faith-evidence-ie/plan_002_test_rsft_s44.log",
+      "submitted_at": "2026-05-17T01:06:16.686Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 0,
+      "model_name": "Qwen3-4B + SFT + RSFT-s44",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_s44/checkpoint-510",
+      "eval_data": "docred_test",
+      "loading_mode": "3-param (base→SFT→RSFT)",
+      "checkpoint_path": "/root/autodl-tmp/eval_results/plan_002_test_rsft_s44",
+      "metrics_note": "Test set - no local gold labels. 1000 docs, 26925 predictions, 626 truncated, format_ok=99.6%. Needs CodaLab submission for official scores.",
+      "inference_time_s": 12494,
+      "wall_clock_seconds": 13869.2,
+      "gpu_hours": 3.85
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-17T04:57:25.850Z"
+  },
+  "timestamp": "2026-05-17T04:57:26.238816+00:00",
+  "trigger": "update_registry"
+}

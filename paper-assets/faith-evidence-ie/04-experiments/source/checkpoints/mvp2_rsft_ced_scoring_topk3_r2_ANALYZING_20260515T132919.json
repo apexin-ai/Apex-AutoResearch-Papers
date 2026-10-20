@@ -1,0 +1,73 @@
+{
+  "exp_id": "mvp2_rsft_ced_scoring_topk3_r2",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:12:38.363Z",
+    "updated_at": "2026-05-15T13:29:19.481Z",
+    "hypothesis": "CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally).",
+    "parent": "mvp2_rsft_ced_scoring",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx5090-4x",
+      "gpu": "cuda:3",
+      "started_at": "2026-05-15T12:13:02.778Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\"",
+      "finished_at": "2026-05-15T13:19:15.077Z",
+      "training_hours": 1.1
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "198997",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log",
+      "submitted_at": "2026-05-15T12:13:03.900Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "198997",
+    "log_path": "~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T13:19:17.812206+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "input_generations": 21728,
+      "selected_samples": 8037,
+      "unique_docs": 2691,
+      "selection_rate": 0.37,
+      "mean_f1": 0.5761,
+      "mean_ced": 0.6205,
+      "mean_combined": 0.6787,
+      "f1_range_p25": 0.444,
+      "f1_range_p75": 0.717,
+      "ced_range_p25": 0.487,
+      "ced_range_p75": 0.774,
+      "truncated_samples": 1924,
+      "truncated_pct": 8.9,
+      "selection_strategy": "top_k=3",
+      "f1_threshold": 0.1,
+      "topk1_samples": 2718,
+      "data_multiplier": 2.96
+    },
+    "conclusion": "success",
+    "notes": "CED scoring top_k=3 完成。8037 samples selected (vs top_k=1 的 2718, 2.96x)，selection_rate=37.0%，覆盖 2691/2716 docs (99.1%)。Selected 均值: CED=0.621 (vs topk1 0.668, -4.7pp), F1=0.576, combined=0.679。质量略低于 topk1（CED 均值降 4.7pp），但数据量增 3x。Format reward 100% pass。1924 truncated generations (mean F1=0.332 vs non-truncated 0.493)。输出: /root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl",
+    "checkpoint_path": "/root/autodl-tmp/rsft_filtered_topk3"
+  },
+  "timestamp": "2026-05-15T13:29:19.672615+00:00",
+  "trigger": "update_registry"
+}

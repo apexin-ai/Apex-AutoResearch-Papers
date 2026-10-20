@@ -1,0 +1,41 @@
+{
+  "exp_id": "plan017_14b_rsft_generate_r4",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:34:55.484Z",
+    "updated_at": "2026-05-20T18:08:29.655Z",
+    "hypothesis": "14B RSFT 生成 resume (r4: ghost file recovery 后继续)。从 doc 2553/3027 继续生成剩余 474 docs。r3 因 rsync 删除 inode 导致写入 ghost file，已通过 /proc/fd 恢复 20424 行数据。",
+    "parent": "plan017_14b_rsft_generate_r3",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx5090-4x",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-20T15:35:11.376Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b/checkpoint-144 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_generations_14b --num_generations 8 --temperature 0.7 --top_p 0.95 --batch_size 1 --max_new_tokens 1024 --seed 42 --resume\"",
+      "finished_at": "2026-05-20T18:08:28.408Z",
+      "training_hours": 2.55
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_generate --base_model Qwen3-14B --sft_adapter checkpoint-144 --resume",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/docred/train_annotated.json",
+      "data_count": 3027,
+      "model_name": "Qwen3-14B + SFT adapter",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_14b/checkpoint-144",
+      "eval_data": "docred-train_annotated (N=8 generation)",
+      "checkpoint_path": "/root/autodl-tmp/rsft_generations_14b",
+      "log_path": "~/runs/faith-evidence-ie/plan017_14b_rsft_generate_r4.log"
+    },
+    "pid": "33608",
+    "log_path": "~/runs/faith-evidence-ie/plan017_14b_rsft_generate_r4.log"
+  },
+  "timestamp": "2026-05-20T18:08:30.217051+00:00",
+  "trigger": "update_registry"
+}

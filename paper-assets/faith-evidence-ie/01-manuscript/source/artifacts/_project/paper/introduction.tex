@@ -1,0 +1,48 @@
+\section{Introduction}
+
+Document-level relation extraction (DocRE) requires identifying semantic relations between entity pairs across multiple sentences, a task where encoder-based methods such as \citet{zhou2021atlop} long dominated.
+Recent LLM-based approaches have closed this gap: \citet{wan2024genres} recast DocRE as constrained generation, \citet{xu2024lmrc} frame it as multi-choice reading comprehension, and \citet{chen2025docksrag} combine retrieval-augmented generation with structured knowledge.
+These methods approach or surpass encoder baselines on DocRED \citep{yao2019docred} and Re-DocRED \citep{tan2022redocred} in extraction accuracy.
+Yet every one of them outputs bare relation triplets $(e_h, r, e_t)$ without any indication of \emph{which sentences} in the document support each prediction.
+In deployment contexts where predictions feed into clinical knowledge bases, legal due-diligence pipelines, or financial compliance systems, end users cannot verify a prediction without manually locating its textual basis across a multi-page document.
+
+The absence of verifiable evidence creates a practical bottleneck.
+Relation extraction outputs are consumed downstream by knowledge graph construction and human decision workflows.
+When a system predicts that a drug interacts with a gene, or that a contract clause implies a liability, practitioners must trace each prediction back to source text before acting on it.
+Without machine-generated evidence, this verification requires exhaustive manual review of the input document for every predicted relation.
+Encoder-based methods have partially addressed this need: \citet{xiao2022sais} introduce sentence-level evidence supervision as an auxiliary signal, and \citet{ma2023dreeam} extend this with dynamic evidence retrieval through memory attention.
+Both improve extraction quality \emph{and} produce evidence annotations.
+However, encoder methods now trail LLM-based approaches in extraction accuracy, and their evidence mechanisms (binary sentence classification) do not transfer to generative architectures.
+The community therefore faces a gap: the most accurate extractors provide no evidence, while the evidence-capable methods are no longer competitive.
+
+This gap reflects a deeper structural difference between evidence in encoder and generative frameworks.
+In SAIS and DREEAM, evidence retrieval is a binary classification task (does sentence $s_i$ support relation $r$?) that serves as auxiliary supervision.
+The evidence signal \emph{regularizes} the encoder and improves extraction.
+In LLM-based DocRE, evidence-grounded extraction requires the model to \emph{generate} complete evidence sentences as part of its output sequence, substantially increasing output length and decoding complexity.
+Evidence production in this setting is not an auxiliary signal but an additional generation burden that competes with the extraction objective for model capacity.
+The fundamental asymmetry is clear: encoder evidence helps extraction; generative evidence costs extraction capacity.
+This distinction motivates a systematic investigation of how to produce faithful evidence within LLM-based DocRE without sacrificing the extraction gains that make these models attractive.
+
+We formalize evidence-grounded DocRE as a structured generation task for LLMs and conduct a systematic comparison of three post-training optimization paradigms: online reinforcement learning via GRPO \citep{shao2024deepseekmath}, offline preference optimization via DPO \citep{rafailov2023direct}, and offline reinforcement learning via Rejection Sampling Fine-Tuning (RSFT, building on STaR \citep{zelikman2022star}).
+Our experiments across 85+ configurations, spanning four model scales (1.7B to 8B), two model families, and two datasets, reveal three principal findings.
+\textbf{First}, we identify a \emph{decoupling spectrum}: the strength of RL optimization pressure correlates with the severity of evidence-extraction decoupling.
+GRPO with QLoRA \citep{hu2022lora} produces catastrophic decoupling where extraction accuracy collapses to near zero; GRPO with full-precision training shows mild decoupling; DPO exhibits gradual degradation; and RSFT maintains stable joint performance.
+QLoRA acts as a catastrophic amplifier of the underlying optimization conflict rather than its root cause.
+\textbf{Second}, we discover a \emph{scale-dependent evidence tax}: the cost of jointly producing evidence and relations follows a non-monotonic pattern across model scales.
+At 1.7B parameters, evidence supervision provides an implicit regularization benefit of +8 percentage points (pp) in Rel-F1; at 4B, it imposes a $-$7.5pp penalty; at 8B, the tax approaches zero.
+This non-linear pattern overturns the naive assumption that evidence generation uniformly harms extraction.
+\textbf{Third}, RSFT with NLI-based Claim-Evidence Decomposition (CED) scoring emerges as the only effective optimization route.
+By selecting high-quality training samples through output filtering rather than applying gradient-based optimization pressure, RSFT sidesteps the multi-objective competition that destabilizes RL and preference methods.
+
+Our contributions are as follows:
+\begin{enumerate}
+    \item We formalize \textbf{evidence-grounded document-level relation extraction} as a generation task for LLMs, defining structured output formats that jointly produce relation triplets and their supporting evidence sentences.
+
+    \item We characterize a \textbf{decoupling spectrum} across optimization paradigms: RL optimization pressure correlates with evidence-extraction decoupling severity (GRPO catastrophic $\rightarrow$ DPO gradual $\rightarrow$ RSFT none). We introduce the EDCR diagnostic metric, which captures this relationship with method-level $\rho = -0.965$.
+
+    \item We identify a \textbf{scale-dependent evidence tax}: a non-monotonic cost pattern across 1.7B, 4B, and 8B parameters that overturns the assumption that evidence production uniformly degrades extraction quality.
+
+    \item We establish \textbf{RSFT with NLI-based CED scoring} as an effective solution, achieving +4.92pp Ign-F1 over SFT at 4B scale. Our 1.7B RSFT model (50.50 Ign-F1) matches 8B SFT performance (50.51), enabling deployment-efficient evidence-grounded extraction at reduced computational cost.
+
+    \item We present a \textbf{comprehensive empirical study} spanning 85+ experiments across four model scales, two model families, two datasets (DocRED, Re-DocRED), and three optimization paradigms, providing the first systematic analysis of evidence production in generative DocRE.
+\end{enumerate}

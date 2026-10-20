@@ -1,0 +1,15 @@
+{
+  "exp_id": "test_eval_1_7b_rsft_s42",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T11:38:54.338Z",
+    "updated_at": "2026-05-21T11:38:56.183Z",
+    "hypothesis": "Re-DocRED test set eval: Qwen3-1.7B RSFT s42 (CED k1, nested LoRA) on test_revised.json (500 docs). 配合 14B/LLaMA test eval，建立 test set 性能基线。1.7B 是最小 scale，dev ign_f1=0.5119 (3-seed mean)。"
+  },
+  "timestamp": "2026-05-21T11:38:56.852671+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,38 @@
+Experiment: reeval_sft_baseline_d076
+Protocol: D076 unified (batch_size=4, no-quantize, max_new_tokens=1024, seed=42)
+Model: Qwen3-4B + SFT adapter (/root/autodl-tmp/sft_output)
+Data: DocRED dev set (985 docs)
+
+=== Key Metrics ===
+F1:        0.4049
+Ign-F1:    0.3974
+Evi-F1:    0.7986
+EDCR:      0.6982
+Evi-F1-Joint: 0.3147
+
+=== Relation Extraction ===
+Precision: 0.4141
+Recall:    0.3962
+F1:        0.4049
+Ign-Precision: 0.3936
+Ign-Recall:    0.4013
+Ign-F1:        0.3974
+TP: 4814 / Pred: 11626 / Gold: 12151
+
+=== Evidence ===
+Evi-Precision: 0.7942
+Evi-Recall:    0.8031
+Evi-F1:        0.7986
+Evi-F1-Joint:  0.3147
+EDCR:          0.6982
+Distractor Citations: 19493 / Total Citations: 27919
+
+=== Format ===
+Format Compliance: 99.80% (983/985)
+Field Compliance:  70.66%
+Evidence Format:   70.66%
+Predictions: 16880
+Truncated: 288/985
+
+=== Runtime ===
+Inference Time: 7056.5s (7.16 s/doc)

@@ -1,0 +1,16 @@
+{
+  "exp_id": "test_eval_1_7b_rsft_s42_no_evi",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:13:46.473Z",
+    "updated_at": "2026-05-22T16:15:04.201Z",
+    "hypothesis": "1.7B RSFT s42 no-evidence test eval: SFT test evidence tax was -4.86pp (evidence helps significantly at 1.7B). Testing if RSFT also shows strong evidence benefit on test set. RSFT with-evi test ign_f1=0.2933.",
+    "parent": "test_eval_1_7b_rsft_s42"
+  },
+  "timestamp": "2026-05-22T16:15:04.953760+00:00",
+  "trigger": "update_registry"
+}

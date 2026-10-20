@@ -1,0 +1,66 @@
+{
+  "exp_id": "plan017_14b_sft_eval_r2",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T08:51:48.518Z",
+    "updated_at": "2026-05-19T13:56:00.237Z",
+    "hypothesis": "D076 eval for 14B SFT baseline (bf16, --no-quantize). 修正 r1 的 D076 违规（r1 用了 int8 量化）。14B 是第 4 个 scale 档，SFT baseline 用于计算 RSFT 增益和 evidence tax。预期 ign_f1 高于 8B SFT mean (0.4866)。",
+    "parent": "plan017_14b_sft",
+    "spec": {
+      "command": "bash scripts/14b/eval_14b_sft.sh",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:1",
+      "pid": 633106,
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 998,
+      "model_name": "Qwen3-14B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_14b/",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json",
+      "checkpoint_path": "/root/autodl-tmp/sft_output_14b/",
+      "log_path": "/root/autodl-tmp/eval_outputs/eval_14b_sft/metrics.json"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T13:53:32.084Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T13:53:40.349959+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ign_f1": 0.5507,
+      "ign_precision": 0.5268,
+      "ign_recall": 0.5768,
+      "f1": 0.5611,
+      "precision": 0.5481,
+      "recall": 0.5748,
+      "format_compliance_rate": 1,
+      "field_compliance_rate": 0.8589,
+      "evidence_format_rate": 0.8589,
+      "n_truncated": 139,
+      "n_total": 985,
+      "n_parseable": 985,
+      "n_predictions": 14081,
+      "inference_time_seconds": 18011.3,
+      "evi_precision": 0.8197,
+      "evi_recall": 0.839,
+      "evi_f1": 0.8292,
+      "evi_f1_joint": 0.4453,
+      "evi_joint_precision": 0.4174,
+      "evi_joint_recall": 0.4772,
+      "edcr": 0.597
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T13:56:01.339880+00:00",
+  "trigger": "update_registry"
+}

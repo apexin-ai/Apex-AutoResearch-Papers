@@ -1,0 +1,95 @@
+# analysis extract flatnli sfteval
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_analysis_extract-flatnli-sfteval_20260514T122938_result.json`
+- **Structured JSON:** [`837e01dfbbdc1266e5e4.json`](../../sessions/83/837e01dfbbdc1266e5e4.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+所有数据已收集完毕，以下是结构化分析报告：
+
+---
+
+## mvp2_grpo_extract 分析
+
+- **训练步数**: 5 / 756（在 step 5 触发 KL 阈值终止）
+- **总运行时间**: 827.6 秒（~13.8 分钟）
+- **Loss**: 4,048,864,460.8（~40 亿，已完全爆炸）
+- **KL 趋势**: step 5 时 KL = 69,496,242,176.0（695 亿），阈值 100.0。日志仅记录了 step 5 的汇总指标，无逐步 KL 记录。
+- **Reward 分量**:
+  - format_reward: mean=0.132, std=0.129
+  - f1_reward: mean=0.054, std=0.150
+  - total reward: 0.186
+- **Grad norm**: 0.135（看似正常，但 KL 已完全失控）
+- **Completion 统计**: mean_length=690.8, clipped_ratio=26.25%, 30% 样本 reward_std=0
+- **Entropy**: 0.086（极低，模型快速退化为确定性输出）
+- **Checkpoint 存在**: **YES** — `/root/autodl-tmp/grpo_extract/` 包含 adapter_model.safetensors (252MB) + tokenizer 文件。但这是 KL 爆炸后保存的崩溃状态 checkpoint，**不可用**。
+- **EXIT_CODE**: 0（正常退出，因为是代码内主动 stop）
+- **失败原因**: QLoRA 4-bit 量化下 GRPO 的 KL 计算不稳定。4-bit 量化导致 ref_model 和 policy 的 logprob 计算精度严重不足，KL 在 5 步内从正常值飙升到 695 亿。
+- **模型输出质量**: format_reward 仅 0.132 说明大部分生成未遵循格式要求；f1_reward 0.054 说明几乎没有正确提取。
+- **结论**: **不能作为 GRPO baseline**。模型在 crash 前未产生任何有意义的学习信号。
+
+---
+
+## mvp2_grpo_flatnli 分析
+
+- **训练步数**: 5 / 756（同样在 step 5 KL 爆炸）
+- **总运行时间**: 869.1 秒（~14.5 分钟）
+- **注意**: 日志中出现两次训练启动，第一次跑到 step 7 的进度条后有 HuggingFace 超时重试，随后第二次启动在 step 5 crash。最终指标来自第二次运行。
+- **Loss**: 2,936,185,651.2（~29 亿）
+- **KL**: 50,844,539,289.6（508 亿），阈值 100.0
+- **Reward 分量**:
+  - format_reward: mean=0.117, std=0.130
+  - f1_reward: mean=0.062, std=0.161
+  - flat_nli_reward: mean=0.158, std=0.224
+  - total reward: 0.337
+- **Grad norm**: 0.191
+- **Entropy**: 0.089（同样极低）
+- **Completion 统计**: mean_length=740.3, clipped_ratio=28.75%, 20% 样本 reward_std=0
+- **Checkpoint 存在**: **YES** — `/root/autodl-tmp/grpo_flatnli/` 同样包含 adapter (252MB)，同样是 crash 状态，**不可用**。
+- **EXIT_CODE**: 129（SIGHUP，可能被进程管理杀掉）
+- **失败原因**: 与 extract 相同——QLoRA 4-bit + GRPO KL 不兼容
+- **对比 extract**: flatnli 的 total reward 略高（0.337 vs 0.186），flat_nli_reward 贡献了额外 0.158，但 KL 同样在 5 步内爆炸，说明问题在于底层量化精度而非 reward 设计
+- **结论**: **不能作为 baseline**。
+
+---
+
+## mvp2_sft_eval 状态
+
+- **进程状态**: **RUNNING**（PID 47293, elapsed 41 min）
+- **当前进度**: 26 / 247 batches（10.5%）
+- **速度**: ~95–98 秒/batch
+- **已耗时**: ~41 分钟
+- **剩余**: 221 batches × ~97s ≈ 21,437s ≈ **~5.9 小时**
+- **预估完成时间**: 约 2026-05-15 02:30（UTC+8）
+- **数据集**: DocRED dev set, 985 documents, 12,275 gold triples
+- **模型**: Qwen3-4B + SFT LoRA adapter, batch_size=4, max_new_tokens=1024
+- **指标**: 尚无输出，仍在 inference 阶段
+
+---
+
+## 总结
+
+| 实验 | 状态 | 核心问题 | 可用性 |
+|------|------|----------|--------|
+| mvp2_grpo_extract | failed (step 5) | KL=695亿, QLoRA 4-bit 精度不足 | 不可用 |
+| mvp2_grpo_flatnli | failed (step 5) | KL=508亿, 同上 | 不可用 |
+| mvp2_sft_eval | running (10.5%) | 无 | 预计 ~6h 后出结果 |
+
+两个 GRPO 实验确认了 D008 诊断：**QLoRA 4-bit 量化与 GRPO 的 KL 计算根本不兼容**。下一步 GRPO 实验需切换到 FP16/BF16 全精度或至少 8-bit 量化。
+
+---

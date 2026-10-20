@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan_021_deep_error_analysis",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:11:40.744Z",
+    "updated_at": "2026-05-19T22:11:55.371Z",
+    "hypothesis": "Deep error analysis: 系统分类 SFT vs RSFT 的预测错误类型——truncation FN, hallucinated FP, duplicate predictions。量化 RSFT 在每种错误类型上的改善幅度，揭示 RSFT 改善 RE 的具体机制。"
+  },
+  "timestamp": "2026-05-19T22:11:55.866845+00:00",
+  "trigger": "update_registry"
+}

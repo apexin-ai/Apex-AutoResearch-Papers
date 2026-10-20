@@ -1,0 +1,45 @@
+{
+  "exp_id": "plan019_8b_sft_s44_eval",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:36:26.622Z",
+    "updated_at": "2026-05-18T23:43:16.202Z",
+    "hypothesis": "8B SFT s44 eval (D076 protocol): measure SFT baseline for seed44 at 8B scale. Paired with canonical s42 (ign_f1=0.5051) for 2-seed mean±std.",
+    "parent": "plan019_8b_sft_s44",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_s44 --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan019_8b_sft_s44_eval",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "577861",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": -1,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_qwen3_8b_s44",
+      "eval_data": "docred-dev"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T23:40:22.954Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-18T23:40:28.041Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T23:40:32.844958+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-18T23:43:16.653847+00:00",
+  "trigger": "update_registry"
+}

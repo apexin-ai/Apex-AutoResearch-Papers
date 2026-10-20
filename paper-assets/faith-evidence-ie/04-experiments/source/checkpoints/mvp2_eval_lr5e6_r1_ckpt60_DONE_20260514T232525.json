@@ -1,0 +1,62 @@
+{
+  "exp_id": "mvp2_eval_lr5e6_r1_ckpt60",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-14T22:13:47.936Z",
+    "updated_at": "2026-05-14T23:25:25.584Z",
+    "hypothesis": "P0 ckpt-60 eval: lr=5e-6 GRPO at step 60. 训练轨迹数据点——ckpt-20 catastrophic forgetting (rel_f1=0.0077)，需看后续 checkpoint 是否恢复。Pass criteria: rel_f1 > 0.30.",
+    "parent": "mvp2_grpo_ced_lr5e6_r1",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_lr5e6 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt60 --checkpoints 60 --quantize\"",
+      "finished_at": "2026-05-14T22:25:13.602Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-14T22:25:14.773Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T22:25:16.365584+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "[2026-05-15 07:28] 手动 SSH 启动成功. PID=108025, cuda:1, log=/tmp/eval_lr5e6_ckpt60.log"
+      }
+    },
+    "notes": "[2026-05-15 07:24] D031 清理: PID 108025 因 cd path 问题从未产出有效结果。已被 _r2 (PID 108185) 取代。标记 failed 关闭。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 bash /root/autodl-tmp/scripts/eval_lr5e6_ckpt60.sh",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "108025",
+      "log_path": "/tmp/eval_lr5e6_ckpt60.log",
+      "submitted_at": "2026-05-14T22:29:00Z",
+      "submitted_via": "manual_ssh",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/grpo_ced_lr5e6",
+      "data_count": 0,
+      "model_name": "grpo_ced_lr5e6_ckpt60",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-60",
+      "eval_data": "batch_eval",
+      "checkpoint_path": "N/A - process had wrong Python path, never produced valid output",
+      "log_path_note": "PID 108025 had cd path issue, replaced by _r2 (PID 108185)",
+      "wall_clock_seconds": 3385.6,
+      "gpu_hours": 0.94
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-14T23:25:25.702450+00:00",
+  "trigger": "update_registry"
+}

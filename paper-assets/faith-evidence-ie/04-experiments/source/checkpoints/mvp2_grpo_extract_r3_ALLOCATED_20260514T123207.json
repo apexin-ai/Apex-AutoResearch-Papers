@@ -1,0 +1,27 @@
+{
+  "exp_id": "mvp2_grpo_extract_r3",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:31:48.781Z",
+    "updated_at": "2026-05-14T12:32:07.894Z",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 1 --output_dir /root/autodl-tmp/grpo_extract_r3 --num_generations 4 --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-5 --seed 42 --kl_coef 0.0 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 0.0 --num_iterations 1 --wandb_run_name grpo-s1-extract-r3\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "53144",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_grpo_extract_r3.log",
+      "submitted_at": "2026-05-14T12:31:48.738Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-14T12:32:07.964319+00:00",
+  "trigger": "update_registry"
+}

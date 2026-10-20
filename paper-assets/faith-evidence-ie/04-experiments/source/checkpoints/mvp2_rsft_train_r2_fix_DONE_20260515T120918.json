@@ -1,0 +1,17 @@
+{
+  "exp_id": "mvp2_rsft_train_r2_fix",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T08:38:03.815Z",
+    "updated_at": "2026-05-15T12:09:18.298Z",
+    "hypothesis": "RSFT r2 fix: 4 fixes based on r1 diagnosis. 1) 1 epoch (vs 3), 2) LoRA alpha=32/r=64 (scaling 0.5 vs 2.0), 3) filtered truncated JSON (~2548 vs 2718 samples), 4) lr=1e-5 (vs 2e-5). Pass: rel_f1 > 0.4057, evi_f1 > 0.798.",
+    "conclusion": "killed",
+    "completed_at": "2026-05-15T12:09:18.298Z"
+  },
+  "timestamp": "2026-05-15T12:09:18.446664+00:00",
+  "trigger": "update_registry"
+}

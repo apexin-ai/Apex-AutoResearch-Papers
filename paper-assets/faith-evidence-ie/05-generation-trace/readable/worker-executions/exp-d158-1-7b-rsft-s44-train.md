@@ -1,0 +1,1910 @@
+# exp d158 1 7b rsft s44 train
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 39
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/workers/worker_exp_d158_1_7b_rsft_s44_train_20260524T225311.log`
+- **Structured JSON:** [`08e2faeca1e89d35ad21.json`](../../sessions/08/08e2faeca1e89d35ad21.json)
+
+## Before a recorded user message
+
+39 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "282ded9c-07ab-45af-977f-cd3b3ccf6e52",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779677400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "b3a69497-5d16-42fc-b9a6-b7f1a4cb7a9b",
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我来启动 D158 A3 的 1.7B RSFT 训练。先确认数据和环境。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "86c5b733-1e11-4541-9652-d2967f0d7175",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017nQYaLEqcNu6WpAY9tms11",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14228,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14228
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01FRdKuHFfH7jdBnCG4vK7ox`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "4ac739c7-d105-47c6-9902-cc7fb2ea746b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017nQYaLEqcNu6WpAY9tms11",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14228,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14228
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T22:53:29.910Z_
+
+<details><summary>↩ Tool result · `toolu_01FRdKuHFfH7jdBnCG4vK7ox`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "aaef220d-6816-435f-b479-6d31f50acdaa",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking the data files exist and GPU status in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "3166a750-3d17-4c30-980d-ca138a222f3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WbhMiVcLWtohV8YJu1kGLp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1811,
+      "cache_read_input_tokens": 26069,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1811
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VdTPKYhCD96R7My9X4jjSf`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "wc -l /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "2a7af4dd-299c-4050-98cb-6d42187a39a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WbhMiVcLWtohV8YJu1kGLp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1811,
+      "cache_read_input_tokens": 26069,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1811
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NL81vMtTRXuBZ47j9eAMq1`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "4105e385-3757-46c2-8b73-b1c09688c45a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WbhMiVcLWtohV8YJu1kGLp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1811,
+      "cache_read_input_tokens": 26069,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1811
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-24T22:53:38.673Z_
+
+<details><summary>↩ Tool result · `toolu_01VdTPKYhCD96R7My9X4jjSf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3019 /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "ba03c343-70e3-4e7b-bc78-8543c567b425",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3019 /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"3019 /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MW8T137Y3A98tKwofUdvdV`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "4fb10983-4d71-4e5c-8397-78c59fdc5350",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WbhMiVcLWtohV8YJu1kGLp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1811,
+      "cache_read_input_tokens": 26069,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1811
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-24T22:53:39.211Z_
+
+<details><summary>↩ Tool result · `toolu_01NL81vMtTRXuBZ47j9eAMq1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\nadapter_config.json\\nadapter_model.safetensors\\nadded_tokens.json\\nchat_template.jinja\\ncheckpoint-380\\ncheckpoint-570\\nmerges.txt\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\ntraining_args.bin\\nvocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "6ace3f65-f75d-4ed7-97e0-a09f741cbcca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nadded_tokens.json\\\\nchat_template.jinja\\\\ncheckpoint-380\\\\ncheckpoint-570\\\\nmerges.txt\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"README.md\\nadapter_config.json\\nadapter_model.safetensors\\nadded_tokens.json\\nchat_template.jinja\\ncheckpoint-380\\ncheckpoint-570\\nmerges.txt\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\ntraining_args.bin\\nvocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-24T22:53:39.808Z_
+
+<details><summary>↩ Tool result · `toolu_01MW8T137Y3A98tKwofUdvdV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 MiB, 97887 MiB\\n1, 0 MiB, 97887 MiB\\n2, 32479 MiB, 97887 MiB\\n3, 16643 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "1015d61e-e463-4a12-beca-5059c9a9e8d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 MiB, 97887 MiB\\\\n1, 0 MiB, 97887 MiB\\\\n2, 32479 MiB, 97887 MiB\\\\n3, 16643 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 0 MiB, 97887 MiB\\n1, 0 MiB, 97887 MiB\\n2, 32479 MiB, 97887 MiB\\n3, 16643 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+数据 3019 样本确认，SFT adapter 存在，cuda:0 空闲（0 MiB）。创建 registry 并提交训练。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "fcaaa391-4c04-46e9-bb10-53ebf1993ca9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0187NTbzU4BqbYXwdtx7ZZiq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 900,
+      "cache_read_input_tokens": 27880,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 900
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_011LwJs5K5g3dGW2AdJFLgJH`</summary>
+
+```json
+{
+  "exp_id": "d158_1_7b_rsft_s44_train",
+  "field": "hypothesis",
+  "value": "1.7B RSFT k=1 CED train seed=44. 使用 3019 样本（与 s42 的 3021 基本一致）。复制 d102_1_7b_rsft_k1_s42 超参。补全 1.7B scale 3-seed 统计鲁棒性。",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "04d9573f-4bf9-4996-805e-0247d9a3974c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0187NTbzU4BqbYXwdtx7ZZiq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 900,
+      "cache_read_input_tokens": 27880,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 900
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01B2qnVpFxLRtwkHw6g3HiGX`</summary>
+
+```json
+{
+  "exp_id": "d158_1_7b_rsft_s44_train",
+  "field": "parent",
+  "value": "d158_1_7b_rsft_s44_ced_score",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "f68b0b28-8bdd-4085-8ac0-036e5f3cc542",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0187NTbzU4BqbYXwdtx7ZZiq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 900,
+      "cache_read_input_tokens": 27880,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 900
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-24T22:53:52.110Z_
+
+<details><summary>↩ Tool result · `toolu_011LwJs5K5g3dGW2AdJFLgJH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"d158_1_7b_rsft_s44_train\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T22:53:50.713Z\", \"updated_at\": \"2026-05-24T22:53:50.713Z\", \"hypothesis\": \"1.7B RSFT k=1 CED train seed=44. 使用 3019 样本（与 s42 的 3021 基本一致）。复制 d102_1_7b_rsft_k1_s42 超参。补全 1.7B scale 3-seed 统计鲁棒性。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.9477}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "f4c8c2a7-ac1f-41f2-928b-7df468f283c4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d158_1_7b_rsft_s44_train\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T22:53:50.713Z\\\", \\\"updated_at\\\": \\\"2026-05-24T22:53:50.713Z\\\", \\\"hypothesis\\\": \\\"1.7B RSFT k=1 CED train seed=44. 使用 3019 样本（与 s42 的 3021 基本一致）。复制 d102_1_7b_rsft_k1_s42 超参。补全 1.7B scale 3-seed 统计鲁棒性。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.9477}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"d158_1_7b_rsft_s44_train\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T22:53:50.713Z\", \"updated_at\": \"2026-05-24T22:53:50.713Z\", \"hypothesis\": \"1.7B RSFT k=1 CED train seed=44. 使用 3019 样本（与 s42 的 3021 基本一致）。复制 d102_1_7b_rsft_k1_s42 超参。补全 1.7B scale 3-seed 统计鲁棒性。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.9477}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-24T22:53:54.294Z_
+
+<details><summary>↩ Tool result · `toolu_01B2qnVpFxLRtwkHw6g3HiGX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"d158_1_7b_rsft_s44_train\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T22:53:50.713Z\", \"updated_at\": \"2026-05-24T22:53:53.363Z\", \"hypothesis\": \"1.7B RSFT k=1 CED train seed=44. 使用 3019 样本（与 s42 的 3021 基本一致）。复制 d102_1_7b_rsft_k1_s42 超参。补全 1.7B scale 3-seed 统计鲁棒性。\", \"parent\": \"d158_1_7b_rsft_s44_ced_score\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1635}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "9152bd88-5115-46bb-bdde-113d4b293d99",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d158_1_7b_rsft_s44_train\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T22:53:50.713Z\\\", \\\"updated_at\\\": \\\"2026-05-24T22:53:53.363Z\\\", \\\"hypothesis\\\": \\\"1.7B RSFT k=1 CED train seed=44. 使用 3019 样本（与 s42 的 3021 基本一致）。复制 d102_1_7b_rsft_k1_s42 超参。补全 1.7B scale 3-seed 统计鲁棒性。\\\", \\\"parent\\\": \\\"d158_1_7b_rsft_s44_ced_score\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1635}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"d158_1_7b_rsft_s44_train\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T22:53:50.713Z\", \"updated_at\": \"2026-05-24T22:53:53.363Z\", \"hypothesis\": \"1.7B RSFT k=1 CED train seed=44. 使用 3019 样本（与 s42 的 3021 基本一致）。复制 d102_1_7b_rsft_k1_s42 超参。补全 1.7B scale 3-seed 统计鲁棒性。\", \"parent\": \"d158_1_7b_rsft_s44_ced_score\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1635}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+Registry 创建完毕。提交训练任务。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "7625e627-ec2d-4385-825c-4362740fd5bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KCe5gEHjZPH4gpwhn93RLS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 968,
+      "cache_read_input_tokens": 28780,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 968
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01QmV2AdExQRPJAvC4QPkv6d`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 nohup python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --rsft_data_path /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_1_7b_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --warmup_steps 100 --save_steps 50 --save_total_limit 2 --max_length 2048 --seed 44 --lora_rank 64 --lora_alpha 128 --bf16 --wandb_project freige-rsft --wandb_run_name rsft_qwen3_1_7b_k1_s44 > ~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_train.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "a80e688f-a574-4eb9-a408-79a2b53c96a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KCe5gEHjZPH4gpwhn93RLS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 968,
+      "cache_read_input_tokens": 28780,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 968
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-24T22:54:34.647Z_
+
+<details><summary>↩ Tool result · `toolu_01QmV2AdExQRPJAvC4QPkv6d`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 nohup python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --rsft_data_path /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_1_7b_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --warmup_steps 100 --save_steps 50 --save_total_limit 2 --max_length 2048 --seed 44 --lora_rank 64 --lora_alpha 128 --bf16 --wandb_project freige-rsft --wandb_run_name rsft_qwen3_1_7b_k1_s44 > ~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_train.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=337228\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "e02dd1fa-86ec-484e-9324-25cc409e5984",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 nohup python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --rsft_data_path /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_1_7b_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --warmup_steps 100 --save_steps 50 --save_total_limit 2 --max_length 2048 --seed 44 --lora_rank 64 --lora_alpha 128 --bf16 --wandb_project freige-rsft --wandb_run_name rsft_qwen3_1_7b_k1_s44 > ~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_train.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=337228\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 nohup python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --rsft_data_path /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_1_7b_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --warmup_steps 100 --save_steps 50 --save_total_limit 2 --max_length 2048 --seed 44 --lora_rank 64 --lora_alpha 128 --bf16 --wandb_project freige-rsft --wandb_run_name rsft_qwen3_1_7b_k1_s44 > ~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_train.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=337228\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+进程已启动，PID=337228。超时是 SSH 工具的 30s 限制，nohup 进程在后台正常运行。确认一下进程状态和 GPU 占用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "18086dac-34e2-4317-adf2-5047246d2ec0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RimyvyMePPthEEhaQHR2ut",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1093,
+      "cache_read_input_tokens": 29748,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1093
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017JFmTwkxumDP7eD1oNBLZy`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ps -p 337228 -o pid,stat,etime,cmd --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "436508b2-1d89-4032-9f84-7fd5387a7028",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RimyvyMePPthEEhaQHR2ut",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1093,
+      "cache_read_input_tokens": 29748,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1093
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013sNvRtCBiEtNNXusr7b56K`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "nvidia-smi --query-gpu=index,memory.used --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "118dea1d-8493-46d1-857e-1f21c29cd2d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RimyvyMePPthEEhaQHR2ut",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1093,
+      "cache_read_input_tokens": 29748,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1093
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-24T22:54:42.943Z_
+
+<details><summary>↩ Tool result · `toolu_017JFmTwkxumDP7eD1oNBLZy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"337228 S          00:38 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 nohup python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --rsft_data_path /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_1_7b_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --warmup_steps 100 --save_steps 50 --save_total_limit 2 --max_length 2048 --seed 44 --lora_rank 64 --lora_alpha 128 --bf16 --wandb_project freige-rsft --wandb_run_name rsft_qwen3_1_7b_k1_s44 > ~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_train.log 2>&1 & echo \\\"PID=$!\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "7fcbe919-3672-444f-a223-d25b908db7ce",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"337228 S          00:38 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 nohup python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --rsft_data_path /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_1_7b_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --warmup_steps 100 --save_steps 50 --save_total_limit 2 --max_length 2048 --seed 44 --lora_rank 64 --lora_alpha 128 --bf16 --wandb_project freige-rsft --wandb_run_name rsft_qwen3_1_7b_k1_s44 > ~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_train.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"337228 S          00:38 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 nohup python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --rsft_data_path /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_1_7b_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --warmup_steps 100 --save_steps 50 --save_total_limit 2 --max_length 2048 --seed 44 --lora_rank 64 --lora_alpha 128 --bf16 --wandb_project freige-rsft --wandb_run_name rsft_qwen3_1_7b_k1_s44 > ~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_train.log 2>&1 & echo \\\"PID=$!\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014C4kevchitCmAdRnf4peVQ`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -20 /root/runs/faith-evidence-ie/d158_1_7b_rsft_s44_train.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "7d0e3ecb-feb4-489f-815c-e95dc0e2e8cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RimyvyMePPthEEhaQHR2ut",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1093,
+      "cache_read_input_tokens": 29748,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1093
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-24T22:54:43.543Z_
+
+<details><summary>↩ Tool result · `toolu_013sNvRtCBiEtNNXusr7b56K`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 76185 MiB\\n1, 0 MiB\\n2, 32479 MiB\\n3, 19099 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "ea956c1b-0ede-48e7-b270-838f89364abd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 76185 MiB\\\\n1, 0 MiB\\\\n2, 32479 MiB\\\\n3, 19099 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 76185 MiB\\n1, 0 MiB\\n2, 32479 MiB\\n3, 19099 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-24T22:54:44.085Z_
+
+<details><summary>↩ Tool result · `toolu_014C4kevchitCmAdRnf4peVQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-25 06:54:09,815 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\n2026-05-25 06:54:10,291 INFO Loading RSFT data: /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl\\n2026-05-25 06:54:10,336 INFO Loaded 3019 RSFT samples from /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl\\n2026-05-25 06:54:14,107 INFO Prepared 3019 RSFT samples (CED scores: min=0.000, max=0.998, mean=0.679)\\n2026-05-25 06:54:14,175 INFO Loading base model: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/311 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/311 [00:00<03:13,  1.60it/s]\\rLoading weights:   1%|          | 2/311 [00:01<03:18,  1.55it/s]\\rLoading weights:   4%|▎         | 11/311 [00:01<00:26, 11.45it/s]\\rLoading weights:   7%|▋         | 23/311 [00:01<00:10, 26.27it/s]\\rLoading weights:  10%|█         | 32/311 [00:01<00:07, 36.18it/s]\\rLoading weights:  13%|█▎        | 41/311 [00:01<00:05, 45.76it/s]\\rLoading weights:  16%|█▋        | 51/311 [00:01<00:04, 56.74it/s]\\rLoading weights:  20%|█▉        | 62/311 [00:01<00:03, 67.81it/s]\\rLoading weights:  25%|██▌       | 79/311 [00:02<00:02, 89.67it/s]\\rLoading weights:  29%|██▉       | 90/311 [00:02<00:02, 94.77it/s]\\rLoading weights:  33%|███▎      | 104/311 [00:02<00:02, 103.13it/s]\\rLoading weights:  37%|███▋      | 116/311 [00:02<00:01, 98.02it/s] \\rLoading weights:  41%|████      | 127/311 [00:02<00:01, 96.68it/s]\\rLoading weights:  45%|████▌     | 141/311 [00:02<00:01, 104.89it/s]\\rLoading weights:  49%|████▉     | 152/311 [00:02<00:01, 103.93it/s]\\rLoading weights:  53%|█████▎    | 164/311 [00:02<00:01, 107.34it/s]\\rLoading weights:  57%|█████▋    | 177/311 [00:02<00:01, 111.22it/s]\\rLoading weights:  61%|██████    | 189/311 [00:03<00:01, 107.81it/s]\\rLoading weights:  64%|██████▍   | 200/311 [00:03<00:01, 107.37it/s]\\rLoading weights:  68%|██████▊   | 211/311 [00:03<00:00, 105.63it/s]\\rLoading weights:  71%|███████▏  | 222/311 [00:03<00:00, 106.68it/s]\\rLoading weights:  75%|███████▌  | 234/311 [00:03<00:00, 108.35it/s]\\rLoading weights:  79%|███████▉  | 245/311 [00:03<00:00, 104.95it/s]\\rLoading weights:  83%|████████▎ | 258/311 [00:03<00:00, 109.66it/s]\\rLoading weights:  86%|████████▋ | 269/311 [00:03<00:00, 98.43it/s] \\rLoading weights:  90%|█████████ | 280/311 [00:03<00:00, 96.35it/s]\\rLoading weights:  94%|█████████▍| 292/311 [00:04<00:00, 97.49it/s]\\rLoading weights:  97%|█████████▋| 302/311 [00:04<00:00, 88.85it/s]\\rLoading weights: 100%|██████████| 311/311 [00:04<00:00, 72.23it/s]\\n2026-05-25 06:54:18,906 INFO Merging SFT adapter: /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44\\ntrainable params: 69,730,304 || all params: 1,790,305,280 || trainable%: 3.8949\\n\\rAdding EOS to train dataset:   0%|          | 0/3019 [00:00<?, ? examples/s]\\rAdding EOS to train dataset: 100%|██████████| 3019/3019 [00:00<00:00, 34818.37 examples/s]\\n\\rTokenizing train dataset:   0%|          | 0/3019 [00:00<?, ? examples/s]\\rTokenizing train dataset:   3%|▎         | 95/3019 [00:00<00:03, 937.43 examples/s]\\rTokenizing train dataset:   6%|▋         | 190/3019 [00:00<00:03, 941.33 examples/s]\\rTokenizing train dataset:  10%|█         | 315/3019 [00:00<00:03, 875.43 examples/s]\\rTokenizing train dataset:  15%|█▍        | 441/3019 [00:00<00:03, 852.76 examples/s]\\rTokenizing train dataset:  19%|█▊        | 562/3019 [00:00<00:02, 829.34 examples/s]\\rTokenizing train dataset:  23%|██▎       | 680/3019 [00:00<00:02, 810.64 examples/s]\\rTokenizing train dataset:  25%|██▌       | 764/3019 [00:00<00:02, 815.58 examples/s]\\rTokenizing train dataset:  28%|██▊       | 849/3019 [00:01<00:02, 820.62 examples/s]\\rTokenizing train dataset:  32%|███▏      | 967/3019 [00:01<00:02, 807.37 examples/s]\\rTokenizing train dataset:  36%|███▌      | 1074/3019 [00:01<00:03, 634.55 examples/s]\\rTokenizing train dataset:  38%|███▊      | 1153/3019 [00:01<00:02, 665.06 examples/s]\\rTokenizing train dataset:  41%|████      | 1228/3019 [00:01<00:02, 682.89 examples/s]\\rTokenizing train dataset:  43%|████▎     | 1304/3019 [00:01<00:02, 701.65 examples/s]\\rTokenizing train dataset:  46%|████▌     | 1380/3019 [00:01<00:02, 714.78 examples/s]\\rTokenizing train dataset:  48%|████▊     | 1463/3019 [00:01<00:02, 745.12 examples/s]\\rTokenizing train dataset:  51%|█████     | 1547/3019 [00:02<00:01, 769.25 examples/s]\\rTokenizing train dataset:  54%|█████▍    | 1630/3019 [00:02<00:01, 785.74 examples/s]\\rTokenizing train dataset:  57%|█████▋    | 1710/3019 [00:02<00:01, 785.14 examples/s]\\rTokenizing train dataset:  61%|██████    | 1831/3019 [00:02<00:01, 789.36 examples/s]\\rTokenizing train dataset:  63%|██████▎   | 1912/3019 [00:02<00:01, 792.48 examples/s]\\rTokenizing train dataset:  66%|██████▌   | 1995/3019 [00:02<00:01, 801.52 examples/s]\\rTokenizing train dataset:  69%|██████▉   | 2078/3019 [00:02<00:01, 701.16 examples/s]\\rTokenizing train dataset:  72%|███████▏  | 2160/3019 [00:02<00:01, 729.92 examples/s]\\rTokenizing train dataset:  74%|███████▍  | 2240/3019 [00:02<00:01, 747.33 examples/s]\\rTokenizing train dataset:  78%|███████▊  | 2354/3019 [00:03<00:00, 747.13 examples/s]\\rTokenizing train dataset:  81%|████████  | 2435/3019 [00:03<00:00, 759.37 examples/s]\\rTokenizing train dataset:  83%|████████▎ | 2517/3019 [00:03<00:00, 770.48 examples/s]\\rTokenizing train dataset:  86%|████████▌ | 2601/3019 [00:03<00:00, 785.72 examples/s]\\rTokenizing train dataset:  90%|████████▉ | 2717/3019 [00:03<00:00, 777.23 examples/s]\\rTokenizing train dataset:  93%|█████████▎| 2796/3019 [00:03<00:00, 777.62 examples/s]\\rTokenizing train dataset:  95%|█████████▌| 2876/3019 [00:03<00:00, 779.65 examples/s]\\rTokenizing train dataset:  98%|█████████▊| 2955/3019 [00:03<00:00, 780.81 examples/s]\\rTokenizing train dataset: 100%|██████████| 3019/3019 [00:03<00:00, 759.50 examples/s]\\n2026-05-25 06:54:26,915 INFO Starting RSFT training (3019 samples, weighted=False)...\\n[transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\n\\r  0%|          | 0/567 [00:00<?, ?it/s]\\r  0%|          | 1/567 [00:02<27:02,  2.87s/it]\\r  0%|          | 2/567 [00:05<24:37,  2.61s/it]\\r  1%|          | 3/567 [00:07<22:07,  2.35s/it]\\r  1%|          | 4/567 [00:10<23:13,  2.48s/it]\\r  1%|          | 5/567 [00:12<23:51,  2.55s/it]\\r  1%|          | 6/567 [00:14<22:58,  2.46s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "f5d18c19-9cfa-4250-8e0c-e5a85973b7ed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-25 06:54:09,815 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\n2026-05-25 06:54:10,291 INFO Loading RSFT data: /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl\\\\n2026-05-25 06:54:10,336 INFO Loaded 3019 RSFT samples from /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl\\\\n2026-05-25 06:54:14,107 INFO Prepared 3019 RSFT samples (CED scores: min=0.000, max=0.998, mean=0.679)\\\\n2026-05-25 06:54:14,175 INFO Loading base model: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/311 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/311 [00:00<03:13,  1.60it/s]\\\\rLoading weights:   1%|          | 2/311 [00:01<03:18,  1.55it/s]\\\\rLoading weights:   4%|▎         | 11/311 [00:01<00:26, 11.45it/s]\\\\rLoading weights:   7%|▋         | 23/311 [00:01<00:10, 26.27it/s]\\\\rLoading weights:  10%|█         | 32/311 [00:01<00:07, 36.18it/s]\\\\rLoading weights:  13%|█▎        | 41/311 [00:01<00:05, 45.76it/s]\\\\rLoading weights:  16%|█▋        | 51/311 [00:01<00:04, 56.74it/s]\\\\rLoading weights:  20%|█▉        | 62/311 [00:01<00:03, 67.81it/s]\\\\rLoading weights:  25%|██▌       | 79/311 [00:02<00:02, 89.67it/s]\\\\rLoading weights:  29%|██▉       | 90/311 [00:02<00:02, 94.77it/s]\\\\rLoading weights:  33%|███▎      | 104/311 [00:02<00:02, 103.13it/s]\\\\rLoading weights:  37%|███▋      | 116/311 [00:02<00:01, 98.02it/s] \\\\rLoading weights:  41%|████      | 127/311 [00:02<00:01, 96.68it/s]\\\\rLoading weights:  45%|████▌     | 141/311 [00:02<00:01, 104.89it/s]\\\\rLoading weights:  49%|████▉     | 152/311 [00:02<00:01, 103.93it/s]\\\\rLoading weights:  53%|█████▎    | 164/311 [00:02<00:01, 107.34it/s]\\\\rLoading weights:  57%|█████▋    | 177/311 [00:02<00:01, 111.22it/s]\\\\rLoading weights:  61%|██████    | 189/311 [00:03<00:01, 107.81it/s]\\\\rLoading weights:  64%|██████▍   | 200/311 [00:03<00:01, 107.37it/s]\\\\rLoading weights:  68%|██████▊   | 211/311 [00:03<00:00, 105.63it/s]\\\\rLoading weights:  71%|███████▏  | 222/311 [00:03<00:00, 106.68it/s]\\\\rLoading weights:  75%|███████▌  | 234/311 [00:03<00:00, 108.35it/s]\\\\rLoading weights:  79%|███████▉  | 245/311 [00:03<00:00, 104.95it/s]\\\\rLoading weights:  83%|████████▎ | 258/311 [00:03<00:00, 109.66it/s]\\\\rLoading weights:  86%|████████▋ | 269/311 [00:03<00:00, 98.43it/s] \\\\rLoading weights:  90%|█████████ | 280/311 [00:03<00:00, 96.35it/s]\\\\rLoading weights:  94%|█████████▍| 292/311 [00:04<00:00, 97.49it/s]\\\\rLoading weights:  97%|█████████▋| 302/311 [00:04<00:00, 88.85it/s]\\\\rLoading weights: 100%|██████████| 311/311 [00:04<00:00, 72.23it/s]\\\\n2026-05-25 06:54:18,906 INFO Merging SFT adapter: /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44\\\\ntrainable params: 69,730,304 || all params: 1,790,305,280 || trainable%: 3.8949\\\\n\\\\rAdding EOS to train dataset:   0%|          | 0/3019 [00:00<?, ? examples/s]\\\\rAdding EOS to train dataset: 100%|██████████| 3019/3019 [00:00<00:00, 34818.37 examples/s]\\\\n\\\\rTokenizing train dataset:   0%|          | 0/3019 [00:00<?, ? examples/s]\\\\rTokenizing train dataset:   3%|▎         | 95/3019 [00:00<00:03, 937.43 examples/s]\\\\rTokenizing train dataset:   6%|▋         | 190/3019 [00:00<00:03, 941.33 examples/s]\\\\rTokenizing train dataset:  10%|█         | 315/3019 [00:00<00:03, 875.43 examples/s]\\\\rTokenizing train dataset:  15%|█▍        | 441/3019 [00:00<00:03, 852.76 examples/s]\\\\rTokenizing train dataset:  19%|█▊        | 562/3019 [00:00<00:02, 829.34 examples/s]\\\\rTokenizing train dataset:  23%|██▎       | 680/3019 [00:00<00:02, 810.64 examples/s]\\\\rTokenizing train dataset:  25%|██▌       | 764/3019 [00:00<00:02, 815.58 examples/s]\\\\rTokenizing train dataset:  28%|██▊       | 849/3019 [00:01<00:02, 820.62 examples/s]\\\\rTokenizing train dataset:  32%|███▏      | 967/3019 [00:01<00:02, 807.37 examples/s]\\\\rTokenizing train dataset:  36%|███▌      | 1074/3019 [00:01<00:03, 634.55 examples/s]\\\\rTokenizing train dataset:  38%|███▊      | 1153/3019 [00:01<00:02, 665.06 examples/s]\\\\rTokenizing train dataset:  41%|████      | 1228/3019 [00:01<00:02, 682.89 examples/s]\\\\rTokenizing train dataset:  43%|████▎     | 1304/3019 [00:01<00:02, 701.65 examples/s]\\\\rTokenizing train dataset:  46%|████▌     | 1380/3019 [00:01<00:02, 714.78 examples/s]\\\\rTokenizing train dataset:  48%|████▊     | 1463/3019 [00:01<00:02, 745.12 examples/s]\\\\rTokenizing train dataset:  51%|█████     | 1547/3019 [00:02<00:01, 769.25 examples/s]\\\\rTokenizing train dataset:  54%|█████▍    | 1630/3019 [00:02<00:01, 785.74 examples/s]\\\\rTokenizing train dataset:  57%|█████▋    | 1710/3019 [00:02<00:01, 785.14 examples/s]\\\\rTokenizing train dataset:  61%|██████    | 1831/3019 [00:02<00:01, 789.36 examples/s]\\\\rTokenizing train dataset:  63%|██████▎   | 1912/3019 [00:02<00:01, 792.48 examples/s]\\\\rTokenizing train dataset:  66%|██████▌   | 1995/3019 [00:02<00:01, 801.52 examples/s]\\\\rTokenizing train dataset:  69%|██████▉   | 2078/3019 [00:02<00:01, 701.16 examples/s]\\\\rTokenizing train dataset:  72%|███████▏  | 2160/3019 [00:02<00:01, 729.92 examples/s]\\\\rTokenizing train dataset:  74%|███████▍  | 2240/3019 [00:02<00:01, 747.33 examples/s]\\\\rTokenizing train dataset:  78%|███████▊  | 2354/3019 [00:03<00:00, 747.13 examples/s]\\\\rTokenizing train dataset:  81%|████████  | 2435/3019 [00:03<00:00, 759.37 examples/s]\\\\rTokenizing train dataset:  83%|████████▎ | 2517/3019 [00:03<00:00, 770.48 examples/s]\\\\rTokenizing train dataset:  86%|████████▌ | 2601/3019 [00:03<00:00, 785.72 examples/s]\\\\rTokenizing train dataset:  90%|████████▉ | 2717/3019 [00:03<00:00, 777.23 examples/s]\\\\rTokenizing train dataset:  93%|█████████▎| 2796/3019 [00:03<00:00, 777.62 examples/s]\\\\rTokenizing train dataset:  95%|█████████▌| 2876/3019 [00:03<00:00, 779.65 examples/s]\\\\rTokenizing train dataset:  98%|█████████▊| 2955/3019 [00:03<00:00, 780.81 examples/s]\\\\rTokenizing train dataset: 100%|██████████| 3019/3019 [00:03<00:00, 759.50 examples/s]\\\\n2026-05-25 06:54:26,915 INFO Starting RSFT training (3019 samples, weighted=False)...\\\\n[transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\\\n\\\\r  0%|          | 0/567 [00:00<?, ?it/s]\\\\r  0%|          | 1/567 [00:02<27:02,  2.87s/it]\\\\r  0%|          | 2/567 [00:05<24:37,  2.61s/it]\\\\r  1%|          | 3/567 [00:07<22:07,  2.35s/it]\\\\r  1%|          | 4/567 [00:10<23:13,  2.48s/it]\\\\r  1%|          | 5/567 [00:12<23:51,  2.55s/it]\\\\r  1%|          | 6/567 [00:14<22:58,  2.46s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-25 06:54:09,815 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\n2026-05-25 06:54:10,291 INFO Loading RSFT data: /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl\\n2026-05-25 06:54:10,336 INFO Loaded 3019 RSFT samples from /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl\\n2026-05-25 06:54:14,107 INFO Prepared 3019 RSFT samples (CED scores: min=0.000, max=0.998, mean=0.679)\\n2026-05-25 06:54:14,175 INFO Loading base model: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/311 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/311 [00:00<03:13,  1.60it/s]\\rLoading weights:   1%|          | 2/311 [00:01<03:18,  1.55it/s]\\rLoading weights:   4%|▎         | 11/311 [00:01<00:26, 11.45it/s]\\rLoading weights:   7%|▋         | 23/311 [00:01<00:10, 26.27it/s]\\rLoading weights:  10%|█         | 32/311 [00:01<00:07, 36.18it/s]\\rLoading weights:  13%|█▎        | 41/311 [00:01<00:05, 45.76it/s]\\rLoading weights:  16%|█▋        | 51/311 [00:01<00:04, 56.74it/s]\\rLoading weights:  20%|█▉        | 62/311 [00:01<00:03, 67.81it/s]\\rLoading weights:  25%|██▌       | 79/311 [00:02<00:02, 89.67it/s]\\rLoading weights:  29%|██▉       | 90/311 [00:02<00:02, 94.77it/s]\\rLoading weights:  33%|███▎      | 104/311 [00:02<00:02, 103.13it/s]\\rLoading weights:  37%|███▋      | 116/311 [00:02<00:01, 98.02it/s] \\rLoading weights:  41%|████      | 127/311 [00:02<00:01, 96.68it/s]\\rLoading weights:  45%|████▌     | 141/311 [00:02<00:01, 104.89it/s]\\rLoading weights:  49%|████▉     | 152/311 [00:02<00:01, 103.93it/s]\\rLoading weights:  53%|█████▎    | 164/311 [00:02<00:01, 107.34it/s]\\rLoading weights:  57%|█████▋    | 177/311 [00:02<00:01, 111.22it/s]\\rLoading weights:  61%|██████    | 189/311 [00:03<00:01, 107.81it/s]\\rLoading weights:  64%|██████▍   | 200/311 [00:03<00:01, 107.37it/s]\\rLoading weights:  68%|██████▊   | 211/311 [00:03<00:00, 105.63it/s]\\rLoading weights:  71%|███████▏  | 222/311 [00:03<00:00, 106.68it/s]\\rLoading weights:  75%|███████▌  | 234/311 [00:03<00:00, 108.35it/s]\\rLoading weights:  79%|███████▉  | 245/311 [00:03<00:00, 104.95it/s]\\rLoading weights:  83%|████████▎ | 258/311 [00:03<00:00, 109.66it/s]\\rLoading weights:  86%|████████▋ | 269/311 [00:03<00:00, 98.43it/s] \\rLoading weights:  90%|█████████ | 280/311 [00:03<00:00, 96.35it/s]\\rLoading weights:  94%|█████████▍| 292/311 [00:04<00:00, 97.49it/s]\\rLoading weights:  97%|█████████▋| 302/311 [00:04<00:00, 88.85it/s]\\rLoading weights: 100%|██████████| 311/311 [00:04<00:00, 72.23it/s]\\n2026-05-25 06:54:18,906 INFO Merging SFT adapter: /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44\\ntrainable params: 69,730,304 || all params: 1,790,305,280 || trainable%: 3.8949\\n\\rAdding EOS to train dataset:   0%|          | 0/3019 [00:00<?, ? examples/s]\\rAdding EOS to train dataset: 100%|██████████| 3019/3019 [00:00<00:00, 34818.37 examples/s]\\n\\rTokenizing train dataset:   0%|          | 0/3019 [00:00<?, ? examples/s]\\rTokenizing train dataset:   3%|▎         | 95/3019 [00:00<00:03, 937.43 examples/s]\\rTokenizing train dataset:   6%|▋         | 190/3019 [00:00<00:03, 941.33 examples/s]\\rTokenizing train dataset:  10%|█         | 315/3019 [00:00<00:03, 875.43 examples/s]\\rTokenizing train dataset:  15%|█▍        | 441/3019 [00:00<00:03, 852.76 examples/s]\\rTokenizing train dataset:  19%|█▊        | 562/3019 [00:00<00:02, 829.34 examples/s]\\rTokenizing train dataset:  23%|██▎       | 680/3019 [00:00<00:02, 810.64 examples/s]\\rTokenizing train dataset:  25%|██▌       | 764/3019 [00:00<00:02, 815.58 examples/s]\\rTokenizing train dataset:  28%|██▊       | 849/3019 [00:01<00:02, 820.62 examples/s]\\rTokenizing train dataset:  32%|███▏      | 967/3019 [00:01<00:02, 807.37 examples/s]\\rTokenizing train dataset:  36%|███▌      | 1074/3019 [00:01<00:03, 634.55 examples/s]\\rTokenizing train dataset:  38%|███▊      | 1153/3019 [00:01<00:02, 665.06 examples/s]\\rTokenizing train dataset:  41%|████      | 1228/3019 [00:01<00:02, 682.89 examples/s]\\rTokenizing train dataset:  43%|████▎     | 1304/3019 [00:01<00:02, 701.65 examples/s]\\rTokenizing train dataset:  46%|████▌     | 1380/3019 [00:01<00:02, 714.78 examples/s]\\rTokenizing train dataset:  48%|████▊     | 1463/3019 [00:01<00:02, 745.12 examples/s]\\rTokenizing train dataset:  51%|█████     | 1547/3019 [00:02<00:01, 769.25 examples/s]\\rTokenizing train dataset:  54%|█████▍    | 1630/3019 [00:02<00:01, 785.74 examples/s]\\rTokenizing train dataset:  57%|█████▋    | 1710/3019 [00:02<00:01, 785.14 examples/s]\\rTokenizing train dataset:  61%|██████    | 1831/3019 [00:02<00:01, 789.36 examples/s]\\rTokenizing train dataset:  63%|██████▎   | 1912/3019 [00:02<00:01, 792.48 examples/s]\\rTokenizing train dataset:  66%|██████▌   | 1995/3019 [00:02<00:01, 801.52 examples/s]\\rTokenizing train dataset:  69%|██████▉   | 2078/3019 [00:02<00:01, 701.16 examples/s]\\rTokenizing train dataset:  72%|███████▏  | 2160/3019 [00:02<00:01, 729.92 examples/s]\\rTokenizing train dataset:  74%|███████▍  | 2240/3019 [00:02<00:01, 747.33 examples/s]\\rTokenizing train dataset:  78%|███████▊  | 2354/3019 [00:03<00:00, 747.13 examples/s]\\rTokenizing train dataset:  81%|████████  | 2435/3019 [00:03<00:00, 759.37 examples/s]\\rTokenizing train dataset:  83%|████████▎ | 2517/3019 [00:03<00:00, 770.48 examples/s]\\rTokenizing train dataset:  86%|████████▌ | 2601/3019 [00:03<00:00, 785.72 examples/s]\\rTokenizing train dataset:  90%|████████▉ | 2717/3019 [00:03<00:00, 777.23 examples/s]\\rTokenizing train dataset:  93%|█████████▎| 2796/3019 [00:03<00:00, 777.62 examples/s]\\rTokenizing train dataset:  95%|█████████▌| 2876/3019 [00:03<00:00, 779.65 examples/s]\\rTokenizing train dataset:  98%|█████████▊| 2955/3019 [00:03<00:00, 780.81 examples/s]\\rTokenizing train dataset: 100%|██████████| 3019/3019 [00:03<00:00, 759.50 examples/s]\\n2026-05-25 06:54:26,915 INFO Starting RSFT training (3019 samples, weighted=False)...\\n[transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\n\\r  0%|          | 0/567 [00:00<?, ?it/s]\\r  0%|          | 1/567 [00:02<27:02,  2.87s/it]\\r  0%|          | 2/567 [00:05<24:37,  2.61s/it]\\r  1%|          | 3/567 [00:07<22:07,  2.35s/it]\\r  1%|          | 4/567 [00:10<23:13,  2.48s/it]\\r  1%|          | 5/567 [00:12<23:51,  2.55s/it]\\r  1%|          | 6/567 [00:14<22:58,  2.46s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+训练已在 cuda:0 上运行（76185 MiB 占用），PID 337228，567 steps，正常推进中。更新 registry 为 RUNNING。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "5a4414da-910c-4591-a0dc-e2997ab1d44b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MTDSbqHZCHodHSAkgwPBoh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4389,
+      "cache_read_input_tokens": 30841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4389
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01XtUAVeF9NRAYegfoTsRAAZ`</summary>
+
+```json
+{
+  "exp_id": "d158_1_7b_rsft_s44_train",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "faith-evidence-ie",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --rsft_data_path /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_1_7b_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --warmup_steps 100 --save_steps 50 --save_total_limit 2 --max_length 2048 --seed 44 --lora_rank 64 --lora_alpha 128 --bf16 --wandb_project freige-rsft --wandb_run_name rsft_qwen3_1_7b_k1_s44",
+    "server": "rtx5090-4x",
+    "gpu_id": "cuda:0",
+    "pid": 337228,
+    "data_path": "/root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl",
+    "data_count": 3019,
+    "model_name": "Qwen3-1.7B",
+    "seed": 44,
+    "checkpoint_source": "/root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44",
+    "checkpoint_path": "/root/autodl-tmp/rsft_output_1_7b_s44",
+    "log_path": "~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_train.log",
+    "hyperparams": {
+      "lr": "2e-5",
+      "epochs": 3,
+      "batch_size": 4,
+      "grad_accum": 4,
+      "warmup_steps": 100,
+      "max_length": 2048,
+      "lora_rank": 64,
+      "lora_alpha": 128,
+      "total_steps": 567
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "f55a1510-8540-4805-831d-5a6da0c6df49",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MTDSbqHZCHodHSAkgwPBoh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4389,
+      "cache_read_input_tokens": 30841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4389
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-24T22:55:00.469Z_
+
+<details><summary>↩ Tool result · `toolu_01XtUAVeF9NRAYegfoTsRAAZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 1.0081}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "77edc4e0-86da-4b07-8d87-d22305535065",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0081}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 1.0081}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01PNSGtAkCyfY9FVVBzhqPFR`</summary>
+
+```json
+{
+  "exp_id": "d158_1_7b_rsft_s44_train",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "a42d8cb5-f6ae-4fa4-91e0-ed26b37e7d41",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LH8jdhxPVJVJqVamDjwyjM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 35230,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 819
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-24T22:55:10.718Z_
+
+<details><summary>↩ Tool result · `toolu_01PNSGtAkCyfY9FVVBzhqPFR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"d158_1_7b_rsft_s44_train\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-24T22:53:50.713Z\", \"updated_at\": \"2026-05-24T22:55:07.382Z\", \"hypothesis\": \"1.7B RSFT k=1 CED train seed=44. 使用 3019 样本（与 s42 的 3021 基本一致）。复制 d102_1_7b_rsft_k1_s42 超参。补全 1.7B scale 3-seed 统计鲁棒性。\", \"parent\": \"d158_1_7b_rsft_s44_ced_score\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.4563}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "a235b26b-ad18-4fec-b40b-35b6f2bd42ab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d158_1_7b_rsft_s44_train\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T22:53:50.713Z\\\", \\\"updated_at\\\": \\\"2026-05-24T22:55:07.382Z\\\", \\\"hypothesis\\\": \\\"1.7B RSFT k=1 CED train seed=44. 使用 3019 样本（与 s42 的 3021 基本一致）。复制 d102_1_7b_rsft_k1_s42 超参。补全 1.7B scale 3-seed 统计鲁棒性。\\\", \\\"parent\\\": \\\"d158_1_7b_rsft_s44_ced_score\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.4563}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"d158_1_7b_rsft_s44_train\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-24T22:53:50.713Z\", \"updated_at\": \"2026-05-24T22:55:07.382Z\", \"hypothesis\": \"1.7B RSFT k=1 CED train seed=44. 使用 3019 样本（与 s42 的 3021 基本一致）。复制 d102_1_7b_rsft_k1_s42 超参。补全 1.7B scale 3-seed 统计鲁棒性。\", \"parent\": \"d158_1_7b_rsft_s44_ced_score\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.4563}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01E5Q1LNqEwk55sE9C8vbRAm`</summary>
+
+```json
+{
+  "exp_id": "d158_1_7b_rsft_s44_train",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "faith-evidence-ie",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --rsft_data_path /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_1_7b_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --warmup_steps 100 --save_steps 50 --save_total_limit 2 --max_length 2048 --seed 44 --lora_rank 64 --lora_alpha 128 --bf16 --wandb_project freige-rsft --wandb_run_name rsft_qwen3_1_7b_k1_s44",
+    "server": "rtx5090-4x",
+    "gpu_id": "cuda:0",
+    "pid": 337228,
+    "data_path": "/root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl",
+    "data_count": 3019,
+    "model_name": "Qwen3-1.7B",
+    "seed": 44,
+    "checkpoint_source": "/root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44",
+    "checkpoint_path": "/root/autodl-tmp/rsft_output_1_7b_s44",
+    "log_path": "~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_train.log",
+    "hyperparams": {
+      "lr": "2e-5",
+      "epochs": 3,
+      "batch_size": 4,
+      "grad_accum": 4,
+      "warmup_steps": 100,
+      "max_length": 2048,
+      "lora_rank": 64,
+      "lora_alpha": 128,
+      "total_steps": 567
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "acd8041f-66e0-4790-924b-beacf4eb0d7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T5x9z16aTLps1gaxcVMNUY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 404,
+      "cache_read_input_tokens": 36049,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 404
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-24T22:55:19.554Z_
+
+<details><summary>↩ Tool result · `toolu_01E5Q1LNqEwk55sE9C8vbRAm`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 1.1228}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "db38b8b8-24e0-400d-920e-8715c87166eb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1228}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 1.1228}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01A2PJVdnaJRrDmvLWkxS2bG`</summary>
+
+```json
+{
+  "exp_id": "d158_1_7b_rsft_s44_train",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "faith-evidence-ie",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --rsft_data_path /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_1_7b_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --warmup_steps 100 --save_steps 50 --save_total_limit 2 --max_length 2048 --seed 44 --lora_rank 64 --lora_alpha 128 --bf16 --wandb_project freige-rsft --wandb_run_name rsft_qwen3_1_7b_k1_s44",
+    "server": "rtx5090-4x",
+    "gpu_id": "cuda:0",
+    "pid": 337228,
+    "data_path": "/root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl",
+    "data_count": 3019,
+    "model_name": "Qwen3-1.7B",
+    "seed": 44,
+    "checkpoint_source": "/root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44",
+    "eval_data": "N/A (training job)",
+    "checkpoint_path": "/root/autodl-tmp/rsft_output_1_7b_s44",
+    "log_path": "~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_train.log",
+    "hyperparams": {
+      "lr": "2e-5",
+      "epochs": 3,
+      "batch_size": 4,
+      "grad_accum": 4,
+      "warmup_steps": 100,
+      "max_length": 2048,
+      "lora_rank": 64,
+      "lora_alpha": 128,
+      "total_steps": 567
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "32279e3b-88d3-4400-9e4a-0d7bcd30a068",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DMzK4yP4v6TWXUGWSpfRhN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 36453,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 778
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-24T22:55:31.867Z_
+
+<details><summary>↩ Tool result · `toolu_01A2PJVdnaJRrDmvLWkxS2bG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"d158_1_7b_rsft_s44_train\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T22:53:50.713Z\", \"updated_at\": \"2026-05-24T22:55:28.733Z\", \"hypothesis\": \"1.7B RSFT k=1 CED train seed=44. 使用 3019 样本（与 s42 的 3021 基本一致）。复制 d102_1_7b_rsft_k1_s42 超参。补全 1.7B scale 3-seed 统计鲁棒性。\", \"parent\": \"d158_1_7b_rsft_s44_ced_score\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --rsft_data_path /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_1_7b_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --warmup_steps 100 --save_steps 50 --save_total_limit 2 --max_length 2048 --seed 44 --lora_rank 64 --lora_alpha 128 --bf16 --wandb_project freige-rsft --wandb_run_name rsft_qwen3_1_7b_k1_s44\", \"server\": \"rtx5090-4x\", \"gpu_id\": \"cuda:0\", \"pid\": 337228, \"data_path\": \"/root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl\", \"data_count\": 3019, \"model_name\": \"Qwen3-1.7B\", \"seed\": 44, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44\", \"eval_data\": \"N/A (training job)\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_1_7b_s44\", \"log_path\": \"~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_train.log\", \"hyperparams\": {\"lr\": \"2e-5\", \"epochs\": 3, \"batch_size\": 4, \"grad_accum\": 4, \"warmup_steps\": 100, \"max_length\": 2048, \"lora_rank\": 64, \"lora_alpha\": 128, \"total_steps\": 567}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.2858}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "97f1ea39-59da-4f2d-8305-b0231b59c9f1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d158_1_7b_rsft_s44_train\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T22:53:50.713Z\\\", \\\"updated_at\\\": \\\"2026-05-24T22:55:28.733Z\\\", \\\"hypothesis\\\": \\\"1.7B RSFT k=1 CED train seed=44. 使用 3019 样本（与 s42 的 3021 基本一致）。复制 d102_1_7b_rsft_k1_s42 超参。补全 1.7B scale 3-seed 统计鲁棒性。\\\", \\\"parent\\\": \\\"d158_1_7b_rsft_s44_ced_score\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --rsft_data_path /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_1_7b_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --warmup_steps 100 --save_steps 50 --save_total_limit 2 --max_length 2048 --seed 44 --lora_rank 64 --lora_alpha 128 --bf16 --wandb_project freige-rsft --wandb_run_name rsft_qwen3_1_7b_k1_s44\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"pid\\\": 337228, \\\"data_path\\\": \\\"/root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl\\\", \\\"data_count\\\": 3019, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 44, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44\\\", \\\"eval_data\\\": \\\"N/A (training job)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_1_7b_s44\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_train.log\\\", \\\"hyperparams\\\": {\\\"lr\\\": \\\"2e-5\\\", \\\"epochs\\\": 3, \\\"batch_size\\\": 4, \\\"grad_accum\\\": 4, \\\"warmup_steps\\\": 100, \\\"max_length\\\": 2048, \\\"lora_rank\\\": 64, \\\"lora_alpha\\\": 128, \\\"total_steps\\\": 567}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.2858}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"d158_1_7b_rsft_s44_train\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T22:53:50.713Z\", \"updated_at\": \"2026-05-24T22:55:28.733Z\", \"hypothesis\": \"1.7B RSFT k=1 CED train seed=44. 使用 3019 样本（与 s42 的 3021 基本一致）。复制 d102_1_7b_rsft_k1_s42 超参。补全 1.7B scale 3-seed 统计鲁棒性。\", \"parent\": \"d158_1_7b_rsft_s44_ced_score\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --rsft_data_path /root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_1_7b_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --warmup_steps 100 --save_steps 50 --save_total_limit 2 --max_length 2048 --seed 44 --lora_rank 64 --lora_alpha 128 --bf16 --wandb_project freige-rsft --wandb_run_name rsft_qwen3_1_7b_k1_s44\", \"server\": \"rtx5090-4x\", \"gpu_id\": \"cuda:0\", \"pid\": 337228, \"data_path\": \"/root/autodl-tmp/rsft_scored_1_7b_s44/rsft_train.jsonl\", \"data_count\": 3019, \"model_name\": \"Qwen3-1.7B\", \"seed\": 44, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44\", \"eval_data\": \"N/A (training job)\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_1_7b_s44\", \"log_path\": \"~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_train.log\", \"hyperparams\": {\"lr\": \"2e-5\", \"epochs\": 3, \"batch_size\": 4, \"grad_accum\": 4, \"warmup_steps\": 100, \"max_length\": 2048, \"lora_rank\": 64, \"lora_alpha\": 128, \"total_steps\": 567}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.2858}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+D158 A3 已成功提交：
+
+- **PID**: 337228
+- **GPU**: cuda:0（76.2 GB 占用，正常）
+- **状态**: RUNNING，567 total steps，~2.5s/it
+- **预计训练时间**: 567 × 2.5s ≈ 23 分钟（比 d102 的 15 分钟略长，可能因 step 数不同）
+- **输出**: `/root/autodl-tmp/rsft_output_1_7b_s44`
+- **日志**: `~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_train.log`
+- **W&B**: `freige-rsft / rsft_qwen3_1_7b_k1_s44`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "uuid": "66083dd5-696c-4e4f-ba64-d525301621cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015KtVDge1VSXeQZCyeg9vHK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1574,
+      "cache_read_input_tokens": 37231,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1574
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 39_
+
+D158 A3 已成功提交：
+
+- **PID**: 337228
+- **GPU**: cuda:0（76.2 GB 占用，正常）
+- **状态**: RUNNING，567 total steps，~2.5s/it
+- **预计训练时间**: 567 × 2.5s ≈ 23 分钟（比 d102 的 15 分钟略长，可能因 step 数不同）
+- **输出**: `/root/autodl-tmp/rsft_output_1_7b_s44`
+- **日志**: `~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_train.log`
+- **W&B**: `freige-rsft / rsft_qwen3_1_7b_k1_s44`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 136582,
+  "duration_api_ms": 91977,
+  "num_turns": 15,
+  "stop_reason": "end_turn",
+  "session_id": "2e61bb73-a756-47f6-a154-d0760c9a465e",
+  "total_cost_usd": 0.43015499999999995,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 26964,
+    "cache_read_input_tokens": 300122,
+    "output_tokens": 4357,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 26964,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 214,
+        "cache_read_input_tokens": 37231,
+        "cache_creation_input_tokens": 1574,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1574
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2449,
+      "outputTokens": 25,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002574,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 4357,
+      "cacheReadInputTokens": 300122,
+      "cacheCreationInputTokens": 26964,
+      "webSearchRequests": 0,
+      "costUSD": 0.42758099999999993,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "a1f6d328-903b-482a-9372-29cc54e09a07"
+}
+```
+
+</details>
+
+---

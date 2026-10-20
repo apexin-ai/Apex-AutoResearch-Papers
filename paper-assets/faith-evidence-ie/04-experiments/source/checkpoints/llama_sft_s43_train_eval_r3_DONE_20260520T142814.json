@@ -1,0 +1,64 @@
+{
+  "exp_id": "llama_sft_s43_train_eval_r3",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:21:04.298Z",
+    "updated_at": "2026-05-20T14:28:13.738Z",
+    "hypothesis": "LLaMA-3.1-8B SFT seed43 训练+评估 (r3: westd 新服务器)。补齐 LLaMA SFT baseline 第 2 seed，与 RSFT 3-seed (mean ign_f1=0.5654±0.0052) 对比计算 variance compression。r2 因 AutoDL 数据丢失失败。",
+    "parent": "llama_sft_s43_train_eval_r2",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx5090-4x",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-20T11:23:34.139Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && GPU=1 bash scripts/seed_expansion/llama_sft_s43_train_eval.sh\"",
+      "finished_at": "2026-05-20T14:05:20.367Z",
+      "training_hours": 2.7
+    },
+    "spec": {
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 3053,
+      "model_name": "meta-llama/Meta-Llama-3.1-8B",
+      "seed": 43,
+      "server": "rtx5090-4x",
+      "gpu_model": "RTX PRO 6000 Blackwell 98GB",
+      "checkpoint_path": "/root/autodl-tmp/sft_output_llama_3_1_8b_s43/",
+      "log_path": "~/runs/faith-evidence-ie/llama_sft_s43_train_eval_r3.log"
+    },
+    "pid": "15650",
+    "log_path": "~/runs/faith-evidence-ie/llama_sft_s43_train_eval_r3.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T14:05:28.249255+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "ign_f1": 0.5142,
+      "f1": 0.5308,
+      "evi_f1_joint": 0.422,
+      "evi_f1_tp": 0.8245,
+      "edcr": 0.5866,
+      "ign_precision": 0.4917,
+      "ign_recall": 0.5389,
+      "train_loss": 0.521,
+      "eval_loss": 0.7393,
+      "format_compliance": 1,
+      "n_truncated": 190,
+      "n_documents": 985
+    },
+    "completed_at": "2026-05-20T14:09:36.408Z"
+  },
+  "timestamp": "2026-05-20T14:28:14.237999+00:00",
+  "trigger": "update_registry"
+}

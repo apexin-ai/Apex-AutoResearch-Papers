@@ -1,0 +1,19 @@
+{
+  "exp_id": "mvp2_grpo_extract",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:10:35.796Z",
+    "updated_at": "2026-05-14T07:10:35.796Z",
+    "spec": {
+      "hypothesis": "Extraction-only reward (format+F1) establishes GRPO baseline without evidence reward",
+      "model_name": "Qwen3-4B",
+      "parent": "mvp2_sft_warmup"
+    }
+  },
+  "timestamp": "2026-05-14T07:10:35.813117+00:00",
+  "trigger": "update_registry"
+}

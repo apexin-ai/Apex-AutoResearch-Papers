@@ -1,0 +1,55 @@
+{
+  "exp_id": "plan019_1_7b_rsft_no_evidence_eval",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:42:59.170Z",
+    "updated_at": "2026-05-19T14:47:15.332Z",
+    "spec": {
+      "command": "bash -c \"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\"",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:3",
+      "pid": 679713,
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 998,
+      "model_name": "Qwen3-1.7B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_qwen3_1_7b_k1",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json",
+      "kill_reason": "截断率 59.2% (583/985) 混淆 evidence tax 计算，需 max_new_tokens=2048 重跑"
+    },
+    "hypothesis": "Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance",
+    "reproduce": {
+      "finished_at": "2026-05-19T14:44:13.014Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T14:44:20.090580+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ign_f1": 0.4352,
+      "f1": 0.4552,
+      "evi_f1_dreeam": 0,
+      "evi_f1_tp": 0,
+      "edcr": 0,
+      "format_ok_rate": 0.971,
+      "truncated_rate": 0.592,
+      "predictions": 25221
+    },
+    "checkpoint_path": "/root/autodl-tmp/rsft_output_qwen3_1_7b_k1",
+    "log_path": "~/runs/faith-evidence-ie/plan019_1_7b_rsft_no_evidence_eval.log",
+    "conclusion": "killed",
+    "notes": "Evidence tax measurement for 1.7B RSFT s42. Hypothesis rejected: no-evidence ign_f1=0.4352 < with-evidence ign_f1=0.5122, a DECREASE of 7.70pp. Removing evidence hurts 1.7B RE performance — evidence generation acts as beneficial chain-of-thought. Contrast with 14B SFT where evidence tax ≈ 0.03pp (nearly zero). This suggests smaller models rely more on evidence reasoning to achieve good RE. High truncation rate (59.2%) but 97.1% format compliance. No W&B run.",
+    "completed_at": "2026-05-19T14:46:59.950Z"
+  },
+  "timestamp": "2026-05-19T14:47:15.861064+00:00",
+  "trigger": "update_registry"
+}

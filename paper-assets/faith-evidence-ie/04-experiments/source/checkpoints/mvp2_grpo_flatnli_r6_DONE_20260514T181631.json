@@ -1,0 +1,53 @@
+{
+  "exp_id": "mvp2_grpo_flatnli_r6",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T17:25:07.083Z",
+    "updated_at": "2026-05-14T18:16:31.087Z",
+    "hypothesis": "Flat-NLI reward with kl_coef=0.01 + num_generations=8 from SFT scratch (not resume). 100-step probe to verify stability. Same D020 config as ced_kl001_r4 (which is healthy). Tests whether flat-NLI reward type works under stable training config.",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && ... && PYTHONUNBUFFERED=1 python -m freige.training.grpo_trainer --stage 2 --kl_coef 0.01 --num_generations 8 --max_steps 100 --wandb_run_name grpo-s2-flatnli-r6\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "76958",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_grpo_flatnli_r6.log",
+      "submitted_at": "2026-05-14T17:25:30.099Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": {
+        "train": 3027,
+        "dev": 985
+      },
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json",
+      "wall_clock_seconds": 3061.0,
+      "gpu_hours": 0.85
+    },
+    "parent": "mvp2_grpo_flatnli_r5",
+    "notes": "D020 配置：kl_coef=0.01 + num_generations=8 + save_steps=10 + max_steps=100。从 SFT 全新训练。\n\n**D024 Kill — Mode Collapse Confirmed (step 25)**:\n- frac_zero_std: 0.1→0.4→0.6→0.7→0.9 (单调上升，破 0.8 阈值)\n- f1_reward=0, flat_nli_reward=0 — 抽取和 NLI 完全死亡\n- reward 100% format hacking (0.293)\n- completion_length 缩短 773→586→399\n- KL step 5 爆炸至 1.23 亿后回落\n\n**科学结论**: D020 配置下 flat-NLI reward 信号不足以维持 GRPO 多样性。与 extract_r4 (step 10 collapse) 模式一致。CED 是三种 reward type 中唯一能稳定训练的。",
+    "conclusion": "negative",
+    "metrics": {
+      "steps_completed": 25,
+      "final_frac_zero_std": 0.9,
+      "final_f1_reward": 0,
+      "final_flat_nli_reward": 0,
+      "final_format_reward": 0.293,
+      "collapse_step": 25
+    },
+    "checkpoint_path": "N/A (killed at step 25, mode collapse)",
+    "log_path": "~/runs/faith-evidence-ie/mvp2_grpo_flatnli_r6.log",
+    "completed_at": "2026-05-14T18:16:31.087Z"
+  },
+  "timestamp": "2026-05-14T18:16:31.309535+00:00",
+  "trigger": "update_registry"
+}

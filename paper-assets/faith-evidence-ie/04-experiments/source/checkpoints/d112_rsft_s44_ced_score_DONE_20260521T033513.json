@@ -1,0 +1,64 @@
+{
+  "exp_id": "d112_rsft_s44_ced_score",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-19T03:18:56.333Z",
+    "updated_at": "2026-05-21T03:35:12.703Z",
+    "hypothesis": "D112 step 2: CED scoring + k=1 selection on SFT s44 generation candidates. 使用 NLI-DeBERTa 对 N=8 候选打分，format_w=0.2, f1_w=0.4, ced_w=0.4，top_k=1 筛选最优样本用于后续 RSFT 训练。",
+    "parent": "d112_rsft_s44_gen_shard0",
+    "reproduce": {
+      "finished_at": "2026-05-19T04:40:44.392Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-19T03:28:52.243Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T03:29:01.032052+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T04:40:57.003331+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/bin/activate && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/autodl-tmp && bash scripts/d112/step2_ced_score.sh'",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:0",
+      "pid": 604576,
+      "data_path": "/root/autodl-tmp/rsft_generations_4b_sft_s44/",
+      "data_count": 24216,
+      "model_name": "cross-encoder/nli-deberta-v3-base",
+      "seed": 42,
+      "checkpoint_source": "d112_rsft_s44_gen (4 shards, SFT s44 N=8 generation)",
+      "eval_data": "/root/autodl-tmp/rsft_generations_4b_sft_s44/ (3027 docs x 8 candidates)",
+      "output_dir": "/root/autodl-tmp/rsft_scored_4b_sft_s44/",
+      "log_path": "/root/runs/faith-evidence-ie/d112_rsft_s44_ced_score.log",
+      "checkpoint_path": "/root/autodl-tmp/rsft_scored_4b_sft_s44",
+      "output_samples": 3014,
+      "note": "CED scoring completed successfully. 24216 candidates scored, 3014 samples selected (k=1). Cron misdiagnosed as failed due to no W&B/sentinel."
+    },
+    "notes": "retry #2 running normally. 10000/24216 records scored as of 11:50 UTC. ETA ~12:33 UTC. Previous run failed at 03:28 UTC (process dead before scoring started). Current run healthy, no errors in log.",
+    "conclusion": "success",
+    "metrics": {
+      "total_scored": 24216,
+      "selected_count": 3014,
+      "selection_rate": 0.124,
+      "mean_f1": 0.676,
+      "mean_ced": 0.676
+    }
+  },
+  "timestamp": "2026-05-21T03:35:13.448091+00:00",
+  "trigger": "update_registry"
+}

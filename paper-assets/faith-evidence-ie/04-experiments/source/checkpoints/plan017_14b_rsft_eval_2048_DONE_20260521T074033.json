@@ -1,0 +1,45 @@
+{
+  "exp_id": "plan017_14b_rsft_eval_2048",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:47:15.871Z",
+    "updated_at": "2026-05-21T07:40:32.500Z",
+    "hypothesis": "matched@2048 control: 14B RSFT with-evi@2048。@1024 ign_f1=0.5886, format_ok=100%, truncated=0。预期 delta 极小（@1024 已无截断），验证 token budget 对 14B RSFT 无影响。",
+    "parent": "plan017_14b_rsft_eval",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_14b --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b/checkpoint-144 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_eval_2048 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": null,
+      "model_name": "Qwen3-14B + SFT + RSFT (nested LoRA)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_14b",
+      "eval_data": "docred dev",
+      "log_path": "/root/logs/plan017_14b_rsft_eval_2048.log"
+    },
+    "metrics": {
+      "ign_f1": 0.5896,
+      "f1": 0.602,
+      "ign_precision": 0.5766,
+      "ign_recall": 0.6032,
+      "evi_f1_joint": 0.4871,
+      "evi_f1_tp": 0.8362,
+      "edcr": 0.5496,
+      "format_ok_rate": 1,
+      "n_truncated": 18,
+      "n_documents": 985,
+      "n_predictions": 13979,
+      "inference_time_seconds": 17372.9
+    },
+    "checkpoint_path": "/root/autodl-tmp/rsft_output_14b",
+    "log_path": "/root/logs/plan017_14b_rsft_eval_2048.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-21T07:40:32.500Z"
+  },
+  "timestamp": "2026-05-21T07:40:33.127118+00:00",
+  "trigger": "update_registry"
+}

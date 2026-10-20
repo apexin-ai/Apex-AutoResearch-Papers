@@ -1,0 +1,76 @@
+{
+  "figure_version": "v5",
+  "date": "2026-05-15",
+  "layout": "2x2 grid: (a) training reward, (b) rel_f1, (c) evi_f1, (d) EDCR",
+  "improvements_over_v4": [
+    "QLoRA kl001 now has 5 eval checkpoints (10, 50, 60, 90, 100) vs 2 in v4",
+    "bf16 G=8 now has 3 eval checkpoints (80, 90, 100) vs 2 in v4",
+    "Step 0 = SFT baseline shown explicitly on eval panels",
+    "Better annotations and color-blind safe Okabe-Ito palette",
+    "Catastrophic forgetting and distractor zones highlighted"
+  ],
+  "runs": {
+    "qlora_kl001_lr5e5": {
+      "precision": "NF4 QLoRA",
+      "G": 8,
+      "lr": "5e-5",
+      "kl": 0.01,
+      "eval_steps": [
+        10,
+        50,
+        60,
+        90,
+        100
+      ],
+      "final_rel_f1": 0.2167,
+      "final_evi_f1": 0.5746,
+      "forgetting": true,
+      "delta_vs_sft": -0.189
+    },
+    "qlora_lr5e6": {
+      "precision": "NF4 QLoRA",
+      "G": 4,
+      "lr": "5e-6",
+      "kl": 0.01,
+      "eval_steps": [
+        20,
+        40,
+        60,
+        80,
+        100
+      ],
+      "final_rel_f1": 0.0138,
+      "final_evi_f1": 0.8504,
+      "forgetting": true,
+      "delta_vs_sft": -0.3919
+    },
+    "bf16_g8": {
+      "precision": "bf16 LoRA",
+      "G": 8,
+      "lr": "5e-5",
+      "kl": 0.01,
+      "eval_steps": [
+        80,
+        90,
+        100
+      ],
+      "final_rel_f1": 0.4549,
+      "final_evi_f1": 0.8086,
+      "forgetting": false,
+      "delta_vs_sft": 0.0492
+    }
+  },
+  "sft_baseline": {
+    "rel_f1": 0.4057,
+    "evi_f1": 0.7979,
+    "edcr": 0.7118
+  },
+  "key_narrative": {
+    "claim3_evidence": "Catastrophic forgetting in GRPO is QLoRA-specific, not algorithmic",
+    "qlora_kl001_best_case": "rel_f1=0.217, still -46.6% vs SFT despite being best QLoRA run",
+    "qlora_lr5e6_worst_case": "rel_f1=0.014 (-96.6% vs SFT), but evi_f1=0.850 (+6.6% vs SFT) \u2014 extreme decoupling",
+    "bf16_success": "rel_f1=0.455 (+12.1% vs SFT), evi_f1=0.809 (+1.3% vs SFT) \u2014 GRPO improves both",
+    "decoupling_insight": "QLoRA GRPO selectively destroys relation extraction while preserving/improving evidence extraction",
+    "edcr_gap": "QLoRA EDCR 0.85-0.99 (mostly distractor citations) vs bf16 0.63 (meaningful citations)"
+  }
+}

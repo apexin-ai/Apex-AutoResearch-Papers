@@ -1,0 +1,16 @@
+{
+  "exp_id": "retrain_4b_rsft_ced_s42",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:39:59.085Z",
+    "updated_at": "2026-05-21T18:40:13.727Z",
+    "hypothesis": "重训 4B RSFT s42 (CED k=1)。原 checkpoint /root/autodl-tmp/rsft_output/checkpoint-510 已被删除。使用相同训练数据 (2718 samples) 和参数 (bf16 LoRA r=64/α=128, lr=2e-5, 3 epochs, weighted sampling) 重训。完成后用于 test set eval 填充 scaling table 4B 数据点。",
+    "parent": "test_eval_4b_rsft_s42"
+  },
+  "timestamp": "2026-05-21T18:40:14.359269+00:00",
+  "trigger": "update_registry"
+}

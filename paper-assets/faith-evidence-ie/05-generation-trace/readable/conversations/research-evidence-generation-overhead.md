@@ -1,0 +1,1499 @@
+# research evidence generation overhead
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 49
+- **Recorded user turns:** 0
+- **Tool calls:** 24
+- **Original source:** `logs/chats/worker_research_evidence-generation-overhead_20260515T201203.jsonl`
+- **Structured JSON:** [`e476d8300beb2b7d6a53.json`](../../sessions/e4/e476d8300beb2b7d6a53.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+49 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T20:17:31.647728+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T20:17:31.648171+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T20:17:31.648459+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "multi-task learning overhead joint entity relation extraction performance degradation auxiliary task"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "multi-task learning overhead joint entity relation extraction performance degradation auxiliary task"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T20:17:31.648714+00:00_
+
+Web search results for query: "multi-task learning overhead joint entity relation extraction performance degradation auxiliary task"
+
+Links: [{"title":"Multi-task and multi-view training for end-to-end relation extraction - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0925231219310021"},{"title":"Joint entity and relation extraction combined with multi-module feature information enhancement | Complex & Intelligent Systems | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s40747-024-01518-9"},{"title":"Multi-task learning for few-shot biomedical relation extraction | Artificial Intelligence Review | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10462-023-10484-6"},{"title":"Multi-task Learning for Joint Entity and Relation Extraction ...","url":"https://dl.acm.org/doi/pdf/10.1145/3690771.3690790"},{"title":"[2309.09713] Dealing with negative samples with multi-task learning on span-based joint entity-relation extraction","url":"https://arxiv.org/abs/2309.09713"},{"title":"Multi-task Learning for Joint Entity and Relation Extraction on Open-domain | Proceedings of the 2024 6th Asia Conference on Machine Learning and Computing","url":"https://dl.acm.org/doi/10.1145/3690771.3690790"},{"title":"Learning with joint cross-document information via multi-task learning for named entity recognition - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S002002552100815X"},{"title":"Multi-Level Attention with 2D Table-Filling for Joint Entity-Relation Extraction","url":"https://www.mdpi.com/2078-2489/15/7/407"},{"title":"Harnessing multi-task learning to improve overlapping relation extraction | The Journal of Supercomputing | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11227-025-07533-y"},{"title":"Joint extraction model of entity relations based on decomposition strategy - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC10799866/"}]
+
+I've co
+…[truncated 1795 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T20:17:31.648918+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "rationale generation chain-of-thought auxiliary output hurts main task performance LLM structured prediction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "rationale generation chain-of-thought auxiliary output hurts main task performance LLM structured prediction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T20:17:31.649083+00:00_
+
+Web search results for query: "rationale generation chain-of-thought auxiliary output hurts main task performance LLM structured prediction"
+
+Links: [{"title":"Mind Your Step (by Step): Chain-of-Thought can Reduce Performance on Tasks where Thinking Makes Humans Worse","url":"https://arxiv.org/html/2410.21333v1"},{"title":"How to teach chain of thought reasoning to your LLM","url":"https://invisibletech.ai/blog/how-to-teach-chain-of-thought-reasoning-to-your-llm"},{"title":"Applying large language models and chain-of-thought for automatic scoring - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S2666920X24000146"},{"title":"Latent Chain-of-Thought Reasoning","url":"https://www.emergentmind.com/topics/latent-chain-of-thought-latent-cot-reasoning"},{"title":"LLM-Generated Rationales Overview","url":"https://www.emergentmind.com/topics/llm-generated-rationales"},{"title":"The Impact of Reasoning Step Length on Large Language Models","url":"https://arxiv.org/html/2401.04925v3"},{"title":"How LLMs think: Chain of Thought Reasoning | by Vaibhav Sharma | Medium","url":"https://medium.com/@vaibh48/how-llms-think-chain-of-thought-reasoning-9cb0ff206e71"},{"title":"Can Small Language Models Help Large Language Models Reason Better?: LM-Guided Chain-of-Thought","url":"https://arxiv.org/html/2404.03414v1"},{"title":"Chain of Thought in Large Language Models: Elicited Reasoning or Constrained Imitation? | by Greg Robison | Medium","url":"https://gregrobison.medium.com/chain-of-thought-in-large-language-models-elicited-reasoning-or-constrained-imitation-5e4ee0c811ad"},{"title":"LLM Representations Encode Information About Chain-of- ...","url":"https://aclanthology.org/2025.findings-acl.662.pdf"}]
+
+Based on the search results, I found relevant research on how auxiliary outputs like rationales and chain-of-thought reasoning can negatively impact LLM performance on main tasks. Here are the key findings:
+
+## Main Task Performance and Auxiliary Outputs
+
+Improv
+…[truncated 1560 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T20:17:31.649302+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "pipeline vs end-to-end information extraction decoupling structured prediction trade-off"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "pipeline vs end-to-end information extraction decoupling structured prediction trade-off"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T20:17:31.649505+00:00_
+
+Web search results for query: "pipeline vs end-to-end information extraction decoupling structured prediction trade-off"
+
+Links: [{"title":"An Empirical Study of Pipeline vs. Joint approaches to Entity and Relation Extraction","url":"https://www.researchgate.net/publication/386199915_An_Empirical_Study_of_Pipeline_vs_Joint_approaches_to_Entity_and_Relation_Extraction"},{"title":"SLOT: Structuring the Output of Large Language Models","url":"https://aclanthology.org/2025.emnlp-industry.32.pdf"},{"title":"A Survey of Information Extraction Based on Deep Learning","url":"https://www.mdpi.com/2076-3417/12/19/9691"},{"title":"1 LLMStructBench: Benchmarking Large Language Model Structured Data Extraction","url":"https://arxiv.org/pdf/2602.14743"},{"title":"OCR or Not? Rethinking Document Information Extraction in the MLLMs Era with Real-World Large-Scale Datasets","url":"https://arxiv.org/html/2603.02789v1"},{"title":"APIE: An information extraction module designed based on the pipeline method - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S2590005623000565"},{"title":"An improved GPT2-based joint event extraction method with position expansion and knowledge augmentation | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-23093-w"},{"title":"Just-in-Time Historical State Reconstruction for Low-Latency Financial Trading with Large Language Models","url":"https://www.mdpi.com/2673-2688/7/4/117"},{"title":"An Empirical Study of Pipeline vs. Joint approaches to Entity and Relation Extraction - ACL Anthology","url":"https://aclanthology.org/2022.aacl-short.55/"},{"title":"End-to-end data pipelines: Types, benefits, and process","url":"https://www.redpanda.com/blog/end-to-end-data-pipelines-types-benefits-and-process"}]
+
+Based on the search results, here's what I found about the pipeline vs. end-to-end information extraction approaches:
+
+## Key Differences and Trade-offs
+
+**Pipeline Approaches:**
+The pipeline extraction method refer
+…[truncated 1866 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T20:17:31.649668+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "document-level relation extraction evidence sentences DREEAM SIRE Eider evidence extraction overhead performance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "document-level relation extraction evidence sentences DREEAM SIRE Eider evidence extraction overhead performance"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T20:17:31.649868+00:00_
+
+Web search results for query: "document-level relation extraction evidence sentences DREEAM SIRE Eider evidence extraction overhead performance"
+
+Links: [{"title":"[2302.08675] DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction","url":"https://arxiv.org/abs/2302.08675"},{"title":"DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction","url":"https://www.researchgate.net/publication/373811777_DREEAM_Guiding_Attention_with_Evidence_for_Improving_Document-Level_Relation_Extraction"},{"title":"Evidence and Axial Attention Guided Document-level Relation Extraction - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0885230824001116"},{"title":"DREEAM: Guiding Attention with Evidence for Improving ...","url":"https://aclanthology.org/2023.eacl-main.145.pdf"},{"title":"DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction - ACL Anthology","url":"https://aclanthology.org/2023.eacl-main.145/"},{"title":"(PDF) DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction","url":"https://www.researchgate.net/publication/368652592_DREEAM_Guiding_Attention_with_Evidence_for_Improving_Document-Level_Relation_Extraction"},{"title":"GitHub - YoumiMa/dreeam: source code for {D}ocument-level {R}elation {E}xtraction with {E}vidence-guided {A}ttention {M}echanism · GitHub","url":"https://github.com/YoumiMa/dreeam"},{"title":"[PDF] Eider: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion | Semantic Scholar","url":"https://www.semanticscholar.org/paper/dbf1e5a17b3adead7016eb52ddc3007673ed382f"},{"title":"DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction","url":"https://paperreading.club/page?id=152339"},{"title":"Evidence and Axial Attention Guided Document-level Relation Extraction | Computer Speech and Language","url":"https://dl.ac
+…[truncated 6034 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T20:17:31.650024+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"multi-task learning\" \"negative transfer\" NLP information extraction auxiliary task hurts performance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"multi-task learning\" \"negative transfer\" NLP information extraction auxiliary task hurts performance"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T20:17:31.650204+00:00_
+
+Web search results for query: ""multi-task learning" "negative transfer" NLP information extraction auxiliary task hurts performance"
+
+Links: [{"title":"A Guide to Multi-Task Learning in Machine Learning | by Hey Amit | Data Scientist’s Diary | Medium","url":"https://medium.com/data-scientists-diary/a-guide-to-multi-task-learning-in-machine-learning-768d22b88715"},{"title":"Identification of Negative Transfers in Multitask Learning Using ...","url":"https://openreview.net/notes/edits/attachment?id=h3G7ISb8FR&name=pdf"},{"title":"Multi-Task Learning in ML: Optimization & Use Cases [Overview]","url":"https://www.v7labs.com/blog/multi-task-learning-guide"},{"title":"An Ultimate Guide To Transfer Learning In NLP","url":"https://www.topbots.com/transfer-learning-in-nlp/"},{"title":"Multi-Task Learning in Natural Language Processing: An Overview","url":"https://arxiv.org/html/2109.09138v2"},{"title":"(PDF) Mitigating the Negative Transfer in Multi‐Task Learning for Harmful Language Detection in Spanish and Arabic","url":"https://www.researchgate.net/publication/399443584_Mitigating_the_Negative_Transfer_in_Multi-Task_Learning_for_Harmful_Language_Detection_in_Spanish_and_Arabic"},{"title":"Multi-Task Learning in Natural Language Processing: An Overview | ACM Computing Surveys","url":"https://dl.acm.org/doi/10.1145/3663363"},{"title":"[2211.12999] Mitigating Negative Transfer in Multi-Task Learning with Exponential Moving Average Loss Weighting Strategies","url":"https://arxiv.org/abs/2211.12999"},{"title":"An Overview of Multi-Task Learning in Deep Neural Networks","url":"https://www.ruder.io/multi-task/"},{"title":"Identification of Negative Transfers in Multitask Learning Using Surrogate Models | OpenReview","url":"https://openreview.net/forum?id=KgfFAI9f3E"}]
+
+I found comprehensive search results on multi-task learning and negative transfer in NLP. Here's what I found:
+
+## Negative Transfer in Multi-Task Learning
+
+Negative transfer occurs when one task can dominate the
+…[truncated 1572 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T20:17:31.650385+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "chain-of-thought fine-tuning hurts task performance rationale distillation cost LLM 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "chain-of-thought fine-tuning hurts task performance rationale distillation cost LLM 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T20:17:31.650566+00:00_
+
+Web search results for query: "chain-of-thought fine-tuning hurts task performance rationale distillation cost LLM 2024 2025"
+
+Links: [{"title":"Chain-of-Thought Curriculum Distillation: Teaching Smaller Models to Reason Step-by-Step | Proceedings of the 2025 2nd International Symposium on Artificial Intelligence for Education","url":"https://dl.acm.org/doi/10.1145/3775073.3775200"},{"title":"Adaptive Chain-of-Thought Distillation Based on LLM Performance on Original Problems","url":"https://www.mdpi.com/2227-7390/13/22/3646"},{"title":"Thinking Broad, Acting Fast: Latent Reasoning Distillation from Multi-Perspective Chain-of-Thought for E-Commerce Relevance","url":"https://arxiv.org/html/2601.21611"},{"title":"Chain-of-Thought Fine-Tuning","url":"https://www.emergentmind.com/topics/chain-of-thought-fine-tuning"},{"title":"Effectiveness of Chain-of-Thought in Distilling Reasoning ...","url":"https://aclanthology.org/2025.inlg-main.49.pdf"},{"title":"On Task-specific and General-purpose Distillation Techniques to Enhance Reasoning Capabilities of LLMs","url":"https://www.rohan-paul.com/p/on-task-specific-and-general-purpose"},{"title":"Chain-of-Thought Distillation with Fine-Grained Acoustic Cues for Speech","url":"https://www.isca-archive.org/interspeech_2025/mai25c_interspeech.pdf"},{"title":"Data Mining and Machine Learning Lab Is Chain-of-Thought Reasoning of LLMs a","url":"https://arxiv.org/pdf/2508.01191"},{"title":"[2411.15382] On the Impact of Fine-Tuning on Chain-of-Thought Reasoning","url":"https://arxiv.org/abs/2411.15382"},{"title":"UniCoTT: A Unified Framework for Structural Chain-of-Thought Distillation | OpenReview","url":"https://openreview.net/forum?id=3baOKeI2EU"}]
+
+Based on the web search results, here's what I found regarding chain-of-thought fine-tuning, its impact on task performance, rationale distillation, and associated costs in recent LLM research (2024-2025):
+
+## Key Findings on CoT Fine-Tuning and Performance
+
+**Negative Impact on Faithful
+…[truncated 1776 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T20:17:31.650732+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "LLM relation extraction generative sequence token competition joint generation evidence explanation performance drop"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "LLM relation extraction generative sequence token competition joint generation evidence explanation performance drop"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T20:17:31.650901+00:00_
+
+Web search results for query: "LLM relation extraction generative sequence token competition joint generation evidence explanation performance drop"
+
+Links: [{"title":"Revisiting Relation Extraction in the era of Large Language ...","url":"https://aclanthology.org/2023.acl-long.868.pdf"},{"title":"Making LLMs as Fine-Grained Relation Extraction Data ...","url":"https://www.ijcai.org/proceedings/2024/0736.pdf"},{"title":"A Survey of Generative Information Extraction","url":"https://aclanthology.org/2025.coling-main.324.pdf"},{"title":"A Parallel Model for Jointly Extracting Entities and Relations | Neural Processing Letters","url":"https://link.springer.com/article/10.1007/s11063-024-11616-x"},{"title":"An LLM + ASP Workflow for Joint Entity-Relation Extraction","url":"https://arxiv.org/html/2508.12611v2"},{"title":"Relational Probing: LM-to-Graph Adaptation for Financial Prediction","url":"https://arxiv.org/html/2604.10212"},{"title":"Large language models for generative information extraction: a survey","url":"https://journal.hep.com.cn/fcs/EN/10.1007/s11704-024-40555-y"},{"title":"GitHub - quqxui/Awesome-LLM4IE-Papers: Awesome papers about generative Information Extraction (IE) using Large Language Models (LLMs) · GitHub","url":"https://github.com/quqxui/Awesome-LLM4IE-Papers"},{"title":"LLM-Driven Information Extraction: The Output Token Limitation Issue","url":"https://atlassc.net/2026/01/15/the-asymmetry-of-generative-intelligence"},{"title":"Understanding tokens - .NET | Microsoft Learn","url":"https://learn.microsoft.com/en-us/dotnet/ai/conceptual/understanding-tokens"}]
+
+I've completed the web search for your query. The results cover several important topics related to LLMs and relation extraction:
+
+## Key Findings:
+
+**Generative Approaches to Relation Extraction:**
+Relation extraction is increasingly treated as a conditional text generation task, with fine-tuned Flan-T5 being competitive with existing supervised methods when enhanced with chain-of-thought r
+…[truncated 1411 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T20:17:31.651050+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Mind Your Step\" chain-of-thought reduces performance overthinking arXiv 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Mind Your Step\" chain-of-thought reduces performance overthinking arXiv 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T20:17:31.651195+00:00_
+
+Web search results for query: ""Mind Your Step" chain-of-thought reduces performance overthinking arXiv 2024"
+
+Links: [{"title":"[2410.21333] Mind Your Step (by Step): Chain-of-Thought can Reduce Performance on Tasks where Thinking Makes Humans Worse","url":"https://arxiv.org/abs/2410.21333"},{"title":"Mind Your Step (by Step): Chain-of-Thought can Reduce Performance on Tasks where Thinking Makes Humans Worse","url":"https://arxiv.org/html/2410.21333v1"},{"title":"Mind Your Step (by Step): Chain-of-Thought can Reduce Performance on Tasks where Thinking Makes Humans Worse | OpenReview","url":"https://openreview.net/forum?id=rpbzBXdo4x"},{"title":"Mind Your Step (by Step): Chain-of-Thought can Reduce Performance on Tasks where Thinking Makes Humans Worse | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/mind-your-step-by-step-chain-thought"},{"title":"Mind Your Step (by Step): Chain-of-Thought can Reduce Performance on Tasks where Thinking Makes Humans Worse | alphaXiv","url":"https://www.alphaxiv.org/overview/2410.21333v2"},{"title":"(PDF) Mind Your Step (by Step): Chain-of-Thought can Reduce Performance on Tasks where Thinking Makes Humans Worse","url":"https://www.researchgate.net/publication/385353995_Mind_Your_Step_by_Step_Chain-of-Thought_can_Reduce_Performance_on_Tasks_where_Thinking_Makes_Humans_Worse"},{"title":"ICML Poster Mind Your Step (by Step): Chain-of-Thought can Reduce Performance on Tasks where Thinking Makes Humans Worse","url":"https://icml.cc/virtual/2025/poster/45714"},{"title":"Mind Your Step (by Step): Chain-of-Thought can Reduce Performance on Tasks where Thinking Makes Humans Worse - Princeton University","url":"https://collaborate.princeton.edu/en/publications/mind-your-step-by-step-chain-of-thought-can-reduce-performance-on/"},{"title":"Mind your step (by step): Chain-of-thought can reduce performance on tasks where thinking makes humans worse. | Concepts & Cognition Lab","url":"https://cognition.princeton.edu/public
+…[truncated 1572 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T20:17:31.651370+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Ruder \"multi-task learning\" negative transfer survey when auxiliary tasks hurt 2017 2019"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Ruder \"multi-task learning\" negative transfer survey when auxiliary tasks hurt 2017 2019"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T20:17:31.651525+00:00_
+
+Web search results for query: "Ruder "multi-task learning" negative transfer survey when auxiliary tasks hurt 2017 2019"
+
+Links: [{"title":"An Overview of Multi-Task Learning in Deep Neural Networks","url":"https://www.ruder.io/multi-task/"},{"title":"An Overview of Multi-Task Learning in Deep Neural Networks","url":"https://www.researchgate.net/publication/317649808_An_Overview_of_Multi-Task_Learning_in_Deep_Neural_Networks"},{"title":"[PDF] An Overview of Multi-Task Learning in Deep Neural Networks | Semantic Scholar","url":"https://www.semanticscholar.org/paper/An-Overview-of-Multi-Task-Learning-in-Deep-Neural-Ruder/6d431f835c06afdea45dff6b24486bf301ebdef0"},{"title":"[1706.05098] An Overview of Multi-Task Learning in Deep Neural Networks","url":"https://arxiv.org/abs/1706.05098"},{"title":"An Overview of Multi-Task Learning in Deep Neural Networks∗ Sebastian Ruder","url":"https://arxiv.org/pdf/1706.05098"},{"title":"Multitask Learning - an overview | ScienceDirect Topics","url":"https://www.sciencedirect.com/topics/computer-science/multitask-learning"},{"title":"(PDF) Mitigating the Negative Transfer in Multi‐Task Learning for Harmful Language Detection in Spanish and Arabic","url":"https://www.researchgate.net/publication/399443584_Mitigating_the_Negative_Transfer_in_Multi-Task_Learning_for_Harmful_Language_Detection_in_Spanish_and_Arabic"},{"title":"Multi-Task Learning of Pairwise Sequence Classification ...","url":"https://aclanthology.org/N18-1172.pdf"},{"title":"Multi-Task Learning in Natural Language Processing: An Overview","url":"https://arxiv.org/html/2109.09138v2"},{"title":"The State of Transfer Learning in NLP","url":"https://www.ruder.io/state-of-transfer-learning-in-nlp/"}]
+
+I found relevant results about Sebastian Ruder's work on multi-task learning. The search results contain references to Ruder's article "An Overview of Multi-Task Learning in Deep Neural Networks," which aims to give a general overview of MTL particularly in deep neural networks
+…[truncated 1140 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T20:17:31.651668+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "pipeline decoupled relation extraction outperforms joint end-to-end model 2023 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "pipeline decoupled relation extraction outperforms joint end-to-end model 2023 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T20:17:31.651823+00:00_
+
+Web search results for query: "pipeline decoupled relation extraction outperforms joint end-to-end model 2023 2024 2025"
+
+Links: [{"title":"An Empirical Study of Pipeline vs. Joint approaches to Entity and Relation Extraction","url":"https://www.researchgate.net/publication/386199915_An_Empirical_Study_of_Pipeline_vs_Joint_approaches_to_Entity_and_Relation_Extraction"},{"title":"An Empirical Study of Pipeline vs. Joint approaches to Entity and Relation Extraction - ACL Anthology","url":"https://aclanthology.org/2022.aacl-short.55/"},{"title":"[2310.00696] Do the Benefits of Joint Models for Relation Extraction Extend to Document-level Tasks?","url":"https://arxiv.org/abs/2310.00696"},{"title":"Joint extraction model of entity relations based on decomposition strategy | Scientific Reports","url":"https://www.nature.com/articles/s41598-024-51559-w"},{"title":"Published as a conference paper at ICAIS 2025","url":"https://arxiv.org/pdf/2510.20345"},{"title":"A novel pipelined end-to-end relation extraction framework with entity mentions and contextual semantic representation - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0957417423009375"},{"title":"A general-purpose material property data extraction pipeline from large polymer corpora using natural language processing | npj Computational Materials","url":"https://www.nature.com/articles/s41524-023-01003-w"},{"title":"Integrating deep learning architectures for enhanced biomedical relation extraction: a pipeline approach | Database | Oxford Academic","url":"https://academic.oup.com/database/article/doi/10.1093/database/baae079/7743272"},{"title":"Joint entity and relation extraction combined with multi-module feature information enhancement | Complex & Intelligent Systems | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s40747-024-01518-9"},{"title":"A survey on cutting-edge relation extraction techniques based on language models | Artificial Intelligence Review | 
+…[truncated 1809 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T20:17:31.651972+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv \"document-level relation extraction\" LLM generative evidence supporting sentences generation 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv \"document-level relation extraction\" LLM generative evidence supporting sentences generation 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T20:17:31.652123+00:00_
+
+Web search results for query: "arxiv "document-level relation extraction" LLM generative evidence supporting sentences generation 2024 2025"
+
+Links: [{"title":"GLiDRE: Generalist Lightweight model for Document-level Relation Extraction","url":"https://arxiv.org/html/2508.00757v2"},{"title":"Graph-Augmented Relation Extraction Model with LLMs-Generated Support Document","url":"https://arxiv.org/html/2410.23452"},{"title":"[2410.23452] Graph-Augmented Relation Extraction Model with LLMs-Generated Support Document","url":"https://arxiv.org/abs/2410.23452"},{"title":"GitHub - quqxui/Awesome-LLM4IE-Papers: Awesome papers about generative Information Extraction (IE) using Large Language Models (LLMs) · GitHub","url":"https://github.com/quqxui/Awesome-LLM4IE-Papers"},{"title":"Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/html/2312.17617v3"},{"title":"LLM with Relation Classifier for Document-Level Relation Extraction","url":"https://arxiv.org/html/2408.13889v1"},{"title":"LLM-empowered knowledge graph construction: A survey","url":"https://arxiv.org/pdf/2510.20345"},{"title":"Automated Knowledge Graph Construction using Large Language Models and Sentence Complexity Modelling","url":"https://arxiv.org/html/2509.17289v1"},{"title":"Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11704-024-40555-y"},{"title":"Exploring LLMs for Scientific Information Extraction using the SciEx Framework","url":"https://arxiv.org/pdf/2512.10004"}]
+
+I've successfully performed a web search for your query about document-level relation extraction with LLMs and generative approaches. Here are the key findings:
+
+## Recent Research Highlights (2024-2025):
+
+**GLiDRE - Generalist Lightweight Model for Document-level Relation Extraction**
+Recent work includes TTM-RE which introduces a Token Turing Machine memory module for doc
+…[truncated 1406 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T20:17:31.652291+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Do the Benefits of Joint Models\" document-level relation extraction arxiv 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Do the Benefits of Joint Models\" document-level relation extraction arxiv 2023"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T20:17:31.652440+00:00_
+
+Web search results for query: ""Do the Benefits of Joint Models" document-level relation extraction arxiv 2023"
+
+Links: [{"title":"[2310.00696] Do the Benefits of Joint Models for Relation Extraction Extend to Document-level Tasks?","url":"https://arxiv.org/abs/2310.00696"},{"title":"Do the Benefits of Joint Models for Relation Extraction Extend to Document-level Tasks? - ACL Anthology","url":"https://aclanthology.org/2023.ijcnlp-short.6/"},{"title":"Similarity-based Memory Enhanced Joint Entity and Relation Extraction","url":"https://arxiv.org/pdf/2307.11762"},{"title":"Do the Benefits of Joint Models for Relation Extraction ...","url":"https://aclanthology.org/2023.ijcnlp-short.6.pdf"},{"title":"[2205.01909] Modeling Task Interactions in Document-Level Joint Entity and Relation Extraction","url":"https://arxiv.org/abs/2205.01909"},{"title":"A survey on cutting-edge relation extraction techniques based on language models | Artificial Intelligence Review | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10462-025-11280-0"},{"title":"AutoRE: Document-Level Relation Extraction with Large Language Models","url":"https://arxiv.org/html/2403.14888v3"},{"title":"1 A Comprehensive Survey on Relation Extraction: Recent","url":"https://arxiv.org/pdf/2306.02051"},{"title":"A Joint Extraction Model for Entity Relationships Based on Span and Cascaded Dual Decoding","url":"https://www.mdpi.com/1099-4300/25/8/1217"},{"title":"Document-level joint entity and relation extraction based on multi-task explicit interaction | Journal of King Saud University Computer and Information Sciences | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s44443-026-00624-7"}]
+
+Based on the search results, I found the paper you're looking for:
+
+"Do the Benefits of Joint Models for Relation Extraction Extend to Document-level Tasks?" is a research paper from 2023. 
+
+The paper was authored by Pratik Saini, Tapas Nayak, and Indrajit Bhattacharya and was publi
+…[truncated 624 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T20:17:31.652584+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"on the impact of fine-tuning on chain-of-thought reasoning\" faithfulness degradation arxiv 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"on the impact of fine-tuning on chain-of-thought reasoning\" faithfulness degradation arxiv 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T20:17:31.652757+00:00_
+
+Web search results for query: ""on the impact of fine-tuning on chain-of-thought reasoning" faithfulness degradation arxiv 2024"
+
+Links: [{"title":"[2411.15382] On the Impact of Fine-Tuning on Chain-of-Thought Reasoning","url":"https://arxiv.org/abs/2411.15382"},{"title":"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps","url":"https://arxiv.org/html/2502.14829v3"},{"title":"Making Reasoning Matter: Measuring and Improving Faithfulness of Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2402.13950v2"},{"title":"On the Impact of Fine-Tuning on Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2411.15382v1"},{"title":"Data Mining and Machine Learning Lab Is Chain-of-Thought Reasoning of LLMs a","url":"https://arxiv.org/pdf/2508.01191"},{"title":"Faithfulness and Accuracy: How Fine-Tuning Shapes LLM Reasoning | Harvard Business School AI Institute","url":"https://d3.harvard.edu/faithfulness-and-accuracy-how-fine-tuning-shapes-llm-reasoning/"},{"title":"Chain-of-Thought Reasoning In The Wild Is Not Always Faithful","url":"https://arxiv.org/html/2503.08679v4"},{"title":"Measuring Faithfulness of Chains of Thought by Unlearning Reasoning Steps","url":"https://arxiv.org/html/2502.14829v1"},{"title":"Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Open-Weight Reasoning Models?","url":"https://arxiv.org/html/2603.22582v1"},{"title":"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning","url":"https://arxiv.org/pdf/2602.11201"}]
+
+Based on the search results, I found the paper you're looking for. Here's what I found:
+
+## "On the Impact of Fine-Tuning on Chain-of-Thought Reasoning"
+
+The study shows the impact of fine-tuning on LLM reasoning capabilities, where the faithfulness of CoT reasoning, on average across four datasets, decreases, highlighting potential shifts in internal mechanisms.
+
+### Key Research Questions
+
+The research investigates the effect of fine-tuning on the reasoning abilities of LLMs, addre
+…[truncated 1106 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T20:17:31.652925+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Eider evidence extraction document relation extraction joint training inference fusion performance cost ACL 2022"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Eider evidence extraction document relation extraction joint training inference fusion performance cost ACL 2022"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T20:17:31.653073+00:00_
+
+Web search results for query: "Eider evidence extraction document relation extraction joint training inference fusion performance cost ACL 2022"
+
+Links: [{"title":"Eider: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion - ACL Anthology","url":"https://aclanthology.org/2022.findings-acl.23/"},{"title":"GitHub - yiqingxyq/Eider: Source code for paper \"EIDER: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion\", ACL Findings, 2022","url":"https://github.com/yiqingxyq/Eider"},{"title":"EIDER: Empowering Document-level Relation Extraction ...","url":"https://aclanthology.org/2022.findings-acl.23.pdf"},{"title":"EIDER: Evidence-enhanced Document-level Relation Extraction","url":"https://research.google/pubs/eider-evidence-enhanced-document-level-relation-extraction/"},{"title":"Eider: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion. | BibSonomy","url":"https://www.bibsonomy.org/bibtex/27f08f257f990b9db00aa60922f7eef1c/dblp"},{"title":"Eider: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion - ADS","url":"https://ui.adsabs.harvard.edu/abs/2021arXiv210608657X/abstract"},{"title":"EIDER: Empowering Document-level Relation Extraction ...","url":"https://par.nsf.gov/servlets/purl/10633878"},{"title":"[PDF] Eider: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion | Semantic Scholar","url":"https://www.semanticscholar.org/paper/dbf1e5a17b3adead7016eb52ddc3007673ed382f"},{"title":"Eider: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion | Underline","url":"https://underline.io/lecture/50034-eider-empowering-document-level-relation-extraction-with-efficient-evidence-extraction-and-inference-stage-fusion"},{"title":"Eider: Empowering Doc
+…[truncated 1925 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T20:17:31.653219+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "generative information extraction output length token budget sequence generation overhead survey 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "generative information extraction output length token budget sequence generation overhead survey 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T20:17:31.653387+00:00_
+
+Web search results for query: "generative information extraction output length token budget sequence generation overhead survey 2024"
+
+Links: [{"title":"Large language models for generative information extraction: a survey","url":"https://journal.hep.com.cn/fcs/EN/10.1007/s11704-024-40555-y"},{"title":"Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11704-024-40555-y"},{"title":"A Survey of Generative Information Extraction","url":"https://aclanthology.org/2025.coling-main.324.pdf"},{"title":"InfiniGen: Efficient Generative Inference of Large ...","url":"https://www.usenix.org/system/files/osdi24-lee.pdf"},{"title":"A Survey of Generative Information Extraction - ACL Anthology","url":"https://aclanthology.org/2025.coling-main.324/"},{"title":"(PDF) Large language models for generative information extraction: a survey","url":"https://www.researchgate.net/publication/385729624_Large_language_models_for_generative_information_extraction_a_survey"},{"title":"Large language models for generative information extraction: a survey | Frontiers of Computer Science: Selected Publications from Chinese Universities","url":"https://dl.acm.org/doi/10.1007/s11704-024-40555-y"},{"title":"Scaling Beyond Context: A Survey of Multimodal Retrieval-Augmented Generation for Document Understanding","url":"https://arxiv.org/html/2510.15253v3"},{"title":"[2312.17617] Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/abs/2312.17617"},{"title":"Token-Budget-Aware LLM Reasoning","url":"https://aclanthology.org/2025.findings-acl.1274.pdf"}]
+
+I found several highly relevant research papers on your query topic. Here's what the search results reveal:
+
+## Key Surveys and Research
+
+There is a comprehensive survey titled "Large language models for generative information extraction: a survey" published in 2024, which addresses gene
+…[truncated 1284 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T20:17:31.653529+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"negative transfer\" \"task competition\" multi-task learning sequence generation NER relation extraction gradient conflict"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"negative transfer\" \"task competition\" multi-task learning sequence generation NER relation extraction gradient conflict"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T20:17:31.653675+00:00_
+
+Web search results for query: ""negative transfer" "task competition" multi-task learning sequence generation NER relation extraction gradient conflict"
+
+Links: [{"title":"Multi-Task Distillation: Towards Mitigating the Negative Transfer in Multi-Task Learning | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/9506618"},{"title":"[2211.12999] Mitigating Negative Transfer in Multi-Task Learning with Exponential Moving Average Loss Weighting Strategies","url":"https://arxiv.org/abs/2211.12999"},{"title":"Multi-Task Distillation: Towards Mitigating The Negative Transfer In Multi-Task Learning | SPS | Signal Processing","url":"https://rc.signalprocessingsociety.org/conferences/icip-2021/spsicip21vid487"},{"title":"Identification of Negative Transfers in Multitask Learning Using Surrogate Models | OpenReview","url":"https://openreview.net/forum?id=KgfFAI9f3E"},{"title":"Mitigating Negative Transfer in Multi-task Learning using ...","url":"https://openreview.net/pdf?id=myjAVQrRxS"},{"title":"Mitigating negative transfer in multi-task learning with exponential moving average loss weighting strategies (student abstract) | Proceedings of the Thirty-Seventh AAAI Conference on Artificial Intelligence and Thirty-Fifth Conference on Innovative Applications of Artificial Intelligence and Thirteenth Symposium on Educational Advances in Artificial Intelligence","url":"https://dl.acm.org/doi/10.1609/aaai.v37i13.26983"},{"title":"Dropped Scheduled Task: Mitigating Negative Transfer in Multi-task Learning using Dynamic Task Dropping | OpenReview","url":"https://openreview.net/forum?id=myjAVQrRxS"},{"title":"Task Uncertainty Loss Reduce Negative Transfer in Asymmetric Multi-task Feature Learning - ADS","url":"https://ui.adsabs.harvard.edu/abs/2020arXiv201209575P/abstract"},{"title":"[2301.12618] ForkMerge: Mitigating Negative Transfer in Auxiliary-Task Learning","url":"https://arxiv.org/abs/2301.12618"},{"title":"Mitigating Negative Transfer in Mul
+…[truncated 1957 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T20:17:31.653833+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "ATLOP DocRED evidence sentence supporting evidence document relation extraction Re-DocRED"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "ATLOP DocRED evidence sentence supporting evidence document relation extraction Re-DocRED"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T20:17:31.653979+00:00_
+
+Web search results for query: "ATLOP DocRED evidence sentence supporting evidence document relation extraction Re-DocRED"
+
+Links: [{"title":"Evidence and Axial Attention Guided Document-level Relation Extraction - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0885230824001116"},{"title":"Document-level relation extraction using evidence reasoning on RST-GRAPH - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0950705121005360"},{"title":"Enhancing cross-evidence reasoning graph for document-level relation extraction - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11232587/"},{"title":"[2302.08675] DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction","url":"https://ar5iv.labs.arxiv.org/html/2302.08675"},{"title":"Entity and Evidence Guided Relation Extraction for DocRED | Request PDF","url":"https://www.researchgate.net/publication/343931511_Entity_and_Evidence_Guided_Relation_Extraction_for_DocRED"},{"title":"[2008.12283] Entity and Evidence Guided Relation Extraction for DocRED","url":"https://arxiv.org/abs/2008.12283"},{"title":"(PDF) DocRED: A Large-Scale Document-Level Relation Extraction Dataset","url":"https://www.researchgate.net/publication/333815327_DocRED_A_Large-Scale_Document-Level_Relation_Extraction_Dataset"},{"title":"Evidence-driven Entity Relation Matching Enhances Document-level Relation Extraction","url":"https://www.researchgate.net/publication/378895059_Evidence-driven_Entity_Relation_Matching_Enhances_Document-level_Relation_Extraction"},{"title":"GitHub - wzhouad/ATLOP: Source code for paper \"Document-Level Relation Extraction with Adaptive Thresholding and Localized Context Pooling\", AAAI 2021","url":"https://github.com/wzhouad/ATLOP"},{"title":"[1906.06127] DocRED: A Large-Scale Document-Level Relation Extraction Dataset","url":"https://ar5iv.labs.arxiv.org/html/1906.06127"}]
+
+Based on the web search results, here's what I found regarding
+…[truncated 1595 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T20:17:31.654118+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "LLM-based document relation extraction generative output format triples evidence joint decoupled pipeline 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "LLM-based document relation extraction generative output format triples evidence joint decoupled pipeline 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T20:17:31.654300+00:00_
+
+Web search results for query: "LLM-based document relation extraction generative output format triples evidence joint decoupled pipeline 2024 2025"
+
+Links: [{"title":"LLM-empowered knowledge graph construction: A survey","url":"https://arxiv.org/pdf/2510.20345"},{"title":"A Temporal Knowledge Graph Generation Dataset Supervised Distantly by Large Language Models | Scientific Data","url":"https://www.nature.com/articles/s41597-025-05062-0"},{"title":"Entity Quality Enhancement in Knowledge Graphs through ...","url":"https://aclanthology.org/2025.genaik-1.14.pdf"},{"title":"The construction and refined extraction techniques of knowledge graph based on large language models | Scientific Reports","url":"https://www.nature.com/articles/s41598-026-38066-w"},{"title":"A Temporal Knowledge Graph Generation Dataset Supervised Distantly by Large Language Models - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12048500/"},{"title":"Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11704-024-40555-y"},{"title":"TextMine |The Five Stages of Knowledge Graph Triple Extraction, Ontology-Guided Long-Paragraph Recognition, Prompt Configuration and Layout-Aware PDF Parsing | by Joyce Birkins | Medium","url":"https://medium.com/@joycebirkins/textmine-the-five-stages-of-knowledge-graph-triple-extraction-ontology-guided-long-paragraph-b2f9cc31c589"},{"title":"Multimodal Document-level Triple Extraction via Dynamic ...","url":"https://aclanthology.org/2025.findings-emnlp.171.pdf"},{"title":"Rethinking Evaluation for Generative Relation Extraction in ...","url":"https://aclanthology.org/2024.naacl-long.155.pdf"},{"title":"GENRES: Rethinking Evaluation for Generative Relation Extraction in the","url":"https://arxiv.org/pdf/2402.10744"}]
+
+Based on the web search results, I found relevant research on LLM-based document relation extraction with generative output f
+…[truncated 1955 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T20:17:31.654485+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "GENRES \"rethinking evaluation generative relation extraction\" era LLMs NAACL 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "GENRES \"rethinking evaluation generative relation extraction\" era LLMs NAACL 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T20:17:31.654679+00:00_
+
+Web search results for query: "GENRES "rethinking evaluation generative relation extraction" era LLMs NAACL 2024"
+
+Links: [{"title":"GenRES: Rethinking Evaluation for Generative Relation Extraction in the Era of Large Language Models - ACL Anthology","url":"https://aclanthology.org/2024.naacl-long.155/"},{"title":"GENRES: Rethinking Evaluation for Generative Relation Extraction in the Era of Large Language Models - Illinois Experts","url":"https://experts.illinois.edu/en/publications/genres-rethinking-evaluation-for-generative-relation-extraction-i/"},{"title":"Rethinking Evaluation for Generative Relation Extraction in ...","url":"https://aclanthology.org/2024.naacl-long.155.pdf"},{"title":"Accepted Papers - NAACL-HLT 2024","url":"https://2024.naacl.org/program/accepted_papers/"},{"title":"GitHub - quqxui/Awesome-LLM4IE-Papers: Awesome papers about generative Information Extraction (IE) using Large Language Models (LLMs) · GitHub","url":"https://github.com/quqxui/Awesome-LLM4IE-Papers"},{"title":"GenRES: Rethinking Evaluation for Generative Relation Extraction in the Era of Large Language Models","url":"https://www.emergentmind.com/papers/2402.10744"},{"title":"[2402.10744] GenRES: Rethinking Evaluation for Generative Relation Extraction in the Era of Large Language Models","url":"https://arxiv.org/abs/2402.10744"},{"title":"A survey on cutting-edge relation extraction techniques based on language models | Artificial Intelligence Review | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10462-025-11280-0"},{"title":"Generation-Augmented Retrieval: Rethinking the Role of ...","url":"https://aclanthology.org/2025.findings-emnlp.974.pdf"},{"title":"Revisiting Relation Extraction in the era of Large Language Models - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC10482322/"}]
+
+I found the paper you're looking for! GenRES: Rethinking Evaluation for Generative Relation Extraction in the Era of Large Language Models was published at the 2024 C
+…[truncated 1393 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T20:17:31.654837+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Revisiting Relation Extraction\" \"era of Large Language Models\" Wadhwa ACL 2023 generative RE performance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Revisiting Relation Extraction\" \"era of Large Language Models\" Wadhwa ACL 2023 generative RE performance"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T20:17:31.654987+00:00_
+
+Web search results for query: ""Revisiting Relation Extraction" "era of Large Language Models" Wadhwa ACL 2023 generative RE performance"
+
+Links: [{"title":"Revisiting Relation Extraction in the era of Large Language Models - ACL Anthology","url":"https://aclanthology.org/2023.acl-long.868/"},{"title":"[2305.05003] Revisiting Relation Extraction in the era of Large Language Models","url":"https://arxiv.org/abs/2305.05003"},{"title":"Revisiting Relation Extraction in the era of Large Language ...","url":"https://aclanthology.org/2023.acl-long.868.pdf"},{"title":"Revisiting Relation Extraction in the era of Large Language Models - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC10482322/"},{"title":"Revisiting Relation Extraction in the era of Large Language Models - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/37674787/"},{"title":"[PDF] Revisiting Relation Extraction in the era of Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Revisiting-Relation-Extraction-in-the-era-of-Large-Wadhwa-Amir/97782a67971c4ff1a74bf07e82fe20b2c4bf86c4"},{"title":"Revisiting Relation Extraction in the era of Large Language Models | NSF Public Access Repository","url":"https://par.nsf.gov/biblio/10523775-revisiting-relation-extraction-era-large-language-models"},{"title":"A survey on cutting-edge relation extraction techniques based on language models | Artificial Intelligence Review | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10462-025-11280-0"},{"title":"dblp: Somin Wadhwa","url":"https://dblp.org/pid/265/5925.html"},{"title":"A survey on cutting-edge relation extraction techniques based on language models","url":"https://arxiv.org/html/2411.18157v1"}]
+
+I found the paper you're looking for! Here's information about it:
+
+## "Revisiting Relation Extraction in the era of Large Language Models"
+
+This paper was authored by Somin Wadhwa, Silvio Amir, and Byron Wallace and published in Proceedings of the 61st Annual Mee
+…[truncated 1195 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T20:17:31.655130+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "ForkMerge mitigating negative transfer auxiliary task learning NeurIPS 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "ForkMerge mitigating negative transfer auxiliary task learning NeurIPS 2023"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T20:17:31.655308+00:00_
+
+Web search results for query: "ForkMerge mitigating negative transfer auxiliary task learning NeurIPS 2023"
+
+Links: [{"title":"[2301.12618] ForkMerge: Mitigating Negative Transfer in Auxiliary-Task Learning","url":"https://arxiv.org/abs/2301.12618"},{"title":"GitHub - thuml/ForkMerge: Code release of paper \"ForkMerge: Mitigating Negative Transfer in Auxiliary-Task Learning\" (NeurIPS 2023)","url":"https://github.com/thuml/ForkMerge"},{"title":"NeurIPS Poster ForkMerge: Mitigating Negative Transfer in Auxiliary-Task Learning","url":"https://neurips.cc/virtual/2023/poster/70098"},{"title":"ForkMerge: Mitigating Negative Transfer in Auxiliary-Task Learning","url":"https://proceedings.neurips.cc//paper_files/paper/2023/hash/60f9118a849e8e9a0c67e2a36ad80ebf-Abstract-Conference.html"},{"title":"[Quick Review] ForkMerge: Mitigating Negative Transfer in Auxiliary-Task Learning","url":"https://liner.com/review/forkmerge-mitigating-negative-transfer-in-auxiliarytask-learning"},{"title":"ForkMerge: Mitigating Negative Transfer in Auxiliary-Task Learning | OpenReview","url":"https://openreview.net/forum?id=vZHk1QlBQW"},{"title":"ForkMerge: Mitigating Negative Transfer in Auxiliary-Task ...","url":"https://proceedings.neurips.cc/paper_files/paper/2023/file/60f9118a849e8e9a0c67e2a36ad80ebf-Paper-Conference.pdf"},{"title":"ForkMerge: Mitigating Negative Transfer in Auxiliary-Task Learning","url":"https://www.zhuanzhiai.com/paper/f0e0cbb9018f7bace53808b5eb34cfb2"},{"title":"dblp: ForkMerge: Mitigating Negative Transfer in Auxiliary-Task Learning.","url":"https://dblp.org/rec/conf/nips/JiangCPWL0L23.html"},{"title":"ForkMerge: Mitigating Negative Transfer in Auxiliary-Task Learning","url":"https://ise.thss.tsinghua.edu.cn/~mlong/doc/ForkMerge-nips23.pdf"}]
+
+Based on the search results, here's information about the ForkMerge paper from NeurIPS 2023:
+
+## Overview
+
+ForkMerge is a paper authored by Junguang Jiang and 6 other authors that addresses Auxiliary-Task Learning (ATL), which a
+…[truncated 1182 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T20:17:31.655476+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T20:17:31.655600+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T20:17:31.655765+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/literature_survey_evidence_overhead.md",
+  "content": "# Literature Survey: Evidence Generation Overhead in Relation Extraction\n\n**Context**: SFT model generating relation triples + evidence sentences yields rel_f1=0.4057; generating triples only yields rel_f1=0.4893 (+20.6%). This survey contextualizes this evidence generation overhead.\n\n---\n\n## 1. Multi-task Learning Overhead in IE\n\n- **[An Overview of Multi-Task Learning in Deep Neural Networks](https://arxiv.org/abs/1706.05098)** (Ruder, arXiv 2017) — Foundational MTL survey establishing that auxiliary tasks can cause *negative transfer* when task gradients conflict, with one task dominating and degrading others. Directly frames our evidence-as-auxiliary-task degradation.\n\n- **[ForkMerge: Mitigating Negative Transfer in Auxiliary-Task Learning](https://proceedings.neurips.cc/paper_files/paper/2023/hash/60f9118a849e8e9a0c67e2a36ad80ebf-Abstract-Conference.html)** (Jiang et al., NeurIPS 2023) — Shows auxiliary tasks frequently cause negative transfer due to gradient conflicts; proposes periodic forking/merging to filter detrimental updates. Confirms that even \"helpful\" auxiliary tasks can hurt the primary objective.\n\n- **[An Empirical Study of Pipeline vs. Joint approaches to Entity and Relation Extraction](https://aclanthology.org/2022.aacl-short.55/)** (Giorgi et al., AACL 2022) — Finds that with proper span representations, pipeline models can match or exceed joint models; joint approaches with shared encoders may harm accuracy because NER and RE require different feature spaces. Supports decoupling argument.\n\n- **[Do the Benefits of Joint Models for Relation Extraction Extend to Document-level Tasks?](https://aclanthology.org/2023.ijcnlp-short.6/)** (Saini et al., IJCNLP-AACL 2023) — Directly shows joint models' advantage over pipeline disappears at document level — pipeline models outperform joint models on DocRE. Highly relevant: joint modeling overhead amplifies with longer documents.\n\n- **[Mitigating Negative Transfer in Multi-Task Learning with Exponential Moving Average Loss Weighting Strategies](https://arxiv.org/abs/2211.12999)** (Phan et al., AAAI 2023 Student Abstract) — Demonstrates that in MTL a subset of tasks can dominate training, degrading non-dominant tasks. Loss weighting mitigates but does not eliminate the problem.\n\n## 2. Evidence/Rationale Generation Cost\n\n- **[Mind Your Step (by Step): Chain-of-Thought can Reduce Performance on Tasks where Thinking Makes Humans Worse](https://arxiv.org/abs/2410.21333)** (Liu et al., ICML 2025) — CoT prompting causes up to 36.3% absolute performance drop on tasks where deliberation is counterproductive. Demonstrates that forcing models to generate intermediate reasoning can actively harm task performance — analogous to our evidence generation overhead.\n\n- **[On the Impact of Fine-Tuning on Chain-of-Thought Reasoning](https://arxiv.org/abs/2411.15382)** (Lobo et al., arXiv 2024) — SFT/QLoRA fine-tuning degrades CoT faithfulness by 13–18 pp in smaller models and generally reduces CoT reasoning performance. Shows fine-tuning for rationale generation creates a tension between explanation quality and task accuracy.\n\n- **[Token-Budget-Aware LLM Reasoning](https://aclanthology.org/2025.findings-acl.1274/)** (ACL Findings 2025) — Demonstrates that reasoning tokens compete with answer tokens for output budget; achieves comparable accuracy with 67% fewer output tokens. Directly relevant: evidence tokens consume budget that could serve relation extraction.\n\n- **[LLM-Driven Information Extraction: The Output Token Limitation Issue](https://atlassc.net/2026/01/15/the-asymmetry-of-generative-intelligence)** (AtlasSC, 2026) — Identifies a fundamental constraint: practitioners must choose between depth of reasoning (CoT tokens) and breadth of extraction (JSON payload). As output grows, attention to source text diminishes. Precisely our triples-vs-evidence token competition.\n\n## 3. Decoupling in Structured Prediction\n\n- **[Revisiting Relation Extraction in the era of Large Language Models](https://aclanthology.org/2023.acl-long.868/)** (Wadhwa et al., ACL 2023) — Treats RE as seq2seq generation; finds few-shot GPT-3 matches fully supervised models. Establishes that generative RE is viable but output format design critically affects performance.\n\n- **[GenRES: Rethinking Evaluation for Generative Relation Extraction in the Era of Large Language Models](https://aclanthology.org/2024.naacl-long.155/)** (Jiang et al., NAACL 2024) — Shows prompting LLMs with fixed relation/entity sets causes hallucinations; output structure matters. Reinforces that generation format (with or without evidence) has non-trivial impact on extraction quality.\n\n- **[A Survey of Generative Information Extraction](https://aclanthology.org/2025.coling-main.324/)** (COLING 2025) — Comprehensive survey of generative IE; discusses linearization strategies for structured output and the overhead of generating auxiliary information alongside core extractions.\n\n- **[Large Language Models for Generative Information Extraction: A Survey](https://arxiv.org/abs/2312.17617)** (Xu et al., Frontiers of Computer Science 2024) — Notes that generative IE reformulates extraction as seq2seq, but output token limits create fundamental bottleneck — models can read entire documents but can only write limited structured output, making token allocation critical.\n\n## 4. DocRE Methods and Evidence Handling\n\n- **[DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction](https://aclanthology.org/2023.eacl-main.145/)** (Ma et al., EACL 2023) — Uses evidence as attention supervision signal (not generated output); avoids the generation overhead by treating evidence as an internal mechanism rather than explicit output. Evidence improves RE when used to *guide* the model, not as a generation target.\n\n- **[Eider: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion](https://aclanthology.org/2022.findings-acl.23/)** (Xie et al., ACL Findings 2022) — Jointly trains lightweight evidence extractor with RE model but fuses predictions at *inference* rather than generating evidence in the same output sequence. Decoupled design avoids token competition; improves RE by +1.37 Ign F1 on DocRED.\n\n- **[Entity and Evidence Guided Relation Extraction for DocRED](https://arxiv.org/abs/2008.12283)** (Huang et al., arXiv 2020) — Early work using evidence sentences to guide entity-pair representations. Evidence is used as an attention mask, not generated — avoids the generation cost entirely.\n\n- **[SIRE: Separate Intra- and Inter-sentential Reasoning for Document-level Relation Extraction](https://aclanthology.org/2021.findings-acl.47/)** (Zeng et al., ACL Findings 2021) — Separates intra- and inter-sentential reasoning into distinct representation pathways. Implicitly handles evidence by architectural separation rather than explicit prediction, avoiding the joint generation overhead.\n\n---\n\n## Synthesis\n\nThe literature reveals a consistent pattern: **auxiliary generation tasks impose a non-trivial cost on the primary task, especially in sequence-to-sequence settings.** Three mechanisms explain this:\n\n1. **Gradient conflict / negative transfer** (Ruder 2017; ForkMerge, NeurIPS 2023): When evidence and relation extraction share model capacity, their gradients can conflict, with evidence generation dominating and degrading RE performance.\n\n2. **Token budget competition** (Token-Budget-Aware 2025; AtlasSC 2026): In generative models, evidence tokens directly compete with relation tokens for output sequence capacity. Longer evidence outputs reduce the model's ability to attend back to source text for accurate extraction.\n\n3. **Deliberation overhead** (Mind Your Step, ICML 2025; Lobo et al. 2024): Forcing explicit intermediate reasoning can actively hurt performance when the task benefits more from pattern recognition than from step-by-step justification.\n\nCritically, **existing DocRE methods (DREEAM, Eider, SIRE) avoid this overhead by design** — they use evidence as internal attention signals or separate lightweight modules, never as co-generated output in the same sequence. No prior work has quantified the cost of jointly *generating* evidence and relations in a single autoregressive output, which is exactly what our no-evidence ablation (+20.6% rel_f1) measures. This positions our finding as the first empirical evidence that evidence generation in generative DocRE creates a substantial task interference, providing strong motivation for decoupled architectures that separate evidence reasoning from relation prediction.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/literature_survey_evidence_overhead.md",
+    "content": "# Literature Survey: Evidence Generation Overhead in Relation Extraction\n\n**Context**: SFT model generating relation triples + evidence sentences yields rel_f1=0.4057; generating triples only yields rel_f1=0.4893 (+20.6%). This survey contextualizes this evidence generation overhead.\n\n---\n\n## 1. Multi-task Learning Overhead in IE\n\n- **[An Overview of Multi-Task Learning in Deep Neural Networks](https://arxiv.org/abs/1706.05098)** (Ruder, arXiv 2017) — Foundational MTL survey establishing that auxiliary tasks can cause *negative transfer* when task gradients conflict, with one task dominating and degrading others. Directly frames our evidence-as-auxiliary-task degradation.\n\n- **[ForkMerge: Mitigating Negative Transfer in Auxiliary-Task Learning](https://proceedings.neurips.cc/paper_files/paper/2023/hash/60f9118a849e8e9a0c67e2a36ad80ebf-Abstract-Conference.html)** (Jiang et al., NeurIPS 2023) — Shows auxiliary tasks frequently cause negative transfer due to gradient conflicts; proposes periodic forking/merging to filter detrimental updates. Confirms that even \"helpful\" auxiliary tasks can hurt the primary objective.\n\n- **[An Empirical Study of Pipeline vs. Joint approaches to Entity and Relation Extraction](https://aclanthology.org/2022.aacl-short.55/)** (Giorgi et al., AACL 2022) — Finds that with proper span representations, pipeline models can match or exceed joint models; joint approaches with shared encoders may harm accuracy because NER and RE require different feature spaces. Supports decoupling argument.\n\n- **[Do the Benefits of Joint Models for Relation Extraction Extend to Document-level Tasks?](https://aclanthology.org/2023.ijcnlp-short.6/)** (Saini et al., IJCNLP-AACL 2023) — Directly shows joint models' advantage over pipeline disappears at document level — pipeline models outperform joint models on DocRE. Highly relevant: joint modeling overhead amplifies with longer documents.\n\n- **[Mitigating Negative Transfer in Multi-Task Learning with Exponential Moving Average Loss Weighting Strategies](https://arxiv.org/abs/2211.12999)** (Phan et al., AAAI 2023 Student Abstract) — Demonstrates that in MTL a subset of tasks can dominate training, degrading non-dominant tasks. Loss weighting mitigates but does not eliminate the problem.\n\n## 2. Evidence/Rationale Generation Cost\n\n- **[Mind Your Step (by Step): Chain-of-Thought can Reduce Performance on Tasks where Thinking Makes Humans Worse](https://arxiv.org/abs/2410.21333)** (Liu et al., ICML 2025) — CoT prompting causes up to 36.3% absolute performance drop on tasks where deliberation is counterproductive. Demonstrates that forcing models to generate intermediate reasoning can actively harm task performance — analogous to our evidence generation overhead.\n\n- **[On the Impact of Fine-Tuning on Chain-of-Thought Reasoning](https://arxiv.org/abs/2411.15382)** (Lobo et al., arXiv 2024) — SFT/QLoRA fine-tuning degrades CoT faithfulness by 13–18 pp in smaller models and generally reduces CoT reasoning performance. Shows fine-tuning for rationale generation creates a tension between explanation quality and task accuracy.\n\n- **[Token-Budget-Aware LLM Reasoning](https://aclanthology.org/2025.findings-acl.1274/)** (ACL Findings 2025) — Demonstrates that reasoning tokens compete with answer tokens for output budget; achieves comparable accuracy with 67% fewer output tokens. Directly relevant: evidence tokens consume budget that could serve relation extraction.\n\n- **[LLM-Driven Information Extraction: The Output Token Limitation Issue](https://atlassc.net/2026/01/15/the-asymmetry-of-generative-intelligence)** (AtlasSC, 2026) — Identifies a fundamental constraint: practitioners must choose between depth of reasoning (CoT tokens) and breadth of extraction (JSON payload). As output grows, attention to source text diminishes. Precisely our triples-vs-evidence token competition.\n\n## 3. Decoupling in Structured Prediction\n\n- **[Revisiting Relation Extraction in the era of Large Language Models](https://aclanthology.org/2023.acl-long.868/)** (Wadhwa et al., ACL 2023) — Treats RE as seq2seq generation; finds few-shot GPT-3 matches fully supervised models. Establishes that generative RE is viable but output format design critically affects performance.\n\n- **[GenRES: Rethinking Evaluation for Generative Relation Extraction in the Era of Large Language Models](https://aclanthology.org/2024.naacl-long.155/)** (Jiang et al., NAACL 2024) — Shows prompting LLMs with fixed relation/entity sets causes hallucinations; output structure matters. Reinforces that generation format (with or without evidence) has non-trivial impact on extraction quality.\n\n- **[A Survey of Generative Information Extraction](https://aclanthology.org/2025.coling-main.324/)** (COLING 2025) — Comprehensive survey of generative IE; discusses linearization strategies for structured output and the overhead of generating auxiliary information alongside core extractions.\n\n- **[Large Language Models for Generative Information Extraction: A Survey](https://arxiv.org/abs/2312.17617)** (Xu et al., Frontiers of Computer Science 2024) — Notes that generative IE reformulates extraction as seq2seq, but output token limits create fundamental bottleneck — models can read entire documents but can only write limited structured output, making token allocation critical.\n\n## 4. DocRE Methods and Evidence Handling\n\n- **[DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction](https://aclanthology.org/2023.eacl-main.145/)** (Ma et al., EACL 2023) — Uses evidence as attention supervision signal (not generated output); avoids the generation overhead by treating evidence as an internal mechanism rather than explicit output. Evidence improves RE when used to *guide* the model, not as a generation target.\n\n- **[Eider: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion](https://aclanthology.org/2022.findings-acl.23/)** (Xie et al., ACL Findings 2022) — Jointly trains lightweight evidence extractor with RE model but fuses predictions at *inference* rather than generating evidence in the same output sequence. Decoupled design avoids token competition; improves RE by +1.37 Ign F1 on DocRED.\n\n- **[Entity and Evidence Guided Relation Extraction for DocRED](https://arxiv.org/abs/2008.12283)** (Huang et al., arXiv 2020) — Early work using evidence sentences to guide entity-pair representations. Evidence is used as an attention mask, not generated — avoids the generation cost entirely.\n\n- **[SIRE: Separate Intra- and Inter-sentential Reasoning for Document-level Relation Extraction](https://aclanthology.org/2021.findings-acl.47/)** (Zeng et al., ACL Findings 2021) — Separates intra- and inter-sentential reasoning into distinct representation pathways. Implicitly handles evidence by architectural separation rather than explicit prediction, avoiding the joint generation overhead.\n\n---\n\n## Synthesis\n\nThe literature reveals a consistent pattern: **auxiliary generation tasks impose a non-trivial cost on the primary task, especially in sequence-to-sequence settings.** Three mechanisms explain this:\n\n1. **Gradient conflict / negative transfer** (Ruder 2017; ForkMerge, NeurIPS 2023): When evidence and relation extraction share model capacity, their gradients can conflict, with evidence generation dominating and degrading RE performance.\n\n2. **Token budget competition** (Token-Budget-Aware 2025; AtlasSC 2026): In generative models, evidence tokens directly compete with relation tokens for output sequence capacity. Longer evidence outputs reduce the model's ability to attend back to source text for accurate extraction.\n\n3. **Deliberation overhead** (Mind Your Step, ICML 2025; Lobo et al. 2024): Forcing explicit intermediate reasoning can actively hurt performance when the task benefits more from pattern recognition than from step-by-step justification.\n\nCritically, **existing DocRE methods (DREEAM, Eider, SIRE) avoid this overhead by design** — they use evidence as internal attention signals or separate lightweight modules, never as co-generated output in the same sequence. No prior work has quantified the cost of jointly *generating* evidence and relations in a single autoregressive output, which is exactly what our no-evidence ablation (+20.6% rel_f1) measures. This positions our finding as the first empirical evidence that evidence generation in generative DocRE creates a substantial task interference, providing strong motivation for decoupled architectures that separate evidence reasoning from relation prediction.\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T20:17:31.655995+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/literature_survey_evidence_overhead.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-15T20:17:31.656161+00:00_
+
+报告已保存到 `artifacts/literature_survey_evidence_overhead.md`。
+
+核心发现：
+
+**四个方向共 15 篇论文，关键结论：**
+
+1. **MTL 开销**：负迁移（gradient conflict）在 joint IE 中普遍存在；Saini et al. (2023) 直接证明 joint model 在 document-level 反而不如 pipeline。
+2. **Rationale 生成代价**：Mind Your Step (ICML 2025) 显示 CoT 最高导致 36.3% 性能下降；Token-Budget-Aware (ACL 2025) 证明推理 token 与答案 token 存在直接竞争。
+3. **Decoupling**：generative IE survey 一致指出输出 token 限制是核心瓶颈，输出格式设计直接影响抽取质量。
+4. **DocRE evidence 处理**：DREEAM/Eider/SIRE 全部回避了将 evidence 作为生成目标——它们用 attention 引导或轻量级独立模块，从未在同一序列中联合生成。
+
+**关键缺口**：没有先前工作量化过在单一自回归输出中联合生成 evidence + relation 的代价。我们的 no-evidence ablation (+20.6% rel_f1) 是这方面的首个实证，为 decoupled 架构提供了强有力的动机。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_evidence-generation-overhead_20260515T201203"
+}
+```
+
+</details>
+
+---

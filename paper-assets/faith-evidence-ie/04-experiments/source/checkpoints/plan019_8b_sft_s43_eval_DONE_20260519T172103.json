@@ -1,0 +1,56 @@
+{
+  "exp_id": "plan019_8b_sft_s43_eval",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:00:00.027Z",
+    "updated_at": "2026-05-19T17:21:03.065Z",
+    "hypothesis": "D076 eval for 8B SFT s43. 补齐第 3 个 8B SFT seed 的 eval 结果。8B SFT s42 ign_f1=0.5128, s44 ign_f1=0.4604. 3-seed mean 将决定 \"1.7B RSFT surpasses 8B SFT\" claim (Claim 3) 的统计力。",
+    "parent": "plan019_8b_sft_s43",
+    "plan_id": "plan_019",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/eval_results/plan019_8b_sft_s43_eval",
+      "log_path": "~/runs/faith-evidence-ie/plan019_8b_sft_s43_eval.log"
+    },
+    "server": "rtx5090-4x",
+    "gpu": "cuda:1",
+    "account": "root",
+    "pid": "699639",
+    "log_path": "~/runs/faith-evidence-ie/plan019_8b_sft_s43_eval.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && GPU=1 bash scripts/seed_expansion/eval_8b_sft_s43.sh\"",
+      "finished_at": "2026-05-19T15:41:52.344Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T15:41:58.721923+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ign_f1": 0.5324,
+      "f1": 0.5457,
+      "ign_precision": 0.5319,
+      "ign_recall": 0.533,
+      "precision": 0.555,
+      "recall": 0.5367,
+      "evi_f1_tp": 0.8333,
+      "evi_f1_joint": 0.443,
+      "edcr": 0.5805,
+      "format_ok_rate": 1,
+      "n_predictions": 13933,
+      "n_truncated": 139,
+      "n_documents": 985
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T17:21:03.065Z"
+  },
+  "timestamp": "2026-05-19T17:21:03.631105+00:00",
+  "trigger": "update_registry"
+}

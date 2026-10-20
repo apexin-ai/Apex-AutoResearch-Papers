@@ -1,0 +1,63 @@
+{
+  "exp_id": "d140_8b_sft_s42_with_evi_2048",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T06:02:31.814Z",
+    "updated_at": "2026-05-21T09:05:29.414Z",
+    "metrics": {
+      "ign_f1": 0.5012,
+      "ign_precision": 0.469,
+      "ign_recall": 0.5382,
+      "f1": 0.5219,
+      "evi_f1_joint": 0.4087,
+      "evi_f1_tp_only": 0.8044,
+      "edcr": 0.7039,
+      "format_ok_rate": 0.999,
+      "truncated_count": 236,
+      "truncated_rate": 0.2396,
+      "total_docs": 985,
+      "predictions": 25007,
+      "inference_time_s": 10486
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T09:03:30.000Z",
+    "checkpoint_path": "/root/autodl-tmp/eval_results/d140_8b_sft_s42_with_evi_2048",
+    "log_path": "~/runs/faith-evidence-ie/d140_8b_sft_s42_with_evi_2048.log",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/eval_results/d140_8b_sft_s42_with_evi_2048 --batch_size 4 --max_new_tokens 2048 --no-quantize --seed 42\"",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:3",
+      "pid": 81857,
+      "log_path": "~/runs/faith-evidence-ie/d140_8b_sft_s42_with_evi_2048.log",
+      "submitted_at": "2026-05-21T06:02:44.995Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-8B + SFT adapter",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_qwen3_8b_bf16",
+      "eval_data": "docred-dev"
+    },
+    "hypothesis": "D140 matched@2048 methodology: 8B SFT s42 with-evi@2048。配对 d140_8b_sft_s42_no_evi_2048_fix (cuda:2 running)，计算 8B Qwen matched evidence tax。@1024 ign_f1=0.5019 (with-evi), truncated=225 (22.8%)。@2048 应减少截断不对称，得到可靠 tax 值。",
+    "reproduce": {
+      "finished_at": "2026-05-21T08:59:31.140Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T08:59:39.850205+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-21T09:05:30.041206+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,52 @@
+{
+  "exp_id": "mvp2_grpo_ced_lr5e6_r1",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T19:21:08.231Z",
+    "updated_at": "2026-05-15T01:07:45.444Z",
+    "hypothesis": "D030/P0: lr=5e-6 (10x lower than ced_kl001_r4) prevents catastrophic forgetting while maintaining CED reward improvement. Community consensus GRPO+QLoRA lr=5e-6~1e-5. Pass criteria: ckpt-20 rel_f1 > 0.30. Extra monitoring: pred_count + recall trend.",
+    "parent": "mvp2_grpo_ced_kl001_r4",
+    "spec": {
+      "command": "python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end 0.5 --output_dir /root/autodl-tmp/grpo_ced_lr5e6 --num_generations 8 --reward_device cuda --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-6 --seed 42 --kl_coef 0.01 --save_steps 20 --save_total_limit 20 --max_steps 200 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --wandb_run_name grpo-s3-ced-lr5e6-r1",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "90080",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 3053,
+      "model_name": "Qwen3-4B + SFT adapter",
+      "seed": 42,
+      "hyperparams": {
+        "learning_rate": 5e-06,
+        "kl_coef": 0.01,
+        "num_generations": 8,
+        "gradient_accumulation_steps": 16,
+        "max_steps": 200,
+        "save_steps": 20,
+        "format_reward_weight": 0.3,
+        "f1_reward_weight": 3,
+        "ced_reward_weight": 1,
+        "tau_start": 0.3,
+        "tau_end": 0.5
+      }
+    },
+    "server": "rtx5090-4x",
+    "gpu": "cuda:0",
+    "pid": "90080",
+    "log_path": "~/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log",
+    "wandb_run_id": "grpo-s3-ced-lr5e6-r1",
+    "reproduce": {
+      "command": "bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end 0.5 --output_dir /root/autodl-tmp/grpo_ced_lr5e6 --num_generations 8 --reward_device cuda --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-6 --seed 42 --kl_coef 0.01 --save_steps 20 --save_total_limit 20 --max_steps 200 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --wandb_run_name grpo-s3-ced-lr5e6-r1\"",
+      "wandb_run_id": "grpo-s3-ced-lr5e6-r1"
+    },
+    "notes": "[2026-05-15 07:12] W&B 轨迹分析: step 100 出现 f1_reward 拐点 (0.016→0.093, 5.8x)，f1+ced 同步上升表明模型在学抽取而非纯 format hacking。但 ckpt-20/40 eval 均 FAIL (rel_f1 ~0.007)，训练 reward 尚未转化为 eval 抽取能力。ckpt-100 eval 是决定性验证点——eval F1 > 0.15 说明拐点真实，< 0.05 则判定 reward hacking。Training 113/200, ETA ~2h40m.",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T01:07:45.620719+00:00",
+  "trigger": "update_registry"
+}

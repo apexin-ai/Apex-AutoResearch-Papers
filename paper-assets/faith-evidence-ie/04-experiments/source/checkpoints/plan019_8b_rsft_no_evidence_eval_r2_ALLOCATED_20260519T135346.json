@@ -1,0 +1,24 @@
+{
+  "exp_id": "plan019_8b_rsft_no_evidence_eval_r2",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:44:38.870Z",
+    "updated_at": "2026-05-19T13:53:45.324Z",
+    "hypothesis": "8B RSFT no-evidence eval r2: 移除 evidence 输出后测量 8B RSFT 的 evidence tax。8B RSFT with-evidence mean ign_f1=0.5414 (s42=0.5376, s44=0.5451)。若 no-evidence ign_f1 > with-evidence，证实 evidence 生成对 8B RE 的性能代价；与 1.7B/4B/14B evidence tax 配合构建跨尺度 scaling curve (Claim 3)。修正 r1 的 cuda:2 冲突问题，改用 cuda:0。",
+    "parent": "plan019_8b_rsft_no_evidence_eval",
+    "plan_id": "plan_019",
+    "spec": {
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-19T13:53:46.806640+00:00",
+  "trigger": "update_registry"
+}

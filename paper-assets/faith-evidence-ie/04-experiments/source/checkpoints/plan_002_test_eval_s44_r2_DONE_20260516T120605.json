@@ -1,0 +1,41 @@
+{
+  "exp_id": "plan_002_test_eval_s44_r2",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T08:14:36.494Z",
+    "updated_at": "2026-05-16T12:06:04.702Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s44/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/test_rsft_ced_s44 --no-quantize",
+      "server": "rtx5090-4x",
+      "gpu_id": 1,
+      "pid": 319632,
+      "data_path": "/root/autodl-tmp/data/docred/test.json",
+      "data_count": 1000,
+      "model_name": "Qwen3-4B + SFT + RSFT-CED-s44-ckpt510",
+      "seed": 42,
+      "hypothesis": "DocRED test set evaluation with RSFT CED s44 (best config). D076 协议. plan_id=plan_002, claim=1.",
+      "parent": "mvp2_rsft_train_r1_s44",
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_s44/checkpoint-510",
+      "eval_data": "/root/autodl-tmp/data/docred/test.json",
+      "log_path": "/root/autodl-tmp/eval_results/test_rsft_ced_s44/eval.log",
+      "metrics": {
+        "n_documents": 1000,
+        "n_predictions": 26925,
+        "n_codalab_entries": 25553,
+        "format_ok_rate": 0.996,
+        "n_truncated": 626,
+        "inference_time_s": 13850.5
+      },
+      "checkpoint_path": "/root/autodl-tmp/eval_results/test_rsft_ced_s44",
+      "notes": "Test set eval complete. No local F1 (need CodaLab submission). File: codalab_submission.json (25553 entries)."
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-16T12:06:04.702Z"
+  },
+  "timestamp": "2026-05-16T12:06:05.104388+00:00",
+  "trigger": "update_registry"
+}

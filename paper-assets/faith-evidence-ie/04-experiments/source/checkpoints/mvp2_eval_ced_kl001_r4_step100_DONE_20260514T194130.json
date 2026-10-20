@@ -1,0 +1,68 @@
+{
+  "exp_id": "mvp2_eval_ced_kl001_r4_step100",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:08:31.821Z",
+    "updated_at": "2026-05-14T19:41:30.318Z",
+    "hypothesis": "Eval ced_kl001_r4 last checkpoint (step 100) to compare with best-reward checkpoint (step 50). If best ≠ last, the gap measures training stability under batch_size=1 GRPO variance.",
+    "parent": "mvp2_grpo_ced_kl001_r4",
+    "spec": {
+      "command": "python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001_step100 --checkpoints 100 --quantize",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "80789",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_step100.log",
+      "submitted_at": "2026-05-14T18:09:02.064Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "model_name": "Qwen3-4B + SFT adapter + GRPO ced_kl001 step-100",
+      "checkpoint_source": "/root/autodl-tmp/grpo_ced_kl001/checkpoint-100",
+      "eval_data": "DocRED dev set",
+      "data_count": 998,
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/grpo_ced_kl001/checkpoint-100",
+      "wall_clock_seconds": 5458.4,
+      "gpu_hours": 1.52
+    },
+    "notes": "2026-05-15 03:20 UTC: ckpt-100 inference 48/62 (77%), ~20 min remaining. Started 02:09 UTC.",
+    "reproduce": {
+      "finished_at": "2026-05-14T19:35:23.622Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T19:35:25.057156+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "rel_f1": 0.2167,
+      "ign_f1": 0.2167,
+      "precision": 0.2849,
+      "recall": 0.1749,
+      "evi_f1": 0.5746,
+      "evi_precision": 0.5244,
+      "evi_recall": 0.6353,
+      "edcr": 0.8539,
+      "pred_count": 7460,
+      "gold_count": 12151,
+      "tp": 2125,
+      "n_truncated": 21,
+      "format_ok_rate": 1
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-14T19:40:00.432Z"
+  },
+  "timestamp": "2026-05-14T19:41:30.406749+00:00",
+  "trigger": "update_registry"
+}

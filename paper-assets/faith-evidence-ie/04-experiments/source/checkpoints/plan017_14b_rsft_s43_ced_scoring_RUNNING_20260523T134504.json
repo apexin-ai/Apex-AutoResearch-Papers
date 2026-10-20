@@ -1,0 +1,31 @@
+{
+  "exp_id": "plan017_14b_rsft_s43_ced_scoring",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T11:48:18.347Z",
+    "updated_at": "2026-05-23T13:45:03.609Z",
+    "hypothesis": "14B RSFT s43 CED scoring: 对 24216 candidates 用 NLI 模型 (nli-deberta-v3-base) 打分，top_k=1 筛选生成 RSFT 训练数据。Pipeline: generation → [CED scoring] → RSFT train → eval。",
+    "parent": "plan017_14b_rsft_s43_generate",
+    "spec": {
+      "command": "python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations_14b_s43 --output_path /root/autodl-tmp/rsft_scored_14b_s43 --nli_model_path cross-encoder/nli-deberta-v3-base --selection_strategy top_k --top_k 1 --scoring_mode ced",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:1",
+      "pid": 250046,
+      "data_path": "/root/autodl-tmp/rsft_generations_14b_s43/generations.jsonl",
+      "data_count": 24216,
+      "model_name": "cross-encoder/nli-deberta-v3-base",
+      "seed": 43,
+      "checkpoint_source": "plan017_14b_rsft_s43_generate",
+      "eval_data": "N/A",
+      "log_path": "/tmp/plan017_14b_rsft_s43_ced_scoring.log",
+      "output_path": "/root/autodl-tmp/rsft_scored_14b_s43"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T13:45:04.319151+00:00",
+  "trigger": "update_registry"
+}

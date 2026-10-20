@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_llama_sft_s42_no_evidence_std",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T04:46:48.472Z",
+    "updated_at": "2026-05-20T04:46:48.472Z"
+  },
+  "timestamp": "2026-05-20T04:46:49.027352+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,22 @@
+{
+  "exp_id": "plan_015_grpo_g4_bf16_v2",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-15T16:06:43.308Z",
+    "updated_at": "2026-05-15T16:28:54.179Z",
+    "hypothesis": "QLoRA quantization isolation: bf16 LoRA GRPO with G=4, kl=0, lr=5e-6（与原始 QLoRA GRPO mvp2_grpo_ced 完全一致，仅改 quantization: 4-bit → bf16）。如 forgetting 不复现 → QLoRA 是唯一 confound。如复现 → G 或 kl 也是必要条件。",
+    "parent": "plan_011_grpo_g8_bf16",
+    "completed_at": "2026-05-15T16:25:20.634Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed"
+      }
+    }
+  },
+  "timestamp": "2026-05-15T16:28:54.557777+00:00",
+  "trigger": "update_registry"
+}

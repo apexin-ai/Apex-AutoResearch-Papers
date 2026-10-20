@@ -1,0 +1,16 @@
+{
+  "exp_id": "test_eval_llama_rsft_s43_with_evi",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:59:47.428Z",
+    "updated_at": "2026-05-23T07:59:53.750Z",
+    "hypothesis": "LLaMA-3.1-8B RSFT k1 s43 with-evidence test eval on Re-DocRED test_revised (500 docs). LLaMA 目前只有 s42 单 seed (test ign_f1 待定)，是覆盖最差的 scale。s43 提供第二个 seed 用于 multi-seed variance。Dev ign_f1: s42=0.5714, s43=0.5662。",
+    "parent": "seed_llama_rsft_k1_s43"
+  },
+  "timestamp": "2026-05-23T07:59:54.384861+00:00",
+  "trigger": "update_registry"
+}

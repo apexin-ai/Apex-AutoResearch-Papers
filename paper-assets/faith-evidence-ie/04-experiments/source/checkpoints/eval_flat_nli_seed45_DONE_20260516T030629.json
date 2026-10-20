@@ -1,0 +1,72 @@
+{
+  "exp_id": "eval_flat_nli_seed45",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:12:39.186Z",
+    "updated_at": "2026-05-16T03:06:29.033Z",
+    "hypothesis": "Full dev eval of flat-NLI RSFT seed=45 checkpoint WITH --sft_adapter。seed45 中间 eval rel_f1=0.4876（待全量确认）。对比 CED RSFT mean (0.4596)。三 seed 全量 eval 出齐后汇报 flat-NLI vs CED RSFT 完整 seed-level 对比。",
+    "parent": "plan_001_flat_nli_seed45",
+    "spec": {
+      "command": "python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_flat_nli_s45/checkpoint-507 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 45 --output_dir /root/autodl-tmp/eval_results/rsft_flat_nli_s45 --no-quantize",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:3",
+      "pid": 272164,
+      "log_path": "~/runs/faith-evidence-ie/eval_flat_nli_seed45.log",
+      "submitted_at": "2026-05-15T23:44:54.114Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 12275,
+      "model_name": "Qwen3-4B",
+      "seed": 45,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_flat_nli_s45/checkpoint-507",
+      "eval_data": "docred-dev",
+      "wall_clock_seconds": 12094.9,
+      "gpu_hours": 3.36
+    },
+    "server": "rtx5090-4x",
+    "gpu": "cuda:3",
+    "account": "root",
+    "notes": "[2026-05-16 02:18 UTC] 196/247 batches (79%), ~45min remaining. ETA ~03:03 UTC. Running normally at ~47s/it avg.",
+    "reproduce": {
+      "finished_at": "2026-05-16T03:03:01.591Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T03:03:05.615685+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "rel_f1": 0.4551,
+      "rel_p": 0.4632,
+      "rel_r": 0.4472,
+      "ign_f1": 0.4551,
+      "evi_f1": 0.8154,
+      "evi_p": 0.8108,
+      "evi_r": 0.8201,
+      "evi_f1_joint": 0.3556,
+      "edcr": 0.6521,
+      "n_predictions": 15650,
+      "tp": 5434,
+      "format_ok_rate": 1,
+      "n_truncated": 206,
+      "n_documents": 985,
+      "inference_time_seconds": 11867.6
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/rsft_output_flat_nli_s45/checkpoint-507",
+    "log_path": "~/runs/faith-evidence-ie/eval_flat_nli_seed45.log",
+    "completed_at": "2026-05-16T03:06:29.033Z"
+  },
+  "timestamp": "2026-05-16T03:06:29.682411+00:00",
+  "trigger": "update_registry"
+}

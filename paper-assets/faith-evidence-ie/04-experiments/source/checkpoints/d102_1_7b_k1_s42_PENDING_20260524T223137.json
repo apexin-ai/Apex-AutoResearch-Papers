@@ -1,0 +1,21 @@
+{
+  "exp_id": "d102_1_7b_k1_s42",
+  "project": "faith-evidence-ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T05:38:37.091Z",
+    "updated_at": "2026-05-24T22:31:36.459Z",
+    "hypothesis": "D102 method correction: Qwen3-1.7B RSFT eval using k=1 CED (matching paper methodology) instead of k=3",
+    "metrics": {
+      "ign_f1": 0.5122,
+      "rel_f1": 0.529,
+      "evi_f1": 0.8243
+    },
+    "notes": "Qwen3-1.7B RSFT k=1 s42 eval on DocRED dev. Source: /root/autodl-tmp/eval_results/d102_1_7b_k1_s42/metrics.json. Checkpoint: rsft_output_qwen3_1_7b_k1/checkpoint-567. Replaces plan_006_qwen3_1_7b_rsft_eval_r2 (k=3). Paper-canonical value. Note: precise ign_f1=0.512172, paper tab:ablation_full rounds to 51.23 (should be 51.22, 0.01pp diff)."
+  },
+  "timestamp": "2026-05-24T22:31:37.812519+00:00",
+  "trigger": "update_registry"
+}

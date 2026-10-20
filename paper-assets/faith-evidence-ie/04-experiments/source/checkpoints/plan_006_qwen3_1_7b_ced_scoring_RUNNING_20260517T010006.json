@@ -1,0 +1,30 @@
+{
+  "exp_id": "plan_006_qwen3_1_7b_ced_scoring",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T00:59:40.455Z",
+    "updated_at": "2026-05-17T01:00:05.772Z",
+    "hypothesis": "CED scoring for Qwen3-1.7B RSFT candidates (top_k=3, tau=0.5). plan_006 scale ablation - smallest model CED-filtered training data.",
+    "parent": "plan_006_qwen3_1_7b_rsft_candidates",
+    "spec": {
+      "command": "python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_1_7b --output_path /root/autodl-tmp/freige/outputs/rsft_scored_1_7b --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --scoring_mode ced --tau 0.5 --selection_strategy top_k --top_k 3",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:0",
+      "pid": 395619,
+      "data_path": "/root/autodl-tmp/freige/outputs/rsft_candidates_1_7b",
+      "data_count": 24216,
+      "model_name": "cross-encoder/nli-deberta-v3-base",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/freige/outputs/rsft_candidates_1_7b",
+      "eval_data": "docred train candidates",
+      "log_path": "~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_ced_scoring.log",
+      "checkpoint_path": "/root/autodl-tmp/freige/outputs/rsft_scored_1_7b"
+    }
+  },
+  "timestamp": "2026-05-17T01:00:06.312003+00:00",
+  "trigger": "update_registry"
+}

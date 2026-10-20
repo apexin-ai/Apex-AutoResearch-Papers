@@ -1,0 +1,53 @@
+{
+  "exp_id": "d140_8b_sft_s42_no_evi_2048",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T06:28:32.829Z",
+    "updated_at": "2026-05-21T07:37:22.438Z",
+    "hypothesis": "D140 Phase 2: 8B SFT s42 no-evi@2048 pilot. @1024 ign_f1=0.4765, truncated=225 (22.8%). 配对 8B with-evi@2048 (cuda:3 running)。1.7B pilot 显示 no-evi@2048 无改善（截断=模型限制），8B 截断率低得多，预期 @2048 会有改善。",
+    "parent": "d140_8b_sft_s42_with_evi_2048",
+    "spec": {
+      "command": "killed - wrong adapter",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "83650",
+      "log_path": "~/runs/faith-evidence-ie/d140_8b_sft_s42_no_evi_2048.log",
+      "submitted_at": "2026-05-21T06:28:50.427Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "sft_output_qwen3_8b_no_evidence",
+      "eval_data": "docred-dev",
+      "wall_clock_seconds": 4112.0,
+      "gpu_hours": 1.14
+    },
+    "notes": "⚠️ KILLED: 使用了错误 adapter (sft_output_qwen3_8b_no_evidence = plan_014 training regime)。已用正确 adapter 重新提交为 d140_8b_sft_s42_no_evi_2048_fix。",
+    "reproduce": {
+      "finished_at": "2026-05-21T07:34:57.097Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T07:35:09.051981+00:00"
+        }
+      ]
+    },
+    "completed_at": "2026-05-21T07:37:22.438Z"
+  },
+  "timestamp": "2026-05-21T07:37:23.090585+00:00",
+  "trigger": "update_registry"
+}

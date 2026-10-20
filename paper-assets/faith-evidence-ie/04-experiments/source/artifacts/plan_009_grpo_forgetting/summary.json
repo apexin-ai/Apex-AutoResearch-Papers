@@ -1,0 +1,57 @@
+{
+  "runs": [
+    {
+      "name": "QLoRA GRPO, lr=5e-5, kl=0.01",
+      "dir": "grpo_ced_kl001",
+      "best_rel_f1": 0.2167,
+      "best_rel_f1_step": 100,
+      "final_rel_f1": 0.2167,
+      "best_reward": 1.37,
+      "final_reward": 1.195,
+      "total_steps": 100,
+      "best_evi_f1": 0.72,
+      "final_evi_f1": 0.5746
+    },
+    {
+      "name": "QLoRA GRPO, lr=5e-6, kl=0.01",
+      "dir": "grpo_ced_lr5e6",
+      "best_rel_f1": 0.0138,
+      "best_rel_f1_step": 100,
+      "final_rel_f1": 0.0138,
+      "best_reward": 0.461,
+      "final_reward": 0.38,
+      "total_steps": 180,
+      "best_evi_f1": 0.8504,
+      "final_evi_f1": 0.8504
+    },
+    {
+      "name": "bf16 GRPO, lr=5e-5, G=8",
+      "dir": "grpo_ced_g8_bf16",
+      "best_rel_f1": 0.4549,
+      "best_rel_f1_step": 100,
+      "final_rel_f1": 0.4549,
+      "best_reward": 2.858,
+      "final_reward": 1.795,
+      "total_steps": 100,
+      "best_evi_f1": 0.8086,
+      "final_evi_f1": 0.8086,
+      "eval_checkpoints": {
+        "checkpoint-80": {
+          "rel_f1": 0.4456,
+          "evi_f1": 0.8034,
+          "edcr": 0.6409
+        },
+        "checkpoint-100": {
+          "rel_f1": 0.4549,
+          "evi_f1": 0.8086,
+          "edcr": 0.6318
+        }
+      }
+    }
+  ],
+  "sft_baseline": {
+    "rel_f1": 0.4057,
+    "evi_f1": 0.7979
+  },
+  "key_finding": "Catastrophic forgetting is QLoRA-specific: bf16 GRPO maintains and exceeds SFT-level rel_f1 (0.455 vs 0.406) while QLoRA GRPO collapses to 0.217."
+}

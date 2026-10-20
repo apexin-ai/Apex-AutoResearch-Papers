@@ -1,0 +1,300 @@
+# analysis eval flat nli s44
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 9
+- **Recorded user turns:** 0
+- **Tool calls:** 4
+- **Original source:** `logs/chats/worker_analysis_eval_flat_nli_s44_20260516T022550.jsonl`
+- **Structured JSON:** [`fdd794e6983c3fd69275.json`](../../sessions/fd/fdd794e6983c3fd69275.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+9 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T02:26:24.561823+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_eval_flat_nli_s44_20260516T022550",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T02:26:24.562210+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_eval_flat_nli_s44_20260516T022550",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T02:26:24.562605+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -100 ~/runs/faith-evidence-ie/eval_flat_nli_s44.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_eval_flat_nli_s44_20260516T022550",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -100 ~/runs/faith-evidence-ie/eval_flat_nli_s44.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T02:26:24.562875+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/eval_results/rsft_flat_nli_s44/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_eval_flat_nli_s44_20260516T022550",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls /root/autodl-tmp/eval_results/rsft_flat_nli_s44/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-16T02:26:24.563225+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 07:27:43,577 INFO Detected adapter at /root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507, base: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-16 07:27:43,577 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-16 07:27:43,873 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-16 07:27:44,126 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.21it/s]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.30it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.90it/s]\\n2026-05-16 07:27:45,739 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output\\n2026-05-16 07:27:48,733 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507\\n2026-05-16 07:27:50,024 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\n2026-05-16 07:27:50,117 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\n2026-05-16 07:27:50,488 INFO Prepared 985 eval documents, 12275 gold triples\\n\\rInference:   0%|          | 0/247 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n\\rInference:   0%|          | 1/247 [00:50<3:26:40, 50.41s/it]\\rInference:   1%|          | 2/247 [01:41<3:26:23, 50.54s/it]\\rInference:   1%|          | 3/247 [02:43<3:47:37, 55.97s/it]\\rInference:   2%|▏         | 4/247 [03:45<3:56:42, 58.45s/it]\\rInference:   2%|▏         | 5/247 [04:23<3:26:21, 51.16s/it]\\rInference:   2%|▏         | 6/247 [05:02<3:07:44,
+…[truncated 6453 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_eval_flat_nli_s44_20260516T022550",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T02:26:24.563538+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"metrics.json\\npredictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_eval_flat_nli_s44_20260516T022550",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T02:26:24.563756+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_eval_flat_nli_s44_20260516T022550",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T02:26:24.564051+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.47787766613784594,\\n  \\\"recall\\\": 0.4462184182371821,\\n  \\\"f1\\\": 0.4615057241349959,\\n  \\\"ign_precision\\\": 0.47787766613784594,\\n  \\\"ign_recall\\\": 0.4462184182371821,\\n  \\\"ign_f1\\\": 0.4615057241349959,\\n  \\\"tp\\\": 5422,\\n  \\\"pred_count\\\": 11346,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8186585702456528,\\n  \\\"evi_recall\\\": 0.8076608877189797,\\n  \\\"evi_f1\\\": 0.8131225440921136,\\n  \\\"n_evaluated\\\": 15149,\\n  \\\"edcr\\\": 0.6458084547408646,\\n  \\\"n_distractor_citations\\\": 16224,\\n  \\\"n_total_citations\\\": 25122,\\n  \\\"evi_joint_precision\\\": 0.3621815118972415,\\n  \\\"evi_joint_recall\\\": 0.35719848398317844,\\n  \\\"evi_f1_joint\\\": 0.35967273962934887,\\n  \\\"evi_tp\\\": 6880,\\n  \\\"evi_pred_total\\\": 18996,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.782741116751269,\\n  \\\"evidence_format_rate\\\": 0.782741116751269,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 771,\\n  \\\"n_evidence_valid\\\": 771,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15257,\\n  \\\"n_truncated\\\": 206,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 10580.1,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s44\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 44,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\
+…[truncated 91 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_eval_flat_nli_s44_20260516T022550",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-16T02:26:24.564388+00:00_
+
+## eval_flat_nli_s44 结果
+
+### 核心指标
+
+| 指标 | 数值 | vs s42 (0.4539) |
+|------|------|-----------------|
+| **rel_f1** | **0.4615** | **+0.0076** |
+| rel_p | 0.4779 | — |
+| rel_r | 0.4462 | — |
+| ign_f1 | 0.4615 | +0.0076 |
+| **evi_f1** | **0.8131** | — |
+| evi_p | 0.8187 | — |
+| evi_r | 0.8077 | — |
+| evi_f1_joint | 0.3597 | — |
+| EDCR | 0.6458 | — |
+
+### 其他统计
+
+- Format OK: 985/985 (100%)
+- Truncated: 206/985
+- Predictions: 15,257 (gold: 12,151)
+- TP: 5,422
+- Inference time: 2h56m (10.74 s/doc)
+
+### 结论
+
+- **Success.** rel_f1 = 0.4615，高于 s42 (+0.76pp)，高于 CED mean (0.4596, +0.19pp)，远高于 SFT baseline。
+- flat-NLI RSFT 方法在多个 seed 上表现稳定且优异（s42=0.4539, s44=0.4615）。
+- 无异常——进程正常退出，无错误，format compliance 100%。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_eval_flat_nli_s44_20260516T022550"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,44 @@
+{
+  "exp_id": "d112_rsft_no_evidence_eval_r2",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:41:03.808Z",
+    "updated_at": "2026-05-19T13:42:09.526Z",
+    "hypothesis": "4B RSFT no-evidence eval (D112 bf16 SFT s44 base): 移除 evidence 输出后测量 4B RSFT 的 evidence tax。对比 with-evidence 的 canonical 4B RSFT ign_f1，验证 evidence 生成对 4B RE 性能的代价。与 1.7B/8B/14B no-evidence eval 配合构建跨尺度 evidence tax scaling curve (Claim 3)。",
+    "parent": "d112_rsft_s44_eval_bf16",
+    "plan_id": "plan_019",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && GPU=0 bash scripts/d112/eval_4b_rsft_no_evidence.sh\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/faith-evidence-ie/d112_rsft_no_evidence_eval_r2.log",
+      "submitted_at": "2026-05-19T13:41:48.326Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 21.2,
+      "gpu_hours": 0.01
+    },
+    "server": "rtx5090-4x",
+    "gpu": "cuda:0",
+    "account": "root",
+    "pid": "unknown",
+    "log_path": "~/runs/faith-evidence-ie/d112_rsft_no_evidence_eval_r2.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && GPU=0 bash scripts/d112/eval_4b_rsft_no_evidence.sh\"",
+      "finished_at": "2026-05-19T13:42:05.433Z"
+    },
+    "failure_reason": "EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T13:42:09.526Z"
+  },
+  "timestamp": "2026-05-19T13:42:10.078625+00:00",
+  "trigger": "update_registry"
+}

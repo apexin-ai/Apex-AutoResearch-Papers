@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_006_qwen3_1_7b_rsft_seed43_eval",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:26:15.446Z",
+    "updated_at": "2026-05-17T14:27:26.346Z",
+    "hypothesis": "Evaluate 1.7B RSFT seed 43 on DocRED dev. Seed 42 gave rel_f1=0.5219. If seed 43 gives similar result (±1pp, i.e., 0.51-0.53), the 1.7B scaling study datapoint is robust.",
+    "parent": "plan_006_qwen3_1_7b_rsft_seed43"
+  },
+  "timestamp": "2026-05-17T14:27:26.751887+00:00",
+  "trigger": "update_registry"
+}

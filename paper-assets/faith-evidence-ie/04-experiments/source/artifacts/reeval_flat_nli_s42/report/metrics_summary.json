@@ -1,0 +1,65 @@
+{
+  "exp_id": "reeval_flat_nli_s42",
+  "metrics": {
+    "f1": 0.4535,
+    "ign_f1": 0.4448,
+    "evi_f1": 0.8039,
+    "edcr": 0.6458,
+    "precision": 0.4670,
+    "recall": 0.4408
+  },
+  "comparison": {
+    "flat_nli_seeds": {
+      "s42": {
+        "f1": 0.4535,
+        "ign_f1": 0.4448,
+        "evi_f1": 0.8039,
+        "edcr": 0.6458,
+        "precision": 0.4670,
+        "recall": 0.4408
+      },
+      "s43": {
+        "f1": 0.4523,
+        "ign_f1": 0.4435,
+        "evi_f1": 0.8158,
+        "edcr": 0.6505,
+        "precision": 0.4673,
+        "recall": 0.4383
+      }
+    },
+    "ced_seeds": {
+      "s42": {
+        "f1": 0.4517,
+        "ign_f1": 0.4423,
+        "evi_f1": 0.8174,
+        "edcr": 0.6569,
+        "precision": 0.4657,
+        "recall": 0.4385
+      },
+      "s44": {
+        "f1": 0.4621,
+        "ign_f1": 0.4511,
+        "evi_f1": 0.8050,
+        "edcr": 0.6350,
+        "precision": 0.4762,
+        "recall": 0.4488
+      }
+    }
+  },
+  "averages": {
+    "flat_nli": {
+      "f1": 0.4529,
+      "ign_f1": 0.4442,
+      "evi_f1": 0.8099,
+      "edcr": 0.6482
+    },
+    "ced": {
+      "f1": 0.4569,
+      "ign_f1": 0.4467,
+      "evi_f1": 0.8112,
+      "edcr": 0.6459
+    }
+  },
+  "paired_ttest_ready": false,
+  "notes": "All 4 reeval runs completed under unified protocol (batch_size=4, no-quantize, sft_adapter, max_new_tokens=1024). Per-document score files not available — only aggregate metrics and raw predictions exist. Paired t-test requires computing per-doc F1 from predictions.json files. CED s43 reeval still missing (only s42 and s44 available)."
+}

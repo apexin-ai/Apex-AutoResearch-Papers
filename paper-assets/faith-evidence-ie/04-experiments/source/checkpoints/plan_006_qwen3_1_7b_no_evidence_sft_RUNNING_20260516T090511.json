@@ -1,0 +1,41 @@
+{
+  "exp_id": "plan_006_qwen3_1_7b_no_evidence_sft",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:32:23.806Z",
+    "updated_at": "2026-05-16T09:05:10.732Z",
+    "spec": {
+      "hypothesis": "Qwen3-1.7B no-evidence SFT ablation（复现 plan_014），验证 evidence generation 代价在小模型上是否成立。plan_id=plan_006, claim=1。",
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence --seed 42 --wandb_run_name qwen3_1_7b_no_evidence_sft --no-quantize --no_evidence",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "account": "root",
+      "model_name": "Qwen3-1.7B",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 3027,
+      "seed": 42,
+      "plan_id": "plan_006",
+      "lora_rank": 64,
+      "lora_alpha": 128,
+      "quantize": "none (bf16 LoRA)",
+      "num_epochs": 3,
+      "batch_size": 1,
+      "gradient_accumulation_steps": 16,
+      "learning_rate": 0.0002,
+      "output_dir": "/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence",
+      "log_path": "~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_no_evidence_sft.log",
+      "pid": "321094",
+      "backend": "nohup",
+      "notes": "模型下载中（ModelScope CDN ~1MB/s，预计 ~55min），包装脚本自动等待下载完成后启动训练"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T09:05:11.292099+00:00",
+  "trigger": "update_registry"
+}

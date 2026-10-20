@@ -1,0 +1,1560 @@
+# eval rsft r2b result
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/workers/worker_eval_rsft_r2b_result_20260515T114356.log`
+- **Structured JSON:** [`c010711658b3acf707e2.json`](../../sessions/c0/c010711658b3acf707e2.json)
+
+## Before a recorded user message
+
+32 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__delete_cron",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "494bec60-fcae-4fb7-b0e9-d8ada222fb79",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778856000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "c862116f-e580-45b2-92a8-b3351b52c95e",
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the eval results from the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "b515b706-a7e7-45a9-b9b5-335efe710a57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01225pRXMBNBRCfVEuG8MTne",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11858,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11858
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01TPTWMGWwshrm49E4ZioDmi`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__delete_cron",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "cd30caf2-5f3e-462b-9faf-22b4d80badc2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01225pRXMBNBRCfVEuG8MTne",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11858,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11858
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T11:44:10.061Z_
+
+<details><summary>↩ Tool result · `toolu_01TPTWMGWwshrm49E4ZioDmi`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__delete_cron"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "1354c7a5-cf2b-4d4c-b6e2-a9859fefeb3f",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__delete_cron"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__delete_cron",
+    "total_deferred_tools": 27
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Y19EqWo7Y9c3vsrKMwDeGf`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -50 /root/autodl-tmp/eval_results/rsft_r2b/eval.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "7ba28cc4-85da-431f-a799-c35148addbf0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N4VStBZJYQCfQgMs7ETgKn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 982,
+      "cache_read_input_tokens": 23305,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 982
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011Dgu93pKesGpfmcytHJN8b`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_r2b/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "5cbd121d-7891-45a9-9f51-64e0ac4924a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N4VStBZJYQCfQgMs7ETgKn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 982,
+      "cache_read_input_tokens": 23305,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 982
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T11:44:14.012Z_
+
+<details><summary>↩ Tool result · `toolu_01Y19EqWo7Y9c3vsrKMwDeGf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 18:04:17,692 INFO Detected adapter at /root/autodl-tmp/rsft_output_r2b, base: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-15 18:04:17,692 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-15 18:04:18,062 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-15 18:04:18,280 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.19it/s]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.18it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.75it/s]\\n2026-05-15 18:04:20,030 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output\\n2026-05-15 18:04:23,267 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_r2b\\n2026-05-15 18:04:24,945 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\n2026-05-15 18:04:25,046 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\n2026-05-15 18:04:25,526 INFO Prepared 985 eval documents, 12275 gold triples\\n\\rInference:   0%|          | 0/124 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n\\rInference:   1%|          | 1/124 [00:51<1:45:20, 51.38s/it]\\rInference:   2%|▏         | 2/124 [01:43<1:45:05, 51.68s/it]\\rInference:   2%|▏         | 3/124 [02:14<1:25:36, 42.45s/it]\\rInference:   3%|▎         | 4/124 [03:04<1:30:46, 45.39s/it]\\rInference:   4%|▍         | 5/124 [03:33<1:18:05, 39.38s/it]\\rInference:   5%|▍         | 6/124 [04:23<1:24:20, 42.89s/it]\\rInference:   6%|▌         | 7/124 [04:51<1:14:07, 38.01s/it]\\rInference:   6%|▋         | 8/124 [05:39<1:20:07, 41.44s/it]\\rInference:   7%|▋         | 9/124 [06:28<1:24:02, 43.85s/it]\\rInference:   8%|▊         | 10/124 [07:17<1:26:14, 45.39s/it]\\rInference:   9%|▉         | 11/124 [08:06<1:27:31, 46.47s/it]\\rInference:  10%|▉         | 12/124 [08:55<1:28:07, 47.21s/it]\\rInference:  10%|█         | 13/124 [09:44<1:28:11, 47.67s/it]\\rInference:  11%|█▏        | 14/124 [10:06<1:13:26, 40.06s/it]\\rInference:  12%|█▏        | 15/124 [10:45<1:12:14, 39.76s/it]\\rInference:  13%|█▎        | 16/124 [11:27<1:12:28, 40.27s/it]\\rInference:  14%|█▎        | 17/124 [12:15<1:16:13, 42.74s/it]\\rInference:  15%|█▍        | 18/124 [13:04<1:18:39, 44.52s/it]\\rInference:  15%|█▌        | 19/124 [13:48<1:17:50, 44.48s/it]\\rInference:  16%|█▌        | 20/124 [14:37<1:19:15, 45.73s/it]\\rInference:  17%|█▋        | 21/124 [15:24<1:19:13, 46.15s/it]\\rInference:  18%|█▊        | 22/124 [16:13<1:20:01, 47.08s/it]\\rInference:  19%|█▊        | 23/124 [17:02<1:20:09, 47.62s/it]\\rInference:  19%|█▉        | 24/124 [17:52<1:20:16, 48.17s/it]\\rInference:  20%|██        | 25/124 [18:40<1:19:43, 48.32s/it]\\rInference:  21%|██        | 26/124 [19:29<1:19:09, 48.47s/it]\\rInference:  22%|██▏       | 27/124 [20:09<1:13:56, 45.74s/it]\\rInference:  23%|██▎       | 28/124 [20:57<1:14:34, 46.61s/it]\\rInference:  23%|██▎       | 29/124 [21:34<1:09:05, 43.64s/it]\\rInference:  24%|██▍       | 30/124 [22:24<1:11:16, 45.50s/it]\\rInference:  25%|██▌       | 31/124 [23:09<1:10:20, 45.38s/it]\\rInference:  26%|██▌       | 32/124 [23:58<1:11:18, 46.50s/it]\\rInference:  27%|██▋       | 33/124 [24:47<1:11:39, 47.25s/it]\\rInference:  27%|██▋       | 34/124 [25:36<1:11:45, 47.84s/it]\\rInference:  28%|██▊       | 35/124 [26:25<1:11:28, 48.19s/it]\\rInference:  29%|██▉       | 36/124 [27:14<1:10:59, 48.41s/it]\\rInference:  30%|██▉       | 37/124 [27:38<59:39, 41.15s/it]  \\rInference:  31%|███       | 38/124 [28:28<1:02:26, 43.56s/it]\\rInference:  31%|███▏      | 39/124 [29:17<1:04:03, 45.21s/it]\\rInference:  32%|███▏      | 40/124 [29:56<1:00:43, 43.37s/it]\\rInference:  33%|███▎      | 41/12\\n\\n... [截断: 输出过长，省略 1861 字符] ...\\n\\n| 72/124 [55:43<42:29, 49.03s/it]\\rInference:  59%|█████▉    | 73/124 [56:35<42:17, 49.75s/it]\\rInference:  60%|█████▉    | 74/124 [57:26<41:44, 50.09s/it]\\rInference:  60%|██████    | 75/124 [58:19<41:36, 50.95s/it]\\rInference:  61%|██████▏   | 76/124 [59:11<40:57, 51.20s/it]\\rInference:  62%|██████▏   | 77/124 [1:00:01<39:53, 50.92s/it]\\rInference:  63%|██████▎   | 78/124 [1:00:52<39:03, 50.95s/it]\\rInference:  64%|██████▎   | 79/124 [1:01:42<38:01, 50.69s/it]\\rInference:  65%|██████▍   | 80/124 [1:02:33<37:17, 50.86s/it]\\rInference:  65%|██████▌   | 81/124 [1:03:24<36:24, 50.81s/it]\\rInference:  66%|██████▌   | 82/124 [1:03:53<30:55, 44.17s/it]\\rInference:  67%|██████▋   | 83/124 [1:04:45<31:49, 46.58s/it]\\rInference:  68%|██████▊   | 84/124 [1:05:37<32:08, 48.21s/it]\\rInference:  69%|██████▊   | 85/124 [1:06:27<31:43, 48.81s/it]\\rInference:  69%|██████▉   | 86/124 [1:07:02<28:19, 44.71s/it]\\rInference:  70%|███████   | 87/124 [1:07:56<29:11, 47.34s/it]\\rInference:  71%|███████   | 88/124 [1:08:47<29:06, 48.50s/it]\\rInference:  72%|███████▏  | 89/124 [1:09:39<28:53, 49.54s/it]\\rInference:  73%|███████▎  | 90/124 [1:10:31<28:29, 50.28s/it]\\rInference:  73%|███████▎  | 91/124 [1:11:22<27:48, 50.57s/it]\\rInference:  74%|███████▍  | 92/124 [1:11:50<23:25, 43.92s/it]\\rInference:  75%|███████▌  | 93/124 [1:12:43<24:00, 46.47s/it]\\rInference:  76%|███████▌  | 94/124 [1:13:35<24:02, 48.09s/it]\\rInference:  77%|███████▋  | 95/124 [1:14:27<23:49, 49.30s/it]\\rInference:  77%|███████▋  | 96/124 [1:15:19<23:27, 50.26s/it]\\rInference:  78%|███████▊  | 97/124 [1:16:11<22:52, 50.82s/it]\\rInference:  79%|███████▉  | 98/124 [1:16:55<21:01, 48.52s/it]\\rInference:  80%|███████▉  | 99/124 [1:17:48<20:48, 49.93s/it]\\rInference:  81%|████████  | 100/124 [1:18:24<18:21, 45.91s/it]\\rInference:  81%|████████▏ | 101/124 [1:19:18<18:27, 48.16s/it]\\rInference:  82%|████████▏ | 102/124 [1:20:09<18:00, 49.10s/it]\\rInference:  83%|████████▎ | 103/124 [1:21:01<17:28, 49.92s/it]\\rInference:  84%|████████▍ | 104/124 [1:21:54<16:54, 50.74s/it]\\rInference:  85%|████████▍ | 105/124 [1:22:38<15:28, 48.88s/it]\\rInference:  85%|███████��▌ | 106/124 [1:23:31<15:01, 50.07s/it]\\rInference:  86%|████████▋ | 107/124 [1:24:18<13:54, 49.09s/it]\\rInference:  87%|████████▋ | 108/124 [1:25:09<13:16, 49.78s/it]\\rInference:  88%|████████▊ | 109/124 [1:26:00<12:32, 50.17s/it]\\rInference:  89%|████████▊ | 110/124 [1:26:52<11:49, 50.65s/it]\\rInference:  90%|████████▉ | 111/124 [1:27:44<11:04, 51.09s/it]\\rInference:  90%|█████████ | 112/124 [1:28:14<08:57, 44.77s/it]\\rInference:  91%|█████████ | 113/124 [1:29:08<08:42, 47.49s/it]\\rInference:  92%|█████████▏| 114/124 [1:29:59<08:04, 48.44s/it]\\rInference:  93%|█████████▎| 115/124 [1:30:50<07:23, 49.23s/it]\\rInference:  94%|█████████▎| 116/124 [1:31:40<06:36, 49.60s/it]\\rInference:  94%|█████████▍| 117/124 [1:32:34<05:56, 50.90s/it]\\rInference:  95%|█████████▌| 118/124 [1:33:29<05:12, 52.01s/it]\\rInference:  96%|█████████▌| 119/124 [1:34:22<04:22, 52.49s/it]\\rInference:  97%|█████████▋| 120/124 [1:34:56<03:07, 46.81s/it]\\rInference:  98%|█████████▊| 121/124 [1:35:47<02:24, 48.02s/it]\\rInference:  98%|█████████▊| 122/124 [1:36:39<01:38, 49.19s/it]\\rInference:  99%|█████████▉| 123/124 [1:37:31<00:50, 50.11s/it]\\rInference: 100%|██████████| 124/124 [1:37:41<00:00, 38.27s/it]\\rInference: 100%|██████████| 124/124 [1:37:41<00:00, 47.27s/it]\\n2026-05-15 19:42:07,518 INFO Inference done. 179/985 truncated, 0 errors.\\n2026-05-15 19:42:07,518 INFO Inference: 5862.0s (5.95 s/doc)\\n2026-05-15 19:42:08,249 INFO Loaded 37785 training triples for Ign-F1\\n2026-05-15 19:42:08,423 INFO Metrics → /root/autodl-tmp/eval_results/rsft_r2b/metrics.json\\n2026-05-15 19:42:08,582 INFO Predictions → /root/autodl-tmp/eval_results/rsft_r2b/predictions.json\\n\\n==================================================\\n  F1:          0.4493\\n  Ign-F1:      0.4493\\n  Evi-F1:      0.8128\\n  EDCR:        0.6609\\n  Format OK:   983/985 (99.8%)\\n  Truncated:   179/985\\n  Predictions: 14829\\n==================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "7eb97de4-271d-4c38-9b35-c6f25c958b21",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 18:04:17,692 INFO Detected adapter at /root/autodl-tmp/rsft_output_r2b, base: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-15 18:04:17,692 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-15 18:04:18,062 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-15 18:04:18,280 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.19it/s]\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.18it/s]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.75it/s]\\\\n2026-05-15 18:04:20,030 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output\\\\n2026-05-15 18:04:23,267 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_r2b\\\\n2026-05-15 18:04:24,945 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\\\n2026-05-15 18:04:25,046 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\\\n2026-05-15 18:04:25,526 INFO Prepared 985 eval documents, 12275 gold triples\\\\n\\\\rInference:   0%|          | 0/124 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n\\\\rInference:   1%|          | 1/124 [00:51<1:45:20, 51.38s/it]\\\\rInference:   2%|▏         | 2/124 [01:43<1:45:05, 51.68s/it]\\\\rInference:   2%|▏         | 3/124 [02:14<1:25:36, 42.45s/it]\\\\rInference:   3%|▎         | 4/124 [03:04<1:30:46, 45.39s/it]\\\\rInference:   4%|▍         | 5/124 [03:33<1:18:05, 39.38s/it]\\\\rInference:   5%|▍         | 6/124 [04:23<1:24:20, 42.89s/it]\\\\rInference:   6%|▌         | 7/124 [04:51<1:14:07, 38.01s/it]\\\\rInference:   6%|▋         | 8/124 [05:39<1:20:07, 41.44s/it]\\\\rInference:   7%|▋         | 9/124 [06:28<1:24:02, 43.85s/it]\\\\rInference:   8%|▊         | 10/124 [07:17<1:26:14, 45.39s/it]\\\\rInference:   9%|▉         | 11/124 [08:06<1:27:31, 46.47s/it]\\\\rInference:  10%|▉         | 12/124 [08:55<1:28:07, 47.21s/it]\\\\rInference:  10%|█         | 13/124 [09:44<1:28:11, 47.67s/it]\\\\rInference:  11%|█▏        | 14/124 [10:06<1:13:26, 40.06s/it]\\\\rInference:  12%|█▏        | 15/124 [10:45<1:12:14, 39.76s/it]\\\\rInference:  13%|█▎        | 16/124 [11:27<1:12:28, 40.27s/it]\\\\rInference:  14%|█▎        | 17/124 [12:15<1:16:13, 42.74s/it]\\\\rInference:  15%|█▍        | 18/124 [13:04<1:18:39, 44.52s/it]\\\\rInference:  15%|█▌        | 19/124 [13:48<1:17:50, 44.48s/it]\\\\rInference:  16%|█▌        | 20/124 [14:37<1:19:15, 45.73s/it]\\\\rInference:  17%|█▋        | 21/124 [15:24<1:19:13, 46.15s/it]\\\\rInference:  18%|█▊        | 22/124 [16:13<1:20:01, 47.08s/it]\\\\rInference:  19%|█▊        | 23/124 [17:02<1:20:09, 47.62s/it]\\\\rInference:  19%|█▉        | 24/124 [17:52<1:20:16, 48.17s/it]\\\\rInference:  20%|██        | 25/124 [18:40<1:19:43, 48.32s/it]\\\\rInference:  21%|██        | 26/124 [19:29<1:19:09, 48.47s/it]\\\\rInference:  22%|██▏       | 27/124 [20:09<1:13:56, 45.74s/it]\\\\rInference:  23%|██▎       | 28/124 [20:57<1:14:34, 46.61s/it]\\\\rInference:  23%|██▎       | 29/124 [21:34<1:09:05, 43.64s/it]\\\\rInference:  24%|██▍       | 30/124 [22:24<1:11:16, 45.50s/it]\\\\rInference:  25%|██▌       | 31/124 [23:09<1:10:20, 45.38s/it]\\\\rInference:  26%|██▌       | 32/124 [23:58<1:11:18, 46.50s/it]\\\\rInference:  27%|██▋       | 33/124 [24:47<1:11:39, 47.25s/it]\\\\rInference:  27%|██▋       | 34/124 [25:36<1:11:45, 47.84s/it]\\\\rInference:  28%|██▊       | 35/124 [26:25<1:11:28, 48.19s/it]\\\\rInference:  29%|██▉       | 36/124 [27:14<1:10:59, 48.41s/it]\\\\rInference:  30%|██▉       | 37/124 [27:38<59:39, 41.15s/it]  \\\\rInference:  31%|███       | 38/124 [28:28<1:02:26, 43.56s/it]\\\\rInference:  31%|███▏      | 39/124 [29:17<1:04:03, 45.21s/it]\\\\rInference:  32%|███▏      | 40/124 [29:56<1:00:43, 43.37s/it]\\\\rInference:  33%|███▎      | 41/12\\\\n\\\\n... [截断: 输出过长，省略 1861 字符] ...\\\\n\\\\n| 72/124 [55:43<42:29, 49.03s/it]\\\\rInference:  59%|█████▉    | 73/124 [56:35<42:17, 49.75s/it]\\\\rInference:  60%|█████▉    | 74/124 [57:26<41:44, 50.09s/it]\\\\rInference:  60%|██████    | 75/124 [58:19<41:36, 50.95s/it]\\\\rInference:  61%|██████▏   | 76/124 [59:11<40:57, 51.20s/it]\\\\rInference:  62%|██████▏   | 77/124 [1:00:01<39:53, 50.92s/it]\\\\rInference:  63%|██████▎   | 78/124 [1:00:52<39:03, 50.95s/it]\\\\rInference:  64%|██████▎   | 79/124 [1:01:42<38:01, 50.69s/it]\\\\rInference:  65%|██████▍   | 80/124 [1:02:33<37:17, 50.86s/it]\\\\rInference:  65%|██████▌   | 81/124 [1:03:24<36:24, 50.81s/it]\\\\rInference:  66%|██████▌   | 82/124 [1:03:53<30:55, 44.17s/it]\\\\rInference:  67%|██████▋   | 83/124 [1:04:45<31:49, 46.58s/it]\\\\rInference:  68%|██████▊   | 84/124 [1:05:37<32:08, 48.21s/it]\\\\rInference:  69%|██████▊   | 85/124 [1:06:27<31:43, 48.81s/it]\\\\rInference:  69%|██████▉   | 86/124 [1:07:02<28:19, 44.71s/it]\\\\rInference:  70%|███████   | 87/124 [1:07:56<29:11, 47.34s/it]\\\\rInference:  71%|███████   | 88/124 [1:08:47<29:06, 48.50s/it]\\\\rInference:  72%|███████▏  | 89/124 [1:09:39<28:53, 49.54s/it]\\\\rInference:  73%|███████▎  | 90/124 [1:10:31<28:29, 50.28s/it]\\\\rInference:  73%|███████▎  | 91/124 [1:11:22<27:48, 50.57s/it]\\\\rInference:  74%|███████▍  | 92/124 [1:11:50<23:25, 43.92s/it]\\\\rInference:  75%|███████▌  | 93/124 [1:12:43<24:00, 46.47s/it]\\\\rInference:  76%|███████▌  | 94/124 [1:13:35<24:02, 48.09s/it]\\\\rInference:  77%|███████▋  | 95/124 [1:14:27<23:49, 49.30s/it]\\\\rInference:  77%|███████▋  | 96/124 [1:15:19<23:27, 50.26s/it]\\\\rInference:  78%|███████▊  | 97/124 [1:16:11<22:52, 50.82s/it]\\\\rInference:  79%|███████▉  | 98/124 [1:16:55<21:01, 48.52s/it]\\\\rInference:  80%|███████▉  | 99/124 [1:17:48<20:48, 49.93s/it]\\\\rInference:  81%|████████  | 100/124 [1:18:24<18:21, 45.91s/it]\\\\rInference:  81%|████████▏ | 101/124 [1:19:18<18:27, 48.16s/it]\\\\rInference:  82%|████████▏ | 102/124 [1:20:09<18:00, 49.10s/it]\\\\rInference:  83%|████████▎ | 103/124 [1:21:01<17:28, 49.92s/it]\\\\rInference:  84%|████████▍ | 104/124 [1:21:54<16:54, 50.74s/it]\\\\rInference:  85%|████████▍ | 105/124 [1:22:38<15:28, 48.88s/it]\\\\rInference:  85%|███████��▌ | 106/124 [1:23:31<15:01, 50.07s/it]\\\\rInference:  86%|████████▋ | 107/124 [1:24:18<13:54, 49.09s/it]\\\\rInference:  87%|████████▋ | 108/124 [1:25:09<13:16, 49.78s/it]\\\\rInference:  88%|████████▊ | 109/124 [1:26:00<12:32, 50.17s/it]\\\\rInference:  89%|████████▊ | 110/124 [1:26:52<11:49, 50.65s/it]\\\\rInference:  90%|████████▉ | 111/124 [1:27:44<11:04, 51.09s/it]\\\\rInference:  90%|█████████ | 112/124 [1:28:14<08:57, 44.77s/it]\\\\rInference:  91%|█████████ | 113/124 [1:29:08<08:42, 47.49s/it]\\\\rInference:  92%|█████████▏| 114/124 [1:29:59<08:04, 48.44s/it]\\\\rInference:  93%|█████████▎| 115/124 [1:30:50<07:23, 49.23s/it]\\\\rInference:  94%|█████████▎| 116/124 [1:31:40<06:36, 49.60s/it]\\\\rInference:  94%|█████████▍| 117/124 [1:32:34<05:56, 50.90s/it]\\\\rInference:  95%|█████████▌| 118/124 [1:33:29<05:12, 52.01s/it]\\\\rInference:  96%|█████████▌| 119/124 [1:34:22<04:22, 52.49s/it]\\\\rInference:  97%|█████████▋| 120/124 [1:34:56<03:07, 46.81s/it]\\\\rInference:  98%|█████████▊| 121/124 [1:35:47<02:24, 48.02s/it]\\\\rInference:  98%|█████████▊| 122/124 [1:36:39<01:38, 49.19s/it]\\\\rInference:  99%|█████████▉| 123/124 [1:37:31<00:50, 50.11s/it]\\\\rInference: 100%|██████████| 124/124 [1:37:41<00:00, 38.27s/it]\\\\rInference: 100%|██████████| 124/124 [1:37:41<00:00, 47.27s/it]\\\\n2026-05-15 19:42:07,518 INFO Inference done. 179/985 truncated, 0 errors.\\\\n2026-05-15 19:42:07,518 INFO Inference: 5862.0s (5.95 s/doc)\\\\n2026-05-15 19:42:08,249 INFO Loaded 37785 training triples for Ign-F1\\\\n2026-05-15 19:42:08,423 INFO Metrics → /root/autodl-tmp/eval_results/rsft_r2b/metrics.json\\\\n2026-05-15 19:42:08,582 INFO Predictions → /root/autodl-tmp/eval_results/rsft_r2b/predictions.json\\\\n\\\\n==================================================\\\\n  F1:          0.4493\\\\n  Ign-F1:      0.4493\\\\n  Evi-F1:      0.8128\\\\n  EDCR:        0.6609\\\\n  Format OK:   983/985 (99.8%)\\\\n  Truncated:   179/985\\\\n  Predictions: 14829\\\\n==================================================\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 18:04:17,692 INFO Detected adapter at /root/autodl-tmp/rsft_output_r2b, base: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-15 18:04:17,692 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-15 18:04:18,062 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-15 18:04:18,280 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.19it/s]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.18it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.75it/s]\\n2026-05-15 18:04:20,030 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output\\n2026-05-15 18:04:23,267 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_r2b\\n2026-05-15 18:04:24,945 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\n2026-05-15 18:04:25,046 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\n2026-05-15 18:04:25,526 INFO Prepared 985 eval documents, 12275 gold triples\\n\\rInference:   0%|          | 0/124 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n\\rInference:   1%|          | 1/124 [00:51<1:45:20, 51.38s/it]\\rInference:   2%|▏         | 2/124 [01:43<1:45:05, 51.68s/it]\\rInference:   2%|▏         | 3/124 [02:14<1:25:36, 42.45s/it]\\rInference:   3%|▎         | 4/124 [03:04<1:30:46, 45.39s/it]\\rInference:   4%|▍         | 5/124 [03:33<1:18:05, 39.38s/it]\\rInference:   5%|▍         | 6/124 [04:23<1:24:20, 42.89s/it]\\rInference:   6%|▌         | 7/124 [04:51<1:14:07, 38.01s/it]\\rInference:   6%|▋         | 8/124 [05:39<1:20:07, 41.44s/it]\\rInference:   7%|▋         | 9/124 [06:28<1:24:02, 43.85s/it]\\rInference:   8%|▊         | 10/124 [07:17<1:26:14, 45.39s/it]\\rInference:   9%|▉         | 11/124 [08:06<1:27:31, 46.47s/it]\\rInference:  10%|▉         | 12/124 [08:55<1:28:07, 47.21s/it]\\rInference:  10%|█         | 13/124 [09:44<1:28:11, 47.67s/it]\\rInference:  11%|█▏        | 14/124 [10:06<1:13:26, 40.06s/it]\\rInference:  12%|█▏        | 15/124 [10:45<1:12:14, 39.76s/it]\\rInference:  13%|█▎        | 16/124 [11:27<1:12:28, 40.27s/it]\\rInference:  14%|█▎        | 17/124 [12:15<1:16:13, 42.74s/it]\\rInference:  15%|█▍        | 18/124 [13:04<1:18:39, 44.52s/it]\\rInference:  15%|█▌        | 19/124 [13:48<1:17:50, 44.48s/it]\\rInference:  16%|█▌        | 20/124 [14:37<1:19:15, 45.73s/it]\\rInference:  17%|█▋        | 21/124 [15:24<1:19:13, 46.15s/it]\\rInference:  18%|█▊        | 22/124 [16:13<1:20:01, 47.08s/it]\\rInference:  19%|█▊        | 23/124 [17:02<1:20:09, 47.62s/it]\\rInference:  19%|█▉        | 24/124 [17:52<1:20:16, 48.17s/it]\\rInference:  20%|██        | 25/124 [18:40<1:19:43, 48.32s/it]\\rInference:  21%|██        | 26/124 [19:29<1:19:09, 48.47s/it]\\rInference:  22%|██▏       | 27/124 [20:09<1:13:56, 45.74s/it]\\rInference:  23%|██▎       | 28/124 [20:57<1:14:34, 46.61s/it]\\rInference:  23%|██▎       | 29/124 [21:34<1:09:05, 43.64s/it]\\rInference:  24%|██▍       | 30/124 [22:24<1:11:16, 45.50s/it]\\rInference:  25%|██▌       | 31/124 [23:09<1:10:20, 45.38s/it]\\rInference:  26%|██▌       | 32/124 [23:58<1:11:18, 46.50s/it]\\rInference:  27%|██▋       | 33/124 [24:47<1:11:39, 47.25s/it]\\rInference:  27%|██▋       | 34/124 [25:36<1:11:45, 47.84s/it]\\rInference:  28%|██▊       | 35/124 [26:25<1:11:28, 48.19s/it]\\rInference:  29%|██▉       | 36/124 [27:14<1:10:59, 48.41s/it]\\rInference:  30%|██▉       | 37/124 [27:38<59:39, 41.15s/it]  \\rInference:  31%|███       | 38/124 [28:28<1:02:26, 43.56s/it]\\rInference:  31%|███▏      | 39/124 [29:17<1:04:03, 45.21s/it]\\rInference:  32%|███▏      | 40/124 [29:56<1:00:43, 43.37s/it]\\rInference:  33%|███▎      | 41/12\\n\\n... [截断: 输出过长，省略 1861 字符] ...\\n\\n| 72/124 [55:43<42:29, 49.03s/it]\\rInference:  59%|█████▉    | 73/124 [56:35<42:17, 49.75s/it]\\rInference:  60%|█████▉    | 74/124 [57:26<41:44, 50.09s/it]\\rInference:  60%|██████    | 75/124 [58:19<41:36, 50.95s/it]\\rInference:  61%|██████▏   | 76/124 [59:11<40:57, 51.20s/it]\\rInference:  62%|██████▏   | 77/124 [1:00:01<39:53, 50.92s/it]\\rInference:  63%|██████▎   | 78/124 [1:00:52<39:03, 50.95s/it]\\rInference:  64%|██████▎   | 79/124 [1:01:42<38:01, 50.69s/it]\\rInference:  65%|██████▍   | 80/124 [1:02:33<37:17, 50.86s/it]\\rInference:  65%|██████▌   | 81/124 [1:03:24<36:24, 50.81s/it]\\rInference:  66%|██████▌   | 82/124 [1:03:53<30:55, 44.17s/it]\\rInference:  67%|██████▋   | 83/124 [1:04:45<31:49, 46.58s/it]\\rInference:  68%|██████▊   | 84/124 [1:05:37<32:08, 48.21s/it]\\rInference:  69%|██████▊   | 85/124 [1:06:27<31:43, 48.81s/it]\\rInference:  69%|██████▉   | 86/124 [1:07:02<28:19, 44.71s/it]\\rInference:  70%|███████   | 87/124 [1:07:56<29:11, 47.34s/it]\\rInference:  71%|███████   | 88/124 [1:08:47<29:06, 48.50s/it]\\rInference:  72%|███████▏  | 89/124 [1:09:39<28:53, 49.54s/it]\\rInference:  73%|███████▎  | 90/124 [1:10:31<28:29, 50.28s/it]\\rInference:  73%|███████▎  | 91/124 [1:11:22<27:48, 50.57s/it]\\rInference:  74%|███████▍  | 92/124 [1:11:50<23:25, 43.92s/it]\\rInference:  75%|███████▌  | 93/124 [1:12:43<24:00, 46.47s/it]\\rInference:  76%|███████▌  | 94/124 [1:13:35<24:02, 48.09s/it]\\rInference:  77%|███████▋  | 95/124 [1:14:27<23:49, 49.30s/it]\\rInference:  77%|███████▋  | 96/124 [1:15:19<23:27, 50.26s/it]\\rInference:  78%|███████▊  | 97/124 [1:16:11<22:52, 50.82s/it]\\rInference:  79%|███████▉  | 98/124 [1:16:55<21:01, 48.52s/it]\\rInference:  80%|███████▉  | 99/124 [1:17:48<20:48, 49.93s/it]\\rInference:  81%|████████  | 100/124 [1:18:24<18:21, 45.91s/it]\\rInference:  81%|████████▏ | 101/124 [1:19:18<18:27, 48.16s/it]\\rInference:  82%|████████▏ | 102/124 [1:20:09<18:00, 49.10s/it]\\rInference:  83%|████████▎ | 103/124 [1:21:01<17:28, 49.92s/it]\\rInference:  84%|████████▍ | 104/124 [1:21:54<16:54, 50.74s/it]\\rInference:  85%|████████▍ | 105/124 [1:22:38<15:28, 48.88s/it]\\rInference:  85%|███████��▌ | 106/124 [1:23:31<15:01, 50.07s/it]\\rInference:  86%|████████▋ | 107/124 [1:24:18<13:54, 49.09s/it]\\rInference:  87%|████████▋ | 108/124 [1:25:09<13:16, 49.78s/it]\\rInference:  88%|████████▊ | 109/124 [1:26:00<12:32, 50.17s/it]\\rInference:  89%|████████▊ | 110/124 [1:26:52<11:49, 50.65s/it]\\rInference:  90%|████████▉ | 111/124 [1:27:44<11:04, 51.09s/it]\\rInference:  90%|█████████ | 112/124 [1:28:14<08:57, 44.77s/it]\\rInference:  91%|█████████ | 113/124 [1:29:08<08:42, 47.49s/it]\\rInference:  92%|█████████▏| 114/124 [1:29:59<08:04, 48.44s/it]\\rInference:  93%|█████████▎| 115/124 [1:30:50<07:23, 49.23s/it]\\rInference:  94%|█████████▎| 116/124 [1:31:40<06:36, 49.60s/it]\\rInference:  94%|█████████▍| 117/124 [1:32:34<05:56, 50.90s/it]\\rInference:  95%|█████████▌| 118/124 [1:33:29<05:12, 52.01s/it]\\rInference:  96%|█████████▌| 119/124 [1:34:22<04:22, 52.49s/it]\\rInference:  97%|█████████▋| 120/124 [1:34:56<03:07, 46.81s/it]\\rInference:  98%|█████████▊| 121/124 [1:35:47<02:24, 48.02s/it]\\rInference:  98%|█████████▊| 122/124 [1:36:39<01:38, 49.19s/it]\\rInference:  99%|█████████▉| 123/124 [1:37:31<00:50, 50.11s/it]\\rInference: 100%|██████████| 124/124 [1:37:41<00:00, 38.27s/it]\\rInference: 100%|██████████| 124/124 [1:37:41<00:00, 47.27s/it]\\n2026-05-15 19:42:07,518 INFO Inference done. 179/985 truncated, 0 errors.\\n2026-05-15 19:42:07,518 INFO Inference: 5862.0s (5.95 s/doc)\\n2026-05-15 19:42:08,249 INFO Loaded 37785 training triples for Ign-F1\\n2026-05-15 19:42:08,423 INFO Metrics → /root/autodl-tmp/eval_results/rsft_r2b/metrics.json\\n2026-05-15 19:42:08,582 INFO Predictions → /root/autodl-tmp/eval_results/rsft_r2b/predictions.json\\n\\n==================================================\\n  F1:          0.4493\\n  Ign-F1:      0.4493\\n  Evi-F1:      0.8128\\n  EDCR:        0.6609\\n  Format OK:   983/985 (99.8%)\\n  Truncated:   179/985\\n  Predictions: 14829\\n==================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T11:44:14.381Z_
+
+<details><summary>↩ Tool result · `toolu_011Dgu93pKesGpfmcytHJN8b`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.45655313004331943,\\n  \\\"recall\\\": 0.4423504238334294,\\n  \\\"f1\\\": 0.44933957532185254,\\n  \\\"ign_precision\\\": 0.45655313004331943,\\n  \\\"ign_recall\\\": 0.4423504238334294,\\n  \\\"ign_f1\\\": 0.44933957532185254,\\n  \\\"tp\\\": 5375,\\n  \\\"pred_count\\\": 11773,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8200820472748583,\\n  \\\"evi_recall\\\": 0.805603530992132,\\n  \\\"evi_f1\\\": 0.8127783155856727,\\n  \\\"n_evaluated\\\": 14790,\\n  \\\"edcr\\\": 0.6609457658603561,\\n  \\\"n_distractor_citations\\\": 16367,\\n  \\\"n_total_citations\\\": 24763,\\n  \\\"format_compliance_rate\\\": 0.9979695431472081,\\n  \\\"field_compliance_rate\\\": 0.8182741116751269,\\n  \\\"evidence_format_rate\\\": 0.8182741116751269,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 983,\\n  \\\"n_field_complete\\\": 806,\\n  \\\"n_evidence_valid\\\": 806,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 14829,\\n  \\\"n_truncated\\\": 179,\\n  \\\"n_format_ok\\\": 983,\\n  \\\"format_ok_rate\\\": 0.9979695431472081,\\n  \\\"inference_time_seconds\\\": 5862.0,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_r2b\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_r2b\\\",\\n    \\\"batch_size\\\": 8,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "7a8419a5-4ce3-4498-bc97-e8b4b836a643",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.45655313004331943,\\\\n  \\\\\\\"recall\\\\\\\": 0.4423504238334294,\\\\n  \\\\\\\"f1\\\\\\\": 0.44933957532185254,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.45655313004331943,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.4423504238334294,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.44933957532185254,\\\\n  \\\\\\\"tp\\\\\\\": 5375,\\\\n  \\\\\\\"pred_count\\\\\\\": 11773,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8200820472748583,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.805603530992132,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8127783155856727,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 14790,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6609457658603561,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 16367,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 24763,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9979695431472081,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.8182741116751269,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.8182741116751269,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 983,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 806,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 806,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 14829,\\\\n  \\\\\\\"n_truncated\\\\\\\": 179,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 983,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9979695431472081,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 5862.0,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_r2b\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_r2b\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.45655313004331943,\\n  \\\"recall\\\": 0.4423504238334294,\\n  \\\"f1\\\": 0.44933957532185254,\\n  \\\"ign_precision\\\": 0.45655313004331943,\\n  \\\"ign_recall\\\": 0.4423504238334294,\\n  \\\"ign_f1\\\": 0.44933957532185254,\\n  \\\"tp\\\": 5375,\\n  \\\"pred_count\\\": 11773,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8200820472748583,\\n  \\\"evi_recall\\\": 0.805603530992132,\\n  \\\"evi_f1\\\": 0.8127783155856727,\\n  \\\"n_evaluated\\\": 14790,\\n  \\\"edcr\\\": 0.6609457658603561,\\n  \\\"n_distractor_citations\\\": 16367,\\n  \\\"n_total_citations\\\": 24763,\\n  \\\"format_compliance_rate\\\": 0.9979695431472081,\\n  \\\"field_compliance_rate\\\": 0.8182741116751269,\\n  \\\"evidence_format_rate\\\": 0.8182741116751269,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 983,\\n  \\\"n_field_complete\\\": 806,\\n  \\\"n_evidence_valid\\\": 806,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 14829,\\n  \\\"n_truncated\\\": 179,\\n  \\\"n_format_ok\\\": 983,\\n  \\\"format_ok_rate\\\": 0.9979695431472081,\\n  \\\"inference_time_seconds\\\": 5862.0,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_r2b\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_r2b\\\",\\n    \\\"batch_size\\\": 8,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KC63kbb3VUhBmcKpSVwSRU`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /root/autodl-tmp/eval_results/rsft_r2b/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "18b1e9a3-ea22-46ec-a236-25d00e833455",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N4VStBZJYQCfQgMs7ETgKn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 982,
+      "cache_read_input_tokens": 23305,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 982
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T11:44:14.757Z_
+
+<details><summary>↩ Tool result · `toolu_01KC63kbb3VUhBmcKpSVwSRU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 6548\\ndrwxr-xr-x  2 root root      82 May 15 19:42 .\\ndrwxr-xr-x 20 root root    4096 May 15 19:29 ..\\n-rw-r--r--  1 root root   11270 May 15 19:42 eval.log\\n-rw-r--r--  1 root root    1289 May 15 19:42 metrics.json\\n-rw-r--r--  1 root root 6684546 May 15 19:42 predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "6656ecae-f4be-4cdd-92be-7b761eedfee9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 6548\\\\ndrwxr-xr-x  2 root root      82 May 15 19:42 .\\\\ndrwxr-xr-x 20 root root    4096 May 15 19:29 ..\\\\n-rw-r--r--  1 root root   11270 May 15 19:42 eval.log\\\\n-rw-r--r--  1 root root    1289 May 15 19:42 metrics.json\\\\n-rw-r--r--  1 root root 6684546 May 15 19:42 predictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 6548\\ndrwxr-xr-x  2 root root      82 May 15 19:42 .\\ndrwxr-xr-x 20 root root    4096 May 15 19:29 ..\\n-rw-r--r--  1 root root   11270 May 15 19:42 eval.log\\n-rw-r--r--  1 root root    1289 May 15 19:42 metrics.json\\n-rw-r--r--  1 root root 6684546 May 15 19:42 predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+Eval 成功完成。更新 registry 并删除 cron。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "1e92a039-e0cc-4370-9311-bbba2457acf5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7rDymXvgF3jRCKh3zgVf4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6173,
+      "cache_read_input_tokens": 24287,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6173
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_012sFVjxF5MKwf9iq472rVR8`</summary>
+
+```json
+{
+  "exp_id": "mvp2_eval_rsft_r2b",
+  "field": "status",
+  "value": "DONE",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "1eef6dc1-e97b-455d-99f7-749ce6a16c21",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7rDymXvgF3jRCKh3zgVf4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6173,
+      "cache_read_input_tokens": 24287,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6173
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T11:44:20.806Z_
+
+<details><summary>↩ Tool result · `toolu_012sFVjxF5MKwf9iq472rVR8`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.234}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "d08701c4-286e-4895-9cdf-4a947342602c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.234}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.234}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01MnwKUKh1PiVZPqgwXRYz95`</summary>
+
+```json
+{
+  "exp_id": "mvp2_eval_rsft_r2b",
+  "field": "metrics",
+  "value": {
+    "rel_f1": 0.4493,
+    "ign_f1": 0.4493,
+    "evi_f1": 0.8128,
+    "edcr": 0.6609,
+    "precision": 0.4566,
+    "recall": 0.4424,
+    "evi_precision": 0.8201,
+    "evi_recall": 0.8056,
+    "pred_count": 14829,
+    "format_ok": "983/985",
+    "truncated": 179,
+    "inference_time_s": 5862
+  },
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "bac462e9-f646-4e96-b7ed-1299678f8e4f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7rDymXvgF3jRCKh3zgVf4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6173,
+      "cache_read_input_tokens": 24287,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6173
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T11:44:22.654Z_
+
+<details><summary>↩ Tool result · `toolu_01MnwKUKh1PiVZPqgwXRYz95`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp2_eval_rsft_r2b\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:42:58.437Z\", \"updated_at\": \"2026-05-15T11:44:22.475Z\", \"hypothesis\": \"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_r2b\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"spec\": {\"command\": \"python -m freige.eval.inference --no-quantize (r2b checkpoint on cuda:3)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT r2b\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_r2b\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"pid\": \"189855\"}, \"metrics\": {\"rel_f1\": 0.4493, \"ign_f1\": 0.4493, \"evi_f1\": 0.8128, \"edcr\": 0.6609, \"precision\": 0.4566, \"recall\": 0.4424, \"evi_precision\": 0.8201, \"evi_recall\": 0.8056, \"pred_count\": 14829, \"format_ok\": \"983/985\", \"truncated\": 179, \"inference_time_s\": 5862}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3713}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "70cc7001-e650-4fde-864d-edd9da6727d8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp2_eval_rsft_r2b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:42:58.437Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:44:22.475Z\\\", \\\"hypothesis\\\": \\\"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_r2b\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.inference --no-quantize (r2b checkpoint on cuda:3)\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + SFT + RSFT r2b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_r2b\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"pid\\\": \\\"189855\\\"}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.4493, \\\"ign_f1\\\": 0.4493, \\\"evi_f1\\\": 0.8128, \\\"edcr\\\": 0.6609, \\\"precision\\\": 0.4566, \\\"recall\\\": 0.4424, \\\"evi_precision\\\": 0.8201, \\\"evi_recall\\\": 0.8056, \\\"pred_count\\\": 14829, \\\"format_ok\\\": \\\"983/985\\\", \\\"truncated\\\": 179, \\\"inference_time_s\\\": 5862}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3713}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp2_eval_rsft_r2b\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:42:58.437Z\", \"updated_at\": \"2026-05-15T11:44:22.475Z\", \"hypothesis\": \"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_r2b\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"spec\": {\"command\": \"python -m freige.eval.inference --no-quantize (r2b checkpoint on cuda:3)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT r2b\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_r2b\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"pid\": \"189855\"}, \"metrics\": {\"rel_f1\": 0.4493, \"ign_f1\": 0.4493, \"evi_f1\": 0.8128, \"edcr\": 0.6609, \"precision\": 0.4566, \"recall\": 0.4424, \"evi_precision\": 0.8201, \"evi_recall\": 0.8056, \"pred_count\": 14829, \"format_ok\": \"983/985\", \"truncated\": 179, \"inference_time_s\": 5862}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3713}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01T1NxX1FoQgL3b3Y5uKAYSZ`</summary>
+
+```json
+{
+  "exp_id": "mvp2_eval_rsft_r2b",
+  "field": "conclusion",
+  "value": "success",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "2504920c-0205-4d08-b2f5-fb60510c28c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7rDymXvgF3jRCKh3zgVf4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6173,
+      "cache_read_input_tokens": 24287,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6173
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__delete_cron · `toolu_01PY1nZ6b9amQxzjDxT3qUbF`</summary>
+
+```json
+{
+  "exp_id": "mvp2_eval_rsft_r2b"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "81b83a7f-a22e-4d12-8a90-646390c306f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7rDymXvgF3jRCKh3zgVf4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6173,
+      "cache_read_input_tokens": 24287,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6173
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T11:44:23.508Z_
+
+<details><summary>↩ Tool result · `toolu_01T1NxX1FoQgL3b3Y5uKAYSZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp2_eval_rsft_r2b\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:42:58.437Z\", \"updated_at\": \"2026-05-15T11:44:23.314Z\", \"hypothesis\": \"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_r2b\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"spec\": {\"command\": \"python -m freige.eval.inference --no-quantize (r2b checkpoint on cuda:3)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT r2b\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_r2b\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"pid\": \"189855\"}, \"metrics\": {\"rel_f1\": 0.4493, \"ign_f1\": 0.4493, \"evi_f1\": 0.8128, \"edcr\": 0.6609, \"precision\": 0.4566, \"recall\": 0.4424, \"evi_precision\": 0.8201, \"evi_recall\": 0.8056, \"pred_count\": 14829, \"format_ok\": \"983/985\", \"truncated\": 179, \"inference_time_s\": 5862}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3872}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "8ff03273-fd6c-484e-9dfe-6597f7cb2a4e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp2_eval_rsft_r2b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:42:58.437Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:44:23.314Z\\\", \\\"hypothesis\\\": \\\"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_r2b\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.inference --no-quantize (r2b checkpoint on cuda:3)\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + SFT + RSFT r2b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_r2b\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"pid\\\": \\\"189855\\\"}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.4493, \\\"ign_f1\\\": 0.4493, \\\"evi_f1\\\": 0.8128, \\\"edcr\\\": 0.6609, \\\"precision\\\": 0.4566, \\\"recall\\\": 0.4424, \\\"evi_precision\\\": 0.8201, \\\"evi_recall\\\": 0.8056, \\\"pred_count\\\": 14829, \\\"format_ok\\\": \\\"983/985\\\", \\\"truncated\\\": 179, \\\"inference_time_s\\\": 5862}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3872}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp2_eval_rsft_r2b\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:42:58.437Z\", \"updated_at\": \"2026-05-15T11:44:23.314Z\", \"hypothesis\": \"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_r2b\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"spec\": {\"command\": \"python -m freige.eval.inference --no-quantize (r2b checkpoint on cuda:3)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT r2b\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_r2b\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"pid\": \"189855\"}, \"metrics\": {\"rel_f1\": 0.4493, \"ign_f1\": 0.4493, \"evi_f1\": 0.8128, \"edcr\": 0.6609, \"precision\": 0.4566, \"recall\": 0.4424, \"evi_precision\": 0.8201, \"evi_recall\": 0.8056, \"pred_count\": 14829, \"format_ok\": \"983/985\", \"truncated\": 179, \"inference_time_s\": 5862}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3872}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T11:44:23.650Z_
+
+<details><summary>↩ Tool result · `toolu_01PY1nZ6b9amQxzjDxT3qUbF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"deleted\": \"mvp2_eval_rsft_r2b\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "cfa9d522-f187-4eb7-9dfb-e79f86d54e80",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": \\\"mvp2_eval_rsft_r2b\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"deleted\": \"mvp2_eval_rsft_r2b\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+Conclusion 已设置，现在再设 status=DONE。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "62fcf468-79f4-4b4f-80b0-a236800b453b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vp2ydC32NHtpCajwizRskF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1955,
+      "cache_read_input_tokens": 30460,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1955
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Y9wt4AQSdnX7N3zy4BqTFC`</summary>
+
+```json
+{
+  "exp_id": "mvp2_eval_rsft_r2b",
+  "field": "status",
+  "value": "DONE",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "8a9026f8-ba8f-4d45-a578-0fdaebd4782d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vp2ydC32NHtpCajwizRskF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1955,
+      "cache_read_input_tokens": 30460,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1955
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T11:44:27.442Z_
+
+<details><summary>↩ Tool result · `toolu_01Y9wt4AQSdnX7N3zy4BqTFC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path', 'log_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.2015}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "41b122d5-82ed-4967-988d-52c8a248cceb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path', 'log_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2015}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path', 'log_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.2015}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01BFVodGzCd4tyCXN2mzVkTw`</summary>
+
+```json
+{
+  "exp_id": "mvp2_eval_rsft_r2b",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/rsft_output_r2b",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "4ef601b5-9532-43c8-9884-194c462dd45f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FG98RzVjk2yy5RW9sVeop1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 335,
+      "cache_read_input_tokens": 32415,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 335
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T11:44:30.406Z_
+
+<details><summary>↩ Tool result · `toolu_01BFVodGzCd4tyCXN2mzVkTw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp2_eval_rsft_r2b\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:42:58.437Z\", \"updated_at\": \"2026-05-15T11:44:30.255Z\", \"hypothesis\": \"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_r2b\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"spec\": {\"command\": \"python -m freige.eval.inference --no-quantize (r2b checkpoint on cuda:3)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT r2b\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_r2b\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"pid\": \"189855\"}, \"metrics\": {\"rel_f1\": 0.4493, \"ign_f1\": 0.4493, \"evi_f1\": 0.8128, \"edcr\": 0.6609, \"precision\": 0.4566, \"recall\": 0.4424, \"evi_precision\": 0.8201, \"evi_recall\": 0.8056, \"pred_count\": 14829, \"format_ok\": \"983/985\", \"truncated\": 179, \"inference_time_s\": 5862}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_r2b\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3579}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "41c0aecc-7d08-4084-87f1-df3995e1675c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp2_eval_rsft_r2b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:42:58.437Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:44:30.255Z\\\", \\\"hypothesis\\\": \\\"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_r2b\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.inference --no-quantize (r2b checkpoint on cuda:3)\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + SFT + RSFT r2b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_r2b\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"pid\\\": \\\"189855\\\"}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.4493, \\\"ign_f1\\\": 0.4493, \\\"evi_f1\\\": 0.8128, \\\"edcr\\\": 0.6609, \\\"precision\\\": 0.4566, \\\"recall\\\": 0.4424, \\\"evi_precision\\\": 0.8201, \\\"evi_recall\\\": 0.8056, \\\"pred_count\\\": 14829, \\\"format_ok\\\": \\\"983/985\\\", \\\"truncated\\\": 179, \\\"inference_time_s\\\": 5862}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_r2b\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3579}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp2_eval_rsft_r2b\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:42:58.437Z\", \"updated_at\": \"2026-05-15T11:44:30.255Z\", \"hypothesis\": \"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_r2b\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"spec\": {\"command\": \"python -m freige.eval.inference --no-quantize (r2b checkpoint on cuda:3)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT r2b\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_r2b\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"pid\": \"189855\"}, \"metrics\": {\"rel_f1\": 0.4493, \"ign_f1\": 0.4493, \"evi_f1\": 0.8128, \"edcr\": 0.6609, \"precision\": 0.4566, \"recall\": 0.4424, \"evi_precision\": 0.8201, \"evi_recall\": 0.8056, \"pred_count\": 14829, \"format_ok\": \"983/985\", \"truncated\": 179, \"inference_time_s\": 5862}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_r2b\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3579}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_012yJtcnxdGREVaZTBpXnvz1`</summary>
+
+```json
+{
+  "exp_id": "mvp2_eval_rsft_r2b",
+  "field": "log_path",
+  "value": "/root/autodl-tmp/eval_results/rsft_r2b/eval.log",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "c2d21414-4925-4a43-ae36-12bcd8632d7c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FG98RzVjk2yy5RW9sVeop1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 335,
+      "cache_read_input_tokens": 32415,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 335
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T11:44:31.352Z_
+
+<details><summary>↩ Tool result · `toolu_012yJtcnxdGREVaZTBpXnvz1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp2_eval_rsft_r2b\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:42:58.437Z\", \"updated_at\": \"2026-05-15T11:44:31.208Z\", \"hypothesis\": \"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_r2b\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"spec\": {\"command\": \"python -m freige.eval.inference --no-quantize (r2b checkpoint on cuda:3)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT r2b\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_r2b\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"pid\": \"189855\"}, \"metrics\": {\"rel_f1\": 0.4493, \"ign_f1\": 0.4493, \"evi_f1\": 0.8128, \"edcr\": 0.6609, \"precision\": 0.4566, \"recall\": 0.4424, \"evi_precision\": 0.8201, \"evi_recall\": 0.8056, \"pred_count\": 14829, \"format_ok\": \"983/985\", \"truncated\": 179, \"inference_time_s\": 5862}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_r2b\", \"log_path\": \"/root/autodl-tmp/eval_results/rsft_r2b/eval.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3409}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "19548983-e6cf-4aee-ad41-6b9c771daa39",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp2_eval_rsft_r2b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:42:58.437Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:44:31.208Z\\\", \\\"hypothesis\\\": \\\"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_r2b\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.inference --no-quantize (r2b checkpoint on cuda:3)\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + SFT + RSFT r2b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_r2b\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"pid\\\": \\\"189855\\\"}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.4493, \\\"ign_f1\\\": 0.4493, \\\"evi_f1\\\": 0.8128, \\\"edcr\\\": 0.6609, \\\"precision\\\": 0.4566, \\\"recall\\\": 0.4424, \\\"evi_precision\\\": 0.8201, \\\"evi_recall\\\": 0.8056, \\\"pred_count\\\": 14829, \\\"format_ok\\\": \\\"983/985\\\", \\\"truncated\\\": 179, \\\"inference_time_s\\\": 5862}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_r2b\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/rsft_r2b/eval.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3409}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp2_eval_rsft_r2b\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:42:58.437Z\", \"updated_at\": \"2026-05-15T11:44:31.208Z\", \"hypothesis\": \"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_r2b\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"spec\": {\"command\": \"python -m freige.eval.inference --no-quantize (r2b checkpoint on cuda:3)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT r2b\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_r2b\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"pid\": \"189855\"}, \"metrics\": {\"rel_f1\": 0.4493, \"ign_f1\": 0.4493, \"evi_f1\": 0.8128, \"edcr\": 0.6609, \"precision\": 0.4566, \"recall\": 0.4424, \"evi_precision\": 0.8201, \"evi_recall\": 0.8056, \"pred_count\": 14829, \"format_ok\": \"983/985\", \"truncated\": 179, \"inference_time_s\": 5862}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_r2b\", \"log_path\": \"/root/autodl-tmp/eval_results/rsft_r2b/eval.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3409}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_011XDejqq8EQcwL4hoYonkSe`</summary>
+
+```json
+{
+  "exp_id": "mvp2_eval_rsft_r2b",
+  "field": "status",
+  "value": "DONE",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "99fcb9d0-b6f9-4ea4-92d4-13139ad655a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0123m5XTy37SA7GcGkc4WKBw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1593,
+      "cache_read_input_tokens": 32750,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1593
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T11:44:36.790Z_
+
+<details><summary>↩ Tool result · `toolu_011XDejqq8EQcwL4hoYonkSe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp2_eval_rsft_r2b\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:42:58.437Z\", \"updated_at\": \"2026-05-15T11:44:36.427Z\", \"hypothesis\": \"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_r2b\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"spec\": {\"command\": \"python -m freige.eval.inference --no-quantize (r2b checkpoint on cuda:3)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT r2b\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_r2b\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"pid\": \"189855\"}, \"metrics\": {\"rel_f1\": 0.4493, \"ign_f1\": 0.4493, \"evi_f1\": 0.8128, \"edcr\": 0.6609, \"precision\": 0.4566, \"recall\": 0.4424, \"evi_precision\": 0.8201, \"evi_recall\": 0.8056, \"pred_count\": 14829, \"format_ok\": \"983/985\", \"truncated\": 179, \"inference_time_s\": 5862}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_r2b\", \"log_path\": \"/root/autodl-tmp/eval_results/rsft_r2b/eval.log\", \"completed_at\": \"2026-05-15T11:44:36.428Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5703}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "22a11b37-c548-4852-8f96-b99b26edbdab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp2_eval_rsft_r2b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:42:58.437Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:44:36.427Z\\\", \\\"hypothesis\\\": \\\"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_r2b\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.inference --no-quantize (r2b checkpoint on cuda:3)\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + SFT + RSFT r2b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_r2b\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"pid\\\": \\\"189855\\\"}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.4493, \\\"ign_f1\\\": 0.4493, \\\"evi_f1\\\": 0.8128, \\\"edcr\\\": 0.6609, \\\"precision\\\": 0.4566, \\\"recall\\\": 0.4424, \\\"evi_precision\\\": 0.8201, \\\"evi_recall\\\": 0.8056, \\\"pred_count\\\": 14829, \\\"format_ok\\\": \\\"983/985\\\", \\\"truncated\\\": 179, \\\"inference_time_s\\\": 5862}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_r2b\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/rsft_r2b/eval.log\\\", \\\"completed_at\\\": \\\"2026-05-15T11:44:36.428Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5703}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp2_eval_rsft_r2b\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:42:58.437Z\", \"updated_at\": \"2026-05-15T11:44:36.427Z\", \"hypothesis\": \"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_r2b\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"spec\": {\"command\": \"python -m freige.eval.inference --no-quantize (r2b checkpoint on cuda:3)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT r2b\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_r2b\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"pid\": \"189855\"}, \"metrics\": {\"rel_f1\": 0.4493, \"ign_f1\": 0.4493, \"evi_f1\": 0.8128, \"edcr\": 0.6609, \"precision\": 0.4566, \"recall\": 0.4424, \"evi_precision\": 0.8201, \"evi_recall\": 0.8056, \"pred_count\": 14829, \"format_ok\": \"983/985\", \"truncated\": 179, \"inference_time_s\": 5862}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_r2b\", \"log_path\": \"/root/autodl-tmp/eval_results/rsft_r2b/eval.log\", \"completed_at\": \"2026-05-15T11:44:36.428Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5703}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+## mvp2_eval_rsft_r2b 结果
+
+**Pass** — 两项核心指标均超过 SFT baseline。
+
+| 指标 | r2b (本次) | r1 (3ep, seed=42) | SFT baseline | r2b vs r1 |
+|------|-----------|-------------------|-------------|-----------|
+| rel_f1 | **0.4493** | 0.4449 | 0.4057 | +0.44pp |
+| evi_f1 | **0.8128** | 0.8187 | 0.7979 | -0.59pp |
+| edcr | 0.6609 | — | — | — |
+| pred_count | 14829 | — | — | — |
+| format_ok | 983/985 (99.8%) | — | — | — |
+| truncated | 179/985 | — | — | — |
+
+### 对比分析
+
+r2b（1 epoch, alpha=32, lr=1e-5, clean data）vs r1（3 epoch, seed=42）：
+
+- **rel_f1**: r2b 略优 (+0.44pp)，说明保守 LoRA scaling (alpha=32) + 低学习率在关系抽取上不仅没有退化，反而略好
+- **evi_f1**: r2b 略低 (-0.59pp)，差距很小，可能是 1 epoch 训练不足导致证据定位能力稍弱
+- 总体来看，r2b 用 1/3 的训练量达到了与 r1 接近甚至略好的效果，保守配置是有效的
+
+Registry 已更新为 DONE/success，cron 已删除。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "uuid": "bfb9232e-5ef8-4497-86a5-f524918a5278",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LLXfTANgUDWaM4xhDvb6E6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 830,
+      "cache_read_input_tokens": 34343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 830
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 32_
+
+## mvp2_eval_rsft_r2b 结果
+
+**Pass** — 两项核心指标均超过 SFT baseline。
+
+| 指标 | r2b (本次) | r1 (3ep, seed=42) | SFT baseline | r2b vs r1 |
+|------|-----------|-------------------|-------------|-----------|
+| rel_f1 | **0.4493** | 0.4449 | 0.4057 | +0.44pp |
+| evi_f1 | **0.8128** | 0.8187 | 0.7979 | -0.59pp |
+| edcr | 0.6609 | — | — | — |
+| pred_count | 14829 | — | — | — |
+| format_ok | 983/985 (99.8%) | — | — | — |
+| truncated | 179/985 | — | — | — |
+
+### 对比分析
+
+r2b（1 epoch, alpha=32, lr=1e-5, clean data）vs r1（3 epoch, seed=42）：
+
+- **rel_f1**: r2b 略优 (+0.44pp)，说明保守 LoRA scaling (alpha=32) + 低学习率在关系抽取上不仅没有退化，反而略好
+- **evi_f1**: r2b 略低 (-0.59pp)，差距很小，可能是 1 epoch 训练不足导致证据定位能力稍弱
+- 总体来看，r2b 用 1/3 的训练量达到了与 r1 接近甚至略好的效果，保守配置是有效的
+
+Registry 已更新为 DONE/success，cron 已删除。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 40731,
+  "duration_api_ms": 40561,
+  "num_turns": 13,
+  "stop_reason": "end_turn",
+  "session_id": "223013d5-17a4-42d3-9d9c-4e11bcae66c4",
+  "total_cost_usd": 0.29617499999999997,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 23726,
+    "cache_read_input_tokens": 189007,
+    "output_tokens": 2079,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 23726,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 464,
+        "cache_read_input_tokens": 34343,
+        "cache_creation_input_tokens": 830,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 830
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1264,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001354,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 2079,
+      "cacheReadInputTokens": 189007,
+      "cacheCreationInputTokens": 23726,
+      "webSearchRequests": 0,
+      "costUSD": 0.294821,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "72eb7510-c260-4bad-84ab-00a1ec32540a"
+}
+```
+
+</details>
+
+---

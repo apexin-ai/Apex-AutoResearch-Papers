@@ -1,0 +1,37 @@
+{
+  "exp_id": "mvp2_sft_eval",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:10:37.449Z",
+    "updated_at": "2026-05-14T11:49:04.471Z",
+    "spec": {
+      "command": "python -m freige.eval.inference --model_path sft_output --base_model Qwen3-4B --split dev",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "47293",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_sft_eval.log",
+      "submitted_at": "2026-05-14T11:48:46.335Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": {
+        "dev": 985
+      },
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "SFT baseline eval on DocRED dev set",
+      "parent": "mvp2_sft_warmup",
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json"
+    }
+  },
+  "timestamp": "2026-05-14T11:49:04.495292+00:00",
+  "trigger": "update_registry"
+}

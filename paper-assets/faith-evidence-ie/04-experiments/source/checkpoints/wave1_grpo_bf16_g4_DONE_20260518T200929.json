@@ -1,0 +1,50 @@
+{
+  "exp_id": "wave1_grpo_bf16_g4",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T12:46:19.740Z",
+    "updated_at": "2026-05-18T20:09:28.981Z",
+    "hypothesis": "GRPO bf16 without quantization (G=4): prior GRPO runs used int4 quantization which may have caused training instability. bf16 full precision should provide clean GRPO signal. If GRPO improves over RSFT, validates Claim 2 (decoupling spectrum). Expected: rel_f1 > RSFT baseline (~52pp).",
+    "spec": {
+      "command": "bash /root/autodl-tmp/freige/scripts/d102_next_batch/grpo_bf16_g4.sh",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": 542121,
+      "data_path": "/root/autodl-tmp/data/docred/train_annotated.json",
+      "data_count": 3027,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "output_dir": "/root/autodl-tmp/grpo_bf16_g4",
+      "log_path": "/root/autodl-tmp/grpo_bf16_g4.log",
+      "method": "GRPO bf16 no-quantize",
+      "num_generations": 4,
+      "gradient_accumulation_steps": 16,
+      "max_steps": 200,
+      "kl_coef": 0,
+      "reward_weights": {
+        "format": 0.3,
+        "f1": 3,
+        "ced": 1
+      },
+      "plan_id": "plan_015"
+    },
+    "checkpoint_path": "/root/autodl-tmp/grpo_bf16_g4",
+    "log_path": "/root/autodl-tmp/grpo_bf16_g4.log",
+    "metrics": {
+      "reward_mean": 1.7646,
+      "steps_completed": 200,
+      "max_steps": 200
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-18T20:09:28.981Z"
+  },
+  "timestamp": "2026-05-18T20:09:29.399396+00:00",
+  "trigger": "update_registry"
+}

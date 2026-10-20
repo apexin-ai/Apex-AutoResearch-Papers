@@ -1,0 +1,45 @@
+{
+  "exp_id": "plan017_14b_rsft_eval",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:52:44.030Z",
+    "updated_at": "2026-05-21T02:44:50.499Z",
+    "hypothesis": "14B RSFT eval on DocRED dev set. 14B SFT baseline ign_f1=0.5507. Expect RSFT improvement consistent with smaller scales (+2-6pp). Completes scaling table row 4.",
+    "parent": "plan017_14b_rsft_train",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_14b --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b/checkpoint-144 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_eval --batch_size 1 --max_new_tokens 1024 --no-quantize --seed 42",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/docred/dev.json",
+      "data_count": 985,
+      "model_name": "Qwen3-14B + SFT(checkpoint-144) + RSFT",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_14b",
+      "eval_data": "DocRED dev set (985 docs, 12275 gold triples)",
+      "pid": 53413,
+      "gpu": "cuda:0",
+      "gpu_mem_used": "32503 MiB",
+      "sft_adapter": "/root/autodl-tmp/sft_output_14b/checkpoint-144",
+      "base_model": "/root/autodl-tmp/models/Qwen/Qwen3-14B",
+      "nested_lora": true,
+      "checkpoint_path": "/root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_eval/",
+      "log_path": "/root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_eval.log"
+    },
+    "metrics": {
+      "ign_f1": 0.5886,
+      "f1": 0.5886,
+      "format_ok": 985,
+      "format_ok_rate": 1,
+      "truncated": 0,
+      "evi_f1": 0.8392,
+      "edcr": 0.5396
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T02:44:50.499Z"
+  },
+  "timestamp": "2026-05-21T02:44:51.184766+00:00",
+  "trigger": "update_registry"
+}

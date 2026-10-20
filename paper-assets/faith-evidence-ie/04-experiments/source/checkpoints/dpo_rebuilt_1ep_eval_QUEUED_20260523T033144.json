@@ -1,0 +1,16 @@
+{
+  "exp_id": "dpo_rebuilt_1ep_eval",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T03:30:29.032Z",
+    "updated_at": "2026-05-23T03:31:44.178Z",
+    "hypothesis": "DPO 1ep 重建 checkpoint 的 unified protocol eval (matched@2048, DocRED dev)。DPO adapter 在 merged SFT 上，需要 --base_model + --sft_adapter + --model_path (DPO adapter)。对比原始 1ep eval Ign-F1=38.9 和 RSFT CED baseline 44.67。",
+    "parent": "dpo_rebuilt_1ep"
+  },
+  "timestamp": "2026-05-23T03:31:44.832978+00:00",
+  "trigger": "update_registry"
+}

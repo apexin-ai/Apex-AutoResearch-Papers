@@ -1,0 +1,52 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T22:30:47.440354+00:00",
+  "completed_at": "2026-05-25T22:34:18.143480+00:00",
+  "findings": [
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Figure 3 (CED scoring example) 内部文字偏小，实体对标签和公式文字约为正文 60-65%，建议放大至 ≥70%"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Figure 4 (Decoupling spectrum) 图例文字偏小，且放在绘图区域内部，可能被数据线遮挡；建议移至图外或放大"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 12",
+      "message": "Appendix 单页含 4 张表 (Tables 4-7)，信息密度极高；Table 6 为全宽表列数多，数字密集但格式正确无溢出"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 17",
+      "message": "Figure 7 三子图 (GRPO dynamics) 的 y 轴标签和刻度文字偏小，建议统一放大"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 18",
+      "message": "末页内容约占 70-75%，底部约 1/4 空白；为 appendix 末页含 AI Assistants 声明，不影响审稿印象"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 整体清晰专业，蓝色标注 evidence 句子，色彩方案一致；caption 自包含性好"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Table 2 主结果表使用 booktabs 风格，最优结果加粗，格式规范；footnote 字号偏小但符合 ACL 模板标准"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Figure 5 (Inference-time evidence tax) 使用正负值条形图，红/蓝对比清晰，误差条可辨"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 0,
+    "info": 8
+  }
+}

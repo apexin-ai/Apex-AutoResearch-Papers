@@ -1,0 +1,27 @@
+{
+  "exp_id": "plan_016_llama_3_1_8b_sft_eval",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:06:49.282Z",
+    "updated_at": "2026-05-16T12:06:56.014Z",
+    "spec": {
+      "server": "rtx5090-4x",
+      "gpu": "cuda:1",
+      "model_name": "Meta-Llama-3.1-8B",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 998,
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_llama_3_1_8b",
+      "eval_data": "docred-dev",
+      "parent": "plan_016_llama_3_1_8b_sft",
+      "hypothesis": "LLaMA-3.1-8B with-evidence eval. Cross-family baseline for evidence tax comparison.",
+      "plan_id": "plan_016"
+    }
+  },
+  "timestamp": "2026-05-16T12:06:56.439768+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,27 @@
+{
+  "exp_id": "rsft_ced_s43_train",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:05:46.635Z",
+    "updated_at": "2026-05-16T00:06:01.929Z",
+    "spec": {
+      "hypothesis": "CED RSFT seed=43 训练，补全 paired t-test matched pairs。现有 CED seeds: s42/s44，需补 s43/s45。训练数据 2718 samples (CED filtered), 3 epochs, ~2h。plan_id=plan_mvp2_rsft, claim=3。",
+      "plan_id": "plan_mvp2_rsft",
+      "model_name": "Qwen3-4B + LoRA on SFT adapter",
+      "data_path": "/root/autodl-tmp/rsft_filtered/rsft_train.jsonl",
+      "data_count": 2718,
+      "seed": 43,
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-16T00:06:02.209025+00:00",
+  "trigger": "update_registry"
+}

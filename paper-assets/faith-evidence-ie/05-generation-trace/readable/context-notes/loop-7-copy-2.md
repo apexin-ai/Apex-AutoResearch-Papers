@@ -1,0 +1,79 @@
+# agent / loop_7.md
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/agent/loop_7.md`
+- **Structured JSON:** [`1d29f4a4e5d23e2ef5ec.json`](../../sessions/1d/1d29f4a4e5d23e2ef5ec.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 7
+reason: idle_timeout
+updated: '2026-05-15T11:28:01+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单: rtx5090-4x 的 cuda:0/1/2/3，不可用其他卡
+- 运行目录必须 `cd /root/autodl-tmp`（不能 cd 到 freige/ 子目录，否则 import 找到内层空包）
+- RSFT 训练禁止 `--quantize`（4-bit + merge_and_unload 在 RTX 5090 有 CUBLAS 错误，bf16 即可）
+- Qwen3 生成前必须显式覆盖 `generation_config`（top_k=0, temperature=目标值），否则模型自带配置静默覆盖
+- W&B entity/project 未在项目 config 中配置，fetch_wandb_metrics 需要显式传参或让 Worker 从日志/SSH 读指标
+
+### 2. 🖥️ 基础设施快照
+- 服务器: rtx5090-4x, account=root, 工作目录 /root/autodl-tmp
+- Python: /root/miniconda3/bin/python（conda base 环境，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）
+- 项目代码: /root/autodl-tmp/freige（Python -m freige.xxx 方式调用）
+- 模型: /root/autodl-tmp/models/Qwen3-4B, SFT adapter: /root/autodl-tmp/sft_output
+- RSFT 数据: /root/autodl-tmp/rsft_filtered/rsft_train.jsonl (2718 samples, CED-filtered)
+- HF cache: /root/autodl-tmp/.hf_cache, NLI 模型已下载
+- DocRED eval 数据: /root/autodl-tmp/data/docred
+- 活跃进程: mvp2_rsft_train_r1 (PID 165130, cuda:0), mvp2_rsft_train_r1_s43 (PID 165590, cuda:1)
+- Cron 监控: r1 和 r1_s43 两个 cron 存活
+
+### 3. 📊 当前状态
+**刚发生**: mvp2_rsft_train_r1_s44 (cuda:2, seed=44) 训练完成，cron 已转 ANALYZING。我刚派出 Worker (`worker_analyze_mvp2_rsft_train_r1_s44_20260515T073356`) 去 SSH 读日志 + 更新 registry，**尚未回调**。
+
+**Registry 快照**:
+- ANALYZING: mvp2_rsft_train_r1_s44（等 Worker 分析结果）
+- RUNNING: mvp2_rsft_train_r1 (cuda:0, seed=42), mvp2_rsft_train_r1_s43 (cuda:1, seed=43)
+- PREPARING: mvp2_grpo_ced_kl001_r2, mvp2_grpo_ced_kl001_r3, mvp2_eval_ced_kl001_r4_last（这 3 个是 GRPO 残留，方向已判死，不要启动）
+- 另有 Worker `worker_exp_rsft-ced-topk3-scoring_20260515T061123` 在跑（RSFT top_k=3 scoring 任务，已运行 >1h）
+
+**空闲 GPU**: cuda:2 和 cuda:3 分配了但没跑，s44 完成后 cuda:2 释放。
+
+### 4. 📋 待办（条件触发式）
+- **Worker analyze s44 回调 → 判定 conclusion**:
+  - Pass (rel_f1>0.4057 AND evi_f1>0.798) → success，记录 metrics，等 r1/r1_s43 完成后汇总 3-seed variance → 向 Director 报告 RSFT 有效性
+  - Fail → negative，走 red-section Framing 提案流程
+- **r1 或 r1_s43 cron 回调 → 同样派 Worker 分析**，3 个 seed 都完成后做 variance analysis
+- **3-seed 全部完成 → 汇总报告给 Director**: mean±std of rel_f1/evi_f1，与 SFT baseline 对比，判定 RSFT 是否 MVP-2 PASS
+- **cuda:2/cuda:3 空闲 → 应铺下一批实验**，但当前 experiment_plan 为空，需要向 Director 建议：DPO+CED（ROADMAP 方案2）、或其他 ablation（不同 CED threshold、不同 LoRA rank）
+- **rsft-ced-topk3-scoring Worker 回调 → 检查 top_k=3 筛选结果**，可能用于后续 ablation
+
+### 5. 🎯 战略上下文
+- **核心 pivot (D031)**: GRPO+QLoRA 全线 FAIL（rel_f1 catastrophic forgetting），已 pivot 到 RSFT+CED。PREPARING 中的 3 个 GRPO 实验是残留，不要启动
+- **RSFT 流水线**: 生成(✅4shard) → CED 打分(✅2718/21952=12.4%) → 训练(当前 3-seed 并行) → Eval(待做)
+- **SFT baseline**: rel_f1=0.4057, evi_f1=0.798。RSFT 必须同时超过两个指标才算 success
+- **D034/D035/D036**: diversity crisis 是监控 bug（度量代码错误），T=0.7 下实际 diversity 充足(7.52/8)，已撤销
+- **易错点**: 
+  - 不要被 PREPARING 的 GRPO 实验误导去启动它们
+  - W&B fetch 会报 entity/project 未配置，必须从 SSH 日志读指标或显式传 entity/project
+  - RSFT 训练参数: LoRA r=64/α=128 (不是之前 GRPO 的 r=4)，lr=2e-5，3 epochs，weighted_sampling
+  - Post-MVP 路径: MVP-2 通过后 → complete_mvp() → paper_framing.md → experiment_plan.yaml
+
+
+---

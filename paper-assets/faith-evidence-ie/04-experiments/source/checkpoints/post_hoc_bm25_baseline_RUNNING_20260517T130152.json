@@ -1,0 +1,29 @@
+{
+  "exp_id": "post_hoc_bm25_baseline",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:01:00.344Z",
+    "updated_at": "2026-05-17T13:01:52.198Z",
+    "hypothesis": "Post-hoc BM25 evidence retrieval on SFT-no-evidence predictions: if retrieving evidence after RE produces comparable joint Evi-F1 and EDCR to jointly trained RSFT, then joint generation is unnecessary. Expect RSFT to have better evidence quality (lower EDCR) due to training-time evidence grounding.",
+    "parent": "plan_014_sft_no_evidence",
+    "spec": {
+      "command": "python -m freige.eval.post_hoc_retrieval --predictions_dir /root/autodl-tmp/eval_results/reeval_sft_baseline_d076 --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/post_hoc_bm25",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "BM25 retrieval on SFT-no-evidence predictions",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/eval_results/post_hoc_bm25/",
+      "log_path": "/root/autodl-tmp/eval_results/post_hoc_bm25/",
+      "checkpoint_source": "reeval_sft_baseline_d076",
+      "eval_data": "docred_dev"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T13:01:52.573039+00:00",
+  "trigger": "update_registry"
+}

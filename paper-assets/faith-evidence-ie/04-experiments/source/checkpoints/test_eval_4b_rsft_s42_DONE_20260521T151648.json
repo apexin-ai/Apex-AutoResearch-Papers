@@ -1,0 +1,27 @@
+{
+  "exp_id": "test_eval_4b_rsft_s42",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:00:13.024Z",
+    "updated_at": "2026-05-21T15:16:47.777Z",
+    "hypothesis": "Re-DocRED test set eval: Qwen3-4B RSFT s42 (CED k=1, dev ign_f1=0.4423)。验证 dev set 性能是否泛化到 test set。填充 test set scaling table 4B 数据点，完成 5-scale test eval batch。",
+    "spec": {
+      "model_name": "Qwen3-4B + SFT + RSFT-CED-s42-k1",
+      "seed": 42,
+      "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+      "data_count": 500,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output/checkpoint-510",
+      "eval_data": "re-docred_test_revised",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 42 --output_dir /root/autodl-tmp/eval_results/test_eval_4b_rsft_s42\"",
+      "server": "rtx5090-4x"
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T15:06:01.457Z"
+  },
+  "timestamp": "2026-05-21T15:16:48.373521+00:00",
+  "trigger": "update_registry"
+}

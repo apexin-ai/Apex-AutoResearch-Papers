@@ -1,0 +1,23 @@
+{
+  "exp_id": "plan_001_flat_nli_seed45",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:09:05.195Z",
+    "updated_at": "2026-05-15T21:09:05.195Z",
+    "spec": {
+      "hypothesis": "flat-NLI RSFT seed=45。C3 统计显著性检验需 5+ seeds。已有 seed42 (rel_f1=0.4539), seed43 (eval中)，seed44 (CED RSFT), 本次补 seed45。",
+      "parent": "plan_001_rsft_flat_nli",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl",
+      "data_count": 2691,
+      "model_name": "Qwen3-4B + SFT adapter + flat-NLI RSFT",
+      "seed": 45
+    }
+  },
+  "timestamp": "2026-05-15T21:09:05.605188+00:00",
+  "trigger": "update_registry"
+}

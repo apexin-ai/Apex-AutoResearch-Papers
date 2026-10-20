@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_llama_sft_s42_no_evidence_std",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T04:46:48.472Z",
+    "updated_at": "2026-05-20T11:26:31.032Z",
+    "hypothesis": "标准化 LLaMA SFT s42 inference-time evidence tax 测量。用同一 SFT adapter (sft_output_llama_3_1_8b) + --no_evidence flag 推理，与 with-evidence eval (ign_f1=0.5384) 直接对比。之前的 no-evidence 结果 (ign_f1=0.5452) 来自独立训练的 no-evidence 模型，方法论不一致。",
+    "parent": "plan_016_llama_3_1_8b_sft_eval"
+  },
+  "timestamp": "2026-05-20T11:26:31.988097+00:00",
+  "trigger": "update_registry"
+}

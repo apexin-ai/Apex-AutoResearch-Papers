@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan017_14b_rsft_generate_r4",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:34:55.484Z",
+    "updated_at": "2026-05-20T15:35:00.636Z",
+    "hypothesis": "14B RSFT 生成 resume (r4: ghost file recovery 后继续)。从 doc 2553/3027 继续生成剩余 474 docs。r3 因 rsync 删除 inode 导致写入 ghost file，已通过 /proc/fd 恢复 20424 行数据。",
+    "parent": "plan017_14b_rsft_generate_r3"
+  },
+  "timestamp": "2026-05-20T15:35:01.145529+00:00",
+  "trigger": "update_registry"
+}

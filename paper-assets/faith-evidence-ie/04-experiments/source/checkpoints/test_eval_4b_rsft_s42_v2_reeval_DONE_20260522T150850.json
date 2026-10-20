@@ -1,0 +1,49 @@
+{
+  "exp_id": "test_eval_4b_rsft_s42_v2_reeval",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:48:18.780Z",
+    "updated_at": "2026-05-22T15:08:50.168Z",
+    "hypothesis": "Retrained 4B RSFT CED v2 model on test set should achieve ign_f1 comparable to dev (≈0.25, matching original test_eval_4b_rsft_s42_v2 result of 0.2501)",
+    "parent": "dev_eval_4b_rsft_ced_s42_v2",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_ced_s42_v2 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --output_dir /root/autodl-tmp/test_eval_4b_rsft_v2_reeval",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": 176927,
+      "log_path": "/tmp/test_eval_4b_rsft_v2_reeval.log",
+      "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+      "data_count": 500,
+      "model_name": "Qwen3-4B + SFT + RSFT-CED-s42-v2",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_ced_s42_v2",
+      "eval_data": "re-docred-test_revised",
+      "checkpoint_path": "/root/autodl-tmp/rsft_output_ced_s42_v2"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "ign_f1": 0.2501,
+      "f1": 0.2501,
+      "precision": 0.3403,
+      "recall": 0.1977,
+      "evi_f1": 0.1838,
+      "evi_f1_tp": 0.6237,
+      "edcr": 0.8288,
+      "format_ok_rate": 0.998,
+      "n_truncated": 214,
+      "n_documents": 500,
+      "n_predictions": 20917
+    },
+    "log_path": "/tmp/test_eval_4b_rsft_v2_reeval.log",
+    "checkpoint_path": "/root/autodl-tmp/rsft_output_ced_s42_v2",
+    "completed_at": "2026-05-22T15:08:50.168Z"
+  },
+  "timestamp": "2026-05-22T15:08:50.780894+00:00",
+  "trigger": "update_registry"
+}

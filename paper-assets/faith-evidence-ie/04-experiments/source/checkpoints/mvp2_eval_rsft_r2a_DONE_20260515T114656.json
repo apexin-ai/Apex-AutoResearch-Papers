@@ -1,0 +1,47 @@
+{
+  "exp_id": "mvp2_eval_rsft_r2a",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:42:57.684Z",
+    "updated_at": "2026-05-15T11:46:56.410Z",
+    "hypothesis": "Full dev eval of r2a (1 epoch, alpha=128, clean data). Ablation: 1 epoch vs 3 epoch (r1). Pass: rel_f1 > 0.4057, evi_f1 > 0.798.",
+    "parent": "mvp2_rsft_r2a",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:1",
+    "spec": {
+      "command": "python -m freige.eval.inference --no-quantize (r2a checkpoint on cuda:1)",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT + RSFT r2a",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_r2a",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "rel_f1": 0.4494,
+      "ign_f1": 0.4494,
+      "evi_f1": 0.8108,
+      "edcr": 0.6641,
+      "precision": 0.4512,
+      "recall": 0.4475,
+      "evi_precision": 0.8143,
+      "evi_recall": 0.8073,
+      "format_ok_rate": 1,
+      "n_predictions": 15482,
+      "n_truncated": 208,
+      "inference_time_s": 5967.2
+    },
+    "notes": "RSFT r2a (1ep, alpha=128/r=64, lr=2e-5, clean 2548 samples). rel_f1=0.4494 (+0.0045 vs r1, +0.0001 vs r2b), evi_f1=0.8108 (-0.0079 vs r1, -0.0020 vs r2b), edcr=0.6641 (+0.0032 vs r2b). 1 epoch with clean data matches r1's 3-epoch rel_f1 while being cheaper. r2a vs r2b (alpha=128 vs 32): nearly identical rel_f1, marginal edcr advantage for higher alpha. All RSFT variants beat SFT baseline on rel_f1/evi_f1 but lose on edcr (0.66-0.66 vs 0.71).",
+    "checkpoint_path": "/root/autodl-tmp/eval_results/rsft_r2a",
+    "log_path": "/root/autodl-tmp/eval_results/rsft_r2a/eval.log",
+    "completed_at": "2026-05-15T11:46:56.410Z"
+  },
+  "timestamp": "2026-05-15T11:46:56.554145+00:00",
+  "trigger": "update_registry"
+}

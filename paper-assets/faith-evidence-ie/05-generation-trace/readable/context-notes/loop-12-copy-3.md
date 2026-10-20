@@ -1,0 +1,84 @@
+# reviewer / loop_12.md
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_12.md`
+- **Structured JSON:** [`5ff8f1010379600fc16a.json`](../../sessions/5f/5ff8f1010379600fc16a.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 12
+reason: max_wall_time
+updated: '2026-05-16T14:20:56+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：rtx5090-4x 上只能用 cuda:0/1/2/3（4 张 RTX 5090）
+- D077：plan_006 系列多尺度实验必须用 bf16 LoRA，禁止 QLoRA
+- D076 统一 eval 协议：batch_size=4, --no-quantize, --sft_adapter, max_new_tokens=1024, seed=42
+- `--no_evidence` flag 控制 system prompt 选择（inference.py），with/no-evidence 实验必须正确设置
+- RSFT candidate 生成任务不属于 plan_006 eval 系列，不受 D077 eval 约束但 adapter 必须是 bf16 LoRA
+
+### 2. 🖥️ 基础设施快照
+- 服务器：rtx5090-4x（root）+ bjb2-12179（root，本轮未用）
+- 工作目录（远程）：/root/autodl-tmp/freige
+- Python：/root/miniconda3/bin/python（conda base 环境）
+- 模型路径：/root/autodl-tmp/models/{Qwen/Qwen3-1.7B, Qwen/Qwen3-4B, Qwen/Qwen3-8B, meta-llama/Meta-Llama-3.1-8B}
+- 数据集：/root/autodl-tmp/data/{docred, re-docred}
+- Eval 输出：/root/autodl-tmp/eval_results/
+- SFT adapters：/root/autodl-tmp/sft_output{, _qwen3_1_7b_bf16, _qwen3_8b_bf16, _llama_3_1_8b, _qwen3_1_7b_no_evidence, _llama_3_1_8b_no_evidence}
+- 活跃进程（截至 handoff）：
+  - cuda:0: plan_006_qwen3_1_7b_rsft_candidates (PID 349799, ~12s/doc, 3027 docs, ETA ~10h)
+  - cuda:2: plan_016_llama_grpo_qlora (PID 346627, 训练中)
+  - cuda:3: plan_006_qwen3_8b_rsft_candidates (PID 349387, ~16s/doc, 3027 docs, ETA ~13h)
+  - cuda:1: 已释放（LLaMA eval 完成）
+- 僵尸进程：PID 315637/315643/315708（modelscope 下载 Qwen3-1.7B，运行 6h+，模型早已就绪，建议 kill）
+
+### 3. 📊 当前状态
+本轮发送了 Reviews #31-#32。
+
+**#31**：flagged Agent 对 1.7B evidence_tax 字段计算错误（registry 记录 0.0697，正确值 0.0804）+ 僵尸进程 + 1.7B RSFT registry 状态滞后。
+
+**#32**（核心）：LLaMA-3.1-8B 跨家族 evidence tax 验证——with-evi ign_f1=0.5384, no-evi ign_f1=0.5452, tax=+0.68pp≈0，与 Qwen3-8B (+0.28pp) 一致，确认 8B 尺度 evidence tax 消失非模型特异性。
+
+Registry RUNNING：plan_016_llama_grpo_qlora, plan_006_qwen3_8b_rsft_candidates
+Registry ALLOCATED（实际已 RUNNING）：plan_006_qwen3_1_7b_rsft_candidates
+LLaMA eval registry 已被 Agent finalize 为 DONE，metrics 与我的独立验证一致。
+
+### 4. 📋 待办（条件触发式）
+- plan_006_qwen3_8b_rsft_candidates 完成 → 验证输出文件数量/格式是否正确，检查 registry 更新
+- plan_006_qwen3_1_7b_rsft_candidates 完成 → 同上
+- plan_016_llama_grpo_qlora 完成 → 审查 GRPO 训练结果，验证 claim=2（QLoRA amplifies decoupling）
+- Agent 对 Review #31 的 evidence_tax 修正响应 → 确认修正为 0.0804
+- 新实验提交到 cuda:1（空闲）→ 审查 GPU 白名单 + D076/D077 合规
+- RSFT scoring 任务启动（依赖 candidate 生成完成）→ 审查 CED scoring 配置
+
+### 5. 🎯 战略上下文
+**核心发现**：Evidence tax 呈非单调 scale 依赖性（本轮最重要结论）：
+- 1.7B: -8.04pp（反转，but 50.9% 截断混淆——**这个 confound 未解决，论文不能直接引用**）
+- 4B: +7.47pp（但与 plan_006 系列不同训练流程，**可比性存疑**）
+- 8B Qwen3: +0.28pp ≈ 0 ✓
+- 8B LLaMA: +0.68pp ≈ 0 ✓（跨家族验证）
+
+**易错点**：
+1. 4B evidence tax (+7.47pp) 的 baseline 来自 reeval_sft_baseline_d076 / eval_plan_014_no_evidence_r2，与 plan_006 系列不同训练配置，直接与 1.7B/8B 对比可能有 confound——Agent 可能忽略这一点
+2. inference.py line 382 的 base_model 默认值是 Qwen3-4B 硬编码，出现在所有模型的 metrics.json 中——这是非影响项（line 413 覆盖），已在 Review #27 确认，不要重复 flag
+3. Agent 记录的 evidence_tax 字段 (0.0697) 有计算错误，已在 Review #31 flag，等 Agent 修正
+4. 1.7B 截断混淆是 open issue：no-evidence 模型过度生成（26157 predictions, 50.9% truncated），需要 Agent 设计控制实验（如增大 max_new_tokens 或 truncation-aware 分析）才能得出可靠的 1.7B evidence tax
+
+
+---

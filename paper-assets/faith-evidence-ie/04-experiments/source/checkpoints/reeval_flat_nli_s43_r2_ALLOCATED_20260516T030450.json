@@ -1,0 +1,22 @@
+{
+  "exp_id": "reeval_flat_nli_s43_r2",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:32:45.507Z",
+    "updated_at": "2026-05-16T03:04:50.106Z",
+    "hypothesis": "Re-eval flat-NLI RSFT s43 with unified protocol: batch_size=4 + --no-quantize + --sft_adapter + --max_new_tokens 1024. 原 reeval_flat_nli_s43 用了 batch_size=16 导致协议不一致。C3 paired t-test 关键路径。",
+    "spec": {
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-16T03:04:50.412563+00:00",
+  "trigger": "update_registry"
+}

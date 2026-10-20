@@ -1,0 +1,38 @@
+{
+  "exp_id": "test_eval_4b_rsft_s44_with_evi",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:33:05.779Z",
+    "updated_at": "2026-05-23T10:43:43.982Z",
+    "hypothesis": "4B RSFT CED k=1 s44 with-evidence test eval on Re-DocRED test_revised (500 docs). 补充第 3 seed：s42 ign_f1=0.2503, s43=0.2503。3-seed mean±std 完善 4B evidence tax 数据。",
+    "parent": "rsft_ced_s44_train_v2",
+    "spec": {
+      "command": "python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_ced_s44 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 44",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "241448",
+      "log_path": "~/runs/faith-evidence-ie/test_eval_4b_rsft_s44_with_evi.log",
+      "submitted_at": "2026-05-23T09:33:19.982Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+      "data_count": 500,
+      "model_name": "Qwen3-4B + SFT + RSFT-CED-s44 (with-evi)",
+      "seed": 44,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_ced_s44",
+      "eval_data": "Re-DocRED test_revised (500 docs)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T10:43:41.767Z"
+    }
+  },
+  "timestamp": "2026-05-23T10:43:44.637555+00:00",
+  "trigger": "update_registry"
+}

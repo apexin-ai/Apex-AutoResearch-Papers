@@ -1,0 +1,15 @@
+{
+  "exp_id": "d158_14b_sft_s44",
+  "project": "faith-evidence-ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T08:29:14.167Z",
+    "updated_at": "2026-05-24T08:52:26.608Z",
+    "hypothesis": "14B SFT seed=44 训练。补全 14B scale 3-seed 统计鲁棒性，解决 Reviewer cherry-picking 质疑。超参完全复制 plan017_14b_sft_s43。对应 Claim 1 + Claim 3。"
+  },
+  "timestamp": "2026-05-24T08:52:27.285658+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,47 @@
+{
+  "exp_id": "retrain_4b_rsft_ced_s42_v2",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T23:06:21.364Z",
+    "updated_at": "2026-05-21T23:56:36.225Z",
+    "hypothesis": "重训 4B RSFT s42 (CED k=1)。原 checkpoint 已永久丢失（rtx5090-4x + bjb2 均无备份）。使用现有训练数据 rsft_filtered/rsft_train.jsonl (2718 CED k=1 samples) 重训。完成后提交 test_eval_4b_rsft_s42 填充 test table 4B 数据点。",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:2",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx5090-4x",
+      "gpu": "cuda:2",
+      "started_at": "2026-05-21T23:12:05.524Z"
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_ced_s42_v2 --seed 42 --weighted_sampling --bf16 --wandb_run_name rsft-ced-s42-v2",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/rsft_filtered/rsft_train.jsonl",
+      "data_count": 2718,
+      "model_name": "Qwen3-4B + SFT s42 → RSFT CED k=1",
+      "seed": 42,
+      "checkpoint_source": "retrain (original permanently lost)",
+      "hyperparams": "bf16, LoRA r=64/α=128, lr=2e-5, 3 epochs, weighted sampling",
+      "pid": 142867,
+      "log_path": "/tmp/rsft_ced_s42_v2.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "final_loss": 0.5711,
+      "token_accuracy": 0.8639,
+      "train_loss_avg": 0.6114,
+      "total_steps": 510,
+      "epochs": 3,
+      "train_runtime_sec": 2348
+    },
+    "checkpoint_path": "/root/autodl-tmp/rsft_output_ced_s42_v2",
+    "log_path": "/tmp/rsft_ced_s42_v2.log",
+    "completed_at": "2026-05-21T23:56:36.225Z"
+  },
+  "timestamp": "2026-05-21T23:56:36.881827+00:00",
+  "trigger": "update_registry"
+}

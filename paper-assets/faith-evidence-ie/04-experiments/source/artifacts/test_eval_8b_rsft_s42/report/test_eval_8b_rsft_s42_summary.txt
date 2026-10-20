@@ -1,0 +1,6 @@
+F1/Ign-F1: 0.3353 (local, train_annotated.json missing so Ign-F1=F1)
+Precision: 0.5149, Recall: 0.2486
+Evi-F1(DREEAM): 0.2526, Evi-F1(TP): 0.6037, EDCR: 0.7993
+format_ok: 499/500 (99.8%), field_compliance: 74/500 (14.8%)
+Dev ign_f1: 0.5376, Dev-Test gap: -20.2pp
+CodaLab: 8049 converted, codalab_submission.json at /root/autodl-tmp/eval_results/test_eval_8b_rsft_s42/

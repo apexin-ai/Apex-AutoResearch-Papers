@@ -1,0 +1,62 @@
+{
+  "exp_id": "eval_plan_014_sft_no_evidence",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:20:25.574Z",
+    "updated_at": "2026-05-15T18:38:02.399Z",
+    "spec": {
+      "command": "python -m freige.eval.inference --model_path /root/autodl-tmp/sft_no_evidence_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/sft_no_evidence --no-quantize --no_evidence",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "230804",
+      "log_path": "~/runs/faith-evidence-ie/eval_plan_014_sft_no_evidence.log",
+      "submitted_at": "2026-05-15T17:20:44.247Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-4B (SFT-no-evidence)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_no_evidence_output",
+      "eval_data": "docred dev (985 docs)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T18:29:34.790Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T18:29:37.278008+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "rel_f1": 0.4893,
+      "rel_ign_f1": 0.4893,
+      "rel_precision": 0.4884,
+      "rel_recall": 0.4902,
+      "evi_f1": 0,
+      "evi_precision": 0,
+      "evi_recall": 0,
+      "edcr": 0,
+      "format_ok_rate": 0.9919,
+      "n_truncated": 298,
+      "n_predictions": 21064,
+      "n_documents": 985,
+      "n_parseable": 977,
+      "inference_time_seconds": 4103.8
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T18:38:02.639750+00:00",
+  "trigger": "update_registry"
+}

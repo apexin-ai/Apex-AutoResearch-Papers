@@ -1,0 +1,1134 @@
+# ssh full status sync
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 37
+- **Recorded user turns:** 0
+- **Tool calls:** 18
+- **Original source:** `logs/chats/worker_ssh_full-status-sync_20260515T005356.jsonl`
+- **Structured JSON:** [`67a449fdaeac163341c9.json`](../../sessions/67/67a449fdaeac163341c9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+37 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T00:55:39.850339+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T00:55:39.850938+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T00:55:39.851226+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ps -p 90080,122144,117635,111731 -o pid,stat,etime,cmd 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ps -p 90080,122144,117635,111731 -o pid,stat,etime,cmd 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T00:55:39.851480+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T00:55:39.851673+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T00:55:39.851846+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tmux list-sessions 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tmux list-sessions 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T00:55:39.852018+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 13645 MiB, 47 %\\n1, 23195 MiB, 88 %\\n2, 0 MiB, 0 %\\n3, 10653 MiB, 82 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T00:55:39.852183+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T00:55:39.852426+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ps -p 90080 -o pid,stat,etime,cmd",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ps -p 90080 -o pid,stat,etime,cmd",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T00:55:39.852647+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID STAT     ELAPSED CMD\\n 90080 Ss+     05:14:29 bash -c rm -f /tmp/agent-ml-exit/mvp2_grpo_ced_lr5e6_r1.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/mvp2_grpo_ced_lr5e6_r1.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/freige && export CUDA_VISIBLE_DEVICES=0 && timeout 43200 env bash -c 'bash -c \\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end 0.5 --output_dir /root/autodl-tmp/grpo_ced_lr5e6 --num_generations 8 --reward_device cuda --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-6 --seed 42 --kl_coef 0.01 --save_steps 20 --save_total_limit 20 --max_steps 200 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --wandb_run_name grpo-s3-ced-lr5e6-r1\\\"'; } > ~/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log 2>&1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T00:55:39.853055+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ps -p 122144 -o pid,stat,etime,cmd",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ps -p 122144 -o pid,stat,etime,cmd",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T00:55:39.853283+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID STAT     ELAPSED CMD\\n122144 Ss+        44:37 bash -c rm -f /tmp/agent-ml-exit/mvp2_rsft_generate.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/faith-evidence-ie/mvp2_rsft_generate.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/mvp2_rsft_generate.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/freige && export CUDA_VISIBLE_DEVICES=1 && timeout 43200 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/autodl-tmp && python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split train_annotated --output_dir /root/autodl-tmp/rsft_generations --num_generations 8 --temperature 0.7 --batch_size 2 --max_new_tokens 1024 --seed 42\\\"'; } > ~/runs/faith-evidence-ie/mvp2_rsft_generate.log 2>&1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T00:55:39.853486+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ps -p 117635 -o pid,stat,etime,cmd",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ps -p 117635 -o pid,stat,etime,cmd",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T00:55:39.853681+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID STAT     ELAPSED CMD\\n117635 Ss+     01:14:40 bash -c rm -f /tmp/agent-ml-exit/mvp2_eval_lr5e6_r1_ckpt100.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/mvp2_eval_lr5e6_r1_ckpt100.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/freige && export CUDA_VISIBLE_DEVICES=3 && timeout 10800 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"'; } > ~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log 2>&1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T00:55:39.853881+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ps -p 111731 -o pid,stat,etime,cmd",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ps -p 111731 -o pid,stat,etime,cmd",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T00:55:39.854050+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tmux list-sessions",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tmux list-sessions",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T00:55:39.854220+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"   PID STAT     ELAPSED CMD\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T00:55:39.854417+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T00:55:39.854660+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -50 /root/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -50 /root/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T00:55:39.854990+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 03:40:12,272 INFO Processed 38180 relation samples from 3053 documents (17312 samples without hard negatives)\\n2026-05-15 03:40:12,694 INFO Prepared 3027 GRPO prompts\\n2026-05-15 03:40:12,792 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-15 03:40:12,793 INFO Using 4-bit QLoRA quantization\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.92s/it]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:06<00:03,  3.22s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.15s/it]\\n2026-05-15 03:40:19,514 INFO Loading SFT adapter from /root/autodl-tmp/sft_output\\n/root/miniconda3/lib/python3.12/site-packages/peft/tuners/lora/bnb.py:373: UserWarning: Merge lora module to 4-bit linear may get different generations due to rounding errors.\\n  warnings.warn(\\n2026-05-15 03:40:30,522 INFO Loading NLI model: cross-encoder/nli-deberta-v3-base\\n2026-05-15 03:40:33,871 INFO Entailment index: 1 (id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'})\\n2026-05-15 03:40:33,871 INFO Stage 3: using ced reward, tau 0.30→0.50 over 190 steps\\n2026-05-15 03:40:35,806 INFO Starting GRPO training (stage 3)...\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\n\\r  0%|          | 0/200 [00:00<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed\\n\\r  0%|          | 1/200 [01:50<6:04:54, 110.02s/it]\\r  1%|          | 2/200 [03:42<6:06:59, 111.21s/it]\\r  2%|▏         | 3/200 [05:32<6:04:33, 111.03s/it]\\r  2%|▏         | 4/200 [07:24<6:03:29, 111.27s/it]\\r  2%|▎         | 5/200 [09:14<5:59:48, 110.71s/it]2026-05-15 0
+…[truncated 6428 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T00:55:39.855278+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -100 /root/runs/faith-evidence-ie/mvp2_rsft_generate.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -100 /root/runs/faith-evidence-ie/mvp2_rsft_generate.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T00:55:39.855576+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 08:09:57,803 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-15 08:09:58,123 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-15 08:09:58,342 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.27it/s]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.26it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.86it/s]\\n2026-05-15 08:09:59,993 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output\\n2026-05-15 08:10:03,454 INFO Loaded 3053 documents from /root/autodl-tmp/data/docred/train_annotated.json\\n2026-05-15 08:10:04,020 INFO Processed 38180 relation samples from 3053 documents (17312 samples without hard negatives)\\n2026-05-15 08:10:04,574 INFO Prepared 3027 documents for generation\\n2026-05-15 08:10:04,587 INFO Total: 3027, completed: 0, pending: 3027\\n\\rGenerating:   0%|          | 0/1514 [00:00<?, ?it/s]\\rGenerating:   0%|          | 1/1514 [00:24<10:10:19, 24.20s/it]\\rGenerating:   0%|          | 2/1514 [01:05<14:27:24, 34.42s/it]\\rGenerating:   0%|          | 3/1514 [01:43<15:01:46, 35.81s/it]\\rGenerating:   0%|          | 4/1514 [02:20<15:14:34, 36.34s/it]\\rGenerating:   0%|          | 5/1514 [03:00<15:51:07, 37.82s/it]\\rGenerating:   0%|          | 6/1514 [03:21<13:26:51, 32.10s/it]\\rGenerating:   0%|          | 7/1514 [03:48<12:39:14, 30.23s/it]\\rGenerating:   1%|          | 8/1514 [04:25<13:36:55, 32.55s/it]\\rGenerating:   1%|          | 9/1514 [04:38<10:58:25, 26.25s/it]\\rGenerating:   1%|          | 10/1514 [05:02<10:40:10, 25.54s/it]\\rGenerating:   1%|          | 11/151
+…[truncated 5244 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T00:55:39.855767+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -50 /root/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -50 /root/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T00:55:39.855949+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 07:39:55,325 INFO Detected adapter at /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100, base: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-15 07:39:55,326 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-15 07:39:55,630 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-15 07:39:57,576 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.73s/it]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:06<00:03,  3.06s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.04s/it]\\n2026-05-15 07:40:03,756 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output\\n/root/miniconda3/lib/python3.12/site-packages/peft/tuners/lora/bnb.py:373: UserWarning: Merge lora module to 4-bit linear may get different generations due to rounding errors.\\n  warnings.warn(\\n2026-05-15 07:40:13,494 INFO Loading LoRA adapter: /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\\n2026-05-15 07:40:15,008 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\n2026-05-15 07:40:15,280 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\n2026-05-15 07:40:15,458 INFO Prepared 985 eval documents, 12275 gold triples\\n\\rInference:   0%|          | 0/62 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n\\rInference:   2%|▏         | 1/62 [01:32<1:34:28, 92.93s/it]\\rInference:   3%|▎         | 2/62 [03:05<1:32:32, 92.53s/it]\\rInference:   5%|▍         | 3/62 [04:38<1:31:07, 92.68s/it]\\rInference:   6%|▋         | 4/62 [06:11<1:29:55, 93.03
+…[truncated 2789 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T00:55:39.856105+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -50 /root/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt80.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -50 /root/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt80.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T00:55:39.856271+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt80.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T00:55:39.856498+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/eval_results/ -name \"metrics.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp/eval_results/ -name \"metrics.json\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T00:55:39.856703+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-50/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-10/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-60/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-20/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-30/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6/checkpoint-20/metrics.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T00:55:39.856860+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /root/autodl-tmp/grpo_ced_lr5e6/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls -la /root/autodl-tmp/grpo_ced_lr5e6/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T00:55:39.856995+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 48\\ndrwxr-xr-x 11 root root 4096 May 15 08:50 .\\ndrwxr-xr-x 37 root root 4096 May 15 08:09 ..\\n-rw-r--r--  1 root root 1862 May 15 08:50 README.md\\ndrwxr-xr-x  2 root root 4096 May 15 06:43 checkpoint-100\\ndrwxr-xr-x  2 root root 4096 May 15 07:15 checkpoint-120\\ndrwxr-xr-x  2 root root 4096 May 15 07:46 checkpoint-140\\ndrwxr-xr-x  2 root root 4096 May 15 08:17 checkpoint-160\\ndrwxr-xr-x  2 root root 4096 May 15 08:50 checkpoint-180\\ndrwxr-xr-x  2 root root 4096 May 15 04:17 checkpoint-20\\ndrwxr-xr-x  2 root root 4096 May 15 04:54 checkpoint-40\\ndrwxr-xr-x  2 root root 4096 May 15 05:33 checkpoint-60\\ndrwxr-xr-x  2 root root 4096 May 15 06:10 checkpoint-80\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T00:55:39.857150+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T00:55:39.857363+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.010919872722013306,\\n  \\\"recall\\\": 0.012426960743971689,\\n  \\\"f1\\\": 0.011624773855806613,\\n  \\\"ign_precision\\\": 0.010919872722013306,\\n  \\\"ign_recall\\\": 0.012426960743971689,\\n  \\\"ign_f1\\\": 0.011624773855806613,\\n  \\\"tp\\\": 151,\\n  \\\"pred_count\\\": 13828,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.927710843373494,\\n  \\\"evi_recall\\\": 0.7475728155339806,\\n  \\\"evi_f1\\\": 0.8279569892473118,\\n  \\\"n_evaluated\\\": 16306,\\n  \\\"edcr\\\": 0.9908366059740569,\\n  \\\"n_distractor_citations\\\": 16652,\\n  \\\"n_total_citations\\\": 16806,\\n  \\\"format_compliance_rate\\\": 0.9989847715736041,\\n  \\\"field_compliance_rate\\\": 0.7878172588832487,\\n  \\\"evidence_format_rate\\\": 0.7878172588832487,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 984,\\n  \\\"n_field_complete\\\": 776,\\n  \\\"n_evidence_valid\\\": 776,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 16353,\\n  \\\"n_truncated\\\": 210,\\n  \\\"n_format_ok\\\": 984,\\n  \\\"format_ok_rate\\\": 0.9989847715736041,\\n  \\\"inference_time_seconds\\\": 6099.3,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-80\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"quantize\\\": true\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T00:55:39.857548+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/runs/faith-evidence-ie/ -name \"*ckpt80*\" -o -name \"*ckpt-80*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/runs/faith-evidence-ie/ -name \"*ckpt80*\" -o -name \"*ckpt-80*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T00:55:39.857679+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T00:55:39.857797+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls /root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T00:55:39.857916+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"metrics.json\\npredictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_full-status-sync_20260515T005356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-15T00:55:39.858100+00:00_
+
+## 状态汇总
+
+### GPU 占用
+| GPU | 显存占用 | 利用率 | 实验 |
+|-----|---------|--------|------|
+| 0 | 13645 MiB | 47% | GRPO 训练 |
+| 1 | 23195 MiB | 88% | RSFT 生成 |
+| 2 | **0 MiB** | **0%** | ckpt80 eval 已结束 |
+| 3 | 10653 MiB | 82% | ckpt100 eval |
+
+---
+
+### 实验 1: mvp2_grpo_ced_lr5e6_r1 — **ALIVE** (5h14m)
+- **进度**: 183/200 steps (92%)，~25min 完成
+- 已保存 checkpoint: 20, 40, 60, 80, 100, 120, 140, 160, 180
+- 最近 step 指标下降趋势：
+  - reward: 0.453 → 0.281
+  - f1_reward: 0.060 → 0.014
+  - ced_reward: 0.107 → 0.015
+  - format_reward: 0.286 → 0.252
+- **WARNING**: KL divergence 极大（step 5 时 2.4B，step 30 时 70T），仅监控未停止
+
+### 实验 2: mvp2_rsft_generate — **ALIVE** (44min，**新启动**)
+- **进度**: 83/1514 batches (5%)，预计 ~14h 完成
+- **前 100 样本监控**：
+  - format_ok_rate: **99.6%**
+  - truncation_rate: **9.2%**
+  - mean_diversity: **0.9/8** ⚠️ 极低，8 次生成几乎完全相同
+- 无输出文件路径/大小信息（尚在生成中）
+
+### 实验 3: mvp2_eval_lr5e6_r1_ckpt100 — **ALIVE** (1h14m)
+- **进度**: 47/62 batches (76%)，~24min 完成
+- 结果待产出
+
+### 实验 4: mvp2_eval_lr5e6_r1_ckpt80 — **已完成** ✓
+- 日志文件不存在（路径无 `mvp2_eval_lr5e6_r1_ckpt80.log`）
+- 结果路径: `/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/`
+- **关键指标**：
+  - **rel_f1: 0.0116** ⚠️ 灾难性低
+  - ign_f1: 0.0116
+  - precision: 0.0109, recall: 0.0124
+  - pred_count: 13828 vs gold_count: 12151（预测数量级正确但几乎全错）
+  - **evi_f1: 0.828**（evidence 本身还行）
+  - evi_precision: 0.928, evi_recall: 0.748
+  - format_ok_rate: 99.9%
+  - field_compliance: 78.8%
+  - truncated: 210/985
+  - inference_time: 6099s (~1h42m)
+
+**关键发现**：ckpt80 的 rel_f1 只有 1.2%，模型能正确输出格式和找到 evidence，但关系抽取几乎完全失败。结合 GRPO 训练中 reward 持续下降和 KL 爆炸，训练可能已经崩溃。RSFT 生成的 diversity 0.9/8 也印证模型输出高度退化。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ssh_full-status-sync_20260515T005356"
+}
+```
+
+</details>
+
+---

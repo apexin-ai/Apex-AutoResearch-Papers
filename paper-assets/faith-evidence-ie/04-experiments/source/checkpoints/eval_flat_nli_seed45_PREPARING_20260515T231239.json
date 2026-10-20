@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_flat_nli_seed45",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:12:39.186Z",
+    "updated_at": "2026-05-15T23:12:39.186Z"
+  },
+  "timestamp": "2026-05-15T23:12:39.411653+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,45 @@
+{
+  "exp_id": "plan_016_llama_3_1_8b_no_evidence_sft",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T11:06:47.006Z",
+    "updated_at": "2026-05-16T12:05:08.263Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence --no-quantize --no_evidence --seed 42 --wandb_run_name llama_3_1_8b_no_evidence_sft",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 3027,
+      "model_name": "Meta-Llama-3.1-8B",
+      "seed": 42,
+      "plan_id": "plan_016",
+      "hypothesis": "Cross-family no-evidence SFT: LLaMA-3.1-8B bf16 LoRA. Evidence tax cross-family validation. claim=1.",
+      "quantize": "none (bf16 LoRA)",
+      "lora_rank": 64,
+      "lora_alpha": 128,
+      "output_dir": "/root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence",
+      "log_path": "/root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence/checkpoint-570/trainer_state.json",
+      "pid": 333911,
+      "checkpoint_path": "/root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence",
+      "metrics": {
+        "train_loss": 0.456,
+        "train_token_accuracy": 0.8816,
+        "eval_loss": 0.8412,
+        "eval_token_accuracy": 0.815,
+        "epochs": 3,
+        "total_steps": 570,
+        "final_lr": 3.697e-07
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-16T12:05:08.263Z"
+  },
+  "timestamp": "2026-05-16T12:05:08.599944+00:00",
+  "trigger": "update_registry"
+}

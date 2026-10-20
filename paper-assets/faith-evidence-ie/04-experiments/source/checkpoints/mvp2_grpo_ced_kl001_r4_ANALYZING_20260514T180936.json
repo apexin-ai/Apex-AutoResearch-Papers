@@ -1,0 +1,68 @@
+{
+  "exp_id": "mvp2_grpo_ced_kl001_r4",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T15:32:32.529Z",
+    "updated_at": "2026-05-14T18:09:36.043Z",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end 0.5 --output_dir /root/autodl-tmp/grpo_ced_kl001 --num_generations 8 --reward_device cuda --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-5 --seed 42 --kl_coef 0.01 --save_steps 10 --save_total_limit 20 --max_steps 100 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --wandb_run_name grpo-s3-ced-kl001-r4\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "68084",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_grpo_ced_kl001_r4.log",
+      "submitted_at": "2026-05-14T15:32:32.454Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": {
+        "train": 3027,
+        "dev": 985
+      },
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "kl_coef=0.01 + num_generations=8 prevents mode collapse (vs r5 kl=0/gen=4 which collapsed at step 250). 100-step probe to verify KL stability before full run.",
+      "parent": "mvp2_grpo_ced_r5",
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "/root/autodl-tmp/data/docred",
+      "hyperparams": {
+        "learning_rate": "5e-5",
+        "kl_coef": 0.01,
+        "save_steps": 10,
+        "save_total_limit": 20,
+        "max_steps": 100,
+        "num_iterations": 1,
+        "num_generations": 8,
+        "format_reward_weight": 0.3,
+        "f1_reward_weight": 3,
+        "ced_reward_weight": 1,
+        "per_device_batch_size": 1,
+        "gradient_accumulation_steps": 16,
+        "quantization": "QLoRA 4-bit NF4",
+        "reward_device": "cuda"
+      }
+    },
+    "notes": "D020 配置：kl_coef=0.01 + num_generations=8 + save_steps=10 + max_steps=100 探测。✅ F1 门控已包含。\n\n**训练即将完成 (step 99/100, 18:04 UTC)**:\n- step 85: reward=0.843, f1=0.358, ced=0.196, frac_zero_std=0.2, KL=0.148\n- 全程无 collapse，KL 受控\n- Best reward checkpoint: step 50 (reward=1.101, f1=0.480, ced=0.328)\n- 趋势：batch_size=1 GRPO 方差大，step 50 最高 → step 60 回落 → step 85 回升到 0.843\n- cuda:1 eval ckpt-50 进行中 (66%)，cuda:2 multi eval 进行中",
+    "reproduce": {
+      "finished_at": "2026-05-14T18:05:49.446Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T18:05:50.777825+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T18:09:36.200035+00:00",
+  "trigger": "update_registry"
+}

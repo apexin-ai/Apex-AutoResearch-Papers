@@ -1,0 +1,2432 @@
+# research ced scoring compat
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 51
+- **Recorded user turns:** 0
+- **Tool calls:** 20
+- **Original source:** `logs/workers/worker_research_ced_scoring_compat_20260516T124141.log`
+- **Structured JSON:** [`755b23de6c06e398ccfe.json`](../../sessions/75/755b23de6c06e398ccfe.json)
+
+## Before a recorded user message
+
+51 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "51bd74b1-af58-45d7-aed1-f8dd15747ee7",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778939400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "eafaf657-8474-418a-8bff-4d77417ec0c7",
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to investigate the CED scoring pipeline on the remote server to confirm its compatibility. I need to use ssh_read_only only. Let me fetch the tool schema first and then execute the commands.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "a32f9ab9-f69e-4782-a339-479550bf77eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HaenGnDhaTvxX4YA7z25Q7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12638,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12638
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Ayar1xY4zEckHs7mqgYrcJ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "000b240d-325c-46e4-9538-78669030331f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HaenGnDhaTvxX4YA7z25Q7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12638,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12638
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T12:41:53.191Z_
+
+<details><summary>↩ Tool result · `toolu_01Ayar1xY4zEckHs7mqgYrcJ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "604c1ae7-aa4e-45c9-8c36-a1072eba7627",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me execute the commands to investigate the CED scoring pipeline. I'll start with finding relevant files and checking the rsft_trainer.py.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "dad26c3e-9562-45ad-b00c-109a3e52752c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoTvobP1zx9umAvzBFvCHa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 484,
+      "cache_read_input_tokens": 24085,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 484
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015X9nCn2ExLvirTJVuLbAuX`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/freige -name \"*ced*\" -o -name \"*score*\" -o -name \"*rerank*\" -o -name \"*nli*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "75e5ff19-9e4e-4878-876c-d9e735b051a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoTvobP1zx9umAvzBFvCHa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 484,
+      "cache_read_input_tokens": 24085,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 484
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T12:41:57.989Z_
+
+<details><summary>↩ Tool result · `toolu_015X9nCn2ExLvirTJVuLbAuX`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "9cc74a70-49e6-4324-94ba-b613e8dab865",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01C5VYWdxavSLK4Q1Q83xwax`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"ced\\|CED\\|nli\\|NLI\\|score\\|rerank\" /root/autodl-tmp/freige/training/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "09e97845-7523-464c-8e59-5b64f256846a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoTvobP1zx9umAvzBFvCHa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 484,
+      "cache_read_input_tokens": 24085,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 484
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T12:41:58.916Z_
+
+<details><summary>↩ Tool result · `toolu_01C5VYWdxavSLK4Q1Q83xwax`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "a8053679-bc5d-442a-a9c5-5e15bd45a2c4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01McAR2ncKs1NfjQm8KmScUm`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -rn \"nli\\|deberta\\|roberta\\|entail\" /root/autodl-tmp/freige/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "c0e86e20-18b4-4c19-bfcd-ba10a711cbd3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoTvobP1zx9umAvzBFvCHa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 484,
+      "cache_read_input_tokens": 24085,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 484
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T12:41:59.556Z_
+
+<details><summary>↩ Tool result · `toolu_01McAR2ncKs1NfjQm8KmScUm`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "97e3e5b8-7d80-42a6-b9f4-aee574ac8e4a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+Shell metacharacters are blocked. Let me adjust the commands to avoid pipes and redirects.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "692e2dba-b1b5-4ffa-b329-789041e83e23",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ThFdFNwnVC2D8ySpcwGuG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 24569,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 819
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JyQos4MJGoEAZGUZ3GXGs3`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/freige -name \"*ced*\" -o -name \"*score*\" -o -name \"*rerank*\" -o -name \"*nli*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "7b6be122-f3ff-4530-994b-e35b368ced6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ThFdFNwnVC2D8ySpcwGuG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 24569,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 819
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BjnD4PhBCV1iK29gFeHHtr`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"ced\\|CED\\|nli\\|NLI\\|score\\|rerank\" /root/autodl-tmp/freige/training/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "5ee526a0-4983-4b3f-b686-d99b0211efc1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ThFdFNwnVC2D8ySpcwGuG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 24569,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 819
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T12:42:05.474Z_
+
+<details><summary>↩ Tool result · `toolu_01JyQos4MJGoEAZGUZ3GXGs3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/rewards/ced_reward.py\\n/root/autodl-tmp/freige/rewards/__pycache__/ced_reward.cpython-312.pyc\\n/root/autodl-tmp/freige/analysis/ced_signal_validation.py\\n/root/autodl-tmp/freige/analysis/__pycache__/ced_signal_validation.cpython-312.pyc\\n/root/autodl-tmp/freige/training/__pycache__/rsft_score_filter.cpython-312.pyc\\n/root/autodl-tmp/freige/training/rsft_score_filter.py\\n/root/autodl-tmp/freige/training/rsft_ced_analysis.py\\n/root/autodl-tmp/freige/eval/__pycache__/ced_reranker.cpython-312.pyc\\n/root/autodl-tmp/freige/eval/ced_reranker.py\\n/root/autodl-tmp/freige/tests/test_ced_gate.py\\n/root/autodl-tmp/freige/tests/__pycache__/test_ced_gate.cpython-312-pytest-9.0.3.pyc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "c633185d-05fe-45f9-9fc9-d3629377b4f4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/freige/rewards/ced_reward.py\\\\n/root/autodl-tmp/freige/rewards/__pycache__/ced_reward.cpython-312.pyc\\\\n/root/autodl-tmp/freige/analysis/ced_signal_validation.py\\\\n/root/autodl-tmp/freige/analysis/__pycache__/ced_signal_validation.cpython-312.pyc\\\\n/root/autodl-tmp/freige/training/__pycache__/rsft_score_filter.cpython-312.pyc\\\\n/root/autodl-tmp/freige/training/rsft_score_filter.py\\\\n/root/autodl-tmp/freige/training/rsft_ced_analysis.py\\\\n/root/autodl-tmp/freige/eval/__pycache__/ced_reranker.cpython-312.pyc\\\\n/root/autodl-tmp/freige/eval/ced_reranker.py\\\\n/root/autodl-tmp/freige/tests/test_ced_gate.py\\\\n/root/autodl-tmp/freige/tests/__pycache__/test_ced_gate.cpython-312-pytest-9.0.3.pyc\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/rewards/ced_reward.py\\n/root/autodl-tmp/freige/rewards/__pycache__/ced_reward.cpython-312.pyc\\n/root/autodl-tmp/freige/analysis/ced_signal_validation.py\\n/root/autodl-tmp/freige/analysis/__pycache__/ced_signal_validation.cpython-312.pyc\\n/root/autodl-tmp/freige/training/__pycache__/rsft_score_filter.cpython-312.pyc\\n/root/autodl-tmp/freige/training/rsft_score_filter.py\\n/root/autodl-tmp/freige/training/rsft_ced_analysis.py\\n/root/autodl-tmp/freige/eval/__pycache__/ced_reranker.cpython-312.pyc\\n/root/autodl-tmp/freige/eval/ced_reranker.py\\n/root/autodl-tmp/freige/tests/test_ced_gate.py\\n/root/autodl-tmp/freige/tests/__pycache__/test_ced_gate.cpython-312-pytest-9.0.3.pyc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T12:42:05.494Z_
+
+<details><summary>↩ Tool result · `toolu_01BjnD4PhBCV1iK29gFeHHtr`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "12968003-fc49-4fa5-8119-4611d447fa00",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0185wQf9WhejAHwdUdzhifkZ`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -rn \"nli\\|deberta\\|roberta\\|entail\" /root/autodl-tmp/freige/ --include=\"*.py\" --exclude-dir=__pycache__",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "ff6116d5-e871-44e7-8a3a-d3c1a60527cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ThFdFNwnVC2D8ySpcwGuG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 24569,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 819
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T12:42:06.700Z_
+
+<details><summary>↩ Tool result · `toolu_0185wQf9WhejAHwdUdzhifkZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "b4209b64-410f-42f3-a15a-d529205d2328",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+Found the key files. The `\|` in grep is being interpreted as a pipe. Let me use `-e` flags instead.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "7100f092-bbdf-48bc-a03f-921cb3f38c67",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E6ppVbFJMzLCS7yvZK44qE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1089,
+      "cache_read_input_tokens": 25388,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1089
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XpMpf6y58VhG4R5hhZUwkU`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n -e \"ced\" -e \"CED\" -e \"nli\" -e \"NLI\" -e \"score\" -e \"rerank\" /root/autodl-tmp/freige/training/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "aadbd348-5ca4-4abf-aba9-5ff92e157295",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E6ppVbFJMzLCS7yvZK44qE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1089,
+      "cache_read_input_tokens": 25388,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1089
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T12:42:11.768Z_
+
+<details><summary>↩ Tool result · `toolu_01XpMpf6y58VhG4R5hhZUwkU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3:从 SFT warmup checkpoint 继续训练，使用经 CED 打分筛选的高质量生成数据。\\n6:输入: JSONL，每行 {\\\"doc_id\\\": ..., \\\"input\\\": ..., \\\"output\\\": ..., \\\"ced_score\\\": ..., ...}\\n51:    \\\"\\\"\\\"加载 CED 筛选后的 RSFT 数据，格式化为 chat template 文本。\\n58:        (Dataset, list[float]): 训练数据集和对应的 CED scores\\n69:    ced_scores = []\\n88:        ced_scores.append(s.get(\\\"ced_score\\\", 1.0))\\n93:    if ced_scores:\\n95:            \\\"Prepared %d RSFT samples (CED scores: min=%.3f, max=%.3f, mean=%.3f)\\\",\\n96:            len(formatted), min(ced_scores), max(ced_scores),\\n97:            sum(ced_scores) / len(ced_scores),\\n99:    return Dataset.from_list(formatted), ced_scores\\n233:    \\\"\\\"\\\"SFTTrainer with CED score-weighted sampling.\\n235:    高 CED score 的样本被更频繁采样。使用 WeightedRandomSampler 实现，\\n261:                        help=\\\"CED 筛选后的 RSFT 训练数据 (JSONL)\\\")\\n275:                        help=\\\"按 CED score 加权采样（高分样本更频繁）\\\")\\n311:    train_dataset, ced_scores = load_rsft_data(\\n401:    sample_weights = ced_scores if args.weighted_sampling else None\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "5ccf4cda-2e65-4e99-bdb8-71faa91efd6f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3:从 SFT warmup checkpoint 继续训练，使用经 CED 打分筛选的高质量生成数据。\\\\n6:输入: JSONL，每行 {\\\\\\\"doc_id\\\\\\\": ..., \\\\\\\"input\\\\\\\": ..., \\\\\\\"output\\\\\\\": ..., \\\\\\\"ced_score\\\\\\\": ..., ...}\\\\n51:    \\\\\\\"\\\\\\\"\\\\\\\"加载 CED 筛选后的 RSFT 数据，格式化为 chat template 文本。\\\\n58:        (Dataset, list[float]): 训练数据集和对应的 CED scores\\\\n69:    ced_scores = []\\\\n88:        ced_scores.append(s.get(\\\\\\\"ced_score\\\\\\\", 1.0))\\\\n93:    if ced_scores:\\\\n95:            \\\\\\\"Prepared %d RSFT samples (CED scores: min=%.3f, max=%.3f, mean=%.3f)\\\\\\\",\\\\n96:            len(formatted), min(ced_scores), max(ced_scores),\\\\n97:            sum(ced_scores) / len(ced_scores),\\\\n99:    return Dataset.from_list(formatted), ced_scores\\\\n233:    \\\\\\\"\\\\\\\"\\\\\\\"SFTTrainer with CED score-weighted sampling.\\\\n235:    高 CED score 的样本被更频繁采样。使用 WeightedRandomSampler 实现，\\\\n261:                        help=\\\\\\\"CED 筛选后的 RSFT 训练数据 (JSONL)\\\\\\\")\\\\n275:                        help=\\\\\\\"按 CED score 加权采样（高分样本更频繁）\\\\\\\")\\\\n311:    train_dataset, ced_scores = load_rsft_data(\\\\n401:    sample_weights = ced_scores if args.weighted_sampling else None\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"3:从 SFT warmup checkpoint 继续训练，使用经 CED 打分筛选的高质量生成数据。\\n6:输入: JSONL，每行 {\\\"doc_id\\\": ..., \\\"input\\\": ..., \\\"output\\\": ..., \\\"ced_score\\\": ..., ...}\\n51:    \\\"\\\"\\\"加载 CED 筛选后的 RSFT 数据，格式化为 chat template 文本。\\n58:        (Dataset, list[float]): 训练数据集和对应的 CED scores\\n69:    ced_scores = []\\n88:        ced_scores.append(s.get(\\\"ced_score\\\", 1.0))\\n93:    if ced_scores:\\n95:            \\\"Prepared %d RSFT samples (CED scores: min=%.3f, max=%.3f, mean=%.3f)\\\",\\n96:            len(formatted), min(ced_scores), max(ced_scores),\\n97:            sum(ced_scores) / len(ced_scores),\\n99:    return Dataset.from_list(formatted), ced_scores\\n233:    \\\"\\\"\\\"SFTTrainer with CED score-weighted sampling.\\n235:    高 CED score 的样本被更频繁采样。使用 WeightedRandomSampler 实现，\\n261:                        help=\\\"CED 筛选后的 RSFT 训练数据 (JSONL)\\\")\\n275:                        help=\\\"按 CED score 加权采样（高分样本更频繁）\\\")\\n311:    train_dataset, ced_scores = load_rsft_data(\\n401:    sample_weights = ced_scores if args.weighted_sampling else None\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019uiVqksKHoQFGUd9w8AK2n`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/rewards/ced_reward.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "21906730-d63d-4a75-80f3-2ba89b7a6b53",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E6ppVbFJMzLCS7yvZK44qE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1089,
+      "cache_read_input_tokens": 25388,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1089
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T12:42:12.688Z_
+
+<details><summary>↩ Tool result · `toolu_019uiVqksKHoQFGUd9w8AK2n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"CED（Contrastive Evidence Discrimination）对比证据判别奖励。\\n\\n核心公式:\\n  p_pos = NLI_entail(concat(cited_evidence), claim)\\n  p_neg = max_j NLI_entail(neg_sent_j, claim)\\n  R_CED = max(0, p_pos - p_neg) * I(p_pos > tau)\\n\\n输入: 关系三元组 + gold evidence 句子 + hard negative 句子\\n输出: CED 奖励值 ∈ [0, 1]\\n依赖: transformers, torch\\n\\\"\\\"\\\"\\n\\nimport logging\\nfrom typing import Optional\\n\\nimport torch\\nimport torch.nn.functional as F\\nfrom transformers import AutoModelForSequenceClassification, AutoTokenizer\\n\\nlogger = logging.getLogger(__name__)\\n\\nDEFAULT_NLI_MODEL = \\\"cross-encoder/nli-deberta-v3-base\\\"\\n\\nVERBALIZATION_TEMPLATES = {\\n    \\\"P6\\\": \\\"The head of government of {head} is {tail}.\\\",\\n    \\\"P17\\\": \\\"{head} is located in the country {tail}.\\\",\\n    \\\"P19\\\": \\\"{head} was born in {tail}.\\\",\\n    \\\"P20\\\": \\\"{head} died in {tail}.\\\",\\n    \\\"P22\\\": \\\"The father of {head} is {tail}.\\\",\\n    \\\"P25\\\": \\\"The mother of {head} is {tail}.\\\",\\n    \\\"P26\\\": \\\"{head} is married to {tail}.\\\",\\n    \\\"P27\\\": \\\"{head} is a citizen of {tail}.\\\",\\n    \\\"P30\\\": \\\"{head} is located in the continent of {tail}.\\\",\\n    \\\"P31\\\": \\\"{head} is an instance of {tail}.\\\",\\n    \\\"P35\\\": \\\"The head of state of {head} is {tail}.\\\",\\n    \\\"P36\\\": \\\"The capital of {head} is {tail}.\\\",\\n    \\\"P37\\\": \\\"The official language of {head} is {tail}.\\\",\\n    \\\"P39\\\": \\\"{head} held the position of {tail}.\\\",\\n    \\\"P40\\\": \\\"{head} has a child named {tail}.\\\",\\n    \\\"P50\\\": \\\"The author of {head} is {tail}.\\\",\\n    \\\"P54\\\": \\\"{head} is a member of the sports team {tail}.\\\",\\n    \\\"P57\\\": \\\"The director of {head} is {tail}.\\\",\\n    \\\"P58\\\": \\\"The screenwriter of {head} is {tail}.\\\",\\n    \\\"P69\\\": \\\"{head} was educated at {tail}.\\\",\\n    \\\"P86\\\": \\\"The composer of {head} is {tail}.\\\",\\n    \\\"P102\\\": \\\"{head} is a member of the political party {tail}.\\\",\\n    \\\"P108\\\": \\\"{head} is employed by {tail}.\\\",\\n    \\\"P112\\\": \\\"{head} was founded by {tail}.\\\",\\n    \\\"P118\\\": \\\"{head} plays in the league {tail}.\\\",\\n    \\\"P123\\\": \\\"The publisher of {head} is {tail}.\\\",\\n    \\\"P127\\\": \\\"{head} is owned by {tail}.\\\",\\n    \\\"P131\\\": \\\"{head} is located in {tail}.\\\",\\n    \\\"P136\\\": \\\"The genre of {head} is {tail}.\\\",\\n    \\\"P137\\\": \\\"{head} is operated by {tail}.\\\",\\n    \\\"P140\\\": \\\"The religion of {head} is {tail}.\\\",\\n    \\\"P150\\\": \\\"{head} contains the administrative territory {tail}.\\\",\\n    \\\"P155\\\": \\\"{head} follows {tail}.\\\",\\n    \\\"P156\\\": \\\"{head} is followed by {tail}.\\\",\\n    \\\"P159\\\": \\\"The headquarters of {head} is located in {tail}.\\\",\\n    \\\"P161\\\": \\\"{head} features the cast member {tail}.\\\",\\n    \\\"P162\\\": \\\"The producer of {head} is {tail}.\\\",\\n    \\\"P166\\\": \\\"{head} received the award {tail}.\\\",\\n    \\\"P170\\\": \\\"The creator of {head} is {tail}.\\\",\\n    \\\"P171\\\": \\\"The parent taxon of {head} is {tail}.\\\",\\n    \\\"P172\\\": \\\"{head} belongs to the ethnic group {tail}.\\\",\\n    \\\"P175\\\": \\\"The performer of {head} is {tail}.\\\",\\n    \\\"P176\\\": \\\"The manufacturer of {head} is {tail}.\\\",\\n    \\\"P178\\\": \\\"The developer of {head} is {tail}.\\\",\\n    \\\"P179\\\": \\\"{head} is part of the series {tail}.\\\",\\n    \\\"P190\\\": \\\"{head} is a sister city of {tail}.\\\",\\n    \\\"P194\\\": \\\"The legislative body of {head} is {tail}.\\\",\\n    \\\"P205\\\": \\\"{head} is in the basin of {tail}.\\\",\\n    \\\"P206\\\": \\\"{head} is located near the body of water {tail}.\\\",\\n    \\\"P241\\\": \\\"{head} is a branch of the military {tail}.\\\",\\n    \\\"P264\\\": \\\"The record label of {head} is {tail}.\\\",\\n    \\\"P272\\\": \\\"The production company of {head} is {tail}.\\\",\\n    \\\"P276\\\": \\\"{head} is located in {tail}.\\\",\\n    \\\"P279\\\": \\\"{head} is a subclass of {tail}.\\\",\\n    \\\"P355\\\": \\\"{head} has the subsidiary {tail}.\\\",\\n    \\\"P361\\\": \\\"{head} is part of {tail}.\\\",\\n    \\\"P364\\\": \\\"The original language of {head} is {tail}.\\\",\\n    \\\"P400\\\": \\\"{head} is available on the platform {tail}.\\\",\\n    \\\"P403\\\": \\\"{head} flows into {tail}.\\\",\\n    \\\"P449\\\": \\\"The original network of {head} is {tail}.\\\",\\n    \\\"P463\\\": \\\"{head} is a member of {tail}.\\\",\\n    \\\"P488\\\": \\\"The chairperson of {head} is {tail}.\\\",\\n    \\\"P495\\\": \\\"{head} originates from the country {tail}.\\\",\\n    \\\"P527\\\": \\\"{head} has the part {tail}.\\\",\\n    \\\"P551\\\": \\\"{head} resides in {tail}.\\\",\\n    \\\"P569\\\": \\\"{head} was born on {tail}.\\\",\\n    \\\"P570\\\": \\\"{head} died on {tail}.\\\",\\n    \\\"P571\\\": \\\"{head} was established in {tail}.\\\",\\n    \\\"P576\\n\\n... [截断: 输出过长，省略 2190 字符] ...\\n\\n.model = AutoModelForSequenceClassification.from_pretrained(model_name)\\n        self.model.to(self.device)\\n        self.model.eval()\\n\\n        self._resolve_entailment_idx()\\n\\n    def _resolve_entailment_idx(self):\\n        id2label = self.model.config.id2label\\n        self.entail_idx = None\\n        for idx, label in id2label.items():\\n            if label.lower() in (\\\"entailment\\\", \\\"entail\\\"):\\n                self.entail_idx = int(idx)\\n                break\\n        if self.entail_idx is None:\\n            logger.warning(\\n                \\\"Could not find 'entailment' in id2label=%s, defaulting to index 1\\\",\\n                id2label,\\n            )\\n            self.entail_idx = 1\\n        logger.info(\\\"Entailment index: %d (id2label=%s)\\\", self.entail_idx, id2label)\\n\\n    @torch.no_grad()\\n    def nli_entailment_prob(\\n        self, premises: list[str], hypotheses: list[str]\\n    ) -> torch.Tensor:\\n        inputs = self.tokenizer(\\n            premises,\\n            hypotheses,\\n            padding=True,\\n            truncation=True,\\n            max_length=self.max_length,\\n            return_tensors=\\\"pt\\\",\\n        ).to(self.device)\\n\\n        logits = self.model(**inputs).logits\\n        probs = F.softmax(logits, dim=-1)\\n        return probs[:, self.entail_idx].cpu()\\n\\n    def compute_ced_reward(\\n        self,\\n        claim: str,\\n        cited_evidence_sents: list[str],\\n        hard_negative_sents: list[str],\\n        tau: float = 0.5,\\n    ) -> dict:\\n        evidence_concat = \\\" \\\".join(cited_evidence_sents)\\n        p_pos = self.nli_entailment_prob(\\n            [evidence_concat], [claim]\\n        ).item()\\n\\n        if not hard_negative_sents:\\n            p_neg = 0.0\\n        else:\\n            neg_probs = self.nli_entailment_prob(\\n                hard_negative_sents, [claim] * len(hard_negative_sents)\\n            )\\n            p_neg = neg_probs.max().item()\\n\\n        margin = p_pos - p_neg\\n        reward = max(0.0, margin) * float(p_pos > tau)\\n\\n        return {\\n            \\\"reward\\\": reward,\\n            \\\"p_pos\\\": p_pos,\\n            \\\"p_neg\\\": p_neg,\\n            \\\"margin\\\": margin,\\n        }\\n\\n    def compute_ced_reward_batch(\\n        self,\\n        claims: list[str],\\n        cited_evidence_list: list[list[str]],\\n        hard_negative_list: list[list[str]],\\n        tau: float = 0.5,\\n    ) -> list[dict]:\\n        n = len(claims)\\n        assert len(cited_evidence_list) == n and len(hard_negative_list) == n\\n\\n        pos_premises = [\\\" \\\".join(ev) for ev in cited_evidence_list]\\n        pos_probs = self.nli_entailment_prob(pos_premises, claims)\\n\\n        all_neg_premises = []\\n        all_neg_hyps = []\\n        neg_counts = []\\n        for i in range(n):\\n            negs = hard_negative_list[i]\\n            neg_counts.append(len(negs))\\n            all_neg_premises.extend(negs)\\n            all_neg_hyps.extend([claims[i]] * len(negs))\\n\\n        if all_neg_premises:\\n            all_neg_probs = self.nli_entailment_prob(all_neg_premises, all_neg_hyps)\\n        else:\\n            all_neg_probs = torch.tensor([])\\n\\n        results = []\\n        offset = 0\\n        for i in range(n):\\n            p_pos = pos_probs[i].item()\\n            nc = neg_counts[i]\\n            if nc > 0:\\n                p_neg = all_neg_probs[offset:offset + nc].max().item()\\n            else:\\n                p_neg = 0.0\\n            offset += nc\\n\\n            margin = p_pos - p_neg\\n            reward = max(0.0, margin) * float(p_pos > tau)\\n            results.append({\\n                \\\"reward\\\": reward,\\n                \\\"p_pos\\\": p_pos,\\n                \\\"p_neg\\\": p_neg,\\n                \\\"margin\\\": margin,\\n            })\\n\\n        return results\\n\\n    def compute_flat_nli_reward(\\n        self,\\n        claim: str,\\n        cited_evidence_sents: list[str],\\n        tau: float = 0.5,\\n    ) -> dict:\\n        evidence_concat = \\\" \\\".join(cited_evidence_sents)\\n        p_pos = self.nli_entailment_prob(\\n            [evidence_concat], [claim]\\n        ).item()\\n        reward = p_pos * float(p_pos > tau)\\n        return {\\\"reward\\\": reward, \\\"p_pos\\\": p_pos}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "5e2fe350-f269-46ef-befc-83b71e1f2725",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"CED（Contrastive Evidence Discrimination）对比证据判别奖励。\\\\n\\\\n核心公式:\\\\n  p_pos = NLI_entail(concat(cited_evidence), claim)\\\\n  p_neg = max_j NLI_entail(neg_sent_j, claim)\\\\n  R_CED = max(0, p_pos - p_neg) * I(p_pos > tau)\\\\n\\\\n输入: 关系三元组 + gold evidence 句子 + hard negative 句子\\\\n输出: CED 奖励值 ∈ [0, 1]\\\\n依赖: transformers, torch\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport logging\\\\nfrom typing import Optional\\\\n\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom transformers import AutoModelForSequenceClassification, AutoTokenizer\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nDEFAULT_NLI_MODEL = \\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\"\\\\n\\\\nVERBALIZATION_TEMPLATES = {\\\\n    \\\\\\\"P6\\\\\\\": \\\\\\\"The head of government of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P17\\\\\\\": \\\\\\\"{head} is located in the country {tail}.\\\\\\\",\\\\n    \\\\\\\"P19\\\\\\\": \\\\\\\"{head} was born in {tail}.\\\\\\\",\\\\n    \\\\\\\"P20\\\\\\\": \\\\\\\"{head} died in {tail}.\\\\\\\",\\\\n    \\\\\\\"P22\\\\\\\": \\\\\\\"The father of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P25\\\\\\\": \\\\\\\"The mother of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P26\\\\\\\": \\\\\\\"{head} is married to {tail}.\\\\\\\",\\\\n    \\\\\\\"P27\\\\\\\": \\\\\\\"{head} is a citizen of {tail}.\\\\\\\",\\\\n    \\\\\\\"P30\\\\\\\": \\\\\\\"{head} is located in the continent of {tail}.\\\\\\\",\\\\n    \\\\\\\"P31\\\\\\\": \\\\\\\"{head} is an instance of {tail}.\\\\\\\",\\\\n    \\\\\\\"P35\\\\\\\": \\\\\\\"The head of state of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P36\\\\\\\": \\\\\\\"The capital of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P37\\\\\\\": \\\\\\\"The official language of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P39\\\\\\\": \\\\\\\"{head} held the position of {tail}.\\\\\\\",\\\\n    \\\\\\\"P40\\\\\\\": \\\\\\\"{head} has a child named {tail}.\\\\\\\",\\\\n    \\\\\\\"P50\\\\\\\": \\\\\\\"The author of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P54\\\\\\\": \\\\\\\"{head} is a member of the sports team {tail}.\\\\\\\",\\\\n    \\\\\\\"P57\\\\\\\": \\\\\\\"The director of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P58\\\\\\\": \\\\\\\"The screenwriter of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P69\\\\\\\": \\\\\\\"{head} was educated at {tail}.\\\\\\\",\\\\n    \\\\\\\"P86\\\\\\\": \\\\\\\"The composer of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P102\\\\\\\": \\\\\\\"{head} is a member of the political party {tail}.\\\\\\\",\\\\n    \\\\\\\"P108\\\\\\\": \\\\\\\"{head} is employed by {tail}.\\\\\\\",\\\\n    \\\\\\\"P112\\\\\\\": \\\\\\\"{head} was founded by {tail}.\\\\\\\",\\\\n    \\\\\\\"P118\\\\\\\": \\\\\\\"{head} plays in the league {tail}.\\\\\\\",\\\\n    \\\\\\\"P123\\\\\\\": \\\\\\\"The publisher of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P127\\\\\\\": \\\\\\\"{head} is owned by {tail}.\\\\\\\",\\\\n    \\\\\\\"P131\\\\\\\": \\\\\\\"{head} is located in {tail}.\\\\\\\",\\\\n    \\\\\\\"P136\\\\\\\": \\\\\\\"The genre of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P137\\\\\\\": \\\\\\\"{head} is operated by {tail}.\\\\\\\",\\\\n    \\\\\\\"P140\\\\\\\": \\\\\\\"The religion of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P150\\\\\\\": \\\\\\\"{head} contains the administrative territory {tail}.\\\\\\\",\\\\n    \\\\\\\"P155\\\\\\\": \\\\\\\"{head} follows {tail}.\\\\\\\",\\\\n    \\\\\\\"P156\\\\\\\": \\\\\\\"{head} is followed by {tail}.\\\\\\\",\\\\n    \\\\\\\"P159\\\\\\\": \\\\\\\"The headquarters of {head} is located in {tail}.\\\\\\\",\\\\n    \\\\\\\"P161\\\\\\\": \\\\\\\"{head} features the cast member {tail}.\\\\\\\",\\\\n    \\\\\\\"P162\\\\\\\": \\\\\\\"The producer of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P166\\\\\\\": \\\\\\\"{head} received the award {tail}.\\\\\\\",\\\\n    \\\\\\\"P170\\\\\\\": \\\\\\\"The creator of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P171\\\\\\\": \\\\\\\"The parent taxon of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P172\\\\\\\": \\\\\\\"{head} belongs to the ethnic group {tail}.\\\\\\\",\\\\n    \\\\\\\"P175\\\\\\\": \\\\\\\"The performer of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P176\\\\\\\": \\\\\\\"The manufacturer of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P178\\\\\\\": \\\\\\\"The developer of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P179\\\\\\\": \\\\\\\"{head} is part of the series {tail}.\\\\\\\",\\\\n    \\\\\\\"P190\\\\\\\": \\\\\\\"{head} is a sister city of {tail}.\\\\\\\",\\\\n    \\\\\\\"P194\\\\\\\": \\\\\\\"The legislative body of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P205\\\\\\\": \\\\\\\"{head} is in the basin of {tail}.\\\\\\\",\\\\n    \\\\\\\"P206\\\\\\\": \\\\\\\"{head} is located near the body of water {tail}.\\\\\\\",\\\\n    \\\\\\\"P241\\\\\\\": \\\\\\\"{head} is a branch of the military {tail}.\\\\\\\",\\\\n    \\\\\\\"P264\\\\\\\": \\\\\\\"The record label of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P272\\\\\\\": \\\\\\\"The production company of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P276\\\\\\\": \\\\\\\"{head} is located in {tail}.\\\\\\\",\\\\n    \\\\\\\"P279\\\\\\\": \\\\\\\"{head} is a subclass of {tail}.\\\\\\\",\\\\n    \\\\\\\"P355\\\\\\\": \\\\\\\"{head} has the subsidiary {tail}.\\\\\\\",\\\\n    \\\\\\\"P361\\\\\\\": \\\\\\\"{head} is part of {tail}.\\\\\\\",\\\\n    \\\\\\\"P364\\\\\\\": \\\\\\\"The original language of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P400\\\\\\\": \\\\\\\"{head} is available on the platform {tail}.\\\\\\\",\\\\n    \\\\\\\"P403\\\\\\\": \\\\\\\"{head} flows into {tail}.\\\\\\\",\\\\n    \\\\\\\"P449\\\\\\\": \\\\\\\"The original network of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P463\\\\\\\": \\\\\\\"{head} is a member of {tail}.\\\\\\\",\\\\n    \\\\\\\"P488\\\\\\\": \\\\\\\"The chairperson of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P495\\\\\\\": \\\\\\\"{head} originates from the country {tail}.\\\\\\\",\\\\n    \\\\\\\"P527\\\\\\\": \\\\\\\"{head} has the part {tail}.\\\\\\\",\\\\n    \\\\\\\"P551\\\\\\\": \\\\\\\"{head} resides in {tail}.\\\\\\\",\\\\n    \\\\\\\"P569\\\\\\\": \\\\\\\"{head} was born on {tail}.\\\\\\\",\\\\n    \\\\\\\"P570\\\\\\\": \\\\\\\"{head} died on {tail}.\\\\\\\",\\\\n    \\\\\\\"P571\\\\\\\": \\\\\\\"{head} was established in {tail}.\\\\\\\",\\\\n    \\\\\\\"P576\\\\n\\\\n... [截断: 输出过长，省略 2190 字符] ...\\\\n\\\\n.model = AutoModelForSequenceClassification.from_pretrained(model_name)\\\\n        self.model.to(self.device)\\\\n        self.model.eval()\\\\n\\\\n        self._resolve_entailment_idx()\\\\n\\\\n    def _resolve_entailment_idx(self):\\\\n        id2label = self.model.config.id2label\\\\n        self.entail_idx = None\\\\n        for idx, label in id2label.items():\\\\n            if label.lower() in (\\\\\\\"entailment\\\\\\\", \\\\\\\"entail\\\\\\\"):\\\\n                self.entail_idx = int(idx)\\\\n                break\\\\n        if self.entail_idx is None:\\\\n            logger.warning(\\\\n                \\\\\\\"Could not find 'entailment' in id2label=%s, defaulting to index 1\\\\\\\",\\\\n                id2label,\\\\n            )\\\\n            self.entail_idx = 1\\\\n        logger.info(\\\\\\\"Entailment index: %d (id2label=%s)\\\\\\\", self.entail_idx, id2label)\\\\n\\\\n    @torch.no_grad()\\\\n    def nli_entailment_prob(\\\\n        self, premises: list[str], hypotheses: list[str]\\\\n    ) -> torch.Tensor:\\\\n        inputs = self.tokenizer(\\\\n            premises,\\\\n            hypotheses,\\\\n            padding=True,\\\\n            truncation=True,\\\\n            max_length=self.max_length,\\\\n            return_tensors=\\\\\\\"pt\\\\\\\",\\\\n        ).to(self.device)\\\\n\\\\n        logits = self.model(**inputs).logits\\\\n        probs = F.softmax(logits, dim=-1)\\\\n        return probs[:, self.entail_idx].cpu()\\\\n\\\\n    def compute_ced_reward(\\\\n        self,\\\\n        claim: str,\\\\n        cited_evidence_sents: list[str],\\\\n        hard_negative_sents: list[str],\\\\n        tau: float = 0.5,\\\\n    ) -> dict:\\\\n        evidence_concat = \\\\\\\" \\\\\\\".join(cited_evidence_sents)\\\\n        p_pos = self.nli_entailment_prob(\\\\n            [evidence_concat], [claim]\\\\n        ).item()\\\\n\\\\n        if not hard_negative_sents:\\\\n            p_neg = 0.0\\\\n        else:\\\\n            neg_probs = self.nli_entailment_prob(\\\\n                hard_negative_sents, [claim] * len(hard_negative_sents)\\\\n            )\\\\n            p_neg = neg_probs.max().item()\\\\n\\\\n        margin = p_pos - p_neg\\\\n        reward = max(0.0, margin) * float(p_pos > tau)\\\\n\\\\n        return {\\\\n            \\\\\\\"reward\\\\\\\": reward,\\\\n            \\\\\\\"p_pos\\\\\\\": p_pos,\\\\n            \\\\\\\"p_neg\\\\\\\": p_neg,\\\\n            \\\\\\\"margin\\\\\\\": margin,\\\\n        }\\\\n\\\\n    def compute_ced_reward_batch(\\\\n        self,\\\\n        claims: list[str],\\\\n        cited_evidence_list: list[list[str]],\\\\n        hard_negative_list: list[list[str]],\\\\n        tau: float = 0.5,\\\\n    ) -> list[dict]:\\\\n        n = len(claims)\\\\n        assert len(cited_evidence_list) == n and len(hard_negative_list) == n\\\\n\\\\n        pos_premises = [\\\\\\\" \\\\\\\".join(ev) for ev in cited_evidence_list]\\\\n        pos_probs = self.nli_entailment_prob(pos_premises, claims)\\\\n\\\\n        all_neg_premises = []\\\\n        all_neg_hyps = []\\\\n        neg_counts = []\\\\n        for i in range(n):\\\\n            negs = hard_negative_list[i]\\\\n            neg_counts.append(len(negs))\\\\n            all_neg_premises.extend(negs)\\\\n            all_neg_hyps.extend([claims[i]] * len(negs))\\\\n\\\\n        if all_neg_premises:\\\\n            all_neg_probs = self.nli_entailment_prob(all_neg_premises, all_neg_hyps)\\\\n        else:\\\\n            all_neg_probs = torch.tensor([])\\\\n\\\\n        results = []\\\\n        offset = 0\\\\n        for i in range(n):\\\\n            p_pos = pos_probs[i].item()\\\\n            nc = neg_counts[i]\\\\n            if nc > 0:\\\\n                p_neg = all_neg_probs[offset:offset + nc].max().item()\\\\n            else:\\\\n                p_neg = 0.0\\\\n            offset += nc\\\\n\\\\n            margin = p_pos - p_neg\\\\n            reward = max(0.0, margin) * float(p_pos > tau)\\\\n            results.append({\\\\n                \\\\\\\"reward\\\\\\\": reward,\\\\n                \\\\\\\"p_pos\\\\\\\": p_pos,\\\\n                \\\\\\\"p_neg\\\\\\\": p_neg,\\\\n                \\\\\\\"margin\\\\\\\": margin,\\\\n            })\\\\n\\\\n        return results\\\\n\\\\n    def compute_flat_nli_reward(\\\\n        self,\\\\n        claim: str,\\\\n        cited_evidence_sents: list[str],\\\\n        tau: float = 0.5,\\\\n    ) -> dict:\\\\n        evidence_concat = \\\\\\\" \\\\\\\".join(cited_evidence_sents)\\\\n        p_pos = self.nli_entailment_prob(\\\\n            [evidence_concat], [claim]\\\\n        ).item()\\\\n        reward = p_pos * float(p_pos > tau)\\\\n        return {\\\\\\\"reward\\\\\\\": reward, \\\\\\\"p_pos\\\\\\\": p_pos}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"CED（Contrastive Evidence Discrimination）对比证据判别奖励。\\n\\n核心公式:\\n  p_pos = NLI_entail(concat(cited_evidence), claim)\\n  p_neg = max_j NLI_entail(neg_sent_j, claim)\\n  R_CED = max(0, p_pos - p_neg) * I(p_pos > tau)\\n\\n输入: 关系三元组 + gold evidence 句子 + hard negative 句子\\n输出: CED 奖励值 ∈ [0, 1]\\n依赖: transformers, torch\\n\\\"\\\"\\\"\\n\\nimport logging\\nfrom typing import Optional\\n\\nimport torch\\nimport torch.nn.functional as F\\nfrom transformers import AutoModelForSequenceClassification, AutoTokenizer\\n\\nlogger = logging.getLogger(__name__)\\n\\nDEFAULT_NLI_MODEL = \\\"cross-encoder/nli-deberta-v3-base\\\"\\n\\nVERBALIZATION_TEMPLATES = {\\n    \\\"P6\\\": \\\"The head of government of {head} is {tail}.\\\",\\n    \\\"P17\\\": \\\"{head} is located in the country {tail}.\\\",\\n    \\\"P19\\\": \\\"{head} was born in {tail}.\\\",\\n    \\\"P20\\\": \\\"{head} died in {tail}.\\\",\\n    \\\"P22\\\": \\\"The father of {head} is {tail}.\\\",\\n    \\\"P25\\\": \\\"The mother of {head} is {tail}.\\\",\\n    \\\"P26\\\": \\\"{head} is married to {tail}.\\\",\\n    \\\"P27\\\": \\\"{head} is a citizen of {tail}.\\\",\\n    \\\"P30\\\": \\\"{head} is located in the continent of {tail}.\\\",\\n    \\\"P31\\\": \\\"{head} is an instance of {tail}.\\\",\\n    \\\"P35\\\": \\\"The head of state of {head} is {tail}.\\\",\\n    \\\"P36\\\": \\\"The capital of {head} is {tail}.\\\",\\n    \\\"P37\\\": \\\"The official language of {head} is {tail}.\\\",\\n    \\\"P39\\\": \\\"{head} held the position of {tail}.\\\",\\n    \\\"P40\\\": \\\"{head} has a child named {tail}.\\\",\\n    \\\"P50\\\": \\\"The author of {head} is {tail}.\\\",\\n    \\\"P54\\\": \\\"{head} is a member of the sports team {tail}.\\\",\\n    \\\"P57\\\": \\\"The director of {head} is {tail}.\\\",\\n    \\\"P58\\\": \\\"The screenwriter of {head} is {tail}.\\\",\\n    \\\"P69\\\": \\\"{head} was educated at {tail}.\\\",\\n    \\\"P86\\\": \\\"The composer of {head} is {tail}.\\\",\\n    \\\"P102\\\": \\\"{head} is a member of the political party {tail}.\\\",\\n    \\\"P108\\\": \\\"{head} is employed by {tail}.\\\",\\n    \\\"P112\\\": \\\"{head} was founded by {tail}.\\\",\\n    \\\"P118\\\": \\\"{head} plays in the league {tail}.\\\",\\n    \\\"P123\\\": \\\"The publisher of {head} is {tail}.\\\",\\n    \\\"P127\\\": \\\"{head} is owned by {tail}.\\\",\\n    \\\"P131\\\": \\\"{head} is located in {tail}.\\\",\\n    \\\"P136\\\": \\\"The genre of {head} is {tail}.\\\",\\n    \\\"P137\\\": \\\"{head} is operated by {tail}.\\\",\\n    \\\"P140\\\": \\\"The religion of {head} is {tail}.\\\",\\n    \\\"P150\\\": \\\"{head} contains the administrative territory {tail}.\\\",\\n    \\\"P155\\\": \\\"{head} follows {tail}.\\\",\\n    \\\"P156\\\": \\\"{head} is followed by {tail}.\\\",\\n    \\\"P159\\\": \\\"The headquarters of {head} is located in {tail}.\\\",\\n    \\\"P161\\\": \\\"{head} features the cast member {tail}.\\\",\\n    \\\"P162\\\": \\\"The producer of {head} is {tail}.\\\",\\n    \\\"P166\\\": \\\"{head} received the award {tail}.\\\",\\n    \\\"P170\\\": \\\"The creator of {head} is {tail}.\\\",\\n    \\\"P171\\\": \\\"The parent taxon of {head} is {tail}.\\\",\\n    \\\"P172\\\": \\\"{head} belongs to the ethnic group {tail}.\\\",\\n    \\\"P175\\\": \\\"The performer of {head} is {tail}.\\\",\\n    \\\"P176\\\": \\\"The manufacturer of {head} is {tail}.\\\",\\n    \\\"P178\\\": \\\"The developer of {head} is {tail}.\\\",\\n    \\\"P179\\\": \\\"{head} is part of the series {tail}.\\\",\\n    \\\"P190\\\": \\\"{head} is a sister city of {tail}.\\\",\\n    \\\"P194\\\": \\\"The legislative body of {head} is {tail}.\\\",\\n    \\\"P205\\\": \\\"{head} is in the basin of {tail}.\\\",\\n    \\\"P206\\\": \\\"{head} is located near the body of water {tail}.\\\",\\n    \\\"P241\\\": \\\"{head} is a branch of the military {tail}.\\\",\\n    \\\"P264\\\": \\\"The record label of {head} is {tail}.\\\",\\n    \\\"P272\\\": \\\"The production company of {head} is {tail}.\\\",\\n    \\\"P276\\\": \\\"{head} is located in {tail}.\\\",\\n    \\\"P279\\\": \\\"{head} is a subclass of {tail}.\\\",\\n    \\\"P355\\\": \\\"{head} has the subsidiary {tail}.\\\",\\n    \\\"P361\\\": \\\"{head} is part of {tail}.\\\",\\n    \\\"P364\\\": \\\"The original language of {head} is {tail}.\\\",\\n    \\\"P400\\\": \\\"{head} is available on the platform {tail}.\\\",\\n    \\\"P403\\\": \\\"{head} flows into {tail}.\\\",\\n    \\\"P449\\\": \\\"The original network of {head} is {tail}.\\\",\\n    \\\"P463\\\": \\\"{head} is a member of {tail}.\\\",\\n    \\\"P488\\\": \\\"The chairperson of {head} is {tail}.\\\",\\n    \\\"P495\\\": \\\"{head} originates from the country {tail}.\\\",\\n    \\\"P527\\\": \\\"{head} has the part {tail}.\\\",\\n    \\\"P551\\\": \\\"{head} resides in {tail}.\\\",\\n    \\\"P569\\\": \\\"{head} was born on {tail}.\\\",\\n    \\\"P570\\\": \\\"{head} died on {tail}.\\\",\\n    \\\"P571\\\": \\\"{head} was established in {tail}.\\\",\\n    \\\"P576\\n\\n... [截断: 输出过长，省略 2190 字符] ...\\n\\n.model = AutoModelForSequenceClassification.from_pretrained(model_name)\\n        self.model.to(self.device)\\n        self.model.eval()\\n\\n        self._resolve_entailment_idx()\\n\\n    def _resolve_entailment_idx(self):\\n        id2label = self.model.config.id2label\\n        self.entail_idx = None\\n        for idx, label in id2label.items():\\n            if label.lower() in (\\\"entailment\\\", \\\"entail\\\"):\\n                self.entail_idx = int(idx)\\n                break\\n        if self.entail_idx is None:\\n            logger.warning(\\n                \\\"Could not find 'entailment' in id2label=%s, defaulting to index 1\\\",\\n                id2label,\\n            )\\n            self.entail_idx = 1\\n        logger.info(\\\"Entailment index: %d (id2label=%s)\\\", self.entail_idx, id2label)\\n\\n    @torch.no_grad()\\n    def nli_entailment_prob(\\n        self, premises: list[str], hypotheses: list[str]\\n    ) -> torch.Tensor:\\n        inputs = self.tokenizer(\\n            premises,\\n            hypotheses,\\n            padding=True,\\n            truncation=True,\\n            max_length=self.max_length,\\n            return_tensors=\\\"pt\\\",\\n        ).to(self.device)\\n\\n        logits = self.model(**inputs).logits\\n        probs = F.softmax(logits, dim=-1)\\n        return probs[:, self.entail_idx].cpu()\\n\\n    def compute_ced_reward(\\n        self,\\n        claim: str,\\n        cited_evidence_sents: list[str],\\n        hard_negative_sents: list[str],\\n        tau: float = 0.5,\\n    ) -> dict:\\n        evidence_concat = \\\" \\\".join(cited_evidence_sents)\\n        p_pos = self.nli_entailment_prob(\\n            [evidence_concat], [claim]\\n        ).item()\\n\\n        if not hard_negative_sents:\\n            p_neg = 0.0\\n        else:\\n            neg_probs = self.nli_entailment_prob(\\n                hard_negative_sents, [claim] * len(hard_negative_sents)\\n            )\\n            p_neg = neg_probs.max().item()\\n\\n        margin = p_pos - p_neg\\n        reward = max(0.0, margin) * float(p_pos > tau)\\n\\n        return {\\n            \\\"reward\\\": reward,\\n            \\\"p_pos\\\": p_pos,\\n            \\\"p_neg\\\": p_neg,\\n            \\\"margin\\\": margin,\\n        }\\n\\n    def compute_ced_reward_batch(\\n        self,\\n        claims: list[str],\\n        cited_evidence_list: list[list[str]],\\n        hard_negative_list: list[list[str]],\\n        tau: float = 0.5,\\n    ) -> list[dict]:\\n        n = len(claims)\\n        assert len(cited_evidence_list) == n and len(hard_negative_list) == n\\n\\n        pos_premises = [\\\" \\\".join(ev) for ev in cited_evidence_list]\\n        pos_probs = self.nli_entailment_prob(pos_premises, claims)\\n\\n        all_neg_premises = []\\n        all_neg_hyps = []\\n        neg_counts = []\\n        for i in range(n):\\n            negs = hard_negative_list[i]\\n            neg_counts.append(len(negs))\\n            all_neg_premises.extend(negs)\\n            all_neg_hyps.extend([claims[i]] * len(negs))\\n\\n        if all_neg_premises:\\n            all_neg_probs = self.nli_entailment_prob(all_neg_premises, all_neg_hyps)\\n        else:\\n            all_neg_probs = torch.tensor([])\\n\\n        results = []\\n        offset = 0\\n        for i in range(n):\\n            p_pos = pos_probs[i].item()\\n            nc = neg_counts[i]\\n            if nc > 0:\\n                p_neg = all_neg_probs[offset:offset + nc].max().item()\\n            else:\\n                p_neg = 0.0\\n            offset += nc\\n\\n            margin = p_pos - p_neg\\n            reward = max(0.0, margin) * float(p_pos > tau)\\n            results.append({\\n                \\\"reward\\\": reward,\\n                \\\"p_pos\\\": p_pos,\\n                \\\"p_neg\\\": p_neg,\\n                \\\"margin\\\": margin,\\n            })\\n\\n        return results\\n\\n    def compute_flat_nli_reward(\\n        self,\\n        claim: str,\\n        cited_evidence_sents: list[str],\\n        tau: float = 0.5,\\n    ) -> dict:\\n        evidence_concat = \\\" \\\".join(cited_evidence_sents)\\n        p_pos = self.nli_entailment_prob(\\n            [evidence_concat], [claim]\\n        ).item()\\n        reward = p_pos * float(p_pos > tau)\\n        return {\\\"reward\\\": reward, \\\"p_pos\\\": p_pos}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SAsshCGJQEQQ2SY92Qd5od`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/eval/ced_reranker.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "4308c040-9b98-46f6-b554-0a9bc2e5e7eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E6ppVbFJMzLCS7yvZK44qE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1089,
+      "cache_read_input_tokens": 25388,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1089
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T12:42:13.303Z_
+
+<details><summary>↩ Tool result · `toolu_01SAsshCGJQEQQ2SY92Qd5od`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"CED-as-reranker: inference-time reranking of N SFT candidates using CED scoring.\\n\\nNo fine-tuning. SFT model generates N candidates per document, CED selects the best one.\\nCompares: Greedy baseline, CED reranker, Oracle (F1-best), Random.\\n\\nUsage:\\n  cd /root/autodl-tmp && python -m freige.eval.ced_reranker \\\\\\n      --base_model /root/autodl-tmp/models/Qwen3-4B \\\\\\n      --sft_adapter /root/autodl-tmp/sft_output \\\\\\n      --data_dir /root/autodl-tmp/data/docred \\\\\\n      --nli_model_path /root/autodl-tmp/models/deberta-v3-large-zeroshot-v2.0 \\\\\\n      --output_dir /root/autodl-tmp/eval_results/ced_reranker_poc \\\\\\n      --num_generations 8 --temperature 0.7 --max_docs 50\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport random\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom tqdm import tqdm\\n\\nfrom freige.data.docred_processor import DOCRED_REL_INFO\\nfrom freige.eval.evaluator import DocREDEvaluator, gold_from_docred, parse_model_output\\nfrom freige.rewards.ced_reward import (\\n    CEDRewardModel,\\n    VERBALIZATION_TEMPLATES,\\n    verbalize_triple,\\n)\\nfrom freige.training.rsft_generate import (\\n    generate_batch,\\n    load_model_and_tokenizer,\\n    prepare_generation_data,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\n_REL_NAME_TO_CODE = {v.lower().strip(): k for k, v in DOCRED_REL_INFO.items()}\\n\\ndef verbalize_by_name(head: str, relation: str, tail: str) -> str:\\n    \\\"\\\"\\\"Verbalize a triple using relation name instead of Pxxx code.\\\"\\\"\\\"\\n    pcode = _REL_NAME_TO_CODE.get(relation.lower().strip())\\n    if pcode:\\n        return verbalize_triple(head, pcode, tail)\\n    return f\\\"{head} {relation} {tail}.\\\"\\n\\ndef score_candidate_ced(\\n    parsed_triples: list[dict],\\n    sents: list[str],\\n    ced_model: CEDRewardModel,\\n    tau: float = 0.5,\\n) -> float:\\n    \\\"\\\"\\\"CED score for one candidate — uses only predicted evidence, no gold info.\\n\\n    For each predicted triple:\\n      claim   = verbalized triple\\n      pos     = concat of model-cited evidence sentences\\n      neg     = all other sentences in the document\\n      CED(t)  = max(0, p_pos - max_j p_neg_j) * I(p_pos > tau)\\n    Returns mean CED across triples.\\n    \\\"\\\"\\\"\\n    if not parsed_triples:\\n        return 0.0\\n\\n    n_sents = len(sents)\\n    all_ids = set(range(n_sents))\\n    scores = []\\n\\n    for t in parsed_triples:\\n        if not isinstance(t, dict):\\n            continue\\n        head = t.get(\\\"head\\\", \\\"\\\")\\n        relation = t.get(\\\"relation\\\", \\\"\\\")\\n        tail = t.get(\\\"tail\\\", \\\"\\\")\\n        evidence = t.get(\\\"evidence\\\", [])\\n        if not (head and relation and tail):\\n            continue\\n\\n        claim = verbalize_by_name(head, relation, tail)\\n\\n        evi_ids = {int(e) for e in evidence if isinstance(e, int) and 0 <= int(e) < n_sents}\\n        if not evi_ids:\\n            scores.append(0.0)\\n            continue\\n\\n        cited = [sents[i] for i in sorted(evi_ids)]\\n        neg_ids = all_ids - evi_ids\\n        negs = [sents[i] for i in sorted(neg_ids)]\\n\\n        if negs:\\n            r = ced_model.compute_ced_reward(claim, cited, negs, tau=tau)\\n        else:\\n            r = ced_model.compute_flat_nli_reward(claim, cited, tau=tau)\\n        scores.append(r[\\\"reward\\\"])\\n\\n    return float(np.mean(scores)) if scores else 0.0\\n\\ndef candidate_rel_f1(parsed_triples: list[dict], gold_triples: list[dict]) -> float:\\n    \\\"\\\"\\\"Per-candidate relation F1 against gold (for Oracle selection).\\\"\\\"\\\"\\n    gold_set = {\\n        (str(g[\\\"head\\\"]).lower().strip(),\\n         str(g[\\\"relation\\\"]).lower().strip(),\\n         str(g[\\\"tail\\\"]).lower().strip())\\n        for g in gold_triples\\n    }\\n    pred_set = set()\\n    for p in parsed_triples:\\n        if isinstance(p, dict):\\n            pred_set.add((\\n                str(p.get(\\\"head\\\", \\\"\\\")).lower().strip(),\\n                str(p.get(\\\"relation\\\", \\\"\\\")).lower().strip(),\\n                str(p.get(\\\"tail\\\", \\\"\\\")).lower().strip(),\\n            ))\\n    if not gold_set:\\n        return 1.0 if no\\n\\n... [截断: 输出过长，省略 10146 字符] ...\\n\\nreedy\\\"):\\n                greedy_sel[doc_id] = doc[\\\"greedy\\\"]\\n\\n    del ced_model\\n    torch.cuda.empty_cache()\\n\\n    # --- Step 3: Evaluate ---\\n    logger.info(\\\"Evaluating strategies...\\\")\\n\\n    with open(Path(args.data_dir) / \\\"dev.json\\\") as f:\\n        dev_data = json.load(f)\\n    if args.max_docs:\\n        keep = set(all_docs.keys())\\n        dev_data = [d for d in dev_data if d.get(\\\"title\\\", \\\"\\\") in keep]\\n    gold = gold_from_docred(dev_data)\\n\\n    train_file = str(Path(args.data_dir) / \\\"train_annotated.json\\\")\\n    results = {}\\n    for name, sel in [\\n        (\\\"greedy_baseline\\\", greedy_sel),\\n        (\\\"ced_reranker\\\", ced_sel),\\n        (\\\"oracle_reranker\\\", oracle_sel),\\n        (\\\"random_baseline\\\", rand_sel),\\n    ]:\\n        if not sel:\\n            continue\\n        m = evaluate_strategy(sel, gold, train_file)\\n        results[name] = m\\n        logger.info(\\\"%s: f1=%.4f evi_f1=%.4f edcr=%.4f prec=%.4f rec=%.4f preds=%d\\\",\\n                     name, m[\\\"f1\\\"], m[\\\"evi_f1\\\"], m.get(\\\"edcr\\\", 0),\\n                     m[\\\"precision\\\"], m[\\\"recall\\\"], m[\\\"n_predictions\\\"])\\n\\n    # CED-F1 correlation (Spearman)\\n    from scipy.stats import spearmanr\\n    corr, pval = spearmanr(ced_list, f1_list)\\n    results[\\\"ced_f1_correlation\\\"] = {\\n        \\\"spearman_r\\\": round(corr, 4),\\n        \\\"p_value\\\": float(f\\\"{pval:.2e}\\\"),\\n        \\\"n_samples\\\": len(ced_list),\\n    }\\n    logger.info(\\\"CED-F1 Spearman r=%.4f (p=%s, n=%d)\\\", corr, f\\\"{pval:.2e}\\\", len(ced_list))\\n\\n    results[\\\"config\\\"] = vars(args)\\n    results[\\\"generation_time_seconds\\\"] = round(gen_time, 1)\\n\\n    results_path = output_dir / \\\"results.json\\\"\\n    with open(results_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2, ensure_ascii=False)\\n    logger.info(\\\"Results → %s\\\", results_path)\\n\\n    # W&B log\\n    if wandb_run:\\n        import wandb\\n        log_data = {}\\n        for strategy in [\\\"greedy_baseline\\\", \\\"ced_reranker\\\", \\\"oracle_reranker\\\", \\\"random_baseline\\\"]:\\n            if strategy in results:\\n                m = results[strategy]\\n                for metric in [\\\"f1\\\", \\\"evi_f1\\\", \\\"edcr\\\", \\\"precision\\\", \\\"recall\\\", \\\"ign_f1\\\"]:\\n                    if metric in m:\\n                        log_data[f\\\"{strategy}/{metric}\\\"] = m[metric]\\n        log_data[\\\"ced_f1_spearman_r\\\"] = results[\\\"ced_f1_correlation\\\"][\\\"spearman_r\\\"]\\n        log_data[\\\"generation_time_seconds\\\"] = gen_time\\n        wandb.log(log_data)\\n        wandb.finish()\\n\\n    # Console summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 80)\\n    print(f\\\"  CED-as-Reranker  (N={args.num_generations}, T={args.temperature}, tau={args.tau}, \\\"\\n          f\\\"docs={len(all_docs)})\\\")\\n    print(\\\"=\\\" * 80)\\n    print(f\\\"  {'Strategy':<20s} {'rel_f1':>8s} {'evi_f1':>8s} {'EDCR':>8s} \\\"\\n          f\\\"{'prec':>8s} {'recall':>8s} {'ign_f1':>8s} {'preds':>6s}\\\")\\n    print(\\\"-\\\" * 80)\\n    for tag, label in [\\n        (\\\"greedy_baseline\\\", \\\"Greedy baseline\\\"),\\n        (\\\"random_baseline\\\", \\\"Random (N=8)\\\"),\\n        (\\\"ced_reranker\\\", \\\"CED reranker\\\"),\\n        (\\\"oracle_reranker\\\", \\\"Oracle (upper)\\\"),\\n    ]:\\n        if tag not in results:\\n            continue\\n        m = results[tag]\\n        print(f\\\"  {label:<20s} {m['f1']:>8.4f} {m['evi_f1']:>8.4f} \\\"\\n              f\\\"{m.get('edcr',0):>8.4f} {m['precision']:>8.4f} \\\"\\n              f\\\"{m['recall']:>8.4f} {m['ign_f1']:>8.4f} {m['n_predictions']:>6d}\\\")\\n    print(\\\"-\\\" * 80)\\n    c = results[\\\"ced_f1_correlation\\\"]\\n    print(f\\\"  CED-F1 Spearman r = {c['spearman_r']:.4f}  (p = {c['p_value']})\\\")\\n\\n    # Delta vs greedy\\n    if \\\"greedy_baseline\\\" in results and \\\"ced_reranker\\\" in results:\\n        g = results[\\\"greedy_baseline\\\"]\\n        r = results[\\\"ced_reranker\\\"]\\n        delta_f1 = r[\\\"f1\\\"] - g[\\\"f1\\\"]\\n        delta_evi = r[\\\"evi_f1\\\"] - g[\\\"evi_f1\\\"]\\n        print(f\\\"  CED vs Greedy: Δrel_f1={delta_f1:+.4f}, Δevi_f1={delta_evi:+.4f}\\\")\\n    if \\\"greedy_baseline\\\" in results and \\\"oracle_reranker\\\" in results:\\n        g = results[\\\"greedy_baseline\\\"]\\n        o = results[\\\"oracle_reranker\\\"]\\n        headroom = o[\\\"f1\\\"] - g[\\\"f1\\\"]\\n        print(f\\\"  Oracle headroom:  Δrel_f1={headroom:+.4f}\\\")\\n    print(\\\"=\\\" * 80)\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "c2ece9c5-0bd3-4984-bc11-68a92c93e4f7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"CED-as-reranker: inference-time reranking of N SFT candidates using CED scoring.\\\\n\\\\nNo fine-tuning. SFT model generates N candidates per document, CED selects the best one.\\\\nCompares: Greedy baseline, CED reranker, Oracle (F1-best), Random.\\\\n\\\\nUsage:\\\\n  cd /root/autodl-tmp && python -m freige.eval.ced_reranker \\\\\\\\\\\\n      --base_model /root/autodl-tmp/models/Qwen3-4B \\\\\\\\\\\\n      --sft_adapter /root/autodl-tmp/sft_output \\\\\\\\\\\\n      --data_dir /root/autodl-tmp/data/docred \\\\\\\\\\\\n      --nli_model_path /root/autodl-tmp/models/deberta-v3-large-zeroshot-v2.0 \\\\\\\\\\\\n      --output_dir /root/autodl-tmp/eval_results/ced_reranker_poc \\\\\\\\\\\\n      --num_generations 8 --temperature 0.7 --max_docs 50\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport random\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom tqdm import tqdm\\\\n\\\\nfrom freige.data.docred_processor import DOCRED_REL_INFO\\\\nfrom freige.eval.evaluator import DocREDEvaluator, gold_from_docred, parse_model_output\\\\nfrom freige.rewards.ced_reward import (\\\\n    CEDRewardModel,\\\\n    VERBALIZATION_TEMPLATES,\\\\n    verbalize_triple,\\\\n)\\\\nfrom freige.training.rsft_generate import (\\\\n    generate_batch,\\\\n    load_model_and_tokenizer,\\\\n    prepare_generation_data,\\\\n)\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n_REL_NAME_TO_CODE = {v.lower().strip(): k for k, v in DOCRED_REL_INFO.items()}\\\\n\\\\ndef verbalize_by_name(head: str, relation: str, tail: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Verbalize a triple using relation name instead of Pxxx code.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    pcode = _REL_NAME_TO_CODE.get(relation.lower().strip())\\\\n    if pcode:\\\\n        return verbalize_triple(head, pcode, tail)\\\\n    return f\\\\\\\"{head} {relation} {tail}.\\\\\\\"\\\\n\\\\ndef score_candidate_ced(\\\\n    parsed_triples: list[dict],\\\\n    sents: list[str],\\\\n    ced_model: CEDRewardModel,\\\\n    tau: float = 0.5,\\\\n) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"CED score for one candidate — uses only predicted evidence, no gold info.\\\\n\\\\n    For each predicted triple:\\\\n      claim   = verbalized triple\\\\n      pos     = concat of model-cited evidence sentences\\\\n      neg     = all other sentences in the document\\\\n      CED(t)  = max(0, p_pos - max_j p_neg_j) * I(p_pos > tau)\\\\n    Returns mean CED across triples.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not parsed_triples:\\\\n        return 0.0\\\\n\\\\n    n_sents = len(sents)\\\\n    all_ids = set(range(n_sents))\\\\n    scores = []\\\\n\\\\n    for t in parsed_triples:\\\\n        if not isinstance(t, dict):\\\\n            continue\\\\n        head = t.get(\\\\\\\"head\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        relation = t.get(\\\\\\\"relation\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        tail = t.get(\\\\\\\"tail\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        evidence = t.get(\\\\\\\"evidence\\\\\\\", [])\\\\n        if not (head and relation and tail):\\\\n            continue\\\\n\\\\n        claim = verbalize_by_name(head, relation, tail)\\\\n\\\\n        evi_ids = {int(e) for e in evidence if isinstance(e, int) and 0 <= int(e) < n_sents}\\\\n        if not evi_ids:\\\\n            scores.append(0.0)\\\\n            continue\\\\n\\\\n        cited = [sents[i] for i in sorted(evi_ids)]\\\\n        neg_ids = all_ids - evi_ids\\\\n        negs = [sents[i] for i in sorted(neg_ids)]\\\\n\\\\n        if negs:\\\\n            r = ced_model.compute_ced_reward(claim, cited, negs, tau=tau)\\\\n        else:\\\\n            r = ced_model.compute_flat_nli_reward(claim, cited, tau=tau)\\\\n        scores.append(r[\\\\\\\"reward\\\\\\\"])\\\\n\\\\n    return float(np.mean(scores)) if scores else 0.0\\\\n\\\\ndef candidate_rel_f1(parsed_triples: list[dict], gold_triples: list[dict]) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Per-candidate relation F1 against gold (for Oracle selection).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    gold_set = {\\\\n        (str(g[\\\\\\\"head\\\\\\\"]).lower().strip(),\\\\n         str(g[\\\\\\\"relation\\\\\\\"]).lower().strip(),\\\\n         str(g[\\\\\\\"tail\\\\\\\"]).lower().strip())\\\\n        for g in gold_triples\\\\n    }\\\\n    pred_set = set()\\\\n    for p in parsed_triples:\\\\n        if isinstance(p, dict):\\\\n            pred_set.add((\\\\n                str(p.get(\\\\\\\"head\\\\\\\", \\\\\\\"\\\\\\\")).lower().strip(),\\\\n                str(p.get(\\\\\\\"relation\\\\\\\", \\\\\\\"\\\\\\\")).lower().strip(),\\\\n                str(p.get(\\\\\\\"tail\\\\\\\", \\\\\\\"\\\\\\\")).lower().strip(),\\\\n            ))\\\\n    if not gold_set:\\\\n        return 1.0 if no\\\\n\\\\n... [截断: 输出过长，省略 10146 字符] ...\\\\n\\\\nreedy\\\\\\\"):\\\\n                greedy_sel[doc_id] = doc[\\\\\\\"greedy\\\\\\\"]\\\\n\\\\n    del ced_model\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    # --- Step 3: Evaluate ---\\\\n    logger.info(\\\\\\\"Evaluating strategies...\\\\\\\")\\\\n\\\\n    with open(Path(args.data_dir) / \\\\\\\"dev.json\\\\\\\") as f:\\\\n        dev_data = json.load(f)\\\\n    if args.max_docs:\\\\n        keep = set(all_docs.keys())\\\\n        dev_data = [d for d in dev_data if d.get(\\\\\\\"title\\\\\\\", \\\\\\\"\\\\\\\") in keep]\\\\n    gold = gold_from_docred(dev_data)\\\\n\\\\n    train_file = str(Path(args.data_dir) / \\\\\\\"train_annotated.json\\\\\\\")\\\\n    results = {}\\\\n    for name, sel in [\\\\n        (\\\\\\\"greedy_baseline\\\\\\\", greedy_sel),\\\\n        (\\\\\\\"ced_reranker\\\\\\\", ced_sel),\\\\n        (\\\\\\\"oracle_reranker\\\\\\\", oracle_sel),\\\\n        (\\\\\\\"random_baseline\\\\\\\", rand_sel),\\\\n    ]:\\\\n        if not sel:\\\\n            continue\\\\n        m = evaluate_strategy(sel, gold, train_file)\\\\n        results[name] = m\\\\n        logger.info(\\\\\\\"%s: f1=%.4f evi_f1=%.4f edcr=%.4f prec=%.4f rec=%.4f preds=%d\\\\\\\",\\\\n                     name, m[\\\\\\\"f1\\\\\\\"], m[\\\\\\\"evi_f1\\\\\\\"], m.get(\\\\\\\"edcr\\\\\\\", 0),\\\\n                     m[\\\\\\\"precision\\\\\\\"], m[\\\\\\\"recall\\\\\\\"], m[\\\\\\\"n_predictions\\\\\\\"])\\\\n\\\\n    # CED-F1 correlation (Spearman)\\\\n    from scipy.stats import spearmanr\\\\n    corr, pval = spearmanr(ced_list, f1_list)\\\\n    results[\\\\\\\"ced_f1_correlation\\\\\\\"] = {\\\\n        \\\\\\\"spearman_r\\\\\\\": round(corr, 4),\\\\n        \\\\\\\"p_value\\\\\\\": float(f\\\\\\\"{pval:.2e}\\\\\\\"),\\\\n        \\\\\\\"n_samples\\\\\\\": len(ced_list),\\\\n    }\\\\n    logger.info(\\\\\\\"CED-F1 Spearman r=%.4f (p=%s, n=%d)\\\\\\\", corr, f\\\\\\\"{pval:.2e}\\\\\\\", len(ced_list))\\\\n\\\\n    results[\\\\\\\"config\\\\\\\"] = vars(args)\\\\n    results[\\\\\\\"generation_time_seconds\\\\\\\"] = round(gen_time, 1)\\\\n\\\\n    results_path = output_dir / \\\\\\\"results.json\\\\\\\"\\\\n    with open(results_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2, ensure_ascii=False)\\\\n    logger.info(\\\\\\\"Results → %s\\\\\\\", results_path)\\\\n\\\\n    # W&B log\\\\n    if wandb_run:\\\\n        import wandb\\\\n        log_data = {}\\\\n        for strategy in [\\\\\\\"greedy_baseline\\\\\\\", \\\\\\\"ced_reranker\\\\\\\", \\\\\\\"oracle_reranker\\\\\\\", \\\\\\\"random_baseline\\\\\\\"]:\\\\n            if strategy in results:\\\\n                m = results[strategy]\\\\n                for metric in [\\\\\\\"f1\\\\\\\", \\\\\\\"evi_f1\\\\\\\", \\\\\\\"edcr\\\\\\\", \\\\\\\"precision\\\\\\\", \\\\\\\"recall\\\\\\\", \\\\\\\"ign_f1\\\\\\\"]:\\\\n                    if metric in m:\\\\n                        log_data[f\\\\\\\"{strategy}/{metric}\\\\\\\"] = m[metric]\\\\n        log_data[\\\\\\\"ced_f1_spearman_r\\\\\\\"] = results[\\\\\\\"ced_f1_correlation\\\\\\\"][\\\\\\\"spearman_r\\\\\\\"]\\\\n        log_data[\\\\\\\"generation_time_seconds\\\\\\\"] = gen_time\\\\n        wandb.log(log_data)\\\\n        wandb.finish()\\\\n\\\\n    # Console summary\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 80)\\\\n    print(f\\\\\\\"  CED-as-Reranker  (N={args.num_generations}, T={args.temperature}, tau={args.tau}, \\\\\\\"\\\\n          f\\\\\\\"docs={len(all_docs)})\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 80)\\\\n    print(f\\\\\\\"  {'Strategy':<20s} {'rel_f1':>8s} {'evi_f1':>8s} {'EDCR':>8s} \\\\\\\"\\\\n          f\\\\\\\"{'prec':>8s} {'recall':>8s} {'ign_f1':>8s} {'preds':>6s}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 80)\\\\n    for tag, label in [\\\\n        (\\\\\\\"greedy_baseline\\\\\\\", \\\\\\\"Greedy baseline\\\\\\\"),\\\\n        (\\\\\\\"random_baseline\\\\\\\", \\\\\\\"Random (N=8)\\\\\\\"),\\\\n        (\\\\\\\"ced_reranker\\\\\\\", \\\\\\\"CED reranker\\\\\\\"),\\\\n        (\\\\\\\"oracle_reranker\\\\\\\", \\\\\\\"Oracle (upper)\\\\\\\"),\\\\n    ]:\\\\n        if tag not in results:\\\\n            continue\\\\n        m = results[tag]\\\\n        print(f\\\\\\\"  {label:<20s} {m['f1']:>8.4f} {m['evi_f1']:>8.4f} \\\\\\\"\\\\n              f\\\\\\\"{m.get('edcr',0):>8.4f} {m['precision']:>8.4f} \\\\\\\"\\\\n              f\\\\\\\"{m['recall']:>8.4f} {m['ign_f1']:>8.4f} {m['n_predictions']:>6d}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 80)\\\\n    c = results[\\\\\\\"ced_f1_correlation\\\\\\\"]\\\\n    print(f\\\\\\\"  CED-F1 Spearman r = {c['spearman_r']:.4f}  (p = {c['p_value']})\\\\\\\")\\\\n\\\\n    # Delta vs greedy\\\\n    if \\\\\\\"greedy_baseline\\\\\\\" in results and \\\\\\\"ced_reranker\\\\\\\" in results:\\\\n        g = results[\\\\\\\"greedy_baseline\\\\\\\"]\\\\n        r = results[\\\\\\\"ced_reranker\\\\\\\"]\\\\n        delta_f1 = r[\\\\\\\"f1\\\\\\\"] - g[\\\\\\\"f1\\\\\\\"]\\\\n        delta_evi = r[\\\\\\\"evi_f1\\\\\\\"] - g[\\\\\\\"evi_f1\\\\\\\"]\\\\n        print(f\\\\\\\"  CED vs Greedy: Δrel_f1={delta_f1:+.4f}, Δevi_f1={delta_evi:+.4f}\\\\\\\")\\\\n    if \\\\\\\"greedy_baseline\\\\\\\" in results and \\\\\\\"oracle_reranker\\\\\\\" in results:\\\\n        g = results[\\\\\\\"greedy_baseline\\\\\\\"]\\\\n        o = results[\\\\\\\"oracle_reranker\\\\\\\"]\\\\n        headroom = o[\\\\\\\"f1\\\\\\\"] - g[\\\\\\\"f1\\\\\\\"]\\\\n        print(f\\\\\\\"  Oracle headroom:  Δrel_f1={headroom:+.4f}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 80)\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"CED-as-reranker: inference-time reranking of N SFT candidates using CED scoring.\\n\\nNo fine-tuning. SFT model generates N candidates per document, CED selects the best one.\\nCompares: Greedy baseline, CED reranker, Oracle (F1-best), Random.\\n\\nUsage:\\n  cd /root/autodl-tmp && python -m freige.eval.ced_reranker \\\\\\n      --base_model /root/autodl-tmp/models/Qwen3-4B \\\\\\n      --sft_adapter /root/autodl-tmp/sft_output \\\\\\n      --data_dir /root/autodl-tmp/data/docred \\\\\\n      --nli_model_path /root/autodl-tmp/models/deberta-v3-large-zeroshot-v2.0 \\\\\\n      --output_dir /root/autodl-tmp/eval_results/ced_reranker_poc \\\\\\n      --num_generations 8 --temperature 0.7 --max_docs 50\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport random\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom tqdm import tqdm\\n\\nfrom freige.data.docred_processor import DOCRED_REL_INFO\\nfrom freige.eval.evaluator import DocREDEvaluator, gold_from_docred, parse_model_output\\nfrom freige.rewards.ced_reward import (\\n    CEDRewardModel,\\n    VERBALIZATION_TEMPLATES,\\n    verbalize_triple,\\n)\\nfrom freige.training.rsft_generate import (\\n    generate_batch,\\n    load_model_and_tokenizer,\\n    prepare_generation_data,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\n_REL_NAME_TO_CODE = {v.lower().strip(): k for k, v in DOCRED_REL_INFO.items()}\\n\\ndef verbalize_by_name(head: str, relation: str, tail: str) -> str:\\n    \\\"\\\"\\\"Verbalize a triple using relation name instead of Pxxx code.\\\"\\\"\\\"\\n    pcode = _REL_NAME_TO_CODE.get(relation.lower().strip())\\n    if pcode:\\n        return verbalize_triple(head, pcode, tail)\\n    return f\\\"{head} {relation} {tail}.\\\"\\n\\ndef score_candidate_ced(\\n    parsed_triples: list[dict],\\n    sents: list[str],\\n    ced_model: CEDRewardModel,\\n    tau: float = 0.5,\\n) -> float:\\n    \\\"\\\"\\\"CED score for one candidate — uses only predicted evidence, no gold info.\\n\\n    For each predicted triple:\\n      claim   = verbalized triple\\n      pos     = concat of model-cited evidence sentences\\n      neg     = all other sentences in the document\\n      CED(t)  = max(0, p_pos - max_j p_neg_j) * I(p_pos > tau)\\n    Returns mean CED across triples.\\n    \\\"\\\"\\\"\\n    if not parsed_triples:\\n        return 0.0\\n\\n    n_sents = len(sents)\\n    all_ids = set(range(n_sents))\\n    scores = []\\n\\n    for t in parsed_triples:\\n        if not isinstance(t, dict):\\n            continue\\n        head = t.get(\\\"head\\\", \\\"\\\")\\n        relation = t.get(\\\"relation\\\", \\\"\\\")\\n        tail = t.get(\\\"tail\\\", \\\"\\\")\\n        evidence = t.get(\\\"evidence\\\", [])\\n        if not (head and relation and tail):\\n            continue\\n\\n        claim = verbalize_by_name(head, relation, tail)\\n\\n        evi_ids = {int(e) for e in evidence if isinstance(e, int) and 0 <= int(e) < n_sents}\\n        if not evi_ids:\\n            scores.append(0.0)\\n            continue\\n\\n        cited = [sents[i] for i in sorted(evi_ids)]\\n        neg_ids = all_ids - evi_ids\\n        negs = [sents[i] for i in sorted(neg_ids)]\\n\\n        if negs:\\n            r = ced_model.compute_ced_reward(claim, cited, negs, tau=tau)\\n        else:\\n            r = ced_model.compute_flat_nli_reward(claim, cited, tau=tau)\\n        scores.append(r[\\\"reward\\\"])\\n\\n    return float(np.mean(scores)) if scores else 0.0\\n\\ndef candidate_rel_f1(parsed_triples: list[dict], gold_triples: list[dict]) -> float:\\n    \\\"\\\"\\\"Per-candidate relation F1 against gold (for Oracle selection).\\\"\\\"\\\"\\n    gold_set = {\\n        (str(g[\\\"head\\\"]).lower().strip(),\\n         str(g[\\\"relation\\\"]).lower().strip(),\\n         str(g[\\\"tail\\\"]).lower().strip())\\n        for g in gold_triples\\n    }\\n    pred_set = set()\\n    for p in parsed_triples:\\n        if isinstance(p, dict):\\n            pred_set.add((\\n                str(p.get(\\\"head\\\", \\\"\\\")).lower().strip(),\\n                str(p.get(\\\"relation\\\", \\\"\\\")).lower().strip(),\\n                str(p.get(\\\"tail\\\", \\\"\\\")).lower().strip(),\\n            ))\\n    if not gold_set:\\n        return 1.0 if no\\n\\n... [截断: 输出过长，省略 10146 字符] ...\\n\\nreedy\\\"):\\n                greedy_sel[doc_id] = doc[\\\"greedy\\\"]\\n\\n    del ced_model\\n    torch.cuda.empty_cache()\\n\\n    # --- Step 3: Evaluate ---\\n    logger.info(\\\"Evaluating strategies...\\\")\\n\\n    with open(Path(args.data_dir) / \\\"dev.json\\\") as f:\\n        dev_data = json.load(f)\\n    if args.max_docs:\\n        keep = set(all_docs.keys())\\n        dev_data = [d for d in dev_data if d.get(\\\"title\\\", \\\"\\\") in keep]\\n    gold = gold_from_docred(dev_data)\\n\\n    train_file = str(Path(args.data_dir) / \\\"train_annotated.json\\\")\\n    results = {}\\n    for name, sel in [\\n        (\\\"greedy_baseline\\\", greedy_sel),\\n        (\\\"ced_reranker\\\", ced_sel),\\n        (\\\"oracle_reranker\\\", oracle_sel),\\n        (\\\"random_baseline\\\", rand_sel),\\n    ]:\\n        if not sel:\\n            continue\\n        m = evaluate_strategy(sel, gold, train_file)\\n        results[name] = m\\n        logger.info(\\\"%s: f1=%.4f evi_f1=%.4f edcr=%.4f prec=%.4f rec=%.4f preds=%d\\\",\\n                     name, m[\\\"f1\\\"], m[\\\"evi_f1\\\"], m.get(\\\"edcr\\\", 0),\\n                     m[\\\"precision\\\"], m[\\\"recall\\\"], m[\\\"n_predictions\\\"])\\n\\n    # CED-F1 correlation (Spearman)\\n    from scipy.stats import spearmanr\\n    corr, pval = spearmanr(ced_list, f1_list)\\n    results[\\\"ced_f1_correlation\\\"] = {\\n        \\\"spearman_r\\\": round(corr, 4),\\n        \\\"p_value\\\": float(f\\\"{pval:.2e}\\\"),\\n        \\\"n_samples\\\": len(ced_list),\\n    }\\n    logger.info(\\\"CED-F1 Spearman r=%.4f (p=%s, n=%d)\\\", corr, f\\\"{pval:.2e}\\\", len(ced_list))\\n\\n    results[\\\"config\\\"] = vars(args)\\n    results[\\\"generation_time_seconds\\\"] = round(gen_time, 1)\\n\\n    results_path = output_dir / \\\"results.json\\\"\\n    with open(results_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2, ensure_ascii=False)\\n    logger.info(\\\"Results → %s\\\", results_path)\\n\\n    # W&B log\\n    if wandb_run:\\n        import wandb\\n        log_data = {}\\n        for strategy in [\\\"greedy_baseline\\\", \\\"ced_reranker\\\", \\\"oracle_reranker\\\", \\\"random_baseline\\\"]:\\n            if strategy in results:\\n                m = results[strategy]\\n                for metric in [\\\"f1\\\", \\\"evi_f1\\\", \\\"edcr\\\", \\\"precision\\\", \\\"recall\\\", \\\"ign_f1\\\"]:\\n                    if metric in m:\\n                        log_data[f\\\"{strategy}/{metric}\\\"] = m[metric]\\n        log_data[\\\"ced_f1_spearman_r\\\"] = results[\\\"ced_f1_correlation\\\"][\\\"spearman_r\\\"]\\n        log_data[\\\"generation_time_seconds\\\"] = gen_time\\n        wandb.log(log_data)\\n        wandb.finish()\\n\\n    # Console summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 80)\\n    print(f\\\"  CED-as-Reranker  (N={args.num_generations}, T={args.temperature}, tau={args.tau}, \\\"\\n          f\\\"docs={len(all_docs)})\\\")\\n    print(\\\"=\\\" * 80)\\n    print(f\\\"  {'Strategy':<20s} {'rel_f1':>8s} {'evi_f1':>8s} {'EDCR':>8s} \\\"\\n          f\\\"{'prec':>8s} {'recall':>8s} {'ign_f1':>8s} {'preds':>6s}\\\")\\n    print(\\\"-\\\" * 80)\\n    for tag, label in [\\n        (\\\"greedy_baseline\\\", \\\"Greedy baseline\\\"),\\n        (\\\"random_baseline\\\", \\\"Random (N=8)\\\"),\\n        (\\\"ced_reranker\\\", \\\"CED reranker\\\"),\\n        (\\\"oracle_reranker\\\", \\\"Oracle (upper)\\\"),\\n    ]:\\n        if tag not in results:\\n            continue\\n        m = results[tag]\\n        print(f\\\"  {label:<20s} {m['f1']:>8.4f} {m['evi_f1']:>8.4f} \\\"\\n              f\\\"{m.get('edcr',0):>8.4f} {m['precision']:>8.4f} \\\"\\n              f\\\"{m['recall']:>8.4f} {m['ign_f1']:>8.4f} {m['n_predictions']:>6d}\\\")\\n    print(\\\"-\\\" * 80)\\n    c = results[\\\"ced_f1_correlation\\\"]\\n    print(f\\\"  CED-F1 Spearman r = {c['spearman_r']:.4f}  (p = {c['p_value']})\\\")\\n\\n    # Delta vs greedy\\n    if \\\"greedy_baseline\\\" in results and \\\"ced_reranker\\\" in results:\\n        g = results[\\\"greedy_baseline\\\"]\\n        r = results[\\\"ced_reranker\\\"]\\n        delta_f1 = r[\\\"f1\\\"] - g[\\\"f1\\\"]\\n        delta_evi = r[\\\"evi_f1\\\"] - g[\\\"evi_f1\\\"]\\n        print(f\\\"  CED vs Greedy: Δrel_f1={delta_f1:+.4f}, Δevi_f1={delta_evi:+.4f}\\\")\\n    if \\\"greedy_baseline\\\" in results and \\\"oracle_reranker\\\" in results:\\n        g = results[\\\"greedy_baseline\\\"]\\n        o = results[\\\"oracle_reranker\\\"]\\n        headroom = o[\\\"f1\\\"] - g[\\\"f1\\\"]\\n        print(f\\\"  Oracle headroom:  Δrel_f1={headroom:+.4f}\\\")\\n    print(\\\"=\\\" * 80)\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+Now let me check the `rsft_score_filter.py` and the NLI model path on disk.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "88197d7e-a18f-4990-ab28-bbe9e97bff92",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V3YNjyCdnWAyeS7XFZ8h1t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8500,
+      "cache_read_input_tokens": 26477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8500
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KBkAAT9gkpM4gfBBQ1Z21R`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/training/rsft_score_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "ff335c7c-2496-40ec-becc-bbe7f2d7460e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V3YNjyCdnWAyeS7XFZ8h1t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8500,
+      "cache_read_input_tokens": 26477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8500
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LRAPEFpWoUEZ1ieSy7JZch`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/models/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "f550974f-6b43-4c53-b454-fcac3e9516b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V3YNjyCdnWAyeS7XFZ8h1t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8500,
+      "cache_read_input_tokens": 26477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8500
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T12:42:19.640Z_
+
+<details><summary>↩ Tool result · `toolu_01KBkAAT9gkpM4gfBBQ1Z21R`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"RSFT Step 2: CED 打分 + 筛选。\\n\\n读取 rsft_generate.py 生成的 JSONL，对每个候选输出计算三种奖励:\\n  - format_reward: JSON 格式合规性\\n  - f1_reward: 与 gold triples 的 micro-F1\\n  - ced_reward: CED 对比证据判别奖励（--scoring_mode flat_nli 时为纯 NLI entailment 奖励）\\n\\n按组合阈值筛选高质量样本，输出 SFT 训练兼容格式。\\n\\n输入:\\n  - generations.jsonl (rsft_generate.py 的输出)\\n\\n输出 (保存到 --output_path):\\n  - rsft_train.jsonl: 筛选后的 SFT 训练数据 (JSONL)\\n  - rsft_scores.jsonl: 带分数的完整记录（供分析）\\n  - rsft_report.json: 统计报告\\n\\n依赖: transformers, torch, freige.rewards.ced_reward\\n\\n用法:\\n  python -m freige.training.rsft_score_filter \\\\\\n      --input_dir /root/autodl-tmp/rsft_generations \\\\\\n      --output_path /root/autodl-tmp/rsft_filtered \\\\\\n      --selection_strategy top_pct --top_pct 25 \\\\\\n      --nli_model_path /root/autodl-tmp/models/nli-deberta-v3-base\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\n\\n# ---------------------------------------------------------------------------\\n# Reward functions — 复用 grpo_trainer 中的逻辑\\n# ---------------------------------------------------------------------------\\n\\ndef compute_format_reward(parsed_triples, format_ok):\\n    \\\"\\\"\\\"格式奖励，复用 grpo_trainer.format_reward_fn 的逻辑。\\\"\\\"\\\"\\n    if not format_ok:\\n        return 0.0\\n    if not parsed_triples:\\n        return 0.1\\n    valid = 0\\n    for item in parsed_triples:\\n        if (isinstance(item, dict) and \\\"head\\\" in item\\n                and \\\"relation\\\" in item and \\\"tail\\\" in item\\n                and \\\"evidence\\\" in item\\n                and isinstance(item[\\\"evidence\\\"], list)):\\n            valid += 1\\n    return valid / len(parsed_triples)\\n\\n\\ndef compute_f1_reward(parsed_triples, gold_triples):\\n    \\\"\\\"\\\"F1 奖励，复用 grpo_trainer.f1_reward_fn 的逻辑。\\\"\\\"\\\"\\n    gold_set = set()\\n    for g in gold_triples:\\n        gold_set.add((\\n            str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n        ))\\n\\n    pred_set = set()\\n    for p in parsed_triples:\\n        if isinstance(p, dict):\\n            pred_set.add((\\n                str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n            ))\\n\\n    if not gold_set:\\n        return 1.0 if not pred_set else 0.0\\n\\n    tp = len(pred_set & gold_set)\\n    prec = tp / len(pred_set) if pred_set else 0.0\\n    rec = tp / len(gold_set) if gold_set else 0.0\\n    f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\\n    return f1\\n\\n\\ndef compute_ced_reward_for_record(record, ced_model, tau=0.5, scoring_mode=\\\"ced\\\"):\\n    \\\"\\\"\\\"CED 奖励，复用 grpo_trainer.CEDRewardWrapper.__call__ 的逻辑。\\n\\n    对一条记录中的所有 parsed_triples 计算平均 CED reward。\\n    \\\"\\\"\\\"\\n    from freige.rewards.ced_reward import verbalize_triple\\n\\n    parsed_triples = record[\\\"parsed_triples\\\"]\\n    gold_triples = record[\\\"gold_triples\\\"]\\n    sents = record[\\\"sents\\\"]\\n\\n    if not parsed_triples:\\n        return {\\\"ced_reward\\\": 0.0, \\\"triple_details\\\": []}\\n\\n    # 构建 gold_map\\n    gold_map = {}\\n    for g in gold_triples:\\n        key = (\\n            str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n        )\\n        gold_map[key] = g\\n\\n    # F1 gate: 至少一个预测 triple 匹配 gold\\n    has_gold_match = False\\n    for p in parsed_triples:\\n        if isinstance(p, dict):\\n            pk = (\\n                str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"relation\\\") or \\\"\\\").lower()\\n\\n... [截断: 输出过长，省略 15640 字符] ...\\n\\n               help=\\\"筛选策略 (default: top_pct)\\\")\\n    parser.add_argument(\\\"--top_k\\\", type=int, default=2,\\n                        help=\\\"top_k 策略: 每个文档取 top-K (default: 2)\\\")\\n    parser.add_argument(\\\"--top_pct\\\", type=int, default=25,\\n                        help=\\\"top_pct 策略: 每个文档取 top N%% (default: 25)\\\")\\n    args = parser.parse_args()\\n\\n    output_dir = Path(args.output_path)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # 1. 加载生成结果\\n    records = load_generations(args.input_dir)\\n\\n    # 2. 加载 CED 模型并打分\\n    logger.info(\\\"Loading NLI model: %s\\\", args.nli_model_path)\\n    from freige.rewards.ced_reward import CEDRewardModel\\n    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\n\\n    scored = score_all_records(records, ced_model, tau=args.tau, format_weight=args.format_weight, f1_weight=args.f1_weight, ced_weight=args.ced_weight, scoring_mode=args.scoring_mode)\\n\\n    # 保存带分数的完整记录\\n    scores_path = output_dir / \\\"rsft_scores.jsonl\\\"\\n    with open(scores_path, \\\"w\\\") as f:\\n        for rec in scored:\\n            # 不保存大字段以节省空间\\n            slim = {k: v for k, v in rec.items() if k not in (\\\"prompt\\\", \\\"sents\\\", \\\"gold_triples\\\")}\\n            f.write(json.dumps(slim, ensure_ascii=False) + \\\"\\\\n\\\")\\n    logger.info(\\\"Scores → %s\\\", scores_path)\\n\\n    # 2.5 截断-F1 相关性分析\\n    truncated_f1s = [r[\\\"f1_reward\\\"] for r in scored if r.get(\\\"truncated\\\", False)]\\n    non_truncated_f1s = [r[\\\"f1_reward\\\"] for r in scored if not r.get(\\\"truncated\\\", False)]\\n    if truncated_f1s and non_truncated_f1s:\\n        t_mean = sum(truncated_f1s) / len(truncated_f1s)\\n        nt_mean = sum(non_truncated_f1s) / len(non_truncated_f1s)\\n        gap = nt_mean - t_mean\\n    else:\\n        t_mean = sum(truncated_f1s) / len(truncated_f1s) if truncated_f1s else None\\n        nt_mean = sum(non_truncated_f1s) / len(non_truncated_f1s) if non_truncated_f1s else None\\n        gap = None\\n    truncation_analysis = {\\n        \\\"truncated_count\\\": len(truncated_f1s),\\n        \\\"non_truncated_count\\\": len(non_truncated_f1s),\\n        \\\"truncated_mean_f1\\\": round(t_mean, 4) if t_mean is not None else None,\\n        \\\"non_truncated_mean_f1\\\": round(nt_mean, 4) if nt_mean is not None else None,\\n        \\\"f1_gap\\\": round(gap, 4) if gap is not None else None,\\n        \\\"gap_significant\\\": abs(gap) > 0.1 if gap is not None else False,\\n    }\\n    logger.info(\\\"Truncation analysis: trunc=%d (mean_f1=%.3f), non-trunc=%d (mean_f1=%.3f), gap=%.3f\\\",\\n                len(truncated_f1s), t_mean or 0, len(non_truncated_f1s), nt_mean or 0, gap or 0)\\n\\n    # 3. 筛选\\n    selected, filter_stats = filter_records(scored, args)\\n\\n    # 4. 转换为 SFT 训练格式\\n    sft_data = format_sft_training_data(selected)\\n    train_path = output_dir / \\\"rsft_train.jsonl\\\"\\n    with open(train_path, \\\"w\\\") as f:\\n        for item in sft_data:\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\"\\\\n\\\")\\n    logger.info(\\\"Training data → %s (%d samples)\\\", train_path, len(sft_data))\\n\\n    # 5. 统计报告\\n    report = generate_report(scored, selected)\\n    report[\\\"f1_filter_stats\\\"] = filter_stats\\n    report[\\\"truncation_analysis\\\"] = truncation_analysis\\n    report[\\\"args\\\"] = vars(args)\\n    report_path = output_dir / \\\"rsft_report.json\\\"\\n    with open(report_path, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2, ensure_ascii=False)\\n    logger.info(\\\"Report → %s\\\", report_path)\\n\\n    # 控制台摘要\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(f\\\"  Total records:    {report['total_records']}\\\")\\n    print(f\\\"  Selected:         {report['selected_records']}\\\")\\n    print(f\\\"  Selection rate:   {report['selection_rate']:.1%}\\\")\\n    print(f\\\"  Unique docs:      {report['unique_docs_selected']}/{report['unique_docs_total']}\\\")\\n    print(\\\"-\\\" * 60)\\n    for name in [\\\"format_reward\\\", \\\"f1_reward\\\", \\\"ced_reward\\\", \\\"combined_score\\\"]:\\n        stats = report[f\\\"{name}_stats\\\"]\\n        print(f\\\"  {name:20s}  mean={stats['mean']:.3f}  std={stats['std']:.3f}  \\\"\\n              f\\\"median={stats['median']:.3f}  [min={stats['min']:.3f}, max={stats['max']:.3f}]\\\")\\n    print(\\\"=\\\" * 60)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "ba159cb4-dc63-4d7f-9702-9ea56ca039f3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"RSFT Step 2: CED 打分 + 筛选。\\\\n\\\\n读取 rsft_generate.py 生成的 JSONL，对每个候选输出计算三种奖励:\\\\n  - format_reward: JSON 格式合规性\\\\n  - f1_reward: 与 gold triples 的 micro-F1\\\\n  - ced_reward: CED 对比证据判别奖励（--scoring_mode flat_nli 时为纯 NLI entailment 奖励）\\\\n\\\\n按组合阈值筛选高质量样本，输出 SFT 训练兼容格式。\\\\n\\\\n输入:\\\\n  - generations.jsonl (rsft_generate.py 的输出)\\\\n\\\\n输出 (保存到 --output_path):\\\\n  - rsft_train.jsonl: 筛选后的 SFT 训练数据 (JSONL)\\\\n  - rsft_scores.jsonl: 带分数的完整记录（供分析）\\\\n  - rsft_report.json: 统计报告\\\\n\\\\n依赖: transformers, torch, freige.rewards.ced_reward\\\\n\\\\n用法:\\\\n  python -m freige.training.rsft_score_filter \\\\\\\\\\\\n      --input_dir /root/autodl-tmp/rsft_generations \\\\\\\\\\\\n      --output_path /root/autodl-tmp/rsft_filtered \\\\\\\\\\\\n      --selection_strategy top_pct --top_pct 25 \\\\\\\\\\\\n      --nli_model_path /root/autodl-tmp/models/nli-deberta-v3-base\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are an information extraction model. Given a document with numbered sentences \\\\\\\"\\\\n    \\\\\\\"and a list of entities, extract all relation triples. For each triple, provide the \\\\\\\"\\\\n    \\\\\\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\\\\\"\\\\n    \\\\\\\"Output as a JSON list.\\\\\\\"\\\\n)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Reward functions — 复用 grpo_trainer 中的逻辑\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef compute_format_reward(parsed_triples, format_ok):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"格式奖励，复用 grpo_trainer.format_reward_fn 的逻辑。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not format_ok:\\\\n        return 0.0\\\\n    if not parsed_triples:\\\\n        return 0.1\\\\n    valid = 0\\\\n    for item in parsed_triples:\\\\n        if (isinstance(item, dict) and \\\\\\\"head\\\\\\\" in item\\\\n                and \\\\\\\"relation\\\\\\\" in item and \\\\\\\"tail\\\\\\\" in item\\\\n                and \\\\\\\"evidence\\\\\\\" in item\\\\n                and isinstance(item[\\\\\\\"evidence\\\\\\\"], list)):\\\\n            valid += 1\\\\n    return valid / len(parsed_triples)\\\\n\\\\n\\\\ndef compute_f1_reward(parsed_triples, gold_triples):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"F1 奖励，复用 grpo_trainer.f1_reward_fn 的逻辑。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    gold_set = set()\\\\n    for g in gold_triples:\\\\n        gold_set.add((\\\\n            str(g.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            str(g.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            str(g.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n        ))\\\\n\\\\n    pred_set = set()\\\\n    for p in parsed_triples:\\\\n        if isinstance(p, dict):\\\\n            pred_set.add((\\\\n                str(p.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(p.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(p.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            ))\\\\n\\\\n    if not gold_set:\\\\n        return 1.0 if not pred_set else 0.0\\\\n\\\\n    tp = len(pred_set & gold_set)\\\\n    prec = tp / len(pred_set) if pred_set else 0.0\\\\n    rec = tp / len(gold_set) if gold_set else 0.0\\\\n    f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\\\\n    return f1\\\\n\\\\n\\\\ndef compute_ced_reward_for_record(record, ced_model, tau=0.5, scoring_mode=\\\\\\\"ced\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"CED 奖励，复用 grpo_trainer.CEDRewardWrapper.__call__ 的逻辑。\\\\n\\\\n    对一条记录中的所有 parsed_triples 计算平均 CED reward。\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from freige.rewards.ced_reward import verbalize_triple\\\\n\\\\n    parsed_triples = record[\\\\\\\"parsed_triples\\\\\\\"]\\\\n    gold_triples = record[\\\\\\\"gold_triples\\\\\\\"]\\\\n    sents = record[\\\\\\\"sents\\\\\\\"]\\\\n\\\\n    if not parsed_triples:\\\\n        return {\\\\\\\"ced_reward\\\\\\\": 0.0, \\\\\\\"triple_details\\\\\\\": []}\\\\n\\\\n    # 构建 gold_map\\\\n    gold_map = {}\\\\n    for g in gold_triples:\\\\n        key = (\\\\n            str(g.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            str(g.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            str(g.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n        )\\\\n        gold_map[key] = g\\\\n\\\\n    # F1 gate: 至少一个预测 triple 匹配 gold\\\\n    has_gold_match = False\\\\n    for p in parsed_triples:\\\\n        if isinstance(p, dict):\\\\n            pk = (\\\\n                str(p.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(p.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower()\\\\n\\\\n... [截断: 输出过长，省略 15640 字符] ...\\\\n\\\\n               help=\\\\\\\"筛选策略 (default: top_pct)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--top_k\\\\\\\", type=int, default=2,\\\\n                        help=\\\\\\\"top_k 策略: 每个文档取 top-K (default: 2)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--top_pct\\\\\\\", type=int, default=25,\\\\n                        help=\\\\\\\"top_pct 策略: 每个文档取 top N%% (default: 25)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    output_dir = Path(args.output_path)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # 1. 加载生成结果\\\\n    records = load_generations(args.input_dir)\\\\n\\\\n    # 2. 加载 CED 模型并打分\\\\n    logger.info(\\\\\\\"Loading NLI model: %s\\\\\\\", args.nli_model_path)\\\\n    from freige.rewards.ced_reward import CEDRewardModel\\\\n    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\\\n\\\\n    scored = score_all_records(records, ced_model, tau=args.tau, format_weight=args.format_weight, f1_weight=args.f1_weight, ced_weight=args.ced_weight, scoring_mode=args.scoring_mode)\\\\n\\\\n    # 保存带分数的完整记录\\\\n    scores_path = output_dir / \\\\\\\"rsft_scores.jsonl\\\\\\\"\\\\n    with open(scores_path, \\\\\\\"w\\\\\\\") as f:\\\\n        for rec in scored:\\\\n            # 不保存大字段以节省空间\\\\n            slim = {k: v for k, v in rec.items() if k not in (\\\\\\\"prompt\\\\\\\", \\\\\\\"sents\\\\\\\", \\\\\\\"gold_triples\\\\\\\")}\\\\n            f.write(json.dumps(slim, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    logger.info(\\\\\\\"Scores → %s\\\\\\\", scores_path)\\\\n\\\\n    # 2.5 截断-F1 相关性分析\\\\n    truncated_f1s = [r[\\\\\\\"f1_reward\\\\\\\"] for r in scored if r.get(\\\\\\\"truncated\\\\\\\", False)]\\\\n    non_truncated_f1s = [r[\\\\\\\"f1_reward\\\\\\\"] for r in scored if not r.get(\\\\\\\"truncated\\\\\\\", False)]\\\\n    if truncated_f1s and non_truncated_f1s:\\\\n        t_mean = sum(truncated_f1s) / len(truncated_f1s)\\\\n        nt_mean = sum(non_truncated_f1s) / len(non_truncated_f1s)\\\\n        gap = nt_mean - t_mean\\\\n    else:\\\\n        t_mean = sum(truncated_f1s) / len(truncated_f1s) if truncated_f1s else None\\\\n        nt_mean = sum(non_truncated_f1s) / len(non_truncated_f1s) if non_truncated_f1s else None\\\\n        gap = None\\\\n    truncation_analysis = {\\\\n        \\\\\\\"truncated_count\\\\\\\": len(truncated_f1s),\\\\n        \\\\\\\"non_truncated_count\\\\\\\": len(non_truncated_f1s),\\\\n        \\\\\\\"truncated_mean_f1\\\\\\\": round(t_mean, 4) if t_mean is not None else None,\\\\n        \\\\\\\"non_truncated_mean_f1\\\\\\\": round(nt_mean, 4) if nt_mean is not None else None,\\\\n        \\\\\\\"f1_gap\\\\\\\": round(gap, 4) if gap is not None else None,\\\\n        \\\\\\\"gap_significant\\\\\\\": abs(gap) > 0.1 if gap is not None else False,\\\\n    }\\\\n    logger.info(\\\\\\\"Truncation analysis: trunc=%d (mean_f1=%.3f), non-trunc=%d (mean_f1=%.3f), gap=%.3f\\\\\\\",\\\\n                len(truncated_f1s), t_mean or 0, len(non_truncated_f1s), nt_mean or 0, gap or 0)\\\\n\\\\n    # 3. 筛选\\\\n    selected, filter_stats = filter_records(scored, args)\\\\n\\\\n    # 4. 转换为 SFT 训练格式\\\\n    sft_data = format_sft_training_data(selected)\\\\n    train_path = output_dir / \\\\\\\"rsft_train.jsonl\\\\\\\"\\\\n    with open(train_path, \\\\\\\"w\\\\\\\") as f:\\\\n        for item in sft_data:\\\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    logger.info(\\\\\\\"Training data → %s (%d samples)\\\\\\\", train_path, len(sft_data))\\\\n\\\\n    # 5. 统计报告\\\\n    report = generate_report(scored, selected)\\\\n    report[\\\\\\\"f1_filter_stats\\\\\\\"] = filter_stats\\\\n    report[\\\\\\\"truncation_analysis\\\\\\\"] = truncation_analysis\\\\n    report[\\\\\\\"args\\\\\\\"] = vars(args)\\\\n    report_path = output_dir / \\\\\\\"rsft_report.json\\\\\\\"\\\\n    with open(report_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(report, f, indent=2, ensure_ascii=False)\\\\n    logger.info(\\\\\\\"Report → %s\\\\\\\", report_path)\\\\n\\\\n    # 控制台摘要\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(f\\\\\\\"  Total records:    {report['total_records']}\\\\\\\")\\\\n    print(f\\\\\\\"  Selected:         {report['selected_records']}\\\\\\\")\\\\n    print(f\\\\\\\"  Selection rate:   {report['selection_rate']:.1%}\\\\\\\")\\\\n    print(f\\\\\\\"  Unique docs:      {report['unique_docs_selected']}/{report['unique_docs_total']}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    for name in [\\\\\\\"format_reward\\\\\\\", \\\\\\\"f1_reward\\\\\\\", \\\\\\\"ced_reward\\\\\\\", \\\\\\\"combined_score\\\\\\\"]:\\\\n        stats = report[f\\\\\\\"{name}_stats\\\\\\\"]\\\\n        print(f\\\\\\\"  {name:20s}  mean={stats['mean']:.3f}  std={stats['std']:.3f}  \\\\\\\"\\\\n              f\\\\\\\"median={stats['median']:.3f}  [min={stats['min']:.3f}, max={stats['max']:.3f}]\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"RSFT Step 2: CED 打分 + 筛选。\\n\\n读取 rsft_generate.py 生成的 JSONL，对每个候选输出计算三种奖励:\\n  - format_reward: JSON 格式合规性\\n  - f1_reward: 与 gold triples 的 micro-F1\\n  - ced_reward: CED 对比证据判别奖励（--scoring_mode flat_nli 时为纯 NLI entailment 奖励）\\n\\n按组合阈值筛选高质量样本，输出 SFT 训练兼容格式。\\n\\n输入:\\n  - generations.jsonl (rsft_generate.py 的输出)\\n\\n输出 (保存到 --output_path):\\n  - rsft_train.jsonl: 筛选后的 SFT 训练数据 (JSONL)\\n  - rsft_scores.jsonl: 带分数的完整记录（供分析）\\n  - rsft_report.json: 统计报告\\n\\n依赖: transformers, torch, freige.rewards.ced_reward\\n\\n用法:\\n  python -m freige.training.rsft_score_filter \\\\\\n      --input_dir /root/autodl-tmp/rsft_generations \\\\\\n      --output_path /root/autodl-tmp/rsft_filtered \\\\\\n      --selection_strategy top_pct --top_pct 25 \\\\\\n      --nli_model_path /root/autodl-tmp/models/nli-deberta-v3-base\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\n\\n# ---------------------------------------------------------------------------\\n# Reward functions — 复用 grpo_trainer 中的逻辑\\n# ---------------------------------------------------------------------------\\n\\ndef compute_format_reward(parsed_triples, format_ok):\\n    \\\"\\\"\\\"格式奖励，复用 grpo_trainer.format_reward_fn 的逻辑。\\\"\\\"\\\"\\n    if not format_ok:\\n        return 0.0\\n    if not parsed_triples:\\n        return 0.1\\n    valid = 0\\n    for item in parsed_triples:\\n        if (isinstance(item, dict) and \\\"head\\\" in item\\n                and \\\"relation\\\" in item and \\\"tail\\\" in item\\n                and \\\"evidence\\\" in item\\n                and isinstance(item[\\\"evidence\\\"], list)):\\n            valid += 1\\n    return valid / len(parsed_triples)\\n\\n\\ndef compute_f1_reward(parsed_triples, gold_triples):\\n    \\\"\\\"\\\"F1 奖励，复用 grpo_trainer.f1_reward_fn 的逻辑。\\\"\\\"\\\"\\n    gold_set = set()\\n    for g in gold_triples:\\n        gold_set.add((\\n            str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n        ))\\n\\n    pred_set = set()\\n    for p in parsed_triples:\\n        if isinstance(p, dict):\\n            pred_set.add((\\n                str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n            ))\\n\\n    if not gold_set:\\n        return 1.0 if not pred_set else 0.0\\n\\n    tp = len(pred_set & gold_set)\\n    prec = tp / len(pred_set) if pred_set else 0.0\\n    rec = tp / len(gold_set) if gold_set else 0.0\\n    f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\\n    return f1\\n\\n\\ndef compute_ced_reward_for_record(record, ced_model, tau=0.5, scoring_mode=\\\"ced\\\"):\\n    \\\"\\\"\\\"CED 奖励，复用 grpo_trainer.CEDRewardWrapper.__call__ 的逻辑。\\n\\n    对一条记录中的所有 parsed_triples 计算平均 CED reward。\\n    \\\"\\\"\\\"\\n    from freige.rewards.ced_reward import verbalize_triple\\n\\n    parsed_triples = record[\\\"parsed_triples\\\"]\\n    gold_triples = record[\\\"gold_triples\\\"]\\n    sents = record[\\\"sents\\\"]\\n\\n    if not parsed_triples:\\n        return {\\\"ced_reward\\\": 0.0, \\\"triple_details\\\": []}\\n\\n    # 构建 gold_map\\n    gold_map = {}\\n    for g in gold_triples:\\n        key = (\\n            str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n        )\\n        gold_map[key] = g\\n\\n    # F1 gate: 至少一个预测 triple 匹配 gold\\n    has_gold_match = False\\n    for p in parsed_triples:\\n        if isinstance(p, dict):\\n            pk = (\\n                str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"relation\\\") or \\\"\\\").lower()\\n\\n... [截断: 输出过长，省略 15640 字符] ...\\n\\n               help=\\\"筛选策略 (default: top_pct)\\\")\\n    parser.add_argument(\\\"--top_k\\\", type=int, default=2,\\n                        help=\\\"top_k 策略: 每个文档取 top-K (default: 2)\\\")\\n    parser.add_argument(\\\"--top_pct\\\", type=int, default=25,\\n                        help=\\\"top_pct 策略: 每个文档取 top N%% (default: 25)\\\")\\n    args = parser.parse_args()\\n\\n    output_dir = Path(args.output_path)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # 1. 加载生成结果\\n    records = load_generations(args.input_dir)\\n\\n    # 2. 加载 CED 模型并打分\\n    logger.info(\\\"Loading NLI model: %s\\\", args.nli_model_path)\\n    from freige.rewards.ced_reward import CEDRewardModel\\n    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\n\\n    scored = score_all_records(records, ced_model, tau=args.tau, format_weight=args.format_weight, f1_weight=args.f1_weight, ced_weight=args.ced_weight, scoring_mode=args.scoring_mode)\\n\\n    # 保存带分数的完整记录\\n    scores_path = output_dir / \\\"rsft_scores.jsonl\\\"\\n    with open(scores_path, \\\"w\\\") as f:\\n        for rec in scored:\\n            # 不保存大字段以节省空间\\n            slim = {k: v for k, v in rec.items() if k not in (\\\"prompt\\\", \\\"sents\\\", \\\"gold_triples\\\")}\\n            f.write(json.dumps(slim, ensure_ascii=False) + \\\"\\\\n\\\")\\n    logger.info(\\\"Scores → %s\\\", scores_path)\\n\\n    # 2.5 截断-F1 相关性分析\\n    truncated_f1s = [r[\\\"f1_reward\\\"] for r in scored if r.get(\\\"truncated\\\", False)]\\n    non_truncated_f1s = [r[\\\"f1_reward\\\"] for r in scored if not r.get(\\\"truncated\\\", False)]\\n    if truncated_f1s and non_truncated_f1s:\\n        t_mean = sum(truncated_f1s) / len(truncated_f1s)\\n        nt_mean = sum(non_truncated_f1s) / len(non_truncated_f1s)\\n        gap = nt_mean - t_mean\\n    else:\\n        t_mean = sum(truncated_f1s) / len(truncated_f1s) if truncated_f1s else None\\n        nt_mean = sum(non_truncated_f1s) / len(non_truncated_f1s) if non_truncated_f1s else None\\n        gap = None\\n    truncation_analysis = {\\n        \\\"truncated_count\\\": len(truncated_f1s),\\n        \\\"non_truncated_count\\\": len(non_truncated_f1s),\\n        \\\"truncated_mean_f1\\\": round(t_mean, 4) if t_mean is not None else None,\\n        \\\"non_truncated_mean_f1\\\": round(nt_mean, 4) if nt_mean is not None else None,\\n        \\\"f1_gap\\\": round(gap, 4) if gap is not None else None,\\n        \\\"gap_significant\\\": abs(gap) > 0.1 if gap is not None else False,\\n    }\\n    logger.info(\\\"Truncation analysis: trunc=%d (mean_f1=%.3f), non-trunc=%d (mean_f1=%.3f), gap=%.3f\\\",\\n                len(truncated_f1s), t_mean or 0, len(non_truncated_f1s), nt_mean or 0, gap or 0)\\n\\n    # 3. 筛选\\n    selected, filter_stats = filter_records(scored, args)\\n\\n    # 4. 转换为 SFT 训练格式\\n    sft_data = format_sft_training_data(selected)\\n    train_path = output_dir / \\\"rsft_train.jsonl\\\"\\n    with open(train_path, \\\"w\\\") as f:\\n        for item in sft_data:\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\"\\\\n\\\")\\n    logger.info(\\\"Training data → %s (%d samples)\\\", train_path, len(sft_data))\\n\\n    # 5. 统计报告\\n    report = generate_report(scored, selected)\\n    report[\\\"f1_filter_stats\\\"] = filter_stats\\n    report[\\\"truncation_analysis\\\"] = truncation_analysis\\n    report[\\\"args\\\"] = vars(args)\\n    report_path = output_dir / \\\"rsft_report.json\\\"\\n    with open(report_path, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2, ensure_ascii=False)\\n    logger.info(\\\"Report → %s\\\", report_path)\\n\\n    # 控制台摘要\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(f\\\"  Total records:    {report['total_records']}\\\")\\n    print(f\\\"  Selected:         {report['selected_records']}\\\")\\n    print(f\\\"  Selection rate:   {report['selection_rate']:.1%}\\\")\\n    print(f\\\"  Unique docs:      {report['unique_docs_selected']}/{report['unique_docs_total']}\\\")\\n    print(\\\"-\\\" * 60)\\n    for name in [\\\"format_reward\\\", \\\"f1_reward\\\", \\\"ced_reward\\\", \\\"combined_score\\\"]:\\n        stats = report[f\\\"{name}_stats\\\"]\\n        print(f\\\"  {name:20s}  mean={stats['mean']:.3f}  std={stats['std']:.3f}  \\\"\\n              f\\\"median={stats['median']:.3f}  [min={stats['min']:.3f}, max={stats['max']:.3f}]\\\")\\n    print(\\\"=\\\" * 60)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T12:42:20.047Z_
+
+<details><summary>↩ Tool result · `toolu_01LRAPEFpWoUEZ1ieSy7JZch`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Meta-Llama-3.1-8B\\nQwen\\nQwen3-4B\\nmeta-llama\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "77ae0ced-6585-490e-ab0f-631c4ece6edd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Meta-Llama-3.1-8B\\\\nQwen\\\\nQwen3-4B\\\\nmeta-llama\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Meta-Llama-3.1-8B\\nQwen\\nQwen3-4B\\nmeta-llama\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XSimPDvyRMkGdar9VXBwKb`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/models -name \"*nli*\" -o -name \"*deberta*\" -o -name \"*cross*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "21e675c0-7738-4b59-bf1d-632dd97d0a77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ZyA88tNcTDBdFSTz5gnAB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4131,
+      "cache_read_input_tokens": 34977,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4131
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T12:42:24.284Z_
+
+<details><summary>↩ Tool result · `toolu_01XSimPDvyRMkGdar9VXBwKb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "cf14dd9c-819e-4aaa-9887-4876fdcaf4f3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012gg3aKP4UgeRfgRe8uhqWu`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp -maxdepth 2 -name \"*nli*\" -o -name \"*deberta*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "38574f3c-80d1-42e9-9b7d-8c47d6005eb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ZyA88tNcTDBdFSTz5gnAB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4131,
+      "cache_read_input_tokens": 34977,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4131
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T12:42:25.202Z_
+
+<details><summary>↩ Tool result · `toolu_012gg3aKP4UgeRfgRe8uhqWu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/precompute_nli.py\\n/root/autodl-tmp/eval_results/rsft_flat_nli\\n/root/autodl-tmp/eval_results/grpo_flatnli_r3\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s45\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval_r2\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s42_reeval\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44_reeval\\n/root/autodl-tmp/grpo_flatnli\\n/root/autodl-tmp/grpo_flatnli_r2\\n/root/autodl-tmp/grpo_flatnli_r3\\n/root/autodl-tmp/grpo_flatnli_r4.log\\n/root/autodl-tmp/grpo_flatnli_r4\\n/root/autodl-tmp/grpo_flatnli_r5\\n/root/autodl-tmp/grpo_flatnli_r6\\n/root/autodl-tmp/logs/reeval_flat_nli_s44.log\\n/root/autodl-tmp/rsft_filtered_flat_nli\\n/root/autodl-tmp/rsft_output_flat_nli\\n/root/autodl-tmp/rsft_output_flat_nli_s43\\n/root/autodl-tmp/rsft_output_flat_nli_s45\\n/root/autodl-tmp/rsft_output_flat_nli_s44\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "ec4714af-bc18-4bf7-bc36-2e83dd10dcfd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/precompute_nli.py\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli\\\\n/root/autodl-tmp/eval_results/grpo_flatnli_r3\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s45\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval_r2\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s42_reeval\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44_reeval\\\\n/root/autodl-tmp/grpo_flatnli\\\\n/root/autodl-tmp/grpo_flatnli_r2\\\\n/root/autodl-tmp/grpo_flatnli_r3\\\\n/root/autodl-tmp/grpo_flatnli_r4.log\\\\n/root/autodl-tmp/grpo_flatnli_r4\\\\n/root/autodl-tmp/grpo_flatnli_r5\\\\n/root/autodl-tmp/grpo_flatnli_r6\\\\n/root/autodl-tmp/logs/reeval_flat_nli_s44.log\\\\n/root/autodl-tmp/rsft_filtered_flat_nli\\\\n/root/autodl-tmp/rsft_output_flat_nli\\\\n/root/autodl-tmp/rsft_output_flat_nli_s43\\\\n/root/autodl-tmp/rsft_output_flat_nli_s45\\\\n/root/autodl-tmp/rsft_output_flat_nli_s44\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/precompute_nli.py\\n/root/autodl-tmp/eval_results/rsft_flat_nli\\n/root/autodl-tmp/eval_results/grpo_flatnli_r3\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s45\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval_r2\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s42_reeval\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44_reeval\\n/root/autodl-tmp/grpo_flatnli\\n/root/autodl-tmp/grpo_flatnli_r2\\n/root/autodl-tmp/grpo_flatnli_r3\\n/root/autodl-tmp/grpo_flatnli_r4.log\\n/root/autodl-tmp/grpo_flatnli_r4\\n/root/autodl-tmp/grpo_flatnli_r5\\n/root/autodl-tmp/grpo_flatnli_r6\\n/root/autodl-tmp/logs/reeval_flat_nli_s44.log\\n/root/autodl-tmp/rsft_filtered_flat_nli\\n/root/autodl-tmp/rsft_output_flat_nli\\n/root/autodl-tmp/rsft_output_flat_nli_s43\\n/root/autodl-tmp/rsft_output_flat_nli_s45\\n/root/autodl-tmp/rsft_output_flat_nli_s44\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+NLI model not found locally under `/root/autodl-tmp/models/`. Let me check if it's cached elsewhere or referenced directly from HuggingFace hub.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "01ad8f21-ba6b-42cd-8da2-aef05a70d90d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MBL919i1T9uE78LVruXq9r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 967,
+      "cache_read_input_tokens": 39108,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 967
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NHb8osFkkA9cq5UvQ5mfMR`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp -maxdepth 3 -type d -name \"*deberta*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "1b27438f-441c-48da-bae7-cd91c186774c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MBL919i1T9uE78LVruXq9r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 967,
+      "cache_read_input_tokens": 39108,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 967
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T12:42:29.825Z_
+
+<details><summary>↩ Tool result · `toolu_01NHb8osFkkA9cq5UvQ5mfMR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "2e726bb1-6c2d-4092-a1c4-d41c413f39c9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018uzDDa4CjEHstLV7rPhhZc`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -rn \"nli_model\" /root/autodl-tmp/freige/training/rsft_score_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "91b368af-9cdf-474d-9063-ee420bc29715",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MBL919i1T9uE78LVruXq9r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 967,
+      "cache_read_input_tokens": 39108,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 967
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T12:42:31.305Z_
+
+<details><summary>↩ Tool result · `toolu_018uzDDa4CjEHstLV7rPhhZc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"25:      --nli_model_path /root/autodl-tmp/models/nli-deberta-v3-base\\n489:    parser.add_argument(\\\"--nli_model_path\\\", type=str,\\n531:    logger.info(\\\"Loading NLI model: %s\\\", args.nli_model_path)\\n533:    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "a66b3b06-074d-47cd-859d-41104244c1ae",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"25:      --nli_model_path /root/autodl-tmp/models/nli-deberta-v3-base\\\\n489:    parser.add_argument(\\\\\\\"--nli_model_path\\\\\\\", type=str,\\\\n531:    logger.info(\\\\\\\"Loading NLI model: %s\\\\\\\", args.nli_model_path)\\\\n533:    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"25:      --nli_model_path /root/autodl-tmp/models/nli-deberta-v3-base\\n489:    parser.add_argument(\\\"--nli_model_path\\\", type=str,\\n531:    logger.info(\\\"Loading NLI model: %s\\\", args.nli_model_path)\\n533:    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NXKfpJaLu9SFQj7yMVCPXk`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"DEFAULT_NLI\\|nli_model_path\\|default.*nli\\|default.*deberta\" /root/autodl-tmp/freige/rewards/ced_reward.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "0dfc92bc-34d5-412f-a026-1fff1f9a0a35",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MBL919i1T9uE78LVruXq9r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 967,
+      "cache_read_input_tokens": 39108,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 967
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-16T12:42:32.063Z_
+
+<details><summary>↩ Tool result · `toolu_01NXKfpJaLu9SFQj7yMVCPXk`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "79d6ce24-84af-423b-b611-85d3e4b1c68e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J2nYMMREihRY6r3JhgGa56`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"DEFAULT_NLI\" /root/autodl-tmp/freige/rewards/ced_reward.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "cf93c453-7917-4e43-9f78-036338819721",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NKRfhRGZ1hH3gahvd5NZMP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 873,
+      "cache_read_input_tokens": 40075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 873
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-16T12:42:38.107Z_
+
+<details><summary>↩ Tool result · `toolu_01J2nYMMREihRY6r3JhgGa56`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"22:DEFAULT_NLI_MODEL = \\\"cross-encoder/nli-deberta-v3-base\\\"\\n138:        model_name: str = DEFAULT_NLI_MODEL,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "52725c90-91a8-4ced-aaaa-f18a6d64e327",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"22:DEFAULT_NLI_MODEL = \\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\"\\\\n138:        model_name: str = DEFAULT_NLI_MODEL,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"22:DEFAULT_NLI_MODEL = \\\"cross-encoder/nli-deberta-v3-base\\\"\\n138:        model_name: str = DEFAULT_NLI_MODEL,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SisB5XzvkW2ETpJkaGLqYh`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"nli_model_path\" /root/autodl-tmp/freige/eval/ced_reranker.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "0c66eee5-e1c7-4ff0-88f3-80e79e571ec4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NKRfhRGZ1hH3gahvd5NZMP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 873,
+      "cache_read_input_tokens": 40075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 873
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-16T12:42:39.091Z_
+
+<details><summary>↩ Tool result · `toolu_01SisB5XzvkW2ETpJkaGLqYh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"11:      --nli_model_path /root/autodl-tmp/models/deberta-v3-large-zeroshot-v2.0 \\\\\\n286:    parser.add_argument(\\\"--nli_model_path\\\", default=\\\"cross-encoder/nli-deberta-v3-base\\\")\\n342:    logger.info(\\\"Loading NLI model for CED scoring: %s\\\", args.nli_model_path)\\n343:    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=\\\"cuda\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "dea155f4-d5c3-4d3a-a7ff-65e01016b825",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"11:      --nli_model_path /root/autodl-tmp/models/deberta-v3-large-zeroshot-v2.0 \\\\\\\\\\\\n286:    parser.add_argument(\\\\\\\"--nli_model_path\\\\\\\", default=\\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\")\\\\n342:    logger.info(\\\\\\\"Loading NLI model for CED scoring: %s\\\\\\\", args.nli_model_path)\\\\n343:    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=\\\\\\\"cuda\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"11:      --nli_model_path /root/autodl-tmp/models/deberta-v3-large-zeroshot-v2.0 \\\\\\n286:    parser.add_argument(\\\"--nli_model_path\\\", default=\\\"cross-encoder/nli-deberta-v3-base\\\")\\n342:    logger.info(\\\"Loading NLI model for CED scoring: %s\\\", args.nli_model_path)\\n343:    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=\\\"cuda\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01W5ti9qcjD69iWpcHsoa9vW`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/.hf_cache -type d -name \"*nli*\" -o -name \"*deberta*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "abd3584b-0eab-4921-a0d7-30ebf58d42b6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NKRfhRGZ1hH3gahvd5NZMP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 873,
+      "cache_read_input_tokens": 40075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 873
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T12:42:39.868Z_
+
+<details><summary>↩ Tool result · `toolu_01W5ti9qcjD69iWpcHsoa9vW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "44fbee25-2cbb-444f-bde5-687fea2533d3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+已收集到所有必要信息。汇报如下：
+
+---
+
+## CED Scoring Pipeline 兼容性确认
+
+### 1. CED scoring 与生成模型无关
+
+**是的，完全无关。** CED scoring pipeline 的输入是纯文本：
+- `claim`: 由 (head, relation, tail) 通过 verbalization template 生成的自然语言句子
+- `cited_evidence_sents`: 模型输出中引用的文档句子（文本列表）
+- `hard_negative_sents`: 文档中未被引用的其他句子
+
+不需要生成模型的 weights、tokenizer 或任何模型特定信息。只要 candidates 能被 parse 成 `[{"head": ..., "relation": ..., "tail": ..., "evidence": [...]}]` 格式，CED 就能打分。
+
+### 2. CED 使用的 NLI 模型
+
+- **默认模型**: `cross-encoder/nli-deberta-v3-base`（HuggingFace hub ID，定义在 `rewards/ced_reward.py:22`）
+- **ced_reranker.py 示例中用**: `/root/autodl-tmp/models/deberta-v3-large-zeroshot-v2.0`
+- **rsft_score_filter.py 示例中用**: `/root/autodl-tmp/models/nli-deberta-v3-base`
+- 实际磁盘上 `/root/autodl-tmp/models/` 目录下目前**没有** deberta 模型（只有 Meta-Llama-3.1-8B、Qwen3-4B 等），HF cache 里也没有。使用前需要下载。
+
+### 3. CED scoring 完整流程
+
+```
+rsft_generate.py (生成 N 个 candidates per doc)
+    → generations.jsonl
+        → rsft_score_filter.py (CED 打分 + 筛选)
+            → rsft_train.jsonl (高质量样本)
+                → rsft_trainer.py (SFT 训练，支持 CED score 加权采样)
+```
+
+关键脚本用法：
+```bash
+# Step 1: 打分筛选
+python -m freige.training.rsft_score_filter \
+    --input_dir /root/autodl-tmp/rsft_generations \
+    --output_path /root/autodl-tmp/rsft_filtered \
+    --nli_model_path cross-encoder/nli-deberta-v3-base \
+    --scoring_mode ced  # 或 flat_nli
+    --selection_strategy top_pct --top_pct 25
+
+# Step 2: 独立 reranking 评估
+python -m freige.eval.ced_reranker \
+    --base_model <任意生成模型> \
+    --nli_model_path cross-encoder/nli-deberta-v3-base \
+    --num_generations 8 --temperature 0.7
+```
+
+### 4. 对 LLaMA/8B/1.7B candidates 的适配
+
+**无需任何适配。** 只要满足：
+1. 生成输出能被 `parse_model_output()` 解析为标准 triple 格式（JSON list with head/relation/tail/evidence fields）
+2. evidence 字段是文档中的句子 ID 列表
+
+这些条件由 prompt 格式保证，与底层生成模型无关。Qwen3-4B、LLaMA-3.1-8B、SmolLM-1.7B 都用同一个 system prompt 和输出格式，CED 直接兼容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "uuid": "4cf6400b-c43f-4d74-9570-d4e721e1b2ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TLCw5f3oDPNm6GRfzDVYxk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 983,
+      "cache_read_input_tokens": 40948,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 983
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 51_
+
+已收集到所有必要信息。汇报如下：
+
+---
+
+## CED Scoring Pipeline 兼容性确认
+
+### 1. CED scoring 与生成模型无关
+
+**是的，完全无关。** CED scoring pipeline 的输入是纯文本：
+- `claim`: 由 (head, relation, tail) 通过 verbalization template 生成的自然语言句子
+- `cited_evidence_sents`: 模型输出中引用的文档句子（文本列表）
+- `hard_negative_sents`: 文档中未被引用的其他句子
+
+不需要生成模型的 weights、tokenizer 或任何模型特定信息。只要 candidates 能被 parse 成 `[{"head": ..., "relation": ..., "tail": ..., "evidence": [...]}]` 格式，CED 就能打分。
+
+### 2. CED 使用的 NLI 模型
+
+- **默认模型**: `cross-encoder/nli-deberta-v3-base`（HuggingFace hub ID，定义在 `rewards/ced_reward.py:22`）
+- **ced_reranker.py 示例中用**: `/root/autodl-tmp/models/deberta-v3-large-zeroshot-v2.0`
+- **rsft_score_filter.py 示例中用**: `/root/autodl-tmp/models/nli-deberta-v3-base`
+- 实际磁盘上 `/root/autodl-tmp/models/` 目录下目前**没有** deberta 模型（只有 Meta-Llama-3.1-8B、Qwen3-4B 等），HF cache 里也没有。使用前需要下载。
+
+### 3. CED scoring 完整流程
+
+```
+rsft_generate.py (生成 N 个 candidates per doc)
+    → generations.jsonl
+        → rsft_score_filter.py (CED 打分 + 筛选)
+            → rsft_train.jsonl (高质量样本)
+                → rsft_trainer.py (SFT 训练，支持 CED score 加权采样)
+```
+
+关键脚本用法：
+```bash
+# Step 1: 打分筛选
+python -m freige.training.rsft_score_filter \
+    --input_dir /root/autodl-tmp/rsft_generations \
+    --output_path /root/autodl-tmp/rsft_filtered \
+    --nli_model_path cross-encoder/nli-deberta-v3-base \
+    --scoring_mode ced  # 或 flat_nli
+    --selection_strategy top_pct --top_pct 25
+
+# Step 2: 独立 reranking 评估
+python -m freige.eval.ced_reranker \
+    --base_model <任意生成模型> \
+    --nli_model_path cross-encoder/nli-deberta-v3-base \
+    --num_generations 8 --temperature 0.7
+```
+
+### 4. 对 LLaMA/8B/1.7B candidates 的适配
+
+**无需任何适配。** 只要满足：
+1. 生成输出能被 `parse_model_output()` 解析为标准 triple 格式（JSON list with head/relation/tail/evidence fields）
+2. evidence 字段是文档中的句子 ID 列表
+
+这些条件由 prompt 格式保证，与底层生成模型无关。Qwen3-4B、LLaMA-3.1-8B、SmolLM-1.7B 都用同一个 system prompt 和输出格式，CED 直接兼容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 74647,
+  "duration_api_ms": 74188,
+  "num_turns": 21,
+  "stop_reason": "end_turn",
+  "session_id": "2681b004-55dd-419a-ba28-fc4d0ddc1ee7",
+  "total_cost_usd": 0.419093,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 30484,
+    "cache_read_input_tokens": 267074,
+    "output_tokens": 3712,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 30484,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 984,
+        "cache_read_input_tokens": 40948,
+        "cache_creation_input_tokens": 983,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 983
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2096,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002171,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 3712,
+      "cacheReadInputTokens": 267074,
+      "cacheCreationInputTokens": 30484,
+      "webSearchRequests": 0,
+      "costUSD": 0.416922,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "cd94f176-61ef-4227-9792-57ac765d75ad"
+}
+```
+
+</details>
+
+---

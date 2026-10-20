@@ -1,0 +1,1754 @@
+# knowledge topk ablation framing
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 35
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/workers/worker_knowledge_topk_ablation_framing_20260516T003141.log`
+- **Structured JSON:** [`c36016e1209b5491b796.json`](../../sessions/c3/c36016e1209b5491b796.json)
+
+## Before a recorded user message
+
+35 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "7e7e4130-c4e7-41d7-91a4-ad0771333876",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778903400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "3144a5ef-2f09-423b-877b-7509d85105ba",
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by gathering the necessary data from the registry and reading the current paper_framing.md.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "00988027-6068-44ae-bf55-a9cc35eebbd4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TC1wkofB3maNAEn4KTwGQy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12217,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12217
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019n7nbG6jvDk8BujyScEdvS`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "9ed22094-c662-4dd7-af71-ba01f1808821",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TC1wkofB3maNAEn4KTwGQy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12217,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12217
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T00:31:52.521Z_
+
+<details><summary>↩ Tool result · `toolu_019n7nbG6jvDk8BujyScEdvS`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "bd84fc6f-f6a4-41e3-b9f7-0a8b15a0d2b9",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me fetch the registry data and paper_framing.md in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "52c44f40-3be3-422c-b030-24e26f3595be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011BBC3d684c4GkMNz7rcXZG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 805,
+      "cache_read_input_tokens": 23664,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 805
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_0145E55c2AiU1y1Qd1UNR25t`</summary>
+
+```json
+{
+  "filters": {
+    "name": "reeval_rsft_topk3"
+  },
+  "project": "faith-evidence-ie",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "93cdd2d2-70c4-4df2-8bab-7261250763a0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011BBC3d684c4GkMNz7rcXZG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 805,
+      "cache_read_input_tokens": 23664,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 805
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T00:31:57.105Z_
+
+<details><summary>↩ Tool result · `toolu_0145E55c2AiU1y1Qd1UNR25t`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5553}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "7035b8a0-7c81-414f-b2ef-38a166a57c78",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5553}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5553}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01MiRARt5RgAR6CwiKY1j382`</summary>
+
+```json
+{
+  "filters": {
+    "tags": "ced_rsft"
+  },
+  "project": "faith-evidence-ie",
+  "fields": [
+    "name",
+    "status",
+    "conclusion",
+    "metrics",
+    "config",
+    "tags"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "09ad77c5-ad65-4e54-b483-b82d2974facc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011BBC3d684c4GkMNz7rcXZG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 805,
+      "cache_read_input_tokens": 23664,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 805
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T00:31:57.821Z_
+
+<details><summary>↩ Tool result · `toolu_01MiRARt5RgAR6CwiKY1j382`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3696}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "3df5959e-9ac4-48c3-9b7a-61b419d7e7e6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3696}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3696}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01YASyrc7NVudEUZfkAk16GX`</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "977718e3-0d04-4015-907c-de330fae1b4d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011BBC3d684c4GkMNz7rcXZG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 805,
+      "cache_read_input_tokens": 23664,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 805
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T00:31:58.072Z_
+
+<details><summary>↩ Tool result · `toolu_01YASyrc7NVudEUZfkAk16GX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md\", \"content\": \"# Paper Framing — FREIGE\\n\\n> **状态**: POST-MVP + DREAM v2 完成（D047 分析）\\n> **最后更新**: 2026-05-16\\n> **Dream v1**: best=2.5, median=3.0, worst=2.5 → reframe 完成\\n> **Dream v2**: best=3.0, median=2.5, worst=2.5 → best 提升但 median 下降，未达标。关键路径：plan_011 bf16 GRPO eval + structural fixes → re-dream v3\\n\\n## Target Venue\\n\\n- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25 → commit EMNLP Aug/Sep)\\n- Fallback: AAAI 2027 (abstract July 25, paper Aug 1)\\n\\n## Core Insight\\n\\nLLM-based document-level IE 已逼近 encoder SOTA 的抽取精度，但零方法能生成可验证证据。本文提出 **evidence-grounded DocRE** 作为新任务范式：LLM 同时输出关系三元组和支撑证据句。\\n\\n我们系统性地探索了 online RL (GRPO) 、offline preference optimization (DPO) 和 offline RL (RSFT) 三条技术路线。关键发现：**RL optimization pressure 与 evidence-extraction decoupling severity 正相关**——优化强度越大，evidence 质量提升的同时抽取能力退化越严重。QLoRA 放大至 catastrophic（rel_f1<0.02），bf16 GRPO 从 0.4549 退化至 ~0.434（mild, -2pp），DPO 呈 gradual 退化（1ep→3ep rel_f1 从 0.4034→0.3429），RSFT 无 decoupling。\\n\\nCED (Contrastive Evidence Discrimination) 是一种 NLI-based 候选筛选函数，通过文档内 hard negative 对比评估 evidence 质量。CED 作为 RSFT 的 scoring function 之一进行测试，其相对于 flat-NLI 的优势需要通过充分的统计检验验证。\\n\\n## Story Arc\\n\\n1. **Problem**: LLM DocRE 无证据 → 部署障碍\\n2. **New task**: evidence-grounded DocRE — 同时生成关系和证据\\n3. **Cost of faithfulness**: evidence generation 代价 ~7pp Ign-F1（no-evidence 47.36 vs evidence-SFT 40.36）——这是 faithfulness 的真实成本\\n4. **Exploration**: 系统性比较 online RL (GRPO) vs offline preference (DPO) vs offline RL (RSFT)\\n5. **Key finding**: evidence-extraction decoupling — RL optimization pressure 与 decoupling severity 正相关，形成连续谱系（GRPO-QLoRA catastrophic > GRPO-bf16 mild > DPO gradual > RSFT none）\\n6. **QLoRA amplification**: QLoRA 量化将 mild decoupling 放大至 catastrophic forgetting——decoupling 是 RL-for-IE 的通用梯度，QLoRA 是 catastrophic amplifier\\n7. **What works**: RSFT with NLI-based scoring 是唯一有效路线——提升 evidence 质量而不牺牲抽取\\n8. **Best practical solution**: CED reranker 恢复 97% 的 evidence 代价，同时保留高质量 evidence（evi_f1=0.8188）\\n9. **Diagnostic tool**: EDCR 双层诊断——方法级量化 decoupling（与 Claim 2 呼应），per-relation 级揭示 evi_f1 不捕捉的 relation-type 难度差异（D070 ✅）\\n\\n## Core Claims (reframed after Dream v1, updated D068/D069/D070/D071/D072)\\n\\n### Claim 1 (Main): Evidence-grounded DocRE 是可行的新能力\\n- FREIGE 是首个在 DocRED 上同时输出 (head, relation, tail, [evidence]) 的 LLM 方法\\n- **Evidence generation tax**: no-evidence SFT Ign-F1=47.36 vs evidence-SFT 40.36，代价 ~7pp（plan_014 ✅）\\n- RSFT 在 4/4 配置下均超过 SFT baseline（Ign-F1 +3.3~5.5pp）\\n- **CED reranker 是最优实用方案**: rel_f1=0.4864（仅低于 no-evidence 0.29pp），evi_f1=0.8188（plan_005 ✅）\\n- 需要 DREEAM-protocol 对齐的 Evi-F1 对比（D041 在处理中）\\n\\n### Claim 2 (Core finding): RL optimization pressure 与 evidence-extraction decoupling severity 正相关（D068/D069 修正）\\n- **Decoupling spectrum**: 优化强度越大，decoupling 越严重\\n  - GRPO QLoRA: catastrophic（rel_f1=0.0138, evi_f1=0.850, EDCR=0.99）— QLoRA 放大 decoupling\\n  - GRPO bf16: mild（rel_f1 从 0.4549→~0.434, -2pp; step_30=0.434, step_50=0.4276, step_70=0.4341）— 退化可控但持续（D065/D066）\\n  - DPO bf16 1ep→3ep: gradual（Ign-F1 38.88→TBD, rel_f1 0.4034→0.3429）— 随训练渐进退化（D067/D068）\\n  - RSFT: none — 无 decoupling，唯一有效路线\\n- **QLoRA 是 catastrophic amplifier，不是 root cause**: bf16 GRPO 仅 mild decoupling（-2pp），QLoRA 放大至 catastrophic（-39pp）（D054/D065/D066）\\n- **Decoupling 是 RL-for-IE 的通用梯度**: 跨方法（GRPO/DPO）、跨量化策略（QLoRA/bf16）一致出现，严重程度与优化压力正相关\\n- 三档 Dream 审稿均认为此发现\\\"genuinely novel and striking\\\"\\n- **已完成**: GRPO G=8 bf16 确认 mild decoupling（plan_011 ✅）; DPO 1ep/3ep 确认 gradual decoupling（plan_012 ✅）\\n\\n### Claim 3 (Ablation): NLI-based scoring 提升 RSFT 质量\\n- CED 和 flat-NLI 都优于 random/no scoring\\n- CED vs flat-NLI 的差异需统计验证（Dream 报告 p=0.08/0.38/0.12 不显著）\\n- **Critical**: 如果 CED 不显著优于 flat-NLI → CED 降级为\\\"one possible scoring function\\\"\\n- **行动**: 5+ seeds for significance testing\\n\\n### Claim 4 (Diagnostic): EDCR 双层诊断价值（D070/D072）\\n- **Layer 1 — 方法级**: EDCR 量化 evidence-extraction decoupling，与 Claim 2 spectrum 呼应\\n  - 方法级 EDCR 与 rel_f1 Spearman ρ=-0.965（plan_003 ✅）——本质是 decoupling 的度量\\n  - EDCR 识别病理模型（GRPO QLoRA: EDCR≈1.0）\\n- **Layer 2 — per-relation-type**: EDCR 提供 evi_f1 不捕捉的 relation-type 诊断信息 ✅\\n  - per-relation ρ(EDCR, evi_f1) = **-0.064** (p=0.58) → **完全独立于 evi_f1**\\n  - per-relation ρ(EDCR, rel_f1) = -0.793 (p<0.001) → 与 rel_f1 强相关但非完美\\n  - per-relation ρ(evi_f1, rel_f1) = -0.013 (p=0.91) → evidence 质量与抽取能力在 relation type 间完全解耦\\n  - 典型案例：date_of_birth (EDCR=0.118, 高 faithful) vs head_of_government (EDCR=0.956, 高 decoupled)\\n  - 93 relation types 分析（≥5 样本），76 个有非零数据\\n- **论文叙事**: EDCR 在方法级是 decoupling 度量工具（横向对比方法），在 relation 级是难度诊断工具（纵向定位薄弱 relation）——两层叙事互补\\n- **仍需**: 100 例人工标注验证（RC6）\\n\\n## MVP Evidence Summary (D071: 主表报 Ign-F1，附录报 F1)\\n\\n| Config | Ign-F1 | F1 | Δ vs SFT (Ign-F1) | Evi-F1 (cond) | Evi-F1 (joint) | EDCR |\\n|--------|--------|------|-------------------|---------------|---------------|------|\\n| **SFT no-evidence** | **47.36** | 48.93 | **+7.00pp** | **—** | **—** | **—** |\\n| SFT baseline (noquant) | 40.36 | 41.06 | — | 80.13 | 31.17 | 0.7118 |\\n| **CED reranker** | **TBD** | 48.64 | **TBD** | **81.88** | — | **0.6156** |\\n| RSFT CED s43 (best) | **45.85** | 46.83 | **+5.49pp** | 81.56 | 37.11 | 0.6388 |\\n| RSFT CED s44 | 45.51 | 46.55 | +5.15pp | 80.87 | 37.13 | 0.6350 |\\n| RSFT CED s42 | 43.63 | 44.49 | +3.27pp | 81.87 | 34.68 | 0.6565 |\\n| RSFT r2a (1ep) | 44.01 | 44.94 | +3.65pp | 81.08 | 35.09 | 0.6641 |\\n| RSFT r2b (1ep) | 44.10 | 44.93 | +3.74pp | 81.28 | 34.90 | 0.6609 |\\n| flat-NLI s42 | 44.49 | 45.39 | +4.13pp | 80.43 | — | 0.6431 |\\n| flat-NLI s43 (reeval) | TBD | 45.23 | TBD | 81.58 | — | 0.6505 |\\n| DPO bf16 1ep | 38.88 | 40.34 | -1.48pp | 80.88 | — | 0.7139 |\\n| DPO bf16 3ep | TBD | 34.29 | TBD | — | — | — |\\n| GRPO bf16 G=8 (best step) | 45.59 | ~43.4 | +5.23pp | 80.86 | — | — |\\n| GRPO QLoRA (lr=5e-6) | TBD | 1.38 | TBD | 85.00 | — | 0.9900 |\\n\\n注：Evi-F1 以百分比显示（×100）。Ign-F1 修正后排名无实质变化（仅 r2a/r2b 互换，差 0.09pp）。TBD 项等待 metrics_v2.json 补算。GRPO bf16 Ign-F1=45.59 > F1=43.4 因 train triples 过滤效应。\\n\\n## Anticipated Reviewer Concerns (updated from Dream, D068/D069)\\n\\n### RC1: \\\"Online RL\\\" 标题过度声称（Dream 三档一致 Critical）\\n- ~~标题和 claim 收窄到 \\\"GRPO fails for DocRE\\\"~~\\n- **D068/D069 修正**: 重新定位为 \\\"RL optimization pressure correlates with decoupling severity\\\"——不是 GRPO 特有问题，而是 RL-for-IE 的通用梯度\\n- DPO 数据支撑 decoupling spectrum（gradual decay confirms the pattern）\\n\\n### RC2: GRPO G=4 太小 + LoRA confound（Dream 三档一致 Major）\\n- GRPO G=8 bf16 实验 ✅ — 确认 mild decoupling（-2pp），QLoRA 是 catastrophic amplifier（D065/D066）\\n- LoRA confound 已解决：bf16 LoRA vs QLoRA 直接对比\\n\\n### RC3: CED 不显著优于 flat-NLI（Dream 三档一致 Major）\\n- 5+ seeds 统计检验；如不显著 → CED 降级\\n\\n### RC4: RSFT 不新颖\\n- 不声称 RSFT 是贡献；贡献在于任务定义 + decoupling 发现 + EDCR\\n\\n### RC5: 评测可比性（D041）\\n- DREEAM-protocol Evi-F1；conditional Evi-F1 作为辅助指标\\n\\n### RC6: EDCR 缺人工验证\\n- 100 例小规模标注\\n\\n### RC7: Missing DPO/PPO（Dream 两档 Major）\\n- DPO experiment ✅ — 结果确认 decoupling spectrum（D067/D068）\\n\\n### RC8: Dev-test degradation\\n- 观察项，等 test set 数据\\n\\n### RC9: 连接 reward overoptimization 文献\\n- 显式引用 Gao et al. 2023\\n\\n### RC10: Post-hoc evidence retrieval baseline\\n- SFT + BM25 evidence retrieval\\n\\n## Key Baselines (12+)\\n\\n1. **SFT-only**: Qwen3-4B + LoRA SFT（with evidence）\\n1b. **SFT no-evidence**: Qwen3-4B + LoRA SFT（无 evidence，upper bound ablation）\\n2. **RSFT flat-NLI**: flat-NLI scored RSFT（核心 ablation）\\n3. **RSFT CED**: CED scored RSFT（主方法）\\n4. **CED-as-reranker**: 推理时 CED 重排（无训练）\\n5. **DPO+CED**: offline preference learning — gradual decoupling（D067/D068）\\n6. **GRPO+CED (QLoRA, G=4)**: catastrophic decoupling baseline\\n7. **GRPO+CED (bf16, G=8)**: mild decoupling — QLoRA confound 排除（D065/D066）\\n8. **Post-hoc retrieval**: SFT + BM25 evidence（NEW）\\n9. **DREEAM**: encoder evidence SOTA\\n10. **SAIS**: encoder evidence baseline\\n11. **DocKS-RAG**: extraction SOTA（无 evidence）\\n12. **LMRC**: generative LLM SOTA（无 evidence）\\n\\n## Publishability Threshold (revised after Dream, D068/D069)\\n\\n- **必要条件**: (1) RSFT 在 test set 上 Ign-F1 显著 > SFT (2) DREEAM-protocol Evi-F1 可报告 (3) Decoupling spectrum 有完整数据支撑（GRPO QLoRA/bf16 + DPO + RSFT）\\n- **充分条件**: 上述 + CED 显著 > flat-NLI + EDCR 人工验证\\n- **Failure pivot**: decoupling spectrum 不成立（bf16 GRPO 也 catastrophic）→ scope 大幅缩减。**已排除**: bf16 GRPO 确认 mild（D065/D066）\\n\\n## Research Phase Priorities (revised after Dream v1)\\n\\n| Priority | 实验 | Claim | GPU-h |\\n|----------|------|-------|-------|\\n| P0 | flat-NLI RSFT ablation (5 seeds) | C3 | ~25h |\\n| P0 | CED RSFT additional seeds (→5 total) | C3 | ~10h |\\n| P0 | DREEAM-protocol Evi-F1 对齐 | C1 | CPU |\\n| P0 | Test set evaluation | C1 | ~4h |\\n| P0 | DREEAM baseline reproduction | C1 | ~8h |\\n| ~~P0~~ | ~~GRPO G=8 experiment~~ ✅ | C2 | ~16h |\\n| ~~P0~~ | ~~DPO+CED experiment~~ ✅ | C2 | ~12h |\\n| ~~P0~~ | ~~EDCR per-relation analysis (D070)~~ ✅ | C4 | CPU |\\n| ~~P0~~ | ~~Ign-F1 bugfix + data sync (D071)~~ ✅ | ALL | CPU |\\n| P1 | EDCR human validation | C4 | API |\\n| P1 | Post-hoc evidence retrieval baseline | C1 | ~4h |\\n| P1 | CED-as-reranker (running) | C1 | ~6h |\\n| P1 | Model size ablation | RC | ~24h |\\n| P1 | Re-DocRED extension | RC | ~12h |\\n| ~~P0~~ | ~~GRPO forgetting dynamics figure (plan_009)~~ ✅ | C2 | ~2h |\\n| ~~P0~~ | ~~SFT-without-evidence ablation (plan_014)~~ ✅ | C1 | ~8h |\\n| P2 | Advantage variance measurement | C2 | CPU |\\n\", \"total_chars\": 9048, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "877da26a-c096-40e0-81f5-b93a39f744a1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — FREIGE\\\\n\\\\n> **状态**: POST-MVP + DREAM v2 完成（D047 分析）\\\\n> **最后更新**: 2026-05-16\\\\n> **Dream v1**: best=2.5, median=3.0, worst=2.5 → reframe 完成\\\\n> **Dream v2**: best=3.0, median=2.5, worst=2.5 → best 提升但 median 下降，未达标。关键路径：plan_011 bf16 GRPO eval + structural fixes → re-dream v3\\\\n\\\\n## Target Venue\\\\n\\\\n- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25 → commit EMNLP Aug/Sep)\\\\n- Fallback: AAAI 2027 (abstract July 25, paper Aug 1)\\\\n\\\\n## Core Insight\\\\n\\\\nLLM-based document-level IE 已逼近 encoder SOTA 的抽取精度，但零方法能生成可验证证据。本文提出 **evidence-grounded DocRE** 作为新任务范式：LLM 同时输出关系三元组和支撑证据句。\\\\n\\\\n我们系统性地探索了 online RL (GRPO) 、offline preference optimization (DPO) 和 offline RL (RSFT) 三条技术路线。关键发现：**RL optimization pressure 与 evidence-extraction decoupling severity 正相关**——优化强度越大，evidence 质量提升的同时抽取能力退化越严重。QLoRA 放大至 catastrophic（rel_f1<0.02），bf16 GRPO 从 0.4549 退化至 ~0.434（mild, -2pp），DPO 呈 gradual 退化（1ep→3ep rel_f1 从 0.4034→0.3429），RSFT 无 decoupling。\\\\n\\\\nCED (Contrastive Evidence Discrimination) 是一种 NLI-based 候选筛选函数，通过文档内 hard negative 对比评估 evidence 质量。CED 作为 RSFT 的 scoring function 之一进行测试，其相对于 flat-NLI 的优势需要通过充分的统计检验验证。\\\\n\\\\n## Story Arc\\\\n\\\\n1. **Problem**: LLM DocRE 无证据 → 部署障碍\\\\n2. **New task**: evidence-grounded DocRE — 同时生成关系和证据\\\\n3. **Cost of faithfulness**: evidence generation 代价 ~7pp Ign-F1（no-evidence 47.36 vs evidence-SFT 40.36）——这是 faithfulness 的真实成本\\\\n4. **Exploration**: 系统性比较 online RL (GRPO) vs offline preference (DPO) vs offline RL (RSFT)\\\\n5. **Key finding**: evidence-extraction decoupling — RL optimization pressure 与 decoupling severity 正相关，形成连续谱系（GRPO-QLoRA catastrophic > GRPO-bf16 mild > DPO gradual > RSFT none）\\\\n6. **QLoRA amplification**: QLoRA 量化将 mild decoupling 放大至 catastrophic forgetting——decoupling 是 RL-for-IE 的通用梯度，QLoRA 是 catastrophic amplifier\\\\n7. **What works**: RSFT with NLI-based scoring 是唯一有效路线——提升 evidence 质量而不牺牲抽取\\\\n8. **Best practical solution**: CED reranker 恢复 97% 的 evidence 代价，同时保留高质量 evidence（evi_f1=0.8188）\\\\n9. **Diagnostic tool**: EDCR 双层诊断——方法级量化 decoupling（与 Claim 2 呼应），per-relation 级揭示 evi_f1 不捕捉的 relation-type 难度差异（D070 ✅）\\\\n\\\\n## Core Claims (reframed after Dream v1, updated D068/D069/D070/D071/D072)\\\\n\\\\n### Claim 1 (Main): Evidence-grounded DocRE 是可行的新能力\\\\n- FREIGE 是首个在 DocRED 上同时输出 (head, relation, tail, [evidence]) 的 LLM 方法\\\\n- **Evidence generation tax**: no-evidence SFT Ign-F1=47.36 vs evidence-SFT 40.36，代价 ~7pp（plan_014 ✅）\\\\n- RSFT 在 4/4 配置下均超过 SFT baseline（Ign-F1 +3.3~5.5pp）\\\\n- **CED reranker 是最优实用方案**: rel_f1=0.4864（仅低于 no-evidence 0.29pp），evi_f1=0.8188（plan_005 ✅）\\\\n- 需要 DREEAM-protocol 对齐的 Evi-F1 对比（D041 在处理中）\\\\n\\\\n### Claim 2 (Core finding): RL optimization pressure 与 evidence-extraction decoupling severity 正相关（D068/D069 修正）\\\\n- **Decoupling spectrum**: 优化强度越大，decoupling 越严重\\\\n  - GRPO QLoRA: catastrophic（rel_f1=0.0138, evi_f1=0.850, EDCR=0.99）— QLoRA 放大 decoupling\\\\n  - GRPO bf16: mild（rel_f1 从 0.4549→~0.434, -2pp; step_30=0.434, step_50=0.4276, step_70=0.4341）— 退化可控但持续（D065/D066）\\\\n  - DPO bf16 1ep→3ep: gradual（Ign-F1 38.88→TBD, rel_f1 0.4034→0.3429）— 随训练渐进退化（D067/D068）\\\\n  - RSFT: none — 无 decoupling，唯一有效路线\\\\n- **QLoRA 是 catastrophic amplifier，不是 root cause**: bf16 GRPO 仅 mild decoupling（-2pp），QLoRA 放大至 catastrophic（-39pp）（D054/D065/D066）\\\\n- **Decoupling 是 RL-for-IE 的通用梯度**: 跨方法（GRPO/DPO）、跨量化策略（QLoRA/bf16）一致出现，严重程度与优化压力正相关\\\\n- 三档 Dream 审稿均认为此发现\\\\\\\"genuinely novel and striking\\\\\\\"\\\\n- **已完成**: GRPO G=8 bf16 确认 mild decoupling（plan_011 ✅）; DPO 1ep/3ep 确认 gradual decoupling（plan_012 ✅）\\\\n\\\\n### Claim 3 (Ablation): NLI-based scoring 提升 RSFT 质量\\\\n- CED 和 flat-NLI 都优于 random/no scoring\\\\n- CED vs flat-NLI 的差异需统计验证（Dream 报告 p=0.08/0.38/0.12 不显著）\\\\n- **Critical**: 如果 CED 不显著优于 flat-NLI → CED 降级为\\\\\\\"one possible scoring function\\\\\\\"\\\\n- **行动**: 5+ seeds for significance testing\\\\n\\\\n### Claim 4 (Diagnostic): EDCR 双层诊断价值（D070/D072）\\\\n- **Layer 1 — 方法级**: EDCR 量化 evidence-extraction decoupling，与 Claim 2 spectrum 呼应\\\\n  - 方法级 EDCR 与 rel_f1 Spearman ρ=-0.965（plan_003 ✅）——本质是 decoupling 的度量\\\\n  - EDCR 识别病理模型（GRPO QLoRA: EDCR≈1.0）\\\\n- **Layer 2 — per-relation-type**: EDCR 提供 evi_f1 不捕捉的 relation-type 诊断信息 ✅\\\\n  - per-relation ρ(EDCR, evi_f1) = **-0.064** (p=0.58) → **完全独立于 evi_f1**\\\\n  - per-relation ρ(EDCR, rel_f1) = -0.793 (p<0.001) → 与 rel_f1 强相关但非完美\\\\n  - per-relation ρ(evi_f1, rel_f1) = -0.013 (p=0.91) → evidence 质量与抽取能力在 relation type 间完全解耦\\\\n  - 典型案例：date_of_birth (EDCR=0.118, 高 faithful) vs head_of_government (EDCR=0.956, 高 decoupled)\\\\n  - 93 relation types 分析（≥5 样本），76 个有非零数据\\\\n- **论文叙事**: EDCR 在方法级是 decoupling 度量工具（横向对比方法），在 relation 级是难度诊断工具（纵向定位薄弱 relation）——两层叙事互补\\\\n- **仍需**: 100 例人工标注验证（RC6）\\\\n\\\\n## MVP Evidence Summary (D071: 主表报 Ign-F1，附录报 F1)\\\\n\\\\n| Config | Ign-F1 | F1 | Δ vs SFT (Ign-F1) | Evi-F1 (cond) | Evi-F1 (joint) | EDCR |\\\\n|--------|--------|------|-------------------|---------------|---------------|------|\\\\n| **SFT no-evidence** | **47.36** | 48.93 | **+7.00pp** | **—** | **—** | **—** |\\\\n| SFT baseline (noquant) | 40.36 | 41.06 | — | 80.13 | 31.17 | 0.7118 |\\\\n| **CED reranker** | **TBD** | 48.64 | **TBD** | **81.88** | — | **0.6156** |\\\\n| RSFT CED s43 (best) | **45.85** | 46.83 | **+5.49pp** | 81.56 | 37.11 | 0.6388 |\\\\n| RSFT CED s44 | 45.51 | 46.55 | +5.15pp | 80.87 | 37.13 | 0.6350 |\\\\n| RSFT CED s42 | 43.63 | 44.49 | +3.27pp | 81.87 | 34.68 | 0.6565 |\\\\n| RSFT r2a (1ep) | 44.01 | 44.94 | +3.65pp | 81.08 | 35.09 | 0.6641 |\\\\n| RSFT r2b (1ep) | 44.10 | 44.93 | +3.74pp | 81.28 | 34.90 | 0.6609 |\\\\n| flat-NLI s42 | 44.49 | 45.39 | +4.13pp | 80.43 | — | 0.6431 |\\\\n| flat-NLI s43 (reeval) | TBD | 45.23 | TBD | 81.58 | — | 0.6505 |\\\\n| DPO bf16 1ep | 38.88 | 40.34 | -1.48pp | 80.88 | — | 0.7139 |\\\\n| DPO bf16 3ep | TBD | 34.29 | TBD | — | — | — |\\\\n| GRPO bf16 G=8 (best step) | 45.59 | ~43.4 | +5.23pp | 80.86 | — | — |\\\\n| GRPO QLoRA (lr=5e-6) | TBD | 1.38 | TBD | 85.00 | — | 0.9900 |\\\\n\\\\n注：Evi-F1 以百分比显示（×100）。Ign-F1 修正后排名无实质变化（仅 r2a/r2b 互换，差 0.09pp）。TBD 项等待 metrics_v2.json 补算。GRPO bf16 Ign-F1=45.59 > F1=43.4 因 train triples 过滤效应。\\\\n\\\\n## Anticipated Reviewer Concerns (updated from Dream, D068/D069)\\\\n\\\\n### RC1: \\\\\\\"Online RL\\\\\\\" 标题过度声称（Dream 三档一致 Critical）\\\\n- ~~标题和 claim 收窄到 \\\\\\\"GRPO fails for DocRE\\\\\\\"~~\\\\n- **D068/D069 修正**: 重新定位为 \\\\\\\"RL optimization pressure correlates with decoupling severity\\\\\\\"——不是 GRPO 特有问题，而是 RL-for-IE 的通用梯度\\\\n- DPO 数据支撑 decoupling spectrum（gradual decay confirms the pattern）\\\\n\\\\n### RC2: GRPO G=4 太小 + LoRA confound（Dream 三档一致 Major）\\\\n- GRPO G=8 bf16 实验 ✅ — 确认 mild decoupling（-2pp），QLoRA 是 catastrophic amplifier（D065/D066）\\\\n- LoRA confound 已解决：bf16 LoRA vs QLoRA 直接对比\\\\n\\\\n### RC3: CED 不显著优于 flat-NLI（Dream 三档一致 Major）\\\\n- 5+ seeds 统计检验；如不显著 → CED 降级\\\\n\\\\n### RC4: RSFT 不新颖\\\\n- 不声称 RSFT 是贡献；贡献在于任务定义 + decoupling 发现 + EDCR\\\\n\\\\n### RC5: 评测可比性（D041）\\\\n- DREEAM-protocol Evi-F1；conditional Evi-F1 作为辅助指标\\\\n\\\\n### RC6: EDCR 缺人工验证\\\\n- 100 例小规模标注\\\\n\\\\n### RC7: Missing DPO/PPO（Dream 两档 Major）\\\\n- DPO experiment ✅ — 结果确认 decoupling spectrum（D067/D068）\\\\n\\\\n### RC8: Dev-test degradation\\\\n- 观察项，等 test set 数据\\\\n\\\\n### RC9: 连接 reward overoptimization 文献\\\\n- 显式引用 Gao et al. 2023\\\\n\\\\n### RC10: Post-hoc evidence retrieval baseline\\\\n- SFT + BM25 evidence retrieval\\\\n\\\\n## Key Baselines (12+)\\\\n\\\\n1. **SFT-only**: Qwen3-4B + LoRA SFT（with evidence）\\\\n1b. **SFT no-evidence**: Qwen3-4B + LoRA SFT（无 evidence，upper bound ablation）\\\\n2. **RSFT flat-NLI**: flat-NLI scored RSFT（核心 ablation）\\\\n3. **RSFT CED**: CED scored RSFT（主方法）\\\\n4. **CED-as-reranker**: 推理时 CED 重排（无训练）\\\\n5. **DPO+CED**: offline preference learning — gradual decoupling（D067/D068）\\\\n6. **GRPO+CED (QLoRA, G=4)**: catastrophic decoupling baseline\\\\n7. **GRPO+CED (bf16, G=8)**: mild decoupling — QLoRA confound 排除（D065/D066）\\\\n8. **Post-hoc retrieval**: SFT + BM25 evidence（NEW）\\\\n9. **DREEAM**: encoder evidence SOTA\\\\n10. **SAIS**: encoder evidence baseline\\\\n11. **DocKS-RAG**: extraction SOTA（无 evidence）\\\\n12. **LMRC**: generative LLM SOTA（无 evidence）\\\\n\\\\n## Publishability Threshold (revised after Dream, D068/D069)\\\\n\\\\n- **必要条件**: (1) RSFT 在 test set 上 Ign-F1 显著 > SFT (2) DREEAM-protocol Evi-F1 可报告 (3) Decoupling spectrum 有完整数据支撑（GRPO QLoRA/bf16 + DPO + RSFT）\\\\n- **充分条件**: 上述 + CED 显著 > flat-NLI + EDCR 人工验证\\\\n- **Failure pivot**: decoupling spectrum 不成立（bf16 GRPO 也 catastrophic）→ scope 大幅缩减。**已排除**: bf16 GRPO 确认 mild（D065/D066）\\\\n\\\\n## Research Phase Priorities (revised after Dream v1)\\\\n\\\\n| Priority | 实验 | Claim | GPU-h |\\\\n|----------|------|-------|-------|\\\\n| P0 | flat-NLI RSFT ablation (5 seeds) | C3 | ~25h |\\\\n| P0 | CED RSFT additional seeds (→5 total) | C3 | ~10h |\\\\n| P0 | DREEAM-protocol Evi-F1 对齐 | C1 | CPU |\\\\n| P0 | Test set evaluation | C1 | ~4h |\\\\n| P0 | DREEAM baseline reproduction | C1 | ~8h |\\\\n| ~~P0~~ | ~~GRPO G=8 experiment~~ ✅ | C2 | ~16h |\\\\n| ~~P0~~ | ~~DPO+CED experiment~~ ✅ | C2 | ~12h |\\\\n| ~~P0~~ | ~~EDCR per-relation analysis (D070)~~ ✅ | C4 | CPU |\\\\n| ~~P0~~ | ~~Ign-F1 bugfix + data sync (D071)~~ ✅ | ALL | CPU |\\\\n| P1 | EDCR human validation | C4 | API |\\\\n| P1 | Post-hoc evidence retrieval baseline | C1 | ~4h |\\\\n| P1 | CED-as-reranker (running) | C1 | ~6h |\\\\n| P1 | Model size ablation | RC | ~24h |\\\\n| P1 | Re-DocRED extension | RC | ~12h |\\\\n| ~~P0~~ | ~~GRPO forgetting dynamics figure (plan_009)~~ ✅ | C2 | ~2h |\\\\n| ~~P0~~ | ~~SFT-without-evidence ablation (plan_014)~~ ✅ | C1 | ~8h |\\\\n| P2 | Advantage variance measurement | C2 | CPU |\\\\n\\\", \\\"total_chars\\\": 9048, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md\", \"content\": \"# Paper Framing — FREIGE\\n\\n> **状态**: POST-MVP + DREAM v2 完成（D047 分析）\\n> **最后更新**: 2026-05-16\\n> **Dream v1**: best=2.5, median=3.0, worst=2.5 → reframe 完成\\n> **Dream v2**: best=3.0, median=2.5, worst=2.5 → best 提升但 median 下降，未达标。关键路径：plan_011 bf16 GRPO eval + structural fixes → re-dream v3\\n\\n## Target Venue\\n\\n- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25 → commit EMNLP Aug/Sep)\\n- Fallback: AAAI 2027 (abstract July 25, paper Aug 1)\\n\\n## Core Insight\\n\\nLLM-based document-level IE 已逼近 encoder SOTA 的抽取精度，但零方法能生成可验证证据。本文提出 **evidence-grounded DocRE** 作为新任务范式：LLM 同时输出关系三元组和支撑证据句。\\n\\n我们系统性地探索了 online RL (GRPO) 、offline preference optimization (DPO) 和 offline RL (RSFT) 三条技术路线。关键发现：**RL optimization pressure 与 evidence-extraction decoupling severity 正相关**——优化强度越大，evidence 质量提升的同时抽取能力退化越严重。QLoRA 放大至 catastrophic（rel_f1<0.02），bf16 GRPO 从 0.4549 退化至 ~0.434（mild, -2pp），DPO 呈 gradual 退化（1ep→3ep rel_f1 从 0.4034→0.3429），RSFT 无 decoupling。\\n\\nCED (Contrastive Evidence Discrimination) 是一种 NLI-based 候选筛选函数，通过文档内 hard negative 对比评估 evidence 质量。CED 作为 RSFT 的 scoring function 之一进行测试，其相对于 flat-NLI 的优势需要通过充分的统计检验验证。\\n\\n## Story Arc\\n\\n1. **Problem**: LLM DocRE 无证据 → 部署障碍\\n2. **New task**: evidence-grounded DocRE — 同时生成关系和证据\\n3. **Cost of faithfulness**: evidence generation 代价 ~7pp Ign-F1（no-evidence 47.36 vs evidence-SFT 40.36）——这是 faithfulness 的真实成本\\n4. **Exploration**: 系统性比较 online RL (GRPO) vs offline preference (DPO) vs offline RL (RSFT)\\n5. **Key finding**: evidence-extraction decoupling — RL optimization pressure 与 decoupling severity 正相关，形成连续谱系（GRPO-QLoRA catastrophic > GRPO-bf16 mild > DPO gradual > RSFT none）\\n6. **QLoRA amplification**: QLoRA 量化将 mild decoupling 放大至 catastrophic forgetting——decoupling 是 RL-for-IE 的通用梯度，QLoRA 是 catastrophic amplifier\\n7. **What works**: RSFT with NLI-based scoring 是唯一有效路线——提升 evidence 质量而不牺牲抽取\\n8. **Best practical solution**: CED reranker 恢复 97% 的 evidence 代价，同时保留高质量 evidence（evi_f1=0.8188）\\n9. **Diagnostic tool**: EDCR 双层诊断——方法级量化 decoupling（与 Claim 2 呼应），per-relation 级揭示 evi_f1 不捕捉的 relation-type 难度差异（D070 ✅）\\n\\n## Core Claims (reframed after Dream v1, updated D068/D069/D070/D071/D072)\\n\\n### Claim 1 (Main): Evidence-grounded DocRE 是可行的新能力\\n- FREIGE 是首个在 DocRED 上同时输出 (head, relation, tail, [evidence]) 的 LLM 方法\\n- **Evidence generation tax**: no-evidence SFT Ign-F1=47.36 vs evidence-SFT 40.36，代价 ~7pp（plan_014 ✅）\\n- RSFT 在 4/4 配置下均超过 SFT baseline（Ign-F1 +3.3~5.5pp）\\n- **CED reranker 是最优实用方案**: rel_f1=0.4864（仅低于 no-evidence 0.29pp），evi_f1=0.8188（plan_005 ✅）\\n- 需要 DREEAM-protocol 对齐的 Evi-F1 对比（D041 在处理中）\\n\\n### Claim 2 (Core finding): RL optimization pressure 与 evidence-extraction decoupling severity 正相关（D068/D069 修正）\\n- **Decoupling spectrum**: 优化强度越大，decoupling 越严重\\n  - GRPO QLoRA: catastrophic（rel_f1=0.0138, evi_f1=0.850, EDCR=0.99）— QLoRA 放大 decoupling\\n  - GRPO bf16: mild（rel_f1 从 0.4549→~0.434, -2pp; step_30=0.434, step_50=0.4276, step_70=0.4341）— 退化可控但持续（D065/D066）\\n  - DPO bf16 1ep→3ep: gradual（Ign-F1 38.88→TBD, rel_f1 0.4034→0.3429）— 随训练渐进退化（D067/D068）\\n  - RSFT: none — 无 decoupling，唯一有效路线\\n- **QLoRA 是 catastrophic amplifier，不是 root cause**: bf16 GRPO 仅 mild decoupling（-2pp），QLoRA 放大至 catastrophic（-39pp）（D054/D065/D066）\\n- **Decoupling 是 RL-for-IE 的通用梯度**: 跨方法（GRPO/DPO）、跨量化策略（QLoRA/bf16）一致出现，严重程度与优化压力正相关\\n- 三档 Dream 审稿均认为此发现\\\"genuinely novel and striking\\\"\\n- **已完成**: GRPO G=8 bf16 确认 mild decoupling（plan_011 ✅）; DPO 1ep/3ep 确认 gradual decoupling（plan_012 ✅）\\n\\n### Claim 3 (Ablation): NLI-based scoring 提升 RSFT 质量\\n- CED 和 flat-NLI 都优于 random/no scoring\\n- CED vs flat-NLI 的差异需统计验证（Dream 报告 p=0.08/0.38/0.12 不显著）\\n- **Critical**: 如果 CED 不显著优于 flat-NLI → CED 降级为\\\"one possible scoring function\\\"\\n- **行动**: 5+ seeds for significance testing\\n\\n### Claim 4 (Diagnostic): EDCR 双层诊断价值（D070/D072）\\n- **Layer 1 — 方法级**: EDCR 量化 evidence-extraction decoupling，与 Claim 2 spectrum 呼应\\n  - 方法级 EDCR 与 rel_f1 Spearman ρ=-0.965（plan_003 ✅）——本质是 decoupling 的度量\\n  - EDCR 识别病理模型（GRPO QLoRA: EDCR≈1.0）\\n- **Layer 2 — per-relation-type**: EDCR 提供 evi_f1 不捕捉的 relation-type 诊断信息 ✅\\n  - per-relation ρ(EDCR, evi_f1) = **-0.064** (p=0.58) → **完全独立于 evi_f1**\\n  - per-relation ρ(EDCR, rel_f1) = -0.793 (p<0.001) → 与 rel_f1 强相关但非完美\\n  - per-relation ρ(evi_f1, rel_f1) = -0.013 (p=0.91) → evidence 质量与抽取能力在 relation type 间完全解耦\\n  - 典型案例：date_of_birth (EDCR=0.118, 高 faithful) vs head_of_government (EDCR=0.956, 高 decoupled)\\n  - 93 relation types 分析（≥5 样本），76 个有非零数据\\n- **论文叙事**: EDCR 在方法级是 decoupling 度量工具（横向对比方法），在 relation 级是难度诊断工具（纵向定位薄弱 relation）——两层叙事互补\\n- **仍需**: 100 例人工标注验证（RC6）\\n\\n## MVP Evidence Summary (D071: 主表报 Ign-F1，附录报 F1)\\n\\n| Config | Ign-F1 | F1 | Δ vs SFT (Ign-F1) | Evi-F1 (cond) | Evi-F1 (joint) | EDCR |\\n|--------|--------|------|-------------------|---------------|---------------|------|\\n| **SFT no-evidence** | **47.36** | 48.93 | **+7.00pp** | **—** | **—** | **—** |\\n| SFT baseline (noquant) | 40.36 | 41.06 | — | 80.13 | 31.17 | 0.7118 |\\n| **CED reranker** | **TBD** | 48.64 | **TBD** | **81.88** | — | **0.6156** |\\n| RSFT CED s43 (best) | **45.85** | 46.83 | **+5.49pp** | 81.56 | 37.11 | 0.6388 |\\n| RSFT CED s44 | 45.51 | 46.55 | +5.15pp | 80.87 | 37.13 | 0.6350 |\\n| RSFT CED s42 | 43.63 | 44.49 | +3.27pp | 81.87 | 34.68 | 0.6565 |\\n| RSFT r2a (1ep) | 44.01 | 44.94 | +3.65pp | 81.08 | 35.09 | 0.6641 |\\n| RSFT r2b (1ep) | 44.10 | 44.93 | +3.74pp | 81.28 | 34.90 | 0.6609 |\\n| flat-NLI s42 | 44.49 | 45.39 | +4.13pp | 80.43 | — | 0.6431 |\\n| flat-NLI s43 (reeval) | TBD | 45.23 | TBD | 81.58 | — | 0.6505 |\\n| DPO bf16 1ep | 38.88 | 40.34 | -1.48pp | 80.88 | — | 0.7139 |\\n| DPO bf16 3ep | TBD | 34.29 | TBD | — | — | — |\\n| GRPO bf16 G=8 (best step) | 45.59 | ~43.4 | +5.23pp | 80.86 | — | — |\\n| GRPO QLoRA (lr=5e-6) | TBD | 1.38 | TBD | 85.00 | — | 0.9900 |\\n\\n注：Evi-F1 以百分比显示（×100）。Ign-F1 修正后排名无实质变化（仅 r2a/r2b 互换，差 0.09pp）。TBD 项等待 metrics_v2.json 补算。GRPO bf16 Ign-F1=45.59 > F1=43.4 因 train triples 过滤效应。\\n\\n## Anticipated Reviewer Concerns (updated from Dream, D068/D069)\\n\\n### RC1: \\\"Online RL\\\" 标题过度声称（Dream 三档一致 Critical）\\n- ~~标题和 claim 收窄到 \\\"GRPO fails for DocRE\\\"~~\\n- **D068/D069 修正**: 重新定位为 \\\"RL optimization pressure correlates with decoupling severity\\\"——不是 GRPO 特有问题，而是 RL-for-IE 的通用梯度\\n- DPO 数据支撑 decoupling spectrum（gradual decay confirms the pattern）\\n\\n### RC2: GRPO G=4 太小 + LoRA confound（Dream 三档一致 Major）\\n- GRPO G=8 bf16 实验 ✅ — 确认 mild decoupling（-2pp），QLoRA 是 catastrophic amplifier（D065/D066）\\n- LoRA confound 已解决：bf16 LoRA vs QLoRA 直接对比\\n\\n### RC3: CED 不显著优于 flat-NLI（Dream 三档一致 Major）\\n- 5+ seeds 统计检验；如不显著 → CED 降级\\n\\n### RC4: RSFT 不新颖\\n- 不声称 RSFT 是贡献；贡献在于任务定义 + decoupling 发现 + EDCR\\n\\n### RC5: 评测可比性（D041）\\n- DREEAM-protocol Evi-F1；conditional Evi-F1 作为辅助指标\\n\\n### RC6: EDCR 缺人工验证\\n- 100 例小规模标注\\n\\n### RC7: Missing DPO/PPO（Dream 两档 Major）\\n- DPO experiment ✅ — 结果确认 decoupling spectrum（D067/D068）\\n\\n### RC8: Dev-test degradation\\n- 观察项，等 test set 数据\\n\\n### RC9: 连接 reward overoptimization 文献\\n- 显式引用 Gao et al. 2023\\n\\n### RC10: Post-hoc evidence retrieval baseline\\n- SFT + BM25 evidence retrieval\\n\\n## Key Baselines (12+)\\n\\n1. **SFT-only**: Qwen3-4B + LoRA SFT（with evidence）\\n1b. **SFT no-evidence**: Qwen3-4B + LoRA SFT（无 evidence，upper bound ablation）\\n2. **RSFT flat-NLI**: flat-NLI scored RSFT（核心 ablation）\\n3. **RSFT CED**: CED scored RSFT（主方法）\\n4. **CED-as-reranker**: 推理时 CED 重排（无训练）\\n5. **DPO+CED**: offline preference learning — gradual decoupling（D067/D068）\\n6. **GRPO+CED (QLoRA, G=4)**: catastrophic decoupling baseline\\n7. **GRPO+CED (bf16, G=8)**: mild decoupling — QLoRA confound 排除（D065/D066）\\n8. **Post-hoc retrieval**: SFT + BM25 evidence（NEW）\\n9. **DREEAM**: encoder evidence SOTA\\n10. **SAIS**: encoder evidence baseline\\n11. **DocKS-RAG**: extraction SOTA（无 evidence）\\n12. **LMRC**: generative LLM SOTA（无 evidence）\\n\\n## Publishability Threshold (revised after Dream, D068/D069)\\n\\n- **必要条件**: (1) RSFT 在 test set 上 Ign-F1 显著 > SFT (2) DREEAM-protocol Evi-F1 可报告 (3) Decoupling spectrum 有完整数据支撑（GRPO QLoRA/bf16 + DPO + RSFT）\\n- **充分条件**: 上述 + CED 显著 > flat-NLI + EDCR 人工验证\\n- **Failure pivot**: decoupling spectrum 不成立（bf16 GRPO 也 catastrophic）→ scope 大幅缩减。**已排除**: bf16 GRPO 确认 mild（D065/D066）\\n\\n## Research Phase Priorities (revised after Dream v1)\\n\\n| Priority | 实验 | Claim | GPU-h |\\n|----------|------|-------|-------|\\n| P0 | flat-NLI RSFT ablation (5 seeds) | C3 | ~25h |\\n| P0 | CED RSFT additional seeds (→5 total) | C3 | ~10h |\\n| P0 | DREEAM-protocol Evi-F1 对齐 | C1 | CPU |\\n| P0 | Test set evaluation | C1 | ~4h |\\n| P0 | DREEAM baseline reproduction | C1 | ~8h |\\n| ~~P0~~ | ~~GRPO G=8 experiment~~ ✅ | C2 | ~16h |\\n| ~~P0~~ | ~~DPO+CED experiment~~ ✅ | C2 | ~12h |\\n| ~~P0~~ | ~~EDCR per-relation analysis (D070)~~ ✅ | C4 | CPU |\\n| ~~P0~~ | ~~Ign-F1 bugfix + data sync (D071)~~ ✅ | ALL | CPU |\\n| P1 | EDCR human validation | C4 | API |\\n| P1 | Post-hoc evidence retrieval baseline | C1 | ~4h |\\n| P1 | CED-as-reranker (running) | C1 | ~6h |\\n| P1 | Model size ablation | RC | ~24h |\\n| P1 | Re-DocRED extension | RC | ~12h |\\n| ~~P0~~ | ~~GRPO forgetting dynamics figure (plan_009)~~ ✅ | C2 | ~2h |\\n| ~~P0~~ | ~~SFT-without-evidence ablation (plan_014)~~ ✅ | C1 | ~8h |\\n| P2 | Advantage variance measurement | C2 | CPU |\\n\", \"total_chars\": 9048, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry search for "reeval_rsft_topk3" and "ced_rsft" tag returned no results. Let me try broader searches to find the relevant experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "048eec5f-90ae-4617-ab1e-c5ff87077ae3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0139zWGdNLDBbb3Ch2Cfwpcj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5871,
+      "cache_read_input_tokens": 24469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5871
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Registry searches returned empty. Let me try broader filters to find the top_k experiments.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "304ed790-9de4-4918-aa94-77a61df6a44b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0139zWGdNLDBbb3Ch2Cfwpcj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5871,
+      "cache_read_input_tokens": 24469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5871
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Y1JwBoHzdLTkxW6JEppp2C`</summary>
+
+```json
+{
+  "filters": {
+    "status": "DONE"
+  },
+  "project": "faith-evidence-ie",
+  "fields": [
+    "name",
+    "status",
+    "conclusion",
+    "metrics",
+    "tags"
+  ],
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "993c8059-fdc9-45da-a717-b6c0b3804730",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0139zWGdNLDBbb3Ch2Cfwpcj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5871,
+      "cache_read_input_tokens": 24469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5871
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T00:32:06.568Z_
+
+<details><summary>↩ Tool result · `toolu_01Y1JwBoHzdLTkxW6JEppp2C`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"rsft_ced_s45_train_r3\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"rsft_ced_s45_train_r2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"rsft_ced_s43_train_r2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"reeval_rsft_topk3\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4454, \"rel_precision\": 0.4512, \"rel_recall\": 0.4398, \"ign_f1\": 0.4364, \"evi_f1\": 0.8088, \"edcr\": 0.6635, \"format_ok_rate\": 0.999, \"n_truncated\": 214, \"n_predictions\": 16020, \"inference_time_seconds\": 3546.4, \"ign_f1_corrected\": true}, \"conclusion\": \"negative\"}, \"rsft_ced_s43_train\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"rsft_ced_s45_train\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"reeval_flat_nli_s43\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4523, \"ign_f1\": 0.4523, \"evi_f1\": 0.8158, \"edcr\": 0.6505, \"num_preds\": 15357, \"format_ok\": \"984/985\", \"truncated\": \"211/985\", \"inference_time_s\": 3515.8}, \"conclusion\": \"success\"}, \"plan_003_edcr_diagnostic\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"methods_evaluated\": 15, \"edcr_vs_rel_f1_spearman\": -0.9648, \"edcr_vs_rel_f1_pvalue\": 0.0001, \"edcr_vs_evi_f1_spearman\": 0.0022, \"edcr_vs_evi_f1_pvalue\": 0.9941, \"edcr_range\": \"0.63-0.99\", \"unique_diagnostic_value\": \"identifies pathological models (GRPO QLoRA) with high evi_f1 but catastrophically low rel_f1\"}}, \"eval_flat_nli_seed44\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_plan_012_dpo_1ep_fixed_r2\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.4034, \"evi_f1\": 0.8088, \"edcr\": 0.7139, \"format_ok_rate\": 0.999, \"truncated_rate\": 0.343, \"predictions\": 19107, \"ign_f1\": 0.4034, \"precision\": 0.3809, \"recall\": 0.4287, \"vs_sft_delta\": -0.0023, \"note\": \"DPO 1ep matches SFT baseline. 1ep→3ep trajectory shows gradual decoupling (rel_f1↓ evi_f1↑), consistent with GRPO pattern. Ign-F1=F1 exact match needs investigation.\"}}, \"plan_001_flat_nli_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.6247, \"eval_loss\": 0.7564, \"eval_mean_token_accuracy\": 0.8299, \"task_eval_f1_ep1\": 0.4306, \"task_eval_f1_ep2\": 0.4884, \"task_eval_f1_ep3\": 0.4897, \"task_eval_evi_f1_ep3\": 0.78, \"task_eval_edcr_ep3\": 0.6596, \"task_eval_ign_f1_ep3\": 0.4897, \"train_runtime_sec\": 6197, \"num_epochs\": 3, \"total_steps\": 507}}, \"plan_009_dynamics_figure\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan_001_flat_nli_seed45\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"task_eval_rel_f1\": 0.4876, \"task_eval_evi_f1\": 0.7927, \"task_eval_edcr\": 0.6517, \"train_loss\": 0.6245, \"runtime_hours\": 1.69, \"note\": \"task-eval on 50 docs only, full dev eval needed\"}}, \"plan_011_bf16_g8_step_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"step_30\": {\"rel_f1\": 0.434, \"evi_f1\": 0.8063, \"edcr\": 0.6807}, \"step_50\": {\"rel_f1\": 0.4276, \"evi_f1\": 0.8024, \"edcr\": 0.6855}, \"step_70\": {\"rel_f1\": 0.4341, \"evi_f1\": 0.8099, \"edcr\": 0.6685}, \"best_step\": \"step_70\", \"trend\": \"non-monotonic, all < ckpt-100 (0.4549)\"}}, \"plan_011_eval_g8_bf16_ckpt100\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp2_eval_rsft_s44\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_plan_008_topk3_fixed\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_plan_012_dpo_1ep_fixed\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_plan_008_rsft_topk3\": {\"status\": \"DONE\", \"conclusion\": \"killed\", \"metrics\": {\"note\": \"INVALID — missing --sft_adapter, killed by Director instruction\"}}, \"plan_012_dpo_ced\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.3429, \"evi_f1\": 0.8403, \"edcr\": 0.7294, \"format_ok_rate\": 0.995, \"checkpoint\": \"checkpoint-501\", \"rewards_accuracy\": 1, \"margins\": 9.01}}, \"plan_012_dpo_ced_1ep\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.0022, \"evi_f1\": 0.75, \"edcr\": 0.9982, \"format_ok\": \"981/985\", \"truncated\": \"358/985\", \"tp\": 34, \"n_preds\": 19265, \"inference_time_s\": 3643, \"train_loss_final\": 0.59, \"rewards_accuracy\": 0.82, \"rewards_margins\": 0.86, \"total_steps\": 167, \"training_time_min\": 33}, \"conclusion\": \"negative\"}, \"eval_plan_001_flat_nli_s43\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"rel_f1\": 0.0022, \"ign_f1\": 0.0022, \"evi_f1\": 0.8533, \"edcr\": 0.9982, \"num_preds\": 17285, \"format_ok\": \"981/985\", \"truncated\": \"251/985\", \"tp\": 32, \"note\": \"INVALID — missing --sft_adapter, same bug as DPO 1ep eval\"}}, \"eval_plan_012_dpo_ced_1ep\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.0022, \"ign_f1\": 0.0022, \"evi_f1\": 0.75, \"edcr\": 0.9982, \"num_preds\": 19265, \"format_ok\": \"981/985\", \"truncated\": \"358/985\", \"tp\": 34, \"inference_time_s\": 3643}}, \"plan_008_rsft_topk3\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 0.5543, \"eval_loss\": 0.8297, \"eval_mean_token_accuracy\": 0.8228, \"eval_entropy\": 0.6001, \"train_runtime_sec\": 10916, \"total_steps\": 1509, \"epochs\": 3, \"trainable_params_pct\": 3.18, \"rsft_samples\": 8037, \"ced_score_mean\": 0.621, \"task_eval_f1_ep1\": 0.4848, \"task_eval_f1_ep2\": 0.4824, \"task_eval_f1_ep3\": 0.5012, \"task_eval_evi_f1_ep1\": 0.745, \"task_eval_evi_f1_ep2\": 0.6997, \"task_eval_evi_f1_ep3\": 0.6816, \"task_eval_edcr_ep1\": 0.6525, \"task_eval_edcr_ep2\": 0.6529, \"task_eval_edcr_ep3\": 0.5963, \"task_eval_note\": \"50-doc subset, not full dev\"}, \"conclusion\": \"success\"}, \"plan_001_flat_nli_seed43\": {\"status\": \"DONE\", \"metrics\": {\"train_loss_final\": 0.6257, \"train_loss_min\": 0.5895, \"eval_loss_epoch3\": 0.7567, \"eval_accuracy_epoch3\": 0.8298, \"total_steps\": 507, \"epochs\": 3, \"train_runtime_seconds\": 6880, \"task_eval_f1_ep1\": 0.4825, \"task_eval_f1_ep2\": 0.4542, \"task_eval_f1_ep3\": 0.4866, \"task_eval_evi_f1_ep3\": 0.7834, \"task_eval_edcr_ep3\": 0.6402, \"task_eval_note\": \"50-doc subset, not full dev\"}, \"conclusion\": \"success\"}, \"plan_009_flatnli_reward_eval_r2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan_009_extract_reward_eval\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_sft_baseline_noquant\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4106, \"rel_precision\": 0.4198, \"rel_recall\": 0.4019, \"evi_f1\": 0.8013, \"evi_precision\": 0.8005, \"evi_recall\": 0.8022, \"evi_f1_joint\": 0.3216, \"edcr\": 0.7039, \"format_ok_rate\": 0.998, \"field_compliance_rate\": 0.7066, \"n_predictions\": 16774, \"n_truncated\": 288, \"n_documents\": 985, \"inference_time_seconds\": 3677.9}, \"conclusion\": \"success\"}, \"plan_009_flatnli_reward_eval\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_plan_012_dpo_ced_ckpt400\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan_009_forgetting_figure\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"eval_plan_014_sft_no_evidence\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4893, \"rel_ign_f1\": 0.4893, \"rel_precision\": 0.4884, \"rel_recall\": 0.4902, \"evi_f1\": 0, \"evi_precision\": 0, \"evi_recall\": 0, \"edcr\": 0, \"format_ok_rate\": 0.9919, \"n_truncated\": 298, \"n_predictions\": 21064, \"n_documents\": 985, \"n_parseable\": 977, \"inference_time_seconds\": 4103.8}, \"conclusion\": \"success\"}, \"plan_014_sft_no_evidence\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 0.7077, \"eval_loss\": 0.8781, \"eval_token_accuracy\": 0.8086, \"epochs\": 3, \"total_steps\": 570, \"train_runtime_min\": 64, \"samples\": 3027, \"trainable_params\": \"132M/4.15B (3.18%)\"}, \"conclusion\": \"success\"}, \"plan_002_test_eval_s44\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan_001_rsft_flat_nli\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.6238, \"train_loss_min\": 0.5803, \"mean_token_accuracy\": 0.8528, \"train_runtime_sec\": 2946, \"epochs\": 3, \"total_steps\": 507, \"samples\": 2691}}, \"eval_plan_001_flat_nli\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4539, \"ign_f1\": 0.4539, \"evi_f1\": 0.8043, \"edcr\": 0.6431, \"precision\": 0.4671, \"recall\": 0.4414, \"evi_precision\": 0.8143, \"evi_recall\": 0.7945, \"format_ok_rate\": 1, \"n_truncated\": 199, \"n_documents\": 985, \"n_predictions\": 15294, \"inference_time_seconds\": 3631}, \"conclusion\": \"success\"}, \"eval_grpo_g8_bf16\": {\"status\": \"DONE\", \"metrics\": {\"ckpt80_rel_f1\": 0.4456, \"ckpt80_ign_f1\": 0.4456, \"ckpt80_evi_f1\": 0.8034, \"ckpt80_edcr\": 0.6409, \"ckpt80_format_ok\": \"984/985\", \"ckpt80_truncated\": 50, \"ckpt90_rel_f1\": 0.4523, \"ckpt90_ign_f1\": 0.4523, \"ckpt90_evi_f1\": 0.8052, \"ckpt90_edcr\": 0.6414, \"ckpt90_format_ok\": \"983/985\", \"ckpt90_truncated\": 61, \"ckpt100_rel_f1\": 0.4549, \"ckpt100_ign_f1\": 0.4549, \"ckpt100_evi_f1\": 0.8086, \"ckpt100_edcr\": 0.6318, \"ckpt100_format_ok\": \"985/985\", \"ckpt100_truncated\": 61, \"best_checkpoint\": \"ckpt-100\"}, \"conclusion\": \"success\"}, \"plan_015_grpo_g4_bf16_v3\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"plan_015_grpo_g4_bf16_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"plan_015_grpo_g4_bf16\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"plan_011_grpo_g8_bf16\": {\"status\": \"DONE\", \"metrics\": {\"final_step\": 100, \"train_runtime_s\": 554, \"reward_final\": 1.795, \"f1_reward_final\": 1.002, \"ced_reward_final\": 0.494, \"format_reward_final\": 0.3, \"frac_zero_std_final\": 0, \"kl_final\": 0.022, \"best_reward_step\": 85, \"best_reward\": 2.858, \"best_f1_reward\": 1.85, \"mode_collapse\": false, \"lora_config\": \"r=64, alpha=128, dropout=0.05, bf16\", \"checkpoints\": \"10 checkpoints (step 10-100)\"}, \"conclusion\": \"success\"}, \"plan_011_grpo_g8_bf16_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4549, \"ign_f1\": 0.4549, \"evi_f1\": 0.8086, \"edcr\": 0.6318, \"format_ok_rate\": 1, \"n_truncated\": 61, \"n_total\": 985, \"n_predictions\": 10701, \"checkpoint\": \"checkpoint-100\", \"model\": \"Qwen3-4B + SFT merged + GRPO bf16 LoRA ckpt-100\", \"inference_time_s\": 3170.3}}, \"plan_004_dreeam_baseline\": {\"status\": \"DONE\", \"metrics\": {\"dev_rel_f1\": 63.57, \"dev_rel_ign_f1\": 61.72, \"dev_evi_f1\": 54.01, \"dev_rel_p\": 66.95, \"dev_rel_r\": 60.51, \"dev_evi_p\": 60.53, \"dev_evi_r\": 48.76}, \"conclusion\": \"success\"}, \"mvp2_eval_rsft_r2b_maxtok1536_r2\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4504, \"ign_f1\": 0.4504, \"evi_f1\": 0.8102, \"edcr\": 0.674, \"precision\": 0.4488, \"recall\": 0.4519, \"evi_precision\": 0.8162, \"evi_recall\": 0.8044, \"n_truncated\": 146, \"n_total\": 985, \"n_predictions\": 17188, \"n_distractor_citations\": 19589, \"n_total_citations\": 29063, \"format_ok_rate\": 0.998}, \"conclusion\": \"negative\"}, \"plan_001_flat_nli_scoring\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_scored\": 21728, \"selected_samples\": 2691, \"selection_rate\": 0.124, \"selection_strategy\": \"top_k=1\", \"f1_threshold\": 0.1, \"output_path\": \"/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl\"}}, \"mvp2_ced_reranker_poc\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ced_reranker_rel_f1\": 0.4864, \"ced_reranker_evi_f1\": 0.8188, \"ced_reranker_edcr\": 0.6156, \"ced_reranker_precision\": 0.4913, \"ced_reranker_recall\": 0.4815, \"ced_reranker_pred_count\": 14782, \"ced_reranker_format_ok_rate\": 1, \"oracle_rel_f1\": 0.6237, \"oracle_evi_f1\": 0.7942, \"oracle_edcr\": 0.5262, \"oracle_pred_count\": 13418, \"random_rel_f1\": 0.4538, \"random_evi_f1\": 0.8029, \"random_edcr\": 0.6763, \"ced_f1_spearman_r\": 0.3235, \"ced_f1_spearman_p\": 2.46e-191, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"sft_baseline_edcr\": 0.7118, \"rsft_mean_rel_f1\": 0.4596, \"delta_vs_sft_rel_f1\": 0.0807, \"delta_vs_rsft_rel_f1\": 0.0268, \"delta_vs_sft_evi_f1\": 0.0209, \"oracle_ceiling_rel_f1\": 0.218, \"num_generations\": 8, \"temperature\": 0.7, \"generation_time_s\": 20872.6, \"n_docs\": 985}}, \"mvp2_eval_rsft_s43_r2\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4683, \"ign_f1\": 0.4683, \"evi_f1\": 0.8156, \"evi_f1_joint\": 0.3711, \"evi_f1_joint_P\": 0.3747, \"evi_f1_joint_R\": 0.3675, \"edcr\": 0.6388, \"precision\": 0.4817, \"recall\": 0.4556, \"evi_precision\": 0.8142, \"evi_recall\": 0.817, \"n_predictions\": 14970, \"n_truncated\": 171, \"format_ok_rate\": 1, \"inference_time_s\": 6316.7, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0626, \"delta_evi_f1\": 0.0177, \"delta_evi_f1_joint\": 0.0594, \"mvp2_pass\": true}, \"conclusion\": \"success\"}, \"mvp2_rsft_ced_scoring_topk3_r2\": {\"status\": \"DONE\", \"metrics\": {\"input_generations\": 21728, \"selected_samples\": 8037, \"unique_docs\": 2691, \"selection_rate\": 0.37, \"mean_f1\": 0.5761, \"mean_ced\": 0.6205, \"mean_combined\": 0.6787, \"f1_range_p25\": 0.444, \"f1_range_p75\": 0.717, \"ced_range_p25\": 0.487, \"ced_range_p75\": 0.774, \"truncated_samples\": 1924, \"truncated_pct\": 8.9, \"selection_strategy\": \"top_k=3\", \"f1_threshold\": 0.1, \"topk1_samples\": 2718, \"data_multiplier\": 2.96}, \"conclusion\": \"success\"}, \"mvp2_rsft_train_r1_s44\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4655, \"evi_f1\": 0.8087, \"evi_f1_joint\": 0.3713, \"evi_f1_joint_P\": 0.3775, \"evi_f1_joint_R\": 0.3653, \"edcr\": 0.635, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0598, \"delta_evi_f1\": 0.0108, \"delta_evi_f1_joint\": 0.0596, \"mvp2_pass\": true}, \"conclusion\": \"success\"}, \"mvp2_eval_rsft_r2b\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4493, \"ign_f1\": 0.4493, \"evi_f1\": 0.8128, \"evi_f1_joint\": 0.349, \"evi_f1_joint_P\": 0.3455, \"evi_f1_joint_R\": 0.3526, \"edcr\": 0.6609, \"precision\": 0.4566, \"recall\": 0.4424, \"evi_precision\": 0.8201, \"evi_recall\": 0.8056, \"pred_count\": 14829, \"format_ok\": \"983/985\", \"truncated\": 179, \"inference_time_s\": 5862, \"delta_evi_f1_joint\": 0.0373}, \"conclusion\": \"success\"}}, \"count\": 50, \"total\": 117, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6673}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "e09ee01e-3cb7-49af-8de8-d6d553f355b7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"rsft_ced_s45_train_r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"rsft_ced_s45_train_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"rsft_ced_s43_train_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"reeval_rsft_topk3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4454, \\\"rel_precision\\\": 0.4512, \\\"rel_recall\\\": 0.4398, \\\"ign_f1\\\": 0.4364, \\\"evi_f1\\\": 0.8088, \\\"edcr\\\": 0.6635, \\\"format_ok_rate\\\": 0.999, \\\"n_truncated\\\": 214, \\\"n_predictions\\\": 16020, \\\"inference_time_seconds\\\": 3546.4, \\\"ign_f1_corrected\\\": true}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"rsft_ced_s43_train\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"rsft_ced_s45_train\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"reeval_flat_nli_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4523, \\\"ign_f1\\\": 0.4523, \\\"evi_f1\\\": 0.8158, \\\"edcr\\\": 0.6505, \\\"num_preds\\\": 15357, \\\"format_ok\\\": \\\"984/985\\\", \\\"truncated\\\": \\\"211/985\\\", \\\"inference_time_s\\\": 3515.8}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_003_edcr_diagnostic\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"methods_evaluated\\\": 15, \\\"edcr_vs_rel_f1_spearman\\\": -0.9648, \\\"edcr_vs_rel_f1_pvalue\\\": 0.0001, \\\"edcr_vs_evi_f1_spearman\\\": 0.0022, \\\"edcr_vs_evi_f1_pvalue\\\": 0.9941, \\\"edcr_range\\\": \\\"0.63-0.99\\\", \\\"unique_diagnostic_value\\\": \\\"identifies pathological models (GRPO QLoRA) with high evi_f1 but catastrophically low rel_f1\\\"}}, \\\"eval_flat_nli_seed44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval_plan_012_dpo_1ep_fixed_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4034, \\\"evi_f1\\\": 0.8088, \\\"edcr\\\": 0.7139, \\\"format_ok_rate\\\": 0.999, \\\"truncated_rate\\\": 0.343, \\\"predictions\\\": 19107, \\\"ign_f1\\\": 0.4034, \\\"precision\\\": 0.3809, \\\"recall\\\": 0.4287, \\\"vs_sft_delta\\\": -0.0023, \\\"note\\\": \\\"DPO 1ep matches SFT baseline. 1ep→3ep trajectory shows gradual decoupling (rel_f1↓ evi_f1↑), consistent with GRPO pattern. Ign-F1=F1 exact match needs investigation.\\\"}}, \\\"plan_001_flat_nli_seed44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.6247, \\\"eval_loss\\\": 0.7564, \\\"eval_mean_token_accuracy\\\": 0.8299, \\\"task_eval_f1_ep1\\\": 0.4306, \\\"task_eval_f1_ep2\\\": 0.4884, \\\"task_eval_f1_ep3\\\": 0.4897, \\\"task_eval_evi_f1_ep3\\\": 0.78, \\\"task_eval_edcr_ep3\\\": 0.6596, \\\"task_eval_ign_f1_ep3\\\": 0.4897, \\\"train_runtime_sec\\\": 6197, \\\"num_epochs\\\": 3, \\\"total_steps\\\": 507}}, \\\"plan_009_dynamics_figure\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_001_flat_nli_seed45\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"task_eval_rel_f1\\\": 0.4876, \\\"task_eval_evi_f1\\\": 0.7927, \\\"task_eval_edcr\\\": 0.6517, \\\"train_loss\\\": 0.6245, \\\"runtime_hours\\\": 1.69, \\\"note\\\": \\\"task-eval on 50 docs only, full dev eval needed\\\"}}, \\\"plan_011_bf16_g8_step_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"step_30\\\": {\\\"rel_f1\\\": 0.434, \\\"evi_f1\\\": 0.8063, \\\"edcr\\\": 0.6807}, \\\"step_50\\\": {\\\"rel_f1\\\": 0.4276, \\\"evi_f1\\\": 0.8024, \\\"edcr\\\": 0.6855}, \\\"step_70\\\": {\\\"rel_f1\\\": 0.4341, \\\"evi_f1\\\": 0.8099, \\\"edcr\\\": 0.6685}, \\\"best_step\\\": \\\"step_70\\\", \\\"trend\\\": \\\"non-monotonic, all < ckpt-100 (0.4549)\\\"}}, \\\"plan_011_eval_g8_bf16_ckpt100\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp2_eval_rsft_s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval_plan_008_topk3_fixed\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval_plan_012_dpo_1ep_fixed\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval_plan_008_rsft_topk3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"note\\\": \\\"INVALID — missing --sft_adapter, killed by Director instruction\\\"}}, \\\"plan_012_dpo_ced\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.3429, \\\"evi_f1\\\": 0.8403, \\\"edcr\\\": 0.7294, \\\"format_ok_rate\\\": 0.995, \\\"checkpoint\\\": \\\"checkpoint-501\\\", \\\"rewards_accuracy\\\": 1, \\\"margins\\\": 9.01}}, \\\"plan_012_dpo_ced_1ep\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.0022, \\\"evi_f1\\\": 0.75, \\\"edcr\\\": 0.9982, \\\"format_ok\\\": \\\"981/985\\\", \\\"truncated\\\": \\\"358/985\\\", \\\"tp\\\": 34, \\\"n_preds\\\": 19265, \\\"inference_time_s\\\": 3643, \\\"train_loss_final\\\": 0.59, \\\"rewards_accuracy\\\": 0.82, \\\"rewards_margins\\\": 0.86, \\\"total_steps\\\": 167, \\\"training_time_min\\\": 33}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval_plan_001_flat_nli_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.0022, \\\"ign_f1\\\": 0.0022, \\\"evi_f1\\\": 0.8533, \\\"edcr\\\": 0.9982, \\\"num_preds\\\": 17285, \\\"format_ok\\\": \\\"981/985\\\", \\\"truncated\\\": \\\"251/985\\\", \\\"tp\\\": 32, \\\"note\\\": \\\"INVALID — missing --sft_adapter, same bug as DPO 1ep eval\\\"}}, \\\"eval_plan_012_dpo_ced_1ep\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.0022, \\\"ign_f1\\\": 0.0022, \\\"evi_f1\\\": 0.75, \\\"edcr\\\": 0.9982, \\\"num_preds\\\": 19265, \\\"format_ok\\\": \\\"981/985\\\", \\\"truncated\\\": \\\"358/985\\\", \\\"tp\\\": 34, \\\"inference_time_s\\\": 3643}}, \\\"plan_008_rsft_topk3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.5543, \\\"eval_loss\\\": 0.8297, \\\"eval_mean_token_accuracy\\\": 0.8228, \\\"eval_entropy\\\": 0.6001, \\\"train_runtime_sec\\\": 10916, \\\"total_steps\\\": 1509, \\\"epochs\\\": 3, \\\"trainable_params_pct\\\": 3.18, \\\"rsft_samples\\\": 8037, \\\"ced_score_mean\\\": 0.621, \\\"task_eval_f1_ep1\\\": 0.4848, \\\"task_eval_f1_ep2\\\": 0.4824, \\\"task_eval_f1_ep3\\\": 0.5012, \\\"task_eval_evi_f1_ep1\\\": 0.745, \\\"task_eval_evi_f1_ep2\\\": 0.6997, \\\"task_eval_evi_f1_ep3\\\": 0.6816, \\\"task_eval_edcr_ep1\\\": 0.6525, \\\"task_eval_edcr_ep2\\\": 0.6529, \\\"task_eval_edcr_ep3\\\": 0.5963, \\\"task_eval_note\\\": \\\"50-doc subset, not full dev\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_001_flat_nli_seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"train_loss_final\\\": 0.6257, \\\"train_loss_min\\\": 0.5895, \\\"eval_loss_epoch3\\\": 0.7567, \\\"eval_accuracy_epoch3\\\": 0.8298, \\\"total_steps\\\": 507, \\\"epochs\\\": 3, \\\"train_runtime_seconds\\\": 6880, \\\"task_eval_f1_ep1\\\": 0.4825, \\\"task_eval_f1_ep2\\\": 0.4542, \\\"task_eval_f1_ep3\\\": 0.4866, \\\"task_eval_evi_f1_ep3\\\": 0.7834, \\\"task_eval_edcr_ep3\\\": 0.6402, \\\"task_eval_note\\\": \\\"50-doc subset, not full dev\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_009_flatnli_reward_eval_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan_009_extract_reward_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_sft_baseline_noquant\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4106, \\\"rel_precision\\\": 0.4198, \\\"rel_recall\\\": 0.4019, \\\"evi_f1\\\": 0.8013, \\\"evi_precision\\\": 0.8005, \\\"evi_recall\\\": 0.8022, \\\"evi_f1_joint\\\": 0.3216, \\\"edcr\\\": 0.7039, \\\"format_ok_rate\\\": 0.998, \\\"field_compliance_rate\\\": 0.7066, \\\"n_predictions\\\": 16774, \\\"n_truncated\\\": 288, \\\"n_documents\\\": 985, \\\"inference_time_seconds\\\": 3677.9}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_009_flatnli_reward_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_plan_012_dpo_ced_ckpt400\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan_009_forgetting_figure\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_plan_014_sft_no_evidence\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4893, \\\"rel_ign_f1\\\": 0.4893, \\\"rel_precision\\\": 0.4884, \\\"rel_recall\\\": 0.4902, \\\"evi_f1\\\": 0, \\\"evi_precision\\\": 0, \\\"evi_recall\\\": 0, \\\"edcr\\\": 0, \\\"format_ok_rate\\\": 0.9919, \\\"n_truncated\\\": 298, \\\"n_predictions\\\": 21064, \\\"n_documents\\\": 985, \\\"n_parseable\\\": 977, \\\"inference_time_seconds\\\": 4103.8}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_014_sft_no_evidence\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.7077, \\\"eval_loss\\\": 0.8781, \\\"eval_token_accuracy\\\": 0.8086, \\\"epochs\\\": 3, \\\"total_steps\\\": 570, \\\"train_runtime_min\\\": 64, \\\"samples\\\": 3027, \\\"trainable_params\\\": \\\"132M/4.15B (3.18%)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_002_test_eval_s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan_001_rsft_flat_nli\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.6238, \\\"train_loss_min\\\": 0.5803, \\\"mean_token_accuracy\\\": 0.8528, \\\"train_runtime_sec\\\": 2946, \\\"epochs\\\": 3, \\\"total_steps\\\": 507, \\\"samples\\\": 2691}}, \\\"eval_plan_001_flat_nli\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4539, \\\"ign_f1\\\": 0.4539, \\\"evi_f1\\\": 0.8043, \\\"edcr\\\": 0.6431, \\\"precision\\\": 0.4671, \\\"recall\\\": 0.4414, \\\"evi_precision\\\": 0.8143, \\\"evi_recall\\\": 0.7945, \\\"format_ok_rate\\\": 1, \\\"n_truncated\\\": 199, \\\"n_documents\\\": 985, \\\"n_predictions\\\": 15294, \\\"inference_time_seconds\\\": 3631}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_grpo_g8_bf16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"ckpt80_rel_f1\\\": 0.4456, \\\"ckpt80_ign_f1\\\": 0.4456, \\\"ckpt80_evi_f1\\\": 0.8034, \\\"ckpt80_edcr\\\": 0.6409, \\\"ckpt80_format_ok\\\": \\\"984/985\\\", \\\"ckpt80_truncated\\\": 50, \\\"ckpt90_rel_f1\\\": 0.4523, \\\"ckpt90_ign_f1\\\": 0.4523, \\\"ckpt90_evi_f1\\\": 0.8052, \\\"ckpt90_edcr\\\": 0.6414, \\\"ckpt90_format_ok\\\": \\\"983/985\\\", \\\"ckpt90_truncated\\\": 61, \\\"ckpt100_rel_f1\\\": 0.4549, \\\"ckpt100_ign_f1\\\": 0.4549, \\\"ckpt100_evi_f1\\\": 0.8086, \\\"ckpt100_edcr\\\": 0.6318, \\\"ckpt100_format_ok\\\": \\\"985/985\\\", \\\"ckpt100_truncated\\\": 61, \\\"best_checkpoint\\\": \\\"ckpt-100\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_015_grpo_g4_bf16_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"plan_015_grpo_g4_bf16_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"plan_015_grpo_g4_bf16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"plan_011_grpo_g8_bf16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"final_step\\\": 100, \\\"train_runtime_s\\\": 554, \\\"reward_final\\\": 1.795, \\\"f1_reward_final\\\": 1.002, \\\"ced_reward_final\\\": 0.494, \\\"format_reward_final\\\": 0.3, \\\"frac_zero_std_final\\\": 0, \\\"kl_final\\\": 0.022, \\\"best_reward_step\\\": 85, \\\"best_reward\\\": 2.858, \\\"best_f1_reward\\\": 1.85, \\\"mode_collapse\\\": false, \\\"lora_config\\\": \\\"r=64, alpha=128, dropout=0.05, bf16\\\", \\\"checkpoints\\\": \\\"10 checkpoints (step 10-100)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_011_grpo_g8_bf16_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4549, \\\"ign_f1\\\": 0.4549, \\\"evi_f1\\\": 0.8086, \\\"edcr\\\": 0.6318, \\\"format_ok_rate\\\": 1, \\\"n_truncated\\\": 61, \\\"n_total\\\": 985, \\\"n_predictions\\\": 10701, \\\"checkpoint\\\": \\\"checkpoint-100\\\", \\\"model\\\": \\\"Qwen3-4B + SFT merged + GRPO bf16 LoRA ckpt-100\\\", \\\"inference_time_s\\\": 3170.3}}, \\\"plan_004_dreeam_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"dev_rel_f1\\\": 63.57, \\\"dev_rel_ign_f1\\\": 61.72, \\\"dev_evi_f1\\\": 54.01, \\\"dev_rel_p\\\": 66.95, \\\"dev_rel_r\\\": 60.51, \\\"dev_evi_p\\\": 60.53, \\\"dev_evi_r\\\": 48.76}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp2_eval_rsft_r2b_maxtok1536_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4504, \\\"ign_f1\\\": 0.4504, \\\"evi_f1\\\": 0.8102, \\\"edcr\\\": 0.674, \\\"precision\\\": 0.4488, \\\"recall\\\": 0.4519, \\\"evi_precision\\\": 0.8162, \\\"evi_recall\\\": 0.8044, \\\"n_truncated\\\": 146, \\\"n_total\\\": 985, \\\"n_predictions\\\": 17188, \\\"n_distractor_citations\\\": 19589, \\\"n_total_citations\\\": 29063, \\\"format_ok_rate\\\": 0.998}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan_001_flat_nli_scoring\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_scored\\\": 21728, \\\"selected_samples\\\": 2691, \\\"selection_rate\\\": 0.124, \\\"selection_strategy\\\": \\\"top_k=1\\\", \\\"f1_threshold\\\": 0.1, \\\"output_path\\\": \\\"/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl\\\"}}, \\\"mvp2_ced_reranker_poc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ced_reranker_rel_f1\\\": 0.4864, \\\"ced_reranker_evi_f1\\\": 0.8188, \\\"ced_reranker_edcr\\\": 0.6156, \\\"ced_reranker_precision\\\": 0.4913, \\\"ced_reranker_recall\\\": 0.4815, \\\"ced_reranker_pred_count\\\": 14782, \\\"ced_reranker_format_ok_rate\\\": 1, \\\"oracle_rel_f1\\\": 0.6237, \\\"oracle_evi_f1\\\": 0.7942, \\\"oracle_edcr\\\": 0.5262, \\\"oracle_pred_count\\\": 13418, \\\"random_rel_f1\\\": 0.4538, \\\"random_evi_f1\\\": 0.8029, \\\"random_edcr\\\": 0.6763, \\\"ced_f1_spearman_r\\\": 0.3235, \\\"ced_f1_spearman_p\\\": 2.46e-191, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"sft_baseline_edcr\\\": 0.7118, \\\"rsft_mean_rel_f1\\\": 0.4596, \\\"delta_vs_sft_rel_f1\\\": 0.0807, \\\"delta_vs_rsft_rel_f1\\\": 0.0268, \\\"delta_vs_sft_evi_f1\\\": 0.0209, \\\"oracle_ceiling_rel_f1\\\": 0.218, \\\"num_generations\\\": 8, \\\"temperature\\\": 0.7, \\\"generation_time_s\\\": 20872.6, \\\"n_docs\\\": 985}}, \\\"mvp2_eval_rsft_s43_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4683, \\\"ign_f1\\\": 0.4683, \\\"evi_f1\\\": 0.8156, \\\"evi_f1_joint\\\": 0.3711, \\\"evi_f1_joint_P\\\": 0.3747, \\\"evi_f1_joint_R\\\": 0.3675, \\\"edcr\\\": 0.6388, \\\"precision\\\": 0.4817, \\\"recall\\\": 0.4556, \\\"evi_precision\\\": 0.8142, \\\"evi_recall\\\": 0.817, \\\"n_predictions\\\": 14970, \\\"n_truncated\\\": 171, \\\"format_ok_rate\\\": 1, \\\"inference_time_s\\\": 6316.7, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0626, \\\"delta_evi_f1\\\": 0.0177, \\\"delta_evi_f1_joint\\\": 0.0594, \\\"mvp2_pass\\\": true}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp2_rsft_ced_scoring_topk3_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"input_generations\\\": 21728, \\\"selected_samples\\\": 8037, \\\"unique_docs\\\": 2691, \\\"selection_rate\\\": 0.37, \\\"mean_f1\\\": 0.5761, \\\"mean_ced\\\": 0.6205, \\\"mean_combined\\\": 0.6787, \\\"f1_range_p25\\\": 0.444, \\\"f1_range_p75\\\": 0.717, \\\"ced_range_p25\\\": 0.487, \\\"ced_range_p75\\\": 0.774, \\\"truncated_samples\\\": 1924, \\\"truncated_pct\\\": 8.9, \\\"selection_strategy\\\": \\\"top_k=3\\\", \\\"f1_threshold\\\": 0.1, \\\"topk1_samples\\\": 2718, \\\"data_multiplier\\\": 2.96}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp2_rsft_train_r1_s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4655, \\\"evi_f1\\\": 0.8087, \\\"evi_f1_joint\\\": 0.3713, \\\"evi_f1_joint_P\\\": 0.3775, \\\"evi_f1_joint_R\\\": 0.3653, \\\"edcr\\\": 0.635, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0598, \\\"delta_evi_f1\\\": 0.0108, \\\"delta_evi_f1_joint\\\": 0.0596, \\\"mvp2_pass\\\": true}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp2_eval_rsft_r2b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4493, \\\"ign_f1\\\": 0.4493, \\\"evi_f1\\\": 0.8128, \\\"evi_f1_joint\\\": 0.349, \\\"evi_f1_joint_P\\\": 0.3455, \\\"evi_f1_joint_R\\\": 0.3526, \\\"edcr\\\": 0.6609, \\\"precision\\\": 0.4566, \\\"recall\\\": 0.4424, \\\"evi_precision\\\": 0.8201, \\\"evi_recall\\\": 0.8056, \\\"pred_count\\\": 14829, \\\"format_ok\\\": \\\"983/985\\\", \\\"truncated\\\": 179, \\\"inference_time_s\\\": 5862, \\\"delta_evi_f1_joint\\\": 0.0373}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 50, \\\"total\\\": 117, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6673}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"rsft_ced_s45_train_r3\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"rsft_ced_s45_train_r2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"rsft_ced_s43_train_r2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"reeval_rsft_topk3\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4454, \"rel_precision\": 0.4512, \"rel_recall\": 0.4398, \"ign_f1\": 0.4364, \"evi_f1\": 0.8088, \"edcr\": 0.6635, \"format_ok_rate\": 0.999, \"n_truncated\": 214, \"n_predictions\": 16020, \"inference_time_seconds\": 3546.4, \"ign_f1_corrected\": true}, \"conclusion\": \"negative\"}, \"rsft_ced_s43_train\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"rsft_ced_s45_train\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"reeval_flat_nli_s43\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4523, \"ign_f1\": 0.4523, \"evi_f1\": 0.8158, \"edcr\": 0.6505, \"num_preds\": 15357, \"format_ok\": \"984/985\", \"truncated\": \"211/985\", \"inference_time_s\": 3515.8}, \"conclusion\": \"success\"}, \"plan_003_edcr_diagnostic\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"methods_evaluated\": 15, \"edcr_vs_rel_f1_spearman\": -0.9648, \"edcr_vs_rel_f1_pvalue\": 0.0001, \"edcr_vs_evi_f1_spearman\": 0.0022, \"edcr_vs_evi_f1_pvalue\": 0.9941, \"edcr_range\": \"0.63-0.99\", \"unique_diagnostic_value\": \"identifies pathological models (GRPO QLoRA) with high evi_f1 but catastrophically low rel_f1\"}}, \"eval_flat_nli_seed44\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_plan_012_dpo_1ep_fixed_r2\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.4034, \"evi_f1\": 0.8088, \"edcr\": 0.7139, \"format_ok_rate\": 0.999, \"truncated_rate\": 0.343, \"predictions\": 19107, \"ign_f1\": 0.4034, \"precision\": 0.3809, \"recall\": 0.4287, \"vs_sft_delta\": -0.0023, \"note\": \"DPO 1ep matches SFT baseline. 1ep→3ep trajectory shows gradual decoupling (rel_f1↓ evi_f1↑), consistent with GRPO pattern. Ign-F1=F1 exact match needs investigation.\"}}, \"plan_001_flat_nli_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.6247, \"eval_loss\": 0.7564, \"eval_mean_token_accuracy\": 0.8299, \"task_eval_f1_ep1\": 0.4306, \"task_eval_f1_ep2\": 0.4884, \"task_eval_f1_ep3\": 0.4897, \"task_eval_evi_f1_ep3\": 0.78, \"task_eval_edcr_ep3\": 0.6596, \"task_eval_ign_f1_ep3\": 0.4897, \"train_runtime_sec\": 6197, \"num_epochs\": 3, \"total_steps\": 507}}, \"plan_009_dynamics_figure\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan_001_flat_nli_seed45\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"task_eval_rel_f1\": 0.4876, \"task_eval_evi_f1\": 0.7927, \"task_eval_edcr\": 0.6517, \"train_loss\": 0.6245, \"runtime_hours\": 1.69, \"note\": \"task-eval on 50 docs only, full dev eval needed\"}}, \"plan_011_bf16_g8_step_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"step_30\": {\"rel_f1\": 0.434, \"evi_f1\": 0.8063, \"edcr\": 0.6807}, \"step_50\": {\"rel_f1\": 0.4276, \"evi_f1\": 0.8024, \"edcr\": 0.6855}, \"step_70\": {\"rel_f1\": 0.4341, \"evi_f1\": 0.8099, \"edcr\": 0.6685}, \"best_step\": \"step_70\", \"trend\": \"non-monotonic, all < ckpt-100 (0.4549)\"}}, \"plan_011_eval_g8_bf16_ckpt100\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp2_eval_rsft_s44\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_plan_008_topk3_fixed\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_plan_012_dpo_1ep_fixed\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_plan_008_rsft_topk3\": {\"status\": \"DONE\", \"conclusion\": \"killed\", \"metrics\": {\"note\": \"INVALID — missing --sft_adapter, killed by Director instruction\"}}, \"plan_012_dpo_ced\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.3429, \"evi_f1\": 0.8403, \"edcr\": 0.7294, \"format_ok_rate\": 0.995, \"checkpoint\": \"checkpoint-501\", \"rewards_accuracy\": 1, \"margins\": 9.01}}, \"plan_012_dpo_ced_1ep\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.0022, \"evi_f1\": 0.75, \"edcr\": 0.9982, \"format_ok\": \"981/985\", \"truncated\": \"358/985\", \"tp\": 34, \"n_preds\": 19265, \"inference_time_s\": 3643, \"train_loss_final\": 0.59, \"rewards_accuracy\": 0.82, \"rewards_margins\": 0.86, \"total_steps\": 167, \"training_time_min\": 33}, \"conclusion\": \"negative\"}, \"eval_plan_001_flat_nli_s43\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"rel_f1\": 0.0022, \"ign_f1\": 0.0022, \"evi_f1\": 0.8533, \"edcr\": 0.9982, \"num_preds\": 17285, \"format_ok\": \"981/985\", \"truncated\": \"251/985\", \"tp\": 32, \"note\": \"INVALID — missing --sft_adapter, same bug as DPO 1ep eval\"}}, \"eval_plan_012_dpo_ced_1ep\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.0022, \"ign_f1\": 0.0022, \"evi_f1\": 0.75, \"edcr\": 0.9982, \"num_preds\": 19265, \"format_ok\": \"981/985\", \"truncated\": \"358/985\", \"tp\": 34, \"inference_time_s\": 3643}}, \"plan_008_rsft_topk3\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 0.5543, \"eval_loss\": 0.8297, \"eval_mean_token_accuracy\": 0.8228, \"eval_entropy\": 0.6001, \"train_runtime_sec\": 10916, \"total_steps\": 1509, \"epochs\": 3, \"trainable_params_pct\": 3.18, \"rsft_samples\": 8037, \"ced_score_mean\": 0.621, \"task_eval_f1_ep1\": 0.4848, \"task_eval_f1_ep2\": 0.4824, \"task_eval_f1_ep3\": 0.5012, \"task_eval_evi_f1_ep1\": 0.745, \"task_eval_evi_f1_ep2\": 0.6997, \"task_eval_evi_f1_ep3\": 0.6816, \"task_eval_edcr_ep1\": 0.6525, \"task_eval_edcr_ep2\": 0.6529, \"task_eval_edcr_ep3\": 0.5963, \"task_eval_note\": \"50-doc subset, not full dev\"}, \"conclusion\": \"success\"}, \"plan_001_flat_nli_seed43\": {\"status\": \"DONE\", \"metrics\": {\"train_loss_final\": 0.6257, \"train_loss_min\": 0.5895, \"eval_loss_epoch3\": 0.7567, \"eval_accuracy_epoch3\": 0.8298, \"total_steps\": 507, \"epochs\": 3, \"train_runtime_seconds\": 6880, \"task_eval_f1_ep1\": 0.4825, \"task_eval_f1_ep2\": 0.4542, \"task_eval_f1_ep3\": 0.4866, \"task_eval_evi_f1_ep3\": 0.7834, \"task_eval_edcr_ep3\": 0.6402, \"task_eval_note\": \"50-doc subset, not full dev\"}, \"conclusion\": \"success\"}, \"plan_009_flatnli_reward_eval_r2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan_009_extract_reward_eval\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_sft_baseline_noquant\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4106, \"rel_precision\": 0.4198, \"rel_recall\": 0.4019, \"evi_f1\": 0.8013, \"evi_precision\": 0.8005, \"evi_recall\": 0.8022, \"evi_f1_joint\": 0.3216, \"edcr\": 0.7039, \"format_ok_rate\": 0.998, \"field_compliance_rate\": 0.7066, \"n_predictions\": 16774, \"n_truncated\": 288, \"n_documents\": 985, \"inference_time_seconds\": 3677.9}, \"conclusion\": \"success\"}, \"plan_009_flatnli_reward_eval\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_plan_012_dpo_ced_ckpt400\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan_009_forgetting_figure\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"eval_plan_014_sft_no_evidence\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4893, \"rel_ign_f1\": 0.4893, \"rel_precision\": 0.4884, \"rel_recall\": 0.4902, \"evi_f1\": 0, \"evi_precision\": 0, \"evi_recall\": 0, \"edcr\": 0, \"format_ok_rate\": 0.9919, \"n_truncated\": 298, \"n_predictions\": 21064, \"n_documents\": 985, \"n_parseable\": 977, \"inference_time_seconds\": 4103.8}, \"conclusion\": \"success\"}, \"plan_014_sft_no_evidence\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 0.7077, \"eval_loss\": 0.8781, \"eval_token_accuracy\": 0.8086, \"epochs\": 3, \"total_steps\": 570, \"train_runtime_min\": 64, \"samples\": 3027, \"trainable_params\": \"132M/4.15B (3.18%)\"}, \"conclusion\": \"success\"}, \"plan_002_test_eval_s44\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan_001_rsft_flat_nli\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.6238, \"train_loss_min\": 0.5803, \"mean_token_accuracy\": 0.8528, \"train_runtime_sec\": 2946, \"epochs\": 3, \"total_steps\": 507, \"samples\": 2691}}, \"eval_plan_001_flat_nli\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4539, \"ign_f1\": 0.4539, \"evi_f1\": 0.8043, \"edcr\": 0.6431, \"precision\": 0.4671, \"recall\": 0.4414, \"evi_precision\": 0.8143, \"evi_recall\": 0.7945, \"format_ok_rate\": 1, \"n_truncated\": 199, \"n_documents\": 985, \"n_predictions\": 15294, \"inference_time_seconds\": 3631}, \"conclusion\": \"success\"}, \"eval_grpo_g8_bf16\": {\"status\": \"DONE\", \"metrics\": {\"ckpt80_rel_f1\": 0.4456, \"ckpt80_ign_f1\": 0.4456, \"ckpt80_evi_f1\": 0.8034, \"ckpt80_edcr\": 0.6409, \"ckpt80_format_ok\": \"984/985\", \"ckpt80_truncated\": 50, \"ckpt90_rel_f1\": 0.4523, \"ckpt90_ign_f1\": 0.4523, \"ckpt90_evi_f1\": 0.8052, \"ckpt90_edcr\": 0.6414, \"ckpt90_format_ok\": \"983/985\", \"ckpt90_truncated\": 61, \"ckpt100_rel_f1\": 0.4549, \"ckpt100_ign_f1\": 0.4549, \"ckpt100_evi_f1\": 0.8086, \"ckpt100_edcr\": 0.6318, \"ckpt100_format_ok\": \"985/985\", \"ckpt100_truncated\": 61, \"best_checkpoint\": \"ckpt-100\"}, \"conclusion\": \"success\"}, \"plan_015_grpo_g4_bf16_v3\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"plan_015_grpo_g4_bf16_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"plan_015_grpo_g4_bf16\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"plan_011_grpo_g8_bf16\": {\"status\": \"DONE\", \"metrics\": {\"final_step\": 100, \"train_runtime_s\": 554, \"reward_final\": 1.795, \"f1_reward_final\": 1.002, \"ced_reward_final\": 0.494, \"format_reward_final\": 0.3, \"frac_zero_std_final\": 0, \"kl_final\": 0.022, \"best_reward_step\": 85, \"best_reward\": 2.858, \"best_f1_reward\": 1.85, \"mode_collapse\": false, \"lora_config\": \"r=64, alpha=128, dropout=0.05, bf16\", \"checkpoints\": \"10 checkpoints (step 10-100)\"}, \"conclusion\": \"success\"}, \"plan_011_grpo_g8_bf16_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4549, \"ign_f1\": 0.4549, \"evi_f1\": 0.8086, \"edcr\": 0.6318, \"format_ok_rate\": 1, \"n_truncated\": 61, \"n_total\": 985, \"n_predictions\": 10701, \"checkpoint\": \"checkpoint-100\", \"model\": \"Qwen3-4B + SFT merged + GRPO bf16 LoRA ckpt-100\", \"inference_time_s\": 3170.3}}, \"plan_004_dreeam_baseline\": {\"status\": \"DONE\", \"metrics\": {\"dev_rel_f1\": 63.57, \"dev_rel_ign_f1\": 61.72, \"dev_evi_f1\": 54.01, \"dev_rel_p\": 66.95, \"dev_rel_r\": 60.51, \"dev_evi_p\": 60.53, \"dev_evi_r\": 48.76}, \"conclusion\": \"success\"}, \"mvp2_eval_rsft_r2b_maxtok1536_r2\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4504, \"ign_f1\": 0.4504, \"evi_f1\": 0.8102, \"edcr\": 0.674, \"precision\": 0.4488, \"recall\": 0.4519, \"evi_precision\": 0.8162, \"evi_recall\": 0.8044, \"n_truncated\": 146, \"n_total\": 985, \"n_predictions\": 17188, \"n_distractor_citations\": 19589, \"n_total_citations\": 29063, \"format_ok_rate\": 0.998}, \"conclusion\": \"negative\"}, \"plan_001_flat_nli_scoring\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_scored\": 21728, \"selected_samples\": 2691, \"selection_rate\": 0.124, \"selection_strategy\": \"top_k=1\", \"f1_threshold\": 0.1, \"output_path\": \"/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl\"}}, \"mvp2_ced_reranker_poc\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ced_reranker_rel_f1\": 0.4864, \"ced_reranker_evi_f1\": 0.8188, \"ced_reranker_edcr\": 0.6156, \"ced_reranker_precision\": 0.4913, \"ced_reranker_recall\": 0.4815, \"ced_reranker_pred_count\": 14782, \"ced_reranker_format_ok_rate\": 1, \"oracle_rel_f1\": 0.6237, \"oracle_evi_f1\": 0.7942, \"oracle_edcr\": 0.5262, \"oracle_pred_count\": 13418, \"random_rel_f1\": 0.4538, \"random_evi_f1\": 0.8029, \"random_edcr\": 0.6763, \"ced_f1_spearman_r\": 0.3235, \"ced_f1_spearman_p\": 2.46e-191, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"sft_baseline_edcr\": 0.7118, \"rsft_mean_rel_f1\": 0.4596, \"delta_vs_sft_rel_f1\": 0.0807, \"delta_vs_rsft_rel_f1\": 0.0268, \"delta_vs_sft_evi_f1\": 0.0209, \"oracle_ceiling_rel_f1\": 0.218, \"num_generations\": 8, \"temperature\": 0.7, \"generation_time_s\": 20872.6, \"n_docs\": 985}}, \"mvp2_eval_rsft_s43_r2\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4683, \"ign_f1\": 0.4683, \"evi_f1\": 0.8156, \"evi_f1_joint\": 0.3711, \"evi_f1_joint_P\": 0.3747, \"evi_f1_joint_R\": 0.3675, \"edcr\": 0.6388, \"precision\": 0.4817, \"recall\": 0.4556, \"evi_precision\": 0.8142, \"evi_recall\": 0.817, \"n_predictions\": 14970, \"n_truncated\": 171, \"format_ok_rate\": 1, \"inference_time_s\": 6316.7, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0626, \"delta_evi_f1\": 0.0177, \"delta_evi_f1_joint\": 0.0594, \"mvp2_pass\": true}, \"conclusion\": \"success\"}, \"mvp2_rsft_ced_scoring_topk3_r2\": {\"status\": \"DONE\", \"metrics\": {\"input_generations\": 21728, \"selected_samples\": 8037, \"unique_docs\": 2691, \"selection_rate\": 0.37, \"mean_f1\": 0.5761, \"mean_ced\": 0.6205, \"mean_combined\": 0.6787, \"f1_range_p25\": 0.444, \"f1_range_p75\": 0.717, \"ced_range_p25\": 0.487, \"ced_range_p75\": 0.774, \"truncated_samples\": 1924, \"truncated_pct\": 8.9, \"selection_strategy\": \"top_k=3\", \"f1_threshold\": 0.1, \"topk1_samples\": 2718, \"data_multiplier\": 2.96}, \"conclusion\": \"success\"}, \"mvp2_rsft_train_r1_s44\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4655, \"evi_f1\": 0.8087, \"evi_f1_joint\": 0.3713, \"evi_f1_joint_P\": 0.3775, \"evi_f1_joint_R\": 0.3653, \"edcr\": 0.635, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0598, \"delta_evi_f1\": 0.0108, \"delta_evi_f1_joint\": 0.0596, \"mvp2_pass\": true}, \"conclusion\": \"success\"}, \"mvp2_eval_rsft_r2b\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4493, \"ign_f1\": 0.4493, \"evi_f1\": 0.8128, \"evi_f1_joint\": 0.349, \"evi_f1_joint_P\": 0.3455, \"evi_f1_joint_R\": 0.3526, \"edcr\": 0.6609, \"precision\": 0.4566, \"recall\": 0.4424, \"evi_precision\": 0.8201, \"evi_recall\": 0.8056, \"pred_count\": 14829, \"format_ok\": \"983/985\", \"truncated\": 179, \"inference_time_s\": 5862, \"delta_evi_f1_joint\": 0.0373}, \"conclusion\": \"success\"}}, \"count\": 50, \"total\": 117, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6673}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the data I need. Let me compile the key metrics:
+
+**reeval_rsft_topk3** (top_k=3):
+- rel_f1: 0.4454
+- evi_f1: 0.8088
+- edcr: 0.6635
+- ign_f1: 0.4364
+- conclusion: negative
+
+Now I need the CED RSFT top_k=1 three-seed experiments. From the registry, I can see:
+- mvp2_eval_rsft_s43_r2 (seed 43): rel_f1=0.4683, evi_f1=0.8156, edcr=0.6388
+
+
+- mvp2_rsft_train_r1_s44 (seed 44): rel_f1=0.4655, evi_f1=0.8087, edcr=0.6350
+
+I'm also cross-referencing the paper_framing.md table to verify these numbers, particularly the RSFT CED seed 43 results which show the highest performance metrics.
+
+Now I'm looking at the complete results for all three seeds (42, 43, 44) and computing the mean rel_f1 across them. Now I'm looking at the top_k=3 results, which show lower performance across the board compared to top_k=1. I need to track down which seed corresponds to the topk3 experiment in the registry and verify whether there are additional runs beyond the single entry I'm seeing. The reeval_rsft_topk3 shows a negative conclusion, so I should investigate what that means for the overall comparison. Looking at the mean performance across the three seeds, top_k=1 consistently outperforms top_k=3 across most metrics—relevance F1 improves by 1.4 percentage points, evidence F1 by 0.55pp, and ignorance F1 by 1.36pp, though EDCR is slightly worse with top_k=1.
+
+Now I'm noticing some inconsistencies in the registry values—the ignorance F1 scores seem to match the relevance F1 scores exactly, which doesn't seem right. Let me double-check the actual values from the table against what's recorded in the registry. I'm noticing the registry values don't quite match the corrected table values for Ign-F1, so I need to prioritize the paper_framing table's corrected metrics where available. For the three CED RSFT seeds with top_k=1, I'll pull the Ign-F1 scores from that table: s42 at 43.63, s43 at 45.85, and s44's value to follow. Looking at the Chinese text, it's describing how performance declines as k increases because lower-ranked responses introduce noise that degrades training data quality. This aligns with what I'm seeing in the metrics—top_k=1 consistently outperforms top_k=3 across both relevance and evidence F1 scores. Let me verify this pattern holds by checking the registry entries and experiment configuration more carefully. I'm checking the paper_framing.md file to identify where the ablation results fit best, and reviewing the experiment_plan.yaml to understand the full experimental setup.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "292453a3-7235-4b7c-bdd0-80a3449e3ffc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1xexbeGgUBP1P3FCKwZnL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7156,
+      "cache_read_input_tokens": 30340,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7156
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+Got the data. Now let me check for experiment_plan.yaml and also look for the seed 42 eval entry.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "a22e2eb1-a123-4d59-88dc-db11fd09acd4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1xexbeGgUBP1P3FCKwZnL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7156,
+      "cache_read_input_tokens": 30340,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7156
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01XBzUbwvZ9GP1g1ubxz3aEb`</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "experiment_plan.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "e6e2129f-72eb-4c98-a593-f6704f2bf492",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1xexbeGgUBP1P3FCKwZnL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7156,
+      "cache_read_input_tokens": 30340,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7156
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T00:32:52.667Z_
+
+<details><summary>↩ Tool result · `toolu_01XBzUbwvZ9GP1g1ubxz3aEb`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'experiment_plan.yaml'\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "468557b3-c943-44da-a230-a62fe44bb2de",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'experiment_plan.yaml'\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'experiment_plan.yaml'\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01KmWXdj22KRmhX5Q4jzFqi5`</summary>
+
+```json
+{
+  "filters": {
+    "status": "DONE"
+  },
+  "project": "faith-evidence-ie",
+  "fields": [
+    "name",
+    "status",
+    "conclusion",
+    "metrics",
+    "tags"
+  ],
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "468fe67a-f755-4b49-a83e-6c8df1c5d26b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1xexbeGgUBP1P3FCKwZnL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7156,
+      "cache_read_input_tokens": 30340,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7156
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T00:32:53.856Z_
+
+<details><summary>↩ Tool result · `toolu_01KmWXdj22KRmhX5Q4jzFqi5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"rsft_ced_s45_train_r3\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"rsft_ced_s45_train_r2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"rsft_ced_s43_train_r2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"reeval_rsft_topk3\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4454, \"rel_precision\": 0.4512, \"rel_recall\": 0.4398, \"ign_f1\": 0.4364, \"evi_f1\": 0.8088, \"edcr\": 0.6635, \"format_ok_rate\": 0.999, \"n_truncated\": 214, \"n_predictions\": 16020, \"inference_time_seconds\": 3546.4, \"ign_f1_corrected\": true}, \"conclusion\": \"negative\"}, \"rsft_ced_s43_train\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"rsft_ced_s45_train\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"reeval_flat_nli_s43\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4523, \"ign_f1\": 0.4523, \"evi_f1\": 0.8158, \"edcr\": 0.6505, \"num_preds\": 15357, \"format_ok\": \"984/985\", \"truncated\": \"211/985\", \"inference_time_s\": 3515.8}, \"conclusion\": \"success\"}, \"plan_003_edcr_diagnostic\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"methods_evaluated\": 15, \"edcr_vs_rel_f1_spearman\": -0.9648, \"edcr_vs_rel_f1_pvalue\": 0.0001, \"edcr_vs_evi_f1_spearman\": 0.0022, \"edcr_vs_evi_f1_pvalue\": 0.9941, \"edcr_range\": \"0.63-0.99\", \"unique_diagnostic_value\": \"identifies pathological models (GRPO QLoRA) with high evi_f1 but catastrophically low rel_f1\"}}, \"eval_flat_nli_seed44\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_plan_012_dpo_1ep_fixed_r2\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.4034, \"evi_f1\": 0.8088, \"edcr\": 0.7139, \"format_ok_rate\": 0.999, \"truncated_rate\": 0.343, \"predictions\": 19107, \"ign_f1\": 0.4034, \"precision\": 0.3809, \"recall\": 0.4287, \"vs_sft_delta\": -0.0023, \"note\": \"DPO 1ep matches SFT baseline. 1ep→3ep trajectory shows gradual decoupling (rel_f1↓ evi_f1↑), consistent with GRPO pattern. Ign-F1=F1 exact match needs investigation.\"}}, \"plan_001_flat_nli_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.6247, \"eval_loss\": 0.7564, \"eval_mean_token_accuracy\": 0.8299, \"task_eval_f1_ep1\": 0.4306, \"task_eval_f1_ep2\": 0.4884, \"task_eval_f1_ep3\": 0.4897, \"task_eval_evi_f1_ep3\": 0.78, \"task_eval_edcr_ep3\": 0.6596, \"task_eval_ign_f1_ep3\": 0.4897, \"train_runtime_sec\": 6197, \"num_epochs\": 3, \"total_steps\": 507}}, \"plan_009_dynamics_figure\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan_001_flat_nli_seed45\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"task_eval_rel_f1\": 0.4876, \"task_eval_evi_f1\": 0.7927, \"task_eval_edcr\": 0.6517, \"train_loss\": 0.6245, \"runtime_hours\": 1.69, \"note\": \"task-eval on 50 docs only, full dev eval needed\"}}, \"plan_011_bf16_g8_step_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"step_30\": {\"rel_f1\": 0.434, \"evi_f1\": 0.8063, \"edcr\": 0.6807}, \"step_50\": {\"rel_f1\": 0.4276, \"evi_f1\": 0.8024, \"edcr\": 0.6855}, \"step_70\": {\"rel_f1\": 0.4341, \"evi_f1\": 0.8099, \"edcr\": 0.6685}, \"best_step\": \"step_70\", \"trend\": \"non-monotonic, all < ckpt-100 (0.4549)\"}}, \"plan_011_eval_g8_bf16_ckpt100\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp2_eval_rsft_s44\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_plan_008_topk3_fixed\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_plan_012_dpo_1ep_fixed\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_plan_008_rsft_topk3\": {\"status\": \"DONE\", \"conclusion\": \"killed\", \"metrics\": {\"note\": \"INVALID — missing --sft_adapter, killed by Director instruction\"}}, \"plan_012_dpo_ced\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.3429, \"evi_f1\": 0.8403, \"edcr\": 0.7294, \"format_ok_rate\": 0.995, \"checkpoint\": \"checkpoint-501\", \"rewards_accuracy\": 1, \"margins\": 9.01}}, \"plan_012_dpo_ced_1ep\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.0022, \"evi_f1\": 0.75, \"edcr\": 0.9982, \"format_ok\": \"981/985\", \"truncated\": \"358/985\", \"tp\": 34, \"n_preds\": 19265, \"inference_time_s\": 3643, \"train_loss_final\": 0.59, \"rewards_accuracy\": 0.82, \"rewards_margins\": 0.86, \"total_steps\": 167, \"training_time_min\": 33}, \"conclusion\": \"negative\"}, \"eval_plan_001_flat_nli_s43\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"rel_f1\": 0.0022, \"ign_f1\": 0.0022, \"evi_f1\": 0.8533, \"edcr\": 0.9982, \"num_preds\": 17285, \"format_ok\": \"981/985\", \"truncated\": \"251/985\", \"tp\": 32, \"note\": \"INVALID — missing --sft_adapter, same bug as DPO 1ep eval\"}}, \"eval_plan_012_dpo_ced_1ep\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.0022, \"ign_f1\": 0.0022, \"evi_f1\": 0.75, \"edcr\": 0.9982, \"num_preds\": 19265, \"format_ok\": \"981/985\", \"truncated\": \"358/985\", \"tp\": 34, \"inference_time_s\": 3643}}, \"plan_008_rsft_topk3\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 0.5543, \"eval_loss\": 0.8297, \"eval_mean_token_accuracy\": 0.8228, \"eval_entropy\": 0.6001, \"train_runtime_sec\": 10916, \"total_steps\": 1509, \"epochs\": 3, \"trainable_params_pct\": 3.18, \"rsft_samples\": 8037, \"ced_score_mean\": 0.621, \"task_eval_f1_ep1\": 0.4848, \"task_eval_f1_ep2\": 0.4824, \"task_eval_f1_ep3\": 0.5012, \"task_eval_evi_f1_ep1\": 0.745, \"task_eval_evi_f1_ep2\": 0.6997, \"task_eval_evi_f1_ep3\": 0.6816, \"task_eval_edcr_ep1\": 0.6525, \"task_eval_edcr_ep2\": 0.6529, \"task_eval_edcr_ep3\": 0.5963, \"task_eval_note\": \"50-doc subset, not full dev\"}, \"conclusion\": \"success\"}, \"plan_001_flat_nli_seed43\": {\"status\": \"DONE\", \"metrics\": {\"train_loss_final\": 0.6257, \"train_loss_min\": 0.5895, \"eval_loss_epoch3\": 0.7567, \"eval_accuracy_epoch3\": 0.8298, \"total_steps\": 507, \"epochs\": 3, \"train_runtime_seconds\": 6880, \"task_eval_f1_ep1\": 0.4825, \"task_eval_f1_ep2\": 0.4542, \"task_eval_f1_ep3\": 0.4866, \"task_eval_evi_f1_ep3\": 0.7834, \"task_eval_edcr_ep3\": 0.6402, \"task_eval_note\": \"50-doc subset, not full dev\"}, \"conclusion\": \"success\"}, \"plan_009_flatnli_reward_eval_r2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan_009_extract_reward_eval\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_sft_baseline_noquant\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4106, \"rel_precision\": 0.4198, \"rel_recall\": 0.4019, \"evi_f1\": 0.8013, \"evi_precision\": 0.8005, \"evi_recall\": 0.8022, \"evi_f1_joint\": 0.3216, \"edcr\": 0.7039, \"format_ok_rate\": 0.998, \"field_compliance_rate\": 0.7066, \"n_predictions\": 16774, \"n_truncated\": 288, \"n_documents\": 985, \"inference_time_seconds\": 3677.9}, \"conclusion\": \"success\"}, \"plan_009_flatnli_reward_eval\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_plan_012_dpo_ced_ckpt400\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan_009_forgetting_figure\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"eval_plan_014_sft_no_evidence\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4893, \"rel_ign_f1\": 0.4893, \"rel_precision\": 0.4884, \"rel_recall\": 0.4902, \"evi_f1\": 0, \"evi_precision\": 0, \"evi_recall\": 0, \"edcr\": 0, \"format_ok_rate\": 0.9919, \"n_truncated\": 298, \"n_predictions\": 21064, \"n_documents\": 985, \"n_parseable\": 977, \"inference_time_seconds\": 4103.8}, \"conclusion\": \"success\"}, \"plan_014_sft_no_evidence\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 0.7077, \"eval_loss\": 0.8781, \"eval_token_accuracy\": 0.8086, \"epochs\": 3, \"total_steps\": 570, \"train_runtime_min\": 64, \"samples\": 3027, \"trainable_params\": \"132M/4.15B (3.18%)\"}, \"conclusion\": \"success\"}, \"plan_002_test_eval_s44\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan_001_rsft_flat_nli\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.6238, \"train_loss_min\": 0.5803, \"mean_token_accuracy\": 0.8528, \"train_runtime_sec\": 2946, \"epochs\": 3, \"total_steps\": 507, \"samples\": 2691}}, \"eval_plan_001_flat_nli\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4539, \"ign_f1\": 0.4539, \"evi_f1\": 0.8043, \"edcr\": 0.6431, \"precision\": 0.4671, \"recall\": 0.4414, \"evi_precision\": 0.8143, \"evi_recall\": 0.7945, \"format_ok_rate\": 1, \"n_truncated\": 199, \"n_documents\": 985, \"n_predictions\": 15294, \"inference_time_seconds\": 3631}, \"conclusion\": \"success\"}, \"eval_grpo_g8_bf16\": {\"status\": \"DONE\", \"metrics\": {\"ckpt80_rel_f1\": 0.4456, \"ckpt80_ign_f1\": 0.4456, \"ckpt80_evi_f1\": 0.8034, \"ckpt80_edcr\": 0.6409, \"ckpt80_format_ok\": \"984/985\", \"ckpt80_truncated\": 50, \"ckpt90_rel_f1\": 0.4523, \"ckpt90_ign_f1\": 0.4523, \"ckpt90_evi_f1\": 0.8052, \"ckpt90_edcr\": 0.6414, \"ckpt90_format_ok\": \"983/985\", \"ckpt90_truncated\": 61, \"ckpt100_rel_f1\": 0.4549, \"ckpt100_ign_f1\": 0.4549, \"ckpt100_evi_f1\": 0.8086, \"ckpt100_edcr\": 0.6318, \"ckpt100_format_ok\": \"985/985\", \"ckpt100_truncated\": 61, \"best_checkpoint\": \"ckpt-100\"}, \"conclusion\": \"success\"}, \"plan_015_grpo_g4_bf16_v3\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"plan_015_grpo_g4_bf16_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"plan_015_grpo_g4_bf16\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"plan_011_grpo_g8_bf16\": {\"status\": \"DONE\", \"metrics\": {\"final_step\": 100, \"train_runtime_s\": 554, \"reward_final\": 1.795, \"f1_reward_final\": 1.002, \"ced_reward_final\": 0.494, \"format_reward_final\": 0.3, \"frac_zero_std_final\": 0, \"kl_final\": 0.022, \"best_reward_step\": 85, \"best_reward\": 2.858, \"best_f1_reward\": 1.85, \"mode_collapse\": false, \"lora_config\": \"r=64, alpha=128, dropout=0.05, bf16\", \"checkpoints\": \"10 checkpoints (step 10-100)\"}, \"conclusion\": \"success\"}, \"plan_011_grpo_g8_bf16_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4549, \"ign_f1\": 0.4549, \"evi_f1\": 0.8086, \"edcr\": 0.6318, \"format_ok_rate\": 1, \"n_truncated\": 61, \"n_total\": 985, \"n_predictions\": 10701, \"checkpoint\": \"checkpoint-100\", \"model\": \"Qwen3-4B + SFT merged + GRPO bf16 LoRA ckpt-100\", \"inference_time_s\": 3170.3}}, \"plan_004_dreeam_baseline\": {\"status\": \"DONE\", \"metrics\": {\"dev_rel_f1\": 63.57, \"dev_rel_ign_f1\": 61.72, \"dev_evi_f1\": 54.01, \"dev_rel_p\": 66.95, \"dev_rel_r\": 60.51, \"dev_evi_p\": 60.53, \"dev_evi_r\": 48.76}, \"conclusion\": \"success\"}, \"mvp2_eval_rsft_r2b_maxtok1536_r2\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4504, \"ign_f1\": 0.4504, \"evi_f1\": 0.8102, \"edcr\": 0.674, \"precision\": 0.4488, \"recall\": 0.4519, \"evi_precision\": 0.8162, \"evi_recall\": 0.8044, \"n_truncated\": 146, \"n_total\": 985, \"n_predictions\": 17188, \"n_distractor_citations\": 19589, \"n_total_citations\": 29063, \"format_ok_rate\": 0.998}, \"conclusion\": \"negative\"}, \"plan_001_flat_nli_scoring\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_scored\": 21728, \"selected_samples\": 2691, \"selection_rate\": 0.124, \"selection_strategy\": \"top_k=1\", \"f1_threshold\": 0.1, \"output_path\": \"/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl\"}}, \"mvp2_ced_reranker_poc\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ced_reranker_rel_f1\": 0.4864, \"ced_reranker_evi_f1\": 0.8188, \"ced_reranker_edcr\": 0.6156, \"ced_reranker_precision\": 0.4913, \"ced_reranker_recall\": 0.4815, \"ced_reranker_pred_count\": 14782, \"ced_reranker_format_ok_rate\": 1, \"oracle_rel_f1\": 0.6237, \"oracle_evi_f1\": 0.7942, \"oracle_edcr\": 0.5262, \"oracle_pred_count\": 13418, \"random_rel_f1\": 0.4538, \"random_evi_f1\": 0.8029, \"random_edcr\": 0.6763, \"ced_f1_spearman_r\": 0.3235, \"ced_f1_spearman_p\": 2.46e-191, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"sft_baseline_edcr\": 0.7118, \"rsft_mean_rel_f1\": 0.4596, \"delta_vs_sft_rel_f1\": 0.0807, \"delta_vs_rsft_rel_f1\": 0.0268, \"delta_vs_sft_evi_f1\": 0.0209, \"oracle_ceiling_rel_f1\": 0.218, \"num_generations\": 8, \"temperature\": 0.7, \"generation_time_s\": 20872.6, \"n_docs\": 985}}, \"mvp2_eval_rsft_s43_r2\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4683, \"ign_f1\": 0.4683, \"evi_f1\": 0.8156, \"evi_f1_joint\": 0.3711, \"evi_f1_joint_P\": 0.3747, \"evi_f1_joint_R\": 0.3675, \"edcr\": 0.6388, \"precision\": 0.4817, \"recall\": 0.4556, \"evi_precision\": 0.8142, \"evi_recall\": 0.817, \"n_predictions\": 14970, \"n_truncated\": 171, \"format_ok_rate\": 1, \"inference_time_s\": 6316.7, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0626, \"delta_evi_f1\": 0.0177, \"delta_evi_f1_joint\": 0.0594, \"mvp2_pass\": true}, \"conclusion\": \"success\"}, \"mvp2_rsft_ced_scoring_topk3_r2\": {\"status\": \"DONE\", \"metrics\": {\"input_generations\": 21728, \"selected_samples\": 8037, \"unique_docs\": 2691, \"selection_rate\": 0.37, \"mean_f1\": 0.5761, \"mean_ced\": 0.6205, \"mean_combined\": 0.6787, \"f1_range_p25\": 0.444, \"f1_range_p75\": 0.717, \"ced_range_p25\": 0.487, \"ced_range_p75\": 0.774, \"truncated_samples\": 1924, \"truncated_pct\": 8.9, \"selection_strategy\": \"top_k=3\", \"f1_threshold\": 0.1, \"topk1_samples\": 2718, \"data_multiplier\": 2.96}, \"conclusion\": \"success\"}, \"mvp2_rsft_train_r1_s44\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4655, \"evi_f1\": 0.8087, \"evi_f1_joint\": 0.3713, \"evi_f1_joint_P\": 0.3775, \"evi_f1_joint_R\": 0.3653, \"edcr\": 0.635, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0598, \"delta_evi_f1\": 0.0108, \"delta_evi_f1_joint\": 0.0596, \"mvp2_pass\": true}, \"conclusion\": \"success\"}, \"mvp2_eval_rsft_r2b\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4493, \"ign_f1\": 0.4493, \"evi_f1\": 0.8128, \"evi_f1_joint\": 0.349, \"evi_f1_joint_P\": 0.3455, \"evi_f1_joint_R\": 0.3526, \"edcr\": 0.6609, \"precision\": 0.4566, \"recall\": 0.4424, \"evi_precision\": 0.8201, \"evi_recall\": 0.8056, \"pred_count\": 14829, \"format_ok\": \"983/985\", \"truncated\": 179, \"inference_time_s\": 5862, \"delta_evi_f1_joint\": 0.0373}, \"conclusion\": \"success\"}}, \"count\": 50, \"total\": 117, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3636}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "9b0a5d9b-ffe0-4464-be5b-1e0812ed388f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"rsft_ced_s45_train_r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"rsft_ced_s45_train_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"rsft_ced_s43_train_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"reeval_rsft_topk3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4454, \\\"rel_precision\\\": 0.4512, \\\"rel_recall\\\": 0.4398, \\\"ign_f1\\\": 0.4364, \\\"evi_f1\\\": 0.8088, \\\"edcr\\\": 0.6635, \\\"format_ok_rate\\\": 0.999, \\\"n_truncated\\\": 214, \\\"n_predictions\\\": 16020, \\\"inference_time_seconds\\\": 3546.4, \\\"ign_f1_corrected\\\": true}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"rsft_ced_s43_train\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"rsft_ced_s45_train\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"reeval_flat_nli_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4523, \\\"ign_f1\\\": 0.4523, \\\"evi_f1\\\": 0.8158, \\\"edcr\\\": 0.6505, \\\"num_preds\\\": 15357, \\\"format_ok\\\": \\\"984/985\\\", \\\"truncated\\\": \\\"211/985\\\", \\\"inference_time_s\\\": 3515.8}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_003_edcr_diagnostic\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"methods_evaluated\\\": 15, \\\"edcr_vs_rel_f1_spearman\\\": -0.9648, \\\"edcr_vs_rel_f1_pvalue\\\": 0.0001, \\\"edcr_vs_evi_f1_spearman\\\": 0.0022, \\\"edcr_vs_evi_f1_pvalue\\\": 0.9941, \\\"edcr_range\\\": \\\"0.63-0.99\\\", \\\"unique_diagnostic_value\\\": \\\"identifies pathological models (GRPO QLoRA) with high evi_f1 but catastrophically low rel_f1\\\"}}, \\\"eval_flat_nli_seed44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval_plan_012_dpo_1ep_fixed_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4034, \\\"evi_f1\\\": 0.8088, \\\"edcr\\\": 0.7139, \\\"format_ok_rate\\\": 0.999, \\\"truncated_rate\\\": 0.343, \\\"predictions\\\": 19107, \\\"ign_f1\\\": 0.4034, \\\"precision\\\": 0.3809, \\\"recall\\\": 0.4287, \\\"vs_sft_delta\\\": -0.0023, \\\"note\\\": \\\"DPO 1ep matches SFT baseline. 1ep→3ep trajectory shows gradual decoupling (rel_f1↓ evi_f1↑), consistent with GRPO pattern. Ign-F1=F1 exact match needs investigation.\\\"}}, \\\"plan_001_flat_nli_seed44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.6247, \\\"eval_loss\\\": 0.7564, \\\"eval_mean_token_accuracy\\\": 0.8299, \\\"task_eval_f1_ep1\\\": 0.4306, \\\"task_eval_f1_ep2\\\": 0.4884, \\\"task_eval_f1_ep3\\\": 0.4897, \\\"task_eval_evi_f1_ep3\\\": 0.78, \\\"task_eval_edcr_ep3\\\": 0.6596, \\\"task_eval_ign_f1_ep3\\\": 0.4897, \\\"train_runtime_sec\\\": 6197, \\\"num_epochs\\\": 3, \\\"total_steps\\\": 507}}, \\\"plan_009_dynamics_figure\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_001_flat_nli_seed45\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"task_eval_rel_f1\\\": 0.4876, \\\"task_eval_evi_f1\\\": 0.7927, \\\"task_eval_edcr\\\": 0.6517, \\\"train_loss\\\": 0.6245, \\\"runtime_hours\\\": 1.69, \\\"note\\\": \\\"task-eval on 50 docs only, full dev eval needed\\\"}}, \\\"plan_011_bf16_g8_step_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"step_30\\\": {\\\"rel_f1\\\": 0.434, \\\"evi_f1\\\": 0.8063, \\\"edcr\\\": 0.6807}, \\\"step_50\\\": {\\\"rel_f1\\\": 0.4276, \\\"evi_f1\\\": 0.8024, \\\"edcr\\\": 0.6855}, \\\"step_70\\\": {\\\"rel_f1\\\": 0.4341, \\\"evi_f1\\\": 0.8099, \\\"edcr\\\": 0.6685}, \\\"best_step\\\": \\\"step_70\\\", \\\"trend\\\": \\\"non-monotonic, all < ckpt-100 (0.4549)\\\"}}, \\\"plan_011_eval_g8_bf16_ckpt100\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp2_eval_rsft_s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval_plan_008_topk3_fixed\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval_plan_012_dpo_1ep_fixed\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval_plan_008_rsft_topk3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"note\\\": \\\"INVALID — missing --sft_adapter, killed by Director instruction\\\"}}, \\\"plan_012_dpo_ced\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.3429, \\\"evi_f1\\\": 0.8403, \\\"edcr\\\": 0.7294, \\\"format_ok_rate\\\": 0.995, \\\"checkpoint\\\": \\\"checkpoint-501\\\", \\\"rewards_accuracy\\\": 1, \\\"margins\\\": 9.01}}, \\\"plan_012_dpo_ced_1ep\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.0022, \\\"evi_f1\\\": 0.75, \\\"edcr\\\": 0.9982, \\\"format_ok\\\": \\\"981/985\\\", \\\"truncated\\\": \\\"358/985\\\", \\\"tp\\\": 34, \\\"n_preds\\\": 19265, \\\"inference_time_s\\\": 3643, \\\"train_loss_final\\\": 0.59, \\\"rewards_accuracy\\\": 0.82, \\\"rewards_margins\\\": 0.86, \\\"total_steps\\\": 167, \\\"training_time_min\\\": 33}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval_plan_001_flat_nli_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.0022, \\\"ign_f1\\\": 0.0022, \\\"evi_f1\\\": 0.8533, \\\"edcr\\\": 0.9982, \\\"num_preds\\\": 17285, \\\"format_ok\\\": \\\"981/985\\\", \\\"truncated\\\": \\\"251/985\\\", \\\"tp\\\": 32, \\\"note\\\": \\\"INVALID — missing --sft_adapter, same bug as DPO 1ep eval\\\"}}, \\\"eval_plan_012_dpo_ced_1ep\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.0022, \\\"ign_f1\\\": 0.0022, \\\"evi_f1\\\": 0.75, \\\"edcr\\\": 0.9982, \\\"num_preds\\\": 19265, \\\"format_ok\\\": \\\"981/985\\\", \\\"truncated\\\": \\\"358/985\\\", \\\"tp\\\": 34, \\\"inference_time_s\\\": 3643}}, \\\"plan_008_rsft_topk3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.5543, \\\"eval_loss\\\": 0.8297, \\\"eval_mean_token_accuracy\\\": 0.8228, \\\"eval_entropy\\\": 0.6001, \\\"train_runtime_sec\\\": 10916, \\\"total_steps\\\": 1509, \\\"epochs\\\": 3, \\\"trainable_params_pct\\\": 3.18, \\\"rsft_samples\\\": 8037, \\\"ced_score_mean\\\": 0.621, \\\"task_eval_f1_ep1\\\": 0.4848, \\\"task_eval_f1_ep2\\\": 0.4824, \\\"task_eval_f1_ep3\\\": 0.5012, \\\"task_eval_evi_f1_ep1\\\": 0.745, \\\"task_eval_evi_f1_ep2\\\": 0.6997, \\\"task_eval_evi_f1_ep3\\\": 0.6816, \\\"task_eval_edcr_ep1\\\": 0.6525, \\\"task_eval_edcr_ep2\\\": 0.6529, \\\"task_eval_edcr_ep3\\\": 0.5963, \\\"task_eval_note\\\": \\\"50-doc subset, not full dev\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_001_flat_nli_seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"train_loss_final\\\": 0.6257, \\\"train_loss_min\\\": 0.5895, \\\"eval_loss_epoch3\\\": 0.7567, \\\"eval_accuracy_epoch3\\\": 0.8298, \\\"total_steps\\\": 507, \\\"epochs\\\": 3, \\\"train_runtime_seconds\\\": 6880, \\\"task_eval_f1_ep1\\\": 0.4825, \\\"task_eval_f1_ep2\\\": 0.4542, \\\"task_eval_f1_ep3\\\": 0.4866, \\\"task_eval_evi_f1_ep3\\\": 0.7834, \\\"task_eval_edcr_ep3\\\": 0.6402, \\\"task_eval_note\\\": \\\"50-doc subset, not full dev\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_009_flatnli_reward_eval_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan_009_extract_reward_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_sft_baseline_noquant\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4106, \\\"rel_precision\\\": 0.4198, \\\"rel_recall\\\": 0.4019, \\\"evi_f1\\\": 0.8013, \\\"evi_precision\\\": 0.8005, \\\"evi_recall\\\": 0.8022, \\\"evi_f1_joint\\\": 0.3216, \\\"edcr\\\": 0.7039, \\\"format_ok_rate\\\": 0.998, \\\"field_compliance_rate\\\": 0.7066, \\\"n_predictions\\\": 16774, \\\"n_truncated\\\": 288, \\\"n_documents\\\": 985, \\\"inference_time_seconds\\\": 3677.9}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_009_flatnli_reward_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_plan_012_dpo_ced_ckpt400\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan_009_forgetting_figure\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_plan_014_sft_no_evidence\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4893, \\\"rel_ign_f1\\\": 0.4893, \\\"rel_precision\\\": 0.4884, \\\"rel_recall\\\": 0.4902, \\\"evi_f1\\\": 0, \\\"evi_precision\\\": 0, \\\"evi_recall\\\": 0, \\\"edcr\\\": 0, \\\"format_ok_rate\\\": 0.9919, \\\"n_truncated\\\": 298, \\\"n_predictions\\\": 21064, \\\"n_documents\\\": 985, \\\"n_parseable\\\": 977, \\\"inference_time_seconds\\\": 4103.8}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_014_sft_no_evidence\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.7077, \\\"eval_loss\\\": 0.8781, \\\"eval_token_accuracy\\\": 0.8086, \\\"epochs\\\": 3, \\\"total_steps\\\": 570, \\\"train_runtime_min\\\": 64, \\\"samples\\\": 3027, \\\"trainable_params\\\": \\\"132M/4.15B (3.18%)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_002_test_eval_s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan_001_rsft_flat_nli\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.6238, \\\"train_loss_min\\\": 0.5803, \\\"mean_token_accuracy\\\": 0.8528, \\\"train_runtime_sec\\\": 2946, \\\"epochs\\\": 3, \\\"total_steps\\\": 507, \\\"samples\\\": 2691}}, \\\"eval_plan_001_flat_nli\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4539, \\\"ign_f1\\\": 0.4539, \\\"evi_f1\\\": 0.8043, \\\"edcr\\\": 0.6431, \\\"precision\\\": 0.4671, \\\"recall\\\": 0.4414, \\\"evi_precision\\\": 0.8143, \\\"evi_recall\\\": 0.7945, \\\"format_ok_rate\\\": 1, \\\"n_truncated\\\": 199, \\\"n_documents\\\": 985, \\\"n_predictions\\\": 15294, \\\"inference_time_seconds\\\": 3631}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_grpo_g8_bf16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"ckpt80_rel_f1\\\": 0.4456, \\\"ckpt80_ign_f1\\\": 0.4456, \\\"ckpt80_evi_f1\\\": 0.8034, \\\"ckpt80_edcr\\\": 0.6409, \\\"ckpt80_format_ok\\\": \\\"984/985\\\", \\\"ckpt80_truncated\\\": 50, \\\"ckpt90_rel_f1\\\": 0.4523, \\\"ckpt90_ign_f1\\\": 0.4523, \\\"ckpt90_evi_f1\\\": 0.8052, \\\"ckpt90_edcr\\\": 0.6414, \\\"ckpt90_format_ok\\\": \\\"983/985\\\", \\\"ckpt90_truncated\\\": 61, \\\"ckpt100_rel_f1\\\": 0.4549, \\\"ckpt100_ign_f1\\\": 0.4549, \\\"ckpt100_evi_f1\\\": 0.8086, \\\"ckpt100_edcr\\\": 0.6318, \\\"ckpt100_format_ok\\\": \\\"985/985\\\", \\\"ckpt100_truncated\\\": 61, \\\"best_checkpoint\\\": \\\"ckpt-100\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_015_grpo_g4_bf16_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"plan_015_grpo_g4_bf16_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"plan_015_grpo_g4_bf16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"plan_011_grpo_g8_bf16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"final_step\\\": 100, \\\"train_runtime_s\\\": 554, \\\"reward_final\\\": 1.795, \\\"f1_reward_final\\\": 1.002, \\\"ced_reward_final\\\": 0.494, \\\"format_reward_final\\\": 0.3, \\\"frac_zero_std_final\\\": 0, \\\"kl_final\\\": 0.022, \\\"best_reward_step\\\": 85, \\\"best_reward\\\": 2.858, \\\"best_f1_reward\\\": 1.85, \\\"mode_collapse\\\": false, \\\"lora_config\\\": \\\"r=64, alpha=128, dropout=0.05, bf16\\\", \\\"checkpoints\\\": \\\"10 checkpoints (step 10-100)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_011_grpo_g8_bf16_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4549, \\\"ign_f1\\\": 0.4549, \\\"evi_f1\\\": 0.8086, \\\"edcr\\\": 0.6318, \\\"format_ok_rate\\\": 1, \\\"n_truncated\\\": 61, \\\"n_total\\\": 985, \\\"n_predictions\\\": 10701, \\\"checkpoint\\\": \\\"checkpoint-100\\\", \\\"model\\\": \\\"Qwen3-4B + SFT merged + GRPO bf16 LoRA ckpt-100\\\", \\\"inference_time_s\\\": 3170.3}}, \\\"plan_004_dreeam_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"dev_rel_f1\\\": 63.57, \\\"dev_rel_ign_f1\\\": 61.72, \\\"dev_evi_f1\\\": 54.01, \\\"dev_rel_p\\\": 66.95, \\\"dev_rel_r\\\": 60.51, \\\"dev_evi_p\\\": 60.53, \\\"dev_evi_r\\\": 48.76}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp2_eval_rsft_r2b_maxtok1536_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4504, \\\"ign_f1\\\": 0.4504, \\\"evi_f1\\\": 0.8102, \\\"edcr\\\": 0.674, \\\"precision\\\": 0.4488, \\\"recall\\\": 0.4519, \\\"evi_precision\\\": 0.8162, \\\"evi_recall\\\": 0.8044, \\\"n_truncated\\\": 146, \\\"n_total\\\": 985, \\\"n_predictions\\\": 17188, \\\"n_distractor_citations\\\": 19589, \\\"n_total_citations\\\": 29063, \\\"format_ok_rate\\\": 0.998}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan_001_flat_nli_scoring\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_scored\\\": 21728, \\\"selected_samples\\\": 2691, \\\"selection_rate\\\": 0.124, \\\"selection_strategy\\\": \\\"top_k=1\\\", \\\"f1_threshold\\\": 0.1, \\\"output_path\\\": \\\"/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl\\\"}}, \\\"mvp2_ced_reranker_poc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ced_reranker_rel_f1\\\": 0.4864, \\\"ced_reranker_evi_f1\\\": 0.8188, \\\"ced_reranker_edcr\\\": 0.6156, \\\"ced_reranker_precision\\\": 0.4913, \\\"ced_reranker_recall\\\": 0.4815, \\\"ced_reranker_pred_count\\\": 14782, \\\"ced_reranker_format_ok_rate\\\": 1, \\\"oracle_rel_f1\\\": 0.6237, \\\"oracle_evi_f1\\\": 0.7942, \\\"oracle_edcr\\\": 0.5262, \\\"oracle_pred_count\\\": 13418, \\\"random_rel_f1\\\": 0.4538, \\\"random_evi_f1\\\": 0.8029, \\\"random_edcr\\\": 0.6763, \\\"ced_f1_spearman_r\\\": 0.3235, \\\"ced_f1_spearman_p\\\": 2.46e-191, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"sft_baseline_edcr\\\": 0.7118, \\\"rsft_mean_rel_f1\\\": 0.4596, \\\"delta_vs_sft_rel_f1\\\": 0.0807, \\\"delta_vs_rsft_rel_f1\\\": 0.0268, \\\"delta_vs_sft_evi_f1\\\": 0.0209, \\\"oracle_ceiling_rel_f1\\\": 0.218, \\\"num_generations\\\": 8, \\\"temperature\\\": 0.7, \\\"generation_time_s\\\": 20872.6, \\\"n_docs\\\": 985}}, \\\"mvp2_eval_rsft_s43_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4683, \\\"ign_f1\\\": 0.4683, \\\"evi_f1\\\": 0.8156, \\\"evi_f1_joint\\\": 0.3711, \\\"evi_f1_joint_P\\\": 0.3747, \\\"evi_f1_joint_R\\\": 0.3675, \\\"edcr\\\": 0.6388, \\\"precision\\\": 0.4817, \\\"recall\\\": 0.4556, \\\"evi_precision\\\": 0.8142, \\\"evi_recall\\\": 0.817, \\\"n_predictions\\\": 14970, \\\"n_truncated\\\": 171, \\\"format_ok_rate\\\": 1, \\\"inference_time_s\\\": 6316.7, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0626, \\\"delta_evi_f1\\\": 0.0177, \\\"delta_evi_f1_joint\\\": 0.0594, \\\"mvp2_pass\\\": true}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp2_rsft_ced_scoring_topk3_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"input_generations\\\": 21728, \\\"selected_samples\\\": 8037, \\\"unique_docs\\\": 2691, \\\"selection_rate\\\": 0.37, \\\"mean_f1\\\": 0.5761, \\\"mean_ced\\\": 0.6205, \\\"mean_combined\\\": 0.6787, \\\"f1_range_p25\\\": 0.444, \\\"f1_range_p75\\\": 0.717, \\\"ced_range_p25\\\": 0.487, \\\"ced_range_p75\\\": 0.774, \\\"truncated_samples\\\": 1924, \\\"truncated_pct\\\": 8.9, \\\"selection_strategy\\\": \\\"top_k=3\\\", \\\"f1_threshold\\\": 0.1, \\\"topk1_samples\\\": 2718, \\\"data_multiplier\\\": 2.96}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp2_rsft_train_r1_s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4655, \\\"evi_f1\\\": 0.8087, \\\"evi_f1_joint\\\": 0.3713, \\\"evi_f1_joint_P\\\": 0.3775, \\\"evi_f1_joint_R\\\": 0.3653, \\\"edcr\\\": 0.635, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0598, \\\"delta_evi_f1\\\": 0.0108, \\\"delta_evi_f1_joint\\\": 0.0596, \\\"mvp2_pass\\\": true}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp2_eval_rsft_r2b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4493, \\\"ign_f1\\\": 0.4493, \\\"evi_f1\\\": 0.8128, \\\"evi_f1_joint\\\": 0.349, \\\"evi_f1_joint_P\\\": 0.3455, \\\"evi_f1_joint_R\\\": 0.3526, \\\"edcr\\\": 0.6609, \\\"precision\\\": 0.4566, \\\"recall\\\": 0.4424, \\\"evi_precision\\\": 0.8201, \\\"evi_recall\\\": 0.8056, \\\"pred_count\\\": 14829, \\\"format_ok\\\": \\\"983/985\\\", \\\"truncated\\\": 179, \\\"inference_time_s\\\": 5862, \\\"delta_evi_f1_joint\\\": 0.0373}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 50, \\\"total\\\": 117, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3636}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"rsft_ced_s45_train_r3\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"rsft_ced_s45_train_r2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"rsft_ced_s43_train_r2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"reeval_rsft_topk3\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4454, \"rel_precision\": 0.4512, \"rel_recall\": 0.4398, \"ign_f1\": 0.4364, \"evi_f1\": 0.8088, \"edcr\": 0.6635, \"format_ok_rate\": 0.999, \"n_truncated\": 214, \"n_predictions\": 16020, \"inference_time_seconds\": 3546.4, \"ign_f1_corrected\": true}, \"conclusion\": \"negative\"}, \"rsft_ced_s43_train\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"rsft_ced_s45_train\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"reeval_flat_nli_s43\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4523, \"ign_f1\": 0.4523, \"evi_f1\": 0.8158, \"edcr\": 0.6505, \"num_preds\": 15357, \"format_ok\": \"984/985\", \"truncated\": \"211/985\", \"inference_time_s\": 3515.8}, \"conclusion\": \"success\"}, \"plan_003_edcr_diagnostic\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"methods_evaluated\": 15, \"edcr_vs_rel_f1_spearman\": -0.9648, \"edcr_vs_rel_f1_pvalue\": 0.0001, \"edcr_vs_evi_f1_spearman\": 0.0022, \"edcr_vs_evi_f1_pvalue\": 0.9941, \"edcr_range\": \"0.63-0.99\", \"unique_diagnostic_value\": \"identifies pathological models (GRPO QLoRA) with high evi_f1 but catastrophically low rel_f1\"}}, \"eval_flat_nli_seed44\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_plan_012_dpo_1ep_fixed_r2\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.4034, \"evi_f1\": 0.8088, \"edcr\": 0.7139, \"format_ok_rate\": 0.999, \"truncated_rate\": 0.343, \"predictions\": 19107, \"ign_f1\": 0.4034, \"precision\": 0.3809, \"recall\": 0.4287, \"vs_sft_delta\": -0.0023, \"note\": \"DPO 1ep matches SFT baseline. 1ep→3ep trajectory shows gradual decoupling (rel_f1↓ evi_f1↑), consistent with GRPO pattern. Ign-F1=F1 exact match needs investigation.\"}}, \"plan_001_flat_nli_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.6247, \"eval_loss\": 0.7564, \"eval_mean_token_accuracy\": 0.8299, \"task_eval_f1_ep1\": 0.4306, \"task_eval_f1_ep2\": 0.4884, \"task_eval_f1_ep3\": 0.4897, \"task_eval_evi_f1_ep3\": 0.78, \"task_eval_edcr_ep3\": 0.6596, \"task_eval_ign_f1_ep3\": 0.4897, \"train_runtime_sec\": 6197, \"num_epochs\": 3, \"total_steps\": 507}}, \"plan_009_dynamics_figure\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan_001_flat_nli_seed45\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"task_eval_rel_f1\": 0.4876, \"task_eval_evi_f1\": 0.7927, \"task_eval_edcr\": 0.6517, \"train_loss\": 0.6245, \"runtime_hours\": 1.69, \"note\": \"task-eval on 50 docs only, full dev eval needed\"}}, \"plan_011_bf16_g8_step_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"step_30\": {\"rel_f1\": 0.434, \"evi_f1\": 0.8063, \"edcr\": 0.6807}, \"step_50\": {\"rel_f1\": 0.4276, \"evi_f1\": 0.8024, \"edcr\": 0.6855}, \"step_70\": {\"rel_f1\": 0.4341, \"evi_f1\": 0.8099, \"edcr\": 0.6685}, \"best_step\": \"step_70\", \"trend\": \"non-monotonic, all < ckpt-100 (0.4549)\"}}, \"plan_011_eval_g8_bf16_ckpt100\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp2_eval_rsft_s44\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_plan_008_topk3_fixed\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_plan_012_dpo_1ep_fixed\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_plan_008_rsft_topk3\": {\"status\": \"DONE\", \"conclusion\": \"killed\", \"metrics\": {\"note\": \"INVALID — missing --sft_adapter, killed by Director instruction\"}}, \"plan_012_dpo_ced\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.3429, \"evi_f1\": 0.8403, \"edcr\": 0.7294, \"format_ok_rate\": 0.995, \"checkpoint\": \"checkpoint-501\", \"rewards_accuracy\": 1, \"margins\": 9.01}}, \"plan_012_dpo_ced_1ep\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.0022, \"evi_f1\": 0.75, \"edcr\": 0.9982, \"format_ok\": \"981/985\", \"truncated\": \"358/985\", \"tp\": 34, \"n_preds\": 19265, \"inference_time_s\": 3643, \"train_loss_final\": 0.59, \"rewards_accuracy\": 0.82, \"rewards_margins\": 0.86, \"total_steps\": 167, \"training_time_min\": 33}, \"conclusion\": \"negative\"}, \"eval_plan_001_flat_nli_s43\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"rel_f1\": 0.0022, \"ign_f1\": 0.0022, \"evi_f1\": 0.8533, \"edcr\": 0.9982, \"num_preds\": 17285, \"format_ok\": \"981/985\", \"truncated\": \"251/985\", \"tp\": 32, \"note\": \"INVALID — missing --sft_adapter, same bug as DPO 1ep eval\"}}, \"eval_plan_012_dpo_ced_1ep\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.0022, \"ign_f1\": 0.0022, \"evi_f1\": 0.75, \"edcr\": 0.9982, \"num_preds\": 19265, \"format_ok\": \"981/985\", \"truncated\": \"358/985\", \"tp\": 34, \"inference_time_s\": 3643}}, \"plan_008_rsft_topk3\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 0.5543, \"eval_loss\": 0.8297, \"eval_mean_token_accuracy\": 0.8228, \"eval_entropy\": 0.6001, \"train_runtime_sec\": 10916, \"total_steps\": 1509, \"epochs\": 3, \"trainable_params_pct\": 3.18, \"rsft_samples\": 8037, \"ced_score_mean\": 0.621, \"task_eval_f1_ep1\": 0.4848, \"task_eval_f1_ep2\": 0.4824, \"task_eval_f1_ep3\": 0.5012, \"task_eval_evi_f1_ep1\": 0.745, \"task_eval_evi_f1_ep2\": 0.6997, \"task_eval_evi_f1_ep3\": 0.6816, \"task_eval_edcr_ep1\": 0.6525, \"task_eval_edcr_ep2\": 0.6529, \"task_eval_edcr_ep3\": 0.5963, \"task_eval_note\": \"50-doc subset, not full dev\"}, \"conclusion\": \"success\"}, \"plan_001_flat_nli_seed43\": {\"status\": \"DONE\", \"metrics\": {\"train_loss_final\": 0.6257, \"train_loss_min\": 0.5895, \"eval_loss_epoch3\": 0.7567, \"eval_accuracy_epoch3\": 0.8298, \"total_steps\": 507, \"epochs\": 3, \"train_runtime_seconds\": 6880, \"task_eval_f1_ep1\": 0.4825, \"task_eval_f1_ep2\": 0.4542, \"task_eval_f1_ep3\": 0.4866, \"task_eval_evi_f1_ep3\": 0.7834, \"task_eval_edcr_ep3\": 0.6402, \"task_eval_note\": \"50-doc subset, not full dev\"}, \"conclusion\": \"success\"}, \"plan_009_flatnli_reward_eval_r2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan_009_extract_reward_eval\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_sft_baseline_noquant\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4106, \"rel_precision\": 0.4198, \"rel_recall\": 0.4019, \"evi_f1\": 0.8013, \"evi_precision\": 0.8005, \"evi_recall\": 0.8022, \"evi_f1_joint\": 0.3216, \"edcr\": 0.7039, \"format_ok_rate\": 0.998, \"field_compliance_rate\": 0.7066, \"n_predictions\": 16774, \"n_truncated\": 288, \"n_documents\": 985, \"inference_time_seconds\": 3677.9}, \"conclusion\": \"success\"}, \"plan_009_flatnli_reward_eval\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_plan_012_dpo_ced_ckpt400\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan_009_forgetting_figure\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"eval_plan_014_sft_no_evidence\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4893, \"rel_ign_f1\": 0.4893, \"rel_precision\": 0.4884, \"rel_recall\": 0.4902, \"evi_f1\": 0, \"evi_precision\": 0, \"evi_recall\": 0, \"edcr\": 0, \"format_ok_rate\": 0.9919, \"n_truncated\": 298, \"n_predictions\": 21064, \"n_documents\": 985, \"n_parseable\": 977, \"inference_time_seconds\": 4103.8}, \"conclusion\": \"success\"}, \"plan_014_sft_no_evidence\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 0.7077, \"eval_loss\": 0.8781, \"eval_token_accuracy\": 0.8086, \"epochs\": 3, \"total_steps\": 570, \"train_runtime_min\": 64, \"samples\": 3027, \"trainable_params\": \"132M/4.15B (3.18%)\"}, \"conclusion\": \"success\"}, \"plan_002_test_eval_s44\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan_001_rsft_flat_nli\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.6238, \"train_loss_min\": 0.5803, \"mean_token_accuracy\": 0.8528, \"train_runtime_sec\": 2946, \"epochs\": 3, \"total_steps\": 507, \"samples\": 2691}}, \"eval_plan_001_flat_nli\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4539, \"ign_f1\": 0.4539, \"evi_f1\": 0.8043, \"edcr\": 0.6431, \"precision\": 0.4671, \"recall\": 0.4414, \"evi_precision\": 0.8143, \"evi_recall\": 0.7945, \"format_ok_rate\": 1, \"n_truncated\": 199, \"n_documents\": 985, \"n_predictions\": 15294, \"inference_time_seconds\": 3631}, \"conclusion\": \"success\"}, \"eval_grpo_g8_bf16\": {\"status\": \"DONE\", \"metrics\": {\"ckpt80_rel_f1\": 0.4456, \"ckpt80_ign_f1\": 0.4456, \"ckpt80_evi_f1\": 0.8034, \"ckpt80_edcr\": 0.6409, \"ckpt80_format_ok\": \"984/985\", \"ckpt80_truncated\": 50, \"ckpt90_rel_f1\": 0.4523, \"ckpt90_ign_f1\": 0.4523, \"ckpt90_evi_f1\": 0.8052, \"ckpt90_edcr\": 0.6414, \"ckpt90_format_ok\": \"983/985\", \"ckpt90_truncated\": 61, \"ckpt100_rel_f1\": 0.4549, \"ckpt100_ign_f1\": 0.4549, \"ckpt100_evi_f1\": 0.8086, \"ckpt100_edcr\": 0.6318, \"ckpt100_format_ok\": \"985/985\", \"ckpt100_truncated\": 61, \"best_checkpoint\": \"ckpt-100\"}, \"conclusion\": \"success\"}, \"plan_015_grpo_g4_bf16_v3\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"plan_015_grpo_g4_bf16_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"plan_015_grpo_g4_bf16\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"plan_011_grpo_g8_bf16\": {\"status\": \"DONE\", \"metrics\": {\"final_step\": 100, \"train_runtime_s\": 554, \"reward_final\": 1.795, \"f1_reward_final\": 1.002, \"ced_reward_final\": 0.494, \"format_reward_final\": 0.3, \"frac_zero_std_final\": 0, \"kl_final\": 0.022, \"best_reward_step\": 85, \"best_reward\": 2.858, \"best_f1_reward\": 1.85, \"mode_collapse\": false, \"lora_config\": \"r=64, alpha=128, dropout=0.05, bf16\", \"checkpoints\": \"10 checkpoints (step 10-100)\"}, \"conclusion\": \"success\"}, \"plan_011_grpo_g8_bf16_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4549, \"ign_f1\": 0.4549, \"evi_f1\": 0.8086, \"edcr\": 0.6318, \"format_ok_rate\": 1, \"n_truncated\": 61, \"n_total\": 985, \"n_predictions\": 10701, \"checkpoint\": \"checkpoint-100\", \"model\": \"Qwen3-4B + SFT merged + GRPO bf16 LoRA ckpt-100\", \"inference_time_s\": 3170.3}}, \"plan_004_dreeam_baseline\": {\"status\": \"DONE\", \"metrics\": {\"dev_rel_f1\": 63.57, \"dev_rel_ign_f1\": 61.72, \"dev_evi_f1\": 54.01, \"dev_rel_p\": 66.95, \"dev_rel_r\": 60.51, \"dev_evi_p\": 60.53, \"dev_evi_r\": 48.76}, \"conclusion\": \"success\"}, \"mvp2_eval_rsft_r2b_maxtok1536_r2\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4504, \"ign_f1\": 0.4504, \"evi_f1\": 0.8102, \"edcr\": 0.674, \"precision\": 0.4488, \"recall\": 0.4519, \"evi_precision\": 0.8162, \"evi_recall\": 0.8044, \"n_truncated\": 146, \"n_total\": 985, \"n_predictions\": 17188, \"n_distractor_citations\": 19589, \"n_total_citations\": 29063, \"format_ok_rate\": 0.998}, \"conclusion\": \"negative\"}, \"plan_001_flat_nli_scoring\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_scored\": 21728, \"selected_samples\": 2691, \"selection_rate\": 0.124, \"selection_strategy\": \"top_k=1\", \"f1_threshold\": 0.1, \"output_path\": \"/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl\"}}, \"mvp2_ced_reranker_poc\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ced_reranker_rel_f1\": 0.4864, \"ced_reranker_evi_f1\": 0.8188, \"ced_reranker_edcr\": 0.6156, \"ced_reranker_precision\": 0.4913, \"ced_reranker_recall\": 0.4815, \"ced_reranker_pred_count\": 14782, \"ced_reranker_format_ok_rate\": 1, \"oracle_rel_f1\": 0.6237, \"oracle_evi_f1\": 0.7942, \"oracle_edcr\": 0.5262, \"oracle_pred_count\": 13418, \"random_rel_f1\": 0.4538, \"random_evi_f1\": 0.8029, \"random_edcr\": 0.6763, \"ced_f1_spearman_r\": 0.3235, \"ced_f1_spearman_p\": 2.46e-191, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"sft_baseline_edcr\": 0.7118, \"rsft_mean_rel_f1\": 0.4596, \"delta_vs_sft_rel_f1\": 0.0807, \"delta_vs_rsft_rel_f1\": 0.0268, \"delta_vs_sft_evi_f1\": 0.0209, \"oracle_ceiling_rel_f1\": 0.218, \"num_generations\": 8, \"temperature\": 0.7, \"generation_time_s\": 20872.6, \"n_docs\": 985}}, \"mvp2_eval_rsft_s43_r2\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4683, \"ign_f1\": 0.4683, \"evi_f1\": 0.8156, \"evi_f1_joint\": 0.3711, \"evi_f1_joint_P\": 0.3747, \"evi_f1_joint_R\": 0.3675, \"edcr\": 0.6388, \"precision\": 0.4817, \"recall\": 0.4556, \"evi_precision\": 0.8142, \"evi_recall\": 0.817, \"n_predictions\": 14970, \"n_truncated\": 171, \"format_ok_rate\": 1, \"inference_time_s\": 6316.7, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0626, \"delta_evi_f1\": 0.0177, \"delta_evi_f1_joint\": 0.0594, \"mvp2_pass\": true}, \"conclusion\": \"success\"}, \"mvp2_rsft_ced_scoring_topk3_r2\": {\"status\": \"DONE\", \"metrics\": {\"input_generations\": 21728, \"selected_samples\": 8037, \"unique_docs\": 2691, \"selection_rate\": 0.37, \"mean_f1\": 0.5761, \"mean_ced\": 0.6205, \"mean_combined\": 0.6787, \"f1_range_p25\": 0.444, \"f1_range_p75\": 0.717, \"ced_range_p25\": 0.487, \"ced_range_p75\": 0.774, \"truncated_samples\": 1924, \"truncated_pct\": 8.9, \"selection_strategy\": \"top_k=3\", \"f1_threshold\": 0.1, \"topk1_samples\": 2718, \"data_multiplier\": 2.96}, \"conclusion\": \"success\"}, \"mvp2_rsft_train_r1_s44\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4655, \"evi_f1\": 0.8087, \"evi_f1_joint\": 0.3713, \"evi_f1_joint_P\": 0.3775, \"evi_f1_joint_R\": 0.3653, \"edcr\": 0.635, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0598, \"delta_evi_f1\": 0.0108, \"delta_evi_f1_joint\": 0.0596, \"mvp2_pass\": true}, \"conclusion\": \"success\"}, \"mvp2_eval_rsft_r2b\": {\"status\": \"DONE\", \"metrics\": {\"rel_f1\": 0.4493, \"ign_f1\": 0.4493, \"evi_f1\": 0.8128, \"evi_f1_joint\": 0.349, \"evi_f1_joint_P\": 0.3455, \"evi_f1_joint_R\": 0.3526, \"edcr\": 0.6609, \"precision\": 0.4566, \"recall\": 0.4424, \"evi_precision\": 0.8201, \"evi_recall\": 0.8056, \"pred_count\": 14829, \"format_ok\": \"983/985\", \"truncated\": 179, \"inference_time_s\": 5862, \"delta_evi_f1_joint\": 0.0373}, \"conclusion\": \"success\"}}, \"count\": 50, \"total\": 117, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3636}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No experiment_plan.yaml exists. Let me now look for seed 42 eval data in the registry. I need to look at more entries.
+
+From the paper_framing table, the RSFT CED s42 entry shows:
+- Ign-F1=43.63, F1=44.49, Evi-F1=81.87, EDCR=0.6565
+
+Let me search for seed 42 eval entries in the remaining registry entries.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "9034af1b-1d68-4e74-9757-951d8535170b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LC8att3qdgawTuSd9ZxAmg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10171,
+      "cache_read_input_tokens": 37496,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10171
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+Let me find the seed 42 eval entry.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "73e0cf19-97d9-452d-b5f3-39acfb92c90d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LC8att3qdgawTuSd9ZxAmg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10171,
+      "cache_read_input_tokens": 37496,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10171
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01MYhJWPGiajfqUEJiH2U6Bu`</summary>
+
+```json
+{
+  "filters": {
+    "status": "DONE"
+  },
+  "project": "faith-evidence-ie",
+  "fields": [
+    "name",
+    "metrics"
+  ],
+  "limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "7fd1333f-d1bf-4369-ab5f-8a913d3d2f86",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LC8att3qdgawTuSd9ZxAmg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10171,
+      "cache_read_input_tokens": 37496,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10171
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T00:33:01.032Z_
+
+<details><summary>↩ Tool result · `toolu_01MYhJWPGiajfqUEJiH2U6Bu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"rsft_ced_s45_train_r3\": {}, \"rsft_ced_s45_train_r2\": {}, \"rsft_ced_s43_train_r2\": {}, \"reeval_rsft_topk3\": {\"metrics\": {\"rel_f1\": 0.4454, \"rel_precision\": 0.4512, \"rel_recall\": 0.4398, \"ign_f1\": 0.4364, \"evi_f1\": 0.8088, \"edcr\": 0.6635, \"format_ok_rate\": 0.999, \"n_truncated\": 214, \"n_predictions\": 16020, \"inference_time_seconds\": 3546.4, \"ign_f1_corrected\": true}}, \"rsft_ced_s43_train\": {}, \"rsft_ced_s45_train\": {}, \"reeval_flat_nli_s43\": {\"metrics\": {\"rel_f1\": 0.4523, \"ign_f1\": 0.4523, \"evi_f1\": 0.8158, \"edcr\": 0.6505, \"num_preds\": 15357, \"format_ok\": \"984/985\", \"truncated\": \"211/985\", \"inference_time_s\": 3515.8}}, \"plan_003_edcr_diagnostic\": {\"metrics\": {\"methods_evaluated\": 15, \"edcr_vs_rel_f1_spearman\": -0.9648, \"edcr_vs_rel_f1_pvalue\": 0.0001, \"edcr_vs_evi_f1_spearman\": 0.0022, \"edcr_vs_evi_f1_pvalue\": 0.9941, \"edcr_range\": \"0.63-0.99\", \"unique_diagnostic_value\": \"identifies pathological models (GRPO QLoRA) with high evi_f1 but catastrophically low rel_f1\"}}, \"eval_flat_nli_seed44\": {}, \"eval_plan_012_dpo_1ep_fixed_r2\": {\"metrics\": {\"rel_f1\": 0.4034, \"evi_f1\": 0.8088, \"edcr\": 0.7139, \"format_ok_rate\": 0.999, \"truncated_rate\": 0.343, \"predictions\": 19107, \"ign_f1\": 0.4034, \"precision\": 0.3809, \"recall\": 0.4287, \"vs_sft_delta\": -0.0023, \"note\": \"DPO 1ep matches SFT baseline. 1ep→3ep trajectory shows gradual decoupling (rel_f1↓ evi_f1↑), consistent with GRPO pattern. Ign-F1=F1 exact match needs investigation.\"}}, \"plan_001_flat_nli_seed44\": {\"metrics\": {\"train_loss\": 0.6247, \"eval_loss\": 0.7564, \"eval_mean_token_accuracy\": 0.8299, \"task_eval_f1_ep1\": 0.4306, \"task_eval_f1_ep2\": 0.4884, \"task_eval_f1_ep3\": 0.4897, \"task_eval_evi_f1_ep3\": 0.78, \"task_eval_edcr_ep3\": 0.6596, \"task_eval_ign_f1_ep3\": 0.4897, \"train_runtime_sec\": 6197, \"num_epochs\": 3, \"total_steps\": 507}}, \"plan_009_dynamics_figure\": {}, \"plan_001_flat_nli_seed45\": {\"metrics\": {\"task_eval_rel_f1\": 0.4876, \"task_eval_evi_f1\": 0.7927, \"task_eval_edcr\": 0.6517, \"train_loss\": 0.6245, \"runtime_hours\": 1.69, \"note\": \"task-eval on 50 docs only, full dev eval needed\"}}, \"plan_011_bf16_g8_step_eval\": {\"metrics\": {\"step_30\": {\"rel_f1\": 0.434, \"evi_f1\": 0.8063, \"edcr\": 0.6807}, \"step_50\": {\"rel_f1\": 0.4276, \"evi_f1\": 0.8024, \"edcr\": 0.6855}, \"step_70\": {\"rel_f1\": 0.4341, \"evi_f1\": 0.8099, \"edcr\": 0.6685}, \"best_step\": \"step_70\", \"trend\": \"non-monotonic, all < ckpt-100 (0.4549)\"}}, \"plan_011_eval_g8_bf16_ckpt100\": {}, \"mvp2_eval_rsft_s44\": {}, \"eval_plan_008_topk3_fixed\": {}, \"eval_plan_012_dpo_1ep_fixed\": {}, \"eval_plan_008_rsft_topk3\": {\"metrics\": {\"note\": \"INVALID — missing --sft_adapter, killed by Director instruction\"}}, \"plan_012_dpo_ced\": {\"metrics\": {\"rel_f1\": 0.3429, \"evi_f1\": 0.8403, \"edcr\": 0.7294, \"format_ok_rate\": 0.995, \"checkpoint\": \"checkpoint-501\", \"rewards_accuracy\": 1, \"margins\": 9.01}}, \"plan_012_dpo_ced_1ep\": {\"metrics\": {\"rel_f1\": 0.0022, \"evi_f1\": 0.75, \"edcr\": 0.9982, \"format_ok\": \"981/985\", \"truncated\": \"358/985\", \"tp\": 34, \"n_preds\": 19265, \"inference_time_s\": 3643, \"train_loss_final\": 0.59, \"rewards_accuracy\": 0.82, \"rewards_margins\": 0.86, \"total_steps\": 167, \"training_time_min\": 33}}, \"eval_plan_001_flat_nli_s43\": {\"metrics\": {\"rel_f1\": 0.0022, \"ign_f1\": 0.0022, \"evi_f1\": 0.8533, \"edcr\": 0.9982, \"num_preds\": 17285, \"format_ok\": \"981/985\", \"truncated\": \"251/985\", \"tp\": 32, \"note\": \"INVALID — missing --sft_adapter, same bug as DPO 1ep eval\"}}, \"eval_plan_012_dpo_ced_1ep\": {\"metrics\": {\"rel_f1\": 0.0022, \"ign_f1\": 0.0022, \"evi_f1\": 0.75, \"edcr\": 0.9982, \"num_preds\": 19265, \"format_ok\": \"981/985\", \"truncated\": \"358/985\", \"tp\": 34, \"inference_time_s\": 3643}}, \"plan_008_rsft_topk3\": {\"metrics\": {\"train_loss\": 0.5543, \"eval_loss\": 0.8297, \"eval_mean_token_accuracy\": 0.8228, \"eval_entropy\": 0.6001, \"train_runtime_sec\": 10916, \"total_steps\": 1509, \"epochs\": 3, \"trainable_params_pct\": 3.18, \"rsft_samples\": 8037, \"ced_score_mean\": 0.621, \"task_eval_f1_ep1\": 0.4848, \"task_eval_f1_ep2\": 0.4824, \"task_eval_f1_ep3\": 0.5012, \"task_eval_evi_f1_ep1\": 0.745, \"task_eval_evi_f1_ep2\": 0.6997, \"task_eval_evi_f1_ep3\": 0.6816, \"task_eval_edcr_ep1\": 0.6525, \"task_eval_edcr_ep2\": 0.6529, \"task_eval_edcr_ep3\": 0.5963, \"task_eval_note\": \"50-doc subset, not full dev\"}}, \"plan_001_flat_nli_seed43\": {\"metrics\": {\"train_loss_final\": 0.6257, \"train_loss_min\": 0.5895, \"eval_loss_epoch3\": 0.7567, \"eval_accuracy_epoch3\": 0.8298, \"total_steps\": 507, \"epochs\": 3, \"train_runtime_seconds\": 6880, \"task_eval_f1_ep1\": 0.4825, \"task_eval_f1_ep2\": 0.4542, \"task_eval_f1_ep3\": 0.4866, \"task_eval_evi_f1_ep3\": 0.7834, \"task_eval_edcr_ep3\": 0.6402, \"task_eval_note\": \"50-doc subset, not full dev\"}}, \"plan_009_flatnli_reward_eval_r2\": {}, \"plan_009_extract_reward_eval\": {}, \"eval_sft_baseline_noquant\": {\"metrics\": {\"rel_f1\": 0.4106, \"rel_precision\": 0.4198, \"rel_recall\": 0.4019, \"evi_f1\": 0.8013, \"evi_precision\": 0.8005, \"evi_recall\": 0.8022, \"evi_f1_joint\": 0.3216, \"edcr\": 0.7039, \"format_ok_rate\": 0.998, \"field_compliance_rate\": 0.7066, \"n_predictions\": 16774, \"n_truncated\": 288, \"n_documents\": 985, \"inference_time_seconds\": 3677.9}}, \"plan_009_flatnli_reward_eval\": {}, \"eval_plan_012_dpo_ced_ckpt400\": {}, \"plan_009_forgetting_figure\": {}, \"eval_plan_014_sft_no_evidence\": {\"metrics\": {\"rel_f1\": 0.4893, \"rel_ign_f1\": 0.4893, \"rel_precision\": 0.4884, \"rel_recall\": 0.4902, \"evi_f1\": 0, \"evi_precision\": 0, \"evi_recall\": 0, \"edcr\": 0, \"format_ok_rate\": 0.9919, \"n_truncated\": 298, \"n_predictions\": 21064, \"n_documents\": 985, \"n_parseable\": 977, \"inference_time_seconds\": 4103.8}}, \"plan_014_sft_no_evidence\": {\"metrics\": {\"train_loss\": 0.7077, \"eval_loss\": 0.8781, \"eval_token_accuracy\": 0.8086, \"epochs\": 3, \"total_steps\": 570, \"train_runtime_min\": 64, \"samples\": 3027, \"trainable_params\": \"132M/4.15B (3.18%)\"}}, \"plan_002_test_eval_s44\": {}, \"plan_001_rsft_flat_nli\": {\"metrics\": {\"train_loss\": 0.6238, \"train_loss_min\": 0.5803, \"mean_token_accuracy\": 0.8528, \"train_runtime_sec\": 2946, \"epochs\": 3, \"total_steps\": 507, \"samples\": 2691}}, \"eval_plan_001_flat_nli\": {\"metrics\": {\"rel_f1\": 0.4539, \"ign_f1\": 0.4539, \"evi_f1\": 0.8043, \"edcr\": 0.6431, \"precision\": 0.4671, \"recall\": 0.4414, \"evi_precision\": 0.8143, \"evi_recall\": 0.7945, \"format_ok_rate\": 1, \"n_truncated\": 199, \"n_documents\": 985, \"n_predictions\": 15294, \"inference_time_seconds\": 3631}}, \"eval_grpo_g8_bf16\": {\"metrics\": {\"ckpt80_rel_f1\": 0.4456, \"ckpt80_ign_f1\": 0.4456, \"ckpt80_evi_f1\": 0.8034, \"ckpt80_edcr\": 0.6409, \"ckpt80_format_ok\": \"984/985\", \"ckpt80_truncated\": 50, \"ckpt90_rel_f1\": 0.4523, \"ckpt90_ign_f1\": 0.4523, \"ckpt90_evi_f1\": 0.8052, \"ckpt90_edcr\": 0.6414, \"ckpt90_format_ok\": \"983/985\", \"ckpt90_truncated\": 61, \"ckpt100_rel_f1\": 0.4549, \"ckpt100_ign_f1\": 0.4549, \"ckpt100_evi_f1\": 0.8086, \"ckpt100_edcr\": 0.6318, \"ckpt100_format_ok\": \"985/985\", \"ckpt100_truncated\": 61, \"best_checkpoint\": \"ckpt-100\"}}, \"plan_015_grpo_g4_bf16_v3\": {}, \"plan_015_grpo_g4_bf16_v2\": {}, \"plan_015_grpo_g4_bf16\": {}, \"plan_011_grpo_g8_bf16\": {\"metrics\": {\"final_step\": 100, \"train_runtime_s\": 554, \"reward_final\": 1.795, \"f1_reward_final\": 1.002, \"ced_reward_final\": 0.494, \"format_reward_final\": 0.3, \"frac_zero_std_final\": 0, \"kl_final\": 0.022, \"best_reward_step\": 85, \"best_reward\": 2.858, \"best_f1_reward\": 1.85, \"mode_collapse\": false, \"lora_config\": \"r=64, alpha=128, dropout=0.05, bf16\", \"checkpoints\": \"10 checkpoints (step 10-100)\"}}, \"plan_011_grpo_g8_bf16_eval\": {\"metrics\": {\"rel_f1\": 0.4549, \"ign_f1\": 0.4549, \"evi_f1\": 0.8086, \"edcr\": 0.6318, \"format_ok_rate\": 1, \"n_truncated\": 61, \"n_total\": 985, \"n_predictions\": 10701, \"checkpoint\": \"checkpoint-100\", \"model\": \"Qwen3-4B + SFT merged + GRPO bf16 LoRA ckpt-100\", \"inference_time_s\": 3170.3}}, \"plan_004_dreeam_baseline\": {\"metrics\": {\"dev_rel_f1\": 63.57, \"dev_rel_ign_f1\": 61.72, \"dev_evi_f1\": 54.01, \"dev_rel_p\": 66.95, \"dev_rel_r\": 60.51, \"dev_evi_p\": 60.53, \"dev_evi_r\": 48.76}}, \"mvp2_eval_rsft_r2b_maxtok1536_r2\": {\"metrics\": {\"rel_f1\": 0.4504, \"ign_f1\": 0.4504, \"evi_f1\": 0.8102, \"edcr\": 0.674, \"precision\": 0.4488, \"recall\": 0.4519, \"evi_precision\": 0.8162, \"evi_recall\": 0.8044, \"n_truncated\": 146, \"n_total\": 985, \"n_predictions\": 17188, \"n_distractor_citations\": 19589, \"n_total_citations\": 29063, \"format_ok_rate\": 0.998}}, \"plan_001_flat_nli_scoring\": {\"metrics\": {\"total_scored\": 21728, \"selected_samples\": 2691, \"selection_rate\": 0.124, \"selection_strategy\": \"top_k=1\", \"f1_threshold\": 0.1, \"output_path\": \"/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl\"}}, \"mvp2_ced_reranker_poc\": {\"metrics\": {\"ced_reranker_rel_f1\": 0.4864, \"ced_reranker_evi_f1\": 0.8188, \"ced_reranker_edcr\": 0.6156, \"ced_reranker_precision\": 0.4913, \"ced_reranker_recall\": 0.4815, \"ced_reranker_pred_count\": 14782, \"ced_reranker_format_ok_rate\": 1, \"oracle_rel_f1\": 0.6237, \"oracle_evi_f1\": 0.7942, \"oracle_edcr\": 0.5262, \"oracle_pred_count\": 13418, \"random_rel_f1\": 0.4538, \"random_evi_f1\": 0.8029, \"random_edcr\": 0.6763, \"ced_f1_spearman_r\": 0.3235, \"ced_f1_spearman_p\": 2.46e-191, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"sft_baseline_edcr\": 0.7118, \"rsft_mean_rel_f1\": 0.4596, \"delta_vs_sft_rel_f1\": 0.0807, \"delta_vs_rsft_rel_f1\": 0.0268, \"delta_vs_sft_evi_f1\": 0.0209, \"oracle_ceiling_rel_f1\": 0.218, \"num_generations\": 8, \"temperature\": 0.7, \"generation_time_s\": 20872.6, \"n_docs\": 985}}, \"mvp2_eval_rsft_s43_r2\": {\"metrics\": {\"rel_f1\": 0.4683, \"ign_f1\": 0.4683, \"evi_f1\": 0.8156, \"evi_f1_joint\": 0.3711, \"evi_f1_joint_P\": 0.3747, \"evi_f1_joint_R\": 0.3675, \"edcr\": 0.6388, \"precision\": 0.4817, \"recall\": 0.4556, \"evi_precision\": 0.8142, \"evi_recall\": 0.817, \"n_predictions\": 14970, \"n_truncated\": 171, \"format_ok_rate\": 1, \"inference_time_s\": 6316.7, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0626, \"delta_evi_f1\": 0.0177, \"delta_evi_f1_joint\": 0.0594, \"mvp2_pass\": true}}, \"mvp2_rsft_ced_scoring_topk3_r2\": {\"metrics\": {\"input_generations\": 21728, \"selected_samples\": 8037, \"unique_docs\": 2691, \"selection_rate\": 0.37, \"mean_f1\": 0.5761, \"mean_ced\": 0.6205, \"mean_combined\": 0.6787, \"f1_range_p25\": 0.444, \"f1_range_p75\": 0.717, \"ced_range_p25\": 0.487, \"ced_range_p75\": 0.774, \"truncated_samples\": 1924, \"truncated_pct\": 8.9, \"selection_strategy\": \"top_k=3\", \"f1_threshold\": 0.1, \"topk1_samples\": 2718, \"data_multiplier\": 2.96}}, \"mvp2_rsft_train_r1_s44\": {\"metrics\": {\"rel_f1\": 0.4655, \"evi_f1\": 0.8087, \"evi_f1_joint\": 0.3713, \"evi_f1_joint_P\": 0.3775, \"evi_f1_joint_R\": 0.3653, \"edcr\": 0.635, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0598, \"delta_evi_f1\": 0.0108, \"delta_evi_f1_joint\": 0.0596, \"mvp2_pass\": true}}, \"mvp2_eval_rsft_r2b\": {\"metrics\": {\"rel_f1\": 0.4493, \"ign_f1\": 0.4493, \"evi_f1\": 0.8128, \"evi_f1_joint\": 0.349, \"evi_f1_joint_P\": 0.3455, \"evi_f1_joint_R\": 0.3526, \"edcr\": 0.6609, \"precision\": 0.4566, \"recall\": 0.4424, \"evi_precision\": 0.8201, \"evi_recall\": 0.8056, \"pred_count\": 14829, \"format_ok\": \"983/985\", \"truncated\": 179, \"inference_time_s\": 5862, \"delta_evi_f1_joint\": 0.0373}}, \"mvp2_eval_rsft_r2a\": {\"metrics\": {\"rel_f1\": 0.4494, \"ign_f1\": 0.4494, \"evi_f1\": 0.8108, \"evi_f1_joint\": 0.3509, \"evi_f1_joint_P\": 0.3423, \"evi_f1_joint_R\": 0.3599, \"edcr\": 0.6641, \"precision\": 0.4512, \"recall\": 0.4475, \"evi_precision\": 0.8143, \"evi_recall\": 0.8073, \"format_ok_rate\": 1, \"n_predictions\": 15482, \"n_truncated\": 208, \"inference_time_s\": 5967.2, \"delta_evi_f1_joint\": 0.0392}}, \"mvp2_eval_rsft_r1\": {\"metrics\": {\"rel_f1\": 0.4449, \"evi_f1\": 0.8187, \"evi_f1_joint\": 0.3468, \"evi_f1_joint_P\": 0.3515, \"evi_f1_joint_R\": 0.3423, \"edcr\": 0.6565, \"num_preds\": 15307, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0392, \"delta_evi_f1\": 0.0208, \"delta_evi_f1_joint\": 0.0351, \"mvp2_pass\": true}}, \"mvp2_eval_sft_baseline\": {\"metrics\": {\"rel_f1\": 0.4057, \"evi_f1\": 0.7979, \"evi_f1_joint\": 0.3117, \"evi_f1_joint_P\": 0.3037, \"evi_f1_joint_R\": 0.32, \"edcr\": 0.7118, \"pred_count\": 12234, \"gold_count\": 12151, \"format_ok_rate\": 0.998, \"format_compliance_rate\": 0.998, \"field_compliance_rate\": 0.6264, \"n_truncated\": 367, \"inference_time_seconds\": 6138.5}}, \"mvp2_eval_rsft_r2b_maxtok1536\": {}, \"mvp2_rsft_ced_scoring_topk3\": {}, \"mvp2_rsft_r2b\": {\"metrics\": {\"rel_f1\": 0.4493, \"evi_f1\": 0.8128, \"edcr\": 0.6609, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0436, \"delta_evi_f1\": 0.0149, \"mvp2_pass\": true}}, \"mvp2_rsft_r2a\": {\"metrics\": {\"rel_f1\": 0.4494, \"evi_f1\": 0.8108, \"edcr\": 0.6641, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0437, \"delta_evi_f1\": 0.0129, \"mvp2_pass\": true}}, \"mvp2_rsft_diagnosis\": {\"metrics\": {\"root_cause\": \"overfitting_plus_sft_knowledge_overwrite\", \"truncated_json_samples\": 170, \"truncated_pct\": 6.3, \"epoch1_eval_loss\": 0.756, \"epoch2_eval_loss\": 0.759, \"lora_scaling\": 2, \"rsft_zero_relation_samples\": 170, \"sft_zero_relation_docs\": 26, \"rsft_mean_relations\": 11.2, \"sft_mean_relations\": 12.5}}, \"mvp2_eval_ced_kl001_r4_last\": {}, \"mvp2_grpo_ced_kl001_r3\": {}, \"mvp2_grpo_ced_kl001_r2\": {}, \"mvp2_rsft_train_r2_fix\": {}, \"mvp2_rsft_train_r1_s43\": {\"metrics\": {\"eval_loss\": 0.7622, \"train_loss\": 0.6148, \"eval_entropy\": 0.6724, \"mean_token_accuracy\": 0.8291, \"total_steps\": 510, \"epochs\": 3, \"training_hours\": 1.99}}, \"mvp2_eval_rsft_s43\": {}, \"mvp2_rsft_train_r1\": {\"metrics\": {\"rel_f1\": 0.0483, \"num_preds\": 848, \"sft_baseline_rel_f1\": 0.4057, \"failure_mode\": \"relation_ontology_collapse_to_freetext\", \"epoch1_eval_loss\": 0.756, \"epoch2_eval_loss\": 0.759}}, \"mvp2_rsft_ced_scoring\": {\"metrics\": {\"input_generations\": 21952, \"selected_samples\": 2718, \"unique_docs\": 2691, \"selection_rate\": 0.124, \"mean_f1\": 0.6157, \"mean_ced\": 0.6683, \"f1_range\": [0.1026, 1], \"zero_f1_samples\": 0, \"selection_strategy\": \"top_k=1\", \"f1_threshold\": 0.1}}, \"mvp2_rsft_gen_s0\": {}, \"mvp2_rsft_gen_s3\": {\"metrics\": {\"generation_count\": 5288, \"unique_docs\": 659, \"format_compliance\": 0.998, \"diversity_range\": \"7.5-7.8/8\", \"exit_code\": 0}}, \"mvp2_rsft_gen_s2\": {}, \"mvp2_rsft_gen_s1\": {}, \"mvp2_rsft_generate\": {}, \"mvp2_diversity_probe\": {\"metrics\": {\"unique_triples_t07\": 5, \"unique_triples_t10\": 8, \"jaccard_t07\": 0.17, \"jaccard_t10\": 0.051, \"format_ok_rate_t07\": 0.5, \"format_ok_rate_t10\": 0.438, \"n_samples\": 3, \"n_generations\": 8, \"note\": \"unique_triples_t07 corrected from 7 to 5.0 (mean). Reviewer: format_ok ~34% after fix, 'diversity' was JSON key name variants not semantic diversity\"}}, \"mvp2_eval_lr5e6_r1_ckpt100\": {\"metrics\": {\"rel_f1\": 0.0138, \"rel_precision\": 0.0132, \"rel_recall\": 0.0144, \"ign_f1\": 0.0138, \"evi_f1\": 0.8504, \"evi_precision\": 0.9256, \"evi_recall\": 0.7866, \"edcr\": 0.9876, \"format_ok_rate\": 0.999, \"field_compliance_rate\": 0.8162, \"evidence_format_rate\": 0.8162, \"tp\": 175, \"pred_count\": 13300, \"gold_count\": 12151, \"n_predictions\": 15498, \"n_truncated\": 181, \"n_documents\": 985, \"n_parseable\": 984, \"inference_time_seconds\": 5901.7}}, \"mvp2_grpo_ced_lr5e6_r1\": {}, \"mvp2_eval_lr5e6_r1_ckpt80\": {\"metrics\": {\"rel_f1\": 0.0116, \"ign_f1\": 0.0116, \"precision\": 0.0109, \"recall\": 0.0124, \"evi_f1\": 0.828, \"evi_precision\": 0.928, \"evi_recall\": 0.748, \"edcr\": 0.993, \"format_ok_rate\": 0.999, \"field_compliance_rate\": 0.788, \"pred_count\": 13828, \"gold_count\": 12151, \"n_truncated\": 210, \"inference_time_seconds\": 6099}}, \"mvp2_eval_lr5e6_r1_ckpt60_r2\": {\"metrics\": {\"rel_f1\": 0.0093, \"precision\": 0.0085, \"recall\": 0.0103, \"evi_f1\": 0.81, \"edcr\": 0.993, \"format_ok_rate\": 0.998, \"pred_count\": 14626, \"gold_count\": 12151, \"tp\": 125, \"inference_time_seconds\": 6152}}, \"mvp2_eval_lr5e6_r1_ckpt60\": {}, \"mvp2_eval_lr5e6_r1_ckpt40_r2\": {\"metrics\": {\"rel_f1\": 0.0071, \"precision\": 0.0066, \"recall\": 0.0078, \"evi_f1\": 0.7584, \"evi_precision\": 0.9113, \"evi_recall\": 0.6494, \"edcr\": 0.9942, \"format_ok_rate\": 0.9939, \"field_compliance_rate\": 0.5675, \"pred_count\": 14434, \"gold_count\": 12151, \"tp\": 95, \"n_truncated\": 424, \"inference_time_seconds\": 6152}}, \"mvp2_eval_lr5e6_r1_ckpt20\": {\"metrics\": {\"rel_f1\": 0.0077, \"rel_precision\": 0.0071, \"rel_recall\": 0.0084, \"evi_f1\": 0.628, \"evi_precision\": 0.855, \"evi_recall\": 0.496, \"edcr\": 0.993, \"format_ok_rate\": 0.991, \"field_compliance_rate\": 0.399, \"pred_count\": 14440, \"gold_count\": 12151, \"tp\": 102, \"n_truncated\": 587, \"inference_time_seconds\": 6370.4}}, \"mvp2_eval_lr5e6_rp_r2_ckpt20\": {}, \"mvp2_eval_lr5e6_r1_ckpt40\": {}, \"mvp2_grpo_ced_lr5e6_rp_r2\": {}, \"mvp2_eval_ced_kl001_r4_multi\": {\"metrics\": {\"checkpoint-10\": {\"f1\": 0.003, \"ign_f1\": 0.003, \"evi_f1\": 0.72, \"edcr\": 0.9983, \"format_ok_rate\": 0.999}, \"checkpoint-20\": {\"f1\": 0.0088, \"ign_f1\": 0.0088, \"evi_f1\": 0.423, \"edcr\": 0.9954, \"format_ok_rate\": 0.999}, \"checkpoint-30\": {\"f1\": 0.0338, \"ign_f1\": 0.0338, \"evi_f1\": 0.5889, \"edcr\": 0.9798, \"format_ok_rate\": 1}, \"checkpoint-50\": {\"f1\": 0.1563, \"ign_f1\": 0.1563, \"evi_f1\": 0.5643, \"edcr\": 0.8858, \"format_ok_rate\": 0.999}, \"checkpoint-60\": {\"f1\": 0.1467, \"ign_f1\": 0.1467, \"evi_f1\": 0.5763, \"edcr\": 0.9062, \"format_ok_rate\": 1}, \"checkpoint-90\": {\"f1\": 0.2108, \"ign_f1\": 0.2108, \"evi_f1\": 0.5666, \"edcr\": 0.8584, \"format_ok_rate\": 1}}}, \"mvp2_grpo_ced_lr5e6_rp_r1\": {}, \"mvp2_grpo_ced_lr5e6_p1_r1\": {}, \"mvp2_eval_ced_kl001_r4_step90\": {\"metrics\": {\"rel_f1\": 0.2108, \"ign_f1\": 0.2108, \"evi_f1\": 0.5666, \"edcr\": 0.8584, \"pred_count\": 11160, \"n_truncated\": 22, \"format_ok_rate\": 1, \"n_documents\": 985}}, \"mvp2_eval_ced_kl001_r4_ckpt7080\": {}, \"mvp2_eval_ced_kl001_r4_high\": {\"metrics\": {\"checkpoint_60\": {\"rel_f1\": 0.1467, \"ign_f1\": 0.1467, \"precision\": 0.1909, \"recall\": 0.1192, \"evi_f1\": 0.5763, \"edcr\": 0.9062, \"pred_count\": 10041, \"gold_count\": 12151, \"n_truncated\": 16, \"format_ok_rate\": 1}, \"note\": \"Only ckpt-60 completed. Process died during ckpt-70 inference at 8% (5/62 batch). ckpt-80/90 never started.\"}}, \"mvp2_eval_ced_kl001_r4_step100\": {\"metrics\": {\"rel_f1\": 0.2167, \"ign_f1\": 0.2167, \"precision\": 0.2849, \"recall\": 0.1749, \"evi_f1\": 0.5746, \"evi_precision\": 0.5244, \"evi_recall\": 0.6353, \"edcr\": 0.8539, \"pred_count\": 7460, \"gold_count\": 12151, \"tp\": 2125, \"n_truncated\": 21, \"format_ok_rate\": 1}}, \"mvp2_eval_ced_kl001_r4_ckpt90\": {}, \"mvp2_eval_ced_kl001_r4_ckpt10\": {\"metrics\": {\"rel_f1\": 0.00296, \"rel_precision\": 0.00314, \"rel_recall\": 0.0028, \"evi_f1\": 0.72, \"evi_precision\": 0.6429, \"evi_recall\": 0.8182, \"edcr\": 0.9983, \"n_parseable\": 984, \"n_truncated\": 24, \"n_predictions\": 11621, \"tp\": 34, \"pred_count\": 10839, \"gold_count\": 12151, \"inference_time_seconds\": 5211.4}}, \"mvp2_eval_ced_kl001_r4_early\": {\"metrics\": {\"f1\": 0.1563, \"ign_f1\": 0.1563, \"evi_f1\": 0.5643, \"edcr\": 0.8858, \"precision\": 0.2356, \"recall\": 0.1169, \"evi_precision\": 0.4864, \"evi_recall\": 0.6721, \"format_ok_rate\": 0.999, \"n_parseable\": 984, \"n_truncated\": 11, \"n_predictions\": 9250, \"tp\": 1421, \"pred_count\": 6032, \"gold_count\": 12151}}, \"mvp2_grpo_flatnli_r6\": {\"metrics\": {\"steps_completed\": 25, \"final_frac_zero_std\": 0.9, \"final_f1_reward\": 0, \"final_flat_nli_reward\": 0, \"final_format_reward\": 0.293, \"collapse_step\": 25}}, \"mvp2_grpo_ced_kl001_r4\": {\"metrics\": {\"final_step\": 100, \"train_runtime_s\": 9069.88, \"reward_final\": 1.195, \"f1_reward_final\": 0.573, \"ced_reward_final\": 0.328, \"format_reward_final\": 0.293, \"frac_zero_std_final\": 0.2, \"kl_final\": 0.118, \"loss_final\": -0.009, \"grad_norm_final\": 0.14, \"entropy_final\": 0.067, \"completion_length_mean_final\": 520.8, \"best_reward_step\": 90, \"best_reward\": 1.37, \"best_f1_reward\": 0.72, \"best_ced_reward\": 0.353}}, \"mvp2_grpo_extract_r4\": {}, \"mvp2_grpo_flatnli_r5\": {}, \"mvp2_sft_eval_r3\": {\"metrics\": {\"rel_f1\": 0.4057, \"ign_f1\": 0.4057, \"evi_f1\": 0.7979, \"edcr\": 0.7118, \"precision\": 0.4043, \"recall\": 0.407, \"evi_precision\": 0.8035, \"evi_recall\": 0.7924, \"format_ok_rate\": 0.998, \"format_compliance_rate\": 0.626, \"n_parseable\": 617, \"n_truncated\": 367, \"n_predictions\": 18815}}, \"mvp2_grpo_extract_r3\": {}, \"mvp2_grpo_flatnli_r4\": {}, \"mvp2_grpo_ced_kl001\": {}}, \"count\": 100, \"total\": 117, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3601}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "2923d111-403a-4bff-8ff3-9f4218eb0a81",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"rsft_ced_s45_train_r3\\\": {}, \\\"rsft_ced_s45_train_r2\\\": {}, \\\"rsft_ced_s43_train_r2\\\": {}, \\\"reeval_rsft_topk3\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.4454, \\\"rel_precision\\\": 0.4512, \\\"rel_recall\\\": 0.4398, \\\"ign_f1\\\": 0.4364, \\\"evi_f1\\\": 0.8088, \\\"edcr\\\": 0.6635, \\\"format_ok_rate\\\": 0.999, \\\"n_truncated\\\": 214, \\\"n_predictions\\\": 16020, \\\"inference_time_seconds\\\": 3546.4, \\\"ign_f1_corrected\\\": true}}, \\\"rsft_ced_s43_train\\\": {}, \\\"rsft_ced_s45_train\\\": {}, \\\"reeval_flat_nli_s43\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.4523, \\\"ign_f1\\\": 0.4523, \\\"evi_f1\\\": 0.8158, \\\"edcr\\\": 0.6505, \\\"num_preds\\\": 15357, \\\"format_ok\\\": \\\"984/985\\\", \\\"truncated\\\": \\\"211/985\\\", \\\"inference_time_s\\\": 3515.8}}, \\\"plan_003_edcr_diagnostic\\\": {\\\"metrics\\\": {\\\"methods_evaluated\\\": 15, \\\"edcr_vs_rel_f1_spearman\\\": -0.9648, \\\"edcr_vs_rel_f1_pvalue\\\": 0.0001, \\\"edcr_vs_evi_f1_spearman\\\": 0.0022, \\\"edcr_vs_evi_f1_pvalue\\\": 0.9941, \\\"edcr_range\\\": \\\"0.63-0.99\\\", \\\"unique_diagnostic_value\\\": \\\"identifies pathological models (GRPO QLoRA) with high evi_f1 but catastrophically low rel_f1\\\"}}, \\\"eval_flat_nli_seed44\\\": {}, \\\"eval_plan_012_dpo_1ep_fixed_r2\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.4034, \\\"evi_f1\\\": 0.8088, \\\"edcr\\\": 0.7139, \\\"format_ok_rate\\\": 0.999, \\\"truncated_rate\\\": 0.343, \\\"predictions\\\": 19107, \\\"ign_f1\\\": 0.4034, \\\"precision\\\": 0.3809, \\\"recall\\\": 0.4287, \\\"vs_sft_delta\\\": -0.0023, \\\"note\\\": \\\"DPO 1ep matches SFT baseline. 1ep→3ep trajectory shows gradual decoupling (rel_f1↓ evi_f1↑), consistent with GRPO pattern. Ign-F1=F1 exact match needs investigation.\\\"}}, \\\"plan_001_flat_nli_seed44\\\": {\\\"metrics\\\": {\\\"train_loss\\\": 0.6247, \\\"eval_loss\\\": 0.7564, \\\"eval_mean_token_accuracy\\\": 0.8299, \\\"task_eval_f1_ep1\\\": 0.4306, \\\"task_eval_f1_ep2\\\": 0.4884, \\\"task_eval_f1_ep3\\\": 0.4897, \\\"task_eval_evi_f1_ep3\\\": 0.78, \\\"task_eval_edcr_ep3\\\": 0.6596, \\\"task_eval_ign_f1_ep3\\\": 0.4897, \\\"train_runtime_sec\\\": 6197, \\\"num_epochs\\\": 3, \\\"total_steps\\\": 507}}, \\\"plan_009_dynamics_figure\\\": {}, \\\"plan_001_flat_nli_seed45\\\": {\\\"metrics\\\": {\\\"task_eval_rel_f1\\\": 0.4876, \\\"task_eval_evi_f1\\\": 0.7927, \\\"task_eval_edcr\\\": 0.6517, \\\"train_loss\\\": 0.6245, \\\"runtime_hours\\\": 1.69, \\\"note\\\": \\\"task-eval on 50 docs only, full dev eval needed\\\"}}, \\\"plan_011_bf16_g8_step_eval\\\": {\\\"metrics\\\": {\\\"step_30\\\": {\\\"rel_f1\\\": 0.434, \\\"evi_f1\\\": 0.8063, \\\"edcr\\\": 0.6807}, \\\"step_50\\\": {\\\"rel_f1\\\": 0.4276, \\\"evi_f1\\\": 0.8024, \\\"edcr\\\": 0.6855}, \\\"step_70\\\": {\\\"rel_f1\\\": 0.4341, \\\"evi_f1\\\": 0.8099, \\\"edcr\\\": 0.6685}, \\\"best_step\\\": \\\"step_70\\\", \\\"trend\\\": \\\"non-monotonic, all < ckpt-100 (0.4549)\\\"}}, \\\"plan_011_eval_g8_bf16_ckpt100\\\": {}, \\\"mvp2_eval_rsft_s44\\\": {}, \\\"eval_plan_008_topk3_fixed\\\": {}, \\\"eval_plan_012_dpo_1ep_fixed\\\": {}, \\\"eval_plan_008_rsft_topk3\\\": {\\\"metrics\\\": {\\\"note\\\": \\\"INVALID — missing --sft_adapter, killed by Director instruction\\\"}}, \\\"plan_012_dpo_ced\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.3429, \\\"evi_f1\\\": 0.8403, \\\"edcr\\\": 0.7294, \\\"format_ok_rate\\\": 0.995, \\\"checkpoint\\\": \\\"checkpoint-501\\\", \\\"rewards_accuracy\\\": 1, \\\"margins\\\": 9.01}}, \\\"plan_012_dpo_ced_1ep\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.0022, \\\"evi_f1\\\": 0.75, \\\"edcr\\\": 0.9982, \\\"format_ok\\\": \\\"981/985\\\", \\\"truncated\\\": \\\"358/985\\\", \\\"tp\\\": 34, \\\"n_preds\\\": 19265, \\\"inference_time_s\\\": 3643, \\\"train_loss_final\\\": 0.59, \\\"rewards_accuracy\\\": 0.82, \\\"rewards_margins\\\": 0.86, \\\"total_steps\\\": 167, \\\"training_time_min\\\": 33}}, \\\"eval_plan_001_flat_nli_s43\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.0022, \\\"ign_f1\\\": 0.0022, \\\"evi_f1\\\": 0.8533, \\\"edcr\\\": 0.9982, \\\"num_preds\\\": 17285, \\\"format_ok\\\": \\\"981/985\\\", \\\"truncated\\\": \\\"251/985\\\", \\\"tp\\\": 32, \\\"note\\\": \\\"INVALID — missing --sft_adapter, same bug as DPO 1ep eval\\\"}}, \\\"eval_plan_012_dpo_ced_1ep\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.0022, \\\"ign_f1\\\": 0.0022, \\\"evi_f1\\\": 0.75, \\\"edcr\\\": 0.9982, \\\"num_preds\\\": 19265, \\\"format_ok\\\": \\\"981/985\\\", \\\"truncated\\\": \\\"358/985\\\", \\\"tp\\\": 34, \\\"inference_time_s\\\": 3643}}, \\\"plan_008_rsft_topk3\\\": {\\\"metrics\\\": {\\\"train_loss\\\": 0.5543, \\\"eval_loss\\\": 0.8297, \\\"eval_mean_token_accuracy\\\": 0.8228, \\\"eval_entropy\\\": 0.6001, \\\"train_runtime_sec\\\": 10916, \\\"total_steps\\\": 1509, \\\"epochs\\\": 3, \\\"trainable_params_pct\\\": 3.18, \\\"rsft_samples\\\": 8037, \\\"ced_score_mean\\\": 0.621, \\\"task_eval_f1_ep1\\\": 0.4848, \\\"task_eval_f1_ep2\\\": 0.4824, \\\"task_eval_f1_ep3\\\": 0.5012, \\\"task_eval_evi_f1_ep1\\\": 0.745, \\\"task_eval_evi_f1_ep2\\\": 0.6997, \\\"task_eval_evi_f1_ep3\\\": 0.6816, \\\"task_eval_edcr_ep1\\\": 0.6525, \\\"task_eval_edcr_ep2\\\": 0.6529, \\\"task_eval_edcr_ep3\\\": 0.5963, \\\"task_eval_note\\\": \\\"50-doc subset, not full dev\\\"}}, \\\"plan_001_flat_nli_seed43\\\": {\\\"metrics\\\": {\\\"train_loss_final\\\": 0.6257, \\\"train_loss_min\\\": 0.5895, \\\"eval_loss_epoch3\\\": 0.7567, \\\"eval_accuracy_epoch3\\\": 0.8298, \\\"total_steps\\\": 507, \\\"epochs\\\": 3, \\\"train_runtime_seconds\\\": 6880, \\\"task_eval_f1_ep1\\\": 0.4825, \\\"task_eval_f1_ep2\\\": 0.4542, \\\"task_eval_f1_ep3\\\": 0.4866, \\\"task_eval_evi_f1_ep3\\\": 0.7834, \\\"task_eval_edcr_ep3\\\": 0.6402, \\\"task_eval_note\\\": \\\"50-doc subset, not full dev\\\"}}, \\\"plan_009_flatnli_reward_eval_r2\\\": {}, \\\"plan_009_extract_reward_eval\\\": {}, \\\"eval_sft_baseline_noquant\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.4106, \\\"rel_precision\\\": 0.4198, \\\"rel_recall\\\": 0.4019, \\\"evi_f1\\\": 0.8013, \\\"evi_precision\\\": 0.8005, \\\"evi_recall\\\": 0.8022, \\\"evi_f1_joint\\\": 0.3216, \\\"edcr\\\": 0.7039, \\\"format_ok_rate\\\": 0.998, \\\"field_compliance_rate\\\": 0.7066, \\\"n_predictions\\\": 16774, \\\"n_truncated\\\": 288, \\\"n_documents\\\": 985, \\\"inference_time_seconds\\\": 3677.9}}, \\\"plan_009_flatnli_reward_eval\\\": {}, \\\"eval_plan_012_dpo_ced_ckpt400\\\": {}, \\\"plan_009_forgetting_figure\\\": {}, \\\"eval_plan_014_sft_no_evidence\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.4893, \\\"rel_ign_f1\\\": 0.4893, \\\"rel_precision\\\": 0.4884, \\\"rel_recall\\\": 0.4902, \\\"evi_f1\\\": 0, \\\"evi_precision\\\": 0, \\\"evi_recall\\\": 0, \\\"edcr\\\": 0, \\\"format_ok_rate\\\": 0.9919, \\\"n_truncated\\\": 298, \\\"n_predictions\\\": 21064, \\\"n_documents\\\": 985, \\\"n_parseable\\\": 977, \\\"inference_time_seconds\\\": 4103.8}}, \\\"plan_014_sft_no_evidence\\\": {\\\"metrics\\\": {\\\"train_loss\\\": 0.7077, \\\"eval_loss\\\": 0.8781, \\\"eval_token_accuracy\\\": 0.8086, \\\"epochs\\\": 3, \\\"total_steps\\\": 570, \\\"train_runtime_min\\\": 64, \\\"samples\\\": 3027, \\\"trainable_params\\\": \\\"132M/4.15B (3.18%)\\\"}}, \\\"plan_002_test_eval_s44\\\": {}, \\\"plan_001_rsft_flat_nli\\\": {\\\"metrics\\\": {\\\"train_loss\\\": 0.6238, \\\"train_loss_min\\\": 0.5803, \\\"mean_token_accuracy\\\": 0.8528, \\\"train_runtime_sec\\\": 2946, \\\"epochs\\\": 3, \\\"total_steps\\\": 507, \\\"samples\\\": 2691}}, \\\"eval_plan_001_flat_nli\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.4539, \\\"ign_f1\\\": 0.4539, \\\"evi_f1\\\": 0.8043, \\\"edcr\\\": 0.6431, \\\"precision\\\": 0.4671, \\\"recall\\\": 0.4414, \\\"evi_precision\\\": 0.8143, \\\"evi_recall\\\": 0.7945, \\\"format_ok_rate\\\": 1, \\\"n_truncated\\\": 199, \\\"n_documents\\\": 985, \\\"n_predictions\\\": 15294, \\\"inference_time_seconds\\\": 3631}}, \\\"eval_grpo_g8_bf16\\\": {\\\"metrics\\\": {\\\"ckpt80_rel_f1\\\": 0.4456, \\\"ckpt80_ign_f1\\\": 0.4456, \\\"ckpt80_evi_f1\\\": 0.8034, \\\"ckpt80_edcr\\\": 0.6409, \\\"ckpt80_format_ok\\\": \\\"984/985\\\", \\\"ckpt80_truncated\\\": 50, \\\"ckpt90_rel_f1\\\": 0.4523, \\\"ckpt90_ign_f1\\\": 0.4523, \\\"ckpt90_evi_f1\\\": 0.8052, \\\"ckpt90_edcr\\\": 0.6414, \\\"ckpt90_format_ok\\\": \\\"983/985\\\", \\\"ckpt90_truncated\\\": 61, \\\"ckpt100_rel_f1\\\": 0.4549, \\\"ckpt100_ign_f1\\\": 0.4549, \\\"ckpt100_evi_f1\\\": 0.8086, \\\"ckpt100_edcr\\\": 0.6318, \\\"ckpt100_format_ok\\\": \\\"985/985\\\", \\\"ckpt100_truncated\\\": 61, \\\"best_checkpoint\\\": \\\"ckpt-100\\\"}}, \\\"plan_015_grpo_g4_bf16_v3\\\": {}, \\\"plan_015_grpo_g4_bf16_v2\\\": {}, \\\"plan_015_grpo_g4_bf16\\\": {}, \\\"plan_011_grpo_g8_bf16\\\": {\\\"metrics\\\": {\\\"final_step\\\": 100, \\\"train_runtime_s\\\": 554, \\\"reward_final\\\": 1.795, \\\"f1_reward_final\\\": 1.002, \\\"ced_reward_final\\\": 0.494, \\\"format_reward_final\\\": 0.3, \\\"frac_zero_std_final\\\": 0, \\\"kl_final\\\": 0.022, \\\"best_reward_step\\\": 85, \\\"best_reward\\\": 2.858, \\\"best_f1_reward\\\": 1.85, \\\"mode_collapse\\\": false, \\\"lora_config\\\": \\\"r=64, alpha=128, dropout=0.05, bf16\\\", \\\"checkpoints\\\": \\\"10 checkpoints (step 10-100)\\\"}}, \\\"plan_011_grpo_g8_bf16_eval\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.4549, \\\"ign_f1\\\": 0.4549, \\\"evi_f1\\\": 0.8086, \\\"edcr\\\": 0.6318, \\\"format_ok_rate\\\": 1, \\\"n_truncated\\\": 61, \\\"n_total\\\": 985, \\\"n_predictions\\\": 10701, \\\"checkpoint\\\": \\\"checkpoint-100\\\", \\\"model\\\": \\\"Qwen3-4B + SFT merged + GRPO bf16 LoRA ckpt-100\\\", \\\"inference_time_s\\\": 3170.3}}, \\\"plan_004_dreeam_baseline\\\": {\\\"metrics\\\": {\\\"dev_rel_f1\\\": 63.57, \\\"dev_rel_ign_f1\\\": 61.72, \\\"dev_evi_f1\\\": 54.01, \\\"dev_rel_p\\\": 66.95, \\\"dev_rel_r\\\": 60.51, \\\"dev_evi_p\\\": 60.53, \\\"dev_evi_r\\\": 48.76}}, \\\"mvp2_eval_rsft_r2b_maxtok1536_r2\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.4504, \\\"ign_f1\\\": 0.4504, \\\"evi_f1\\\": 0.8102, \\\"edcr\\\": 0.674, \\\"precision\\\": 0.4488, \\\"recall\\\": 0.4519, \\\"evi_precision\\\": 0.8162, \\\"evi_recall\\\": 0.8044, \\\"n_truncated\\\": 146, \\\"n_total\\\": 985, \\\"n_predictions\\\": 17188, \\\"n_distractor_citations\\\": 19589, \\\"n_total_citations\\\": 29063, \\\"format_ok_rate\\\": 0.998}}, \\\"plan_001_flat_nli_scoring\\\": {\\\"metrics\\\": {\\\"total_scored\\\": 21728, \\\"selected_samples\\\": 2691, \\\"selection_rate\\\": 0.124, \\\"selection_strategy\\\": \\\"top_k=1\\\", \\\"f1_threshold\\\": 0.1, \\\"output_path\\\": \\\"/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl\\\"}}, \\\"mvp2_ced_reranker_poc\\\": {\\\"metrics\\\": {\\\"ced_reranker_rel_f1\\\": 0.4864, \\\"ced_reranker_evi_f1\\\": 0.8188, \\\"ced_reranker_edcr\\\": 0.6156, \\\"ced_reranker_precision\\\": 0.4913, \\\"ced_reranker_recall\\\": 0.4815, \\\"ced_reranker_pred_count\\\": 14782, \\\"ced_reranker_format_ok_rate\\\": 1, \\\"oracle_rel_f1\\\": 0.6237, \\\"oracle_evi_f1\\\": 0.7942, \\\"oracle_edcr\\\": 0.5262, \\\"oracle_pred_count\\\": 13418, \\\"random_rel_f1\\\": 0.4538, \\\"random_evi_f1\\\": 0.8029, \\\"random_edcr\\\": 0.6763, \\\"ced_f1_spearman_r\\\": 0.3235, \\\"ced_f1_spearman_p\\\": 2.46e-191, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"sft_baseline_edcr\\\": 0.7118, \\\"rsft_mean_rel_f1\\\": 0.4596, \\\"delta_vs_sft_rel_f1\\\": 0.0807, \\\"delta_vs_rsft_rel_f1\\\": 0.0268, \\\"delta_vs_sft_evi_f1\\\": 0.0209, \\\"oracle_ceiling_rel_f1\\\": 0.218, \\\"num_generations\\\": 8, \\\"temperature\\\": 0.7, \\\"generation_time_s\\\": 20872.6, \\\"n_docs\\\": 985}}, \\\"mvp2_eval_rsft_s43_r2\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.4683, \\\"ign_f1\\\": 0.4683, \\\"evi_f1\\\": 0.8156, \\\"evi_f1_joint\\\": 0.3711, \\\"evi_f1_joint_P\\\": 0.3747, \\\"evi_f1_joint_R\\\": 0.3675, \\\"edcr\\\": 0.6388, \\\"precision\\\": 0.4817, \\\"recall\\\": 0.4556, \\\"evi_precision\\\": 0.8142, \\\"evi_recall\\\": 0.817, \\\"n_predictions\\\": 14970, \\\"n_truncated\\\": 171, \\\"format_ok_rate\\\": 1, \\\"inference_time_s\\\": 6316.7, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0626, \\\"delta_evi_f1\\\": 0.0177, \\\"delta_evi_f1_joint\\\": 0.0594, \\\"mvp2_pass\\\": true}}, \\\"mvp2_rsft_ced_scoring_topk3_r2\\\": {\\\"metrics\\\": {\\\"input_generations\\\": 21728, \\\"selected_samples\\\": 8037, \\\"unique_docs\\\": 2691, \\\"selection_rate\\\": 0.37, \\\"mean_f1\\\": 0.5761, \\\"mean_ced\\\": 0.6205, \\\"mean_combined\\\": 0.6787, \\\"f1_range_p25\\\": 0.444, \\\"f1_range_p75\\\": 0.717, \\\"ced_range_p25\\\": 0.487, \\\"ced_range_p75\\\": 0.774, \\\"truncated_samples\\\": 1924, \\\"truncated_pct\\\": 8.9, \\\"selection_strategy\\\": \\\"top_k=3\\\", \\\"f1_threshold\\\": 0.1, \\\"topk1_samples\\\": 2718, \\\"data_multiplier\\\": 2.96}}, \\\"mvp2_rsft_train_r1_s44\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.4655, \\\"evi_f1\\\": 0.8087, \\\"evi_f1_joint\\\": 0.3713, \\\"evi_f1_joint_P\\\": 0.3775, \\\"evi_f1_joint_R\\\": 0.3653, \\\"edcr\\\": 0.635, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0598, \\\"delta_evi_f1\\\": 0.0108, \\\"delta_evi_f1_joint\\\": 0.0596, \\\"mvp2_pass\\\": true}}, \\\"mvp2_eval_rsft_r2b\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.4493, \\\"ign_f1\\\": 0.4493, \\\"evi_f1\\\": 0.8128, \\\"evi_f1_joint\\\": 0.349, \\\"evi_f1_joint_P\\\": 0.3455, \\\"evi_f1_joint_R\\\": 0.3526, \\\"edcr\\\": 0.6609, \\\"precision\\\": 0.4566, \\\"recall\\\": 0.4424, \\\"evi_precision\\\": 0.8201, \\\"evi_recall\\\": 0.8056, \\\"pred_count\\\": 14829, \\\"format_ok\\\": \\\"983/985\\\", \\\"truncated\\\": 179, \\\"inference_time_s\\\": 5862, \\\"delta_evi_f1_joint\\\": 0.0373}}, \\\"mvp2_eval_rsft_r2a\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.4494, \\\"ign_f1\\\": 0.4494, \\\"evi_f1\\\": 0.8108, \\\"evi_f1_joint\\\": 0.3509, \\\"evi_f1_joint_P\\\": 0.3423, \\\"evi_f1_joint_R\\\": 0.3599, \\\"edcr\\\": 0.6641, \\\"precision\\\": 0.4512, \\\"recall\\\": 0.4475, \\\"evi_precision\\\": 0.8143, \\\"evi_recall\\\": 0.8073, \\\"format_ok_rate\\\": 1, \\\"n_predictions\\\": 15482, \\\"n_truncated\\\": 208, \\\"inference_time_s\\\": 5967.2, \\\"delta_evi_f1_joint\\\": 0.0392}}, \\\"mvp2_eval_rsft_r1\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.4449, \\\"evi_f1\\\": 0.8187, \\\"evi_f1_joint\\\": 0.3468, \\\"evi_f1_joint_P\\\": 0.3515, \\\"evi_f1_joint_R\\\": 0.3423, \\\"edcr\\\": 0.6565, \\\"num_preds\\\": 15307, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0392, \\\"delta_evi_f1\\\": 0.0208, \\\"delta_evi_f1_joint\\\": 0.0351, \\\"mvp2_pass\\\": true}}, \\\"mvp2_eval_sft_baseline\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.4057, \\\"evi_f1\\\": 0.7979, \\\"evi_f1_joint\\\": 0.3117, \\\"evi_f1_joint_P\\\": 0.3037, \\\"evi_f1_joint_R\\\": 0.32, \\\"edcr\\\": 0.7118, \\\"pred_count\\\": 12234, \\\"gold_count\\\": 12151, \\\"format_ok_rate\\\": 0.998, \\\"format_compliance_rate\\\": 0.998, \\\"field_compliance_rate\\\": 0.6264, \\\"n_truncated\\\": 367, \\\"inference_time_seconds\\\": 6138.5}}, \\\"mvp2_eval_rsft_r2b_maxtok1536\\\": {}, \\\"mvp2_rsft_ced_scoring_topk3\\\": {}, \\\"mvp2_rsft_r2b\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.4493, \\\"evi_f1\\\": 0.8128, \\\"edcr\\\": 0.6609, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0436, \\\"delta_evi_f1\\\": 0.0149, \\\"mvp2_pass\\\": true}}, \\\"mvp2_rsft_r2a\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.4494, \\\"evi_f1\\\": 0.8108, \\\"edcr\\\": 0.6641, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0437, \\\"delta_evi_f1\\\": 0.0129, \\\"mvp2_pass\\\": true}}, \\\"mvp2_rsft_diagnosis\\\": {\\\"metrics\\\": {\\\"root_cause\\\": \\\"overfitting_plus_sft_knowledge_overwrite\\\", \\\"truncated_json_samples\\\": 170, \\\"truncated_pct\\\": 6.3, \\\"epoch1_eval_loss\\\": 0.756, \\\"epoch2_eval_loss\\\": 0.759, \\\"lora_scaling\\\": 2, \\\"rsft_zero_relation_samples\\\": 170, \\\"sft_zero_relation_docs\\\": 26, \\\"rsft_mean_relations\\\": 11.2, \\\"sft_mean_relations\\\": 12.5}}, \\\"mvp2_eval_ced_kl001_r4_last\\\": {}, \\\"mvp2_grpo_ced_kl001_r3\\\": {}, \\\"mvp2_grpo_ced_kl001_r2\\\": {}, \\\"mvp2_rsft_train_r2_fix\\\": {}, \\\"mvp2_rsft_train_r1_s43\\\": {\\\"metrics\\\": {\\\"eval_loss\\\": 0.7622, \\\"train_loss\\\": 0.6148, \\\"eval_entropy\\\": 0.6724, \\\"mean_token_accuracy\\\": 0.8291, \\\"total_steps\\\": 510, \\\"epochs\\\": 3, \\\"training_hours\\\": 1.99}}, \\\"mvp2_eval_rsft_s43\\\": {}, \\\"mvp2_rsft_train_r1\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.0483, \\\"num_preds\\\": 848, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"failure_mode\\\": \\\"relation_ontology_collapse_to_freetext\\\", \\\"epoch1_eval_loss\\\": 0.756, \\\"epoch2_eval_loss\\\": 0.759}}, \\\"mvp2_rsft_ced_scoring\\\": {\\\"metrics\\\": {\\\"input_generations\\\": 21952, \\\"selected_samples\\\": 2718, \\\"unique_docs\\\": 2691, \\\"selection_rate\\\": 0.124, \\\"mean_f1\\\": 0.6157, \\\"mean_ced\\\": 0.6683, \\\"f1_range\\\": [0.1026, 1], \\\"zero_f1_samples\\\": 0, \\\"selection_strategy\\\": \\\"top_k=1\\\", \\\"f1_threshold\\\": 0.1}}, \\\"mvp2_rsft_gen_s0\\\": {}, \\\"mvp2_rsft_gen_s3\\\": {\\\"metrics\\\": {\\\"generation_count\\\": 5288, \\\"unique_docs\\\": 659, \\\"format_compliance\\\": 0.998, \\\"diversity_range\\\": \\\"7.5-7.8/8\\\", \\\"exit_code\\\": 0}}, \\\"mvp2_rsft_gen_s2\\\": {}, \\\"mvp2_rsft_gen_s1\\\": {}, \\\"mvp2_rsft_generate\\\": {}, \\\"mvp2_diversity_probe\\\": {\\\"metrics\\\": {\\\"unique_triples_t07\\\": 5, \\\"unique_triples_t10\\\": 8, \\\"jaccard_t07\\\": 0.17, \\\"jaccard_t10\\\": 0.051, \\\"format_ok_rate_t07\\\": 0.5, \\\"format_ok_rate_t10\\\": 0.438, \\\"n_samples\\\": 3, \\\"n_generations\\\": 8, \\\"note\\\": \\\"unique_triples_t07 corrected from 7 to 5.0 (mean). Reviewer: format_ok ~34% after fix, 'diversity' was JSON key name variants not semantic diversity\\\"}}, \\\"mvp2_eval_lr5e6_r1_ckpt100\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.0138, \\\"rel_precision\\\": 0.0132, \\\"rel_recall\\\": 0.0144, \\\"ign_f1\\\": 0.0138, \\\"evi_f1\\\": 0.8504, \\\"evi_precision\\\": 0.9256, \\\"evi_recall\\\": 0.7866, \\\"edcr\\\": 0.9876, \\\"format_ok_rate\\\": 0.999, \\\"field_compliance_rate\\\": 0.8162, \\\"evidence_format_rate\\\": 0.8162, \\\"tp\\\": 175, \\\"pred_count\\\": 13300, \\\"gold_count\\\": 12151, \\\"n_predictions\\\": 15498, \\\"n_truncated\\\": 181, \\\"n_documents\\\": 985, \\\"n_parseable\\\": 984, \\\"inference_time_seconds\\\": 5901.7}}, \\\"mvp2_grpo_ced_lr5e6_r1\\\": {}, \\\"mvp2_eval_lr5e6_r1_ckpt80\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.0116, \\\"ign_f1\\\": 0.0116, \\\"precision\\\": 0.0109, \\\"recall\\\": 0.0124, \\\"evi_f1\\\": 0.828, \\\"evi_precision\\\": 0.928, \\\"evi_recall\\\": 0.748, \\\"edcr\\\": 0.993, \\\"format_ok_rate\\\": 0.999, \\\"field_compliance_rate\\\": 0.788, \\\"pred_count\\\": 13828, \\\"gold_count\\\": 12151, \\\"n_truncated\\\": 210, \\\"inference_time_seconds\\\": 6099}}, \\\"mvp2_eval_lr5e6_r1_ckpt60_r2\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.0093, \\\"precision\\\": 0.0085, \\\"recall\\\": 0.0103, \\\"evi_f1\\\": 0.81, \\\"edcr\\\": 0.993, \\\"format_ok_rate\\\": 0.998, \\\"pred_count\\\": 14626, \\\"gold_count\\\": 12151, \\\"tp\\\": 125, \\\"inference_time_seconds\\\": 6152}}, \\\"mvp2_eval_lr5e6_r1_ckpt60\\\": {}, \\\"mvp2_eval_lr5e6_r1_ckpt40_r2\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.0071, \\\"precision\\\": 0.0066, \\\"recall\\\": 0.0078, \\\"evi_f1\\\": 0.7584, \\\"evi_precision\\\": 0.9113, \\\"evi_recall\\\": 0.6494, \\\"edcr\\\": 0.9942, \\\"format_ok_rate\\\": 0.9939, \\\"field_compliance_rate\\\": 0.5675, \\\"pred_count\\\": 14434, \\\"gold_count\\\": 12151, \\\"tp\\\": 95, \\\"n_truncated\\\": 424, \\\"inference_time_seconds\\\": 6152}}, \\\"mvp2_eval_lr5e6_r1_ckpt20\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.0077, \\\"rel_precision\\\": 0.0071, \\\"rel_recall\\\": 0.0084, \\\"evi_f1\\\": 0.628, \\\"evi_precision\\\": 0.855, \\\"evi_recall\\\": 0.496, \\\"edcr\\\": 0.993, \\\"format_ok_rate\\\": 0.991, \\\"field_compliance_rate\\\": 0.399, \\\"pred_count\\\": 14440, \\\"gold_count\\\": 12151, \\\"tp\\\": 102, \\\"n_truncated\\\": 587, \\\"inference_time_seconds\\\": 6370.4}}, \\\"mvp2_eval_lr5e6_rp_r2_ckpt20\\\": {}, \\\"mvp2_eval_lr5e6_r1_ckpt40\\\": {}, \\\"mvp2_grpo_ced_lr5e6_rp_r2\\\": {}, \\\"mvp2_eval_ced_kl001_r4_multi\\\": {\\\"metrics\\\": {\\\"checkpoint-10\\\": {\\\"f1\\\": 0.003, \\\"ign_f1\\\": 0.003, \\\"evi_f1\\\": 0.72, \\\"edcr\\\": 0.9983, \\\"format_ok_rate\\\": 0.999}, \\\"checkpoint-20\\\": {\\\"f1\\\": 0.0088, \\\"ign_f1\\\": 0.0088, \\\"evi_f1\\\": 0.423, \\\"edcr\\\": 0.9954, \\\"format_ok_rate\\\": 0.999}, \\\"checkpoint-30\\\": {\\\"f1\\\": 0.0338, \\\"ign_f1\\\": 0.0338, \\\"evi_f1\\\": 0.5889, \\\"edcr\\\": 0.9798, \\\"format_ok_rate\\\": 1}, \\\"checkpoint-50\\\": {\\\"f1\\\": 0.1563, \\\"ign_f1\\\": 0.1563, \\\"evi_f1\\\": 0.5643, \\\"edcr\\\": 0.8858, \\\"format_ok_rate\\\": 0.999}, \\\"checkpoint-60\\\": {\\\"f1\\\": 0.1467, \\\"ign_f1\\\": 0.1467, \\\"evi_f1\\\": 0.5763, \\\"edcr\\\": 0.9062, \\\"format_ok_rate\\\": 1}, \\\"checkpoint-90\\\": {\\\"f1\\\": 0.2108, \\\"ign_f1\\\": 0.2108, \\\"evi_f1\\\": 0.5666, \\\"edcr\\\": 0.8584, \\\"format_ok_rate\\\": 1}}}, \\\"mvp2_grpo_ced_lr5e6_rp_r1\\\": {}, \\\"mvp2_grpo_ced_lr5e6_p1_r1\\\": {}, \\\"mvp2_eval_ced_kl001_r4_step90\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.2108, \\\"ign_f1\\\": 0.2108, \\\"evi_f1\\\": 0.5666, \\\"edcr\\\": 0.8584, \\\"pred_count\\\": 11160, \\\"n_truncated\\\": 22, \\\"format_ok_rate\\\": 1, \\\"n_documents\\\": 985}}, \\\"mvp2_eval_ced_kl001_r4_ckpt7080\\\": {}, \\\"mvp2_eval_ced_kl001_r4_high\\\": {\\\"metrics\\\": {\\\"checkpoint_60\\\": {\\\"rel_f1\\\": 0.1467, \\\"ign_f1\\\": 0.1467, \\\"precision\\\": 0.1909, \\\"recall\\\": 0.1192, \\\"evi_f1\\\": 0.5763, \\\"edcr\\\": 0.9062, \\\"pred_count\\\": 10041, \\\"gold_count\\\": 12151, \\\"n_truncated\\\": 16, \\\"format_ok_rate\\\": 1}, \\\"note\\\": \\\"Only ckpt-60 completed. Process died during ckpt-70 inference at 8% (5/62 batch). ckpt-80/90 never started.\\\"}}, \\\"mvp2_eval_ced_kl001_r4_step100\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.2167, \\\"ign_f1\\\": 0.2167, \\\"precision\\\": 0.2849, \\\"recall\\\": 0.1749, \\\"evi_f1\\\": 0.5746, \\\"evi_precision\\\": 0.5244, \\\"evi_recall\\\": 0.6353, \\\"edcr\\\": 0.8539, \\\"pred_count\\\": 7460, \\\"gold_count\\\": 12151, \\\"tp\\\": 2125, \\\"n_truncated\\\": 21, \\\"format_ok_rate\\\": 1}}, \\\"mvp2_eval_ced_kl001_r4_ckpt90\\\": {}, \\\"mvp2_eval_ced_kl001_r4_ckpt10\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.00296, \\\"rel_precision\\\": 0.00314, \\\"rel_recall\\\": 0.0028, \\\"evi_f1\\\": 0.72, \\\"evi_precision\\\": 0.6429, \\\"evi_recall\\\": 0.8182, \\\"edcr\\\": 0.9983, \\\"n_parseable\\\": 984, \\\"n_truncated\\\": 24, \\\"n_predictions\\\": 11621, \\\"tp\\\": 34, \\\"pred_count\\\": 10839, \\\"gold_count\\\": 12151, \\\"inference_time_seconds\\\": 5211.4}}, \\\"mvp2_eval_ced_kl001_r4_early\\\": {\\\"metrics\\\": {\\\"f1\\\": 0.1563, \\\"ign_f1\\\": 0.1563, \\\"evi_f1\\\": 0.5643, \\\"edcr\\\": 0.8858, \\\"precision\\\": 0.2356, \\\"recall\\\": 0.1169, \\\"evi_precision\\\": 0.4864, \\\"evi_recall\\\": 0.6721, \\\"format_ok_rate\\\": 0.999, \\\"n_parseable\\\": 984, \\\"n_truncated\\\": 11, \\\"n_predictions\\\": 9250, \\\"tp\\\": 1421, \\\"pred_count\\\": 6032, \\\"gold_count\\\": 12151}}, \\\"mvp2_grpo_flatnli_r6\\\": {\\\"metrics\\\": {\\\"steps_completed\\\": 25, \\\"final_frac_zero_std\\\": 0.9, \\\"final_f1_reward\\\": 0, \\\"final_flat_nli_reward\\\": 0, \\\"final_format_reward\\\": 0.293, \\\"collapse_step\\\": 25}}, \\\"mvp2_grpo_ced_kl001_r4\\\": {\\\"metrics\\\": {\\\"final_step\\\": 100, \\\"train_runtime_s\\\": 9069.88, \\\"reward_final\\\": 1.195, \\\"f1_reward_final\\\": 0.573, \\\"ced_reward_final\\\": 0.328, \\\"format_reward_final\\\": 0.293, \\\"frac_zero_std_final\\\": 0.2, \\\"kl_final\\\": 0.118, \\\"loss_final\\\": -0.009, \\\"grad_norm_final\\\": 0.14, \\\"entropy_final\\\": 0.067, \\\"completion_length_mean_final\\\": 520.8, \\\"best_reward_step\\\": 90, \\\"best_reward\\\": 1.37, \\\"best_f1_reward\\\": 0.72, \\\"best_ced_reward\\\": 0.353}}, \\\"mvp2_grpo_extract_r4\\\": {}, \\\"mvp2_grpo_flatnli_r5\\\": {}, \\\"mvp2_sft_eval_r3\\\": {\\\"metrics\\\": {\\\"rel_f1\\\": 0.4057, \\\"ign_f1\\\": 0.4057, \\\"evi_f1\\\": 0.7979, \\\"edcr\\\": 0.7118, \\\"precision\\\": 0.4043, \\\"recall\\\": 0.407, \\\"evi_precision\\\": 0.8035, \\\"evi_recall\\\": 0.7924, \\\"format_ok_rate\\\": 0.998, \\\"format_compliance_rate\\\": 0.626, \\\"n_parseable\\\": 617, \\\"n_truncated\\\": 367, \\\"n_predictions\\\": 18815}}, \\\"mvp2_grpo_extract_r3\\\": {}, \\\"mvp2_grpo_flatnli_r4\\\": {}, \\\"mvp2_grpo_ced_kl001\\\": {}}, \\\"count\\\": 100, \\\"total\\\": 117, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3601}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"rsft_ced_s45_train_r3\": {}, \"rsft_ced_s45_train_r2\": {}, \"rsft_ced_s43_train_r2\": {}, \"reeval_rsft_topk3\": {\"metrics\": {\"rel_f1\": 0.4454, \"rel_precision\": 0.4512, \"rel_recall\": 0.4398, \"ign_f1\": 0.4364, \"evi_f1\": 0.8088, \"edcr\": 0.6635, \"format_ok_rate\": 0.999, \"n_truncated\": 214, \"n_predictions\": 16020, \"inference_time_seconds\": 3546.4, \"ign_f1_corrected\": true}}, \"rsft_ced_s43_train\": {}, \"rsft_ced_s45_train\": {}, \"reeval_flat_nli_s43\": {\"metrics\": {\"rel_f1\": 0.4523, \"ign_f1\": 0.4523, \"evi_f1\": 0.8158, \"edcr\": 0.6505, \"num_preds\": 15357, \"format_ok\": \"984/985\", \"truncated\": \"211/985\", \"inference_time_s\": 3515.8}}, \"plan_003_edcr_diagnostic\": {\"metrics\": {\"methods_evaluated\": 15, \"edcr_vs_rel_f1_spearman\": -0.9648, \"edcr_vs_rel_f1_pvalue\": 0.0001, \"edcr_vs_evi_f1_spearman\": 0.0022, \"edcr_vs_evi_f1_pvalue\": 0.9941, \"edcr_range\": \"0.63-0.99\", \"unique_diagnostic_value\": \"identifies pathological models (GRPO QLoRA) with high evi_f1 but catastrophically low rel_f1\"}}, \"eval_flat_nli_seed44\": {}, \"eval_plan_012_dpo_1ep_fixed_r2\": {\"metrics\": {\"rel_f1\": 0.4034, \"evi_f1\": 0.8088, \"edcr\": 0.7139, \"format_ok_rate\": 0.999, \"truncated_rate\": 0.343, \"predictions\": 19107, \"ign_f1\": 0.4034, \"precision\": 0.3809, \"recall\": 0.4287, \"vs_sft_delta\": -0.0023, \"note\": \"DPO 1ep matches SFT baseline. 1ep→3ep trajectory shows gradual decoupling (rel_f1↓ evi_f1↑), consistent with GRPO pattern. Ign-F1=F1 exact match needs investigation.\"}}, \"plan_001_flat_nli_seed44\": {\"metrics\": {\"train_loss\": 0.6247, \"eval_loss\": 0.7564, \"eval_mean_token_accuracy\": 0.8299, \"task_eval_f1_ep1\": 0.4306, \"task_eval_f1_ep2\": 0.4884, \"task_eval_f1_ep3\": 0.4897, \"task_eval_evi_f1_ep3\": 0.78, \"task_eval_edcr_ep3\": 0.6596, \"task_eval_ign_f1_ep3\": 0.4897, \"train_runtime_sec\": 6197, \"num_epochs\": 3, \"total_steps\": 507}}, \"plan_009_dynamics_figure\": {}, \"plan_001_flat_nli_seed45\": {\"metrics\": {\"task_eval_rel_f1\": 0.4876, \"task_eval_evi_f1\": 0.7927, \"task_eval_edcr\": 0.6517, \"train_loss\": 0.6245, \"runtime_hours\": 1.69, \"note\": \"task-eval on 50 docs only, full dev eval needed\"}}, \"plan_011_bf16_g8_step_eval\": {\"metrics\": {\"step_30\": {\"rel_f1\": 0.434, \"evi_f1\": 0.8063, \"edcr\": 0.6807}, \"step_50\": {\"rel_f1\": 0.4276, \"evi_f1\": 0.8024, \"edcr\": 0.6855}, \"step_70\": {\"rel_f1\": 0.4341, \"evi_f1\": 0.8099, \"edcr\": 0.6685}, \"best_step\": \"step_70\", \"trend\": \"non-monotonic, all < ckpt-100 (0.4549)\"}}, \"plan_011_eval_g8_bf16_ckpt100\": {}, \"mvp2_eval_rsft_s44\": {}, \"eval_plan_008_topk3_fixed\": {}, \"eval_plan_012_dpo_1ep_fixed\": {}, \"eval_plan_008_rsft_topk3\": {\"metrics\": {\"note\": \"INVALID — missing --sft_adapter, killed by Director instruction\"}}, \"plan_012_dpo_ced\": {\"metrics\": {\"rel_f1\": 0.3429, \"evi_f1\": 0.8403, \"edcr\": 0.7294, \"format_ok_rate\": 0.995, \"checkpoint\": \"checkpoint-501\", \"rewards_accuracy\": 1, \"margins\": 9.01}}, \"plan_012_dpo_ced_1ep\": {\"metrics\": {\"rel_f1\": 0.0022, \"evi_f1\": 0.75, \"edcr\": 0.9982, \"format_ok\": \"981/985\", \"truncated\": \"358/985\", \"tp\": 34, \"n_preds\": 19265, \"inference_time_s\": 3643, \"train_loss_final\": 0.59, \"rewards_accuracy\": 0.82, \"rewards_margins\": 0.86, \"total_steps\": 167, \"training_time_min\": 33}}, \"eval_plan_001_flat_nli_s43\": {\"metrics\": {\"rel_f1\": 0.0022, \"ign_f1\": 0.0022, \"evi_f1\": 0.8533, \"edcr\": 0.9982, \"num_preds\": 17285, \"format_ok\": \"981/985\", \"truncated\": \"251/985\", \"tp\": 32, \"note\": \"INVALID — missing --sft_adapter, same bug as DPO 1ep eval\"}}, \"eval_plan_012_dpo_ced_1ep\": {\"metrics\": {\"rel_f1\": 0.0022, \"ign_f1\": 0.0022, \"evi_f1\": 0.75, \"edcr\": 0.9982, \"num_preds\": 19265, \"format_ok\": \"981/985\", \"truncated\": \"358/985\", \"tp\": 34, \"inference_time_s\": 3643}}, \"plan_008_rsft_topk3\": {\"metrics\": {\"train_loss\": 0.5543, \"eval_loss\": 0.8297, \"eval_mean_token_accuracy\": 0.8228, \"eval_entropy\": 0.6001, \"train_runtime_sec\": 10916, \"total_steps\": 1509, \"epochs\": 3, \"trainable_params_pct\": 3.18, \"rsft_samples\": 8037, \"ced_score_mean\": 0.621, \"task_eval_f1_ep1\": 0.4848, \"task_eval_f1_ep2\": 0.4824, \"task_eval_f1_ep3\": 0.5012, \"task_eval_evi_f1_ep1\": 0.745, \"task_eval_evi_f1_ep2\": 0.6997, \"task_eval_evi_f1_ep3\": 0.6816, \"task_eval_edcr_ep1\": 0.6525, \"task_eval_edcr_ep2\": 0.6529, \"task_eval_edcr_ep3\": 0.5963, \"task_eval_note\": \"50-doc subset, not full dev\"}}, \"plan_001_flat_nli_seed43\": {\"metrics\": {\"train_loss_final\": 0.6257, \"train_loss_min\": 0.5895, \"eval_loss_epoch3\": 0.7567, \"eval_accuracy_epoch3\": 0.8298, \"total_steps\": 507, \"epochs\": 3, \"train_runtime_seconds\": 6880, \"task_eval_f1_ep1\": 0.4825, \"task_eval_f1_ep2\": 0.4542, \"task_eval_f1_ep3\": 0.4866, \"task_eval_evi_f1_ep3\": 0.7834, \"task_eval_edcr_ep3\": 0.6402, \"task_eval_note\": \"50-doc subset, not full dev\"}}, \"plan_009_flatnli_reward_eval_r2\": {}, \"plan_009_extract_reward_eval\": {}, \"eval_sft_baseline_noquant\": {\"metrics\": {\"rel_f1\": 0.4106, \"rel_precision\": 0.4198, \"rel_recall\": 0.4019, \"evi_f1\": 0.8013, \"evi_precision\": 0.8005, \"evi_recall\": 0.8022, \"evi_f1_joint\": 0.3216, \"edcr\": 0.7039, \"format_ok_rate\": 0.998, \"field_compliance_rate\": 0.7066, \"n_predictions\": 16774, \"n_truncated\": 288, \"n_documents\": 985, \"inference_time_seconds\": 3677.9}}, \"plan_009_flatnli_reward_eval\": {}, \"eval_plan_012_dpo_ced_ckpt400\": {}, \"plan_009_forgetting_figure\": {}, \"eval_plan_014_sft_no_evidence\": {\"metrics\": {\"rel_f1\": 0.4893, \"rel_ign_f1\": 0.4893, \"rel_precision\": 0.4884, \"rel_recall\": 0.4902, \"evi_f1\": 0, \"evi_precision\": 0, \"evi_recall\": 0, \"edcr\": 0, \"format_ok_rate\": 0.9919, \"n_truncated\": 298, \"n_predictions\": 21064, \"n_documents\": 985, \"n_parseable\": 977, \"inference_time_seconds\": 4103.8}}, \"plan_014_sft_no_evidence\": {\"metrics\": {\"train_loss\": 0.7077, \"eval_loss\": 0.8781, \"eval_token_accuracy\": 0.8086, \"epochs\": 3, \"total_steps\": 570, \"train_runtime_min\": 64, \"samples\": 3027, \"trainable_params\": \"132M/4.15B (3.18%)\"}}, \"plan_002_test_eval_s44\": {}, \"plan_001_rsft_flat_nli\": {\"metrics\": {\"train_loss\": 0.6238, \"train_loss_min\": 0.5803, \"mean_token_accuracy\": 0.8528, \"train_runtime_sec\": 2946, \"epochs\": 3, \"total_steps\": 507, \"samples\": 2691}}, \"eval_plan_001_flat_nli\": {\"metrics\": {\"rel_f1\": 0.4539, \"ign_f1\": 0.4539, \"evi_f1\": 0.8043, \"edcr\": 0.6431, \"precision\": 0.4671, \"recall\": 0.4414, \"evi_precision\": 0.8143, \"evi_recall\": 0.7945, \"format_ok_rate\": 1, \"n_truncated\": 199, \"n_documents\": 985, \"n_predictions\": 15294, \"inference_time_seconds\": 3631}}, \"eval_grpo_g8_bf16\": {\"metrics\": {\"ckpt80_rel_f1\": 0.4456, \"ckpt80_ign_f1\": 0.4456, \"ckpt80_evi_f1\": 0.8034, \"ckpt80_edcr\": 0.6409, \"ckpt80_format_ok\": \"984/985\", \"ckpt80_truncated\": 50, \"ckpt90_rel_f1\": 0.4523, \"ckpt90_ign_f1\": 0.4523, \"ckpt90_evi_f1\": 0.8052, \"ckpt90_edcr\": 0.6414, \"ckpt90_format_ok\": \"983/985\", \"ckpt90_truncated\": 61, \"ckpt100_rel_f1\": 0.4549, \"ckpt100_ign_f1\": 0.4549, \"ckpt100_evi_f1\": 0.8086, \"ckpt100_edcr\": 0.6318, \"ckpt100_format_ok\": \"985/985\", \"ckpt100_truncated\": 61, \"best_checkpoint\": \"ckpt-100\"}}, \"plan_015_grpo_g4_bf16_v3\": {}, \"plan_015_grpo_g4_bf16_v2\": {}, \"plan_015_grpo_g4_bf16\": {}, \"plan_011_grpo_g8_bf16\": {\"metrics\": {\"final_step\": 100, \"train_runtime_s\": 554, \"reward_final\": 1.795, \"f1_reward_final\": 1.002, \"ced_reward_final\": 0.494, \"format_reward_final\": 0.3, \"frac_zero_std_final\": 0, \"kl_final\": 0.022, \"best_reward_step\": 85, \"best_reward\": 2.858, \"best_f1_reward\": 1.85, \"mode_collapse\": false, \"lora_config\": \"r=64, alpha=128, dropout=0.05, bf16\", \"checkpoints\": \"10 checkpoints (step 10-100)\"}}, \"plan_011_grpo_g8_bf16_eval\": {\"metrics\": {\"rel_f1\": 0.4549, \"ign_f1\": 0.4549, \"evi_f1\": 0.8086, \"edcr\": 0.6318, \"format_ok_rate\": 1, \"n_truncated\": 61, \"n_total\": 985, \"n_predictions\": 10701, \"checkpoint\": \"checkpoint-100\", \"model\": \"Qwen3-4B + SFT merged + GRPO bf16 LoRA ckpt-100\", \"inference_time_s\": 3170.3}}, \"plan_004_dreeam_baseline\": {\"metrics\": {\"dev_rel_f1\": 63.57, \"dev_rel_ign_f1\": 61.72, \"dev_evi_f1\": 54.01, \"dev_rel_p\": 66.95, \"dev_rel_r\": 60.51, \"dev_evi_p\": 60.53, \"dev_evi_r\": 48.76}}, \"mvp2_eval_rsft_r2b_maxtok1536_r2\": {\"metrics\": {\"rel_f1\": 0.4504, \"ign_f1\": 0.4504, \"evi_f1\": 0.8102, \"edcr\": 0.674, \"precision\": 0.4488, \"recall\": 0.4519, \"evi_precision\": 0.8162, \"evi_recall\": 0.8044, \"n_truncated\": 146, \"n_total\": 985, \"n_predictions\": 17188, \"n_distractor_citations\": 19589, \"n_total_citations\": 29063, \"format_ok_rate\": 0.998}}, \"plan_001_flat_nli_scoring\": {\"metrics\": {\"total_scored\": 21728, \"selected_samples\": 2691, \"selection_rate\": 0.124, \"selection_strategy\": \"top_k=1\", \"f1_threshold\": 0.1, \"output_path\": \"/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl\"}}, \"mvp2_ced_reranker_poc\": {\"metrics\": {\"ced_reranker_rel_f1\": 0.4864, \"ced_reranker_evi_f1\": 0.8188, \"ced_reranker_edcr\": 0.6156, \"ced_reranker_precision\": 0.4913, \"ced_reranker_recall\": 0.4815, \"ced_reranker_pred_count\": 14782, \"ced_reranker_format_ok_rate\": 1, \"oracle_rel_f1\": 0.6237, \"oracle_evi_f1\": 0.7942, \"oracle_edcr\": 0.5262, \"oracle_pred_count\": 13418, \"random_rel_f1\": 0.4538, \"random_evi_f1\": 0.8029, \"random_edcr\": 0.6763, \"ced_f1_spearman_r\": 0.3235, \"ced_f1_spearman_p\": 2.46e-191, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"sft_baseline_edcr\": 0.7118, \"rsft_mean_rel_f1\": 0.4596, \"delta_vs_sft_rel_f1\": 0.0807, \"delta_vs_rsft_rel_f1\": 0.0268, \"delta_vs_sft_evi_f1\": 0.0209, \"oracle_ceiling_rel_f1\": 0.218, \"num_generations\": 8, \"temperature\": 0.7, \"generation_time_s\": 20872.6, \"n_docs\": 985}}, \"mvp2_eval_rsft_s43_r2\": {\"metrics\": {\"rel_f1\": 0.4683, \"ign_f1\": 0.4683, \"evi_f1\": 0.8156, \"evi_f1_joint\": 0.3711, \"evi_f1_joint_P\": 0.3747, \"evi_f1_joint_R\": 0.3675, \"edcr\": 0.6388, \"precision\": 0.4817, \"recall\": 0.4556, \"evi_precision\": 0.8142, \"evi_recall\": 0.817, \"n_predictions\": 14970, \"n_truncated\": 171, \"format_ok_rate\": 1, \"inference_time_s\": 6316.7, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0626, \"delta_evi_f1\": 0.0177, \"delta_evi_f1_joint\": 0.0594, \"mvp2_pass\": true}}, \"mvp2_rsft_ced_scoring_topk3_r2\": {\"metrics\": {\"input_generations\": 21728, \"selected_samples\": 8037, \"unique_docs\": 2691, \"selection_rate\": 0.37, \"mean_f1\": 0.5761, \"mean_ced\": 0.6205, \"mean_combined\": 0.6787, \"f1_range_p25\": 0.444, \"f1_range_p75\": 0.717, \"ced_range_p25\": 0.487, \"ced_range_p75\": 0.774, \"truncated_samples\": 1924, \"truncated_pct\": 8.9, \"selection_strategy\": \"top_k=3\", \"f1_threshold\": 0.1, \"topk1_samples\": 2718, \"data_multiplier\": 2.96}}, \"mvp2_rsft_train_r1_s44\": {\"metrics\": {\"rel_f1\": 0.4655, \"evi_f1\": 0.8087, \"evi_f1_joint\": 0.3713, \"evi_f1_joint_P\": 0.3775, \"evi_f1_joint_R\": 0.3653, \"edcr\": 0.635, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0598, \"delta_evi_f1\": 0.0108, \"delta_evi_f1_joint\": 0.0596, \"mvp2_pass\": true}}, \"mvp2_eval_rsft_r2b\": {\"metrics\": {\"rel_f1\": 0.4493, \"ign_f1\": 0.4493, \"evi_f1\": 0.8128, \"evi_f1_joint\": 0.349, \"evi_f1_joint_P\": 0.3455, \"evi_f1_joint_R\": 0.3526, \"edcr\": 0.6609, \"precision\": 0.4566, \"recall\": 0.4424, \"evi_precision\": 0.8201, \"evi_recall\": 0.8056, \"pred_count\": 14829, \"format_ok\": \"983/985\", \"truncated\": 179, \"inference_time_s\": 5862, \"delta_evi_f1_joint\": 0.0373}}, \"mvp2_eval_rsft_r2a\": {\"metrics\": {\"rel_f1\": 0.4494, \"ign_f1\": 0.4494, \"evi_f1\": 0.8108, \"evi_f1_joint\": 0.3509, \"evi_f1_joint_P\": 0.3423, \"evi_f1_joint_R\": 0.3599, \"edcr\": 0.6641, \"precision\": 0.4512, \"recall\": 0.4475, \"evi_precision\": 0.8143, \"evi_recall\": 0.8073, \"format_ok_rate\": 1, \"n_predictions\": 15482, \"n_truncated\": 208, \"inference_time_s\": 5967.2, \"delta_evi_f1_joint\": 0.0392}}, \"mvp2_eval_rsft_r1\": {\"metrics\": {\"rel_f1\": 0.4449, \"evi_f1\": 0.8187, \"evi_f1_joint\": 0.3468, \"evi_f1_joint_P\": 0.3515, \"evi_f1_joint_R\": 0.3423, \"edcr\": 0.6565, \"num_preds\": 15307, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0392, \"delta_evi_f1\": 0.0208, \"delta_evi_f1_joint\": 0.0351, \"mvp2_pass\": true}}, \"mvp2_eval_sft_baseline\": {\"metrics\": {\"rel_f1\": 0.4057, \"evi_f1\": 0.7979, \"evi_f1_joint\": 0.3117, \"evi_f1_joint_P\": 0.3037, \"evi_f1_joint_R\": 0.32, \"edcr\": 0.7118, \"pred_count\": 12234, \"gold_count\": 12151, \"format_ok_rate\": 0.998, \"format_compliance_rate\": 0.998, \"field_compliance_rate\": 0.6264, \"n_truncated\": 367, \"inference_time_seconds\": 6138.5}}, \"mvp2_eval_rsft_r2b_maxtok1536\": {}, \"mvp2_rsft_ced_scoring_topk3\": {}, \"mvp2_rsft_r2b\": {\"metrics\": {\"rel_f1\": 0.4493, \"evi_f1\": 0.8128, \"edcr\": 0.6609, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0436, \"delta_evi_f1\": 0.0149, \"mvp2_pass\": true}}, \"mvp2_rsft_r2a\": {\"metrics\": {\"rel_f1\": 0.4494, \"evi_f1\": 0.8108, \"edcr\": 0.6641, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0437, \"delta_evi_f1\": 0.0129, \"mvp2_pass\": true}}, \"mvp2_rsft_diagnosis\": {\"metrics\": {\"root_cause\": \"overfitting_plus_sft_knowledge_overwrite\", \"truncated_json_samples\": 170, \"truncated_pct\": 6.3, \"epoch1_eval_loss\": 0.756, \"epoch2_eval_loss\": 0.759, \"lora_scaling\": 2, \"rsft_zero_relation_samples\": 170, \"sft_zero_relation_docs\": 26, \"rsft_mean_relations\": 11.2, \"sft_mean_relations\": 12.5}}, \"mvp2_eval_ced_kl001_r4_last\": {}, \"mvp2_grpo_ced_kl001_r3\": {}, \"mvp2_grpo_ced_kl001_r2\": {}, \"mvp2_rsft_train_r2_fix\": {}, \"mvp2_rsft_train_r1_s43\": {\"metrics\": {\"eval_loss\": 0.7622, \"train_loss\": 0.6148, \"eval_entropy\": 0.6724, \"mean_token_accuracy\": 0.8291, \"total_steps\": 510, \"epochs\": 3, \"training_hours\": 1.99}}, \"mvp2_eval_rsft_s43\": {}, \"mvp2_rsft_train_r1\": {\"metrics\": {\"rel_f1\": 0.0483, \"num_preds\": 848, \"sft_baseline_rel_f1\": 0.4057, \"failure_mode\": \"relation_ontology_collapse_to_freetext\", \"epoch1_eval_loss\": 0.756, \"epoch2_eval_loss\": 0.759}}, \"mvp2_rsft_ced_scoring\": {\"metrics\": {\"input_generations\": 21952, \"selected_samples\": 2718, \"unique_docs\": 2691, \"selection_rate\": 0.124, \"mean_f1\": 0.6157, \"mean_ced\": 0.6683, \"f1_range\": [0.1026, 1], \"zero_f1_samples\": 0, \"selection_strategy\": \"top_k=1\", \"f1_threshold\": 0.1}}, \"mvp2_rsft_gen_s0\": {}, \"mvp2_rsft_gen_s3\": {\"metrics\": {\"generation_count\": 5288, \"unique_docs\": 659, \"format_compliance\": 0.998, \"diversity_range\": \"7.5-7.8/8\", \"exit_code\": 0}}, \"mvp2_rsft_gen_s2\": {}, \"mvp2_rsft_gen_s1\": {}, \"mvp2_rsft_generate\": {}, \"mvp2_diversity_probe\": {\"metrics\": {\"unique_triples_t07\": 5, \"unique_triples_t10\": 8, \"jaccard_t07\": 0.17, \"jaccard_t10\": 0.051, \"format_ok_rate_t07\": 0.5, \"format_ok_rate_t10\": 0.438, \"n_samples\": 3, \"n_generations\": 8, \"note\": \"unique_triples_t07 corrected from 7 to 5.0 (mean). Reviewer: format_ok ~34% after fix, 'diversity' was JSON key name variants not semantic diversity\"}}, \"mvp2_eval_lr5e6_r1_ckpt100\": {\"metrics\": {\"rel_f1\": 0.0138, \"rel_precision\": 0.0132, \"rel_recall\": 0.0144, \"ign_f1\": 0.0138, \"evi_f1\": 0.8504, \"evi_precision\": 0.9256, \"evi_recall\": 0.7866, \"edcr\": 0.9876, \"format_ok_rate\": 0.999, \"field_compliance_rate\": 0.8162, \"evidence_format_rate\": 0.8162, \"tp\": 175, \"pred_count\": 13300, \"gold_count\": 12151, \"n_predictions\": 15498, \"n_truncated\": 181, \"n_documents\": 985, \"n_parseable\": 984, \"inference_time_seconds\": 5901.7}}, \"mvp2_grpo_ced_lr5e6_r1\": {}, \"mvp2_eval_lr5e6_r1_ckpt80\": {\"metrics\": {\"rel_f1\": 0.0116, \"ign_f1\": 0.0116, \"precision\": 0.0109, \"recall\": 0.0124, \"evi_f1\": 0.828, \"evi_precision\": 0.928, \"evi_recall\": 0.748, \"edcr\": 0.993, \"format_ok_rate\": 0.999, \"field_compliance_rate\": 0.788, \"pred_count\": 13828, \"gold_count\": 12151, \"n_truncated\": 210, \"inference_time_seconds\": 6099}}, \"mvp2_eval_lr5e6_r1_ckpt60_r2\": {\"metrics\": {\"rel_f1\": 0.0093, \"precision\": 0.0085, \"recall\": 0.0103, \"evi_f1\": 0.81, \"edcr\": 0.993, \"format_ok_rate\": 0.998, \"pred_count\": 14626, \"gold_count\": 12151, \"tp\": 125, \"inference_time_seconds\": 6152}}, \"mvp2_eval_lr5e6_r1_ckpt60\": {}, \"mvp2_eval_lr5e6_r1_ckpt40_r2\": {\"metrics\": {\"rel_f1\": 0.0071, \"precision\": 0.0066, \"recall\": 0.0078, \"evi_f1\": 0.7584, \"evi_precision\": 0.9113, \"evi_recall\": 0.6494, \"edcr\": 0.9942, \"format_ok_rate\": 0.9939, \"field_compliance_rate\": 0.5675, \"pred_count\": 14434, \"gold_count\": 12151, \"tp\": 95, \"n_truncated\": 424, \"inference_time_seconds\": 6152}}, \"mvp2_eval_lr5e6_r1_ckpt20\": {\"metrics\": {\"rel_f1\": 0.0077, \"rel_precision\": 0.0071, \"rel_recall\": 0.0084, \"evi_f1\": 0.628, \"evi_precision\": 0.855, \"evi_recall\": 0.496, \"edcr\": 0.993, \"format_ok_rate\": 0.991, \"field_compliance_rate\": 0.399, \"pred_count\": 14440, \"gold_count\": 12151, \"tp\": 102, \"n_truncated\": 587, \"inference_time_seconds\": 6370.4}}, \"mvp2_eval_lr5e6_rp_r2_ckpt20\": {}, \"mvp2_eval_lr5e6_r1_ckpt40\": {}, \"mvp2_grpo_ced_lr5e6_rp_r2\": {}, \"mvp2_eval_ced_kl001_r4_multi\": {\"metrics\": {\"checkpoint-10\": {\"f1\": 0.003, \"ign_f1\": 0.003, \"evi_f1\": 0.72, \"edcr\": 0.9983, \"format_ok_rate\": 0.999}, \"checkpoint-20\": {\"f1\": 0.0088, \"ign_f1\": 0.0088, \"evi_f1\": 0.423, \"edcr\": 0.9954, \"format_ok_rate\": 0.999}, \"checkpoint-30\": {\"f1\": 0.0338, \"ign_f1\": 0.0338, \"evi_f1\": 0.5889, \"edcr\": 0.9798, \"format_ok_rate\": 1}, \"checkpoint-50\": {\"f1\": 0.1563, \"ign_f1\": 0.1563, \"evi_f1\": 0.5643, \"edcr\": 0.8858, \"format_ok_rate\": 0.999}, \"checkpoint-60\": {\"f1\": 0.1467, \"ign_f1\": 0.1467, \"evi_f1\": 0.5763, \"edcr\": 0.9062, \"format_ok_rate\": 1}, \"checkpoint-90\": {\"f1\": 0.2108, \"ign_f1\": 0.2108, \"evi_f1\": 0.5666, \"edcr\": 0.8584, \"format_ok_rate\": 1}}}, \"mvp2_grpo_ced_lr5e6_rp_r1\": {}, \"mvp2_grpo_ced_lr5e6_p1_r1\": {}, \"mvp2_eval_ced_kl001_r4_step90\": {\"metrics\": {\"rel_f1\": 0.2108, \"ign_f1\": 0.2108, \"evi_f1\": 0.5666, \"edcr\": 0.8584, \"pred_count\": 11160, \"n_truncated\": 22, \"format_ok_rate\": 1, \"n_documents\": 985}}, \"mvp2_eval_ced_kl001_r4_ckpt7080\": {}, \"mvp2_eval_ced_kl001_r4_high\": {\"metrics\": {\"checkpoint_60\": {\"rel_f1\": 0.1467, \"ign_f1\": 0.1467, \"precision\": 0.1909, \"recall\": 0.1192, \"evi_f1\": 0.5763, \"edcr\": 0.9062, \"pred_count\": 10041, \"gold_count\": 12151, \"n_truncated\": 16, \"format_ok_rate\": 1}, \"note\": \"Only ckpt-60 completed. Process died during ckpt-70 inference at 8% (5/62 batch). ckpt-80/90 never started.\"}}, \"mvp2_eval_ced_kl001_r4_step100\": {\"metrics\": {\"rel_f1\": 0.2167, \"ign_f1\": 0.2167, \"precision\": 0.2849, \"recall\": 0.1749, \"evi_f1\": 0.5746, \"evi_precision\": 0.5244, \"evi_recall\": 0.6353, \"edcr\": 0.8539, \"pred_count\": 7460, \"gold_count\": 12151, \"tp\": 2125, \"n_truncated\": 21, \"format_ok_rate\": 1}}, \"mvp2_eval_ced_kl001_r4_ckpt90\": {}, \"mvp2_eval_ced_kl001_r4_ckpt10\": {\"metrics\": {\"rel_f1\": 0.00296, \"rel_precision\": 0.00314, \"rel_recall\": 0.0028, \"evi_f1\": 0.72, \"evi_precision\": 0.6429, \"evi_recall\": 0.8182, \"edcr\": 0.9983, \"n_parseable\": 984, \"n_truncated\": 24, \"n_predictions\": 11621, \"tp\": 34, \"pred_count\": 10839, \"gold_count\": 12151, \"inference_time_seconds\": 5211.4}}, \"mvp2_eval_ced_kl001_r4_early\": {\"metrics\": {\"f1\": 0.1563, \"ign_f1\": 0.1563, \"evi_f1\": 0.5643, \"edcr\": 0.8858, \"precision\": 0.2356, \"recall\": 0.1169, \"evi_precision\": 0.4864, \"evi_recall\": 0.6721, \"format_ok_rate\": 0.999, \"n_parseable\": 984, \"n_truncated\": 11, \"n_predictions\": 9250, \"tp\": 1421, \"pred_count\": 6032, \"gold_count\": 12151}}, \"mvp2_grpo_flatnli_r6\": {\"metrics\": {\"steps_completed\": 25, \"final_frac_zero_std\": 0.9, \"final_f1_reward\": 0, \"final_flat_nli_reward\": 0, \"final_format_reward\": 0.293, \"collapse_step\": 25}}, \"mvp2_grpo_ced_kl001_r4\": {\"metrics\": {\"final_step\": 100, \"train_runtime_s\": 9069.88, \"reward_final\": 1.195, \"f1_reward_final\": 0.573, \"ced_reward_final\": 0.328, \"format_reward_final\": 0.293, \"frac_zero_std_final\": 0.2, \"kl_final\": 0.118, \"loss_final\": -0.009, \"grad_norm_final\": 0.14, \"entropy_final\": 0.067, \"completion_length_mean_final\": 520.8, \"best_reward_step\": 90, \"best_reward\": 1.37, \"best_f1_reward\": 0.72, \"best_ced_reward\": 0.353}}, \"mvp2_grpo_extract_r4\": {}, \"mvp2_grpo_flatnli_r5\": {}, \"mvp2_sft_eval_r3\": {\"metrics\": {\"rel_f1\": 0.4057, \"ign_f1\": 0.4057, \"evi_f1\": 0.7979, \"edcr\": 0.7118, \"precision\": 0.4043, \"recall\": 0.407, \"evi_precision\": 0.8035, \"evi_recall\": 0.7924, \"format_ok_rate\": 0.998, \"format_compliance_rate\": 0.626, \"n_parseable\": 617, \"n_truncated\": 367, \"n_predictions\": 18815}}, \"mvp2_grpo_extract_r3\": {}, \"mvp2_grpo_flatnli_r4\": {}, \"mvp2_grpo_ced_kl001\": {}}, \"count\": 100, \"total\": 117, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3601}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data. Let me compile:
+
+**CED RSFT top_k=1 (3 seeds)**:
+- **s42** (mvp2_eval_rsft_r1): rel_f1=0.4449, evi_f1=0.8187, edcr=0.6565
+  - From paper_framing table: Ign-F1=43.63, F1=44.49
+- **s43** (mvp2_eval_rsft_s43_r2): rel_f1=0.4683, evi_f1=0.8156, edcr=0.6388
+  - From paper_framing table: Ign-F1=45.85, F1=46.83
+- **s44** (mvp2_rsft_train_r1_s44): rel_f1=0.4655, evi_f1=0.8087, edcr=0.6350
+  - From paper_framing table: Ign-F1=45.51, F1=46.55
+
+Now I'm calculating the mean performance across these three seeds, which gives me an Ign-F1 of 45.00 and a rel_f1 average of around 0.4662.
+
+Looking at the top_k=3 results from the CED RSFT evaluation, I see a single seed run with Ign-F1 of 43.64, and when I compare that to the mean top_k=1 performance, there's a notable drop of about 1.36 points in Ign-F1.  The rel_f1 and evi_f1 metrics also favor top_k=1 by small margins, though edcr actually improves slightly with top_k=3. What's interesting is the training data difference—top_k=1 used 2718 samples while top_k=3 expanded to 8037 samples with a 2.96x multiplier, so the larger dataset didn't translate to better performance on these metrics.
+
+Looking at the quality of the training data itself, the mean_f1 drops noticeably from 0.6157 with top_k=1 to 0.5761 with top_k=3, and mean_ced also decreases from 0.6683 to 0.6205. This confirms that including rank 2-3 responses dilutes the quality of the training signal despite the larger sample size. Now I need to figure out where this ablation fits in the paper structure—it's related to but distinct from the NLI-based scoring comparison, so I should find the right section to add this analysis. I'm realizing the top_k ablation is actually a separate dimension from the CED vs flat-NLI comparison, so it deserves its own treatment under Claim 3. The key insight is that CED scoring precision degrades when we include more responses per document, since lower-ranked ones introduce noise. I need to update the paper framing to include this, and also add a corresponding row to the MVP table with the topk3 results — the Ign-F1 score should be 43.64 based on the registry data. Looking at the performance drop from k=1 to k=3, the issue is that including lower-ranked responses degrades the CED scoring quality—the mean F1 score decreases from 0.6157 to 0.5761 as noisier samples get included. While k=3 triples the training set size from 2,718 to 8,037 samples, this quantity gain doesn't compensate for the quality loss in the data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "f47d7f46-5015-4e06-b484-39b6b3f1f9c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MMHNuCikLuPLNed23jNbPc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11375,
+      "cache_read_input_tokens": 47667,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11375
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+I have all the data. Here's what I found:
+
+- **top_k=1** (3 seeds, s42/s43/s44): mean Ign-F1=45.00, rel_f1=0.4596, evi_f1=81.43
+- **top_k=3** (reeval_rsft_topk3, 1 seed): Ign-F1=43.64, rel_f1=0.4454, evi_f1=80.88
+- Training data quality: k=1 mean_f1=0.6157 vs k=3 mean_f1=0.5761
+
+Now updating paper_framing.md.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "924c5a42-2ba4-4160-864a-95f6d0ac0566",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MMHNuCikLuPLNed23jNbPc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11375,
+      "cache_read_input_tokens": 47667,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11375
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01ANaG4K95UY2WWCqFoKWAWW`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "da1235ba-8d69-4477-aa3a-af5cee7349c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MMHNuCikLuPLNed23jNbPc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11375,
+      "cache_read_input_tokens": 47667,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11375
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T00:33:39.226Z_
+
+<details><summary>↩ Tool result · `toolu_01ANaG4K95UY2WWCqFoKWAWW`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "416c1304-f7a8-4ea9-a1d3-108a401bfa9b",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01U22FGxahMco4KquiEyzrnN`</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "paper_framing.md",
+  "content": "# Paper Framing — FREIGE\n\n> **状态**: POST-MVP + DREAM v2 完成（D047 分析）\n> **最后更新**: 2026-05-16\n> **Dream v1**: best=2.5, median=3.0, worst=2.5 → reframe 完成\n> **Dream v2**: best=3.0, median=2.5, worst=2.5 → best 提升但 median 下降，未达标。关键路径：plan_011 bf16 GRPO eval + structural fixes → re-dream v3\n\n## Target Venue\n\n- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25 → commit EMNLP Aug/Sep)\n- Fallback: AAAI 2027 (abstract July 25, paper Aug 1)\n\n## Core Insight\n\nLLM-based document-level IE 已逼近 encoder SOTA 的抽取精度，但零方法能生成可验证证据。本文提出 **evidence-grounded DocRE** 作为新任务范式：LLM 同时输出关系三元组和支撑证据句。\n\n我们系统性地探索了 online RL (GRPO) 、offline preference optimization (DPO) 和 offline RL (RSFT) 三条技术路线。关键发现：**RL optimization pressure 与 evidence-extraction decoupling severity 正相关**——优化强度越大，evidence 质量提升的同时抽取能力退化越严重。QLoRA 放大至 catastrophic（rel_f1<0.02），bf16 GRPO 从 0.4549 退化至 ~0.434（mild, -2pp），DPO 呈 gradual 退化（1ep→3ep rel_f1 从 0.4034→0.3429），RSFT 无 decoupling。\n\nCED (Contrastive Evidence Discrimination) 是一种 NLI-based 候选筛选函数，通过文档内 hard negative 对比评估 evidence 质量。CED 作为 RSFT 的 scoring function 之一进行测试，其相对于 flat-NLI 的优势需要通过充分的统计检验验证。\n\n## Story Arc\n\n1. **Problem**: LLM DocRE 无证据 → 部署障碍\n2. **New task**: evidence-grounded DocRE — 同时生成关系和证据\n3. **Cost of faithfulness**: evidence generation 代价 ~7pp Ign-F1（no-evidence 47.36 vs evidence-SFT 40.36）——这是 faithfulness 的真实成本\n4. **Exploration**: 系统性比较 online RL (GRPO) vs offline preference (DPO) vs offline RL (RSFT)\n5. **Key finding**: evidence-extraction decoupling — RL optimization pressure 与 decoupling severity 正相关，形成连续谱系（GRPO-QLoRA catastrophic > GRPO-bf16 mild > DPO gradual > RSFT none）\n6. **QLoRA amplification**: QLoRA 量化将 mild decoupling 放大至 catastrophic forgetting——decoupling 是 RL-for-IE 的通用梯度，QLoRA 是 catastrophic amplifier\n7. **What works**: RSFT with NLI-based scoring 是唯一有效路线——提升 evidence 质量而不牺牲抽取\n8. **Best practical solution**: CED reranker 恢复 97% 的 evidence 代价，同时保留高质量 evidence（evi_f1=0.8188）\n9. **Diagnostic tool**: EDCR 双层诊断——方法级量化 decoupling（与 Claim 2 呼应），per-relation 级揭示 evi_f1 不捕捉的 relation-type 难度差异（D070 ✅）\n\n## Core Claims (reframed after Dream v1, updated D068/D069/D070/D071/D072)\n\n### Claim 1 (Main): Evidence-grounded DocRE 是可行的新能力\n- FREIGE 是首个在 DocRED 上同时输出 (head, relation, tail, [evidence]) 的 LLM 方法\n- **Evidence generation tax**: no-evidence SFT Ign-F1=47.36 vs evidence-SFT 40.36，代价 ~7pp（plan_014 ✅）\n- RSFT 在 4/4 配置下均超过 SFT baseline（Ign-F1 +3.3~5.5pp）\n- **CED reranker 是最优实用方案**: rel_f1=0.4864（仅低于 no-evidence 0.29pp），evi_f1=0.8188（plan_005 ✅）\n- 需要 DREEAM-protocol 对齐的 Evi-F1 对比（D041 在处理中）\n\n### Claim 2 (Core finding): RL optimization pressure 与 evidence-extraction decoupling severity 正相关（D068/D069 修正）\n- **Decoupling spectrum**: 优化强度越大，decoupling 越严重\n  - GRPO QLoRA: catastrophic（rel_f1=0.0138, evi_f1=0.850, EDCR=0.99）— QLoRA 放大 decoupling\n  - GRPO bf16: mild（rel_f1 从 0.4549→~0.434, -2pp; step_30=0.434, step_50=0.4276, step_70=0.4341）— 退化可控但持续（D065/D066）\n  - DPO bf16 1ep→3ep: gradual（Ign-F1 38.88→TBD, rel_f1 0.4034→0.3429）— 随训练渐进退化（D067/D068）\n  - RSFT: none — 无 decoupling，唯一有效路线\n- **QLoRA 是 catastrophic amplifier，不是 root cause**: bf16 GRPO 仅 mild decoupling（-2pp），QLoRA 放大至 catastrophic（-39pp）（D054/D065/D066）\n- **Decoupling 是 RL-for-IE 的通用梯度**: 跨方法（GRPO/DPO）、跨量化策略（QLoRA/bf16）一致出现，严重程度与优化压力正相关\n- 三档 Dream 审稿均认为此发现\\\"genuinely novel and striking\\\"\n- **已完成**: GRPO G=8 bf16 确认 mild decoupling（plan_011 ✅）; DPO 1ep/3ep 确认 gradual decoupling（plan_012 ✅）\n\n### Claim 3 (Ablation): NLI-based scoring 提升 RSFT 质量\n- CED 和 flat-NLI 都优于 random/no scoring\n- CED vs flat-NLI 的差异需统计验证（Dream 报告 p=0.08/0.38/0.12 不显著）\n- **Critical**: 如果 CED 不显著优于 flat-NLI → CED 降级为\"one possible scoring function\"\n- **行动**: 5+ seeds for significance testing\n- **top_k selection ablation (k=1 vs k=3)**:\n  - k=1 (best-of-8) 优于 k=3 (top3-of-8)，CED scoring precision 随 k 增大下降\n  - k=1 均值 (3 seeds s42/s43/s44): Ign-F1=45.00, rel_f1=0.4596, evi_f1=81.43, EDCR=0.6434\n  - k=3 (1 seed, reeval_rsft_topk3): Ign-F1=43.64, rel_f1=0.4454, evi_f1=80.88, EDCR=0.6635\n  - Δ (k=3 vs k=1 mean): Ign-F1 **-1.36pp**, rel_f1 **-1.42pp**, evi_f1 **-0.55pp**, EDCR +0.02\n  - 训练数据质量下降: k=1 mean_f1=0.6157, mean_ced=0.6683 → k=3 mean_f1=0.5761, mean_ced=0.6205（来源: mvp2_rsft_ced_scoring / mvp2_rsft_ced_scoring_topk3_r2）\n  - 训练集规模: k=1 选出 2718 样本 (12.4%), k=3 选出 8037 样本 (37%), 数据量 ×2.96 但质量下降抵消数量优势\n  - **叙事**: 低排名 response 引入噪声——rank 2-3 样本的 F1 和 CED 分数均显著低于 rank 1，扩大训练集规模无法补偿数据质量的稀释。这表明 RSFT 的关键不在数据量而在 scoring precision\n  - **注**: k=3 仅 1 seed，差异方向一致但尚不具备统计显著性；作为 ablation table 中的辅助行呈现，不作为独立 claim\n\n### Claim 4 (Diagnostic): EDCR 双层诊断价值（D070/D072）\n- **Layer 1 — 方法级**: EDCR 量化 evidence-extraction decoupling，与 Claim 2 spectrum 呼应\n  - 方法级 EDCR 与 rel_f1 Spearman ρ=-0.965（plan_003 ✅）——本质是 decoupling 的度量\n  - EDCR 识别病理模型（GRPO QLoRA: EDCR≈1.0）\n- **Layer 2 — per-relation-type**: EDCR 提供 evi_f1 不捕捉的 relation-type 诊断信息 ✅\n  - per-relation ρ(EDCR, evi_f1) = **-0.064** (p=0.58) → **完全独立于 evi_f1**\n  - per-relation ρ(EDCR, rel_f1) = -0.793 (p<0.001) → 与 rel_f1 强相关但非完美\n  - per-relation ρ(evi_f1, rel_f1) = -0.013 (p=0.91) → evidence 质量与抽取能力在 relation type 间完全解耦\n  - 典型案例：date_of_birth (EDCR=0.118, 高 faithful) vs head_of_government (EDCR=0.956, 高 decoupled)\n  - 93 relation types 分析（≥5 样本），76 个有非零数据\n- **论文叙事**: EDCR 在方法级是 decoupling 度量工具（横向对比方法），在 relation 级是难度诊断工具（纵向定位薄弱 relation）——两层叙事互补\n- **仍需**: 100 例人工标注验证（RC6）\n\n## MVP Evidence Summary (D071: 主表报 Ign-F1，附录报 F1)\n\n| Config | Ign-F1 | F1 | Δ vs SFT (Ign-F1) | Evi-F1 (cond) | Evi-F1 (joint) | EDCR |\n|--------|--------|------|-------------------|---------------|---------------|------|\n| **SFT no-evidence** | **47.36** | 48.93 | **+7.00pp** | **—** | **—** | **—** |\n| SFT baseline (noquant) | 40.36 | 41.06 | — | 80.13 | 31.17 | 0.7118 |\n| **CED reranker** | **TBD** | 48.64 | **TBD** | **81.88** | — | **0.6156** |\n| RSFT CED s43 (best) | **45.85** | 46.83 | **+5.49pp** | 81.56 | 37.11 | 0.6388 |\n| RSFT CED s44 | 45.51 | 46.55 | +5.15pp | 80.87 | 37.13 | 0.6350 |\n| RSFT CED s42 | 43.63 | 44.49 | +3.27pp | 81.87 | 34.68 | 0.6565 |\n| RSFT CED k=3 | 43.64 | 44.54 | +3.28pp | 80.88 | — | 0.6635 |\n| RSFT r2a (1ep) | 44.01 | 44.94 | +3.65pp | 81.08 | 35.09 | 0.6641 |\n| RSFT r2b (1ep) | 44.10 | 44.93 | +3.74pp | 81.28 | 34.90 | 0.6609 |\n| flat-NLI s42 | 44.49 | 45.39 | +4.13pp | 80.43 | — | 0.6431 |\n| flat-NLI s43 (reeval) | TBD | 45.23 | TBD | 81.58 | — | 0.6505 |\n| DPO bf16 1ep | 38.88 | 40.34 | -1.48pp | 80.88 | — | 0.7139 |\n| DPO bf16 3ep | TBD | 34.29 | TBD | — | — | — |\n| GRPO bf16 G=8 (best step) | 45.59 | ~43.4 | +5.23pp | 80.86 | — | — |\n| GRPO QLoRA (lr=5e-6) | TBD | 1.38 | TBD | 85.00 | — | 0.9900 |\n\n注：Evi-F1 以百分比显示（×100）。Ign-F1 修正后排名无实质变化（仅 r2a/r2b 互换，差 0.09pp）。TBD 项等待 metrics_v2.json 补算。GRPO bf16 Ign-F1=45.59 > F1=43.4 因 train triples 过滤效应。RSFT CED k=3 数据来源: reeval_rsft_topk3 (ign_f1_corrected=true)。\n\n## Anticipated Reviewer Concerns (updated from Dream, D068/D069)\n\n### RC1: \"Online RL\" 标题过度声称（Dream 三档一致 Critical）\n- ~~标题和 claim 收窄到 \"GRPO fails for DocRE\"~~\n- **D068/D069 修正**: 重新定位为 \"RL optimization pressure correlates with decoupling severity\"——不是 GRPO 特有问题，而是 RL-for-IE 的通用梯度\n- DPO 数据支撑 decoupling spectrum（gradual decay confirms the pattern）\n\n### RC2: GRPO G=4 太小 + LoRA confound（Dream 三档一致 Major）\n- GRPO G=8 bf16 实验 ✅ — 确认 mild decoupling（-2pp），QLoRA 是 catastrophic amplifier（D065/D066）\n- LoRA confound 已解决：bf16 LoRA vs QLoRA 直接对比\n\n### RC3: CED 不显著优于 flat-NLI（Dream 三档一致 Major）\n- 5+ seeds 统计检验；如不显著 → CED 降级\n\n### RC4: RSFT 不新颖\n- 不声称 RSFT 是贡献；贡献在于任务定义 + decoupling 发现 + EDCR\n\n### RC5: 评测可比性（D041）\n- DREEAM-protocol Evi-F1；conditional Evi-F1 作为辅助指标\n\n### RC6: EDCR 缺人工验证\n- 100 例小规模标注\n\n### RC7: Missing DPO/PPO（Dream 两档 Major）\n- DPO experiment ✅ — 结果确认 decoupling spectrum（D067/D068）\n\n### RC8: Dev-test degradation\n- 观察项，等 test set 数据\n\n### RC9: 连接 reward overoptimization 文献\n- 显式引用 Gao et al. 2023\n\n### RC10: Post-hoc evidence retrieval baseline\n- SFT + BM25 evidence retrieval\n\n## Key Baselines (12+)\n\n1. **SFT-only**: Qwen3-4B + LoRA SFT（with evidence）\n1b. **SFT no-evidence**: Qwen3-4B + LoRA SFT（无 evidence，upper bound ablation）\n2. **RSFT flat-NLI**: flat-NLI scored RSFT（核心 ablation）\n3. **RSFT CED**: CED scored RSFT（主方法）\n4. **CED-as-reranker**: 推理时 CED 重排（无训练）\n5. **DPO+CED**: offline preference learning — gradual decoupling（D067/D068）\n6. **GRPO+CED (QLoRA, G=4)**: catastrophic decoupling baseline\n7. **GRPO+CED (bf16, G=8)**: mild decoupling — QLoRA confound 排除（D065/D066）\n8. **Post-hoc retrieval**: SFT + BM25 evidence（NEW）\n9. **DREEAM**: encoder evidence SOTA\n10. **SAIS**: encoder evidence baseline\n11. **DocKS-RAG**: extraction SOTA（无 evidence）\n12. **LMRC**: generative LLM SOTA（无 evidence）\n\n## Publishability Threshold (revised after Dream, D068/D069)\n\n- **必要条件**: (1) RSFT 在 test set 上 Ign-F1 显著 > SFT (2) DREEAM-protocol Evi-F1 可报告 (3) Decoupling spectrum 有完整数据支撑（GRPO QLoRA/bf16 + DPO + RSFT）\n- **充分条件**: 上述 + CED 显著 > flat-NLI + EDCR 人工验证\n- **Failure pivot**: decoupling spectrum 不成立（bf16 GRPO 也 catastrophic）→ scope 大幅缩减。**已排除**: bf16 GRPO 确认 mild（D065/D066）\n\n## Research Phase Priorities (revised after Dream v1)\n\n| Priority | 实验 | Claim | GPU-h |\n|----------|------|-------|-------|\n| P0 | flat-NLI RSFT ablation (5 seeds) | C3 | ~25h |\n| P0 | CED RSFT additional seeds (→5 total) | C3 | ~10h |\n| P0 | DREEAM-protocol Evi-F1 对齐 | C1 | CPU |\n| P0 | Test set evaluation | C1 | ~4h |\n| P0 | DREEAM baseline reproduction | C1 | ~8h |\n| ~~P0~~ | ~~GRPO G=8 experiment~~ ✅ | C2 | ~16h |\n| ~~P0~~ | ~~DPO+CED experiment~~ ✅ | C2 | ~12h |\n| ~~P0~~ | ~~EDCR per-relation analysis (D070)~~ ✅ | C4 | CPU |\n| ~~P0~~ | ~~Ign-F1 bugfix + data sync (D071)~~ ✅ | ALL | CPU |\n| P1 | EDCR human validation | C4 | API |\n| P1 | Post-hoc evidence retrieval baseline | C1 | ~4h |\n| P1 | CED-as-reranker (running) | C1 | ~6h |\n| P1 | Model size ablation | RC | ~24h |\n| P1 | Re-DocRED extension | RC | ~12h |\n| ~~P0~~ | ~~GRPO forgetting dynamics figure (plan_009)~~ ✅ | C2 | ~2h |\n| ~~P0~~ | ~~SFT-without-evidence ablation (plan_014)~~ ✅ | C1 | ~8h |\n| P2 | Advantage variance measurement | C2 | CPU |\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "d6f3dbc1-ad9b-4a8f-b645-2574c6caf755",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013JBgQrR9vrTV2Pyp7JwLQj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2377,
+      "cache_read_input_tokens": 59042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2377
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T00:35:39.543Z_
+
+<details><summary>↩ Tool result · `toolu_01U22FGxahMco4KquiEyzrnN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "5efaab1c-6e97-46f1-bcca-da7b551b1716",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+更新完成。改动点：
+
+**Claim 3 新增 top_k selection ablation 子节**：
+- k=1 (3 seeds 均值) vs k=3 (1 seed) 完整 metrics 对比
+- k=3 在所有指标上劣于 k=1 均值：Ign-F1 -1.36pp, rel_f1 -1.42pp, evi_f1 -0.55pp
+- 训练数据质量溯源：k=3 的 mean_f1 从 0.6157 降至 0.5761，mean_ced 从 0.6683 降至 0.6205（数据量 ×2.96 但质量下降抵消数量优势）
+- 叙事定位：CED scoring precision 随 k 增大下降，关键在 scoring precision 而非数据量
+- 诚实标注 k=3 仅 1 seed，定位为 ablation table 辅助行
+
+**MVP Evidence Summary 表**新增 `RSFT CED k=3` 行（Ign-F1=43.64, F1=44.54, Evi-F1=80.88, EDCR=0.6635），附注标明数据来源。
+
+experiment_plan.yaml 不在可写文件白名单中，无法更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "uuid": "291c586f-cd8b-4dbe-af38-bc1e8c1b8bee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01199i9ggnSk9iTWoqwz1P6U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5812,
+      "cache_read_input_tokens": 61419,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5812
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 35_
+
+更新完成。改动点：
+
+**Claim 3 新增 top_k selection ablation 子节**：
+- k=1 (3 seeds 均值) vs k=3 (1 seed) 完整 metrics 对比
+- k=3 在所有指标上劣于 k=1 均值：Ign-F1 -1.36pp, rel_f1 -1.42pp, evi_f1 -0.55pp
+- 训练数据质量溯源：k=3 的 mean_f1 从 0.6157 降至 0.5761，mean_ced 从 0.6683 降至 0.6205（数据量 ×2.96 但质量下降抵消数量优势）
+- 叙事定位：CED scoring precision 随 k 增大下降，关键在 scoring precision 而非数据量
+- 诚实标注 k=3 仅 1 seed，定位为 ablation table 辅助行
+
+**MVP Evidence Summary 表**新增 `RSFT CED k=3` 行（Ign-F1=43.64, F1=44.54, Evi-F1=80.88, EDCR=0.6635），附注标明数据来源。
+
+experiment_plan.yaml 不在可写文件白名单中，无法更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 240156,
+  "duration_api_ms": 240364,
+  "num_turns": 11,
+  "stop_reason": "end_turn",
+  "session_id": "83d9f63f-501b-48f4-b3ee-7e33280a9cfb",
+  "total_cost_usd": 0.7993549999999999,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 55784,
+    "cache_read_input_tokens": 295544,
+    "output_tokens": 12045,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 55784,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 367,
+        "cache_read_input_tokens": 61419,
+        "cache_creation_input_tokens": 5812,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 5812
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1648,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001738,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 12045,
+      "cacheReadInputTokens": 295544,
+      "cacheCreationInputTokens": 55784,
+      "webSearchRequests": 0,
+      "costUSD": 0.7976169999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "2c234dbd-bfea-4bf4-ac82-4616b8654140"
+}
+```
+
+</details>
+
+---

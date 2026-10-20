@@ -1,0 +1,16 @@
+{
+  "exp_id": "test_eval_llama_rsft_s42_no_evi_v2",
+  "project": "faith-evidence-ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T11:51:53.110Z",
+    "updated_at": "2026-05-23T11:52:05.897Z",
+    "hypothesis": "LLaMA RSFT s42 no-evi test eval 重跑（batch_size=16，与 s43 一致）。原 s42 no-evi 用 batch_size=1，与 s43 (batch_size=16) 不一致。配对 v3 with-evi ign_f1=0.3554 计算修正后的 evidence tax。数据质量修复。",
+    "parent": "test_eval_llama_rsft_s42_with_evi_v3"
+  },
+  "timestamp": "2026-05-23T11:52:06.557284+00:00",
+  "trigger": "update_registry"
+}

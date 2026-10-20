@@ -1,0 +1,17 @@
+{
+  "exp_id": "eval_sft_baseline_noquant",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:38:33.128Z",
+    "updated_at": "2026-05-15T18:38:33.129Z",
+    "spec": {
+      "hypothesis": "D058: SFT baseline eval 用 --no-quantize 重跑。原 SFT baseline eval 使用 --quantize（默认值），与其他所有实验（--no-quantize）不一致，导致所有 vs SFT delta 不可靠。"
+    }
+  },
+  "timestamp": "2026-05-15T18:38:33.344183+00:00",
+  "trigger": "update_registry"
+}

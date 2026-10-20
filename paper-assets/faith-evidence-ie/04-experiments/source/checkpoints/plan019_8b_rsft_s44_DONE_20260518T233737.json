@@ -1,0 +1,34 @@
+{
+  "exp_id": "plan019_8b_rsft_s44",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:24:55.221Z",
+    "updated_at": "2026-05-18T23:37:37.339Z",
+    "hypothesis": "8B RSFT seed44 (Option A: seed expansion). Reuses s42 SFT adapter + s42 CED k=1 scored data, only changes RSFT training seed to 44. Tests if RSFT gain is robust across seeds at 8B scale. Expected: ign_f1 similar to canonical 8B RSFT s42.",
+    "spec": {
+      "command": "bash scripts/seed_expansion/train_8b_s44.sh",
+      "server": "rtx5090-4x",
+      "gpu_ids": [
+        "cuda:1"
+      ],
+      "data_path": "/root/autodl-tmp/rsft_scored_qwen3_8b_k1/rsft_train.jsonl",
+      "data_count": 3018,
+      "model_name": "Qwen3-8B",
+      "seed": 44,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_qwen3_8b_bf16",
+      "pid": 581524
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T23:37:34.178Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-18T23:37:37.339Z"
+  },
+  "timestamp": "2026-05-18T23:37:37.927060+00:00",
+  "trigger": "update_registry"
+}

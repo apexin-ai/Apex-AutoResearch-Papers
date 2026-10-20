@@ -1,0 +1,29 @@
+{
+  "exp_id": "plan_016_llama_rsft_candidates_r3",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T15:49:40.224Z",
+    "updated_at": "2026-05-17T01:34:30.186Z",
+    "spec": {
+      "command": "python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --num_generations 8 --temperature 0.7 --batch_size 1 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_candidates_llama_3_1_8b --start_idx 64",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:2",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "model_name": "meta-llama/Meta-Llama-3.1-8B",
+      "pid": 360970,
+      "log_path": "~/runs/faith-evidence-ie/plan_016_llama_rsft_candidates_r3.log",
+      "checkpoint_path": "/root/autodl-tmp/rsft_candidates_llama_3_1_8b"
+    },
+    "hypothesis": "LLaMA-3.1-8B RSFT candidate gen r3 (N=8, T=0.7, start_idx=64 resume). Exclusive cuda:2 after GRPO kill.",
+    "plan_id": "plan_016",
+    "parent": "plan_016_llama_3_1_8b_sft",
+    "conclusion": "success",
+    "completed_at": "2026-05-17T01:34:30.186Z"
+  },
+  "timestamp": "2026-05-17T01:34:30.517641+00:00",
+  "trigger": "update_registry"
+}

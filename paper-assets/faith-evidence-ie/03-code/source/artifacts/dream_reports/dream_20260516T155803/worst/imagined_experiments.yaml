@@ -1,0 +1,532 @@
+tier: worst
+narrative_guidance: '完全 reframe 为 empirical analysis paper。标题改为 "The Cost of Faithfulness:
+  What Happens When LLMs Must Justify Their Extractions"。 RSFT 不再定位为推荐方案，而是 "least
+  harmful training strategy we found"。 Post-hoc retrieval 追平 RSFT 变成论文正文的一部分。 去掉所有
+  effective/competitive 措辞，改用 reveals/exposes/characterizes。 仍投 EMNLP Main（analysis
+  paper 传统），Findings 可接受，同时准备 AAAI 2027 fallback。
+
+  '
+imagined_experiments:
+- name: Test Set Evaluation (RSFT CED best + SFT baselines)
+  plan_id: plan_002
+  description: '用 RSFT CED best config (s43/s44) 和 SFT baseline/no-evidence 在 DocRED
+    test set 上评估。 提交 CodaLab 获得官方 Ign-F1/F1，本地计算 Evi-F1 和 EDCR。
+
+    '
+  expected_results:
+    test_ign_f1_rsft_ced_s43: 40.2
+    test_f1_rsft_ced_s43: 41.0
+    test_ign_f1_rsft_ced_s44: 39.8
+    test_f1_rsft_ced_s44: 40.5
+    test_evi_f1_rsft_ced_s43: 0.798
+    test_evi_f1_rsft_ced_s44: 0.793
+    test_edcr_rsft_ced_s43: 0.672
+    test_ign_f1_sft_baseline: 35.8
+    test_ign_f1_sft_no_evidence: 42.5
+    test_evidence_tax_4b: -6.7
+    dev_test_gap_rsft_best: -5.65
+    dev_test_gap_sft_no_evidence: -4.86
+  result_rationale: 'Worst 档核心假设：dev→test 退化 > 4pp。Dev best RSFT CED s43 Ign-F1=45.85，退化
+    5.65pp 至 40.2—— 这在 DocRED 上并非不可能。DocRED test set 由不同标注者标注且标注一致性低于 dev（Re-DocRED
+    论文已指出）， RSFT 通过 CED scoring 对 dev-aligned 的 gold evidence pattern 进行了隐式过拟合： CED
+    scorer 训练于 NLI 数据但在 DocRED dev gold 上筛选 RSFT 数据，筛选偏好与 dev 标注风格高度耦合。 Test set 标注风格偏移导致
+    RSFT 增益大幅缩水（从 dev +5.5pp 缩至 test +4.4pp over SFT）， 而 SFT no-evidence 作为更简单的目标函数，dev→test
+    退化相对较小。 Evidence tax 从 dev 的 -7.9pp 扩大至 test 的 -6.7pp（SFT no-evidence 42.5 vs
+    SFT baseline 35.8）， 暴露 evidence generation 在 test distribution 下的负担更重。 关键叙事影响：RSFT
+    test Ign-F1 < 41.5 使 "RSFT 显著优于 SFT" 的必要条件仍满足（+4.4pp）， 但绝对数字太低（40.2 vs encoder
+    SOTA >60），且 evidence tax 扩大使方法贡献可信度下降。
+
+    '
+  tables:
+  - name: 'Table: Test Set Results'
+    columns:
+    - Config
+    - Test Ign-F1
+    - Test F1
+    - Test Evi-F1
+    - Δ vs SFT
+    - Δ dev→test
+    rows:
+    - - SFT no-evidence
+      - '42.5'
+      - '43.8'
+      - —
+      - '+6.7'
+      - '-4.86'
+    - - SFT baseline
+      - '35.8'
+      - '36.5'
+      - '0.782'
+      - —
+      - '-4.56'
+    - - RSFT CED s43
+      - '40.2'
+      - '41.0'
+      - '0.798'
+      - '+4.4'
+      - '-5.65'
+    - - RSFT CED s44
+      - '39.8'
+      - '40.5'
+      - '0.793'
+      - '+4.0'
+      - '-5.71'
+    - - RSFT flat-NLI s42
+      - '39.5'
+      - '40.2'
+      - '0.790'
+      - '+3.7'
+      - '-4.99'
+  figures_description:
+  - Dev vs Test 退化散点图：x 轴 dev Ign-F1，y 轴 test Ign-F1，标注各 config。所有点落在 y=x 线以下，RSFT
+    偏离最大。
+  analysis: 'Test set 退化 5.65pp 是 worst 档的核心打击。这暴露了两个问题： (1) CED scoring 在 RSFT 数据筛选时对
+    dev gold evidence 的隐式过拟合——test set 标注者偏好不同的 evidence 句子组合； (2) Evidence generation
+    的代价在 test distribution 下更严重（tax 从 -7.0 扩大至 -6.7pp）。 但 RSFT 仍显著 > SFT baseline
+    (+4.4pp)，且 evidence 质量保持（test evi_f1=0.798 vs dev 0.816，仅 -1.8pp）。 论文叙事调整：不再声称
+    "RSFT 是 competitive 方案"，改为 "RSFT 是我们发现的 least harmful training strategy， 但 dev-test
+    gap 警示 evidence-grounded IE 的评估需要更稳健的 held-out 设计"。 Evidence tax 扩大成为论文的 empirical
+    finding 之一——进一步支撑 "cost of faithfulness" 叙事。
+
+    '
+- name: Re-DocRED Cross-Dataset RSFT Evaluation
+  plan_id: plan_007
+  description: '在 Re-DocRED 上对当前 best RSFT config 做完整 eval。 D080 已有 SFT 结果（Ign-F1
+    下降 3.15pp，Evi-F1=0.817），此处预测 RSFT 在 Re-DocRED 上的表现。
+
+    '
+  expected_results:
+    redocred_rsft_ced_ign_f1: 38.1
+    redocred_rsft_ced_evi_f1: 0.801
+    redocred_rsft_ced_edcr: 0.695
+    redocred_sft_ign_f1: 36.59
+    redocred_rsft_vs_sft_delta: 1.5
+    redocred_rsft_vs_docred_rsft_delta: -7.75
+    redocred_no_evidence_ign_f1: 41.8
+    redocred_evidence_tax: -5.2
+  result_rationale: 'Re-DocRED 修正了 DocRED 的大量 false negative（~55% triples 无 evidence
+    标注）， RSFT 的 CED scoring function 在 DocRED gold 上训练的筛选偏好在 Re-DocRED 上适配性降低。 具体而言：RSFT
+    在 DocRED dev 上的 +5.5pp 增益来自 CED 对 DocRED 标注风格的精准匹配， Re-DocRED 标注更完整但 evidence
+    分布不同，导致 RSFT 增益缩水至 +1.5pp。 更关键的是，Re-DocRED 的 evaluation 中有 55% triples 无 evidence
+    gold—— 这些 triples 上 RSFT 生成的 evidence 无法被评估，但生成负担仍在，导致 evidence tax 显著扩大。 Evi-F1
+    保持在 0.801（仅在有 evidence 标注的子集上评估），与 D080 SFT 的 0.817 接近但略降。 这表明 evidence extraction
+    能力本身跨数据集泛化，但 RSFT 的 relation extraction 增益不泛化。
+
+    '
+  tables:
+  - name: 'Table: Re-DocRED Cross-Dataset Results'
+    columns:
+    - Config
+    - Re-DocRED Ign-F1
+    - Re-DocRED Evi-F1
+    - Δ vs DocRED
+    rows:
+    - - SFT baseline
+      - '36.59'
+      - '0.817'
+      - -3.15pp
+    - - SFT no-evidence
+      - '41.8'
+      - —
+      - —
+    - - RSFT CED
+      - '38.1'
+      - '0.801'
+      - -7.75pp vs DocRED RSFT
+    - - Evidence tax
+      - -5.2pp
+      - —
+      - vs DocRED -7.9pp
+  figures_description:
+  - DocRED vs Re-DocRED 性能对比柱状图：蓝色 DocRED，红色 Re-DocRED，分 SFT/RSFT/no-evidence 三组
+  analysis: 'RSFT 在 Re-DocRED 上增益大幅缩水（+1.5pp vs DocRED +5.5pp）暴露了 CED scoring 的 dataset-specificity。
+    但 evidence 质量跨数据集保持（evi_f1 0.801）是 positive signal——说明 evidence extraction 能力本身泛化，
+    问题出在 CED-filtered RSFT 训练数据对 DocRED 标注分布的过拟合。 在 worst 叙事下，这成为 "RSFT 增益依赖于 scoring
+    function 与 gold 分布的匹配度" 的 empirical warning。 论文定位：Re-DocRED 结果不支撑 RSFT 作为通用方案，但支撑
+    evidence extraction 的跨数据集鲁棒性。
+
+    '
+- name: EDCR Human Annotation Validation
+  plan_id: plan_013
+  description: '100 个样本人工标注，判断每个 cited evidence sentence 是否真正支持对应 relation。 计算 EDCR
+    与人工判断的 Spearman 相关性。
+
+    '
+  expected_results:
+    n_annotated_samples: 100
+    annotator_agreement_kappa: 0.52
+    edcr_human_spearman_rho: 0.31
+    edcr_human_spearman_p: 0.0018
+    edcr_human_pearson_r: 0.27
+    human_evi_precision: 0.72
+    human_evi_recall: 0.58
+    false_positive_evidence_rate: 0.28
+    edcr_identifies_bad_cases: true
+    edcr_magnitude_calibration: poor
+  result_rationale: 'Worst 档假设 EDCR-human ρ < 0.40。根本原因是 EDCR 基于 NLI model（DeBERTa）的
+    entailment 判断， 而人工标注者对 "evidence supports relation" 的判断标准与 NLI entailment 有系统性偏差：
+    (1) NLI 模型对间接证据（需要推理链的 evidence）给出低分，但人工标注者认为这些仍是有效证据； (2) NLI 模型对表面相关但逻辑不充分的
+    evidence 给出高分（lexical overlap bias），人工标注者识别出不充分性。 ρ=0.31 统计显著（p<0.002）但实际意义有限——仅解释约
+    10% 的方差。 EDCR 在方向上有效（高 EDCR 的样本确实更可能有问题），但在绝对值上校准不良（EDCR=0.7 和 EDCR=0.8 的人工质量差异不显著）。
+    标注者一致性 κ=0.52 本身就不高，反映了 evidence sufficiency 判断的固有主观性—— 这限制了任何自动指标与人工判断的相关性上界。
+
+    '
+  tables:
+  - name: 'Table: EDCR Human Validation'
+    columns:
+    - Metric
+    - Value
+    - 95% CI
+    rows:
+    - - Spearman ρ (EDCR vs human)
+      - '0.31'
+      - '[0.12, 0.48]'
+    - - Pearson r (EDCR vs human)
+      - '0.27'
+      - '[0.08, 0.44]'
+    - - Annotator κ
+      - '0.52'
+      - '[0.40, 0.64]'
+    - - Human evidence precision
+      - '0.72'
+      - '[0.65, 0.79]'
+    - - False positive rate (NLI)
+      - '0.28'
+      - '[0.19, 0.37]'
+  figures_description:
+  - 散点图：x 轴 EDCR score，y 轴 human evidence quality score（5-point scale），标注 95% CI band。弱正相关可见但散布大。
+  - 混淆矩阵：EDCR 二值化（>0.7 = decoupled）vs 人工判断（evidence insufficient）的 2×2 矩阵
+  analysis: 'ρ=0.31 不足以支撑 EDCR 作为可靠的自动评估指标，但在 worst 叙事下可 reframe 为： "EDCR 是首个尝试量化
+    evidence-extraction decoupling 的自动指标，人工验证显示其方向有效但校准不足—— 这本身是 evaluation 方法论的 open
+    problem，EDCR 的局限性反映了 evidence sufficiency 判断的固有难度。" 关键：ρ=0.31 仍统计显著，且 EDCR 在方法级诊断（Claim
+    4 Layer 1, ρ=-0.965 vs rel_f1）的价值不受影响—— 因为那是 aggregate level 相关性，不依赖 per-sample
+    人工校准。 论文策略：降级 EDCR 的 per-sample 可靠性声称，保留方法级诊断价值，在 Limitations 中诚实报告 ρ=0.31。
+
+    '
+- name: DREEAM-Protocol Evidence F1 Alignment
+  plan_id: D041 (implicit, P0)
+  description: '将 FREIGE 的 evidence evaluation 对齐到 DREEAM 的严格 evidence protocol——
+    DREEAM 要求 evidence 与 gold 的 exact sentence index match，而 FREIGE 当前用 conditional
+    evi_f1（NLI-based soft match）。 对齐后重新计算所有方法的 Evi-F1。
+
+    '
+  expected_results:
+    dreeam_protocol_evi_f1_rsft_ced: 0.28
+    dreeam_protocol_evi_f1_sft: 0.22
+    dreeam_protocol_evi_f1_grpo_bf16: 0.25
+    conditional_evi_f1_rsft_ced: 0.816
+    conditional_to_dreeam_shrinkage: 0.66
+    dreeam_baseline_evi_f1: 0.5401
+    freige_vs_dreeam_gap: -0.26
+  result_rationale: 'Worst 档假设 DREEAM-protocol Evi-F1 < 0.35。这是因为 FREIGE 的 evidence
+    是 generative 的—— LLM 生成的 evidence 文本与 gold sentence 的字面匹配率远低于 DREEAM 的 discriminative
+    retrieval。 具体机制：(1) FREIGE 生成的 evidence 可能 paraphrase 原文句子而非精确引用，DREEAM protocol
+    要求 exact sentence index match 会惩罚 paraphrase； (2) FREIGE 可能合并多个句子为一个 evidence
+    段落，DREEAM 按单句评估会漏计； (3) FREIGE 的 conditional evi_f1=0.81 基于 NLI soft match（entailment
+    score > threshold）， 切换到 exact match 后 shrinkage 约 66%——从 0.81 降至 0.28。 这直接导致 FREIGE
+    在 DREEAM 协议下 Evi-F1(0.28) << DREEAM baseline(0.54)， 使得 "FREIGE 生成可验证证据" 的 Claim
+    1 在严格协议下不成立。 但 FREIGE 的 evidence 在语义上是合理的（conditional evi_f1=0.81 通过 NLI 验证），
+    问题在于 evaluation protocol 的不匹配——generative evidence 与 extractive evidence 需要不同的评估标准。
+
+    '
+  tables:
+  - name: 'Table: Evidence Evaluation Protocol Comparison'
+    columns:
+    - Method
+    - Conditional Evi-F1 (NLI)
+    - DREEAM-Protocol Evi-F1 (Exact)
+    - Shrinkage
+    rows:
+    - - DREEAM (RoBERTa-large)
+      - —
+      - '0.5401'
+      - —
+    - - FREIGE SFT
+      - '0.798'
+      - '0.22'
+      - -72%
+    - - FREIGE RSFT CED
+      - '0.816'
+      - '0.28'
+      - -66%
+    - - FREIGE GRPO bf16
+      - '0.809'
+      - '0.25'
+      - -69%
+  figures_description:
+  - 双柱对比图：conditional evi_f1（蓝色）vs DREEAM-protocol evi_f1（红色），直观展示 shrinkage
+  analysis: 'DREEAM-protocol 下 Evi-F1=0.28 是 worst 档的关键打击之一。论文必须： (1) 报告两种 protocol
+    的数字，诚实展示 shrinkage； (2) 论证 conditional evi_f1（NLI-based）更适合评估 generative evidence——因为
+    generative model 不受限于原文句子； (3) 在 Limitations 中承认缺乏公认的 generative evidence evaluation
+    standard 是该研究方向的 open problem。 这实际上加强了 analysis paper 的叙事："我们不仅发现 evidence generation
+    有代价（evidence tax）， 还发现当前评估框架无法公平比较 generative 与 extractive evidence——这本身是值得报告的发现。"
+
+    '
+- name: Post-hoc Evidence Retrieval Baseline
+  plan_id: P1 (implicit, no formal plan_id)
+  description: 'SFT no-evidence 模型生成 relation triples 后，用 BM25 从原文中检索 top-k evidence
+    sentences。 对比 RSFT 的端到端 evidence generation。
+
+    '
+  expected_results:
+    posthoc_rel_f1: 0.4893
+    posthoc_rel_ign_f1: 0.4736
+    posthoc_evi_f1_conditional: 0.79
+    posthoc_evi_f1_bm25_top3: 0.82
+    posthoc_edcr: 0.625
+    rsft_ced_evi_f1: 0.816
+    posthoc_vs_rsft_evi_f1_delta: 0.004
+    posthoc_vs_rsft_rel_f1_delta: 0.033
+    posthoc_inference_overhead_pct: 5
+  result_rationale: 'Worst 档假设 post-hoc retrieval evi_f1 达到 0.75-0.85，与 RSFT 相当甚至超越。
+    机制：SFT no-evidence 模型的 rel_f1=0.4893 已是最高（无 evidence generation 负担）， BM25 检索利用
+    relation triple 中的 entity names 作为 query，在 DocRED 文档中检索包含这些 entities 的句子—— 这种策略在
+    DocRED 上天然有效，因为 DocRED 文档平均只有 8 个句子，entity co-occurrence 是强 evidence signal。 BM25
+    top-3 检索的 evi_f1=0.82 略高于 RSFT 的 0.816，因为： (1) BM25 直接利用 gold relation 中的 entity
+    pair 做精准检索，命中率高； (2) RSFT 的 evidence generation 偶尔 paraphrase 或遗漏句子，BM25 更稳定。
+    Combined（rel_f1=0.4893 + evi_f1=0.82）全面超越 RSFT（rel_f1=0.4569 + evi_f1=0.816），
+    且推理开销仅增加 5%（BM25 检索 vs 长序列生成）。 这直接挑战 RSFT 的方法贡献——简单的 post-hoc retrieval pipeline
+    用更低的复杂度达到了更好的结果。
+
+    '
+  tables:
+  - name: 'Table: End-to-End Generation vs Post-hoc Retrieval'
+    columns:
+    - Method
+    - rel_f1
+    - Evi-F1
+    - EDCR
+    - Inference Cost
+    rows:
+    - - RSFT CED (end-to-end)
+      - '0.4569'
+      - '0.816'
+      - '0.643'
+      - 1.0× (baseline)
+    - - SFT + BM25 top-3 (post-hoc)
+      - '0.4893'
+      - '0.82'
+      - '0.625'
+      - 0.65× + BM25
+    - - CED reranker (inference-time)
+      - '0.4864'
+      - '0.819'
+      - '0.616'
+      - 8× sampling
+  figures_description:
+  - Pareto 图：x 轴 inference cost，y 轴 combined score（rel_f1 + evi_f1 harmonic mean），post-hoc
+    retrieval 在 Pareto 前沿
+  analysis: 'Post-hoc retrieval 追平/超越 RSFT 是 worst 档的核心打击——它否定了端到端 evidence generation
+    的方法贡献。 在 reframed 叙事下，这成为论文的关键发现之一： "simple retrieval matches end-to-end generation,
+    further questioning the cost-benefit of evidence production"。 这实际上加强了 analysis
+    paper 的 novelty——我们不仅发现 evidence generation 有代价（evidence tax）， 还发现这个代价可能完全没有必要（post-hoc
+    retrieval 用更低成本达到相同效果）。 论文策略：将 post-hoc retrieval 结果作为 "the null hypothesis that
+    should have been tested first" 来呈现。
+
+    '
+- name: NLI Model Ablation (DeBERTa-base vs large)
+  plan_id: plan_010
+  description: 'DeBERTa-v3-base vs DeBERTa-v3-large 作为 CED scorer 的对比。
+
+    '
+  expected_results:
+    deberta_base_ced_mean_margin: 0.48
+    deberta_large_ced_mean_margin: 0.53
+    deberta_base_rsft_rel_f1: 0.4569
+    deberta_large_rsft_rel_f1: 0.461
+    delta_rel_f1: 0.004
+    p_value_paired_t: 0.38
+  result_rationale: 'Worst 档下 NLI 模型能力差异对下游 RSFT 质量影响微乎其微（Δ=0.004, p=0.38 不显著）。 原因：CED
+    scoring 的 bottleneck 不在 NLI 模型精度，而在 evaluation protocol 本身—— NLI entailment 与
+    evidence sufficiency 的 concept gap（如 plan_013 人工验证所暴露的 ρ=0.31） 意味着更强的 NLI 模型只是更精确地测量了一个与
+    ground truth 弱相关的信号。 base→large 提升的 0.05 margin 在 CED top-1 selection 时几乎不改变排序结果（95%
+    的 top-1 选择相同）。 这进一步支持 D078 的结论：CED 和 flat-NLI 统计不可区分，NLI 模型规模也不可区分—— 说明 scoring
+    function 的选择在 RSFT 中是 second-order effect，数据质量本身才是关键。
+
+    '
+  tables:
+  - name: 'Table: NLI Model Ablation'
+    columns:
+    - NLI Model
+    - CED Margin
+    - RSFT rel_f1
+    - RSFT evi_f1
+    rows:
+    - - DeBERTa-v3-base
+      - '0.48'
+      - '0.4569'
+      - '0.816'
+    - - DeBERTa-v3-large
+      - '0.53'
+      - '0.4610'
+      - '0.819'
+    - - Δ (large - base)
+      - '+0.05'
+      - +0.004 (p=0.38)
+      - '+0.003'
+  figures_description: []
+  analysis: 'NLI 模型 ablation 在 worst 档下进一步削弱 CED 的方法贡献——不仅 CED vs flat-NLI 不可区分（D078），
+    连 NLI 模型规模都不影响结果。这收窄了 CED 的定位：从 "a principled scoring function" 降级为 "any NLI-based
+    filter works, and works similarly regardless of NLI model capacity"。 论文处理：放入 Appendix
+    作为辅助 ablation，在正文中一句话带过。
+
+    '
+- name: 1.7B/8B RSFT Candidates Generation + Training (Scaling)
+  plan_id: plan_006 (RSFT part, currently RUNNING)
+  description: 'Qwen3-1.7B 和 Qwen3-8B 上生成 RSFT candidates → CED scoring → RSFT training
+    → eval。 目前 candidates generation 正在 RUNNING。
+
+    '
+  expected_results:
+    qwen3_1_7b_rsft_candidates_generated: 15000
+    qwen3_1_7b_rsft_ced_selected: 1800
+    qwen3_1_7b_rsft_ign_f1: null
+    qwen3_1_7b_rsft_status: OOM during training or candidate quality too low (mean_f1
+      < 0.3)
+    qwen3_8b_rsft_candidates_generated: 20000
+    qwen3_8b_rsft_ced_selected: 3200
+    qwen3_8b_rsft_ign_f1: 52.8
+    qwen3_8b_rsft_evi_f1: 0.825
+    qwen3_8b_rsft_vs_sft_delta: 2.3
+    qwen3_8b_evidence_tax_after_rsft: -0.5
+  result_rationale: 'Worst 档假设 "部分 scaling 实验失败（1.7B/8B RSFT candidates OOM 或结果不一致），U-shape
+    仅有 SFT 数据支撑"。 1.7B RSFT 失败的机制：1.7B 模型生成的 candidates 质量太低（SFT 本身 Ign-F1=47.86 但
+    generation diversity 差， 小模型倾向于重复同样的 relation set），CED scoring 后仅 1800 样本通过阈值（vs
+    4B 的 2718）， 且 mean_f1=0.28（vs 4B 的 0.62）——数据质量不足以支撑有效的 RSFT 训练。 训练过程中可能 OOM（1.7B
+    + RSFT data 在 bf16 下勉强跑通，但 gradient accumulation 不稳定）， 或即使完成训练也因数据质量差导致 RSFT 退化至
+    SFT baseline 甚至以下。 8B RSFT 成功但增益远小于 4B（+2.3pp vs +5.5pp）——8B SFT 已足够强（Ign-F1=50.51），
+    RSFT 的 marginal value 在大模型上递减。U-shape pattern 在 RSFT 层面无法复现。
+
+    '
+  tables:
+  - name: 'Table: Scaling RSFT Results'
+    columns:
+    - Model
+    - SFT Ign-F1
+    - RSFT Ign-F1
+    - Δ RSFT-SFT
+    - Status
+    rows:
+    - - Qwen3-1.7B
+      - '47.86'
+      - —
+      - —
+      - FAILED (low candidate quality)
+    - - Qwen3-4B
+      - '40.36'
+      - '45.85'
+      - '+5.49'
+      - SUCCESS
+    - - Qwen3-8B
+      - '50.51'
+      - '52.8'
+      - '+2.3'
+      - SUCCESS (diminishing returns)
+  figures_description:
+  - U-shape 图标注：SFT-level evidence tax 数据点完整（4 个），RSFT-level 仅有 4B 和 8B 两个数据点（1.7B
+    缺失），U-shape 在 RSFT 层面不成立
+  analysis: '1.7B RSFT 失败意味着 U-shape pattern 仅在 SFT 层面成立，无法推广到 RSFT。 这削弱了 Claim 5
+    的叙事完整性——"evidence tax 是 scale-dependent 的" 只有 SFT 数据支撑， RSFT 作为推荐方法在小模型上不 work。
+    论文处理：诚实报告 1.7B RSFT 失败，将 U-shape 定位为 "SFT-level empirical observation" 而非 "general
+    scaling law"。在 Discussion 中讨论小模型 RSFT 失败的 candidate quality bottleneck。
+
+    '
+- name: LLaMA-3.1-8B RSFT Candidates + Training (Cross-family)
+  plan_id: plan_016 (RSFT part, currently RUNNING r3)
+  description: 'LLaMA-3.1-8B 上生成 RSFT candidates → CED scoring → RSFT training。 r1/r2
+    已失败（OOM），r3 正在 RUNNING。
+
+    '
+  expected_results:
+    llama_rsft_candidates_status: partial completion (~40-60% docs) then OOM kill
+    llama_rsft_candidates_generated: 12000
+    llama_rsft_training_status: not reached (blocked by candidate generation failure)
+    llama_rsft_ign_f1: null
+    llama_sft_ign_f1: 53.84
+    llama_no_evidence_ign_f1: 54.52
+    llama_evidence_tax: -0.68
+    llama_grpo_qlora_status: catastrophic (confirmed)
+  result_rationale: 'LLaMA RSFT candidates generation 已连续失败两次（r1: failed, r2: 64/3027
+    docs 后 OOM killed）。 根本原因：LLaMA-3.1-8B 的 memory footprint 比 Qwen3 系列更大（不同的 attention
+    实现 + vocabulary size 差异）， 在当前 GPU 上生成 8 个 candidates per doc 时 peak memory 超出限制。
+    r3 可能在完成 40-60% 的 docs 后再次 OOM——即使生成了部分 candidates， 样本量不足以训练有效的 RSFT（需要 >2000
+    selected samples，40% docs 可能只产出 ~1000）。 这意味着 cross-family RSFT validation 完全缺失——只有
+    SFT-level 的 evidence tax 数据（-0.68pp） 和 GRPO QLoRA 的 catastrophic decoupling 确认。
+    论文叙事影响：LLaMA 数据退化为 "SFT + GRPO 两个极端"，缺少 RSFT 中间路线的跨家族验证。
+
+    '
+  tables:
+  - name: 'Table: LLaMA Cross-Family Validation (Incomplete)'
+    columns:
+    - Experiment
+    - Status
+    - Result
+    rows:
+    - - LLaMA SFT (evidence)
+      - DONE ✅
+      - Ign-F1=53.84, Evi-F1=0.8151
+    - - LLaMA SFT (no-evidence)
+      - DONE ✅
+      - Ign-F1=54.52
+    - - LLaMA GRPO QLoRA
+      - DONE ✅
+      - Catastrophic (f1_reward=0)
+    - - LLaMA RSFT CED
+      - FAILED ❌
+      - OOM during candidate generation
+  figures_description: []
+  analysis: 'LLaMA RSFT 失败是 worst 档的特征之一——跨家族验证在 RSFT 层面不成立。 论文只能报告 LLaMA SFT evidence
+    tax = -0.68pp（与 Qwen-8B 一致确认 8B neutral）， 以及 GRPO QLoRA catastrophic decoupling
+    跨家族成立。 RSFT 作为 "推荐方案" 缺乏跨家族证据——这在 reframed 叙事下影响较小 （RSFT 已降级为 "least harmful"，不再是核心推荐），但在
+    Limitations 中必须诚实报告。
+
+    '
+- name: Integrated Worst-Tier Reviewer Simulation
+  plan_id: N/A (meta-analysis)
+  description: '综合所有 worst 档实验结果，模拟 EMNLP 审稿人的反应和预期评分。
+
+    '
+  expected_results:
+    expected_reviewer_1_score: 2.5
+    expected_reviewer_2_score: 3.0
+    expected_reviewer_3_score: 3.0
+    expected_meta_reviewer: borderline reject
+    expected_avg_score: 2.83
+    acceptance_probability_main: 0.1
+    acceptance_probability_findings: 0.35
+  result_rationale: 'Reviewer 1（methods-focused）给 2.5：test 退化 > 4pp、post-hoc retrieval
+    追平 RSFT、 DREEAM-protocol Evi-F1 仅 0.28——方法贡献不成立，"为什么不直接用 BM25？"。 Reviewer 2（analysis-focused）给
+    3.0：认可 decoupling spectrum 发现的 novelty（"genuinely striking"）， 认可 evidence tax
+    scaling 的 empirical 价值，但指出 1.7B RSFT 失败和 EDCR human ρ=0.31 削弱了完整性。 Reviewer 3（evaluation-focused）给
+    3.0：认可 evaluation framework 的开创性尝试（EDCR 首次提出）， 但对 conditional vs DREEAM-protocol
+    的 shrinkage 不满意，要求更公平的 generative evidence evaluation。 Meta-reviewer 判断 borderline
+    reject：analysis contributions 有价值但不够 main conference 水平， 建议投 Findings。
+
+    '
+  tables:
+  - name: 'Table: Anticipated Reviewer Scoring Breakdown'
+    columns:
+    - Reviewer
+    - Score
+    - Key Concern
+    - Key Positive
+    rows:
+    - - R1 (Methods)
+      - '2.5'
+      - Post-hoc retrieval negates method contribution
+      - Decoupling spectrum is novel
+    - - R2 (Analysis)
+      - '3.0'
+      - 1.7B RSFT failure, incomplete scaling story
+      - Evidence tax U-shape is valuable empirical finding
+    - - R3 (Evaluation)
+      - '3.0'
+      - DREEAM-protocol Evi-F1=0.28, EDCR ρ=0.31
+      - First attempt at evidence-grounded DocRE evaluation
+  figures_description: []
+  analysis: Worst 档下论文最可能的结局：EMNLP Main reject（avg 2.83），Findings 有 35% 概率。 如果投 Findings
+    被接受，需要在 camera-ready 中： (1) 完全删除 "method contribution" 叙事，纯 empirical analysis；
+    (2) 将 post-hoc retrieval 追平 RSFT 作为核心 negative result 呈现； (3) 将 EDCR 定位为 "preliminary
+    diagnostic tool" 而非 "validated metric"。 AAAI 2027 作为 fallback 更合适——AAAI 对 empirical
+    analysis 和 negative results 接受度历来高于 EMNLP， 且有额外 2 个月补充 1.7B RSFT 和改进 EDCR human
+    correlation 的机会。

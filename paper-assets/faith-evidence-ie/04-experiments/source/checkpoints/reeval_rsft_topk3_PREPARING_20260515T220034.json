@@ -1,0 +1,14 @@
+{
+  "exp_id": "reeval_rsft_topk3",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:00:34.722Z",
+    "updated_at": "2026-05-15T22:00:34.722Z"
+  },
+  "timestamp": "2026-05-15T22:00:34.940160+00:00",
+  "trigger": "update_registry"
+}

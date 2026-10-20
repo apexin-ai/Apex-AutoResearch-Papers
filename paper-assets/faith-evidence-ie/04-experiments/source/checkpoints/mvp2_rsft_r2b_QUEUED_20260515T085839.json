@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp2_rsft_r2b",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T08:57:46.813Z",
+    "updated_at": "2026-05-15T08:58:39.127Z",
+    "hypothesis": "RSFT r2b: data fix + training dynamics fix (1 epoch + filter truncated + LoRA alpha=32/r=64 scaling 0.5 + lr=1e-5). Isolates: is conservative LoRA scaling the key factor? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.",
+    "parent": "mvp2_rsft_train_r1"
+  },
+  "timestamp": "2026-05-15T08:58:39.254604+00:00",
+  "trigger": "update_registry"
+}

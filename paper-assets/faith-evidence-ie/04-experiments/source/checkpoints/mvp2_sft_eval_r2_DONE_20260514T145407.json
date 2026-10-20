@@ -1,0 +1,70 @@
+{
+  "exp_id": "mvp2_sft_eval_r2",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:45:46.160Z",
+    "updated_at": "2026-05-14T14:54:07.338Z",
+    "spec": {
+      "command": "python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --quantize --output_dir /root/autodl-tmp/sft_eval_results --seed 42",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "55410",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_sft_eval_r2.log",
+      "submitted_at": "2026-05-14T12:45:45.981Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": {
+        "dev": 985
+      },
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "SFT baseline eval on DocRED dev set (batch_size=16 accelerated)",
+      "parent": "mvp2_sft_warmup",
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json",
+      "wall_clock_seconds": 7701.4,
+      "gpu_hours": 2.14
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T14:52:20.498Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T14:52:21.560816+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "rel_f1": 0.4057,
+      "ign_f1": 0.4057,
+      "evi_f1": 0.7979,
+      "edcr": 0.7118,
+      "precision": 0.4043,
+      "recall": 0.407,
+      "evi_precision": 0.8035,
+      "evi_recall": 0.7924,
+      "format_ok_rate": 0.998,
+      "format_compliance_rate": 0.626,
+      "n_parseable": 617,
+      "n_truncated": 367,
+      "n_predictions": 18815,
+      "inference_time_seconds": 6484.7
+    },
+    "checkpoint_path": "/root/autodl-tmp/sft_eval_results/",
+    "completed_at": "2026-05-14T14:54:07.338Z"
+  },
+  "timestamp": "2026-05-14T14:54:07.384120+00:00",
+  "trigger": "update_registry"
+}

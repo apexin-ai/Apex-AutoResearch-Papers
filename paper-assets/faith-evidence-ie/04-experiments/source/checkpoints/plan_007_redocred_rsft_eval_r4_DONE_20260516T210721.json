@@ -1,0 +1,31 @@
+{
+  "exp_id": "plan_007_redocred_rsft_eval_r4",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T18:00:41.999Z",
+    "updated_at": "2026-05-16T21:07:21.170Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r4",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/re-docred",
+      "data_count": -1,
+      "model_name": "Qwen3-4B RSFT ced_s43 checkpoint-510",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510",
+      "eval_data": "re-docred",
+      "pid": 370793
+    },
+    "hypothesis": "Re-DocRED RSFT eval r4 with CORRECT model loading: model_path=RSFT checkpoint, sft_adapter=SFT adapter. Fixes reversed params from r2/r3.",
+    "plan_id": "plan_007",
+    "parent": "plan_007_redocred_4b_sft_eval_r2",
+    "failure_reason": "startup recovery: process dead, no active cron monitor",
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T21:07:21.170Z"
+  },
+  "timestamp": "2026-05-16T21:07:21.498842+00:00",
+  "trigger": "update_registry"
+}

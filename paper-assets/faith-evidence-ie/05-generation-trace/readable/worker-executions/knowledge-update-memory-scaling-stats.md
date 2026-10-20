@@ -1,0 +1,606 @@
+# knowledge update memory scaling stats
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 12
+- **Recorded user turns:** 0
+- **Tool calls:** 3
+- **Original source:** `logs/workers/worker_knowledge_update_memory_scaling_stats_20260519T001114.log`
+- **Structured JSON:** [`112a24077ad803c89416.json`](../../sessions/11/112a24077ad803c89416.json)
+
+## Before a recorded user message
+
+12 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "4434437a-9040-4242-84c3-0f04c5498cc3",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d00d60ec-7121-45eb-9c2e-815df6797d5d",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779162600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "771576fe-88d8-492a-8f89-7edc6f2859a0",
+  "session_id": "4434437a-9040-4242-84c3-0f04c5498cc3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to read the current memory.md, then append new content to it, and save it back using the MCP tools. Let me first load the tool schemas, then read the file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4434437a-9040-4242-84c3-0f04c5498cc3",
+  "uuid": "336f9fd8-af86-4ae9-bb8a-d7b6eb801038",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BqBksVaphXPkTMPHKnrQ3i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13699,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13699
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UdN9XBo5eVT21hg8Uq5KZ4`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4434437a-9040-4242-84c3-0f04c5498cc3",
+  "uuid": "b5444c41-5e65-41f2-b8b7-a3429eb317dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BqBksVaphXPkTMPHKnrQ3i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13699,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13699
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T00:11:28.373Z_
+
+<details><summary>↩ Tool result · `toolu_01UdN9XBo5eVT21hg8Uq5KZ4`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4434437a-9040-4242-84c3-0f04c5498cc3",
+  "uuid": "ee1285a3-be95-4347-9701-8f924edc56fc",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01WAS3r5Lcyai79SKxunB7dW`</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4434437a-9040-4242-84c3-0f04c5498cc3",
+  "uuid": "74e93091-22e2-4ea6-9311-1872cd3d3a5b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJ52QKU615t1Pkb6jKgacK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 756,
+      "cache_read_input_tokens": 25540,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 756
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T00:11:31.419Z_
+
+<details><summary>↩ Tool result · `toolu_01WAS3r5Lcyai79SKxunB7dW`</summary>
+
+````text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"content\": \"# D112 Pipeline Plan: RSFT from SFT s44\\n\\n## 概述\\n验证 RSFT 在最强 SFT seed（s44, ign_f1=0.4734）上的效果。之前所有 4B RSFT 都基于 SFT s42（最弱 seed, ign_f1≈0.40）。\\n\\n## 脚本位置\\n`/root/autodl-tmp/scripts/d112/` 下 4 个脚本\\n\\n## Pipeline 步骤\\n\\n### Step 1: 候选生成\\n**脚本**: `step1_generate_candidates.sh`\\n**命令**:\\n```bash\\n# 4-GPU 并行（推荐，总计约 3-4h）\\nGPU=0 SHARD=0 bash step1_generate_candidates.sh &\\nGPU=1 SHARD=1 bash step1_generate_candidates.sh &\\nGPU=2 SHARD=2 bash step1_generate_candidates.sh &\\nGPU=3 SHARD=3 bash step1_generate_candidates.sh &\\nwait\\n\\n# 或单 GPU（约 12-16h）\\nGPU=0 bash step1_generate_candidates.sh\\n```\\n**参数**: N=8, temperature=0.7, top_p=0.95, batch_size=1, max_new_tokens=1024, seed=42\\n**输入**: base=Qwen3-4B, adapter=sft_output_seed44, data=DocRED train_annotated (3053 docs)\\n**输出**: `/root/autodl-tmp/rsft_generations_4b_sft_s44/`\\n**预估时间**: 4-GPU 并行 ~3-4h, 单 GPU ~12-16h\\n**GPU**: 每个 shard 1 GPU（4 GPU 最优）\\n\\n### Step 2: CED 打分 + k=1 筛选\\n**脚本**: `step2_ced_score.sh`\\n**命令**:\\n```bash\\nGPU=0 bash step2_ced_score.sh\\n```\\n**参数**: CED scoring (format_w=0.2, f1_w=0.4, ced_w=0.4), selection_strategy=top_k, k=1, tau=0.5\\n**NLI 模型**: cross-encoder/nli-deberta-v3-base（HF cache 已有）\\n**输入**: step1 输出目录（自动合并 shard）\\n**输出**: `/root/autodl-tmp/rsft_scored_4b_sft_s44/`\\n**预估时间**: ~30-60 min\\n**GPU**: 1 GPU（NLI 模型很小）\\n**预期产出**: ~2700-2800 条训练样本（k=1, 每 doc 最多 1 条）\\n\\n### Step 3: RSFT 训练\\n**脚本**: `step3_k1_filter_and_train.sh`\\n**命令**:\\n```bash\\nGPU=0 bash step3_k1_filter_and_train.sh\\n```\\n**参数**: lr=2e-5, epochs=3, batch_size=4, grad_accum=4 (eff_batch=16), warmup=100, LoRA r=64 alpha=128, QLoRA 4-bit, max_length=2048\\n**输入**: step2 的 rsft_train.jsonl, SFT s44 adapter（merge 后重新 LoRA）\\n**输出**: `/root/autodl-tmp/rsft_output_4b_sft_s44/`\\n**预估时间**: ~1.5-2h（~2700 samples, 3 epochs, QLoRA）\\n**GPU**: 1 GPU\\n**W&B run**: d112-rsft-ced-k1-from-sft-s44\\n\\n### Step 4: 评估\\n**脚本**: `step4_eval.sh`\\n**命令**:\\n```bash\\n# 先确认 GPU 空闲 (C001)\\nnvidia-smi\\nGPU=0 bash step4_eval.sh\\n```\\n**参数**: D076 protocol, batch_size=4, max_new_tokens=1024, seed=42, no-quantize (bf16 full precision)\\n**加载**: base Qwen3-4B -> merge SFT s44 -> load RSFT adapter\\n**输出**: `/root/autodl-tmp/eval_results/d112_rsft_from_sft_s44/`\\n**预估时间**: ~20-30 min\\n**GPU**: 1 GPU（显存需 < 2GB 空闲才可提交）\\n\\n## 依赖关系\\n```\\nStep 1 (生成) → Step 2 (打分) → Step 3 (训练) → Step 4 (评估)\\n```\\nStep 1 可 4-GPU 并行加速。Step 2-4 串行，各需 1 GPU。\\n\\n## 总预估时间\\n- 4-GPU 生成: ~3-4h + 打分 ~1h + 训练 ~2h + eval ~0.5h = **~6.5-7.5h**\\n- 单 GPU 全程: ~12-16h + 1h + 2h + 0.5h = **~15.5-19.5h**\\n\\n## 关键路径\\n| 输入 | 路径 | 状态 |\\n|------|------|------|\\n| Base model | /root/autodl-tmp/models/Qwen3-4B | ✅ |\\n| SFT s44 adapter | /root/autodl-tmp/sft_output_seed44 | ✅ |\\n| DocRED data | /root/autodl-tmp/data/docred | ✅ (3053 docs) |\\n| NLI model | cross-encoder/nli-deberta-v3-base | ✅ (HF cache) |\\n\\n## Canonical s42 参数对照\\n所有超参与 canonical s42 RSFT pipeline 完全一致，仅替换了 SFT adapter 路径（sft_output → sft_output_seed44）和输出目录。\\n\\n---\\n\\n# GRPO bf16 G=4 学习曲线结论\\n\\n## 评估结果\\n| checkpoint | ign_f1 | rel_f1 | evi_f1 | edcr |\\n|-----------|--------|--------|--------|------|\\n| ckpt-100 | 0.4431 | 0.4511 | 0.8010 | 0.6453 |\\n| ckpt-200 | 0.4446 | 0.4513 | 0.8053 | 0.6489 |\\n| Δ | +0.0015 | +0.0002 | +0.0043 | +0.0036 |\\n\\n## 结论\\n- 模型在 step 100 已收敛，ckpt-200 仅 +0.15pp ign_f1，所有指标几乎持平。**ckpt-100 是最优 checkpoint**（性价比最高）。\\n- vs SFT baseline (ign_f1=0.4036): GRPO bf16 **+3.95pp**，证明 bf16 full-precision GRPO 在 IE 任务上有正向增益。\\n- 与 QLoRA GRPO catastrophic forgetting 形成鲜明对比：bf16 GRPO 避免了量化训练的灾难性遗忘。\\n- **论文意义**: Claim 3 (decoupling spectrum) 的关键数据点。bf16 GRPO 是 spectrum 上 SFT → GRPO → RSFT 的中间锚点，证明精度是 GRPO 成功的必要条件。\\n\", \"total_chars\": 3504, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4434437a-9040-4242-84c3-0f04c5498cc3",
+  "uuid": "03410d2f-e57c-42b8-80b8-32b6b58cebdc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"content\\\": \\\"# D112 Pipeline Plan: RSFT from SFT s44\\\\n\\\\n## 概述\\\\n验证 RSFT 在最强 SFT seed（s44, ign_f1=0.4734）上的效果。之前所有 4B RSFT 都基于 SFT s42（最弱 seed, ign_f1≈0.40）。\\\\n\\\\n## 脚本位置\\\\n`/root/autodl-tmp/scripts/d112/` 下 4 个脚本\\\\n\\\\n## Pipeline 步骤\\\\n\\\\n### Step 1: 候选生成\\\\n**脚本**: `step1_generate_candidates.sh`\\\\n**命令**:\\\\n```bash\\\\n# 4-GPU 并行（推荐，总计约 3-4h）\\\\nGPU=0 SHARD=0 bash step1_generate_candidates.sh &\\\\nGPU=1 SHARD=1 bash step1_generate_candidates.sh &\\\\nGPU=2 SHARD=2 bash step1_generate_candidates.sh &\\\\nGPU=3 SHARD=3 bash step1_generate_candidates.sh &\\\\nwait\\\\n\\\\n# 或单 GPU（约 12-16h）\\\\nGPU=0 bash step1_generate_candidates.sh\\\\n```\\\\n**参数**: N=8, temperature=0.7, top_p=0.95, batch_size=1, max_new_tokens=1024, seed=42\\\\n**输入**: base=Qwen3-4B, adapter=sft_output_seed44, data=DocRED train_annotated (3053 docs)\\\\n**输出**: `/root/autodl-tmp/rsft_generations_4b_sft_s44/`\\\\n**预估时间**: 4-GPU 并行 ~3-4h, 单 GPU ~12-16h\\\\n**GPU**: 每个 shard 1 GPU（4 GPU 最优）\\\\n\\\\n### Step 2: CED 打分 + k=1 筛选\\\\n**脚本**: `step2_ced_score.sh`\\\\n**命令**:\\\\n```bash\\\\nGPU=0 bash step2_ced_score.sh\\\\n```\\\\n**参数**: CED scoring (format_w=0.2, f1_w=0.4, ced_w=0.4), selection_strategy=top_k, k=1, tau=0.5\\\\n**NLI 模型**: cross-encoder/nli-deberta-v3-base（HF cache 已有）\\\\n**输入**: step1 输出目录（自动合并 shard）\\\\n**输出**: `/root/autodl-tmp/rsft_scored_4b_sft_s44/`\\\\n**预估时间**: ~30-60 min\\\\n**GPU**: 1 GPU（NLI 模型很小）\\\\n**预期产出**: ~2700-2800 条训练样本（k=1, 每 doc 最多 1 条）\\\\n\\\\n### Step 3: RSFT 训练\\\\n**脚本**: `step3_k1_filter_and_train.sh`\\\\n**命令**:\\\\n```bash\\\\nGPU=0 bash step3_k1_filter_and_train.sh\\\\n```\\\\n**参数**: lr=2e-5, epochs=3, batch_size=4, grad_accum=4 (eff_batch=16), warmup=100, LoRA r=64 alpha=128, QLoRA 4-bit, max_length=2048\\\\n**输入**: step2 的 rsft_train.jsonl, SFT s44 adapter（merge 后重新 LoRA）\\\\n**输出**: `/root/autodl-tmp/rsft_output_4b_sft_s44/`\\\\n**预估时间**: ~1.5-2h（~2700 samples, 3 epochs, QLoRA）\\\\n**GPU**: 1 GPU\\\\n**W&B run**: d112-rsft-ced-k1-from-sft-s44\\\\n\\\\n### Step 4: 评估\\\\n**脚本**: `step4_eval.sh`\\\\n**命令**:\\\\n```bash\\\\n# 先确认 GPU 空闲 (C001)\\\\nnvidia-smi\\\\nGPU=0 bash step4_eval.sh\\\\n```\\\\n**参数**: D076 protocol, batch_size=4, max_new_tokens=1024, seed=42, no-quantize (bf16 full precision)\\\\n**加载**: base Qwen3-4B -> merge SFT s44 -> load RSFT adapter\\\\n**输出**: `/root/autodl-tmp/eval_results/d112_rsft_from_sft_s44/`\\\\n**预估时间**: ~20-30 min\\\\n**GPU**: 1 GPU（显存需 < 2GB 空闲才可提交）\\\\n\\\\n## 依赖关系\\\\n```\\\\nStep 1 (生成) → Step 2 (打分) → Step 3 (训练) → Step 4 (评估)\\\\n```\\\\nStep 1 可 4-GPU 并行加速。Step 2-4 串行，各需 1 GPU。\\\\n\\\\n## 总预估时间\\\\n- 4-GPU 生成: ~3-4h + 打分 ~1h + 训练 ~2h + eval ~0.5h = **~6.5-7.5h**\\\\n- 单 GPU 全程: ~12-16h + 1h + 2h + 0.5h = **~15.5-19.5h**\\\\n\\\\n## 关键路径\\\\n| 输入 | 路径 | 状态 |\\\\n|------|------|------|\\\\n| Base model | /root/autodl-tmp/models/Qwen3-4B | ✅ |\\\\n| SFT s44 adapter | /root/autodl-tmp/sft_output_seed44 | ✅ |\\\\n| DocRED data | /root/autodl-tmp/data/docred | ✅ (3053 docs) |\\\\n| NLI model | cross-encoder/nli-deberta-v3-base | ✅ (HF cache) |\\\\n\\\\n## Canonical s42 参数对照\\\\n所有超参与 canonical s42 RSFT pipeline 完全一致，仅替换了 SFT adapter 路径（sft_output → sft_output_seed44）和输出目录。\\\\n\\\\n---\\\\n\\\\n# GRPO bf16 G=4 学习曲线结论\\\\n\\\\n## 评估结果\\\\n| checkpoint | ign_f1 | rel_f1 | evi_f1 | edcr |\\\\n|-----------|--------|--------|--------|------|\\\\n| ckpt-100 | 0.4431 | 0.4511 | 0.8010 | 0.6453 |\\\\n| ckpt-200 | 0.4446 | 0.4513 | 0.8053 | 0.6489 |\\\\n| Δ | +0.0015 | +0.0002 | +0.0043 | +0.0036 |\\\\n\\\\n## 结论\\\\n- 模型在 step 100 已收敛，ckpt-200 仅 +0.15pp ign_f1，所有指标几乎持平。**ckpt-100 是最优 checkpoint**（性价比最高）。\\\\n- vs SFT baseline (ign_f1=0.4036): GRPO bf16 **+3.95pp**，证明 bf16 full-precision GRPO 在 IE 任务上有正向增益。\\\\n- 与 QLoRA GRPO catastrophic forgetting 形成鲜明对比：bf16 GRPO 避免了量化训练的灾难性遗忘。\\\\n- **论文意义**: Claim 3 (decoupling spectrum) 的关键数据点。bf16 GRPO 是 spectrum 上 SFT → GRPO → RSFT 的中间锚点，证明精度是 GRPO 成功的必要条件。\\\\n\\\", \\\"total_chars\\\": 3504, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"content\": \"# D112 Pipeline Plan: RSFT from SFT s44\\n\\n## 概述\\n验证 RSFT 在最强 SFT seed（s44, ign_f1=0.4734）上的效果。之前所有 4B RSFT 都基于 SFT s42（最弱 seed, ign_f1≈0.40）。\\n\\n## 脚本位置\\n`/root/autodl-tmp/scripts/d112/` 下 4 个脚本\\n\\n## Pipeline 步骤\\n\\n### Step 1: 候选生成\\n**脚本**: `step1_generate_candidates.sh`\\n**命令**:\\n```bash\\n# 4-GPU 并行（推荐，总计约 3-4h）\\nGPU=0 SHARD=0 bash step1_generate_candidates.sh &\\nGPU=1 SHARD=1 bash step1_generate_candidates.sh &\\nGPU=2 SHARD=2 bash step1_generate_candidates.sh &\\nGPU=3 SHARD=3 bash step1_generate_candidates.sh &\\nwait\\n\\n# 或单 GPU（约 12-16h）\\nGPU=0 bash step1_generate_candidates.sh\\n```\\n**参数**: N=8, temperature=0.7, top_p=0.95, batch_size=1, max_new_tokens=1024, seed=42\\n**输入**: base=Qwen3-4B, adapter=sft_output_seed44, data=DocRED train_annotated (3053 docs)\\n**输出**: `/root/autodl-tmp/rsft_generations_4b_sft_s44/`\\n**预估时间**: 4-GPU 并行 ~3-4h, 单 GPU ~12-16h\\n**GPU**: 每个 shard 1 GPU（4 GPU 最优）\\n\\n### Step 2: CED 打分 + k=1 筛选\\n**脚本**: `step2_ced_score.sh`\\n**命令**:\\n```bash\\nGPU=0 bash step2_ced_score.sh\\n```\\n**参数**: CED scoring (format_w=0.2, f1_w=0.4, ced_w=0.4), selection_strategy=top_k, k=1, tau=0.5\\n**NLI 模型**: cross-encoder/nli-deberta-v3-base（HF cache 已有）\\n**输入**: step1 输出目录（自动合并 shard）\\n**输出**: `/root/autodl-tmp/rsft_scored_4b_sft_s44/`\\n**预估时间**: ~30-60 min\\n**GPU**: 1 GPU（NLI 模型很小）\\n**预期产出**: ~2700-2800 条训练样本（k=1, 每 doc 最多 1 条）\\n\\n### Step 3: RSFT 训练\\n**脚本**: `step3_k1_filter_and_train.sh`\\n**命令**:\\n```bash\\nGPU=0 bash step3_k1_filter_and_train.sh\\n```\\n**参数**: lr=2e-5, epochs=3, batch_size=4, grad_accum=4 (eff_batch=16), warmup=100, LoRA r=64 alpha=128, QLoRA 4-bit, max_length=2048\\n**输入**: step2 的 rsft_train.jsonl, SFT s44 adapter（merge 后重新 LoRA）\\n**输出**: `/root/autodl-tmp/rsft_output_4b_sft_s44/`\\n**预估时间**: ~1.5-2h（~2700 samples, 3 epochs, QLoRA）\\n**GPU**: 1 GPU\\n**W&B run**: d112-rsft-ced-k1-from-sft-s44\\n\\n### Step 4: 评估\\n**脚本**: `step4_eval.sh`\\n**命令**:\\n```bash\\n# 先确认 GPU 空闲 (C001)\\nnvidia-smi\\nGPU=0 bash step4_eval.sh\\n```\\n**参数**: D076 protocol, batch_size=4, max_new_tokens=1024, seed=42, no-quantize (bf16 full precision)\\n**加载**: base Qwen3-4B -> merge SFT s44 -> load RSFT adapter\\n**输出**: `/root/autodl-tmp/eval_results/d112_rsft_from_sft_s44/`\\n**预估时间**: ~20-30 min\\n**GPU**: 1 GPU（显存需 < 2GB 空闲才可提交）\\n\\n## 依赖关系\\n```\\nStep 1 (生成) → Step 2 (打分) → Step 3 (训练) → Step 4 (评估)\\n```\\nStep 1 可 4-GPU 并行加速。Step 2-4 串行，各需 1 GPU。\\n\\n## 总预估时间\\n- 4-GPU 生成: ~3-4h + 打分 ~1h + 训练 ~2h + eval ~0.5h = **~6.5-7.5h**\\n- 单 GPU 全程: ~12-16h + 1h + 2h + 0.5h = **~15.5-19.5h**\\n\\n## 关键路径\\n| 输入 | 路径 | 状态 |\\n|------|------|------|\\n| Base model | /root/autodl-tmp/models/Qwen3-4B | ✅ |\\n| SFT s44 adapter | /root/autodl-tmp/sft_output_seed44 | ✅ |\\n| DocRED data | /root/autodl-tmp/data/docred | ✅ (3053 docs) |\\n| NLI model | cross-encoder/nli-deberta-v3-base | ✅ (HF cache) |\\n\\n## Canonical s42 参数对照\\n所有超参与 canonical s42 RSFT pipeline 完全一致，仅替换了 SFT adapter 路径（sft_output → sft_output_seed44）和输出目录。\\n\\n---\\n\\n# GRPO bf16 G=4 学习曲线结论\\n\\n## 评估结果\\n| checkpoint | ign_f1 | rel_f1 | evi_f1 | edcr |\\n|-----------|--------|--------|--------|------|\\n| ckpt-100 | 0.4431 | 0.4511 | 0.8010 | 0.6453 |\\n| ckpt-200 | 0.4446 | 0.4513 | 0.8053 | 0.6489 |\\n| Δ | +0.0015 | +0.0002 | +0.0043 | +0.0036 |\\n\\n## 结论\\n- 模型在 step 100 已收敛，ckpt-200 仅 +0.15pp ign_f1，所有指标几乎持平。**ckpt-100 是最优 checkpoint**（性价比最高）。\\n- vs SFT baseline (ign_f1=0.4036): GRPO bf16 **+3.95pp**，证明 bf16 full-precision GRPO 在 IE 任务上有正向增益。\\n- 与 QLoRA GRPO catastrophic forgetting 形成鲜明对比：bf16 GRPO 避免了量化训练的灾难性遗忘。\\n- **论文意义**: Claim 3 (decoupling spectrum) 的关键数据点。bf16 GRPO 是 spectrum 上 SFT → GRPO → RSFT 的中间锚点，证明精度是 GRPO 成功的必要条件。\\n\", \"total_chars\": 3504, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_011bub6mPt6wUeNFS4BHjXfJ`</summary>
+
+````json
+{
+  "project": "faith-evidence-ie",
+  "file": "memory.md",
+  "content": "# D112 Pipeline Plan: RSFT from SFT s44\n\n## 概述\n验证 RSFT 在最强 SFT seed（s44, ign_f1=0.4734）上的效果。之前所有 4B RSFT 都基于 SFT s42（最弱 seed, ign_f1≈0.40）。\n\n## 脚本位置\n`/root/autodl-tmp/scripts/d112/` 下 4 个脚本\n\n## Pipeline 步骤\n\n### Step 1: 候选生成\n**脚本**: `step1_generate_candidates.sh`\n**命令**:\n```bash\n# 4-GPU 并行（推荐，总计约 3-4h）\nGPU=0 SHARD=0 bash step1_generate_candidates.sh &\nGPU=1 SHARD=1 bash step1_generate_candidates.sh &\nGPU=2 SHARD=2 bash step1_generate_candidates.sh &\nGPU=3 SHARD=3 bash step1_generate_candidates.sh &\nwait\n\n# 或单 GPU（约 12-16h）\nGPU=0 bash step1_generate_candidates.sh\n```\n**参数**: N=8, temperature=0.7, top_p=0.95, batch_size=1, max_new_tokens=1024, seed=42\n**输入**: base=Qwen3-4B, adapter=sft_output_seed44, data=DocRED train_annotated (3053 docs)\n**输出**: `/root/autodl-tmp/rsft_generations_4b_sft_s44/`\n**预估时间**: 4-GPU 并行 ~3-4h, 单 GPU ~12-16h\n**GPU**: 每个 shard 1 GPU（4 GPU 最优）\n\n### Step 2: CED 打分 + k=1 筛选\n**脚本**: `step2_ced_score.sh`\n**命令**:\n```bash\nGPU=0 bash step2_ced_score.sh\n```\n**参数**: CED scoring (format_w=0.2, f1_w=0.4, ced_w=0.4), selection_strategy=top_k, k=1, tau=0.5\n**NLI 模型**: cross-encoder/nli-deberta-v3-base（HF cache 已有）\n**输入**: step1 输出目录（自动合并 shard）\n**输出**: `/root/autodl-tmp/rsft_scored_4b_sft_s44/`\n**预估时间**: ~30-60 min\n**GPU**: 1 GPU（NLI 模型很小）\n**预期产出**: ~2700-2800 条训练样本（k=1, 每 doc 最多 1 条）\n\n### Step 3: RSFT 训练\n**脚本**: `step3_k1_filter_and_train.sh`\n**命令**:\n```bash\nGPU=0 bash step3_k1_filter_and_train.sh\n```\n**参数**: lr=2e-5, epochs=3, batch_size=4, grad_accum=4 (eff_batch=16), warmup=100, LoRA r=64 alpha=128, QLoRA 4-bit, max_length=2048\n**输入**: step2 的 rsft_train.jsonl, SFT s44 adapter（merge 后重新 LoRA）\n**输出**: `/root/autodl-tmp/rsft_output_4b_sft_s44/`\n**预估时间**: ~1.5-2h（~2700 samples, 3 epochs, QLoRA）\n**GPU**: 1 GPU\n**W&B run**: d112-rsft-ced-k1-from-sft-s44\n\n### Step 4: 评估\n**脚本**: `step4_eval.sh`\n**命令**:\n```bash\n# 先确认 GPU 空闲 (C001)\nnvidia-smi\nGPU=0 bash step4_eval.sh\n```\n**参数**: D076 protocol, batch_size=4, max_new_tokens=1024, seed=42, no-quantize (bf16 full precision)\n**加载**: base Qwen3-4B -> merge SFT s44 -> load RSFT adapter\n**输出**: `/root/autodl-tmp/eval_results/d112_rsft_from_sft_s44/`\n**预估时间**: ~20-30 min\n**GPU**: 1 GPU（显存需 < 2GB 空闲才可提交）\n\n## 依赖关系\n```\nStep 1 (生成) → Step 2 (打分) → Step 3 (训练) → Step 4 (评估)\n```\nStep 1 可 4-GPU 并行加速。Step 2-4 串行，各需 1 GPU。\n\n## 总预估时间\n- 4-GPU 生成: ~3-4h + 打分 ~1h + 训练 ~2h + eval ~0.5h = **~6.5-7.5h**\n- 单 GPU 全程: ~12-16h + 1h + 2h + 0.5h = **~15.5-19.5h**\n\n## 关键路径\n| 输入 | 路径 | 状态 |\n|------|------|------|\n| Base model | /root/autodl-tmp/models/Qwen3-4B | ✅ |\n| SFT s44 adapter | /root/autodl-tmp/sft_output_seed44 | ✅ |\n| DocRED data | /root/autodl-tmp/data/docred | ✅ (3053 docs) |\n| NLI model | cross-encoder/nli-deberta-v3-base | ✅ (HF cache) |\n\n## Canonical s42 参数对照\n所有超参与 canonical s42 RSFT pipeline 完全一致，仅替换了 SFT adapter 路径（sft_output → sft_output_seed44）和输出目录。\n\n---\n\n# GRPO bf16 G=4 学习曲线结论\n\n## 评估结果\n| checkpoint | ign_f1 | rel_f1 | evi_f1 | edcr |\n|-----------|--------|--------|--------|------|\n| ckpt-100 | 0.4431 | 0.4511 | 0.8010 | 0.6453 |\n| ckpt-200 | 0.4446 | 0.4513 | 0.8053 | 0.6489 |\n| Δ | +0.0015 | +0.0002 | +0.0043 | +0.0036 |\n\n## 结论\n- 模型在 step 100 已收敛，ckpt-200 仅 +0.15pp ign_f1，所有指标几乎持平。**ckpt-100 是最优 checkpoint**（性价比最高）。\n- vs SFT baseline (ign_f1=0.4036): GRPO bf16 **+3.95pp**，证明 bf16 full-precision GRPO 在 IE 任务上有正向增益。\n- 与 QLoRA GRPO catastrophic forgetting 形成鲜明对比：bf16 GRPO 避免了量化训练的灾难性遗忘。\n- **论文意义**: Claim 3 (decoupling spectrum) 的关键数据点。bf16 GRPO 是 spectrum 上 SFT → GRPO → RSFT 的中间锚点，证明精度是 GRPO 成功的必要条件。\n\n---\n\n# 4B SFT 3-seed D076 统一基准 (2026-05-19)\n\n| Seed | ign_f1 | evi_f1 | edcr |\n|------|--------|--------|------|\n| s42 | 0.3974 | 0.7986 | 0.6982 |\n| s43 | 0.4365 | — | — |\n| s44 | 0.4734 | — | — |\n\nMean ign_f1 = 0.4358, sample_std = 3.80pp\ns42 是最弱 seed，s44 最强。方差 3.80pp 较大 → SFT 对 seed 敏感 → 支持 D112（验证 RSFT 在强 seed 上的效果）\n\n---\n\n# 8B SFT 2-seed 对比 (2026-05-19)\n\n| Seed | ign_f1 |\n|------|--------|\n| s42 | 0.5051 |\n| s44 | 0.4681 |\n\nMean = 0.4866, sample_std = 2.62pp\n注意：8B 尺度 s42 是强 seed（与 4B 相反）\n\n---\n\n# D112 重叠修复 (2026-05-19)\n- 原始非分片 run 处理全部 3027 docs，与 shard 1/2 重叠\n- 已 kill 并重启为 4-shard 并行（各 ~756 docs）\n- step2 load_generations 原生支持 shard_*/ 合并去重\n- 教训：submit_training_job 时如果脚本支持 SHARD 变量，必须显式传入\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4434437a-9040-4242-84c3-0f04c5498cc3",
+  "uuid": "367b9cc9-2746-4444-be59-e0b912f4b9f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011pACDbMvrnv8SPJRndXJAF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2380,
+      "cache_read_input_tokens": 26296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2380
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T00:11:53.307Z_
+
+<details><summary>↩ Tool result · `toolu_011bub6mPt6wUeNFS4BHjXfJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4434437a-9040-4242-84c3-0f04c5498cc3",
+  "uuid": "115b1f10-fc82-4283-80b7-1d0b6d048b52",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+已追加三段内容（4B SFT 3-seed 统计、8B SFT 2-seed 统计、D112 重叠修复记录），原有内容保持不变。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4434437a-9040-4242-84c3-0f04c5498cc3",
+  "uuid": "9b96d292-8b62-4c73-a9c2-41f889574099",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016j6KQssxaSPCmihkvqSD9t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2686,
+      "cache_read_input_tokens": 28676,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2686
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 12_
+
+已追加三段内容（4B SFT 3-seed 统计、8B SFT 2-seed 统计、D112 重叠修复记录），原有内容保持不变。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 34934,
+  "duration_api_ms": 36217,
+  "num_turns": 4,
+  "stop_reason": "end_turn",
+  "session_id": "4434437a-9040-4242-84c3-0f04c5498cc3",
+  "total_cost_usd": 0.24342175,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 19521,
+    "cache_read_input_tokens": 92353,
+    "output_tokens": 2927,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 19521,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 57,
+        "cache_read_input_tokens": 28676,
+        "cache_creation_input_tokens": 2686,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2686
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1909,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002024,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 2927,
+      "cacheReadInputTokens": 92353,
+      "cacheCreationInputTokens": 19521,
+      "webSearchRequests": 0,
+      "costUSD": 0.24139774999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "db08f934-56bf-41fd-9025-39b37d789d45"
+}
+```
+
+</details>
+
+---

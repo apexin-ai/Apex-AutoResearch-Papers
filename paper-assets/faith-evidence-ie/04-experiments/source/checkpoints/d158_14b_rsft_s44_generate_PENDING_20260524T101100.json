@@ -1,0 +1,29 @@
+{
+  "exp_id": "d158_14b_rsft_s44_generate",
+  "project": "faith-evidence-ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T10:10:30.985Z",
+    "updated_at": "2026-05-24T10:10:59.596Z",
+    "hypothesis": "14B seed=44 candidate generation for 3-seed statistical robustness. Replicates plan017_14b_rsft_s43_generate parameters with seed=44 SFT adapter.",
+    "parent": "d158_14b_sft_s44",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s44 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_generations_14b_s44 --num_generations 8 --max_new_tokens 1024 --seed 44\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "306172",
+      "log_path": "~/runs/faith-evidence-ie/d158_14b_rsft_s44_generate.log",
+      "submitted_at": "2026-05-24T10:10:43.414Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-24T10:11:00.369948+00:00",
+  "trigger": "update_registry"
+}

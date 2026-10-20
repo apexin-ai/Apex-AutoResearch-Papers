@@ -1,0 +1,2327 @@
+# research ced anti collapse literature
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 73
+- **Recorded user turns:** 0
+- **Tool calls:** 36
+- **Original source:** `logs/chats/worker_research_ced-anti-collapse-literature_20260514T183829.jsonl`
+- **Structured JSON:** [`60f7179b1449149644e6.json`](../../sessions/60/60f7179b1449149644e6.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+73 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T18:43:17.269574+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T18:43:17.269962+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T18:43:17.270158+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "mode collapse GRPO reinforcement learning language model reward design 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "mode collapse GRPO reinforcement learning language model reward design 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T18:43:17.270316+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "multi-objective reward RLHF prevent mode collapse LLM fine-tuning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "multi-objective reward RLHF prevent mode collapse LLM fine-tuning"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T18:43:17.270444+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "reward shaping policy optimization stability reinforcement learning from human feedback"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "reward shaping policy optimization stability reinforcement learning from human feedback"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-14T18:43:17.270562+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "contrastive reward reinforcement learning text generation NLI-based reward"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "contrastive reward reinforcement learning text generation NLI-based reward"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T18:43:17.270679+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "reward overoptimization LLM RLHF reward hacking 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "reward overoptimization LLM RLHF reward hacking 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T18:43:17.270850+00:00_
+
+Web search results for query: "multi-objective reward RLHF prevent mode collapse LLM fine-tuning"
+
+Links: [{"title":"Can RLHF be More Efficient with Imperfect Reward Models ...","url":"https://openreview.net/pdf?id=8u5bzM2XfI"},{"title":"Fine-Tuning LLMs with Human Feedback (RLHF): Latest Techniques and Best Practices | by Meeran Malik | Medium","url":"https://medium.com/@meeran03/fine-tuning-llms-with-human-feedback-rlhf-latest-techniques-and-best-practices-3ed534cf9828"},{"title":"Complete guide to RLHF for LLMs: How human feedback shapes modern AI","url":"https://toloka.ai/blog/what-is-rlhf/"},{"title":"Reward Model Overoptimization: Root Causes and Mitigations","url":"https://www.reinforced.info/p/reward-model-overoptimization"},{"title":"Secrets of RLHF in Large Language Models Part II: Reward Modeling","url":"https://arxiv.org/html/2401.06080v2"},{"title":"GitHub - opendilab/awesome-RLHF: A curated list of reinforcement learning with human feedback resources (continually updated) · GitHub","url":"https://github.com/opendilab/awesome-RLHF"},{"title":"Fine-Tuning Language Models with Reward Learning on Policy","url":"https://arxiv.org/html/2403.19279v1"},{"title":"GitHub - Mattral/LLM-Improving-Trained-Models-with-RLHF: Experimented with the three essential Reinforcement Learning with Human Feedback (RLHF) process stages. It starts by revisiting the Supervised Fine-Tuning (SFT) process, then proceeds with the training of a reward model, and finally concludes with the reinforcement learning phase. We explored and applied methods such as 4-bit quantization and LoRA · GitHub","url":"https://github.com/Mattral/LLM-Improving-Trained-Models-with-RLHF"},{"title":"Secrets of RLHF in Large Language Models Part I: PPO","url":"https://openlmlab.github.io/MOSS-RLHF/paper/SecretsOfRLHFPart1.pdf"},{"title":"Building an RLHF Pipeline for LLMs: A Beginner-Friendly Tutorial | by Vi Q. Ha | Medium","url":"https://medium.com/@vi.ha.engr/building-an-rlhf-pipeline-for-llms-a-beginne
+…[truncated 1541 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T18:43:17.271065+00:00_
+
+Web search results for query: "contrastive reward reinforcement learning text generation NLI-based reward"
+
+Links: [{"title":"Learning Goal-Conditioned Representations for Language Reward Models","url":"https://scale.com/research/learning-goalconditioned-representations-large-rewards-models"},{"title":"Improving Discriminative Capability of Reward Models in ...","url":"https://aclanthology.org/2024.emnlp-main.852.pdf"},{"title":"[2603.04406] CTRL-RAG: Contrastive Likelihood Reward Based Reinforcement Learning for Context-Faithful RAG Models","url":"https://arxiv.org/abs/2603.04406"},{"title":"Large Reward Models: Generalizable Online Robot Reward Generation with Vision-Language Models","url":"https://arxiv.org/html/2603.16065"},{"title":"Text2Reward: Reward Shaping with Language Models for Reinforcement Learning","url":"https://text-to-reward.github.io/"},{"title":"Contrastive Learning In NLP - GeeksforGeeks","url":"https://www.geeksforgeeks.org/nlp/contrastive-learning-in-nlp/"},{"title":"is reinforcement learning (not) for natural language ...","url":"https://openreview.net/pdf?id=8aHzds2uUyB"},{"title":"Text2Reward: Reward Shaping with Language Models for Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=tUM39YTRxH"},{"title":"Enhancing Reinforcement Learning with Dense Rewards ...","url":"https://aclanthology.org/2024.emnlp-main.515.pdf"},{"title":"Text2Reward: Dense Reward Generation with Language Models for Reinforcement Learning","url":"https://text-to-reward-review.github.io/"}]
+
+I've found several relevant results related to your search query. Here's what the research shows:
+
+## Key Findings
+
+A recent approach improves reward model representations for aligning language models by training them to learn representations that capture expected reward at intermediate steps, using a contrastive objective applied to hidden representations from desirable and undesirable sequences.
+
+Contrastive learning methods show superiority to supervised
+…[truncated 1020 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T18:43:17.271275+00:00_
+
+Web search results for query: "mode collapse GRPO reinforcement learning language model reward design 2024 2025"
+
+Links: [{"title":"Advances in GRPO for Generation Models: A Survey","url":"https://arxiv.org/html/2603.06623"},{"title":"S-GRPO: Early Exit via Reinforcement Learning in Reasoning Models | OpenReview","url":"https://openreview.net/forum?id=wNMK5o0Vfg"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=GRPO+objectives"},{"title":"Reinforcement Learning Meets Large Language Models: A Survey of Advancements and Applications Across the LLM Lifecycle","url":"https://arxiv.org/html/2509.16679v1"},{"title":"Reinforcement Learning for Large Language Models via ...","url":"https://aclanthology.org/2025.emnlp-main.1085.pdf"},{"title":"DAPO: An Open-Source LLM Reinforcement Learning System at Scale 1ByteDance Seed","url":"https://arxiv.org/pdf/2503.14476"},{"title":"Reinforcement Learning for Safe LLM Code Generation Roy Huang","url":"https://www2.eecs.berkeley.edu/Pubs/TechRpts/2025/EECS-2025-123.pdf"},{"title":"Group Relative Policy Optimization (GRPO)","url":"https://cameronrwolfe.substack.com/p/grpo"},{"title":"Reinforcement Learning Meets Large Language Models: A Survey of","url":"https://arxiv.org/pdf/2509.16679"},{"title":"Training-Free Group Relative Policy Optimization | OpenReview","url":"https://openreview.net/forum?id=tyUnYbE7Gi"}]
+
+Based on the search results, here's what I found about mode collapse in GRPO and reinforcement learning for language models:
+
+## Mode Collapse Problem
+
+When models are repeatedly optimized to maximize preference scores from reward models, their outputs gradually converge to narrow modes preferred by the reward model, causing mode collapse or preference mode collapse. Reward models typically exhibit inherent preference biases—favoring certain specific styles, compositions, or color schemes with higher scores.
+
+## Approaches to Addressing Mode Collapse
+
+Methods address this problem from the perspect
+…[truncated 1237 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T18:43:17.271480+00:00_
+
+Web search results for query: "reward shaping policy optimization stability reinforcement learning from human feedback"
+
+Links: [{"title":"Comprehensive Overview of Reward Engineering and Shaping in Advancing Reinforcement Learning Applications","url":"https://arxiv.org/html/2408.10215v1"},{"title":"Reinforcement learning from human feedback - Wikipedia","url":"https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback"},{"title":"Reward Shaping for Faster Learning in Reinforcement ...","url":"https://codesignal.com/learn/courses/advanced-rl-techniques-optimization-and-beyond/lessons/reward-shaping-for-faster-learning-in-reinforcement-learning"},{"title":"Reward shaping — Mastering Reinforcement Learning","url":"https://gibberblot.github.io/rl-notes/single-agent/reward-shaping.html"},{"title":"Reinforcement Learning from Human Feedback (RLHF) Explained | IntuitionLabs","url":"https://intuitionlabs.ai/articles/reinforcement-learning-human-feedback"},{"title":"Policy Shaping: Integrating Human Feedback with Reinforcement Learning","url":"https://sites.cc.gatech.edu/social-machines/papers/nips2013.pdf"},{"title":"GRPO++: Tricks for Making RL Actually Work","url":"https://cameronrwolfe.substack.com/p/grpo-tricks"},{"title":"(PDF) Comprehensive Overview of Reward Engineering and Shaping in Advancing Reinforcement Learning Applications","url":"https://www.researchgate.net/publication/383267364_Comprehensive_Overview_of_Reward_Engineering_and_Shaping_in_Advancing_Reinforcement_Learning_Applications"},{"title":"Highly Efficient Self-Adaptive Reward Shaping for Reinforcement Learning","url":"https://arxiv.org/html/2408.03029v1"},{"title":"Reinforcement Learning from Human Feedback","url":"https://arxiv.org/html/2504.12501v3"}]
+
+I've performed a web search on the topic of reward shaping, policy optimization stability, and reinforcement learning from human feedback. Here are the key findings:
+
+## Reward Shaping and Policy Optimization
+
+Reward engineering and rewa
+…[truncated 1702 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T18:43:17.271708+00:00_
+
+Web search results for query: "reward overoptimization LLM RLHF reward hacking 2024 2025"
+
+Links: [{"title":"Reward Hacking in Reinforcement Learning | Lil'Log","url":"https://lilianweng.github.io/posts/2024-11-28-reward-hacking/"},{"title":"[2406.02900] Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms","url":"https://arxiv.org/abs/2406.02900"},{"title":"Inference-Time Reward Hacking in Large Language Models | OpenReview","url":"https://openreview.net/forum?id=hSX7Dd8dxy"},{"title":"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges","url":"https://arxiv.org/html/2604.13602v1"},{"title":"Reward Model Overoptimization: Root Causes and Mitigations","url":"https://www.reinforced.info/p/reward-model-overoptimization"},{"title":"Reward Hacking: The Hidden Failure Mode in AI Optimization | by Adnan Masood, PhD. | Medium","url":"https://medium.com/@adnanmasood/reward-hacking-the-hidden-failure-mode-in-ai-optimization-686b62acf408"},{"title":"Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms | OpenReview","url":"https://openreview.net/forum?id=pf4OuJyn4Q"},{"title":"Reward Shaping to Mitigate Reward Hacking in RLHF","url":"https://arxiv.org/html/2502.18770v3"},{"title":"Mitigating Reward Hacking in RLHF via Information- ...","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/f25d75fc760aec0a6174f9f5d9da59b8-Paper-Conference.pdf"},{"title":"Provably Mitigating Overoptimization in RLHF: Your SFT ...","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/fa69e968b7319fd42524febd41475fb3-Paper-Conference.pdf"}]
+
+I've successfully searched for information on reward overoptimization, LLM RLHF, and reward hacking. Here's what the research shows:
+
+## Key Findings
+
+**Definition and Core Problem:**
+Reward hacking occurs when a reinforcement learning (RL) agent exploits flaws or ambiguities in the reward function to achieve high rewards, without genuinely learning 
+…[truncated 1566 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T18:43:17.271904+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "DAPO decoupled clip dynamic sampling policy optimization entropy collapse arxiv 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "DAPO decoupled clip dynamic sampling policy optimization entropy collapse arxiv 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T18:43:17.272036+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "GRPO++ tricks reinforcement learning work entropy collapse diversity loss 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "GRPO++ tricks reinforcement learning work entropy collapse diversity loss 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T18:43:17.272153+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "CTRL-RAG contrastive likelihood reward reinforcement learning context faithful arxiv 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "CTRL-RAG contrastive likelihood reward reinforcement learning context faithful arxiv 2025 2026"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-14T18:43:17.272288+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"scaling laws for reward model overoptimization\" Gao Schulman Hilton 2023 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"scaling laws for reward model overoptimization\" Gao Schulman Hilton 2023 arxiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T18:43:17.272545+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "multi-reward RLHF \"reward decomposition\" OR \"multi-dimensional reward\" language model diversity arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "multi-reward RLHF \"reward decomposition\" OR \"multi-dimensional reward\" language model diversity arxiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T18:43:17.272777+00:00_
+
+Web search results for query: "CTRL-RAG contrastive likelihood reward reinforcement learning context faithful arxiv 2025 2026"
+
+Links: [{"title":"CTRL-RAG: Contrastive Likelihood Reward Based Reinforcement Learning for Context-Faithful RAG Models","url":"https://arxiv.org/html/2603.04406"},{"title":"[2603.04406] CTRL-RAG: Contrastive Likelihood Reward Based Reinforcement Learning for Context-Faithful RAG Models","url":"https://arxiv.org/abs/2603.04406"},{"title":"Optimizing Retrieval for RAG via Reinforcement Learning Jiawei Zhou Lei Chen","url":"https://arxiv.org/pdf/2510.24652"},{"title":"Optimizing Retrieval for RAG via Reinforced Contrastive Learning","url":"https://arxiv.org/html/2510.24652v1"},{"title":"PrLM: Learning Explicit Reasoning for Personalized RAG via Contrastive Reward Optimization","url":"https://arxiv.org/html/2508.07342"},{"title":"An Autonomous Network Orchestration Framework Integrating Large Language Models with Continual Reinforcement Learning","url":"https://arxiv.org/html/2502.16198"},{"title":"[2510.24652] Optimizing Retrieval for RAG via Reinforcement Learning","url":"https://arxiv.org/abs/2510.24652"},{"title":"[2306.03346] Stabilizing Contrastive RL: Techniques for Robotic Goal Reaching from Offline Data","url":"https://arxiv.org/abs/2306.03346"},{"title":"Reinforcement Learning from Human Feedback","url":"https://arxiv.org/html/2504.12501v3"},{"title":"[2510.24652v1] Optimizing Retrieval for RAG via Reinforced Contrastive Learning","url":"https://arxiv.org/abs/2510.24652v1"}]
+
+## Search Results
+
+I found the paper you're looking for! Here are the key findings:
+
+**CTRL-RAG: Contrastive Likelihood Reward Based Reinforcement Learning for Context-Faithful RAG Models**
+
+CTRL-RAG is the first reinforcement learning approach specifically designed to optimize contextual faithfulness and contextual reasoning in RAG scenarios using Contrastive Likelihood Rewards (CLR). The paper was published on arXiv on February 2, 2026.
+
+**Core Innovation:**
+
+T
+…[truncated 1022 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T18:43:17.272969+00:00_
+
+Web search results for query: "DAPO decoupled clip dynamic sampling policy optimization entropy collapse arxiv 2025"
+
+Links: [{"title":"DAPO: An Open-Source LLM Reinforcement Learning System at Scale 1ByteDance Seed","url":"https://arxiv.org/pdf/2503.14476"},{"title":"Decoupled Clip and Dynamic Sampling Policy Optimization for Food Reasoning Segmentation | Proceedings of the 1st International Workshop on Multi-modal Food Computing","url":"https://dl.acm.org/doi/10.1145/3746264.3760490"},{"title":"DAPO: An Open-Source LLM Reinforcement Learning System at Scale | OpenReview","url":"https://openreview.net/forum?id=2a36EMSSTp"},{"title":"DAPO: An Open-Source LLM Reinforcement Learning System at Scale","url":"https://arxiv.org/html/2503.14476v1"},{"title":"DAPO","url":"https://dapo-sia.github.io/"},{"title":"Recipe: Decoupled Clip and Dynamic Sampling Policy Optimization (DAPO) — verl documentation","url":"https://verl.readthedocs.io/en/latest/algo/dapo.html"},{"title":"DAPO: An Open Source LLM Reinforcement Learning System at Scale","url":"https://self-supervised.cs.jhu.edu/fa2025/files/presentations/Why-RL-Sep16-AdvancesNLP.pdf"},{"title":"[2503.14476] DAPO: An Open-Source LLM Reinforcement Learning System at Scale","url":"https://arxiv.org/abs/2503.14476"},{"title":"DCPO: Dynamic Clipping Policy Optimization","url":"https://arxiv.org/pdf/2509.02333"},{"title":"DAPO (Decoupled Clip and Dynamic sAmpling Policy Optimization): GRPO on steroids | by Syed Hasan | Medium","url":"https://medium.com/@syed_hasan/dapo-decoupled-clip-and-dynamic-sampling-policy-optimization-grpo-on-steroids-9c571a0536f3"}]
+
+I found comprehensive information about DAPO. Here's what the search results reveal:
+
+## DAPO Overview
+
+DAPO (Decoupled Clip and Dynamic sAmpling Policy Optimization) is an algorithm that introduces 4 key techniques to make RL effective in the long-CoT RL scenario.
+
+## Key Findings
+
+**Address Entropy Collapse:**
+PPO and GRPO suffer from entropy collapse - the entropy of policy
+…[truncated 1179 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T18:43:17.273350+00:00_
+
+Web search results for query: ""scaling laws for reward model overoptimization" Gao Schulman Hilton 2023 arxiv"
+
+Links: [{"title":"[2210.10760] Scaling Laws for Reward Model Overoptimization","url":"https://arxiv.org/abs/2210.10760"},{"title":"Scaling laws for reward model overoptimization | Proceedings of the 40th International Conference on Machine Learning","url":"https://dl.acm.org/doi/10.5555/3618408.3618845"},{"title":"Scaling Laws for Reward Model Overoptimization","url":"https://proceedings.mlr.press/v202/gao23h.html"},{"title":"[PDF] Scaling Laws for Reward Model Overoptimization | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Scaling-Laws-for-Reward-Model-Overoptimization-Gao-Schulman/fb3dc5e20e0a71134ca916f0d6d8d41f01225b4b"},{"title":"Scaling Laws for Reward Model Overoptimization","url":"https://www.researchgate.net/publication/364436070_Scaling_Laws_for_Reward_Model_Overoptimization"},{"title":"Scaling Laws for Reward Model Overoptimization Leo Gao OpenAI John Schulman","url":"https://arxiv.org/pdf/2210.10760"},{"title":"Scaling Laws for Reward Model Overoptimization - ADS","url":"https://ui.adsabs.harvard.edu/abs/2022arXiv221010760G/abstract"},{"title":"Paper page - Scaling Laws for Reward Model Overoptimization","url":"https://huggingface.co/papers/2210.10760"},{"title":"Scaling Laws for Reward Model Overoptimization","url":"https://www.alignmentforum.org/posts/shcSdHGPhnLQkpSbX/scaling-laws-for-reward-model-overoptimization"},{"title":"(PDF) Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms","url":"https://www.researchgate.net/publication/381190381_Scaling_Laws_for_Reward_Model_Overoptimization_in_Direct_Alignment_Algorithms"}]
+
+I found the paper you're looking for! Here are the key details:
+
+## Paper Information
+
+**Title:** Scaling Laws for Reward Model Overoptimization
+
+**Authors:** Leo Gao, John Schulman, Jacob Hilton
+
+**Publication:** Published in Proceedings of the 40th International Conference on Ma
+…[truncated 1113 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T18:43:17.273554+00:00_
+
+Web search results for query: "GRPO++ tricks reinforcement learning work entropy collapse diversity loss 2025"
+
+Links: [{"title":"GRPO++: Tricks for Making RL Actually Work","url":"https://cameronrwolfe.substack.com/p/grpo-tricks"},{"title":"CE-GPPO: Coordinating Entropy via Gradient-Preserving Clipping Policy Optimization in Reinforcement Learning","url":"https://arxiv.org/html/2509.20712"},{"title":"Group Relative Policy Optimization (GRPO)","url":"https://cameronrwolfe.substack.com/p/grpo"},{"title":"DiverseGRPO: Mitigating Mode Collapse in Image Generation via Diversity-Aware GRPO","url":"https://arxiv.org/html/2512.21514"},{"title":"GRPO Loss Function in Reinforcement Learning","url":"https://www.emergentmind.com/topics/grpo-loss-function"},{"title":"Arbitrary Entropy Policy Optimization Breaks The Exploration Bottleneck of Reinforcement Learning","url":"https://arxiv.org/html/2510.08141"},{"title":"DAPO: An Open-Source LLM Reinforcement Learning System at Scale 1ByteDance Seed","url":"https://arxiv.org/pdf/2503.14476"},{"title":"EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning","url":"https://arxiv.org/html/2509.22576"},{"title":"EDGE-GRPO: Entropy-Driven GRPO with Guided Error Correction for Advantage Diversity | OpenReview","url":"https://openreview.net/forum?id=VZermIifAQ"},{"title":"EDGE-GRPO: Entropy-Driven GRPO with Guided Error Correction for Advantage Diversity","url":"https://arxiv.org/html/2507.21848v1"}]
+
+Based on the search results, here's what I found about GRPO++ tricks for making reinforcement learning work, particularly regarding entropy collapse and diversity loss:
+
+## Key Techniques in GRPO++
+
+Quantized rollouts (int8) show clear signs of entropy collapse and produce models with abnormally long average response lengths, indicating training instability. Entropy collapse is not observed when using bf16 rollouts, suggesting that precision matters for maintaining healthy RL training.
+
+## Main Strategies to Addres
+…[truncated 1239 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T18:43:17.273727+00:00_
+
+Web search results for query: "multi-reward RLHF "reward decomposition" OR "multi-dimensional reward" language model diversity arxiv"
+
+Links: [{"title":"Interpretable Preferences via Multi-Objective Reward Modeling and Mixture-of-Experts","url":"https://arxiv.org/html/2406.12845v1"},{"title":"Robust Reward Modeling for Large Language Models via Causal Decomposition","url":"https://arxiv.org/html/2604.13833"},{"title":"Sotopia-RL: Reward Design for Social Intelligence","url":"https://arxiv.org/html/2508.03905v1"},{"title":"Aligning Dialogue Agents with Global Feedback via Large Language Model Multimodal Reward Decomposition","url":"https://arxiv.org/html/2505.15922"},{"title":"Controlling Multimodal LLMs via Reward-guided Decoding","url":"https://arxiv.org/html/2508.11616"},{"title":"Secrets of RLHF in Large Language Models Part II: Reward Modeling","url":"https://arxiv.org/html/2401.06080v2"},{"title":"RMGAP: Benchmarking the Generalization of Reward Models across Diverse Preferences","url":"https://arxiv.org/html/2605.01831"},{"title":"Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models","url":"https://arxiv.org/html/2503.13551"},{"title":"Information-Theoretic Reward Decomposition for Generalizable RLHF","url":"https://arxiv.org/pdf/2504.06020"},{"title":"Aligning Dialogue Agents with Global Feedback via Large Language Model Reward Decomposition","url":"https://arxiv.org/html/2505.15922v1"}]
+
+I've successfully performed the web search for your query on multi-reward RLHF with reward decomposition and multi-dimensional reward approaches for language models. Here are the key findings from recent arXiv papers:
+
+## Key Papers Found:
+
+**1. Sotopia-RL: Reward Design for Social Intelligence** (August 2025)
+This framework refines coarse episode-level feedback into utterance-level, multi-dimensional rewards, where utterance-level credit assignment mitigates partial observability by attributing outcomes to individual utterances, whil
+…[truncated 1767 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T18:43:17.273909+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "DiverseGRPO mode collapse image generation diversity-aware GRPO arxiv 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "DiverseGRPO mode collapse image generation diversity-aware GRPO arxiv 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T18:43:17.274034+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "EDGE-GRPO entropy-driven guided error correction advantage diversity arxiv 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "EDGE-GRPO entropy-driven guided error correction advantage diversity arxiv 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T18:43:17.274149+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"reward shaping mitigate reward hacking\" RLHF arxiv 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"reward shaping mitigate reward hacking\" RLHF arxiv 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T18:43:17.274281+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "safe RLHF beaver multi-objective reward Dai Pan Xu arxiv 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "safe RLHF beaver multi-objective reward Dai Pan Xu arxiv 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T18:43:17.274399+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "DeepSeek-R1 GRPO mode collapse zero-shot reinforcement learning reasoning 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "DeepSeek-R1 GRPO mode collapse zero-shot reinforcement learning reasoning 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T18:43:17.274533+00:00_
+
+Web search results for query: ""reward shaping mitigate reward hacking" RLHF arxiv 2025"
+
+Links: [{"title":"[2502.18770] Reward Shaping to Mitigate Reward Hacking in RLHF","url":"https://arxiv.org/abs/2502.18770"},{"title":"Reward Shaping to Mitigate Reward Hacking in RLHF","url":"https://arxiv.org/html/2502.18770v3"},{"title":"[2502.18770v2] Reward Shaping to Mitigate Reward Hacking in RLHF","url":"https://arxiv.org/abs/2502.18770v2"},{"title":"[2502.18770v1] Reward Shaping to Mitigate Reward Hacking in RLHF","url":"https://arxiv.org/abs/2502.18770v1"},{"title":"Reward Shaping to Mitigate Reward Hacking in RLHF","url":"https://openreview.net/pdf?id=62A4d5Mokc"},{"title":"Reward Shaping to Mitigate Reward Hacking in RLHF - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250218770F/abstract"},{"title":"Mitigating Attention Hacking in Preference-Based Reward Modeling via Interaction Distillation","url":"https://arxiv.org/html/2508.02618v1"},{"title":"Reward Hacking in Reinforcement Learning | Lil'Log","url":"https://lilianweng.github.io/posts/2024-11-28-reward-hacking/"},{"title":"Repairing Reward Functions with Feedback to Mitigate Reward Hacking","url":"https://arxiv.org/html/2510.13036v2"},{"title":"Reward Shaping to Mitigate Reward Hacking in RLHF | OpenReview","url":"https://openreview.net/forum?id=62A4d5Mokc"}]
+
+Based on the search results, I found a highly relevant 2025 arxiv paper on this topic. Here's what the research shows:
+
+## Key Paper: "Reward Shaping to Mitigate Reward Hacking in RLHF"
+
+Reinforcement Learning from Human Feedback (RLHF) is essential for aligning large language models (LLMs) with human values, but RLHF is susceptible to reward hacking, where the agent exploits flaws in the reward function rather than learning the intended behavior, thus degrading alignment.
+
+### Design Principles
+
+The analysis suggests two key design principles: (1) the RL reward should be bounded, and (2) the RL reward benefits from rapid initial growth followed b
+…[truncated 884 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T18:43:17.274714+00:00_
+
+Web search results for query: "DiverseGRPO mode collapse image generation diversity-aware GRPO arxiv 2025"
+
+Links: [{"title":"[2512.21514] DiverseGRPO: Mitigating Mode Collapse in Image Generation via Diversity-Aware GRPO","url":"https://arxiv.org/abs/2512.21514"},{"title":"DiverseGRPO: Mitigating Mode Collapse in Image Generation via Diversity-Aware GRPO","url":"https://arxiv.org/html/2512.21514"},{"title":"Beyond the Dirac Delta: Mitigating Diversity Collapse in Reinforcement Fine-Tuning for Versatile Image Generation","url":"https://arxiv.org/html/2601.12401"},{"title":"Advances in GRPO for Generation Models: A Survey","url":"https://arxiv.org/html/2603.06623"},{"title":"DiverseGRPO","url":"https://henglin-liu.github.io/DiverseGRPO/"},{"title":"MAR-GRPO: Stabilized GRPO for AR-diffusion Hybrid Image Generation","url":"https://arxiv.org/html/2604.06966"},{"title":"Beyond Mode Elicitation: Diversity-Preserving Reinforcement Learning via Latent Diffusion Reasoner","url":"https://arxiv.org/html/2602.01705"},{"title":"Diverse Video Generation with Determinantal Point Process-Guided Policy Optimization","url":"https://arxiv.org/html/2511.20647"},{"title":"STAGE: Stable and Generalizable GRPO for Autoregressive Image Generation","url":"https://arxiv.org/html/2509.25027"},{"title":"AR-GRPO: Training Autoregressive Image Generation Models","url":"https://arxiv.org/pdf/2508.06924"}]
+
+I found comprehensive information about DiverseGRPO. Here's a summary of the search results:
+
+## DiverseGRPO: Mitigating Mode Collapse in Image Generation
+
+DiverseGRPO is a method for mitigating mode collapse in image generation via diversity-aware GRPO, published on arXiv in December 2025.
+
+### The Problem
+
+While reinforcement learning with GRPO improves image generation quality significantly by comparing relative performance of images generated within the same group, the model tends to produce homogenized outputs in later training stages, lacking creativity and visual diversity.
+
+### Root Ca
+…[truncated 1204 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T18:43:17.274883+00:00_
+
+Web search results for query: "safe RLHF beaver multi-objective reward Dai Pan Xu arxiv 2024"
+
+Links: [{"title":"GitHub - PKU-Alignment/safe-rlhf: Safe RLHF: Constrained Value Alignment via Safe Reinforcement Learning from Human Feedback · GitHub","url":"https://github.com/PKU-Alignment/safe-rlhf"},{"title":"PKU-SafeRLHF: Towards Multi-Level Safety Alignment for LLMs with Human Preference","url":"https://arxiv.org/html/2406.15513"},{"title":"Published as a conference paper at ICLR 2024 SAFE RLHF: SAFE REINFORCEMENT","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/dd1577afd396928ed64216f3f1fd5556-Paper-Conference.pdf"},{"title":"Provably Convergent Primal-Dual DPO for Constrained LLM Alignment","url":"https://arxiv.org/html/2510.05703"},{"title":"Safe RLHF-V: Safe Reinforcement Learning from Human Feedback in Multimodal Large Language Models","url":"https://arxiv.org/html/2503.17682v1"},{"title":"PKU Beaver: Constrained Value-Aligned LLM via Safe RLHF","url":"https://pku-beaver.github.io/"},{"title":"Generative RLHF-V: Learning Principles from Multi-modal Human Preference","url":"https://arxiv.org/html/2505.18531v1"},{"title":"BeaverTails: Towards Improved Safety Alignment of LLM ...","url":"https://arxiv.org/pdf/2307.04657"},{"title":"arXiv:2403.02475v1 [cs.LG] 4 Mar 2024","url":"https://arxiv.org/pdf/2403.02475"},{"title":"Reward Shaping to Mitigate Reward Hacking in RLHF","url":"https://arxiv.org/html/2502.18770v3"}]
+
+Based on the web search results, I found relevant information about the Safe RLHF work with the authors you mentioned:
+
+Safe RLHF is authored by Josef Dai, Xuehai Pan, Ruiyang Sun, Jiaming Ji, Xinbo Xu, Mickel Liu, Yizhou Wang, and Yaodong Yang, and was presented at The Twelfth International Conference on Learning Representations in 2024.
+
+The Safe RLHF paper was released on arXiv on October 19, 2023, detailing a new safe alignment algorithm and its implementation. The method was accepted as a spotlight at ICLR 2024.
+
+Safe RLHF incorpo
+…[truncated 737 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T18:43:17.275064+00:00_
+
+Web search results for query: "EDGE-GRPO entropy-driven guided error correction advantage diversity arxiv 2025"
+
+Links: [{"title":"[2507.21848] EDGE-GRPO: Entropy-Driven GRPO with Guided Error Correction for Advantage Diversity","url":"https://arxiv.org/abs/2507.21848"},{"title":"EDGE-GRPO: Entropy-Driven GRPO with Guided Error Correction for Advantage Diversity","url":"https://arxiv.org/html/2507.21848v1"},{"title":"EDGE-GRPO: Entropy-Driven GRPO with Guided Error Correction for","url":"https://arxiv.org/pdf/2507.21848"},{"title":"EDGE-GRPO: Entropy-Driven GRPO with Guided Error Correction for Advantage Diversity - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250721848Z/abstract"},{"title":"Rethinking Entropy Interventions in RLVR: An Entropy Change Perspective","url":"https://arxiv.org/pdf/2510.10150"},{"title":"EDGE-GRPO: Entropy-Driven GRPO with Guided Error Correction for Advantage Diversity | OpenReview","url":"https://openreview.net/forum?id=VZermIifAQ"},{"title":"Paper page - EDGE-GRPO: Entropy-Driven GRPO with Guided Error Correction for Advantage Diversity","url":"https://huggingface.co/papers/2507.21848"},{"title":"(PDF) EDGE-GRPO: Entropy-Driven GRPO with Guided Error Correction for Advantage Diversity","url":"https://www.researchgate.net/publication/394100250_EDGE-GRPO_Entropy-Driven_GRPO_with_Guided_Error_Correction_for_Advantage_Diversity"},{"title":"[PDF] EDGE-GRPO: Entropy-Driven GRPO with Guided Error Correction for Advantage Diversity | Semantic Scholar","url":"https://www.semanticscholar.org/paper/EDGE-GRPO:-Entropy-Driven-GRPO-with-Guided-Error-Zhang-Wen/526fca4c3076b533f118dfd702f107d9bc6bc65d"},{"title":"EDGE-GRPO: ENTROPY-DRIVEN GRPO WITH","url":"https://openreview.net/pdf/75efebc2d120137dd053c34746d0f967256c886c.pdf"}]
+
+I found the paper you were looking for. Here are the key findings:
+
+## EDGE-GRPO: Entropy-Driven GRPO with Guided Error Correction for Advantage Diversity
+
+**Paper Details:**
+- ArXiv ID: 2507.21848
+- Published: July
+…[truncated 1205 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T18:43:17.275266+00:00_
+
+Web search results for query: "DeepSeek-R1 GRPO mode collapse zero-shot reinforcement learning reasoning 2025"
+
+Links: [{"title":"DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning | Nature","url":"https://www.nature.com/articles/s41586-025-09422-z"},{"title":"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning","url":"https://arxiv.org/html/2501.12948v1"},{"title":"[2501.12948] DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning","url":"https://arxiv.org/abs/2501.12948"},{"title":"From Zero to Reasoning Hero: How DeepSeek-R1 Leverages Reinforcement Learning to Master Complex Reasoning","url":"https://huggingface.co/blog/NormalUhr/deepseek-r1-explained"},{"title":"Understanding the Math Behind GRPO — DeepSeek-R1-Zero | by Yugen.ai | Yugen.ai Technology Blog | Medium","url":"https://medium.com/yugen-ai-technology-blog/understanding-the-math-behind-grpo-deepseek-r1-zero-9fb15e103a0a"},{"title":"Understanding the DeepSeek R1 Paper · Hugging Face","url":"https://huggingface.co/learn/llm-course/chapter12/3"},{"title":"GitHub - FareedKhan-dev/train-deepseek-r1: Building DeepSeek R1 from Scratch · GitHub","url":"https://github.com/FareedKhan-dev/train-deepseek-r1"},{"title":"[2503.20783] Understanding R1-Zero-Like Training: A Critical Perspective","url":"https://arxiv.org/abs/2503.20783"},{"title":"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs ...","url":"https://arxiv.org/pdf/2501.12948"},{"title":"Aman's AI Journal • Primers • DeepSeek-R1","url":"https://aman.ai/primers/ai/deepseek-R1/"}]
+
+Based on the search results, here's comprehensive information about DeepSeek-R1, GRPO, mode collapse, zero-shot reinforcement learning, and reasoning:
+
+## DeepSeek-R1 Overview
+
+DeepSeek-R1 is built on DeepSeek-V3 Base and uses Group Relative Policy Optimization (GRPO) as its RL framework, with reward signals based only on the correctness of final predictions against ground-truth answers, with
+…[truncated 1779 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T18:43:17.275458+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"mitigating reward hacking\" \"information-theoretic\" RLHF NeurIPS 2024 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"mitigating reward hacking\" \"information-theoretic\" RLHF NeurIPS 2024 arxiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-14T18:43:17.275618+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "NLI natural language inference reward faithfulness summarization factual consistency RL fine-tuning arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "NLI natural language inference reward faithfulness summarization factual consistency RL fine-tuning arxiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T18:43:17.275770+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "GTPO group trajectory policy optimization conflict tokens entropy threshold arxiv 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "GTPO group trajectory policy optimization conflict tokens entropy threshold arxiv 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-14T18:43:17.275894+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Dr. GRPO\" unbiased optimization length bias reinforcement learning arxiv 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Dr. GRPO\" unbiased optimization length bias reinforcement learning arxiv 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T18:43:17.276007+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "multi-objective reinforcement learning LLM alignment \"reward landscape\" complexity diversity arxiv 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "multi-objective reinforcement learning LLM alignment \"reward landscape\" complexity diversity arxiv 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T18:43:17.276155+00:00_
+
+Web search results for query: ""mitigating reward hacking" "information-theoretic" RLHF NeurIPS 2024 arxiv"
+
+Links: [{"title":"Mitigating Reward Hacking in RLHF via Information- ...","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/f25d75fc760aec0a6174f9f5d9da59b8-Paper-Conference.pdf"},{"title":"NeurIPS Poster InfoRM: Mitigating Reward Hacking in RLHF via Information-Theoretic Reward Modeling","url":"https://neurips.cc/virtual/2024/poster/96739"},{"title":"InfoRM: Mitigating Reward Hacking in RLHF via Information-Theoretic Reward Modeling","url":"https://proceedings.neurips.cc/paper_files/paper/2024/hash/f25d75fc760aec0a6174f9f5d9da59b8-Abstract-Conference.html"},{"title":"[2402.09345] InfoRM: Mitigating Reward Hacking in RLHF via Information-Theoretic Reward Modeling","url":"https://arxiv.org/abs/2402.09345"},{"title":"Mitigating Reward Hacking via Information-Theoretic Reward Modeling","url":"https://arxiv.org/html/2402.09345v3"},{"title":"Mitigating Reward Hacking in RLHF via Bayesian Non-negative Reward Modeling","url":"https://arxiv.org/html/2602.10623"},{"title":"InfoRM: Mitigating Reward Hacking in RLHF via Information-Theoretic Reward Modeling","url":"https://arxiv.org/html/2402.09345v5"},{"title":"[2510.13694] Information-Theoretic Reward Modeling for Stable RLHF: Detecting and Mitigating Reward Hacking","url":"https://arxiv.org/abs/2510.13694"},{"title":"Reward Shaping to Mitigate Reward Hacking in RLHF","url":"https://arxiv.org/pdf/2502.18770"},{"title":"Mitigating Reward Over-Optimization in RLHF via Behavior-Supported Regularization","url":"https://arxiv.org/html/2503.18130v1"}]
+
+I found relevant results about the paper "Mitigating Reward Hacking in RLHF via Information-Theoretic Reward Modeling." Here's what the search returned:
+
+## Key Paper: InfoRM (NeurIPS 2024)
+
+Despite the success of reinforcement learning from human feedback (RLHF) in aligning language models with human values, reward hacking remains a critical challenge. This i
+…[truncated 1398 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T18:43:17.276372+00:00_
+
+Web search results for query: ""Dr. GRPO" unbiased optimization length bias reinforcement learning arxiv 2025"
+
+Links: [{"title":"Published as a conference paper at COLM 2025","url":"https://arxiv.org/pdf/2503.20783"},{"title":"[2503.20783] Understanding R1-Zero-Like Training: A Critical Perspective","url":"https://arxiv.org/abs/2503.20783"},{"title":"Length-Unbiased Sequence Policy Optimization:","url":"https://www.arxiv.org/pdf/2602.05261"},{"title":"Length-Unbiased Sequence Policy Optimization: Revealing and Controlling Response Length Variation in RLVR","url":"https://arxiv.org/html/2602.05261v1"},{"title":"𝜆-GRPO: Unifying the GRPO Frameworks with Learnable Token Preferences","url":"https://arxiv.org/html/2510.06870v2"},{"title":"Recent reasoning research: GRPO tweaks, base model RL, and data curation","url":"https://www.interconnects.ai/p/papers-im-reading-base-model-rl-grpo"},{"title":"DRPO: Efficient Reasoning via Decoupled Reward Policy Optimization","url":"https://arxiv.org/html/2510.04474v1"},{"title":"On the Hidden Objective Biases of Group-based Reinforcement Learning","url":"https://arxiv.org/html/2601.05002"},{"title":"Reinforcement Learning with Verifiable Rewards: GRPO’s Effective Loss, Dynamics, and Success Amplification","url":"https://arxiv.org/html/2503.06639v4"},{"title":"Sea AI Lab Researchers Introduce Dr. GRPO: A Bias-Free Reinforcement Learning Method that Enhances Math Reasoning Accuracy in Large Language Models Without Inflating Responses - MarkTechPost","url":"https://www.marktechpost.com/2025/03/22/sea-ai-lab-researchers-introduce-dr-grpo-a-bias-free-reinforcement-learning-method-that-enhances-math-reasoning-accuracy-in-large-language-models-without-inflating-responses/"}]
+
+I found comprehensive information about Dr. GRPO in the search results. Here's what I found:
+
+## Dr. GRPO: An Unbiased Optimization Method
+
+Dr. GRPO is an unbiased optimization method that improves token efficiency while maintaining reasoning performance. The method 
+…[truncated 1343 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T18:43:17.276579+00:00_
+
+Web search results for query: "GTPO group trajectory policy optimization conflict tokens entropy threshold arxiv 2025"
+
+Links: [{"title":"[2508.03772] GTPO: Stabilizing Group Relative Policy Optimization via Gradient and Entropy Control","url":"https://arxiv.org/abs/2508.03772"},{"title":"GTPO: Trajectory-Based Policy Optimization in Large Language Models","url":"https://arxiv.org/html/2508.03772v2"},{"title":"GTPO: Stabilizing Group Relative Policy Optimization via Gradient and Entropy Control","url":"https://arxiv.org/html/2508.03772"},{"title":"GTPO: Stabilizing Group Relative Policy Optimization via Gradient and Entropy Control - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250803772S/abstract"},{"title":"Paper page - GTPO: Trajectory-Based Policy Optimization in Large Language Models","url":"https://huggingface.co/papers/2508.03772"},{"title":"GTPO: Fine-Grained Policy Optimization","url":"https://www.emergentmind.com/topics/gtpo"},{"title":"[2508.04349] GTPO and GRPO-S: Token and Sequence-Level Reward Shaping with Policy Entropy","url":"https://arxiv.org/abs/2508.04349"},{"title":"(PDF) GTPO: Trajectory-Based Policy Optimization in Large Language Models","url":"https://www.researchgate.net/publication/394361754_GTPO_Trajectory-Based_Policy_Optimization_in_Large_Language_Models"},{"title":"GTPO and GRPO-S: Token and Sequence-Level Reward Shaping with Policy Entropy","url":"https://arxiv.org/html/2508.04349"},{"title":"GitHub - winstonsmith1897/GTPO: Group-relative Trajectory-based Policy Optimization: Increasing Quality and Training Stability · GitHub","url":"https://github.com/winstonsmith1897/GTPO"}]
+
+Based on the search results, I found detailed information about GTPO (Group-relative Trajectory-based Policy Optimization):
+
+## Overview
+
+GTPO is designed to address training instability and suboptimal convergence issues in Group Relative Policy Optimization (GRPO), a policy-based approach for Large Language Model alignment.
+
+## Key Problems Addressed
+
+…[truncated 1337 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T18:43:17.276751+00:00_
+
+Web search results for query: "NLI natural language inference reward faithfulness summarization factual consistency RL fine-tuning arxiv"
+
+Links: [{"title":"PrefixNLI: Detecting Factual Inconsistencies as Soon as They Arise","url":"https://arxiv.org/html/2511.01359"},{"title":"[2511.01359] PrefixNLI: Detecting Factual Inconsistencies as Soon as They Arise","url":"https://arxiv.org/abs/2511.01359"},{"title":"Faithfulness in Natural Language Generation: A","url":"https://arxiv.org/pdf/2203.05227"},{"title":"arXiv:2306.00186v1 [cs.CL] 31 May 2023","url":"https://arxiv.org/pdf/2306.00186"},{"title":"Improving Factual Consistency of News Summarization by Contrastive Preference Optimization","url":"https://arxiv.org/html/2310.19347"},{"title":"[2402.17630] Fine-Grained Natural Language Inference Based Faithfulness Evaluation for Diverse Summarisation Tasks","url":"https://arxiv.org/abs/2402.17630"},{"title":"Improving Faithfulness of Large Language Models in Summarization via Sliding Generation and Self-Consistency","url":"https://arxiv.org/html/2407.21443v1"},{"title":"Chain of Natural Language Inference for Reducing Large ...","url":"https://arxiv.org/pdf/2310.03951"},{"title":"Multilingual Summarization with Factual Consistency Evaluation","url":"https://arxiv.org/html/2212.10622"},{"title":"Learning to Verify Summary Facts with Fine-Grained LLM Feedback","url":"https://arxiv.org/html/2412.10689"}]
+
+I found several relevant papers on arXiv related to your search query about using Natural Language Inference (NLI) for faithfulness and factual consistency in summarization with reinforcement learning fine-tuning. Here are the key findings:
+
+## Primary Papers Found:
+
+1. **PrefixNLI: Detecting Factual Inconsistencies as Soon as They Arise** (arXiv:2511.01359)
+   - NLI models are widely used to assess factual consistency in text generation, with their utility in providing feedback during generation through beam reranking at inference time or RL rewards during training.
+   - T
+…[truncated 1680 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T18:43:17.276928+00:00_
+
+Web search results for query: "multi-objective reinforcement learning LLM alignment "reward landscape" complexity diversity arxiv 2024 2025"
+
+Links: [{"title":"Reinforcement Learning Meets Large Language Models: A Survey of Advancements and Applications Across the LLM Lifecycle","url":"https://arxiv.org/html/2509.16679v1"},{"title":"Multi-Objective Reinforcement Learning for Large Language Model Optimization: Visionary Perspective","url":"https://arxiv.org/html/2509.21613v1"},{"title":"Unified Preference Optimization: Language Model Alignment Beyond the Preference Frontier","url":"https://arxiv.org/html/2405.17956v4"},{"title":"Reward-free Alignment for Conflicting Objectives","url":"https://arxiv.org/html/2602.02495v1"},{"title":"[2505.02666] A Survey on Progress in LLM Alignment from the Perspective of Reward Design","url":"https://arxiv.org/abs/2505.02666"},{"title":"[2402.18571] Arithmetic Control of LLMs for Diverse User Preferences: Directional Preference Alignment with Multi-Objective Rewards","url":"https://arxiv.org/abs/2402.18571"},{"title":"Alternating Reinforcement Learning for Rubric-Based ...","url":"https://arxiv.org/pdf/2602.01511"},{"title":"LLM Collaboration With Multi-Agent Reinforcement Learning","url":"https://arxiv.org/html/2508.04652v1"},{"title":"A Technical Survey of Reinforcement Learning Techniques for Large Language Models","url":"https://arxiv.org/html/2507.04136v1"},{"title":"[2509.21613] Multi-Objective Reinforcement Learning for Large Language Model Optimization: Visionary Perspective","url":"https://arxiv.org/abs/2509.21613"}]
+
+I've completed the web search for your query on multi-objective reinforcement learning, LLM alignment, reward landscapes, and complexity/diversity in recent papers from arXiv (2024-2025). Here are the key findings:
+
+## Main Research Areas Found
+
+**Multi-Objective Reinforcement Learning for LLMs:**
+
+Multi-Objective Reinforcement Learning (MORL) can address the gap by learning RL policies that explicitly focus o
+…[truncated 1751 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-14T18:43:17.277106+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"provably mitigating overoptimization\" RLHF SFT loss regularizer NeurIPS 2024 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"provably mitigating overoptimization\" RLHF SFT loss regularizer NeurIPS 2024 arxiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-14T18:43:17.277274+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"contrastive preference optimization\" factual consistency summarization Xu arxiv 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"contrastive preference optimization\" factual consistency summarization Xu arxiv 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T18:43:17.277458+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"reward ensemble\" RLHF overoptimization conservative estimate Coste arxiv 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"reward ensemble\" RLHF overoptimization conservative estimate Coste arxiv 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-14T18:43:17.277607+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"directional preference alignment\" multi-objective reward DPA arxiv Li 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"directional preference alignment\" multi-objective reward DPA arxiv Li 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T18:43:17.277724+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "information extraction reinforcement learning reward design faithfulness evidence grounding LLM 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "information extraction reinforcement learning reward design faithfulness evidence grounding LLM 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T18:43:17.277873+00:00_
+
+Web search results for query: ""contrastive preference optimization" factual consistency summarization Xu arxiv 2024"
+
+Links: [{"title":"[2310.19347] Improving Factual Consistency of News Summarization by Contrastive Preference Optimization","url":"https://arxiv.org/abs/2310.19347"},{"title":"Improving Factual Consistency of News Summarization by Contrastive Preference Optimization","url":"https://arxiv.org/html/2310.19347v4"},{"title":"Improving the Factual Consistency of Abstractive Summarization: Model Self-Improvement Contrastive Learning | Proceedings of the 2024 10th International Conference on Communication and Information Processing","url":"https://dl.acm.org/doi/10.1145/3708657.3708772"},{"title":"Contrastive Preference Optimization: Pushing the Boundaries of LLM","url":"https://arxiv.org/pdf/2401.08417"},{"title":"[2401.08417] Contrastive Preference Optimization: Pushing the Boundaries of LLM Performance in Machine Translation","url":"https://arxiv.org/abs/2401.08417"},{"title":"Improving Factual Consistency of News Summarization by Contrastive Preference Optimization - ACL Anthology","url":"https://aclanthology.org/2024.findings-emnlp.648/"},{"title":"Improving Factuality of Abstractive Summarization via Contrastive Reward Learning","url":"https://arxiv.org/html/2307.04507"},{"title":"Improving Factual Consistency of News Summarization by ...","url":"https://aclanthology.org/2024.findings-emnlp.648.pdf"},{"title":"[PDF] Contrastive Preference Optimization: Pushing the Boundaries of LLM Performance in Machine Translation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Contrastive-Preference-Optimization:-Pushing-the-of-Xu-Sharaf/ebd1c04c61f73f46def3305ca11d038c46665b65"},{"title":"GitHub - Bazzhuawenfeng/CPO: Code and data for \"Improving Factual Consistency of News Summarization by Contrastive Preference Optimization\" · GitHub","url":"https://github.com/201736621051/CPO"}]
+
+Based on the search results, I found relevant information about 
+…[truncated 1387 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-14T18:43:17.278040+00:00_
+
+Web search results for query: ""provably mitigating overoptimization" RLHF SFT loss regularizer NeurIPS 2024 arxiv"
+
+Links: [{"title":"Provably Mitigating Overoptimization in RLHF: Your SFT ...","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/fa69e968b7319fd42524febd41475fb3-Paper-Conference.pdf"},{"title":"[2405.16436] Provably Mitigating Overoptimization in RLHF: Your SFT Loss is Implicitly an Adversarial Regularizer","url":"https://arxiv.org/abs/2405.16436"},{"title":"GitHub - YSLIU627/Regularized-Preference-Optimization","url":"https://github.com/YSLIU627/Regularized-Preference-Optimization"},{"title":"Provably Mitigating Overoptimization in RLHF: Your SFT Loss is Implicitly an Adversarial Regularizer","url":"https://proceedings.neurips.cc/paper_files/paper/2024/hash/fa69e968b7319fd42524febd41475fb3-Abstract-Conference.html"},{"title":"Provably Mitigating Overoptimization in RLHF: Your SFT Loss is Implicitly an Adversarial Regularizer","url":"https://arxiv.org/html/2405.16436v3"},{"title":"[2405.16436v2] Provably Mitigating Overoptimization in RLHF: Your SFT Loss is Implicitly an Adversarial Regularizer","url":"https://arxiv.org/abs/2405.16436v2"},{"title":"NeurIPS Poster Provably Mitigating Overoptimization in RLHF: Your SFT Loss is Implicitly an Adversarial Regularizer","url":"https://neurips.cc/virtual/2024/poster/96805"},{"title":"Provably Mitigating Overoptimization in RLHF: Your SFT Loss is Implicitly an Adversarial Regularizer | OpenReview","url":"https://openreview.net/forum?id=2cQ3lPhkeO"},{"title":"Provably mitigating overoptimization in RLHF | Proceedings of the 38th International Conference on Neural Information Processing Systems","url":"https://dl.acm.org/doi/10.5555/3737916.3742315"},{"title":"Provably Mitigating Overoptimization in RLHF: Your SFT Loss is Implicitly an Adversarial Regularizer | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/provably-mitigating-overoptimization-rlhf-your-sft-loss"}]
+
+I fou
+…[truncated 1480 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T18:43:17.278215+00:00_
+
+Web search results for query: ""reward ensemble" RLHF overoptimization conservative estimate Coste arxiv 2024"
+
+Links: [{"title":"[2310.02743] Reward Model Ensembles Help Mitigate Overoptimization","url":"https://arxiv.org/abs/2310.02743"},{"title":"Reward Model Overoptimisation in Iterated RLHF","url":"https://arxiv.org/html/2505.18126v1"},{"title":"[2310.02743v1] Reward Model Ensembles Help Mitigate Overoptimization","url":"https://arxiv.org/abs/2310.02743v1"},{"title":"Reward Model Ensembles Help Mitigate Overoptimization","url":"https://arxiv.org/html/2310.02743v2"},{"title":"GitHub - tlc4418/llm_optimization: A repo for RLHF training and BoN over LLMs, with support for reward model ensembles. · GitHub","url":"https://github.com/tlc4418/llm_optimization"},{"title":"Scalable Ensembling For Mitigating Reward Overoptimisation","url":"https://arxiv.org/html/2406.01013"},{"title":"[2310.04373] Confronting Reward Model Overoptimization with Constrained RLHF","url":"https://arxiv.org/abs/2310.04373"},{"title":"Reward Shaping to Mitigate Reward Hacking in RLHF","url":"https://arxiv.org/html/2502.18770v3"},{"title":"Reward Model Ensembles Help Mitigate Overoptimization | OpenReview","url":"https://openreview.net/forum?id=dcjtMYkpXx"},{"title":"Improving Reinforcement Learning from Human Feedback with Efficient Reward Model Ensemble","url":"https://arxiv.org/html/2401.16635v2"}]
+
+I found the paper you're looking for! Here are the search results:
+
+## Main Result
+
+The paper "Reward Model Ensembles Help Mitigate Overoptimization" by Thomas Coste and 3 other authors is the primary match for your query.
+
+### Key Findings
+
+Learned reward models are used to approximately model human preferences, but as imperfect representations of the "true" reward, these learned reward models are susceptible to overoptimization.
+
+The paper conducts a systematic study to evaluate ensemble-based conservative optimization objectives, and finds that conservative optimization practically eliminates 
+…[truncated 683 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-14T18:43:17.278478+00:00_
+
+Web search results for query: ""directional preference alignment" multi-objective reward DPA arxiv Li 2024"
+
+Links: [{"title":"Arithmetic Control of LLMs for Diverse User Preferences: Directional Preference Alignment with Multi-Objective Rewards","url":"https://arxiv.org/html/2402.18571v3"},{"title":"[2402.18571] Arithmetic Control of LLMs for Diverse User Preferences: Directional Preference Alignment with Multi-Objective Rewards","url":"https://arxiv.org/abs/2402.18571"},{"title":"Unified Preference Optimization: Language Model Alignment Beyond the Preference Frontier","url":"https://arxiv.org/html/2405.17956v4"},{"title":"GitHub - RLHFlow/Directional-Preference-Alignment: Directional Preference Alignment · GitHub","url":"https://github.com/RLHFlow/Directional-Preference-Alignment"},{"title":"Robust Multi-Objective Preference Alignment with Online DPO","url":"https://arxiv.org/html/2503.00295v1"},{"title":"Arithmetic Control of LLMs via Directional Preference Alignment","url":"https://www.emergentmind.com/papers/2402.18571"},{"title":"Tangent Space Fine-Tuning for Directional Preference Alignment in Large Language Models","url":"https://arxiv.org/html/2602.01128"},{"title":"Arithmetic Control of LLMs for Diverse User Preferences: Directional Preference Alignment with Multi-Objective Rewards - ACL Anthology","url":"https://aclanthology.org/2024.acl-long.468/"},{"title":"Arithmetic Control of LLMs for Diverse User Preferences","url":"https://aclanthology.org/2024.acl-long.468.pdf"},{"title":"Multi-Objective Preference Optimization: Improving Human Alignment of Generative Models","url":"https://arxiv.org/html/2505.10892v1"}]
+
+I've found comprehensive information about Directional Preference Alignment (DPA). Here's a summary of the key findings:
+
+## Overview
+
+The Directional Preference Alignment (DPA) framework addresses the limitation that scalar-reward RLHF often cannot capture diverse user preferences. Unlike scalar-reward RLHF, DPA incorporates multi-objective rewa
+…[truncated 1206 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T18:43:17.278665+00:00_
+
+Web search results for query: "information extraction reinforcement learning reward design faithfulness evidence grounding LLM 2024 2025"
+
+Links: [{"title":"Grounding by Trying: LLMs with Reinforcement Learning-Enhanced Retrieval | OpenReview","url":"https://openreview.net/forum?id=BPAZ6yW3K7"},{"title":"CRAFT: Calibrated Reasoning with Answer-Faithful Traces for Multi-Hop Question Answering","url":"https://arxiv.org/html/2602.01348"},{"title":"Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning in Language Models","url":"https://arxiv.org/html/2605.08061v1"},{"title":"GitHub - llm-as-a-judge/Awesome-LLM-as-a-judge · GitHub","url":"https://github.com/llm-as-a-judge/Awesome-LLM-as-a-judge"},{"title":"Grounding by Trying: LLMs with Reinforcement Learning-Enhanced Retrieval","url":"https://arxiv.org/html/2410.23214v2"},{"title":"Reinforcement Learning for LLM Agent Planning","url":"https://aclanthology.org/2025.emnlp-industry.116.pdf"},{"title":"Reinforcement Learning Meets Large Language Models: A Survey of Advancements and Applications Across the LLM Lifecycle","url":"https://arxiv.org/html/2509.16679v1"},{"title":"Grounding Open-Domain Knowledge from LLMs to Real-World","url":"https://www.ijcai.org/proceedings/2025/1198.pdf"},{"title":"Reward Models and Learning Strategies","url":"https://aclanthology.org/2025.findings-emnlp.970.pdf"},{"title":"The Evolving Landscape of LLM- and VLM-Integrated Reinforcement Learning","url":"https://www.ijcai.org/proceedings/2025/1181.pdf"}]
+
+Based on the web search results, I found several highly relevant papers and research on information extraction, reinforcement learning, reward design, faithfulness, and evidence grounding in LLMs from 2024-2025. Here are the key findings:
+
+## Key Research Areas
+
+**Grounding and Faithfulness in LLMs:**
+
+LLM hallucinations are increasingly mitigated by allowing LLMs to search for information and ground their answers in real sources, with frameworks like LeR
+…[truncated 1346 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-14T18:43:17.278845+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"unified preference optimization\" \"beyond preference frontier\" multi-objective RLHF Pareto arxiv 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"unified preference optimization\" \"beyond preference frontier\" multi-objective RLHF Pareto arxiv 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-14T18:43:17.278968+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"improving factuality abstractive summarization\" contrastive reward learning arxiv 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"improving factuality abstractive summarization\" contrastive reward learning arxiv 2023"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-14T18:43:17.279084+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "RLHF mode collapse entropy regularization KL divergence diversity generation 2024 2025 survey"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "RLHF mode collapse entropy regularization KL divergence diversity generation 2024 2025 survey"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-14T18:43:17.279247+00:00_
+
+Web search results for query: ""improving factuality abstractive summarization" contrastive reward learning arxiv 2023"
+
+Links: [{"title":"[2307.04507] Improving Factuality of Abstractive Summarization via Contrastive Reward Learning","url":"https://arxiv.org/abs/2307.04507"},{"title":"Improving Factuality of Abstractive Summarization via Contrastive Reward Learning","url":"https://arxiv.org/html/2307.04507"},{"title":"Improving Factuality of Abstractive Summarization via Contrastive Reward Learning - ACL Anthology","url":"https://aclanthology.org/2023.trustnlp-1.6/"},{"title":"[2305.14981] Improving Factuality of Abstractive Summarization without Sacrificing Summary Quality","url":"https://arxiv.org/abs/2305.14981"},{"title":"Improving Factuality of Abstractive Summarization without Sacrificing Summary Quality - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv230514981D/abstract"},{"title":"Improving Factuality of Abstractive Summarization without ...","url":"https://aclanthology.org/2023.acl-short.78.pdf"},{"title":"[PDF] CLIFF: Contrastive Learning for Improving Faithfulness and Factuality in Abstractive Summarization | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CLIFF:-Contrastive-Learning-for-Improving-and-in-Cao-Wang/3cf51f5f36bac0cbafdb7581d8713979e0d1c17e"},{"title":"Improving Factual Consistency of News Summarization by Contrastive Preference Optimization","url":"https://arxiv.org/html/2310.19347v4"},{"title":"[2109.09209] CLIFF: Contrastive Learning for Improving Faithfulness and Factuality in Abstractive Summarization","url":"https://ar5iv.labs.arxiv.org/html/2109.09209"},{"title":"[PDF] Improving Factual Consistency of Abstractive Summarization via Question Answering | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Improving-Factual-Consistency-of-Abstractive-via-Nan-Santos/73cb36eb79e8d21a0e154e7984e4fe8a47cc0be9"}]
+
+Based on the search results, I found the paper you're looking for:
+
+The paper proposes a simple 
+…[truncated 1128 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-14T18:43:17.279420+00:00_
+
+Web search results for query: ""unified preference optimization" "beyond preference frontier" multi-objective RLHF Pareto arxiv 2024"
+
+Links: [{"title":"Unified Preference Optimization: Language Model Alignment Beyond the Preference Frontier","url":"https://arxiv.org/html/2405.17956v4"},{"title":"[2405.17956] Unified Preference Optimization: Language Model Alignment Beyond the Preference Frontier","url":"https://arxiv.org/abs/2405.17956"},{"title":"Multi-Objective Preference Optimization:","url":"https://arxiv.org/pdf/2505.10892"},{"title":"Direct Preference Optimization: Your Language Model is Secretly a Reward Model","url":"https://arxiv.org/pdf/2305.18290"},{"title":"Value-Incentivized Preference Optimization: A Unified Approach to Online and Offline RLHF","url":"https://arxiv.org/html/2405.19320v1"},{"title":"Panacea: Pareto Alignment via Preference Adaptation for LLMs","url":"https://arxiv.org/html/2402.02030v2"},{"title":"[2310.03708] Beyond One-Preference-Fits-All Alignment: Multi-Objective Direct Preference Optimization","url":"https://arxiv.org/abs/2310.03708"},{"title":"[2405.19320] Value-Incentivized Preference Optimization: A Unified Approach to Online and Offline RLHF","url":"https://arxiv.org/abs/2405.19320"},{"title":"Reward-aware Preference Optimization: A Unified Mathematical Framework for Model Alignment","url":"https://arxiv.org/html/2502.00203v1"},{"title":"A Comprehensive Survey of Direct Preference Optimization: Datasets, Theories, Variants, and Applications","url":"https://arxiv.org/html/2410.15595v3"}]
+
+I found relevant research on your query. Here are the key results:
+
+## Main Finding: Unified Preference Optimization
+
+The paper "Unified Preference Optimization: Language Model Alignment Beyond the Preference Frontier" proposes a unified approach that leverages the simplicity and performance of DPO with the generality of RL, allowing for tuning LLMs to optimize user and designer preferences without any additional specialized or preference data
+…[truncated 1562 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T18:43:17.279632+00:00_
+
+Web search results for query: "RLHF mode collapse entropy regularization KL divergence diversity generation 2024 2025 survey"
+
+Links: [{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/3df1eca840e82b11bbc33f68c773c38e-Paper-Conference.pdf"},{"title":"preserving diversity in supervised fine-tuning","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/a548ef984f30bca3abdc09f43743827f-Paper-Conference.pdf"},{"title":"Published as a conference paper at ICLR 2024 BEYOND REVERSE KL: GENERALIZING","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/2b1d1e5affe5fdb70372cd90dd8afd49-Paper-Conference.pdf"},{"title":"KL-Regularized Reinforcement Learning is Designed to Mode Collapse","url":"https://arxiv.org/html/2510.20817v1"},{"title":"Understanding the Effects of RLHF on LLM Generalisation and Diversity | OpenReview","url":"https://openreview.net/forum?id=PXD3FAVHJT"},{"title":"Understanding the Effects of RLHF on LLM Generalisation ...","url":"https://arxiv.org/pdf/2310.06452"},{"title":"On the Algorithmic Bias of Aligning Large Language Models with RLHF: Preference Collapse and Matching Regularization","url":"https://arxiv.org/html/2405.16455"},{"title":"Provably Mitigating Overoptimization in RLHF: Your SFT ...","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/fa69e968b7319fd42524febd41475fb3-Paper-Conference.pdf"},{"title":"Failure Modes of Maximum Entropy RLHF","url":"https://arxiv.org/html/2509.20265v1"},{"title":"KL-Regularized RLHF with Multiple Reference Models: Exact Solutions and Sample Complexity","url":"https://arxiv.org/html/2502.01203v3"}]
+
+Based on the search results, here's a comprehensive overview of recent research on RLHF, mode collapse, entropy regularization, KL divergence, and diversity in generation (2024-2025):
+
+## Key Findings
+
+**Mode Collapse in RLHF:**
+RLHF and DPO significantly reduce the diversity of LLM outputs, with aligned LLMs generati
+…[truncated 1899 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-14T18:43:17.279854+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"KL-regularized reinforcement learning is designed to mode collapse\" arxiv 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"KL-regularized reinforcement learning is designed to mode collapse\" arxiv 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-14T18:43:17.279995+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"understanding effects RLHF\" \"generalisation and diversity\" Kirk arxiv 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"understanding effects RLHF\" \"generalisation and diversity\" Kirk arxiv 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-14T18:43:17.280111+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "CLIFF contrastive learning improving faithfulness factuality abstractive summarization EMNLP 2022"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "CLIFF contrastive learning improving faithfulness factuality abstractive summarization EMNLP 2022"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-14T18:43:17.280524+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"preference collapse\" \"matching regularization\" algorithmic bias RLHF arxiv 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"preference collapse\" \"matching regularization\" algorithmic bias RLHF arxiv 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-14T18:43:17.280725+00:00_
+
+Web search results for query: ""KL-regularized reinforcement learning is designed to mode collapse" arxiv 2025"
+
+Links: [{"title":"[2510.20817] KL-Regularized Reinforcement Learning is Designed to Mode Collapse","url":"https://arxiv.org/abs/2510.20817"},{"title":"KL-Regularized Reinforcement Learning is Designed to Mode Collapse","url":"https://arxiv.org/html/2510.20817v1"},{"title":"[2510.20817v1] KL-Regularized Reinforcement Learning is Designed to Mode Collapse","url":"https://arxiv.org/abs/2510.20817v1"},{"title":"KL-Regularized Reinforcement Learning is Designed to Mode Collapse - Paper Detail","url":"https://deeplearn.org/arxiv/645694/kl-regularized-reinforcement-learning-is-designed-to-mode-collapse"},{"title":"(PDF) KL-Regularized Reinforcement Learning is Designed to Mode Collapse","url":"https://www.researchgate.net/publication/396848560_KL-Regularized_Reinforcement_Learning_is_Designed_to_Mode_Collapse"},{"title":"Expected Return Causes Outcome-Level Mode Collapse in Reinforcement Learning and How to Fix It with Inverse Probability Scaling","url":"https://arxiv.org/html/2601.21669"},{"title":"KL-Regularised Q-Learning: A Token-level Action-Value perspective on Online RLHF","url":"https://arxiv.org/html/2508.17000v1"},{"title":"KL-REGULARIZED REINFORCEMENT LEARNING IS DE","url":"https://openreview.net/pdf?id=flBRtdIihA"},{"title":"KL-Regularized Reinforcement Learning for Generative Modelling is Designed to Mode Collapse | OpenReview","url":"https://openreview.net/forum?id=flBRtdIihA"},{"title":"On Pathologies in KL-Regularized Reinforcement Learning ...","url":"https://arxiv.org/pdf/2212.13936"}]
+
+I found the paper you were looking for. Here are the key findings from the research:
+
+While it is commonly believed that optimizing reverse KL divergence results in "mode seeking" and forward KL in "mass covering," this intuition does not necessarily transfer well to reinforcement learning with KL regularization.
+
+The choice of reverse/forward KL determines the 
+…[truncated 896 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-14T18:43:17.280914+00:00_
+
+Web search results for query: ""understanding effects RLHF" "generalisation and diversity" Kirk arxiv 2024"
+
+Links: [{"title":"[2310.06452] Understanding the Effects of RLHF on LLM Generalisation and Diversity","url":"https://arxiv.org/abs/2310.06452"},{"title":"Understanding the Effects of RLHF on LLM Generalisation ...","url":"https://arxiv.org/pdf/2310.06452"},{"title":"Understanding the Effects of RLHF on LLM Generalisation and Diversity","url":"https://arxiv.org/html/2310.06452v2"},{"title":"[2310.06452v1] Understanding the Effects of RLHF on LLM Generalisation and Diversity","url":"https://arxiv.org/abs/2310.06452v1"},{"title":"Understanding the Effects of RLHF on LLM Generalisation ...","url":"https://iclr.cc/media/iclr-2024/Slides/18704.pdf"},{"title":"GitHub - facebookresearch/rlfh-gen-div: This is code for most of the experiments in the paper Understanding the Effects of RLHF on LLM Generalisation and Diversity · GitHub","url":"https://github.com/facebookresearch/rlfh-gen-div"},{"title":"[PDF] Understanding the Effects of RLHF on LLM Generalisation and Diversity | Semantic Scholar","url":"https://www.semanticscholar.org/paper/cb3968152f7d93f53d24b00279a90d5071ddc85a"},{"title":"[2310.06452] Understanding the Effects of RLHF on LLM Generalisation and Diversity","url":"https://ar5iv.labs.arxiv.org/html/2310.06452"},{"title":"Understanding the Effects of RLHF on LLM Generalisation and Diversity | Trending arXiv papers – Ribbit Ribbit","url":"https://ribbitribbit.co/paper/arxiv.2310.06452-Understanding-the-Effects-of-RLHF-on-LLM-Generalisation"},{"title":"Understanding the Effects of RLHF on LLM Generalisation and Diversity | OpenReview","url":"https://openreview.net/forum?id=PXD3FAVHJT"}]
+
+I found the paper you're looking for! Here's an overview of the research:
+
+**"Understanding the Effects of RLHF on LLM Generalisation and Diversity"** by Robert Kirk and colleagues is a paper authored by Robert Kirk, Ishita Mediratta, Christoforos Nalmpantis, Jelena Luketin
+…[truncated 1011 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-14T18:43:17.281107+00:00_
+
+Web search results for query: "CLIFF contrastive learning improving faithfulness factuality abstractive summarization EMNLP 2022"
+
+Links: [{"title":"CLIFF: Contrastive Learning for Improving Faithfulness and Factuality in Abstractive Summarization | NSF Public Access Repository","url":"https://par.nsf.gov/biblio/10518829-cliff-contrastive-learning-improving-faithfulness-factuality-abstractive-summarization"},{"title":"[PDF] CLIFF: Contrastive Learning for Improving Faithfulness and Factuality in Abstractive Summarization | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CLIFF:-Contrastive-Learning-for-Improving-and-in-Cao-Wang/3cf51f5f36bac0cbafdb7581d8713979e0d1c17e"},{"title":"CLIFF: Contrastive Learning for Improving Faithfulness and Factuality in Abstractive Summarization - ACL Anthology","url":"https://aclanthology.org/2021.emnlp-main.532/"},{"title":"CLIFF: Contrastive Learning for Improving Faithfulness and Factuality in Abstractive Summarization - ADS","url":"https://ui.adsabs.harvard.edu/abs/2021arXiv210909209C/abstract"},{"title":"[2109.09209] CLIFF: Contrastive Learning for Improving Faithfulness and Factuality in Abstractive Summarization","url":"https://arxiv.org/abs/2109.09209"},{"title":"CLIFF: Contrastive Learning for Improving Faithfulness and Factuality in Abstractive Summarization | Shuyang Cao","url":"https://shuyangcao.github.io/projects/cliff_summ/"},{"title":"GitHub - ShuyangCao/cliff_summ: Code for EMNLP 2021 paper \"CLIFF: Contrastive Learning for Improving Faithfulness and Factuality in Abstractive Summarization\" · GitHub","url":"https://github.com/ShuyangCao/cliff_summ"},{"title":"Improving Faithfulness and Factuality with Contrastive Learning in Explainable Recommendation | ACM Transactions on Intelligent Systems and Technology","url":"https://dl.acm.org/doi/10.1145/3653984"},{"title":"CLIFF: Contrastive Learning for Improving Faithfulness and Factuality in Abstractive Summarization | DeepAI","url":"https://deepai.org/publ
+…[truncated 1703 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-14T18:43:17.281302+00:00_
+
+Web search results for query: ""preference collapse" "matching regularization" algorithmic bias RLHF arxiv 2024"
+
+Links: [{"title":"[2405.16455] On the Algorithmic Bias of Aligning Large Language Models with RLHF: Preference Collapse and Matching Regularization","url":"https://arxiv.org/abs/2405.16455"},{"title":"On the Algorithmic Bias of Aligning Large Language Models with RLHF: Preference Collapse and Matching Regularization","url":"https://arxiv.org/html/2405.16455v1"},{"title":"On the Algorithmic Bias of Aligning Large Language Models with RLHF: Preference Collapse and Matching Regularization - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240516455X/abstract"},{"title":"RLHF Bias in LLMs: Preference Collapse & Matching","url":"https://www.emergentmind.com/papers/2405.16455"},{"title":"On the Algorithmic Bias of Aligning Large Language Models with RLHF: Preference Collapse and Matching Regularization | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/algorithmic-bias-aligning-large-language-models-rlhf"},{"title":"[2405.16455v1] On the Algorithmic Bias of Aligning Large Language Models with RLHF: Preference Collapse and Matching Regularization","url":"https://arxiv.org/abs/2405.16455v1"},{"title":"On the Algorithmic Bias of Aligning Large Language Models with RLHF: Preference Collapse and Matching Regularization: Journal of the American Statistical Association: Vol 120 , No 552 - Get Access","url":"https://www.tandfonline.com/doi/full/10.1080/01621459.2025.2555067"},{"title":"On the Algorithmic Bias of Aligning Large Language Models with","url":"https://arxiv.org/pdf/2405.16455v1"},{"title":"[PDF] On the Algorithmic Bias of Aligning Large Language Models with RLHF: Preference Collapse and Matching Regularization | Semantic Scholar","url":"https://www.semanticscholar.org/paper/eff0410f7d5d78ea6874596a0a77b184d03ecca5"},{"title":"[Literature Review] On the Algorithmic Bias of Aligning Large Language Models with RLHF: Preference Col
+…[truncated 1894 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-14T18:43:17.281496+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/",
+  "description": "Check artifacts directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/",
+    "description": "Check artifacts directory exists"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-14T18:43:17.281924+00:00_
+
+_project
+diag_mvp2_grpo_flatnli_r3.md
+eval_script_audit.md
+freige
+kl_analysis_report.md
+manifest.yaml
+training_health_check.md
+trl_grpo_stability_research.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-14T18:43:17.282095+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/d024_literature_survey.md",
+  "content": "# D024 文献调研：CED Reward 的 Anti-Mode-Collapse 效应\n\n## 背景\n\n在 GRPO 训练中，CED reward（对比证据判别）在相同配置下显著优于 extraction-only 和 flat-NLI reward，后两者在 10-30 步内 mode collapse。假设：CED 提供的多维梯度信号增加了 reward landscape 复杂性，使 GRPO 多样性采样更不容易退化。\n\n---\n\n## 1. Reward Shaping for RLHF/GRPO Stability\n\n### 1.1 GRPO 中的 Entropy/Mode Collapse 分析\n\n**DAPO: An Open-Source LLM Reinforcement Learning System at Scale**\n- 作者: ByteDance Seed Team\n- 年份/Venue: 2025, arXiv:2503.14476\n- 核心发现: PPO/GRPO 的对称 clipping 限制低概率 action 导致 entropy collapse；DAPO 提出 Clip-Higher（放宽上界）和 Dynamic Sampling 保持探索性，在 Qwen2.5-32B 上 AIME 2024 达 50 分。\n- **与我们的关联**: CED reward 可能起到类似 Dynamic Sampling 的作用——提供更丰富的梯度信号维度，避免所有 sample 收敛到同一高 reward 策略。\n\n**GTPO: Stabilizing Group Relative Policy Optimization via Gradient and Entropy Control**\n- 作者: Su et al.\n- 年份/Venue: 2025, arXiv:2508.03772\n- 核心发现: 识别 GRPO 中的 conflict tokens（同位置 token 在不同 response 中获得相反 reward），保护它们跳过负更新；设置 entropy 阈值过滤易导致 policy collapse 的 completion。\n- **与我们的关联**: CED reward 的对比机制天然区分了 evidence quality 维度上的 conflict，可能提供了隐式的 conflict token 保护。\n\n**EDGE-GRPO: Entropy-Driven GRPO with Guided Error Correction for Advantage Diversity**\n- 作者: Zhang, Wen, Wu, Huang\n- 年份/Venue: 2025, arXiv:2507.21848\n- 核心发现: GRPO 中 group 内 reward 相同导致 advantage collapse（frac_zero_std 问题）；通过 entropy-driven advantage 和 guided error correction 增加 advantage diversity。\n- **与我们的关联**: 直接对应我们观察到的 frac_zero_std→0.9 现象。CED reward 作为额外 reward 维度，天然增加了 group 内 advantage variance，减轻 advantage collapse。这是最强的理论支撑之一。\n\n**Dr. GRPO: Understanding R1-Zero-Like Training: A Critical Perspective**\n- 作者: Liu et al. (Sea AI Lab)\n- 年份/Venue: 2025, COLM 2025, arXiv:2503.20783\n- 核心发现: GRPO 存在 optimization bias——response length normalization 人为增加长度偏好；Dr. GRPO 移除有偏归一化项，保持输出长度稳定且准确率提升（AIME 2024: 43.3% vs GRPO 36.0%）。\n- **与我们的关联**: 说明 reward 设计中的 bias 直接影响 GRPO 稳定性。CED reward 的对比性质可能提供了更平衡的信号。\n\n**DiverseGRPO: Mitigating Mode Collapse in Image Generation via Diversity-Aware GRPO**\n- 作者: Liu et al.\n- 年份/Venue: 2025, arXiv:2512.21514\n- 核心发现: 传统 GRPO 依赖 single-sample quality 作为 reward，驱动模型收敛到少数高 reward mode。DiverseGRPO 通过 spectral clustering 构建分布级表示，分配 exploratory reward 鼓励发现新 mode，实现 13-18% 语义多样性提升。\n- **与我们的关联**: 我们的 CED reward 本质上也是在 reward 中引入了\"多样性维度\"——evidence 质量不同于 extraction accuracy，增加了 reward landscape 的模式数量。\n\n### 1.2 Multi-Objective Reward 防 Mode Collapse\n\n**Safe RLHF: Constrained Value Alignment via Safe Reinforcement Learning from Human Feedback (Beaver)**\n- 作者: Dai, Pan, Sun, Ji, Xu, Liu, Wang, Yang\n- 年份/Venue: ICLR 2024 Spotlight, arXiv:2310.03295\n- 核心发现: 训练独立的 reward model 和 cost model，通过 Lagrangian 优化同时最大化 reward 和满足 safety constraint。双目标优化避免了单一 reward 的盲区。\n- **与我们的关联**: CED reward（evidence quality）+ extraction reward（F1）本质上是双目标优化，Safe RLHF 提供了多目标 RLHF 稳定性的理论先例。\n\n**Directional Preference Alignment with Multi-Objective Rewards (DPA)**\n- 作者: Wang et al.\n- 年份/Venue: ACL 2024, arXiv:2402.18571\n- 核心发现: 将用户偏好建模为 reward 空间中的方向向量，多目标 reward model 捕捉 diverse preference profiles。在 Mistral-7B 上验证用户可算术控制 trade-off（如 helpfulness vs verbosity）。\n- **与我们的关联**: 理论上支持了多维 reward 空间比标量 reward 更能维持策略多样性的观点。\n\n**Multi-Objective Direct Preference Optimization (MODPO)**\n- 作者: Zhou et al.\n- 年份/Venue: 2024, arXiv:2310.03708\n- 核心发现: 无 RL 的多目标 DPO 扩展，理论上产生与 multi-objective RLHF 相同的最优解，产出 Pareto front 的语言模型，计算资源仅需 1/3。\n- **与我们的关联**: 进一步证实多目标设置在偏好优化中的稳定性优势。\n\n**Sotopia-RL: Reward Design for Social Intelligence**\n- 作者: Wang et al.\n- 年份/Venue: 2025, arXiv:2508.03905\n- 核心发现: 将粗粒度 episode-level feedback 细化为 utterance-level 多维 reward；多维 reward 捕捉社交交互的丰富性，减少 reward hacking。\n- **与我们的关联**: 与我们的发现高度一致——细粒度、多维 reward 天然抵抗 reward hacking 和 mode collapse。\n\n**Multi-Objective Reinforcement Learning for Large Language Model Optimization: Visionary Perspective**\n- 作者: Ramírez et al.\n- 年份/Venue: 2025, arXiv:2509.21613\n- 核心发现: 综述 MORL 在 LLM 中的应用，指出关键挑战包括 balancing objectives、Pareto-optimality、稳定性。明确提出多目标设置有助于避免单一 reward 的 overoptimization。\n- **与我们的关联**: 为我们的发现提供了理论框架——CED 作为额外目标维度增加了 Pareto front 的复杂性。\n\n### 1.3 Reward Shaping 与 Policy Optimization 稳定性\n\n**Reward Shaping to Mitigate Reward Hacking in RLHF (PAR)**\n- 作者: Fan et al.\n- 年份/Venue: 2025, arXiv:2502.18770\n- 核心发现: 提出两个 reward design 原则：(1) RL reward 应有界，(2) reward 应快速初始增长后逐渐收敛。PAR 方法在 AlpacaEval 2.0 上 win rate 高出 5+%。\n- **与我们的关联**: CED reward 的对比性质天然有界（NLI score ∈ [0,1]），符合其提出的稳定 reward 设计原则。\n\n**Provably Mitigating Overoptimization in RLHF: Your SFT Loss is Implicitly an Adversarial Regularizer (RPO)**\n- 作者: Liu et al.\n- 年份/Venue: NeurIPS 2024, arXiv:2405.16436\n- 核心发现: 将 overoptimization 归因于分布偏移，提出 RPO 将 SFT loss 作为对抗性正则化项。\n- **与我们的关联**: CED reward 可能起到类似正则化效果——对比信号约束模型不偏离 evidence 质量标准。\n\n---\n\n## 2. Mode Collapse in LLM RL Fine-tuning\n\n### 2.1 Mode Collapse 的原因分析\n\n**Understanding the Effects of RLHF on LLM Generalisation and Diversity**\n- 作者: Kirk, Mediratta, Nalmpantis, Luketina, Hambro, Grefenstette, Raileanu\n- 年份/Venue: ICLR 2024, arXiv:2310.06452\n- 核心发现: RLHF 比 SFT 泛化更好，但显著降低输出多样性——生成文本结构重复、词汇单一、视角狭窄。存在 generalization-diversity tradeoff。\n- **与我们的关联**: 我们的 extraction-only reward 正是这种 diversity collapse 的典型案例。CED reward 可能缓解了这一 tradeoff。\n\n**KL-Regularized Reinforcement Learning is Designed to Mode Collapse**\n- 作者: GX-Chen et al.\n- 年份/Venue: 2025, arXiv:2510.20817\n- 核心发现: KL 正则化的 mode collapse 不仅因为 reverse KL 的 mode-seeking 性质，更因为低正则化强度和等值 verifiable reward 天然指定了单峰目标分布。提出 reward rescaling 诱导多峰分布。\n- **与我们的关联**: **关键理论支撑**。我们的 extraction-only reward（format+F1）本质上是\"等值 verifiable reward\"——多数正确 extraction 获得相似分数，天然单峰。CED 引入的 evidence quality 维度打破了这种等值性，使目标分布多峰化。\n\n**On the Algorithmic Bias of Aligning Large Language Models with RLHF: Preference Collapse and Matching Regularization**\n- 作者: Xu et al.\n- 年份/Venue: 2024, arXiv:2405.16455; JASA 2025\n- 核心发现: RLHF 的 KL 正则化存在固有 algorithmic bias，导致 preference collapse（少数偏好被忽略）。提出 Preference Matching (PM) RLHF 通过 ODE 推导的正则化项平衡多样化和 reward 最大化，提升 29-41%。\n- **与我们的关联**: 单一 reward 的 preference collapse 可解释 flat-NLI 和 extraction-only 的快速 collapse。CED 的多维信号天然提供了 preference matching 式的多样化压力。\n\n### 2.2 Reward Overoptimization\n\n**Scaling Laws for Reward Model Overoptimization**\n- 作者: Gao, Schulman, Hilton\n- 年份/Venue: ICML 2023, arXiv:2210.10760\n- 核心发现: 优化 proxy reward 的关系遵循可预测的 scaling law——RL 和 BoN 采样有不同的功能形式；过度优化导致 gold reward 下降。系数随 reward model 参数量平滑缩放。\n- **与我们的关联**: 经典参考。我们的 extraction-only reward 可能更容易被 overoptimize（低维 proxy），而 CED 增加了 reward 维度使 overoptimization 更困难。\n\n**Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms**\n- 作者: Rafailov et al.\n- 年份/Venue: 2024, arXiv:2406.02900\n- 核心发现: Overoptimization 在 DPO 等 direct alignment 方法中同样存在，甚至在一个 epoch 之前就出现，说明这是 preference-based alignment 的固有问题。\n- **与我们的关联**: 强化了 reward design（而非仅算法选择）是防止 overoptimization 的关键。\n\n**Reward Model Ensembles Help Mitigate Overoptimization**\n- 作者: Coste et al.\n- 年份/Venue: ICLR 2024, arXiv:2310.02743\n- 核心发现: Ensemble-based conservative optimization 几乎消除 overoptimization，BoN 采样性能提升 70%。结合 KL penalty 完全防止 PPO 的 overoptimization。\n- **与我们的关联**: 多 reward signal 的 ensemble 效果类似于我们的多维 reward。CED+F1 可视为一种 implicit reward ensemble。\n\n**InfoRM: Mitigating Reward Hacking in RLHF via Information-Theoretic Reward Modeling**\n- 作者: Chen et al.\n- 年份/Venue: NeurIPS 2024, arXiv:2402.09345\n- 核心发现: 通过 variational information bottleneck 过滤 reward model 中与人类偏好无关的信息，减少 reward hacking。发现 overoptimization 与 IB latent space 中的 outlier 相关。\n- **与我们的关联**: CED reward 直接基于 NLI 模型而非 learned reward model，可能天然具有更少的 spurious features。\n\n### 2.3 DeepSeek-R1 与 GRPO 实践\n\n**DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning**\n- 作者: DeepSeek Team\n- 年份/Venue: 2025, Nature, arXiv:2501.12948\n- 核心发现: 纯 GRPO + correctness reward 可激发 LLM 推理能力（R1-Zero），但存在 reward hacking（如语言混合、重复 pattern）。最终采用 SFT + RL 的 pipeline 稳定训练。\n- **与我们的关联**: R1-Zero 的 reward hacking 正是单维 reward 的典型问题。CED 的多维信号可视为一种隐式的 format/quality constraint。\n\n---\n\n## 3. Contrastive Reward in RL\n\n### 3.1 Contrastive Likelihood/Reward 方法\n\n**CTRL-RAG: Contrastive Likelihood Reward Based Reinforcement Learning for Context-Faithful RAG Models**\n- 作者: (未详)\n- 年份/Venue: 2026, arXiv:2603.04406\n- 核心发现: 首个专为 RAG 设计的 RL 方法，使用 Contrastive Likelihood Reward (CLR) 优化 context faithfulness——直接优化 response 在有/无 evidence 条件下的 log-likelihood 差值。单独或结合 correctness reward 均有效。\n- **与我们的关联**: **最直接的先例**。我们的 CED reward 同样通过对比有/无 evidence 来衡量 faithfulness。CTRL-RAG 证明 contrastive reward 在 RL 中可行且有效，但他们未分析 anti-mode-collapse 效应——这是我们的独特贡献。\n\n**Improving Factuality of Abstractive Summarization via Contrastive Reward Learning**\n- 作者: Chern et al.\n- 年份/Venue: TrustNLP Workshop 2023, arXiv:2307.04507\n- 核心发现: 提出 contrastive reward learning 框架，让摘要模型直接从 factuality metrics 的反馈中学习，使用 diverse beam search 生成候选摘要进行对比训练。\n- **与我们的关联**: 早期 contrastive reward 用于 factuality 的先例。我们将对比从训练时的 sample selection 推进到了 reward signal 本身。\n\n**CLIFF: Contrastive Learning for Improving Faithfulness and Factuality in Abstractive Summarization**\n- 作者: Cao, Wang\n- 年份/Venue: EMNLP 2021, arXiv:2109.09209\n- 核心发现: 利用 reference summary（正例）和自动生成的错误摘要（负例）进行对比学习，设计 4 种负样本策略模拟 BART/PEGASUS 的常见错误。在 XSum 和 CNN/DM 上稳定提升 factuality。\n- **与我们的关联**: 奠基性工作——证明对比学习可用于 faithfulness。我们的 CED 将这一思想从训练目标扩展到 RL reward signal。\n\n### 3.2 NLI-based Reward\n\n**Improving Factual Consistency of News Summarization by Contrastive Preference Optimization (CPO)**\n- 作者: Feng et al.\n- 年份/Venue: EMNLP 2024 Findings, arXiv:2310.19347\n- 核心发现: 训练 NLI model 进行 consistency detection，将其作为 RL 的 reward model。CPO 分离 LLM 生成 faithful/fake content 的倾向，显著提升摘要可靠性。\n- **与我们的关联**: NLI 作为 reward 的直接先例。但他们使用 flat NLI（非对比），我们的 CED 通过对比增强了 NLI signal 的判别力。\n\n**PrefixNLI: Detecting Factual Inconsistencies as Soon as They Arise**\n- 作者: (未详)\n- 年份/Venue: 2025, arXiv:2511.01359\n- 核心发现: NLI 模型广泛用于评估 factual consistency，可在生成时通过 beam reranking 或训练时通过 RL reward 提供反馈。提出 prefix-level entailment 检测，比 baseline NLI 模型提升 5-14 F1。\n- **与我们的关联**: 支持 NLI-based reward 在 RL 中的可行性。Prefix-level 检测思想可作为未来改进 CED 的方向。\n\n### 3.3 Evidence-based Reward Design\n\n**Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning**\n- 作者: (未详)\n- 年份/Venue: 2025, arXiv:2605.08061\n- 核心发现: 将 reward 分解为加权的可验证 criteria，用 LLM judge 评分，配合 GRPO 优化。Rubric-based reward 比单一 reward 更能泛化。\n- **与我们的关联**: CED 可视为一种 rubric-grounded reward——evidence faithfulness 是 extraction 任务中的一个可验证 criterion。\n\n**Information-Theoretic Reward Decomposition for Generalizable RLHF**\n- 作者: (未详)\n- 年份/Venue: 2025, arXiv:2504.06020\n- 核心发现: 将 reward 分解为 prompt-free reward（仅由 response 决定）和 prompt-related reward（由 prompt+response 共同决定），提升 reward 泛化性。\n- **与我们的关联**: CED reward 的 evidence 维度本质上是 prompt-related reward（依赖输入 evidence），而 format reward 是 prompt-free reward。这种分解可能是 CED 稳定性的来源之一。\n\n---\n\n## 4. 对 Paper Story 的建议\n\n### 4.1 核心定位\n\nCED 的 anti-mode-collapse 效应应定位为 **surprising finding + principled explanation**，而非 main contribution：\n\n- **Main contribution**: CED reward design 本身——对比 evidence 判别作为 IE GRPO 的 reward signal\n- **Surprising finding**: CED 不仅提升 evidence faithfulness，还显著防止 mode collapse\n- **Principled explanation**: 可通过以下文献链条论证\n  1. GRPO 的 advantage collapse 是已知问题（EDGE-GRPO, DAPO）\n  2. 单维/等值 reward 天然导致单峰目标分布（GX-Chen et al., 2025）\n  3. 多目标 reward 增加 reward landscape 复杂性，维持策略多样性（DiverseGRPO, Safe RLHF, Sotopia-RL）\n  4. CED 作为额外的 evidence quality 维度，打破了 extraction-only reward 的等值性\n\n### 4.2 建议的论文叙事结构\n\n1. **Motivation**: IE 任务中 evidence faithfulness 重要但被忽视\n2. **Method**: CED reward design\n3. **Main results**: CED 提升 faithfulness metrics\n4. **Analysis section**: 发现 anti-mode-collapse 效应\n   - 实验对比：CED vs extraction-only vs flat-NLI 的 training dynamics\n   - 指标：frac_zero_std, entropy, reward trajectory\n   - 理论解释：引用 GX-Chen et al.（等值 reward 导致单峰分布）和 EDGE-GRPO（advantage collapse）\n   - 与 multi-objective reward 文献的联系\n\n### 4.3 可引用的关键论文（按重要性排序）\n\n| 优先级 | 论文 | 引用理由 |\n|--------|------|----------|\n| **必引** | GX-Chen et al. 2025 (KL-RL mode collapse) | 直接解释等值 reward 为何 collapse |\n| **必引** | EDGE-GRPO (Zhang et al. 2025) | frac_zero_std / advantage collapse 的定义和分析 |\n| **必引** | DAPO (ByteDance 2025) | GRPO entropy collapse 的标准参考 |\n| **必引** | CTRL-RAG (2026) | contrastive reward for faithfulness 的最近先例 |\n| **强烈推荐** | Kirk et al. 2024 (RLHF diversity) | RLHF diversity loss 的经典分析 |\n| **强烈推荐** | DiverseGRPO (Liu et al. 2025) | diversity-aware reward design 的直接类比 |\n| **强烈推荐** | Gao et al. 2023 (scaling laws) | reward overoptimization 的经典引用 |\n| **推荐** | Safe RLHF (Dai et al. 2024) | multi-objective RLHF 的先例 |\n| **推荐** | CLIFF (Cao & Wang 2021) | contrastive learning for faithfulness 的奠基工作 |\n| **推荐** | CPO (Feng et al. 2024) | NLI as reward 的直接先例 |\n\n### 4.4 差异化论点\n\n我们的发现与现有文献的关键差异：\n1. **CTRL-RAG** 证明 contrastive reward 可用于 faithfulness，但未分析 training stability 效应\n2. **DiverseGRPO** 通过显式 diversity reward 防 collapse，我们的 CED 是隐式的——evidence quality 维度自然增加了多样性\n3. **EDGE-GRPO** 通过 entropy-driven advantage 解决 advantage collapse，我们的 CED 通过增加 reward 维度自然增加 advantage variance\n4. **GX-Chen et al.** 的理论预测（等值 reward → 单峰分布）直接解释了为什么 extraction-only collapse 而 CED 不 collapse\n\n这使得 CED 的 anti-collapse 效应成为一个 **empirically validated instance of a theoretically predicted phenomenon**——既有实验证据又有理论支撑，非常适合作为论文的 analysis highlight。\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/d024_literature_survey.md",
+    "content": "# D024 文献调研：CED Reward 的 Anti-Mode-Collapse 效应\n\n## 背景\n\n在 GRPO 训练中，CED reward（对比证据判别）在相同配置下显著优于 extraction-only 和 flat-NLI reward，后两者在 10-30 步内 mode collapse。假设：CED 提供的多维梯度信号增加了 reward landscape 复杂性，使 GRPO 多样性采样更不容易退化。\n\n---\n\n## 1. Reward Shaping for RLHF/GRPO Stability\n\n### 1.1 GRPO 中的 Entropy/Mode Collapse 分析\n\n**DAPO: An Open-Source LLM Reinforcement Learning System at Scale**\n- 作者: ByteDance Seed Team\n- 年份/Venue: 2025, arXiv:2503.14476\n- 核心发现: PPO/GRPO 的对称 clipping 限制低概率 action 导致 entropy collapse；DAPO 提出 Clip-Higher（放宽上界）和 Dynamic Sampling 保持探索性，在 Qwen2.5-32B 上 AIME 2024 达 50 分。\n- **与我们的关联**: CED reward 可能起到类似 Dynamic Sampling 的作用——提供更丰富的梯度信号维度，避免所有 sample 收敛到同一高 reward 策略。\n\n**GTPO: Stabilizing Group Relative Policy Optimization via Gradient and Entropy Control**\n- 作者: Su et al.\n- 年份/Venue: 2025, arXiv:2508.03772\n- 核心发现: 识别 GRPO 中的 conflict tokens（同位置 token 在不同 response 中获得相反 reward），保护它们跳过负更新；设置 entropy 阈值过滤易导致 policy collapse 的 completion。\n- **与我们的关联**: CED reward 的对比机制天然区分了 evidence quality 维度上的 conflict，可能提供了隐式的 conflict token 保护。\n\n**EDGE-GRPO: Entropy-Driven GRPO with Guided Error Correction for Advantage Diversity**\n- 作者: Zhang, Wen, Wu, Huang\n- 年份/Venue: 2025, arXiv:2507.21848\n- 核心发现: GRPO 中 group 内 reward 相同导致 advantage collapse（frac_zero_std 问题）；通过 entropy-driven advantage 和 guided error correction 增加 advantage diversity。\n- **与我们的关联**: 直接对应我们观察到的 frac_zero_std→0.9 现象。CED reward 作为额外 reward 维度，天然增加了 group 内 advantage variance，减轻 advantage collapse。这是最强的理论支撑之一。\n\n**Dr. GRPO: Understanding R1-Zero-Like Training: A Critical Perspective**\n- 作者: Liu et al. (Sea AI Lab)\n- 年份/Venue: 2025, COLM 2025, arXiv:2503.20783\n- 核心发现: GRPO 存在 optimization bias——response length normalization 人为增加长度偏好；Dr. GRPO 移除有偏归一化项，保持输出长度稳定且准确率提升（AIME 2024: 43.3% vs GRPO 36.0%）。\n- **与我们的关联**: 说明 reward 设计中的 bias 直接影响 GRPO 稳定性。CED reward 的对比性质可能提供了更平衡的信号。\n\n**DiverseGRPO: Mitigating Mode Collapse in Image Generation via Diversity-Aware GRPO**\n- 作者: Liu et al.\n- 年份/Venue: 2025, arXiv:2512.21514\n- 核心发现: 传统 GRPO 依赖 single-sample quality 作为 reward，驱动模型收敛到少数高 reward mode。DiverseGRPO 通过 spectral clustering 构建分布级表示，分配 exploratory reward 鼓励发现新 mode，实现 13-18% 语义多样性提升。\n- **与我们的关联**: 我们的 CED reward 本质上也是在 reward 中引入了\"多样性维度\"——evidence 质量不同于 extraction accuracy，增加了 reward landscape 的模式数量。\n\n### 1.2 Multi-Objective Reward 防 Mode Collapse\n\n**Safe RLHF: Constrained Value Alignment via Safe Reinforcement Learning from Human Feedback (Beaver)**\n- 作者: Dai, Pan, Sun, Ji, Xu, Liu, Wang, Yang\n- 年份/Venue: ICLR 2024 Spotlight, arXiv:2310.03295\n- 核心发现: 训练独立的 reward model 和 cost model，通过 Lagrangian 优化同时最大化 reward 和满足 safety constraint。双目标优化避免了单一 reward 的盲区。\n- **与我们的关联**: CED reward（evidence quality）+ extraction reward（F1）本质上是双目标优化，Safe RLHF 提供了多目标 RLHF 稳定性的理论先例。\n\n**Directional Preference Alignment with Multi-Objective Rewards (DPA)**\n- 作者: Wang et al.\n- 年份/Venue: ACL 2024, arXiv:2402.18571\n- 核心发现: 将用户偏好建模为 reward 空间中的方向向量，多目标 reward model 捕捉 diverse preference profiles。在 Mistral-7B 上验证用户可算术控制 trade-off（如 helpfulness vs verbosity）。\n- **与我们的关联**: 理论上支持了多维 reward 空间比标量 reward 更能维持策略多样性的观点。\n\n**Multi-Objective Direct Preference Optimization (MODPO)**\n- 作者: Zhou et al.\n- 年份/Venue: 2024, arXiv:2310.03708\n- 核心发现: 无 RL 的多目标 DPO 扩展，理论上产生与 multi-objective RLHF 相同的最优解，产出 Pareto front 的语言模型，计算资源仅需 1/3。\n- **与我们的关联**: 进一步证实多目标设置在偏好优化中的稳定性优势。\n\n**Sotopia-RL: Reward Design for Social Intelligence**\n- 作者: Wang et al.\n- 年份/Venue: 2025, arXiv:2508.03905\n- 核心发现: 将粗粒度 episode-level feedback 细化为 utterance-level 多维 reward；多维 reward 捕捉社交交互的丰富性，减少 reward hacking。\n- **与我们的关联**: 与我们的发现高度一致——细粒度、多维 reward 天然抵抗 reward hacking 和 mode collapse。\n\n**Multi-Objective Reinforcement Learning for Large Language Model Optimization: Visionary Perspective**\n- 作者: Ramírez et al.\n- 年份/Venue: 2025, arXiv:2509.21613\n- 核心发现: 综述 MORL 在 LLM 中的应用，指出关键挑战包括 balancing objectives、Pareto-optimality、稳定性。明确提出多目标设置有助于避免单一 reward 的 overoptimization。\n- **与我们的关联**: 为我们的发现提供了理论框架——CED 作为额外目标维度增加了 Pareto front 的复杂性。\n\n### 1.3 Reward Shaping 与 Policy Optimization 稳定性\n\n**Reward Shaping to Mitigate Reward Hacking in RLHF (PAR)**\n- 作者: Fan et al.\n- 年份/Venue: 2025, arXiv:2502.18770\n- 核心发现: 提出两个 reward design 原则：(1) RL reward 应有界，(2) reward 应快速初始增长后逐渐收敛。PAR 方法在 AlpacaEval 2.0 上 win rate 高出 5+%。\n- **与我们的关联**: CED reward 的对比性质天然有界（NLI score ∈ [0,1]），符合其提出的稳定 reward 设计原则。\n\n**Provably Mitigating Overoptimization in RLHF: Your SFT Loss is Implicitly an Adversarial Regularizer (RPO)**\n- 作者: Liu et al.\n- 年份/Venue: NeurIPS 2024, arXiv:2405.16436\n- 核心发现: 将 overoptimization 归因于分布偏移，提出 RPO 将 SFT loss 作为对抗性正则化项。\n- **与我们的关联**: CED reward 可能起到类似正则化效果——对比信号约束模型不偏离 evidence 质量标准。\n\n---\n\n## 2. Mode Collapse in LLM RL Fine-tuning\n\n### 2.1 Mode Collapse 的原因分析\n\n**Understanding the Effects of RLHF on LLM Generalisation and Diversity**\n- 作者: Kirk, Mediratta, Nalmpantis, Luketina, Hambro, Grefenstette, Raileanu\n- 年份/Venue: ICLR 2024, arXiv:2310.06452\n- 核心发现: RLHF 比 SFT 泛化更好，但显著降低输出多样性——生成文本结构重复、词汇单一、视角狭窄。存在 generalization-diversity tradeoff。\n- **与我们的关联**: 我们的 extraction-only reward 正是这种 diversity collapse 的典型案例。CED reward 可能缓解了这一 tradeoff。\n\n**KL-Regularized Reinforcement Learning is Designed to Mode Collapse**\n- 作者: GX-Chen et al.\n- 年份/Venue: 2025, arXiv:2510.20817\n- 核心发现: KL 正则化的 mode collapse 不仅因为 reverse KL 的 mode-seeking 性质，更因为低正则化强度和等值 verifiable reward 天然指定了单峰目标分布。提出 reward rescaling 诱导多峰分布。\n- **与我们的关联**: **关键理论支撑**。我们的 extraction-only reward（format+F1）本质上是\"等值 verifiable reward\"——多数正确 extraction 获得相似分数，天然单峰。CED 引入的 evidence quality 维度打破了这种等值性，使目标分布多峰化。\n\n**On the Algorithmic Bias of Aligning Large Language Models with RLHF: Preference Collapse and Matching Regularization**\n- 作者: Xu et al.\n- 年份/Venue: 2024, arXiv:2405.16455; JASA 2025\n- 核心发现: RLHF 的 KL 正则化存在固有 algorithmic bias，导致 preference collapse（少数偏好被忽略）。提出 Preference Matching (PM) RLHF 通过 ODE 推导的正则化项平衡多样化和 reward 最大化，提升 29-41%。\n- **与我们的关联**: 单一 reward 的 preference collapse 可解释 flat-NLI 和 extraction-only 的快速 collapse。CED 的多维信号天然提供了 preference matching 式的多样化压力。\n\n### 2.2 Reward Overoptimization\n\n**Scaling Laws for Reward Model Overoptimization**\n- 作者: Gao, Schulman, Hilton\n- 年份/Venue: ICML 2023, arXiv:2210.10760\n- 核心发现: 优化 proxy reward 的关系遵循可预测的 scaling law——RL 和 BoN 采样有不同的功能形式；过度优化导致 gold reward 下降。系数随 reward model 参数量平滑缩放。\n- **与我们的关联**: 经典参考。我们的 extraction-only reward 可能更容易被 overoptimize（低维 proxy），而 CED 增加了 reward 维度使 overoptimization 更困难。\n\n**Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms**\n- 作者: Rafailov et al.\n- 年份/Venue: 2024, arXiv:2406.02900\n- 核心发现: Overoptimization 在 DPO 等 direct alignment 方法中同样存在，甚至在一个 epoch 之前就出现，说明这是 preference-based alignment 的固有问题。\n- **与我们的关联**: 强化了 reward design（而非仅算法选择）是防止 overoptimization 的关键。\n\n**Reward Model Ensembles Help Mitigate Overoptimization**\n- 作者: Coste et al.\n- 年份/Venue: ICLR 2024, arXiv:2310.02743\n- 核心发现: Ensemble-based conservative optimization 几乎消除 overoptimization，BoN 采样性能提升 70%。结合 KL penalty 完全防止 PPO 的 overoptimization。\n- **与我们的关联**: 多 reward signal 的 ensemble 效果类似于我们的多维 reward。CED+F1 可视为一种 implicit reward ensemble。\n\n**InfoRM: Mitigating Reward Hacking in RLHF via Information-Theoretic Reward Modeling**\n- 作者: Chen et al.\n- 年份/Venue: NeurIPS 2024, arXiv:2402.09345\n- 核心发现: 通过 variational information bottleneck 过滤 reward model 中与人类偏好无关的信息，减少 reward hacking。发现 overoptimization 与 IB latent space 中的 outlier 相关。\n- **与我们的关联**: CED reward 直接基于 NLI 模型而非 learned reward model，可能天然具有更少的 spurious features。\n\n### 2.3 DeepSeek-R1 与 GRPO 实践\n\n**DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning**\n- 作者: DeepSeek Team\n- 年份/Venue: 2025, Nature, arXiv:2501.12948\n- 核心发现: 纯 GRPO + correctness reward 可激发 LLM 推理能力（R1-Zero），但存在 reward hacking（如语言混合、重复 pattern）。最终采用 SFT + RL 的 pipeline 稳定训练。\n- **与我们的关联**: R1-Zero 的 reward hacking 正是单维 reward 的典型问题。CED 的多维信号可视为一种隐式的 format/quality constraint。\n\n---\n\n## 3. Contrastive Reward in RL\n\n### 3.1 Contrastive Likelihood/Reward 方法\n\n**CTRL-RAG: Contrastive Likelihood Reward Based Reinforcement Learning for Context-Faithful RAG Models**\n- 作者: (未详)\n- 年份/Venue: 2026, arXiv:2603.04406\n- 核心发现: 首个专为 RAG 设计的 RL 方法，使用 Contrastive Likelihood Reward (CLR) 优化 context faithfulness——直接优化 response 在有/无 evidence 条件下的 log-likelihood 差值。单独或结合 correctness reward 均有效。\n- **与我们的关联**: **最直接的先例**。我们的 CED reward 同样通过对比有/无 evidence 来衡量 faithfulness。CTRL-RAG 证明 contrastive reward 在 RL 中可行且有效，但他们未分析 anti-mode-collapse 效应——这是我们的独特贡献。\n\n**Improving Factuality of Abstractive Summarization via Contrastive Reward Learning**\n- 作者: Chern et al.\n- 年份/Venue: TrustNLP Workshop 2023, arXiv:2307.04507\n- 核心发现: 提出 contrastive reward learning 框架，让摘要模型直接从 factuality metrics 的反馈中学习，使用 diverse beam search 生成候选摘要进行对比训练。\n- **与我们的关联**: 早期 contrastive reward 用于 factuality 的先例。我们将对比从训练时的 sample selection 推进到了 reward signal 本身。\n\n**CLIFF: Contrastive Learning for Improving Faithfulness and Factuality in Abstractive Summarization**\n- 作者: Cao, Wang\n- 年份/Venue: EMNLP 2021, arXiv:2109.09209\n- 核心发现: 利用 reference summary（正例）和自动生成的错误摘要（负例）进行对比学习，设计 4 种负样本策略模拟 BART/PEGASUS 的常见错误。在 XSum 和 CNN/DM 上稳定提升 factuality。\n- **与我们的关联**: 奠基性工作——证明对比学习可用于 faithfulness。我们的 CED 将这一思想从训练目标扩展到 RL reward signal。\n\n### 3.2 NLI-based Reward\n\n**Improving Factual Consistency of News Summarization by Contrastive Preference Optimization (CPO)**\n- 作者: Feng et al.\n- 年份/Venue: EMNLP 2024 Findings, arXiv:2310.19347\n- 核心发现: 训练 NLI model 进行 consistency detection，将其作为 RL 的 reward model。CPO 分离 LLM 生成 faithful/fake content 的倾向，显著提升摘要可靠性。\n- **与我们的关联**: NLI 作为 reward 的直接先例。但他们使用 flat NLI（非对比），我们的 CED 通过对比增强了 NLI signal 的判别力。\n\n**PrefixNLI: Detecting Factual Inconsistencies as Soon as They Arise**\n- 作者: (未详)\n- 年份/Venue: 2025, arXiv:2511.01359\n- 核心发现: NLI 模型广泛用于评估 factual consistency，可在生成时通过 beam reranking 或训练时通过 RL reward 提供反馈。提出 prefix-level entailment 检测，比 baseline NLI 模型提升 5-14 F1。\n- **与我们的关联**: 支持 NLI-based reward 在 RL 中的可行性。Prefix-level 检测思想可作为未来改进 CED 的方向。\n\n### 3.3 Evidence-based Reward Design\n\n**Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning**\n- 作者: (未详)\n- 年份/Venue: 2025, arXiv:2605.08061\n- 核心发现: 将 reward 分解为加权的可验证 criteria，用 LLM judge 评分，配合 GRPO 优化。Rubric-based reward 比单一 reward 更能泛化。\n- **与我们的关联**: CED 可视为一种 rubric-grounded reward——evidence faithfulness 是 extraction 任务中的一个可验证 criterion。\n\n**Information-Theoretic Reward Decomposition for Generalizable RLHF**\n- 作者: (未详)\n- 年份/Venue: 2025, arXiv:2504.06020\n- 核心发现: 将 reward 分解为 prompt-free reward（仅由 response 决定）和 prompt-related reward（由 prompt+response 共同决定），提升 reward 泛化性。\n- **与我们的关联**: CED reward 的 evidence 维度本质上是 prompt-related reward（依赖输入 evidence），而 format reward 是 prompt-free reward。这种分解可能是 CED 稳定性的来源之一。\n\n---\n\n## 4. 对 Paper Story 的建议\n\n### 4.1 核心定位\n\nCED 的 anti-mode-collapse 效应应定位为 **surprising finding + principled explanation**，而非 main contribution：\n\n- **Main contribution**: CED reward design 本身——对比 evidence 判别作为 IE GRPO 的 reward signal\n- **Surprising finding**: CED 不仅提升 evidence faithfulness，还显著防止 mode collapse\n- **Principled explanation**: 可通过以下文献链条论证\n  1. GRPO 的 advantage collapse 是已知问题（EDGE-GRPO, DAPO）\n  2. 单维/等值 reward 天然导致单峰目标分布（GX-Chen et al., 2025）\n  3. 多目标 reward 增加 reward landscape 复杂性，维持策略多样性（DiverseGRPO, Safe RLHF, Sotopia-RL）\n  4. CED 作为额外的 evidence quality 维度，打破了 extraction-only reward 的等值性\n\n### 4.2 建议的论文叙事结构\n\n1. **Motivation**: IE 任务中 evidence faithfulness 重要但被忽视\n2. **Method**: CED reward design\n3. **Main results**: CED 提升 faithfulness metrics\n4. **Analysis section**: 发现 anti-mode-collapse 效应\n   - 实验对比：CED vs extraction-only vs flat-NLI 的 training dynamics\n   - 指标：frac_zero_std, entropy, reward trajectory\n   - 理论解释：引用 GX-Chen et al.（等值 reward 导致单峰分布）和 EDGE-GRPO（advantage collapse）\n   - 与 multi-objective reward 文献的联系\n\n### 4.3 可引用的关键论文（按重要性排序）\n\n| 优先级 | 论文 | 引用理由 |\n|--------|------|----------|\n| **必引** | GX-Chen et al. 2025 (KL-RL mode collapse) | 直接解释等值 reward 为何 collapse |\n| **必引** | EDGE-GRPO (Zhang et al. 2025) | frac_zero_std / advantage collapse 的定义和分析 |\n| **必引** | DAPO (ByteDance 2025) | GRPO entropy collapse 的标准参考 |\n| **必引** | CTRL-RAG (2026) | contrastive reward for faithfulness 的最近先例 |\n| **强烈推荐** | Kirk et al. 2024 (RLHF diversity) | RLHF diversity loss 的经典分析 |\n| **强烈推荐** | DiverseGRPO (Liu et al. 2025) | diversity-aware reward design 的直接类比 |\n| **强烈推荐** | Gao et al. 2023 (scaling laws) | reward overoptimization 的经典引用 |\n| **推荐** | Safe RLHF (Dai et al. 2024) | multi-objective RLHF 的先例 |\n| **推荐** | CLIFF (Cao & Wang 2021) | contrastive learning for faithfulness 的奠基工作 |\n| **推荐** | CPO (Feng et al. 2024) | NLI as reward 的直接先例 |\n\n### 4.4 差异化论点\n\n我们的发现与现有文献的关键差异：\n1. **CTRL-RAG** 证明 contrastive reward 可用于 faithfulness，但未分析 training stability 效应\n2. **DiverseGRPO** 通过显式 diversity reward 防 collapse，我们的 CED 是隐式的——evidence quality 维度自然增加了多样性\n3. **EDGE-GRPO** 通过 entropy-driven advantage 解决 advantage collapse，我们的 CED 通过增加 reward 维度自然增加 advantage variance\n4. **GX-Chen et al.** 的理论预测（等值 reward → 单峰分布）直接解释了为什么 extraction-only collapse 而 CED 不 collapse\n\n这使得 CED 的 anti-collapse 效应成为一个 **empirically validated instance of a theoretically predicted phenomenon**——既有实验证据又有理论支撑，非常适合作为论文的 analysis highlight。\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-14T18:43:17.282796+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/d024_literature_survey.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-14T18:43:17.283016+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "d024_literature_survey",
+  "type": "report",
+  "description": "D024 文献调研：CED reward anti-mode-collapse 效应的文献支撑，覆盖 reward shaping/GRPO stability、mode collapse in LLM RL、contrastive reward 三个方向，含 25+ 篇论文和 paper story 建议",
+  "project": "faith-evidence-ie",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/d024_literature_survey.md",
+  "tags": "['literature-survey', 'd024', 'mode-collapse', 'CED-reward', 'GRPO']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "d024_literature_survey",
+    "type": "report",
+    "description": "D024 文献调研：CED reward anti-mode-collapse 效应的文献支撑，覆盖 reward shaping/GRPO stability、mode collapse in LLM RL、contrastive reward 三个方向，含 25+ 篇论文和 paper story 建议",
+    "project": "faith-evidence-ie",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/d024_literature_survey.md",
+    "tags": "['literature-survey', 'd024', 'mode-collapse', 'CED-reward', 'GRPO']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-14T18:43:17.283269+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_4d7019\", \"name\": \"d024_literature_survey\", \"type\": \"report\", \"description\": \"D024 文献调研：CED reward anti-mode-collapse 效应的文献支撑，覆盖 reward shaping/GRPO stability、mode collapse in LLM RL、contrastive reward 三个方向，含 25+ 篇论文和 paper story 建议\", \"path\": \"projects/faith-evidence-ie/artifacts/_project/report/d024_literature_survey.md\", \"url\": null, \"project\": \"faith-evidence-ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T18:43:09.822851+00:00\", \"tags\": [\"literature-survey\", \"d024\", \"mode-collapse\", \"CED-reward\", \"GRPO\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73 · 2026-05-14T18:43:17.283546+00:00_
+
+调研报告已写入并注册。覆盖 25+ 篇论文，按三个方向分类：
+
+**关键发现**：
+- GX-Chen et al. (2025) 的理论直接解释了我们的现象——等值 verifiable reward（如 extraction-only 的 F1）天然指定单峰目标分布，导致 mode collapse；CED 增加的 evidence quality 维度打破了这种等值性
+- EDGE-GRPO 对 advantage collapse（frac_zero_std）的分析是我们观察的理论基础
+- CTRL-RAG 是 contrastive reward for faithfulness 的最近先例，但未分析 anti-collapse 效应——这是我们的独特贡献点
+
+**Paper story 建议**：CED 的 anti-collapse 定位为 surprising finding + principled explanation（非 main contribution），在 Analysis section 展开，引用 GX-Chen → EDGE-GRPO → DiverseGRPO 的理论链条。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_ced-anti-collapse-literature_20260514T183829"
+}
+```
+
+</details>
+
+---

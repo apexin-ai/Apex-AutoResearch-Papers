@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp2_rsft_r2a",
+  "project": "faith-evidence-ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T08:57:46.140Z",
+    "updated_at": "2026-05-15T08:58:01.427Z",
+    "hypothesis": "RSFT r2a: data fix only (1 epoch + filter 170 truncated JSON → 2548 samples). Same LoRA alpha=128/r=64, lr=2e-5 as r1. Isolates: does 1 epoch + clean data alone fix the ontology collapse? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.",
+    "parent": "mvp2_rsft_train_r1"
+  },
+  "timestamp": "2026-05-15T08:58:01.588567+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,74 @@
+{
+  "exp_id": "eval_grpo_g8_bf16",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:41:07.474Z",
+    "updated_at": "2026-05-15T17:57:46.573Z",
+    "spec": {
+      "command": "python -m freige.eval.batch_eval --exp_dir grpo_ced_g8_bf16 --sft_adapter sft_output --checkpoints 80,90,100 --no-quantize --max_new_tokens 1024",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "214552",
+      "log_path": "~/runs/faith-evidence-ie/eval_grpo_g8_bf16.log",
+      "submitted_at": "2026-05-15T14:41:06.626Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT + GRPO-G8-bf16",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/grpo_ced_g8_bf16",
+      "eval_data": "docred dev (985 docs)",
+      "parent": "plan_011_grpo_g8_bf16",
+      "wall_clock_seconds": 11785.0,
+      "gpu_hours": 3.27
+    },
+    "hypothesis": "Eval GRPO G=8 bf16 checkpoints 80/90/100 on full dev set (985 docs). 验证 catastrophic forgetting 是否在 bf16 LoRA 下复现。rel_f1>0.30 → forgetting 不复现 (QLoRA-specific); rel_f1<0.05 → 复现 (C2 加强)。对比: SFT rel_f1=0.4057, QLoRA GRPO rel_f1=0.2167 (catastrophic).",
+    "metrics": {
+      "ckpt80_rel_f1": 0.4456,
+      "ckpt80_ign_f1": 0.4456,
+      "ckpt80_evi_f1": 0.8034,
+      "ckpt80_edcr": 0.6409,
+      "ckpt80_format_ok": "984/985",
+      "ckpt80_truncated": 50,
+      "ckpt90_rel_f1": 0.4523,
+      "ckpt90_ign_f1": 0.4523,
+      "ckpt90_evi_f1": 0.8052,
+      "ckpt90_edcr": 0.6414,
+      "ckpt90_format_ok": "983/985",
+      "ckpt90_truncated": 61,
+      "ckpt100_rel_f1": 0.4549,
+      "ckpt100_ign_f1": 0.4549,
+      "ckpt100_evi_f1": 0.8086,
+      "ckpt100_edcr": 0.6318,
+      "ckpt100_format_ok": "985/985",
+      "ckpt100_truncated": 61,
+      "best_checkpoint": "ckpt-100"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T17:55:03.372Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T17:55:12.125002+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "notes": "3 checkpoints 全部评测完成。rel_f1 单调递增 (0.4456→0.4523→0.4549)，evi_f1 同步上升 (0.8034→0.8052→0.8086)。全部 checkpoint 均大幅超过 SFT baseline (0.4057) 和 QLoRA GRPO (0.2167 catastrophic forgetting)。bf16 LoRA GRPO 无 forgetting，且持续改善至 step 100。Best checkpoint: 100 (rel_f1=0.4549, +12.1% over SFT).",
+    "checkpoint_path": "/root/autodl-tmp/eval_results/grpo_g8_bf16",
+    "completed_at": "2026-05-15T17:57:31.658Z"
+  },
+  "timestamp": "2026-05-15T17:57:46.784836+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,63 @@
+{
+  "exp_id": "reeval_sft_baseline_d076",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:26:37.542Z",
+    "updated_at": "2026-05-16T08:33:13.622Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/sft_baseline_d076_reeval --no-quantize\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "303065",
+      "log_path": "~/runs/faith-evidence-ie/reeval_sft_baseline_d076.log",
+      "submitted_at": "2026-05-16T05:26:46.170Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT baseline (no RSFT)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "docred dev (985 docs)",
+      "checkpoint_path": "/root/autodl-tmp/sft_output",
+      "output_dir": "/root/autodl-tmp/eval_results/sft_baseline_d076_reeval",
+      "wall_clock_seconds": 11187.5,
+      "gpu_hours": 3.11
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T07:25:48.637Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T07:25:54.520626+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "rel_f1": 0.4049,
+      "ign_f1": 0.3974,
+      "evi_f1": 0.7986,
+      "edcr": 0.6982,
+      "evi_f1_joint": 0.3147,
+      "format_compliance_rate": 0.998,
+      "n_truncated": 288,
+      "n_documents": 985,
+      "n_predictions": 16880,
+      "inference_time_sec": 7056.5
+    },
+    "completed_at": "2026-05-16T08:33:13.622Z"
+  },
+  "timestamp": "2026-05-16T08:33:13.946764+00:00",
+  "trigger": "update_registry"
+}

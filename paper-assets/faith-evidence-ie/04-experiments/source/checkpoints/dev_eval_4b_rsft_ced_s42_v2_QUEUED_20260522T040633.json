@@ -1,0 +1,25 @@
+{
+  "exp_id": "dev_eval_4b_rsft_ced_s42_v2",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-22T02:58:09.687Z",
+    "updated_at": "2026-05-22T04:06:32.309Z",
+    "hypothesis": "验证 retrain 4B RSFT CED s42 v2 checkpoint 质量：dev set eval 应与原 4B RSFT s42 dev 水平一致（~0.4517 ign_f1）。偏差 >2pp 需要报告。",
+    "parent": "retrain_4b_rsft_ced_s42_v2",
+    "failure_reason": "第二次提交崩溃：FileNotFoundError: dev.json 不存在（数据目录只有 dev_revised.json）。inference.py 默认加载 dev.json，需要传 --split dev_revised 或修改默认值。",
+    "notes": "第3次提交。前两次失败原因：1) base_model 路径错误 2) 缺 --split dev_revised（默认找 dev.json 不存在）。",
+    "completed_at": "2026-05-22T04:04:08.464Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "第3次提交。前两次失败原因：1) base_model 路径错误 2) 缺 --split dev_revised（默认找 dev.json 不存在）。"
+      }
+    }
+  },
+  "timestamp": "2026-05-22T04:06:33.061131+00:00",
+  "trigger": "update_registry"
+}

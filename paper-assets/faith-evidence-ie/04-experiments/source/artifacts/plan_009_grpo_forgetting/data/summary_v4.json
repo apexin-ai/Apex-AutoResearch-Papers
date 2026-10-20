@@ -1,0 +1,137 @@
+{
+  "figure_version": "v4",
+  "date": "2026-05-15",
+  "layout": "2x2 grid: (a) reward, (b) rel_f1, (c) evi_f1, (d) EDCR",
+  "runs": [
+    {
+      "name": "QLoRA 4-bit (lr=5e-5, kl=0.01)",
+      "run_key": "qlora_kl001",
+      "precision": "NF4 QLoRA",
+      "group_size": 4,
+      "lr": "5e-5",
+      "kl_coeff": 0.01,
+      "total_steps": 100,
+      "forgetting": true,
+      "eval_checkpoints": {
+        "step_90": {
+          "rel_f1": 0.2108,
+          "evi_f1": 0.5666,
+          "edcr": 0.8584
+        },
+        "step_100": {
+          "rel_f1": 0.2167,
+          "evi_f1": 0.5746,
+          "edcr": 0.8539
+        }
+      },
+      "reward_range": [
+        0.22,
+        1.37
+      ]
+    },
+    {
+      "name": "QLoRA 4-bit (lr=5e-6, kl=0.01)",
+      "run_key": "qlora_lr5e6",
+      "precision": "NF4 QLoRA",
+      "group_size": 4,
+      "lr": "5e-6",
+      "kl_coeff": 0.01,
+      "total_steps": 180,
+      "forgetting": true,
+      "eval_checkpoints": {
+        "step_20": {
+          "rel_f1": 0.0077,
+          "evi_f1": 0.6281,
+          "edcr": 0.9934
+        },
+        "step_40": {
+          "rel_f1": 0.0071,
+          "evi_f1": 0.7584,
+          "edcr": 0.9942
+        },
+        "step_60": {
+          "rel_f1": 0.0093,
+          "evi_f1": 0.81,
+          "edcr": 0.993
+        },
+        "step_80": {
+          "rel_f1": 0.0116,
+          "evi_f1": 0.828,
+          "edcr": 0.9908
+        },
+        "step_100": {
+          "rel_f1": 0.0138,
+          "evi_f1": 0.8504,
+          "edcr": 0.9876
+        }
+      },
+      "reward_range": [
+        0.07,
+        0.46
+      ]
+    },
+    {
+      "name": "bf16 LoRA (G=8, kl=0.01)",
+      "run_key": "bf16_g8",
+      "precision": "bf16",
+      "group_size": 8,
+      "lr": "5e-5",
+      "kl_coeff": 0.01,
+      "total_steps": 100,
+      "forgetting": false,
+      "eval_checkpoints": {
+        "step_80": {
+          "rel_f1": 0.4456,
+          "evi_f1": 0.8034,
+          "edcr": 0.6409
+        },
+        "step_100": {
+          "rel_f1": 0.4549,
+          "evi_f1": 0.8086,
+          "edcr": 0.6318
+        }
+      },
+      "reward_range": [
+        0.85,
+        2.86
+      ]
+    },
+    {
+      "name": "bf16 LoRA (G=4, kl=0)",
+      "run_key": "bf16_g4",
+      "precision": "bf16",
+      "group_size": 4,
+      "lr": "5e-5",
+      "kl_coeff": 0.0,
+      "total_steps": 100,
+      "forgetting": "unknown (no eval data)",
+      "eval_checkpoints": {},
+      "reward_range": [
+        0.34,
+        4.04
+      ]
+    }
+  ],
+  "sft_baseline": {
+    "rel_f1": 0.4057,
+    "evi_f1": 0.7979
+  },
+  "key_findings": [
+    "QLoRA 4-bit GRPO causes catastrophic forgetting: rel_f1 drops to 0.014-0.217 (vs SFT 0.406)",
+    "bf16 LoRA GRPO preserves and improves rel_f1: 0.455 (+12.1% vs SFT)",
+    "Task decoupling in QLoRA lr=5e-6: evi_f1 rises to 0.850 while rel_f1 stays at 0.014",
+    "EDCR confirms: QLoRA generates 85-99% distractor citations vs bf16's 63%",
+    "bf16 runs achieve 2-6x higher training reward than QLoRA runs"
+  ],
+  "data_completeness": {
+    "training_reward": "4/4 runs have step-level data (steps 5-100/180)",
+    "eval_rel_f1": "3/4 runs have eval (qlora_kl001: 2 pts, qlora_lr5e6: 5 pts, bf16_g8: 2 pts, bf16_g4: 0 pts)",
+    "missing": [
+      "bf16 G=4 has no eval data (need to run eval on its checkpoints)",
+      "QLoRA kl001 missing eval at early checkpoints (steps 10-80)",
+      "bf16 G=8 missing eval at early checkpoints (steps 10-70)",
+      "No eval data for flatnli/extract reward type experiments"
+    ]
+  },
+  "training_reward_trajectories": "See reward_trajectories.json for step-level data"
+}

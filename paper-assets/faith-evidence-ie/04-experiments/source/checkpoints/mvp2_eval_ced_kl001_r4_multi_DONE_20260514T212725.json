@@ -1,0 +1,93 @@
+{
+  "exp_id": "mvp2_eval_ced_kl001_r4_multi",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T17:59:22.291Z",
+    "updated_at": "2026-05-14T21:27:25.338Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 10,20,30,40,60,70,80 --quantize --resume",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "78850",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_multi.log",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": {
+        "dev": 985
+      },
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "Multi-checkpoint eval of ced_kl001_r4 (steps 10-80) to get full reward→eval correlation and identify best checkpoint for MVP-2 judgment",
+      "parent": "mvp2_grpo_ced_kl001_r4",
+      "checkpoint_source": "/root/autodl-tmp/grpo_ced_kl001",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json"
+    },
+    "notes": "Director 指令: ckpt-30 评完即停。进程在 ckpt-40 推理 3% 时被 kill，非异常崩溃。已完成 6/9 个 ckpt eval: 10,20,30,50,60,90（ckpt-40 中断，ckpt-70/80 未执行）。F1 随 step 单调上升: 0.003→0.009→0.034→0.156→0.147→0.211。best=ckpt-90 (F1=0.211)。Evi-F1 稳定在 0.42-0.72，EDCR 随 step 下降（0.998→0.858）。结果路径: /root/autodl-tmp/eval_results/grpo_ced_kl001/",
+    "conclusion": "killed",
+    "reproduce": {
+      "finished_at": "2026-05-14T21:18:34.133Z"
+    },
+    "failure_reason": "进程在 ckpt-30 eval 完成后继续执行 ckpt-40，推理 3% 时被外部 kill（符合 Director 指令：ckpt-30 评完即停）。监控系统检测 5 次 dead process 后 auto-resolved as failed。非异常崩溃。",
+    "completed_at": "2026-05-14T21:18:34.860Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T21:18:36.087981+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "checkpoint-10": {
+        "f1": 0.003,
+        "ign_f1": 0.003,
+        "evi_f1": 0.72,
+        "edcr": 0.9983,
+        "format_ok_rate": 0.999
+      },
+      "checkpoint-20": {
+        "f1": 0.0088,
+        "ign_f1": 0.0088,
+        "evi_f1": 0.423,
+        "edcr": 0.9954,
+        "format_ok_rate": 0.999
+      },
+      "checkpoint-30": {
+        "f1": 0.0338,
+        "ign_f1": 0.0338,
+        "evi_f1": 0.5889,
+        "edcr": 0.9798,
+        "format_ok_rate": 1
+      },
+      "checkpoint-50": {
+        "f1": 0.1563,
+        "ign_f1": 0.1563,
+        "evi_f1": 0.5643,
+        "edcr": 0.8858,
+        "format_ok_rate": 0.999
+      },
+      "checkpoint-60": {
+        "f1": 0.1467,
+        "ign_f1": 0.1467,
+        "evi_f1": 0.5763,
+        "edcr": 0.9062,
+        "format_ok_rate": 1
+      },
+      "checkpoint-90": {
+        "f1": 0.2108,
+        "ign_f1": 0.2108,
+        "evi_f1": 0.5666,
+        "edcr": 0.8584,
+        "format_ok_rate": 1
+      }
+    }
+  },
+  "timestamp": "2026-05-14T21:27:25.484524+00:00",
+  "trigger": "update_registry"
+}

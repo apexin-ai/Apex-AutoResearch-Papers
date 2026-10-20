@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_plan_014_no_evidence_r2",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:34:45.302Z",
+    "updated_at": "2026-05-16T02:27:40.796Z",
+    "hypothesis": "Retry of eval_plan_014_no_evidence with corrected command: --model_path 传底座 Qwen3-4B, --sft_adapter 传 SFT no-evidence adapter。修复 adapter 检测逻辑冲突。plan_id=plan_014, claim=1。",
+    "parent": "plan_014_sft_no_evidence",
+    "spec": {
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT-no-evidence",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_no_evidence_output",
+      "eval_data": "docred dev (985 docs)"
+    },
+    "server": "rtx5090-4x",
+    "gpu": "cuda:0",
+    "account": "root"
+  },
+  "timestamp": "2026-05-16T02:27:41.089923+00:00",
+  "trigger": "update_registry"
+}

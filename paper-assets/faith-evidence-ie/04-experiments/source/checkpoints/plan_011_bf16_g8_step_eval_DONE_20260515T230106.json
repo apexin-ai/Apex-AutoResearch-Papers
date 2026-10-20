@@ -1,0 +1,71 @@
+{
+  "exp_id": "plan_011_bf16_g8_step_eval",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 2,
+    "created_at": "2026-05-15T19:04:51.538Z",
+    "updated_at": "2026-05-15T23:01:06.517Z",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && bash /root/autodl-tmp/freige/scripts/eval_plan_011_steps.sh\"",
+      "finished_at": "2026-05-15T22:54:30.133Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "completed_at": "2026-05-15T19:47:17.272Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T19:47:19.581918+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T19:53:37.646506+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T22:54:32.686556+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "诊断确认：SIGTERM (EXIT_CODE=143)。device_map=\"auto\" 无 CUDA_VISIBLE_DEVICES 限制，模型加载到 GPU 0（plan_001 占用 16.3GB），双进程共 31.4/32.6GB 后被 kill。两次重试均失败（retry_count=2）。修复：CUDA_VISIBLE_DEVICES=1 重提交到空闲 cuda:1。"
+      }
+    },
+    "notes": "诊断确认：SIGTERM (EXIT_CODE=143)。device_map=\"auto\" 无 CUDA_VISIBLE_DEVICES 限制，模型加载到 GPU 0（plan_001 占用 16.3GB），双进程共 31.4/32.6GB 后被 kill。两次重试均失败（retry_count=2）。修复：CUDA_VISIBLE_DEVICES=1 重提交到空闲 cuda:1。",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/eval_results/grpo_ced_g8_bf16_step30/ + step50/ + step70/",
+      "log_path": "~/runs/faith-evidence-ie/plan_011_bf16_g8_step_eval.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "step_30": {
+        "rel_f1": 0.434,
+        "evi_f1": 0.8063,
+        "edcr": 0.6807
+      },
+      "step_50": {
+        "rel_f1": 0.4276,
+        "evi_f1": 0.8024,
+        "edcr": 0.6855
+      },
+      "step_70": {
+        "rel_f1": 0.4341,
+        "evi_f1": 0.8099,
+        "edcr": 0.6685
+      },
+      "best_step": "step_70",
+      "trend": "non-monotonic, all < ckpt-100 (0.4549)"
+    },
+    "checkpoint_path": "N/A (eval-only, source checkpoints at /root/autodl-tmp/grpo_bf16_g8_output/checkpoint-{30,50,70})"
+  },
+  "timestamp": "2026-05-15T23:01:06.767207+00:00",
+  "trigger": "update_registry"
+}

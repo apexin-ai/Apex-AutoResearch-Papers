@@ -1,0 +1,36 @@
+{
+  "exp_id": "llama_sft_s43_train_eval",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T04:25:20.459Z",
+    "updated_at": "2026-05-20T04:30:51.083Z",
+    "hypothesis": "LLaMA-3.1-8B SFT seed43 训练+评估。补齐 LLaMA SFT baseline 第 3 seed (s42 ign_f1=0.5514)，计算 SFT 3-seed variance，与 RSFT variance (std=0.0052) 对比验证 variance compression 跨架构有效性。",
+    "parent": "eval_llama_rsft_s43_no_evidence",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && GPU=0 bash scripts/seed_expansion/llama_sft_s43_train_eval.sh'",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "753922",
+      "log_path": "~/runs/faith-evidence-ie/llama_sft_s43_train_eval.log",
+      "submitted_at": "2026-05-20T04:25:41.064Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 3053,
+      "model_name": "meta-llama/Meta-Llama-3.1-8B",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-20T04:30:51.866980+00:00",
+  "trigger": "update_registry"
+}

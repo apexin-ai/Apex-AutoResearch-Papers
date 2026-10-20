@@ -1,0 +1,47 @@
+{
+  "exp_id": "mvp2_eval_rsft_r2b",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:42:58.437Z",
+    "updated_at": "2026-05-15T11:44:36.427Z",
+    "hypothesis": "Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.",
+    "parent": "mvp2_rsft_r2b",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:3",
+    "spec": {
+      "command": "python -m freige.eval.inference --no-quantize (r2b checkpoint on cuda:3)",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT + RSFT r2b",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_r2b",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json",
+      "pid": "189855"
+    },
+    "metrics": {
+      "rel_f1": 0.4493,
+      "ign_f1": 0.4493,
+      "evi_f1": 0.8128,
+      "edcr": 0.6609,
+      "precision": 0.4566,
+      "recall": 0.4424,
+      "evi_precision": 0.8201,
+      "evi_recall": 0.8056,
+      "pred_count": 14829,
+      "format_ok": "983/985",
+      "truncated": 179,
+      "inference_time_s": 5862
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/rsft_output_r2b",
+    "log_path": "/root/autodl-tmp/eval_results/rsft_r2b/eval.log",
+    "completed_at": "2026-05-15T11:44:36.428Z"
+  },
+  "timestamp": "2026-05-15T11:44:36.573023+00:00",
+  "trigger": "update_registry"
+}

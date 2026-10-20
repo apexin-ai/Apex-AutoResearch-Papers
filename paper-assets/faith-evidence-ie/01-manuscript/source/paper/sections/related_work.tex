@@ -1,0 +1,30 @@
+\section{Related Work}
+\label{sec:related_work}
+
+Document-level relation extraction (DocRE) requires reasoning across sentence boundaries to identify relations between entity pairs.
+DocRED \citep{yao2019docred} established the first large-scale benchmark for this task, catalyzing a line of encoder-based methods that treat DocRE as classification over entity pair representations.
+ATLOP \citep{zhou2021atlop} introduced adaptive thresholding for multi-label prediction and localized context pooling for entity representations.
+A parallel thread incorporates sentence-level evidence into these architectures.
+SAIS \citep{xiao2022sais} introduced evidence supervision as an auxiliary training signal and showed that joint evidence prediction improves extraction through data augmentation and ensemble inference.
+DREEAM \citep{ma2023dreeam} extended this approach with dynamic memory-based evidence retrieval that guides attention to supporting sentences.
+EIDER \citep{xie2022eider} jointly trains an evidence extractor and fuses evidence representations into the relation classifier.
+In all three systems, evidence identification is binary sentence classification over a fixed candidate set, a formulation that adds no output complexity.
+Recent work has recast DocRE for large language models.
+AutoRE \citep{autore2024} fine-tunes LLMs with QLoRA using a relation-head-facts decomposition; \citet{xu2024lmrc} frame extraction as multi-choice reading comprehension; RelPrior \citep{wang2025relprior} uses relation priors to guide LLM-based extraction; GLiDRE \citep{zhang2025glidre} presents a generalist lightweight approach; Ru-LLM \citep{wang2025rullm} incorporates logical rule constraints; and \citet{chen2025docksrag} combine retrieval-augmented generation with structured knowledge.
+These methods match or surpass encoder baselines but produce bare triplets without evidence. Among LLM-based generative methods at the 8B scale, our RSFT model (54.33 Ign-F1 on DocRED dev) outperforms AutoRE (52.14\footnote{AutoRE Ign-F1 is from the LLaMA3-8B reproduction by \citet{wang2025relprior}; the original paper reports only F1.}) and is slightly below RelPrior ($-$1.17pp), while being the only method that additionally provides sentence-level evidence grounding.
+The critical distinction lies in computational nature: in SAIS and DREEAM, evidence retrieval is classification that regularizes the encoder without increasing output length; in LLM-based DocRE, evidence requires additional output tokens per triple, imposing costs that depend on model capacity and optimization strategy.
+Whether this cost is inevitable or can be mitigated is the central question of our work.
+
+Group Relative Policy Optimization (GRPO; \citealt{shao2024deepseekmath}) eliminates the separate value network by computing advantages within groups.
+Subsequent work addresses failure modes: DAPO \citep{yu2025dapo} prevents entropy collapse, Dr.\ GRPO \citep{liu2025drgrpo} corrects length bias, and multi-objective variants \citep{liu2026gdpo,ito2025mogrpo} handle competing reward signals.
+Applications to structured IE include R1-RE \citep{dai2025r1re} and REAR \citep{wang2025rear}.
+Direct Preference Optimization \citep{rafailov2023direct} reformulates RLHF as implicit reward maximization.
+Our decoupling spectrum is distinct from catastrophic forgetting in RL alignment \citep{jin2025rl_panacea}, where models lose pre-trained capabilities across tasks; in our setting, extraction and evidence compete \emph{within} a single task, resembling negative transfer in multi-task learning \citep{ruder2017overview,standley2020tasks,yu2020gradient}, amplified by QLoRA's constrained parameter space \citep{gao2023scaling,moskovitz2024constrained}.
+RSFT avoids this intra-task competition by operating on discrete outputs rather than gradients, extending the sample-and-select principle \citep{wang2023selfconsistency} to structured IE with joint quality scoring.
+
+Evidence faithfulness evaluation has received increasing attention: \citet{laban2022summac} re-visit NLI-based models for summarization inconsistency detection, \citet{li2025drift} propose dual-reward inference for faithful rationale generation, \citet{li2025srvf} use supervised rationale verification with contrastive feedback for relation extraction, and \citet{zhang2024infuse} introduce fine-grained NLI-based faithfulness metrics for summarization.
+Our CED scoring builds on similar NLI-based principles but targets evidence-relation entailment rather than free-form rationales.
+
+\citet{zelikman2022star} introduced STaR for iterative self-improvement; \citet{dong2023raft} generalize this with reward-model-based sample filtering; recent analysis shows rejection sampling implicitly performs PPO-like optimization \citep{tang2025rsftppo}.
+Our RSFT is a single-round variant applied to evidence-grounded DocRE with CED/NLI scoring as a domain-specific quality filter.
+Because RSFT selects complete outputs rather than differentiating through a reward signal, it cannot exploit the extraction-evidence trade-off that gradient methods discover, inherently preserving joint quality.

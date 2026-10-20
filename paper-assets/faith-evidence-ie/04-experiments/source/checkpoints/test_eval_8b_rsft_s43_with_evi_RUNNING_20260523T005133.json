@@ -1,0 +1,29 @@
+{
+  "exp_id": "test_eval_8b_rsft_s43_with_evi",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:50:42.882Z",
+    "updated_at": "2026-05-23T00:51:32.693Z",
+    "hypothesis": "8B RSFT k1 s43 with-evidence test eval on Re-DocRED test_revised (500 docs). Multi-seed rebuttal: 对比 s42 test ign_f1=0.3353，量化 seed variance。3-seed mean±std 支撑 variance compression claim。",
+    "parent": "test_eval_8b_rsft_s42",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --output_dir /root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_with_evi --batch_size 16 --seed 42",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+      "data_count": 500,
+      "model_name": "Qwen3-8B + SFT + RSFT-k1-s43 (with-evidence)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43",
+      "eval_data": "test_revised",
+      "pid": 212762,
+      "log_path": "/root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_with_evi.log",
+      "gpu": "cuda:0"
+    }
+  },
+  "timestamp": "2026-05-23T00:51:33.823760+00:00",
+  "trigger": "update_registry"
+}

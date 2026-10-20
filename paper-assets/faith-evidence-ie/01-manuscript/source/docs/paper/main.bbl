@@ -1,0 +1,278 @@
+\begin{thebibliography}{35}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Anil et~al.(2025)Anil, Nagaraj, Shanmugam, and
+  Shakkottai}]{tang2025rsftppo}
+Gautham~Govind Anil, Dheeraj~Mysore Nagaraj, Karthikeyan Shanmugam, and Sanjay
+  Shakkottai. 2025.
+\newblock \href {https://openreview.net/forum?id=yQ2UivKlir} {Rejection
+  sampling based fine tuning secretly performs {PPO}}.
+\newblock In \emph{2nd Workshop on Test-Time Adaptation: Putting Updates to the
+  Test (PUT), ICML 2025}.
+
+\bibitem[{Dai et~al.(2025)Dai, Zheng, Yang, Yu, and Zhu}]{dai2025r1re}
+Runpeng Dai, Tong Zheng, Run Yang, Kaixian Yu, and Hongtu Zhu. 2025.
+\newblock \href {https://arxiv.org/abs/2507.04642} {{R1-RE}: Cross-domain
+  relation extraction with {RLVR}}.
+\newblock \emph{arXiv preprint arXiv:2507.04642}.
+
+\bibitem[{{DeepSeek-AI}(2025)}]{deepseek2025r1}
+{DeepSeek-AI}. 2025.
+\newblock \href {https://arxiv.org/abs/2501.12948} {{DeepSeek-R1}:
+  Incentivizing reasoning capability in {LLMs} via reinforcement learning}.
+\newblock \emph{arXiv preprint arXiv:2501.12948}.
+
+\bibitem[{Dettmers et~al.(2023)Dettmers, Pagnoni, Holtzman, and
+  Zettlemoyer}]{dettmers2023qlora}
+Tim Dettmers, Artidoro Pagnoni, Ari Holtzman, and Luke Zettlemoyer. 2023.
+\newblock \href {https://arxiv.org/abs/2305.14314} {{QLoRA}: Efficient
+  finetuning of quantized {LLMs}}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Gao et~al.(2023)Gao, Schulman, and Hilton}]{gao2023scaling}
+Leo Gao, John Schulman, and Jacob Hilton. 2023.
+\newblock \href {https://arxiv.org/abs/2210.10760} {Scaling laws for reward
+  model overoptimization}.
+\newblock In \emph{Proceedings of the 40th International Conference on Machine
+  Learning}.
+
+\bibitem[{Gulcehre et~al.(2023)Gulcehre, Paine, Srinivasan, Konyushkova,
+  Weerts, Sharma, Siddhant, Ahern, Wang, Gu, Macherey, Doucet, Firat, and
+  de~Freitas}]{gulcehre2023rest}
+Caglar Gulcehre, Tom~Le Paine, Srivatsan Srinivasan, Ksenia Konyushkova, Lotte
+  Weerts, Abhishek Sharma, Aditya Siddhant, Alex Ahern, Miaosen Wang, Chenjie
+  Gu, Wolfgang Macherey, Arnaud Doucet, Orhan Firat, and Nando de~Freitas.
+  2023.
+\newblock \href {https://arxiv.org/abs/2308.08998} {Reinforced self-training
+  ({ReST}) for language modeling}.
+\newblock \emph{arXiv preprint arXiv:2308.08998}.
+
+\bibitem[{He et~al.(2023)He, Gao, and Chen}]{he2023debertav3}
+Pengcheng He, Jianfeng Gao, and Weizhu Chen. 2023.
+\newblock \href {https://arxiv.org/abs/2111.09543} {{DeBERTaV3}: Improving
+  {DeBERTa} using {ELECTRA}-style pre-training with gradient-disentangled
+  embedding sharing}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Hu et~al.(2022)Hu, Shen, Wallis, Allen-Zhu, Li, Wang, Wang, and
+  Chen}]{hu2022lora}
+Edward~J. Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean
+  Wang, Lu~Wang, and Weizhu Chen. 2022.
+\newblock \href {https://arxiv.org/abs/2106.09685} {{LoRA}: Low-rank adaptation
+  of large language models}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Jin et~al.(2025)Jin, Lv, Wu, and Hamdaqa}]{jin2025rl_panacea}
+Hangzhan Jin, Sicheng Lv, Sifan Wu, and Mohammad Hamdaqa. 2025.
+\newblock \href {https://arxiv.org/abs/2508.16546} {{RL} is neither a panacea
+  nor a mirage: Understanding supervised vs. reinforcement learning fine-tuning
+  for {LLMs}}.
+\newblock \emph{arXiv preprint arXiv:2508.16546}.
+
+\bibitem[{Laban et~al.(2022)Laban, Schnabel, Bennett, and
+  Hearst}]{laban2022summac}
+Philippe Laban, Tobias Schnabel, Paul~N. Bennett, and Marti~A. Hearst. 2022.
+\newblock \href {https://aclanthology.org/2022.tacl-1.10/} {{SummaC}:
+  Re-visiting {NLI}-based models for inconsistency detection in summarization}.
+\newblock \emph{Transactions of the Association for Computational Linguistics},
+  10:163--177.
+
+\bibitem[{Li et~al.(2024)Li, Chen, Long, and Zhang}]{xu2024lmrc}
+Xingzuo Li, Kehai Chen, Yunfei Long, and Min Zhang. 2024.
+\newblock \href {https://arxiv.org/abs/2408.13889} {{LLM} with relation
+  classifier for document-level relation extraction}.
+\newblock \emph{arXiv preprint arXiv:2408.13889}.
+
+\bibitem[{Li et~al.(2025)Li, Miao, Zhou, Xu, Ren, and Qian}]{li2025srvf}
+Yongqi Li, Xin Miao, Shen Zhou, Mayi Xu, Yuyang Ren, and Tieyun Qian. 2025.
+\newblock \href {https://arxiv.org/abs/2412.07289} {Enhancing relation
+  extraction via supervised rationale verification and feedback}.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}.
+
+\bibitem[{Li et~al.(2026)Li, Elangovan, Dong, Panda, and Khailany}]{li2026qurl}
+Yuhang Li, Reena Elangovan, Xin Dong, Priyadarshini Panda, and Brucek Khailany.
+  2026.
+\newblock \href {https://arxiv.org/abs/2602.13953} {{QuRL}: Efficient
+  reinforcement learning with quantized rollout}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Liu et~al.(2025)Liu, Chen, Li, Qi, Pang, Du, Lee, and
+  Lin}]{liu2025drgrpo}
+Zichen Liu, Changyu Chen, Wenjun Li, Penghui Qi, Tianyu Pang, Chao Du, Wee~Sun
+  Lee, and Min Lin. 2025.
+\newblock \href {https://arxiv.org/abs/2503.20783} {Understanding
+  {R1}-zero-like training: A critical perspective}.
+\newblock In \emph{Conference on Language Modeling}.
+
+\bibitem[{Luo et~al.(2025)Luo, Hong, Yang, and Yao}]{wang2025rear}
+Jianwen Luo, Yu~Hong, Shuai Yang, and Jianmin Yao. 2025.
+\newblock {REAR}: Reinforced reasoning optimization for event argument
+  extraction with relation-aware support.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EMNLP 2025}.
+
+\bibitem[{Ma et~al.(2023)Ma, Wang, and Okazaki}]{ma2023dreeam}
+Youmi Ma, An~Wang, and Naoaki Okazaki. 2023.
+\newblock \href {https://aclanthology.org/2023.eacl-main.145/} {{DREEAM}:
+  Guiding attention with evidence for improving document-level relation
+  extraction}.
+\newblock In \emph{Proceedings of the 17th Conference of the European Chapter
+  of the Association for Computational Linguistics}.
+
+\bibitem[{Ouyang et~al.(2022)Ouyang, Wu, Jiang, Almeida, Wainwright, Mishkin,
+  Zhang, Agarwal, Slama, Ray, Schulman, Hilton, Kelton, Miller, Simens, Askell,
+  Welinder, Christiano, Leike, and Lowe}]{ouyang2022instructgpt}
+Long Ouyang, Jeff Wu, Xu~Jiang, Diogo Almeida, Carroll~L. Wainwright, Pamela
+  Mishkin, Chong Zhang, Sandhini Agarwal, Katarina Slama, Alex Ray, John
+  Schulman, Jacob Hilton, Fraser Kelton, Luke Miller, Maddie Simens, Amanda
+  Askell, Peter Welinder, Paul~F. Christiano, Jan Leike, and Ryan Lowe. 2022.
+\newblock \href {https://arxiv.org/abs/2203.02155} {Training language models to
+  follow instructions with human feedback}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Pi et~al.(2025)Pi, Sun, Lu, Fan, Huang, and Wang}]{wang2025relprior}
+Qiankun Pi, Yepeng Sun, Jicang Lu, Qinlong Fan, Ningbo Huang, and Shiyu Wang.
+  2025.
+\newblock \href {https://arxiv.org/abs/2511.08143} {Relation as a prior: A
+  novel paradigm for {LLM}-based document-level relation extraction}.
+\newblock \emph{arXiv preprint arXiv:2511.08143}.
+
+\bibitem[{Rafailov et~al.(2023)Rafailov, Sharma, Mitchell, Ermon, Manning, and
+  Finn}]{rafailov2023direct}
+Rafael Rafailov, Archit Sharma, Eric Mitchell, Stefano Ermon, Christopher~D.
+  Manning, and Chelsea Finn. 2023.
+\newblock \href {https://arxiv.org/abs/2305.18290} {Direct preference
+  optimization: Your language model is secretly a reward model}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Ruder(2017)}]{ruder2017overview}
+Sebastian Ruder. 2017.
+\newblock \href {https://arxiv.org/abs/1706.05098} {An overview of multi-task
+  learning in deep neural networks}.
+\newblock \emph{arXiv preprint arXiv:1706.05098}.
+
+\bibitem[{Schulman et~al.(2017)Schulman, Wolski, Dhariwal, Radford, and
+  Klimov}]{schulman2017ppo}
+John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford, and Oleg Klimov.
+  2017.
+\newblock \href {https://arxiv.org/abs/1707.06347} {Proximal policy
+  optimization algorithms}.
+\newblock \emph{arXiv preprint arXiv:1707.06347}.
+
+\bibitem[{Shao et~al.(2024)Shao, Wang, Zhu, Xu, Song, Bi, Zhang, Zhang, Li, Wu,
+  and Guo}]{shao2024deepseekmath}
+Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Xiao Bi, Haowei
+  Zhang, Mingchuan Zhang, Y.K. Li, Y.~Wu, and Daya Guo. 2024.
+\newblock \href {https://arxiv.org/abs/2402.03300} {{DeepSeekMath}: Pushing the
+  limits of mathematical reasoning in open language models}.
+\newblock \emph{arXiv preprint arXiv:2402.03300}.
+
+\bibitem[{Tamo et~al.(2026)Tamo, Lu, Marteau, Nnamdi, and
+  Wang}]{tamo2026evidencerl}
+J.~Ben Tamo, Yuxing Lu, Benoit~L. Marteau, Micky~C. Nnamdi, and May~D. Wang.
+  2026.
+\newblock \href {https://arxiv.org/abs/2603.19532} {{EvidenceRL}: Reinforcing
+  evidence consistency for trustworthy language models}.
+\newblock \emph{arXiv preprint arXiv:2603.19532}.
+
+\bibitem[{Tan et~al.(2022)Tan, Xu, Bing, Ng, and Aljunied}]{tan2022redocred}
+Qingyu Tan, Lu~Xu, Lidong Bing, Hwee~Tou Ng, and Sharifah~Mahani Aljunied.
+  2022.
+\newblock \href {https://aclanthology.org/2022.emnlp-main.580/} {Revisiting
+  {DocRED}: Addressing the false negative problem in relation extraction}.
+\newblock In \emph{Proceedings of the 2022 Conference on Empirical Methods in
+  Natural Language Processing}.
+
+\bibitem[{Xiao et~al.(2022)Xiao, Zhang, Mao, Yang, and Han}]{xiao2022sais}
+Yuxin Xiao, Zecheng Zhang, Yuning Mao, Carl Yang, and Jiawei Han. 2022.
+\newblock \href {https://aclanthology.org/2022.naacl-main.171/} {{SAIS}:
+  Supervising and augmenting intermediate steps for document-level relation
+  extraction}.
+\newblock In \emph{Proceedings of the 2022 Conference of the North American
+  Chapter of the Association for Computational Linguistics}.
+
+\bibitem[{Xie et~al.(2022)Xie, Shen, Li, Mao, and Han}]{xie2022eider}
+Yiqing Xie, Jiaming Shen, Sha Li, Yuning Mao, and Jiawei Han. 2022.
+\newblock \href {https://arxiv.org/abs/2106.08657} {{EIDER}: Empowering
+  document-level relation extraction with efficient evidence extraction and
+  inference-stage fusion}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL 2022}.
+
+\bibitem[{Xu et~al.(2025)Xu, Zhou, Xiang, Li, Zhang, Qi, and
+  Dou}]{xu2025docksrag}
+Xiaolong Xu, Yibo Zhou, Haolong Xiang, Xiaoyong Li, Xuyun Zhang, Lianyong Qi,
+  and Wanchun Dou. 2025.
+\newblock \href {https://proceedings.mlr.press/v267/xu25am.html} {{DocKS-RAG}:
+  Optimizing document-level relation extraction through {LLM}-enhanced hybrid
+  prompt tuning}.
+\newblock In \emph{Proceedings of the 42nd International Conference on Machine
+  Learning}.
+
+\bibitem[{Xue et~al.(2024)Xue, Zhang, Dong, and Tang}]{autore2024}
+Lilong Xue, Dan Zhang, Yuxiao Dong, and Jie Tang. 2024.
+\newblock \href {https://arxiv.org/abs/2403.14888} {{AutoRE}: Document-level
+  relation extraction with large language models}.
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics: System Demonstrations}.
+
+\bibitem[{Yao et~al.(2019)Yao, Ye, Li, Han, Lin, Liu, Liu, Huang, Zhou, and
+  Sun}]{yao2019docred}
+Yuan Yao, Deming Ye, Peng Li, Xu~Han, Yankai Lin, Zhenghao Liu, Zhiyuan Liu,
+  Lixin Huang, Jie Zhou, and Maosong Sun. 2019.
+\newblock \href {https://aclanthology.org/P19-1074/} {{DocRED}: A large-scale
+  document-level relation extraction dataset}.
+\newblock In \emph{Proceedings of the 57th Annual Meeting of the Association
+  for Computational Linguistics}.
+
+\bibitem[{Yu et~al.(2025)Yu, Zhang, Zhu, Yuan, Zuo, Yue, Dai, Fan, Liu, Liu,
+  Liu, Lin, Lin, Ma, Sheng, Tong, Zhang, Zhang, Zhang, Zhu, Zhu, Chen, Chen,
+  Wang, Yu, Song, Wei, Zhou, Liu, Ma, Zhang, Yan, Qiao, Wu, and
+  Wang}]{yu2025dapo}
+Qiying Yu, Zheng Zhang, Ruofei Zhu, Yufeng Yuan, Xiaochen Zuo, Yu~Yue, Weinan
+  Dai, Tiantian Fan, Gaohong Liu, Lingjun Liu, Xin Liu, Haibin Lin, Zhiqi Lin,
+  Bole Ma, Guangming Sheng, Yuxuan Tong, Chi Zhang, Mofan Zhang, Wang Zhang,
+  and 16 others. 2025.
+\newblock \href {https://arxiv.org/abs/2503.14476} {{DAPO}: An open-source
+  {LLM} reinforcement learning system at scale}.
+\newblock \emph{arXiv preprint arXiv:2503.14476}.
+
+\bibitem[{Yuan et~al.(2023)Yuan, Yuan, Li, Dong, Lu, Tan, Zhou, and
+  Zhou}]{yuan2023rft}
+Zheng Yuan, Hongyi Yuan, Chengpeng Li, Guanting Dong, Keming Lu, Chuanqi Tan,
+  Chang Zhou, and Jingren Zhou. 2023.
+\newblock \href {https://arxiv.org/abs/2308.01825} {Scaling relationship on
+  learning mathematical reasoning with large language models}.
+\newblock \emph{arXiv preprint arXiv:2308.01825}.
+
+\bibitem[{Zelikman et~al.(2022)Zelikman, Wu, Mu, and
+  Goodman}]{zelikman2022star}
+Eric Zelikman, Yuhuai Wu, Jesse Mu, and Noah~D. Goodman. 2022.
+\newblock \href {https://arxiv.org/abs/2203.14465} {{STaR}: Bootstrapping
+  reasoning with reasoning}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Zeng et~al.(2020)Zeng, Xu, Chang, and Li}]{zeng2020gain}
+Shuang Zeng, Runxin Xu, Baobao Chang, and Lei Li. 2020.
+\newblock \href {https://aclanthology.org/2020.emnlp-main.127/} {Double graph
+  based reasoning for document-level relation extraction}.
+\newblock In \emph{Proceedings of the 2020 Conference on Empirical Methods in
+  Natural Language Processing}.
+
+\bibitem[{Zhang et~al.(2024)Zhang, Xu, and Perez-Beltrachini}]{zhang2024infuse}
+Huajian Zhang, Yumo Xu, and Laura Perez-Beltrachini. 2024.
+\newblock \href {https://aclanthology.org/2024.eacl-long.102/} {Fine-grained
+  natural language inference based faithfulness evaluation for diverse
+  summarisation tasks}.
+\newblock In \emph{Proceedings of the 18th Conference of the European Chapter
+  of the Association for Computational Linguistics}.
+
+\bibitem[{Zhou et~al.(2021)Zhou, Huang, Ma, and Huang}]{zhou2021atlop}
+Wenxuan Zhou, Kevin Huang, Tengyu Ma, and Jing Huang. 2021.
+\newblock \href {https://arxiv.org/abs/2010.11304} {Document-level relation
+  extraction with adaptive thresholding and localized context pooling}.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}.
+
+\end{thebibliography}

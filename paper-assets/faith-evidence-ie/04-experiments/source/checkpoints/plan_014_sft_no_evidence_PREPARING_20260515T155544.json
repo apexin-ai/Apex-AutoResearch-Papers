@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan_014_sft_no_evidence",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:55:43.710Z",
+    "updated_at": "2026-05-15T15:55:44.354Z",
+    "hypothesis": "SFT-without-evidence ablation: 训练只输出 relation triples（不含 evidence sentences）的 SFT 模型。量化 joint evidence generation 对 extraction 的代价（当前 rel_f1=0.4057 vs 只抽关系的 LMRC 60.7 的 gap 有多少来自 evidence 负担）。"
+  },
+  "timestamp": "2026-05-15T15:55:44.526760+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,48 @@
+{
+  "exp_id": "mvp2_grpo_flatnli_r4",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T15:32:31.804Z",
+    "updated_at": "2026-05-14T16:54:40.519Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python -m freige.training.grpo_trainer --stage 2 --reward_device cuda --resume_from_checkpoint /root/autodl-tmp/grpo_flatnli_r3/checkpoint-100 --save_total_limit 40 --wandb_run_name grpo-s2-flatnli-r4",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "67050",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_grpo_flatnli_r4.log",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": {
+        "train": 3027,
+        "dev": 985
+      },
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "resume_from": "/root/autodl-tmp/grpo_flatnli_r3/checkpoint-100",
+      "hyperparams": {
+        "learning_rate": "5e-5",
+        "kl_coef": 0,
+        "num_iterations": 1,
+        "format_reward_weight": 0.3,
+        "f1_reward_weight": 3,
+        "ced_reward_weight": 1,
+        "per_device_batch_size": 1,
+        "gradient_accumulation_steps": 16,
+        "num_generations": 4,
+        "reward_device": "cuda",
+        "quantization": "QLoRA 4-bit NF4"
+      }
+    },
+    "pid": 67050,
+    "notes": "从 flatnli_r3 checkpoint-100 恢复，--reward_device cuda 修复 NLI CPU 瓶颈。step_time ~31-34s（r3 CPU ~100s → 3x 提速）。高于预期 12s 因 NLI + 训练共享 cuda:3。Step 104/756 起步。output_dir=/root/autodl-tmp/grpo_flatnli_r4。checkpoints 备份: /root/autodl-tmp/checkpoints_backup/flatnli_r3_healthy/",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-14T16:54:40.601429+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,21 @@
+{
+  "exp_id": "d102_llama_k1_s42",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T05:36:26.999Z",
+    "updated_at": "2026-05-24T05:36:43.084Z",
+    "metrics": {
+      "ign_f1": 0.5714,
+      "rel_f1": 0.5839,
+      "evi_f1": 0.8238,
+      "edcr": null
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T05:36:43.832552+00:00",
+  "trigger": "update_registry"
+}

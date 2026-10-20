@@ -1,0 +1,23 @@
+{
+  "exp_id": "migration_bjb2_to_westd",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:52:12.657Z",
+    "updated_at": "2026-05-20T08:52:28.056Z",
+    "hypothesis": "全量数据迁移 bjb2-12179 → westd-37389，207G 包含所有 adapters、基座模型、数据集、eval 结果。迁移完成后 4 GPU 并行恢复实验。",
+    "spec": {
+      "command": "rsync -avz -e 'ssh -i /tmp/migration_key -p 12179' root@connect.bjb2.seetacloud.com:/root/autodl-tmp/ /root/autodl-tmp/",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/",
+      "data_count": 207,
+      "model_name": "N/A",
+      "seed": 0
+    }
+  },
+  "timestamp": "2026-05-20T08:52:28.697347+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,27 @@
+{
+  "exp_id": "plan_016_llama_rsft_candidates",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T14:15:59.880Z",
+    "updated_at": "2026-05-16T14:17:00.600Z",
+    "spec": {
+      "model_name": "Meta-Llama-3.1-8B",
+      "sft_adapter": "/root/autodl-tmp/sft_output_llama_3_1_8b",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 3027,
+      "seed": 42,
+      "n_candidates": 8,
+      "temperature": 0.7,
+      "output_dir": "/root/autodl-tmp/rsft_candidates_llama_3_1_8b",
+      "hypothesis": "LLaMA-3.1-8B RSFT candidate generation (N=8, T=0.7). Cross-family RSFT pipeline validation. plan_016 claim=1/2.",
+      "plan_id": "plan_016",
+      "parent": "plan_016_llama_3_1_8b_sft"
+    }
+  },
+  "timestamp": "2026-05-16T14:17:01.023248+00:00",
+  "trigger": "update_registry"
+}

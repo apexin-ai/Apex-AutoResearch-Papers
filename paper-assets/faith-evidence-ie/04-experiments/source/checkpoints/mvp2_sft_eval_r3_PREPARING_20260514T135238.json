@@ -1,0 +1,28 @@
+{
+  "exp_id": "mvp2_sft_eval_r3",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:52:38.174Z",
+    "updated_at": "2026-05-14T13:52:38.174Z",
+    "spec": {
+      "command": "python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --quantize --output_dir /root/autodl-tmp/sft_eval_r3_results --seed 42",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": {
+        "dev": 985
+      },
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "SFT baseline eval with unified eval code (parse_model_output from evaluator.py with _repair_truncated_json). Compare with r2 to quantify parsing change impact.",
+      "parent": "mvp2_sft_warmup",
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json"
+    }
+  },
+  "timestamp": "2026-05-14T13:52:38.258307+00:00",
+  "trigger": "update_registry"
+}

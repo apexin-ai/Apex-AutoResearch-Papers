@@ -1,0 +1,71 @@
+{
+  "exp_id": "plan_001_flat_nli_seed43",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:22:55.521Z",
+    "updated_at": "2026-05-15T20:28:45.992Z",
+    "spec": {
+      "hypothesis": "flat-NLI RSFT seed=43 补跑。验证 seed=42 的 rel_f1=0.4539 是否在噪声范围内（CED RSFT 3-seed mean=0.4596, σ=0.0127）。",
+      "parent": "plan_001_rsft_flat_nli",
+      "command": "python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_flat_nli_s43 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 1 --gradient_accumulation_steps 16 --lora_rank 64 --lora_alpha 128 --eval_data_dir /root/autodl-tmp/data/docred --wandb_run_name plan_001_flat_nli_seed43 --seed 43",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl",
+      "data_count": 2691,
+      "model_name": "Qwen3-4B + SFT adapter",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "N/A (training)",
+      "checkpoint_path": "/root/autodl-tmp/rsft_output_flat_nli_s43",
+      "log_path": "~/runs/faith-evidence-ie/plan_001_flat_nli_seed43.log",
+      "pid": "236774",
+      "submitted_at": "2026-05-15T18:22:00Z",
+      "submitted_via": "worker_direct",
+      "backend": "nohup",
+      "wall_clock_seconds": 7600.2,
+      "gpu_hours": 2.11
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T20:20:10.574Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T20:20:13.016730+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "train_loss_final": 0.6257,
+      "train_loss_initial": 0.6751,
+      "train_loss_min": 0.5895,
+      "mean_token_accuracy": 0.8473,
+      "epochs": 3,
+      "total_steps": 507,
+      "train_runtime_approx_min": 115,
+      "samples": 2691,
+      "checkpoints": [
+        "350",
+        "400",
+        "450",
+        "500",
+        "507"
+      ]
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/rsft_output_flat_nli_s43",
+    "log_path": "~/runs/faith-evidence-ie/plan_001_flat_nli_seed43.log",
+    "completed_at": "2026-05-15T20:28:40.191Z",
+    "notes": "训练正常完成 (EXIT_CODE=0)。507 steps, 3 epochs, eval_loss 三 epoch 持平 (0.753-0.757) 无过拟合。与 seed42 高度一致 (train_loss 0.6248 vs 0.6238, accuracy ~0.855 vs 0.853)。Checkpoint: /root/autodl-tmp/rsft_output_flat_nli_s43/checkpoint-507。下一步: dev eval 提取 rel_f1/evi_f1。"
+  },
+  "timestamp": "2026-05-15T20:28:46.352799+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,49 @@
+{
+  "exp_id": "rsft_ced_s43_train_r2",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:09:34.266Z",
+    "updated_at": "2026-05-16T00:20:27.101Z",
+    "spec": {
+      "data_path": "/root/autodl-tmp/rsft_filtered/rsft_train.jsonl",
+      "data_count": 2718,
+      "model_name": "Qwen3-4B + LoRA on SFT adapter",
+      "seed": 43,
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "account": "root",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_ced_s43 --lr 2e-5 --epochs 3 --batch 1 --grad_accum 16 --lora_rank 64 --lora_alpha 128 --seed 43 --weighted_sampling\"",
+      "pid": 275269,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "N/A (training, not eval)",
+      "log_path": "~/runs/faith-evidence-ie/rsft_ced_s43_train_r2.log",
+      "output_dir": "/root/autodl-tmp/rsft_output_ced_s43",
+      "hyperparams": {
+        "lr": "2e-5",
+        "epochs": 3,
+        "batch": 1,
+        "grad_accum": 16,
+        "lora_rank": 64,
+        "lora_alpha": 128,
+        "bf16": true,
+        "weighted_sampling": true
+      }
+    },
+    "hypothesis": "CED RSFT seed=43 训练（r2 重试，修正 cwd 错误）。补全 paired t-test 所需的第 3 个 CED seed（现有 s42/s44）。训练数据 2718 samples，3 epochs，~2h。plan_id=plan_mvp2_rsft, claim=3。",
+    "parent": "rsft_ced_s43_train",
+    "reproduce": {
+      "finished_at": "2026-05-16T00:20:20.177Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T00:20:24.299Z"
+  },
+  "timestamp": "2026-05-16T00:20:27.609686+00:00",
+  "trigger": "update_registry"
+}

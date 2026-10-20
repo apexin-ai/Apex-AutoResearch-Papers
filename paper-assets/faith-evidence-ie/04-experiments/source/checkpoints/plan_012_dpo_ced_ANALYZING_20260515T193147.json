@@ -1,0 +1,51 @@
+{
+  "exp_id": "plan_012_dpo_ced",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:54:03.324Z",
+    "updated_at": "2026-05-15T19:31:47.655Z",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/dpo_output",
+      "data_path": "/root/autodl-tmp/dpo_data/dpo_pairs.jsonl",
+      "data_count": 2666,
+      "model_name": "Qwen3-4B + SFT + CED-DPO",
+      "seed": 42,
+      "beta": 0.1,
+      "num_epochs": 3,
+      "loss_type": "sigmoid",
+      "base_model": "/root/autodl-tmp/models/Qwen3-4B",
+      "sft_adapter": "/root/autodl-tmp/sft_output",
+      "pairs": 2666
+    },
+    "hypothesis": "DPO+CED preference learning: 用 CED 构造 preference pairs (CED top-1 = chosen, CED bottom-1 = rejected)，DPO 训练。验证 offline preference optimization 能否替代 online GRPO 避免 catastrophic forgetting，同时利用 CED 信号。对比 RSFT (rel_f1=0.46) 和 SFT baseline (rel_f1=0.4057)。",
+    "reproduce": {
+      "finished_at": "2026-05-15T17:38:15.433Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T17:38:17.857458+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "notes": "⚠️ Reviewer WARNING: 严重过拟合。3 epochs, rewards accuracy=1.0, margins 9x 膨胀, entropy 崩塌。checkpoint-501 是最过拟合版本，结果有 confound。需补 eval checkpoint-400 对比 + 重训 epochs=1。",
+    "metrics": {
+      "rel_f1": 0.3429,
+      "evi_f1": 0.8403,
+      "edcr": 0.7294,
+      "format_ok_rate": 0.995,
+      "checkpoint": "checkpoint-501",
+      "rewards_accuracy": 1,
+      "margins": 9.01
+    }
+  },
+  "timestamp": "2026-05-15T19:31:47.850779+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,29 @@
+{
+  "exp_id": "r3_grpo_bf16_g4",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T23:22:08.526Z",
+    "updated_at": "2026-05-24T23:23:47.784Z",
+    "hypothesis": "GRPO bf16 G=4 控制实验。照搬 plan_011 (bf16 G=8) 全部超参仅改 G=4。如果 bf16 G=4 不 collapse → quantization 是 primary factor；如果 collapse → group size 是 key factor。",
+    "parent": "plan_011_grpo_g8_bf16",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/grpo_ced_g4_bf16 --stage 3 --num_generations 4 --kl_coef 0.01 --learning_rate 5e-5 --max_steps 100 --save_steps 10 --save_total_limit 10 --per_device_batch_size 1 --gradient_accumulation_steps 1 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --no-quantize --wandb_run_name r3_grpo_bf16_g4",
+      "server": "rtx5090-4x",
+      "gpu_id": "cuda:1",
+      "pid": 339032,
+      "log_path": "~/runs/faith-evidence-ie/r3_grpo_bf16_g4.log",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 3027,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "/root/autodl-tmp/data/docred"
+    }
+  },
+  "timestamp": "2026-05-24T23:23:48.559210+00:00",
+  "trigger": "update_registry"
+}

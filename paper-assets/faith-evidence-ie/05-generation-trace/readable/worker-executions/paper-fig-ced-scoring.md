@@ -1,0 +1,2912 @@
+# paper fig ced scoring
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 61
+- **Recorded user turns:** 4
+- **Tool calls:** 18
+- **Original source:** `logs/workers/worker_paper_fig-ced-scoring_20260524T215807.log`
+- **Structured JSON:** [`286120e0c92515bcbbcd.json`](../../sessions/28/286120e0c92515bcbbcd.json)
+
+## Before a recorded user message
+
+42 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "38a4bcc5-8aae-4932-933b-3388a9665548",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779677400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "f54d384e-34b7-4510-aebf-6706c3087fe5",
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break this task into steps:
+1. Read the existing method.tex to understand the CED section structure
+2. Create the matplotlib figure script and generate the figure
+3. Insert the figure into method.tex
+4. Compile and verify page count
+
+Let me start by reading method.tex and checking existing figure scripts for style reference.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "b8175bb1-463a-435c-823d-e1ff60e0f004",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PryY34hsk4MnH42z6SSHXL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14573,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14573
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Read · `toolu_013bQNNdroWypFj8nHiRztVG`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "fc597efa-37f2-490a-9159-cc28d8cf72f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PryY34hsk4MnH42z6SSHXL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14573,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14573
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T21:58:23.412Z_
+
+<details><summary>↩ Tool result · `toolu_013bQNNdroWypFj8nHiRztVG`</summary>
+
+```text
+1	\section{Method}
+2	\label{sec:method}
+3	
+4	\begin{figure*}[t]
+5	\centering
+6	\includegraphics[width=0.92\textwidth]{fig_overview.pdf}
+7	\vspace{-2mm}
+8	\caption{Evidence-grounded DocRE produces relation triples with supporting sentence indices, unlike standard DocRE which outputs bare triples. RSFT selects the top-$k$ of $N$ CED-scored candidates per document for fine-tuning.}
+9	\label{fig:overview}
+10	\end{figure*}
+11	
+12	\subsection{Task: Evidence-Grounded Document-Level Relation Extraction}
+13	\label{sec:task}
+14	
+15	Given a document $D = \{s_1, \ldots, s_n\}$ consisting of $n$ sentences and a set of entities $\mathcal{E}$ identified within $D$, the task of evidence-grounded document-level relation extraction (DocRE) requires predicting, for each entity pair $(e_h, e_t) \in \mathcal{E} \times \mathcal{E}$, a relation $r \in \mathcal{R} \cup \{\texttt{NA}\}$ together with a set of supporting evidence sentences $E \subseteq D$. Standard DocRE predicts only the triple $(e_h, r, e_t)$; the evidence-grounded formulation also requires $E$, which grounds each prediction in specific textual support (Figure~\ref{fig:overview}).
+16	
+17	In our LLM-based approach, the model generates structured outputs that jointly encode both components. For each predicted relation, the output follows the format \texttt{(head, relation, tail) | Evidence: [S$i$][S$j$]}, requiring the model to produce complete evidence references inline with each triple rather than as a separate retrieval step. This design contrasts with encoder-based evidence methods such as SAIS~\citep{xiao2022sais} and DREEAM~\citep{ma2023dreeam}, which frame evidence identification as sentence-level binary classification. Because classification over a fixed sentence set does not increase output length, these methods incur no generation overhead. Our LLM formulation requires additional tokens for each evidence reference, creating a generation burden that scales with the number of predicted triples and their evidence sentences. This scale-dependent cost is the central phenomenon we investigate.
+18	
+19	
+20	\subsection{Supervised Fine-Tuning Baseline}
+21	\label{sec:sft}
+22	
+23	We fine-tune all models with Low-Rank Adaptation (LoRA) \citep{hu2022lora} at rank $r{=}64$ and scaling factor $\alpha{=}128$, applied to all linear projections (attention and feed-forward). The training data consists of DocRED~\citep{yao2019docred} training documents converted to the structured output format described above, where each example maps a document and its entity set to the complete set of relation triples with evidence annotations. We also train a \emph{no-evidence} variant under identical configuration but with evidence references removed from the output format, producing only \texttt{(head, relation, tail)}. This variant serves as an upper bound on extraction performance by eliminating the generation cost of evidence, and allows direct measurement of the evidence tax at each model scale. Detailed hyperparameters (learning rate, batch size, number of epochs) are reported in the Appendix.
+24	
+25	
+26	\subsection{Optimization Paradigms}
+27	\label{sec:paradigms}
+28	
+29	We evaluate three post-SFT optimization paradigms that differ in how they incorporate quality signals from the CED scoring function (\S\ref{sec:ced}).
+30	
+31	\paragraph{GRPO.}
+32	Group Relative Policy Optimization~\citep{shao2024deepseekmath} is an online RL method that eliminates the need for a separate value network by computing advantages within groups of sampled outputs. For each training document, the policy generates $G$ candidate responses, which are scored by CED. The advantage of each response is computed relative to the group mean, and the policy is updated to increase the probability of above-average outputs. We test two configurations: QLoRA \citep{dettmers2023qlora} with $G{=}4$ groups under 4-bit quantization, and bf16 full-precision LoRA with $G{=}8$. Because GRPO applies gradient updates that directly optimize the reward signal, evidence quality and extraction accuracy compete for gradient capacity. We analyze this multi-objective tension in Section~\ref{sec:spectrum}.
+33	
+34	\paragraph{DPO.}
+35	Direct Preference Optimization~\citep{rafailov2023direct} reformulates RLHF~\citep{ouyang2022instructgpt} as a classification problem over preference pairs, without explicit reward models. We construct preference data from the SFT model's sampled outputs: for each document, the response with the highest CED score is labeled as preferred and the lowest-scoring response as rejected. DPO then adjusts the policy to increase the log-probability ratio between preferred and rejected completions. We train for 1 and 3 epochs to observe the temporal dynamics of evidence-extraction trade-offs under implicit optimization.
+36	
+37	\paragraph{RSFT.}
+38	Rejection Sampling Fine-Tuning is a single-round variant of iterative self-improvement methods such as STaR~\citep{zelikman2022star}. The procedure is straightforward: the SFT model generates $N{=}8$ candidate outputs per training document, each candidate is scored by CED, and only the top-$k{=}1$ response is retained as training data. We use $k{=}1$ (best-of-$N$) selection throughout all experiments, selecting the single highest-scoring candidate per document for RSFT training data construction. This yields approximately 3,000 training examples per model (one per document; exact counts vary slightly by model due to generation failures). Unlike GRPO and DPO, RSFT does not apply gradient-based optimization pressure toward a reward signal. Instead, it improves training data quality through filtering: the model trains on its own best outputs rather than all outputs. This distinction is critical because discrete selection over complete outputs cannot exploit the extraction-evidence trade-off that gradient methods find. The contribution of RSFT in our setting is not the framework itself, which is well-established, but its application to evidence-grounded DocRE with CED as a domain-specific quality filter.
+39	
+40	
+41	\subsection{Contrastive Evidence Discrimination}
+42	\label{sec:ced}
+43	
+44	CED is a scoring function that evaluates the faithfulness of predicted evidence sentences to their associated relation triples. It builds on Natural Language Inference (NLI) to measure whether evidence actually entails the predicted relation, rather than merely co-occurring with the relevant entities.
+45	
+46	For a predicted triple $(e_h, r, e_t)$ with evidence sentences $E$, CED constructs a positive NLI pair: the premise is the concatenation of sentences in $E$, and the hypothesis is a natural-language verbalization of the relation (e.g., ``$e_h$ has relation $r$ with $e_t$''). An NLI model based on DeBERTaV3 \citep{he2023debertav3} (\texttt{cross-encoder/nli-deberta-v3-base}) produces an entailment probability $p^+$ for this pair. The contrastive component introduces hard negatives drawn from the same document. For each triple, we collect sentences that mention $e_h$ or $e_t$ but are not in the predicted evidence set. These entity-sharing distractors serve as negative premises, and the NLI model scores each to obtain $p^-_1, \ldots, p^-_m$. The CED score for a single triple is:
+47	\begin{equation}
+48	\text{CED}(e_h, r, e_t, E) = p^+ - \max_j \, p^-_j
+49	\label{eq:ced}
+50	\end{equation}
+51	This formulation forces the scoring function to distinguish sentences that genuinely support the relation from sentences that merely mention the same entities. A high CED score indicates that the evidence provides relation-specific support beyond entity co-occurrence.
+52	
+53	The document-level CED score aggregates over all predicted triples, weighted by extraction correctness: triples that match ground-truth relations contribute their CED scores, while incorrect triples receive zero credit. This coupling ensures that CED rewards both faithful evidence and accurate extraction jointly.
+54	
+55	We also evaluate a \emph{flat-NLI} baseline that uses only the positive entailment score $p^+$ without the contrastive term. CED and flat-NLI produce comparable RSFT outcomes (mean Rel-F1 difference of 0.02pp across available seeds; Section~\ref{sec:analysis}), confirming that the contrastive formulation is not essential for data selection quality. We adopt CED as the default because its per-triple discrimination scores support interpretable error analysis.
+56	
+57	
+58	\subsection{Evidence-Decoupling Ratio}
+59	\label{sec:edcr}
+60	
+61	We introduce the Evidence-Decoupling Ratio (EDCR) as a diagnostic metric that quantifies the degree of misalignment between a model's extraction and evidence capabilities. EDCR is not a training component; it serves purely as an analytical tool for comparing optimization methods.
+62	
+63	EDCR is defined as the distractor citation rate across all predicted triples:
+64	\begin{equation}
+65	\text{EDCR} = \frac{\sum_{i} |E_i^{\text{pred}} \setminus E_i^{\text{gold}}|}{\sum_{i} |E_i^{\text{pred}}|}
+66	\label{eq:edcr}
+67	\end{equation}
+68	where the sum ranges over all predicted triples with at least one evidence citation. $E_i^{\text{pred}}$ is the set of evidence sentences cited for predicted triple $i$, and $E_i^{\text{gold}}$ is the corresponding gold evidence (empty for false-positive predictions). EDCR thus measures the fraction of all cited evidence that does not appear in the gold evidence for the associated triple.
+69	
+70	A model with many false-positive triples will have high EDCR because all evidence for incorrect triples counts as distractor; even among correct triples, citing irrelevant sentences inflates the numerator. Conversely, accurate extraction with faithful evidence yields low EDCR. This dual sensitivity makes EDCR a natural diagnostic for extraction-evidence decoupling.
+71	
+72	EDCR operates at two diagnostic levels. At the method level, comparing EDCR across seven independent method configurations reveals a negative correlation with Rel-F1 (Spearman $\rho{=}{-}0.89$, $n{=}7$, $p{=}0.007$). Because EDCR is mechanically influenced by false-positive triples (which share determinants with Rel-F1), this correlation should be interpreted as a diagnostic pattern rather than an independent discovery; its primary value lies in per-relation analysis. We validate EDCR's diagnostic utility through per-relation analysis (\S\ref{sec:analysis}), which avoids the shared-component concern present in cross-method correlation. At the per-relation level, computing EDCR for individual relation types reveals a robust negative correlation with Rel-F1 ($\rho{=}{-}0.79$, $n{=}76$, $p{<}0.001$) that is independent of Evi-F1 ($\rho{=}{-}0.06$, $p{=}0.58$). This independence means EDCR captures relation-specific extraction-evidence misalignment that aggregate evidence metrics miss. The SFT baseline EDCR (0.6797, three-seed mean) reflects the inherent distractor rate under standard training; EDCR values substantially exceeding this level (e.g., GRPO QLoRA at 0.9876) indicate RL-induced decoupling beyond what evidence production alone explains, while values below the baseline (e.g., RSFT at 0.6487) reflect improved co-optimization.
+73	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "7f85fec0-d4ea-4ed5-9168-e662101b04d2",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/method.tex",
+      "content": "\\section{Method}\n\\label{sec:method}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=0.92\\textwidth]{fig_overview.pdf}\n\\vspace{-2mm}\n\\caption{Evidence-grounded DocRE produces relation triples with supporting sentence indices, unlike standard DocRE which outputs bare triples. RSFT selects the top-$k$ of $N$ CED-scored candidates per document for fine-tuning.}\n\\label{fig:overview}\n\\end{figure*}\n\n\\subsection{Task: Evidence-Grounded Document-Level Relation Extraction}\n\\label{sec:task}\n\nGiven a document $D = \\{s_1, \\ldots, s_n\\}$ consisting of $n$ sentences and a set of entities $\\mathcal{E}$ identified within $D$, the task of evidence-grounded document-level relation extraction (DocRE) requires predicting, for each entity pair $(e_h, e_t) \\in \\mathcal{E} \\times \\mathcal{E}$, a relation $r \\in \\mathcal{R} \\cup \\{\\texttt{NA}\\}$ together with a set of supporting evidence sentences $E \\subseteq D$. Standard DocRE predicts only the triple $(e_h, r, e_t)$; the evidence-grounded formulation also requires $E$, which grounds each prediction in specific textual support (Figure~\\ref{fig:overview}).\n\nIn our LLM-based approach, the model generates structured outputs that jointly encode both components. For each predicted relation, the output follows the format \\texttt{(head, relation, tail) | Evidence: [S$i$][S$j$]}, requiring the model to produce complete evidence references inline with each triple rather than as a separate retrieval step. This design contrasts with encoder-based evidence methods such as SAIS~\\citep{xiao2022sais} and DREEAM~\\citep{ma2023dreeam}, which frame evidence identification as sentence-level binary classification. Because classification over a fixed sentence set does not increase output length, these methods incur no generation overhead. Our LLM formulation requires additional tokens for each evidence reference, creating a generation burden that scales with the number of predicted triples and their evidence sentences. This scale-dependent cost is the central phenomenon we investigate.\n\n\n\\subsection{Supervised Fine-Tuning Baseline}\n\\label{sec:sft}\n\nWe fine-tune all models with Low-Rank Adaptation (LoRA) \\citep{hu2022lora} at rank $r{=}64$ and scaling factor $\\alpha{=}128$, applied to all linear projections (attention and feed-forward). The training data consists of DocRED~\\citep{yao2019docred} training documents converted to the structured output format described above, where each example maps a document and its entity set to the complete set of relation triples with evidence annotations. We also train a \\emph{no-evidence} variant under identical configuration but with evidence references removed from the output format, producing only \\texttt{(head, relation, tail)}. This variant serves as an upper bound on extraction performance by eliminating the generation cost of evidence, and allows direct measurement of the evidence tax at each model scale. Detailed hyperparameters (learning rate, batch size, number of epochs) are reported in the Appendix.\n\n\n\\subsection{Optimization Paradigms}\n\\label{sec:paradigms}\n\nWe evaluate three post-SFT optimization paradigms that differ in how they incorporate quality signals from the CED scoring function (\\S\\ref{sec:ced}).\n\n\\paragraph{GRPO.}\nGroup Relative Policy Optimization~\\citep{shao2024deepseekmath} is an online RL method that eliminates the need for a separate value network by computing advantages within groups of sampled outputs. For each training document, the policy generates $G$ candidate responses, which are scored by CED. The advantage of each response is computed relative to the group mean, and the policy is updated to increase the probability of above-average outputs. We test two configurations: QLoRA \\citep{dettmers2023qlora} with $G{=}4$ groups under 4-bit quantization, and bf16 full-precision LoRA with $G{=}8$. Because GRPO applies gradient updates that directly optimize the reward signal, evidence quality and extraction accuracy compete for gradient capacity. We analyze this multi-objective tension in Section~\\ref{sec:spectrum}.\n\n\\paragraph{DPO.}\nDirect Preference Optimization~\\citep{rafailov2023direct} reformulates RLHF~\\citep{ouyang2022instructgpt} as a classification problem over preference pairs, without explicit reward models. We construct preference data from the SFT model's sampled outputs: for each document, the response with the highest CED score is labeled as preferred and the lowest-scoring response as rejected. DPO then adjusts the policy to increase the log-probability ratio between preferred and rejected completions. We train for 1 and 3 epochs to observe the temporal dynamics of evidence-extraction trade-offs under implicit optimization.\n\n\\paragraph{RSFT.}\nRejection Sampling Fine-Tuning is a single-round variant of iterative self-improvement methods such as STaR~\\citep{zelikman2022star}. The procedure is straightforward: the SFT model generates $N{=}8$ candidate outputs per training document, each candidate is scored by CED, and only the top-$k{=}1$ response is retained as training data. We use $k{=}1$ (best-of-$N$) selection throughout all experiments, selecting the single highest-scoring candidate per document for RSFT training data construction. This yields approximately 3,000 training examples per model (one per document; exact counts vary slightly by model due to generation failures). Unlike GRPO and DPO, RSFT does not apply gradient-based optimization pressure toward a reward signal. Instead, it improves training data quality through filtering: the model trains on its own best outputs rather than all outputs. This distinction is critical because discrete selection over complete outputs cannot exploit the extraction-evidence trade-off that gradient methods find. The contribution of RSFT in our setting is not the framework itself, which is well-established, but its application to evidence-grounded DocRE with CED as a domain-specific quality filter.\n\n\n\\subsection{Contrastive Evidence Discrimination}\n\\label{sec:ced}\n\nCED is a scoring function that evaluates the faithfulness of predicted evidence sentences to their associated relation triples. It builds on Natural Language Inference (NLI) to measure whether evidence actually entails the predicted relation, rather than merely co-occurring with the relevant entities.\n\nFor a predicted triple $(e_h, r, e_t)$ with evidence sentences $E$, CED constructs a positive NLI pair: the premise is the concatenation of sentences in $E$, and the hypothesis is a natural-language verbalization of the relation (e.g., ``$e_h$ has relation $r$ with $e_t$''). An NLI model based on DeBERTaV3 \\citep{he2023debertav3} (\\texttt{cross-encoder/nli-deberta-v3-base}) produces an entailment probability $p^+$ for this pair. The contrastive component introduces hard negatives drawn from the same document. For each triple, we collect sentences that mention $e_h$ or $e_t$ but are not in the predicted evidence set. These entity-sharing distractors serve as negative premises, and the NLI model scores each to obtain $p^-_1, \\ldots, p^-_m$. The CED score for a single triple is:\n\\begin{equation}\n\\text{CED}(e_h, r, e_t, E) = p^+ - \\max_j \\, p^-_j\n\\label{eq:ced}\n\\end{equation}\nThis formulation forces the scoring function to distinguish sentences that genuinely support the relation from sentences that merely mention the same entities. A high CED score indicates that the evidence provides relation-specific support beyond entity co-occurrence.\n\nThe document-level CED score aggregates over all predicted triples, weighted by extraction correctness: triples that match ground-truth relations contribute their CED scores, while incorrect triples receive zero credit. This coupling ensures that CED rewards both faithful evidence and accurate extraction jointly.\n\nWe also evaluate a \\emph{flat-NLI} baseline that uses only the positive entailment score $p^+$ without the contrastive term. CED and flat-NLI produce comparable RSFT outcomes (mean Rel-F1 difference of 0.02pp across available seeds; Section~\\ref{sec:analysis}), confirming that the contrastive formulation is not essential for data selection quality. We adopt CED as the default because its per-triple discrimination scores support interpretable error analysis.\n\n\n\\subsection{Evidence-Decoupling Ratio}\n\\label{sec:edcr}\n\nWe introduce the Evidence-Decoupling Ratio (EDCR) as a diagnostic metric that quantifies the degree of misalignment between a model's extraction and evidence capabilities. EDCR is not a training component; it serves purely as an analytical tool for comparing optimization methods.\n\nEDCR is defined as the distractor citation rate across all predicted triples:\n\\begin{equation}\n\\text{EDCR} = \\frac{\\sum_{i} |E_i^{\\text{pred}} \\setminus E_i^{\\text{gold}}|}{\\sum_{i} |E_i^{\\text{pred}}|}\n\\label{eq:edcr}\n\\end{equation}\nwhere the sum ranges over all predicted triples with at least one evidence citation. $E_i^{\\text{pred}}$ is the set of evidence sentences cited for predicted triple $i$, and $E_i^{\\text{gold}}$ is the corresponding gold evidence (empty for false-positive predictions). EDCR thus measures the fraction of all cited evidence that does not appear in the gold evidence for the associated triple.\n\nA model with many false-positive triples will have high EDCR because all evidence for incorrect triples counts as distractor; even among correct triples, citing irrelevant sentences inflates the numerator. Conversely, accurate extraction with faithful evidence yields low EDCR. This dual sensitivity makes EDCR a natural diagnostic for extraction-evidence decoupling.\n\nEDCR operates at two diagnostic levels. At the method level, comparing EDCR across seven independent method configurations reveals a negative correlation with Rel-F1 (Spearman $\\rho{=}{-}0.89$, $n{=}7$, $p{=}0.007$). Because EDCR is mechanically influenced by false-positive triples (which share determinants with Rel-F1), this correlation should be interpreted as a diagnostic pattern rather than an independent discovery; its primary value lies in per-relation analysis. We validate EDCR's diagnostic utility through per-relation analysis (\\S\\ref{sec:analysis}), which avoids the shared-component concern present in cross-method correlation. At the per-relation level, computing EDCR for individual relation types reveals a robust negative correlation with Rel-F1 ($\\rho{=}{-}0.79$, $n{=}76$, $p{<}0.001$) that is independent of Evi-F1 ($\\rho{=}{-}0.06$, $p{=}0.58$). This independence means EDCR captures relation-specific extraction-evidence misalignment that aggregate evidence metrics miss. The SFT baseline EDCR (0.6797, three-seed mean) reflects the inherent distractor rate under standard training; EDCR values substantially exceeding this level (e.g., GRPO QLoRA at 0.9876) indicate RL-induced decoupling beyond what evidence production alone explains, while values below the baseline (e.g., RSFT at 0.6487) reflect improved co-optimization.\n",
+      "numLines": 73,
+      "startLine": 1,
+      "totalLines": 73
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_018BHApQB9qMJo7BLFLAhrE6`</summary>
+
+```json
+{
+  "pattern": "figures/paper/plot_*.py",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "8969a572-18f5-4e5d-8069-7c8efd97080c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PryY34hsk4MnH42z6SSHXL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14573,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14573
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-24T21:58:24.008Z_
+
+<details><summary>↩ Tool result · `toolu_018BHApQB9qMJo7BLFLAhrE6`</summary>
+
+```text
+figures/paper/plot_evidence_tax.py
+figures/paper/plot_scaling.py
+figures/paper/plot_spectrum.py
+figures/paper/plot_overview.py
+figures/paper/plot_edcr_relations.py
+figures/paper/plot_fig_grpo_dynamics.py
+figures/paper/plot_variance_compression.py
+figures/paper/plot_error_decomposition.py
+figures/paper/plot_rsft_ablation.py
+figures/paper/plot_inference_time.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "fc6cae4e-3239-44c7-ad58-1b3e062df166",
+  "tool_use_result": {
+    "filenames": [
+      "figures/paper/plot_evidence_tax.py",
+      "figures/paper/plot_scaling.py",
+      "figures/paper/plot_spectrum.py",
+      "figures/paper/plot_overview.py",
+      "figures/paper/plot_edcr_relations.py",
+      "figures/paper/plot_fig_grpo_dynamics.py",
+      "figures/paper/plot_variance_compression.py",
+      "figures/paper/plot_error_decomposition.py",
+      "figures/paper/plot_rsft_ablation.py",
+      "figures/paper/plot_inference_time.py"
+    ],
+    "durationMs": 122,
+    "numFiles": 10,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+Let me check an existing plot script for style reference, then create the CED scoring figure.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "be93b530-60e1-4e9c-9e68-fb534c334580",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TjDtrDrwXQw7BP2h4FWDhC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3448,
+      "cache_read_input_tokens": 26414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3448
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01YPWAP7EJg3n1R6i25kdYLL`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/figures/paper/plot_spectrum.py",
+  "limit": 40
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "9aa1c533-d326-4d30-91ce-99cce91e6f55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TjDtrDrwXQw7BP2h4FWDhC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3448,
+      "cache_read_input_tokens": 26414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3448
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-24T21:58:28.617Z_
+
+<details><summary>↩ Tool result · `toolu_01YPWAP7EJg3n1R6i25kdYLL`</summary>
+
+```text
+1	import matplotlib
+2	matplotlib.use('Agg')
+3	import matplotlib.pyplot as plt
+4	import matplotlib.patheffects as pe
+5	import numpy as np
+6	import os
+7	
+8	plt.rcParams.update({
+9	    'font.family': 'DejaVu Sans',
+10	    'font.size': 10,
+11	    'axes.labelsize': 11,
+12	    'xtick.labelsize': 9.5,
+13	    'ytick.labelsize': 9.5,
+14	    'figure.dpi': 300,
+15	    'savefig.dpi': 300,
+16	    'savefig.bbox': 'tight',
+17	    'savefig.pad_inches': 0.05,
+18	    'axes.spines.top': False,
+19	    'axes.spines.right': False,
+20	    'axes.linewidth': 0.6,
+21	    'pdf.fonttype': 42,
+22	    'ps.fonttype': 42,
+23	    'lines.linewidth': 1.8,
+24	})
+25	
+26	COLORS = {
+27	    'baseline':  '#0072B2',
+28	    'treatment': '#E69F00',
+29	    'collapse':  '#D55E00',
+30	    'safe':      '#009E73',
+31	    'neutral':   '#999999',
+32	    'dpo':       '#CC79A7',
+33	}
+34	
+35	fig, ax = plt.subplots(figsize=(5.5, 3.8), dpi=300)
+36	
+37	pts = {
+38	    'SFT':        (0.4439, 0.7961, 'o', COLORS['neutral'],  90),
+39	    'RSFT':       (0.4580, 0.8096, '*', COLORS['safe'],     200),
+40	    'GRPO_bf16':  (0.4549, 0.8086, '^', COLORS['treatment'], 90),
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "c46aa54d-53dc-4b8e-a3f7-66a9cb871049",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/figures/paper/plot_spectrum.py",
+      "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport numpy as np\nimport os\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'axes.labelsize': 11,\n    'xtick.labelsize': 9.5,\n    'ytick.labelsize': 9.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'axes.linewidth': 0.6,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'lines.linewidth': 1.8,\n})\n\nCOLORS = {\n    'baseline':  '#0072B2',\n    'treatment': '#E69F00',\n    'collapse':  '#D55E00',\n    'safe':      '#009E73',\n    'neutral':   '#999999',\n    'dpo':       '#CC79A7',\n}\n\nfig, ax = plt.subplots(figsize=(5.5, 3.8), dpi=300)\n\npts = {\n    'SFT':        (0.4439, 0.7961, 'o', COLORS['neutral'],  90),\n    'RSFT':       (0.4580, 0.8096, '*', COLORS['safe'],     200),\n    'GRPO_bf16':  (0.4549, 0.8086, '^', COLORS['treatment'], 90),",
+      "numLines": 40,
+      "startLine": 1,
+      "totalLines": 124
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+Now I have enough context. Let me create the figure script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "e24d6d78-98f8-4f5e-9b1c-e1c45edab758",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E4qTjpYVwZVzrLwiJJQcj6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 661,
+      "cache_read_input_tokens": 29862,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 661
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — Write · `toolu_012kLRLqvnL8FeSLobCNgYBL`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/figures/paper/plot_ced_scoring.py",
+  "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport numpy as np\nimport os\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n})\n\nGREEN = '#009E73'\nRED = '#D55E00'\nBLUE = '#0072B2'\nGRAY = '#999999'\n\nfig, ax = plt.subplots(figsize=(3.5, 4.0), dpi=300)\nax.set_xlim(0, 3.5)\nax.set_ylim(0, 4.0)\nax.axis('off')\n\n# --- Top: Document + Triple ---\nax.text(1.75, 3.82, 'Document:', fontsize=8.5, fontweight='bold', ha='center', va='top', color='#333333')\nax.text(1.75, 3.67, '[S0] John was born in London.  [S1] John studied at Oxford. ...',\n        fontsize=7, ha='center', va='top', color='#444444', style='italic')\n\nax.text(1.75, 3.45, 'Triple:', fontsize=8.5, fontweight='bold', ha='center', va='top', color='#333333')\nax.text(1.75, 3.30, '(John,  place_of_birth,  London)',\n        fontsize=7.5, ha='center', va='top', color='#444444', family='monospace')\n\n# --- Positive Pair Box (left) ---\npos_box = FancyBboxPatch((0.05, 2.05), 1.55, 1.05,\n                         boxstyle=\"round,pad=0.06\", linewidth=1.2,\n                         edgecolor=GREEN, facecolor='#f0faf5')\nax.add_patch(pos_box)\nax.text(0.82, 2.95, 'Positive Pair', fontsize=8, fontweight='bold',\n        ha='center', va='center', color=GREEN)\nax.text(0.82, 2.72, 'Premise (evidence):', fontsize=6.5, ha='center', va='center', color=GRAY)\nax.text(0.82, 2.55, '[S0] \"John was born\\nin London\"', fontsize=6.8, ha='center', va='center', color='#333333')\nax.text(0.82, 2.28, 'Hypothesis:', fontsize=6.5, ha='center', va='center', color=GRAY)\nax.text(0.82, 2.13, '\"John has place_of_birth\\nwith London\"', fontsize=6.8, ha='center', va='center', color='#333333')\n\n# --- Negative Pair Box (right) ---\nneg_box = FancyBboxPatch((1.90, 2.05), 1.55, 1.05,\n                         boxstyle=\"round,pad=0.06\", linewidth=1.2,\n                         edgecolor=RED, facecolor='#fdf5f2')\nax.add_patch(neg_box)\nax.text(2.67, 2.95, 'Negative Pair', fontsize=8, fontweight='bold',\n        ha='center', va='center', color=RED)\nax.text(2.67, 2.72, 'Premise (distractor):', fontsize=6.5, ha='center', va='center', color=GRAY)\nax.text(2.67, 2.55, '[S1] \"John studied\\nat Oxford\"', fontsize=6.8, ha='center', va='center', color='#333333')\nax.text(2.67, 2.28, 'Hypothesis:', fontsize=6.5, ha='center', va='center', color=GRAY)\nax.text(2.67, 2.13, '\"John has place_of_birth\\nwith London\"', fontsize=6.8, ha='center', va='center', color='#333333')\n\n# --- NLI Model Box (center) ---\nnli_box = FancyBboxPatch((1.05, 1.35), 1.40, 0.45,\n                         boxstyle=\"round,pad=0.06\", linewidth=1.0,\n                         edgecolor=BLUE, facecolor=BLUE)\nax.add_patch(nli_box)\nax.text(1.75, 1.575, 'NLI Model', fontsize=9, fontweight='bold',\n        ha='center', va='center', color='white')\n\n# --- Arrows from boxes to NLI ---\narrow_style = \"Simple,tail_width=0.4,head_width=3,head_length=2.5\"\nax.annotate(\"\", xy=(1.30, 1.80), xytext=(0.82, 2.05),\n            arrowprops=dict(arrowstyle='->', color=GREEN, lw=1.2,\n                           connectionstyle=\"arc3,rad=-0.1\"))\nax.annotate(\"\", xy=(2.20, 1.80), xytext=(2.67, 2.05),\n            arrowprops=dict(arrowstyle='->', color=RED, lw=1.2,\n                           connectionstyle=\"arc3,rad=0.1\"))\n\n# --- Scores below NLI ---\nax.text(0.82, 1.10, r'$p^+ = 0.92$', fontsize=9.5, fontweight='bold',\n        ha='center', va='center', color=GREEN)\nax.text(2.67, 1.10, r'$p^- = 0.31$', fontsize=9.5, fontweight='bold',\n        ha='center', va='center', color=RED)\n\n# arrows from NLI to scores\nax.annotate(\"\", xy=(0.82, 1.22), xytext=(1.30, 1.35),\n            arrowprops=dict(arrowstyle='->', color=GREEN, lw=1.0,\n                           connectionstyle=\"arc3,rad=0.1\"))\nax.annotate(\"\", xy=(2.67, 1.22), xytext=(2.20, 1.35),\n            arrowprops=dict(arrowstyle='->', color=RED, lw=1.0,\n                           connectionstyle=\"arc3,rad=-0.1\"))\n\n# --- CED Score at bottom ---\nax.plot([0.3, 3.2], [0.78, 0.78], color=GRAY, linewidth=0.5, linestyle='--', alpha=0.5)\n\nax.text(1.75, 0.55, r'$\\mathrm{CED} = p^+ - \\max(p^-) = 0.92 - 0.31$',\n        fontsize=8.5, ha='center', va='center', color='#333333')\nax.text(1.75, 0.25, r'$= \\mathbf{0.61}$',\n        fontsize=11, ha='center', va='center', color=BLUE, fontweight='bold')\n\n# --- Save ---\nout_dir = os.path.dirname(os.path.abspath(__file__))\nfig.savefig(os.path.join(out_dir, 'fig_ced_scoring.pdf'))\nfig.savefig(os.path.join(out_dir, 'fig_ced_scoring.png'))\nplt.close()\nprint(\"Saved fig_ced_scoring.pdf and fig_ced_scoring.png\")\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "9a96c6c6-730b-4bcb-b728-bff56c55e5fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E4qTjpYVwZVzrLwiJJQcj6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 661,
+      "cache_read_input_tokens": 29862,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 661
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-24T21:58:57.465Z_
+
+<details><summary>↩ Tool result · `toolu_012kLRLqvnL8FeSLobCNgYBL`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/figures/paper/plot_ced_scoring.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "1189fd03-eb23-4e7a-9591-85380ad9127d",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/figures/paper/plot_ced_scoring.py",
+    "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport numpy as np\nimport os\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n})\n\nGREEN = '#009E73'\nRED = '#D55E00'\nBLUE = '#0072B2'\nGRAY = '#999999'\n\nfig, ax = plt.subplots(figsize=(3.5, 4.0), dpi=300)\nax.set_xlim(0, 3.5)\nax.set_ylim(0, 4.0)\nax.axis('off')\n\n# --- Top: Document + Triple ---\nax.text(1.75, 3.82, 'Document:', fontsize=8.5, fontweight='bold', ha='center', va='top', color='#333333')\nax.text(1.75, 3.67, '[S0] John was born in London.  [S1] John studied at Oxford. ...',\n        fontsize=7, ha='center', va='top', color='#444444', style='italic')\n\nax.text(1.75, 3.45, 'Triple:', fontsize=8.5, fontweight='bold', ha='center', va='top', color='#333333')\nax.text(1.75, 3.30, '(John,  place_of_birth,  London)',\n        fontsize=7.5, ha='center', va='top', color='#444444', family='monospace')\n\n# --- Positive Pair Box (left) ---\npos_box = FancyBboxPatch((0.05, 2.05), 1.55, 1.05,\n                         boxstyle=\"round,pad=0.06\", linewidth=1.2,\n                         edgecolor=GREEN, facecolor='#f0faf5')\nax.add_patch(pos_box)\nax.text(0.82, 2.95, 'Positive Pair', fontsize=8, fontweight='bold',\n        ha='center', va='center', color=GREEN)\nax.text(0.82, 2.72, 'Premise (evidence):', fontsize=6.5, ha='center', va='center', color=GRAY)\nax.text(0.82, 2.55, '[S0] \"John was born\\nin London\"', fontsize=6.8, ha='center', va='center', color='#333333')\nax.text(0.82, 2.28, 'Hypothesis:', fontsize=6.5, ha='center', va='center', color=GRAY)\nax.text(0.82, 2.13, '\"John has place_of_birth\\nwith London\"', fontsize=6.8, ha='center', va='center', color='#333333')\n\n# --- Negative Pair Box (right) ---\nneg_box = FancyBboxPatch((1.90, 2.05), 1.55, 1.05,\n                         boxstyle=\"round,pad=0.06\", linewidth=1.2,\n                         edgecolor=RED, facecolor='#fdf5f2')\nax.add_patch(neg_box)\nax.text(2.67, 2.95, 'Negative Pair', fontsize=8, fontweight='bold',\n        ha='center', va='center', color=RED)\nax.text(2.67, 2.72, 'Premise (distractor):', fontsize=6.5, ha='center', va='center', color=GRAY)\nax.text(2.67, 2.55, '[S1] \"John studied\\nat Oxford\"', fontsize=6.8, ha='center', va='center', color='#333333')\nax.text(2.67, 2.28, 'Hypothesis:', fontsize=6.5, ha='center', va='center', color=GRAY)\nax.text(2.67, 2.13, '\"John has place_of_birth\\nwith London\"', fontsize=6.8, ha='center', va='center', color='#333333')\n\n# --- NLI Model Box (center) ---\nnli_box = FancyBboxPatch((1.05, 1.35), 1.40, 0.45,\n                         boxstyle=\"round,pad=0.06\", linewidth=1.0,\n                         edgecolor=BLUE, facecolor=BLUE)\nax.add_patch(nli_box)\nax.text(1.75, 1.575, 'NLI Model', fontsize=9, fontweight='bold',\n        ha='center', va='center', color='white')\n\n# --- Arrows from boxes to NLI ---\narrow_style = \"Simple,tail_width=0.4,head_width=3,head_length=2.5\"\nax.annotate(\"\", xy=(1.30, 1.80), xytext=(0.82, 2.05),\n            arrowprops=dict(arrowstyle='->', color=GREEN, lw=1.2,\n                           connectionstyle=\"arc3,rad=-0.1\"))\nax.annotate(\"\", xy=(2.20, 1.80), xytext=(2.67, 2.05),\n            arrowprops=dict(arrowstyle='->', color=RED, lw=1.2,\n                           connectionstyle=\"arc3,rad=0.1\"))\n\n# --- Scores below NLI ---\nax.text(0.82, 1.10, r'$p^+ = 0.92$', fontsize=9.5, fontweight='bold',\n        ha='center', va='center', color=GREEN)\nax.text(2.67, 1.10, r'$p^- = 0.31$', fontsize=9.5, fontweight='bold',\n        ha='center', va='center', color=RED)\n\n# arrows from NLI to scores\nax.annotate(\"\", xy=(0.82, 1.22), xytext=(1.30, 1.35),\n            arrowprops=dict(arrowstyle='->', color=GREEN, lw=1.0,\n                           connectionstyle=\"arc3,rad=0.1\"))\nax.annotate(\"\", xy=(2.67, 1.22), xytext=(2.20, 1.35),\n            arrowprops=dict(arrowstyle='->', color=RED, lw=1.0,\n                           connectionstyle=\"arc3,rad=-0.1\"))\n\n# --- CED Score at bottom ---\nax.plot([0.3, 3.2], [0.78, 0.78], color=GRAY, linewidth=0.5, linestyle='--', alpha=0.5)\n\nax.text(1.75, 0.55, r'$\\mathrm{CED} = p^+ - \\max(p^-) = 0.92 - 0.31$',\n        fontsize=8.5, ha='center', va='center', color='#333333')\nax.text(1.75, 0.25, r'$= \\mathbf{0.61}$',\n        fontsize=11, ha='center', va='center', color=BLUE, fontweight='bold')\n\n# --- Save ---\nout_dir = os.path.dirname(os.path.abspath(__file__))\nfig.savefig(os.path.join(out_dir, 'fig_ced_scoring.pdf'))\nfig.savefig(os.path.join(out_dir, 'fig_ced_scoring.png'))\nplt.close()\nprint(\"Saved fig_ced_scoring.pdf and fig_ced_scoring.png\")\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0134HYn2no9FhNxPTf9Jrw16`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/figures/paper && python plot_ced_scoring.py",
+  "description": "Generate CED scoring figure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "df2f1d15-2a6f-4bc4-b465-25f4b8c41ca5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019czovEnnPwcDKrUubs1szq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2199,
+      "cache_read_input_tokens": 30523,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2199
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-24T21:59:01.692Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_0134HYn2no9FhNxPTf9Jrw16`</summary>
+
+```text
+Exit code 127
+/bin/bash: line 1: python: command not found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "75e041b7-c2e3-4224-aa5d-1c83fb594c31",
+  "tool_use_result": "Error: Exit code 127\n/bin/bash: line 1: python: command not found"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Dhm7rgBKWMuBYmS6a7g1Wd`</summary>
+
+```json
+{
+  "command": "which python3 && cd /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/figures/paper && python3 plot_ced_scoring.py",
+  "description": "Generate CED scoring figure with python3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "73145ac2-f975-47bf-8a6c-b33b268df5f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0137A6Vvaf36R7qktNjUwoh9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 153,
+      "cache_read_input_tokens": 32722,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 153
+      },
+      "output_tokens": 51,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-24T21:59:08.008Z_
+
+<details><summary>↩ Tool result · `toolu_01Dhm7rgBKWMuBYmS6a7g1Wd`</summary>
+
+```text
+/usr/bin/python3
+Saved fig_ced_scoring.pdf and fig_ced_scoring.png
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "9d42ea26-545f-4115-b174-8d1fd766673a",
+  "tool_use_result": {
+    "stdout": "/usr/bin/python3\nSaved fig_ced_scoring.pdf and fig_ced_scoring.png",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+Figure generated. Let me verify the output and check it visually.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "30d51454-31bd-45d3-a481-96c9e993c53b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KVCq5RVWZaAiMdV7WfM11m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 162,
+      "cache_read_input_tokens": 32875,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 162
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01NWkiriJKSngaDicybahdFs`</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/figures/paper/fig_ced_scoring.{pdf,png}",
+  "description": "Check generated figure files"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "763a1ca2-1d71-4cde-94ae-60b5c5220cf1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KVCq5RVWZaAiMdV7WfM11m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 162,
+      "cache_read_input_tokens": 32875,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 162
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-24T21:59:12.628Z_
+
+<details><summary>↩ Tool result · `toolu_01NWkiriJKSngaDicybahdFs`</summary>
+
+```text
+-rw-r--r-- 1 ubuntu ubuntu  37633 May 24 21:59 /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/figures/paper/fig_ced_scoring.pdf
+-rw-r--r-- 1 ubuntu ubuntu 120733 May 24 21:59 /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/figures/paper/fig_ced_scoring.png
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "19cc1b7c-186f-4cf1-9bd2-136c0ad8f8ae",
+  "tool_use_result": {
+    "stdout": "-rw-r--r-- 1 ubuntu ubuntu  37633 May 24 21:59 /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/figures/paper/fig_ced_scoring.pdf\n-rw-r--r-- 1 ubuntu ubuntu 120733 May 24 21:59 /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/figures/paper/fig_ced_scoring.png",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018HCbxSg11ss9vEs1Q7BBSr`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/figures/paper/fig_ced_scoring.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "4dd6b61a-ff60-44d4-bb17-217a1dd30fd0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KgpBcaUvZVZ79dGKZ2Tbrs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 378,
+      "cache_read_input_tokens": 33037,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 378
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-24T21:59:18.443Z_
+
+<details><summary>↩ Tool result · `toolu_018HCbxSg11ss9vEs1Q7BBSr`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/png"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "5950dd79-83f4-4649-87f7-84bc2e8dbbd3",
+  "tool_use_result": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/png",
+      "originalSize": 120733,
+      "dimensions": {
+        "originalWidth": 927,
+        "originalHeight": 953,
+        "displayWidth": 927,
+        "displayHeight": 953
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The figure looks good. Now I need to insert it into method.tex after the CED equation (Eq. 1, around line 50). I'll place the figure right after the equation block that ends at line 50.
+
+Looking at method.tex, the CED formula is at lines 47-50. I'll insert the figure after line 50 (after `\label{eq:ced}`).
+
+Actually, looking more carefully, I should insert it after the equation closes at line 50. The paragraph continues at line 51. A good place would be after the equation block. 
+
+Now I'm inserting the figure after line 50.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "c787da8d-5367-48cd-9821-e08b1d52dd64",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XqRxfrxdU5tfB11pf4772D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1308,
+      "cache_read_input_tokens": 33415,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1308
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+Figure looks clean. Now inserting into method.tex after the CED equation (line 50).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "8cdfa9e5-1f5f-44f3-aa3e-030b7ecce838",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XqRxfrxdU5tfB11pf4772D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1308,
+      "cache_read_input_tokens": 33415,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1308
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01WW4bpcyzFTKs7VT4mx38ph`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/method.tex",
+  "old_string": "\\text{CED}(e_h, r, e_t, E) = p^+ - \\max_j \\, p^-_j\n\\label{eq:ced}\n\\end{equation}\nThis formulation forces",
+  "new_string": "\\text{CED}(e_h, r, e_t, E) = p^+ - \\max_j \\, p^-_j\n\\label{eq:ced}\n\\end{equation}\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig_ced_scoring.pdf}\n\\caption{CED scoring example. The positive pair (evidence $\\to$ hypothesis) yields high entailment; the contrastive distractor (entity-sharing non-evidence) yields low entailment. CED measures the margin between them.}\n\\label{fig:ced_scoring}\n\\end{figure}\nThis formulation forces"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "fca1cc94-f53a-4071-b824-ebb6c32e7dd6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XqRxfrxdU5tfB11pf4772D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1308,
+      "cache_read_input_tokens": 33415,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1308
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-24T21:59:37.432Z_
+
+<details><summary>↩ Tool result · `toolu_01WW4bpcyzFTKs7VT4mx38ph`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/method.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "56004213-aa5a-4c3f-917a-599a710d1412",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/method.tex",
+    "oldString": "\\text{CED}(e_h, r, e_t, E) = p^+ - \\max_j \\, p^-_j\n\\label{eq:ced}\n\\end{equation}\nThis formulation forces",
+    "newString": "\\text{CED}(e_h, r, e_t, E) = p^+ - \\max_j \\, p^-_j\n\\label{eq:ced}\n\\end{equation}\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig_ced_scoring.pdf}\n\\caption{CED scoring example. The positive pair (evidence $\\to$ hypothesis) yields high entailment; the contrastive distractor (entity-sharing non-evidence) yields low entailment. CED measures the margin between them.}\n\\label{fig:ced_scoring}\n\\end{figure}\nThis formulation forces",
+    "originalFile": "\\section{Method}\n\\label{sec:method}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=0.92\\textwidth]{fig_overview.pdf}\n\\vspace{-2mm}\n\\caption{Evidence-grounded DocRE produces relation triples with supporting sentence indices, unlike standard DocRE which outputs bare triples. RSFT selects the top-$k$ of $N$ CED-scored candidates per document for fine-tuning.}\n\\label{fig:overview}\n\\end{figure*}\n\n\\subsection{Task: Evidence-Grounded Document-Level Relation Extraction}\n\\label{sec:task}\n\nGiven a document $D = \\{s_1, \\ldots, s_n\\}$ consisting of $n$ sentences and a set of entities $\\mathcal{E}$ identified within $D$, the task of evidence-grounded document-level relation extraction (DocRE) requires predicting, for each entity pair $(e_h, e_t) \\in \\mathcal{E} \\times \\mathcal{E}$, a relation $r \\in \\mathcal{R} \\cup \\{\\texttt{NA}\\}$ together with a set of supporting evidence sentences $E \\subseteq D$. Standard DocRE predicts only the triple $(e_h, r, e_t)$; the evidence-grounded formulation also requires $E$, which grounds each prediction in specific textual support (Figure~\\ref{fig:overview}).\n\nIn our LLM-based approach, the model generates structured outputs that jointly encode both components. For each predicted relation, the output follows the format \\texttt{(head, relation, tail) | Evidence: [S$i$][S$j$]}, requiring the model to produce complete evidence references inline with each triple rather than as a separate retrieval step. This design contrasts with encoder-based evidence methods such as SAIS~\\citep{xiao2022sais} and DREEAM~\\citep{ma2023dreeam}, which frame evidence identification as sentence-level binary classification. Because classification over a fixed sentence set does not increase output length, these methods incur no generation overhead. Our LLM formulation requires additional tokens for each evidence reference, creating a generation burden that scales with the number of predicted triples and their evidence sentences. This scale-dependent cost is the central phenomenon we investigate.\n\n\n\\subsection{Supervised Fine-Tuning Baseline}\n\\label{sec:sft}\n\nWe fine-tune all models with Low-Rank Adaptation (LoRA) \\citep{hu2022lora} at rank $r{=}64$ and scaling factor $\\alpha{=}128$, applied to all linear projections (attention and feed-forward). The training data consists of DocRED~\\citep{yao2019docred} training documents converted to the structured output format described above, where each example maps a document and its entity set to the complete set of relation triples with evidence annotations. We also train a \\emph{no-evidence} variant under identical configuration but with evidence references removed from the output format, producing only \\texttt{(head, relation, tail)}. This variant serves as an upper bound on extraction performance by eliminating the generation cost of evidence, and allows direct measurement of the evidence tax at each model scale. Detailed hyperparameters (learning rate, batch size, number of epochs) are reported in the Appendix.\n\n\n\\subsection{Optimization Paradigms}\n\\label{sec:paradigms}\n\nWe evaluate three post-SFT optimization paradigms that differ in how they incorporate quality signals from the CED scoring function (\\S\\ref{sec:ced}).\n\n\\paragraph{GRPO.}\nGroup Relative Policy Optimization~\\citep{shao2024deepseekmath} is an online RL method that eliminates the need for a separate value network by computing advantages within groups of sampled outputs. For each training document, the policy generates $G$ candidate responses, which are scored by CED. The advantage of each response is computed relative to the group mean, and the policy is updated to increase the probability of above-average outputs. We test two configurations: QLoRA \\citep{dettmers2023qlora} with $G{=}4$ groups under 4-bit quantization, and bf16 full-precision LoRA with $G{=}8$. Because GRPO applies gradient updates that directly optimize the reward signal, evidence quality and extraction accuracy compete for gradient capacity. We analyze this multi-objective tension in Section~\\ref{sec:spectrum}.\n\n\\paragraph{DPO.}\nDirect Preference Optimization~\\citep{rafailov2023direct} reformulates RLHF~\\citep{ouyang2022instructgpt} as a classification problem over preference pairs, without explicit reward models. We construct preference data from the SFT model's sampled outputs: for each document, the response with the highest CED score is labeled as preferred and the lowest-scoring response as rejected. DPO then adjusts the policy to increase the log-probability ratio between preferred and rejected completions. We train for 1 and 3 epochs to observe the temporal dynamics of evidence-extraction trade-offs under implicit optimization.\n\n\\paragraph{RSFT.}\nRejection Sampling Fine-Tuning is a single-round variant of iterative self-improvement methods such as STaR~\\citep{zelikman2022star}. The procedure is straightforward: the SFT model generates $N{=}8$ candidate outputs per training document, each candidate is scored by CED, and only the top-$k{=}1$ response is retained as training data. We use $k{=}1$ (best-of-$N$) selection throughout all experiments, selecting the single highest-scoring candidate per document for RSFT training data construction. This yields approximately 3,000 training examples per model (one per document; exact counts vary slightly by model due to generation failures). Unlike GRPO and DPO, RSFT does not apply gradient-based optimization pressure toward a reward signal. Instead, it improves training data quality through filtering: the model trains on its own best outputs rather than all outputs. This distinction is critical because discrete selection over complete outputs cannot exploit the extraction-evidence trade-off that gradient methods find. The contribution of RSFT in our setting is not the framework itself, which is well-established, but its application to evidence-grounded DocRE with CED as a domain-specific quality filter.\n\n\n\\subsection{Contrastive Evidence Discrimination}\n\\label{sec:ced}\n\nCED is a scoring function that evaluates the faithfulness of predicted evidence sentences to their associated relation triples. It builds on Natural Language Inference (NLI) to measure whether evidence actually entails the predicted relation, rather than merely co-occurring with the relevant entities.\n\nFor a predicted triple $(e_h, r, e_t)$ with evidence sentences $E$, CED constructs a positive NLI pair: the premise is the concatenation of sentences in $E$, and the hypothesis is a natural-language verbalization of the relation (e.g., ``$e_h$ has relation $r$ with $e_t$''). An NLI model based on DeBERTaV3 \\citep{he2023debertav3} (\\texttt{cross-encoder/nli-deberta-v3-base}) produces an entailment probability $p^+$ for this pair. The contrastive component introduces hard negatives drawn from the same document. For each triple, we collect sentences that mention $e_h$ or $e_t$ but are not in the predicted evidence set. These entity-sharing distractors serve as negative premises, and the NLI model scores each to obtain $p^-_1, \\ldots, p^-_m$. The CED score for a single triple is:\n\\begin{equation}\n\\text{CED}(e_h, r, e_t, E) = p^+ - \\max_j \\, p^-_j\n\\label{eq:ced}\n\\end{equation}\nThis formulation forces the scoring function to distinguish sentences that genuinely support the relation from sentences that merely mention the same entities. A high CED score indicates that the evidence provides relation-specific support beyond entity co-occurrence.\n\nThe document-level CED score aggregates over all predicted triples, weighted by extraction correctness: triples that match ground-truth relations contribute their CED scores, while incorrect triples receive zero credit. This coupling ensures that CED rewards both faithful evidence and accurate extraction jointly.\n\nWe also evaluate a \\emph{flat-NLI} baseline that uses only the positive entailment score $p^+$ without the contrastive term. CED and flat-NLI produce comparable RSFT outcomes (mean Rel-F1 difference of 0.02pp across available seeds; Section~\\ref{sec:analysis}), confirming that the contrastive formulation is not essential for data selection quality. We adopt CED as the default because its per-triple discrimination scores support interpretable error analysis.\n\n\n\\subsection{Evidence-Decoupling Ratio}\n\\label{sec:edcr}\n\nWe introduce the Evidence-Decoupling Ratio (EDCR) as a diagnostic metric that quantifies the degree of misalignment between a model's extraction and evidence capabilities. EDCR is not a training component; it serves purely as an analytical tool for comparing optimization methods.\n\nEDCR is defined as the distractor citation rate across all predicted triples:\n\\begin{equation}\n\\text{EDCR} = \\frac{\\sum_{i} |E_i^{\\text{pred}} \\setminus E_i^{\\text{gold}}|}{\\sum_{i} |E_i^{\\text{pred}}|}\n\\label{eq:edcr}\n\\end{equation}\nwhere the sum ranges over all predicted triples with at least one evidence citation. $E_i^{\\text{pred}}$ is the set of evidence sentences cited for predicted triple $i$, and $E_i^{\\text{gold}}$ is the corresponding gold evidence (empty for false-positive predictions). EDCR thus measures the fraction of all cited evidence that does not appear in the gold evidence for the associated triple.\n\nA model with many false-positive triples will have high EDCR because all evidence for incorrect triples counts as distractor; even among correct triples, citing irrelevant sentences inflates the numerator. Conversely, accurate extraction with faithful evidence yields low EDCR. This dual sensitivity makes EDCR a natural diagnostic for extraction-evidence decoupling.\n\nEDCR operates at two diagnostic levels. At the method level, comparing EDCR across seven independent method configurations reveals a negative correlation with Rel-F1 (Spearman $\\rho{=}{-}0.89$, $n{=}7$, $p{=}0.007$). Because EDCR is mechanically influenced by false-positive triples (which share determinants with Rel-F1), this correlation should be interpreted as a diagnostic pattern rather than an independent discovery; its primary value lies in per-relation analysis. We validate EDCR's diagnostic utility through per-relation analysis (\\S\\ref{sec:analysis}), which avoids the shared-component concern present in cross-method correlation. At the per-relation level, computing EDCR for individual relation types reveals a robust negative correlation with Rel-F1 ($\\rho{=}{-}0.79$, $n{=}76$, $p{<}0.001$) that is independent of Evi-F1 ($\\rho{=}{-}0.06$, $p{=}0.58$). This independence means EDCR captures relation-specific extraction-evidence misalignment that aggregate evidence metrics miss. The SFT baseline EDCR (0.6797, three-seed mean) reflects the inherent distractor rate under standard training; EDCR values substantially exceeding this level (e.g., GRPO QLoRA at 0.9876) indicate RL-induced decoupling beyond what evidence production alone explains, while values below the baseline (e.g., RSFT at 0.6487) reflect improved co-optimization.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 48,
+        "oldLines": 6,
+        "newStart": 48,
+        "newLines": 12,
+        "lines": [
+          " \\text{CED}(e_h, r, e_t, E) = p^+ - \\max_j \\, p^-_j",
+          " \\label{eq:ced}",
+          " \\end{equation}",
+          "+\\begin{figure}[t]",
+          "+\\centering",
+          "+\\includegraphics[width=\\columnwidth]{figures/paper/fig_ced_scoring.pdf}",
+          "+\\caption{CED scoring example. The positive pair (evidence $\\to$ hypothesis) yields high entailment; the contrastive distractor (entity-sharing non-evidence) yields low entailment. CED measures the margin between them.}",
+          "+\\label{fig:ced_scoring}",
+          "+\\end{figure}",
+          " This formulation forces the scoring function to distinguish sentences that genuinely support the relation from sentences that merely mention the same entities. A high CED score indicates that the evidence provides relation-specific support beyond entity co-occurrence.",
+          " ",
+          " The document-level CED score aggregates over all predicted triples, weighted by extraction correctness: triples that match ground-truth relations contribute their CED scores, while incorrect triples receive zero credit. This coupling ensures that CED rewards both faithful evidence and accurate extraction jointly."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+Now compile and check page count.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "31ce3490-5207-4ed4-b578-800a93346ec2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CaSgBKLnxPAnxkSPUQReFa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 594,
+      "cache_read_input_tokens": 34723,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 594
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01XJd1ZERzdw82qAbCuwFhDr`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5 && bibtex main 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5",
+  "description": "Compile LaTeX and check for errors",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "f78d6493-2198-4601-bc77-55734d02eb68",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CaSgBKLnxPAnxkSPUQReFa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 594,
+      "cache_read_input_tokens": 34723,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 594
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 30_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bxmilrlrp",
+  "tool_use_id": "toolu_01XJd1ZERzdw82qAbCuwFhDr",
+  "description": "Compile LaTeX and check for errors",
+  "task_type": "local_bash",
+  "uuid": "7ea551bd-3d70-4513-b5f0-ccfb0371ce72",
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e"
+}
+```
+
+---
+
+### System
+
+_source line 31_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bxmilrlrp",
+  "tool_use_id": "toolu_01XJd1ZERzdw82qAbCuwFhDr",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Compile LaTeX and check for errors",
+  "uuid": "62941c8f-ecb1-4aa3-b069-e74a2e25ab45",
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e"
+}
+```
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-24T21:59:45.811Z_
+
+<details><summary>↩ Tool result · `toolu_01XJd1ZERzdw82qAbCuwFhDr`</summary>
+
+```text
+/fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1
+/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr
+8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (19 pages, 884708 bytes).
+Transcript written on main.log.
+The top-level auxiliary file: main.aux
+The style file: acl_natbib.bst
+Database file #1: references.bib
+texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (19 pages, 884358 bytes).
+Transcript written on main.log.
+hvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr
+/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/
+texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (19 pages, 884358 bytes).
+Transcript written on main.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "faa3d3e6-f9fc-4039-8464-c19af97c5520",
+  "tool_use_result": {
+    "stdout": "/fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1\n/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr\n8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (19 pages, 884708 bytes).\nTranscript written on main.log.\nThe top-level auxiliary file: main.aux\nThe style file: acl_natbib.bst\nDatabase file #1: references.bib\ntexmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (19 pages, 884358 bytes).\nTranscript written on main.log.\nhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr\n/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/\ntexmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (19 pages, 884358 bytes).\nTranscript written on main.log.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+Compiled successfully. Let me check where References start to verify the 8-page limit.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "1cc8e1ea-7e0b-4dd4-831b-60f8fc7b9206",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MWMAUf5zcfx9zruS3Qede6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 606,
+      "cache_read_input_tokens": 35317,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 606
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01UUJKz9V6Tb8tohfdpX4FUE`</summary>
+
+```json
+{
+  "command": "grep -n \"\\\\\\\\section\\|\\\\\\\\bibliography\\|\\\\\\\\appendix\" main.tex | head -20",
+  "description": "Check main.tex structure for page boundaries"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "682fbba0-43b1-40b6-a7fd-afeb5b0f9814",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MWMAUf5zcfx9zruS3Qede6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 606,
+      "cache_read_input_tokens": 35317,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 606
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-24T21:59:49.668Z_
+
+<details><summary>↩ Tool result · `toolu_01UUJKz9V6Tb8tohfdpX4FUE`</summary>
+
+```text
+36:\bibliography{references}
+38:\appendix
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "f2d18ae1-88aa-44de-8681-10c16f9cf9cd",
+  "tool_use_result": {
+    "stdout": "36:\\bibliography{references}\n38:\\appendix",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01YRSt34MYSYNKqHaTNMRspy`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\nlines = result.stdout.split('\\n')\nfor i, line in enumerate(lines):\n    if 'References' in line or 'REFERENCES' in line or 'Bibliography' in line:\n        print(f'Line {i}: {line.strip()[:80]}')\n\" 2>/dev/null || echo \"pdftotext not available\"",
+  "description": "Find References page in compiled PDF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "4fb44f58-a683-40e3-8aca-25d6e5ed0479",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DtS1KBLWZN7JRDxt8nwBe2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 144,
+      "cache_read_input_tokens": 35923,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 144
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-24T21:59:58.187Z_
+
+<details><summary>↩ Tool result · `toolu_01YRSt34MYSYNKqHaTNMRspy`</summary>
+
+```text
+Line 1705: References
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "64e19ded-b850-4cd9-afe8-f5c582a91249",
+  "tool_use_result": {
+    "stdout": "Line 1705: References",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01N3nVHQfT6yD1n6wcN7b59X`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-layout', '-'], capture_output=True, text=True)\ntext = result.stdout\npages = text.split('\\x0c')\nfor i, page in enumerate(pages):\n    first_line = page.strip().split('\\n')[0] if page.strip() else '(empty)'\n    print(f'Page {i+1}: {first_line[:80]}')\n    if 'References' in page or 'REFERENCES' in page:\n        # find exact line\n        for line in page.split('\\n'):\n            if 'References' in line:\n                print(f'  >> References found on page {i+1}')\n                break\n\" 2>/dev/null",
+  "description": "Check which page References starts on"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "9229e2af-71fd-44c6-9f9a-8a665f42fc45",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B9cQ26rix6DsDe37A3Azfh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 213,
+      "cache_read_input_tokens": 36067,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 213
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-24T22:00:03.969Z_
+
+<details><summary>↩ Tool result · `toolu_01N3nVHQfT6yD1n6wcN7b59X`</summary>
+
+```text
+Page 1: Evidence at What Cost? Decoupling and Scaling in LLM-Based Document
+Page 2: 085   duplication) but is approximately neutral at ≥4B            identify relat
+Page 3: 182   strategy. Whether this cost is inevitable or can be           rationales. 
+Page 4: Figure 1: Evidence-grounded DocRE produces relation triples with supporting sent
+Page 5: 338   RSFT. Rejection Sampling Fine-Tuning is a
+Page 6: 416   across all predicted triples:                               Table 1: Main 
+Page 7: 60
+Page 8: G=4, QLoRA                        G=8, bf16
+Page 9: 600   but not how well it grounds extractions—concrete            training examp
+  >> References found on page 9
+Page 10: 700   Jordan Hoffmann, Sebastian Borgeaud, Arthur Mensch,              GDPO: Gro
+Page 11: 808   Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu,                     and Ma
+Page 12: Table 3: Training hyperparameters for all optimization paradigms. All experiment
+Page 13: Table 4: Full RSFT ablation on DocRED dev set                                   
+Page 14: Table 7: Mechanistic breakdown of output quality                 Table 8:      T
+Page 15: 1108   them with standard supervised loss. Because the se-            Table 9: S
+Page 16: Table 10: Evidence tax on Re-DocRED test set (Ign-F1                          Ta
+Page 17: 1248   J   GRPO Training Dynamics                                     Table 14: 
+Page 18: capital of,
+Page 19: Table 16: Inference time (seconds) for SFT with vs.                             
+Page 20: (empty)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "3b92242b-6e98-4f22-83e1-f28d596f2250",
+  "tool_use_result": {
+    "stdout": "Page 1: Evidence at What Cost? Decoupling and Scaling in LLM-Based Document\nPage 2: 085   duplication) but is approximately neutral at ≥4B            identify relat\nPage 3: 182   strategy. Whether this cost is inevitable or can be           rationales. \nPage 4: Figure 1: Evidence-grounded DocRE produces relation triples with supporting sent\nPage 5: 338   RSFT. Rejection Sampling Fine-Tuning is a\nPage 6: 416   across all predicted triples:                               Table 1: Main \nPage 7: 60\nPage 8: G=4, QLoRA                        G=8, bf16\nPage 9: 600   but not how well it grounds extractions—concrete            training examp\n  >> References found on page 9\nPage 10: 700   Jordan Hoffmann, Sebastian Borgeaud, Arthur Mensch,              GDPO: Gro\nPage 11: 808   Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu,                     and Ma\nPage 12: Table 3: Training hyperparameters for all optimization paradigms. All experiment\nPage 13: Table 4: Full RSFT ablation on DocRED dev set                                   \nPage 14: Table 7: Mechanistic breakdown of output quality                 Table 8:      T\nPage 15: 1108   them with standard supervised loss. Because the se-            Table 9: S\nPage 16: Table 10: Evidence tax on Re-DocRED test set (Ign-F1                          Ta\nPage 17: 1248   J   GRPO Training Dynamics                                     Table 14: \nPage 18: capital of,\nPage 19: Table 16: Inference time (seconds) for SFT with vs.                             \nPage 20: (empty)",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+References start on page 9 — main text ends on page 8. The 8-page limit is satisfied.
+
+Let me verify the PDF renders the figure correctly.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "bf902a15-2943-42bc-bcb3-4e554af2b1d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JDwUjfuV2Vgi9MHk9sWDvh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 36280,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 732
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017A8V6mhiX5qra6ouje3eGf`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/main.pdf",
+  "pages": "5-6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "db9a1665-4d0a-443b-8f43-22ccb8d05528",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JDwUjfuV2Vgi9MHk9sWDvh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 36280,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 732
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-24T22:00:10.552Z_
+
+<details><summary>↩ Tool result · `toolu_017A8V6mhiX5qra6ouje3eGf`</summary>
+
+```text
+PDF pages extracted: 2 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/main.pdf (863.6KB)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "12a9525d-16c6-426f-b553-fa2fd278a947",
+  "tool_use_result": {
+    "type": "parts",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/main.pdf",
+      "originalSize": 884358,
+      "outputDir": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2a04bf73-0fcd-413f-8e06-cba222d8a32e/tool-results/pdf-76a57f2c-996c-40ad-8182-77cbbcdc1217",
+      "count": 2
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 1
+
+1 recorded events
+
+### User
+
+_source line 43 · 2026-05-24T22:00:10.551Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "6ad327e7-3c4a-4846-887d-000000000000",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+14 recorded events
+
+### User
+
+_source line 44 · 2026-05-24T22:00:10.551Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "6ad327e7-3c4a-4846-887d-000000000001",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+The PDF shows the figure is not rendering - it's showing the file path "figures/paper/fig_ced_scoring.pdf" instead of the actual figure. This is because LaTeX can't find the file at that relative path. I need to check the LaTeX compilation directory and how other figures are referenced.
+
+Looking at the existing figure in method.tex line 6:
+```
+\includegraphics[width=0.92\textwidth]{fig_overview.pdf}
+```
+
+It uses just `fig_overview.pdf` without the `figures/paper/` prefix. So the LaTeX graphicspath must include that directory, or the files are copied/symlinked. Let me check the main.tex for graphicspath settings.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "3120de93-bec3-47e4-b100-1e16ffef72cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wt3yq3d29DXZCvXJL4VZTB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2840,
+      "cache_read_input_tokens": 37012,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2840
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+图没有渲染出来——显示的是文件路径而非图片。其他图用的是 `fig_overview.pdf` 不带路径前缀。让我检查 `main.tex` 的 graphicspath 设置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "2a090556-c11f-466d-80ce-6472265a23d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wt3yq3d29DXZCvXJL4VZTB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2840,
+      "cache_read_input_tokens": 37012,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2840
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01W18Xw3PfupwbWNfFntftok`</summary>
+
+```json
+{
+  "command": "grep -n \"graphicspath\\|includegraphics\" main.tex",
+  "description": "Check graphicspath and includegraphics patterns in main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "acd4fa7c-0d9c-49be-997e-ab3922788dfa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wt3yq3d29DXZCvXJL4VZTB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2840,
+      "cache_read_input_tokens": 37012,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2840
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-24T22:00:20.736Z_
+
+<details><summary>↩ Tool result · `toolu_01W18Xw3PfupwbWNfFntftok`</summary>
+
+```text
+19:\graphicspath{{../../figures/paper/}}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "66666f4b-84a3-4e8e-af88-bd2fa3b36cbc",
+  "tool_use_result": {
+    "stdout": "19:\\graphicspath{{../../figures/paper/}}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+`graphicspath` 已经指向 `../../figures/paper/`，所以 `\includegraphics` 只需要文件名。修正路径。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "59d97c32-78cb-42e9-8d3e-a88633e69933",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01USM4nfmAR3TzZc8PzgVrYW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 367,
+      "cache_read_input_tokens": 39852,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 367
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_014Wrf5parvmerFoXN1QVwbu`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/method.tex",
+  "old_string": "\\includegraphics[width=\\columnwidth]{figures/paper/fig_ced_scoring.pdf}",
+  "new_string": "\\includegraphics[width=\\columnwidth]{fig_ced_scoring.pdf}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "cbafbf81-47bc-4caa-b749-853088199d5b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01USM4nfmAR3TzZc8PzgVrYW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 367,
+      "cache_read_input_tokens": 39852,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 367
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-24T22:00:27.018Z_
+
+<details><summary>↩ Tool result · `toolu_014Wrf5parvmerFoXN1QVwbu`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/method.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "f4aca331-bb18-4273-8c4b-f9d1b69bc296",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/method.tex",
+    "oldString": "\\includegraphics[width=\\columnwidth]{figures/paper/fig_ced_scoring.pdf}",
+    "newString": "\\includegraphics[width=\\columnwidth]{fig_ced_scoring.pdf}",
+    "originalFile": "\\section{Method}\n\\label{sec:method}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=0.92\\textwidth]{fig_overview.pdf}\n\\vspace{-2mm}\n\\caption{Evidence-grounded DocRE produces relation triples with supporting sentence indices, unlike standard DocRE which outputs bare triples. RSFT selects the top-$k$ of $N$ CED-scored candidates per document for fine-tuning.}\n\\label{fig:overview}\n\\end{figure*}\n\n\\subsection{Task: Evidence-Grounded Document-Level Relation Extraction}\n\\label{sec:task}\n\nGiven a document $D = \\{s_1, \\ldots, s_n\\}$ consisting of $n$ sentences and a set of entities $\\mathcal{E}$ identified within $D$, the task of evidence-grounded document-level relation extraction (DocRE) requires predicting, for each entity pair $(e_h, e_t) \\in \\mathcal{E} \\times \\mathcal{E}$, a relation $r \\in \\mathcal{R} \\cup \\{\\texttt{NA}\\}$ together with a set of supporting evidence sentences $E \\subseteq D$. Standard DocRE predicts only the triple $(e_h, r, e_t)$; the evidence-grounded formulation also requires $E$, which grounds each prediction in specific textual support (Figure~\\ref{fig:overview}).\n\nIn our LLM-based approach, the model generates structured outputs that jointly encode both components. For each predicted relation, the output follows the format \\texttt{(head, relation, tail) | Evidence: [S$i$][S$j$]}, requiring the model to produce complete evidence references inline with each triple rather than as a separate retrieval step. This design contrasts with encoder-based evidence methods such as SAIS~\\citep{xiao2022sais} and DREEAM~\\citep{ma2023dreeam}, which frame evidence identification as sentence-level binary classification. Because classification over a fixed sentence set does not increase output length, these methods incur no generation overhead. Our LLM formulation requires additional tokens for each evidence reference, creating a generation burden that scales with the number of predicted triples and their evidence sentences. This scale-dependent cost is the central phenomenon we investigate.\n\n\n\\subsection{Supervised Fine-Tuning Baseline}\n\\label{sec:sft}\n\nWe fine-tune all models with Low-Rank Adaptation (LoRA) \\citep{hu2022lora} at rank $r{=}64$ and scaling factor $\\alpha{=}128$, applied to all linear projections (attention and feed-forward). The training data consists of DocRED~\\citep{yao2019docred} training documents converted to the structured output format described above, where each example maps a document and its entity set to the complete set of relation triples with evidence annotations. We also train a \\emph{no-evidence} variant under identical configuration but with evidence references removed from the output format, producing only \\texttt{(head, relation, tail)}. This variant serves as an upper bound on extraction performance by eliminating the generation cost of evidence, and allows direct measurement of the evidence tax at each model scale. Detailed hyperparameters (learning rate, batch size, number of epochs) are reported in the Appendix.\n\n\n\\subsection{Optimization Paradigms}\n\\label{sec:paradigms}\n\nWe evaluate three post-SFT optimization paradigms that differ in how they incorporate quality signals from the CED scoring function (\\S\\ref{sec:ced}).\n\n\\paragraph{GRPO.}\nGroup Relative Policy Optimization~\\citep{shao2024deepseekmath} is an online RL method that eliminates the need for a separate value network by computing advantages within groups of sampled outputs. For each training document, the policy generates $G$ candidate responses, which are scored by CED. The advantage of each response is computed relative to the group mean, and the policy is updated to increase the probability of above-average outputs. We test two configurations: QLoRA \\citep{dettmers2023qlora} with $G{=}4$ groups under 4-bit quantization, and bf16 full-precision LoRA with $G{=}8$. Because GRPO applies gradient updates that directly optimize the reward signal, evidence quality and extraction accuracy compete for gradient capacity. We analyze this multi-objective tension in Section~\\ref{sec:spectrum}.\n\n\\paragraph{DPO.}\nDirect Preference Optimization~\\citep{rafailov2023direct} reformulates RLHF~\\citep{ouyang2022instructgpt} as a classification problem over preference pairs, without explicit reward models. We construct preference data from the SFT model's sampled outputs: for each document, the response with the highest CED score is labeled as preferred and the lowest-scoring response as rejected. DPO then adjusts the policy to increase the log-probability ratio between preferred and rejected completions. We train for 1 and 3 epochs to observe the temporal dynamics of evidence-extraction trade-offs under implicit optimization.\n\n\\paragraph{RSFT.}\nRejection Sampling Fine-Tuning is a single-round variant of iterative self-improvement methods such as STaR~\\citep{zelikman2022star}. The procedure is straightforward: the SFT model generates $N{=}8$ candidate outputs per training document, each candidate is scored by CED, and only the top-$k{=}1$ response is retained as training data. We use $k{=}1$ (best-of-$N$) selection throughout all experiments, selecting the single highest-scoring candidate per document for RSFT training data construction. This yields approximately 3,000 training examples per model (one per document; exact counts vary slightly by model due to generation failures). Unlike GRPO and DPO, RSFT does not apply gradient-based optimization pressure toward a reward signal. Instead, it improves training data quality through filtering: the model trains on its own best outputs rather than all outputs. This distinction is critical because discrete selection over complete outputs cannot exploit the extraction-evidence trade-off that gradient methods find. The contribution of RSFT in our setting is not the framework itself, which is well-established, but its application to evidence-grounded DocRE with CED as a domain-specific quality filter.\n\n\n\\subsection{Contrastive Evidence Discrimination}\n\\label{sec:ced}\n\nCED is a scoring function that evaluates the faithfulness of predicted evidence sentences to their associated relation triples. It builds on Natural Language Inference (NLI) to measure whether evidence actually entails the predicted relation, rather than merely co-occurring with the relevant entities.\n\nFor a predicted triple $(e_h, r, e_t)$ with evidence sentences $E$, CED constructs a positive NLI pair: the premise is the concatenation of sentences in $E$, and the hypothesis is a natural-language verbalization of the relation (e.g., ``$e_h$ has relation $r$ with $e_t$''). An NLI model based on DeBERTaV3 \\citep{he2023debertav3} (\\texttt{cross-encoder/nli-deberta-v3-base}) produces an entailment probability $p^+$ for this pair. The contrastive component introduces hard negatives drawn from the same document. For each triple, we collect sentences that mention $e_h$ or $e_t$ but are not in the predicted evidence set. These entity-sharing distractors serve as negative premises, and the NLI model scores each to obtain $p^-_1, \\ldots, p^-_m$. The CED score for a single triple is:\n\\begin{equation}\n\\text{CED}(e_h, r, e_t, E) = p^+ - \\max_j \\, p^-_j\n\\label{eq:ced}\n\\end{equation}\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig_ced_scoring.pdf}\n\\caption{CED scoring example. The positive pair (evidence $\\to$ hypothesis) yields high entailment; the contrastive distractor (entity-sharing non-evidence) yields low entailment. CED measures the margin between them.}\n\\label{fig:ced_scoring}\n\\end{figure}\nThis formulation forces the scoring function to distinguish sentences that genuinely support the relation from sentences that merely mention the same entities. A high CED score indicates that the evidence provides relation-specific support beyond entity co-occurrence.\n\nThe document-level CED score aggregates over all predicted triples, weighted by extraction correctness: triples that match ground-truth relations contribute their CED scores, while incorrect triples receive zero credit. This coupling ensures that CED rewards both faithful evidence and accurate extraction jointly.\n\nWe also evaluate a \\emph{flat-NLI} baseline that uses only the positive entailment score $p^+$ without the contrastive term. CED and flat-NLI produce comparable RSFT outcomes (mean Rel-F1 difference of 0.02pp across available seeds; Section~\\ref{sec:analysis}), confirming that the contrastive formulation is not essential for data selection quality. We adopt CED as the default because its per-triple discrimination scores support interpretable error analysis.\n\n\n\\subsection{Evidence-Decoupling Ratio}\n\\label{sec:edcr}\n\nWe introduce the Evidence-Decoupling Ratio (EDCR) as a diagnostic metric that quantifies the degree of misalignment between a model's extraction and evidence capabilities. EDCR is not a training component; it serves purely as an analytical tool for comparing optimization methods.\n\nEDCR is defined as the distractor citation rate across all predicted triples:\n\\begin{equation}\n\\text{EDCR} = \\frac{\\sum_{i} |E_i^{\\text{pred}} \\setminus E_i^{\\text{gold}}|}{\\sum_{i} |E_i^{\\text{pred}}|}\n\\label{eq:edcr}\n\\end{equation}\nwhere the sum ranges over all predicted triples with at least one evidence citation. $E_i^{\\text{pred}}$ is the set of evidence sentences cited for predicted triple $i$, and $E_i^{\\text{gold}}$ is the corresponding gold evidence (empty for false-positive predictions). EDCR thus measures the fraction of all cited evidence that does not appear in the gold evidence for the associated triple.\n\nA model with many false-positive triples will have high EDCR because all evidence for incorrect triples counts as distractor; even among correct triples, citing irrelevant sentences inflates the numerator. Conversely, accurate extraction with faithful evidence yields low EDCR. This dual sensitivity makes EDCR a natural diagnostic for extraction-evidence decoupling.\n\nEDCR operates at two diagnostic levels. At the method level, comparing EDCR across seven independent method configurations reveals a negative correlation with Rel-F1 (Spearman $\\rho{=}{-}0.89$, $n{=}7$, $p{=}0.007$). Because EDCR is mechanically influenced by false-positive triples (which share determinants with Rel-F1), this correlation should be interpreted as a diagnostic pattern rather than an independent discovery; its primary value lies in per-relation analysis. We validate EDCR's diagnostic utility through per-relation analysis (\\S\\ref{sec:analysis}), which avoids the shared-component concern present in cross-method correlation. At the per-relation level, computing EDCR for individual relation types reveals a robust negative correlation with Rel-F1 ($\\rho{=}{-}0.79$, $n{=}76$, $p{<}0.001$) that is independent of Evi-F1 ($\\rho{=}{-}0.06$, $p{=}0.58$). This independence means EDCR captures relation-specific extraction-evidence misalignment that aggregate evidence metrics miss. The SFT baseline EDCR (0.6797, three-seed mean) reflects the inherent distractor rate under standard training; EDCR values substantially exceeding this level (e.g., GRPO QLoRA at 0.9876) indicate RL-induced decoupling beyond what evidence production alone explains, while values below the baseline (e.g., RSFT at 0.6487) reflect improved co-optimization.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 50,
+        "oldLines": 7,
+        "newStart": 50,
+        "newLines": 7,
+        "lines": [
+          " \\end{equation}",
+          " \\begin{figure}[t]",
+          " \\centering",
+          "-\\includegraphics[width=\\columnwidth]{figures/paper/fig_ced_scoring.pdf}",
+          "+\\includegraphics[width=\\columnwidth]{fig_ced_scoring.pdf}",
+          " \\caption{CED scoring example. The positive pair (evidence $\\to$ hypothesis) yields high entailment; the contrastive distractor (entity-sharing non-evidence) yields low entailment. CED measures the margin between them.}",
+          " \\label{fig:ced_scoring}",
+          " \\end{figure}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PFBaBAmWAa14WtDUBMvdxz`</summary>
+
+```json
+{
+  "command": "pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && bibtex main 2>&1 | tail -2 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+  "description": "Recompile LaTeX with fixed path",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "f5fb2996-2d71-4c65-95b6-92b677a447da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011HzGKCrh2xxgux3JKK8BsC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 286,
+      "cache_read_input_tokens": 40219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 286
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 53_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bkdb56rj1",
+  "tool_use_id": "toolu_01PFBaBAmWAa14WtDUBMvdxz",
+  "description": "Recompile LaTeX with fixed path",
+  "task_type": "local_bash",
+  "uuid": "ace5651f-35c8-4326-a258-8b736c5cb1d7",
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e"
+}
+```
+
+---
+
+### System
+
+_source line 54_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bkdb56rj1",
+  "tool_use_id": "toolu_01PFBaBAmWAa14WtDUBMvdxz",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Recompile LaTeX with fixed path",
+  "uuid": "a0fe5e47-e618-44a4-9f62-0332e5eded3d",
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e"
+}
+```
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-24T22:00:35.414Z_
+
+<details><summary>↩ Tool result · `toolu_01PFBaBAmWAa14WtDUBMvdxz`</summary>
+
+```text
+texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (19 pages, 917265 bytes).
+Transcript written on main.log.
+The style file: acl_natbib.bst
+Database file #1: references.bib
+texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (19 pages, 917243 bytes).
+Transcript written on main.log.
+texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (19 pages, 917243 bytes).
+Transcript written on main.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "1ffbed15-8287-4031-9cf4-12035a871af2",
+  "tool_use_result": {
+    "stdout": "texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (19 pages, 917265 bytes).\nTranscript written on main.log.\nThe style file: acl_natbib.bst\nDatabase file #1: references.bib\ntexmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (19 pages, 917243 bytes).\nTranscript written on main.log.\ntexmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (19 pages, 917243 bytes).\nTranscript written on main.log.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01SUoXy3qfG1GEjdaxqUY29s`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/main.pdf",
+  "pages": "5-6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "eaa5e8df-2d99-4718-adff-24286b52f66d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UaGt3k3hCF4pFMBTRKHhvK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 375,
+      "cache_read_input_tokens": 40505,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 375
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-24T22:00:38.612Z_
+
+<details><summary>↩ Tool result · `toolu_01SUoXy3qfG1GEjdaxqUY29s`</summary>
+
+```text
+PDF pages extracted: 2 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/main.pdf (895.7KB)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "61b7a9b1-202e-4f22-bb8e-a68c6058aa58",
+  "tool_use_result": {
+    "type": "parts",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/main.pdf",
+      "originalSize": 917243,
+      "outputDir": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2a04bf73-0fcd-413f-8e06-cba222d8a32e/tool-results/pdf-03bdeb25-a443-4fa4-87f9-e34d3515d9d3",
+      "count": 2
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+1 recorded events
+
+### User
+
+_source line 58 · 2026-05-24T22:00:38.611Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "301b4731-2c9e-47e2-86a4-000000000000",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 4
+
+3 recorded events
+
+### User
+
+_source line 59 · 2026-05-24T22:00:38.611Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "301b4731-2c9e-47e2-86a4-000000000001",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+图渲染成功，页数不变（主文 8 页，References 从第 9 页开始）。
+
+汇报：
+
+- **图文件**：`figures/paper/fig_ced_scoring.pdf`（38KB）、`.png`（121KB）
+- **脚本**：`figures/paper/plot_ced_scoring.py`
+- **插入位置**：`method.tex` §3.4 CED 公式（Eq. 1）之后，约第 51 行
+- **编译**：通过，19 页总计，主文 8 页，未超页
+- **未做文字缩减**（无需）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "uuid": "b72dc831-8946-486d-b9a7-e7d6ebdd086d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XuxR4oScaK151Cx952wgcJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2699,
+      "cache_read_input_tokens": 40880,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2699
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 61_
+
+图渲染成功，页数不变（主文 8 页，References 从第 9 页开始）。
+
+汇报：
+
+- **图文件**：`figures/paper/fig_ced_scoring.pdf`（38KB）、`.png`（121KB）
+- **脚本**：`figures/paper/plot_ced_scoring.py`
+- **插入位置**：`method.tex` §3.4 CED 公式（Eq. 1）之后，约第 51 行
+- **编译**：通过，19 页总计，主文 8 页，未超页
+- **未做文字缩减**（无需）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 149884,
+  "duration_api_ms": 140541,
+  "num_turns": 21,
+  "stop_reason": "end_turn",
+  "session_id": "2a04bf73-0fcd-413f-8e06-cba222d8a32e",
+  "total_cost_usd": 0.645345,
+  "usage": {
+    "input_tokens": 24,
+    "cache_creation_input_tokens": 31738,
+    "cache_read_input_tokens": 607467,
+    "output_tokens": 5606,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 31738,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 3,
+        "output_tokens": 177,
+        "cache_read_input_tokens": 40880,
+        "cache_creation_input_tokens": 2699,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2699
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2894,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002979,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 24,
+      "outputTokens": 5606,
+      "cacheReadInputTokens": 607467,
+      "cacheCreationInputTokens": 31738,
+      "webSearchRequests": 0,
+      "costUSD": 0.642366,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "64d93a10-e5a5-429d-a32a-d6b9019aec77"
+}
+```
+
+</details>
+
+---

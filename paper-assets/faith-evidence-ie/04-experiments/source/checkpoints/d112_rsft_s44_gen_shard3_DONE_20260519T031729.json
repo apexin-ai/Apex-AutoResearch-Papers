@@ -1,0 +1,31 @@
+{
+  "exp_id": "d112_rsft_s44_gen_shard3",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:44:31.524Z",
+    "updated_at": "2026-05-19T03:17:28.913Z",
+    "hypothesis": "D112 shard 3: 并行候选生成 (docs [2268:3027])，用 SFT s44 adapter 生成 N=8 RSFT 候选。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 SHARD=3 bash /root/autodl-tmp/scripts/d112/step1_generate_candidates.sh",
+      "server": "rtx5090-4x",
+      "gpu_ids": [
+        "cuda:0"
+      ],
+      "data_path": "/root/autodl-tmp/data/docred/train_annotated.json",
+      "data_count": 759,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "pid": 590568,
+      "checkpoint_path": "/root/autodl-tmp/rsft_generations_4b_sft_s44/shard_3/",
+      "log_path": "N/A (generation job, output in checkpoint_path)"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T03:17:28.913Z"
+  },
+  "timestamp": "2026-05-19T03:17:29.422280+00:00",
+  "trigger": "update_registry"
+}

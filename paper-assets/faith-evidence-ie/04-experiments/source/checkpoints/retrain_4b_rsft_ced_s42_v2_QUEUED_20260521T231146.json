@@ -1,0 +1,15 @@
+{
+  "exp_id": "retrain_4b_rsft_ced_s42_v2",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T23:06:21.364Z",
+    "updated_at": "2026-05-21T23:11:46.170Z",
+    "hypothesis": "重训 4B RSFT s42 (CED k=1)。原 checkpoint 已永久丢失（rtx5090-4x + bjb2 均无备份）。使用现有训练数据 rsft_filtered/rsft_train.jsonl (2718 CED k=1 samples) 重训。完成后提交 test_eval_4b_rsft_s42 填充 test table 4B 数据点。"
+  },
+  "timestamp": "2026-05-21T23:11:46.899858+00:00",
+  "trigger": "update_registry"
+}

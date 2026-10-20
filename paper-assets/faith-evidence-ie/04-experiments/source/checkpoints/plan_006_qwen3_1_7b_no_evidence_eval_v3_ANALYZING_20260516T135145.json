@@ -1,0 +1,34 @@
+{
+  "exp_id": "plan_006_qwen3_1_7b_no_evidence_eval_v3",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T11:45:02.749Z",
+    "updated_at": "2026-05-16T13:51:44.906Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval_v3\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 12275,
+      "model_name": "Qwen3-1.7B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence",
+      "eval_data": "docred-dev",
+      "hypothesis": "Model size ablation: Qwen3-1.7B no-evidence SFT eval (v3, fix bash-c wrapping). plan_006 claim=1.",
+      "plan_id": "plan_006",
+      "parent": "plan_006_qwen3_1_7b_no_evidence_sft",
+      "pid": 337839
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T13:51:42.153Z"
+    }
+  },
+  "timestamp": "2026-05-16T13:51:45.508174+00:00",
+  "trigger": "update_registry"
+}

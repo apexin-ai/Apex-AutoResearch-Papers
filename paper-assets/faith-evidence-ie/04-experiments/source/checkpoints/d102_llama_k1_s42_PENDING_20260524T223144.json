@@ -1,0 +1,23 @@
+{
+  "exp_id": "d102_llama_k1_s42",
+  "project": "faith-evidence-ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T05:36:26.999Z",
+    "updated_at": "2026-05-24T22:31:44.103Z",
+    "metrics": {
+      "ign_f1": 0.5714,
+      "rel_f1": 0.5839,
+      "evi_f1": 0.8238,
+      "edcr": null
+    },
+    "conclusion": "success",
+    "hypothesis": "D102 method correction: LLaMA-8B RSFT eval using k=1 CED (matching paper methodology) instead of k=3",
+    "notes": "LLaMA-3.1-8B RSFT k=1 s42 eval on DocRED dev. Source: /root/autodl-tmp/eval_results/d102_llama_k1_s42/metrics.json. Checkpoint: rsft_output_llama_3_1_8b_k1. Replaces plan_006_llama_rsft_r3_eval (k=3). Paper-canonical value."
+  },
+  "timestamp": "2026-05-24T22:31:44.802565+00:00",
+  "trigger": "update_registry"
+}

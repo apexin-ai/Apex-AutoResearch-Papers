@@ -1,0 +1,32 @@
+{
+  "exp_id": "plan_006_qwen3_1_7b_rsft_train",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:03:05.036Z",
+    "updated_at": "2026-05-17T05:59:47.994Z",
+    "hypothesis": "RSFT with CED-scored data on Qwen3-1.7B will improve relation extraction F1 over SFT baseline by selectively reinforcing high-quality extraction patterns, similar to gains seen on 4B model",
+    "parent": "plan_006_qwen3_1_7b_ced_scoring",
+    "spec": {
+      "command": "python -m freige.training.rsft_trainer --base_model Qwen3-1.7B --sft_adapter sft_output_qwen3_1_7b_bf16 --rsft_data_path rsft_scored_1_7b/rsft_train.jsonl --output_dir rsft_output_qwen3_1_7b --num_epochs 3 --seed 42 --bf16",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:1",
+      "pid": 406515,
+      "data_path": "/root/autodl-tmp/freige/outputs/rsft_scored_1_7b/rsft_train.jsonl",
+      "data_count": 9042,
+      "model_name": "Qwen/Qwen3-1.7B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_qwen3_1_7b_bf16",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json",
+      "checkpoint_path": "/root/autodl-tmp/rsft_output_qwen3_1_7b",
+      "log_path": "~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_rsft_train.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-17T05:59:47.994Z"
+  },
+  "timestamp": "2026-05-17T05:59:48.392186+00:00",
+  "trigger": "update_registry"
+}

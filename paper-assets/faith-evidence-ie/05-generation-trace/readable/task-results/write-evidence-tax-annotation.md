@@ -1,0 +1,43 @@
+# write evidence tax annotation
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_write_evidence_tax_annotation_20260521T210846_result.json`
+- **Structured JSON:** [`ae6ac5f5db7ea9ae78db.json`](../../sessions/ae/ae6ac5f5db7ea9ae78db.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+`register_artifact` tool not available in this environment. The artifact file has been written to:
+
+**`artifacts/evidence_tax_annotation_notes.md`**
+
+### 关键发现
+
+1. **论文有 dev-set 全局声明**（`experiments.tex:17`："All results use the development set"），表格标题也标注了 "DocRED dev Ign-F1"。
+
+2. **核心问题不是标注缺失，而是数字过期**：论文仍使用 D144 已废弃的 +7.5pp（4B）和 -6.2pp（1.7B），而 matched@2048 fair_tax 修正值（4B: +0.25±0.47pp, 1.7B: -5.63pp）未被写入 .tex 文件。
+
+3. **需修改 5 处**（abstract, introduction×2, experiments, conclusion）将 +7.5pp → +0.25±0.47pp, -6.2pp → -5.63pp。
+
+4. **需添加 matched@2048 方法说明**：当前 Table 3 脚注描述的是不匹配的 token budget（no-evi@2048 vs with-evi@1024），fair_tax 使用的 matched@2048 方法论未出现在论文中。
+
+5. **LLaMA RSFT tax** 可从 2-seed (-1.52pp) 更新为 3-seed (-1.14±0.76pp)。
+
+6. **"non-monotonic"/"capacity valley" 叙事已废弃**（D144），需改为 "within-family capacity threshold"。
+
+7. **方差压缩数字**（31×/7.5×/17×/4.6×）已正确，无需修改。
+
+---

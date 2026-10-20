@@ -1,0 +1,27 @@
+method,variant,seed,rel_f1,ign_f1,evi_f1,edcr,source_exp_id,notes
+DREEAM (supervised),RoBERTa-large,,0.6357,0.6172,0.5401,,plan_004_dreeam_baseline,Different paradigm (discriminative)
+SFT baseline,no-quant,,0.4106,,0.8013,0.7039,eval_sft_baseline_noquant,
+SFT baseline,mvp2 protocol,,0.4057,0.4057,0.7979,0.7118,mvp2_eval_sft_baseline,
+SFT no-evidence,rel-only ablation,,0.4893,0.4893,,,eval_plan_014_sft_no_evidence,No evidence output by design
+CED RSFT (top_k=1),3ep alpha=128,42,0.4449,0.4449,0.8187,0.6565,mvp2_eval_rsft_r1,
+CED RSFT (top_k=1),3ep alpha=128,43,0.4683,0.4683,0.8156,0.6388,mvp2_eval_rsft_s43_r2,
+CED RSFT (top_k=1),3ep alpha=128,44,0.4655,0.4655,0.8087,0.6350,mvp2_rsft_train_r1_s44,
+CED RSFT (top_k=1),mean +/- std,,0.4596+/-0.0128,0.4596+/-0.0128,0.8143+/-0.0051,0.6434+/-0.0115,,3 seeds
+CED RSFT (top_k=3),3ep alpha=128,,0.4454,0.4364,0.8088,0.6635,reeval_rsft_topk3,
+CED RSFT ablation,1ep alpha=128 (r2a),,0.4494,0.4494,0.8108,0.6641,mvp2_eval_rsft_r2a,
+CED RSFT ablation,1ep alpha=32 (r2b),,0.4493,0.4493,0.8128,0.6609,mvp2_eval_rsft_r2b,
+flat-NLI RSFT,3ep,42,0.4539,0.4539,0.8043,0.6431,eval_plan_001_flat_nli,
+flat-NLI RSFT,3ep,43,0.4523,0.4523,0.8158,0.6505,reeval_flat_nli_s43,
+flat-NLI RSFT,mean +/- std,,0.4531+/-0.0011,0.4531+/-0.0011,0.8101+/-0.0081,0.6468+/-0.0052,,2 seeds
+CED Reranker,N=8 T=0.7,,0.4864,,0.8188,0.6156,mvp2_ced_reranker_poc,No fine-tuning; oracle ceiling 0.6237
+GRPO bf16 LoRA,G=8 ckpt-100 (pre-training SFT baseline),,0.4549,0.4549,0.8086,0.6318,eval_grpo_g8_bf16,NOT a GRPO result; SFT checkpoint before training
+GRPO bf16 LoRA,G=8 ckpt-90,,0.4523,0.4523,0.8052,0.6414,eval_grpo_g8_bf16,
+GRPO bf16 LoRA,G=8 ckpt-80,,0.4456,0.4456,0.8034,0.6409,eval_grpo_g8_bf16,
+GRPO bf16 LoRA,G=8 step-30,,0.4340,,0.8063,0.6807,plan_011_bf16_g8_step_eval,
+GRPO bf16 LoRA,G=8 step-50,,0.4276,,0.8024,0.6855,plan_011_bf16_g8_step_eval,
+GRPO bf16 LoRA,G=8 step-70 (best after training),,0.4341,,0.8099,0.6685,plan_011_bf16_g8_step_eval,Best GRPO bf16 result (Δ=-2.08pp from pre-training baseline 0.4549)
+GRPO QLoRA 4-bit,step-100 (last),,0.2167,0.2167,0.5746,0.8539,mvp2_eval_ced_kl001_r4_step100,Catastrophic forgetting
+GRPO QLoRA 4-bit,step-90 (best reward),,0.2108,0.2108,0.5666,0.8584,mvp2_eval_ced_kl001_r4_step90,
+GRPO QLoRA 4-bit,step-50,,0.1563,0.1563,0.5643,0.8858,mvp2_eval_ced_kl001_r4_early,
+DPO + CED,1 epoch,,0.4034,0.4034,0.8088,0.7139,eval_plan_012_dpo_1ep_fixed_r2,Matches SFT baseline
+DPO + CED,3 epochs,,0.3429,,0.8403,0.7294,plan_012_dpo_ced,Overfitted (rewards_acc=1.0)

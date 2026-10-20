@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan019_1_7b_sft_s43_eval",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T20:33:55.681Z",
+    "updated_at": "2026-05-18T20:33:55.682Z"
+  },
+  "timestamp": "2026-05-18T20:33:56.111389+00:00",
+  "trigger": "update_registry"
+}

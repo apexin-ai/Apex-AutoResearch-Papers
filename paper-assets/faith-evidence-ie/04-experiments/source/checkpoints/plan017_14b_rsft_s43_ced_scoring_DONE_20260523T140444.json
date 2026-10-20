@@ -1,0 +1,44 @@
+{
+  "exp_id": "plan017_14b_rsft_s43_ced_scoring",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T11:48:18.347Z",
+    "updated_at": "2026-05-23T14:04:43.282Z",
+    "hypothesis": "14B RSFT s43 CED scoring: 对 24216 candidates 用 NLI 模型 (nli-deberta-v3-base) 打分，top_k=1 筛选生成 RSFT 训练数据。Pipeline: generation → [CED scoring] → RSFT train → eval。",
+    "parent": "plan017_14b_rsft_s43_generate",
+    "spec": {
+      "command": "python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations_14b_s43 --output_path /root/autodl-tmp/rsft_scored_14b_s43 --nli_model_path cross-encoder/nli-deberta-v3-base --selection_strategy top_k --top_k 1 --scoring_mode ced",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:1",
+      "pid": 250046,
+      "data_path": "/root/autodl-tmp/rsft_generations_14b_s43/generations.jsonl",
+      "data_count": 24216,
+      "model_name": "cross-encoder/nli-deberta-v3-base",
+      "seed": 43,
+      "checkpoint_source": "plan017_14b_rsft_s43_generate",
+      "eval_data": "N/A",
+      "log_path": "/root/autodl-tmp/rsft_scored_14b_s43/rsft_report.json",
+      "output_path": "/root/autodl-tmp/rsft_scored_14b_s43",
+      "checkpoint_path": "/root/autodl-tmp/rsft_scored_14b_s43"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "total_scored": 24216,
+      "top_k1_selected": 3017,
+      "docs_covered": "3017/3027",
+      "selection_rate": 0.125,
+      "combined_score_mean": 0.766,
+      "f1_reward_mean": 0.718,
+      "ced_reward_mean": 0.696,
+      "format_pass_rate": 1,
+      "rsft_train_size_mb": 9.4
+    },
+    "completed_at": "2026-05-23T14:04:43.282Z"
+  },
+  "timestamp": "2026-05-23T14:04:44.017436+00:00",
+  "trigger": "update_registry"
+}

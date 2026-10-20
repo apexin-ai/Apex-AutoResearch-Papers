@@ -1,0 +1,22 @@
+{
+  "exp_id": "d112_rsft_s44_ced_score",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:18:56.333Z",
+    "updated_at": "2026-05-19T03:29:00.058Z",
+    "hypothesis": "D112 step 2: CED scoring + k=1 selection on SFT s44 generation candidates. 使用 NLI-DeBERTa 对 N=8 候选打分，format_w=0.2, f1_w=0.4, ced_w=0.4，top_k=1 筛选最优样本用于后续 RSFT 训练。",
+    "parent": "d112_rsft_s44_gen_shard0",
+    "reproduce": {
+      "finished_at": "2026-05-19T03:28:54.319Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T03:28:52.243Z"
+  },
+  "timestamp": "2026-05-19T03:29:01.150614+00:00",
+  "trigger": "update_registry"
+}

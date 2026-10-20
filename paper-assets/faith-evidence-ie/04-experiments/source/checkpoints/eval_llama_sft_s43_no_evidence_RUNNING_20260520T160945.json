@@ -1,0 +1,44 @@
+{
+  "exp_id": "eval_llama_sft_s43_no_evidence",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:07:52.460Z",
+    "updated_at": "2026-05-20T16:09:45.433Z",
+    "hypothesis": "LLaMA SFT s43 标准化 no-evidence eval。用 s43 SFT adapter + --no_evidence flag 推理，测量 per-seed evidence tax，与 s42 no-evidence eval 配对。",
+    "parent": "llama_sft_s43_train_eval_r3",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx5090-4x",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-20T14:08:20.929Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b_s43 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence\"",
+      "finished_at": "2026-05-20T16:09:42.317Z",
+      "training_hours": 2.02
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b_s43 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "27322",
+      "log_path": "~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence.log",
+      "submitted_at": "2026-05-20T14:08:24.174Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "27322",
+    "log_path": "~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence.log",
+    "failure_reason": "EXIT_CODE=124 (timeout — exceeded timeout_hours)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-20T16:09:45.947153+00:00",
+  "trigger": "update_registry"
+}

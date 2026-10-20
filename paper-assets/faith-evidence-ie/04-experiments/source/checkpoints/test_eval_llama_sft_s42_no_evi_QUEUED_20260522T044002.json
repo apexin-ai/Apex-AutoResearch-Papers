@@ -1,0 +1,16 @@
+{
+  "exp_id": "test_eval_llama_sft_s42_no_evi",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:36:36.903Z",
+    "updated_at": "2026-05-22T04:40:02.035Z",
+    "hypothesis": "Cross-family test evidence tax: LLaMA-3.1-8B SFT s42 no-evidence on test_revised (500 docs)。配对 test_eval_llama_sft_s42 (with-evi, ign_f1=0.3420) 计算 test set 上的 LLaMA evidence tax。Dev SFT 3-seed mean fair_tax=-5.19pp (evidence helps)。",
+    "parent": "test_eval_llama_sft_s42"
+  },
+  "timestamp": "2026-05-22T04:40:02.913258+00:00",
+  "trigger": "update_registry"
+}

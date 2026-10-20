@@ -1,0 +1,32 @@
+{
+  "exp_id": "precompute_nli_train",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:05:48.887Z",
+    "updated_at": "2026-05-14T07:35:24.549Z",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python precompute_nli.py\"",
+      "server": "gpu-5090-4x-1",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "19212",
+      "log_path": "~/runs/faith-evidence-ie/precompute_nli_train.log",
+      "submitted_at": "2026-05-14T07:05:58.458Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/autodl-tmp/nli_cache/",
+      "wall_clock_seconds": 1766.1,
+      "gpu_hours": 0.49
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T07:35:24.549Z"
+  },
+  "timestamp": "2026-05-14T07:35:24.570458+00:00",
+  "trigger": "update_registry"
+}

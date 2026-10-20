@@ -1,0 +1,3396 @@
+# code rsft format fix
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 71
+- **Recorded user turns:** 0
+- **Tool calls:** 26
+- **Original source:** `logs/workers/worker_code_rsft-format-fix_20260515T011149.log`
+- **Structured JSON:** [`15b6386517f175fac29e.json`](../../sessions/15/15b6386517f175fac29e.json)
+
+## Before a recorded user message
+
+71 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "9f337687-b503-47ae-97b9-cf447049d55e",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778824200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "5ffeafe7-3985-43ff-985f-ee0fbc1cacc3",
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我先读取三个脚本的代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "26805308-13aa-431a-9513-d5fb7c646802",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019KfY7brQMofW5HgCvh5CCg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11788,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11788
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_015SbFygUjkJPDg2NR9StA8N`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "6c042a9e-18b6-4692-98df-749444df6423",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019KfY7brQMofW5HgCvh5CCg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11788,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11788
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T01:11:59.970Z_
+
+<details><summary>↩ Tool result · `toolu_015SbFygUjkJPDg2NR9StA8N`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "dfc7f286-dafe-4a51-a473-2f1c7114a21e",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read all three scripts from the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "668a2cb3-4d7c-4643-a4ed-159023b4b494",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CBgdhz1Tsz5Dq8Ud2AA3rV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 685,
+      "cache_read_input_tokens": 23629,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 685
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01N2utRUbN9U5ZBPSADPHf8f`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/freige/training/rsft_score_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "13c9ad77-b91b-4ea5-a686-45639ddf9b89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CBgdhz1Tsz5Dq8Ud2AA3rV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 685,
+      "cache_read_input_tokens": 23629,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 685
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AGX7cYw4r3SoUiVjSwhuPX`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/freige/training/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "a217a0b2-119b-4993-8ed7-70a58e2cdb29",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CBgdhz1Tsz5Dq8Ud2AA3rV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 685,
+      "cache_read_input_tokens": 23629,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 685
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RSJV6Kr7AsJSNXkhGhGnNy`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/freige/training/rsft_generate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "580879c1-7e3b-409d-8f71-4959df952202",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CBgdhz1Tsz5Dq8Ud2AA3rV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 685,
+      "cache_read_input_tokens": 23629,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 685
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T01:12:06.433Z_
+
+<details><summary>↩ Tool result · `toolu_01N2utRUbN9U5ZBPSADPHf8f`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/freige/freige/training/rsft_score_filter.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.6}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "44d10993-054d-4f33-9393-77728f3c71a0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/freige/freige/training/rsft_score_filter.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/freige/freige/training/rsft_score_filter.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.6}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T01:12:06.851Z_
+
+<details><summary>↩ Tool result · `toolu_01AGX7cYw4r3SoUiVjSwhuPX`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/freige/freige/training/rsft_trainer.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "b28a5a51-415a-4d87-8243-5302136cca61",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/freige/freige/training/rsft_trainer.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/freige/freige/training/rsft_trainer.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T01:12:07.229Z_
+
+<details><summary>↩ Tool result · `toolu_01RSJV6Kr7AsJSNXkhGhGnNy`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/freige/freige/training/rsft_generate.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "b863fbbf-d57f-471d-aad4-319700baccfd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/freige/freige/training/rsft_generate.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/freige/freige/training/rsft_generate.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The files don't exist at the expected path. Let me check what's actually in the training directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "0cb568d3-e225-4a0f-bfee-7776bc647cf3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015QNotRpEyphHVZvhHVJi4a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 790,
+      "cache_read_input_tokens": 24314,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 790
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+文件不在预期路径，先查找实际位置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "188708e0-af5c-4317-8d90-402562803834",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015QNotRpEyphHVZvhHVJi4a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 790,
+      "cache_read_input_tokens": 24314,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 790
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Frf1xHVxBdjAFQ9xVsCST1`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/freige -name \"rsft_*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "6c62ae70-f8b3-4da7-9850-69fa01fbdf5b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015QNotRpEyphHVZvhHVJi4a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 790,
+      "cache_read_input_tokens": 24314,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 790
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XSyTFY4hwGFq3sKBMheWiK`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /root/autodl-tmp/freige/freige/training/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "0ecbe1f2-c0ed-48f6-b642-d2ca8272c42b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015QNotRpEyphHVZvhHVJi4a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 790,
+      "cache_read_input_tokens": 24314,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 790
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T01:12:12.127Z_
+
+<details><summary>↩ Tool result · `toolu_01Frf1xHVxBdjAFQ9xVsCST1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/training/__pycache__/rsft_generate.cpython-312.pyc\\n/root/autodl-tmp/freige/training/__pycache__/rsft_score_filter.cpython-312.pyc\\n/root/autodl-tmp/freige/training/__pycache__/rsft_trainer.cpython-312.pyc\\n/root/autodl-tmp/freige/training/rsft_generate.py\\n/root/autodl-tmp/freige/training/rsft_score_filter.py\\n/root/autodl-tmp/freige/training/rsft_trainer.py\\n/root/autodl-tmp/freige/training/rsft_ced_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "7fc4966a-7af0-441c-9e8e-26fd1df26c6f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/freige/training/__pycache__/rsft_generate.cpython-312.pyc\\\\n/root/autodl-tmp/freige/training/__pycache__/rsft_score_filter.cpython-312.pyc\\\\n/root/autodl-tmp/freige/training/__pycache__/rsft_trainer.cpython-312.pyc\\\\n/root/autodl-tmp/freige/training/rsft_generate.py\\\\n/root/autodl-tmp/freige/training/rsft_score_filter.py\\\\n/root/autodl-tmp/freige/training/rsft_trainer.py\\\\n/root/autodl-tmp/freige/training/rsft_ced_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/training/__pycache__/rsft_generate.cpython-312.pyc\\n/root/autodl-tmp/freige/training/__pycache__/rsft_score_filter.cpython-312.pyc\\n/root/autodl-tmp/freige/training/__pycache__/rsft_trainer.cpython-312.pyc\\n/root/autodl-tmp/freige/training/rsft_generate.py\\n/root/autodl-tmp/freige/training/rsft_score_filter.py\\n/root/autodl-tmp/freige/training/rsft_trainer.py\\n/root/autodl-tmp/freige/training/rsft_ced_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T01:12:12.529Z_
+
+<details><summary>↩ Tool result · `toolu_01XSyTFY4hwGFq3sKBMheWiK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 0\\ndrwxr-xr-x 3 root root  56 May 15 03:31 .\\ndrwxr-xr-x 9 root root 166 May 14 23:57 ..\\n-rw-r--r-- 1 root root   0 May 14 13:06 __init__.py\\ndrwxr-xr-x 2 root root  46 May 15 03:31 __pycache__\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "964fbf90-1591-4e6b-ad24-7e5ec83e6f9e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 0\\\\ndrwxr-xr-x 3 root root  56 May 15 03:31 .\\\\ndrwxr-xr-x 9 root root 166 May 14 23:57 ..\\\\n-rw-r--r-- 1 root root   0 May 14 13:06 __init__.py\\\\ndrwxr-xr-x 2 root root  46 May 15 03:31 __pycache__\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 0\\ndrwxr-xr-x 3 root root  56 May 15 03:31 .\\ndrwxr-xr-x 9 root root 166 May 14 23:57 ..\\n-rw-r--r-- 1 root root   0 May 14 13:06 __init__.py\\ndrwxr-xr-x 2 root root  46 May 15 03:31 __pycache__\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The files are at `/root/autodl-tmp/freige/training/` (without the extra `freige/` subdirectory). Let me read them.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "e61df77d-bcc9-4305-8252-35e46e158bec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017yJ4wxKKpRYtuke1jJtTq1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 801,
+      "cache_read_input_tokens": 25104,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 801
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+文件在 `/root/autodl-tmp/freige/training/`，不是 `freige/freige/training/`。读取三个脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "4c24b7f7-9761-4cda-a3ad-d9e8963f5c2d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017yJ4wxKKpRYtuke1jJtTq1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 801,
+      "cache_read_input_tokens": 25104,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 801
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01D8z8LtkVsBEnUXpEr2SyJj`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/training/rsft_score_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "63429c52-e9a4-449f-9726-102467b332a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017yJ4wxKKpRYtuke1jJtTq1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 801,
+      "cache_read_input_tokens": 25104,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 801
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T01:12:18.931Z_
+
+<details><summary>↩ Tool result · `toolu_01D8z8LtkVsBEnUXpEr2SyJj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"RSFT Step 2: CED 打分 + 筛选。\\n\\n读取 rsft_generate.py 生成的 JSONL，对每个候选输出计算三种奖励:\\n  - format_reward: JSON 格式合规性\\n  - f1_reward: 与 gold triples 的 micro-F1\\n  - ced_reward: CED 对比证据判别奖励\\n\\n按组合阈值筛选高质量样本，输出 SFT 训练兼容格式。\\n\\n输入:\\n  - generations.jsonl (rsft_generate.py 的输出)\\n\\n输出 (保存到 --output_path):\\n  - rsft_train.json: 筛选后的 SFT 训练数据\\n  - rsft_scores.jsonl: 带分数的完整记录（供分析）\\n  - rsft_report.json: 统计报告\\n\\n依赖: transformers, torch, freige.rewards.ced_reward\\n\\n用法:\\n  python -m freige.training.rsft_score_filter \\\\\\n      --input_dir /root/autodl-tmp/rsft_generations \\\\\\n      --output_path /root/autodl-tmp/rsft_filtered \\\\\\n      --selection_strategy top_pct --top_pct 25 \\\\\\n      --nli_model_path /root/autodl-tmp/models/nli-deberta-v3-base\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\n\\n# ---------------------------------------------------------------------------\\n# Reward functions — 复用 grpo_trainer 中的逻辑\\n# ---------------------------------------------------------------------------\\n\\ndef compute_format_reward(parsed_triples, format_ok):\\n    \\\"\\\"\\\"格式奖励，复用 grpo_trainer.format_reward_fn 的逻辑。\\\"\\\"\\\"\\n    if not format_ok:\\n        return 0.0\\n    if not parsed_triples:\\n        return 0.1\\n    valid = 0\\n    for item in parsed_triples:\\n        if (isinstance(item, dict) and \\\"head\\\" in item\\n                and \\\"relation\\\" in item and \\\"tail\\\" in item\\n                and \\\"evidence\\\" in item\\n                and isinstance(item[\\\"evidence\\\"], list)):\\n            valid += 1\\n    return valid / len(parsed_triples)\\n\\n\\ndef compute_f1_reward(parsed_triples, gold_triples):\\n    \\\"\\\"\\\"F1 奖励，复用 grpo_trainer.f1_reward_fn 的逻辑。\\\"\\\"\\\"\\n    gold_set = set()\\n    for g in gold_triples:\\n        gold_set.add((\\n            str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n        ))\\n\\n    pred_set = set()\\n    for p in parsed_triples:\\n        if isinstance(p, dict):\\n            pred_set.add((\\n                str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n            ))\\n\\n    if not gold_set:\\n        return 1.0 if not pred_set else 0.0\\n\\n    tp = len(pred_set & gold_set)\\n    prec = tp / len(pred_set) if pred_set else 0.0\\n    rec = tp / len(gold_set) if gold_set else 0.0\\n    f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\\n    return f1\\n\\n\\ndef compute_ced_reward_for_record(record, ced_model, tau=0.5):\\n    \\\"\\\"\\\"CED 奖励，复用 grpo_trainer.CEDRewardWrapper.__call__ 的逻辑。\\n\\n    对一条记录中的所有 parsed_triples 计算平均 CED reward。\\n    \\\"\\\"\\\"\\n    from freige.rewards.ced_reward import verbalize_triple\\n\\n    parsed_triples = record[\\\"parsed_triples\\\"]\\n    gold_triples = record[\\\"gold_triples\\\"]\\n    sents = record[\\\"sents\\\"]\\n\\n    if not parsed_triples:\\n        return {\\\"ced_reward\\\": 0.0, \\\"triple_details\\\": []}\\n\\n    # 构建 gold_map\\n    gold_map = {}\\n    for g in gold_triples:\\n        key = (\\n            str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n        )\\n        gold_map[key] = g\\n\\n    # F1 gate: 至少一��预测 triple 匹配 gold\\n    has_gold_match = False\\n    for p in parsed_triples:\\n        if isinstance(p, dict):\\n            pk = (\\n                str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n       \\n\\n... [截断: 输出过长，省略 8984 字符] ...\\n\\nth\\\", type=str,\\n                        default=\\\"cross-encoder/nli-deberta-v3-base\\\",\\n                        help=\\\"NLI 模型路径（用于 CED 打分）\\\")\\n    parser.add_argument(\\\"--nli_device\\\", type=str, default=None,\\n                        help=\\\"NLI 模型运行设备 (default: auto)\\\")\\n    parser.add_argument(\\\"--tau\\\", type=float, default=0.5,\\n                        help=\\\"CED tau 阈值 (default: 0.5)\\\")\\n\\n    # 筛选参数\\n    parser.add_argument(\\\"--format_weight\\\", type=float, default=0.2,\\n                        help=\\\"combined_score 中 format_reward 的权重 (default: 0.2)\\\")\\n    parser.add_argument(\\\"--f1_weight\\\", type=float, default=0.4,\\n                        help=\\\"combined_score 中 f1_reward 的权重 (default: 0.4)\\\")\\n    parser.add_argument(\\\"--ced_weight\\\", type=float, default=0.4,\\n                        help=\\\"combined_score 中 ced_reward 的权重 (default: 0.4)\\\")\\n\\n    # 筛选参数\\n    parser.add_argument(\\\"--format_threshold\\\", type=float, default=0.5,\\n                        help=\\\"format_reward 最低阈值 (default: 0.5)\\\")\\n    parser.add_argument(\\\"--f1_threshold\\\", type=float, default=0.0,\\n                        help=\\\"f1_reward 最低阈值 (default: 0.0)\\\")\\n    parser.add_argument(\\\"--ced_threshold\\\", type=float, default=0.0,\\n                        help=\\\"ced_reward 最低阈值 (default: 0.0)\\\")\\n    parser.add_argument(\\\"--selection_strategy\\\", type=str, default=\\\"top_pct\\\",\\n                        choices=[\\\"threshold\\\", \\\"top_k\\\", \\\"top_pct\\\"],\\n                        help=\\\"筛选策略 (default: top_pct)\\\")\\n    parser.add_argument(\\\"--top_k\\\", type=int, default=2,\\n                        help=\\\"top_k 策略: 每个文档取 top-K (default: 2)\\\")\\n    parser.add_argument(\\\"--top_pct\\\", type=int, default=25,\\n                        help=\\\"top_pct 策略: 每个文档取 top N%% (default: 25)\\\")\\n    args = parser.parse_args()\\n\\n    output_dir = Path(args.output_path)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # 1. 加载生成结果\\n    records = load_generations(args.input_dir)\\n\\n    # 2. 加载 CED 模型并打分\\n    logger.info(\\\"Loading NLI model: %s\\\", args.nli_model_path)\\n    from freige.rewards.ced_reward import CEDRewardModel\\n    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\n\\n    scored = score_all_records(records, ced_model, tau=args.tau, format_weight=args.format_weight, f1_weight=args.f1_weight, ced_weight=args.ced_weight)\\n\\n    # 保存带分数的完整记录\\n    scores_path = output_dir / \\\"rsft_scores.jsonl\\\"\\n    with open(scores_path, \\\"w\\\") as f:\\n        for rec in scored:\\n            # 不保存大字段以节省空间\\n            slim = {k: v for k, v in rec.items() if k not in (\\\"prompt\\\", \\\"sents\\\", \\\"gold_triples\\\")}\\n            f.write(json.dumps(slim, ensure_ascii=False) + \\\"\\\\n\\\")\\n    logger.info(\\\"Scores → %s\\\", scores_path)\\n\\n    # 3. 筛选\\n    selected = filter_records(scored, args)\\n\\n    # 4. 转换为 SFT 训练格式\\n    sft_data = format_sft_training_data(selected)\\n    train_path = output_dir / \\\"rsft_train.jsonl\\\"\\n    with open(train_path, \\\"w\\\") as f:\\n        for item in sft_data:\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\"\\\\n\\\")\\n    logger.info(\\\"Training data → %s (%d samples)\\\", train_path, len(sft_data))\\n\\n    # 5. 统计报告\\n    report = generate_report(scored, selected)\\n    report[\\\"args\\\"] = vars(args)\\n    report_path = output_dir / \\\"rsft_report.json\\\"\\n    with open(report_path, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2, ensure_ascii=False)\\n    logger.info(\\\"Report → %s\\\", report_path)\\n\\n    # 控制台摘要\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(f\\\"  Total records:    {report['total_records']}\\\")\\n    print(f\\\"  Selected:         {report['selected_records']}\\\")\\n    print(f\\\"  Selection rate:   {report['selection_rate']:.1%}\\\")\\n    print(f\\\"  Unique docs:      {report['unique_docs_selected']}/{report['unique_docs_total']}\\\")\\n    print(\\\"-\\\" * 60)\\n    for name in [\\\"format_reward\\\", \\\"f1_reward\\\", \\\"ced_reward\\\", \\\"combined_score\\\"]:\\n        stats = report[f\\\"{name}_stats\\\"]\\n        print(f\\\"  {name:20s}  mean={stats['mean']:.3f}  std={stats['std']:.3f}  \\\"\\n              f\\\"median={stats['median']:.3f}  [min={stats['min']:.3f}, max={stats['max']:.3f}]\\\")\\n    print(\\\"=\\\" * 60)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "a7ab4ec8-c765-450a-b2e7-f0b29ebd0ddd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"RSFT Step 2: CED 打分 + 筛选。\\\\n\\\\n读取 rsft_generate.py 生成的 JSONL，对每个候选输出计算三种奖励:\\\\n  - format_reward: JSON 格式合规性\\\\n  - f1_reward: 与 gold triples 的 micro-F1\\\\n  - ced_reward: CED 对比证据判别奖励\\\\n\\\\n按组合阈值筛选高质量样本，输出 SFT 训练兼容格式。\\\\n\\\\n输入:\\\\n  - generations.jsonl (rsft_generate.py 的输出)\\\\n\\\\n输出 (保存到 --output_path):\\\\n  - rsft_train.json: 筛选后的 SFT 训练数据\\\\n  - rsft_scores.jsonl: 带分数的完整记录（供分析）\\\\n  - rsft_report.json: 统计报告\\\\n\\\\n依赖: transformers, torch, freige.rewards.ced_reward\\\\n\\\\n用法:\\\\n  python -m freige.training.rsft_score_filter \\\\\\\\\\\\n      --input_dir /root/autodl-tmp/rsft_generations \\\\\\\\\\\\n      --output_path /root/autodl-tmp/rsft_filtered \\\\\\\\\\\\n      --selection_strategy top_pct --top_pct 25 \\\\\\\\\\\\n      --nli_model_path /root/autodl-tmp/models/nli-deberta-v3-base\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are an information extraction model. Given a document with numbered sentences \\\\\\\"\\\\n    \\\\\\\"and a list of entities, extract all relation triples. For each triple, provide the \\\\\\\"\\\\n    \\\\\\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\\\\\"\\\\n    \\\\\\\"Output as a JSON list.\\\\\\\"\\\\n)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Reward functions — 复用 grpo_trainer 中的逻辑\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef compute_format_reward(parsed_triples, format_ok):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"格式奖励，复用 grpo_trainer.format_reward_fn 的逻辑。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not format_ok:\\\\n        return 0.0\\\\n    if not parsed_triples:\\\\n        return 0.1\\\\n    valid = 0\\\\n    for item in parsed_triples:\\\\n        if (isinstance(item, dict) and \\\\\\\"head\\\\\\\" in item\\\\n                and \\\\\\\"relation\\\\\\\" in item and \\\\\\\"tail\\\\\\\" in item\\\\n                and \\\\\\\"evidence\\\\\\\" in item\\\\n                and isinstance(item[\\\\\\\"evidence\\\\\\\"], list)):\\\\n            valid += 1\\\\n    return valid / len(parsed_triples)\\\\n\\\\n\\\\ndef compute_f1_reward(parsed_triples, gold_triples):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"F1 奖励，复用 grpo_trainer.f1_reward_fn 的逻辑。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    gold_set = set()\\\\n    for g in gold_triples:\\\\n        gold_set.add((\\\\n            str(g.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            str(g.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            str(g.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n        ))\\\\n\\\\n    pred_set = set()\\\\n    for p in parsed_triples:\\\\n        if isinstance(p, dict):\\\\n            pred_set.add((\\\\n                str(p.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(p.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(p.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            ))\\\\n\\\\n    if not gold_set:\\\\n        return 1.0 if not pred_set else 0.0\\\\n\\\\n    tp = len(pred_set & gold_set)\\\\n    prec = tp / len(pred_set) if pred_set else 0.0\\\\n    rec = tp / len(gold_set) if gold_set else 0.0\\\\n    f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\\\\n    return f1\\\\n\\\\n\\\\ndef compute_ced_reward_for_record(record, ced_model, tau=0.5):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"CED 奖励，复用 grpo_trainer.CEDRewardWrapper.__call__ 的逻辑。\\\\n\\\\n    对一条记录中的所有 parsed_triples 计算平均 CED reward。\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from freige.rewards.ced_reward import verbalize_triple\\\\n\\\\n    parsed_triples = record[\\\\\\\"parsed_triples\\\\\\\"]\\\\n    gold_triples = record[\\\\\\\"gold_triples\\\\\\\"]\\\\n    sents = record[\\\\\\\"sents\\\\\\\"]\\\\n\\\\n    if not parsed_triples:\\\\n        return {\\\\\\\"ced_reward\\\\\\\": 0.0, \\\\\\\"triple_details\\\\\\\": []}\\\\n\\\\n    # 构建 gold_map\\\\n    gold_map = {}\\\\n    for g in gold_triples:\\\\n        key = (\\\\n            str(g.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            str(g.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            str(g.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n        )\\\\n        gold_map[key] = g\\\\n\\\\n    # F1 gate: 至少一��预测 triple 匹配 gold\\\\n    has_gold_match = False\\\\n    for p in parsed_triples:\\\\n        if isinstance(p, dict):\\\\n            pk = (\\\\n                str(p.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(p.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(p.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n       \\\\n\\\\n... [截断: 输出过长，省略 8984 字符] ...\\\\n\\\\nth\\\\\\\", type=str,\\\\n                        default=\\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\",\\\\n                        help=\\\\\\\"NLI 模型路径（用于 CED 打分）\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--nli_device\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"NLI 模型运行设备 (default: auto)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--tau\\\\\\\", type=float, default=0.5,\\\\n                        help=\\\\\\\"CED tau 阈值 (default: 0.5)\\\\\\\")\\\\n\\\\n    # 筛选参数\\\\n    parser.add_argument(\\\\\\\"--format_weight\\\\\\\", type=float, default=0.2,\\\\n                        help=\\\\\\\"combined_score 中 format_reward 的权重 (default: 0.2)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--f1_weight\\\\\\\", type=float, default=0.4,\\\\n                        help=\\\\\\\"combined_score 中 f1_reward 的权重 (default: 0.4)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--ced_weight\\\\\\\", type=float, default=0.4,\\\\n                        help=\\\\\\\"combined_score 中 ced_reward 的权重 (default: 0.4)\\\\\\\")\\\\n\\\\n    # 筛选参数\\\\n    parser.add_argument(\\\\\\\"--format_threshold\\\\\\\", type=float, default=0.5,\\\\n                        help=\\\\\\\"format_reward 最低阈值 (default: 0.5)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--f1_threshold\\\\\\\", type=float, default=0.0,\\\\n                        help=\\\\\\\"f1_reward 最低阈值 (default: 0.0)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--ced_threshold\\\\\\\", type=float, default=0.0,\\\\n                        help=\\\\\\\"ced_reward 最低阈值 (default: 0.0)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--selection_strategy\\\\\\\", type=str, default=\\\\\\\"top_pct\\\\\\\",\\\\n                        choices=[\\\\\\\"threshold\\\\\\\", \\\\\\\"top_k\\\\\\\", \\\\\\\"top_pct\\\\\\\"],\\\\n                        help=\\\\\\\"筛选策略 (default: top_pct)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--top_k\\\\\\\", type=int, default=2,\\\\n                        help=\\\\\\\"top_k 策略: 每个文档取 top-K (default: 2)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--top_pct\\\\\\\", type=int, default=25,\\\\n                        help=\\\\\\\"top_pct 策略: 每个文档取 top N%% (default: 25)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    output_dir = Path(args.output_path)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # 1. 加载生成结果\\\\n    records = load_generations(args.input_dir)\\\\n\\\\n    # 2. 加载 CED 模型并打分\\\\n    logger.info(\\\\\\\"Loading NLI model: %s\\\\\\\", args.nli_model_path)\\\\n    from freige.rewards.ced_reward import CEDRewardModel\\\\n    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\\\n\\\\n    scored = score_all_records(records, ced_model, tau=args.tau, format_weight=args.format_weight, f1_weight=args.f1_weight, ced_weight=args.ced_weight)\\\\n\\\\n    # 保存带分数的完整记录\\\\n    scores_path = output_dir / \\\\\\\"rsft_scores.jsonl\\\\\\\"\\\\n    with open(scores_path, \\\\\\\"w\\\\\\\") as f:\\\\n        for rec in scored:\\\\n            # 不保存大字段以节省空间\\\\n            slim = {k: v for k, v in rec.items() if k not in (\\\\\\\"prompt\\\\\\\", \\\\\\\"sents\\\\\\\", \\\\\\\"gold_triples\\\\\\\")}\\\\n            f.write(json.dumps(slim, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    logger.info(\\\\\\\"Scores → %s\\\\\\\", scores_path)\\\\n\\\\n    # 3. 筛选\\\\n    selected = filter_records(scored, args)\\\\n\\\\n    # 4. 转换为 SFT 训练格式\\\\n    sft_data = format_sft_training_data(selected)\\\\n    train_path = output_dir / \\\\\\\"rsft_train.jsonl\\\\\\\"\\\\n    with open(train_path, \\\\\\\"w\\\\\\\") as f:\\\\n        for item in sft_data:\\\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    logger.info(\\\\\\\"Training data → %s (%d samples)\\\\\\\", train_path, len(sft_data))\\\\n\\\\n    # 5. 统计报告\\\\n    report = generate_report(scored, selected)\\\\n    report[\\\\\\\"args\\\\\\\"] = vars(args)\\\\n    report_path = output_dir / \\\\\\\"rsft_report.json\\\\\\\"\\\\n    with open(report_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(report, f, indent=2, ensure_ascii=False)\\\\n    logger.info(\\\\\\\"Report → %s\\\\\\\", report_path)\\\\n\\\\n    # 控制台摘要\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(f\\\\\\\"  Total records:    {report['total_records']}\\\\\\\")\\\\n    print(f\\\\\\\"  Selected:         {report['selected_records']}\\\\\\\")\\\\n    print(f\\\\\\\"  Selection rate:   {report['selection_rate']:.1%}\\\\\\\")\\\\n    print(f\\\\\\\"  Unique docs:      {report['unique_docs_selected']}/{report['unique_docs_total']}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    for name in [\\\\\\\"format_reward\\\\\\\", \\\\\\\"f1_reward\\\\\\\", \\\\\\\"ced_reward\\\\\\\", \\\\\\\"combined_score\\\\\\\"]:\\\\n        stats = report[f\\\\\\\"{name}_stats\\\\\\\"]\\\\n        print(f\\\\\\\"  {name:20s}  mean={stats['mean']:.3f}  std={stats['std']:.3f}  \\\\\\\"\\\\n              f\\\\\\\"median={stats['median']:.3f}  [min={stats['min']:.3f}, max={stats['max']:.3f}]\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"RSFT Step 2: CED 打分 + 筛选。\\n\\n读取 rsft_generate.py 生成的 JSONL，对每个候选输出计算三种奖励:\\n  - format_reward: JSON 格式合规性\\n  - f1_reward: 与 gold triples 的 micro-F1\\n  - ced_reward: CED 对比证据判别奖励\\n\\n按组合阈值筛选高质量样本，输出 SFT 训练兼容格式。\\n\\n输入:\\n  - generations.jsonl (rsft_generate.py 的输出)\\n\\n输出 (保存到 --output_path):\\n  - rsft_train.json: 筛选后的 SFT 训练数据\\n  - rsft_scores.jsonl: 带分数的完整记录（供分析）\\n  - rsft_report.json: 统计报告\\n\\n依赖: transformers, torch, freige.rewards.ced_reward\\n\\n用法:\\n  python -m freige.training.rsft_score_filter \\\\\\n      --input_dir /root/autodl-tmp/rsft_generations \\\\\\n      --output_path /root/autodl-tmp/rsft_filtered \\\\\\n      --selection_strategy top_pct --top_pct 25 \\\\\\n      --nli_model_path /root/autodl-tmp/models/nli-deberta-v3-base\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\n\\n# ---------------------------------------------------------------------------\\n# Reward functions — 复用 grpo_trainer 中的逻辑\\n# ---------------------------------------------------------------------------\\n\\ndef compute_format_reward(parsed_triples, format_ok):\\n    \\\"\\\"\\\"格式奖励，复用 grpo_trainer.format_reward_fn 的逻辑。\\\"\\\"\\\"\\n    if not format_ok:\\n        return 0.0\\n    if not parsed_triples:\\n        return 0.1\\n    valid = 0\\n    for item in parsed_triples:\\n        if (isinstance(item, dict) and \\\"head\\\" in item\\n                and \\\"relation\\\" in item and \\\"tail\\\" in item\\n                and \\\"evidence\\\" in item\\n                and isinstance(item[\\\"evidence\\\"], list)):\\n            valid += 1\\n    return valid / len(parsed_triples)\\n\\n\\ndef compute_f1_reward(parsed_triples, gold_triples):\\n    \\\"\\\"\\\"F1 奖励，复用 grpo_trainer.f1_reward_fn 的逻辑。\\\"\\\"\\\"\\n    gold_set = set()\\n    for g in gold_triples:\\n        gold_set.add((\\n            str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n        ))\\n\\n    pred_set = set()\\n    for p in parsed_triples:\\n        if isinstance(p, dict):\\n            pred_set.add((\\n                str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n            ))\\n\\n    if not gold_set:\\n        return 1.0 if not pred_set else 0.0\\n\\n    tp = len(pred_set & gold_set)\\n    prec = tp / len(pred_set) if pred_set else 0.0\\n    rec = tp / len(gold_set) if gold_set else 0.0\\n    f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\\n    return f1\\n\\n\\ndef compute_ced_reward_for_record(record, ced_model, tau=0.5):\\n    \\\"\\\"\\\"CED 奖励，复用 grpo_trainer.CEDRewardWrapper.__call__ 的逻辑。\\n\\n    对一条记录中的所有 parsed_triples 计算平均 CED reward。\\n    \\\"\\\"\\\"\\n    from freige.rewards.ced_reward import verbalize_triple\\n\\n    parsed_triples = record[\\\"parsed_triples\\\"]\\n    gold_triples = record[\\\"gold_triples\\\"]\\n    sents = record[\\\"sents\\\"]\\n\\n    if not parsed_triples:\\n        return {\\\"ced_reward\\\": 0.0, \\\"triple_details\\\": []}\\n\\n    # 构建 gold_map\\n    gold_map = {}\\n    for g in gold_triples:\\n        key = (\\n            str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n        )\\n        gold_map[key] = g\\n\\n    # F1 gate: 至少一��预测 triple 匹配 gold\\n    has_gold_match = False\\n    for p in parsed_triples:\\n        if isinstance(p, dict):\\n            pk = (\\n                str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n       \\n\\n... [截断: 输出过长，省略 8984 字符] ...\\n\\nth\\\", type=str,\\n                        default=\\\"cross-encoder/nli-deberta-v3-base\\\",\\n                        help=\\\"NLI 模型路径（用于 CED 打分）\\\")\\n    parser.add_argument(\\\"--nli_device\\\", type=str, default=None,\\n                        help=\\\"NLI 模型运行设备 (default: auto)\\\")\\n    parser.add_argument(\\\"--tau\\\", type=float, default=0.5,\\n                        help=\\\"CED tau 阈值 (default: 0.5)\\\")\\n\\n    # 筛选参数\\n    parser.add_argument(\\\"--format_weight\\\", type=float, default=0.2,\\n                        help=\\\"combined_score 中 format_reward 的权重 (default: 0.2)\\\")\\n    parser.add_argument(\\\"--f1_weight\\\", type=float, default=0.4,\\n                        help=\\\"combined_score 中 f1_reward 的权重 (default: 0.4)\\\")\\n    parser.add_argument(\\\"--ced_weight\\\", type=float, default=0.4,\\n                        help=\\\"combined_score 中 ced_reward 的权重 (default: 0.4)\\\")\\n\\n    # 筛选参数\\n    parser.add_argument(\\\"--format_threshold\\\", type=float, default=0.5,\\n                        help=\\\"format_reward 最低阈值 (default: 0.5)\\\")\\n    parser.add_argument(\\\"--f1_threshold\\\", type=float, default=0.0,\\n                        help=\\\"f1_reward 最低阈值 (default: 0.0)\\\")\\n    parser.add_argument(\\\"--ced_threshold\\\", type=float, default=0.0,\\n                        help=\\\"ced_reward 最低阈值 (default: 0.0)\\\")\\n    parser.add_argument(\\\"--selection_strategy\\\", type=str, default=\\\"top_pct\\\",\\n                        choices=[\\\"threshold\\\", \\\"top_k\\\", \\\"top_pct\\\"],\\n                        help=\\\"筛选策略 (default: top_pct)\\\")\\n    parser.add_argument(\\\"--top_k\\\", type=int, default=2,\\n                        help=\\\"top_k 策略: 每个文档取 top-K (default: 2)\\\")\\n    parser.add_argument(\\\"--top_pct\\\", type=int, default=25,\\n                        help=\\\"top_pct 策略: 每个文档取 top N%% (default: 25)\\\")\\n    args = parser.parse_args()\\n\\n    output_dir = Path(args.output_path)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # 1. 加载生成结果\\n    records = load_generations(args.input_dir)\\n\\n    # 2. 加载 CED 模型并打分\\n    logger.info(\\\"Loading NLI model: %s\\\", args.nli_model_path)\\n    from freige.rewards.ced_reward import CEDRewardModel\\n    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\n\\n    scored = score_all_records(records, ced_model, tau=args.tau, format_weight=args.format_weight, f1_weight=args.f1_weight, ced_weight=args.ced_weight)\\n\\n    # 保存带分数的完整记录\\n    scores_path = output_dir / \\\"rsft_scores.jsonl\\\"\\n    with open(scores_path, \\\"w\\\") as f:\\n        for rec in scored:\\n            # 不保存大字段以节省空间\\n            slim = {k: v for k, v in rec.items() if k not in (\\\"prompt\\\", \\\"sents\\\", \\\"gold_triples\\\")}\\n            f.write(json.dumps(slim, ensure_ascii=False) + \\\"\\\\n\\\")\\n    logger.info(\\\"Scores → %s\\\", scores_path)\\n\\n    # 3. 筛选\\n    selected = filter_records(scored, args)\\n\\n    # 4. 转换为 SFT 训练格式\\n    sft_data = format_sft_training_data(selected)\\n    train_path = output_dir / \\\"rsft_train.jsonl\\\"\\n    with open(train_path, \\\"w\\\") as f:\\n        for item in sft_data:\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\"\\\\n\\\")\\n    logger.info(\\\"Training data → %s (%d samples)\\\", train_path, len(sft_data))\\n\\n    # 5. 统计报告\\n    report = generate_report(scored, selected)\\n    report[\\\"args\\\"] = vars(args)\\n    report_path = output_dir / \\\"rsft_report.json\\\"\\n    with open(report_path, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2, ensure_ascii=False)\\n    logger.info(\\\"Report → %s\\\", report_path)\\n\\n    # 控制台摘要\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(f\\\"  Total records:    {report['total_records']}\\\")\\n    print(f\\\"  Selected:         {report['selected_records']}\\\")\\n    print(f\\\"  Selection rate:   {report['selection_rate']:.1%}\\\")\\n    print(f\\\"  Unique docs:      {report['unique_docs_selected']}/{report['unique_docs_total']}\\\")\\n    print(\\\"-\\\" * 60)\\n    for name in [\\\"format_reward\\\", \\\"f1_reward\\\", \\\"ced_reward\\\", \\\"combined_score\\\"]:\\n        stats = report[f\\\"{name}_stats\\\"]\\n        print(f\\\"  {name:20s}  mean={stats['mean']:.3f}  std={stats['std']:.3f}  \\\"\\n              f\\\"median={stats['median']:.3f}  [min={stats['min']:.3f}, max={stats['max']:.3f}]\\\")\\n    print(\\\"=\\\" * 60)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LFEUmD54tryeqtLnXAeAzG`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/training/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "dfbce161-a2c7-4eaa-91d1-f66c6e7bd18c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017yJ4wxKKpRYtuke1jJtTq1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 801,
+      "cache_read_input_tokens": 25104,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 801
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T01:12:19.978Z_
+
+<details><summary>↩ Tool result · `toolu_01LFEUmD54tryeqtLnXAeAzG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"RSFT (Rejection Sampling Fine-Tuning) 训练脚本。\\n\\n从 SFT warmup checkpoint 继续训练，使用经 CED 打分筛选的高质量生成数据。\\n流程: base model → merge SFT adapter → 新 QLoRA → 在 RSFT 数据上训练。\\n\\n输入: JSONL，每行 {\\\"doc_id\\\": ..., \\\"input\\\": ..., \\\"output\\\": ..., \\\"ced_score\\\": ..., ...}\\n输出: QLoRA adapter checkpoint\\n依赖: transformers, trl, peft, bitsandbytes, datasets\\n\\n单卡:   python -m freige.training.rsft_trainer --rsft_data_path data.jsonl --output_dir ./rsft_output\\n多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\n            -m freige.training.rsft_trainer --rsft_data_path data.jsonl --output_dir ./rsft_output\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom peft import LoraConfig, PeftModel, TaskType, get_peft_model\\nfrom torch.utils.data import WeightedRandomSampler\\nfrom transformers import (\\n    AutoModelForCausalLM,\\n    AutoTokenizer,\\n    BitsAndBytesConfig,\\n)\\nfrom trl import SFTConfig, SFTTrainer\\n\\nfrom freige.training.sft_trainer import SYSTEM_PROMPT\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nDEFAULT_BASE_MODEL = \\\"/root/autodl-tmp/models/Qwen3-4B\\\"\\nDEFAULT_SFT_ADAPTER = \\\"/root/autodl-tmp/sft_output\\\"\\n\\n\\ndef load_rsft_data(data_path: str, tokenizer, max_length: int = 2048):\\n    \\\"\\\"\\\"加载 CED 筛选后的 RSFT 数据，格式化为 chat template 文本。\\n\\n    每行 JSONL 的 input 字段作为 user message，output 字段作为 assistant response，\\n    经 apply_chat_template 拼接后用于 SFT 训练。超过 max_length 的样本被跳过\\n    而非截断，避免训练在不完整 JSON 输出上。\\n\\n    Returns:\\n        (Dataset, list[float]): 训练数据集和对应的 CED scores\\n    \\\"\\\"\\\"\\n    samples = []\\n    with open(data_path) as f:\\n        for line in f:\\n            if line.strip():\\n                samples.append(json.loads(line))\\n\\n    logger.info(\\\"Loaded %d RSFT samples from %s\\\", len(samples), data_path)\\n\\n    formatted = []\\n    ced_scores = []\\n    skipped = 0\\n    for s in samples:\\n        messages = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": s[\\\"input\\\"]},\\n            {\\\"role\\\": \\\"assistant\\\", \\\"content\\\": s[\\\"output\\\"]},\\n        ]\\n        text = tokenizer.apply_chat_template(\\n            messages,\\n            tokenize=False,\\n            add_generation_prompt=False,\\n            enable_thinking=False,\\n        )\\n        token_len = len(tokenizer.encode(text, add_special_tokens=False))\\n        if token_len > max_length:\\n            skipped += 1\\n            continue\\n        formatted.append({\\\"text\\\": text})\\n        ced_scores.append(s.get(\\\"ced_score\\\", 1.0))\\n\\n    if skipped:\\n        logger.warning(\\\"Skipped %d samples exceeding max_length=%d\\\", skipped, max_length)\\n\\n    if ced_scores:\\n        logger.info(\\n            \\\"Prepared %d RSFT samples (CED scores: min=%.3f, max=%.3f, mean=%.3f)\\\",\\n            len(formatted), min(ced_scores), max(ced_scores),\\n            sum(ced_scores) / len(ced_scores),\\n        )\\n    return Dataset.from_list(formatted), ced_scores\\n\\n\\nclass WeightedSFTTrainer(SFTTrainer):\\n    \\\"\\\"\\\"SFTTrainer with CED score-weighted sampling.\\n\\n    高 CED score 的样本被更频繁采样。使用 WeightedRandomSampler 实现，\\n    适用于单机训练。多机 DDP 场景下 Accelerate 会替换 sampler，\\n    此时 weighted_sampling 不生效，需改用数据集层面的过采样。\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, *args, sample_weights=None, **kwargs):\\n        super().__init__(*args, **kwargs)\\n        self.sample_weights = sample_weights\\n\\n    def _get_train_sampler(self, dataset=None):\\n        if self.sample_weights is not None:\\n            ds = dataset if dataset is not None else self.train_dataset\\n            return WeightedRandomSampler(\\n                weights=self.sample_weights,\\n                num_samples=len(ds),\\n                replacement=True,\\n            )\\n        return super()._get_train_sampler(dataset)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"FREIGE RSFT Training\\\")\\n    parser.add_argument(\\\"--base_model\\\", type=str, default=DEFAULT_BASE_MODEL)\\n    parser.add_argument(\\\"--sft_adapter\\\", type=str, default=DEFAULT_SFT_ADAPTER,\\n                        help=\\\"SFT warmup a\\n\\n... [截断: 输出过长，省略 1274 字符] ...\\n\\ngument(\\\"--lora_alpha\\\", type=int, default=128)\\n    parser.add_argument(\\\"--lora_dropout\\\", type=float, default=0.05)\\n    parser.add_argument(\\\"--bf16\\\", action=\\\"store_true\\\", default=True)\\n    parser.add_argument(\\\"--deepspeed\\\", type=str, default=None,\\n                        help=\\\"DeepSpeed 配置文件路径\\\")\\n    args = parser.parse_args()\\n\\n    # W&B\\n    if args.wandb_project and \\\"WANDB_API_KEY\\\" in os.environ:\\n        os.environ[\\\"WANDB_PROJECT\\\"] = args.wandb_project\\n        if args.wandb_run_name:\\n            os.environ[\\\"WANDB_NAME\\\"] = args.wandb_run_name\\n\\n    # Tokenizer\\n    logger.info(\\\"Loading tokenizer: %s\\\", args.base_model)\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        args.base_model, trust_remote_code=True, padding_side=\\\"right\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    # Data\\n    logger.info(\\\"Loading RSFT data: %s\\\", args.rsft_data_path)\\n    train_dataset, ced_scores = load_rsft_data(\\n        args.rsft_data_path, tokenizer, args.max_length,\\n    )\\n\\n    # Model: base → merge SFT adapter → new LoRA\\n    logger.info(\\\"Loading base model: %s\\\", args.base_model)\\n    local_rank = int(os.environ.get(\\\"LOCAL_RANK\\\", 0))\\n    model_kwargs = dict(\\n        trust_remote_code=True,\\n        attn_implementation=\\\"sdpa\\\",\\n        device_map={\\\"\\\": local_rank},\\n    )\\n    if args.quantize:\\n        logger.info(\\\"Using 4-bit QLoRA quantization\\\")\\n        model_kwargs[\\\"quantization_config\\\"] = BitsAndBytesConfig(\\n            load_in_4bit=True,\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\n            bnb_4bit_quant_type=\\\"nf4\\\",\\n            bnb_4bit_use_double_quant=True,\\n        )\\n    else:\\n        model_kwargs[\\\"torch_dtype\\\"] = torch.bfloat16 if args.bf16 else torch.float16\\n\\n    model = AutoModelForCausalLM.from_pretrained(args.base_model, **model_kwargs)\\n\\n    if args.sft_adapter:\\n        logger.info(\\\"Merging SFT adapter: %s\\\", args.sft_adapter)\\n        model = PeftModel.from_pretrained(model, args.sft_adapter)\\n        model = model.merge_and_unload()\\n\\n    model.config.use_cache = False\\n    model.gradient_checkpointing_enable()\\n\\n    # Fresh LoRA for RSFT (与 SFT warmup 相同结构)\\n    lora_config = LoraConfig(\\n        task_type=TaskType.CAUSAL_LM,\\n        r=args.lora_rank,\\n        lora_alpha=args.lora_alpha,\\n        lora_dropout=args.lora_dropout,\\n        target_modules=[\\\"q_proj\\\", \\\"k_proj\\\", \\\"v_proj\\\", \\\"o_proj\\\",\\n                         \\\"gate_proj\\\", \\\"up_proj\\\", \\\"down_proj\\\"],\\n    )\\n    model = get_peft_model(model, lora_config)\\n    model.print_trainable_parameters()\\n\\n    # Training config\\n    training_args = SFTConfig(\\n        output_dir=args.output_dir,\\n        num_train_epochs=args.num_epochs,\\n        per_device_train_batch_size=args.per_device_batch_size,\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\n        learning_rate=args.learning_rate,\\n        warmup_steps=args.warmup_steps,\\n        bf16=args.bf16,\\n        logging_steps=10,\\n        save_strategy=\\\"steps\\\",\\n        save_steps=args.save_steps,\\n        save_total_limit=args.save_total_limit,\\n        seed=args.seed,\\n        max_length=args.max_length,\\n        dataset_text_field=\\\"text\\\",\\n        report_to=\\\"wandb\\\" if \\\"WANDB_API_KEY\\\" in os.environ else \\\"none\\\",\\n        gradient_checkpointing=True,\\n        gradient_checkpointing_kwargs={\\\"use_reentrant\\\": False},\\n        deepspeed=args.deepspeed,\\n    )\\n\\n    sample_weights = ced_scores if args.weighted_sampling else None\\n\\n    trainer = WeightedSFTTrainer(\\n        model=model,\\n        args=training_args,\\n        train_dataset=train_dataset,\\n        processing_class=tokenizer,\\n        sample_weights=sample_weights,\\n    )\\n\\n    logger.info(\\n        \\\"Starting RSFT training (%d samples, weighted=%s)...\\\",\\n        len(train_dataset), args.weighted_sampling,\\n    )\\n    trainer.train()\\n\\n    logger.info(\\\"Saving model to %s\\\", args.output_dir)\\n    trainer.save_model(args.output_dir)\\n    tokenizer.save_pretrained(args.output_dir)\\n    logger.info(\\\"RSFT training complete.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "aaf8636d-2ccb-4a77-84f1-fca461c53a6b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"RSFT (Rejection Sampling Fine-Tuning) 训练脚本。\\\\n\\\\n从 SFT warmup checkpoint 继续训练，使用经 CED 打分筛选的高质量生成数据。\\\\n流程: base model → merge SFT adapter → 新 QLoRA → 在 RSFT 数据上训练。\\\\n\\\\n输入: JSONL，每行 {\\\\\\\"doc_id\\\\\\\": ..., \\\\\\\"input\\\\\\\": ..., \\\\\\\"output\\\\\\\": ..., \\\\\\\"ced_score\\\\\\\": ..., ...}\\\\n输出: QLoRA adapter checkpoint\\\\n依赖: transformers, trl, peft, bitsandbytes, datasets\\\\n\\\\n单卡:   python -m freige.training.rsft_trainer --rsft_data_path data.jsonl --output_dir ./rsft_output\\\\n多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\\\\\\\n            -m freige.training.rsft_trainer --rsft_data_path data.jsonl --output_dir ./rsft_output\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\n\\\\nimport torch\\\\nfrom datasets import Dataset\\\\nfrom peft import LoraConfig, PeftModel, TaskType, get_peft_model\\\\nfrom torch.utils.data import WeightedRandomSampler\\\\nfrom transformers import (\\\\n    AutoModelForCausalLM,\\\\n    AutoTokenizer,\\\\n    BitsAndBytesConfig,\\\\n)\\\\nfrom trl import SFTConfig, SFTTrainer\\\\n\\\\nfrom freige.training.sft_trainer import SYSTEM_PROMPT\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nDEFAULT_BASE_MODEL = \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\"\\\\nDEFAULT_SFT_ADAPTER = \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\"\\\\n\\\\n\\\\ndef load_rsft_data(data_path: str, tokenizer, max_length: int = 2048):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"加载 CED 筛选后的 RSFT 数据，格式化为 chat template 文本。\\\\n\\\\n    每行 JSONL 的 input 字段作为 user message，output 字段作为 assistant response，\\\\n    经 apply_chat_template 拼接后用于 SFT 训练。超过 max_length 的样本被跳过\\\\n    而非截断，避免训练在不完整 JSON 输出上。\\\\n\\\\n    Returns:\\\\n        (Dataset, list[float]): 训练数据集和对应的 CED scores\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    samples = []\\\\n    with open(data_path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                samples.append(json.loads(line))\\\\n\\\\n    logger.info(\\\\\\\"Loaded %d RSFT samples from %s\\\\\\\", len(samples), data_path)\\\\n\\\\n    formatted = []\\\\n    ced_scores = []\\\\n    skipped = 0\\\\n    for s in samples:\\\\n        messages = [\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": s[\\\\\\\"input\\\\\\\"]},\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"assistant\\\\\\\", \\\\\\\"content\\\\\\\": s[\\\\\\\"output\\\\\\\"]},\\\\n        ]\\\\n        text = tokenizer.apply_chat_template(\\\\n            messages,\\\\n            tokenize=False,\\\\n            add_generation_prompt=False,\\\\n            enable_thinking=False,\\\\n        )\\\\n        token_len = len(tokenizer.encode(text, add_special_tokens=False))\\\\n        if token_len > max_length:\\\\n            skipped += 1\\\\n            continue\\\\n        formatted.append({\\\\\\\"text\\\\\\\": text})\\\\n        ced_scores.append(s.get(\\\\\\\"ced_score\\\\\\\", 1.0))\\\\n\\\\n    if skipped:\\\\n        logger.warning(\\\\\\\"Skipped %d samples exceeding max_length=%d\\\\\\\", skipped, max_length)\\\\n\\\\n    if ced_scores:\\\\n        logger.info(\\\\n            \\\\\\\"Prepared %d RSFT samples (CED scores: min=%.3f, max=%.3f, mean=%.3f)\\\\\\\",\\\\n            len(formatted), min(ced_scores), max(ced_scores),\\\\n            sum(ced_scores) / len(ced_scores),\\\\n        )\\\\n    return Dataset.from_list(formatted), ced_scores\\\\n\\\\n\\\\nclass WeightedSFTTrainer(SFTTrainer):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"SFTTrainer with CED score-weighted sampling.\\\\n\\\\n    高 CED score 的样本被更频繁采样。使用 WeightedRandomSampler 实现，\\\\n    适用于单机训练。多机 DDP 场景下 Accelerate 会替换 sampler，\\\\n    此时 weighted_sampling 不生效，需改用数据集层面的过采样。\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, *args, sample_weights=None, **kwargs):\\\\n        super().__init__(*args, **kwargs)\\\\n        self.sample_weights = sample_weights\\\\n\\\\n    def _get_train_sampler(self, dataset=None):\\\\n        if self.sample_weights is not None:\\\\n            ds = dataset if dataset is not None else self.train_dataset\\\\n            return WeightedRandomSampler(\\\\n                weights=self.sample_weights,\\\\n                num_samples=len(ds),\\\\n                replacement=True,\\\\n            )\\\\n        return super()._get_train_sampler(dataset)\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"FREIGE RSFT Training\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--base_model\\\\\\\", type=str, default=DEFAULT_BASE_MODEL)\\\\n    parser.add_argument(\\\\\\\"--sft_adapter\\\\\\\", type=str, default=DEFAULT_SFT_ADAPTER,\\\\n                        help=\\\\\\\"SFT warmup a\\\\n\\\\n... [截断: 输出过长，省略 1274 字符] ...\\\\n\\\\ngument(\\\\\\\"--lora_alpha\\\\\\\", type=int, default=128)\\\\n    parser.add_argument(\\\\\\\"--lora_dropout\\\\\\\", type=float, default=0.05)\\\\n    parser.add_argument(\\\\\\\"--bf16\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=True)\\\\n    parser.add_argument(\\\\\\\"--deepspeed\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"DeepSpeed 配置文件路径\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    # W&B\\\\n    if args.wandb_project and \\\\\\\"WANDB_API_KEY\\\\\\\" in os.environ:\\\\n        os.environ[\\\\\\\"WANDB_PROJECT\\\\\\\"] = args.wandb_project\\\\n        if args.wandb_run_name:\\\\n            os.environ[\\\\\\\"WANDB_NAME\\\\\\\"] = args.wandb_run_name\\\\n\\\\n    # Tokenizer\\\\n    logger.info(\\\\\\\"Loading tokenizer: %s\\\\\\\", args.base_model)\\\\n    tokenizer = AutoTokenizer.from_pretrained(\\\\n        args.base_model, trust_remote_code=True, padding_side=\\\\\\\"right\\\\\\\",\\\\n    )\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    # Data\\\\n    logger.info(\\\\\\\"Loading RSFT data: %s\\\\\\\", args.rsft_data_path)\\\\n    train_dataset, ced_scores = load_rsft_data(\\\\n        args.rsft_data_path, tokenizer, args.max_length,\\\\n    )\\\\n\\\\n    # Model: base → merge SFT adapter → new LoRA\\\\n    logger.info(\\\\\\\"Loading base model: %s\\\\\\\", args.base_model)\\\\n    local_rank = int(os.environ.get(\\\\\\\"LOCAL_RANK\\\\\\\", 0))\\\\n    model_kwargs = dict(\\\\n        trust_remote_code=True,\\\\n        attn_implementation=\\\\\\\"sdpa\\\\\\\",\\\\n        device_map={\\\\\\\"\\\\\\\": local_rank},\\\\n    )\\\\n    if args.quantize:\\\\n        logger.info(\\\\\\\"Using 4-bit QLoRA quantization\\\\\\\")\\\\n        model_kwargs[\\\\\\\"quantization_config\\\\\\\"] = BitsAndBytesConfig(\\\\n            load_in_4bit=True,\\\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\\\n            bnb_4bit_quant_type=\\\\\\\"nf4\\\\\\\",\\\\n            bnb_4bit_use_double_quant=True,\\\\n        )\\\\n    else:\\\\n        model_kwargs[\\\\\\\"torch_dtype\\\\\\\"] = torch.bfloat16 if args.bf16 else torch.float16\\\\n\\\\n    model = AutoModelForCausalLM.from_pretrained(args.base_model, **model_kwargs)\\\\n\\\\n    if args.sft_adapter:\\\\n        logger.info(\\\\\\\"Merging SFT adapter: %s\\\\\\\", args.sft_adapter)\\\\n        model = PeftModel.from_pretrained(model, args.sft_adapter)\\\\n        model = model.merge_and_unload()\\\\n\\\\n    model.config.use_cache = False\\\\n    model.gradient_checkpointing_enable()\\\\n\\\\n    # Fresh LoRA for RSFT (与 SFT warmup 相同结构)\\\\n    lora_config = LoraConfig(\\\\n        task_type=TaskType.CAUSAL_LM,\\\\n        r=args.lora_rank,\\\\n        lora_alpha=args.lora_alpha,\\\\n        lora_dropout=args.lora_dropout,\\\\n        target_modules=[\\\\\\\"q_proj\\\\\\\", \\\\\\\"k_proj\\\\\\\", \\\\\\\"v_proj\\\\\\\", \\\\\\\"o_proj\\\\\\\",\\\\n                         \\\\\\\"gate_proj\\\\\\\", \\\\\\\"up_proj\\\\\\\", \\\\\\\"down_proj\\\\\\\"],\\\\n    )\\\\n    model = get_peft_model(model, lora_config)\\\\n    model.print_trainable_parameters()\\\\n\\\\n    # Training config\\\\n    training_args = SFTConfig(\\\\n        output_dir=args.output_dir,\\\\n        num_train_epochs=args.num_epochs,\\\\n        per_device_train_batch_size=args.per_device_batch_size,\\\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\\\n        learning_rate=args.learning_rate,\\\\n        warmup_steps=args.warmup_steps,\\\\n        bf16=args.bf16,\\\\n        logging_steps=10,\\\\n        save_strategy=\\\\\\\"steps\\\\\\\",\\\\n        save_steps=args.save_steps,\\\\n        save_total_limit=args.save_total_limit,\\\\n        seed=args.seed,\\\\n        max_length=args.max_length,\\\\n        dataset_text_field=\\\\\\\"text\\\\\\\",\\\\n        report_to=\\\\\\\"wandb\\\\\\\" if \\\\\\\"WANDB_API_KEY\\\\\\\" in os.environ else \\\\\\\"none\\\\\\\",\\\\n        gradient_checkpointing=True,\\\\n        gradient_checkpointing_kwargs={\\\\\\\"use_reentrant\\\\\\\": False},\\\\n        deepspeed=args.deepspeed,\\\\n    )\\\\n\\\\n    sample_weights = ced_scores if args.weighted_sampling else None\\\\n\\\\n    trainer = WeightedSFTTrainer(\\\\n        model=model,\\\\n        args=training_args,\\\\n        train_dataset=train_dataset,\\\\n        processing_class=tokenizer,\\\\n        sample_weights=sample_weights,\\\\n    )\\\\n\\\\n    logger.info(\\\\n        \\\\\\\"Starting RSFT training (%d samples, weighted=%s)...\\\\\\\",\\\\n        len(train_dataset), args.weighted_sampling,\\\\n    )\\\\n    trainer.train()\\\\n\\\\n    logger.info(\\\\\\\"Saving model to %s\\\\\\\", args.output_dir)\\\\n    trainer.save_model(args.output_dir)\\\\n    tokenizer.save_pretrained(args.output_dir)\\\\n    logger.info(\\\\\\\"RSFT training complete.\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"RSFT (Rejection Sampling Fine-Tuning) 训练脚本。\\n\\n从 SFT warmup checkpoint 继续训练，使用经 CED 打分筛选的高质量生成数据。\\n流程: base model → merge SFT adapter → 新 QLoRA → 在 RSFT 数据上训练。\\n\\n输入: JSONL，每行 {\\\"doc_id\\\": ..., \\\"input\\\": ..., \\\"output\\\": ..., \\\"ced_score\\\": ..., ...}\\n输出: QLoRA adapter checkpoint\\n依赖: transformers, trl, peft, bitsandbytes, datasets\\n\\n单卡:   python -m freige.training.rsft_trainer --rsft_data_path data.jsonl --output_dir ./rsft_output\\n多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\n            -m freige.training.rsft_trainer --rsft_data_path data.jsonl --output_dir ./rsft_output\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom peft import LoraConfig, PeftModel, TaskType, get_peft_model\\nfrom torch.utils.data import WeightedRandomSampler\\nfrom transformers import (\\n    AutoModelForCausalLM,\\n    AutoTokenizer,\\n    BitsAndBytesConfig,\\n)\\nfrom trl import SFTConfig, SFTTrainer\\n\\nfrom freige.training.sft_trainer import SYSTEM_PROMPT\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nDEFAULT_BASE_MODEL = \\\"/root/autodl-tmp/models/Qwen3-4B\\\"\\nDEFAULT_SFT_ADAPTER = \\\"/root/autodl-tmp/sft_output\\\"\\n\\n\\ndef load_rsft_data(data_path: str, tokenizer, max_length: int = 2048):\\n    \\\"\\\"\\\"加载 CED 筛选后的 RSFT 数据，格式化为 chat template 文本。\\n\\n    每行 JSONL 的 input 字段作为 user message，output 字段作为 assistant response，\\n    经 apply_chat_template 拼接后用于 SFT 训练。超过 max_length 的样本被跳过\\n    而非截断，避免训练在不完整 JSON 输出上。\\n\\n    Returns:\\n        (Dataset, list[float]): 训练数据集和对应的 CED scores\\n    \\\"\\\"\\\"\\n    samples = []\\n    with open(data_path) as f:\\n        for line in f:\\n            if line.strip():\\n                samples.append(json.loads(line))\\n\\n    logger.info(\\\"Loaded %d RSFT samples from %s\\\", len(samples), data_path)\\n\\n    formatted = []\\n    ced_scores = []\\n    skipped = 0\\n    for s in samples:\\n        messages = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": s[\\\"input\\\"]},\\n            {\\\"role\\\": \\\"assistant\\\", \\\"content\\\": s[\\\"output\\\"]},\\n        ]\\n        text = tokenizer.apply_chat_template(\\n            messages,\\n            tokenize=False,\\n            add_generation_prompt=False,\\n            enable_thinking=False,\\n        )\\n        token_len = len(tokenizer.encode(text, add_special_tokens=False))\\n        if token_len > max_length:\\n            skipped += 1\\n            continue\\n        formatted.append({\\\"text\\\": text})\\n        ced_scores.append(s.get(\\\"ced_score\\\", 1.0))\\n\\n    if skipped:\\n        logger.warning(\\\"Skipped %d samples exceeding max_length=%d\\\", skipped, max_length)\\n\\n    if ced_scores:\\n        logger.info(\\n            \\\"Prepared %d RSFT samples (CED scores: min=%.3f, max=%.3f, mean=%.3f)\\\",\\n            len(formatted), min(ced_scores), max(ced_scores),\\n            sum(ced_scores) / len(ced_scores),\\n        )\\n    return Dataset.from_list(formatted), ced_scores\\n\\n\\nclass WeightedSFTTrainer(SFTTrainer):\\n    \\\"\\\"\\\"SFTTrainer with CED score-weighted sampling.\\n\\n    高 CED score 的样本被更频繁采样。使用 WeightedRandomSampler 实现，\\n    适用于单机训练。多机 DDP 场景下 Accelerate 会替换 sampler，\\n    此时 weighted_sampling 不生效，需改用数据集层面的过采样。\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, *args, sample_weights=None, **kwargs):\\n        super().__init__(*args, **kwargs)\\n        self.sample_weights = sample_weights\\n\\n    def _get_train_sampler(self, dataset=None):\\n        if self.sample_weights is not None:\\n            ds = dataset if dataset is not None else self.train_dataset\\n            return WeightedRandomSampler(\\n                weights=self.sample_weights,\\n                num_samples=len(ds),\\n                replacement=True,\\n            )\\n        return super()._get_train_sampler(dataset)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"FREIGE RSFT Training\\\")\\n    parser.add_argument(\\\"--base_model\\\", type=str, default=DEFAULT_BASE_MODEL)\\n    parser.add_argument(\\\"--sft_adapter\\\", type=str, default=DEFAULT_SFT_ADAPTER,\\n                        help=\\\"SFT warmup a\\n\\n... [截断: 输出过长，省略 1274 字符] ...\\n\\ngument(\\\"--lora_alpha\\\", type=int, default=128)\\n    parser.add_argument(\\\"--lora_dropout\\\", type=float, default=0.05)\\n    parser.add_argument(\\\"--bf16\\\", action=\\\"store_true\\\", default=True)\\n    parser.add_argument(\\\"--deepspeed\\\", type=str, default=None,\\n                        help=\\\"DeepSpeed 配置文件路径\\\")\\n    args = parser.parse_args()\\n\\n    # W&B\\n    if args.wandb_project and \\\"WANDB_API_KEY\\\" in os.environ:\\n        os.environ[\\\"WANDB_PROJECT\\\"] = args.wandb_project\\n        if args.wandb_run_name:\\n            os.environ[\\\"WANDB_NAME\\\"] = args.wandb_run_name\\n\\n    # Tokenizer\\n    logger.info(\\\"Loading tokenizer: %s\\\", args.base_model)\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        args.base_model, trust_remote_code=True, padding_side=\\\"right\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    # Data\\n    logger.info(\\\"Loading RSFT data: %s\\\", args.rsft_data_path)\\n    train_dataset, ced_scores = load_rsft_data(\\n        args.rsft_data_path, tokenizer, args.max_length,\\n    )\\n\\n    # Model: base → merge SFT adapter → new LoRA\\n    logger.info(\\\"Loading base model: %s\\\", args.base_model)\\n    local_rank = int(os.environ.get(\\\"LOCAL_RANK\\\", 0))\\n    model_kwargs = dict(\\n        trust_remote_code=True,\\n        attn_implementation=\\\"sdpa\\\",\\n        device_map={\\\"\\\": local_rank},\\n    )\\n    if args.quantize:\\n        logger.info(\\\"Using 4-bit QLoRA quantization\\\")\\n        model_kwargs[\\\"quantization_config\\\"] = BitsAndBytesConfig(\\n            load_in_4bit=True,\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\n            bnb_4bit_quant_type=\\\"nf4\\\",\\n            bnb_4bit_use_double_quant=True,\\n        )\\n    else:\\n        model_kwargs[\\\"torch_dtype\\\"] = torch.bfloat16 if args.bf16 else torch.float16\\n\\n    model = AutoModelForCausalLM.from_pretrained(args.base_model, **model_kwargs)\\n\\n    if args.sft_adapter:\\n        logger.info(\\\"Merging SFT adapter: %s\\\", args.sft_adapter)\\n        model = PeftModel.from_pretrained(model, args.sft_adapter)\\n        model = model.merge_and_unload()\\n\\n    model.config.use_cache = False\\n    model.gradient_checkpointing_enable()\\n\\n    # Fresh LoRA for RSFT (与 SFT warmup 相同结构)\\n    lora_config = LoraConfig(\\n        task_type=TaskType.CAUSAL_LM,\\n        r=args.lora_rank,\\n        lora_alpha=args.lora_alpha,\\n        lora_dropout=args.lora_dropout,\\n        target_modules=[\\\"q_proj\\\", \\\"k_proj\\\", \\\"v_proj\\\", \\\"o_proj\\\",\\n                         \\\"gate_proj\\\", \\\"up_proj\\\", \\\"down_proj\\\"],\\n    )\\n    model = get_peft_model(model, lora_config)\\n    model.print_trainable_parameters()\\n\\n    # Training config\\n    training_args = SFTConfig(\\n        output_dir=args.output_dir,\\n        num_train_epochs=args.num_epochs,\\n        per_device_train_batch_size=args.per_device_batch_size,\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\n        learning_rate=args.learning_rate,\\n        warmup_steps=args.warmup_steps,\\n        bf16=args.bf16,\\n        logging_steps=10,\\n        save_strategy=\\\"steps\\\",\\n        save_steps=args.save_steps,\\n        save_total_limit=args.save_total_limit,\\n        seed=args.seed,\\n        max_length=args.max_length,\\n        dataset_text_field=\\\"text\\\",\\n        report_to=\\\"wandb\\\" if \\\"WANDB_API_KEY\\\" in os.environ else \\\"none\\\",\\n        gradient_checkpointing=True,\\n        gradient_checkpointing_kwargs={\\\"use_reentrant\\\": False},\\n        deepspeed=args.deepspeed,\\n    )\\n\\n    sample_weights = ced_scores if args.weighted_sampling else None\\n\\n    trainer = WeightedSFTTrainer(\\n        model=model,\\n        args=training_args,\\n        train_dataset=train_dataset,\\n        processing_class=tokenizer,\\n        sample_weights=sample_weights,\\n    )\\n\\n    logger.info(\\n        \\\"Starting RSFT training (%d samples, weighted=%s)...\\\",\\n        len(train_dataset), args.weighted_sampling,\\n    )\\n    trainer.train()\\n\\n    logger.info(\\\"Saving model to %s\\\", args.output_dir)\\n    trainer.save_model(args.output_dir)\\n    tokenizer.save_pretrained(args.output_dir)\\n    logger.info(\\\"RSFT training complete.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0114N3xxjke3GQLrnaXdBo7r`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/training/rsft_generate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "49fe639e-cab0-4458-818f-0e54aefa9947",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017yJ4wxKKpRYtuke1jJtTq1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 801,
+      "cache_read_input_tokens": 25104,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 801
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T01:12:20.435Z_
+
+<details><summary>↩ Tool result · `toolu_0114N3xxjke3GQLrnaXdBo7r`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"RSFT Step 1: 批量生成候选输出。\\n\\n用 SFT warmup 模型对每个训练样本生成 N 个候选输出 (temperature sampling)，\\n保存为 JSONL 供后续 CED 打分筛选。\\n\\n输入:\\n  - base model (Qwen3-4B) + QLoRA adapter (SFT checkpoint)\\n  - DocRED train_annotated.json\\n\\n输出 (保存到 --output_dir):\\n  - generations.jsonl: 每行一个生成结果\\n    {\\\"doc_id\\\", \\\"generation_idx\\\", \\\"prompt\\\", \\\"output\\\", \\\"raw_text\\\", \\\"parsed_triples\\\", \\\"format_ok\\\"}\\n  - progress.json: 已完成的 doc_id 列表（用于断点续传）\\n\\n依赖: transformers, peft, bitsandbytes, torch, tqdm\\n\\n用法:\\n  python -m freige.training.rsft_generate \\\\\\n      --base_model /root/autodl-tmp/models/Qwen3-4B \\\\\\n      --sft_adapter /root/autodl-tmp/sft_output \\\\\\n      --data_path /root/autodl-tmp/data/docred \\\\\\n      --output_dir /root/autodl-tmp/rsft_generations \\\\\\n      --num_generations 8 --temperature 0.7 --batch_size 4\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom pathlib import Path\\n\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\nfrom tqdm import tqdm\\n\\nfrom freige.data.docred_processor import DocREDProcessor\\nfrom freige.eval.evaluator import parse_model_output\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\n\\ndef load_model_and_tokenizer(base_model, sft_adapter=None, quantize=True):\\n    \\\"\\\"\\\"加载 base model + 可选 QLoRA adapter，merge 后返回。\\\"\\\"\\\"\\n    logger.info(\\\"Loading tokenizer: %s\\\", base_model)\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        base_model, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    logger.info(\\\"Loading model: %s\\\", base_model)\\n    model_kwargs = dict(trust_remote_code=True, attn_implementation=\\\"sdpa\\\", device_map=\\\"auto\\\")\\n    if quantize:\\n        model_kwargs[\\\"quantization_config\\\"] = BitsAndBytesConfig(\\n            load_in_4bit=True,\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\n            bnb_4bit_quant_type=\\\"nf4\\\",\\n            bnb_4bit_use_double_quant=True,\\n        )\\n    else:\\n        model_kwargs[\\\"torch_dtype\\\"] = torch.bfloat16\\n\\n    model = AutoModelForCausalLM.from_pretrained(base_model, **model_kwargs)\\n\\n    if sft_adapter:\\n        logger.info(\\\"Loading & merging SFT adapter: %s\\\", sft_adapter)\\n        model = PeftModel.from_pretrained(model, sft_adapter)\\n        model = model.merge_and_unload()\\n\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef prepare_generation_data(data_dir, split, tokenizer):\\n    \\\"\\\"\\\"加载 DocRED 数据，构建每个文档的 prompt 和 gold 信息。\\n\\n    Returns:\\n        list of dict: 每个文档一条，含 doc_id, prompt, gold_triples, sents\\n    \\\"\\\"\\\"\\n    processor = DocREDProcessor(data_dir=data_dir)\\n    samples = processor.process(split)\\n    groups = processor.group_by_document(samples)\\n\\n    items = []\\n    for doc_id, doc_samples in groups.items():\\n        sft_sample = processor.format_sft_sample(doc_samples)\\n        messages = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": f\\\"{sft_sample['instruction']}\\\\n\\\\n{sft_sample['input']}\\\"},\\n        ]\\n        prompt = tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True, enable_thinking=False,\\n        )\\n\\n        gold_triples = []\\n        for s in doc_samples:\\n            gold_triples.append({\\n                \\\"head\\\": s.head.name,\\n                \\\"relation\\\": s.relation_name,\\n                \\\"tail\\\": s.tail.name,\\n                \\\"evidence\\\": s.evidence_sent_ids,\\n                \\\"hard_negative_sent_ids\\\": s.hard_negative_sent_ids,\\n            })\\n\\n        ref = doc_samples[0]\\n        items.append({\\n            \\\"doc_id\\\": doc_id,\\n            \\\"prompt\\\": prompt,\\n            \\\"gold_triples\\\": g\\n\\n... [截断: 输出过长，省略 6857 字符] ...\\n\\ns, args.temperature, args.max_new_tokens,\\n                )\\n            except torch.cuda.OutOfMemoryError:\\n                logger.warning(\\\"OOM on batch of %d, falling back to one-by-one\\\", len(batch))\\n                torch.cuda.empty_cache()\\n                batch_outputs = []\\n                batch_trunc = []\\n                for p in prompts:\\n                    out, trunc = generate_batch(\\n                        model, tokenizer, [p],\\n                        args.num_generations, args.temperature, args.max_new_tokens,\\n                    )\\n                    batch_outputs.append(out[0])\\n                    batch_trunc.append(trunc[0])\\n\\n            for item, generations, trunc_flags in zip(batch, batch_outputs, batch_trunc):\\n                doc_triple_sets = set()\\n                for gen_idx, raw_text in enumerate(generations):\\n                    parsed_triples, format_ok = parse_model_output(raw_text)\\n                    truncated = trunc_flags[gen_idx] if gen_idx < len(trunc_flags) else False\\n                    record = {\\n                        \\\"doc_id\\\": item[\\\"doc_id\\\"],\\n                        \\\"generation_idx\\\": gen_idx,\\n                        \\\"prompt\\\": item[\\\"prompt\\\"],\\n                        \\\"output\\\": raw_text,\\n                        \\\"raw_text\\\": raw_text,\\n                        \\\"parsed_triples\\\": parsed_triples,\\n                        \\\"format_ok\\\": format_ok,\\n                        \\\"truncated\\\": truncated,\\n                        \\\"gold_triples\\\": item[\\\"gold_triples\\\"],\\n                        \\\"sents\\\": item[\\\"sents\\\"],\\n                    }\\n                    fout.write(json.dumps(record, ensure_ascii=False) + \\\"\\\\n\\\")\\n\\n                    # 监控计数\\n                    mon_total_gens += 1\\n                    mon_window_total += 1\\n                    if format_ok:\\n                        mon_format_ok += 1\\n                        mon_window_format_ok += 1\\n                    if truncated:\\n                        mon_truncated += 1\\n                        mon_window_truncated += 1\\n                    triple_key = frozenset(\\n                        (t[\\\"head\\\"].lower(), t[\\\"relation\\\"].lower(), t[\\\"tail\\\"].lower())\\n                        for t in parsed_triples\\n                    )\\n                    doc_triple_sets.add(triple_key)\\n\\n                diversity = len(doc_triple_sets) / args.num_generations\\n                mon_diversity_sum += diversity\\n                mon_doc_count += 1\\n                mon_window_diversity += diversity\\n                mon_window_docs += 1\\n\\n                # 每 100 个文档打印一次监控\\n                if mon_doc_count == 100:\\n                    _print_monitor(\\\"First 100 samples\\\", mon_doc_count, mon_total_gens,\\n                                   mon_format_ok, mon_truncated, mon_diversity_sum)\\n                elif mon_doc_count > 100 and mon_window_docs >= 100:\\n                    _print_monitor(f\\\"Docs {mon_doc_count - mon_window_docs + 1}-{mon_doc_count}\\\",\\n                                   mon_window_docs, mon_window_total,\\n                                   mon_window_format_ok, mon_window_truncated, mon_window_diversity)\\n                    mon_window_format_ok = 0\\n                    mon_window_truncated = 0\\n                    mon_window_total = 0\\n                    mon_window_diversity = 0.0\\n                    mon_window_docs = 0\\n\\n                completed.add(item[\\\"doc_id\\\"])\\n\\n            fout.flush()\\n            save_progress(args.output_dir, completed)\\n\\n    logger.info(\\\"Generation complete. %d documents, %d total outputs → %s\\\",\\n                len(items), len(items) * args.num_generations, output_file)\\n\\n    # 统计\\n    n_format_ok = 0\\n    n_total = 0\\n    with open(output_file) as f:\\n        for line in f:\\n            rec = json.loads(line)\\n            n_total += 1\\n            if rec.get(\\\"format_ok\\\"):\\n                n_format_ok += 1\\n\\n    logger.info(\\\"Format compliance: %d/%d (%.1f%%)\\\", n_format_ok, n_total,\\n                100 * n_format_ok / n_total if n_total else 0)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "3d980197-2708-4685-a6ce-91c36e6e45bc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"RSFT Step 1: 批量生成候选输出。\\\\n\\\\n用 SFT warmup 模型对每个训练样本生成 N 个候选输出 (temperature sampling)，\\\\n保存为 JSONL 供后续 CED 打分筛选。\\\\n\\\\n输入:\\\\n  - base model (Qwen3-4B) + QLoRA adapter (SFT checkpoint)\\\\n  - DocRED train_annotated.json\\\\n\\\\n输出 (保存到 --output_dir):\\\\n  - generations.jsonl: 每行一个生成结果\\\\n    {\\\\\\\"doc_id\\\\\\\", \\\\\\\"generation_idx\\\\\\\", \\\\\\\"prompt\\\\\\\", \\\\\\\"output\\\\\\\", \\\\\\\"raw_text\\\\\\\", \\\\\\\"parsed_triples\\\\\\\", \\\\\\\"format_ok\\\\\\\"}\\\\n  - progress.json: 已完成的 doc_id 列表（用于断点续传）\\\\n\\\\n依赖: transformers, peft, bitsandbytes, torch, tqdm\\\\n\\\\n用法:\\\\n  python -m freige.training.rsft_generate \\\\\\\\\\\\n      --base_model /root/autodl-tmp/models/Qwen3-4B \\\\\\\\\\\\n      --sft_adapter /root/autodl-tmp/sft_output \\\\\\\\\\\\n      --data_path /root/autodl-tmp/data/docred \\\\\\\\\\\\n      --output_dir /root/autodl-tmp/rsft_generations \\\\\\\\\\\\n      --num_generations 8 --temperature 0.7 --batch_size 4\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\\\nfrom tqdm import tqdm\\\\n\\\\nfrom freige.data.docred_processor import DocREDProcessor\\\\nfrom freige.eval.evaluator import parse_model_output\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are an information extraction model. Given a document with numbered sentences \\\\\\\"\\\\n    \\\\\\\"and a list of entities, extract all relation triples. For each triple, provide the \\\\\\\"\\\\n    \\\\\\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\\\\\"\\\\n    \\\\\\\"Output as a JSON list.\\\\\\\"\\\\n)\\\\n\\\\n\\\\ndef load_model_and_tokenizer(base_model, sft_adapter=None, quantize=True):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"加载 base model + 可选 QLoRA adapter，merge 后返回。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    logger.info(\\\\\\\"Loading tokenizer: %s\\\\\\\", base_model)\\\\n    tokenizer = AutoTokenizer.from_pretrained(\\\\n        base_model, trust_remote_code=True, padding_side=\\\\\\\"left\\\\\\\",\\\\n    )\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    logger.info(\\\\\\\"Loading model: %s\\\\\\\", base_model)\\\\n    model_kwargs = dict(trust_remote_code=True, attn_implementation=\\\\\\\"sdpa\\\\\\\", device_map=\\\\\\\"auto\\\\\\\")\\\\n    if quantize:\\\\n        model_kwargs[\\\\\\\"quantization_config\\\\\\\"] = BitsAndBytesConfig(\\\\n            load_in_4bit=True,\\\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\\\n            bnb_4bit_quant_type=\\\\\\\"nf4\\\\\\\",\\\\n            bnb_4bit_use_double_quant=True,\\\\n        )\\\\n    else:\\\\n        model_kwargs[\\\\\\\"torch_dtype\\\\\\\"] = torch.bfloat16\\\\n\\\\n    model = AutoModelForCausalLM.from_pretrained(base_model, **model_kwargs)\\\\n\\\\n    if sft_adapter:\\\\n        logger.info(\\\\\\\"Loading & merging SFT adapter: %s\\\\\\\", sft_adapter)\\\\n        model = PeftModel.from_pretrained(model, sft_adapter)\\\\n        model = model.merge_and_unload()\\\\n\\\\n    model.eval()\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef prepare_generation_data(data_dir, split, tokenizer):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"加载 DocRED 数据，构建每个文档的 prompt 和 gold 信息。\\\\n\\\\n    Returns:\\\\n        list of dict: 每个文档一条，含 doc_id, prompt, gold_triples, sents\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    processor = DocREDProcessor(data_dir=data_dir)\\\\n    samples = processor.process(split)\\\\n    groups = processor.group_by_document(samples)\\\\n\\\\n    items = []\\\\n    for doc_id, doc_samples in groups.items():\\\\n        sft_sample = processor.format_sft_sample(doc_samples)\\\\n        messages = [\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": f\\\\\\\"{sft_sample['instruction']}\\\\\\\\n\\\\\\\\n{sft_sample['input']}\\\\\\\"},\\\\n        ]\\\\n        prompt = tokenizer.apply_chat_template(\\\\n            messages, tokenize=False, add_generation_prompt=True, enable_thinking=False,\\\\n        )\\\\n\\\\n        gold_triples = []\\\\n        for s in doc_samples:\\\\n            gold_triples.append({\\\\n                \\\\\\\"head\\\\\\\": s.head.name,\\\\n                \\\\\\\"relation\\\\\\\": s.relation_name,\\\\n                \\\\\\\"tail\\\\\\\": s.tail.name,\\\\n                \\\\\\\"evidence\\\\\\\": s.evidence_sent_ids,\\\\n                \\\\\\\"hard_negative_sent_ids\\\\\\\": s.hard_negative_sent_ids,\\\\n            })\\\\n\\\\n        ref = doc_samples[0]\\\\n        items.append({\\\\n            \\\\\\\"doc_id\\\\\\\": doc_id,\\\\n            \\\\\\\"prompt\\\\\\\": prompt,\\\\n            \\\\\\\"gold_triples\\\\\\\": g\\\\n\\\\n... [截断: 输出过长，省略 6857 字符] ...\\\\n\\\\ns, args.temperature, args.max_new_tokens,\\\\n                )\\\\n            except torch.cuda.OutOfMemoryError:\\\\n                logger.warning(\\\\\\\"OOM on batch of %d, falling back to one-by-one\\\\\\\", len(batch))\\\\n                torch.cuda.empty_cache()\\\\n                batch_outputs = []\\\\n                batch_trunc = []\\\\n                for p in prompts:\\\\n                    out, trunc = generate_batch(\\\\n                        model, tokenizer, [p],\\\\n                        args.num_generations, args.temperature, args.max_new_tokens,\\\\n                    )\\\\n                    batch_outputs.append(out[0])\\\\n                    batch_trunc.append(trunc[0])\\\\n\\\\n            for item, generations, trunc_flags in zip(batch, batch_outputs, batch_trunc):\\\\n                doc_triple_sets = set()\\\\n                for gen_idx, raw_text in enumerate(generations):\\\\n                    parsed_triples, format_ok = parse_model_output(raw_text)\\\\n                    truncated = trunc_flags[gen_idx] if gen_idx < len(trunc_flags) else False\\\\n                    record = {\\\\n                        \\\\\\\"doc_id\\\\\\\": item[\\\\\\\"doc_id\\\\\\\"],\\\\n                        \\\\\\\"generation_idx\\\\\\\": gen_idx,\\\\n                        \\\\\\\"prompt\\\\\\\": item[\\\\\\\"prompt\\\\\\\"],\\\\n                        \\\\\\\"output\\\\\\\": raw_text,\\\\n                        \\\\\\\"raw_text\\\\\\\": raw_text,\\\\n                        \\\\\\\"parsed_triples\\\\\\\": parsed_triples,\\\\n                        \\\\\\\"format_ok\\\\\\\": format_ok,\\\\n                        \\\\\\\"truncated\\\\\\\": truncated,\\\\n                        \\\\\\\"gold_triples\\\\\\\": item[\\\\\\\"gold_triples\\\\\\\"],\\\\n                        \\\\\\\"sents\\\\\\\": item[\\\\\\\"sents\\\\\\\"],\\\\n                    }\\\\n                    fout.write(json.dumps(record, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n                    # 监控计数\\\\n                    mon_total_gens += 1\\\\n                    mon_window_total += 1\\\\n                    if format_ok:\\\\n                        mon_format_ok += 1\\\\n                        mon_window_format_ok += 1\\\\n                    if truncated:\\\\n                        mon_truncated += 1\\\\n                        mon_window_truncated += 1\\\\n                    triple_key = frozenset(\\\\n                        (t[\\\\\\\"head\\\\\\\"].lower(), t[\\\\\\\"relation\\\\\\\"].lower(), t[\\\\\\\"tail\\\\\\\"].lower())\\\\n                        for t in parsed_triples\\\\n                    )\\\\n                    doc_triple_sets.add(triple_key)\\\\n\\\\n                diversity = len(doc_triple_sets) / args.num_generations\\\\n                mon_diversity_sum += diversity\\\\n                mon_doc_count += 1\\\\n                mon_window_diversity += diversity\\\\n                mon_window_docs += 1\\\\n\\\\n                # 每 100 个文档打印一次监控\\\\n                if mon_doc_count == 100:\\\\n                    _print_monitor(\\\\\\\"First 100 samples\\\\\\\", mon_doc_count, mon_total_gens,\\\\n                                   mon_format_ok, mon_truncated, mon_diversity_sum)\\\\n                elif mon_doc_count > 100 and mon_window_docs >= 100:\\\\n                    _print_monitor(f\\\\\\\"Docs {mon_doc_count - mon_window_docs + 1}-{mon_doc_count}\\\\\\\",\\\\n                                   mon_window_docs, mon_window_total,\\\\n                                   mon_window_format_ok, mon_window_truncated, mon_window_diversity)\\\\n                    mon_window_format_ok = 0\\\\n                    mon_window_truncated = 0\\\\n                    mon_window_total = 0\\\\n                    mon_window_diversity = 0.0\\\\n                    mon_window_docs = 0\\\\n\\\\n                completed.add(item[\\\\\\\"doc_id\\\\\\\"])\\\\n\\\\n            fout.flush()\\\\n            save_progress(args.output_dir, completed)\\\\n\\\\n    logger.info(\\\\\\\"Generation complete. %d documents, %d total outputs → %s\\\\\\\",\\\\n                len(items), len(items) * args.num_generations, output_file)\\\\n\\\\n    # 统计\\\\n    n_format_ok = 0\\\\n    n_total = 0\\\\n    with open(output_file) as f:\\\\n        for line in f:\\\\n            rec = json.loads(line)\\\\n            n_total += 1\\\\n            if rec.get(\\\\\\\"format_ok\\\\\\\"):\\\\n                n_format_ok += 1\\\\n\\\\n    logger.info(\\\\\\\"Format compliance: %d/%d (%.1f%%)\\\\\\\", n_format_ok, n_total,\\\\n                100 * n_format_ok / n_total if n_total else 0)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"RSFT Step 1: 批量生成候选输出。\\n\\n用 SFT warmup 模型对每个训练样本生成 N 个候选输出 (temperature sampling)，\\n保存为 JSONL 供后续 CED 打分筛选。\\n\\n输入:\\n  - base model (Qwen3-4B) + QLoRA adapter (SFT checkpoint)\\n  - DocRED train_annotated.json\\n\\n输出 (保存到 --output_dir):\\n  - generations.jsonl: 每行一个生成结果\\n    {\\\"doc_id\\\", \\\"generation_idx\\\", \\\"prompt\\\", \\\"output\\\", \\\"raw_text\\\", \\\"parsed_triples\\\", \\\"format_ok\\\"}\\n  - progress.json: 已完成的 doc_id 列表（用于断点续传）\\n\\n依赖: transformers, peft, bitsandbytes, torch, tqdm\\n\\n用法:\\n  python -m freige.training.rsft_generate \\\\\\n      --base_model /root/autodl-tmp/models/Qwen3-4B \\\\\\n      --sft_adapter /root/autodl-tmp/sft_output \\\\\\n      --data_path /root/autodl-tmp/data/docred \\\\\\n      --output_dir /root/autodl-tmp/rsft_generations \\\\\\n      --num_generations 8 --temperature 0.7 --batch_size 4\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom pathlib import Path\\n\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\nfrom tqdm import tqdm\\n\\nfrom freige.data.docred_processor import DocREDProcessor\\nfrom freige.eval.evaluator import parse_model_output\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\n\\ndef load_model_and_tokenizer(base_model, sft_adapter=None, quantize=True):\\n    \\\"\\\"\\\"加载 base model + 可选 QLoRA adapter，merge 后返回。\\\"\\\"\\\"\\n    logger.info(\\\"Loading tokenizer: %s\\\", base_model)\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        base_model, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    logger.info(\\\"Loading model: %s\\\", base_model)\\n    model_kwargs = dict(trust_remote_code=True, attn_implementation=\\\"sdpa\\\", device_map=\\\"auto\\\")\\n    if quantize:\\n        model_kwargs[\\\"quantization_config\\\"] = BitsAndBytesConfig(\\n            load_in_4bit=True,\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\n            bnb_4bit_quant_type=\\\"nf4\\\",\\n            bnb_4bit_use_double_quant=True,\\n        )\\n    else:\\n        model_kwargs[\\\"torch_dtype\\\"] = torch.bfloat16\\n\\n    model = AutoModelForCausalLM.from_pretrained(base_model, **model_kwargs)\\n\\n    if sft_adapter:\\n        logger.info(\\\"Loading & merging SFT adapter: %s\\\", sft_adapter)\\n        model = PeftModel.from_pretrained(model, sft_adapter)\\n        model = model.merge_and_unload()\\n\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef prepare_generation_data(data_dir, split, tokenizer):\\n    \\\"\\\"\\\"加载 DocRED 数据，构建每个文档的 prompt 和 gold 信息。\\n\\n    Returns:\\n        list of dict: 每个文档一条，含 doc_id, prompt, gold_triples, sents\\n    \\\"\\\"\\\"\\n    processor = DocREDProcessor(data_dir=data_dir)\\n    samples = processor.process(split)\\n    groups = processor.group_by_document(samples)\\n\\n    items = []\\n    for doc_id, doc_samples in groups.items():\\n        sft_sample = processor.format_sft_sample(doc_samples)\\n        messages = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": f\\\"{sft_sample['instruction']}\\\\n\\\\n{sft_sample['input']}\\\"},\\n        ]\\n        prompt = tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True, enable_thinking=False,\\n        )\\n\\n        gold_triples = []\\n        for s in doc_samples:\\n            gold_triples.append({\\n                \\\"head\\\": s.head.name,\\n                \\\"relation\\\": s.relation_name,\\n                \\\"tail\\\": s.tail.name,\\n                \\\"evidence\\\": s.evidence_sent_ids,\\n                \\\"hard_negative_sent_ids\\\": s.hard_negative_sent_ids,\\n            })\\n\\n        ref = doc_samples[0]\\n        items.append({\\n            \\\"doc_id\\\": doc_id,\\n            \\\"prompt\\\": prompt,\\n            \\\"gold_triples\\\": g\\n\\n... [截断: 输出过长，省略 6857 字符] ...\\n\\ns, args.temperature, args.max_new_tokens,\\n                )\\n            except torch.cuda.OutOfMemoryError:\\n                logger.warning(\\\"OOM on batch of %d, falling back to one-by-one\\\", len(batch))\\n                torch.cuda.empty_cache()\\n                batch_outputs = []\\n                batch_trunc = []\\n                for p in prompts:\\n                    out, trunc = generate_batch(\\n                        model, tokenizer, [p],\\n                        args.num_generations, args.temperature, args.max_new_tokens,\\n                    )\\n                    batch_outputs.append(out[0])\\n                    batch_trunc.append(trunc[0])\\n\\n            for item, generations, trunc_flags in zip(batch, batch_outputs, batch_trunc):\\n                doc_triple_sets = set()\\n                for gen_idx, raw_text in enumerate(generations):\\n                    parsed_triples, format_ok = parse_model_output(raw_text)\\n                    truncated = trunc_flags[gen_idx] if gen_idx < len(trunc_flags) else False\\n                    record = {\\n                        \\\"doc_id\\\": item[\\\"doc_id\\\"],\\n                        \\\"generation_idx\\\": gen_idx,\\n                        \\\"prompt\\\": item[\\\"prompt\\\"],\\n                        \\\"output\\\": raw_text,\\n                        \\\"raw_text\\\": raw_text,\\n                        \\\"parsed_triples\\\": parsed_triples,\\n                        \\\"format_ok\\\": format_ok,\\n                        \\\"truncated\\\": truncated,\\n                        \\\"gold_triples\\\": item[\\\"gold_triples\\\"],\\n                        \\\"sents\\\": item[\\\"sents\\\"],\\n                    }\\n                    fout.write(json.dumps(record, ensure_ascii=False) + \\\"\\\\n\\\")\\n\\n                    # 监控计数\\n                    mon_total_gens += 1\\n                    mon_window_total += 1\\n                    if format_ok:\\n                        mon_format_ok += 1\\n                        mon_window_format_ok += 1\\n                    if truncated:\\n                        mon_truncated += 1\\n                        mon_window_truncated += 1\\n                    triple_key = frozenset(\\n                        (t[\\\"head\\\"].lower(), t[\\\"relation\\\"].lower(), t[\\\"tail\\\"].lower())\\n                        for t in parsed_triples\\n                    )\\n                    doc_triple_sets.add(triple_key)\\n\\n                diversity = len(doc_triple_sets) / args.num_generations\\n                mon_diversity_sum += diversity\\n                mon_doc_count += 1\\n                mon_window_diversity += diversity\\n                mon_window_docs += 1\\n\\n                # 每 100 个文档打印一次监控\\n                if mon_doc_count == 100:\\n                    _print_monitor(\\\"First 100 samples\\\", mon_doc_count, mon_total_gens,\\n                                   mon_format_ok, mon_truncated, mon_diversity_sum)\\n                elif mon_doc_count > 100 and mon_window_docs >= 100:\\n                    _print_monitor(f\\\"Docs {mon_doc_count - mon_window_docs + 1}-{mon_doc_count}\\\",\\n                                   mon_window_docs, mon_window_total,\\n                                   mon_window_format_ok, mon_window_truncated, mon_window_diversity)\\n                    mon_window_format_ok = 0\\n                    mon_window_truncated = 0\\n                    mon_window_total = 0\\n                    mon_window_diversity = 0.0\\n                    mon_window_docs = 0\\n\\n                completed.add(item[\\\"doc_id\\\"])\\n\\n            fout.flush()\\n            save_progress(args.output_dir, completed)\\n\\n    logger.info(\\\"Generation complete. %d documents, %d total outputs → %s\\\",\\n                len(items), len(items) * args.num_generations, output_file)\\n\\n    # 统计\\n    n_format_ok = 0\\n    n_total = 0\\n    with open(output_file) as f:\\n        for line in f:\\n            rec = json.loads(line)\\n            n_total += 1\\n            if rec.get(\\\"format_ok\\\"):\\n                n_format_ok += 1\\n\\n    logger.info(\\\"Format compliance: %d/%d (%.1f%%)\\\", n_format_ok, n_total,\\n                100 * n_format_ok / n_total if n_total else 0)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the data flow between the three scripts:
+
+**rsft_generate.py output** (generations.jsonl):
+Each line is a JSON object with fields:
+- `doc_id`
+- `generation_idx`
+- `prompt`
+- `output` (raw_text)
+- `raw_text`
+- `parsed_triples`
+- `format_ok`
+- `truncated`
+- `gold_triples`
+- `sents`
+
+**rsft_score_filter.py**:
+- Reads from generations.jsonl
+- The output was truncated so I need to see the `format_sft_training_data` function and the output format
+
+
+- Looking at the main function, it's converting selected items to SFT training format and writing them to rsft_train.jsonl as JSONL, though the docstring mentions a .json file instead
+
+. The trainer expects fields like `input`, `output`, and `ced_score`, so I need to check what the `format_sft_training_data` function actually outputs to verify the fields match up. The function definition was cut off in the earlier output, so I should look at the middle section of the file to see what it produces.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "57d12422-706e-43d5-b2ff-9ac33052e920",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015bkCsvweX8o5iaPjg8gxvZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10848,
+      "cache_read_input_tokens": 25905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+输出被截断了，需要看 `format_sft_training_data` 函数和 `--quantize` 参数定义。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "36cec1f2-7d5f-4cf0-8be8-45c6f567757a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015bkCsvweX8o5iaPjg8gxvZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10848,
+      "cache_read_input_tokens": 25905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Y2eJXhGv1FZhVEtT2S9rrW`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"def format_sft_training_data\\|def filter_records\\|def generate_report\\|--quantize\" /root/autodl-tmp/freige/training/rsft_score_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "c98adcf7-ff66-4f96-aeaf-a5d16b3d9d3c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015bkCsvweX8o5iaPjg8gxvZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10848,
+      "cache_read_input_tokens": 25905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T01:12:41.298Z_
+
+<details><summary>↩ Tool result · `toolu_01Y2eJXhGv1FZhVEtT2S9rrW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "790d1740-1bd0-4f16-ae54-c14d71644bf4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0185ETRnt96C7tFpfqmqtdes`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"--quantize\" /root/autodl-tmp/freige/training/rsft_generate.py /root/autodl-tmp/freige/training/rsft_trainer.py /root/autodl-tmp/freige/training/rsft_score_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "42fc0d2b-0dea-4bfa-94c2-31b5760ddfe6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015bkCsvweX8o5iaPjg8gxvZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10848,
+      "cache_read_input_tokens": 25905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T01:12:42.620Z_
+
+<details><summary>↩ Tool result · `toolu_0185ETRnt96C7tFpfqmqtdes`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: unrecognized option '--quantize'\\nUsage: grep [OPTION]... PATTERNS [FILE]...\\nTry 'grep --help' for more information.\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "732e8bb3-452c-4eaf-b46b-a0b1573a247a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: unrecognized option '--quantize'\\\\nUsage: grep [OPTION]... PATTERNS [FILE]...\\\\nTry 'grep --help' for more information.\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: unrecognized option '--quantize'\\nUsage: grep [OPTION]... PATTERNS [FILE]...\\nTry 'grep --help' for more information.\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015vmAyWhH8Drc2NWpHXLViJ`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"quantize\" /root/autodl-tmp/freige/training/rsft_generate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "a078cbd6-c1d2-4981-a717-b723f4e23b83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EcFGyx4ZVrQJuV9ueE9SyM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1303,
+      "cache_read_input_tokens": 36753,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1303
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T01:12:46.853Z_
+
+<details><summary>↩ Tool result · `toolu_015vmAyWhH8Drc2NWpHXLViJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"51:def load_model_and_tokenizer(base_model, sft_adapter=None, quantize=True):\\n62:    if quantize:\\n215:    parser.add_argument(\\\"--quantize\\\", action=\\\"store_true\\\",\\n237:        args.base_model, args.sft_adapter, quantize=args.quantize,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "d1f12f3a-bac1-4bd5-9212-4874718a3b56",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"51:def load_model_and_tokenizer(base_model, sft_adapter=None, quantize=True):\\\\n62:    if quantize:\\\\n215:    parser.add_argument(\\\\\\\"--quantize\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n237:        args.base_model, args.sft_adapter, quantize=args.quantize,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"51:def load_model_and_tokenizer(base_model, sft_adapter=None, quantize=True):\\n62:    if quantize:\\n215:    parser.add_argument(\\\"--quantize\\\", action=\\\"store_true\\\",\\n237:        args.base_model, args.sft_adapter, quantize=args.quantize,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011v8awfWmq62vYeQTLfbs6S`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"quantize\" /root/autodl-tmp/freige/training/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "2fc70241-6aab-4084-9f20-4a0e60259262",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EcFGyx4ZVrQJuV9ueE9SyM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1303,
+      "cache_read_input_tokens": 36753,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1303
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T01:12:47.318Z_
+
+<details><summary>↩ Tool result · `toolu_011v8awfWmq62vYeQTLfbs6S`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"136:    parser.add_argument(\\\"--quantize\\\", action=\\\"store_true\\\",\\n174:    if args.quantize:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "af09a368-1e5e-454c-971f-a7846b5b300a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"136:    parser.add_argument(\\\\\\\"--quantize\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n174:    if args.quantize:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"136:    parser.add_argument(\\\"--quantize\\\", action=\\\"store_true\\\",\\n174:    if args.quantize:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Qm8HVHR1rpgiWfzjhkRQ6V`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"format_sft_training_data\" /root/autodl-tmp/freige/training/rsft_score_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "9b799ff8-2f28-48c8-9124-c3aee8eda2d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EcFGyx4ZVrQJuV9ueE9SyM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1303,
+      "cache_read_input_tokens": 36753,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1303
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T01:12:48.099Z_
+
+<details><summary>↩ Tool result · `toolu_01Qm8HVHR1rpgiWfzjhkRQ6V`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"277:def format_sft_training_data(selected_records, tokenizer_name=None):\\n430:    sft_data = format_sft_training_data(selected)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "77182192-6d40-463c-86ad-d0a250724a2a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"277:def format_sft_training_data(selected_records, tokenizer_name=None):\\\\n430:    sft_data = format_sft_training_data(selected)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"277:def format_sft_training_data(selected_records, tokenizer_name=None):\\n430:    sft_data = format_sft_training_data(selected)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AyLHPWRzT5oGUWawnwns6r`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "head -230 /root/autodl-tmp/freige/training/rsft_generate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "33475024-d039-4d67-ae7e-387d563d6f4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012njUPHVAo2JbFzneXsPVTB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 843,
+      "cache_read_input_tokens": 38056,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 843
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T01:12:51.679Z_
+
+<details><summary>↩ Tool result · `toolu_01AyLHPWRzT5oGUWawnwns6r`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"RSFT Step 1: 批量生成候选输出。\\n\\n用 SFT warmup 模型对每个训练样本生成 N 个候选输出 (temperature sampling)，\\n保存为 JSONL 供后续 CED 打分筛选。\\n\\n输入:\\n  - base model (Qwen3-4B) + QLoRA adapter (SFT checkpoint)\\n  - DocRED train_annotated.json\\n\\n输出 (保存到 --output_dir):\\n  - generations.jsonl: 每行一个生成结果\\n    {\\\"doc_id\\\", \\\"generation_idx\\\", \\\"prompt\\\", \\\"output\\\", \\\"raw_text\\\", \\\"parsed_triples\\\", \\\"format_ok\\\"}\\n  - progress.json: 已完成的 doc_id 列表（用于断点续传）\\n\\n依赖: transformers, peft, bitsandbytes, torch, tqdm\\n\\n用法:\\n  python -m freige.training.rsft_generate \\\\\\n      --base_model /root/autodl-tmp/models/Qwen3-4B \\\\\\n      --sft_adapter /root/autodl-tmp/sft_output \\\\\\n      --data_path /root/autodl-tmp/data/docred \\\\\\n      --output_dir /root/autodl-tmp/rsft_generations \\\\\\n      --num_generations 8 --temperature 0.7 --batch_size 4\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom pathlib import Path\\n\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\nfrom tqdm import tqdm\\n\\nfrom freige.data.docred_processor import DocREDProcessor\\nfrom freige.eval.evaluator import parse_model_output\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\n\\ndef load_model_and_tokenizer(base_model, sft_adapter=None, quantize=True):\\n    \\\"\\\"\\\"加载 base model + 可选 QLoRA adapter，merge 后返回。\\\"\\\"\\\"\\n    logger.info(\\\"Loading tokenizer: %s\\\", base_model)\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        base_model, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    logger.info(\\\"Loading model: %s\\\", base_model)\\n    model_kwargs = dict(trust_remote_code=True, attn_implementation=\\\"sdpa\\\", device_map=\\\"auto\\\")\\n    if quantize:\\n        model_kwargs[\\\"quantization_config\\\"] = BitsAndBytesConfig(\\n            load_in_4bit=True,\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\n            bnb_4bit_quant_type=\\\"nf4\\\",\\n            bnb_4bit_use_double_quant=True,\\n        )\\n    else:\\n        model_kwargs[\\\"torch_dtype\\\"] = torch.bfloat16\\n\\n    model = AutoModelForCausalLM.from_pretrained(base_model, **model_kwargs)\\n\\n    if sft_adapter:\\n        logger.info(\\\"Loading & merging SFT adapter: %s\\\", sft_adapter)\\n        model = PeftModel.from_pretrained(model, sft_adapter)\\n        model = model.merge_and_unload()\\n\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef prepare_generation_data(data_dir, split, tokenizer):\\n    \\\"\\\"\\\"加载 DocRED 数据，构建每个文档的 prompt 和 gold 信息。\\n\\n    Returns:\\n        list of dict: 每个文档一条，含 doc_id, prompt, gold_triples, sents\\n    \\\"\\\"\\\"\\n    processor = DocREDProcessor(data_dir=data_dir)\\n    samples = processor.process(split)\\n    groups = processor.group_by_document(samples)\\n\\n    items = []\\n    for doc_id, doc_samples in groups.items():\\n        sft_sample = processor.format_sft_sample(doc_samples)\\n        messages = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": f\\\"{sft_sample['instruction']}\\\\n\\\\n{sft_sample['input']}\\\"},\\n        ]\\n        prompt = tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True, enable_thinking=False,\\n        )\\n\\n        gold_triples = []\\n        for s in doc_samples:\\n            gold_triples.append({\\n                \\\"head\\\": s.head.name,\\n                \\\"relation\\\": s.relation_name,\\n                \\\"tail\\\": s.tail.name,\\n                \\\"evidence\\\": s.evidence_sent_ids,\\n                \\\"hard_negative_sent_ids\\\": s.hard_negative_sent_ids,\\n            })\\n\\n        ref = doc_samples[0]\\n        items.append({\\n            \\\"doc_id\\\": doc_id,\\n            \\\"prompt\\\": prompt,\\n            \\\"gold_triples\\\": g\\n\\n... [截断: 输出过长，省略 352 字符] ...\\n\\nith open(progress_path) as f:\\n            data = json.load(f)\\n        completed = set(data.get(\\\"completed_doc_ids\\\", []))\\n        logger.info(\\\"Resuming: %d documents already completed\\\", len(completed))\\n        return completed\\n    return set()\\n\\n\\ndef save_progress(output_dir, completed_doc_ids):\\n    \\\"\\\"\\\"保存已完成 doc_id 列表。\\\"\\\"\\\"\\n    progress_path = Path(output_dir) / \\\"progress.json\\\"\\n    with open(progress_path, \\\"w\\\") as f:\\n        json.dump({\\\"completed_doc_ids\\\": sorted(completed_doc_ids)}, f)\\n\\n\\n@torch.no_grad()\\ndef generate_batch(model, tokenizer, prompts, num_generations, temperature, max_new_tokens):\\n    \\\"\\\"\\\"对一批 prompt 各生成 num_generations 个输出。\\n\\n    Returns:\\n        list[list[str]]: outer = prompts, inner = num_generations 个输出文本\\n    \\\"\\\"\\\"\\n    # 将每个 prompt 重复 num_generations 次，一次性生成\\n    expanded_prompts = []\\n    for p in prompts:\\n        expanded_prompts.extend([p] * num_generations)\\n\\n    inputs = tokenizer(\\n        expanded_prompts, return_tensors=\\\"pt\\\", padding=True, truncation=True,\\n        max_length=4096,\\n    ).to(model.device)\\n\\n    generate_kwargs = dict(\\n        max_new_tokens=max_new_tokens,\\n        do_sample=True,\\n        temperature=temperature,\\n        top_p=0.9,\\n        pad_token_id=tokenizer.pad_token_id,\\n    )\\n\\n    outputs = model.generate(**inputs, **generate_kwargs)\\n\\n    # 截取新生成的 token\\n    input_len = inputs[\\\"input_ids\\\"].shape[1]\\n    generated_ids = outputs[:, input_len:]\\n    texts = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)\\n\\n    # 检测截断: 生成长度达到 max_new_tokens 上限\\n    non_pad_lens = (generated_ids != tokenizer.pad_token_id).sum(dim=1).tolist()\\n    truncated_flags = [length >= max_new_tokens for length in non_pad_lens]\\n\\n    # 按 prompt 分组\\n    results = []\\n    trunc_results = []\\n    for i in range(len(prompts)):\\n        start = i * num_generations\\n        end = start + num_generations\\n        results.append(texts[start:end])\\n        trunc_results.append(truncated_flags[start:end])\\n\\n    return results, trunc_results\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"RSFT Step 1: Batch Generation\\\")\\n    parser.add_argument(\\\"--base_model\\\", type=str, default=\\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n                        help=\\\"Base model 路径\\\")\\n    parser.add_argument(\\\"--sft_adapter\\\", type=str, default=\\\"/root/autodl-tmp/sft_output\\\",\\n                        help=\\\"SFT QLoRA adapter 路径\\\")\\n    parser.add_argument(\\\"--data_path\\\", type=str, default=None,\\n                        help=\\\"DocRED 数据目录\\\")\\n    parser.add_argument(\\\"--split\\\", type=str, default=\\\"train\\\",\\n                        help=\\\"数据集 split (default: train)\\\")\\n    parser.add_argument(\\\"--output_dir\\\", type=str, default=\\\"/root/autodl-tmp/rsft_generations\\\",\\n                        help=\\\"生成结果输出目录\\\")\\n    parser.add_argument(\\\"--num_generations\\\", type=int, default=8,\\n                        help=\\\"每个样本生成的候选数 (default: 8)\\\")\\n    parser.add_argument(\\\"--temperature\\\", type=float, default=0.7,\\n                        help=\\\"采样温度 (default: 0.7)\\\")\\n    parser.add_argument(\\\"--batch_size\\\", type=int, default=1,\\n                        help=\\\"每批处理的文档数 (default: 2)\\\")\\n    parser.add_argument(\\\"--max_new_tokens\\\", type=int, default=1024,\\n                        help=\\\"最大生成 token 数 (default: 1024)\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    parser.add_argument(\\\"--quantize\\\", action=\\\"store_true\\\",\\n                        help=\\\"4-bit 量化 (default: off)\\\")\\n    parser.add_argument(\\\"--start_idx\\\", type=int, default=0,\\n                        help=\\\"Start document index (inclusive)\\\")\\n    parser.add_argument(\\\"--end_idx\\\", type=int, default=-1,\\n                        help=\\\"End document index (exclusive), -1 means all\\\")\\n    parser.add_argument(\\\"--shard_id\\\", type=str, default=\\\"\\\",\\n                        help=\\\"Shard identifier, appended to output filename\\\")\\n    args = parser.parse_args()\\n\\n    torch.manual_seed(args.seed)\\n    if torch.cuda.is_available():\\n        torch.cuda.manual_seed_all(args.seed)\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "f3d7f812-ec1e-4e41-bbc2-f4d149112b77",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"RSFT Step 1: 批量生成候选输出。\\\\n\\\\n用 SFT warmup 模型对每个训练样本生成 N 个候选输出 (temperature sampling)，\\\\n保存为 JSONL 供后续 CED 打分筛选。\\\\n\\\\n输入:\\\\n  - base model (Qwen3-4B) + QLoRA adapter (SFT checkpoint)\\\\n  - DocRED train_annotated.json\\\\n\\\\n输出 (保存到 --output_dir):\\\\n  - generations.jsonl: 每行一个生成结果\\\\n    {\\\\\\\"doc_id\\\\\\\", \\\\\\\"generation_idx\\\\\\\", \\\\\\\"prompt\\\\\\\", \\\\\\\"output\\\\\\\", \\\\\\\"raw_text\\\\\\\", \\\\\\\"parsed_triples\\\\\\\", \\\\\\\"format_ok\\\\\\\"}\\\\n  - progress.json: 已完成的 doc_id 列表（用于断点续传）\\\\n\\\\n依赖: transformers, peft, bitsandbytes, torch, tqdm\\\\n\\\\n用法:\\\\n  python -m freige.training.rsft_generate \\\\\\\\\\\\n      --base_model /root/autodl-tmp/models/Qwen3-4B \\\\\\\\\\\\n      --sft_adapter /root/autodl-tmp/sft_output \\\\\\\\\\\\n      --data_path /root/autodl-tmp/data/docred \\\\\\\\\\\\n      --output_dir /root/autodl-tmp/rsft_generations \\\\\\\\\\\\n      --num_generations 8 --temperature 0.7 --batch_size 4\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\\\nfrom tqdm import tqdm\\\\n\\\\nfrom freige.data.docred_processor import DocREDProcessor\\\\nfrom freige.eval.evaluator import parse_model_output\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are an information extraction model. Given a document with numbered sentences \\\\\\\"\\\\n    \\\\\\\"and a list of entities, extract all relation triples. For each triple, provide the \\\\\\\"\\\\n    \\\\\\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\\\\\"\\\\n    \\\\\\\"Output as a JSON list.\\\\\\\"\\\\n)\\\\n\\\\n\\\\ndef load_model_and_tokenizer(base_model, sft_adapter=None, quantize=True):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"加载 base model + 可选 QLoRA adapter，merge 后返回。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    logger.info(\\\\\\\"Loading tokenizer: %s\\\\\\\", base_model)\\\\n    tokenizer = AutoTokenizer.from_pretrained(\\\\n        base_model, trust_remote_code=True, padding_side=\\\\\\\"left\\\\\\\",\\\\n    )\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    logger.info(\\\\\\\"Loading model: %s\\\\\\\", base_model)\\\\n    model_kwargs = dict(trust_remote_code=True, attn_implementation=\\\\\\\"sdpa\\\\\\\", device_map=\\\\\\\"auto\\\\\\\")\\\\n    if quantize:\\\\n        model_kwargs[\\\\\\\"quantization_config\\\\\\\"] = BitsAndBytesConfig(\\\\n            load_in_4bit=True,\\\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\\\n            bnb_4bit_quant_type=\\\\\\\"nf4\\\\\\\",\\\\n            bnb_4bit_use_double_quant=True,\\\\n        )\\\\n    else:\\\\n        model_kwargs[\\\\\\\"torch_dtype\\\\\\\"] = torch.bfloat16\\\\n\\\\n    model = AutoModelForCausalLM.from_pretrained(base_model, **model_kwargs)\\\\n\\\\n    if sft_adapter:\\\\n        logger.info(\\\\\\\"Loading & merging SFT adapter: %s\\\\\\\", sft_adapter)\\\\n        model = PeftModel.from_pretrained(model, sft_adapter)\\\\n        model = model.merge_and_unload()\\\\n\\\\n    model.eval()\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef prepare_generation_data(data_dir, split, tokenizer):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"加载 DocRED 数据，构建每个文档的 prompt 和 gold 信息。\\\\n\\\\n    Returns:\\\\n        list of dict: 每个文档一条，含 doc_id, prompt, gold_triples, sents\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    processor = DocREDProcessor(data_dir=data_dir)\\\\n    samples = processor.process(split)\\\\n    groups = processor.group_by_document(samples)\\\\n\\\\n    items = []\\\\n    for doc_id, doc_samples in groups.items():\\\\n        sft_sample = processor.format_sft_sample(doc_samples)\\\\n        messages = [\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": f\\\\\\\"{sft_sample['instruction']}\\\\\\\\n\\\\\\\\n{sft_sample['input']}\\\\\\\"},\\\\n        ]\\\\n        prompt = tokenizer.apply_chat_template(\\\\n            messages, tokenize=False, add_generation_prompt=True, enable_thinking=False,\\\\n        )\\\\n\\\\n        gold_triples = []\\\\n        for s in doc_samples:\\\\n            gold_triples.append({\\\\n                \\\\\\\"head\\\\\\\": s.head.name,\\\\n                \\\\\\\"relation\\\\\\\": s.relation_name,\\\\n                \\\\\\\"tail\\\\\\\": s.tail.name,\\\\n                \\\\\\\"evidence\\\\\\\": s.evidence_sent_ids,\\\\n                \\\\\\\"hard_negative_sent_ids\\\\\\\": s.hard_negative_sent_ids,\\\\n            })\\\\n\\\\n        ref = doc_samples[0]\\\\n        items.append({\\\\n            \\\\\\\"doc_id\\\\\\\": doc_id,\\\\n            \\\\\\\"prompt\\\\\\\": prompt,\\\\n            \\\\\\\"gold_triples\\\\\\\": g\\\\n\\\\n... [截断: 输出过长，省略 352 字符] ...\\\\n\\\\nith open(progress_path) as f:\\\\n            data = json.load(f)\\\\n        completed = set(data.get(\\\\\\\"completed_doc_ids\\\\\\\", []))\\\\n        logger.info(\\\\\\\"Resuming: %d documents already completed\\\\\\\", len(completed))\\\\n        return completed\\\\n    return set()\\\\n\\\\n\\\\ndef save_progress(output_dir, completed_doc_ids):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"保存已完成 doc_id 列表。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    progress_path = Path(output_dir) / \\\\\\\"progress.json\\\\\\\"\\\\n    with open(progress_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump({\\\\\\\"completed_doc_ids\\\\\\\": sorted(completed_doc_ids)}, f)\\\\n\\\\n\\\\n@torch.no_grad()\\\\ndef generate_batch(model, tokenizer, prompts, num_generations, temperature, max_new_tokens):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"对一批 prompt 各生成 num_generations 个输出。\\\\n\\\\n    Returns:\\\\n        list[list[str]]: outer = prompts, inner = num_generations 个输出文本\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    # 将每个 prompt 重复 num_generations 次，一次性生成\\\\n    expanded_prompts = []\\\\n    for p in prompts:\\\\n        expanded_prompts.extend([p] * num_generations)\\\\n\\\\n    inputs = tokenizer(\\\\n        expanded_prompts, return_tensors=\\\\\\\"pt\\\\\\\", padding=True, truncation=True,\\\\n        max_length=4096,\\\\n    ).to(model.device)\\\\n\\\\n    generate_kwargs = dict(\\\\n        max_new_tokens=max_new_tokens,\\\\n        do_sample=True,\\\\n        temperature=temperature,\\\\n        top_p=0.9,\\\\n        pad_token_id=tokenizer.pad_token_id,\\\\n    )\\\\n\\\\n    outputs = model.generate(**inputs, **generate_kwargs)\\\\n\\\\n    # 截取新生成的 token\\\\n    input_len = inputs[\\\\\\\"input_ids\\\\\\\"].shape[1]\\\\n    generated_ids = outputs[:, input_len:]\\\\n    texts = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)\\\\n\\\\n    # 检测截断: 生成长度达到 max_new_tokens 上限\\\\n    non_pad_lens = (generated_ids != tokenizer.pad_token_id).sum(dim=1).tolist()\\\\n    truncated_flags = [length >= max_new_tokens for length in non_pad_lens]\\\\n\\\\n    # 按 prompt 分组\\\\n    results = []\\\\n    trunc_results = []\\\\n    for i in range(len(prompts)):\\\\n        start = i * num_generations\\\\n        end = start + num_generations\\\\n        results.append(texts[start:end])\\\\n        trunc_results.append(truncated_flags[start:end])\\\\n\\\\n    return results, trunc_results\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"RSFT Step 1: Batch Generation\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--base_model\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n                        help=\\\\\\\"Base model 路径\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--sft_adapter\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n                        help=\\\\\\\"SFT QLoRA adapter 路径\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_path\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"DocRED 数据目录\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--split\\\\\\\", type=str, default=\\\\\\\"train\\\\\\\",\\\\n                        help=\\\\\\\"数据集 split (default: train)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/rsft_generations\\\\\\\",\\\\n                        help=\\\\\\\"生成结果输出目录\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--num_generations\\\\\\\", type=int, default=8,\\\\n                        help=\\\\\\\"每个样本生成的候选数 (default: 8)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--temperature\\\\\\\", type=float, default=0.7,\\\\n                        help=\\\\\\\"采样温度 (default: 0.7)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=1,\\\\n                        help=\\\\\\\"每批处理的文档数 (default: 2)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_new_tokens\\\\\\\", type=int, default=1024,\\\\n                        help=\\\\\\\"最大生成 token 数 (default: 1024)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    parser.add_argument(\\\\\\\"--quantize\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"4-bit 量化 (default: off)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--start_idx\\\\\\\", type=int, default=0,\\\\n                        help=\\\\\\\"Start document index (inclusive)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--end_idx\\\\\\\", type=int, default=-1,\\\\n                        help=\\\\\\\"End document index (exclusive), -1 means all\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--shard_id\\\\\\\", type=str, default=\\\\\\\"\\\\\\\",\\\\n                        help=\\\\\\\"Shard identifier, appended to output filename\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    torch.manual_seed(args.seed)\\\\n    if torch.cuda.is_available():\\\\n        torch.cuda.manual_seed_all(args.seed)\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"RSFT Step 1: 批量生成候选输出。\\n\\n用 SFT warmup 模型对每个训练样本生成 N 个候选输出 (temperature sampling)，\\n保存为 JSONL 供后续 CED 打分筛选。\\n\\n输入:\\n  - base model (Qwen3-4B) + QLoRA adapter (SFT checkpoint)\\n  - DocRED train_annotated.json\\n\\n输出 (保存到 --output_dir):\\n  - generations.jsonl: 每行一个生成结果\\n    {\\\"doc_id\\\", \\\"generation_idx\\\", \\\"prompt\\\", \\\"output\\\", \\\"raw_text\\\", \\\"parsed_triples\\\", \\\"format_ok\\\"}\\n  - progress.json: 已完成的 doc_id 列表（用于断点续传）\\n\\n依赖: transformers, peft, bitsandbytes, torch, tqdm\\n\\n用法:\\n  python -m freige.training.rsft_generate \\\\\\n      --base_model /root/autodl-tmp/models/Qwen3-4B \\\\\\n      --sft_adapter /root/autodl-tmp/sft_output \\\\\\n      --data_path /root/autodl-tmp/data/docred \\\\\\n      --output_dir /root/autodl-tmp/rsft_generations \\\\\\n      --num_generations 8 --temperature 0.7 --batch_size 4\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom pathlib import Path\\n\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\nfrom tqdm import tqdm\\n\\nfrom freige.data.docred_processor import DocREDProcessor\\nfrom freige.eval.evaluator import parse_model_output\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\n\\ndef load_model_and_tokenizer(base_model, sft_adapter=None, quantize=True):\\n    \\\"\\\"\\\"加载 base model + 可选 QLoRA adapter，merge 后返回。\\\"\\\"\\\"\\n    logger.info(\\\"Loading tokenizer: %s\\\", base_model)\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        base_model, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    logger.info(\\\"Loading model: %s\\\", base_model)\\n    model_kwargs = dict(trust_remote_code=True, attn_implementation=\\\"sdpa\\\", device_map=\\\"auto\\\")\\n    if quantize:\\n        model_kwargs[\\\"quantization_config\\\"] = BitsAndBytesConfig(\\n            load_in_4bit=True,\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\n            bnb_4bit_quant_type=\\\"nf4\\\",\\n            bnb_4bit_use_double_quant=True,\\n        )\\n    else:\\n        model_kwargs[\\\"torch_dtype\\\"] = torch.bfloat16\\n\\n    model = AutoModelForCausalLM.from_pretrained(base_model, **model_kwargs)\\n\\n    if sft_adapter:\\n        logger.info(\\\"Loading & merging SFT adapter: %s\\\", sft_adapter)\\n        model = PeftModel.from_pretrained(model, sft_adapter)\\n        model = model.merge_and_unload()\\n\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef prepare_generation_data(data_dir, split, tokenizer):\\n    \\\"\\\"\\\"加载 DocRED 数据，构建每个文档的 prompt 和 gold 信息。\\n\\n    Returns:\\n        list of dict: 每个文档一条，含 doc_id, prompt, gold_triples, sents\\n    \\\"\\\"\\\"\\n    processor = DocREDProcessor(data_dir=data_dir)\\n    samples = processor.process(split)\\n    groups = processor.group_by_document(samples)\\n\\n    items = []\\n    for doc_id, doc_samples in groups.items():\\n        sft_sample = processor.format_sft_sample(doc_samples)\\n        messages = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": f\\\"{sft_sample['instruction']}\\\\n\\\\n{sft_sample['input']}\\\"},\\n        ]\\n        prompt = tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True, enable_thinking=False,\\n        )\\n\\n        gold_triples = []\\n        for s in doc_samples:\\n            gold_triples.append({\\n                \\\"head\\\": s.head.name,\\n                \\\"relation\\\": s.relation_name,\\n                \\\"tail\\\": s.tail.name,\\n                \\\"evidence\\\": s.evidence_sent_ids,\\n                \\\"hard_negative_sent_ids\\\": s.hard_negative_sent_ids,\\n            })\\n\\n        ref = doc_samples[0]\\n        items.append({\\n            \\\"doc_id\\\": doc_id,\\n            \\\"prompt\\\": prompt,\\n            \\\"gold_triples\\\": g\\n\\n... [截断: 输出过长，省略 352 字符] ...\\n\\nith open(progress_path) as f:\\n            data = json.load(f)\\n        completed = set(data.get(\\\"completed_doc_ids\\\", []))\\n        logger.info(\\\"Resuming: %d documents already completed\\\", len(completed))\\n        return completed\\n    return set()\\n\\n\\ndef save_progress(output_dir, completed_doc_ids):\\n    \\\"\\\"\\\"保存已完成 doc_id 列表。\\\"\\\"\\\"\\n    progress_path = Path(output_dir) / \\\"progress.json\\\"\\n    with open(progress_path, \\\"w\\\") as f:\\n        json.dump({\\\"completed_doc_ids\\\": sorted(completed_doc_ids)}, f)\\n\\n\\n@torch.no_grad()\\ndef generate_batch(model, tokenizer, prompts, num_generations, temperature, max_new_tokens):\\n    \\\"\\\"\\\"对一批 prompt 各生成 num_generations 个输出。\\n\\n    Returns:\\n        list[list[str]]: outer = prompts, inner = num_generations 个输出文本\\n    \\\"\\\"\\\"\\n    # 将每个 prompt 重复 num_generations 次，一次性生成\\n    expanded_prompts = []\\n    for p in prompts:\\n        expanded_prompts.extend([p] * num_generations)\\n\\n    inputs = tokenizer(\\n        expanded_prompts, return_tensors=\\\"pt\\\", padding=True, truncation=True,\\n        max_length=4096,\\n    ).to(model.device)\\n\\n    generate_kwargs = dict(\\n        max_new_tokens=max_new_tokens,\\n        do_sample=True,\\n        temperature=temperature,\\n        top_p=0.9,\\n        pad_token_id=tokenizer.pad_token_id,\\n    )\\n\\n    outputs = model.generate(**inputs, **generate_kwargs)\\n\\n    # 截取新生成的 token\\n    input_len = inputs[\\\"input_ids\\\"].shape[1]\\n    generated_ids = outputs[:, input_len:]\\n    texts = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)\\n\\n    # 检测截断: 生成长度达到 max_new_tokens 上限\\n    non_pad_lens = (generated_ids != tokenizer.pad_token_id).sum(dim=1).tolist()\\n    truncated_flags = [length >= max_new_tokens for length in non_pad_lens]\\n\\n    # 按 prompt 分组\\n    results = []\\n    trunc_results = []\\n    for i in range(len(prompts)):\\n        start = i * num_generations\\n        end = start + num_generations\\n        results.append(texts[start:end])\\n        trunc_results.append(truncated_flags[start:end])\\n\\n    return results, trunc_results\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"RSFT Step 1: Batch Generation\\\")\\n    parser.add_argument(\\\"--base_model\\\", type=str, default=\\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n                        help=\\\"Base model 路径\\\")\\n    parser.add_argument(\\\"--sft_adapter\\\", type=str, default=\\\"/root/autodl-tmp/sft_output\\\",\\n                        help=\\\"SFT QLoRA adapter 路径\\\")\\n    parser.add_argument(\\\"--data_path\\\", type=str, default=None,\\n                        help=\\\"DocRED 数据目录\\\")\\n    parser.add_argument(\\\"--split\\\", type=str, default=\\\"train\\\",\\n                        help=\\\"数据集 split (default: train)\\\")\\n    parser.add_argument(\\\"--output_dir\\\", type=str, default=\\\"/root/autodl-tmp/rsft_generations\\\",\\n                        help=\\\"生成结果输出目录\\\")\\n    parser.add_argument(\\\"--num_generations\\\", type=int, default=8,\\n                        help=\\\"每个样本生成的候选数 (default: 8)\\\")\\n    parser.add_argument(\\\"--temperature\\\", type=float, default=0.7,\\n                        help=\\\"采样温度 (default: 0.7)\\\")\\n    parser.add_argument(\\\"--batch_size\\\", type=int, default=1,\\n                        help=\\\"每批处理的文档数 (default: 2)\\\")\\n    parser.add_argument(\\\"--max_new_tokens\\\", type=int, default=1024,\\n                        help=\\\"最大生成 token 数 (default: 1024)\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    parser.add_argument(\\\"--quantize\\\", action=\\\"store_true\\\",\\n                        help=\\\"4-bit 量化 (default: off)\\\")\\n    parser.add_argument(\\\"--start_idx\\\", type=int, default=0,\\n                        help=\\\"Start document index (inclusive)\\\")\\n    parser.add_argument(\\\"--end_idx\\\", type=int, default=-1,\\n                        help=\\\"End document index (exclusive), -1 means all\\\")\\n    parser.add_argument(\\\"--shard_id\\\", type=str, default=\\\"\\\",\\n                        help=\\\"Shard identifier, appended to output filename\\\")\\n    args = parser.parse_args()\\n\\n    torch.manual_seed(args.seed)\\n    if torch.cuda.is_available():\\n        torch.cuda.manual_seed_all(args.seed)\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018MWaAbnaA8SWUCj8QnAuei`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "head -145 /root/autodl-tmp/freige/training/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "ca119c3d-fd8a-4927-9c83-97d8a269d519",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012njUPHVAo2JbFzneXsPVTB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 843,
+      "cache_read_input_tokens": 38056,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 843
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T01:12:52.151Z_
+
+<details><summary>↩ Tool result · `toolu_018MWaAbnaA8SWUCj8QnAuei`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"RSFT (Rejection Sampling Fine-Tuning) 训练脚本。\\n\\n从 SFT warmup checkpoint 继续训练，使用经 CED 打分筛选的高质量生成数据。\\n流程: base model → merge SFT adapter → 新 QLoRA → 在 RSFT 数据上训练。\\n\\n输入: JSONL，每行 {\\\"doc_id\\\": ..., \\\"input\\\": ..., \\\"output\\\": ..., \\\"ced_score\\\": ..., ...}\\n输出: QLoRA adapter checkpoint\\n依赖: transformers, trl, peft, bitsandbytes, datasets\\n\\n单卡:   python -m freige.training.rsft_trainer --rsft_data_path data.jsonl --output_dir ./rsft_output\\n多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\n            -m freige.training.rsft_trainer --rsft_data_path data.jsonl --output_dir ./rsft_output\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom peft import LoraConfig, PeftModel, TaskType, get_peft_model\\nfrom torch.utils.data import WeightedRandomSampler\\nfrom transformers import (\\n    AutoModelForCausalLM,\\n    AutoTokenizer,\\n    BitsAndBytesConfig,\\n)\\nfrom trl import SFTConfig, SFTTrainer\\n\\nfrom freige.training.sft_trainer import SYSTEM_PROMPT\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nDEFAULT_BASE_MODEL = \\\"/root/autodl-tmp/models/Qwen3-4B\\\"\\nDEFAULT_SFT_ADAPTER = \\\"/root/autodl-tmp/sft_output\\\"\\n\\n\\ndef load_rsft_data(data_path: str, tokenizer, max_length: int = 2048):\\n    \\\"\\\"\\\"加载 CED 筛选后的 RSFT 数据，格式化为 chat template 文本。\\n\\n    每行 JSONL 的 input 字段作为 user message，output 字段作为 assistant response，\\n    经 apply_chat_template 拼接后用于 SFT 训练。超过 max_length 的样本被跳过\\n    而非截断，避免训练在不完整 JSON 输出上。\\n\\n    Returns:\\n        (Dataset, list[float]): 训练数据集和对应的 CED scores\\n    \\\"\\\"\\\"\\n    samples = []\\n    with open(data_path) as f:\\n        for line in f:\\n            if line.strip():\\n                samples.append(json.loads(line))\\n\\n    logger.info(\\\"Loaded %d RSFT samples from %s\\\", len(samples), data_path)\\n\\n    formatted = []\\n    ced_scores = []\\n    skipped = 0\\n    for s in samples:\\n        messages = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": s[\\\"input\\\"]},\\n            {\\\"role\\\": \\\"assistant\\\", \\\"content\\\": s[\\\"output\\\"]},\\n        ]\\n        text = tokenizer.apply_chat_template(\\n            messages,\\n            tokenize=False,\\n            add_generation_prompt=False,\\n            enable_thinking=False,\\n        )\\n        token_len = len(tokenizer.encode(text, add_special_tokens=False))\\n        if token_len > max_length:\\n            skipped += 1\\n            continue\\n        formatted.append({\\\"text\\\": text})\\n        ced_scores.append(s.get(\\\"ced_score\\\", 1.0))\\n\\n    if skipped:\\n        logger.warning(\\\"Skipped %d samples exceeding max_length=%d\\\", skipped, max_length)\\n\\n    if ced_scores:\\n        logger.info(\\n            \\\"Prepared %d RSFT samples (CED scores: min=%.3f, max=%.3f, mean=%.3f)\\\",\\n            len(formatted), min(ced_scores), max(ced_scores),\\n            sum(ced_scores) / len(ced_scores),\\n        )\\n    return Dataset.from_list(formatted), ced_scores\\n\\n\\nclass WeightedSFTTrainer(SFTTrainer):\\n    \\\"\\\"\\\"SFTTrainer with CED score-weighted sampling.\\n\\n    高 CED score 的样本被更频繁采样。使用 WeightedRandomSampler 实现，\\n    适用于单机训练。多机 DDP 场景下 Accelerate 会替换 sampler，\\n    此时 weighted_sampling 不生效，需改用数据集层面的过采样。\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, *args, sample_weights=None, **kwargs):\\n        super().__init__(*args, **kwargs)\\n        self.sample_weights = sample_weights\\n\\n    def _get_train_sampler(self, dataset=None):\\n        if self.sample_weights is not None:\\n            ds = dataset if dataset is not None else self.train_dataset\\n            return WeightedRandomSampler(\\n                weights=self.sample_weights,\\n                num_samples=len(ds),\\n                replacement=True,\\n            )\\n        return super()._get_train_sampler(dataset)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"FREIGE RSFT Training\\\")\\n    parser.add_argument(\\\"--base_model\\\", type=str, default=DEFAULT_BASE_MODEL)\\n    parser.add_argument(\\\"--sft_adapter\\\", type=str, default=DEFAULT_SFT_ADAPTER,\\n                        help=\\\"SFT warmup adapter 路径 (merge 后训练新 LoRA)\\\")\\n    parser.add_argument(\\\"--rsft_data_path\\\", type=str, required=True,\\n                        help=\\\"CED 筛选后的 RSFT 训练数据 (JSONL)\\\")\\n    parser.add_argument(\\\"--output_dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--learning_rate\\\", type=float, default=2e-5)\\n    parser.add_argument(\\\"--num_epochs\\\", type=int, default=3)\\n    parser.add_argument(\\\"--per_device_batch_size\\\", type=int, default=4)\\n    parser.add_argument(\\\"--gradient_accumulation_steps\\\", type=int, default=4)\\n    parser.add_argument(\\\"--warmup_steps\\\", type=int, default=100)\\n    parser.add_argument(\\\"--save_steps\\\", type=int, default=50)\\n    parser.add_argument(\\\"--save_total_limit\\\", type=int, default=5)\\n    parser.add_argument(\\\"--max_length\\\", type=int, default=2048)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    parser.add_argument(\\\"--wandb_project\\\", type=str, default=\\\"freige-rsft\\\")\\n    parser.add_argument(\\\"--wandb_run_name\\\", type=str, default=None)\\n    parser.add_argument(\\\"--weighted_sampling\\\", action=\\\"store_true\\\",\\n                        help=\\\"按 CED score 加权采样（高分样本更频繁）\\\")\\n    parser.add_argument(\\\"--quantize\\\", action=\\\"store_true\\\",\\n                        help=\\\"启用 4-bit QLoRA 量化\\\")\\n    parser.add_argument(\\\"--lora_rank\\\", type=int, default=64)\\n    parser.add_argument(\\\"--lora_alpha\\\", type=int, default=128)\\n    parser.add_argument(\\\"--lora_dropout\\\", type=float, default=0.05)\\n    parser.add_argument(\\\"--bf16\\\", action=\\\"store_true\\\", default=True)\\n    parser.add_argument(\\\"--deepspeed\\\", type=str, default=None,\\n                        help=\\\"DeepSpeed 配置文件路径\\\")\\n    args = parser.parse_args()\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "2a8d273d-ec53-44b8-8cf1-da630470f7ea",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"RSFT (Rejection Sampling Fine-Tuning) 训练脚本。\\\\n\\\\n从 SFT warmup checkpoint 继续训练，使用经 CED 打分筛选的高质量生成数据。\\\\n流程: base model → merge SFT adapter → 新 QLoRA → 在 RSFT 数据上训练。\\\\n\\\\n输入: JSONL，每行 {\\\\\\\"doc_id\\\\\\\": ..., \\\\\\\"input\\\\\\\": ..., \\\\\\\"output\\\\\\\": ..., \\\\\\\"ced_score\\\\\\\": ..., ...}\\\\n输出: QLoRA adapter checkpoint\\\\n依赖: transformers, trl, peft, bitsandbytes, datasets\\\\n\\\\n单卡:   python -m freige.training.rsft_trainer --rsft_data_path data.jsonl --output_dir ./rsft_output\\\\n多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\\\\\\\n            -m freige.training.rsft_trainer --rsft_data_path data.jsonl --output_dir ./rsft_output\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\n\\\\nimport torch\\\\nfrom datasets import Dataset\\\\nfrom peft import LoraConfig, PeftModel, TaskType, get_peft_model\\\\nfrom torch.utils.data import WeightedRandomSampler\\\\nfrom transformers import (\\\\n    AutoModelForCausalLM,\\\\n    AutoTokenizer,\\\\n    BitsAndBytesConfig,\\\\n)\\\\nfrom trl import SFTConfig, SFTTrainer\\\\n\\\\nfrom freige.training.sft_trainer import SYSTEM_PROMPT\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nDEFAULT_BASE_MODEL = \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\"\\\\nDEFAULT_SFT_ADAPTER = \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\"\\\\n\\\\n\\\\ndef load_rsft_data(data_path: str, tokenizer, max_length: int = 2048):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"加载 CED 筛选后的 RSFT 数据，格式化为 chat template 文本。\\\\n\\\\n    每行 JSONL 的 input 字段作为 user message，output 字段作为 assistant response，\\\\n    经 apply_chat_template 拼接后用于 SFT 训练。超过 max_length 的样本被跳过\\\\n    而非截断，避免训练在不完整 JSON 输出上。\\\\n\\\\n    Returns:\\\\n        (Dataset, list[float]): 训练数据集和对应的 CED scores\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    samples = []\\\\n    with open(data_path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                samples.append(json.loads(line))\\\\n\\\\n    logger.info(\\\\\\\"Loaded %d RSFT samples from %s\\\\\\\", len(samples), data_path)\\\\n\\\\n    formatted = []\\\\n    ced_scores = []\\\\n    skipped = 0\\\\n    for s in samples:\\\\n        messages = [\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": s[\\\\\\\"input\\\\\\\"]},\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"assistant\\\\\\\", \\\\\\\"content\\\\\\\": s[\\\\\\\"output\\\\\\\"]},\\\\n        ]\\\\n        text = tokenizer.apply_chat_template(\\\\n            messages,\\\\n            tokenize=False,\\\\n            add_generation_prompt=False,\\\\n            enable_thinking=False,\\\\n        )\\\\n        token_len = len(tokenizer.encode(text, add_special_tokens=False))\\\\n        if token_len > max_length:\\\\n            skipped += 1\\\\n            continue\\\\n        formatted.append({\\\\\\\"text\\\\\\\": text})\\\\n        ced_scores.append(s.get(\\\\\\\"ced_score\\\\\\\", 1.0))\\\\n\\\\n    if skipped:\\\\n        logger.warning(\\\\\\\"Skipped %d samples exceeding max_length=%d\\\\\\\", skipped, max_length)\\\\n\\\\n    if ced_scores:\\\\n        logger.info(\\\\n            \\\\\\\"Prepared %d RSFT samples (CED scores: min=%.3f, max=%.3f, mean=%.3f)\\\\\\\",\\\\n            len(formatted), min(ced_scores), max(ced_scores),\\\\n            sum(ced_scores) / len(ced_scores),\\\\n        )\\\\n    return Dataset.from_list(formatted), ced_scores\\\\n\\\\n\\\\nclass WeightedSFTTrainer(SFTTrainer):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"SFTTrainer with CED score-weighted sampling.\\\\n\\\\n    高 CED score 的样本被更频繁采样。使用 WeightedRandomSampler 实现，\\\\n    适用于单机训练。多机 DDP 场景下 Accelerate 会替换 sampler，\\\\n    此时 weighted_sampling 不生效，需改用数据集层面的过采样。\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, *args, sample_weights=None, **kwargs):\\\\n        super().__init__(*args, **kwargs)\\\\n        self.sample_weights = sample_weights\\\\n\\\\n    def _get_train_sampler(self, dataset=None):\\\\n        if self.sample_weights is not None:\\\\n            ds = dataset if dataset is not None else self.train_dataset\\\\n            return WeightedRandomSampler(\\\\n                weights=self.sample_weights,\\\\n                num_samples=len(ds),\\\\n                replacement=True,\\\\n            )\\\\n        return super()._get_train_sampler(dataset)\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"FREIGE RSFT Training\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--base_model\\\\\\\", type=str, default=DEFAULT_BASE_MODEL)\\\\n    parser.add_argument(\\\\\\\"--sft_adapter\\\\\\\", type=str, default=DEFAULT_SFT_ADAPTER,\\\\n                        help=\\\\\\\"SFT warmup adapter 路径 (merge 后训练新 LoRA)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--rsft_data_path\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"CED 筛选后的 RSFT 训练数据 (JSONL)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str, required=True)\\\\n    parser.add_argument(\\\\\\\"--learning_rate\\\\\\\", type=float, default=2e-5)\\\\n    parser.add_argument(\\\\\\\"--num_epochs\\\\\\\", type=int, default=3)\\\\n    parser.add_argument(\\\\\\\"--per_device_batch_size\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--gradient_accumulation_steps\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--warmup_steps\\\\\\\", type=int, default=100)\\\\n    parser.add_argument(\\\\\\\"--save_steps\\\\\\\", type=int, default=50)\\\\n    parser.add_argument(\\\\\\\"--save_total_limit\\\\\\\", type=int, default=5)\\\\n    parser.add_argument(\\\\\\\"--max_length\\\\\\\", type=int, default=2048)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    parser.add_argument(\\\\\\\"--wandb_project\\\\\\\", type=str, default=\\\\\\\"freige-rsft\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--wandb_run_name\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--weighted_sampling\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"按 CED score 加权采样（高分样本更频繁）\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--quantize\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"启用 4-bit QLoRA 量化\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--lora_rank\\\\\\\", type=int, default=64)\\\\n    parser.add_argument(\\\\\\\"--lora_alpha\\\\\\\", type=int, default=128)\\\\n    parser.add_argument(\\\\\\\"--lora_dropout\\\\\\\", type=float, default=0.05)\\\\n    parser.add_argument(\\\\\\\"--bf16\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=True)\\\\n    parser.add_argument(\\\\\\\"--deepspeed\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"DeepSpeed 配置文件路径\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"RSFT (Rejection Sampling Fine-Tuning) 训练脚本。\\n\\n从 SFT warmup checkpoint 继续训练，使用经 CED 打分筛选的高质量生成数据。\\n流程: base model → merge SFT adapter → 新 QLoRA → 在 RSFT 数据上训练。\\n\\n输入: JSONL，每行 {\\\"doc_id\\\": ..., \\\"input\\\": ..., \\\"output\\\": ..., \\\"ced_score\\\": ..., ...}\\n输出: QLoRA adapter checkpoint\\n依赖: transformers, trl, peft, bitsandbytes, datasets\\n\\n单卡:   python -m freige.training.rsft_trainer --rsft_data_path data.jsonl --output_dir ./rsft_output\\n多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\n            -m freige.training.rsft_trainer --rsft_data_path data.jsonl --output_dir ./rsft_output\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom peft import LoraConfig, PeftModel, TaskType, get_peft_model\\nfrom torch.utils.data import WeightedRandomSampler\\nfrom transformers import (\\n    AutoModelForCausalLM,\\n    AutoTokenizer,\\n    BitsAndBytesConfig,\\n)\\nfrom trl import SFTConfig, SFTTrainer\\n\\nfrom freige.training.sft_trainer import SYSTEM_PROMPT\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nDEFAULT_BASE_MODEL = \\\"/root/autodl-tmp/models/Qwen3-4B\\\"\\nDEFAULT_SFT_ADAPTER = \\\"/root/autodl-tmp/sft_output\\\"\\n\\n\\ndef load_rsft_data(data_path: str, tokenizer, max_length: int = 2048):\\n    \\\"\\\"\\\"加载 CED 筛选后的 RSFT 数据，格式化为 chat template 文本。\\n\\n    每行 JSONL 的 input 字段作为 user message，output 字段作为 assistant response，\\n    经 apply_chat_template 拼接后用于 SFT 训练。超过 max_length 的样本被跳过\\n    而非截断，避免训练在不完整 JSON 输出上。\\n\\n    Returns:\\n        (Dataset, list[float]): 训练数据集和对应的 CED scores\\n    \\\"\\\"\\\"\\n    samples = []\\n    with open(data_path) as f:\\n        for line in f:\\n            if line.strip():\\n                samples.append(json.loads(line))\\n\\n    logger.info(\\\"Loaded %d RSFT samples from %s\\\", len(samples), data_path)\\n\\n    formatted = []\\n    ced_scores = []\\n    skipped = 0\\n    for s in samples:\\n        messages = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": s[\\\"input\\\"]},\\n            {\\\"role\\\": \\\"assistant\\\", \\\"content\\\": s[\\\"output\\\"]},\\n        ]\\n        text = tokenizer.apply_chat_template(\\n            messages,\\n            tokenize=False,\\n            add_generation_prompt=False,\\n            enable_thinking=False,\\n        )\\n        token_len = len(tokenizer.encode(text, add_special_tokens=False))\\n        if token_len > max_length:\\n            skipped += 1\\n            continue\\n        formatted.append({\\\"text\\\": text})\\n        ced_scores.append(s.get(\\\"ced_score\\\", 1.0))\\n\\n    if skipped:\\n        logger.warning(\\\"Skipped %d samples exceeding max_length=%d\\\", skipped, max_length)\\n\\n    if ced_scores:\\n        logger.info(\\n            \\\"Prepared %d RSFT samples (CED scores: min=%.3f, max=%.3f, mean=%.3f)\\\",\\n            len(formatted), min(ced_scores), max(ced_scores),\\n            sum(ced_scores) / len(ced_scores),\\n        )\\n    return Dataset.from_list(formatted), ced_scores\\n\\n\\nclass WeightedSFTTrainer(SFTTrainer):\\n    \\\"\\\"\\\"SFTTrainer with CED score-weighted sampling.\\n\\n    高 CED score 的样本被更频繁采样。使用 WeightedRandomSampler 实现，\\n    适用于单机训练。多机 DDP 场景下 Accelerate 会替换 sampler，\\n    此时 weighted_sampling 不生效，需改用数据集层面的过采样。\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, *args, sample_weights=None, **kwargs):\\n        super().__init__(*args, **kwargs)\\n        self.sample_weights = sample_weights\\n\\n    def _get_train_sampler(self, dataset=None):\\n        if self.sample_weights is not None:\\n            ds = dataset if dataset is not None else self.train_dataset\\n            return WeightedRandomSampler(\\n                weights=self.sample_weights,\\n                num_samples=len(ds),\\n                replacement=True,\\n            )\\n        return super()._get_train_sampler(dataset)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"FREIGE RSFT Training\\\")\\n    parser.add_argument(\\\"--base_model\\\", type=str, default=DEFAULT_BASE_MODEL)\\n    parser.add_argument(\\\"--sft_adapter\\\", type=str, default=DEFAULT_SFT_ADAPTER,\\n                        help=\\\"SFT warmup adapter 路径 (merge 后训练新 LoRA)\\\")\\n    parser.add_argument(\\\"--rsft_data_path\\\", type=str, required=True,\\n                        help=\\\"CED 筛选后的 RSFT 训练数据 (JSONL)\\\")\\n    parser.add_argument(\\\"--output_dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--learning_rate\\\", type=float, default=2e-5)\\n    parser.add_argument(\\\"--num_epochs\\\", type=int, default=3)\\n    parser.add_argument(\\\"--per_device_batch_size\\\", type=int, default=4)\\n    parser.add_argument(\\\"--gradient_accumulation_steps\\\", type=int, default=4)\\n    parser.add_argument(\\\"--warmup_steps\\\", type=int, default=100)\\n    parser.add_argument(\\\"--save_steps\\\", type=int, default=50)\\n    parser.add_argument(\\\"--save_total_limit\\\", type=int, default=5)\\n    parser.add_argument(\\\"--max_length\\\", type=int, default=2048)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    parser.add_argument(\\\"--wandb_project\\\", type=str, default=\\\"freige-rsft\\\")\\n    parser.add_argument(\\\"--wandb_run_name\\\", type=str, default=None)\\n    parser.add_argument(\\\"--weighted_sampling\\\", action=\\\"store_true\\\",\\n                        help=\\\"按 CED score 加权采样（高分样本更频繁）\\\")\\n    parser.add_argument(\\\"--quantize\\\", action=\\\"store_true\\\",\\n                        help=\\\"启用 4-bit QLoRA 量化\\\")\\n    parser.add_argument(\\\"--lora_rank\\\", type=int, default=64)\\n    parser.add_argument(\\\"--lora_alpha\\\", type=int, default=128)\\n    parser.add_argument(\\\"--lora_dropout\\\", type=float, default=0.05)\\n    parser.add_argument(\\\"--bf16\\\", action=\\\"store_true\\\", default=True)\\n    parser.add_argument(\\\"--deepspeed\\\", type=str, default=None,\\n                        help=\\\"DeepSpeed 配置文件路径\\\")\\n    args = parser.parse_args()\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BYvyDzFJCp4oXbDyujtwwJ`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -n +270 /root/autodl-tmp/freige/training/rsft_score_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "5f80e0fc-7e3e-4575-8b22-d9cec9f8a795",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012njUPHVAo2JbFzneXsPVTB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 843,
+      "cache_read_input_tokens": 38056,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 843
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-15T01:12:53.175Z_
+
+<details><summary>↩ Tool result · `toolu_01BYvyDzFJCp4oXbDyujtwwJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        logger.info(\\\"After top_%d: %d records from %d documents\\\",\\n                     args.top_k, len(selected), len(by_doc))\\n        return selected\\n\\n    raise ValueError(f\\\"Unknown selection strategy: {args.selection_strategy}\\\")\\n\\n\\ndef format_sft_training_data(selected_records, tokenizer_name=None):\\n    \\\"\\\"\\\"将筛选后的记录转换为 rsft_trainer 期望的 JSONL 格式。\\\"\\\"\\\"\\n    sft_data = []\\n    for rec in selected_records:\\n        sft_data.append({\\n            \\\"input\\\": _extract_user_content(rec[\\\"prompt\\\"]),\\n            \\\"output\\\": rec[\\\"output\\\"],\\n            \\\"ced_score\\\": rec[\\\"ced_reward\\\"],\\n            \\\"doc_id\\\": rec[\\\"doc_id\\\"],\\n            \\\"generation_idx\\\": rec[\\\"generation_idx\\\"],\\n            \\\"format_reward\\\": rec[\\\"format_reward\\\"],\\n            \\\"f1_reward\\\": rec[\\\"f1_reward\\\"],\\n            \\\"combined_score\\\": rec[\\\"combined_score\\\"],\\n        })\\n\\n    return sft_data\\n\\n\\ndef _extract_user_content(prompt_text):\\n    \\\"\\\"\\\"从完整 prompt 中提取 user 消息内容。\\n\\n    prompt 是 apply_chat_template 的输出，包含 system/user 标记。\\n    \\\"\\\"\\\"\\n    # Qwen3 chat template 格式:\\n    # <|im_start|>system\\\\n...<|im_end|>\\\\n<|im_start|>user\\\\n...<|im_end|>\\\\n<|im_start|>assistant\\\\n\\n    user_start = prompt_text.find(\\\"<|im_start|>user\\\\n\\\")\\n    if user_start < 0:\\n        return prompt_text\\n    content_start = user_start + len(\\\"<|im_start|>user\\\\n\\\")\\n    user_end = prompt_text.find(\\\"<|im_end|>\\\", content_start)\\n    if user_end < 0:\\n        return prompt_text[content_start:]\\n    return prompt_text[content_start:user_end]\\n\\n\\ndef generate_report(scored_records, selected_records):\\n    \\\"\\\"\\\"生成统计报告。\\\"\\\"\\\"\\n    total = len(scored_records)\\n    passed = len(selected_records)\\n\\n    scores = {\\n        \\\"format_reward\\\": [r[\\\"format_reward\\\"] for r in scored_records],\\n        \\\"f1_reward\\\": [r[\\\"f1_reward\\\"] for r in scored_records],\\n        \\\"ced_reward\\\": [r[\\\"ced_reward\\\"] for r in scored_records],\\n        \\\"combined_score\\\": [r[\\\"combined_score\\\"] for r in scored_records],\\n    }\\n\\n    report = {\\n        \\\"total_records\\\": total,\\n        \\\"selected_records\\\": passed,\\n        \\\"filtered_records\\\": total - passed,\\n        \\\"selection_rate\\\": passed / total if total else 0.0,\\n        \\\"unique_docs_total\\\": len(set(r[\\\"doc_id\\\"] for r in scored_records)),\\n        \\\"unique_docs_selected\\\": len(set(r[\\\"doc_id\\\"] for r in selected_records)),\\n    }\\n\\n    for name, vals in scores.items():\\n        arr = np.array(vals)\\n        report[f\\\"{name}_stats\\\"] = {\\n            \\\"mean\\\": float(np.mean(arr)),\\n            \\\"std\\\": float(np.std(arr)),\\n            \\\"min\\\": float(np.min(arr)),\\n            \\\"max\\\": float(np.max(arr)),\\n            \\\"median\\\": float(np.median(arr)),\\n            \\\"p25\\\": float(np.percentile(arr, 25)),\\n            \\\"p75\\\": float(np.percentile(arr, 75)),\\n        }\\n\\n    # 筛选后子集的统计\\n    if selected_records:\\n        sel_scores = {\\n            \\\"format_reward\\\": [r[\\\"format_reward\\\"] for r in selected_records],\\n            \\\"f1_reward\\\": [r[\\\"f1_reward\\\"] for r in selected_records],\\n            \\\"ced_reward\\\": [r[\\\"ced_reward\\\"] for r in selected_records],\\n            \\\"combined_score\\\": [r[\\\"combined_score\\\"] for r in selected_records],\\n        }\\n        report[\\\"selected_stats\\\"] = {}\\n        for name, vals in sel_scores.items():\\n            arr = np.array(vals)\\n            report[\\\"selected_stats\\\"][name] = {\\n                \\\"mean\\\": float(np.mean(arr)),\\n                \\\"std\\\": float(np.std(arr)),\\n                \\\"min\\\": float(np.min(arr)),\\n                \\\"max\\\": float(np.max(arr)),\\n            }\\n\\n    return report\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"RSFT Step 2: CED Scoring & Filtering\\\")\\n    parser.add_argument(\\\"--input_dir\\\", type=str, required=True,\\n                        help=\\\"rsft_generate 输出目录（含 generations.jsonl）\\\")\\n    parser.add_argument(\\\"--output_path\\\", type=str, required=True,\\n                        help=\\\"筛选结果输出目录\\\")\\n    parser.add_argument(\\\"--nli_model_path\\\", type=str,\\n                        default=\\\"cross-encoder/nli-deberta-v3-base\\\",\\n                        help=\\\"NLI 模型路径（用于 CED 打分）\\\")\\n    parser.add_argument(\\\"--nli_device\\\", type=str, default=None,\\n                        help=\\\"NLI 模型运行设备 (default: auto)\\\")\\n    parser.add_argument(\\\"--tau\\\", type=float, default=0.5,\\n                        help=\\\"CED tau 阈值 (default: 0.5)\\\")\\n\\n    # 筛选参数\\n    parser.add_argument(\\\"--format_weight\\\", type=float, default=0.2,\\n                        help=\\\"combined_score 中 format_reward 的权重 (default: 0.2)\\\")\\n    parser.add_argument(\\\"--f1_weight\\\", type=float, default=0.4,\\n                        help=\\\"combined_score 中 f1_reward 的权重 (default: 0.4)\\\")\\n    parser.add_argument(\\\"--ced_weight\\\", type=float, default=0.4,\\n                        help=\\\"combined_score 中 ced_reward 的权重 (default: 0.4)\\\")\\n\\n    # 筛选参数\\n    parser.add_argument(\\\"--format_threshold\\\", type=float, default=0.5,\\n                        help=\\\"format_reward 最低阈值 (default: 0.5)\\\")\\n    parser.add_argument(\\\"--f1_threshold\\\", type=float, default=0.0,\\n                        help=\\\"f1_reward 最低阈值 (default: 0.0)\\\")\\n    parser.add_argument(\\\"--ced_threshold\\\", type=float, default=0.0,\\n                        help=\\\"ced_reward 最低阈值 (default: 0.0)\\\")\\n    parser.add_argument(\\\"--selection_strategy\\\", type=str, default=\\\"top_pct\\\",\\n                        choices=[\\\"threshold\\\", \\\"top_k\\\", \\\"top_pct\\\"],\\n                        help=\\\"筛选策略 (default: top_pct)\\\")\\n    parser.add_argument(\\\"--top_k\\\", type=int, default=2,\\n                        help=\\\"top_k 策略: 每个文档取 top-K (default: 2)\\\")\\n    parser.add_argument(\\\"--top_pct\\\", type=int, default=25,\\n                        help=\\\"top_pct 策略: 每个文档取 top N%% (default: 25)\\\")\\n    args = parser.parse_args()\\n\\n    output_dir = Path(args.output_path)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # 1. 加载生成结果\\n    records = load_generations(args.input_dir)\\n\\n    # 2. 加载 CED 模型并打分\\n    logger.info(\\\"Loading NLI model: %s\\\", args.nli_model_path)\\n    from freige.rewards.ced_reward import CEDRewardModel\\n    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\n\\n    scored = score_all_records(records, ced_model, tau=args.tau, format_weight=args.format_weight, f1_weight=args.f1_weight, ced_weight=args.ced_weight)\\n\\n    # 保存带分数的完整记录\\n    scores_path = output_dir / \\\"rsft_scores.jsonl\\\"\\n    with open(scores_path, \\\"w\\\") as f:\\n        for rec in scored:\\n            # 不保存大字段以节省空间\\n            slim = {k: v for k, v in rec.items() if k not in (\\\"prompt\\\", \\\"sents\\\", \\\"gold_triples\\\")}\\n            f.write(json.dumps(slim, ensure_ascii=False) + \\\"\\\\n\\\")\\n    logger.info(\\\"Scores → %s\\\", scores_path)\\n\\n    # 3. 筛选\\n    selected = filter_records(scored, args)\\n\\n    # 4. 转换为 SFT 训练格式\\n    sft_data = format_sft_training_data(selected)\\n    train_path = output_dir / \\\"rsft_train.jsonl\\\"\\n    with open(train_path, \\\"w\\\") as f:\\n        for item in sft_data:\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\"\\\\n\\\")\\n    logger.info(\\\"Training data → %s (%d samples)\\\", train_path, len(sft_data))\\n\\n    # 5. 统计报告\\n    report = generate_report(scored, selected)\\n    report[\\\"args\\\"] = vars(args)\\n    report_path = output_dir / \\\"rsft_report.json\\\"\\n    with open(report_path, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2, ensure_ascii=False)\\n    logger.info(\\\"Report → %s\\\", report_path)\\n\\n    # 控制台摘要\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(f\\\"  Total records:    {report['total_records']}\\\")\\n    print(f\\\"  Selected:         {report['selected_records']}\\\")\\n    print(f\\\"  Selection rate:   {report['selection_rate']:.1%}\\\")\\n    print(f\\\"  Unique docs:      {report['unique_docs_selected']}/{report['unique_docs_total']}\\\")\\n    print(\\\"-\\\" * 60)\\n    for name in [\\\"format_reward\\\", \\\"f1_reward\\\", \\\"ced_reward\\\", \\\"combined_score\\\"]:\\n        stats = report[f\\\"{name}_stats\\\"]\\n        print(f\\\"  {name:20s}  mean={stats['mean']:.3f}  std={stats['std']:.3f}  \\\"\\n              f\\\"median={stats['median']:.3f}  [min={stats['min']:.3f}, max={stats['max']:.3f}]\\\")\\n    print(\\\"=\\\" * 60)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "fd8a6c60-46d6-4b1a-9b34-316d382c9b7a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        logger.info(\\\\\\\"After top_%d: %d records from %d documents\\\\\\\",\\\\n                     args.top_k, len(selected), len(by_doc))\\\\n        return selected\\\\n\\\\n    raise ValueError(f\\\\\\\"Unknown selection strategy: {args.selection_strategy}\\\\\\\")\\\\n\\\\n\\\\ndef format_sft_training_data(selected_records, tokenizer_name=None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"将筛选后的记录转换为 rsft_trainer 期望的 JSONL 格式。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    sft_data = []\\\\n    for rec in selected_records:\\\\n        sft_data.append({\\\\n            \\\\\\\"input\\\\\\\": _extract_user_content(rec[\\\\\\\"prompt\\\\\\\"]),\\\\n            \\\\\\\"output\\\\\\\": rec[\\\\\\\"output\\\\\\\"],\\\\n            \\\\\\\"ced_score\\\\\\\": rec[\\\\\\\"ced_reward\\\\\\\"],\\\\n            \\\\\\\"doc_id\\\\\\\": rec[\\\\\\\"doc_id\\\\\\\"],\\\\n            \\\\\\\"generation_idx\\\\\\\": rec[\\\\\\\"generation_idx\\\\\\\"],\\\\n            \\\\\\\"format_reward\\\\\\\": rec[\\\\\\\"format_reward\\\\\\\"],\\\\n            \\\\\\\"f1_reward\\\\\\\": rec[\\\\\\\"f1_reward\\\\\\\"],\\\\n            \\\\\\\"combined_score\\\\\\\": rec[\\\\\\\"combined_score\\\\\\\"],\\\\n        })\\\\n\\\\n    return sft_data\\\\n\\\\n\\\\ndef _extract_user_content(prompt_text):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"从完整 prompt 中提取 user 消息内容。\\\\n\\\\n    prompt 是 apply_chat_template 的输出，包含 system/user 标记。\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    # Qwen3 chat template 格式:\\\\n    # <|im_start|>system\\\\\\\\n...<|im_end|>\\\\\\\\n<|im_start|>user\\\\\\\\n...<|im_end|>\\\\\\\\n<|im_start|>assistant\\\\\\\\n\\\\n    user_start = prompt_text.find(\\\\\\\"<|im_start|>user\\\\\\\\n\\\\\\\")\\\\n    if user_start < 0:\\\\n        return prompt_text\\\\n    content_start = user_start + len(\\\\\\\"<|im_start|>user\\\\\\\\n\\\\\\\")\\\\n    user_end = prompt_text.find(\\\\\\\"<|im_end|>\\\\\\\", content_start)\\\\n    if user_end < 0:\\\\n        return prompt_text[content_start:]\\\\n    return prompt_text[content_start:user_end]\\\\n\\\\n\\\\ndef generate_report(scored_records, selected_records):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"生成统计报告。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    total = len(scored_records)\\\\n    passed = len(selected_records)\\\\n\\\\n    scores = {\\\\n        \\\\\\\"format_reward\\\\\\\": [r[\\\\\\\"format_reward\\\\\\\"] for r in scored_records],\\\\n        \\\\\\\"f1_reward\\\\\\\": [r[\\\\\\\"f1_reward\\\\\\\"] for r in scored_records],\\\\n        \\\\\\\"ced_reward\\\\\\\": [r[\\\\\\\"ced_reward\\\\\\\"] for r in scored_records],\\\\n        \\\\\\\"combined_score\\\\\\\": [r[\\\\\\\"combined_score\\\\\\\"] for r in scored_records],\\\\n    }\\\\n\\\\n    report = {\\\\n        \\\\\\\"total_records\\\\\\\": total,\\\\n        \\\\\\\"selected_records\\\\\\\": passed,\\\\n        \\\\\\\"filtered_records\\\\\\\": total - passed,\\\\n        \\\\\\\"selection_rate\\\\\\\": passed / total if total else 0.0,\\\\n        \\\\\\\"unique_docs_total\\\\\\\": len(set(r[\\\\\\\"doc_id\\\\\\\"] for r in scored_records)),\\\\n        \\\\\\\"unique_docs_selected\\\\\\\": len(set(r[\\\\\\\"doc_id\\\\\\\"] for r in selected_records)),\\\\n    }\\\\n\\\\n    for name, vals in scores.items():\\\\n        arr = np.array(vals)\\\\n        report[f\\\\\\\"{name}_stats\\\\\\\"] = {\\\\n            \\\\\\\"mean\\\\\\\": float(np.mean(arr)),\\\\n            \\\\\\\"std\\\\\\\": float(np.std(arr)),\\\\n            \\\\\\\"min\\\\\\\": float(np.min(arr)),\\\\n            \\\\\\\"max\\\\\\\": float(np.max(arr)),\\\\n            \\\\\\\"median\\\\\\\": float(np.median(arr)),\\\\n            \\\\\\\"p25\\\\\\\": float(np.percentile(arr, 25)),\\\\n            \\\\\\\"p75\\\\\\\": float(np.percentile(arr, 75)),\\\\n        }\\\\n\\\\n    # 筛选后子集的统计\\\\n    if selected_records:\\\\n        sel_scores = {\\\\n            \\\\\\\"format_reward\\\\\\\": [r[\\\\\\\"format_reward\\\\\\\"] for r in selected_records],\\\\n            \\\\\\\"f1_reward\\\\\\\": [r[\\\\\\\"f1_reward\\\\\\\"] for r in selected_records],\\\\n            \\\\\\\"ced_reward\\\\\\\": [r[\\\\\\\"ced_reward\\\\\\\"] for r in selected_records],\\\\n            \\\\\\\"combined_score\\\\\\\": [r[\\\\\\\"combined_score\\\\\\\"] for r in selected_records],\\\\n        }\\\\n        report[\\\\\\\"selected_stats\\\\\\\"] = {}\\\\n        for name, vals in sel_scores.items():\\\\n            arr = np.array(vals)\\\\n            report[\\\\\\\"selected_stats\\\\\\\"][name] = {\\\\n                \\\\\\\"mean\\\\\\\": float(np.mean(arr)),\\\\n                \\\\\\\"std\\\\\\\": float(np.std(arr)),\\\\n                \\\\\\\"min\\\\\\\": float(np.min(arr)),\\\\n                \\\\\\\"max\\\\\\\": float(np.max(arr)),\\\\n            }\\\\n\\\\n    return report\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"RSFT Step 2: CED Scoring & Filtering\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--input_dir\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"rsft_generate 输出目录（含 generations.jsonl）\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output_path\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"筛选结果输出目录\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--nli_model_path\\\\\\\", type=str,\\\\n                        default=\\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\",\\\\n                        help=\\\\\\\"NLI 模型路径（用于 CED 打分）\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--nli_device\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"NLI 模型运行设备 (default: auto)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--tau\\\\\\\", type=float, default=0.5,\\\\n                        help=\\\\\\\"CED tau 阈值 (default: 0.5)\\\\\\\")\\\\n\\\\n    # 筛选参数\\\\n    parser.add_argument(\\\\\\\"--format_weight\\\\\\\", type=float, default=0.2,\\\\n                        help=\\\\\\\"combined_score 中 format_reward 的权重 (default: 0.2)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--f1_weight\\\\\\\", type=float, default=0.4,\\\\n                        help=\\\\\\\"combined_score 中 f1_reward 的权重 (default: 0.4)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--ced_weight\\\\\\\", type=float, default=0.4,\\\\n                        help=\\\\\\\"combined_score 中 ced_reward 的权重 (default: 0.4)\\\\\\\")\\\\n\\\\n    # 筛选参数\\\\n    parser.add_argument(\\\\\\\"--format_threshold\\\\\\\", type=float, default=0.5,\\\\n                        help=\\\\\\\"format_reward 最低阈值 (default: 0.5)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--f1_threshold\\\\\\\", type=float, default=0.0,\\\\n                        help=\\\\\\\"f1_reward 最低阈值 (default: 0.0)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--ced_threshold\\\\\\\", type=float, default=0.0,\\\\n                        help=\\\\\\\"ced_reward 最低阈值 (default: 0.0)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--selection_strategy\\\\\\\", type=str, default=\\\\\\\"top_pct\\\\\\\",\\\\n                        choices=[\\\\\\\"threshold\\\\\\\", \\\\\\\"top_k\\\\\\\", \\\\\\\"top_pct\\\\\\\"],\\\\n                        help=\\\\\\\"筛选策略 (default: top_pct)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--top_k\\\\\\\", type=int, default=2,\\\\n                        help=\\\\\\\"top_k 策略: 每个文档取 top-K (default: 2)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--top_pct\\\\\\\", type=int, default=25,\\\\n                        help=\\\\\\\"top_pct 策略: 每个文档取 top N%% (default: 25)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    output_dir = Path(args.output_path)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # 1. 加载生成结果\\\\n    records = load_generations(args.input_dir)\\\\n\\\\n    # 2. 加载 CED 模型并打分\\\\n    logger.info(\\\\\\\"Loading NLI model: %s\\\\\\\", args.nli_model_path)\\\\n    from freige.rewards.ced_reward import CEDRewardModel\\\\n    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\\\n\\\\n    scored = score_all_records(records, ced_model, tau=args.tau, format_weight=args.format_weight, f1_weight=args.f1_weight, ced_weight=args.ced_weight)\\\\n\\\\n    # 保存带分数的完整记录\\\\n    scores_path = output_dir / \\\\\\\"rsft_scores.jsonl\\\\\\\"\\\\n    with open(scores_path, \\\\\\\"w\\\\\\\") as f:\\\\n        for rec in scored:\\\\n            # 不保存大字段以节省空间\\\\n            slim = {k: v for k, v in rec.items() if k not in (\\\\\\\"prompt\\\\\\\", \\\\\\\"sents\\\\\\\", \\\\\\\"gold_triples\\\\\\\")}\\\\n            f.write(json.dumps(slim, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    logger.info(\\\\\\\"Scores → %s\\\\\\\", scores_path)\\\\n\\\\n    # 3. 筛选\\\\n    selected = filter_records(scored, args)\\\\n\\\\n    # 4. 转换为 SFT 训练格式\\\\n    sft_data = format_sft_training_data(selected)\\\\n    train_path = output_dir / \\\\\\\"rsft_train.jsonl\\\\\\\"\\\\n    with open(train_path, \\\\\\\"w\\\\\\\") as f:\\\\n        for item in sft_data:\\\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    logger.info(\\\\\\\"Training data → %s (%d samples)\\\\\\\", train_path, len(sft_data))\\\\n\\\\n    # 5. 统计报告\\\\n    report = generate_report(scored, selected)\\\\n    report[\\\\\\\"args\\\\\\\"] = vars(args)\\\\n    report_path = output_dir / \\\\\\\"rsft_report.json\\\\\\\"\\\\n    with open(report_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(report, f, indent=2, ensure_ascii=False)\\\\n    logger.info(\\\\\\\"Report → %s\\\\\\\", report_path)\\\\n\\\\n    # 控制台摘要\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(f\\\\\\\"  Total records:    {report['total_records']}\\\\\\\")\\\\n    print(f\\\\\\\"  Selected:         {report['selected_records']}\\\\\\\")\\\\n    print(f\\\\\\\"  Selection rate:   {report['selection_rate']:.1%}\\\\\\\")\\\\n    print(f\\\\\\\"  Unique docs:      {report['unique_docs_selected']}/{report['unique_docs_total']}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    for name in [\\\\\\\"format_reward\\\\\\\", \\\\\\\"f1_reward\\\\\\\", \\\\\\\"ced_reward\\\\\\\", \\\\\\\"combined_score\\\\\\\"]:\\\\n        stats = report[f\\\\\\\"{name}_stats\\\\\\\"]\\\\n        print(f\\\\\\\"  {name:20s}  mean={stats['mean']:.3f}  std={stats['std']:.3f}  \\\\\\\"\\\\n              f\\\\\\\"median={stats['median']:.3f}  [min={stats['min']:.3f}, max={stats['max']:.3f}]\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"        logger.info(\\\"After top_%d: %d records from %d documents\\\",\\n                     args.top_k, len(selected), len(by_doc))\\n        return selected\\n\\n    raise ValueError(f\\\"Unknown selection strategy: {args.selection_strategy}\\\")\\n\\n\\ndef format_sft_training_data(selected_records, tokenizer_name=None):\\n    \\\"\\\"\\\"将筛选后的记录转换为 rsft_trainer 期望的 JSONL 格式。\\\"\\\"\\\"\\n    sft_data = []\\n    for rec in selected_records:\\n        sft_data.append({\\n            \\\"input\\\": _extract_user_content(rec[\\\"prompt\\\"]),\\n            \\\"output\\\": rec[\\\"output\\\"],\\n            \\\"ced_score\\\": rec[\\\"ced_reward\\\"],\\n            \\\"doc_id\\\": rec[\\\"doc_id\\\"],\\n            \\\"generation_idx\\\": rec[\\\"generation_idx\\\"],\\n            \\\"format_reward\\\": rec[\\\"format_reward\\\"],\\n            \\\"f1_reward\\\": rec[\\\"f1_reward\\\"],\\n            \\\"combined_score\\\": rec[\\\"combined_score\\\"],\\n        })\\n\\n    return sft_data\\n\\n\\ndef _extract_user_content(prompt_text):\\n    \\\"\\\"\\\"从完整 prompt 中提取 user 消息内容。\\n\\n    prompt 是 apply_chat_template 的输出，包含 system/user 标记。\\n    \\\"\\\"\\\"\\n    # Qwen3 chat template 格式:\\n    # <|im_start|>system\\\\n...<|im_end|>\\\\n<|im_start|>user\\\\n...<|im_end|>\\\\n<|im_start|>assistant\\\\n\\n    user_start = prompt_text.find(\\\"<|im_start|>user\\\\n\\\")\\n    if user_start < 0:\\n        return prompt_text\\n    content_start = user_start + len(\\\"<|im_start|>user\\\\n\\\")\\n    user_end = prompt_text.find(\\\"<|im_end|>\\\", content_start)\\n    if user_end < 0:\\n        return prompt_text[content_start:]\\n    return prompt_text[content_start:user_end]\\n\\n\\ndef generate_report(scored_records, selected_records):\\n    \\\"\\\"\\\"生成统计报告。\\\"\\\"\\\"\\n    total = len(scored_records)\\n    passed = len(selected_records)\\n\\n    scores = {\\n        \\\"format_reward\\\": [r[\\\"format_reward\\\"] for r in scored_records],\\n        \\\"f1_reward\\\": [r[\\\"f1_reward\\\"] for r in scored_records],\\n        \\\"ced_reward\\\": [r[\\\"ced_reward\\\"] for r in scored_records],\\n        \\\"combined_score\\\": [r[\\\"combined_score\\\"] for r in scored_records],\\n    }\\n\\n    report = {\\n        \\\"total_records\\\": total,\\n        \\\"selected_records\\\": passed,\\n        \\\"filtered_records\\\": total - passed,\\n        \\\"selection_rate\\\": passed / total if total else 0.0,\\n        \\\"unique_docs_total\\\": len(set(r[\\\"doc_id\\\"] for r in scored_records)),\\n        \\\"unique_docs_selected\\\": len(set(r[\\\"doc_id\\\"] for r in selected_records)),\\n    }\\n\\n    for name, vals in scores.items():\\n        arr = np.array(vals)\\n        report[f\\\"{name}_stats\\\"] = {\\n            \\\"mean\\\": float(np.mean(arr)),\\n            \\\"std\\\": float(np.std(arr)),\\n            \\\"min\\\": float(np.min(arr)),\\n            \\\"max\\\": float(np.max(arr)),\\n            \\\"median\\\": float(np.median(arr)),\\n            \\\"p25\\\": float(np.percentile(arr, 25)),\\n            \\\"p75\\\": float(np.percentile(arr, 75)),\\n        }\\n\\n    # 筛选后子集的统计\\n    if selected_records:\\n        sel_scores = {\\n            \\\"format_reward\\\": [r[\\\"format_reward\\\"] for r in selected_records],\\n            \\\"f1_reward\\\": [r[\\\"f1_reward\\\"] for r in selected_records],\\n            \\\"ced_reward\\\": [r[\\\"ced_reward\\\"] for r in selected_records],\\n            \\\"combined_score\\\": [r[\\\"combined_score\\\"] for r in selected_records],\\n        }\\n        report[\\\"selected_stats\\\"] = {}\\n        for name, vals in sel_scores.items():\\n            arr = np.array(vals)\\n            report[\\\"selected_stats\\\"][name] = {\\n                \\\"mean\\\": float(np.mean(arr)),\\n                \\\"std\\\": float(np.std(arr)),\\n                \\\"min\\\": float(np.min(arr)),\\n                \\\"max\\\": float(np.max(arr)),\\n            }\\n\\n    return report\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"RSFT Step 2: CED Scoring & Filtering\\\")\\n    parser.add_argument(\\\"--input_dir\\\", type=str, required=True,\\n                        help=\\\"rsft_generate 输出目录（含 generations.jsonl）\\\")\\n    parser.add_argument(\\\"--output_path\\\", type=str, required=True,\\n                        help=\\\"筛选结果输出目录\\\")\\n    parser.add_argument(\\\"--nli_model_path\\\", type=str,\\n                        default=\\\"cross-encoder/nli-deberta-v3-base\\\",\\n                        help=\\\"NLI 模型路径（用于 CED 打分）\\\")\\n    parser.add_argument(\\\"--nli_device\\\", type=str, default=None,\\n                        help=\\\"NLI 模型运行设备 (default: auto)\\\")\\n    parser.add_argument(\\\"--tau\\\", type=float, default=0.5,\\n                        help=\\\"CED tau 阈值 (default: 0.5)\\\")\\n\\n    # 筛选参数\\n    parser.add_argument(\\\"--format_weight\\\", type=float, default=0.2,\\n                        help=\\\"combined_score 中 format_reward 的权重 (default: 0.2)\\\")\\n    parser.add_argument(\\\"--f1_weight\\\", type=float, default=0.4,\\n                        help=\\\"combined_score 中 f1_reward 的权重 (default: 0.4)\\\")\\n    parser.add_argument(\\\"--ced_weight\\\", type=float, default=0.4,\\n                        help=\\\"combined_score 中 ced_reward 的权重 (default: 0.4)\\\")\\n\\n    # 筛选参数\\n    parser.add_argument(\\\"--format_threshold\\\", type=float, default=0.5,\\n                        help=\\\"format_reward 最低阈值 (default: 0.5)\\\")\\n    parser.add_argument(\\\"--f1_threshold\\\", type=float, default=0.0,\\n                        help=\\\"f1_reward 最低阈值 (default: 0.0)\\\")\\n    parser.add_argument(\\\"--ced_threshold\\\", type=float, default=0.0,\\n                        help=\\\"ced_reward 最低阈值 (default: 0.0)\\\")\\n    parser.add_argument(\\\"--selection_strategy\\\", type=str, default=\\\"top_pct\\\",\\n                        choices=[\\\"threshold\\\", \\\"top_k\\\", \\\"top_pct\\\"],\\n                        help=\\\"筛选策略 (default: top_pct)\\\")\\n    parser.add_argument(\\\"--top_k\\\", type=int, default=2,\\n                        help=\\\"top_k 策略: 每个文档取 top-K (default: 2)\\\")\\n    parser.add_argument(\\\"--top_pct\\\", type=int, default=25,\\n                        help=\\\"top_pct 策略: 每个文档取 top N%% (default: 25)\\\")\\n    args = parser.parse_args()\\n\\n    output_dir = Path(args.output_path)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # 1. 加载生成结果\\n    records = load_generations(args.input_dir)\\n\\n    # 2. 加载 CED 模型并打分\\n    logger.info(\\\"Loading NLI model: %s\\\", args.nli_model_path)\\n    from freige.rewards.ced_reward import CEDRewardModel\\n    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\n\\n    scored = score_all_records(records, ced_model, tau=args.tau, format_weight=args.format_weight, f1_weight=args.f1_weight, ced_weight=args.ced_weight)\\n\\n    # 保存带分数的完整记录\\n    scores_path = output_dir / \\\"rsft_scores.jsonl\\\"\\n    with open(scores_path, \\\"w\\\") as f:\\n        for rec in scored:\\n            # 不保存大字段以节省空间\\n            slim = {k: v for k, v in rec.items() if k not in (\\\"prompt\\\", \\\"sents\\\", \\\"gold_triples\\\")}\\n            f.write(json.dumps(slim, ensure_ascii=False) + \\\"\\\\n\\\")\\n    logger.info(\\\"Scores → %s\\\", scores_path)\\n\\n    # 3. 筛选\\n    selected = filter_records(scored, args)\\n\\n    # 4. 转换为 SFT 训练格式\\n    sft_data = format_sft_training_data(selected)\\n    train_path = output_dir / \\\"rsft_train.jsonl\\\"\\n    with open(train_path, \\\"w\\\") as f:\\n        for item in sft_data:\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\"\\\\n\\\")\\n    logger.info(\\\"Training data → %s (%d samples)\\\", train_path, len(sft_data))\\n\\n    # 5. 统计报告\\n    report = generate_report(scored, selected)\\n    report[\\\"args\\\"] = vars(args)\\n    report_path = output_dir / \\\"rsft_report.json\\\"\\n    with open(report_path, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2, ensure_ascii=False)\\n    logger.info(\\\"Report → %s\\\", report_path)\\n\\n    # 控制台摘要\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(f\\\"  Total records:    {report['total_records']}\\\")\\n    print(f\\\"  Selected:         {report['selected_records']}\\\")\\n    print(f\\\"  Selection rate:   {report['selection_rate']:.1%}\\\")\\n    print(f\\\"  Unique docs:      {report['unique_docs_selected']}/{report['unique_docs_total']}\\\")\\n    print(\\\"-\\\" * 60)\\n    for name in [\\\"format_reward\\\", \\\"f1_reward\\\", \\\"ced_reward\\\", \\\"combined_score\\\"]:\\n        stats = report[f\\\"{name}_stats\\\"]\\n        print(f\\\"  {name:20s}  mean={stats['mean']:.3f}  std={stats['std']:.3f}  \\\"\\n              f\\\"median={stats['median']:.3f}  [min={stats['min']:.3f}, max={stats['max']:.3f}]\\\")\\n    print(\\\"=\\\" * 60)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I have a clear picture. Let me analyze:
+
+## Data Flow Analysis
+
+### rsft_generate.py output (generations.jsonl):
+Each JSONL line:
+```json
+{
+    "doc_id": ...,
+    "generation_idx": ...,
+    "prompt": ...,           // full chat template prompt
+    "output": ...,           // raw generated text
+    "raw_text": ...,         // same as output
+    "parsed_triples": [...], // parsed from output
+    "format_ok": ...,        // bool
+    "truncated": ...,        // bool
+    "gold_triples": [...],   // gold labels
+    "sents": [...]           // document sentences
+}
+```
+
+### rsft_score_filter.py:
+- **Reads**: generations.jsonl from `--input_dir`
+- **Processes**: computes format_reward, f1_reward, ced_reward, combined_score
+- **Outputs**: 
+  - `rsft_scores.jsonl`: detailed scores
+  - `rsft_train.jsonl`: SFT training data (via `format_sft_training_data`)
+  - `rsft_report.json`: statistics
+
+The `format_sft_training_data` function transforms each record into a training example with an input field extracted from the prompt...
+
+Defining the training data structure...
+
+The trainer expects `input`, `output`, and `ced_score` fields, and they're all present in the formatted records, so the pipeline should work correctly. The docstring is outdated—it mentions `.json` output but the code actually writes `.jsonl`, which is correct. Looking at the data flow more carefully, the `_extract_user_content` function properly parses the Qwen3 chat template format to extract user messages, and the field names align between score_filter and trainer, so the actual implementation seems sound despite what the task description claims.
+
+I'm realizing the file view was truncated earlier, cutting off the middle section around line 170, so I'm missing some context about what happens between the reward computation functions and the `format_sft_training_data` function. I'm looking at the middle section of the file that was cut off to understand the full flow of how generations are loaded, scored, and filtered. The docstring mentions the output should be `rsft_train.json` rather than `.jsonl`, which makes me wonder if there's a mismatch between what the user expects and what the code actually produces, or if this is a leftover from an earlier version.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "f66a766d-84ff-4a86-ac0b-fa680f221a18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TUF4whJjgpV8fLhQpspBAA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9877,
+      "cache_read_input_tokens": 38899,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9877
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+需要看 score_filter 被截断的中间部分（load_generations, score_all_records, filter_records）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "09be38b5-b119-46ff-98e5-df2b84df0012",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TUF4whJjgpV8fLhQpspBAA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9877,
+      "cache_read_input_tokens": 38899,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9877
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016C2VrKwiWPxWNJdsaiaukq`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -n +140 /root/autodl-tmp/freige/training/rsft_score_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "1bf7d3af-d998-4d78-9071-9a7ad603b8a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TUF4whJjgpV8fLhQpspBAA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9877,
+      "cache_read_input_tokens": 38899,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9877
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T01:13:27.502Z_
+
+<details><summary>↩ Tool result · `toolu_016C2VrKwiWPxWNJdsaiaukq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            continue\\n        pred_evi_ids = p.get(\\\"evidence\\\", [])\\n        if not isinstance(pred_evi_ids, list) or not pred_evi_ids:\\n            triple_rewards.append(0.0)\\n            triple_details.append({\\\"reward\\\": 0.0, \\\"reason\\\": \\\"no_evidence\\\"})\\n            continue\\n\\n        claim = verbalize_triple(\\n            str(p.get(\\\"head\\\") or \\\"\\\"),\\n            str(p.get(\\\"relation\\\") or \\\"\\\"),\\n            str(p.get(\\\"tail\\\") or \\\"\\\"),\\n        )\\n        cited_sents = [sents[idx] for idx in pred_evi_ids\\n                       if isinstance(idx, int) and 0 <= idx < len(sents)]\\n        if not cited_sents:\\n            triple_rewards.append(0.0)\\n            triple_details.append({\\\"reward\\\": 0.0, \\\"reason\\\": \\\"invalid_evidence_ids\\\"})\\n            continue\\n\\n        key = (\\n            str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n            str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n            str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n        )\\n        matched_gold = gold_map.get(key, {})\\n        hard_neg_ids = matched_gold.get(\\\"hard_negative_sent_ids\\\", [])\\n        hard_neg_sents = [sents[idx] for idx in hard_neg_ids\\n                          if isinstance(idx, int) and 0 <= idx < len(sents)]\\n\\n        result = ced_model.compute_ced_reward(\\n            claim, cited_sents, hard_neg_sents, tau=tau,\\n        )\\n        triple_rewards.append(result[\\\"reward\\\"])\\n        triple_details.append(result)\\n\\n    mean_ced = sum(triple_rewards) / len(triple_rewards) if triple_rewards else 0.0\\n    return {\\\"ced_reward\\\": mean_ced, \\\"triple_details\\\": triple_details}\\n\\n\\ndef load_generations(input_dir):\\n    \\\"\\\"\\\"加载 generations.jsonl。\\\"\\\"\\\"\\n    input_path = Path(input_dir) / \\\"generations.jsonl\\\"\\n    records = []\\n    with open(input_path) as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                records.append(json.loads(line))\\n    logger.info(\\\"Loaded %d generation records from %s\\\", len(records), input_path)\\n    return records\\n\\n\\ndef score_all_records(records, ced_model, tau=0.5, format_weight=0.2, f1_weight=0.4, ced_weight=0.4):\\n    \\\"\\\"\\\"对所有记录计算三种奖励分数。\\\"\\\"\\\"\\n    scored = []\\n    for i, rec in enumerate(records):\\n        format_reward = compute_format_reward(rec[\\\"parsed_triples\\\"], rec.get(\\\"format_ok\\\", False))\\n        f1_reward = compute_f1_reward(rec[\\\"parsed_triples\\\"], rec[\\\"gold_triples\\\"])\\n        ced_result = compute_ced_reward_for_record(rec, ced_model, tau=tau)\\n\\n        scored_rec = {\\n            \\\"doc_id\\\": rec[\\\"doc_id\\\"],\\n            \\\"generation_idx\\\": rec[\\\"generation_idx\\\"],\\n            \\\"output\\\": rec[\\\"output\\\"],\\n            \\\"parsed_triples\\\": rec[\\\"parsed_triples\\\"],\\n            \\\"format_ok\\\": rec.get(\\\"format_ok\\\", False),\\n            \\\"gold_triples\\\": rec[\\\"gold_triples\\\"],\\n            \\\"sents\\\": rec[\\\"sents\\\"],\\n            \\\"prompt\\\": rec.get(\\\"prompt\\\", \\\"\\\"),\\n            \\\"format_reward\\\": format_reward,\\n            \\\"f1_reward\\\": f1_reward,\\n            \\\"ced_reward\\\": ced_result[\\\"ced_reward\\\"],\\n            \\\"combined_score\\\": format_reward * format_weight + f1_reward * f1_weight + ced_result[\\\"ced_reward\\\"] * ced_weight,\\n        }\\n        scored.append(scored_rec)\\n\\n        if (i + 1) % 500 == 0:\\n            logger.info(\\\"Scored %d/%d records\\\", i + 1, len(records))\\n\\n    logger.info(\\\"Scoring complete: %d records\\\", len(scored))\\n    return scored\\n\\n\\ndef filter_records(scored_records, args):\\n    \\\"\\\"\\\"根据策略筛选高质量样本。\\\"\\\"\\\"\\n    # 先按硬阈值过滤\\n    candidates = []\\n    for rec in scored_records:\\n        if rec[\\\"format_reward\\\"] < args.format_threshold:\\n            continue\\n        if rec[\\\"f1_reward\\\"] < args.f1_threshold:\\n            continue\\n        if rec[\\\"ced_reward\\\"] < args.ced_threshold:\\n            continue\\n        candidates.append(rec)\\n\\n    logger.info(\\\"After threshold filter: %d/%d (format>=%.2f, f1>=%.2f, ced>=%.2f)\\\",\\n                len(candidates), len(scored_records),\\n                args.format_threshold, args.f1_threshold, args.ced_threshold)\\n\\n    if args.selection_strategy == \\\"threshold\\\":\\n        return candidates\\n\\n    if args.selection_strategy == \\\"top_pct\\\":\\n        # 按 doc_id 分组，每组取 top N%\\n  \\n\\n... [截断: 输出过长，省略 4685 字符] ...\\n\\nth\\\", type=str,\\n                        default=\\\"cross-encoder/nli-deberta-v3-base\\\",\\n                        help=\\\"NLI 模型路径（用于 CED 打分）\\\")\\n    parser.add_argument(\\\"--nli_device\\\", type=str, default=None,\\n                        help=\\\"NLI 模型运行设备 (default: auto)\\\")\\n    parser.add_argument(\\\"--tau\\\", type=float, default=0.5,\\n                        help=\\\"CED tau 阈值 (default: 0.5)\\\")\\n\\n    # 筛选参数\\n    parser.add_argument(\\\"--format_weight\\\", type=float, default=0.2,\\n                        help=\\\"combined_score 中 format_reward 的权重 (default: 0.2)\\\")\\n    parser.add_argument(\\\"--f1_weight\\\", type=float, default=0.4,\\n                        help=\\\"combined_score 中 f1_reward 的权重 (default: 0.4)\\\")\\n    parser.add_argument(\\\"--ced_weight\\\", type=float, default=0.4,\\n                        help=\\\"combined_score 中 ced_reward 的权重 (default: 0.4)\\\")\\n\\n    # 筛选参数\\n    parser.add_argument(\\\"--format_threshold\\\", type=float, default=0.5,\\n                        help=\\\"format_reward 最低阈值 (default: 0.5)\\\")\\n    parser.add_argument(\\\"--f1_threshold\\\", type=float, default=0.0,\\n                        help=\\\"f1_reward 最低阈值 (default: 0.0)\\\")\\n    parser.add_argument(\\\"--ced_threshold\\\", type=float, default=0.0,\\n                        help=\\\"ced_reward 最低阈值 (default: 0.0)\\\")\\n    parser.add_argument(\\\"--selection_strategy\\\", type=str, default=\\\"top_pct\\\",\\n                        choices=[\\\"threshold\\\", \\\"top_k\\\", \\\"top_pct\\\"],\\n                        help=\\\"筛选策略 (default: top_pct)\\\")\\n    parser.add_argument(\\\"--top_k\\\", type=int, default=2,\\n                        help=\\\"top_k 策略: 每个文档取 top-K (default: 2)\\\")\\n    parser.add_argument(\\\"--top_pct\\\", type=int, default=25,\\n                        help=\\\"top_pct 策略: 每个文档取 top N%% (default: 25)\\\")\\n    args = parser.parse_args()\\n\\n    output_dir = Path(args.output_path)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # 1. 加载生成结果\\n    records = load_generations(args.input_dir)\\n\\n    # 2. 加载 CED 模型并打分\\n    logger.info(\\\"Loading NLI model: %s\\\", args.nli_model_path)\\n    from freige.rewards.ced_reward import CEDRewardModel\\n    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\n\\n    scored = score_all_records(records, ced_model, tau=args.tau, format_weight=args.format_weight, f1_weight=args.f1_weight, ced_weight=args.ced_weight)\\n\\n    # 保存带分数的完整记录\\n    scores_path = output_dir / \\\"rsft_scores.jsonl\\\"\\n    with open(scores_path, \\\"w\\\") as f:\\n        for rec in scored:\\n            # 不保存大字段以节省空间\\n            slim = {k: v for k, v in rec.items() if k not in (\\\"prompt\\\", \\\"sents\\\", \\\"gold_triples\\\")}\\n            f.write(json.dumps(slim, ensure_ascii=False) + \\\"\\\\n\\\")\\n    logger.info(\\\"Scores → %s\\\", scores_path)\\n\\n    # 3. 筛选\\n    selected = filter_records(scored, args)\\n\\n    # 4. 转换为 SFT 训练格式\\n    sft_data = format_sft_training_data(selected)\\n    train_path = output_dir / \\\"rsft_train.jsonl\\\"\\n    with open(train_path, \\\"w\\\") as f:\\n        for item in sft_data:\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\"\\\\n\\\")\\n    logger.info(\\\"Training data → %s (%d samples)\\\", train_path, len(sft_data))\\n\\n    # 5. 统计报告\\n    report = generate_report(scored, selected)\\n    report[\\\"args\\\"] = vars(args)\\n    report_path = output_dir / \\\"rsft_report.json\\\"\\n    with open(report_path, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2, ensure_ascii=False)\\n    logger.info(\\\"Report → %s\\\", report_path)\\n\\n    # 控制台摘要\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(f\\\"  Total records:    {report['total_records']}\\\")\\n    print(f\\\"  Selected:         {report['selected_records']}\\\")\\n    print(f\\\"  Selection rate:   {report['selection_rate']:.1%}\\\")\\n    print(f\\\"  Unique docs:      {report['unique_docs_selected']}/{report['unique_docs_total']}\\\")\\n    print(\\\"-\\\" * 60)\\n    for name in [\\\"format_reward\\\", \\\"f1_reward\\\", \\\"ced_reward\\\", \\\"combined_score\\\"]:\\n        stats = report[f\\\"{name}_stats\\\"]\\n        print(f\\\"  {name:20s}  mean={stats['mean']:.3f}  std={stats['std']:.3f}  \\\"\\n              f\\\"median={stats['median']:.3f}  [min={stats['min']:.3f}, max={stats['max']:.3f}]\\\")\\n    print(\\\"=\\\" * 60)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "5b33196e-0b67-4e75-b204-af0ec85a73e6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            continue\\\\n        pred_evi_ids = p.get(\\\\\\\"evidence\\\\\\\", [])\\\\n        if not isinstance(pred_evi_ids, list) or not pred_evi_ids:\\\\n            triple_rewards.append(0.0)\\\\n            triple_details.append({\\\\\\\"reward\\\\\\\": 0.0, \\\\\\\"reason\\\\\\\": \\\\\\\"no_evidence\\\\\\\"})\\\\n            continue\\\\n\\\\n        claim = verbalize_triple(\\\\n            str(p.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\"),\\\\n            str(p.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\"),\\\\n            str(p.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\"),\\\\n        )\\\\n        cited_sents = [sents[idx] for idx in pred_evi_ids\\\\n                       if isinstance(idx, int) and 0 <= idx < len(sents)]\\\\n        if not cited_sents:\\\\n            triple_rewards.append(0.0)\\\\n            triple_details.append({\\\\\\\"reward\\\\\\\": 0.0, \\\\\\\"reason\\\\\\\": \\\\\\\"invalid_evidence_ids\\\\\\\"})\\\\n            continue\\\\n\\\\n        key = (\\\\n            str(p.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            str(p.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            str(p.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n        )\\\\n        matched_gold = gold_map.get(key, {})\\\\n        hard_neg_ids = matched_gold.get(\\\\\\\"hard_negative_sent_ids\\\\\\\", [])\\\\n        hard_neg_sents = [sents[idx] for idx in hard_neg_ids\\\\n                          if isinstance(idx, int) and 0 <= idx < len(sents)]\\\\n\\\\n        result = ced_model.compute_ced_reward(\\\\n            claim, cited_sents, hard_neg_sents, tau=tau,\\\\n        )\\\\n        triple_rewards.append(result[\\\\\\\"reward\\\\\\\"])\\\\n        triple_details.append(result)\\\\n\\\\n    mean_ced = sum(triple_rewards) / len(triple_rewards) if triple_rewards else 0.0\\\\n    return {\\\\\\\"ced_reward\\\\\\\": mean_ced, \\\\\\\"triple_details\\\\\\\": triple_details}\\\\n\\\\n\\\\ndef load_generations(input_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"加载 generations.jsonl。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    input_path = Path(input_dir) / \\\\\\\"generations.jsonl\\\\\\\"\\\\n    records = []\\\\n    with open(input_path) as f:\\\\n        for line in f:\\\\n            line = line.strip()\\\\n            if line:\\\\n                records.append(json.loads(line))\\\\n    logger.info(\\\\\\\"Loaded %d generation records from %s\\\\\\\", len(records), input_path)\\\\n    return records\\\\n\\\\n\\\\ndef score_all_records(records, ced_model, tau=0.5, format_weight=0.2, f1_weight=0.4, ced_weight=0.4):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"对所有记录计算三种奖励分数。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    scored = []\\\\n    for i, rec in enumerate(records):\\\\n        format_reward = compute_format_reward(rec[\\\\\\\"parsed_triples\\\\\\\"], rec.get(\\\\\\\"format_ok\\\\\\\", False))\\\\n        f1_reward = compute_f1_reward(rec[\\\\\\\"parsed_triples\\\\\\\"], rec[\\\\\\\"gold_triples\\\\\\\"])\\\\n        ced_result = compute_ced_reward_for_record(rec, ced_model, tau=tau)\\\\n\\\\n        scored_rec = {\\\\n            \\\\\\\"doc_id\\\\\\\": rec[\\\\\\\"doc_id\\\\\\\"],\\\\n            \\\\\\\"generation_idx\\\\\\\": rec[\\\\\\\"generation_idx\\\\\\\"],\\\\n            \\\\\\\"output\\\\\\\": rec[\\\\\\\"output\\\\\\\"],\\\\n            \\\\\\\"parsed_triples\\\\\\\": rec[\\\\\\\"parsed_triples\\\\\\\"],\\\\n            \\\\\\\"format_ok\\\\\\\": rec.get(\\\\\\\"format_ok\\\\\\\", False),\\\\n            \\\\\\\"gold_triples\\\\\\\": rec[\\\\\\\"gold_triples\\\\\\\"],\\\\n            \\\\\\\"sents\\\\\\\": rec[\\\\\\\"sents\\\\\\\"],\\\\n            \\\\\\\"prompt\\\\\\\": rec.get(\\\\\\\"prompt\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"format_reward\\\\\\\": format_reward,\\\\n            \\\\\\\"f1_reward\\\\\\\": f1_reward,\\\\n            \\\\\\\"ced_reward\\\\\\\": ced_result[\\\\\\\"ced_reward\\\\\\\"],\\\\n            \\\\\\\"combined_score\\\\\\\": format_reward * format_weight + f1_reward * f1_weight + ced_result[\\\\\\\"ced_reward\\\\\\\"] * ced_weight,\\\\n        }\\\\n        scored.append(scored_rec)\\\\n\\\\n        if (i + 1) % 500 == 0:\\\\n            logger.info(\\\\\\\"Scored %d/%d records\\\\\\\", i + 1, len(records))\\\\n\\\\n    logger.info(\\\\\\\"Scoring complete: %d records\\\\\\\", len(scored))\\\\n    return scored\\\\n\\\\n\\\\ndef filter_records(scored_records, args):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"根据策略筛选高质量样本。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    # 先按硬阈值过滤\\\\n    candidates = []\\\\n    for rec in scored_records:\\\\n        if rec[\\\\\\\"format_reward\\\\\\\"] < args.format_threshold:\\\\n            continue\\\\n        if rec[\\\\\\\"f1_reward\\\\\\\"] < args.f1_threshold:\\\\n            continue\\\\n        if rec[\\\\\\\"ced_reward\\\\\\\"] < args.ced_threshold:\\\\n            continue\\\\n        candidates.append(rec)\\\\n\\\\n    logger.info(\\\\\\\"After threshold filter: %d/%d (format>=%.2f, f1>=%.2f, ced>=%.2f)\\\\\\\",\\\\n                len(candidates), len(scored_records),\\\\n                args.format_threshold, args.f1_threshold, args.ced_threshold)\\\\n\\\\n    if args.selection_strategy == \\\\\\\"threshold\\\\\\\":\\\\n        return candidates\\\\n\\\\n    if args.selection_strategy == \\\\\\\"top_pct\\\\\\\":\\\\n        # 按 doc_id 分组，每组取 top N%\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 4685 字符] ...\\\\n\\\\nth\\\\\\\", type=str,\\\\n                        default=\\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\",\\\\n                        help=\\\\\\\"NLI 模型路径（用于 CED 打分）\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--nli_device\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"NLI 模型运行设备 (default: auto)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--tau\\\\\\\", type=float, default=0.5,\\\\n                        help=\\\\\\\"CED tau 阈值 (default: 0.5)\\\\\\\")\\\\n\\\\n    # 筛选参数\\\\n    parser.add_argument(\\\\\\\"--format_weight\\\\\\\", type=float, default=0.2,\\\\n                        help=\\\\\\\"combined_score 中 format_reward 的权重 (default: 0.2)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--f1_weight\\\\\\\", type=float, default=0.4,\\\\n                        help=\\\\\\\"combined_score 中 f1_reward 的权重 (default: 0.4)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--ced_weight\\\\\\\", type=float, default=0.4,\\\\n                        help=\\\\\\\"combined_score 中 ced_reward 的权重 (default: 0.4)\\\\\\\")\\\\n\\\\n    # 筛选参数\\\\n    parser.add_argument(\\\\\\\"--format_threshold\\\\\\\", type=float, default=0.5,\\\\n                        help=\\\\\\\"format_reward 最低阈值 (default: 0.5)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--f1_threshold\\\\\\\", type=float, default=0.0,\\\\n                        help=\\\\\\\"f1_reward 最低阈值 (default: 0.0)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--ced_threshold\\\\\\\", type=float, default=0.0,\\\\n                        help=\\\\\\\"ced_reward 最低阈值 (default: 0.0)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--selection_strategy\\\\\\\", type=str, default=\\\\\\\"top_pct\\\\\\\",\\\\n                        choices=[\\\\\\\"threshold\\\\\\\", \\\\\\\"top_k\\\\\\\", \\\\\\\"top_pct\\\\\\\"],\\\\n                        help=\\\\\\\"筛选策略 (default: top_pct)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--top_k\\\\\\\", type=int, default=2,\\\\n                        help=\\\\\\\"top_k 策略: 每个文档取 top-K (default: 2)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--top_pct\\\\\\\", type=int, default=25,\\\\n                        help=\\\\\\\"top_pct 策略: 每个文档取 top N%% (default: 25)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    output_dir = Path(args.output_path)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # 1. 加载生成结果\\\\n    records = load_generations(args.input_dir)\\\\n\\\\n    # 2. 加载 CED 模型并打分\\\\n    logger.info(\\\\\\\"Loading NLI model: %s\\\\\\\", args.nli_model_path)\\\\n    from freige.rewards.ced_reward import CEDRewardModel\\\\n    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\\\n\\\\n    scored = score_all_records(records, ced_model, tau=args.tau, format_weight=args.format_weight, f1_weight=args.f1_weight, ced_weight=args.ced_weight)\\\\n\\\\n    # 保存带分数的完整记录\\\\n    scores_path = output_dir / \\\\\\\"rsft_scores.jsonl\\\\\\\"\\\\n    with open(scores_path, \\\\\\\"w\\\\\\\") as f:\\\\n        for rec in scored:\\\\n            # 不保存大字段以节省空间\\\\n            slim = {k: v for k, v in rec.items() if k not in (\\\\\\\"prompt\\\\\\\", \\\\\\\"sents\\\\\\\", \\\\\\\"gold_triples\\\\\\\")}\\\\n            f.write(json.dumps(slim, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    logger.info(\\\\\\\"Scores → %s\\\\\\\", scores_path)\\\\n\\\\n    # 3. 筛选\\\\n    selected = filter_records(scored, args)\\\\n\\\\n    # 4. 转换为 SFT 训练格式\\\\n    sft_data = format_sft_training_data(selected)\\\\n    train_path = output_dir / \\\\\\\"rsft_train.jsonl\\\\\\\"\\\\n    with open(train_path, \\\\\\\"w\\\\\\\") as f:\\\\n        for item in sft_data:\\\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    logger.info(\\\\\\\"Training data → %s (%d samples)\\\\\\\", train_path, len(sft_data))\\\\n\\\\n    # 5. 统计报告\\\\n    report = generate_report(scored, selected)\\\\n    report[\\\\\\\"args\\\\\\\"] = vars(args)\\\\n    report_path = output_dir / \\\\\\\"rsft_report.json\\\\\\\"\\\\n    with open(report_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(report, f, indent=2, ensure_ascii=False)\\\\n    logger.info(\\\\\\\"Report → %s\\\\\\\", report_path)\\\\n\\\\n    # 控制台摘要\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(f\\\\\\\"  Total records:    {report['total_records']}\\\\\\\")\\\\n    print(f\\\\\\\"  Selected:         {report['selected_records']}\\\\\\\")\\\\n    print(f\\\\\\\"  Selection rate:   {report['selection_rate']:.1%}\\\\\\\")\\\\n    print(f\\\\\\\"  Unique docs:      {report['unique_docs_selected']}/{report['unique_docs_total']}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    for name in [\\\\\\\"format_reward\\\\\\\", \\\\\\\"f1_reward\\\\\\\", \\\\\\\"ced_reward\\\\\\\", \\\\\\\"combined_score\\\\\\\"]:\\\\n        stats = report[f\\\\\\\"{name}_stats\\\\\\\"]\\\\n        print(f\\\\\\\"  {name:20s}  mean={stats['mean']:.3f}  std={stats['std']:.3f}  \\\\\\\"\\\\n              f\\\\\\\"median={stats['median']:.3f}  [min={stats['min']:.3f}, max={stats['max']:.3f}]\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"            continue\\n        pred_evi_ids = p.get(\\\"evidence\\\", [])\\n        if not isinstance(pred_evi_ids, list) or not pred_evi_ids:\\n            triple_rewards.append(0.0)\\n            triple_details.append({\\\"reward\\\": 0.0, \\\"reason\\\": \\\"no_evidence\\\"})\\n            continue\\n\\n        claim = verbalize_triple(\\n            str(p.get(\\\"head\\\") or \\\"\\\"),\\n            str(p.get(\\\"relation\\\") or \\\"\\\"),\\n            str(p.get(\\\"tail\\\") or \\\"\\\"),\\n        )\\n        cited_sents = [sents[idx] for idx in pred_evi_ids\\n                       if isinstance(idx, int) and 0 <= idx < len(sents)]\\n        if not cited_sents:\\n            triple_rewards.append(0.0)\\n            triple_details.append({\\\"reward\\\": 0.0, \\\"reason\\\": \\\"invalid_evidence_ids\\\"})\\n            continue\\n\\n        key = (\\n            str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n            str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n            str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n        )\\n        matched_gold = gold_map.get(key, {})\\n        hard_neg_ids = matched_gold.get(\\\"hard_negative_sent_ids\\\", [])\\n        hard_neg_sents = [sents[idx] for idx in hard_neg_ids\\n                          if isinstance(idx, int) and 0 <= idx < len(sents)]\\n\\n        result = ced_model.compute_ced_reward(\\n            claim, cited_sents, hard_neg_sents, tau=tau,\\n        )\\n        triple_rewards.append(result[\\\"reward\\\"])\\n        triple_details.append(result)\\n\\n    mean_ced = sum(triple_rewards) / len(triple_rewards) if triple_rewards else 0.0\\n    return {\\\"ced_reward\\\": mean_ced, \\\"triple_details\\\": triple_details}\\n\\n\\ndef load_generations(input_dir):\\n    \\\"\\\"\\\"加载 generations.jsonl。\\\"\\\"\\\"\\n    input_path = Path(input_dir) / \\\"generations.jsonl\\\"\\n    records = []\\n    with open(input_path) as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                records.append(json.loads(line))\\n    logger.info(\\\"Loaded %d generation records from %s\\\", len(records), input_path)\\n    return records\\n\\n\\ndef score_all_records(records, ced_model, tau=0.5, format_weight=0.2, f1_weight=0.4, ced_weight=0.4):\\n    \\\"\\\"\\\"对所有记录计算三种奖励分数。\\\"\\\"\\\"\\n    scored = []\\n    for i, rec in enumerate(records):\\n        format_reward = compute_format_reward(rec[\\\"parsed_triples\\\"], rec.get(\\\"format_ok\\\", False))\\n        f1_reward = compute_f1_reward(rec[\\\"parsed_triples\\\"], rec[\\\"gold_triples\\\"])\\n        ced_result = compute_ced_reward_for_record(rec, ced_model, tau=tau)\\n\\n        scored_rec = {\\n            \\\"doc_id\\\": rec[\\\"doc_id\\\"],\\n            \\\"generation_idx\\\": rec[\\\"generation_idx\\\"],\\n            \\\"output\\\": rec[\\\"output\\\"],\\n            \\\"parsed_triples\\\": rec[\\\"parsed_triples\\\"],\\n            \\\"format_ok\\\": rec.get(\\\"format_ok\\\", False),\\n            \\\"gold_triples\\\": rec[\\\"gold_triples\\\"],\\n            \\\"sents\\\": rec[\\\"sents\\\"],\\n            \\\"prompt\\\": rec.get(\\\"prompt\\\", \\\"\\\"),\\n            \\\"format_reward\\\": format_reward,\\n            \\\"f1_reward\\\": f1_reward,\\n            \\\"ced_reward\\\": ced_result[\\\"ced_reward\\\"],\\n            \\\"combined_score\\\": format_reward * format_weight + f1_reward * f1_weight + ced_result[\\\"ced_reward\\\"] * ced_weight,\\n        }\\n        scored.append(scored_rec)\\n\\n        if (i + 1) % 500 == 0:\\n            logger.info(\\\"Scored %d/%d records\\\", i + 1, len(records))\\n\\n    logger.info(\\\"Scoring complete: %d records\\\", len(scored))\\n    return scored\\n\\n\\ndef filter_records(scored_records, args):\\n    \\\"\\\"\\\"根据策略筛选高质量样本。\\\"\\\"\\\"\\n    # 先按硬阈值过滤\\n    candidates = []\\n    for rec in scored_records:\\n        if rec[\\\"format_reward\\\"] < args.format_threshold:\\n            continue\\n        if rec[\\\"f1_reward\\\"] < args.f1_threshold:\\n            continue\\n        if rec[\\\"ced_reward\\\"] < args.ced_threshold:\\n            continue\\n        candidates.append(rec)\\n\\n    logger.info(\\\"After threshold filter: %d/%d (format>=%.2f, f1>=%.2f, ced>=%.2f)\\\",\\n                len(candidates), len(scored_records),\\n                args.format_threshold, args.f1_threshold, args.ced_threshold)\\n\\n    if args.selection_strategy == \\\"threshold\\\":\\n        return candidates\\n\\n    if args.selection_strategy == \\\"top_pct\\\":\\n        # 按 doc_id 分组，每组取 top N%\\n  \\n\\n... [截断: 输出过长，省略 4685 字符] ...\\n\\nth\\\", type=str,\\n                        default=\\\"cross-encoder/nli-deberta-v3-base\\\",\\n                        help=\\\"NLI 模型路径（用于 CED 打分）\\\")\\n    parser.add_argument(\\\"--nli_device\\\", type=str, default=None,\\n                        help=\\\"NLI 模型运行设备 (default: auto)\\\")\\n    parser.add_argument(\\\"--tau\\\", type=float, default=0.5,\\n                        help=\\\"CED tau 阈值 (default: 0.5)\\\")\\n\\n    # 筛选参数\\n    parser.add_argument(\\\"--format_weight\\\", type=float, default=0.2,\\n                        help=\\\"combined_score 中 format_reward 的权重 (default: 0.2)\\\")\\n    parser.add_argument(\\\"--f1_weight\\\", type=float, default=0.4,\\n                        help=\\\"combined_score 中 f1_reward 的权重 (default: 0.4)\\\")\\n    parser.add_argument(\\\"--ced_weight\\\", type=float, default=0.4,\\n                        help=\\\"combined_score 中 ced_reward 的权重 (default: 0.4)\\\")\\n\\n    # 筛选参数\\n    parser.add_argument(\\\"--format_threshold\\\", type=float, default=0.5,\\n                        help=\\\"format_reward 最低阈值 (default: 0.5)\\\")\\n    parser.add_argument(\\\"--f1_threshold\\\", type=float, default=0.0,\\n                        help=\\\"f1_reward 最低阈值 (default: 0.0)\\\")\\n    parser.add_argument(\\\"--ced_threshold\\\", type=float, default=0.0,\\n                        help=\\\"ced_reward 最低阈值 (default: 0.0)\\\")\\n    parser.add_argument(\\\"--selection_strategy\\\", type=str, default=\\\"top_pct\\\",\\n                        choices=[\\\"threshold\\\", \\\"top_k\\\", \\\"top_pct\\\"],\\n                        help=\\\"筛选策略 (default: top_pct)\\\")\\n    parser.add_argument(\\\"--top_k\\\", type=int, default=2,\\n                        help=\\\"top_k 策略: 每个文档取 top-K (default: 2)\\\")\\n    parser.add_argument(\\\"--top_pct\\\", type=int, default=25,\\n                        help=\\\"top_pct 策略: 每个文档取 top N%% (default: 25)\\\")\\n    args = parser.parse_args()\\n\\n    output_dir = Path(args.output_path)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # 1. 加载生成结果\\n    records = load_generations(args.input_dir)\\n\\n    # 2. 加载 CED 模型并打分\\n    logger.info(\\\"Loading NLI model: %s\\\", args.nli_model_path)\\n    from freige.rewards.ced_reward import CEDRewardModel\\n    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\n\\n    scored = score_all_records(records, ced_model, tau=args.tau, format_weight=args.format_weight, f1_weight=args.f1_weight, ced_weight=args.ced_weight)\\n\\n    # 保存带分数的完整记录\\n    scores_path = output_dir / \\\"rsft_scores.jsonl\\\"\\n    with open(scores_path, \\\"w\\\") as f:\\n        for rec in scored:\\n            # 不保存大字段以节省空间\\n            slim = {k: v for k, v in rec.items() if k not in (\\\"prompt\\\", \\\"sents\\\", \\\"gold_triples\\\")}\\n            f.write(json.dumps(slim, ensure_ascii=False) + \\\"\\\\n\\\")\\n    logger.info(\\\"Scores → %s\\\", scores_path)\\n\\n    # 3. 筛选\\n    selected = filter_records(scored, args)\\n\\n    # 4. 转换为 SFT 训练格式\\n    sft_data = format_sft_training_data(selected)\\n    train_path = output_dir / \\\"rsft_train.jsonl\\\"\\n    with open(train_path, \\\"w\\\") as f:\\n        for item in sft_data:\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\"\\\\n\\\")\\n    logger.info(\\\"Training data → %s (%d samples)\\\", train_path, len(sft_data))\\n\\n    # 5. 统计报告\\n    report = generate_report(scored, selected)\\n    report[\\\"args\\\"] = vars(args)\\n    report_path = output_dir / \\\"rsft_report.json\\\"\\n    with open(report_path, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2, ensure_ascii=False)\\n    logger.info(\\\"Report → %s\\\", report_path)\\n\\n    # 控制台摘要\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(f\\\"  Total records:    {report['total_records']}\\\")\\n    print(f\\\"  Selected:         {report['selected_records']}\\\")\\n    print(f\\\"  Selection rate:   {report['selection_rate']:.1%}\\\")\\n    print(f\\\"  Unique docs:      {report['unique_docs_selected']}/{report['unique_docs_total']}\\\")\\n    print(\\\"-\\\" * 60)\\n    for name in [\\\"format_reward\\\", \\\"f1_reward\\\", \\\"ced_reward\\\", \\\"combined_score\\\"]:\\n        stats = report[f\\\"{name}_stats\\\"]\\n        print(f\\\"  {name:20s}  mean={stats['mean']:.3f}  std={stats['std']:.3f}  \\\"\\n              f\\\"median={stats['median']:.3f}  [min={stats['min']:.3f}, max={stats['max']:.3f}]\\\")\\n    print(\\\"=\\\" * 60)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the complete picture. Let me analyze the actual state of the code:
+
+## Format Compatibility Analysis
+
+### rsft_generate.py → rsft_score_filter.py
+- generate outputs JSONL to `generations.jsonl`
+- score_filter's `load_generations()` reads JSONL from `generations.jsonl`
+- Fields used by score_filter from generate's output: `parsed_triples`, `format_ok`, `gold_triples`, `sents`, `doc_id`, `generation_idx`, `output`, `prompt`
+- **Compatible**: All fields match.
+  
+### rsft_score_filter.py → rsft_trainer.py
+- score_filter transforms the data into JSONL with `input`, `output`, `ced_score`, `doc_id`, `generation_idx`, `format_reward`, `f1_reward`, and `combined_score` fields, extracting the user content from the prompt using a Qwen3 chat template parser
+- trainer's `load_rsft_data()` reads this JSONL and accesses `input`, `output`, and `ced_score` (defaulting to 1 if missing)
+- The fields are already aligned between the two scripts
+
+Looking at the actual implementation, the code appears to already handle the format correctly—score_filter outputs JSONL with matching field names. But the task mentions this is a known bug where score_filter outputs JSON arrays while trainer expects JSONL with different field names. Let me reconsider whether there's a mismatch I'm missing or if this has already been resolved.
+
+I'm examining the `_extract_user_content` function to see how it parses the chat template and extracts user messages, checking whether it's compatible with Qwen3's format...
+
+Actually, both Qwen2 and Qwen3 use the ChatML format with `<|im_start|>` tokens, so the extraction logic should work correctly. The newline character in the pattern matches what the chat template produces. But since the user flagged this as a bug, I should consider what edge case might be causing issues—maybe the function is being called with unexpected input or there's a scenario I haven't considered yet.
+
+Let me trace through what happens when `format_sft_training_data` receives records from `filter_records`. If a record somehow has an empty `prompt` field, the extraction would return an empty string since the code defaults to that. However, the generate step always includes a prompt, so that's unlikely. 
+
+Wait, I'm re-reading the user's actual issue now. They're saying the real problem is that `rsft_score_filter.py` outputs a JSON array, but `rsft_trainer.py` expects JSONL format with different field names. That's the actual incompatibility I need to focus on.
+
+Looking at the docstring for score_filter, it mentions the output should be `rsft_train.json`, but the actual code writes `.jsonl` instead. Either the docstring is outdated or the user is working from the documentation without checking the implementation.
+
+I should also verify whether `load_generations` properly handles multiple shard files, since the generate script has a `--shard_id` parameter that could create files like `generations_shard0.jsonl`. I'm noticing a critical mismatch: the `load_model_and_tokenizer` function has `quantize=True` as its default parameter, but when it's called from `main()`, the `--quantize` argument uses `action="store_true"` which defaults to False. This means the function will always try to quantize the model regardless of what the user specifies on the command line.
+
+Let me verify this pattern across the other scripts. Both `rsft_trainer.py` and `rsft_score_filter.py` use the same `action="store_true"` setup for their quantize arguments, but I need to check if they have the same function signature issue.
+
+Looking at the actual usage, the argparse default of False consistently overrides any function defaults, so there's no practical bug for command-line usage. The inconsistency in `load_model_and_tokenizer` having `quantize=True` as a default is a minor code smell—if someone were to call that function directly without specifying the parameter, they'd get quantization when they might not expect it.
+
+For the format compatibility, the JSONL output from the score filter matches exactly what the trainer expects, so that's working correctly. The only real issue I'm seeing is this docstring mismatch in the score filter script about what fields are actually being output. Writing JSONL output...
+
+So the code is already compatible—score_filter outputs JSONL with the right fields, and the trainer reads JSONL expecting those same fields. The "known bug" the user mentioned doesn't actually exist in the current codebase, so either it was already fixed or the task description is outdated.
+
+I should focus on what the user explicitly asked for: checking the `--quantize` defaults across all three scripts and changing them to False where needed, plus fixing that docstring that says `.json` when the code actually writes `.jsonl`.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "8d61b00a-714d-4eff-b64b-48bea342988f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015DgpggqU831x8DQJdjXXvJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5215,
+      "cache_read_input_tokens": 48776,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5215
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+分析完成。代码实际上**已经兼容**——score_filter 的 `format_sft_training_data` 已输出 JSONL 格式，字段名（`input`, `output`, `ced_score`）与 trainer 一致。任务描述中的 bug 在当前代码中不存在。
+
+但有两个小问题需要修复：
+1. `rsft_generate.py` 的 `load_model_and_tokenizer` 函数签名中 `quantize=True`（虽然 argparse 默认 False，但函数默认值不一致）
+2. `rsft_score_filter.py` 的 docstring 写的是 `rsft_train.json` 但代码输出 `rsft_train.jsonl`
+
+修复这两个问题。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "f5c3e542-310f-4876-bd1d-9bccfb02a7ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015DgpggqU831x8DQJdjXXvJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5215,
+      "cache_read_input_tokens": 48776,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5215
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01GARBWWaGPoMnabWkwqYQir`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "sed -i 's/def load_model_and_tokenizer(base_model, sft_adapter=None, quantize=True):/def load_model_and_tokenizer(base_model, sft_adapter=None, quantize=False):/' /root/autodl-tmp/freige/training/rsft_generate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "07649cb0-c3b0-4f8f-a96b-f95b83856f19",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015DgpggqU831x8DQJdjXXvJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5215,
+      "cache_read_input_tokens": 48776,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5215
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T01:14:36.600Z_
+
+<details><summary>↩ Tool result · `toolu_01GARBWWaGPoMnabWkwqYQir`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "83e2e792-d831-40ca-8a4d-fe9566540798",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01YCDTpd8j6pCyCYS8Dd6zJS`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "sed -i 's/  - rsft_train.json: 筛选后的 SFT 训练数据/  - rsft_train.jsonl: 筛选后的 SFT 训练数据 (JSONL)/' /root/autodl-tmp/freige/training/rsft_score_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "de0edc31-f276-44f6-b138-d233361baf60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015DgpggqU831x8DQJdjXXvJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5215,
+      "cache_read_input_tokens": 48776,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5215
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T01:14:37.990Z_
+
+<details><summary>↩ Tool result · `toolu_01YCDTpd8j6pCyCYS8Dd6zJS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "a4751703-3747-4ba9-b15a-76e262baf937",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+验证修复。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "e3e6291f-fdd5-4fda-beb4-83e7bbb6f77b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QihrXkMhbi7avYVJ8VqhNx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3862,
+      "cache_read_input_tokens": 53991,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3862
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019b84RHqJGYMZDL15wmha72`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"def load_model_and_tokenizer\" /root/autodl-tmp/freige/training/rsft_generate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "5f92c2ff-7ed7-41ee-9de9-4e95615825a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QihrXkMhbi7avYVJ8VqhNx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3862,
+      "cache_read_input_tokens": 53991,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3862
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T01:14:42.338Z_
+
+<details><summary>↩ Tool result · `toolu_019b84RHqJGYMZDL15wmha72`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"51:def load_model_and_tokenizer(base_model, sft_adapter=None, quantize=False):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "1a535422-66ad-4b60-979b-cb3ebcfded32",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"51:def load_model_and_tokenizer(base_model, sft_adapter=None, quantize=False):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"51:def load_model_and_tokenizer(base_model, sft_adapter=None, quantize=False):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NqpgD2ntiRqjnxoXtncX7E`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"rsft_train\" /root/autodl-tmp/freige/training/rsft_score_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "9da4d112-5aae-4c91-9029-0ac0ce0a099f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QihrXkMhbi7avYVJ8VqhNx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3862,
+      "cache_read_input_tokens": 53991,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3862
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T01:14:43.012Z_
+
+<details><summary>↩ Tool result · `toolu_01NqpgD2ntiRqjnxoXtncX7E`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"14:  - rsft_train.jsonl: 筛选后的 SFT 训练数据 (JSONL)\\n278:    \\\"\\\"\\\"将筛选后的记录转换为 rsft_trainer 期望的 JSONL 格式。\\\"\\\"\\\"\\n431:    train_path = output_dir / \\\"rsft_train.jsonl\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "72404e80-bcd4-4f4e-bb34-9cc72bad6cc7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"14:  - rsft_train.jsonl: 筛选后的 SFT 训练数据 (JSONL)\\\\n278:    \\\\\\\"\\\\\\\"\\\\\\\"将筛选后的记录转换为 rsft_trainer 期望的 JSONL 格式。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n431:    train_path = output_dir / \\\\\\\"rsft_train.jsonl\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"14:  - rsft_train.jsonl: 筛选后的 SFT 训练数据 (JSONL)\\n278:    \\\"\\\"\\\"将筛选后的记录转换为 rsft_trainer 期望的 JSONL 格式。\\\"\\\"\\\"\\n431:    train_path = output_dir / \\\"rsft_train.jsonl\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+语法验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "8d738cb3-4edd-4808-ade9-d3718aa07382",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017rzJXLgpbyHzE3t9fsy7oF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 601,
+      "cache_read_input_tokens": 57853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 601
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01E1jfy4kQ4uqJLtnLAQXDeu`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "python3 -c \"import py_compile; py_compile.compile('/root/autodl-tmp/freige/training/rsft_score_filter.py', doraise=True); print('score_filter OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "f256a9f2-6b64-4744-932e-2c7a5f54da78",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017rzJXLgpbyHzE3t9fsy7oF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 601,
+      "cache_read_input_tokens": 57853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 601
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-15T01:14:46.862Z_
+
+<details><summary>↩ Tool result · `toolu_01E1jfy4kQ4uqJLtnLAQXDeu`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "93a7f6f3-057b-4fc2-b3ec-be9c56b23ae0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VRXeEJ5MRVnyaBJqKws1nC`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "python3 -c \"import py_compile; py_compile.compile('/root/autodl-tmp/freige/training/rsft_generate.py', doraise=True); print('generate OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "4923e837-8c56-42ed-826f-f853fc2f0289",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017rzJXLgpbyHzE3t9fsy7oF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 601,
+      "cache_read_input_tokens": 57853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 601
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-15T01:14:47.762Z_
+
+<details><summary>↩ Tool result · `toolu_01VRXeEJ5MRVnyaBJqKws1nC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "261a7983-5ea0-421a-95ec-0ae1cdc1bac2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RFLLA4FddPN9hoJaYUW8yF`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "python3 -c \"import py_compile; py_compile.compile('/root/autodl-tmp/freige/training/rsft_trainer.py', doraise=True); print('trainer OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "ecc266bf-e4f2-4e68-a4c7-f795d874003b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017rzJXLgpbyHzE3t9fsy7oF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 601,
+      "cache_read_input_tokens": 57853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 601
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-15T01:14:48.562Z_
+
+<details><summary>↩ Tool result · `toolu_01RFLLA4FddPN9hoJaYUW8yF`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "1ae6c655-5d7f-45c3-981b-67c4282ec4b1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Sg5b1kiMTZozP6hnq9vrZT`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -c \"import py_compile; py_compile.compile('freige/training/rsft_score_filter.py', doraise=True); py_compile.compile('freige/training/rsft_generate.py', doraise=True); py_compile.compile('freige/training/rsft_trainer.py', doraise=True); print('All 3 scripts: syntax OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "4ef45010-560d-450e-8018-06b965b97774",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AGHBsFzXvuG6eUkNEs9kda",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 894,
+      "cache_read_input_tokens": 58454,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 894
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-15T01:14:53.091Z_
+
+<details><summary>↩ Tool result · `toolu_01Sg5b1kiMTZozP6hnq9vrZT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"All 3 scripts: syntax OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "d8ebec32-20a1-4c9d-9c21-49ec1d3d02c1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"All 3 scripts: syntax OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"All 3 scripts: syntax OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+三个脚本语法验证通过。
+
+## 汇报
+
+### 格式兼容性：无 bug
+任务描述中的 bug **在当前代码中不存在**。`rsft_score_filter.py` 已经：
+- 输出 JSONL 格式（`rsft_train.jsonl`，每行一个 JSON 对象）
+- 字段名与 trainer 一致
+
+### 字段名映射表
+
+| 字段 | generate 输出 | score_filter 输出 | trainer 期望 |
+|------|-------------|-----------------|------------|
+| 用户输入 | `prompt`（完整 chat template） | `input`（从 prompt 提取 user 内容） | `s["input"]` |
+| 模型输出 | `output` | `output` | `s["output"]` |
+| CED 分数 | — | `ced_score`（取自 `ced_reward`） | `s.get("ced_score", 1.0)` |
+| 文档 ID | `doc_id` | `doc_id` | — |
+
+### 修改内容
+
+| 文件 | 修改 | 原因 |
+|------|------|------|
+| `rsft_generate.py:51` | `quantize=True` → `quantize=False` | 函数默认值与 argparse 默认值不一致，防止非 CLI 调用时误启用量化 |
+| `rsft_score_filter.py:14` | docstring `rsft_train.json` → `rsft_train.jsonl (JSONL)` | docstring 与实际输出格式不符 |
+
+### quantize 默认值检查
+
+| 脚本 | argparse 默认值 | 备注 |
+|------|----------------|------|
+| `rsft_generate.py` | `False`（`store_true`） | 函数参数默认值已修为 `False` |
+| `rsft_trainer.py` | `False`（`store_true`） | 正确 |
+| `rsft_score_filter.py` | 无 `--quantize` 参数 | 不涉及模型推理 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "uuid": "6cbeacac-84ac-4e94-a5e9-8341f71912de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K3q882uhWovDpeA6D12hjZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 308,
+      "cache_read_input_tokens": 59348,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 308
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 71_
+
+三个脚本语法验证通过。
+
+## 汇报
+
+### 格式兼容性：无 bug
+任务描述中的 bug **在当前代码中不存在**。`rsft_score_filter.py` 已经：
+- 输出 JSONL 格式（`rsft_train.jsonl`，每行一个 JSON 对象）
+- 字段名与 trainer 一致
+
+### 字段名映射表
+
+| 字段 | generate 输出 | score_filter 输出 | trainer 期望 |
+|------|-------------|-----------------|------------|
+| 用户输入 | `prompt`（完整 chat template） | `input`（从 prompt 提取 user 内容） | `s["input"]` |
+| 模型输出 | `output` | `output` | `s["output"]` |
+| CED 分数 | — | `ced_score`（取自 `ced_reward`） | `s.get("ced_score", 1.0)` |
+| 文档 ID | `doc_id` | `doc_id` | — |
+
+### 修改内容
+
+| 文件 | 修改 | 原因 |
+|------|------|------|
+| `rsft_generate.py:51` | `quantize=True` → `quantize=False` | 函数默认值与 argparse 默认值不一致，防止非 CLI 调用时误启用量化 |
+| `rsft_score_filter.py:14` | docstring `rsft_train.json` → `rsft_train.jsonl (JSONL)` | docstring 与实际输出格式不符 |
+
+### quantize 默认值检查
+
+| 脚本 | argparse 默认值 | 备注 |
+|------|----------------|------|
+| `rsft_generate.py` | `False`（`store_true`） | 函数参数默认值已修为 `False` |
+| `rsft_trainer.py` | `False`（`store_true`） | 正确 |
+| `rsft_score_filter.py` | 无 `--quantize` 参数 | 不涉及模型推理 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 191953,
+  "duration_api_ms": 188855,
+  "num_turns": 27,
+  "stop_reason": "end_turn",
+  "session_id": "b9c40d4e-ebb6-42f6-aa95-d44f734564e8",
+  "total_cost_usd": 0.79291925,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 47815,
+    "cache_read_input_tokens": 502923,
+    "output_tokens": 9632,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 47815,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 585,
+        "cache_read_input_tokens": 59348,
+        "cache_creation_input_tokens": 308,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 308
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1654,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001734,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 16,
+      "outputTokens": 9632,
+      "cacheReadInputTokens": 502923,
+      "cacheCreationInputTokens": 47815,
+      "webSearchRequests": 0,
+      "costUSD": 0.79118525,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "642365f2-a506-4c65-8786-673f94bc954b"
+}
+```
+
+</details>
+
+---

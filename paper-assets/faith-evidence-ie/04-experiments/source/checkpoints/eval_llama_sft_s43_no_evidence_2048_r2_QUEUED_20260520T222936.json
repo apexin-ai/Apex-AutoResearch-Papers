@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_llama_sft_s43_no_evidence_2048_r2",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:29:26.346Z",
+    "updated_at": "2026-05-20T22:29:35.703Z",
+    "hypothesis": "方法论一致性：s43 SFT no-evi 用 max_new_tokens=2048 重跑 (r2: timeout 4h→6h)。原 1024 版 truncation=38.4%, ign_f1=0.3391。与 s42/s44 2048 版 matched comparison，验证截断伪影 vs 真实退化。seed=42（标准 eval seed）。",
+    "parent": "eval_llama_sft_s43_no_evidence_2048"
+  },
+  "timestamp": "2026-05-20T22:29:36.281086+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1595 @@
+# research ref audit worker 2
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 0
+- **Tool calls:** 22
+- **Original source:** `logs/chats/worker_research_ref-audit-worker-2_20260526T103533.jsonl`
+- **Structured JSON:** [`3f6e6269e0b3097b38f5.json`](../../sessions/3f/3f6e6269e0b3097b38f5.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+45 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-26T10:46:12.550899+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/references.bib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/references.bib"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-26T10:46:12.552264+00:00_
+
+1	@inproceedings{autore2024,
+2	  title     = {{AutoRE}: Document-Level Relation Extraction with Large Language Models},
+3	  author    = {Xue, Lilong and Zhang, Dan and Dong, Yuxiao and Tang, Jie},
+4	  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics: System Demonstrations},
+5	  year      = {2024},
+6	  url       = {https://arxiv.org/abs/2403.14888}
+7	}
+8	
+9	@inproceedings{xu2025docksrag,
+10	  title     = {{DocKS-RAG}: Optimizing Document-Level Relation Extraction through {LLM}-Enhanced Hybrid Prompt Tuning},
+11	  author    = {Xu, Xiaolong and Zhou, Yibo and Xiang, Haolong and Li, Xiaoyong and Zhang, Xuyun and Qi, Lianyong and Dou, Wanchun},
+12	  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},
+13	  year      = {2025},
+14	  url       = {https://proceedings.mlr.press/v267/xu25am.html}
+15	}
+16	
+17	@article{dai2025r1re,
+18	  title   = {{R1-RE}: Cross-Domain Relation Extraction with {RLVR}},
+19	  author  = {Dai, Runpeng and Zheng, Tong and Yang, Run and Yu, Kaixian and Zhu, Hongtu},
+20	  journal = {arXiv preprint arXiv:2507.04642},
+21	  year    = {2025},
+22	  url     = {https://arxiv.org/abs/2507.04642}
+23	}
+24	
+25	@inproceedings{gao2023scaling,
+26	  title     = {Scaling Laws for Reward Model Overoptimization},
+27	  author    = {Gao, Leo and Schulman, John and Hilton, Jacob},
+28	  booktitle = {Proceedings of the 40th International Conference on Machine Learning},
+29	  year      = {2023},
+30	  url       = {https://arxiv.org/abs/2210.10760}
+31	}
+32	
+33	@inproceedings{hu2022lora,
+34	  title     = {{LoRA}: Low-Rank Adaptation of Large Language Models},
+35	  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},
+36	  booktitle = {International Conference on Learning Representations},
+37	  year      = {2022},
+38	  url       = {https://arxiv.org/abs/2106.09685}
+39	}
+40	
+41	@article{li2026qurl,
+42	  t
+…[truncated 20055 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-26T10:46:12.552571+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "docs/paper/sections/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "docs/paper/sections/*.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-26T10:46:12.552738+00:00_
+
+docs/paper/sections/analysis.tex
+docs/paper/sections/method.tex
+docs/paper/sections/conclusion.tex
+docs/paper/sections/appendix.tex
+docs/paper/sections/limitations.tex
+docs/paper/sections/experiments.tex
+docs/paper/sections/abstract.tex
+docs/paper/sections/introduction.tex
+docs/paper/sections/related_work.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-26T10:46:12.553136+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-26T10:46:12.553391+00:00_
+
+1	\section{Introduction}
+2	
+3	Document-level relation extraction (DocRE) requires identifying semantic relations between entity pairs across multiple sentences, a task where encoder-based methods such as \citet{zhou2021atlop} long dominated.
+4	Recent LLM-based approaches have closed this gap: \citet{autore2024} fine-tune LLMs with structured decomposition, \citet{xu2024lmrc} frame it as multi-choice reading comprehension, and \citet{xu2025docksrag} combine retrieval-augmented generation with structured knowledge.
+5	These methods approach or surpass encoder baselines on DocRED \citep{yao2019docred} and Re-DocRED \citep{tan2022redocred} in extraction accuracy, yet every one outputs bare relation triplets $(e_h, r, e_t)$ without indicating \emph{which sentences} support each prediction.
+6	Without evidence, a clinician reviewing a ten-page case report must manually locate the sentences that support each extracted drug interaction, a bottleneck that undermines trust in automated extraction.
+7	
+8	\begin{figure*}[!t]
+9	\centering
+10	\includegraphics[width=0.92\textwidth]{fig_overview.pdf}
+11	\vspace{-2mm}
+12	\caption{Evidence-grounded DocRE produces relation triples with supporting sentence indices, unlike standard DocRE which outputs bare triples. RSFT selects the top-$k$ of $N$ candidates per document, scored by Contrastive Evidence Discrimination (CED; \S\ref{sec:ced}), for fine-tuning.}
+13	\label{fig:overview}
+14	\end{figure*}
+15	
+16	Encoder-based methods have partially addressed this need: \citet{xiao2022sais} introduce sentence-level evidence supervision as an auxiliary signal, and \citet{ma2023dreeam} extend this with dynamic evidence retrieval through memory attention.
+17	Both produce evidence and improve extraction, but encoder methods now trail LLM-based approaches in accuracy.
+18	The community faces a gap: the most accurate extractors provide no evidence, while evidence-capable methods are no longer competitive.
+19	
+20	This gap reflects a structural difference.
+
+…[truncated 3122 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-26T10:46:12.553575+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/related_work.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-26T10:46:12.553742+00:00_
+
+1	\section{Related Work}
+2	\label{sec:related_work}
+3	
+4	\subsection{Document-Level Relation Extraction}
+5	\label{sec:rw_docre}
+6	
+7	Encoder-based DocRE methods treat relation identification as classification over entity pair representations, with ATLOP \citep{zhou2021atlop} introducing adaptive thresholding and graph-based methods such as GAIN \citep{zeng2020gain} modeling inter-sentence reasoning. A parallel thread adds sentence-level evidence: SAIS \citep{xiao2022sais} introduced evidence supervision as an auxiliary signal, DREEAM \citep{ma2023dreeam} extended this with dynamic memory-based retrieval, and EIDER \citep{xie2022eider} fuses evidence into the relation classifier. In all three, evidence is binary sentence classification that regularizes the encoder without increasing output length.
+8	
+9	Recent LLM-based methods recast DocRE as generation: AutoRE \citep{autore2024} uses QLoRA with relation-head-facts decomposition, \citet{xu2024lmrc} frame extraction as reading comprehension, RelPrior \citep{wang2025relprior} leverages relation priors, and \citet{xu2025docksrag} combine retrieval with structured knowledge. These methods match or surpass encoder baselines but produce bare triplets without evidence. At 8B, our RSFT model (54.33 Ign-F1) substantially outperforms both AutoRE (45.22\footnote{AutoRE and RelPrior DocRED dev Ign-F1 from the LLaMA3-8B reproductions by \citet{wang2025relprior}; the original AutoRE paper reports only F1.}) and RelPrior (47.70), while being the only method providing sentence-level evidence. The critical distinction is computational: in encoder methods, evidence retrieval is classification at negligible cost; in LLM-based DocRE, evidence requires generating additional tokens, imposing costs that depend on model capacity and optimization strategy.
+10	
+11	\subsection{Reinforcement Learning for Structured Generation}
+12	\label{sec:rw_rl}
+13	
+14	GRPO \citep{shao2024deepseekmath} replaces the value network of Proximal Policy Optimizatio
+…[truncated 1771 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-26T10:46:12.553921+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/method.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-26T10:46:12.554130+00:00_
+
+1	\section{Method}
+2	\label{sec:method}
+3	
+4	\subsection{Task: Evidence-Grounded Document-Level Relation Extraction}
+5	\label{sec:task}
+6	
+7	Given a document $D = \{s_1, \ldots, s_n\}$ consisting of $n$ sentences and a set of entities $\mathcal{E}$ identified within $D$, the task of evidence-grounded document-level relation extraction (DocRE) requires predicting, for each entity pair $(e_h, e_t) \in \mathcal{E} \times \mathcal{E}$, a relation $r \in \mathcal{R} \cup \{\texttt{NA}\}$ together with a set of supporting evidence sentences $E \subseteq D$. Standard DocRE predicts only the triple $(e_h, r, e_t)$; the evidence-grounded formulation also requires $E$, which grounds each prediction in specific textual support (Figure~\ref{fig:overview}).
+8	
+9	\begin{figure}[t]
+10	\centering
+11	\includegraphics[width=\columnwidth]{fig_task_example.pdf}
+12	\caption{Evidence-grounded DocRE example. Given a document with entity mentions, the model jointly predicts relation triples and supporting evidence sentences in a single structured output.}
+13	\label{fig:task_example}
+14	\end{figure}
+15	
+16	In our LLM-based approach, the model generates structured outputs that jointly encode both components. For each predicted relation, the output follows the format \texttt{(head, relation, tail) | Evidence: [S$i$][S$j$]}, requiring the model to produce complete evidence references inline with each triple rather than as a separate retrieval step. This design contrasts with encoder-based evidence methods such as SAIS~\citep{xiao2022sais} and DREEAM~\citep{ma2023dreeam}, which frame evidence identification as sentence-level binary classification. Because classification over a fixed sentence set does not increase output length, these methods incur no generation overhead. Our LLM formulation requires additional tokens for each evidence reference, creating a generation burden that scales with the number of predicted triples and their evidence sentences. This scale-dependent cost is the central ph
+…[truncated 10336 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-26T10:46:12.554321+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-26T10:46:12.554539+00:00_
+
+1	\section{Experiments}
+2	\label{sec:experiments}
+3	
+4	\subsection{Experimental Setup}
+5	\label{sec:setup}
+6	
+7	We evaluate on DocRED~\citep{yao2019docred} (3,053 training / 998 dev documents, 96 relation types) with Re-DocRED~\citep{tan2022redocred} for cross-dataset validation. Our primary model is Qwen3-4B; we also train Qwen3-1.7B, 8B, and 14B to study scale effects, with LLaMA-3.1-8B for cross-family validation. All models use LoRA~\citep{hu2022lora} ($r{=}64$, $\alpha{=}128$) with structured output jointly producing triples and evidence. RSFT selects the top-$k{=}1$ of $N{=}8$ samples by CED score (\S\ref{sec:ced}); GRPO uses group size $G{=}8$ for both configurations; DPO constructs preference pairs from CED-ranked outputs. We report Ign-F1 (primary; ignores training-set triples), Rel-F1, Evi-F1 (TP-only and joint per DREEAM protocol~\citep{ma2023dreeam}), and EDCR (\S\ref{sec:edcr}). Detailed hyperparameters appear in the Appendix.
+8	
+9	
+10	\subsection{Main Results}
+11	\label{sec:main_results}
+12	
+13	Table~\ref{tab:main} presents the primary comparison on Qwen3-4B. The SFT baseline exhibits high seed sensitivity (mean Ign-F1 43.58, std 3.80pp, range 39.74--47.34). Removing evidence entirely (no-evidence SFT, s42) reaches 47.21 Ign-F1.
+14	
+15	RSFT CED achieves 44.82 Ign-F1 (+1.24 over SFT mean) with substantially lower variance (std 0.51pp), though these reflect different sources of variation (Section~\ref{sec:scaling}). Even the weakest RSFT seed (44.23) exceeds the SFT mean. Evidence quality improves (Evi-F1 80.96 vs.\ 79.61) and coupling tightens (EDCR 0.6487 vs.\ 0.6797). Per-seed results appear in Appendix~\ref{sec:ablation_full}.
+16	
+17	\begin{table}[t]
+18	\centering
+19	\caption{Main results on DocRED dev (Qwen3-4B). Ign-F1 shows mean $\pm$ std$^{(\text{seeds})}$; other metrics are same-seed means. Best \textbf{bold}; best evidence-generating \underline{underlined}. Per-seed: Appendix~\ref{tab:ablation_full}.}
+20	\label{tab:main}
+21	\small
+22	\resizebox
+…[truncated 12273 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-26T10:46:12.554725+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/analysis.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/analysis.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-26T10:46:12.554895+00:00_
+
+1	\section{Analysis}
+2	\label{sec:analysis}
+3	
+4	\paragraph{EDCR as a diagnostic.}
+5	EDCR (\S\ref{sec:edcr}) correlates with extraction quality at two levels: cross-method ($\rho = -0.89$, $n = 7$, $p = 0.007$; Table~\ref{tab:spectrum}; $\rho = -0.83$, $n = 6$, $p = 0.042$ excluding the GRPO QLoRA outlier) and per-relation ($\rho = -0.79$, $n = 76$, $p < 0.001$), the latter providing validation independent of method-level sample size and orthogonal to Evi-F1 ($\rho = -0.06$, $p = 0.58$; Appendix~\ref{sec:edcr_per_relation}). EDCR shares TP in both numerator and denominator with Rel-F1, contributing to the observed negative correlation; partial correlations controlling for Evi-Recall$_\text{TP}$ are virtually unchanged ($\rho = -0.8541$ vs.\ $-0.8554$; Appendix~\ref{sec:edcr_per_relation}). RSFT avoids decoupling because discrete output selection cannot exploit the extraction-evidence trade-off (Appendix~\ref{sec:rsft_theory}). CED operates effectively at the response level but fails at sentence-level granularity (Evi-F1 $-$7.7pp), as filtering individual sentences disrupts co-reference chains.
+6	
+7	\paragraph{Ablation.}
+8	CED and flat-NLI produce comparable RSFT performance (Rel-F1 45.63 vs.\ 45.61); stricter selection ($k{=}1$) outperforms $k{=}3$ by 1.02 Ign-F1 despite 2.96$\times$ fewer examples; CED filtering is insensitive to NLI scorer capacity (+1.10pp with DeBERTa-v3-large vs.\ v3-base, within seed noise; Appendix~\ref{sec:ablation_full}).
+9	
+10	\paragraph{Error patterns.}
+11	RSFT reduces truncation FN, hallucinated FP, and duplicates by 6--22\% across scales, but evidence quality is unchanged ($\Delta < 0.4$pp; Appendix~\ref{sec:error_analysis}). RSFT improves \emph{what} the model extracts but not \emph{how well} it grounds extractions. Appendix~\ref{sec:qualitative} presents representative examples illustrating evidence precision differences, GRPO format gaming under collapse, and per-relation EDCR diagnostics.
+12	
+13	\paragraph{Practical implications.}
+1
+…[truncated 596 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-26T10:46:12.555073+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/abstract.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-26T10:46:12.555246+00:00_
+
+1	\begin{abstract}
+2	Large Language Model (LLM)-based Document-level Relation Extraction (DocRE) now matches or exceeds encoder baselines in extraction accuracy, yet outputs bare relation triplets without identifying supporting sentences. Encoder-based evidence methods (SAIS, DREEAM) provide evidence but trail LLM approaches in accuracy, creating a gap between extraction performance and verifiability. We study evidence-grounded DocRE as structured generation and compare Group Relative Policy Optimization (GRPO), Direct Preference Optimization (DPO), and Rejection Sampling Fine-Tuning (RSFT) across three fully evaluated scales (1.7B, 4B, 8B) with 14B validation, two model families, and two datasets. The evidence tax---the extraction cost of generating evidence---is scale-dependent: beneficial at 1.7B ($-$5.63pp Ign-F1) but approximately neutral at $\geq$4B, challenging the assumption that evidence always harms accuracy. Gradient-based optimization amplifies evidence-extraction competition (GRPO catastrophic, DPO gradual), while RSFT avoids decoupling because discrete output selection structurally cannot exploit the extraction-evidence trade-off. We define the Evidence-Decoupling Ratio (EDCR) to quantify this misalignment, validated at per-relation level ($\rho{=}{-}0.79$, $p{<}0.001$). Our 1.7B RSFT model approaches 8B supervised fine-tuning (SFT) performance at 4.7$\times$ fewer parameters, and test-set evaluation preserves model ranking across all scales\footnote{Code and data are available at \url{https://anonymous.4open.science/r/faith-evidence-ie-18BD/}.}.
+3	\end{abstract}
+4	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-26T10:46:12.555405+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/conclusion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-26T10:46:12.555556+00:00_
+
+1	\section{Conclusion}
+2	\label{sec:conclusion}
+3	
+4	We study evidence-grounded document-level relation extraction as structured generation. The evidence tax is scale-dependent: gradient methods amplify extraction-evidence competition while RSFT avoids it through discrete selection, improving extraction across all tested scales; a 1.7B RSFT model approaches 8B SFT at 4.7$\times$ fewer parameters.
+5	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-26T10:46:12.555698+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/limitations.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/limitations.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-26T10:46:12.555832+00:00_
+
+1	\section*{Limitations}
+2	
+3	\paragraph{Data and architecture scope.}
+4	We evaluate on two datasets (DocRED, Re-DocRED), both derived from Wikipedia; cross-domain evaluation is constrained by the absence of evidence-annotated DocRE datasets beyond Wikipedia, a limitation shared by all prior evidence-aware work (SAIS, DREEAM, EIDER).
+5	Evidence tax patterns span two model families (Qwen3, LLaMA) with single hyperparameter settings per RL method; other architectures, scales beyond 14B, or alternative KL coefficients may produce different decoupling behaviors. The decoupling spectrum analysis is conducted entirely at 4B scale; whether the same ordering (GRPO catastrophic $\to$ DPO gradual $\to$ RSFT none) holds at other scales remains unverified.
+6	
+7	\paragraph{CED scoring sensitivity.}
+8	CED scoring operates at the document level using an external NLI model (DeBERTa-v3); sensitivity to other NLI model families is unexplored, and sentence-level CED filtering disrupts co-reference chains (Evi-F1 $-$7.7pp).
+9	
+10	\paragraph{RSFT mechanistic explanation.}
+11	Our explanation for why RSFT avoids decoupling (that discrete selection cannot exploit the extraction-evidence trade-off) is structural rather than empirical. We have not isolated whether RSFT's advantage stems primarily from removing low-quality training examples, from implicit data augmentation through candidate diversity, or from both. Disentangling these factors would require controlled experiments with fixed training data quality but varied selection mechanisms.
+12	
+13	\section*{Ethical Considerations}
+14	All experiments use publicly available datasets (DocRED and Re-DocRED) derived from Wikipedia and Wikidata, with no personally identifiable information. We do not collect new annotations or employ crowd workers. Our work focuses on training methodology for relation extraction and does not introduce capabilities with direct misuse potential.
+15	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-26T10:46:12.555980+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-26T10:46:12.556105+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/main.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-26T10:46:12.556255+00:00_
+
+1	\documentclass[11pt]{article}
+2	
+3	\usepackage[review]{acl}
+4	
+5	\usepackage{times}
+6	\usepackage{latexsym}
+7	\usepackage[T1]{fontenc}
+8	\usepackage[utf8]{inputenc}
+9	\usepackage{microtype}
+10	\usepackage{inconsolata}
+11	\usepackage{graphicx}
+12	\usepackage{booktabs}
+13	\usepackage{amsmath}
+14	\usepackage{amssymb}
+15	\usepackage{xcolor}
+16	\usepackage{multirow}
+17	\usepackage{subcaption}
+18	\usepackage{enumitem}
+19	\usepackage{url}
+20	
+21	\graphicspath{{../../figures/paper/}}
+22	
+23	\title{Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction}
+24	
+25	\author{Anonymous}
+26	
+27	\begin{document}
+28	\maketitle
+29	
+30	\input{sections/abstract}
+31	\input{sections/introduction}
+32	\input{sections/related_work}
+33	\input{sections/method}
+34	\input{sections/experiments}
+35	\input{sections/conclusion}
+36	\input{sections/limitations}
+37	
+38	\bibliography{references}
+39	
+40	\appendix
+41	\input{sections/appendix}
+42	
+43	\end{document}
+44	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-26T10:46:12.556616+00:00_
+
+1	\section{Training Hyperparameters}
+2	\label{sec:hyperparams}
+3	
+4	Table~\ref{tab:hyperparams} lists the hyperparameters for all training configurations. All methods use LoRA with rank $r{=}64$ and $\alpha{=}128$ applied to all linear projections (attention and feed-forward). SFT and RSFT share the same optimizer settings; RSFT differs only in data construction (top-1 CED-selected outputs from $N{=}8$ candidates). GRPO and DPO use lower learning rates to stabilize post-SFT optimization.
+5	
+6	\begin{table*}[t]
+7	\centering
+8	\caption{Training hyperparameters for all optimization paradigms. All experiments use Qwen3-4B with LoRA. A dash indicates non-applicable parameters. \textsuperscript{$\star$}DPO is trained for both 1 and 3 epochs to observe temporal dynamics of the evidence-extraction trade-off (\S\ref{sec:spectrum}).}
+9	\label{tab:hyperparams}
+10	\small
+11	\begin{tabular}{l@{\hspace{8pt}}c@{\hspace{8pt}}c@{\hspace{8pt}}c@{\hspace{8pt}}c@{\hspace{8pt}}c}
+12	\toprule
+13	\textbf{Parameter} & \textbf{SFT} & \textbf{RSFT} & \textbf{GRPO QLoRA} & \textbf{GRPO bf16} & \textbf{DPO} \\
+14	\midrule
+15	\multicolumn{6}{l}{\textit{Model \& Adapter}} \\
+16	\quad LoRA rank $r$ / $\alpha$ & 64 / 128 & 64 / 128 & 64 / 128 & 64 / 128 & 64 / 128 \\
+17	\quad Quantization & -- & -- & NF4 4-bit & bf16 & bf16 \\
+18	\midrule
+19	\multicolumn{6}{l}{\textit{Optimization}} \\
+20	\quad Learning rate & 2e-5 & 2e-5 & 5e-6 & 5e-5 & 5e-7 \\
+21	\quad Batch size (effective) & 16 & 16 & 4 & 1 & 4 \\
+22	\quad Gradient accumulation & 4 & 4 & 16 & 1 & 4 \\
+23	\quad Epochs / Max steps & 3 / -- & 3 / -- & -- / 100 & -- / 100 & 1, 3\textsuperscript{$\star$} / -- \\
+24	\midrule
+25	\multicolumn{6}{l}{\textit{RL / Selection}} \\
+26	\quad Group size $G$ & -- & -- & 8 & 8 & -- \\
+27	\quad KL coeff.\ / $\beta$ & -- & -- & 0.01 & 0.01 & 0.1 \\
+28	\quad Candidates $N$ / Top-$k$ & -- & 8 / 1 & -- & -- & 8 / -- \\
+29	\midrule
+30	\multicolumn{6}{l}{\textit{Data}} \\
+31	\quad Max new tokens & 1024 & 1024 & 1024 &
+…[truncated 40627 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-26T10:46:12.556875+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+````json
+{
+  "description": "Verify refs batch 1 (1-9)",
+  "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to confirm:\n1. The paper exists (CRITICAL - fake references are fatal)\n2. Author names are correct\n3. Year is correct\n4. Title is correct (exact wording matters)\n5. Venue is correct (NeurIPS vs NIPS, EMNLP vs Findings, arXiv vs published, Workshop vs Main)\n6. arXiv ID (if present) is correct\n\nFor each entry, search using the title and first author. Report your findings in this format:\n```\n### [cite_key] — ✓ or ✗\n- Real: ✓/✗\n- Authors: ✓/✗ (details if wrong)\n- Year: ✓/✗\n- Title: ✓/✗ (details if wrong)\n- Venue: ✓/✗ (details if wrong)\n- arXiv ID: ✓/✗/N/A\n- Notes: ...\n```\n\nHere are entries 1-9 to verify:\n\n1. autore2024: Title=\"AutoRE: Document-Level Relation Extraction with Large Language Models\", Authors=\"Xue, Lilong and Zhang, Dan and Dong, Yuxiao and Tang, Jie\", Venue=\"ACL 2024 System Demonstrations\", Year=2024, arXiv=2403.14888\n\n2. xu2025docksrag: Title=\"DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning\", Authors=\"Xu, Xiaolong and Zhou, Yibo and Xiang, Haolong and Li, Xiaoyong and Zhang, Xuyun and Qi, Lianyong and Dou, Wanchun\", Venue=\"ICML 2025 (42nd)\", Year=2025, URL=https://proceedings.mlr.press/v267/xu25am.html\n\n3. dai2025r1re: Title=\"R1-RE: Cross-Domain Relation Extraction with RLVR\", Authors=\"Dai, Runpeng and Zheng, Tong and Yang, Run and Yu, Kaixian and Zhu, Hongtu\", Journal=\"arXiv preprint arXiv:2507.04642\", Year=2025\n\n4. gao2023scaling: Title=\"Scaling Laws for Reward Model Overoptimization\", Authors=\"Gao, Leo and Schulman, John and Hilton, Jacob\", Venue=\"ICML 2023 (40th)\", Year=2023, arXiv=2210.10760\n\n5. hu2022lora: Title=\"LoRA: Low-Rank Adaptation of Large Language Models\", Authors=\"Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu\", Venue=\"ICLR 2022\", Year=2022, arXiv=2106.09685\n\n6. li2026qurl: Title=\"QuRL: Efficient Reinforcement Learning with Quantized Rollout\", Authors=\"Li, Yuhang and Elangovan, Reena and Dong, Xin and Panda, Priyadarshini and Khailany, Brucek\", Journal=\"arXiv preprint arXiv:2602.13953\", Year=2026\n\n7. laban2022summac: Title=\"SummaC: Re-Visiting NLI-based Models for Inconsistency Detection in Summarization\", Authors=\"Laban, Philippe and Schnabel, Tobias and Bennett, Paul N. and Hearst, Marti A.\", Journal=\"Transactions of the Association for Computational Linguistics\", Volume=10, Pages=163-177, Year=2022\n\n8. li2025srvf: Title=\"Enhancing Relation Extraction via Supervised Rationale Verification and Feedback\", Authors=\"Li, Yongqi and Miao, Xin and Zhou, Shen and Xu, Mayi and Ren, Yuyang and Qian, Tieyun\", Venue=\"AAAI 2025\", Year=2025, arXiv=2412.07289\n\n9. jin2025rl_panacea: Title=\"RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs\", Authors=\"Jin, Hangzhan and Lv, Sicheng and Wu, Sifan and Hamdaqa, Mohammad\", Journal=\"arXiv preprint arXiv:2508.16546\", Year=2025\n",
+  "run_in_background": "True"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Verify refs batch 1 (1-9)",
+    "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to confirm:\n1. The paper exists (CRITICAL - fake references are fatal)\n2. Author names are correct\n3. Year is correct\n4. Title is correct (exact wording matters)\n5. Venue is correct (NeurIPS vs NIPS, EMNLP vs Findings, arXiv vs published, Workshop vs Main)\n6. arXiv ID (if present) is correct\n\nFor each entry, search using the title and first author. Report your findings in this format:\n```\n### [cite_key] — ✓ or ✗\n- Real: ✓/✗\n- Authors: ✓/✗ (details if wrong)\n- Year: ✓/✗\n- Title: ✓/✗ (details if wrong)\n- Venue: ✓/✗ (details if wrong)\n- arXiv ID: ✓/✗/N/A\n- Notes: ...\n```\n\nHere are entries 1-9 to verify:\n\n1. autore2024: Title=\"AutoRE: Document-Level Relation Extraction with Large Language Models\", Authors=\"Xue, Lilong and Zhang, Dan and Dong, Yuxiao and Tang, Jie\", Venue=\"ACL 2024 System Demonstrations\", Year=2024, arXiv=2403.14888\n\n2. xu2025docksrag: Title=\"DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning\", Authors=\"Xu, Xiaolong and Zhou, Yibo and Xiang, Haolong and Li, Xiaoyong and Zhang, Xuyun and Qi, Lianyong and Dou, Wanchun\", Venue=\"ICML 2025 (42nd)\", Year=2025, URL=https://proceedings.mlr.press/v267/xu25am.html\n\n3. dai2025r1re: Title=\"R1-RE: Cross-Domain Relation Extraction with RLVR\", Authors=\"Dai, Runpeng and Zheng, Tong and Yang, Run and Yu, Kaixian and Zhu, Hongtu\", Journal=\"arXiv preprint arXiv:2507.04642\", Year=2025\n\n4. gao2023scaling: Title=\"Scaling Laws for Reward Model Overoptimization\", Authors=\"Gao, Leo and Schulman, John and Hilton, Jacob\", Venue=\"ICML 2023 (40th)\", Year=2023, arXiv=2210.10760\n\n5. hu2022lora: Title=\"LoRA: Low-Rank Adaptation of Large Language Models\", Authors=\"Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu\", Venue=\"ICLR 2022\", Year=2022, arXiv=2106.09685\n\n6. li2026qurl: Title=\"QuRL: Efficient Reinforcement Learning with Quantized Rollout\", Authors=\"Li, Yuhang and Elangovan, Reena and Dong, Xin and Panda, Priyadarshini and Khailany, Brucek\", Journal=\"arXiv preprint arXiv:2602.13953\", Year=2026\n\n7. laban2022summac: Title=\"SummaC: Re-Visiting NLI-based Models for Inconsistency Detection in Summarization\", Authors=\"Laban, Philippe and Schnabel, Tobias and Bennett, Paul N. and Hearst, Marti A.\", Journal=\"Transactions of the Association for Computational Linguistics\", Volume=10, Pages=163-177, Year=2022\n\n8. li2025srvf: Title=\"Enhancing Relation Extraction via Supervised Rationale Verification and Feedback\", Authors=\"Li, Yongqi and Miao, Xin and Zhou, Shen and Xu, Mayi and Ren, Yuyang and Qian, Tieyun\", Venue=\"AAAI 2025\", Year=2025, arXiv=2412.07289\n\n9. jin2025rl_panacea: Title=\"RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs\", Authors=\"Jin, Hangzhan and Lv, Sicheng and Wu, Sifan and Hamdaqa, Mohammad\", Journal=\"arXiv preprint arXiv:2508.16546\", Year=2025\n",
+    "run_in_background": "True"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-26T10:46:12.557125+00:00_
+
+Async agent launched successfully.
+agentId: a8e209311b277989c (internal ID - do not mention to user. Use SendMessage with to: 'a8e209311b277989c' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/9a976415-88b2-422e-82c2-b64a0f207775/tasks/a8e209311b277989c.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Agent",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-26T10:46:12.557336+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+````json
+{
+  "description": "Verify refs batch 2 (10-18)",
+  "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to confirm:\n1. The paper exists (CRITICAL - fake references are fatal)\n2. Author names are correct\n3. Year is correct\n4. Title is correct (exact wording matters)\n5. Venue is correct (NeurIPS vs NIPS, EMNLP vs Findings, arXiv vs published, Workshop vs Main)\n6. arXiv ID (if present) is correct\n\nFor each entry, search using the title and first author. Report your findings in this format:\n```\n### [cite_key] — ✓ or ✗\n- Real: ✓/✗\n- Authors: ✓/✗ (details if wrong)\n- Year: ✓/✗\n- Title: ✓/✗ (details if wrong)\n- Venue: ✓/✗ (details if wrong)\n- arXiv ID: ✓/✗/N/A\n- Notes: ...\n```\n\nHere are entries 10-18 to verify:\n\n10. ma2023dreeam: Title=\"DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction\", Authors=\"Ma, Youmi and Wang, An and Okazaki, Naoaki\", Venue=\"Findings of EACL 2023\", Year=2023, arXiv=2302.08675\n\n11. moskovitz2024constrained: Title=\"Confronting Reward Model Overoptimization with Constrained RLHF\", Authors=\"Moskovitz, Ted and Singh, Aaditya K. and Strouse, DJ and Sandholm, Tuomas and Salakhutdinov, Ruslan and Dragan, Anca D. and McAleer, Stephen\", Venue=\"ICLR 2024\", Year=2024, URL=https://openreview.net/forum?id=gkfUvn0fLU\n\n12. rafailov2023direct: Title=\"Direct Preference Optimization: Your Language Model is Secretly a Reward Model\", Authors=\"Rafailov, Rafael and Sharma, Archit and Mitchell, Eric and Ermon, Stefano and Manning, Christopher D. and Finn, Chelsea\", Venue=\"NeurIPS 2023\", Year=2023, arXiv=2305.18290\n\n13. shao2024deepseekmath: Title=\"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\", Authors=\"Shao, Zhihong and Wang, Peiyi and Zhu, Qihao and Xu, Runxin and Song, Junxiao and Bi, Xiao and Zhang, Haowei and Zhang, Mingchuan and Li, Y.K. and Wu, Y. and Guo, Daya\", Journal=\"arXiv preprint arXiv:2402.03300\", Year=2024\n\n14. tan2022redocred: Title=\"Revisiting DocRED: Addressing the False Negative Problem in Relation Extraction\", Authors=\"Tan, Qingyu and Xu, Lu and Bing, Lidong and Ng, Hwee Tou and Aljunied, Sharifah Mahani\", Venue=\"EMNLP 2022\", Year=2022\n\n15. xiao2022sais: Title=\"SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction\", Authors=\"Xiao, Yuxin and Zhang, Zecheng and Mao, Yuning and Yang, Carl and Han, Jiawei\", Venue=\"NAACL 2022\", Year=2022\n\n16. xie2022eider: Title=\"EIDER: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion\", Authors=\"Xie, Yiqing and Shen, Jiaming and Li, Sha and Mao, Yuning and Han, Jiawei\", Venue=\"Findings of ACL 2022\", Year=2022, arXiv=2106.08657\n\n17. xu2024lmrc: Title=\"LMRC: LLM with Relation Classifier for Document-Level Relation Extraction\", Authors=\"Li, Xingzuo and Chen, Kehai and Long, Yunfei and Zhang, Min\" (NOTE: cite key says \"xu2024\" but first author is \"Li\"), Journal=\"arXiv preprint arXiv:2408.13889\", Year=2024\n\n18. yao2019docred: Title=\"DocRED: A Large-Scale Document-Level Relation Extraction Dataset\", Authors=\"Yao, Yuan and Ye, Deming and Li, Peng and Han, Xu and Lin, Yankai and Liu, Zhenghao and Liu, Zhiyuan and Huang, Lixin and Zhou, Jie and Sun, Maosong\", Venue=\"ACL 2019\", Year=2019\n",
+  "run_in_background": "True"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Verify refs batch 2 (10-18)",
+    "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to confirm:\n1. The paper exists (CRITICAL - fake references are fatal)\n2. Author names are correct\n3. Year is correct\n4. Title is correct (exact wording matters)\n5. Venue is correct (NeurIPS vs NIPS, EMNLP vs Findings, arXiv vs published, Workshop vs Main)\n6. arXiv ID (if present) is correct\n\nFor each entry, search using the title and first author. Report your findings in this format:\n```\n### [cite_key] — ✓ or ✗\n- Real: ✓/✗\n- Authors: ✓/✗ (details if wrong)\n- Year: ✓/✗\n- Title: ✓/✗ (details if wrong)\n- Venue: ✓/✗ (details if wrong)\n- arXiv ID: ✓/✗/N/A\n- Notes: ...\n```\n\nHere are entries 10-18 to verify:\n\n10. ma2023dreeam: Title=\"DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction\", Authors=\"Ma, Youmi and Wang, An and Okazaki, Naoaki\", Venue=\"Findings of EACL 2023\", Year=2023, arXiv=2302.08675\n\n11. moskovitz2024constrained: Title=\"Confronting Reward Model Overoptimization with Constrained RLHF\", Authors=\"Moskovitz, Ted and Singh, Aaditya K. and Strouse, DJ and Sandholm, Tuomas and Salakhutdinov, Ruslan and Dragan, Anca D. and McAleer, Stephen\", Venue=\"ICLR 2024\", Year=2024, URL=https://openreview.net/forum?id=gkfUvn0fLU\n\n12. rafailov2023direct: Title=\"Direct Preference Optimization: Your Language Model is Secretly a Reward Model\", Authors=\"Rafailov, Rafael and Sharma, Archit and Mitchell, Eric and Ermon, Stefano and Manning, Christopher D. and Finn, Chelsea\", Venue=\"NeurIPS 2023\", Year=2023, arXiv=2305.18290\n\n13. shao2024deepseekmath: Title=\"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\", Authors=\"Shao, Zhihong and Wang, Peiyi and Zhu, Qihao and Xu, Runxin and Song, Junxiao and Bi, Xiao and Zhang, Haowei and Zhang, Mingchuan and Li, Y.K. and Wu, Y. and Guo, Daya\", Journal=\"arXiv preprint arXiv:2402.03300\", Year=2024\n\n14. tan2022redocred: Title=\"Revisiting DocRED: Addressing the False Negative Problem in Relation Extraction\", Authors=\"Tan, Qingyu and Xu, Lu and Bing, Lidong and Ng, Hwee Tou and Aljunied, Sharifah Mahani\", Venue=\"EMNLP 2022\", Year=2022\n\n15. xiao2022sais: Title=\"SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction\", Authors=\"Xiao, Yuxin and Zhang, Zecheng and Mao, Yuning and Yang, Carl and Han, Jiawei\", Venue=\"NAACL 2022\", Year=2022\n\n16. xie2022eider: Title=\"EIDER: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion\", Authors=\"Xie, Yiqing and Shen, Jiaming and Li, Sha and Mao, Yuning and Han, Jiawei\", Venue=\"Findings of ACL 2022\", Year=2022, arXiv=2106.08657\n\n17. xu2024lmrc: Title=\"LMRC: LLM with Relation Classifier for Document-Level Relation Extraction\", Authors=\"Li, Xingzuo and Chen, Kehai and Long, Yunfei and Zhang, Min\" (NOTE: cite key says \"xu2024\" but first author is \"Li\"), Journal=\"arXiv preprint arXiv:2408.13889\", Year=2024\n\n18. yao2019docred: Title=\"DocRED: A Large-Scale Document-Level Relation Extraction Dataset\", Authors=\"Yao, Yuan and Ye, Deming and Li, Peng and Han, Xu and Lin, Yankai and Liu, Zhenghao and Liu, Zhiyuan and Huang, Lixin and Zhou, Jie and Sun, Maosong\", Venue=\"ACL 2019\", Year=2019\n",
+    "run_in_background": "True"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-26T10:46:12.557555+00:00_
+
+Async agent launched successfully.
+agentId: a5204ced73a2a15e9 (internal ID - do not mention to user. Use SendMessage with to: 'a5204ced73a2a15e9' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/9a976415-88b2-422e-82c2-b64a0f207775/tasks/a5204ced73a2a15e9.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Agent",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-26T10:46:12.558025+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+````json
+{
+  "description": "Verify refs batch 3 (19-27)",
+  "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to confirm:\n1. The paper exists (CRITICAL - fake references are fatal)\n2. Author names are correct\n3. Year is correct\n4. Title is correct (exact wording matters)\n5. Venue is correct (NeurIPS vs NIPS, EMNLP vs Findings, arXiv vs published, Workshop vs Main)\n6. arXiv ID (if present) is correct\n\nFor each entry, search using the title and first author. Report your findings in this format:\n```\n### [cite_key] — ✓ or ✗\n- Real: ✓/✗\n- Authors: ✓/✗ (details if wrong)\n- Year: ✓/✗\n- Title: ✓/✗ (details if wrong)\n- Venue: ✓/✗ (details if wrong)\n- arXiv ID: ✓/✗/N/A\n- Notes: ...\n```\n\nHere are entries 19-27 to verify:\n\n19. zelikman2022star: Title=\"STaR: Bootstrapping Reasoning With Reasoning\", Authors=\"Zelikman, Eric and Wu, Yuhuai and Mu, Jesse and Goodman, Noah D.\", Venue=\"NeurIPS 2022\", Year=2022, arXiv=2203.14465\n\n20. dong2023raft: Title=\"RAFT: Reward rAnked FineTuning for Generative Foundation Model Alignment\", Authors=\"Dong, Hanze and Xiong, Wei and Goyal, Deepanshu and Zhang, Yihan and Chow, Winnie and Pan, Rui and Diao, Shizhe and Zhang, Jipeng and Shum, Kashun and Zhang, Tong\", Journal=\"Transactions on Machine Learning Research\", Year=2023, arXiv=2304.06767\n\n21. ito2025mogrpo: Title=\"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems\", Authors=\"Ichihara, Yuki and Jinnai, Yuu and Morimura, Tetsuro and Sakamoto, Mitsuki and Mitsuhashi, Ryota and Uchibe, Eiji\" (NOTE: cite key says \"ito2025\" but first author is \"Ichihara\"), Journal=\"arXiv preprint arXiv:2509.22047\", Year=2025\n\n22. li2025drift: Title=\"Drift: Enhancing LLM Faithfulness in Rationale Generation via Dual-Reward Probabilistic Inference\", Authors=\"Li, Jiazheng and Yan, Hanqi and He, Yulan\", Venue=\"ACL 2025\", Year=2025, URL=https://aclanthology.org/2025.acl-long.340/\n\n23. liu2026gdpo: Title=\"GDPO: Group Reward-Decoupled Normalization Policy Optimization for Multi-Reward RL Optimization\", Authors=\"Liu, Shih-Yang and Dong, Xin and Lu, Ximing and Diao, Shizhe and Belcak, Peter and Liu, Mingjie and Chen, Min-Hung and Yin, Hongxu and Wang, Yu-Chiang Frank and Cheng, Kwang-Ting and Choi, Yejin and Kautz, Jan and Molchanov, Pavlo\", Journal=\"arXiv preprint arXiv:2601.05242\", Year=2026\n\n24. liu2025drgrpo: Title=\"Understanding R1-Zero-Like Training: A Critical Perspective\", Authors=\"Liu, Zichen and Chen, Changyu and Li, Wenjun and Qi, Penghui and Pang, Tianyu and Du, Chao and Lee, Wee Sun and Lin, Min\", Venue=\"Conference on Language Modeling (COLM)\", Year=2025, arXiv=2503.20783\n\n25. yu2025dapo: Title=\"DAPO: An Open-Source LLM Reinforcement Learning System at Scale\", Authors=\"Yu, Qiying and Zhang, Zheng and Zhu, Ruofei and Yuan, Yufeng and ...\" (many authors), Journal=\"arXiv preprint arXiv:2503.14476\", Year=2025\n\n26. zhang2024infuse: Title=\"Fine-Grained Natural Language Inference Based Faithfulness Evaluation for Diverse Summarisation Tasks\", Authors=\"Zhang, Huajian and Xu, Yumo and Perez-Beltrachini, Laura\", Venue=\"EACL 2024\", Year=2024\n\n27. wang2025rear: Title=\"REAR: Reinforced Reasoning Optimization for Event Argument Extraction with Relation-Aware Support\", Authors=\"Luo, Jianwen and Hong, Yu and Yang, Shuai and Yao, Jianmin\" (NOTE: cite key says \"wang2025\" but first author is \"Luo\"), Venue=\"Findings of EMNLP 2025\", Year=2025\n",
+  "run_in_background": "True"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Verify refs batch 3 (19-27)",
+    "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to confirm:\n1. The paper exists (CRITICAL - fake references are fatal)\n2. Author names are correct\n3. Year is correct\n4. Title is correct (exact wording matters)\n5. Venue is correct (NeurIPS vs NIPS, EMNLP vs Findings, arXiv vs published, Workshop vs Main)\n6. arXiv ID (if present) is correct\n\nFor each entry, search using the title and first author. Report your findings in this format:\n```\n### [cite_key] — ✓ or ✗\n- Real: ✓/✗\n- Authors: ✓/✗ (details if wrong)\n- Year: ✓/✗\n- Title: ✓/✗ (details if wrong)\n- Venue: ✓/✗ (details if wrong)\n- arXiv ID: ✓/✗/N/A\n- Notes: ...\n```\n\nHere are entries 19-27 to verify:\n\n19. zelikman2022star: Title=\"STaR: Bootstrapping Reasoning With Reasoning\", Authors=\"Zelikman, Eric and Wu, Yuhuai and Mu, Jesse and Goodman, Noah D.\", Venue=\"NeurIPS 2022\", Year=2022, arXiv=2203.14465\n\n20. dong2023raft: Title=\"RAFT: Reward rAnked FineTuning for Generative Foundation Model Alignment\", Authors=\"Dong, Hanze and Xiong, Wei and Goyal, Deepanshu and Zhang, Yihan and Chow, Winnie and Pan, Rui and Diao, Shizhe and Zhang, Jipeng and Shum, Kashun and Zhang, Tong\", Journal=\"Transactions on Machine Learning Research\", Year=2023, arXiv=2304.06767\n\n21. ito2025mogrpo: Title=\"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems\", Authors=\"Ichihara, Yuki and Jinnai, Yuu and Morimura, Tetsuro and Sakamoto, Mitsuki and Mitsuhashi, Ryota and Uchibe, Eiji\" (NOTE: cite key says \"ito2025\" but first author is \"Ichihara\"), Journal=\"arXiv preprint arXiv:2509.22047\", Year=2025\n\n22. li2025drift: Title=\"Drift: Enhancing LLM Faithfulness in Rationale Generation via Dual-Reward Probabilistic Inference\", Authors=\"Li, Jiazheng and Yan, Hanqi and He, Yulan\", Venue=\"ACL 2025\", Year=2025, URL=https://aclanthology.org/2025.acl-long.340/\n\n23. liu2026gdpo: Title=\"GDPO: Group Reward-Decoupled Normalization Policy Optimization for Multi-Reward RL Optimization\", Authors=\"Liu, Shih-Yang and Dong, Xin and Lu, Ximing and Diao, Shizhe and Belcak, Peter and Liu, Mingjie and Chen, Min-Hung and Yin, Hongxu and Wang, Yu-Chiang Frank and Cheng, Kwang-Ting and Choi, Yejin and Kautz, Jan and Molchanov, Pavlo\", Journal=\"arXiv preprint arXiv:2601.05242\", Year=2026\n\n24. liu2025drgrpo: Title=\"Understanding R1-Zero-Like Training: A Critical Perspective\", Authors=\"Liu, Zichen and Chen, Changyu and Li, Wenjun and Qi, Penghui and Pang, Tianyu and Du, Chao and Lee, Wee Sun and Lin, Min\", Venue=\"Conference on Language Modeling (COLM)\", Year=2025, arXiv=2503.20783\n\n25. yu2025dapo: Title=\"DAPO: An Open-Source LLM Reinforcement Learning System at Scale\", Authors=\"Yu, Qiying and Zhang, Zheng and Zhu, Ruofei and Yuan, Yufeng and ...\" (many authors), Journal=\"arXiv preprint arXiv:2503.14476\", Year=2025\n\n26. zhang2024infuse: Title=\"Fine-Grained Natural Language Inference Based Faithfulness Evaluation for Diverse Summarisation Tasks\", Authors=\"Zhang, Huajian and Xu, Yumo and Perez-Beltrachini, Laura\", Venue=\"EACL 2024\", Year=2024\n\n27. wang2025rear: Title=\"REAR: Reinforced Reasoning Optimization for Event Argument Extraction with Relation-Aware Support\", Authors=\"Luo, Jianwen and Hong, Yu and Yang, Shuai and Yao, Jianmin\" (NOTE: cite key says \"wang2025\" but first author is \"Luo\"), Venue=\"Findings of EMNLP 2025\", Year=2025\n",
+    "run_in_background": "True"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-26T10:46:12.558339+00:00_
+
+Async agent launched successfully.
+agentId: a8b66baf703f35825 (internal ID - do not mention to user. Use SendMessage with to: 'a8b66baf703f35825' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/9a976415-88b2-422e-82c2-b64a0f207775/tasks/a8b66baf703f35825.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Agent",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-26T10:46:12.558583+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+````json
+{
+  "description": "Verify refs batch 4 (28-36)",
+  "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to confirm:\n1. The paper exists (CRITICAL - fake references are fatal)\n2. Author names are correct\n3. Year is correct\n4. Title is correct (exact wording matters)\n5. Venue is correct (NeurIPS vs NIPS, EMNLP vs Findings, arXiv vs published, Workshop vs Main)\n6. arXiv ID (if present) is correct\n\nFor each entry, search using the title and first author. Report your findings in this format:\n```\n### [cite_key] — ✓ or ✗\n- Real: ✓/✗\n- Authors: ✓/✗ (details if wrong)\n- Year: ✓/✗\n- Title: ✓/✗ (details if wrong)\n- Venue: ✓/✗ (details if wrong)\n- arXiv ID: ✓/✗/N/A\n- Notes: ...\n```\n\nHere are entries 28-36 to verify:\n\n28. wang2025relprior: Title=\"RelPrior: Relation as a Prior for LLM-based Document-Level Relation Extraction\", Authors=\"Pi, Qiankun and Sun, Yepeng and Lu, Jicang and Fan, Qinlong and Huang, Ningbo and Wang, Shiyu\" (NOTE: cite key says \"wang2025\" but first author is \"Pi\"), Journal=\"arXiv preprint arXiv:2511.08143\", Year=2025\n\n29. zhang2025glidre: Title=\"GLiDRE: Generalist Lightweight Model for Document-level Relation Extraction\", Authors=\"Armingaud, Robin and Besançon, Romaric\" (NOTE: cite key says \"zhang2025\" but first author is \"Armingaud\"), Journal=\"arXiv preprint arXiv:2508.00757\", Year=2025\n\n30. tang2025rsftppo: Title=\"Rejection Sampling Based Fine Tuning Secretly Performs PPO\", Authors=\"Anil, Gautham Govind and Nagaraj, Dheeraj Mysore and Shanmugam, Karthikeyan and Shakkottai, Sanjay\" (NOTE: cite key says \"tang2025\" but first author is \"Anil\"), Venue=\"ICML 2025 Workshop on Practical Aspects of Unlearning and Test-time Adaptation (PUT)\", Year=2025, URL=https://openreview.net/forum?id=yQ2UivKlir\n\n31. wang2025rullm: Title=\"Ru-LLM: Logical Rule-Constrained Large Language Models for Document-Level Relation Extraction\", Authors=\"Zhang, Kunli and Wu, Pengcheng and Yu, Bohan and Li, Yunlong and Kong, Dezhi and Zan, Hongying and Peng, Min and Song, Yu\" (NOTE: cite key says \"wang2025\" but first author is \"Zhang\"), Journal=\"NLPCC 2025\", Year=2025\n\n32. zhou2021atlop: Title=\"Document-Level Relation Extraction with Adaptive Thresholding and Localized Context Pooling\", Authors=\"Zhou, Wenxuan and Huang, Kevin and Ma, Tengyu and Huang, Jing\", Venue=\"AAAI 2021\", Year=2021, arXiv=2010.11304\n\n33. ruder2017overview: Title=\"An Overview of Multi-Task Learning in Deep Neural Networks\", Authors=\"Ruder, Sebastian\", Journal=\"arXiv preprint arXiv:1706.05098\", Year=2017\n\n34. standley2020tasks: Title=\"Which Tasks Should Be Learned Together in Multi-task Learning?\", Authors=\"Standley, Trevor and Zamir, Amir and Chen, Dawn and Guibas, Leonidas and Malik, Jitendra and Savarese, Silvio\", Venue=\"ICML 2020\", Year=2020, URL=https://proceedings.mlr.press/v119/standley20a.html\n\n35. yu2020gradient: Title=\"Gradient Surgery for Multi-Task Learning\", Authors=\"Yu, Tianhe and Kumar, Saurabh and Gupta, Abhishek and Levine, Sergey and Hausman, Karol and Finn, Chelsea\", Venue=\"NeurIPS 2020\", Year=2020, arXiv=2001.06782\n\n36. wang2023selfconsistency: Title=\"Self-Consistency Improves Chain of Thought Reasoning in Language Models\", Authors=\"Wang, Xuezhi and Wei, Jason and Schuurmans, Dale and Le, Quoc and Chi, Ed and Narang, Sharan and Chowdhery, Aakanksha and Zhou, Denny\", Venue=\"ICLR 2023\", Year=2023, arXiv=2203.11171\n",
+  "run_in_background": "True"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Verify refs batch 4 (28-36)",
+    "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to confirm:\n1. The paper exists (CRITICAL - fake references are fatal)\n2. Author names are correct\n3. Year is correct\n4. Title is correct (exact wording matters)\n5. Venue is correct (NeurIPS vs NIPS, EMNLP vs Findings, arXiv vs published, Workshop vs Main)\n6. arXiv ID (if present) is correct\n\nFor each entry, search using the title and first author. Report your findings in this format:\n```\n### [cite_key] — ✓ or ✗\n- Real: ✓/✗\n- Authors: ✓/✗ (details if wrong)\n- Year: ✓/✗\n- Title: ✓/✗ (details if wrong)\n- Venue: ✓/✗ (details if wrong)\n- arXiv ID: ✓/✗/N/A\n- Notes: ...\n```\n\nHere are entries 28-36 to verify:\n\n28. wang2025relprior: Title=\"RelPrior: Relation as a Prior for LLM-based Document-Level Relation Extraction\", Authors=\"Pi, Qiankun and Sun, Yepeng and Lu, Jicang and Fan, Qinlong and Huang, Ningbo and Wang, Shiyu\" (NOTE: cite key says \"wang2025\" but first author is \"Pi\"), Journal=\"arXiv preprint arXiv:2511.08143\", Year=2025\n\n29. zhang2025glidre: Title=\"GLiDRE: Generalist Lightweight Model for Document-level Relation Extraction\", Authors=\"Armingaud, Robin and Besançon, Romaric\" (NOTE: cite key says \"zhang2025\" but first author is \"Armingaud\"), Journal=\"arXiv preprint arXiv:2508.00757\", Year=2025\n\n30. tang2025rsftppo: Title=\"Rejection Sampling Based Fine Tuning Secretly Performs PPO\", Authors=\"Anil, Gautham Govind and Nagaraj, Dheeraj Mysore and Shanmugam, Karthikeyan and Shakkottai, Sanjay\" (NOTE: cite key says \"tang2025\" but first author is \"Anil\"), Venue=\"ICML 2025 Workshop on Practical Aspects of Unlearning and Test-time Adaptation (PUT)\", Year=2025, URL=https://openreview.net/forum?id=yQ2UivKlir\n\n31. wang2025rullm: Title=\"Ru-LLM: Logical Rule-Constrained Large Language Models for Document-Level Relation Extraction\", Authors=\"Zhang, Kunli and Wu, Pengcheng and Yu, Bohan and Li, Yunlong and Kong, Dezhi and Zan, Hongying and Peng, Min and Song, Yu\" (NOTE: cite key says \"wang2025\" but first author is \"Zhang\"), Journal=\"NLPCC 2025\", Year=2025\n\n32. zhou2021atlop: Title=\"Document-Level Relation Extraction with Adaptive Thresholding and Localized Context Pooling\", Authors=\"Zhou, Wenxuan and Huang, Kevin and Ma, Tengyu and Huang, Jing\", Venue=\"AAAI 2021\", Year=2021, arXiv=2010.11304\n\n33. ruder2017overview: Title=\"An Overview of Multi-Task Learning in Deep Neural Networks\", Authors=\"Ruder, Sebastian\", Journal=\"arXiv preprint arXiv:1706.05098\", Year=2017\n\n34. standley2020tasks: Title=\"Which Tasks Should Be Learned Together in Multi-task Learning?\", Authors=\"Standley, Trevor and Zamir, Amir and Chen, Dawn and Guibas, Leonidas and Malik, Jitendra and Savarese, Silvio\", Venue=\"ICML 2020\", Year=2020, URL=https://proceedings.mlr.press/v119/standley20a.html\n\n35. yu2020gradient: Title=\"Gradient Surgery for Multi-Task Learning\", Authors=\"Yu, Tianhe and Kumar, Saurabh and Gupta, Abhishek and Levine, Sergey and Hausman, Karol and Finn, Chelsea\", Venue=\"NeurIPS 2020\", Year=2020, arXiv=2001.06782\n\n36. wang2023selfconsistency: Title=\"Self-Consistency Improves Chain of Thought Reasoning in Language Models\", Authors=\"Wang, Xuezhi and Wei, Jason and Schuurmans, Dale and Le, Quoc and Chi, Ed and Narang, Sharan and Chowdhery, Aakanksha and Zhou, Denny\", Venue=\"ICLR 2023\", Year=2023, arXiv=2203.11171\n",
+    "run_in_background": "True"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-26T10:46:12.558824+00:00_
+
+Async agent launched successfully.
+agentId: af4698a7d4593f1ec (internal ID - do not mention to user. Use SendMessage with to: 'af4698a7d4593f1ec' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/9a976415-88b2-422e-82c2-b64a0f207775/tasks/af4698a7d4593f1ec.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Agent",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-26T10:46:12.559110+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+````json
+{
+  "description": "Verify refs batch 5 (37-44)",
+  "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to confirm:\n1. The paper exists (CRITICAL - fake references are fatal)\n2. Author names are correct\n3. Year is correct\n4. Title is correct (exact wording matters)\n5. Venue is correct (NeurIPS vs NIPS, EMNLP vs Findings, arXiv vs published, Workshop vs Main)\n6. arXiv ID (if present) is correct\n\nFor each entry, search using the title and first author. Report your findings in this format:\n```\n### [cite_key] — ✓ or ✗\n- Real: ✓/✗\n- Authors: ✓/✗ (details if wrong)\n- Year: ✓/✗\n- Title: ✓/✗ (details if wrong)\n- Venue: ✓/✗ (details if wrong)\n- arXiv ID: ✓/✗/N/A\n- Notes: ...\n```\n\nHere are entries 37-44 to verify:\n\n37. ouyang2022instructgpt: Title=\"Training Language Models to Follow Instructions with Human Feedback\", Authors=\"Ouyang, Long and Wu, Jeff and Jiang, Xu and Almeida, Diogo and Wainwright, Carroll L. and Mishkin, Pamela and Zhang, Chong and Agarwal, Sandhini and Slama, Katarina and Ray, Alex and Schulman, John and Hilton, Jacob and Kelton, Fraser and Miller, Luke and Simens, Maddie and Askell, Amanda and Welinder, Peter and Christiano, Paul F. and Leike, Jan and Lowe, Ryan\", Venue=\"NeurIPS 2022\", Year=2022, arXiv=2203.02155\n\n38. schulman2017ppo: Title=\"Proximal Policy Optimization Algorithms\", Authors=\"Schulman, John and Wolski, Filip and Dhariwal, Prafulla and Radford, Alec and Klimov, Oleg\", Journal=\"arXiv preprint arXiv:1707.06347\", Year=2017\n\n39. zeng2020gain: Title=\"Double Graph Based Reasoning for Document-level Relation Extraction\", Authors=\"Zeng, Shuang and Xu, Runxin and Chang, Baobao and Li, Lei\", Venue=\"EMNLP 2020\", Year=2020\n\n40. ethayarajh2024kto: Title=\"KTO: Model Alignment as Prospect Theoretic Optimization\", Authors=\"Ethayarajh, Kawin and Xu, Winnie and Muennighoff, Niklas and Jurafsky, Dan and Kiela, Douwe\", Venue=\"ICML 2024 (41st)\", Year=2024, arXiv=2402.01306\n\n41. coste2024reward: Title=\"Reward Model Ensembles Help Mitigate Overoptimization\", Authors=\"Coste, Thomas and Anwar, Usman and Kirk, Robert and Krueger, David\", Venue=\"ICLR 2024\", Year=2024, arXiv=2310.02743\n\n42. he2023debertav3: Title=\"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\", Authors=\"He, Pengcheng and Gao, Jianfeng and Chen, Weizhu\", Venue=\"ICLR 2023\", Year=2023, arXiv=2111.09543\n\n43. dettmers2023qlora: Title=\"QLoRA: Efficient Finetuning of Quantized LLMs\", Authors=\"Dettmers, Tim and Pagnoni, Artidoro and Holtzman, Ari and Zettlemoyer, Luke\", Venue=\"NeurIPS 2023\", Year=2023, arXiv=2305.14314\n\n44. hoffmann2022chinchilla: Title=\"Training Compute-Optimal Large Language Models\", Authors=\"Hoffmann, Jordan and Borgeaud, Sebastian and Mensch, Arthur and Buchatskaya, Elena and Cai, Trevor and Rutherford, Eliza and de Las Casas, Diego and Hendricks, Lisa Anne and Welbl, Johannes and Clark, Aidan and ...\", Venue=\"NeurIPS 2022\", Year=2022, arXiv=2203.15556\n",
+  "run_in_background": "True"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Verify refs batch 5 (37-44)",
+    "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to confirm:\n1. The paper exists (CRITICAL - fake references are fatal)\n2. Author names are correct\n3. Year is correct\n4. Title is correct (exact wording matters)\n5. Venue is correct (NeurIPS vs NIPS, EMNLP vs Findings, arXiv vs published, Workshop vs Main)\n6. arXiv ID (if present) is correct\n\nFor each entry, search using the title and first author. Report your findings in this format:\n```\n### [cite_key] — ✓ or ✗\n- Real: ✓/✗\n- Authors: ✓/✗ (details if wrong)\n- Year: ✓/✗\n- Title: ✓/✗ (details if wrong)\n- Venue: ✓/✗ (details if wrong)\n- arXiv ID: ✓/✗/N/A\n- Notes: ...\n```\n\nHere are entries 37-44 to verify:\n\n37. ouyang2022instructgpt: Title=\"Training Language Models to Follow Instructions with Human Feedback\", Authors=\"Ouyang, Long and Wu, Jeff and Jiang, Xu and Almeida, Diogo and Wainwright, Carroll L. and Mishkin, Pamela and Zhang, Chong and Agarwal, Sandhini and Slama, Katarina and Ray, Alex and Schulman, John and Hilton, Jacob and Kelton, Fraser and Miller, Luke and Simens, Maddie and Askell, Amanda and Welinder, Peter and Christiano, Paul F. and Leike, Jan and Lowe, Ryan\", Venue=\"NeurIPS 2022\", Year=2022, arXiv=2203.02155\n\n38. schulman2017ppo: Title=\"Proximal Policy Optimization Algorithms\", Authors=\"Schulman, John and Wolski, Filip and Dhariwal, Prafulla and Radford, Alec and Klimov, Oleg\", Journal=\"arXiv preprint arXiv:1707.06347\", Year=2017\n\n39. zeng2020gain: Title=\"Double Graph Based Reasoning for Document-level Relation Extraction\", Authors=\"Zeng, Shuang and Xu, Runxin and Chang, Baobao and Li, Lei\", Venue=\"EMNLP 2020\", Year=2020\n\n40. ethayarajh2024kto: Title=\"KTO: Model Alignment as Prospect Theoretic Optimization\", Authors=\"Ethayarajh, Kawin and Xu, Winnie and Muennighoff, Niklas and Jurafsky, Dan and Kiela, Douwe\", Venue=\"ICML 2024 (41st)\", Year=2024, arXiv=2402.01306\n\n41. coste2024reward: Title=\"Reward Model Ensembles Help Mitigate Overoptimization\", Authors=\"Coste, Thomas and Anwar, Usman and Kirk, Robert and Krueger, David\", Venue=\"ICLR 2024\", Year=2024, arXiv=2310.02743\n\n42. he2023debertav3: Title=\"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\", Authors=\"He, Pengcheng and Gao, Jianfeng and Chen, Weizhu\", Venue=\"ICLR 2023\", Year=2023, arXiv=2111.09543\n\n43. dettmers2023qlora: Title=\"QLoRA: Efficient Finetuning of Quantized LLMs\", Authors=\"Dettmers, Tim and Pagnoni, Artidoro and Holtzman, Ari and Zettlemoyer, Luke\", Venue=\"NeurIPS 2023\", Year=2023, arXiv=2305.14314\n\n44. hoffmann2022chinchilla: Title=\"Training Compute-Optimal Large Language Models\", Authors=\"Hoffmann, Jordan and Borgeaud, Sebastian and Mensch, Arthur and Buchatskaya, Elena and Cai, Trevor and Rutherford, Eliza and de Las Casas, Diego and Hendricks, Lisa Anne and Welbl, Johannes and Clark, Aidan and ...\", Venue=\"NeurIPS 2022\", Year=2022, arXiv=2203.15556\n",
+    "run_in_background": "True"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-26T10:46:12.559368+00:00_
+
+Async agent launched successfully.
+agentId: a6d35d5fb5a2143e3 (internal ID - do not mention to user. Use SendMessage with to: 'a6d35d5fb5a2143e3' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/9a976415-88b2-422e-82c2-b64a0f207775/tasks/a6d35d5fb5a2143e3.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Agent",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-26T10:46:12.559612+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+````json
+{
+  "description": "Verify refs batch 6 (45-52)",
+  "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to confirm:\n1. The paper exists (CRITICAL - fake references are fatal)\n2. Author names are correct\n3. Year is correct\n4. Title is correct (exact wording matters)\n5. Venue is correct (NeurIPS vs NIPS, EMNLP vs Findings, arXiv vs published, Workshop vs Main)\n6. arXiv ID (if present) is correct\n\nFor each entry, search using the title and first author. Report your findings in this format:\n```\n### [cite_key] — ✓ or ✗\n- Real: ✓/✗\n- Authors: ✓/✗ (details if wrong)\n- Year: ✓/✗\n- Title: ✓/✗ (details if wrong)\n- Venue: ✓/✗ (details if wrong)\n- arXiv ID: ✓/✗/N/A\n- Notes: ...\n```\n\nSPECIAL ATTENTION: These include 2026 papers which are more likely to be fabricated. Be extra careful to verify they exist.\n\nHere are entries 45-52 to verify:\n\n45. yuan2023rft: Title=\"Scaling Relationship on Learning Mathematical Reasoning with Large Language Models\", Authors=\"Yuan, Zheng and Yuan, Hongyi and Li, Chengpeng and Dong, Guanting and Lu, Keming and Tan, Chuanqi and Zhou, Chang and Zhou, Jingren\", Journal=\"arXiv preprint arXiv:2308.01825\", Year=2023\n\n46. tamo2026evidencerl: Title=\"EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models\", Authors=\"Tamo, J. Ben and Lu, Yuxing and Marteau, Benoit L. and Nnamdi, Micky C. and Wang, May D.\", Journal=\"arXiv preprint arXiv:2603.19532\", Year=2026\nIMPORTANT: This is a 2026 paper. Verify it actually exists on arXiv.\n\n47. liu2026rift: Title=\"RIFT: Repurposing Negative Samples via Reward-Informed Fine-Tuning\", Authors=\"Liu, Zehua and Liu, Shuqi and Zhong, Tao and Yuan, Mingxuan\", Journal=\"arXiv preprint arXiv:2601.09253\", Year=2026\nIMPORTANT: This is a 2026 paper. Verify it actually exists on arXiv.\n\n48. deng2026trajfusion: Title=\"Beyond Rejection Sampling: Trajectory Fusion for Scaling Mathematical Reasoning\", Authors=\"Deng, Jie and Tong, Hanshuang and Li, Jun and Liang, Shining and Wu, Ning and Li, Hongzhi and Xie, Yutao\", Journal=\"arXiv preprint arXiv:2602.04391\", Year=2026\nIMPORTANT: This is a 2026 paper. Verify it actually exists on arXiv.\n\n49. tian2026mugrpo: Title=\"How Off-Policy Can GRPO Be? μ-GRPO for Efficient LLM Reinforcement Learning\", Authors=\"Tian, Minghao and Xie, Yunfei and Wei, Chen\", Journal=\"arXiv preprint arXiv:2605.17570\", Year=2026\nIMPORTANT: This is a 2026 paper with a very recent arXiv ID (2605 = May 2026). Verify it actually exists.\n\n50. ji2026treegrpo: Title=\"Tree Search for LLM Agent Reinforcement Learning\", Authors=\"Ji, Yuxiang and Ma, Ziyu and Wang, Yong and Chen, Guanhua and Chu, Xiangxiang and Wu, Liaoni\", Venue=\"ICLR 2026\", Year=2026, arXiv=2509.21240\nIMPORTANT: This is listed as ICLR 2026. Verify it exists and the venue is correct.\n\n51. deepseek2025r1: Title=\"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning\", Authors=\"DeepSeek-AI\", Journal=\"arXiv preprint arXiv:2501.12948\", Year=2025\n\n52. gulcehre2023rest: Title=\"Reinforced Self-Training (ReST) for Language Modeling\", Authors=\"Gulcehre, Caglar and Paine, Tom Le and Srinivasan, Srivatsan and Konyushkova, Ksenia and Weerts, Lotte and Sharma, Abhishek and Siddhant, Aditya and Ahern, Alex and Wang, Miaosen and Gu, Chenjie and Macherey, Wolfgang and Dyer, Chris and Grangier, David and Firat, Orhan\", Venue=\"arXiv preprint arXiv:2308.08998\" (NOTE: uses @inproceedings but booktitle is \"arXiv preprint\" - this is a formatting issue), Year=2023\nIMPORTANT: Check if this paper was later published at a conference (e.g., NeurIPS, ICLR). The bib entry uses @inproceedings with booktitle=\"arXiv preprint arXiv:2308.08998\" which is invalid formatting.\n",
+  "run_in_background": "True"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Verify refs batch 6 (45-52)",
+    "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to confirm:\n1. The paper exists (CRITICAL - fake references are fatal)\n2. Author names are correct\n3. Year is correct\n4. Title is correct (exact wording matters)\n5. Venue is correct (NeurIPS vs NIPS, EMNLP vs Findings, arXiv vs published, Workshop vs Main)\n6. arXiv ID (if present) is correct\n\nFor each entry, search using the title and first author. Report your findings in this format:\n```\n### [cite_key] — ✓ or ✗\n- Real: ✓/✗\n- Authors: ✓/✗ (details if wrong)\n- Year: ✓/✗\n- Title: ✓/✗ (details if wrong)\n- Venue: ✓/✗ (details if wrong)\n- arXiv ID: ✓/✗/N/A\n- Notes: ...\n```\n\nSPECIAL ATTENTION: These include 2026 papers which are more likely to be fabricated. Be extra careful to verify they exist.\n\nHere are entries 45-52 to verify:\n\n45. yuan2023rft: Title=\"Scaling Relationship on Learning Mathematical Reasoning with Large Language Models\", Authors=\"Yuan, Zheng and Yuan, Hongyi and Li, Chengpeng and Dong, Guanting and Lu, Keming and Tan, Chuanqi and Zhou, Chang and Zhou, Jingren\", Journal=\"arXiv preprint arXiv:2308.01825\", Year=2023\n\n46. tamo2026evidencerl: Title=\"EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models\", Authors=\"Tamo, J. Ben and Lu, Yuxing and Marteau, Benoit L. and Nnamdi, Micky C. and Wang, May D.\", Journal=\"arXiv preprint arXiv:2603.19532\", Year=2026\nIMPORTANT: This is a 2026 paper. Verify it actually exists on arXiv.\n\n47. liu2026rift: Title=\"RIFT: Repurposing Negative Samples via Reward-Informed Fine-Tuning\", Authors=\"Liu, Zehua and Liu, Shuqi and Zhong, Tao and Yuan, Mingxuan\", Journal=\"arXiv preprint arXiv:2601.09253\", Year=2026\nIMPORTANT: This is a 2026 paper. Verify it actually exists on arXiv.\n\n48. deng2026trajfusion: Title=\"Beyond Rejection Sampling: Trajectory Fusion for Scaling Mathematical Reasoning\", Authors=\"Deng, Jie and Tong, Hanshuang and Li, Jun and Liang, Shining and Wu, Ning and Li, Hongzhi and Xie, Yutao\", Journal=\"arXiv preprint arXiv:2602.04391\", Year=2026\nIMPORTANT: This is a 2026 paper. Verify it actually exists on arXiv.\n\n49. tian2026mugrpo: Title=\"How Off-Policy Can GRPO Be? μ-GRPO for Efficient LLM Reinforcement Learning\", Authors=\"Tian, Minghao and Xie, Yunfei and Wei, Chen\", Journal=\"arXiv preprint arXiv:2605.17570\", Year=2026\nIMPORTANT: This is a 2026 paper with a very recent arXiv ID (2605 = May 2026). Verify it actually exists.\n\n50. ji2026treegrpo: Title=\"Tree Search for LLM Agent Reinforcement Learning\", Authors=\"Ji, Yuxiang and Ma, Ziyu and Wang, Yong and Chen, Guanhua and Chu, Xiangxiang and Wu, Liaoni\", Venue=\"ICLR 2026\", Year=2026, arXiv=2509.21240\nIMPORTANT: This is listed as ICLR 2026. Verify it exists and the venue is correct.\n\n51. deepseek2025r1: Title=\"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning\", Authors=\"DeepSeek-AI\", Journal=\"arXiv preprint arXiv:2501.12948\", Year=2025\n\n52. gulcehre2023rest: Title=\"Reinforced Self-Training (ReST) for Language Modeling\", Authors=\"Gulcehre, Caglar and Paine, Tom Le and Srinivasan, Srivatsan and Konyushkova, Ksenia and Weerts, Lotte and Sharma, Abhishek and Siddhant, Aditya and Ahern, Alex and Wang, Miaosen and Gu, Chenjie and Macherey, Wolfgang and Dyer, Chris and Grangier, David and Firat, Orhan\", Venue=\"arXiv preprint arXiv:2308.08998\" (NOTE: uses @inproceedings but booktitle is \"arXiv preprint\" - this is a formatting issue), Year=2023\nIMPORTANT: Check if this paper was later published at a conference (e.g., NeurIPS, ICLR). The bib entry uses @inproceedings with booktitle=\"arXiv preprint arXiv:2308.08998\" which is invalid formatting.\n",
+    "run_in_background": "True"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-26T10:46:12.559836+00:00_
+
+Async agent launched successfully.
+agentId: a1bc59b9c06432233 (internal ID - do not mention to user. Use SendMessage with to: 'a1bc59b9c06432233' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/9a976415-88b2-422e-82c2-b64a0f207775/tasks/a1bc59b9c06432233.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Agent",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-26T10:46:12.560073+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "\\\\cite[tp]?\\{[^}]+\\}",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper",
+  "output_mode": "content",
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "\\\\cite[tp]?\\{[^}]+\\}",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper",
+    "output_mode": "content",
+    "glob": "*.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-26T10:46:12.560264+00:00_
+
+docs/paper/sections/related_work.tex:7:[Omitted long matching line]
+docs/paper/sections/related_work.tex:9:[Omitted long matching line]
+docs/paper/sections/related_work.tex:14:[Omitted long matching line]
+docs/paper/sections/related_work.tex:19:[Omitted long matching line]
+docs/paper/sections/experiments.tex:7:[Omitted long matching line]
+docs/paper/sections/experiments.tex:43:[Omitted long matching line]
+docs/paper/sections/experiments.tex:96:[Omitted long matching line]
+docs/paper/sections/experiments.tex:102:[Omitted long matching line]
+docs/paper/sections/method.tex:16:[Omitted long matching line]
+docs/paper/sections/method.tex:22:[Omitted long matching line]
+docs/paper/sections/method.tex:48:[Omitted long matching line]
+docs/paper/sections/method.tex:51:[Omitted long matching line]
+docs/paper/sections/method.tex:54:[Omitted long matching line]
+docs/paper/sections/method.tex:69:[Omitted long matching line]
+docs/paper/sections/appendix.tex:217:[Omitted long matching line]
+docs/paper/sections/introduction.tex:3:Document-level relation extraction (DocRE) requires identifying semantic relations between entity pairs across multiple sentences, a task where encoder-based methods such as \citet{zhou2021atlop} long dominated.
+docs/paper/sections/introduction.tex:4:Recent LLM-based approaches have closed this gap: \citet{autore2024} fine-tune LLMs with structured decomposition, \citet{xu2024lmrc} frame it as multi-choice reading comprehension, and \citet{xu2025docksrag} combine retrieval-augmented generation with structured knowledge.
+docs/paper/sections/introduction.tex:5:These methods approach or surpass encoder baselines on DocRED \citep{yao2019docred} and Re-DocRED \citep{tan2022redocred} in extraction accuracy, yet every one outputs bare relation triplets $(e_h, r, e_t)$ without indicating \emph{which sentences} support each prediction.
+docs/paper/sections/introduction.tex:16:Encoder-based methods have partially addressed this need: \citet{xiao2022sais} introduce sen
+…[truncated 1339 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-26T10:46:12.560476+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -oP '\\\\cite[tp]?\\{[^}]+\\}' /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/*.tex /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/main.tex 2>/dev/null | grep -oP '\\{[^}]+\\}' | tr -d '{}' | tr ',' '\\n' | sed 's/^ *//;s/ *$//' | sort -u",
+  "description": "Extract all unique citation keys from tex files"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -oP '\\\\cite[tp]?\\{[^}]+\\}' /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/*.tex /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/main.tex 2>/dev/null | grep -oP '\\{[^}]+\\}' | tr -d '{}' | tr ',' '\\n' | sed 's/^ *//;s/ *$//' | sort -u",
+    "description": "Extract all unique citation keys from tex files"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-26T10:46:12.560625+00:00_
+
+autore2024
+dai2025r1re
+deepseek2025r1
+dettmers2023qlora
+gao2023scaling
+gulcehre2023rest
+he2023debertav3
+hu2022lora
+jin2025rl_panacea
+laban2022summac
+li2025srvf
+li2026qurl
+liu2025drgrpo
+ma2023dreeam
+ouyang2022instructgpt
+rafailov2023direct
+ruder2017overview
+schulman2017ppo
+shao2024deepseekmath
+tamo2026evidencerl
+tan2022redocred
+tang2025rsftppo
+wang2025rear
+wang2025relprior
+xiao2022sais
+xie2022eider
+xu2024lmrc
+xu2025docksrag
+yao2019docred
+yu2025dapo
+yuan2023rft
+zelikman2022star
+zeng2020gain
+zhang2024infuse
+zhou2021atlop
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-26T10:46:12.560960+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:TodoWrite",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-26T10:46:12.561136+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-26T10:46:12.562061+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/ref_audit_worker2.md",
+  "content": "# 引用核对清单 — Worker 2\n\n总计: 52 条引用, 14 条有问题 (其中 6 条严重, 2 条中等, 6 条轻微)\n\n另有 17 条 bib 中存在但从未在正文中 cite 的条目。\n\n---\n\n## 问题汇总\n\n### 严重问题 (factual errors)\n\n| # | cite_key | 问题 |\n|---|----------|------|\n| 1 | `gulcehre2023rest` | **作者名错误**: Dyer, Chris 和 Grangier, David 应为 **Doucet, Arnaud** 和 **de Freitas, Nando**; entry type 错误 (`@inproceedings`+`booktitle` → 应为 `@article`+`journal`) |\n| 2 | `wang2025relprior` | **标题错误**: bib 写 \"RelPrior: Relation as a Prior for LLM-based Document-Level Relation Extraction\", 实际标题 \"Relation as a Prior: A Novel Paradigm for LLM-based Document-level Relation Extraction\" |\n| 3 | `xu2024lmrc` | **标题多余前缀**: bib 写 \"LMRC: LLM with Relation Classifier...\", 实际标题无 \"LMRC:\" 前缀 |\n| 4 | `wang2025rullm` | **标题多余前缀**: bib 写 \"Ru-LLM: Logical Rule-Constrained...\", 实际标题无 \"Ru-LLM:\" 前缀; 作者 \"Peng, Min\" 可能不在 Springer 正式作者列表中; entry type 应为 `@inproceedings` |\n| 5 | `ma2023dreeam` | **Venue 错误**: bib 写 \"Findings of EACL 2023\", 实际发表在 **EACL 2023 main conference** (2023.eacl-main.145) |\n| 6 | `rafailov2023direct` | **作者顺序错误**: Ermon (4th) 和 Manning (5th) 位置互换了 |\n\n### 中等问题 (venue updates needed)\n\n| # | cite_key | 问题 |\n|---|----------|------|\n| 7 | `li2026qurl` | Venue 需更新: 已被 **ICLR 2026** 接收, 不再仅是 arXiv preprint; OpenReview 标题与 arXiv 标题不同 (\"Low-Precision RL for Efficient Reasoning\" vs \"Efficient RL with Quantized Rollout\") |\n| 8 | `liu2026gdpo` | Venue 需更新: 已发表于 **ICML 2026** (poster), 不再是 arXiv preprint |\n\n### 轻微问题 (minor)\n\n| # | cite_key | 问题 |\n|---|----------|------|\n| 9 | `tan2022redocred` | 标题标点: bib 用冒号 `:`, 实际标题用破折号 `--` |\n| 10 | `zhang2025glidre` | 标题大小写: \"Model\" 应为 \"model\" (小写) |\n| 11 | `liu2026gdpo` | 标题大小写: \"Reward\" 应为 \"reward\", \"Multi-Reward\" 应为 \"Multi-reward\" |\n| 12 | `ito2025mogrpo` | cite key \"ito\" 与第一作者 \"Ichihara\" 不匹配 (仅命名问题) |\n\n### Cite key 与第一作者不匹配 (7 条)\n\n这些 cite key 命名不符合 [第一作者姓][年份] 惯例, 可能让审稿人困惑:\n\n| cite_key | bib 第一作者 | 应改为 |\n|----------|-------------|--------|\n| `xu2024lmrc` | Li, Xingzuo | `li2024lmrc` |\n| `wang2025rear` | Luo, Jianwen | `luo2025rear` |\n| `wang2025relprior` | Pi, Qiankun | `pi2025relprior` |\n| `zhang2025glidre` | Armingaud, Robin | `armingaud2025glidre` |\n| `tang2025rsftppo` | Anil, Gautham Govind | `anil2025rsftppo` |\n| `wang2025rullm` | Zhang, Kunli | `zhang2025rullm` |\n| `ito2025mogrpo` | Ichihara, Yuki | `ichihara2025mogrpo` |\n\n### 未被引用的 bib 条目 (17 条)\n\n以下条目存在于 references.bib 但从未在任何 .tex 文件中被 `\\cite`/`\\citep`/`\\citet`:\n\n`moskovitz2024constrained`, `dong2023raft`, `ito2025mogrpo`, `li2025drift`, `liu2026gdpo`, `zhang2025glidre`, `wang2025rullm`, `standley2020tasks`, `yu2020gradient`, `wang2023selfconsistency`, `ethayarajh2024kto`, `coste2024reward`, `hoffmann2022chinchilla`, `liu2026rift`, `deng2026trajfusion`, `tian2026mugrpo`, `ji2026treegrpo`\n\n---\n\n## 逐条结果\n\n### 1. [autore2024] — ✓\n- 真实性: ✓\n- 作者: ✓ (Xue, Lilong; Zhang, Dan; Dong, Yuxiao; Tang, Jie)\n- 年份: ✓ (2024)\n- 标题: ✓ (\"AutoRE: Document-Level Relation Extraction with Large Language Models\")\n- Venue: ✓ (ACL 2024 System Demonstrations)\n- arXiv ID: ✓ (2403.14888)\n- 正文用法: ✓ (intro: \"fine-tune LLMs with structured decomposition\")\n- 备注: 无问题\n\n### 2. [xu2025docksrag] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (ICML 2025)\n- arXiv ID: N/A\n- 正文用法: ✓ (intro: \"combine retrieval-augmented generation with structured knowledge\")\n- 备注: 无问题\n\n### 3. [dai2025r1re] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2507.04642)\n- 正文用法: ✓ (related work: \"applications to structured IE include R1-RE\")\n- 备注: 无问题\n\n### 4. [gao2023scaling] — ✓\n- 真实性: ✓\n- 作者: ✓ (Gao, Leo; Schulman, John; Hilton, Jacob)\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (ICML 2023)\n- arXiv ID: ✓ (2210.10760)\n- 正文用法: ✓ (related work: \"capacity-dependent scaling dynamics\")\n- 备注: 无问题\n\n### 5. [hu2022lora] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2022)\n- 标题: ✓\n- Venue: ✓ (ICLR 2022)\n- arXiv ID: ✓ (2106.09685)\n- 正文用法: ✓ (method: \"LoRA\")\n- 备注: 无问题\n\n### 6. [li2026qurl] — ✗\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2026)\n- 标题: ✓ (arXiv 标题正确; 但 OpenReview 标题不同: \"QuRL: Low-Precision Reinforcement Learning for Efficient Reasoning\")\n- Venue: ✗ (bib 写 arXiv preprint, 实际已被 ICLR 2026 接收)\n- arXiv ID: ✓ (2602.13953)\n- 正文用法: ✓ (experiments: \"quantized-actor divergence\")\n- 备注: 需更新 venue 为 ICLR 2026; 需确认最终发表标题\n\n### 7. [laban2022summac] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2022)\n- 标题: ✓\n- Venue: ✓ (TACL, Vol 10, pp 163-177)\n- arXiv ID: N/A\n- 正文用法: ✓ (related work: \"NLI-based faithfulness evaluation\")\n- 备注: 无问题\n\n### 8. [li2025srvf] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (AAAI 2025)\n- arXiv ID: ✓ (2412.07289)\n- 正文用法: ✓ (related work: \"reward-based evidence grounding\")\n- 备注: 无问题\n\n### 9. [jin2025rl_panacea] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2508.16546)\n- 正文用法: ✓ (related work: \"catastrophic forgetting in RL alignment\")\n- 备注: 无问题\n\n### 10. [ma2023dreeam] — ✗\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✗ (bib 写 \"Findings of EACL 2023\", 实际是 **EACL 2023 main conference**, ACL Anthology: 2023.eacl-main.145)\n- arXiv ID: ✓ (2302.08675)\n- 正文用法: ✓\n- 备注: Venue 需从 \"Findings of the Association for Computational Linguistics: EACL 2023\" 改为 \"Proceedings of the 17th Conference of the European Chapter of the Association for Computational Linguistics\"\n\n### 11. [moskovitz2024constrained] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (ICLR 2024)\n- arXiv ID: N/A\n- 正文用法: N/A (未在正文中引用)\n- 备注: 无问题, 但未被引用\n\n### 12. [rafailov2023direct] — ✗\n- 真实性: ✓\n- 作者: ✗ (Ermon, Stefano 应在第 4 位, Manning, Christopher D. 在第 5 位; bib 中两者顺序互换)\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2023)\n- arXiv ID: ✓ (2305.18290)\n- 正文用法: ✓ (intro/method: \"DPO\")\n- 备注: 修正作者顺序: ..., Mitchell, Eric and **Ermon, Stefano** and **Manning, Christopher D.** and Finn, Chelsea\n\n### 13. [shao2024deepseekmath] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2402.03300)\n- 正文用法: ✓ (intro/method: \"GRPO\")\n- 备注: 无问题\n\n### 14. [tan2022redocred] — ✗ (minor)\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2022)\n- 标题: ✗ (bib 用冒号 \"Revisiting DocRED: Addressing...\", 实际标题用破折号 \"Revisiting DocRED -- Addressing...\")\n- Venue: ✓ (EMNLP 2022)\n- arXiv ID: N/A\n- 正文用法: ✓ (intro: \"Re-DocRED\")\n- 备注: 轻微标点问题\n\n### 15. [xiao2022sais] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2022)\n- 标题: ✓\n- Venue: ✓ (NAACL 2022)\n- arXiv ID: N/A\n- 正文用法: ✓ (intro: \"introduce sentence-level evidence supervision\")\n- 备注: 无问题\n\n### 16. [xie2022eider] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2022)\n- 标题: ✓\n- Venue: ✓ (Findings of ACL 2022)\n- arXiv ID: ✓ (2106.08657)\n- 正文用法: ✓ (related work: \"fuses evidence into the relation classifier\")\n- 备注: 无问题\n\n### 17. [xu2024lmrc] — ✗\n- 真实性: ✓\n- 作者: ✓ (Li, Xingzuo; Chen, Kehai; Long, Yunfei; Zhang, Min — 作者本身正确)\n- 年份: ✓ (2024)\n- 标题: ✗ (bib 写 \"LMRC: LLM with Relation Classifier...\", 实际 arXiv 标题无 \"LMRC:\" 前缀, 仅为 \"LLM with Relation Classifier for Document-Level Relation Extraction\")\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2408.13889)\n- 正文用法: ✓ (intro: \"frame it as multi-choice reading comprehension\")\n- 备注: cite key \"xu2024\" 与第一作者 Li 不匹配; 标题需删除 \"LMRC:\" 前缀\n\n### 18. [yao2019docred] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2019)\n- 标题: ✓\n- Venue: ✓ (ACL 2019)\n- arXiv ID: N/A\n- 正文用法: ✓ (intro: \"DocRED\")\n- 备注: 无问题\n\n### 19. [zelikman2022star] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2022)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2022)\n- arXiv ID: ✓ (2203.14465)\n- 正文用法: ✓ (intro/method: \"STaR\")\n- 备注: 无问题\n\n### 20. [dong2023raft] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (TMLR)\n- arXiv ID: ✓ (2304.06767)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 无问题, 但未被引用\n\n### 21. [ito2025mogrpo] — ✗ (minor)\n- 真实性: ✓\n- 作者: ✓ (Ichihara, Yuki 等 — 作者信息正确)\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2509.22047)\n- 正文用法: N/A (未在正文中引用)\n- 备注: cite key \"ito2025\" 与第一作者 \"Ichihara\" 不匹配; 未被引用\n\n### 22. [li2025drift] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (ACL 2025)\n- arXiv ID: N/A\n- 正文用法: N/A (未在正文中引用)\n- 备注: 无问题, 但未被引用\n\n### 23. [liu2026gdpo] — ✗\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2026)\n- 标题: ✗ (minor: \"Reward\" → \"reward\", \"Multi-Reward\" → \"Multi-reward\")\n- Venue: ✗ (bib 写 arXiv preprint, 实际已发表于 **ICML 2026** poster)\n- arXiv ID: ✓ (2601.05242)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 需更新 venue 为 ICML 2026; 未被引用\n\n### 24. [liu2025drgrpo] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (COLM 2025)\n- arXiv ID: ✓ (2503.20783)\n- 正文用法: ✓ (related work: \"length bias\")\n- 备注: 无问题\n\n### 25. [yu2025dapo] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2503.14476)\n- 正文用法: ✓ (related work: \"entropy collapse\")\n- 备注: 无问题\n\n### 26. [zhang2024infuse] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (EACL 2024)\n- arXiv ID: N/A\n- 正文用法: ✓ (related work: \"NLI-based faithfulness evaluation\")\n- 备注: 无问题\n\n### 27. [wang2025rear] — ✗ (minor)\n- 真实性: ✓\n- 作者: ✓ (Luo, Jianwen; Hong, Yu; Yang, Shuai; Yao, Jianmin — 作者信息正确)\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (Findings of EMNLP 2025)\n- arXiv ID: N/A\n- 正文用法: ✓ (related work: \"applications to structured IE include ... REAR\")\n- 备注: cite key \"wang2025\" 与第一作者 \"Luo\" 不匹配\n\n### 28. [wang2025relprior] — ✗\n- 真实性: ✓\n- 作者: ✓ (Pi, Qiankun; Sun, Yepeng; Lu, Jicang; Fan, Qinlong; Huang, Ningbo; Wang, Shiyu — 作者信息正确)\n- 年份: ✓ (2025)\n- 标题: ✗ (bib: \"RelPrior: Relation as a Prior for LLM-based Document-Level Relation Extraction\"; 实际: \"Relation as a Prior: A Novel Paradigm for LLM-based Document-level Relation Extraction\")\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2511.08143)\n- 正文用法: ✓ (related work: \"RelPrior leverages relation priors\")\n- 备注: 标题严重偏差; cite key \"wang2025\" 与第一作者 \"Pi\" 不匹配\n\n### 29. [zhang2025glidre] — ✗ (minor)\n- 真实性: ✓\n- 作者: ✓ (Armingaud, Robin; Besançon, Romaric)\n- 年份: ✓ (2025)\n- 标题: ✗ (minor: \"Model\" 应为 \"model\")\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2508.00757)\n- 正文用法: N/A (未在正文中引用)\n- 备注: cite key \"zhang2025\" 与第一作者 \"Armingaud\" 不匹配; 未被引用\n\n### 30. [tang2025rsftppo] — ✓\n- 真实性: ✓\n- 作者: ✓ (Anil, Gautham Govind; Nagaraj, Dheeraj Mysore; Shanmugam, Karthikeyan; Shakkottai, Sanjay)\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (ICML 2025 Workshop PUT)\n- arXiv ID: N/A\n- 正文用法: ✓ (related work: \"theoretical connections to PPO\")\n- 备注: cite key \"tang2025\" 与第一作者 \"Anil\" 不匹配, 但所有事实正确\n\n### 31. [wang2025rullm] — ✗\n- 真实性: ✓\n- 作者: ✗ (Springer 页面列 7 位作者, bib 有 8 位 — \"Peng, Min\" 可能不在正式作者列表中)\n- 年份: ✓ (2025)\n- 标题: ✗ (bib 添加了 \"Ru-LLM:\" 前缀, Springer 正式标题无此前缀: \"Logical Rule-Constrained Large Language Models for Document-Level Relation Extraction\")\n- Venue: ✗ (bib 用 `journal = {NLPCC 2025}`, 应为 `@inproceedings` + `booktitle = {Proceedings of the 14th CCF International Conference on Natural Language Processing and Chinese Computing}`)\n- arXiv ID: N/A\n- 正文用法: N/A (未在正文中引用)\n- 备注: cite key \"wang2025\" 与第一作者 \"Zhang\" 不匹配; 多处问题; 未被引用\n\n### 32. [zhou2021atlop] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2021)\n- 标题: ✓\n- Venue: ✓ (AAAI 2021)\n- arXiv ID: ✓ (2010.11304)\n- 正文用法: ✓ (intro: \"encoder-based methods such as \\citet{zhou2021atlop}\")\n- 备注: 无问题\n\n### 33. [ruder2017overview] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2017)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (1706.05098)\n- 正文用法: ✓ (related work: \"negative transfer in multi-task learning\")\n- 备注: 无问题\n\n### 34. [standley2020tasks] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (ICML 2020)\n- arXiv ID: N/A\n- 正文用法: N/A (未在正文中引用)\n- 备注: 无问题, 但未被引用\n\n### 35. [yu2020gradient] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2020)\n- arXiv ID: ✓ (2001.06782)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 无问题, 但未被引用\n\n### 36. [wang2023selfconsistency] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (ICLR 2023)\n- arXiv ID: ✓ (2203.11171)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 无问题, 但未被引用\n\n### 37. [ouyang2022instructgpt] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2022)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2022)\n- arXiv ID: ✓ (2203.02155)\n- 正文用法: ✓ (method: \"RLHF\")\n- 备注: 无问题\n\n### 38. [schulman2017ppo] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2017)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (1707.06347)\n- 正文用法: ✓ (related work: \"PPO\")\n- 备注: 无问题\n\n### 39. [zeng2020gain] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (EMNLP 2020)\n- arXiv ID: N/A\n- 正文用法: ✓ (related work: \"GAIN\")\n- 备注: 无问题\n\n### 40. [ethayarajh2024kto] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (ICML 2024)\n- arXiv ID: ✓ (2402.01306)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 无问题, 但未被引用\n\n### 41. [coste2024reward] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (ICLR 2024)\n- arXiv ID: ✓ (2310.02743)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 无问题, 但未被引用\n\n### 42. [he2023debertav3] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (ICLR 2023)\n- arXiv ID: ✓ (2111.09543)\n- 正文用法: ✓ (method: \"DeBERTaV3\")\n- 备注: 无问题\n\n### 43. [dettmers2023qlora] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2023)\n- arXiv ID: ✓ (2305.14314)\n- 正文用法: ✓ (method: \"QLoRA\")\n- 备注: 无问题\n\n### 44. [hoffmann2022chinchilla] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2022)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2022)\n- arXiv ID: ✓ (2203.15556)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 无问题, 但未被引用\n\n### 45. [yuan2023rft] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2308.01825)\n- 正文用法: ✓ (related work: \"scaling analyses\")\n- 备注: 无问题\n\n### 46. [tamo2026evidencerl] — ✓\n- 真实性: ✓ (arXiv 确认, 2026年3月提交, Georgia Tech / Peking University)\n- 作者: ✓\n- 年份: ✓ (2026)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2603.19532)\n- 正文用法: ✓ (related work: \"reward-based evidence grounding\")\n- 备注: 2026 论文, 确认真实存在\n\n### 47. [liu2026rift] — ✓\n- 真实性: ✓ (arXiv 确认, 2026年1月提交, Huawei Noah's Ark Lab)\n- 作者: ✓\n- 年份: ✓ (2026)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2601.09253)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 2026 论文, 确认真实存在, 但未被引用\n\n### 48. [deng2026trajfusion] — ✓\n- 真实性: ✓ (arXiv 确认, 2026年2月提交, Microsoft)\n- 作者: ✓\n- 年份: ✓ (2026)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2602.04391)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 2026 论文, 确认真实存在, 但未被引用\n\n### 49. [tian2026mugrpo] — ✓\n- 真实性: ✓ (arXiv 确认, 2026年5月提交, Rice University)\n- 作者: ✓\n- 年份: ✓ (2026)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2605.17570)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 2026 论文, 确认真实存在, 但未被引用\n\n### 50. [ji2026treegrpo] — ✓\n- 真实性: ✓ (arXiv + OpenReview 确认)\n- 作者: ✓\n- 年份: ✓ (2026)\n- 标题: ✓\n- Venue: ✓ (ICLR 2026)\n- arXiv ID: ✓ (2509.21240)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 2026 论文, 确认真实存在, 但未被引用\n\n### 51. [deepseek2025r1] — ✓\n- 真实性: ✓\n- 作者: ✓ (DeepSeek-AI)\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2501.12948)\n- 正文用法: ✓ (related work: \"DeepSeek-R1 demonstrates its effectiveness at scale\")\n- 备注: 无问题\n\n### 52. [gulcehre2023rest] — ✗\n- 真实性: ✓\n- 作者: ✗ (bib 中 \"Dyer, Chris\" 和 \"Grangier, David\" 应为 **\"Doucet, Arnaud\"** 和 **\"de Freitas, Nando\"**)\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✗ (使用 `@inproceedings` + `booktitle = {arXiv preprint arXiv:2308.08998}` 格式非法; 应改为 `@article` + `journal`)\n- arXiv ID: ✓ (2308.08998)\n- 正文用法: ✓ (related work: \"iterative self-improvement through rejection sampling\")\n- 备注: 两处严重错误: 作者名错误 + entry type 错误\n\n---\n\n## 2026 年引用验证结果\n\n全部 7 条 2026 年引用均确认真实存在:\n\n| cite_key | arXiv ID | 提交时间 | 状态 |\n|----------|----------|----------|------|\n| tamo2026evidencerl | 2603.19532 | 2026-03 | ✓ arXiv preprint |\n| li2026qurl | 2602.13953 | 2026-02 | ✓ → ICLR 2026 (venue 需更新) |\n| liu2026gdpo | 2601.05242 | 2026-01 | ✓ → ICML 2026 (venue 需更新) |\n| deng2026trajfusion | 2602.04391 | 2026-02 | ✓ arXiv preprint |\n| tian2026mugrpo | 2605.17570 | 2026-05 | ✓ arXiv preprint |\n| ji2026treegrpo | 2509.21240 | 2025-09 | ✓ → ICLR 2026 |\n| liu2026rift | 2601.09253 | 2026-01 | ✓ arXiv preprint |\n\n---\n\n## 必须修复的条目 (按优先级)\n\n### P0 — 严重错误 (reviewer 可能标记)\n\n1. **`gulcehre2023rest`**: 替换作者 Dyer→Doucet, Grangier→de Freitas; 改 `@article`+`journal`\n2. **`ma2023dreeam`**: booktitle 改为 EACL 2023 main (非 Findings)\n3. **`wang2025relprior`**: 标题改为 \"Relation as a Prior: A Novel Paradigm for LLM-based Document-level Relation Extraction\"\n4. **`rafailov2023direct`**: 交换 Ermon 和 Manning 的顺序\n5. **`xu2024lmrc`**: 删除标题中 \"LMRC:\" 前缀\n6. **`wang2025rullm`**: 删除 \"Ru-LLM:\" 前缀; 核实作者; 改 entry type\n\n### P1 — 中等 (venue outdated)\n\n7. **`li2026qurl`**: venue 更新为 ICLR 2026\n8. **`liu2026gdpo`**: venue 更新为 ICML 2026\n\n### P2 — 轻微\n\n9. **`tan2022redocred`**: 标题冒号改破折号\n10. **`zhang2025glidre`**: \"Model\" → \"model\"\n\n### P3 — 清理\n\n11. 移除 17 条未被引用的 bib 条目 (或在正文中补充引用)\n12. 修正 7 个 cite key 使其与第一作者匹配 (可选, 但建议)\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/ref_audit_worker2.md",
+    "content": "# 引用核对清单 — Worker 2\n\n总计: 52 条引用, 14 条有问题 (其中 6 条严重, 2 条中等, 6 条轻微)\n\n另有 17 条 bib 中存在但从未在正文中 cite 的条目。\n\n---\n\n## 问题汇总\n\n### 严重问题 (factual errors)\n\n| # | cite_key | 问题 |\n|---|----------|------|\n| 1 | `gulcehre2023rest` | **作者名错误**: Dyer, Chris 和 Grangier, David 应为 **Doucet, Arnaud** 和 **de Freitas, Nando**; entry type 错误 (`@inproceedings`+`booktitle` → 应为 `@article`+`journal`) |\n| 2 | `wang2025relprior` | **标题错误**: bib 写 \"RelPrior: Relation as a Prior for LLM-based Document-Level Relation Extraction\", 实际标题 \"Relation as a Prior: A Novel Paradigm for LLM-based Document-level Relation Extraction\" |\n| 3 | `xu2024lmrc` | **标题多余前缀**: bib 写 \"LMRC: LLM with Relation Classifier...\", 实际标题无 \"LMRC:\" 前缀 |\n| 4 | `wang2025rullm` | **标题多余前缀**: bib 写 \"Ru-LLM: Logical Rule-Constrained...\", 实际标题无 \"Ru-LLM:\" 前缀; 作者 \"Peng, Min\" 可能不在 Springer 正式作者列表中; entry type 应为 `@inproceedings` |\n| 5 | `ma2023dreeam` | **Venue 错误**: bib 写 \"Findings of EACL 2023\", 实际发表在 **EACL 2023 main conference** (2023.eacl-main.145) |\n| 6 | `rafailov2023direct` | **作者顺序错误**: Ermon (4th) 和 Manning (5th) 位置互换了 |\n\n### 中等问题 (venue updates needed)\n\n| # | cite_key | 问题 |\n|---|----------|------|\n| 7 | `li2026qurl` | Venue 需更新: 已被 **ICLR 2026** 接收, 不再仅是 arXiv preprint; OpenReview 标题与 arXiv 标题不同 (\"Low-Precision RL for Efficient Reasoning\" vs \"Efficient RL with Quantized Rollout\") |\n| 8 | `liu2026gdpo` | Venue 需更新: 已发表于 **ICML 2026** (poster), 不再是 arXiv preprint |\n\n### 轻微问题 (minor)\n\n| # | cite_key | 问题 |\n|---|----------|------|\n| 9 | `tan2022redocred` | 标题标点: bib 用冒号 `:`, 实际标题用破折号 `--` |\n| 10 | `zhang2025glidre` | 标题大小写: \"Model\" 应为 \"model\" (小写) |\n| 11 | `liu2026gdpo` | 标题大小写: \"Reward\" 应为 \"reward\", \"Multi-Reward\" 应为 \"Multi-reward\" |\n| 12 | `ito2025mogrpo` | cite key \"ito\" 与第一作者 \"Ichihara\" 不匹配 (仅命名问题) |\n\n### Cite key 与第一作者不匹配 (7 条)\n\n这些 cite key 命名不符合 [第一作者姓][年份] 惯例, 可能让审稿人困惑:\n\n| cite_key | bib 第一作者 | 应改为 |\n|----------|-------------|--------|\n| `xu2024lmrc` | Li, Xingzuo | `li2024lmrc` |\n| `wang2025rear` | Luo, Jianwen | `luo2025rear` |\n| `wang2025relprior` | Pi, Qiankun | `pi2025relprior` |\n| `zhang2025glidre` | Armingaud, Robin | `armingaud2025glidre` |\n| `tang2025rsftppo` | Anil, Gautham Govind | `anil2025rsftppo` |\n| `wang2025rullm` | Zhang, Kunli | `zhang2025rullm` |\n| `ito2025mogrpo` | Ichihara, Yuki | `ichihara2025mogrpo` |\n\n### 未被引用的 bib 条目 (17 条)\n\n以下条目存在于 references.bib 但从未在任何 .tex 文件中被 `\\cite`/`\\citep`/`\\citet`:\n\n`moskovitz2024constrained`, `dong2023raft`, `ito2025mogrpo`, `li2025drift`, `liu2026gdpo`, `zhang2025glidre`, `wang2025rullm`, `standley2020tasks`, `yu2020gradient`, `wang2023selfconsistency`, `ethayarajh2024kto`, `coste2024reward`, `hoffmann2022chinchilla`, `liu2026rift`, `deng2026trajfusion`, `tian2026mugrpo`, `ji2026treegrpo`\n\n---\n\n## 逐条结果\n\n### 1. [autore2024] — ✓\n- 真实性: ✓\n- 作者: ✓ (Xue, Lilong; Zhang, Dan; Dong, Yuxiao; Tang, Jie)\n- 年份: ✓ (2024)\n- 标题: ✓ (\"AutoRE: Document-Level Relation Extraction with Large Language Models\")\n- Venue: ✓ (ACL 2024 System Demonstrations)\n- arXiv ID: ✓ (2403.14888)\n- 正文用法: ✓ (intro: \"fine-tune LLMs with structured decomposition\")\n- 备注: 无问题\n\n### 2. [xu2025docksrag] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (ICML 2025)\n- arXiv ID: N/A\n- 正文用法: ✓ (intro: \"combine retrieval-augmented generation with structured knowledge\")\n- 备注: 无问题\n\n### 3. [dai2025r1re] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2507.04642)\n- 正文用法: ✓ (related work: \"applications to structured IE include R1-RE\")\n- 备注: 无问题\n\n### 4. [gao2023scaling] — ✓\n- 真实性: ✓\n- 作者: ✓ (Gao, Leo; Schulman, John; Hilton, Jacob)\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (ICML 2023)\n- arXiv ID: ✓ (2210.10760)\n- 正文用法: ✓ (related work: \"capacity-dependent scaling dynamics\")\n- 备注: 无问题\n\n### 5. [hu2022lora] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2022)\n- 标题: ✓\n- Venue: ✓ (ICLR 2022)\n- arXiv ID: ✓ (2106.09685)\n- 正文用法: ✓ (method: \"LoRA\")\n- 备注: 无问题\n\n### 6. [li2026qurl] — ✗\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2026)\n- 标题: ✓ (arXiv 标题正确; 但 OpenReview 标题不同: \"QuRL: Low-Precision Reinforcement Learning for Efficient Reasoning\")\n- Venue: ✗ (bib 写 arXiv preprint, 实际已被 ICLR 2026 接收)\n- arXiv ID: ✓ (2602.13953)\n- 正文用法: ✓ (experiments: \"quantized-actor divergence\")\n- 备注: 需更新 venue 为 ICLR 2026; 需确认最终发表标题\n\n### 7. [laban2022summac] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2022)\n- 标题: ✓\n- Venue: ✓ (TACL, Vol 10, pp 163-177)\n- arXiv ID: N/A\n- 正文用法: ✓ (related work: \"NLI-based faithfulness evaluation\")\n- 备注: 无问题\n\n### 8. [li2025srvf] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (AAAI 2025)\n- arXiv ID: ✓ (2412.07289)\n- 正文用法: ✓ (related work: \"reward-based evidence grounding\")\n- 备注: 无问题\n\n### 9. [jin2025rl_panacea] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2508.16546)\n- 正文用法: ✓ (related work: \"catastrophic forgetting in RL alignment\")\n- 备注: 无问题\n\n### 10. [ma2023dreeam] — ✗\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✗ (bib 写 \"Findings of EACL 2023\", 实际是 **EACL 2023 main conference**, ACL Anthology: 2023.eacl-main.145)\n- arXiv ID: ✓ (2302.08675)\n- 正文用法: ✓\n- 备注: Venue 需从 \"Findings of the Association for Computational Linguistics: EACL 2023\" 改为 \"Proceedings of the 17th Conference of the European Chapter of the Association for Computational Linguistics\"\n\n### 11. [moskovitz2024constrained] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (ICLR 2024)\n- arXiv ID: N/A\n- 正文用法: N/A (未在正文中引用)\n- 备注: 无问题, 但未被引用\n\n### 12. [rafailov2023direct] — ✗\n- 真实性: ✓\n- 作者: ✗ (Ermon, Stefano 应在第 4 位, Manning, Christopher D. 在第 5 位; bib 中两者顺序互换)\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2023)\n- arXiv ID: ✓ (2305.18290)\n- 正文用法: ✓ (intro/method: \"DPO\")\n- 备注: 修正作者顺序: ..., Mitchell, Eric and **Ermon, Stefano** and **Manning, Christopher D.** and Finn, Chelsea\n\n### 13. [shao2024deepseekmath] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2402.03300)\n- 正文用法: ✓ (intro/method: \"GRPO\")\n- 备注: 无问题\n\n### 14. [tan2022redocred] — ✗ (minor)\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2022)\n- 标题: ✗ (bib 用冒号 \"Revisiting DocRED: Addressing...\", 实际标题用破折号 \"Revisiting DocRED -- Addressing...\")\n- Venue: ✓ (EMNLP 2022)\n- arXiv ID: N/A\n- 正文用法: ✓ (intro: \"Re-DocRED\")\n- 备注: 轻微标点问题\n\n### 15. [xiao2022sais] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2022)\n- 标题: ✓\n- Venue: ✓ (NAACL 2022)\n- arXiv ID: N/A\n- 正文用法: ✓ (intro: \"introduce sentence-level evidence supervision\")\n- 备注: 无问题\n\n### 16. [xie2022eider] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2022)\n- 标题: ✓\n- Venue: ✓ (Findings of ACL 2022)\n- arXiv ID: ✓ (2106.08657)\n- 正文用法: ✓ (related work: \"fuses evidence into the relation classifier\")\n- 备注: 无问题\n\n### 17. [xu2024lmrc] — ✗\n- 真实性: ✓\n- 作者: ✓ (Li, Xingzuo; Chen, Kehai; Long, Yunfei; Zhang, Min — 作者本身正确)\n- 年份: ✓ (2024)\n- 标题: ✗ (bib 写 \"LMRC: LLM with Relation Classifier...\", 实际 arXiv 标题无 \"LMRC:\" 前缀, 仅为 \"LLM with Relation Classifier for Document-Level Relation Extraction\")\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2408.13889)\n- 正文用法: ✓ (intro: \"frame it as multi-choice reading comprehension\")\n- 备注: cite key \"xu2024\" 与第一作者 Li 不匹配; 标题需删除 \"LMRC:\" 前缀\n\n### 18. [yao2019docred] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2019)\n- 标题: ✓\n- Venue: ✓ (ACL 2019)\n- arXiv ID: N/A\n- 正文用法: ✓ (intro: \"DocRED\")\n- 备注: 无问题\n\n### 19. [zelikman2022star] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2022)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2022)\n- arXiv ID: ✓ (2203.14465)\n- 正文用法: ✓ (intro/method: \"STaR\")\n- 备注: 无问题\n\n### 20. [dong2023raft] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (TMLR)\n- arXiv ID: ✓ (2304.06767)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 无问题, 但未被引用\n\n### 21. [ito2025mogrpo] — ✗ (minor)\n- 真实性: ✓\n- 作者: ✓ (Ichihara, Yuki 等 — 作者信息正确)\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2509.22047)\n- 正文用法: N/A (未在正文中引用)\n- 备注: cite key \"ito2025\" 与第一作者 \"Ichihara\" 不匹配; 未被引用\n\n### 22. [li2025drift] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (ACL 2025)\n- arXiv ID: N/A\n- 正文用法: N/A (未在正文中引用)\n- 备注: 无问题, 但未被引用\n\n### 23. [liu2026gdpo] — ✗\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2026)\n- 标题: ✗ (minor: \"Reward\" → \"reward\", \"Multi-Reward\" → \"Multi-reward\")\n- Venue: ✗ (bib 写 arXiv preprint, 实际已发表于 **ICML 2026** poster)\n- arXiv ID: ✓ (2601.05242)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 需更新 venue 为 ICML 2026; 未被引用\n\n### 24. [liu2025drgrpo] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (COLM 2025)\n- arXiv ID: ✓ (2503.20783)\n- 正文用法: ✓ (related work: \"length bias\")\n- 备注: 无问题\n\n### 25. [yu2025dapo] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2503.14476)\n- 正文用法: ✓ (related work: \"entropy collapse\")\n- 备注: 无问题\n\n### 26. [zhang2024infuse] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (EACL 2024)\n- arXiv ID: N/A\n- 正文用法: ✓ (related work: \"NLI-based faithfulness evaluation\")\n- 备注: 无问题\n\n### 27. [wang2025rear] — ✗ (minor)\n- 真实性: ✓\n- 作者: ✓ (Luo, Jianwen; Hong, Yu; Yang, Shuai; Yao, Jianmin — 作者信息正确)\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (Findings of EMNLP 2025)\n- arXiv ID: N/A\n- 正文用法: ✓ (related work: \"applications to structured IE include ... REAR\")\n- 备注: cite key \"wang2025\" 与第一作者 \"Luo\" 不匹配\n\n### 28. [wang2025relprior] — ✗\n- 真实性: ✓\n- 作者: ✓ (Pi, Qiankun; Sun, Yepeng; Lu, Jicang; Fan, Qinlong; Huang, Ningbo; Wang, Shiyu — 作者信息正确)\n- 年份: ✓ (2025)\n- 标题: ✗ (bib: \"RelPrior: Relation as a Prior for LLM-based Document-Level Relation Extraction\"; 实际: \"Relation as a Prior: A Novel Paradigm for LLM-based Document-level Relation Extraction\")\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2511.08143)\n- 正文用法: ✓ (related work: \"RelPrior leverages relation priors\")\n- 备注: 标题严重偏差; cite key \"wang2025\" 与第一作者 \"Pi\" 不匹配\n\n### 29. [zhang2025glidre] — ✗ (minor)\n- 真实性: ✓\n- 作者: ✓ (Armingaud, Robin; Besançon, Romaric)\n- 年份: ✓ (2025)\n- 标题: ✗ (minor: \"Model\" 应为 \"model\")\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2508.00757)\n- 正文用法: N/A (未在正文中引用)\n- 备注: cite key \"zhang2025\" 与第一作者 \"Armingaud\" 不匹配; 未被引用\n\n### 30. [tang2025rsftppo] — ✓\n- 真实性: ✓\n- 作者: ✓ (Anil, Gautham Govind; Nagaraj, Dheeraj Mysore; Shanmugam, Karthikeyan; Shakkottai, Sanjay)\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (ICML 2025 Workshop PUT)\n- arXiv ID: N/A\n- 正文用法: ✓ (related work: \"theoretical connections to PPO\")\n- 备注: cite key \"tang2025\" 与第一作者 \"Anil\" 不匹配, 但所有事实正确\n\n### 31. [wang2025rullm] — ✗\n- 真实性: ✓\n- 作者: ✗ (Springer 页面列 7 位作者, bib 有 8 位 — \"Peng, Min\" 可能不在正式作者列表中)\n- 年份: ✓ (2025)\n- 标题: ✗ (bib 添加了 \"Ru-LLM:\" 前缀, Springer 正式标题无此前缀: \"Logical Rule-Constrained Large Language Models for Document-Level Relation Extraction\")\n- Venue: ✗ (bib 用 `journal = {NLPCC 2025}`, 应为 `@inproceedings` + `booktitle = {Proceedings of the 14th CCF International Conference on Natural Language Processing and Chinese Computing}`)\n- arXiv ID: N/A\n- 正文用法: N/A (未在正文中引用)\n- 备注: cite key \"wang2025\" 与第一作者 \"Zhang\" 不匹配; 多处问题; 未被引用\n\n### 32. [zhou2021atlop] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2021)\n- 标题: ✓\n- Venue: ✓ (AAAI 2021)\n- arXiv ID: ✓ (2010.11304)\n- 正文用法: ✓ (intro: \"encoder-based methods such as \\citet{zhou2021atlop}\")\n- 备注: 无问题\n\n### 33. [ruder2017overview] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2017)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (1706.05098)\n- 正文用法: ✓ (related work: \"negative transfer in multi-task learning\")\n- 备注: 无问题\n\n### 34. [standley2020tasks] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (ICML 2020)\n- arXiv ID: N/A\n- 正文用法: N/A (未在正文中引用)\n- 备注: 无问题, 但未被引用\n\n### 35. [yu2020gradient] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2020)\n- arXiv ID: ✓ (2001.06782)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 无问题, 但未被引用\n\n### 36. [wang2023selfconsistency] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (ICLR 2023)\n- arXiv ID: ✓ (2203.11171)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 无问题, 但未被引用\n\n### 37. [ouyang2022instructgpt] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2022)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2022)\n- arXiv ID: ✓ (2203.02155)\n- 正文用法: ✓ (method: \"RLHF\")\n- 备注: 无问题\n\n### 38. [schulman2017ppo] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2017)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (1707.06347)\n- 正文用法: ✓ (related work: \"PPO\")\n- 备注: 无问题\n\n### 39. [zeng2020gain] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (EMNLP 2020)\n- arXiv ID: N/A\n- 正文用法: ✓ (related work: \"GAIN\")\n- 备注: 无问题\n\n### 40. [ethayarajh2024kto] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (ICML 2024)\n- arXiv ID: ✓ (2402.01306)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 无问题, 但未被引用\n\n### 41. [coste2024reward] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (ICLR 2024)\n- arXiv ID: ✓ (2310.02743)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 无问题, 但未被引用\n\n### 42. [he2023debertav3] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (ICLR 2023)\n- arXiv ID: ✓ (2111.09543)\n- 正文用法: ✓ (method: \"DeBERTaV3\")\n- 备注: 无问题\n\n### 43. [dettmers2023qlora] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2023)\n- arXiv ID: ✓ (2305.14314)\n- 正文用法: ✓ (method: \"QLoRA\")\n- 备注: 无问题\n\n### 44. [hoffmann2022chinchilla] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2022)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2022)\n- arXiv ID: ✓ (2203.15556)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 无问题, 但未被引用\n\n### 45. [yuan2023rft] — ✓\n- 真实性: ✓\n- 作者: ✓\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2308.01825)\n- 正文用法: ✓ (related work: \"scaling analyses\")\n- 备注: 无问题\n\n### 46. [tamo2026evidencerl] — ✓\n- 真实性: ✓ (arXiv 确认, 2026年3月提交, Georgia Tech / Peking University)\n- 作者: ✓\n- 年份: ✓ (2026)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2603.19532)\n- 正文用法: ✓ (related work: \"reward-based evidence grounding\")\n- 备注: 2026 论文, 确认真实存在\n\n### 47. [liu2026rift] — ✓\n- 真实性: ✓ (arXiv 确认, 2026年1月提交, Huawei Noah's Ark Lab)\n- 作者: ✓\n- 年份: ✓ (2026)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2601.09253)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 2026 论文, 确认真实存在, 但未被引用\n\n### 48. [deng2026trajfusion] — ✓\n- 真实性: ✓ (arXiv 确认, 2026年2月提交, Microsoft)\n- 作者: ✓\n- 年份: ✓ (2026)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2602.04391)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 2026 论文, 确认真实存在, 但未被引用\n\n### 49. [tian2026mugrpo] — ✓\n- 真实性: ✓ (arXiv 确认, 2026年5月提交, Rice University)\n- 作者: ✓\n- 年份: ✓ (2026)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2605.17570)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 2026 论文, 确认真实存在, 但未被引用\n\n### 50. [ji2026treegrpo] — ✓\n- 真实性: ✓ (arXiv + OpenReview 确认)\n- 作者: ✓\n- 年份: ✓ (2026)\n- 标题: ✓\n- Venue: ✓ (ICLR 2026)\n- arXiv ID: ✓ (2509.21240)\n- 正文用法: N/A (未在正文中引用)\n- 备注: 2026 论文, 确认真实存在, 但未被引用\n\n### 51. [deepseek2025r1] — ✓\n- 真实性: ✓\n- 作者: ✓ (DeepSeek-AI)\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv ID: ✓ (2501.12948)\n- 正文用法: ✓ (related work: \"DeepSeek-R1 demonstrates its effectiveness at scale\")\n- 备注: 无问题\n\n### 52. [gulcehre2023rest] — ✗\n- 真实性: ✓\n- 作者: ✗ (bib 中 \"Dyer, Chris\" 和 \"Grangier, David\" 应为 **\"Doucet, Arnaud\"** 和 **\"de Freitas, Nando\"**)\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✗ (使用 `@inproceedings` + `booktitle = {arXiv preprint arXiv:2308.08998}` 格式非法; 应改为 `@article` + `journal`)\n- arXiv ID: ✓ (2308.08998)\n- 正文用法: ✓ (related work: \"iterative self-improvement through rejection sampling\")\n- 备注: 两处严重错误: 作者名错误 + entry type 错误\n\n---\n\n## 2026 年引用验证结果\n\n全部 7 条 2026 年引用均确认真实存在:\n\n| cite_key | arXiv ID | 提交时间 | 状态 |\n|----------|----------|----------|------|\n| tamo2026evidencerl | 2603.19532 | 2026-03 | ✓ arXiv preprint |\n| li2026qurl | 2602.13953 | 2026-02 | ✓ → ICLR 2026 (venue 需更新) |\n| liu2026gdpo | 2601.05242 | 2026-01 | ✓ → ICML 2026 (venue 需更新) |\n| deng2026trajfusion | 2602.04391 | 2026-02 | ✓ arXiv preprint |\n| tian2026mugrpo | 2605.17570 | 2026-05 | ✓ arXiv preprint |\n| ji2026treegrpo | 2509.21240 | 2025-09 | ✓ → ICLR 2026 |\n| liu2026rift | 2601.09253 | 2026-01 | ✓ arXiv preprint |\n\n---\n\n## 必须修复的条目 (按优先级)\n\n### P0 — 严重错误 (reviewer 可能标记)\n\n1. **`gulcehre2023rest`**: 替换作者 Dyer→Doucet, Grangier→de Freitas; 改 `@article`+`journal`\n2. **`ma2023dreeam`**: booktitle 改为 EACL 2023 main (非 Findings)\n3. **`wang2025relprior`**: 标题改为 \"Relation as a Prior: A Novel Paradigm for LLM-based Document-level Relation Extraction\"\n4. **`rafailov2023direct`**: 交换 Ermon 和 Manning 的顺序\n5. **`xu2024lmrc`**: 删除标题中 \"LMRC:\" 前缀\n6. **`wang2025rullm`**: 删除 \"Ru-LLM:\" 前缀; 核实作者; 改 entry type\n\n### P1 — 中等 (venue outdated)\n\n7. **`li2026qurl`**: venue 更新为 ICLR 2026\n8. **`liu2026gdpo`**: venue 更新为 ICML 2026\n\n### P2 — 轻微\n\n9. **`tan2022redocred`**: 标题冒号改破折号\n10. **`zhang2025glidre`**: \"Model\" → \"model\"\n\n### P3 — 清理\n\n11. 移除 17 条未被引用的 bib 条目 (或在正文中补充引用)\n12. 修正 7 个 cite key 使其与第一作者匹配 (可选, 但建议)\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-26T10:46:12.562548+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/ref_audit_worker2.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-26T10:46:12.562757+00:00_
+
+审计报告已写入 `artifacts/ref_audit_worker2.md`。
+
+**结果**: 52 条引用, 14 条有问题, 17 条未被引用。
+
+**P0 严重 (6条)**:
+- `gulcehre2023rest` — 作者名错 (Dyer/Grangier → Doucet/de Freitas) + entry type 错
+- `ma2023dreeam` — Venue 错 (Findings → EACL main)
+- `wang2025relprior` — 标题严重偏差
+- `rafailov2023direct` — 作者顺序错 (Ermon/Manning 互换)
+- `xu2024lmrc` — 标题多余 "LMRC:" 前缀
+- `wang2025rullm` — 标题多余 "Ru-LLM:" 前缀 + 可能多一位作者
+
+**P1 中等 (2条)**: `li2026qurl` 和 `liu2026gdpo` venue 需从 arXiv 更新为已接收会议
+
+**全部 7 条 2026 引用均确认真实存在**, 无虚构引用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_ref-audit-worker-2_20260526T103533"
+}
+```
+
+</details>
+
+---

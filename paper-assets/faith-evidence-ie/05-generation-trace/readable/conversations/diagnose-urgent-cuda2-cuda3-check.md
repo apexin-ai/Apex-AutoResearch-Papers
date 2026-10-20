@@ -1,0 +1,1848 @@
+# diagnose urgent cuda2 cuda3 check
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 61
+- **Recorded user turns:** 0
+- **Tool calls:** 30
+- **Original source:** `logs/chats/worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929.jsonl`
+- **Structured JSON:** [`e90c75bd768f8541c68b.json`](../../sessions/e9/e90c75bd768f8541c68b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+61 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T07:52:04.689971+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image",
+  "max_results": "7"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image",
+    "max_results": "7"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T07:52:04.690363+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T07:52:04.690582+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-23T07:52:04.690735+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 94 %, 27227 MiB, 97887 MiB\\n1, 92 %, 32479 MiB, 97887 MiB\\n2, 0 %, 0 MiB, 97887 MiB\\n3, 0 %, 0 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-23T07:52:04.690865+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "nvidia-smi --query-compute-apps=pid,used_memory,gpu_uuid --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "nvidia-smi --query-compute-apps=pid,used_memory,gpu_uuid --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T07:52:04.690994+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"231549, 27218 MiB, GPU-37d3a9e2-93e4-1c65-4822-24d1d38e7f91\\n194682, 32470 MiB, GPU-e26e7373-49e3-f0ee-ea51-8d0ddf68a709\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T07:52:04.691116+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ps -p 214028 -o pid,etime --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ps -p 214028 -o pid,etime --no-headers",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T07:52:04.691267+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-23T07:52:04.691420+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s43_with_evi/test_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s43_with_evi/test_summary.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T07:52:04.691597+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_documents\\\": 500,\\n  \\\"n_predictions\\\": 26222,\\n  \\\"n_truncated\\\": 378,\\n  \\\"n_format_ok\\\": 500,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 21888.2,\\n  \\\"codalab_stats\\\": {\\n    \\\"converted\\\": 7781,\\n    \\\"skipped_rel\\\": 164,\\n    \\\"skipped_entity\\\": 676\\n  },\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s43_with_evi\\\",\\n    \\\"batch_size\\\": 1,\\n    \\\"max_new_tokens\\\": 2048,\\n    \\\"seed\\\": 42,\\n    \\\"split\\\": \\\"test_revised\\\",\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"metrics\\\": {\\n    \\\"precision\\\": 0.4525701514775267,\\n    \\\"recall\\\": 0.2100864553314121,\\n    \\\"f1\\\": 0.28696268304204064,\\n    \\\"ign_precision\\\": 0.4525701514775267,\\n    \\\"ign_recall\\\": 0.2100864553314121,\\n    \\\"ign_f1\\\": 0.28696268304204064,\\n    \\\"tp\\\": 3645,\\n    \\\"pred_count\\\": 8054,\\n    \\\"gold_count\\\": 17350,\\n    \\\"evi_precision\\\": 0.5069669071908435,\\n    \\\"evi_recall\\\": 0.8448222245257593,\\n    \\\"evi_f1\\\": 0.6336741437623916,\\n    \\\"n_evaluated\\\": 26144,\\n    \\\"edcr\\\": 0.8149703725565873,\\n    \\\"n_distractor_citations\\\": 35897,\\n    \\\"n_total_citations\\\": 44047,\\n    \\\"evi_joint_precision\\\": 0.2203997949769349,\\n    \\\"evi_joint_recall\\\": 0.23852920199698865,\\n    \\\"evi_f1_joint\\\": 0.22910640889024206,\\n    \\\"evi_tp\\\": 3010,\\n    \\\"evi_pred_total\\\": 13657,\\n    \\\"evi_gold_total\\\": 12619,\\n    \\\"format_compliance_rate\\\": 1.
+…[truncated 334 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-23T07:52:04.691775+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s43_with_evi/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls -la /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s43_with_evi/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T07:52:04.691909+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8016\\ndrwxr-xr-x   2 root root     102 May 23 15:13 .\\ndrwxr-xr-x 171 root root   12288 May 23 14:47 ..\\n-rw-r--r--   1 root root  404821 May 23 15:13 codalab_submission.json\\n-rw-r--r--   1 root root 7778770 May 23 15:13 predictions.json\\n-rw-r--r--   1 root root    1714 May 23 15:13 test_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-23T07:52:04.692034+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ps -p 221956 -o pid,etime --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ps -p 221956 -o pid,etime --no-headers",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T07:52:04.692156+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T07:52:04.692313+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T07:52:04.692500+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.298822151363311,\\n  \\\"recall\\\": 0.3779112830219735,\\n  \\\"f1\\\": 0.33374518496983796,\\n  \\\"ign_precision\\\": 0.2787404760299373,\\n  \\\"ign_recall\\\": 0.3820349320765179,\\n  \\\"ign_f1\\\": 0.32231404958677684,\\n  \\\"tp\\\": 4592,\\n  \\\"pred_count\\\": 15367,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.7289719626168224,\\n  \\\"evi_recall\\\": 0.9086748491782817,\\n  \\\"evi_f1\\\": 0.8089637929437911,\\n  \\\"n_evaluated\\\": 22379,\\n  \\\"edcr\\\": 0.8122864694127506,\\n  \\\"n_distractor_citations\\\": 37803,\\n  \\\"n_total_citations\\\": 46539,\\n  \\\"evi_joint_precision\\\": 0.18893908024342806,\\n  \\\"evi_joint_recall\\\": 0.31270442863818076,\\n  \\\"evi_f1_joint\\\": 0.23555407810086237,\\n  \\\"evi_tp\\\": 6023,\\n  \\\"evi_pred_total\\\": 31878,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9969543147208122,\\n  \\\"field_compliance_rate\\\": 0.9949238578680203,\\n  \\\"evidence_format_rate\\\": 0.9898477157360406,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 982,\\n  \\\"n_field_complete\\\": 980,\\n  \\\"n_evidence_valid\\\": 975,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 22410,\\n  \\\"n_truncated\\\": 175,\\n  \\\"n_format_ok\\\": 982,\\n  \\\"format_ok_rate\\\": 0.9969543147208122,\\n  \\\"inference_time_seconds\\\": 13310.0,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/dpo_output_rebuilt_1ep\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 2048,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  
+…[truncated 109 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-23T07:52:04.692647+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls -la /root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T07:52:04.692773+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 9164\\ndrwxr-xr-x   2 root root      62 May 23 15:12 .\\ndrwxr-xr-x 171 root root   12288 May 23 14:47 ..\\n-rw-r--r--   1 root root    1533 May 23 15:12 metrics.json\\n-rw-r--r--   1 root root 9360422 May 23 15:12 predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-23T07:52:04.693012+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "test_eval_1_7b_rsft_s43_with_evi",
+  "field": "metrics",
+  "value": "{'ign_f1': 0.28696, 'precision': 0.4526, 'recall': 0.2101, 'f1': 0.287, 'evi_f1': 0.6337, 'evi_f1_joint': 0.2291, 'edcr': 0.815, 'n_documents': 500, 'n_truncated': 378, 'format_ok_rate': 1}",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "test_eval_1_7b_rsft_s43_with_evi",
+    "field": "metrics",
+    "value": "{'ign_f1': 0.28696, 'precision': 0.4526, 'recall': 0.2101, 'f1': 0.287, 'evi_f1': 0.6337, 'evi_f1_joint': 0.2291, 'edcr': 0.815, 'n_documents': 500, 'n_truncated': 378, 'format_ok_rate': 1}",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T07:52:04.693198+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"test_eval_1_7b_rsft_s43_with_evi\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T01:08:18.926Z\", \"updated_at\": \"2026-05-23T07:50:17.963Z\", \"hypothesis\": \"1.7B RSFT k1 s43 with-evidence test eval on Re-DocRED test_revised (500 docs). Multi-seed rebuttal: 对比 s42 test ign_f1=0.2933，量化 seed variance。1.7B 是 evidence tax 最大 scale (-5.43pp)，multi-seed 验证此极端 tax 的稳定性。\", \"parent\": \"test_eval_1_7b_rsft_s42\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s43_with_evi --batch_size 1 --seed 42\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-1.7B + SFT + RSFT-k1-s43 (with-evidence)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43\", \"eval_data\": \"test_revised\", \"gpu\": \"cuda:3\", \"pid\": 214028, \"log_path\": \"/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s43_with_evi.log\"}, \"metrics\": {\"ign_f1\": 0.28696, \"precision\": 0.4526, \"recall\": 0.2101, \"f1\": 0.287, \"evi_f1\": 0.6337, \"evi_f1_joint\": 0.2291, \"edcr\": 0.815, \"n_documents\": 500, \"n_truncated\": 378, \"format_ok_rate\": 1}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5776}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-23T07:52:04.693399+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "dpo_rebuilt_1ep_eval",
+  "field": "metrics",
+  "value": "{'ign_f1': 0.32231, 'ign_precision': 0.2787, 'ign_recall': 0.382, 'f1': 0.33375, 'precision': 0.2988, 'recall': 0.3779, 'evi_f1': 0.809, 'evi_f1_joint': 0.2356, 'edcr': 0.8123, 'n_documents': 985, 'n_truncated': 175, 'format_ok_rate': 0.997}",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "dpo_rebuilt_1ep_eval",
+    "field": "metrics",
+    "value": "{'ign_f1': 0.32231, 'ign_precision': 0.2787, 'ign_recall': 0.382, 'f1': 0.33375, 'precision': 0.2988, 'recall': 0.3779, 'evi_f1': 0.809, 'evi_f1_joint': 0.2356, 'edcr': 0.8123, 'n_documents': 985, 'n_truncated': 175, 'format_ok_rate': 0.997}",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-23T07:52:04.693545+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/freige -maxdepth 3 -name \"*dpo*\" -name \"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp/freige -maxdepth 3 -name \"*dpo*\" -name \"*.py\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-23T07:52:04.693706+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"dpo_rebuilt_1ep_eval\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T03:30:29.032Z\", \"updated_at\": \"2026-05-23T07:50:20.437Z\", \"hypothesis\": \"DPO 1ep 重建 checkpoint 的 unified protocol eval (matched@2048, DocRED dev)。DPO adapter 在 merged SFT 上，需要 --base_model + --sft_adapter + --model_path (DPO adapter)。对比原始 1ep eval Ign-F1=38.9 和 RSFT CED baseline 44.67。\", \"parent\": \"dpo_rebuilt_1ep\", \"spec\": {\"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_rebuilt_1ep --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 2048 --no-quantize --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT (merged) + DPO-1ep LoRA\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/dpo_output_rebuilt_1ep\", \"eval_data\": \"docred-dev\", \"pid\": 221951, \"gpu\": \"cuda:2\", \"log_path\": \"/root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval.log\"}, \"metrics\": {\"ign_f1\": 0.32231, \"ign_precision\": 0.2787, \"ign_recall\": 0.382, \"f1\": 0.33375, \"precision\": 0.2988, \"recall\": 0.3779, \"evi_f1\": 0.809, \"evi_f1_joint\": 0.2356, \"edcr\": 0.8123, \"n_documents\": 985, \"n_truncated\": 175, \"format_ok_rate\": 0.997}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6693}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-23T07:52:04.693869+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/training/dpo_data_builder.py\\n/root/autodl-tmp/freige/training/dpo_trainer.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-23T07:52:04.694002+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp -maxdepth 2 -name \"*dpo*\" -name \"*.jsonl\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp -maxdepth 2 -name \"*dpo*\" -name \"*.jsonl\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T07:52:04.694134+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/dpo_data_rebuilt/dpo_pairs.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-23T07:52:04.694287+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/dpo_output_rebuilt_1ep/adapter_config.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/dpo_output_rebuilt_1ep/adapter_config.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T07:52:04.694468+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"alora_invocation_tokens\\\": null,\\n  \\\"alpha_pattern\\\": {},\\n  \\\"arrow_config\\\": null,\\n  \\\"auto_mapping\\\": null,\\n  \\\"base_model_name_or_path\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n  \\\"bias\\\": \\\"none\\\",\\n  \\\"corda_config\\\": null,\\n  \\\"ensure_weight_tying\\\": false,\\n  \\\"eva_config\\\": null,\\n  \\\"exclude_modules\\\": null,\\n  \\\"fan_in_fan_out\\\": false,\\n  \\\"inference_mode\\\": true,\\n  \\\"init_lora_weights\\\": true,\\n  \\\"layer_replication\\\": null,\\n  \\\"layers_pattern\\\": null,\\n  \\\"layers_to_transform\\\": null,\\n  \\\"loftq_config\\\": {},\\n  \\\"lora_alpha\\\": 128,\\n  \\\"lora_bias\\\": false,\\n  \\\"lora_dropout\\\": 0.05,\\n  \\\"lora_ga_config\\\": null,\\n  \\\"megatron_config\\\": null,\\n  \\\"megatron_core\\\": \\\"megatron.core\\\",\\n  \\\"modules_to_save\\\": null,\\n  \\\"peft_type\\\": \\\"LORA\\\",\\n  \\\"peft_version\\\": \\\"0.19.1\\\",\\n  \\\"qalora_group_size\\\": 16,\\n  \\\"r\\\": 64,\\n  \\\"rank_pattern\\\": {},\\n  \\\"revision\\\": null,\\n  \\\"target_modules\\\": [\\n    \\\"k_proj\\\",\\n    \\\"gate_proj\\\",\\n    \\\"down_proj\\\",\\n    \\\"q_proj\\\",\\n    \\\"o_proj\\\",\\n    \\\"up_proj\\\",\\n    \\\"v_proj\\\"\\n  ],\\n  \\\"target_parameters\\\": null,\\n  \\\"task_type\\\": \\\"CAUSAL_LM\\\",\\n  \\\"trainable_token_indices\\\": null,\\n  \\\"use_bdlora\\\": null,\\n  \\\"use_dora\\\": false,\\n  \\\"use_qalora\\\": false,\\n  \\\"use_rslora\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-23T07:52:04.694616+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -r \"dpo\" /root/autodl-tmp/freige/training/ --include=\"*.py\" -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -r \"dpo\" /root/autodl-tmp/freige/training/ --include=\"*.py\" -l",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T07:52:04.694743+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/training/dpo_data_builder.py\\n/root/autodl-tmp/freige/training/dpo_trainer.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-23T07:52:04.694864+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'dpo_rebuilt_1ep'}",
+  "project": "faith-evidence-ie",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'dpo_rebuilt_1ep'}",
+    "project": "faith-evidence-ie",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T07:52:04.694986+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9104}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-23T07:52:04.695137+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "test_eval_1_7b_rsft_s43_with_evi",
+  "field": "conclusion",
+  "value": "success",
+  "project": "faith-evidence-ie",
+  "spec": "{'checkpoint_path': '/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43', 'log_path': '/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s43_with_evi.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "test_eval_1_7b_rsft_s43_with_evi",
+    "field": "conclusion",
+    "value": "success",
+    "project": "faith-evidence-ie",
+    "spec": "{'checkpoint_path': '/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43', 'log_path': '/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s43_with_evi.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-23T07:52:04.695305+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "dpo_rebuilt_1ep_eval",
+  "field": "conclusion",
+  "value": "success",
+  "project": "faith-evidence-ie",
+  "spec": "{'checkpoint_path': '/root/autodl-tmp/dpo_output_rebuilt_1ep', 'log_path': '/root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "dpo_rebuilt_1ep_eval",
+    "field": "conclusion",
+    "value": "success",
+    "project": "faith-evidence-ie",
+    "spec": "{'checkpoint_path': '/root/autodl-tmp/dpo_output_rebuilt_1ep', 'log_path': '/root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-23T07:52:04.695485+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"test_eval_1_7b_rsft_s43_with_evi\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T01:08:18.926Z\", \"updated_at\": \"2026-05-23T07:50:36.305Z\", \"hypothesis\": \"1.7B RSFT k1 s43 with-evidence test eval on Re-DocRED test_revised (500 docs). Multi-seed rebuttal: 对比 s42 test ign_f1=0.2933，量化 seed variance。1.7B 是 evidence tax 最大 scale (-5.43pp)，multi-seed 验证此极端 tax 的稳定性。\", \"parent\": \"test_eval_1_7b_rsft_s42\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s43_with_evi --batch_size 1 --seed 42\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-1.7B + SFT + RSFT-k1-s43 (with-evidence)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43\", \"eval_data\": \"test_revised\", \"gpu\": \"cuda:3\", \"pid\": 214028, \"log_path\": \"/root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s43_with_evi.log\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43\"}, \"metrics\": {\"ign_f1\": 0.28696, \"precision\": 0.4526, \"recall\": 0.2101, \"f1\": 0.287, \"evi_f1\": 0.6337, \"evi_f1_joint\": 0.2291, \"edcr\": 0.815, \"n_documents\": 500, \"n_truncated\": 378, \"format_ok_rate\": 1}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5733}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-23T07:52:04.695631+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "head -100 /root/autodl-tmp/freige/training/dpo_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "head -100 /root/autodl-tmp/freige/training/dpo_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-23T07:52:04.695788+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"dpo_rebuilt_1ep_eval\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T03:30:29.032Z\", \"updated_at\": \"2026-05-23T07:50:37.832Z\", \"hypothesis\": \"DPO 1ep 重建 checkpoint 的 unified protocol eval (matched@2048, DocRED dev)。DPO adapter 在 merged SFT 上，需要 --base_model + --sft_adapter + --model_path (DPO adapter)。对比原始 1ep eval Ign-F1=38.9 和 RSFT CED baseline 44.67。\", \"parent\": \"dpo_rebuilt_1ep\", \"spec\": {\"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_rebuilt_1ep --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 2048 --no-quantize --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT (merged) + DPO-1ep LoRA\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/dpo_output_rebuilt_1ep\", \"eval_data\": \"docred-dev\", \"pid\": 221951, \"gpu\": \"cuda:2\", \"log_path\": \"/root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval.log\", \"checkpoint_path\": \"/root/autodl-tmp/dpo_output_rebuilt_1ep\"}, \"metrics\": {\"ign_f1\": 0.32231, \"ign_precision\": 0.2787, \"ign_recall\": 0.382, \"f1\": 0.33375, \"precision\": 0.2988, \"recall\": 0.3779, \"evi_f1\": 0.809, \"evi_f1_joint\": 0.2356, \"edcr\": 0.8123, \"n_documents\": 985, \"n_truncated\": 175, \"format_ok_rate\": 0.997}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5263}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-23T07:52:04.696011+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"DPO (Direct Preference Optimization) 训练脚本。\\n\\n从 SFT warmup checkpoint 继续训练，使用 CED 打分构建的偏好对。\\n流程: base model → merge SFT adapter → 新 LoRA → DPO 训练。\\n\\n禁止使用 QLoRA 4-bit 量化（CUBLAS 错误），使用 bf16 全精度 + LoRA。\\n\\n输入: dpo_pairs.jsonl，每行 {\\\"input\\\", \\\"chosen\\\", \\\"rejected\\\", \\\"margin\\\", ...}\\n       (由 dpo_data_builder.py 生成)\\n输出: LoRA adapter checkpoint\\n依赖: transformers, trl, peft, datasets\\n\\n单卡:   python -m freige.training.dpo_trainer \\\\\\n            --dpo_data_path data.jsonl --output_dir ./dpo_output\\n多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\n            -m freige.training.dpo_trainer \\\\\\n            --dpo_data_path data.jsonl --output_dir ./dpo_output\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom peft import LoraConfig, PeftModel, TaskType, get_peft_model\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom trl import DPOConfig, DPOTrainer\\n\\nfrom freige.training.sft_trainer import SYSTEM_PROMPT\\n\\n\\ndef _apply_chat_template(tokenizer, messages, **kwargs):\\n    tmpl = getattr(tokenizer, 'chat_template', None) or ''\\n    if 'enable_thinking' not in tmpl:\\n        kwargs.pop('enable_thinking', None)\\n    return tokenizer.apply_chat_template(messages, **kwargs)\\n\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nDEFAULT_BASE_MODEL = \\\"/root/autodl-tmp/models/Qwen3-4B\\\"\\nDEFAULT_SFT_ADAPTER = \\\"/root/autodl-tmp/sft_output\\\"\\n\\n\\ndef load_dpo_data(data_path: str, tokenizer, max_length: int = 2048):\\n    \\\"\\\"\\\"加载 DPO 偏好对，格式化为 TRL DPOTrainer 所需格式。\\n\\n    使用 apply_chat_template 将 input/chosen/rejected 转换为带 chat token 的文本。\\n    超过 max_length 的样本跳过（不截断，避免不完整 JSON 输出）。\\n\\n    Returns:\\n        Dataset with columns: pro
+…[truncated 1899 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-23T07:52:04.696182+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -r \"dpo_rebuilt_1ep\\|dpo_output_rebuilt\" ~/runs/faith-evidence-ie/ --include=\"*.log\" -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -r \"dpo_rebuilt_1ep\\|dpo_output_rebuilt\" ~/runs/faith-evidence-ie/ --include=\"*.log\" -l",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-23T07:52:04.696356+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-23T07:52:04.696487+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /root/autodl-tmp/dpo_data_rebuilt/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls -la /root/autodl-tmp/dpo_data_rebuilt/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-23T07:52:04.696613+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 14592\\ndrwxr-xr-x  2 root root       64 May 23 10:06 .\\ndrwxr-xr-x 89 root root     8192 May 23 10:35 ..\\n-rw-r--r--  1 root root 14924414 May 23 10:06 dpo_pairs.jsonl\\n-rw-r--r--  1 root root     1054 May 23 10:06 dpo_report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-23T07:52:04.696734+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'DONE'}",
+  "project": "faith-evidence-ie",
+  "fields": "['exp_id', 'hypothesis', 'metrics', 'spec']",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'DONE'}",
+    "project": "faith-evidence-ie",
+    "fields": "['exp_id', 'hypothesis', 'metrics', 'spec']",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-23T07:52:04.696976+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"test_eval_4b_rsft_s43_no_evi\": {\"hypothesis\": \"4B RSFT CED s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 s43 with-evi test ign_f1=0.2503 计算 s43 evidence tax。s42 tax=+1.51pp，验证 multi-seed tax 稳定性。\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/eval_results/test_eval_4b_rsft_s43_no_evi\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_4b_rsft_s43_no_evi.log\"}, \"metrics\": {\"ign_f1\": 0.2702, \"f1\": 0.2702, \"precision\": 0.3583, \"recall\": 0.2169, \"format_ok_rate\": 0.992, \"n_documents\": 500, \"n_predictions\": 27117, \"n_truncated\": 241, \"inference_time_seconds\": 4112.2}}, \"dpo_rebuilt_1ep\": {\"hypothesis\": \"DPO 1-epoch 重建训练。从 RSFT candidate generations + CED scores 重建 DPO pairs (2977 pairs, rank_by=ced_reward, min_margin=0.05)。原始 DPO checkpoint 已丢失，需重建以统一 Table 2 eval protocol (matched@2048)。对比原始 1ep eval: Ign-F1=38.9。\", \"spec\": {\"command\": \"python -m freige.training.dpo_trainer --dpo_data_path /root/autodl-tmp/dpo_data_rebuilt/dpo_pairs.jsonl --output_dir /root/autodl-tmp/dpo_output_rebuilt_1ep --num_epochs 1 --beta 0.1 --loss_type sigmoid --learning_rate 5e-6 --per_device_batch_size 2 --gradient_accumulation_steps 8 --lora_rank 64 --lora_alpha 128 --wandb_project freige-dpo --wandb_run_name dpo_rebuilt_1ep\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/dpo_data_rebuilt/dpo_pairs.jsonl\", \"data_count\": 2977, \"model_name\": \"Qwen3-4B + SFT (merged) + DPO LoRA\", \"seed\": 42, \"hyperparams\": {\"beta\": 0.1, \"loss_type\": \"sigmoid\", \"learning_rate\": 5e-06, \"lora_rank\": 64, \"lora_alpha\": 128, \"per_device_batch_size\": 2, \"gradient_accumulation_steps\": 8, \"num_epochs\": 1}, \"pid\": 218955, \"gpu\": \"cuda:2\", \"log_path\": \"~/runs/faith-evidence-ie/dpo_rebuilt_1ep.log\", \"checkpoint_path\": \"/root/autodl-tmp/dpo_output_rebuilt_1ep\"}, \"metrics\": {\"train_loss\": 0.5932, \"rewards_accuracies\": 0.8163, \"reward
+…[truncated 4351 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-23T07:52:04.697208+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"add_argument\\|argparse\\|parse_args\" /root/autodl-tmp/freige/training/dpo_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"add_argument\\|argparse\\|parse_args\" /root/autodl-tmp/freige/training/dpo_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-23T07:52:04.697392+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-23T07:52:04.697525+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"add_argument\" /root/autodl-tmp/freige/training/dpo_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"add_argument\" /root/autodl-tmp/freige/training/dpo_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-23T07:52:04.697688+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"116:    parser.add_argument(\\\"--base_model\\\", type=str, default=DEFAULT_BASE_MODEL)\\n117:    parser.add_argument(\\\"--sft_adapter\\\", type=str, default=DEFAULT_SFT_ADAPTER,\\n119:    parser.add_argument(\\\"--dpo_data_path\\\", type=str, required=True,\\n121:    parser.add_argument(\\\"--output_dir\\\", type=str, required=True,\\n125:    parser.add_argument(\\\"--beta\\\", type=float, default=0.1,\\n127:    parser.add_argument(\\\"--loss_type\\\", type=str, default=\\\"sigmoid\\\",\\n130:    parser.add_argument(\\\"--label_smoothing\\\", type=float, default=0.0,\\n134:    parser.add_argument(\\\"--num_epochs\\\", type=int, default=3)\\n135:    parser.add_argument(\\\"--per_device_batch_size\\\", type=int, default=2)\\n136:    parser.add_argument(\\\"--gradient_accumulation_steps\\\", type=int, default=8)\\n137:    parser.add_argument(\\\"--learning_rate\\\", type=float, default=5e-6,\\n139:    parser.add_argument(\\\"--warmup_steps\\\", type=int, default=50)\\n140:    parser.add_argument(\\\"--max_length\\\", type=int, default=2048)\\n141:    parser.add_argument(\\\"--max_prompt_length\\\", type=int, default=1536)\\n142:    parser.add_argument(\\\"--save_steps\\\", type=int, default=100)\\n143:    parser.add_argument(\\\"--save_total_limit\\\", type=int, default=3)\\n144:    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n147:    parser.add_argument(\\\"--wandb_project\\\", type=str, default=\\\"freige-dpo\\\")\\n148:    parser.add_argument(\\\"--wandb_run_name\\\", type=str, default=None)\\n151:    parser.add_argument(\\\"--lora_rank\\\", type=int, default=64)\\n152:    parser.add_argument(\\\"--lora_alpha\\\", type=int, default=128)\\n153:    parser.add_argument(\\\"--lora_dropout\\\", type=float, default=0.05)\\n154:    parser.add_argument(\\\"--bf16\\\", action=\\\"store_true\\\", default=True)\\n155:    parser.add_argument(\\\"--deepspeed\\\", type=str, default=None,\\n\", \"stderr\": \"
+…[truncated 86 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-23T07:52:04.697877+00:00_
+
+called mcp__agent-ml-research__submit_training_job
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "gpu_ids": "['cuda:3']",
+  "exp_id": "test_eval_1_7b_rsft_s43_no_evi",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s43_no_evi\"",
+  "timeout_hours": "4",
+  "account": "root",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "gpu_ids": "['cuda:3']",
+    "exp_id": "test_eval_1_7b_rsft_s43_no_evi",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s43_no_evi\"",
+    "timeout_hours": "4",
+    "account": "root",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-23T07:52:04.698018+00:00_
+
+called mcp__agent-ml-research__submit_training_job
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "gpu_ids": "['cuda:2']",
+  "exp_id": "dpo_rebuilt_3ep",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python -m freige.training.dpo_trainer --dpo_data_path /root/autodl-tmp/dpo_data_rebuilt/dpo_pairs.jsonl --output_dir /root/autodl-tmp/dpo_output_rebuilt_3ep --num_epochs 3 --beta 0.1 --loss_type sigmoid --learning_rate 5e-6 --per_device_batch_size 2 --gradient_accumulation_steps 8 --lora_rank 64 --lora_alpha 128 --wandb_project freige-dpo --wandb_run_name dpo_rebuilt_3ep\"",
+  "timeout_hours": "2",
+  "account": "root",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "gpu_ids": "['cuda:2']",
+    "exp_id": "dpo_rebuilt_3ep",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python -m freige.training.dpo_trainer --dpo_data_path /root/autodl-tmp/dpo_data_rebuilt/dpo_pairs.jsonl --output_dir /root/autodl-tmp/dpo_output_rebuilt_3ep --num_epochs 3 --beta 0.1 --loss_type sigmoid --learning_rate 5e-6 --per_device_batch_size 2 --gradient_accumulation_steps 8 --lora_rank 64 --lora_alpha 128 --wandb_project freige-dpo --wandb_run_name dpo_rebuilt_3ep\"",
+    "timeout_hours": "2",
+    "account": "root",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-23T07:52:04.698155+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"pid\": \"234597\", \"log_file\": \"~/runs/faith-evidence-ie/test_eval_1_7b_rsft_s43_no_evi.log\", \"gpu_ids\": [\"cuda:3\"], \"server\": \"rtx5090-4x\", \"account\": \"root\", \"cuda_visible_devices\": \"3\", \"backend\": \"tmux\", \"tmux_session\": \"test_eval_1_7b_rsft_s43_no_evi\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-23T07:52:04.698321+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"pid\": \"234741\", \"log_file\": \"~/runs/faith-evidence-ie/dpo_rebuilt_3ep.log\", \"gpu_ids\": [\"cuda:2\"], \"server\": \"rtx5090-4x\", \"account\": \"root\", \"cuda_visible_devices\": \"2\", \"backend\": \"tmux\", \"tmux_session\": \"dpo_rebuilt_3ep\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-23T07:52:04.698487+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "test_eval_1_7b_rsft_s43_no_evi",
+  "field": "hypothesis",
+  "value": "1.7B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 s43 with-evi 计算 s43 evidence tax。s42 tax=-5.43pp（最大），验证 multi-seed tax 稳定性。",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "test_eval_1_7b_rsft_s43_no_evi",
+    "field": "hypothesis",
+    "value": "1.7B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 s43 with-evi 计算 s43 evidence tax。s42 tax=-5.43pp（最大），验证 multi-seed tax 稳定性。",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-23T07:52:04.699490+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "test_eval_1_7b_rsft_s43_no_evi",
+  "field": "parent",
+  "value": "test_eval_1_7b_rsft_s43_with_evi",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "test_eval_1_7b_rsft_s43_no_evi",
+    "field": "parent",
+    "value": "test_eval_1_7b_rsft_s43_with_evi",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-23T07:52:04.699707+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"test_eval_1_7b_rsft_s43_no_evi\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T07:51:28.551Z\", \"updated_at\": \"2026-05-23T07:51:42.470Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s43_no_evi\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"234597\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_1_7b_rsft_s43_no_evi.log\", \"submitted_at\": \"2026-05-23T07:51:27.667Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"1.7B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 s43 with-evi 计算 s43 evidence tax。s42 tax=-5.43pp（最大），验证 multi-seed tax 稳定性。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5537}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-23T07:52:04.699888+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"test_eval_1_7b_rsft_s43_no_evi\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T07:51:28.551Z\", \"updated_at\": \"2026-05-23T07:51:44.055Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s43_no_evi\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"234597\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_1_7b_rsft_s43_no_evi.log\", \"submitted_at\": \"2026-05-23T07:51:27.667Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"1.7B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 s43 with-evi 计算 s43 evidence tax。s42 tax=-5.43pp（最大），验证 multi-seed tax 稳定性。\", \"parent\": \"test_eval_1_7b_rsft_s43_with_evi\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5549}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-23T07:52:04.700045+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "dpo_rebuilt_3ep",
+  "field": "hypothesis",
+  "value": "DPO 3-epoch 训练。从 SFT merged base 出发训练 3 epochs（对比 1ep ign_f1=0.32231）。验证 DPO 是否从更多训练中受益，支撑 decoupling spectrum 的 gradual degradation claim。",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "dpo_rebuilt_3ep",
+    "field": "hypothesis",
+    "value": "DPO 3-epoch 训练。从 SFT merged base 出发训练 3 epochs（对比 1ep ign_f1=0.32231）。验证 DPO 是否从更多训练中受益，支撑 decoupling spectrum 的 gradual degradation claim。",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-23T07:52:04.700185+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "dpo_rebuilt_3ep",
+  "field": "parent",
+  "value": "dpo_rebuilt_1ep",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "dpo_rebuilt_3ep",
+    "field": "parent",
+    "value": "dpo_rebuilt_1ep",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-23T07:52:04.700391+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"dpo_rebuilt_3ep\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T07:51:32.975Z\", \"updated_at\": \"2026-05-23T07:51:47.260Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python -m freige.training.dpo_trainer --dpo_data_path /root/autodl-tmp/dpo_data_rebuilt/dpo_pairs.jsonl --output_dir /root/autodl-tmp/dpo_output_rebuilt_3ep --num_epochs 3 --beta 0.1 --loss_type sigmoid --learning_rate 5e-6 --per_device_batch_size 2 --gradient_accumulation_steps 8 --lora_rank 64 --lora_alpha 128 --wandb_project freige-dpo --wandb_run_name dpo_rebuilt_3ep\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"234741\", \"log_path\": \"~/runs/faith-evidence-ie/dpo_rebuilt_3ep.log\", \"submitted_at\": \"2026-05-23T07:51:32.027Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"DPO 3-epoch 训练。从 SFT merged base 出发训练 3 epochs（对比 1ep ign_f1=0.32231）。验证 DPO 是否从更多训练中受益，支撑 decoupling spectrum 的 gradual degradation claim。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5109}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-23T07:52:04.700564+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"dpo_rebuilt_3ep\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T07:51:32.975Z\", \"updated_at\": \"2026-05-23T07:51:48.806Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python -m freige.training.dpo_trainer --dpo_data_path /root/autodl-tmp/dpo_data_rebuilt/dpo_pairs.jsonl --output_dir /root/autodl-tmp/dpo_output_rebuilt_3ep --num_epochs 3 --beta 0.1 --loss_type sigmoid --learning_rate 5e-6 --per_device_batch_size 2 --gradient_accumulation_steps 8 --lora_rank 64 --lora_alpha 128 --wandb_project freige-dpo --wandb_run_name dpo_rebuilt_3ep\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"234741\", \"log_path\": \"~/runs/faith-evidence-ie/dpo_rebuilt_3ep.log\", \"submitted_at\": \"2026-05-23T07:51:32.027Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"DPO 3-epoch 训练。从 SFT merged base 出发训练 3 epochs（对比 1ep ign_f1=0.32231）。验证 DPO 是否从更多训练中受益，支撑 decoupling spectrum 的 gradual degradation claim。\", \"parent\": \"dpo_rebuilt_1ep\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.529}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-23T07:52:04.700758+00:00_
+
+## 产出汇总
+
+### GPU 状态
+| GPU | 利用率 | 显存 | 状态 |
+|-----|--------|------|------|
+| 0 | 94% | 27.2/97.9 GB | PID 231549 运行中 |
+| 1 | 92% | 32.5/97.9 GB | PID 194682 运行中 |
+| 2 | 0% | 0 GB | **空闲 → 已提交 DPO 3ep** |
+| 3 | 0% | 0 GB | **空闲 → 已提交 1.7B no-evi** |
+
+### 1. 1.7B s43 with-evi ✅ DONE
+- **ign_f1 = 28.70%** (s42 = 29.33%, Δ = -0.63pp)
+- Registry → DONE/success
+
+### 2. 1.7B s43 no-evi → 已提交
+- PID **234597**, cuda:3, `--no_evidence` 已传
+- 预计 ~6h (1.7B batch_size=1 单卡)
+
+### 3. DPO rebuilt 1ep eval ✅ DONE
+- **ign_f1 = 32.23%** (原始 38.9% → **下降 6.67pp**)
+- rel_f1 = 33.38%
+- Registry → DONE/success
+- 注：重建 eval 显著低于原始，可能原始 eval 用了不同 protocol (truncation/max_new_tokens)
+
+### 4. DPO 3ep 训练 → 已提交
+- PID **234741**, cuda:2, timeout 2h
+- 超参与 1ep 完全一致，仅 num_epochs=3
+- wandb: freige-dpo / dpo_rebuilt_3ep
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diagnose_urgent-cuda2-cuda3-check_20260523T074929"
+}
+```
+
+</details>
+
+---

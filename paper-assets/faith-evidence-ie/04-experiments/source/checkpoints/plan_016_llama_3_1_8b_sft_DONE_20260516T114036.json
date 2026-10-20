@@ -1,0 +1,42 @@
+{
+  "exp_id": "plan_016_llama_3_1_8b_sft",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T10:35:41.618Z",
+    "updated_at": "2026-05-16T11:40:36.505Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_llama_3_1_8b --no-quantize --seed 42 --wandb_run_name llama_3_1_8b_sft",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 3027,
+      "model_name": "Meta-Llama-3.1-8B",
+      "seed": 42,
+      "plan_id": "plan_016",
+      "hypothesis": "Cross-family SFT: LLaMA-3.1-8B bf16 LoRA with-evidence SFT. 验证 evidence pipeline 跨模型家族泛化性. claim=1/2.",
+      "quantize": "none (bf16 LoRA)",
+      "lora_rank": 64,
+      "lora_alpha": 128,
+      "output_dir": "/root/autodl-tmp/sft_output_llama_3_1_8b",
+      "log_path": "/root/autodl-tmp/logs/plan_016_llama_3_1_8b_sft.log",
+      "pid": 331871,
+      "wandb_run_name": "llama_3_1_8b_sft",
+      "metrics": {
+        "train_loss": 0.5246,
+        "eval_loss": 0.7363,
+        "token_acc": 0.8361
+      },
+      "checkpoint_path": "/root/autodl-tmp/sft_output_llama_3_1_8b"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-16T11:40:36.505Z"
+  },
+  "timestamp": "2026-05-16T11:40:36.829868+00:00",
+  "trigger": "update_registry"
+}

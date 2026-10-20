@@ -1,0 +1,35 @@
+{
+  "exp_id": "plan019_1_7b_sft_s44_eval",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:34:45.563Z",
+    "updated_at": "2026-05-18T19:27:50.702Z",
+    "hypothesis": "1.7B SFT seed44 eval (D076 protocol): measure baseline SFT performance for seed44 at 1.7B scale. Paired with canonical s42 for scaling seed robustness. Expected rel_f1 ~49.5 based on canonical 1.7B SFT.",
+    "parent": "plan019_1_7b_sft_s44",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/eval_results/plan019_1_7b_sft_s44_eval",
+      "log_path": "~/runs/faith-evidence-ie/plan019_1_7b_sft_s44_eval.log"
+    },
+    "metrics": {
+      "ign_f1": 0.4321,
+      "f1": 0.4441,
+      "evi_f1_tp": 0.819,
+      "evi_f1_joint": 0.3482,
+      "edcr": 0.69,
+      "n_truncated": 473,
+      "n_predictions": 20237,
+      "n_documents": 985,
+      "format_ok_rate": 1,
+      "field_compliance_rate": 0.5198,
+      "evidence_format_rate": 0.5198,
+      "inference_time_seconds": 6146
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T19:27:51.128823+00:00",
+  "trigger": "update_registry"
+}

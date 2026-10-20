@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_llama_sft_s42_no_evidence_2048",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:40:58.148Z",
+    "updated_at": "2026-05-20T17:41:08.508Z",
+    "hypothesis": "方法论一致性：s42 SFT no-evi 用 max_new_tokens=2048 重跑，与 s44 2048 版 matched comparison。原 1024 版 s42 format_ok=88.7% (874/985)，fair tax=+1.35pp。2048 版验证截断对 s42 的影响程度，确保 3-seed evidence tax 在相同条件下比较。",
+    "parent": "eval_llama_sft_s42_no_evidence_std_r2"
+  },
+  "timestamp": "2026-05-20T17:41:09.144959+00:00",
+  "trigger": "update_registry"
+}

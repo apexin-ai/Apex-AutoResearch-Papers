@@ -1,0 +1,63 @@
+{
+  "exp_id": "test_eval_llama_rsft_s43_no_evi",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:11:44.805Z",
+    "updated_at": "2026-05-23T10:23:18.970Z",
+    "hypothesis": "LLaMA-3.1-8B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 s43 with-evi ign_f1=0.3488 计算 LLaMA s43 evidence tax。s42 tax=-2.65pp。",
+    "parent": "test_eval_llama_rsft_s43_with_evi",
+    "spec": {
+      "command": "python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s43 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_llama_rsft_s43_no_evi",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "240099",
+      "log_path": "~/runs/faith-evidence-ie/test_eval_llama_rsft_s43_no_evi.log",
+      "submitted_at": "2026-05-23T09:12:00.365Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+      "data_count": 500,
+      "model_name": "LLaMA-3.1-8B + SFT + RSFT-k1-s43 (no-evi)",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s43",
+      "eval_data": "Re-DocRED test_revised (500 docs)",
+      "checkpoint_path": "/root/autodl-tmp/eval_results/test_eval_llama_rsft_s43_no_evi",
+      "wall_clock_seconds": 4278.6,
+      "gpu_hours": 1.19
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T10:20:47.770Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T10:20:55.498809+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ign_f1": 0.3371,
+      "f1": 0.3371,
+      "evi_f1_joint": 0.0032,
+      "evi_f1_tp": 0.0035,
+      "edcr": 0.964,
+      "n_documents": 500,
+      "n_truncated": 306,
+      "format_ok_rate": 0.998,
+      "n_predictions": 32541
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-23T10:23:18.970Z"
+  },
+  "timestamp": "2026-05-23T10:23:19.605405+00:00",
+  "trigger": "update_registry"
+}

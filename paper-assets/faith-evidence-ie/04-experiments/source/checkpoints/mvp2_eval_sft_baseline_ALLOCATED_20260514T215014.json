@@ -1,0 +1,37 @@
+{
+  "exp_id": "mvp2_eval_sft_baseline",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:47:41.356Z",
+    "updated_at": "2026-05-14T21:50:14.040Z",
+    "hypothesis": "SFT baseline eval using identical eval protocol as GRPO evals (eval_lr5e6_ckpt20.sh). Required for MVP-2 core comparison: CED_Evi-F1 − SFT_Evi-F1 ≥ 2pp. Prior SFT eval (r3) used different eval path; this ensures apple-to-apple comparison.",
+    "parent": "mvp2_sft_warmup",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx5090-4x",
+      "gpu": "cuda:3",
+      "started_at": "2026-05-14T21:49:57.466Z"
+    },
+    "spec": {
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred/dev.json",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT warmup",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json"
+    }
+  },
+  "timestamp": "2026-05-14T21:50:14.204618+00:00",
+  "trigger": "update_registry"
+}

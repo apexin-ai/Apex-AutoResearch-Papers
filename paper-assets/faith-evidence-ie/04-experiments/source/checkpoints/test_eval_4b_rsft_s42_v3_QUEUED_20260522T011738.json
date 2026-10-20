@@ -1,0 +1,27 @@
+{
+  "exp_id": "test_eval_4b_rsft_s42_v3",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:17:15.536Z",
+    "updated_at": "2026-05-22T01:17:37.497Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=2 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_ced_s42_v2 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_v2 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "151217",
+      "log_path": "~/runs/faith-evidence-ie/test_eval_4b_rsft_s42_v3.log",
+      "submitted_at": "2026-05-22T01:17:14.578Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-22T01:17:38.258245+00:00",
+  "trigger": "update_registry"
+}

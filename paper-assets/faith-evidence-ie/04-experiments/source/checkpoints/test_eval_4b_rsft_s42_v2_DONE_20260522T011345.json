@@ -1,0 +1,47 @@
+{
+  "exp_id": "test_eval_4b_rsft_s42_v2",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-21T23:21:45.920Z",
+    "updated_at": "2026-05-22T01:13:45.181Z",
+    "hypothesis": "Re-DocRED test set eval: Qwen3-4B RSFT s42 (CED k=1, 重训 v2) on test_revised.json (500 docs)。配对 test_eval_4b_sft_s42 (ign_f1=0.2232)，填充 test table 4B RSFT 数据点。使用 retrain_4b_rsft_ced_s42_v2 产出的 checkpoint。Dev RSFT ign_f1 基准见原 4B RSFT 数据。",
+    "reproduce": {
+      "finished_at": "2026-05-22T01:13:43.380Z"
+    },
+    "failure_reason": "EXIT_CODE=2 (shell misuse / syntax)",
+    "completed_at": "2026-05-22T00:02:09.586Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T00:02:16.582942+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=2 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_adapter /root/autodl-tmp/rsft_output_ced_s42_v2 --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_v2 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised'",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+      "data_count": 500,
+      "model_name": "Qwen3-4B + SFT s42 + RSFT CED k=1 (retrain v2)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_ced_s42_v2",
+      "eval_data": "re-docred test_revised",
+      "gpu": "cuda:2",
+      "pid": "146485",
+      "log_path": "~/runs/faith-evidence-ie/test_eval_4b_rsft_s42_v2.log"
+    },
+    "pid": 146485,
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-22T01:13:45.828542+00:00",
+  "trigger": "update_registry"
+}

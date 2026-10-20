@@ -1,0 +1,24 @@
+{
+  "exp_id": "rsft_ced_s43_train_r2",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:09:34.266Z",
+    "updated_at": "2026-05-16T00:09:34.266Z",
+    "spec": {
+      "hypothesis": "CED RSFT seed=43 训练 (r2, 修正命令)。r1 因 cwd 错误和缺少参数失败。参考 Director 提供的命令模板。plan_id=plan_mvp2_rsft, claim=3。",
+      "plan_id": "plan_mvp2_rsft",
+      "model_name": "Qwen3-4B + LoRA on SFT adapter",
+      "data_path": "/root/autodl-tmp/rsft_filtered/rsft_train.jsonl",
+      "data_count": 2718,
+      "seed": 43,
+      "server": "rtx5090-4x",
+      "parent": "rsft_ced_s43_train"
+    }
+  },
+  "timestamp": "2026-05-16T00:09:34.520370+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,2356 @@
+# analysis variance statistics
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 77
+- **Recorded user turns:** 0
+- **Tool calls:** 38
+- **Original source:** `logs/chats/worker_analysis_variance-statistics_20260523T012204.jsonl`
+- **Structured JSON:** [`7cd0992870e1c8ab3942.json`](../../sessions/7c/7cd0992870e1c8ab3942.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+77 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T01:28:31.733536+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T01:28:31.733901+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T01:28:31.734064+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "paper_framing.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "paper_framing.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-23T01:28:31.734478+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md\", \"content\": \"# Paper Framing — FREIGE\\n\\n> **状态**: 审稿修复中（D103 Action Matrix）— Round 1 得分 3.0 (Findings)，22 个 issue 跟踪中\\n> **最后更新**: 2026-05-23 (D154: RSFT test evidence tax 5/5 完成; Version B \\\"heterogeneous, scale-dependent\\\" 确认)\\n> **审稿 Round 1**: 3.0 (Findings)。3 个系统性问题：claim>evidence、实验混淆、贡献过度\\n> **贡献重构**: 4 贡献 → 3 贡献（CED 合并入 RSFT，EDCR 降级为分析工具）\\n> **Dream v1**: best=2.5, median=3.0, worst=2.5 → reframe 完成\\n> **Dream v2**: best=3.0, median=2.5, worst=2.5\\n\\n## ⚠️ Post-Review Contribution Restructuring (D103)\\n\\n审稿后从 4 贡献重构为 3 贡献：\\n\\n### 原 4 贡献\\n1. Task formalization (evidence-grounded DocRE)\\n2. EDCR diagnostic metric\\n3. Decoupling spectrum\\n4. CED scoring\\n\\n### 新 3 贡献\\n1. **Evidence-grounded DocRE + RSFT with NLI-based scoring** — 合并原 C1+C4。CED 不再作为独立贡献，NLI-based scoring（CED/flat-NLI 等效）是 RSFT 有效的关键组件\\n2. **Decoupling spectrum（观察性，非因果）** — 原 C3 降级为观察性描述。\\\"co-occurs with\\\" 替代 \\\"acts as amplifier\\\"。EDCR 作为分析工具嵌入此贡献（不独立列出）\\n3. **Evidence tax landscape + RSFT variance compression** — 原 C5 提升为正式贡献。Within-family threshold（1.7B 获益，4B+ 中性）+ cross-architecture variation（Qwen 8B ≈0 vs LLaMA 8B evidence helpful）+ RSFT 跨 scale 压缩 seed 方差 (4.6-31×, D118/D152)。**Variance compression 是 C3 核心**（最稳固的 sub-finding，不受 M027 修正影响）\\n\\n### 关键 claim 调整\\n- 所有因果 claim → 观察性描述（GRPO \\\"acts as catastrophic amplifier\\\" → \\\"co-occurs with\\\"）\\n- EDCR ρ 从 -0.965 (n=15) 改为去重后数值（待 Agent 计算完成）\\n- \\\"+8pp\\\" → matched@2048 fair subset: 1.7B=-5.63pp, 4B=+0.73pp, 8B=+0.04pp（D144 corrected）。Abstract 加 \\\"on a controlled evaluation subset\\\"\\n- \\\"matches 8B SFT\\\" → \\\"approaches 8B SFT\\\"\\n- CED vs flat-NLI 不再区分，统称 \\\"NLI-based scoring\\\"\\n\\n## Target Venue\\n\\n- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25 → commit EMNLP Aug/Sep)\\n- Fallback: AAAI 2027 (abstract July 25, paper
+…[truncated 29547 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-23T01:28:31.734691+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'DONE'}",
+  "fields": "['*']",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'DONE'}",
+    "fields": "['*']",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T01:28:31.735150+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"test_eval_1_7b_sft_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T02:32:43.175Z\", \"updated_at\": \"2026-05-22T02:33:17.578Z\", \"spec\": {\"command\": \"python run_eval.py --split test_revised --seed 42\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\", \"eval_data\": \"re-docred test_revised\"}, \"hypothesis\": \"Qwen3-1.7B SFT model (s42) evaluated on Re-DocRED test set should achieve ign_f1 comparable to dev performance (~0.4464 mean), with expected degradation on unseen test data.\", \"checkpoint_path\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\", \"log_path\": \"/tmp/test_eval_1_7b_sft_s42.log\", \"conclusion\": \"success\", \"metrics\": {\"f1\": 0.2579, \"ign_f1\": 0.2579, \"precision\": 0.3977, \"recall\": 0.1908, \"ign_precision\": 0.3977, \"ign_recall\": 0.1908, \"evi_f1_tp\": 0.5918, \"evi_f1_joint\": 0.1975, \"evi_precision\": 0.4712, \"evi_recall\": 0.7955, \"edcr\": 0.8504, \"n_predictions\": 26863, \"tp\": 3310, \"pred_count\": 8323, \"gold_count\": 17350, \"format_compliance\": 1, \"field_compliance\": 1, \"evidence_format_rate\": 0.98, \"truncated\": 409, \"n_documents\": 500, \"codalab_converted\": 8020, \"codalab_skipped_rel\": 40, \"codalab_skipped_entity\": 1093}, \"completed_at\": \"2026-05-22T02:33:17.578Z\"}, \"d102_8b_rsft_k1_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T08:27:15.556Z\", \"updated_at\": \"2026-05-21T09:10:04.243Z\", \"hypothesis\": \"Qwen3-8B k=1 RSFT with seed 43 provides seed robustness validation for D102 8B results. Parent: d102_8b_rsft_k1_s42.\", \"spec\": {\"command\": \"python -m freige.training.rsft_trainer ... + eval.inference\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/rsft_scored_qwen3
+…[truncated 19334 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T01:28:31.735418+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{}",
+  "fields": "['*']",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{}",
+    "fields": "['*']",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T01:28:31.736082+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"test_eval_1_7b_sft_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T02:32:43.175Z\", \"updated_at\": \"2026-05-22T02:33:17.578Z\", \"spec\": {\"command\": \"python run_eval.py --split test_revised --seed 42\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\", \"eval_data\": \"re-docred test_revised\"}, \"hypothesis\": \"Qwen3-1.7B SFT model (s42) evaluated on Re-DocRED test set should achieve ign_f1 comparable to dev performance (~0.4464 mean), with expected degradation on unseen test data.\", \"checkpoint_path\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\", \"log_path\": \"/tmp/test_eval_1_7b_sft_s42.log\", \"conclusion\": \"success\", \"metrics\": {\"f1\": 0.2579, \"ign_f1\": 0.2579, \"precision\": 0.3977, \"recall\": 0.1908, \"ign_precision\": 0.3977, \"ign_recall\": 0.1908, \"evi_f1_tp\": 0.5918, \"evi_f1_joint\": 0.1975, \"evi_precision\": 0.4712, \"evi_recall\": 0.7955, \"edcr\": 0.8504, \"n_predictions\": 26863, \"tp\": 3310, \"pred_count\": 8323, \"gold_count\": 17350, \"format_compliance\": 1, \"field_compliance\": 1, \"evidence_format_rate\": 0.98, \"truncated\": 409, \"n_documents\": 500, \"codalab_converted\": 8020, \"codalab_skipped_rel\": 40, \"codalab_skipped_entity\": 1093}, \"completed_at\": \"2026-05-22T02:33:17.578Z\"}, \"test_eval_llama_rsft_s42\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-21T10:33:57.025Z\", \"updated_at\": \"2026-05-21T10:33:57.194Z\", \"hypothesis\": \"Re-DocRED test set eval: LLaMA RSFT s42 (dev ign_f1=0.5654 3-seed mean)。用 test_revised.json (500 docs) 验证 LLaMA RSFT 在 test set 上的泛化性能。配合 14B RSFT test eval 提供多模型 test 数据点。\"}, \"test_eval_14b_rsft_s42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T1
+…[truncated 32367 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-23T01:28:31.736352+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "decisions.yaml",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "decisions.yaml",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T01:28:31.736807+00:00_
+
+Error: result (129,466 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/4af931fe-946a-4832-a5aa-ef15be99c0ed/tool-results/mcp-agent-ml-research-read_project_file-1779499430469.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/4af931fe-946a-4832-a5aa-ef15be99c0ed/tool-results/mcp-agent-ml-research-read_project_file-1779499430469.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-23T01:28:31.737013+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -n \"D118\\|D152\\|variance\\|std=.*pp\\|seed.*ign_f1\\|s42.*s43.*s44\\|3-seed mean\" /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/4af931fe-946a-4832-a5aa-ef15be99c0ed/tool-results/mcp-agent-ml-research-read_project_file-1779499430469.txt | head -120",
+  "description": "Search decisions file for variance compression data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -n \"D118\\|D152\\|variance\\|std=.*pp\\|seed.*ign_f1\\|s42.*s43.*s44\\|3-seed mean\" /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/4af931fe-946a-4832-a5aa-ef15be99c0ed/tool-results/mcp-agent-ml-research-read_project_file-1779499430469.txt | head -120",
+    "description": "Search decisions file for variance compression data"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T01:28:31.737244+00:00_
+
+&lt;persisted-output>
+Output too large (156.8KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/4af931fe-946a-4832-a5aa-ef15be99c0ed/tool-results/bkpw4qz5o.txt
+
+Preview (first 2KB):
+1:{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/decisions.yaml\", \"content\": \"_next_id: 156\\ndecisions:\\n- id: D001\\n  date: 2026-05-14 04:21 UTC\\n  summary: MVP 设计：两阶段验证——MVP-1 CED 信号验证（离线）→ MVP-2 端到端训练验证\\n  rationale: CED 是核心创新，必须先验证 DeBERTa NLI 能在 DocRED 上区分金标证据与实体共现干扰句（MVP-1），再投入 GPU\\n    跑完整训练流水线（MVP-2）。MVP-1 失败则 idea 需 pivot，避免浪费 GPU。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-14 05:46 UTC\\n  summary: 'MVP-1 PASS: CED 信号验证通过，核心假设成立（margin 0.48, accuracy 81.5%, Pearson r 0.34）'\\n  rationale: CED margin 4.8× 超过阈值，DeBERTa 判别力主要来自语义蕴含而非词汇重叠（r=0.34 远低于 0.7）。三个需关注项：33.4%\\n    gold p_pos < τ=0.5（τ 可能需调低）、44.4% 无 hard negatives（退化为 flat NLI）、少数负 margin 样本（标注噪声）。这些不影响\\n    MVP 结论但影响 Research 阶段 CED 调参。\\n  related_experiments:\\n  - exp_id: mvp1_ced_signal\\n    role: primary\\n    result: PASS — mean_margin=0.4827, accuracy=81.5%, pearson_r=0.3406\\n  depends_on: []\\n- id: D003\\n  date: 2026-05-14 06:02 UTC\\n  summary: 'Smoke test 功能性 PASS: ZeRO-2 + QLoRA 兼容，4.9GB/卡，授权启动 MVP-2 SFT'\\n  rationale: Smoke test 自报 FAIL 是假阴性——synthetic data format-only reward 产生零 variance，数学上无梯度是正常行为。关键目标全部达成：ZeRO-2+QLoRA+GRPOTrainer\\n    兼容、显存充裕（4.9/32GB）、有 reward variance 时梯度正常。Reviewer 独立确认功能性 PASS。\\n  related_experiments:\\n  - exp_id: smoke_test_grpo\\n    role: infrastructure\\n    result: 功能性 PASS (ZeRO-2+QLoRA, 4×5090, 4.9GB/卡)\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-14 07:26 UTC\\n  summary: 发现 rtx5090-4x 和 gpu-5090-4x-1 为同一台机器（4 GPU），GRPO 三路对比改为串行\\n  rationale: Reviewer 核实两个 SSH endpoint 返回相同 hostname 和 PID。实际资源 = 4× RTX 5090 32GB，非\\n    8 张。串行 3 路 GRPO 预估 ~7-10
+…[truncated 294 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-23T01:28:31.737444+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T01:28:31.737577+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T01:28:31.737699+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/eval_results -name \"metrics*.json\" -path \"*sft*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp/eval_results -name \"metrics*.json\" -path \"*sft*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T01:28:31.737876+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/8b_sft_s43/metrics.json\\n/root/autodl-tmp/eval_results/d111_4b_sft_s42_reeval/metrics.json\\n/root/autodl-tmp/eval_results/d112_rsft_bf16/metrics.json\\n/root/autodl-tmp/eval_results/d112_rsft_from_sft_s44/metrics.json\\n/root/autodl-tmp/eval_results/eval_llama_rsft_k1_s43/metrics.json\\n/root/autodl-tmp/eval_results/eval_llama_rsft_s42_no_evidence/metrics.json\\n/root/autodl-tmp/eval_results/eval_llama_rsft_s43_no_evidence/metrics.json\\n/root/autodl-tmp/eval_results/llama_3_1_8b_sft_eval/metrics.json\\n/root/autodl-tmp/eval_results/plan019_1_7b_sft_s43_eval/metrics.json\\n/root/autodl-tmp/eval_results/plan019_1_7b_sft_s44_eval/metrics.json\\n/root/autodl-tmp/eval_results/plan019_8b_sft_s44_eval/metrics.json\\n/root/autodl-tmp/eval_results/plan_002_test_rsft_s43/metrics.json\\n/root/autodl-tmp/eval_results/plan_002_test_rsft_s44/metrics.json\\n/root/autodl-tmp/eval_results/plan_006_llama_rsft_r3_eval/metrics.json\\n/root/autodl-tmp/eval_results/plan_006_llama_rsft_seed43_eval_r2/metrics.json\\n/root/autodl-tmp/eval_results/plan_006_llama_rsft_test/metrics.json\\n/root/autodl-tmp/eval_results/plan_006_qwen3_1_7b_rsft_eval_r2/metrics.json\\n/root/autodl-tmp/eval_results/plan_006_qwen3_1_7b_rsft_seed43_eval/metrics.json\\n/root/autodl-tmp/eval_results/plan_006_qwen3_1_7b_rsft_test/metrics.json\\n/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_eval/metrics.json\\n/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test/metrics.json\\n/root/autodl-tmp/eval_results/plan_007_redocred_4b_sft_eval/metrics.json\\n/root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r2/metrics.json\\n/root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r4/metrics.json\\n/root/autodl-tmp/eval_results/qwen3_1_7b_sft_eval/metrics.json\\n/root/autodl-tmp/eval_results/qwen3_8b_sft_eval/metrics.json\\n/root/autodl-tmp/eval_results/random_rsft_k1_eval/metrics.json\\n/root/autodl-tmp/eval_results/rs
+…[truncated 5256 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-23T01:28:31.738056+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/qwen3_1_7b_sft_eval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/qwen3_1_7b_sft_eval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T01:28:31.738249+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.5085217391304347,\\n  \\\"recall\\\": 0.48127726113077113,\\n  \\\"f1\\\": 0.4945245444167266,\\n  \\\"ign_precision\\\": 0.48301176470588236,\\n  \\\"ign_recall\\\": 0.4742630071157934,\\n  \\\"ign_f1\\\": 0.47859740744194723,\\n  \\\"tp\\\": 5848,\\n  \\\"pred_count\\\": 11500,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8202898550724638,\\n  \\\"evi_recall\\\": 0.8432214529839629,\\n  \\\"evi_f1\\\": 0.8315975973380579,\\n  \\\"n_evaluated\\\": 17063,\\n  \\\"edcr\\\": 0.6704455937253827,\\n  \\\"n_distractor_citations\\\": 19575,\\n  \\\"n_total_citations\\\": 29197,\\n  \\\"evi_joint_precision\\\": 0.39584523500389507,\\n  \\\"evi_joint_recall\\\": 0.39572192513368987,\\n  \\\"evi_f1_joint\\\": 0.3957835704642227,\\n  \\\"evi_tp\\\": 7622,\\n  \\\"evi_pred_total\\\": 19255,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.6812182741116751,\\n  \\\"evidence_format_rate\\\": 0.6812182741116751,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 671,\\n  \\\"n_evidence_valid\\\": 671,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 17184,\\n  \\\"n_truncated\\\": 314,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 6848.7,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/qwen3_1_7b_sft_eval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stde
+…[truncated 94 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-23T01:28:31.738484+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/plan019_1_7b_sft_s43_eval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/plan019_1_7b_sft_s43_eval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T01:28:31.738670+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4703819543171263,\\n  \\\"recall\\\": 0.40844374948563905,\\n  \\\"f1\\\": 0.4372301999823804,\\n  \\\"ign_precision\\\": 0.44749547374773685,\\n  \\\"ign_recall\\\": 0.41114499584141945,\\n  \\\"ign_f1\\\": 0.4285507874584597,\\n  \\\"tp\\\": 4963,\\n  \\\"pred_count\\\": 10551,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8352325798617598,\\n  \\\"evi_recall\\\": 0.8348426850900943,\\n  \\\"evi_f1\\\": 0.8350375869636271,\\n  \\\"n_evaluated\\\": 17137,\\n  \\\"edcr\\\": 0.7039562986260552,\\n  \\\"n_distractor_citations\\\": 21263,\\n  \\\"n_total_citations\\\": 30205,\\n  \\\"evi_joint_precision\\\": 0.35798799977569673,\\n  \\\"evi_joint_recall\\\": 0.33144696537043766,\\n  \\\"evi_f1_joint\\\": 0.3442066102334609,\\n  \\\"evi_tp\\\": 6384,\\n  \\\"evi_pred_total\\\": 17833,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.5857868020304569,\\n  \\\"evidence_format_rate\\\": 0.5857868020304569,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 577,\\n  \\\"n_evidence_valid\\\": 577,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 18140,\\n  \\\"n_truncated\\\": 408,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 5257.4,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed43/\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/plan019_1_7b_sft_s43_eval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }
+…[truncated 108 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-23T01:28:31.738820+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/plan019_1_7b_sft_s44_eval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/plan019_1_7b_sft_s44_eval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T01:28:31.738987+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4569115598885794,\\n  \\\"recall\\\": 0.431980906921241,\\n  \\\"f1\\\": 0.4440966199923855,\\n  \\\"ign_precision\\\": 0.43343250278914097,\\n  \\\"ign_recall\\\": 0.43082894372054337,\\n  \\\"ign_f1\\\": 0.43212680168698153,\\n  \\\"tp\\\": 5249,\\n  \\\"pred_count\\\": 11488,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8438400271140485,\\n  \\\"evi_recall\\\": 0.7955108235482067,\\n  \\\"evi_f1\\\": 0.8189630360593726,\\n  \\\"n_evaluated\\\": 19722,\\n  \\\"edcr\\\": 0.690040460628696,\\n  \\\"n_distractor_citations\\\": 22171,\\n  \\\"n_total_citations\\\": 32130,\\n  \\\"evi_joint_precision\\\": 0.3557806912991657,\\n  \\\"evi_joint_recall\\\": 0.3409480296973158,\\n  \\\"evi_f1_joint\\\": 0.3482064741907262,\\n  \\\"evi_tp\\\": 6567,\\n  \\\"evi_pred_total\\\": 18458,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.5197969543147208,\\n  \\\"evidence_format_rate\\\": 0.5197969543147208,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 512,\\n  \\\"n_evidence_valid\\\": 512,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 20237,\\n  \\\"n_truncated\\\": 473,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 6146.0,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44/\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/plan019_1_7b_sft_s44_eval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}
+…[truncated 104 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-23T01:28:31.739142+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/wave1_sft_4b_s43_eval_r2/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/wave1_sft_4b_s43_eval_r2/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-23T01:28:31.739343+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4634826407627271,\\n  \\\"recall\\\": 0.4240803226071928,\\n  \\\"f1\\\": 0.44290687180368726,\\n  \\\"ign_precision\\\": 0.4430801446792309,\\n  \\\"ign_recall\\\": 0.4301820534146567,\\n  \\\"ign_f1\\\": 0.43653584657945327,\\n  \\\"tp\\\": 5153,\\n  \\\"pred_count\\\": 11118,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8123892154118855,\\n  \\\"evi_recall\\\": 0.7921404530155554,\\n  \\\"evi_f1\\\": 0.8021370670596906,\\n  \\\"n_evaluated\\\": 16734,\\n  \\\"edcr\\\": 0.6827339964294823,\\n  \\\"n_distractor_citations\\\": 18739,\\n  \\\"n_total_citations\\\": 27447,\\n  \\\"evi_joint_precision\\\": 0.3588300835654596,\\n  \\\"evi_joint_recall\\\": 0.3344063132755309,\\n  \\\"evi_f1_joint\\\": 0.34618795517454515,\\n  \\\"evi_tp\\\": 6441,\\n  \\\"evi_pred_total\\\": 17950,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.6771573604060914,\\n  \\\"evidence_format_rate\\\": 0.6771573604060914,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 667,\\n  \\\"n_evidence_valid\\\": 667,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 17055,\\n  \\\"n_truncated\\\": 318,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 7157.9,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_seed43/\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/wave1_sft_4b_s43_eval_r2\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", 
+…[truncated 82 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-23T01:28:31.739513+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/wave1_sft_4b_s44_eval_r2/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/wave1_sft_4b_s44_eval_r2/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T01:28:31.739682+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4897546167467746,\\n  \\\"recall\\\": 0.4779853509999177,\\n  \\\"f1\\\": 0.48379841732611417,\\n  \\\"ign_precision\\\": 0.46755587599134824,\\n  \\\"ign_recall\\\": 0.479438129562887,\\n  \\\"ign_f1\\\": 0.4734224574531187,\\n  \\\"tp\\\": 5808,\\n  \\\"pred_count\\\": 11859,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8190494553166876,\\n  \\\"evi_recall\\\": 0.7583006069260978,\\n  \\\"evi_f1\\\": 0.7875052138851555,\\n  \\\"n_evaluated\\\": 15806,\\n  \\\"edcr\\\": 0.6580948931546541,\\n  \\\"n_distractor_citations\\\": 16353,\\n  \\\"n_total_citations\\\": 24849,\\n  \\\"evi_joint_precision\\\": 0.3927083333333333,\\n  \\\"evi_joint_recall\\\": 0.3718913867400446,\\n  \\\"evi_f1_joint\\\": 0.3820164795605451,\\n  \\\"evi_tp\\\": 7163,\\n  \\\"evi_pred_total\\\": 18240,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9969543147208122,\\n  \\\"field_compliance_rate\\\": 0.7461928934010152,\\n  \\\"evidence_format_rate\\\": 0.7461928934010152,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 982,\\n  \\\"n_field_complete\\\": 735,\\n  \\\"n_evidence_valid\\\": 735,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 16143,\\n  \\\"n_truncated\\\": 249,\\n  \\\"n_format_ok\\\": 982,\\n  \\\"format_ok_rate\\\": 0.9969543147208122,\\n  \\\"inference_time_seconds\\\": 6669.5,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_seed44/\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/wave1_sft_4b_s44_eval_r2\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n 
+…[truncated 110 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-23T01:28:31.739834+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/qwen3_8b_sft_eval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/qwen3_8b_sft_eval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T01:28:31.740000+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.5225612725206947,\\n  \\\"recall\\\": 0.5299152333141305,\\n  \\\"f1\\\": 0.5262125607812692,\\n  \\\"ign_precision\\\": 0.4938206214689266,\\n  \\\"ign_recall\\\": 0.5169577673043156,\\n  \\\"ign_f1\\\": 0.5051243848480744,\\n  \\\"tp\\\": 6439,\\n  \\\"pred_count\\\": 12322,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.7947735458655836,\\n  \\\"evi_recall\\\": 0.8442689677629437,\\n  \\\"evi_f1\\\": 0.8187739312359373,\\n  \\\"n_evaluated\\\": 16476,\\n  \\\"edcr\\\": 0.6509726055058221,\\n  \\\"n_distractor_citations\\\": 19343,\\n  \\\"n_total_citations\\\": 29714,\\n  \\\"evi_joint_precision\\\": 0.3924250884049879,\\n  \\\"evi_joint_recall\\\": 0.4378796531851929,\\n  \\\"evi_f1_joint\\\": 0.41390817853900336,\\n  \\\"evi_tp\\\": 8434,\\n  \\\"evi_pred_total\\\": 21492,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9989847715736041,\\n  \\\"field_compliance_rate\\\": 0.6812182741116751,\\n  \\\"evidence_format_rate\\\": 0.6812182741116751,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 984,\\n  \\\"n_field_complete\\\": 671,\\n  \\\"n_evidence_valid\\\": 671,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 17401,\\n  \\\"n_truncated\\\": 313,\\n  \\\"n_format_ok\\\": 984,\\n  \\\"format_ok_rate\\\": 0.9989847715736041,\\n  \\\"inference_time_seconds\\\": 7206.2,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-8B\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_qwen3_8b_bf16\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/qwen3_8b_sft_eval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false
+…[truncated 114 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-23T01:28:31.740148+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/8b_sft_s43/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/8b_sft_s43/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-23T01:28:31.740296+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/plan019_8b_sft_s44_eval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/plan019_8b_sft_s44_eval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-23T01:28:31.740464+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.5550165943323973,\\n  \\\"recall\\\": 0.5367459468356514,\\n  \\\"f1\\\": 0.5457283909296292,\\n  \\\"ign_precision\\\": 0.5318579990779161,\\n  \\\"ign_recall\\\": 0.5330376120506423,\\n  \\\"ign_f1\\\": 0.5324471522200683,\\n  \\\"tp\\\": 6522,\\n  \\\"pred_count\\\": 11751,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8668313069908815,\\n  \\\"evi_recall\\\": 0.8022857142857143,\\n  \\\"evi_f1\\\": 0.8333105054102178,\\n  \\\"n_evaluated\\\": 13855,\\n  \\\"edcr\\\": 0.5805295091009377,\\n  \\\"n_distractor_citations\\\": 12630,\\n  \\\"n_total_citations\\\": 21756,\\n  \\\"evi_joint_precision\\\": 0.45168599946048016,\\n  \\\"evi_joint_recall\\\": 0.4346607133586003,\\n  \\\"evi_f1_joint\\\": 0.44300984231135565,\\n  \\\"evi_tp\\\": 8372,\\n  \\\"evi_pred_total\\\": 18535,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.8588832487309644,\\n  \\\"evidence_format_rate\\\": 0.8588832487309644,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 846,\\n  \\\"n_evidence_valid\\\": 846,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 13933,\\n  \\\"n_truncated\\\": 139,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 5993.5,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-8B\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_qwen3_8b_s43\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/8b_sft_s43\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"ret
+…[truncated 77 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T01:28:31.740648+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.46803933620159804,\\n  \\\"recall\\\": 0.501357912928977,\\n  \\\"f1\\\": 0.48412603806572096,\\n  \\\"ign_precision\\\": 0.441728860821783,\\n  \\\"ign_recall\\\": 0.49773588392939655,\\n  \\\"ign_f1\\\": 0.46806291822368995,\\n  \\\"tp\\\": 6092,\\n  \\\"pred_count\\\": 13016,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8292788129744652,\\n  \\\"evi_recall\\\": 0.8429498421606454,\\n  \\\"evi_f1\\\": 0.8360584449469471,\\n  \\\"n_evaluated\\\": 16388,\\n  \\\"edcr\\\": 0.6697358023843062,\\n  \\\"n_distractor_citations\\\": 19494,\\n  \\\"n_total_citations\\\": 29107,\\n  \\\"evi_joint_precision\\\": 0.35564409030544486,\\n  \\\"evi_joint_recall\\\": 0.41711229946524064,\\n  \\\"evi_f1_joint\\\": 0.383933478292036,\\n  \\\"evi_tp\\\": 8034,\\n  \\\"evi_pred_total\\\": 22590,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.6883248730964467,\\n  \\\"evidence_format_rate\\\": 0.6883248730964467,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 678,\\n  \\\"n_evidence_valid\\\": 678,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 16690,\\n  \\\"n_truncated\\\": 306,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 6951.1,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-8B\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_qwen3_8b_s44\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/plan019_8b_sft_s44_eval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\
+…[truncated 91 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-23T01:28:31.740838+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_1_7b_s43_r2_eval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/rsft_1_7b_s43_r2_eval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T01:28:31.741010+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.5444181355783566,\\n  \\\"recall\\\": 0.5109044523084519,\\n  \\\"f1\\\": 0.52712915003821,\\n  \\\"ign_precision\\\": 0.5185608223872074,\\n  \\\"ign_recall\\\": 0.5034654837815359,\\n  \\\"ign_f1\\\": 0.5109016739344494,\\n  \\\"tp\\\": 6208,\\n  \\\"pred_count\\\": 11403,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8217756000332198,\\n  \\\"evi_recall\\\": 0.8339654445849136,\\n  \\\"evi_f1\\\": 0.8278256504643186,\\n  \\\"n_evaluated\\\": 15864,\\n  \\\"edcr\\\": 0.6244924291298243,\\n  \\\"n_distractor_citations\\\": 16456,\\n  \\\"n_total_citations\\\": 26351,\\n  \\\"evi_joint_precision\\\": 0.43358395989974935,\\n  \\\"evi_joint_recall\\\": 0.4221483827423291,\\n  \\\"evi_f1_joint\\\": 0.42778976166675436,\\n  \\\"evi_tp\\\": 8131,\\n  \\\"evi_pred_total\\\": 18753,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9989847715736041,\\n  \\\"field_compliance_rate\\\": 0.750253807106599,\\n  \\\"evidence_format_rate\\\": 0.750253807106599,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 984,\\n  \\\"n_field_complete\\\": 739,\\n  \\\"n_evidence_valid\\\": 739,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15967,\\n  \\\"n_truncated\\\": 244,\\n  \\\"n_format_ok\\\": 984,\\n  \\\"format_ok_rate\\\": 0.9989847715736041,\\n  \\\"inference_time_seconds\\\": 8498.2,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_1_7b_s43_r2_eval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"
+…[truncated 133 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-23T01:28:31.741161+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_1_7b_s44_r2_eval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/rsft_1_7b_s44_r2_eval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-23T01:28:31.741344+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.5434066886154912,\\n  \\\"recall\\\": 0.5161715085178175,\\n  \\\"f1\\\": 0.529439074832229,\\n  \\\"ign_precision\\\": 0.5173225381284128,\\n  \\\"ign_recall\\\": 0.5078088901210609,\\n  \\\"ign_f1\\\": 0.5125215688103344,\\n  \\\"tp\\\": 6272,\\n  \\\"pred_count\\\": 11542,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8150119142176331,\\n  \\\"evi_recall\\\": 0.8386595831630568,\\n  \\\"evi_f1\\\": 0.8266666666666667,\\n  \\\"n_evaluated\\\": 15850,\\n  \\\"edcr\\\": 0.6180958761351794,\\n  \\\"n_distractor_citations\\\": 16607,\\n  \\\"n_total_citations\\\": 26868,\\n  \\\"evi_joint_precision\\\": 0.4283938467913192,\\n  \\\"evi_joint_recall\\\": 0.42941695654431233,\\n  \\\"evi_f1_joint\\\": 0.4289047915370255,\\n  \\\"evi_tp\\\": 8271,\\n  \\\"evi_pred_total\\\": 19307,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9989847715736041,\\n  \\\"field_compliance_rate\\\": 0.7543147208121828,\\n  \\\"evidence_format_rate\\\": 0.7543147208121828,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 984,\\n  \\\"n_field_complete\\\": 743,\\n  \\\"n_evidence_valid\\\": 743,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15928,\\n  \\\"n_truncated\\\": 240,\\n  \\\"n_format_ok\\\": 984,\\n  \\\"format_ok_rate\\\": 0.9989847715736041,\\n  \\\"inference_time_seconds\\\": 8615.6,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s44\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_1_7b_s44_r2_eval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\
+…[truncated 135 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-23T01:28:31.741499+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s42_reeval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s42_reeval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-23T01:28:31.741663+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.46569355825539727,\\n  \\\"recall\\\": 0.4384824294296766,\\n  \\\"f1\\\": 0.4516785350966429,\\n  \\\"ign_precision\\\": 0.44324825986078886,\\n  \\\"ign_recall\\\": 0.44136401441641254,\\n  \\\"ign_f1\\\": 0.4423041303945175,\\n  \\\"tp\\\": 5328,\\n  \\\"pred_count\\\": 11441,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8112747397054685,\\n  \\\"evi_recall\\\": 0.8237142857142857,\\n  \\\"evi_f1\\\": 0.8174471905864561,\\n  \\\"n_evaluated\\\": 15363,\\n  \\\"edcr\\\": 0.6568537988494346,\\n  \\\"n_distractor_citations\\\": 16556,\\n  \\\"n_total_citations\\\": 25205,\\n  \\\"evi_joint_precision\\\": 0.3545665471419532,\\n  \\\"evi_joint_recall\\\": 0.3490992160323971,\\n  \\\"evi_f1_joint\\\": 0.3518116415958143,\\n  \\\"evi_tp\\\": 6724,\\n  \\\"evi_pred_total\\\": 18964,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.7756345177664975,\\n  \\\"evidence_format_rate\\\": 0.7756345177664975,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 764,\\n  \\\"n_evidence_valid\\\": 764,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15436,\\n  \\\"n_truncated\\\": 214,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 10815.5,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output/checkpoint-510\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_ced_s42_reeval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \
+…[truncated 81 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-23T01:28:31.741871+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s43/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s43/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-23T01:28:31.742046+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.46961515385274705,\\n  \\\"recall\\\": 0.4509093901736483,\\n  \\\"f1\\\": 0.46007221429171213,\\n  \\\"ign_precision\\\": 0.4477204477204477,\\n  \\\"ign_recall\\\": 0.4546714721375104,\\n  \\\"ign_f1\\\": 0.4511691884456671,\\n  \\\"tp\\\": 5479,\\n  \\\"pred_count\\\": 11667,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8024634617152312,\\n  \\\"evi_recall\\\": 0.8101336302895323,\\n  \\\"evi_f1\\\": 0.8062803047794967,\\n  \\\"n_evaluated\\\": 14976,\\n  \\\"edcr\\\": 0.654202645963717,\\n  \\\"n_distractor_citations\\\": 16516,\\n  \\\"n_total_citations\\\": 25246,\\n  \\\"evi_joint_precision\\\": 0.35886225696944757,\\n  \\\"evi_joint_recall\\\": 0.36223456726026687,\\n  \\\"evi_f1_joint\\\": 0.36054052657416735,\\n  \\\"evi_tp\\\": 6977,\\n  \\\"evi_pred_total\\\": 19442,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.8091370558375635,\\n  \\\"evidence_format_rate\\\": 0.8091370558375635,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 797,\\n  \\\"n_evidence_valid\\\": 797,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15051,\\n  \\\"n_truncated\\\": 184,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 10768.2,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_ced_s43\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 43,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\",
+…[truncated 83 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-23T01:28:31.742201+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s44_reeval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s44_reeval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-23T01:28:31.742406+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.47616136919315405,\\n  \\\"recall\\\": 0.44876964858859353,\\n  \\\"f1\\\": 0.4620599076388595,\\n  \\\"ign_precision\\\": 0.4526423520655006,\\n  \\\"ign_recall\\\": 0.44958876259125774,\\n  \\\"ign_f1\\\": 0.451110389911447,\\n  \\\"tp\\\": 5453,\\n  \\\"pred_count\\\": 11452,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.809657292702776,\\n  \\\"evi_recall\\\": 0.80039331366765,\\n  \\\"evi_f1\\\": 0.804998651442956,\\n  \\\"n_evaluated\\\": 15209,\\n  \\\"edcr\\\": 0.6350370913833864,\\n  \\\"n_distractor_citations\\\": 15580,\\n  \\\"n_total_citations\\\": 24534,\\n  \\\"evi_joint_precision\\\": 0.3745624899036132,\\n  \\\"evi_joint_recall\\\": 0.3611442811899694,\\n  \\\"evi_f1_joint\\\": 0.36773102135758096,\\n  \\\"evi_tp\\\": 6956,\\n  \\\"evi_pred_total\\\": 18571,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.8020304568527918,\\n  \\\"evidence_format_rate\\\": 0.8020304568527918,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 790,\\n  \\\"n_evidence_valid\\\": 790,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15264,\\n  \\\"n_truncated\\\": 190,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 13077.6,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_s44/checkpoint-510\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_ced_s44_reeval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 44,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \
+…[truncated 81 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-23T01:28:31.742564+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/eval_results -name \"metrics.json\" -path \"*14b*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp/eval_results -name \"metrics.json\" -path \"*14b*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-23T01:28:31.742693+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/plan017_14b_rsft_no_evidence_eval/metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-23T01:28:31.742815+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/llama_3_1_8b_sft_eval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/llama_3_1_8b_sft_eval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-23T01:28:31.742975+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.5464242424242425,\\n  \\\"recall\\\": 0.5564974076207719,\\n  \\\"f1\\\": 0.5514148250835847,\\n  \\\"ign_precision\\\": 0.523913613709889,\\n  \\\"ign_recall\\\": 0.5537381018390167,\\n  \\\"ign_f1\\\": 0.5384131548207386,\\n  \\\"tp\\\": 6762,\\n  \\\"pred_count\\\": 12375,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.7799210545914947,\\n  \\\"evi_recall\\\": 0.8536724545528654,\\n  \\\"evi_f1\\\": 0.8151319374172957,\\n  \\\"n_evaluated\\\": 14848,\\n  \\\"edcr\\\": 0.627953245461328,\\n  \\\"n_distractor_citations\\\": 17675,\\n  \\\"n_total_citations\\\": 28147,\\n  \\\"evi_joint_precision\\\": 0.39707933740191803,\\n  \\\"evi_joint_recall\\\": 0.4729245625876123,\\n  \\\"evi_f1_joint\\\": 0.43169593137603374,\\n  \\\"evi_tp\\\": 9109,\\n  \\\"evi_pred_total\\\": 22940,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9949238578680203,\\n  \\\"field_compliance_rate\\\": 0.7979695431472081,\\n  \\\"evidence_format_rate\\\": 0.7979695431472081,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 980,\\n  \\\"n_field_complete\\\": 786,\\n  \\\"n_evidence_valid\\\": 786,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15325,\\n  \\\"n_truncated\\\": 197,\\n  \\\"n_format_ok\\\": 980,\\n  \\\"format_ok_rate\\\": 0.9949238578680203,\\n  \\\"inference_time_seconds\\\": 7331.3,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_llama_3_1_8b\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/llama_3_1_8b_sft_eval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"qu
+…[truncated 131 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-23T01:28:31.743123+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/sft_llama_s43_eval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/sft_llama_s43_eval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-23T01:28:31.743301+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.5168863583183839,\\n  \\\"recall\\\": 0.5453872109291417,\\n  \\\"f1\\\": 0.5307544449783758,\\n  \\\"ign_precision\\\": 0.49165261382799325,\\n  \\\"ign_recall\\\": 0.5388596248036226,\\n  \\\"ign_f1\\\": 0.5141748600149906,\\n  \\\"tp\\\": 6627,\\n  \\\"pred_count\\\": 12821,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8761566501542201,\\n  \\\"evi_recall\\\": 0.7786360993437993,\\n  \\\"evi_f1\\\": 0.8245228252264931,\\n  \\\"n_evaluated\\\": 15504,\\n  \\\"edcr\\\": 0.5865566973933753,\\n  \\\"n_distractor_citations\\\": 13299,\\n  \\\"n_total_citations\\\": 22673,\\n  \\\"evi_joint_precision\\\": 0.42544993930437536,\\n  \\\"evi_joint_recall\\\": 0.4185140958413374,\\n  \\\"evi_f1_joint\\\": 0.42195351758793975,\\n  \\\"evi_tp\\\": 8061,\\n  \\\"evi_pred_total\\\": 18947,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.8071065989847716,\\n  \\\"evidence_format_rate\\\": 0.8060913705583757,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 795,\\n  \\\"n_evidence_valid\\\": 794,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15548,\\n  \\\"n_truncated\\\": 190,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 6971.8,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/sft_output_llama_3_1_8b_s43\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\",\\n    \\\"sft_adapter\\\": null,\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/sft_llama_s43_eval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code
+…[truncated 69 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-23T01:28:31.743491+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/sft_llama_s44_eval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/sft_llama_s44_eval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-23T01:28:31.743662+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4928464481783397,\\n  \\\"recall\\\": 0.487614188132664,\\n  \\\"f1\\\": 0.49021635709262396,\\n  \\\"ign_precision\\\": 0.4694976604573144,\\n  \\\"ign_recall\\\": 0.49145180667221144,\\n  \\\"ign_f1\\\": 0.4802239479862742,\\n  \\\"tp\\\": 5925,\\n  \\\"pred_count\\\": 12022,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8476912474155754,\\n  \\\"evi_recall\\\": 0.8526440879382056,\\n  \\\"evi_f1\\\": 0.8501604542088372,\\n  \\\"n_evaluated\\\": 14767,\\n  \\\"edcr\\\": 0.6578853260221719,\\n  \\\"n_distractor_citations\\\": 16557,\\n  \\\"n_total_citations\\\": 25167,\\n  \\\"evi_joint_precision\\\": 0.38286878322651163,\\n  \\\"evi_joint_recall\\\": 0.4000830694148798,\\n  \\\"evi_f1_joint\\\": 0.39128668630039604,\\n  \\\"evi_tp\\\": 7706,\\n  \\\"evi_pred_total\\\": 20127,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.7563451776649747,\\n  \\\"evidence_format_rate\\\": 0.7563451776649747,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 745,\\n  \\\"n_evidence_valid\\\": 745,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 14990,\\n  \\\"n_truncated\\\": 240,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 7227.4,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/sft_output_llama_3_1_8b_s44\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\",\\n    \\\"sft_adapter\\\": null,\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/sft_llama_s44_eval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code
+…[truncated 69 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-23T01:28:31.743810+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/eval_results -name \"metrics.json\" -type f -path \"*14b*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp/eval_results -name \"metrics.json\" -type f -path \"*14b*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-23T01:28:31.743935+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/plan017_14b_rsft_no_evidence_eval/metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-23T01:28:31.744061+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/eval_results -name \"metrics.json\" -type f -path \"*plan017*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp/eval_results -name \"metrics.json\" -type f -path \"*plan017*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-23T01:28:31.744185+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/plan017_14b_rsft_no_evidence_eval/metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-23T01:28:31.744348+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/eval_results -name \"metrics.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp/eval_results -name \"metrics.json\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-23T01:28:31.744554+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/8b_sft_s43/metrics.json\\n/root/autodl-tmp/eval_results/d102_1_7b_k1_s42/metrics.json\\n/root/autodl-tmp/eval_results/d102_8b_k1_s42/metrics.json\\n/root/autodl-tmp/eval_results/d102_8b_k1_s43/metrics.json\\n/root/autodl-tmp/eval_results/d102_llama_k1_s42/metrics.json\\n/root/autodl-tmp/eval_results/d102_llama_k1_s43/metrics.json\\n/root/autodl-tmp/eval_results/d111_4b_sft_s42_reeval/metrics.json\\n/root/autodl-tmp/eval_results/d112_rsft_bf16/metrics.json\\n/root/autodl-tmp/eval_results/d112_rsft_from_sft_s44/metrics.json\\n/root/autodl-tmp/eval_results/dpo_ced_1ep/metrics.json\\n/root/autodl-tmp/eval_results/dpo_ced_1ep_fixed/metrics.json\\n/root/autodl-tmp/eval_results/eval_llama_rsft_k1_s43/metrics.json\\n/root/autodl-tmp/eval_results/eval_llama_rsft_s42_no_evidence/metrics.json\\n/root/autodl-tmp/eval_results/eval_llama_rsft_s43_no_evidence/metrics.json\\n/root/autodl-tmp/eval_results/grpo_bf16_g4_ckpt100_eval/metrics.json\\n/root/autodl-tmp/eval_results/grpo_bf16_g4_ckpt200_eval/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-10/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-20/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-30/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-50/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-60/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6/checkpoint-20/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-100/metrics.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-80/metrics.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-90/metrics.json\\n/root/autodl-tm
+…[truncated 6436 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-23T01:28:31.744713+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp -name \"metrics*.json\" -path \"*14b*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp -name \"metrics*.json\" -path \"*14b*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-23T01:28:31.744863+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_outputs/eval_14b_sft/metrics.json\\n/root/autodl-tmp/eval_outputs/eval_14b_sft_no_evidence/metrics.json\\n/root/autodl-tmp/eval_results/plan017_14b_rsft_no_evidence_eval/metrics.json\\n/root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_eval/metrics.json\\n/root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_eval_2048/metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-23T01:28:31.744990+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_8b_k1_s44_eval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/rsft_8b_k1_s44_eval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-23T01:28:31.745150+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.5606619152945032,\\n  \\\"recall\\\": 0.5632458233890215,\\n  \\\"f1\\\": 0.5619508990885952,\\n  \\\"ign_precision\\\": 0.5360493165371214,\\n  \\\"ign_recall\\\": 0.5544774050457444,\\n  \\\"ign_f1\\\": 0.5451076587626056,\\n  \\\"tp\\\": 6844,\\n  \\\"pred_count\\\": 12207,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.7965653896961691,\\n  \\\"evi_recall\\\": 0.8332114118507681,\\n  \\\"evi_f1\\\": 0.8144764023518195,\\n  \\\"n_evaluated\\\": 15778,\\n  \\\"edcr\\\": 0.6233465608465608,\\n  \\\"n_distractor_citations\\\": 16965,\\n  \\\"n_total_citations\\\": 27216,\\n  \\\"evi_joint_precision\\\": 0.4310768489520597,\\n  \\\"evi_joint_recall\\\": 0.46451378433103163,\\n  \\\"evi_f1_joint\\\": 0.447171131547381,\\n  \\\"evi_tp\\\": 8947,\\n  \\\"evi_pred_total\\\": 20755,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.7614213197969543,\\n  \\\"evidence_format_rate\\\": 0.7614213197969543,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 750,\\n  \\\"n_evidence_valid\\\": 750,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 16254,\\n  \\\"n_truncated\\\": 230,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 10428.3,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_8b_k1_s44\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-8B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_qwen3_8b_bf16\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_8b_k1_s44_eval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"
+…[truncated 98 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-23T01:28:31.745341+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_outputs/eval_14b_sft/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_outputs/eval_14b_sft/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-23T01:28:31.745511+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.5480580619850922,\\n  \\\"recall\\\": 0.5748498066002798,\\n  \\\"f1\\\": 0.5611343187660668,\\n  \\\"ign_precision\\\": 0.5268399729912221,\\n  \\\"ign_recall\\\": 0.5768413270492561,\\n  \\\"ign_f1\\\": 0.5507080153513608,\\n  \\\"tp\\\": 6985,\\n  \\\"pred_count\\\": 12745,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8196955680766966,\\n  \\\"evi_recall\\\": 0.8389567911860906,\\n  \\\"evi_f1\\\": 0.8292143434429368,\\n  \\\"n_evaluated\\\": 13764,\\n  \\\"edcr\\\": 0.5970149253731343,\\n  \\\"n_distractor_citations\\\": 14440,\\n  \\\"n_total_citations\\\": 24187,\\n  \\\"evi_joint_precision\\\": 0.41738182808881624,\\n  \\\"evi_joint_recall\\\": 0.4772337884845024,\\n  \\\"evi_f1_joint\\\": 0.4453056874333883,\\n  \\\"evi_tp\\\": 9192,\\n  \\\"evi_pred_total\\\": 22023,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.8588832487309644,\\n  \\\"evidence_format_rate\\\": 0.8588832487309644,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 846,\\n  \\\"n_evidence_valid\\\": 846,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 14081,\\n  \\\"n_truncated\\\": 139,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 18011.3,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/sft_output_14b\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\",\\n    \\\"sft_adapter\\\": null,\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_outputs/eval_14b_sft\\\",\\n    \\\"batch_size\\\": 2,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadat
+…[truncated 35 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-23T01:28:31.745657+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_eval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_eval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-23T01:28:31.745820+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.6014014839241549,\\n  \\\"recall\\\": 0.6003621101143939,\\n  \\\"f1\\\": 0.600881347555702,\\n  \\\"ign_precision\\\": 0.5793572643451795,\\n  \\\"ign_recall\\\": 0.5980962942426763,\\n  \\\"ign_f1\\\": 0.588577664605311,\\n  \\\"tp\\\": 7295,\\n  \\\"pred_count\\\": 12130,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8405340409652542,\\n  \\\"evi_recall\\\": 0.8378244337907093,\\n  \\\"evi_f1\\\": 0.839177050130397,\\n  \\\"n_evaluated\\\": 13031,\\n  \\\"edcr\\\": 0.5395657308985191,\\n  \\\"n_distractor_citations\\\": 11878,\\n  \\\"n_total_citations\\\": 22014,\\n  \\\"evi_joint_precision\\\": 0.47478200554894967,\\n  \\\"evi_joint_recall\\\": 0.49753387674575567,\\n  \\\"evi_f1_joint\\\": 0.4858917480035493,\\n  \\\"evi_tp\\\": 9583,\\n  \\\"evi_pred_total\\\": 20184,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.8903553299492386,\\n  \\\"evidence_format_rate\\\": 0.8903553299492386,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 877,\\n  \\\"n_evidence_valid\\\": 877,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 13275,\\n  \\\"n_truncated\\\": 105,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 16337.3,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_14b\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_14b/checkpoint-144\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_eval\\\",\\n    \\\"batch_size\\\": 1,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", 
+…[truncated 100 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-23T01:28:31.745970+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp -name \"metrics*.json\" -type f -path \"*14b_sft*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp -name \"metrics*.json\" -type f -path \"*14b_sft*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-23T01:28:31.746098+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_outputs/eval_14b_sft/metrics.json\\n/root/autodl-tmp/eval_outputs/eval_14b_sft_no_evidence/metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-23T01:28:31.746251+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp -name \"metrics*.json\" -type f -path \"*14b*s4*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp -name \"metrics*.json\" -type f -path \"*14b*s4*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-23T01:28:31.746384+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-23T01:28:31.746530+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp -maxdepth 3 -type d -name \"*14b*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp -maxdepth 3 -type d -name \"*14b*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-23T01:28:31.746678+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_outputs/eval_14b_sft\\n/root/autodl-tmp/eval_outputs/eval_14b_sft_no_evidence\\n/root/autodl-tmp/eval_results/test_eval_14b_sft_s42\\n/root/autodl-tmp/eval_results/plan017_14b_rsft_no_evidence_eval\\n/root/autodl-tmp/eval_results/test_eval_14b_rsft_s42\\n/root/autodl-tmp/eval_results/test_eval_14b_sft_s42_no_evi\\n/root/autodl-tmp/eval_results/test_eval_14b_rsft_s42_no_evi\\n/root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_eval\\n/root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_eval_2048\\n/root/autodl-tmp/rsft_generations_14b\\n/root/autodl-tmp/scripts/14b\\n/root/autodl-tmp/sft_output_14b\\n/root/autodl-tmp/rsft_output_14b\\n/root/autodl-tmp/sft_output_14b_s43\\n/root/autodl-tmp/rsft_scored_14b\\n/root/autodl-tmp/rsft_generations_14b_s43\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-23T01:28:31.746821+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp -name \"metrics*.json\" -type f -path \"*14b_s*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp -name \"metrics*.json\" -type f -path \"*14b_s*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-23T01:28:31.746945+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_outputs/eval_14b_sft/metrics.json\\n/root/autodl-tmp/eval_outputs/eval_14b_sft_no_evidence/metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-23T01:28:31.747139+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport numpy as np\nfrom scipy import stats\n\n# === DATA (ign_f1 values from eval metrics.json) ===\n\nsft = {\n    '1.7B':     [0.47859740744194723, 0.4285507874584597, 0.43212680168698153],\n    '4B':       [0.3974, 0.43653584657945327, 0.4734224574531187],\n    '8B':       [0.5051243848480744, 0.5324471522200683, 0.46806291822368995],\n    'LLaMA-8B': [0.5384131548207386, 0.5141748600149906, 0.4802239479862742],\n}\n\nrsft = {\n    '1.7B':     [0.5122, 0.5109016739344494, 0.5125215688103344],\n    '4B':       [0.4423041303945175, 0.4511691884456671, 0.451110389911447],\n    '8B':       [0.5376, 0.5471, 0.5451076587626056],\n    'LLaMA-8B': [0.5714, 0.5662, 0.5587],\n}\n\nscales = ['1.7B', '4B', '8B', 'LLaMA-8B']\n\n# Convert to numpy\nfor s in scales:\n    sft[s] = np.array(sft[s])\n    rsft[s] = np.array(rsft[s])\n\n# ============================================================\n# 1. Sign test\n# ============================================================\nprint(\"=\" * 60)\nprint(\"## Sign test\")\nprint(\"=\" * 60)\n\nsft_stds = {}\nrsft_stds = {}\nsign_count = 0\nfor s in scales:\n    sft_std = np.std(sft[s], ddof=1) * 100  # in pp\n    rsft_std = np.std(rsft[s], ddof=1) * 100  # in pp\n    sft_stds[s] = sft_std\n    rsft_stds[s] = rsft_std\n    is_greater = sft_std > rsft_std\n    if is_greater:\n        sign_count += 1\n    print(f\"  {s:10s}: SFT_std={sft_std:.4f}pp, RSFT_std={rsft_std:.4f}pp, SFT>RSFT={is_greater}\")\n\nn_scales = len(scales)\nprint(f\"\\n{sign_count}/{n_scales} scales: SFT_std > RSFT_std\")\n\n# Binomial test (two-sided): H0: p=0.5\nbinom_result = stats.binom_test(sign_count, n_scales, 0.5)  # two-sided\n# Also compute one-sided\np_one_sided = stats.binom.sf(sign_count - 1, n_scales, 0.5)  # P(X >= sign_count)\nprint(f\"Binomial p-value (one-sided, H0: p≤0.5): {p_one_sided:.4f}\")\nprint(f\"Binomial p-value (two-sided): {binom_result:.4f}\")\n\n# ============================================================\n# 2. Chi-squared 95% CI for standard deviations\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"## χ² 95% CI for standard deviations\")\nprint(\"=\" * 60)\n\ndef chi2_ci_for_std(data, alpha=0.05):\n    \"\"\"Compute chi-squared CI for population std.\"\"\"\n    n = len(data)\n    s2 = np.var(data, ddof=1)\n    df = n - 1\n    chi2_lower = stats.chi2.ppf(alpha/2, df)\n    chi2_upper = stats.chi2.ppf(1 - alpha/2, df)\n    # CI for variance: [(n-1)*s^2/chi2_upper, (n-1)*s^2/chi2_lower]\n    var_lo = df * s2 / chi2_upper\n    var_hi = df * s2 / chi2_lower\n    # CI for std\n    std_lo = np.sqrt(var_lo)\n    std_hi = np.sqrt(var_hi)\n    return std_lo * 100, std_hi * 100  # in pp\n\nprint(f\"\\n{'Scale':10s} | {'n_SFT':5s} | {'SFT_std':8s} | {'SFT_std_CI':20s} | {'n_RSFT':6s} | {'RSFT_std':9s} | {'RSFT_std_CI':20s}\")\nprint(\"-\" * 90)\n\nfor s in scales:\n    n_sft = len(sft[s])\n    n_rsft = len(rsft[s])\n    sft_s = sft_stds[s]\n    rsft_s = rsft_stds[s]\n    sft_ci = chi2_ci_for_std(sft[s])\n    rsft_ci = chi2_ci_for_std(rsft[s])\n    print(f\"{s:10s} | {n_sft:5d} | {sft_s:7.4f}pp | [{sft_ci[0]:7.4f}, {sft_ci[1]:7.4f}]pp | {n_rsft:6d} | {rsft_s:8.4f}pp | [{rsft_ci[0]:7.4f}, {rsft_ci[1]:7.4f}]pp\")\n\n# Compression ratios\nprint(\"\\nVariance compression ratios:\")\nfor s in scales:\n    ratio = sft_stds[s] / rsft_stds[s]\n    print(f\"  {s:10s}: {ratio:.1f}×\")\n\n# ============================================================\n# 3. Cohen's d per scale\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"## Cohen's d (SFT mean vs RSFT mean)\")\nprint(\"=\" * 60)\n\ndef cohens_d(group1, group2):\n    \"\"\"Compute Cohen's d with pooled std. Positive = group2 > group1.\"\"\"\n    n1, n2 = len(group1), len(group2)\n    var1 = np.var(group1, ddof=1)\n    var2 = np.var(group2, ddof=1)\n    pooled_var = ((n1 - 1) * var1 + (n2 - 1) * var2) / (n1 + n2 - 2)\n    pooled_std = np.sqrt(pooled_var)\n    d = (np.mean(group2) - np.mean(group1)) / pooled_std\n    return d, pooled_std\n\ndef effect_label(d):\n    d_abs = abs(d)\n    if d_abs < 0.2:\n        return \"negligible\"\n    elif d_abs < 0.5:\n        return \"small\"\n    elif d_abs < 0.8:\n        return \"medium\"\n    else:\n        return \"large\"\n\nprint(f\"\\n{'Scale':10s} | {'SFT_mean':10s} | {'RSFT_mean':10s} | {'pooled_std':10s} | {'Cohen_d':9s} | {'Effect':12s}\")\nprint(\"-\" * 75)\n\nfor s in scales:\n    sft_mean = np.mean(sft[s]) * 100\n    rsft_mean = np.mean(rsft[s]) * 100\n    d, ps = cohens_d(sft[s] * 100, rsft[s] * 100)  # in pp\n    ps_pp = ps\n    label = effect_label(d)\n    print(f\"{s:10s} | {sft_mean:9.2f}pp | {rsft_mean:9.2f}pp | {ps_pp:9.4f}pp | {d:+8.4f}  | {label}\")\n\n# ============================================================\n# Summary for paper\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"## Paper-ready summary\")\nprint(\"=\" * 60)\n\nprint(\"\\n### Sign test\")\nprint(f\"{sign_count}/{n_scales} scales: SFT_std > RSFT_std\")\nprint(f\"Binomial p-value (one-sided): {p_one_sided:.4f}\")\nprint(f\"Note: 14B excluded (n=1 for both SFT and RSFT, std undefined)\")\n\nprint(\"\\n### χ² 95% CI for standard deviations\")\nprint(f\"| Scale     | n_SFT | SFT_std (pp) | SFT_std 95% CI (pp)   | n_RSFT | RSFT_std (pp) | RSFT_std 95% CI (pp)  | Compression |\")\nprint(f\"|-----------|-------|--------------|----------------------|--------|---------------|----------------------|-------------|\")\nfor s in scales:\n    n_sft = len(sft[s])\n    n_rsft = len(rsft[s])\n    sft_s = sft_stds[s]\n    rsft_s = rsft_stds[s]\n    sft_ci = chi2_ci_for_std(sft[s])\n    rsft_ci = chi2_ci_for_std(rsft[s])\n    ratio = sft_s / rsft_s\n    print(f\"| {s:9s} | {n_sft:5d} | {sft_s:12.2f} | [{sft_ci[0]:8.2f}, {sft_ci[1]:8.2f}] | {n_rsft:6d} | {rsft_s:13.2f} | [{rsft_ci[0]:8.2f}, {rsft_ci[1]:8.2f}] | {ratio:10.1f}× |\")\n\nprint(\"\\n### Cohen's d\")\nprint(f\"| Scale     | SFT_mean (pp) | RSFT_mean (pp) | pooled_std (pp) | Cohen's d | Effect      |\")\nprint(f\"|-----------|---------------|----------------|-----------------|-----------|-------------|\")\nfor s in scales:\n    sft_mean = np.mean(sft[s]) * 100\n    rsft_mean = np.mean(rsft[s]) * 100\n    d, ps = cohens_d(sft[s] * 100, rsft[s] * 100)\n    label = effect_label(d)\n    print(f\"| {s:9s} | {sft_mean:13.2f} | {rsft_mean:14.2f} | {ps:15.2f} | {d:+9.2f} | {label:11s} |\")\n\nPYEOF",
+  "description": "Compute variance statistics: sign test, chi2 CI, Cohen's d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 << 'PYEOF'\nimport numpy as np\nfrom scipy import stats\n\n# === DATA (ign_f1 values from eval metrics.json) ===\n\nsft = {\n    '1.7B':     [0.47859740744194723, 0.4285507874584597, 0.43212680168698153],\n    '4B':       [0.3974, 0.43653584657945327, 0.4734224574531187],\n    '8B':       [0.5051243848480744, 0.5324471522200683, 0.46806291822368995],\n    'LLaMA-8B': [0.5384131548207386, 0.5141748600149906, 0.4802239479862742],\n}\n\nrsft = {\n    '1.7B':     [0.5122, 0.5109016739344494, 0.5125215688103344],\n    '4B':       [0.4423041303945175, 0.4511691884456671, 0.451110389911447],\n    '8B':       [0.5376, 0.5471, 0.5451076587626056],\n    'LLaMA-8B': [0.5714, 0.5662, 0.5587],\n}\n\nscales = ['1.7B', '4B', '8B', 'LLaMA-8B']\n\n# Convert to numpy\nfor s in scales:\n    sft[s] = np.array(sft[s])\n    rsft[s] = np.array(rsft[s])\n\n# ============================================================\n# 1. Sign test\n# ============================================================\nprint(\"=\" * 60)\nprint(\"## Sign test\")\nprint(\"=\" * 60)\n\nsft_stds = {}\nrsft_stds = {}\nsign_count = 0\nfor s in scales:\n    sft_std = np.std(sft[s], ddof=1) * 100  # in pp\n    rsft_std = np.std(rsft[s], ddof=1) * 100  # in pp\n    sft_stds[s] = sft_std\n    rsft_stds[s] = rsft_std\n    is_greater = sft_std > rsft_std\n    if is_greater:\n        sign_count += 1\n    print(f\"  {s:10s}: SFT_std={sft_std:.4f}pp, RSFT_std={rsft_std:.4f}pp, SFT>RSFT={is_greater}\")\n\nn_scales = len(scales)\nprint(f\"\\n{sign_count}/{n_scales} scales: SFT_std > RSFT_std\")\n\n# Binomial test (two-sided): H0: p=0.5\nbinom_result = stats.binom_test(sign_count, n_scales, 0.5)  # two-sided\n# Also compute one-sided\np_one_sided = stats.binom.sf(sign_count - 1, n_scales, 0.5)  # P(X >= sign_count)\nprint(f\"Binomial p-value (one-sided, H0: p≤0.5): {p_one_sided:.4f}\")\nprint(f\"Binomial p-value (two-sided): {binom_result:.4f}\")\n\n# ============================================================\n# 2. Chi-squared 95% CI for standard deviations\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"## χ² 95% CI for standard deviations\")\nprint(\"=\" * 60)\n\ndef chi2_ci_for_std(data, alpha=0.05):\n    \"\"\"Compute chi-squared CI for population std.\"\"\"\n    n = len(data)\n    s2 = np.var(data, ddof=1)\n    df = n - 1\n    chi2_lower = stats.chi2.ppf(alpha/2, df)\n    chi2_upper = stats.chi2.ppf(1 - alpha/2, df)\n    # CI for variance: [(n-1)*s^2/chi2_upper, (n-1)*s^2/chi2_lower]\n    var_lo = df * s2 / chi2_upper\n    var_hi = df * s2 / chi2_lower\n    # CI for std\n    std_lo = np.sqrt(var_lo)\n    std_hi = np.sqrt(var_hi)\n    return std_lo * 100, std_hi * 100  # in pp\n\nprint(f\"\\n{'Scale':10s} | {'n_SFT':5s} | {'SFT_std':8s} | {'SFT_std_CI':20s} | {'n_RSFT':6s} | {'RSFT_std':9s} | {'RSFT_std_CI':20s}\")\nprint(\"-\" * 90)\n\nfor s in scales:\n    n_sft = len(sft[s])\n    n_rsft = len(rsft[s])\n    sft_s = sft_stds[s]\n    rsft_s = rsft_stds[s]\n    sft_ci = chi2_ci_for_std(sft[s])\n    rsft_ci = chi2_ci_for_std(rsft[s])\n    print(f\"{s:10s} | {n_sft:5d} | {sft_s:7.4f}pp | [{sft_ci[0]:7.4f}, {sft_ci[1]:7.4f}]pp | {n_rsft:6d} | {rsft_s:8.4f}pp | [{rsft_ci[0]:7.4f}, {rsft_ci[1]:7.4f}]pp\")\n\n# Compression ratios\nprint(\"\\nVariance compression ratios:\")\nfor s in scales:\n    ratio = sft_stds[s] / rsft_stds[s]\n    print(f\"  {s:10s}: {ratio:.1f}×\")\n\n# ============================================================\n# 3. Cohen's d per scale\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"## Cohen's d (SFT mean vs RSFT mean)\")\nprint(\"=\" * 60)\n\ndef cohens_d(group1, group2):\n    \"\"\"Compute Cohen's d with pooled std. Positive = group2 > group1.\"\"\"\n    n1, n2 = len(group1), len(group2)\n    var1 = np.var(group1, ddof=1)\n    var2 = np.var(group2, ddof=1)\n    pooled_var = ((n1 - 1) * var1 + (n2 - 1) * var2) / (n1 + n2 - 2)\n    pooled_std = np.sqrt(pooled_var)\n    d = (np.mean(group2) - np.mean(group1)) / pooled_std\n    return d, pooled_std\n\ndef effect_label(d):\n    d_abs = abs(d)\n    if d_abs < 0.2:\n        return \"negligible\"\n    elif d_abs < 0.5:\n        return \"small\"\n    elif d_abs < 0.8:\n        return \"medium\"\n    else:\n        return \"large\"\n\nprint(f\"\\n{'Scale':10s} | {'SFT_mean':10s} | {'RSFT_mean':10s} | {'pooled_std':10s} | {'Cohen_d':9s} | {'Effect':12s}\")\nprint(\"-\" * 75)\n\nfor s in scales:\n    sft_mean = np.mean(sft[s]) * 100\n    rsft_mean = np.mean(rsft[s]) * 100\n    d, ps = cohens_d(sft[s] * 100, rsft[s] * 100)  # in pp\n    ps_pp = ps\n    label = effect_label(d)\n    print(f\"{s:10s} | {sft_mean:9.2f}pp | {rsft_mean:9.2f}pp | {ps_pp:9.4f}pp | {d:+8.4f}  | {label}\")\n\n# ============================================================\n# Summary for paper\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"## Paper-ready summary\")\nprint(\"=\" * 60)\n\nprint(\"\\n### Sign test\")\nprint(f\"{sign_count}/{n_scales} scales: SFT_std > RSFT_std\")\nprint(f\"Binomial p-value (one-sided): {p_one_sided:.4f}\")\nprint(f\"Note: 14B excluded (n=1 for both SFT and RSFT, std undefined)\")\n\nprint(\"\\n### χ² 95% CI for standard deviations\")\nprint(f\"| Scale     | n_SFT | SFT_std (pp) | SFT_std 95% CI (pp)   | n_RSFT | RSFT_std (pp) | RSFT_std 95% CI (pp)  | Compression |\")\nprint(f\"|-----------|-------|--------------|----------------------|--------|---------------|----------------------|-------------|\")\nfor s in scales:\n    n_sft = len(sft[s])\n    n_rsft = len(rsft[s])\n    sft_s = sft_stds[s]\n    rsft_s = rsft_stds[s]\n    sft_ci = chi2_ci_for_std(sft[s])\n    rsft_ci = chi2_ci_for_std(rsft[s])\n    ratio = sft_s / rsft_s\n    print(f\"| {s:9s} | {n_sft:5d} | {sft_s:12.2f} | [{sft_ci[0]:8.2f}, {sft_ci[1]:8.2f}] | {n_rsft:6d} | {rsft_s:13.2f} | [{rsft_ci[0]:8.2f}, {rsft_ci[1]:8.2f}] | {ratio:10.1f}× |\")\n\nprint(\"\\n### Cohen's d\")\nprint(f\"| Scale     | SFT_mean (pp) | RSFT_mean (pp) | pooled_std (pp) | Cohen's d | Effect      |\")\nprint(f\"|-----------|---------------|----------------|-----------------|-----------|-------------|\")\nfor s in scales:\n    sft_mean = np.mean(sft[s]) * 100\n    rsft_mean = np.mean(rsft[s]) * 100\n    d, ps = cohens_d(sft[s] * 100, rsft[s] * 100)\n    label = effect_label(d)\n    print(f\"| {s:9s} | {sft_mean:13.2f} | {rsft_mean:14.2f} | {ps:15.2f} | {d:+9.2f} | {label:11s} |\")\n\nPYEOF",
+    "description": "Compute variance statistics: sign test, chi2 CI, Cohen's d"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-23T01:28:31.747367+00:00_
+
+Exit code 1
+============================================================
+## Sign test
+============================================================
+  1.7B      : SFT_std=2.7919pp, RSFT_std=0.0858pp, SFT>RSFT=True
+  4B        : SFT_std=3.8017pp, RSFT_std=0.5101pp, SFT>RSFT=True
+  8B        : SFT_std=3.2315pp, RSFT_std=0.5010pp, SFT>RSFT=True
+  LLaMA-8B  : SFT_std=2.9229pp, RSFT_std=0.6385pp, SFT>RSFT=True
+
+4/4 scales: SFT_std > RSFT_std
+Traceback (most recent call last):
+  File "&lt;stdin>", line 51, in &lt;module>
+AttributeError: module 'scipy.stats' has no attribute 'binom_test'. Did you mean: 'binomtest'?
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-23T01:28:31.747524+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport numpy as np\nfrom scipy import stats\n\n# === DATA (ign_f1 values from eval metrics.json) ===\n\nsft = {\n    '1.7B':     np.array([0.47859740744194723, 0.4285507874584597, 0.43212680168698153]),\n    '4B':       np.array([0.3974, 0.43653584657945327, 0.4734224574531187]),\n    '8B':       np.array([0.5051243848480744, 0.5324471522200683, 0.46806291822368995]),\n    'LLaMA-8B': np.array([0.5384131548207386, 0.5141748600149906, 0.4802239479862742]),\n}\n\nrsft = {\n    '1.7B':     np.array([0.5122, 0.5109016739344494, 0.5125215688103344]),\n    '4B':       np.array([0.4423041303945175, 0.4511691884456671, 0.451110389911447]),\n    '8B':       np.array([0.5376, 0.5471, 0.5451076587626056]),\n    'LLaMA-8B': np.array([0.5714, 0.5662, 0.5587]),\n}\n\nscales = ['1.7B', '4B', '8B', 'LLaMA-8B']\n\n# ============================================================\n# 1. Sign test\n# ============================================================\nprint(\"## Sign test\\n\")\n\nsft_stds = {}\nrsft_stds = {}\nsign_count = 0\nfor s in scales:\n    sft_std = np.std(sft[s], ddof=1) * 100\n    rsft_std = np.std(rsft[s], ddof=1) * 100\n    sft_stds[s] = sft_std\n    rsft_stds[s] = rsft_std\n    if sft_std > rsft_std:\n        sign_count += 1\n\nn_scales = len(scales)\nprint(f\"{sign_count}/{n_scales} scales: SFT_std > RSFT_std\")\n\n# Binomial test\nresult = stats.binomtest(sign_count, n_scales, 0.5, alternative='greater')\np_one = result.pvalue\nresult2 = stats.binomtest(sign_count, n_scales, 0.5, alternative='two-sided')\np_two = result2.pvalue\n\nprint(f\"Binomial p-value (one-sided, H0: p≤0.5): {p_one:.4f}\")\nprint(f\"Binomial p-value (two-sided): {p_two:.4f}\")\nprint(f\"Note: 14B excluded (n=1 for both SFT/RSFT, std undefined)\")\n\n# ============================================================\n# 2. Chi-squared 95% CI for standard deviations\n# ============================================================\nprint(\"\\n## χ² 95% CI for standard deviations\\n\")\n\ndef chi2_ci_for_std(data, alpha=0.05):\n    n = len(data)\n    s2 = np.var(data, ddof=1)\n    df = n - 1\n    chi2_lo = stats.chi2.ppf(alpha/2, df)\n    chi2_hi = stats.chi2.ppf(1 - alpha/2, df)\n    std_lo = np.sqrt(df * s2 / chi2_hi) * 100\n    std_hi = np.sqrt(df * s2 / chi2_lo) * 100\n    return std_lo, std_hi\n\nprint(f\"| Scale     | n_SFT | SFT_std (pp) | SFT_std 95% CI (pp)    | n_RSFT | RSFT_std (pp) | RSFT_std 95% CI (pp)   |\")\nprint(f\"|-----------|-------|--------------|------------------------|--------|---------------|------------------------|\")\nfor s in scales:\n    n_sft = len(sft[s])\n    n_rsft = len(rsft[s])\n    sft_ci = chi2_ci_for_std(sft[s])\n    rsft_ci = chi2_ci_for_std(rsft[s])\n    print(f\"| {s:9s} | {n_sft:5d} | {sft_stds[s]:12.2f} | [{sft_ci[0]:8.2f}, {sft_ci[1]:8.2f}] | {n_rsft:6d} | {rsft_stds[s]:13.2f} | [{rsft_ci[0]:8.2f}, {rsft_ci[1]:8.2f}] |\")\n\nprint(\"\\nCompression ratios:\")\nfor s in scales:\n    ratio = sft_stds[s] / rsft_stds[s]\n    print(f\"  {s:10s}: {ratio:.1f}×\")\n\n# ============================================================\n# 3. Cohen's d per scale\n# ============================================================\nprint(\"\\n## Cohen's d (SFT mean vs RSFT mean)\\n\")\n\ndef cohens_d(g1, g2):\n    n1, n2 = len(g1), len(g2)\n    v1 = np.var(g1, ddof=1)\n    v2 = np.var(g2, ddof=1)\n    pooled = np.sqrt(((n1-1)*v1 + (n2-1)*v2) / (n1+n2-2))\n    d = (np.mean(g2) - np.mean(g1)) / pooled\n    return d, pooled\n\ndef effect_label(d):\n    a = abs(d)\n    if a < 0.2: return \"negligible\"\n    elif a < 0.5: return \"small\"\n    elif a < 0.8: return \"medium\"\n    else: return \"large\"\n\nprint(f\"| Scale     | SFT_mean (pp) | RSFT_mean (pp) | Δ (pp) | pooled_std (pp) | Cohen's d | Effect      |\")\nprint(f\"|-----------|---------------|----------------|--------|-----------------|-----------|-------------|\")\nfor s in scales:\n    sm = np.mean(sft[s]) * 100\n    rm = np.mean(rsft[s]) * 100\n    delta = rm - sm\n    d, ps = cohens_d(sft[s]*100, rsft[s]*100)\n    label = effect_label(d)\n    print(f\"| {s:9s} | {sm:13.2f} | {rm:14.2f} | {delta:+5.2f} | {ps:15.2f} | {d:+9.2f} | {label:11s} |\")\n\n# ============================================================\n# Raw data verification\n# ============================================================\nprint(\"\\n## Raw per-seed data\\n\")\nprint(f\"| Scale     | SFT s42  | SFT s43  | SFT s44  | RSFT s42 | RSFT s43 | RSFT s44 |\")\nprint(f\"|-----------|----------|----------|----------|----------|----------|----------|\")\nfor s in scales:\n    print(f\"| {s:9s} | {sft[s][0]:.4f} | {sft[s][1]:.4f} | {sft[s][2]:.4f} | {rsft[s][0]:.4f} | {rsft[s][1]:.4f} | {rsft[s][2]:.4f} |\")\n\nPYEOF",
+  "description": "Compute variance statistics with corrected scipy API"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 << 'PYEOF'\nimport numpy as np\nfrom scipy import stats\n\n# === DATA (ign_f1 values from eval metrics.json) ===\n\nsft = {\n    '1.7B':     np.array([0.47859740744194723, 0.4285507874584597, 0.43212680168698153]),\n    '4B':       np.array([0.3974, 0.43653584657945327, 0.4734224574531187]),\n    '8B':       np.array([0.5051243848480744, 0.5324471522200683, 0.46806291822368995]),\n    'LLaMA-8B': np.array([0.5384131548207386, 0.5141748600149906, 0.4802239479862742]),\n}\n\nrsft = {\n    '1.7B':     np.array([0.5122, 0.5109016739344494, 0.5125215688103344]),\n    '4B':       np.array([0.4423041303945175, 0.4511691884456671, 0.451110389911447]),\n    '8B':       np.array([0.5376, 0.5471, 0.5451076587626056]),\n    'LLaMA-8B': np.array([0.5714, 0.5662, 0.5587]),\n}\n\nscales = ['1.7B', '4B', '8B', 'LLaMA-8B']\n\n# ============================================================\n# 1. Sign test\n# ============================================================\nprint(\"## Sign test\\n\")\n\nsft_stds = {}\nrsft_stds = {}\nsign_count = 0\nfor s in scales:\n    sft_std = np.std(sft[s], ddof=1) * 100\n    rsft_std = np.std(rsft[s], ddof=1) * 100\n    sft_stds[s] = sft_std\n    rsft_stds[s] = rsft_std\n    if sft_std > rsft_std:\n        sign_count += 1\n\nn_scales = len(scales)\nprint(f\"{sign_count}/{n_scales} scales: SFT_std > RSFT_std\")\n\n# Binomial test\nresult = stats.binomtest(sign_count, n_scales, 0.5, alternative='greater')\np_one = result.pvalue\nresult2 = stats.binomtest(sign_count, n_scales, 0.5, alternative='two-sided')\np_two = result2.pvalue\n\nprint(f\"Binomial p-value (one-sided, H0: p≤0.5): {p_one:.4f}\")\nprint(f\"Binomial p-value (two-sided): {p_two:.4f}\")\nprint(f\"Note: 14B excluded (n=1 for both SFT/RSFT, std undefined)\")\n\n# ============================================================\n# 2. Chi-squared 95% CI for standard deviations\n# ============================================================\nprint(\"\\n## χ² 95% CI for standard deviations\\n\")\n\ndef chi2_ci_for_std(data, alpha=0.05):\n    n = len(data)\n    s2 = np.var(data, ddof=1)\n    df = n - 1\n    chi2_lo = stats.chi2.ppf(alpha/2, df)\n    chi2_hi = stats.chi2.ppf(1 - alpha/2, df)\n    std_lo = np.sqrt(df * s2 / chi2_hi) * 100\n    std_hi = np.sqrt(df * s2 / chi2_lo) * 100\n    return std_lo, std_hi\n\nprint(f\"| Scale     | n_SFT | SFT_std (pp) | SFT_std 95% CI (pp)    | n_RSFT | RSFT_std (pp) | RSFT_std 95% CI (pp)   |\")\nprint(f\"|-----------|-------|--------------|------------------------|--------|---------------|------------------------|\")\nfor s in scales:\n    n_sft = len(sft[s])\n    n_rsft = len(rsft[s])\n    sft_ci = chi2_ci_for_std(sft[s])\n    rsft_ci = chi2_ci_for_std(rsft[s])\n    print(f\"| {s:9s} | {n_sft:5d} | {sft_stds[s]:12.2f} | [{sft_ci[0]:8.2f}, {sft_ci[1]:8.2f}] | {n_rsft:6d} | {rsft_stds[s]:13.2f} | [{rsft_ci[0]:8.2f}, {rsft_ci[1]:8.2f}] |\")\n\nprint(\"\\nCompression ratios:\")\nfor s in scales:\n    ratio = sft_stds[s] / rsft_stds[s]\n    print(f\"  {s:10s}: {ratio:.1f}×\")\n\n# ============================================================\n# 3. Cohen's d per scale\n# ============================================================\nprint(\"\\n## Cohen's d (SFT mean vs RSFT mean)\\n\")\n\ndef cohens_d(g1, g2):\n    n1, n2 = len(g1), len(g2)\n    v1 = np.var(g1, ddof=1)\n    v2 = np.var(g2, ddof=1)\n    pooled = np.sqrt(((n1-1)*v1 + (n2-1)*v2) / (n1+n2-2))\n    d = (np.mean(g2) - np.mean(g1)) / pooled\n    return d, pooled\n\ndef effect_label(d):\n    a = abs(d)\n    if a < 0.2: return \"negligible\"\n    elif a < 0.5: return \"small\"\n    elif a < 0.8: return \"medium\"\n    else: return \"large\"\n\nprint(f\"| Scale     | SFT_mean (pp) | RSFT_mean (pp) | Δ (pp) | pooled_std (pp) | Cohen's d | Effect      |\")\nprint(f\"|-----------|---------------|----------------|--------|-----------------|-----------|-------------|\")\nfor s in scales:\n    sm = np.mean(sft[s]) * 100\n    rm = np.mean(rsft[s]) * 100\n    delta = rm - sm\n    d, ps = cohens_d(sft[s]*100, rsft[s]*100)\n    label = effect_label(d)\n    print(f\"| {s:9s} | {sm:13.2f} | {rm:14.2f} | {delta:+5.2f} | {ps:15.2f} | {d:+9.2f} | {label:11s} |\")\n\n# ============================================================\n# Raw data verification\n# ============================================================\nprint(\"\\n## Raw per-seed data\\n\")\nprint(f\"| Scale     | SFT s42  | SFT s43  | SFT s44  | RSFT s42 | RSFT s43 | RSFT s44 |\")\nprint(f\"|-----------|----------|----------|----------|----------|----------|----------|\")\nfor s in scales:\n    print(f\"| {s:9s} | {sft[s][0]:.4f} | {sft[s][1]:.4f} | {sft[s][2]:.4f} | {rsft[s][0]:.4f} | {rsft[s][1]:.4f} | {rsft[s][2]:.4f} |\")\n\nPYEOF",
+    "description": "Compute variance statistics with corrected scipy API"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-23T01:28:31.747716+00:00_
+
+## Sign test
+
+4/4 scales: SFT_std > RSFT_std
+Binomial p-value (one-sided, H0: p≤0.5): 0.0625
+Binomial p-value (two-sided): 0.1250
+Note: 14B excluded (n=1 for both SFT/RSFT, std undefined)
+
+## χ² 95% CI for standard deviations
+
+| Scale     | n_SFT | SFT_std (pp) | SFT_std 95% CI (pp)    | n_RSFT | RSFT_std (pp) | RSFT_std 95% CI (pp)   |
+|-----------|-------|--------------|------------------------|--------|---------------|------------------------|
+| 1.7B      |     3 |         2.79 | [    1.45,    17.55] |      3 |          0.09 | [    0.04,     0.54] |
+| 4B        |     3 |         3.80 | [    1.98,    23.89] |      3 |          0.51 | [    0.27,     3.21] |
+| 8B        |     3 |         3.23 | [    1.68,    20.31] |      3 |          0.50 | [    0.26,     3.15] |
+| LLaMA-8B  |     3 |         2.92 | [    1.52,    18.37] |      3 |          0.64 | [    0.33,     4.01] |
+
+Compression ratios:
+  1.7B      : 32.6×
+  4B        : 7.5×
+  8B        : 6.5×
+  LLaMA-8B  : 4.6×
+
+## Cohen's d (SFT mean vs RSFT mean)
+
+| Scale     | SFT_mean (pp) | RSFT_mean (pp) | Δ (pp) | pooled_std (pp) | Cohen's d | Effect      |
+|-----------|---------------|----------------|--------|-----------------|-----------|-------------|
+| 1.7B      |         44.64 |          51.19 | +6.54 |            1.98 |     +3.31 | large       |
+| 4B        |         43.58 |          44.82 | +1.24 |            2.71 |     +0.46 | small       |
+| 8B        |         50.19 |          54.33 | +4.14 |            2.31 |     +1.79 | large       |
+| LLaMA-8B  |         51.09 |          56.54 | +5.45 |            2.12 |     +2.58 | large       |
+
+## Raw per-seed data
+
+| Scale     | SFT s42  | SFT s43  | SFT s44  | RSFT s42 | RSFT s43 | RSFT s44 |
+|-----------|----------|----------|----------|----------|----------|----------|
+| 1.7B      | 0.4786 | 0.4286 | 0.4321 | 0.5122 | 0.5109 | 0.5125 |
+| 4B        | 0.3974 | 0.4365 | 0.4734 | 0.4423 | 0.4512 | 0.4511 |
+| 8B        | 0.5051 | 0.5324 | 0.4681 | 0.5376 | 0.5471 | 0.5451
+…[truncated 70 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_variance-statistics_20260523T012204",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-23T01:28:31.747942+00:00_
+
+Results computed. Here's the final output:
+
+---
+
+## Sign test
+
+4/4 scales: SFT_std > RSFT_std
+- Binomial p-value (one-sided, H0: p≤0.5): **0.0625**
+- Binomial p-value (two-sided): **0.1250**
+- 14B excluded: n=1 for both SFT and RSFT, sample std undefined (ddof=1)
+- Note: p=0.0625 is marginal. With 4 scales, even 4/4 cannot reach α=0.05 (minimum achievable = 2^{-4} = 0.0625). This is a power limitation of the sign test with small N, not evidence against the claim.
+
+## χ² 95% CI for standard deviations
+
+| Scale | n_SFT | SFT_std (pp) | SFT_std 95% CI (pp) | n_RSFT | RSFT_std (pp) | RSFT_std 95% CI (pp) | Compression |
+|-------|-------|-------------|---------------------|--------|--------------|---------------------|-------------|
+| 1.7B | 3 | 2.79 | [1.45, 17.55] | 3 | 0.09 | [0.04, 0.54] | 32.6× |
+| 4B | 3 | 3.80 | [1.98, 23.89] | 3 | 0.51 | [0.27, 3.21] | 7.5× |
+| 8B | 3 | 3.23 | [1.68, 20.31] | 3 | 0.50 | [0.26, 3.15] | 6.5× |
+| LLaMA-8B | 3 | 2.92 | [1.52, 18.37] | 3 | 0.64 | [0.33, 4.01] | 4.6× |
+
+CIs are wide (df=2 gives broad chi-squared tails), but 1.7B CIs are fully non-overlapping (SFT lower=1.45 > RSFT upper=0.54). For 4B/8B/LLaMA, SFT lower bound exceeds RSFT point estimate by 3-4×, though CIs technically overlap at the tails.
+
+## Cohen's d (SFT mean vs RSFT mean)
+
+| Scale | SFT_mean (pp) | RSFT_mean (pp) | Δ (pp) | pooled_std (pp) | Cohen's d | Effect |
+|-------|--------------|----------------|--------|----------------|-----------|--------|
+| 1.7B | 44.64 | 51.19 | +6.54 | 1.98 | +3.31 | large |
+| 4B | 43.58 | 44.82 | +1.24 | 2.71 | +0.46 | small |
+| 8B | 50.19 | 54.33 | +4.14 | 2.31 | +1.79 | large |
+| LLaMA-8B | 51.09 | 56.54 | +5.45 | 2.12 | +2.58 | large |
+
+Direction: positive d = RSFT mean > SFT mean. 3/4 scales show **large** effect (d>0.8), 4B shows **small** effect (d=0.46). All positive — RSFT consistently improves mean while compressing variance.
+
+---
+
+**Key caveat**: n=3 seeds per condition makes chi-squared CIs very wide and individual-scale significance tests underpowered. The strongest statistical argument is the **consistency across 4 independent scales** (sign test direction) combined with the **magnitude of compression** (4.6-32.6×), rather than any single-scale test.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_variance-statistics_20260523T012204"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,30 @@
+{
+  "exp_id": "mvp2_eval_lr5e6_rp_r2_ckpt20",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:44:56.448Z",
+    "updated_at": "2026-05-14T21:45:28.464Z",
+    "hypothesis": "P0+P1 ckpt-20 eval: lr=5e-6 + recall_penalty GRPO at step 20. Director killed rp_r2 training (loss divergence), but ckpt-20 eval needed to close P0+P1 comparison line. Pass criteria: rel_f1 > 0.30 AND pred_count >= 9720.",
+    "parent": "mvp2_grpo_ced_lr5e6_rp_r2",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python eval rp_r2 ckpt-20",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "103825",
+      "data_path": "/root/autodl-tmp/data/docred/dev.json",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT + GRPO lr5e6+recall_penalty ckpt-20",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/grpo_ced_lr5e6_rp/checkpoint-20",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json"
+    }
+  },
+  "timestamp": "2026-05-14T21:45:28.606539+00:00",
+  "trigger": "update_registry"
+}

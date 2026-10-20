@@ -1,0 +1,48 @@
+{
+  "exp_id": "reeval_flat_nli_s43_r2",
+  "hypothesis": "Re-eval flat-NLI RSFT s43 with unified protocol: batch_size=4 + --no-quantize + --sft_adapter + --max_new_tokens 1024",
+  "checkpoint": "/root/autodl-tmp/rsft_output_flat_nli_s43/checkpoint-507",
+  "config": {
+    "batch_size": 4,
+    "max_new_tokens": 1024,
+    "quantize": false,
+    "sft_adapter": true,
+    "seed": 43,
+    "split": "dev"
+  },
+  "metrics": {
+    "rel_f1": 0.4586,
+    "rel_precision": 0.4732,
+    "rel_recall": 0.4449,
+    "ign_f1": 0.4503,
+    "ign_precision": 0.4519,
+    "ign_recall": 0.4487,
+    "evi_f1": 0.8113,
+    "evi_precision": 0.8035,
+    "evi_recall": 0.8192,
+    "evi_f1_joint": 0.3580,
+    "edcr": 0.6552,
+    "format_ok_rate": 0.999,
+    "field_compliance_rate": 0.809,
+    "n_truncated": 184,
+    "n_predictions": 15015,
+    "inference_time_seconds": 10778.5
+  },
+  "comparison": {
+    "vs_r1_bs16": {
+      "ref_exp": "reeval_flat_nli_s43",
+      "ref_batch_size": 16,
+      "delta_rel_f1_pp": 0.63,
+      "delta_evi_f1_pp": -0.45,
+      "delta_edcr_pp": 0.47,
+      "verdict": "within 3pp threshold, batch_size change does not degrade results"
+    },
+    "vs_ced_s43": {
+      "ref_exp": "rsft_ced_s43",
+      "ref_method": "CED",
+      "delta_rel_f1_pp": -0.15,
+      "verdict": "flat-NLI and CED essentially equivalent on s43 under unified protocol"
+    }
+  },
+  "conclusion": "success"
+}

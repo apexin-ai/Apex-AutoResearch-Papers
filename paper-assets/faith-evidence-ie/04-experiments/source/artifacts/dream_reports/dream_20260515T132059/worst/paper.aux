@@ -1,0 +1,116 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{ma2023dreeam}
+\citation{xie2022eider}
+\citation{wadhwa2023revisiting,xu2024lmrc}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contribution 1: Task Definition and Evaluation Framework.}{1}{section*.1}\protected@file@percent }
+\citation{nan2020reasoning,zeng2020double}
+\citation{yao2019docred}
+\citation{xu2024lmrc,wadhwa2023revisiting}
+\citation{xie2022eider}
+\citation{ma2023dreeam}
+\citation{shao2024deepseekmath}
+\citation{tajwar2024preference}
+\citation{rafailov2024direct}
+\citation{gao2023scaling}
+\@writefile{toc}{\contentsline {paragraph}{Contribution 2: Training Paradigm Comparison.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contribution 3: Evaluation Metric Analysis.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Document-Level Relation Extraction.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evidence Identification in DocRE.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reinforcement Learning for LLMs.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reward Overoptimization.}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Task Formulation and Evaluation}{2}{section.3}\protected@file@percent }
+\newlabel{sec:task}{{3}{2}{Task Formulation and Evaluation}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task Definition}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Evaluation Metrics}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Relation F1 (\textsc  {Rel-F1}{}).}{2}{section*.8}\protected@file@percent }
+\citation{ma2023dreeam}
+\citation{shao2024deepseekmath}
+\citation{rafailov2024direct}
+\@writefile{toc}{\contentsline {paragraph}{Conditional Evidence F1 (\textsc  {Evi-F1}{}$_\text  {cond}$).}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Joint Evidence F1 (\textsc  {Evi-F1}{}$_\text  {joint}$).}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evidence Distractor Citation Rate (\textsc  {EDCR}{}).}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Methods}{3}{section.4}\protected@file@percent }
+\newlabel{sec:methods}{{4}{3}{Methods}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Base Model and SFT}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Candidate Scoring Functions}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Flat-NLI Scoring.}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contrastive Evidence Discrimination (CED).}{3}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Training Paradigms}{3}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Rejection Sampling Fine-Tuning (RSFT).}{3}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GRPO (Online RL).}{3}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DPO (Offline Preference Learning).}{3}{section*.16}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Development set results (Qwen3-4B). \textsc  {EDCR}{}: lower is better. RSFT variants consistently outperform SFT; CED-as-reranker provides limited improvement without training.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:dev_main}{{1}{4}{Development set results (Qwen3-4B). \edcr {}: lower is better. RSFT variants consistently outperform SFT; CED-as-reranker provides limited improvement without training}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Test set results. RSFT+CED improves over SFT by +1.5pp \textsc  {Rel-F1}{} ($p{=}0.08$). The large gap vs.\ DREEAM in joint \textsc  {Evi-F1}{} (26.5 vs.\ 57.3) is driven by the extraction gap, not evidence quality (see \S  \ref {sec:protocol}).}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:test}{{2}{4}{Test set results. RSFT+CED improves over SFT by +1.5pp \relf {} ($p{=}0.08$). The large gap vs.\ DREEAM in joint \evi {} (26.5 vs.\ 57.3) is driven by the extraction gap, not evidence quality (see \S \ref {sec:protocol})}{table.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{4}{section.5}\protected@file@percent }
+\newlabel{sec:experiments}{{5}{4}{Experiments}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Results: SFT vs.\ RSFT (Dev and Test)}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:main_results}{{5.1}{4}{Main Results: SFT vs.\ RSFT (Dev and Test)}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Scoring Function Robustness: CED vs.\ Flat-NLI}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:ced_vs_flatnli}{{5.2}{4}{Scoring Function Robustness: CED vs.\ Flat-NLI}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Dev vs.\ test performance. RSFT exhibits a larger \textsc  {Rel-F1}{} drop ($-5.75$pp vs.\ $-1.27$pp), indicating greater sensitivity to annotation distribution shift.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:devtest}{{3}{5}{Dev vs.\ test performance. RSFT exhibits a larger \relf {} drop ($-5.75$pp vs.\ $-1.27$pp), indicating greater sensitivity to annotation distribution shift}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces CED vs.\ flat-NLI scoring for RSFT (dev set). No statistically significant differences. Candidate overlap (Jaccard) = 0.76.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:ced_flatnli}{{4}{5}{CED vs.\ flat-NLI scoring for RSFT (dev set). No statistically significant differences. Candidate overlap (Jaccard) = 0.76}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Training-Free Baseline: CED-as-Reranker}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:reranker}{{5.3}{5}{Training-Free Baseline: CED-as-Reranker}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}RSFT Hyperparameter Sensitivity: top-$k$ Selection}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:topk}{{5.4}{5}{RSFT Hyperparameter Sensitivity: top-$k$ Selection}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Online RL: GRPO Catastrophic Forgetting}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:grpo}{{5.5}{5}{Online RL: GRPO Catastrophic Forgetting}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Evidence-Extraction Decoupling.}{5}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Group Size Effect.}{5}{section*.18}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces NLI model ablation. Stronger NLI capacity does not improve RSFT, confirming scoring function saturation at the base level.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:nli_ablation}{{5}{6}{NLI model ablation. Stronger NLI capacity does not improve RSFT, confirming scoring function saturation at the base level}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces CED-as-reranker vs.\ RSFT. Reranking is bottlenecked by the SFT candidate pool's inherent distractor bias.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:reranker}{{6}{6}{CED-as-reranker vs.\ RSFT. Reranking is bottlenecked by the SFT candidate pool's inherent distractor bias}{table.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Training Trajectories.}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Offline Preference Learning: DPO}{6}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:dpo}{{5.6}{6}{Offline Preference Learning: DPO}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Cross-Paradigm Comparison with Encoder Methods}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:protocol}{{5.7}{6}{Cross-Paradigm Comparison with Encoder Methods}{subsection.5.7}{}}
+\citation{tan2022revisiting}
+\citation{tan2022revisiting}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces top-$k$ ablation. Tripling the data volume with relaxed quality threshold yields a slight degradation, suggesting quality and diversity roughly cancel out.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:topk}{{7}{7}{top-$k$ ablation. Tripling the data volume with relaxed quality threshold yields a slight degradation, suggesting quality and diversity roughly cancel out}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces GRPO results across reward types and group sizes. All GRPO variants catastrophically fail relative to SFT. The lr=5e-6 variant exhibits extreme evidence-extraction decoupling.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:grpo_summary}{{8}{7}{GRPO results across reward types and group sizes. All GRPO variants catastrophically fail relative to SFT. The lr=5e-6 variant exhibits extreme evidence-extraction decoupling}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}\textsc  {EDCR}{}: Cross-Method Diagnostics}{7}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:edcr_cross}{{5.8}{7}{\edcr {}: Cross-Method Diagnostics}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}\textsc  {EDCR}{} Human Validation}{7}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:edcr_human}{{5.9}{7}{\edcr {} Human Validation}{subsection.5.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Generalization: Model Size}{7}{subsection.5.10}\protected@file@percent }
+\newlabel{sec:model_size}{{5.10}{7}{Generalization: Model Size}{subsection.5.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces GRPO $G{=}4$ vs.\ $G{=}8$. Larger group size partially recovers but remains far below SFT ($-17.1$pp \textsc  {Rel-F1}{}).}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:g4g8}{{9}{8}{GRPO $G{=}4$ vs.\ $G{=}8$. Larger group size partially recovers but remains far below SFT ($-17.1$pp \relf {})}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces GRPO $G{=}8$ training trajectory. \textsc  {Rel-F1}{} peaks at step 80 then declines while evidence quality continues improving---the hallmark of evidence-extraction decoupling.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:grpo_traj}{{10}{8}{GRPO $G{=}8$ training trajectory. \relf {} peaks at step 80 then declines while evidence quality continues improving---the hallmark of evidence-extraction decoupling}{table.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.11}Generalization: Re-DocRED}{8}{subsection.5.11}\protected@file@percent }
+\newlabel{sec:redocred}{{5.11}{8}{Generalization: Re-DocRED}{subsection.5.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{8}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why RSFT Works and GRPO Does Not.}{8}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The Evaluation Dilemma.}{8}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.22}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Online-offline RL spectrum. DPO avoids catastrophic forgetting but yields no improvement over SFT. RSFT, which operates purely at the data level, is the only paradigm achieving consistent gains.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:online_offline}{{11}{9}{Online-offline RL spectrum. DPO avoids catastrophic forgetting but yields no improvement over SFT. RSFT, which operates purely at the data level, is the only paradigm achieving consistent gains}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Cross-paradigm comparison. Under joint \textsc  {Evi-F1}{}, our method lags DREEAM by 27pp; under conditional \textsc  {Evi-F1}{}, our evidence quality (80.9) substantially exceeds DREEAM's joint score (60.8). The gap is driven by extraction capability, not evidence quality.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:dreeam}{{12}{9}{Cross-paradigm comparison. Under joint \evi {}, our method lags DREEAM by 27pp; under conditional \evi {}, our evidence quality (80.9) substantially exceeds DREEAM's joint score (60.8). The gap is driven by extraction capability, not evidence quality}{table.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{9}{section.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Cross-method \textsc  {EDCR}{} diagnostic. \textsc  {EDCR}{} captures the GRPO decoupling failure (98.8) invisible to \textsc  {Evi-F1}{}$_\text  {cond}$ (85.0). In the normal operating range (SFT--RSFT), \textsc  {EDCR}{} discrimination is limited (63.5--71.2).}}{10}{table.13}\protected@file@percent }
+\newlabel{tab:edcr_cross}{{13}{10}{Cross-method \edcr {} diagnostic. \edcr {} captures the GRPO decoupling failure (98.8) invisible to \evi {}$_\text {cond}$ (85.0). In the normal operating range (SFT--RSFT), \edcr {} discrimination is limited (63.5--71.2)}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces \textsc  {EDCR}{} vs.\ human judgment. Weak correlation ($r{=}0.28$) with systematic overestimation of distractor rate.}}{10}{table.14}\protected@file@percent }
+\newlabel{tab:edcr_human}{{14}{10}{\edcr {} vs.\ human judgment. Weak correlation ($r{=}0.28$) with systematic overestimation of distractor rate}{table.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Error analysis of \textsc  {EDCR}{}-human disagreements. The dominant error (45\%) stems from incomplete gold annotations, a structural limitation of DocRED.}}{11}{table.15}\protected@file@percent }
+\newlabel{tab:edcr_errors}{{15}{11}{Error analysis of \edcr {}-human disagreements. The dominant error (45\%) stems from incomplete gold annotations, a structural limitation of DocRED}{table.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Model size ablation. RSFT gains are non-monotonic with scale: 1.7B (+2.6pp), 4B (+6.0pp), 8B (+1.7pp). The 4B sweet spot likely reflects hyperparameter-scale coupling rather than a fundamental property.}}{11}{table.16}\protected@file@percent }
+\newlabel{tab:model_size}{{16}{11}{Model size ablation. RSFT gains are non-monotonic with scale: 1.7B (+2.6pp), 4B (+6.0pp), 8B (+1.7pp). The 4B sweet spot likely reflects hyperparameter-scale coupling rather than a fundamental property}{table.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces DocRED vs.\ Re-DocRED. RSFT gains shrink from +6.0pp to +2.3pp on the cleaner Re-DocRED annotations, suggesting RSFT partly compensates for annotation noise.}}{11}{table.17}\protected@file@percent }
+\newlabel{tab:redocred}{{17}{11}{DocRED vs.\ Re-DocRED. RSFT gains shrink from +6.0pp to +2.3pp on the cleaner Re-DocRED annotations, suggesting RSFT partly compensates for annotation noise}{table.17}{}}
+\gdef \@abspage@last{11}

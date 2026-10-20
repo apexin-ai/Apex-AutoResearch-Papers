@@ -1,0 +1,23 @@
+{
+  "exp_id": "mvp2_grpo_ced_lr5e6_rp_r1",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T19:44:15.272Z",
+    "updated_at": "2026-05-14T19:44:38.413Z",
+    "hypothesis": "D032/P0+P1: lr=5e-6 + --ced_recall_penalty fixes both catastrophic forgetting (lr) and CED recall shortcut (penalty). Pass criteria: ckpt-20 rel_f1 > 0.30 AND pred_count >= 9720 (SFT 80%). Comparing vs P0 isolates CED shortcut fix contribution.",
+    "parent": "mvp2_grpo_ced_kl001_r4",
+    "spec": {
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-14T19:44:38.545906+00:00",
+  "trigger": "update_registry"
+}

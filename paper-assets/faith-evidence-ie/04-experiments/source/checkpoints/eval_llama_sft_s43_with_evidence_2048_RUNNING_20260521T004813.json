@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_llama_sft_s43_with_evidence_2048",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:47:46.702Z",
+    "updated_at": "2026-05-21T00:48:13.215Z",
+    "hypothesis": "matched@2048 methodology: s43 SFT with-evidence eval at max_new_tokens=2048. 配对 s43 no-evi@2048 计算 matched evidence tax。",
+    "parent": "llama_sft_s43_train_eval_r3",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b_s43 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s43_with_evidence_2048 --batch_size 1 --max_new_tokens 2048 --no-quantize --split dev --seed 42",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/docred/dev.json",
+      "data_count": 985,
+      "model_name": "Meta-Llama-3.1-8B + s43 SFT adapter (with-evidence)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_llama_3_1_8b_s43",
+      "eval_data": "docred dev",
+      "pid": 64391,
+      "gpu": "cuda:2",
+      "log_path": "/root/autodl-tmp/freige/eval_outputs/eval_llama_sft_s43_with_evidence_2048.log"
+    }
+  },
+  "timestamp": "2026-05-21T00:48:13.906145+00:00",
+  "trigger": "update_registry"
+}

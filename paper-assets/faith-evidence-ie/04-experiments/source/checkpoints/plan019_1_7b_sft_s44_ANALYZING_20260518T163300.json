@@ -1,0 +1,23 @@
+{
+  "exp_id": "plan019_1_7b_sft_s44",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T15:22:46.118Z",
+    "updated_at": "2026-05-18T16:32:59.536Z",
+    "hypothesis": "1.7B SFT seed44: scaling seeds for statistical robustness. Paired with canonical s42 and s43 for 3-seed mean±std at 1.7B scale. Expected train_loss ~0.70, rel_f1 ~49.5 based on canonical 1.7B SFT.",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/sft_output_qwen3_1_7b_s44/",
+      "log_path": "/root/autodl-tmp/sft_output_qwen3_1_7b_s44/training.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T16:27:09.983Z"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T16:33:00.099799+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,38 @@
+{
+  "exp_id": "d112_rsft_no_evidence_eval_r2",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:41:03.808Z",
+    "updated_at": "2026-05-19T13:41:52.264Z",
+    "hypothesis": "4B RSFT no-evidence eval (D112 bf16 SFT s44 base): 移除 evidence 输出后测量 4B RSFT 的 evidence tax。对比 with-evidence 的 canonical 4B RSFT ign_f1，验证 evidence 生成对 4B RE 性能的代价。与 1.7B/8B/14B no-evidence eval 配合构建跨尺度 evidence tax scaling curve (Claim 3)。",
+    "parent": "d112_rsft_s44_eval_bf16",
+    "plan_id": "plan_019",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && GPU=0 bash scripts/d112/eval_4b_rsft_no_evidence.sh\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/faith-evidence-ie/d112_rsft_no_evidence_eval_r2.log",
+      "submitted_at": "2026-05-19T13:41:48.326Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "rtx5090-4x",
+    "gpu": "cuda:0",
+    "account": "root",
+    "pid": "unknown",
+    "log_path": "~/runs/faith-evidence-ie/d112_rsft_no_evidence_eval_r2.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && GPU=0 bash scripts/d112/eval_4b_rsft_no_evidence.sh\""
+    }
+  },
+  "timestamp": "2026-05-19T13:41:53.095672+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,39 @@
+{
+  "exp_id": "mvp2_grpo_flatnli_r6",
+  "project": "faith-evidence-ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T17:25:07.083Z",
+    "updated_at": "2026-05-14T17:31:27.907Z",
+    "hypothesis": "Flat-NLI reward with kl_coef=0.01 + num_generations=8 from SFT scratch (not resume). 100-step probe to verify stability. Same D020 config as ced_kl001_r4 (which is healthy). Tests whether flat-NLI reward type works under stable training config.",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && PYTHONUNBUFFERED=1 python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 2 --output_dir /root/autodl-tmp/grpo_flatnli_r6 --num_generations 8 --reward_device cuda --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-5 --seed 42 --kl_coef 0.01 --save_steps 10 --save_total_limit 20 --max_steps 100 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --wandb_run_name grpo-s2-flatnli-r6\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "76958",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_grpo_flatnli_r6.log",
+      "submitted_at": "2026-05-14T17:25:30.099Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": {
+        "train": 3027,
+        "dev": 985
+      },
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json"
+    },
+    "parent": "mvp2_grpo_flatnli_r5",
+    "notes": "D020 配置：kl_coef=0.01 + num_generations=8 + save_steps=10 + max_steps=100。从 SFT 全新训练（不 resume），修复 r5 的恢复问题。加 PYTHONUNBUFFERED=1 解决 stdout 缓冲问题，加 --wandb_run_name grpo-s2-flatnli-r6 方便实时监控。✅ F1 门控已在代码中生效（--ced_reward_weight 1.0 在 stage 2 控制 flat-NLI reward 权重）。\n\n⚠️ 启动时 flatnli_r5 僵尸进程 PID 73412 仍占 cuda:3 显存 12920 MiB，已紧急 kill -9 处理。实际训练 PID=76958（bash wrapper PID=76953）。"
+  },
+  "timestamp": "2026-05-14T17:31:27.971945+00:00",
+  "trigger": "update_registry"
+}

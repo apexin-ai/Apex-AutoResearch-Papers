@@ -1,0 +1,31 @@
+{
+  "exp_id": "plan019_1_7b_rsft_s43_r2_eval",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:15:45.750Z",
+    "updated_at": "2026-05-19T08:39:43.855Z",
+    "hypothesis": "D076 eval for 1.7B RSFT s43_r2 (Method A: s42 SFT adapter + s42 CED k=1 data, RSFT seed=43). 预期 ign_f1 接近 s42 RSFT (0.5122)，验证 1.7B RSFT 跨 seed 稳健性。",
+    "parent": "plan019_1_7b_rsft_s43_r2",
+    "spec": {
+      "command": "bash freige/scripts/seed_expansion/eval_1_7b_s43_r2.sh",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:3",
+      "pid": 620725,
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 998,
+      "model_name": "Qwen3-1.7B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43/",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T08:39:41.408Z"
+    }
+  },
+  "timestamp": "2026-05-19T08:39:44.763433+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,23 @@
+{
+  "exp_id": "test_eval_4b_rsft_s42",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:00:13.024Z",
+    "updated_at": "2026-05-21T15:01:26.709Z",
+    "hypothesis": "Re-DocRED test set eval: Qwen3-4B RSFT s42 (CED k=1, dev ign_f1=0.4423)。验证 dev set 性能是否泛化到 test set。填充 test set scaling table 4B 数据点，完成 5-scale test eval batch。",
+    "spec": {
+      "model_name": "Qwen3-4B + SFT + RSFT-CED-s42-k1",
+      "seed": 42,
+      "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+      "data_count": 500,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output/checkpoint-510",
+      "eval_data": "re-docred_test_revised"
+    }
+  },
+  "timestamp": "2026-05-21T15:01:28.326834+00:00",
+  "trigger": "update_registry"
+}

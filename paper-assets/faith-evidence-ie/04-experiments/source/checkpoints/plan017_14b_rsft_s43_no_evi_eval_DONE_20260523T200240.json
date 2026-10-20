@@ -1,0 +1,68 @@
+{
+  "exp_id": "plan017_14b_rsft_s43_no_evi_eval",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T14:56:54.538Z",
+    "updated_at": "2026-05-23T20:02:40.276Z",
+    "spec": {
+      "command": "python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/docred --split dev --batch_size 1 --max_new_tokens 2048 --no-quantize --no_evidence --seed 43",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "260930",
+      "log_path": "~/runs/faith-evidence-ie/plan017_14b_rsft_s43_no_evi_eval.log",
+      "submitted_at": "2026-05-23T14:55:00Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-14B",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_14b_s43",
+      "eval_data": "docred-dev",
+      "wall_clock_seconds": 18460.3,
+      "gpu_hours": 5.13
+    },
+    "hypothesis": "14B RSFT s43 no-evidence dev eval (matched@2048, DocRED dev 985 docs). 配对 with-evi 计算 inference-time evidence tax. s42 dev tax需计算.",
+    "parent": "plan017_14b_rsft_s43_eval",
+    "reproduce": {
+      "finished_at": "2026-05-23T19:58:56.115Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T19:59:09.364939+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ign_f1": 0.5713,
+      "f1": 0.585,
+      "precision": 0.5491,
+      "recall": 0.626,
+      "ign_precision": 0.5265,
+      "ign_recall": 0.6244,
+      "format_ok_rate": 0.998,
+      "n_truncated": 92,
+      "n_documents": 985,
+      "n_predictions": 20571,
+      "tp": 7606,
+      "gold_count": 12151,
+      "inference_time_seconds": 17799
+    },
+    "log_path": "~/runs/faith-evidence-ie/plan017_14b_rsft_s43_no_evi_eval.log",
+    "checkpoint_path": "/root/autodl-tmp/rsft_output_14b_s43",
+    "conclusion": "success",
+    "completed_at": "2026-05-23T20:02:40.276Z"
+  },
+  "timestamp": "2026-05-23T20:02:40.940986+00:00",
+  "trigger": "update_registry"
+}

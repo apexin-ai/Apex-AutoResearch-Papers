@@ -1,0 +1,2315 @@
+# research ced reranker ignf1
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 79
+- **Recorded user turns:** 0
+- **Tool calls:** 39
+- **Original source:** `logs/chats/worker_research_ced_reranker_ignf1_20260516T033143.jsonl`
+- **Structured JSON:** [`6ff11b478e0302ff6ce3.json`](../../sessions/6f/6ff11b478e0302ff6ce3.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+79 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T03:36:42.096204+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T03:36:42.096689+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T03:36:42.096892+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/eval_results/ -type d -name \"*reranker*\" -o -type d -name \"*ced*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp/eval_results/ -type d -name \"*reranker*\" -o -type d -name \"*ced*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T03:36:42.097029+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/eval_results/ -type f -name \"*.json\" -path \"*reranker*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp/eval_results/ -type f -name \"*.json\" -path \"*reranker*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-16T03:36:42.097174+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/grpo_ced_kl001\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_rp\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60\\n/root/autodl-tmp/eval_results/ced_reranker_poc_dryrun\\n/root/autodl-tmp/eval_results/ced_reranker_poc\\n/root/autodl-tmp/eval_results/ced_reranker_dryrun\\n/root/autodl-tmp/eval_results/dpo_ced_ckpt400\\n/root/autodl-tmp/eval_results/dpo_ced_1ep\\n/root/autodl-tmp/eval_results/dpo_ced_1ep_fixed\\n/root/autodl-tmp/eval_results/rsft_ced_s45\\n/root/autodl-tmp/eval_results/rsft_ced_s43\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T03:36:42.097335+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/ced_reranker_poc_dryrun/results.json\\n/root/autodl-tmp/eval_results/ced_reranker_poc/results.json\\n/root/autodl-tmp/eval_results/ced_reranker_dryrun/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T03:36:42.097476+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/ced_reranker_poc/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/ced_reranker_poc/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T03:36:42.097659+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"ced_reranker\\\": {\\n    \\\"precision\\\": 0.49130909396254935,\\n    \\\"recall\\\": 0.48152415439058516,\\n    \\\"f1\\\": 0.4863674147963425,\\n    \\\"ign_precision\\\": 0.49130909396254935,\\n    \\\"ign_recall\\\": 0.48152415439058516,\\n    \\\"ign_f1\\\": 0.4863674147963425,\\n    \\\"tp\\\": 5851,\\n    \\\"pred_count\\\": 11909,\\n    \\\"gold_count\\\": 12151,\\n    \\\"evi_precision\\\": 0.8015752032520326,\\n    \\\"evi_recall\\\": 0.8367220650636492,\\n    \\\"evi_f1\\\": 0.8187716262975778,\\n    \\\"n_evaluated\\\": 14635,\\n    \\\"edcr\\\": 0.6155564581640942,\\n    \\\"n_distractor_citations\\\": 15155,\\n    \\\"n_total_citations\\\": 24620,\\n    \\\"n_docs\\\": 985,\\n    \\\"n_predictions\\\": 14782,\\n    \\\"format_ok_rate\\\": 1.0\\n  },\\n  \\\"oracle_reranker\\\": {\\n    \\\"precision\\\": 0.6211033132038518,\\n    \\\"recall\\\": 0.626368200148136,\\n    \\\"f1\\\": 0.6237246465888138,\\n    \\\"ign_precision\\\": 0.6211033132038518,\\n    \\\"ign_recall\\\": 0.626368200148136,\\n    \\\"ign_f1\\\": 0.6237246465888138,\\n    \\\"tp\\\": 7611,\\n    \\\"pred_count\\\": 12254,\\n    \\\"gold_count\\\": 12151,\\n    \\\"evi_precision\\\": 0.8042586750788644,\\n    \\\"evi_recall\\\": 0.7844615384615384,\\n    \\\"evi_f1\\\": 0.7942367601246105,\\n    \\\"n_evaluated\\\": 13249,\\n    \\\"edcr\\\": 0.5262253193960511,\\n    \\\"n_distractor_citations\\\": 11327,\\n    \\\"n_total_citations\\\": 21525,\\n    \\\"n_docs\\\": 985,\\n    \\\"n_predictions\\\": 13418,\\n    \\\"format_ok_rate\\\": 1.0\\n  },\\n  \\\"random_baseline\\\": {\\n    \\\"precision\\\": 0.43477605187754487,\\n    \\\"recall\\\": 0.4745288453625216,\\n    \\\"f1\\\": 0.4537834966355802,\\n    \\\"ign_precision\\\": 0.43477605187754487,\\n    \\\"ign_recall\\\": 0.4745288453625216,\\n    \\\"ign_f1\\\": 0.4537834966355802,\\n    \\\"tp\\\": 5766,\\n    \\\"pred_count\\\": 13262,\\n    \\\"gold_count\\\":
+…[truncated 1446 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T03:36:42.097851+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /root/autodl-tmp/eval_results/ced_reranker_poc/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls -la /root/autodl-tmp/eval_results/ced_reranker_poc/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T03:36:42.097995+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 27916\\ndrwxr-xr-x  2 root root       95 May 15 22:44 .\\ndrwxr-xr-x 48 root root     4096 May 16 11:05 ..\\n-rw-r--r--  1 root root 28381267 May 15 21:51 generations.jsonl\\n-rw-r--r--  1 root root   189582 May 15 22:44 per_doc_scores.jsonl\\n-rw-r--r--  1 root root     2580 May 15 22:44 results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T03:36:42.098155+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -rn \"ign_f1\\|ign_precision\\|ign_recall\\|train_triple\\|train_anno\" /root/autodl-tmp/freige/ --include=\"*.py\" -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -rn \"ign_f1\\|ign_precision\\|ign_recall\\|train_triple\\|train_anno\" /root/autodl-tmp/freige/ --include=\"*.py\" -l",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T03:36:42.098305+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T03:36:42.098431+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -rn \"ign_f1\" /root/autodl-tmp/freige/ --include=\"*.py\" -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -rn \"ign_f1\" /root/autodl-tmp/freige/ --include=\"*.py\" -l",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T03:36:42.098563+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/training/rsft_trainer.py\\n/root/autodl-tmp/freige/eval/evaluator.py\\n/root/autodl-tmp/freige/eval/inference.py\\n/root/autodl-tmp/freige/eval/batch_eval.py\\n/root/autodl-tmp/freige/eval/ced_reranker.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T03:36:42.098691+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -rn \"train_triple\" /root/autodl-tmp/freige/ --include=\"*.py\" -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -rn \"train_triple\" /root/autodl-tmp/freige/ --include=\"*.py\" -l",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T03:36:42.098809+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/eval/evaluator.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T03:36:42.098923+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"ign_f1\" /root/autodl-tmp/freige/eval/evaluator.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"ign_f1\" /root/autodl-tmp/freige/eval/evaluator.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T03:36:42.099039+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"90:        ign_f1 = (\\n101:            \\\"ign_f1\\\": ign_f1,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T03:36:42.099152+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"ign_f1\" /root/autodl-tmp/freige/eval/ced_reranker.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"ign_f1\" /root/autodl-tmp/freige/eval/ced_reranker.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T03:36:42.099294+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"434:                for metric in [\\\"f1\\\", \\\"evi_f1\\\", \\\"edcr\\\", \\\"precision\\\", \\\"recall\\\", \\\"ign_f1\\\"]:\\n448:          f\\\"{'prec':>8s} {'recall':>8s} {'ign_f1':>8s} {'preds':>6s}\\\")\\n461:              f\\\"{m['recall']:>8.4f} {m['ign_f1']:>8.4f} {m['n_predictions']:>6d}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T03:36:42.099417+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat -n /root/autodl-tmp/freige/eval/evaluator.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat -n /root/autodl-tmp/freige/eval/evaluator.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T03:36:42.099677+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\"\\\"\\\"DocRED 关系抽取评测模块。\\n     2\\t\\n     3\\t指标:\\n     4\\t  - F1 / Ign-F1: 关系三元组级别 micro-F1，Ign-F1 排除训练集中出现的三元组\\n     5\\t  - Evi-F1: 对正确预测的三元组，计算 evidence 句子级 F1\\n     6\\t  - EDCR: Evidence Distractor Citation Rate，预测 evidence 中非 gold 的比例\\n     7\\t\\n     8\\t输入: 预测列表 + gold 标注列表（每个元素为文档级标注）\\n     9\\t输出: 指标字典\\n    10\\t\\\"\\\"\\\"\\n    11\\t\\n    12\\timport json\\n    13\\timport logging\\n    14\\tfrom collections import defaultdict\\n    15\\tfrom typing import Optional\\n    16\\t\\n    17\\tlogger = logging.getLogger(__name__)\\n    18\\t\\n    19\\t\\n    20\\tdef _triple_key(doc_id: str, head: str, tail: str, relation: str) -> tuple:\\n    21\\t    return (doc_id, head.lower().strip(), tail.lower().strip(), relation.lower().strip())\\n    22\\t\\n    23\\t\\n    24\\tclass DocREDEvaluator:\\n    25\\t    \\\"\\\"\\\"DocRED 评测器。\\n    26\\t\\n    27\\t    Args:\\n    28\\t        train_triples: 训练集中的三元组集合，用于计算 Ign-F1。\\n    29\\t                       每个元素为 (doc_title, head_name, tail_name, relation)。\\n    30\\t                       为 None 时 Ign-F1 = F1。\\n    31\\t    \\\"\\\"\\\"\\n    32\\t\\n    33\\t    def __init__(self, train_triples: Optional[set[tuple]] = None, train_facts: Optional[set[tuple]] = None):\\n    34\\t        self.train_triples = train_triples or set()\\n    35\\t        self.train_facts = train_facts or set()\\n    36\\t\\n    37\\t    @classmethod\\n    38\\t    def from_train_file(cls, train_path: str) -> \\\"DocREDEvaluator\\\":\\n    39\\t        \\\"\\\"\\\"从训练集 JSON 文件构建 evaluator，自动提取训练集三元组。\\\"\\\"\\\"\\n    40\\t        from freige.data.docred_processor import DOCRED_REL_INFO\\n    41\\t\\n    42\\t        with open(train_path) as f:\\n    43\\t            train_data = json.load(f)\\n    44\\t\\n    45\\t        train_triples = set()\\n    46\\t        train_facts = set()\\n    47\\t        for doc in train_data:\\n    48\\t            doc_id
+…[truncated 7480 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T03:36:42.099882+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"train_triple\\|train_facts\\|from_train_file\\|DocREDEvaluator\" /root/autodl-tmp/freige/eval/ced_reranker.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"train_triple\\|train_facts\\|from_train_file\\|DocREDEvaluator\" /root/autodl-tmp/freige/eval/ced_reranker.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T03:36:42.100013+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T03:36:42.100132+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"DocREDEvaluator\" /root/autodl-tmp/freige/eval/ced_reranker.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"DocREDEvaluator\" /root/autodl-tmp/freige/eval/ced_reranker.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T03:36:42.100281+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"29:from freige.eval.evaluator import DocREDEvaluator, gold_from_docred, parse_model_output\\n132:    \\\"\\\"\\\"Run DocREDEvaluator on the selected candidates.\\\"\\\"\\\"\\n144:    evaluator = DocREDEvaluator.from_train_file(train_file)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T03:36:42.100416+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"from_train_file\" /root/autodl-tmp/freige/eval/ced_reranker.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"from_train_file\" /root/autodl-tmp/freige/eval/ced_reranker.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T03:36:42.100538+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"144:    evaluator = DocREDEvaluator.from_train_file(train_file)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T03:36:42.100652+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"train\" /root/autodl-tmp/freige/eval/ced_reranker.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"train\" /root/autodl-tmp/freige/eval/ced_reranker.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T03:36:42.100839+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"35:from freige.training.rsft_generate import (\\n130:    train_file: str,\\n144:    evaluator = DocREDEvaluator.from_train_file(train_file)\\n393:    train_file = str(Path(args.data_dir) / \\\"train_annotated.json\\\")\\n403:        m = evaluate_strategy(sel, gold, train_file)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T03:36:42.101012+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /root/autodl-tmp/data/docred/train_annotated.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls -la /root/autodl-tmp/data/docred/train_annotated.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T03:36:42.101135+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 13029595 May 14 15:04 /root/autodl-tmp/data/docred/train_annotated.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-16T03:36:42.101271+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "head -c 200 /root/autodl-tmp/data/docred/train_annotated.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "head -c 200 /root/autodl-tmp/data/docred/train_annotated.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T03:36:42.101423+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[{\\\"vertexSet\\\": [[{\\\"pos\\\": [0, 4], \\\"type\\\": \\\"ORG\\\", \\\"sent_id\\\": 0, \\\"name\\\": \\\"Zest Airways, Inc.\\\"}, {\\\"sent_id\\\": 0, \\\"type\\\": \\\"ORG\\\", \\\"pos\\\": [10, 15], \\\"name\\\": \\\"Asian Spirit and Zest Air\\\"}, {\\\"name\\\": \\\"AirAsia Zest\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-16T03:36:42.101655+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/eval_results/ced_reranker_poc/ -name \"*.log\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp/eval_results/ced_reranker_poc/ -name \"*.log\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T03:36:42.101800+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T03:36:42.101918+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/data/docred/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls /root/autodl-tmp/data/docred/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T03:36:42.102039+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"dev.json\\ntest.json\\ntrain_annotated.json\\ntrain_distant.json\\ntrain_nli_cache.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-16T03:36:42.102187+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "python3 -c \"\nimport json\ntrain = json.load(open('/root/autodl-tmp/data/docred/train_annotated.json'))\ndev = json.load(open('/root/autodl-tmp/data/docred/dev.json'))\nprint(f'train docs: {len(train)}, dev docs: {len(dev)}')\ntrain_facts = set()\nfor d in train:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        r = l['r']\n        train_facts.add((h, t, r))\ndev_facts = set()\nfor d in dev:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        r = l['r']\n        dev_facts.add((h, t, r))\noverlap = train_facts & dev_facts\nprint(f'train facts: {len(train_facts)}, dev facts: {len(dev_facts)}, overlap: {len(overlap)}')\nprint(f'dev facts after ign: {len(dev_facts - train_facts)}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "python3 -c \"\nimport json\ntrain = json.load(open('/root/autodl-tmp/data/docred/train_annotated.json'))\ndev = json.load(open('/root/autodl-tmp/data/docred/dev.json'))\nprint(f'train docs: {len(train)}, dev docs: {len(dev)}')\ntrain_facts = set()\nfor d in train:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        r = l['r']\n        train_facts.add((h, t, r))\ndev_facts = set()\nfor d in dev:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        r = l['r']\n        dev_facts.add((h, t, r))\noverlap = train_facts & dev_facts\nprint(f'train facts: {len(train_facts)}, dev facts: {len(dev_facts)}, overlap: {len(overlap)}')\nprint(f'dev facts after ign: {len(dev_facts - train_facts)}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T03:36:42.102366+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-16T03:36:42.102492+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T03:36:42.102619+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-16T03:36:42.102743+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cd /root/autodl-tmp && python3 -c \"\nimport json\n\ntrain = json.load(open('data/docred/train_annotated.json'))\ndev = json.load(open('data/docred/dev.json'))\n\n# Raw relation IDs (P-codes)\ntrain_facts_raw = set()\nfor d in train:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        train_facts_raw.add((h, t, l['r']))\n\ndev_facts_raw = set()\nfor d in dev:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        dev_facts_raw.add((h, t, l['r']))\n\noverlap_raw = train_facts_raw & dev_facts_raw\nprint(f'Using raw P-codes:')\nprint(f'  train facts: {len(train_facts_raw)}, dev facts: {len(dev_facts_raw)}, overlap: {len(overlap_raw)}')\n\n# Now check with mapped relation names (DOCRED_REL_INFO)\nimport sys; sys.path.insert(0, 'freige')\nfrom freige.data.docred_processor import DOCRED_REL_INFO\n\ntrain_facts_mapped = set()\nfor d in train:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        r = DOCRED_REL_INFO.get(l['r'], l['r']).lower().strip()\n        train_facts_mapped.add((h, t, r))\n\ndev_facts_mapped = set()\nfor d in dev:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        r = DOCRED_REL_INFO.get(l['r'], l['r']).lower().strip()\n        dev_facts_mapped.add((h, t, r))\n\noverlap_mapped = train_facts_mapped & dev_facts_mapped\nprint(f'Using mapped relation names:')\nprint(f'  train facts: {len(train_facts_mapped)}, dev facts: {len(dev_facts_mapped)}, overlap: {len(overlap_mapped)}')\nprint(f'  dev facts after ign: {len(dev_facts_mapped - train_facts_mapped)}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cd /root/autodl-tmp && python3 -c \"\nimport json\n\ntrain = json.load(open('data/docred/train_annotated.json'))\ndev = json.load(open('data/docred/dev.json'))\n\n# Raw relation IDs (P-codes)\ntrain_facts_raw = set()\nfor d in train:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        train_facts_raw.add((h, t, l['r']))\n\ndev_facts_raw = set()\nfor d in dev:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        dev_facts_raw.add((h, t, l['r']))\n\noverlap_raw = train_facts_raw & dev_facts_raw\nprint(f'Using raw P-codes:')\nprint(f'  train facts: {len(train_facts_raw)}, dev facts: {len(dev_facts_raw)}, overlap: {len(overlap_raw)}')\n\n# Now check with mapped relation names (DOCRED_REL_INFO)\nimport sys; sys.path.insert(0, 'freige')\nfrom freige.data.docred_processor import DOCRED_REL_INFO\n\ntrain_facts_mapped = set()\nfor d in train:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        r = DOCRED_REL_INFO.get(l['r'], l['r']).lower().strip()\n        train_facts_mapped.add((h, t, r))\n\ndev_facts_mapped = set()\nfor d in dev:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        r = DOCRED_REL_INFO.get(l['r'], l['r']).lower().strip()\n        dev_facts_mapped.add((h, t, r))\n\noverlap_mapped = train_facts_mapped & dev_facts_mapped\nprint(f'Using mapped relation names:')\nprint(f'  train facts: {len(train_facts_mapped)}, dev facts: {len(dev_facts_mapped)}, overlap: {len(overlap_mapped)}')\nprint(f'  dev facts after ign: {len(dev_facts_mapped - train_facts_mapped)}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T03:36:42.102921+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp && python3 -c \\\"\\\\nimport json\\\\n\\\\ntrain = json.load(open(\\\\'data/docred/train_annotated.json\\\\'))\\\\ndev = json.load(open(\\\\'data/docred/dev.json\\\\'))\\\\n\\\\n# Raw relation IDs (P-codes)\\\\ntrain_facts_raw = set()\\\\nfor d in train:\\\\n    vs = d[\\\\'vertexSet\\\\']\\\\n    for l in d.get(\\\\'labels\\\\', []):\\\\n        h = vs[l[\\\\'h\\\\']][0][\\\\'name\\\\'].lower().strip()\\\\n        t = vs[l[\\\\'t\\\\']][0][\\\\'name\\\\'].lower().strip()\\\\n        train_facts_raw.add((h, t, l[\\\\'r\\\\']))\\\\n\\\\ndev_facts_raw = set()\\\\nfor d in dev:\\\\n    vs = d[\\\\'vertexSet\\\\']\\\\n    for l in d.get(\\\\'labels\\\\', []):\\\\n        h = vs[l[\\\\'h\\\\']][0][\\\\'name\\\\'].lower().strip()\\\\n        t = vs[l[\\\\'t\\\\']][0][\\\\'name\\\\'].lower().strip()\\\\n        dev_facts_raw.add((h, t, l[\\\\'r\\\\']))\\\\n\\\\noverlap_raw = train_facts_raw & dev_facts_raw\\\\nprint(f\\\\'Using raw P-codes:\\\\')\\\\nprint(f\\\\'  train facts: {len(train_facts_raw)}, dev facts: {len(dev_facts_raw)}, overlap: {len(overlap_raw)}\\\\')\\\\n\\\\n# Now check with mapped relation names (DOCRED_REL_INFO)\\\\nimport sys; sys.path.insert(0, \\\\'freige\\\\')\\\\nfrom freige.data.docred_processor import DOCRED_REL_INFO\\\\n\\\\ntrain_facts_mapped = set()\\\\nfor d in train:\\\\n    vs = d[\\\\'vertexSet\\\\']\\\\n    for l in d.get(\\\\'labels\\\\', []):\\\\n        h = vs[l[\\\\'h\\\\']][0][\\\\'name\\\\'].lower().strip()\\\\n        t = vs[l[\\\\'t\\\\']][0][\\\\'name\\\\'].lower().strip()\\\\n        r = DOCRED_REL_INFO.get(l[\\\\'r\\\\'], l[\\\\'r\\\\']).lower().strip()\\\\n        train_facts_mapped.add((h, t, r))\\\\n\\\\ndev_facts_mapped = set()\\\\nfor d in dev:\\\\n    vs = d[\\\\'vertexSet\\\\']\\\\n    for l in d.get(\\\\'labels\\\\', []):\\\\n        h = vs[l[\\\\'h\\\\']][0][\\\\'name\\\\'].lower().strip()\
+…[truncated 700 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-16T03:36:42.103117+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat > /tmp/check_ign.py << 'PYEOF'\nimport json, sys\nsys.path.insert(0, '/root/autodl-tmp/freige')\n\ntrain = json.load(open('/root/autodl-tmp/data/docred/train_annotated.json'))\ndev = json.load(open('/root/autodl-tmp/data/docred/dev.json'))\n\nfrom freige.data.docred_processor import DOCRED_REL_INFO\n\ntrain_facts = set()\nfor d in train:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        r = DOCRED_REL_INFO.get(l['r'], l['r']).lower().strip()\n        train_facts.add((h, t, r))\n\ndev_facts = set()\nfor d in dev:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        r = DOCRED_REL_INFO.get(l['r'], l['r']).lower().strip()\n        dev_facts.add((h, t, r))\n\noverlap = train_facts & dev_facts\nprint(f'train facts: {len(train_facts)}, dev facts: {len(dev_facts)}, overlap: {len(overlap)}')\nprint(f'dev facts after ign: {len(dev_facts - train_facts)}')\nprint(f'overlap ratio in dev: {len(overlap)/len(dev_facts)*100:.1f}%')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/check_ign.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat > /tmp/check_ign.py << 'PYEOF'\nimport json, sys\nsys.path.insert(0, '/root/autodl-tmp/freige')\n\ntrain = json.load(open('/root/autodl-tmp/data/docred/train_annotated.json'))\ndev = json.load(open('/root/autodl-tmp/data/docred/dev.json'))\n\nfrom freige.data.docred_processor import DOCRED_REL_INFO\n\ntrain_facts = set()\nfor d in train:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        r = DOCRED_REL_INFO.get(l['r'], l['r']).lower().strip()\n        train_facts.add((h, t, r))\n\ndev_facts = set()\nfor d in dev:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        r = DOCRED_REL_INFO.get(l['r'], l['r']).lower().strip()\n        dev_facts.add((h, t, r))\n\noverlap = train_facts & dev_facts\nprint(f'train facts: {len(train_facts)}, dev facts: {len(dev_facts)}, overlap: {len(overlap)}')\nprint(f'dev facts after ign: {len(dev_facts - train_facts)}')\nprint(f'overlap ratio in dev: {len(overlap)/len(dev_facts)*100:.1f}%')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/check_ign.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T03:36:42.103308+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: \\\"cat > /tmp/check_ign.py << 'PYEOF'\\\\nimport json, sys\\\\nsys.path.insert(0, '/root/autodl-tmp/freige')\\\\n\\\\ntrain = json.load(open('/root/autodl-tmp/data/docred/train_annotated.json'))\\\\ndev = json.load(open('/root/autodl-tmp/data/docred/dev.json'))\\\\n\\\\nfrom freige.data.docred_processor import DOCRED_REL_INFO\\\\n\\\\ntrain_facts = set()\\\\nfor d in train:\\\\n    vs = d['vertexSet']\\\\n    for l in d.get('labels', []):\\\\n        h = vs[l['h']][0]['name'].lower().strip()\\\\n        t = vs[l['t']][0]['name'].lower().strip()\\\\n        r = DOCRED_REL_INFO.get(l['r'], l['r']).lower().strip()\\\\n        train_facts.add((h, t, r))\\\\n\\\\ndev_facts = set()\\\\nfor d in dev:\\\\n    vs = d['vertexSet']\\\\n    for l in d.get('labels', []):\\\\n        h = vs[l['h']][0]['name'].lower().strip()\\\\n        t = vs[l['t']][0]['name'].lower().strip()\\\\n        r = DOCRED_REL_INFO.get(l['r'], l['r']).lower().strip()\\\\n        dev_facts.add((h, t, r))\\\\n\\\\noverlap = train_facts & dev_facts\\\\nprint(f'train facts: {len(train_facts)}, dev facts: {len(dev_facts)}, overlap: {len(overlap)}')\\\\nprint(f'dev facts after ign: {len(dev_facts - train_facts)}')\\\\nprint(f'overlap ratio in dev: {len(overlap)/len(dev_facts)*100:.1f}%')\\\\nPYEOF\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/check_ign.py\\\"\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"/tmp/check_ign.py\\\", line 7, in &lt;module>\\n    from freige.data.docred_processor import DOCRED_REL_INFO\\nModuleNotFoundError: No module named 'freige.data.docred_processor'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-16T03:36:42.103470+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/freige -name \"docred_processor*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp/freige -name \"docred_processor*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T03:36:42.103601+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/data/docred_processor.py\\n/root/autodl-tmp/freige/data/__pycache__/docred_processor.cpython-312.pyc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-16T03:36:42.103727+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/freige -name \"__init__.py\" -path \"*/data/*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp/freige -name \"__init__.py\" -path \"*/data/*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-16T03:36:42.103848+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/freige/data/__init__.py\\n/root/autodl-tmp/freige/data/__init__.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-16T03:36:42.103983+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat > /tmp/check_ign.py << 'PYEOF'\nimport json, sys\nsys.path.insert(0, '/root/autodl-tmp/freige')\nsys.path.insert(0, '/root/autodl-tmp/freige/freige')\n\nfrom data.docred_processor import DOCRED_REL_INFO\n\ntrain = json.load(open('/root/autodl-tmp/data/docred/train_annotated.json'))\ndev = json.load(open('/root/autodl-tmp/data/docred/dev.json'))\n\ntrain_facts = set()\nfor d in train:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        r = DOCRED_REL_INFO.get(l['r'], l['r']).lower().strip()\n        train_facts.add((h, t, r))\n\ndev_facts = set()\nfor d in dev:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        r = DOCRED_REL_INFO.get(l['r'], l['r']).lower().strip()\n        dev_facts.add((h, t, r))\n\noverlap = train_facts & dev_facts\nprint(f'train facts: {len(train_facts)}, dev facts: {len(dev_facts)}, overlap: {len(overlap)}')\nprint(f'dev facts after ign: {len(dev_facts - train_facts)}')\nprint(f'overlap ratio in dev: {len(overlap)/len(dev_facts)*100:.1f}%')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python /tmp/check_ign.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat > /tmp/check_ign.py << 'PYEOF'\nimport json, sys\nsys.path.insert(0, '/root/autodl-tmp/freige')\nsys.path.insert(0, '/root/autodl-tmp/freige/freige')\n\nfrom data.docred_processor import DOCRED_REL_INFO\n\ntrain = json.load(open('/root/autodl-tmp/data/docred/train_annotated.json'))\ndev = json.load(open('/root/autodl-tmp/data/docred/dev.json'))\n\ntrain_facts = set()\nfor d in train:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        r = DOCRED_REL_INFO.get(l['r'], l['r']).lower().strip()\n        train_facts.add((h, t, r))\n\ndev_facts = set()\nfor d in dev:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        r = DOCRED_REL_INFO.get(l['r'], l['r']).lower().strip()\n        dev_facts.add((h, t, r))\n\noverlap = train_facts & dev_facts\nprint(f'train facts: {len(train_facts)}, dev facts: {len(dev_facts)}, overlap: {len(overlap)}')\nprint(f'dev facts after ign: {len(dev_facts - train_facts)}')\nprint(f'overlap ratio in dev: {len(overlap)/len(dev_facts)*100:.1f}%')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python /tmp/check_ign.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-16T03:36:42.104141+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: \\\"cat > /tmp/check_ign.py << 'PYEOF'\\\\nimport json, sys\\\\nsys.path.insert(0, '/root/autodl-tmp/freige')\\\\nsys.path.insert(0, '/root/autodl-tmp/freige/freige')\\\\n\\\\nfrom data.docred_processor import DOCRED_REL_INFO\\\\n\\\\ntrain = json.load(open('/root/autodl-tmp/data/docred/train_annotated.json'))\\\\ndev = json.load(open('/root/autodl-tmp/data/docred/dev.json'))\\\\n\\\\ntrain_facts = set()\\\\nfor d in train:\\\\n    vs = d['vertexSet']\\\\n    for l in d.get('labels', []):\\\\n        h = vs[l['h']][0]['name'].lower().strip()\\\\n        t = vs[l['t']][0]['name'].lower().strip()\\\\n        r = DOCRED_REL_INFO.get(l['r'], l['r']).lower().strip()\\\\n        train_facts.add((h, t, r))\\\\n\\\\ndev_facts = set()\\\\nfor d in dev:\\\\n    vs = d['vertexSet']\\\\n    for l in d.get('labels', []):\\\\n        h = vs[l['h']][0]['name'].lower().strip()\\\\n        t = vs[l['t']][0]['name'].lower().strip()\\\\n        r = DOCRED_REL_INFO.get(l['r'], l['r']).lower().strip()\\\\n        dev_facts.add((h, t, r))\\\\n\\\\noverlap = train_facts & dev_facts\\\\nprint(f'train facts: {len(train_facts)}, dev facts: {len(dev_facts)}, overlap: {len(overlap)}')\\\\nprint(f'dev facts after ign: {len(dev_facts - train_facts)}')\\\\nprint(f'overlap ratio in dev: {len(overlap)/len(dev_facts)*100:.1f}%')\\\\nPYEOF\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python /tmp/check_ign.py\\\"\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"/tmp/check_ign.py\\\", line 5, in &lt;module>\\n    from data.docred_processor import DOCRED_REL_INFO\\nModuleNotFoundError: No module named 'data.docred_processor'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-16T03:36:42.104297+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"DOCRED_REL_INFO\" /root/autodl-tmp/freige/data/docred_processor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"DOCRED_REL_INFO\" /root/autodl-tmp/freige/data/docred_processor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-16T03:36:42.104421+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/freige/freige/data/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls /root/autodl-tmp/freige/freige/data/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-16T03:36:42.104541+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"19:DOCRED_REL_INFO = {\\n208:                    relation_name=DOCRED_REL_INFO.get(relation, relation),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-16T03:36:42.104660+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-16T03:36:42.104860+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat > /tmp/check_ign.py << 'PYEOF'\nimport json\n\ntrain = json.load(open('/root/autodl-tmp/data/docred/train_annotated.json'))\ndev = json.load(open('/root/autodl-tmp/data/docred/dev.json'))\n\n# Use raw P-codes first to check overlap existence\ntrain_facts = set()\nfor d in train:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        train_facts.add((h, t, l['r']))\n\ndev_facts = set()\ndev_triples_total = 0\nfor d in dev:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        dev_facts.add((h, t, l['r']))\n        dev_triples_total += 1\n\noverlap = train_facts & dev_facts\nprint(f'train unique facts: {len(train_facts)}')\nprint(f'dev unique facts: {len(dev_facts)}, dev triples total: {dev_triples_total}')\nprint(f'overlap facts: {len(overlap)}')\nprint(f'dev facts after ign: {len(dev_facts - train_facts)}')\nprint(f'overlap ratio: {len(overlap)/len(dev_facts)*100:.1f}%')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/check_ign.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat > /tmp/check_ign.py << 'PYEOF'\nimport json\n\ntrain = json.load(open('/root/autodl-tmp/data/docred/train_annotated.json'))\ndev = json.load(open('/root/autodl-tmp/data/docred/dev.json'))\n\n# Use raw P-codes first to check overlap existence\ntrain_facts = set()\nfor d in train:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        train_facts.add((h, t, l['r']))\n\ndev_facts = set()\ndev_triples_total = 0\nfor d in dev:\n    vs = d['vertexSet']\n    for l in d.get('labels', []):\n        h = vs[l['h']][0]['name'].lower().strip()\n        t = vs[l['t']][0]['name'].lower().strip()\n        dev_facts.add((h, t, l['r']))\n        dev_triples_total += 1\n\noverlap = train_facts & dev_facts\nprint(f'train unique facts: {len(train_facts)}')\nprint(f'dev unique facts: {len(dev_facts)}, dev triples total: {dev_triples_total}')\nprint(f'overlap facts: {len(overlap)}')\nprint(f'dev facts after ign: {len(dev_facts - train_facts)}')\nprint(f'overlap ratio: {len(overlap)/len(dev_facts)*100:.1f}%')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/check_ign.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T03:36:42.105011+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"train unique facts: 34610\\ndev unique facts: 11718, dev triples total: 12275\\noverlap facts: 1002\\ndev facts after ign: 10716\\noverlap ratio: 8.6%\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-16T03:36:42.105176+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat -n /root/autodl-tmp/freige/eval/ced_reranker.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat -n /root/autodl-tmp/freige/eval/ced_reranker.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-16T03:36:42.105488+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\"\\\"\\\"CED-as-reranker: inference-time reranking of N SFT candidates using CED scoring.\\n     2\\t\\n     3\\tNo fine-tuning. SFT model generates N candidates per document, CED selects the best one.\\n     4\\tCompares: Greedy baseline, CED reranker, Oracle (F1-best), Random.\\n     5\\t\\n     6\\tUsage:\\n     7\\t  cd /root/autodl-tmp && python -m freige.eval.ced_reranker \\\\\\n     8\\t      --base_model /root/autodl-tmp/models/Qwen3-4B \\\\\\n     9\\t      --sft_adapter /root/autodl-tmp/sft_output \\\\\\n    10\\t      --data_dir /root/autodl-tmp/data/docred \\\\\\n    11\\t      --nli_model_path /root/autodl-tmp/models/deberta-v3-large-zeroshot-v2.0 \\\\\\n    12\\t      --output_dir /root/autodl-tmp/eval_results/ced_reranker_poc \\\\\\n    13\\t      --num_generations 8 --temperature 0.7 --max_docs 50\\n    14\\t\\\"\\\"\\\"\\n    15\\t\\n    16\\timport argparse\\n    17\\timport json\\n    18\\timport logging\\n    19\\timport random\\n    20\\timport time\\n    21\\tfrom collections import defaultdict\\n    22\\tfrom pathlib import Path\\n    23\\t\\n    24\\timport numpy as np\\n    25\\timport torch\\n    26\\tfrom tqdm import tqdm\\n    27\\t\\n    28\\tfrom freige.data.docred_processor import DOCRED_REL_INFO\\n    29\\tfrom freige.eval.evaluator import DocREDEvaluator, gold_from_docred, parse_model_output\\n    30\\tfrom freige.rewards.ced_reward import (\\n    31\\t    CEDRewardModel,\\n    32\\t    VERBALIZATION_TEMPLATES,\\n    33\\t    verbalize_triple,\\n    34\\t)\\n    35\\tfrom freige.training.rsft_generate import (\\n    36\\t    generate_batch,\\n    37\\t    load_model_and_tokenizer,\\n    38\\t    prepare_generation_data,\\n    39\\t)\\n    40\\t\\n    41\\tlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\n    42\\tlogger = logging.getLogger(__name__)\\n    43\\t\\n    44\\t_REL_NAME_TO_CODE = {v.lower().strip(): k for k, v
+…[truncated 7543 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-16T03:36:42.105672+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "head -180 /root/autodl-tmp/freige/eval/ced_reranker.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "head -180 /root/autodl-tmp/freige/eval/ced_reranker.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-16T03:36:42.105909+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"CED-as-reranker: inference-time reranking of N SFT candidates using CED scoring.\\n\\nNo fine-tuning. SFT model generates N candidates per document, CED selects the best one.\\nCompares: Greedy baseline, CED reranker, Oracle (F1-best), Random.\\n\\nUsage:\\n  cd /root/autodl-tmp && python -m freige.eval.ced_reranker \\\\\\n      --base_model /root/autodl-tmp/models/Qwen3-4B \\\\\\n      --sft_adapter /root/autodl-tmp/sft_output \\\\\\n      --data_dir /root/autodl-tmp/data/docred \\\\\\n      --nli_model_path /root/autodl-tmp/models/deberta-v3-large-zeroshot-v2.0 \\\\\\n      --output_dir /root/autodl-tmp/eval_results/ced_reranker_poc \\\\\\n      --num_generations 8 --temperature 0.7 --max_docs 50\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport random\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom tqdm import tqdm\\n\\nfrom freige.data.docred_processor import DOCRED_REL_INFO\\nfrom freige.eval.evaluator import DocREDEvaluator, gold_from_docred, parse_model_output\\nfrom freige.rewards.ced_reward import (\\n    CEDRewardModel,\\n    VERBALIZATION_TEMPLATES,\\n    verbalize_triple,\\n)\\nfrom freige.training.rsft_generate import (\\n    generate_batch,\\n    load_model_and_tokenizer,\\n    prepare_generation_data,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\n_REL_NAME_TO_CODE = {v.lower().strip(): k for k, v in DOCRED_REL_INFO.items()}\\n\\ndef verbalize_by_name(head: str, relation: str, tail: str) -> str:\\n    \\\"\\\"\\\"Verbalize a triple using relation name instead of Pxxx code.\\\"\\\"\\\"\\n    pcode = _REL_NAME_TO_CODE.get(relation.lower().strip())\\n    if pcode:\\n        return verbalize_triple(head, pcode, tail)\\n    return f\\\"{head} {relation} {tail}.\\\"\\n\\ndef score_candidate_
+…[truncated 4942 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-16T03:36:42.106116+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat > /tmp/recalc_ign.py << 'PYEOF'\nimport json, sys\nsys.path.insert(0, '/root/autodl-tmp/freige')\n\nfrom freige.eval.evaluator import DocREDEvaluator, gold_from_docred, parse_model_output\n\n# Load evaluator with train triples\nevaluator = DocREDEvaluator.from_train_file('/root/autodl-tmp/data/docred/train_annotated.json')\nprint(f\"train_triples: {len(evaluator.train_triples)}, train_facts: {len(evaluator.train_facts)}\")\n\n# Load dev gold\ndev_data = json.load(open('/root/autodl-tmp/data/docred/dev.json'))\ngold = gold_from_docred(dev_data)\nprint(f\"gold triples: {len(gold)}\")\n\n# Load results.json to get predictions format\nresults = json.load(open('/root/autodl-tmp/eval_results/ced_reranker_poc/results.json'))\nprint(f\"ced_reranker F1={results['ced_reranker']['f1']:.4f}, ign_f1={results['ced_reranker']['ign_f1']:.4f}\")\n\n# Check how many gold facts are in train_facts\nfrom freige.eval.evaluator import _triple_key\ngold_set = set()\nfor g in gold:\n    gold_set.add(_triple_key(g[\"doc_id\"], g[\"head\"], g[\"tail\"], g[\"relation\"]))\n\ngold_in_train = {k for k in gold_set if k[1:] in evaluator.train_facts}\ngold_not_in_train = {k for k in gold_set if k[1:] not in evaluator.train_facts}\nprint(f\"\\ngold_set: {len(gold_set)}\")\nprint(f\"gold in train_facts: {len(gold_in_train)}\")\nprint(f\"gold NOT in train_facts (ign): {len(gold_not_in_train)}\")\n\n# Sample some overlapping gold facts\nif gold_in_train:\n    samples = list(gold_in_train)[:3]\n    for s in samples:\n        print(f\"  overlap example: {s}\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python /tmp/recalc_ign.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat > /tmp/recalc_ign.py << 'PYEOF'\nimport json, sys\nsys.path.insert(0, '/root/autodl-tmp/freige')\n\nfrom freige.eval.evaluator import DocREDEvaluator, gold_from_docred, parse_model_output\n\n# Load evaluator with train triples\nevaluator = DocREDEvaluator.from_train_file('/root/autodl-tmp/data/docred/train_annotated.json')\nprint(f\"train_triples: {len(evaluator.train_triples)}, train_facts: {len(evaluator.train_facts)}\")\n\n# Load dev gold\ndev_data = json.load(open('/root/autodl-tmp/data/docred/dev.json'))\ngold = gold_from_docred(dev_data)\nprint(f\"gold triples: {len(gold)}\")\n\n# Load results.json to get predictions format\nresults = json.load(open('/root/autodl-tmp/eval_results/ced_reranker_poc/results.json'))\nprint(f\"ced_reranker F1={results['ced_reranker']['f1']:.4f}, ign_f1={results['ced_reranker']['ign_f1']:.4f}\")\n\n# Check how many gold facts are in train_facts\nfrom freige.eval.evaluator import _triple_key\ngold_set = set()\nfor g in gold:\n    gold_set.add(_triple_key(g[\"doc_id\"], g[\"head\"], g[\"tail\"], g[\"relation\"]))\n\ngold_in_train = {k for k in gold_set if k[1:] in evaluator.train_facts}\ngold_not_in_train = {k for k in gold_set if k[1:] not in evaluator.train_facts}\nprint(f\"\\ngold_set: {len(gold_set)}\")\nprint(f\"gold in train_facts: {len(gold_in_train)}\")\nprint(f\"gold NOT in train_facts (ign): {len(gold_not_in_train)}\")\n\n# Sample some overlapping gold facts\nif gold_in_train:\n    samples = list(gold_in_train)[:3]\n    for s in samples:\n        print(f\"  overlap example: {s}\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python /tmp/recalc_ign.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-16T03:36:42.106324+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat > /tmp/recalc_ign.py << \\\\'PYEOF\\\\'\\\\nimport json, sys\\\\nsys.path.insert(0, \\\\'/root/autodl-tmp/freige\\\\')\\\\n\\\\nfrom freige.eval.evaluator import DocREDEvaluator, gold_from_docred, parse_model_output\\\\n\\\\n# Load evaluator with train triples\\\\nevaluator = DocREDEvaluator.from_train_file(\\\\'/root/autodl-tmp/data/docred/train_annotated.json\\\\')\\\\nprint(f\\\"train_triples: {len(evaluator.train_triples)}, train_facts: {len(evaluator.train_facts)}\\\")\\\\n\\\\n# Load dev gold\\\\ndev_data = json.load(open(\\\\'/root/autodl-tmp/data/docred/dev.json\\\\'))\\\\ngold = gold_from_docred(dev_data)\\\\nprint(f\\\"gold triples: {len(gold)}\\\")\\\\n\\\\n# Load results.json to get predictions format\\\\nresults = json.load(open(\\\\'/root/autodl-tmp/eval_results/ced_reranker_poc/results.json\\\\'))\\\\nprint(f\\\"ced_reranker F1={results[\\\\'ced_reranker\\\\'][\\\\'f1\\\\']:.4f}, ign_f1={results[\\\\'ced_reranker\\\\'][\\\\'ign_f1\\\\']:.4f}\\\")\\\\n\\\\n# Check how many gold facts are in train_facts\\\\nfrom freige.eval.evaluator import _triple_key\\\\ngold_set = set()\\\\nfor g in gold:\\\\n    gold_set.add(_triple_key(g[\\\"doc_id\\\"], g[\\\"head\\\"], g[\\\"tail\\\"], g[\\\"relation\\\"]))\\\\n\\\\ngold_in_train = {k for k in gold_set if k[1:] in evaluator.train_facts}\\\\ngold_not_in_train = {k for k in gold_set if k[1:] not in evaluator.train_facts}\\\\nprint(f\\\"\\\\\\\\ngold_set: {len(gold_set)}\\\")\\\\nprint(f\\\"gold in train_facts: {len(gold_in_train)}\\\")\\\\nprint(f\\\"gold NOT in train_facts (ign): {len(gold_not_in_train)}\\\")\\\\n\\\\n# Sample some overlapping gold facts\\\\nif gold_in_train:\\\\n    samples = list(gold_in_train)[:3]\\\\n    for s in samples:\\\\n        print(f\\\"  overlap example: {s}\\\")\\\\nPYEOF\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && 
+…[truncated 384 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-16T03:36:42.106501+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/freige/freige/eval/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls /root/autodl-tmp/freige/freige/eval/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-16T03:36:42.106632+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-16T03:36:42.106751+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/freige -name \"setup.py\" -o -name \"pyproject.toml\" -o -name \"setup.cfg\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp/freige -name \"setup.py\" -o -name \"pyproject.toml\" -o -name \"setup.cfg\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-16T03:36:42.106870+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-16T03:36:42.107009+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat > /tmp/recalc_ign.py << 'PYEOF'\nimport json, sys\nsys.path.insert(0, '/root/autodl-tmp')\n\nfrom freige.eval.evaluator import DocREDEvaluator, gold_from_docred, _triple_key\n\nevaluator = DocREDEvaluator.from_train_file('/root/autodl-tmp/data/docred/train_annotated.json')\nprint(f\"train_triples: {len(evaluator.train_triples)}, train_facts: {len(evaluator.train_facts)}\")\n\ndev_data = json.load(open('/root/autodl-tmp/data/docred/dev.json'))\ngold = gold_from_docred(dev_data)\nprint(f\"gold triples: {len(gold)}\")\n\ngold_set = set()\nfor g in gold:\n    gold_set.add(_triple_key(g[\"doc_id\"], g[\"head\"], g[\"tail\"], g[\"relation\"]))\n\ngold_in_train = {k for k in gold_set if k[1:] in evaluator.train_facts}\ngold_not_in_train = {k for k in gold_set if k[1:] not in evaluator.train_facts}\nprint(f\"gold_set unique: {len(gold_set)}\")\nprint(f\"gold in train_facts: {len(gold_in_train)}\")\nprint(f\"gold NOT in train_facts: {len(gold_not_in_train)}\")\n\n# Sample\nif gold_in_train:\n    for s in list(gold_in_train)[:3]:\n        print(f\"  overlap: {s}\")\nif not gold_in_train:\n    # Check a few train facts and gold facts\n    tf_sample = list(evaluator.train_facts)[:3]\n    gf_sample = list(gold_set)[:3]\n    print(f\"train_facts sample: {tf_sample}\")\n    print(f\"gold_set sample (k[1:]): {[k[1:] for k in gf_sample]}\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python /tmp/recalc_ign.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat > /tmp/recalc_ign.py << 'PYEOF'\nimport json, sys\nsys.path.insert(0, '/root/autodl-tmp')\n\nfrom freige.eval.evaluator import DocREDEvaluator, gold_from_docred, _triple_key\n\nevaluator = DocREDEvaluator.from_train_file('/root/autodl-tmp/data/docred/train_annotated.json')\nprint(f\"train_triples: {len(evaluator.train_triples)}, train_facts: {len(evaluator.train_facts)}\")\n\ndev_data = json.load(open('/root/autodl-tmp/data/docred/dev.json'))\ngold = gold_from_docred(dev_data)\nprint(f\"gold triples: {len(gold)}\")\n\ngold_set = set()\nfor g in gold:\n    gold_set.add(_triple_key(g[\"doc_id\"], g[\"head\"], g[\"tail\"], g[\"relation\"]))\n\ngold_in_train = {k for k in gold_set if k[1:] in evaluator.train_facts}\ngold_not_in_train = {k for k in gold_set if k[1:] not in evaluator.train_facts}\nprint(f\"gold_set unique: {len(gold_set)}\")\nprint(f\"gold in train_facts: {len(gold_in_train)}\")\nprint(f\"gold NOT in train_facts: {len(gold_not_in_train)}\")\n\n# Sample\nif gold_in_train:\n    for s in list(gold_in_train)[:3]:\n        print(f\"  overlap: {s}\")\nif not gold_in_train:\n    # Check a few train facts and gold facts\n    tf_sample = list(evaluator.train_facts)[:3]\n    gf_sample = list(gold_set)[:3]\n    print(f\"train_facts sample: {tf_sample}\")\n    print(f\"gold_set sample (k[1:]): {[k[1:] for k in gf_sample]}\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python /tmp/recalc_ign.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-16T03:36:42.107146+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"train_triples: 37785, train_facts: 34610\\ngold triples: 12275\\ngold_set unique: 12151\\ngold in train_facts: 1330\\ngold NOT in train_facts: 10821\\n  overlap: (\\\"Ernesto D'Alessio\\\", 'mexico', 'mexico city', 'contains administrative territorial entity')\\n  overlap: ('Nazim Khaled', 'paris', 'france', 'country')\\n  overlap: ('Glory and Gore', 'billboard hot 100', 'the united states', 'country')\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-16T03:36:42.107331+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat > /tmp/recalc_full.py << 'PYEOF'\nimport json, sys\nsys.path.insert(0, '/root/autodl-tmp')\n\nfrom freige.eval.evaluator import DocREDEvaluator, gold_from_docred, parse_model_output\n\n# Load evaluator\nevaluator = DocREDEvaluator.from_train_file('/root/autodl-tmp/data/docred/train_annotated.json')\n\n# Load dev gold\ndev_data = json.load(open('/root/autodl-tmp/data/docred/dev.json'))\ngold = gold_from_docred(dev_data)\ndev_by_title = {d[\"title\"]: d for d in dev_data}\n\n# Load generations\ngens = []\nwith open('/root/autodl-tmp/eval_results/ced_reranker_poc/generations.jsonl') as f:\n    for line in f:\n        gens.append(json.loads(line))\nprint(f\"generations: {len(gens)}\")\n\n# Load results to find which candidates were selected\nresults = json.load(open('/root/autodl-tmp/eval_results/ced_reranker_poc/results.json'))\n\n# Load per_doc_scores to find CED-selected candidates\nper_doc = []\nwith open('/root/autodl-tmp/eval_results/ced_reranker_poc/per_doc_scores.jsonl') as f:\n    for line in f:\n        per_doc.append(json.loads(line))\nprint(f\"per_doc entries: {len(per_doc)}\")\nprint(f\"per_doc[0] keys: {list(per_doc[0].keys())}\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python /tmp/recalc_full.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat > /tmp/recalc_full.py << 'PYEOF'\nimport json, sys\nsys.path.insert(0, '/root/autodl-tmp')\n\nfrom freige.eval.evaluator import DocREDEvaluator, gold_from_docred, parse_model_output\n\n# Load evaluator\nevaluator = DocREDEvaluator.from_train_file('/root/autodl-tmp/data/docred/train_annotated.json')\n\n# Load dev gold\ndev_data = json.load(open('/root/autodl-tmp/data/docred/dev.json'))\ngold = gold_from_docred(dev_data)\ndev_by_title = {d[\"title\"]: d for d in dev_data}\n\n# Load generations\ngens = []\nwith open('/root/autodl-tmp/eval_results/ced_reranker_poc/generations.jsonl') as f:\n    for line in f:\n        gens.append(json.loads(line))\nprint(f\"generations: {len(gens)}\")\n\n# Load results to find which candidates were selected\nresults = json.load(open('/root/autodl-tmp/eval_results/ced_reranker_poc/results.json'))\n\n# Load per_doc_scores to find CED-selected candidates\nper_doc = []\nwith open('/root/autodl-tmp/eval_results/ced_reranker_poc/per_doc_scores.jsonl') as f:\n    for line in f:\n        per_doc.append(json.loads(line))\nprint(f\"per_doc entries: {len(per_doc)}\")\nprint(f\"per_doc[0] keys: {list(per_doc[0].keys())}\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python /tmp/recalc_full.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-16T03:36:42.107473+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"generations: 7880\\nper_doc entries: 985\\nper_doc[0] keys: ['doc_id', 'ced_scores', 'oracle_f1_scores']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-16T03:36:42.107590+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "head -2 /root/autodl-tmp/eval_results/ced_reranker_poc/per_doc_scores.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "head -2 /root/autodl-tmp/eval_results/ced_reranker_poc/per_doc_scores.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-16T03:36:42.107715+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": \\\"Skai TV\\\", \\\"ced_scores\\\": [0.1528, 0.2676, 0.2114, 0.1762, 0.4724, 0.4394, 0.3227, 0.255], \\\"oracle_f1_scores\\\": [0.6154, 0.7273, 0.8333, 0.7692, 0.5882, 0.6154, 0.6154, 0.5714]}\\n{\\\"doc_id\\\": \\\"Washington Place (West Virginia)\\\", \\\"ced_scores\\\": [0.4722, 0.5345, 0.2448, 0.6542, 0.2299, 0.3318, 0.2891, 0.3916], \\\"oracle_f1_scores\\\": [0.5128, 0.5283, 0.4286, 0.5116, 0.5882, 0.6667, 0.9375, 0.8125]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-16T03:36:42.107833+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "head -1 /root/autodl-tmp/eval_results/ced_reranker_poc/generations.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "head -1 /root/autodl-tmp/eval_results/ced_reranker_poc/generations.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-16T03:36:42.108001+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": \\\"Skai TV\\\", \\\"generation_idx\\\": 0, \\\"raw_text\\\": \\\"[{\\\\\\\"head\\\\\\\": \\\\\\\"Piraeus\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"evidence\\\\\\\": [0]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"capital\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Athens\\\\\\\", \\\\\\\"evidence\\\\\\\": [2]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Athens\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"evidence\\\\\\\": [2]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Athens\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"located in the administrative territorial entity\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"evidence\\\\\\\": [2]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Athens\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"evidence\\\\\\\": [2]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Skai Group\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"evidence\\\\\\\": [1]}, {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"relation\\\\\\\": \\\\\\\"country\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"evidence\\\\\\\": [0, 1]}]\\\", \\\"parsed_triples\\\": [{\\\"head\\\": \\\"Piraeus\\\", \\\"relation\\\": \\\"country\\\", \\\"tail\\\": \\\"Greece\\\", \\\"evidence\\\": [0]}, {\\\"head\\\": \\\"Greece\\\", \\\"relation\\\": \\\"capital\\\", \\\"tail\\\": \\\"Athens\\\", \\\"evidence\\\": [2]}, {\\\"head\\\": \\\"Athens\\\", \\\"relation\\\": \\\"country\\\", \\\"tail\\\": \\\"Greece\\\", \\\"evidence\\\": [2]}, {\\\"head\\\": \\\"Athens\\\", \\\"relation\\\": \\\"located in the administrative territorial entity\\\", \\\"tail\\\": \\\"Greece\\\", \\\"evidence\\\": [2]}, {\\\"head\\\": \\\"Athens\
+…[truncated 499 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-16T03:36:42.108282+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat > /tmp/recalc_full.py << 'PYEOF'\nimport json, sys, numpy as np\nfrom collections import defaultdict\nsys.path.insert(0, '/root/autodl-tmp')\n\nfrom freige.eval.evaluator import DocREDEvaluator, gold_from_docred\n\n# Load evaluator with train facts\nevaluator = DocREDEvaluator.from_train_file('/root/autodl-tmp/data/docred/train_annotated.json')\n\n# Load gold\ndev_data = json.load(open('/root/autodl-tmp/data/docred/dev.json'))\ngold = gold_from_docred(dev_data)\n\n# Load generations grouped by doc\ngens_by_doc = defaultdict(list)\nwith open('/root/autodl-tmp/eval_results/ced_reranker_poc/generations.jsonl') as f:\n    for line in f:\n        rec = json.loads(line)\n        gens_by_doc[rec[\"doc_id\"]].append(rec)\n\n# Load per-doc scores\nper_doc = {}\nwith open('/root/autodl-tmp/eval_results/ced_reranker_poc/per_doc_scores.jsonl') as f:\n    for line in f:\n        rec = json.loads(line)\n        per_doc[rec[\"doc_id\"]] = rec\n\n# Reconstruct CED-selected, Oracle-selected, and Random-selected predictions\nimport random\nrandom.seed(42)\n\nced_preds = []\noracle_preds = []\nrand_preds = []\n\nfor doc_id, scores in per_doc.items():\n    candidates = gens_by_doc[doc_id]\n    ced_scores = scores[\"ced_scores\"]\n    oracle_scores = scores[\"oracle_f1_scores\"]\n    \n    # CED: pick candidate with highest CED score\n    ced_idx = int(np.argmax(ced_scores))\n    # Oracle: pick candidate with highest F1\n    oracle_idx = int(np.argmax(oracle_scores))\n    # Random: pick random candidate\n    rand_idx = random.randint(0, len(candidates) - 1)\n    \n    for idx, pred_list in [(ced_idx, ced_preds), (oracle_idx, oracle_preds), (rand_idx, rand_preds)]:\n        cand = candidates[idx]\n        for t in cand[\"parsed_triples\"]:\n            pred_list.append({\n                \"doc_id\": doc_id,\n                \"head\": t[\"head\"],\n                \"tail\": t[\"tail\"],\n                \"relation\": t[\"relation\"],\n                \"evidence\": t.get(\"evidence\", []),\n            })\n\n# Compute metrics\nfor name, preds in [(\"ced_reranker\", ced_preds), (\"oracle_reranker\", oracle_preds), (\"random_baseline\", rand_preds)]:\n    metrics = evaluator.compute_f1(preds, gold)\n    print(f\"{name}:\")\n    print(f\"  F1     = {metrics['f1']:.4f}  (prec={metrics['precision']:.4f}, rec={metrics['recall']:.4f})\")\n    print(f\"  Ign-F1 = {metrics['ign_f1']:.4f}  (prec={metrics['ign_precision']:.4f}, rec={metrics['ign_recall']:.4f})\")\n    print(f\"  TP={metrics['tp']}, pred_count={metrics['pred_count']}, gold_count={metrics['gold_count']}\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python /tmp/recalc_full.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat > /tmp/recalc_full.py << 'PYEOF'\nimport json, sys, numpy as np\nfrom collections import defaultdict\nsys.path.insert(0, '/root/autodl-tmp')\n\nfrom freige.eval.evaluator import DocREDEvaluator, gold_from_docred\n\n# Load evaluator with train facts\nevaluator = DocREDEvaluator.from_train_file('/root/autodl-tmp/data/docred/train_annotated.json')\n\n# Load gold\ndev_data = json.load(open('/root/autodl-tmp/data/docred/dev.json'))\ngold = gold_from_docred(dev_data)\n\n# Load generations grouped by doc\ngens_by_doc = defaultdict(list)\nwith open('/root/autodl-tmp/eval_results/ced_reranker_poc/generations.jsonl') as f:\n    for line in f:\n        rec = json.loads(line)\n        gens_by_doc[rec[\"doc_id\"]].append(rec)\n\n# Load per-doc scores\nper_doc = {}\nwith open('/root/autodl-tmp/eval_results/ced_reranker_poc/per_doc_scores.jsonl') as f:\n    for line in f:\n        rec = json.loads(line)\n        per_doc[rec[\"doc_id\"]] = rec\n\n# Reconstruct CED-selected, Oracle-selected, and Random-selected predictions\nimport random\nrandom.seed(42)\n\nced_preds = []\noracle_preds = []\nrand_preds = []\n\nfor doc_id, scores in per_doc.items():\n    candidates = gens_by_doc[doc_id]\n    ced_scores = scores[\"ced_scores\"]\n    oracle_scores = scores[\"oracle_f1_scores\"]\n    \n    # CED: pick candidate with highest CED score\n    ced_idx = int(np.argmax(ced_scores))\n    # Oracle: pick candidate with highest F1\n    oracle_idx = int(np.argmax(oracle_scores))\n    # Random: pick random candidate\n    rand_idx = random.randint(0, len(candidates) - 1)\n    \n    for idx, pred_list in [(ced_idx, ced_preds), (oracle_idx, oracle_preds), (rand_idx, rand_preds)]:\n        cand = candidates[idx]\n        for t in cand[\"parsed_triples\"]:\n            pred_list.append({\n                \"doc_id\": doc_id,\n                \"head\": t[\"head\"],\n                \"tail\": t[\"tail\"],\n                \"relation\": t[\"relation\"],\n                \"evidence\": t.get(\"evidence\", []),\n            })\n\n# Compute metrics\nfor name, preds in [(\"ced_reranker\", ced_preds), (\"oracle_reranker\", oracle_preds), (\"random_baseline\", rand_preds)]:\n    metrics = evaluator.compute_f1(preds, gold)\n    print(f\"{name}:\")\n    print(f\"  F1     = {metrics['f1']:.4f}  (prec={metrics['precision']:.4f}, rec={metrics['recall']:.4f})\")\n    print(f\"  Ign-F1 = {metrics['ign_f1']:.4f}  (prec={metrics['ign_precision']:.4f}, rec={metrics['ign_recall']:.4f})\")\n    print(f\"  TP={metrics['tp']}, pred_count={metrics['pred_count']}, gold_count={metrics['gold_count']}\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python /tmp/recalc_full.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-16T03:36:42.108533+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ced_reranker:\\n  F1     = 0.4864  (prec=0.4913, rec=0.4815)\\n  Ign-F1 = 0.4736  (prec=0.4673, rec=0.4802)\\n  TP=5851, pred_count=11909, gold_count=12151\\noracle_reranker:\\n  F1     = 0.6237  (prec=0.6208, rec=0.6267)\\n  Ign-F1 = 0.6125  (prec=0.5998, rec=0.6258)\\n  TP=7615, pred_count=12266, gold_count=12151\\nrandom_baseline:\\n  F1     = 0.4538  (prec=0.4348, rec=0.4745)\\n  Ign-F1 = 0.4397  (prec=0.4111, rec=0.4725)\\n  TP=5766, pred_count=13262, gold_count=12151\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.76}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79 · 2026-05-16T03:36:42.108738+00:00_
+
+重算结果：
+
+| Strategy | F1 | Ign-F1 |
+|---|---|---|
+| CED reranker | 48.64 | **47.36** |
+| Oracle reranker | 62.37 | 61.25 |
+| Random baseline | 45.38 | 43.97 |
+
+原 results.json 中 ign_f1 == f1 是 bug（原始 eval 代码运行时可能 `train_facts` 未正确填充，或 `from_train_file` 当时还没实现）。现在重新计算后 CED reranker 的 **Ign-F1 = 47.36**。
+
+F1 和 Ign-F1 差约 1.3 个点，符合 DocRED 的典型 train-dev overlap 比例（约 8.6% 的 dev facts 与 train 重叠）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_ced_reranker_ignf1_20260516T033143"
+}
+```
+
+</details>
+
+---

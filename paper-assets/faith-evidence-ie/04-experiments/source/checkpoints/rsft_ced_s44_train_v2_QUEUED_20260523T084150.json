@@ -1,0 +1,29 @@
+{
+  "exp_id": "rsft_ced_s44_train_v2",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T08:40:56.487Z",
+    "updated_at": "2026-05-23T08:41:50.300Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_ced_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 1 --gradient_accumulation_steps 16 --lora_rank 64 --lora_alpha 128 --seed 44\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "238227",
+      "log_path": "~/runs/faith-evidence-ie/rsft_ced_s44_train_v2.log",
+      "submitted_at": "2026-05-23T08:41:31.332Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "4B RSFT CED k=1 s44 训练。与 s42/s43 使用相同 CED scored data (rsft_filtered/rsft_train.jsonl, 2718 samples)，补充第 3 seed 用于 multi-seed evidence tax 分析。",
+    "parent": "test_eval_4b_rsft_s43_no_evi"
+  },
+  "timestamp": "2026-05-23T08:41:50.953145+00:00",
+  "trigger": "update_registry"
+}

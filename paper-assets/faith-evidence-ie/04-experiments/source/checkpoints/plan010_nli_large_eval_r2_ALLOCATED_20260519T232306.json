@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan010_nli_large_eval_r2",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T23:22:48.558Z",
+    "updated_at": "2026-05-19T23:23:05.769Z",
+    "hypothesis": "NLI v3-large ablation eval r2: 评估用 DeBERTa-v3-large CED scorer 训练的 RSFT 模型。r1 因 cron 监控旧 PID 误标 failed，实际推理进程 (PID 733763) 正常运行。Baseline: v3-base CED s42 ign_f1=0.4517。",
+    "parent": "plan010_nli_large_ablation"
+  },
+  "timestamp": "2026-05-19T23:23:06.281540+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,28 @@
+{
+  "experiment": "reeval_ced_s42",
+  "model": "Qwen3-4B + SFT adapter + RSFT CED checkpoint-510 (seed=42, lora_alpha=128)",
+  "protocol": "batch_size=4, no_quantize, sft_adapter, max_new_tokens=1024, seed=42",
+  "data": "DocRED dev (985 docs)",
+  "metrics": {
+    "f1": 0.4517,
+    "ign_f1": 0.4423,
+    "precision": 0.4657,
+    "recall": 0.4385,
+    "evi_f1": 0.8174,
+    "evi_precision": 0.8113,
+    "evi_recall": 0.8237,
+    "evi_f1_joint": 0.3518,
+    "edcr": 0.6569,
+    "format_ok_rate": 1.0,
+    "field_compliance_rate": 0.7756,
+    "n_predictions": 15436,
+    "n_truncated": 214,
+    "tp": 5328,
+    "pred_count": 11441,
+    "gold_count": 12151
+  },
+  "raw_metrics_path": "/root/autodl-tmp/eval_results/rsft_ced_s42_reeval/metrics.json",
+  "log_path": "~/runs/faith-evidence-ie/reeval_ced_s42.log",
+  "status": "completed_successfully",
+  "inference_time_seconds": 10815.5
+}

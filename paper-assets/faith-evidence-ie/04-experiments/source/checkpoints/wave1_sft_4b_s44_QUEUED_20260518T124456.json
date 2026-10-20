@@ -1,0 +1,15 @@
+{
+  "exp_id": "wave1_sft_4b_s44",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T12:44:43.563Z",
+    "updated_at": "2026-05-18T12:44:55.570Z",
+    "hypothesis": "SFT baseline for Qwen3-4B seed44: second seed for SFT baseline. Paired with seed43 for mean±std reporting. Expected rel_f1 similar to seed43 (~50.5±1pp)."
+  },
+  "timestamp": "2026-05-18T12:44:56.056410+00:00",
+  "trigger": "update_registry"
+}

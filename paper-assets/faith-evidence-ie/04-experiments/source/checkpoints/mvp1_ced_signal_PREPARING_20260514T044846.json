@@ -1,0 +1,20 @@
+{
+  "exp_id": "mvp1_ced_signal",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T04:48:46.220Z",
+    "updated_at": "2026-05-14T04:48:46.220Z",
+    "spec": {
+      "hypothesis": "DeBERTa-v3-base NLI can discriminate gold evidence from entity-cooccurrence distractors with mean CED margin > 0.1 and accuracy > 70%, and this discrimination is not primarily driven by lexical overlap (|Pearson r| < 0.7)",
+      "model_name": "cross-encoder/nli-deberta-v3-base",
+      "data_path": "/root/autodl-tmp/data/docred/",
+      "server": "rtx5090-4x"
+    }
+  },
+  "timestamp": "2026-05-14T04:48:46.240612+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,63 @@
+{
+  "exp_id": "test_eval_8b_rsft_s44_no_evi",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T06:47:31.622Z",
+    "updated_at": "2026-05-23T15:44:18.579Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1_s44 --no_evidence --seed 44",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "231544",
+      "log_path": "~/runs/faith-evidence-ie/test_eval_8b_rsft_s44_no_evi.log",
+      "submitted_at": "2026-05-23T06:47:30.754Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+      "data_count": 500,
+      "model_name": "Qwen3-8B",
+      "seed": 44,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_qwen3_8b_k1_s44",
+      "eval_data": "test_revised",
+      "checkpoint_path": "/root/autodl-tmp/eval_results/test_eval_8b_rsft_s44_no_evi",
+      "wall_clock_seconds": 4454.8,
+      "gpu_hours": 1.24
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T07:54:16.420Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T07:54:22.256586+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ign_f1": 0.3264,
+      "precision": 0.5006,
+      "recall": 0.2422,
+      "f1": 0.3264,
+      "evi_f1_tp": 0.1511,
+      "evi_f1_joint": 0.0627,
+      "edcr": 0.7907,
+      "n_documents": 500,
+      "format_ok_rate": 0.992,
+      "n_truncated": 39
+    },
+    "conclusion": "success",
+    "hypothesis": "8B RSFT k1 s44 no-evidence model should achieve comparable ign_f1 to with-evidence variant on test set, as evidence reasoning may not contribute to relation classification accuracy",
+    "completed_at": "2026-05-23T08:01:45.526Z"
+  },
+  "timestamp": "2026-05-23T15:44:19.802553+00:00",
+  "trigger": "update_registry"
+}

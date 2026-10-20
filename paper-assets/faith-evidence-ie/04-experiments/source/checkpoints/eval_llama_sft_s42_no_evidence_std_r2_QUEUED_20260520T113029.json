@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_llama_sft_s42_no_evidence_std_r2",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:30:09.424Z",
+    "updated_at": "2026-05-20T11:30:28.723Z",
+    "hypothesis": "标准化 LLaMA SFT s42 inference-time evidence tax 测量（r2: 修复 SCP 嵌套路径）。用同一 SFT adapter (sft_output_llama_3_1_8b) + --no_evidence flag 推理，与 with-evidence eval (ign_f1=0.5384) 直接对比。",
+    "parent": "eval_llama_sft_s42_no_evidence_std"
+  },
+  "timestamp": "2026-05-20T11:30:29.352437+00:00",
+  "trigger": "update_registry"
+}

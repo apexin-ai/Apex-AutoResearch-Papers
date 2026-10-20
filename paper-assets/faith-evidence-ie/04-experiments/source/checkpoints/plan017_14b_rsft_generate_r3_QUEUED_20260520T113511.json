@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan017_14b_rsft_generate_r3",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:35:00.799Z",
+    "updated_at": "2026-05-20T11:35:10.727Z",
+    "hypothesis": "14B RSFT 生成 resume (r3: 修正 adapter 路径指向 checkpoint-144)。从 doc 1873 继续生成剩余 1155 docs。r2 因 --sft_adapter 指向顶层目录而非 checkpoint-144 子目录失败。",
+    "parent": "plan017_14b_rsft_generate_r2"
+  },
+  "timestamp": "2026-05-20T11:35:11.284192+00:00",
+  "trigger": "update_registry"
+}

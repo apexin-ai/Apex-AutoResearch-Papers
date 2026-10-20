@@ -1,0 +1,38 @@
+{
+  "exp_id": "plan_011_eval_g8_bf16_ckpt100",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:43:24.143Z",
+    "updated_at": "2026-05-15T22:06:28.981Z",
+    "spec": {
+      "command": "STALE - killed",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "215276",
+      "log_path": "~/runs/faith-evidence-ie/plan_011_eval_g8_bf16_ckpt100.log",
+      "submitted_at": "2026-05-15T14:43:23.832Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "N/A",
+      "data_count": 0,
+      "model_name": "grpo_g8_bf16 ckpt100",
+      "seed": 42,
+      "checkpoint_source": "grpo_ced_g8_bf16",
+      "eval_data": "docred dev",
+      "wall_clock_seconds": 26585.1,
+      "gpu_hours": 7.38
+    },
+    "conclusion": "killed",
+    "notes": "STALE: 该 eval 已由 eval_grpo_g8_bf16 完成并 success (rel_f1=0.4549)。此条目为残留，不需要执行。",
+    "completed_at": "2026-05-15T22:06:28.981Z"
+  },
+  "timestamp": "2026-05-15T22:06:29.229180+00:00",
+  "trigger": "update_registry"
+}

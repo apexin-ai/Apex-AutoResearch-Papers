@@ -1,0 +1,57 @@
+# analysis d102 all training results
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_analysis_d102_all_training_results_20260518T085008_result.json`
+- **Structured JSON:** [`6227d996447ecfc166a1.json`](../../sessions/62/6227d996447ecfc166a1.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+W&B 未配置（输出目录无 wandb 文件夹，日志无 wandb 记录），从日志直接提取训练指标。
+
+## D102 RSFT k=1 训练结果汇总
+
+全部 4 个实验正常完成（EXIT_CODE=0, epoch=3.0），adapter 文件完整。
+
+| exp_id | 模型 | avg train_loss | 末尾 loss 区间 | mean_token_acc | 最终 checkpoint | adapter 大小 |
+|--------|------|---------|-----------|---------|------|------|
+| d102_1_7b_rsft_k1_s42 | Qwen3-1.7B | **0.3063** | 0.52–0.57 | 0.873 | checkpoint-567 | 267M |
+| d102_8b_rsft_k1_s42 | Qwen3-8B s42 | **0.3877** | 0.48–0.52 | 0.858 | checkpoint-1134 | 667M |
+| d102_8b_rsft_k1_s43 | Qwen3-8B s43 | **0.3862** | 0.47–0.54 | 0.873 | checkpoint-1134 | 667M |
+| d102_llama_rsft_k1_s42 | LLaMA-3.1-8B | **0.3698** | 0.44–0.47 | 0.888 | checkpoint-1107 | 641M |
+
+### Checkpoint 路径
+- `/root/autodl-tmp/rsft_output_qwen3_1_7b_k1/checkpoint-567/`
+- `/root/autodl-tmp/rsft_output_qwen3_8b_k1/checkpoint-1134/`
+- `/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43/checkpoint-1134/`
+- `/root/autodl-tmp/rsft_output_llama_3_1_8b_k1/checkpoint-1107/`
+
+（输出目录根下也有最终 adapter 副本，如 `/root/autodl-tmp/rsft_output_qwen3_1_7b_k1/adapter_model.safetensors`）
+
+### 分析
+- **Loss 收敛正常**：所有模型从 ckpt-250 resume 后 loss 平稳下降到 epoch 3.0，无异常波动。
+- **1.7B avg train_loss 最低**（0.3063）因数据量少、模型小，训练步数少（567 步 vs 8B 的 1134 步），loss 下降更快。
+- **两个 Qwen3-8B seed 高度一致**：avg train_loss 0.3877 vs 0.3862，说明训练稳定。
+- **LLaMA-8B 末尾 loss（0.44–0.47）低于 Qwen3-8B（0.48–0.54）**，但这不能跨架构直接比较。
+- **W&B 未启用**：这些 resume 训练没有 wandb 日志。
+
+### Conclusion
+**全部 SUCCESS**。4 个实验训练正常完成，loss 收敛，adapter 完整。
+
+### Next Step
+进入 eval 阶段，对 4 个模型分别运行 eval。提交 eval 前需遵守 C001（nvidia-smi 确认 GPU 显存 < 2GB）。
+
+---

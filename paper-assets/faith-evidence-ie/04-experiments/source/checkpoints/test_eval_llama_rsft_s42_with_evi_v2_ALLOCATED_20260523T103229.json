@@ -1,0 +1,22 @@
+{
+  "exp_id": "test_eval_llama_rsft_s42_with_evi_v2",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T10:32:07.492Z",
+    "updated_at": "2026-05-23T10:32:29.306Z",
+    "hypothesis": "LLaMA RSFT s42 with-evi test eval 重跑（当前版本 eval 代码）。原 s42 eval field_compliance=176/500 vs s43=497/500，旧代码版本 confound。用与 s43 完全一致的参数消除跨 seed 对比污染。数据质量修复。",
+    "parent": "test_eval_llama_rsft_s42",
+    "spec": {
+      "gpu": [
+        "cuda:0"
+      ],
+      "server": "rtx5090-4x"
+    }
+  },
+  "timestamp": "2026-05-23T10:32:29.952410+00:00",
+  "trigger": "update_registry"
+}

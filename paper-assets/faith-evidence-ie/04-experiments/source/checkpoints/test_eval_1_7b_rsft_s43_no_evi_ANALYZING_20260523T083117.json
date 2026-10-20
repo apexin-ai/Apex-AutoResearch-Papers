@@ -1,0 +1,38 @@
+{
+  "exp_id": "test_eval_1_7b_rsft_s43_no_evi",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:51:28.551Z",
+    "updated_at": "2026-05-23T08:31:17.101Z",
+    "spec": {
+      "command": "python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_rsft_s43_no_evi",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "234597",
+      "log_path": "~/runs/faith-evidence-ie/test_eval_1_7b_rsft_s43_no_evi.log",
+      "submitted_at": "2026-05-23T07:51:27.667Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+      "data_count": 500,
+      "model_name": "Qwen3-1.7B",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43",
+      "eval_data": "test_revised"
+    },
+    "hypothesis": "1.7B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 s43 with-evi 计算 s43 evidence tax。s42 tax=-5.43pp（最大），验证 multi-seed tax 稳定性。",
+    "parent": "test_eval_1_7b_rsft_s43_with_evi",
+    "reproduce": {
+      "finished_at": "2026-05-23T08:31:15.559Z"
+    }
+  },
+  "timestamp": "2026-05-23T08:31:17.761508+00:00",
+  "trigger": "update_registry"
+}

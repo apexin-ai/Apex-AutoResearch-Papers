@@ -1,0 +1,47 @@
+{
+  "exp_id": "mvp2_rsft_generate",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T00:09:41.289Z",
+    "updated_at": "2026-05-15T01:32:10.047Z",
+    "hypothesis": "RSFT generation phase: SFT model generates N=8 candidate outputs per training sample at T=0.7. CED scoring + filtering后作为 RSFT 训练数据。D031 pivot 方向。",
+    "parent": "mvp2_sft_warmup",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx5090-4x",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T00:09:52.157Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/autodl-tmp && python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split train_annotated --output_dir /root/autodl-tmp/rsft_generations --num_generations 8 --temperature 0.7 --batch_size 2 --max_new_tokens 1024 --seed 42\"",
+      "finished_at": "2026-05-15T01:32:08.718Z",
+      "training_hours": 1.37
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/autodl-tmp && python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split train_annotated --output_dir /root/autodl-tmp/rsft_generations --num_generations 8 --temperature 0.7 --batch_size 2 --max_new_tokens 1024 --seed 42\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "122144",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_rsft_generate.log",
+      "submitted_at": "2026-05-15T00:09:53.637Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 4936.4,
+      "gpu_hours": 1.37
+    },
+    "pid": "122144",
+    "log_path": "~/runs/faith-evidence-ie/mvp2_rsft_generate.log",
+    "failure_reason": "EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T01:32:10.047Z"
+  },
+  "timestamp": "2026-05-15T01:32:10.188280+00:00",
+  "trigger": "update_registry"
+}

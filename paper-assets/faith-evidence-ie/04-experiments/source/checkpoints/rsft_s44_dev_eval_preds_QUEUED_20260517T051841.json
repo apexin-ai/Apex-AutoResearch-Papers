@@ -1,0 +1,28 @@
+{
+  "exp_id": "rsft_s44_dev_eval_preds",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T05:02:50.832Z",
+    "updated_at": "2026-05-17T05:18:41.548Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s44/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/rsft_s44_dev_with_preds\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "414832",
+      "log_path": "~/runs/faith-evidence-ie/rsft_s44_dev_eval_preds.log",
+      "submitted_at": "2026-05-17T05:02:50.357Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Re-run RSFT s44 dev eval with predictions saved, as prerequisite for CED evidence filtering experiment (线索1: inference-time distractor citation removal). Predictions needed for per-sentence NLI scoring."
+  },
+  "timestamp": "2026-05-17T05:18:41.974027+00:00",
+  "trigger": "update_registry"
+}

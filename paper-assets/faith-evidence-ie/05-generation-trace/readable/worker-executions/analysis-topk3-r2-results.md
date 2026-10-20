@@ -1,0 +1,1994 @@
+# analysis topk3 r2 results
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 41
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/workers/worker_analysis_topk3_r2_results_20260515T132412.log`
+- **Structured JSON:** [`628a3bd82867cfa212f2.json`](../../sessions/62/628a3bd82867cfa212f2.json)
+
+## Before a recorded user message
+
+41 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "96019d71-293f-45c5-b19f-92a6faccf2dc",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779390000,
+    "rateLimitType": "seven_day",
+    "utilization": 0.27,
+    "isUsingOverage": false
+  },
+  "uuid": "d8daa981-f21d-4021-bb6c-551ecf17586e",
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll check the CED scoring topk3_r2 experiment results on rtx5090-4x.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "d9aa9be4-97cd-4379-961e-62df2da7383c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WWmQWHsPNDpw6G3LVgCLYB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11393,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11393
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Yb5fMSBpJALSzwgKU4vaJz`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "7d1909b2-80eb-4b1a-96d9-15d626271e5e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WWmQWHsPNDpw6G3LVgCLYB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11393,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11393
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T13:24:26.455Z_
+
+<details><summary>↩ Tool result · `toolu_01Yb5fMSBpJALSzwgKU4vaJz`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "398cc1bf-9f35-414c-a4fe-7b4763048ae0",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me first check the registry entry for this experiment and simultaneously check the server for output files and tmux logs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "d0b47a59-39ed-4feb-b604-d75909848fcf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KZE1HxC6HZ8jBX1smY994V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1451,
+      "cache_read_input_tokens": 23234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1451
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01MC16bz3X3pvBoRxwr4FEX6`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "mvp2_rsft_ced_scoring_topk3_r2"
+  },
+  "project": "faith-evidence-ie",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "26fe670b-202f-42fd-ab67-83511841e4d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KZE1HxC6HZ8jBX1smY994V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1451,
+      "cache_read_input_tokens": 23234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1451
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T13:24:31.623Z_
+
+<details><summary>↩ Tool result · `toolu_01MC16bz3X3pvBoRxwr4FEX6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2977}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "5d26ac54-1400-454d-95bc-2387462fcf0d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2977}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2977}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Wk46QurA1AwBhUQMJNkRqQ`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/freige/training -maxdepth 2 -name \"*topk3*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "d2cb4555-ba0e-4515-8c8e-e116d9d4d926",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KZE1HxC6HZ8jBX1smY994V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1451,
+      "cache_read_input_tokens": 23234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1451
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MQHuPFZjG2GFP5dVA6JPmH`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp -maxdepth 3 -name \"*topk3*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "c40cd744-d56e-4d6e-93ae-c0391a83297f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KZE1HxC6HZ8jBX1smY994V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1451,
+      "cache_read_input_tokens": 23234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1451
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T13:24:34.300Z_
+
+<details><summary>↩ Tool result · `toolu_01Wk46QurA1AwBhUQMJNkRqQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "87d30933-ea71-458c-9fc6-88ded4c8994e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T13:24:34.686Z_
+
+<details><summary>↩ Tool result · `toolu_01MQHuPFZjG2GFP5dVA6JPmH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/rsft_filtered_topk3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "f1fed2fc-48d2-4d61-89b7-934255212e21",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rsft_filtered_topk3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/rsft_filtered_topk3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Registry has no entry with that exp_id filter. Let me check with the correct exp_id or without filters. Also found output at `/root/autodl-tmp/rsft_filtered_topk3`. Let me check its contents and the tmux session.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "412dc09f-a60d-4746-92be-f7f48ff6a029",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N8PPH5WFQdvCr4iCsam3Dy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 24685,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 718
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Found output at `/root/autodl-tmp/rsft_filtered_topk3`. Let me inspect it and check the tmux session.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "299a6f90-57ba-457f-8395-59c51b84ac1c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N8PPH5WFQdvCr4iCsam3Dy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 24685,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 718
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JusYggFw1kbCYg94nti2wA`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /root/autodl-tmp/rsft_filtered_topk3/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "2bd23bc3-b85c-4ed2-abb2-af61460ca9ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N8PPH5WFQdvCr4iCsam3Dy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 24685,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 718
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T13:24:39.476Z_
+
+<details><summary>↩ Tool result · `toolu_01JusYggFw1kbCYg94nti2wA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 94624\\ndrwxr-xr-x  2 root root       95 May 15 21:18 .\\ndrwxr-xr-x 55 root root     4096 May 15 17:00 ..\\n-rw-r--r--  1 root root     4619 May 15 21:18 rsft_report.json\\n-rw-r--r--  1 root root 70829139 May 15 21:18 rsft_scores.jsonl\\n-rw-r--r--  1 root root 26050489 May 15 21:18 rsft_train.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "71dab287-91ef-46d1-b5e3-595223c5d1f7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 94624\\\\ndrwxr-xr-x  2 root root       95 May 15 21:18 .\\\\ndrwxr-xr-x 55 root root     4096 May 15 17:00 ..\\\\n-rw-r--r--  1 root root     4619 May 15 21:18 rsft_report.json\\\\n-rw-r--r--  1 root root 70829139 May 15 21:18 rsft_scores.jsonl\\\\n-rw-r--r--  1 root root 26050489 May 15 21:18 rsft_train.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 94624\\ndrwxr-xr-x  2 root root       95 May 15 21:18 .\\ndrwxr-xr-x 55 root root     4096 May 15 17:00 ..\\n-rw-r--r--  1 root root     4619 May 15 21:18 rsft_report.json\\n-rw-r--r--  1 root root 70829139 May 15 21:18 rsft_scores.jsonl\\n-rw-r--r--  1 root root 26050489 May 15 21:18 rsft_train.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015iB6rkwTyhY73s8h1i8tdu`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tmux capture-pane -t mvp2_rsft_ced_scoring_topk3_r2 -p -S -200 2>&1 || echo \"TMUX_SESSION_NOT_FOUND\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "b4b1654f-2b9e-4497-a188-7052d11b2ae0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N8PPH5WFQdvCr4iCsam3Dy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 24685,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 718
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01QfK7jPUg9LRZ8vp8rUHDTc`</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "limit": 20,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "81ff5bfb-3a52-4863-ae0e-ab058e9cc115",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N8PPH5WFQdvCr4iCsam3Dy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 24685,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 718
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T13:24:41.443Z_
+
+<details><summary>↩ Tool result · `toolu_015iB6rkwTyhY73s8h1i8tdu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"can't find pane: mvp2_rsft_ced_scoring_topk3_r2\\nTMUX_SESSION_NOT_FOUND\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "7f1d4986-2349-465c-b124-b75c3ee4bd15",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"can't find pane: mvp2_rsft_ced_scoring_topk3_r2\\\\nTMUX_SESSION_NOT_FOUND\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"can't find pane: mvp2_rsft_ced_scoring_topk3_r2\\nTMUX_SESSION_NOT_FOUND\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T13:24:41.703Z_
+
+<details><summary>↩ Tool result · `toolu_01QfK7jPUg9LRZ8vp8rUHDTc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"mvp2_eval_rsft_r2b_maxtok1536\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:49:48.849Z\", \"updated_at\": \"2026-05-15T13:23:59.642Z\", \"hypothesis\": \"Truncation diagnosis: r2b eval with max_new_tokens=1536 (vs default 1024). If EDCR improves significantly (from 0.6609 toward 0.71+), current EDCR gap is truncation artifact, not model issue. If EDCR unchanged, distractor citation is genuine RSFT behavior.\", \"parent\": \"mvp2_eval_rsft_r2b\", \"spec\": {\"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_r2b --data_path /root/autodl-tmp/data/docred --no-quantize --max_new_tokens 1536 --output_dir /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"196700\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536.log\", \"submitted_at\": \"2026-05-15T11:51:37.717Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B+SFT+RSFT r2b\", \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_r2b\", \"eval_data\": \"docred dev (985 docs)\", \"seed\": 42, \"purpose\": \"诊断 EDCR 下降是否因 max_new_tokens=1024 截断导致，179/985 docs 被截断，改用 1536 重跑\", \"wall_clock_seconds\": 5541.9, \"gpu_hours\": 1.54}, \"conclusion\": \"killed\", \"notes\": \"Reviewer CRITICAL: 命令缺少 --base_model 和 --sft_adapter，模型 stack 是 Base+RSFT LoRA 而非 Base+SFT+RSFT LoRA，结果不可用。PID 196700 已 kill。重试为 mvp2_eval_rsft_r2b_maxtok1536_r2。\", \"completed_at\": \"2026-05-15T13:23:59.642Z\"}, \"mvp2_rsft_ced_scoring_topk3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:35:23.225Z\", \"updated_at\": \"2026-05-15T13:20:42.443Z\", \"hypothesis\": \"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Answers: does CED filtering strictness affect RSFT training quality?\", \"spec\": {\"command\": \"python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"198680\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3.log\", \"submitted_at\": \"2026-05-15T12:09:41.690Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/rsft_generations/generations.jsonl\", \"data_count\": 21952, \"model_name\": \"cross-encoder/nli-deberta-v3-base\", \"seed\": 42, \"wall_clock_seconds\": 4260.8, \"gpu_hours\": 1.18}, \"conclusion\": \"killed\", \"notes\": \"NLI 模型加载失败 (HuggingFace Network unreachable)。命令缺少 HF_HOME/HF_HUB_OFFLINE/TRANSFORMERS_OFFLINE 环境变量。重试为 mvp2_rsft_ced_scoring_topk3_r2。\", \"completed_at\": \"2026-05-15T13:20:42.443Z\"}, \"mvp2_eval_rsft_s43_r2\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:29:17.551Z\", \"updated_at\": \"2026-05-15T13:19:31.127Z\", \"hypothesis\": \"Full dev eval of RSFT s43 (seed=43). 3rd seed for variance estimation. r1: rel_f1=0.4449, s44: rel_f1=0.4655. Pass: rel_f1 > 0.4057, evi_f1 > 0.798. Retry of mvp2_eval_rsft_s43 (fixed arg names).\", \"parent\": \"mvp2_rsft_train_r1_s43\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s43 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/rsft_s43 --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"194837\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_s43_r2.log\", \"submitted_at\": \"2026-05-15T11:29:48.250Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"194837\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_s43_r2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s43 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/rsft_s43 --no-quantize\\\"\", \"finished_at\": \"2026-05-15T13:16:38.318Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:16:41.689788+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.4683, \"ign_f1\": 0.4683, \"evi_f1\": 0.8156, \"edcr\": 0.6388, \"precision\": 0.4817, \"recall\": 0.4556, \"evi_precision\": 0.8142, \"evi_recall\": 0.817, \"n_predictions\": 14970, \"n_truncated\": 171, \"format_ok_rate\": 1, \"inference_time_s\": 6316.7, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0626, \"delta_evi_f1\": 0.0177, \"mvp2_pass\": true}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/rsft_s43\", \"notes\": \"3rd seed PASS. rel_f1=0.4683 (+6.26pp vs SFT), evi_f1=0.8156 (+1.77pp), EDCR=0.6388. 3-seed 完整表: mean rel_f1=0.4596±0.0127, mean evi_f1=0.8143±0.0051. 三个 seed 均稳定超过 SFT baseline。cuda:2 已释放。\"}, \"mvp2_rsft_ced_scoring_topk3_r2\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:12:38.363Z\", \"updated_at\": \"2026-05-15T13:19:15.577Z\", \"hypothesis\": \"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally).\", \"parent\": \"mvp2_rsft_ced_scoring\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-15T12:13:02.778Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"finished_at\": \"2026-05-15T13:19:15.077Z\", \"training_hours\": 1.1}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"submitted_at\": \"2026-05-15T12:13:03.900Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:19:17.812206+00:00\"}]}}, \"mvp2_rsft_r2b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:57:46.813Z\", \"updated_at\": \"2026-05-15T13:14:23.368Z\", \"hypothesis\": \"RSFT r2b: data fix + training dynamics fix (1 epoch + filter truncated + LoRA alpha=32/r=64 scaling 0.5 + lr=1e-5). Isolates: is conservative LoRA scaling the key factor? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_train_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-15T08:58:45.465Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train_clean.jsonl --output_dir /root/autodl-tmp/rsft_output_r2b --learning_rate 1e-5 --num_epochs 1 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 32 --weighted_sampling --save_steps 50 --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-r2b --seed 42\\\"\", \"wandb_run_id\": \"rsft-r2b\", \"finished_at\": \"2026-05-15T09:35:56.802Z\", \"training_hours\": 0.62}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train_clean.jsonl --output_dir /root/autodl-tmp/rsft_output_r2b --learning_rate 1e-5 --num_epochs 1 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 32 --weighted_sampling --save_steps 50 --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-r2b --seed 42\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"183587\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_r2b.log\", \"submitted_at\": \"2026-05-15T09:00:01.270Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_r2b\", \"wall_clock_seconds\": 15262.1, \"gpu_hours\": 4.24}, \"pid\": \"183587\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_r2b.log\", \"wandb_run_id\": \"rsft-r2b\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T09:35:58.776100+00:00\"}]}, \"notes\": \"训练完成 (160 steps, 33.7min, eval_loss=0.7545)。TaskEvalCallback rel_f1=0.0504 是已知 bug (D038: gold triples 分母不匹配)，不代表真实性能。需全量 dev eval 确认实际指标。\", \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4493, \"evi_f1\": 0.8128, \"edcr\": 0.6609, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0436, \"delta_evi_f1\": 0.0149, \"mvp2_pass\": true}, \"completed_at\": \"2026-05-15T13:14:23.368Z\"}, \"mvp2_rsft_r2a\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:57:46.140Z\", \"updated_at\": \"2026-05-15T13:14:22.509Z\", \"hypothesis\": \"RSFT r2a: data fix only (1 epoch + filter 170 truncated JSON → 2548 samples). Same LoRA alpha=128/r=64, lr=2e-5 as r1. Isolates: does 1 epoch + clean data alone fix the ontology collapse? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_train_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T08:58:44.826Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train_clean.jsonl --output_dir /root/autodl-tmp/rsft_output_r2a --learning_rate 2e-5 --num_epochs 1 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --save_steps 50 --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-r2a --seed 42\\\"\", \"wandb_run_id\": \"rsft-r2a\", \"finished_at\": \"2026-05-15T09:36:15.752Z\", \"training_hours\": 0.63}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train_clean.jsonl --output_dir /root/autodl-tmp/rsft_output_r2a --learning_rate 2e-5 --num_epochs 1 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --save_steps 50 --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-r2a --seed 42\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"183504\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_r2a.log\", \"submitted_at\": \"2026-05-15T08:59:58.168Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_r2a\", \"wall_clock_seconds\": 15264.3, \"gpu_hours\": 4.24}, \"pid\": \"183504\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_r2a.log\", \"wandb_run_id\": \"rsft-r2a\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T09:36:20.493042+00:00\"}]}, \"notes\": \"训练完成 (160 steps, 35.5min, eval_loss=0.7547)。TaskEvalCallback rel_f1=0.0509 是已知 bug (D038: gold triples 分母不匹配)，不代表真实性能。需全量 dev eval 确认实际指标。\", \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4494, \"evi_f1\": 0.8108, \"edcr\": 0.6641, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0437, \"delta_evi_f1\": 0.0129, \"mvp2_pass\": true}, \"completed_at\": \"2026-05-15T13:14:22.510Z\"}, \"mvp2_rsft_train_r1_s44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T05:36:26.321Z\", \"updated_at\": \"2026-05-15T13:14:06.295Z\", \"hypothesis\": \"RSFT training seed=44 variance estimate. Same params as r1 (bf16 LoRA r=64/α=128, lr=2e-5, 3 epochs, weighted sampling, CED-filtered 2718 samples). Pass: rel_f1 > 0.4057 AND evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_train_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-15T05:38:32.212Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1-s44 --seed 44\\\"\", \"wandb_run_id\": \"rsft-ced-r1-s44\", \"finished_at\": \"2026-05-15T07:32:40.691Z\", \"training_hours\": 1.9}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1-s44 --seed 44\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"165672\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_train_r1_s44.log\", \"submitted_at\": \"2026-05-15T05:39:22.747Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_s44\", \"wall_clock_seconds\": 27283.5, \"gpu_hours\": 7.58}, \"pid\": \"165672\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_train_r1_s44.log\", \"wandb_run_id\": \"rsft-ced-r1-s44\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T07:32:43.021519+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.4655, \"evi_f1\": 0.8087, \"edcr\": 0.635, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0598, \"delta_evi_f1\": 0.0108, \"mvp2_pass\": true}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T13:14:06.295Z\"}, \"mvp2_rsft_diagnosis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:55:04.100Z\", \"updated_at\": \"2026-05-15T12:09:32.257Z\", \"hypothesis\": \"RSFT failure root cause: rel_f1=0.0483 vs SFT 0.4057. Diagnose: training data distribution (relation count), step-170 checkpoint output analysis, SFT vs RSFT data comparison.\", \"conclusion\": \"success\", \"metrics\": {\"root_cause\": \"overfitting_plus_sft_knowledge_overwrite\", \"truncated_json_samples\": 170, \"truncated_pct\": 6.3, \"epoch1_eval_loss\": 0.756, \"epoch2_eval_loss\": 0.759, \"lora_scaling\": 2, \"rsft_zero_relation_samples\": 170, \"sft_zero_relation_docs\": 26, \"rsft_mean_relations\": 11.2, \"sft_mean_relations\": 12.5}, \"checkpoint_path\": \"N/A (diagnosis task, no checkpoint)\", \"log_path\": \"N/A (diagnosis task)\", \"completed_at\": \"2026-05-15T12:09:32.257Z\"}, \"mvp2_eval_ced_kl001_r4_last\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:10:05.820Z\", \"updated_at\": \"2026-05-15T12:09:21.004Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 90,100 --quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_last.log\", \"submitted_at\": \"2026-05-14T18:10:05.342Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 64755.7, \"gpu_hours\": 17.99}, \"notes\": \"已被拆分为独立 eval：ckpt-90 → mvp2_eval_ced_kl001_r4_ckpt90 (cuda:3)，ckpt-100 → mvp2_eval_ced_kl001_r4_step100 (cuda:0)。此条目作废。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:09:21.004Z\"}, \"mvp2_grpo_ced_kl001_r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T15:25:06.729Z\", \"updated_at\": \"2026-05-15T12:09:20.252Z\", \"hypothesis\": \"kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary (retry: fix --lr + bash -c wrapping)\", \"parent\": \"mvp2_grpo_ced_kl001\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.01 --num_iterations 1 --save_steps 20 --save_total_limit 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --learning_rate 5e-5 --gradient_accumulation_steps 16 --num_generations 4\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"65740\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_ced_kl001_r3.log\", \"submitted_at\": \"2026-05-14T15:25:17.200Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 74643.1, \"gpu_hours\": 20.73}, \"notes\": \"失败原因: datasets 库不支持 thunlp/docred 自定义脚本 (RuntimeError: Dataset scripts are no longer supported)。命令缺少 --data_dir /root/autodl-tmp/data/docred 参数，触发 HF 远程下载失败。需要补全所有必要参数后重新提交。error_type: infrastructure | can_auto_fix: true\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:09:20.252Z\"}, \"mvp2_grpo_ced_kl001_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T15:23:16.518Z\", \"updated_at\": \"2026-05-15T12:09:19.263Z\", \"hypothesis\": \"kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary (retry: fix --lr → --learning_rate)\", \"parent\": \"mvp2_grpo_ced_kl001\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.01 --num_iterations 1 --save_steps 20 --save_total_limit 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --learning_rate 5e-5 --gradient_accumulation_steps 16 --num_generations 4\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_ced_kl001_r2.log\", \"submitted_at\": \"2026-05-14T15:23:31.047Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 74748.2, \"gpu_hours\": 20.76}, \"conclusion\": \"killed\", \"notes\": \"失败原因: 命令未用 bash -c 包裹，tmux 以 sh 执行导致 source 命令失败。error_type: infrastructure | can_auto_fix: true\", \"completed_at\": \"2026-05-15T12:09:19.263Z\"}, \"mvp2_rsft_train_r2_fix\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:38:03.815Z\", \"updated_at\": \"2026-05-15T12:09:18.298Z\", \"hypothesis\": \"RSFT r2 fix: 4 fixes based on r1 diagnosis. 1) 1 epoch (vs 3), 2) LoRA alpha=32/r=64 (scaling 0.5 vs 2.0), 3) filtered truncated JSON (~2548 vs 2718 samples), 4) lr=1e-5 (vs 2e-5). Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:09:18.298Z\"}, \"mvp2_eval_rsft_r2b_maxtok1536_r2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:54:57.156Z\", \"updated_at\": \"2026-05-15T11:55:19.483Z\", \"hypothesis\": \"Truncation diagnosis: r2b eval with max_new_tokens=1536 (vs default 1024). Retry with correct model stack (Base+SFT+RSFT). If EDCR improves significantly (from 0.6609 toward 0.71+), truncation is the cause. If unchanged, distractor citation is genuine RSFT behavior.\", \"parent\": \"mvp2_eval_rsft_r2b\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T11:55:17.608Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/* && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --model_path /root/autodl-tmp/rsft_output_r2b --data_path /root/autodl-tmp/data/docred --no-quantize --max_new_tokens 1536 --output_dir /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\\\"\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/* && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --model_path /root/autodl-tmp/rsft_output_r2b --data_path /root/autodl-tmp/data/docred --no-quantize --max_new_tokens 1536 --output_dir /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"197381\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536_r2.log\", \"submitted_at\": \"2026-05-15T11:55:18.697Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"197381\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536_r2.log\"}, \"mvp2_eval_rsft_r2a\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:42:57.684Z\", \"updated_at\": \"2026-05-15T11:46:56.410Z\", \"hypothesis\": \"Full dev eval of r2a (1 epoch, alpha=128, clean data). Ablation: 1 epoch vs 3 epoch (r1). Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_r2a\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"python -m freige.eval.inference --no-quantize (r2a checkpoint on cuda:1)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT r2a\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_r2a\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4494, \"ign_f1\": 0.4494, \"evi_f1\": 0.8108, \"edcr\": 0.6641, \"precision\": 0.4512, \"recall\": 0.4475, \"evi_precision\": 0.8143, \"evi_recall\": 0.8073, \"format_ok_rate\": 1, \"n_predictions\": 15482, \"n_truncated\": 208, \"inference_time_s\": 5967.2}, \"notes\": \"RSFT r2a (1ep, alpha=128/r=64, lr=2e-5, clean 2548 samples). rel_f1=0.4494 (+0.0045 vs r1, +0.0001 vs r2b), evi_f1=0.8108 (-0.0079 vs r1, -0.0020 vs r2b), edcr=0.6641 (+0.0032 vs r2b). 1 epoch with clean data matches r1's 3-epoch rel_f1 while being cheaper. r2a vs r2b (alpha=128 vs 32): nearly identical rel_f1, marginal edcr advantage for higher alpha. All RSFT variants beat SFT baseline on rel_f1/evi_f1 but lose on edcr (0.66-0.66 vs 0.71).\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/rsft_r2a\", \"log_path\": \"/root/autodl-tmp/eval_results/rsft_r2a/eval.log\", \"completed_at\": \"2026-05-15T11:46:56.410Z\"}, \"mvp2_eval_rsft_r2b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:42:58.437Z\", \"updated_at\": \"2026-05-15T11:44:40.199Z\", \"hypothesis\": \"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_r2b\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"spec\": {\"command\": \"python -m freige.eval.inference --no-quantize (r2b checkpoint on cuda:3)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT r2b\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_r2b\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"pid\": \"189855\"}, \"metrics\": {\"rel_f1\": 0.4493, \"ign_f1\": 0.4493, \"evi_f1\": 0.8128, \"edcr\": 0.6609, \"precision\": 0.4566, \"recall\": 0.4424, \"evi_precision\": 0.8201, \"evi_recall\": 0.8056, \"pred_count\": 14829, \"format_ok\": \"983/985\", \"truncated\": 179, \"inference_time_s\": 5862}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_r2b\", \"log_path\": \"/root/autodl-tmp/eval_results/rsft_r2b/eval.log\", \"completed_at\": \"2026-05-15T11:44:36.428Z\"}, \"mvp2_rsft_train_r1_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T05:36:25.275Z\", \"updated_at\": \"2026-05-15T11:31:48.727Z\", \"hypothesis\": \"RSFT training seed=43 variance estimate. Same params as r1 (bf16 LoRA r=64/α=128, lr=2e-5, 3 epochs, weighted sampling, CED-filtered 2718 samples). Pass: rel_f1 > 0.4057 AND evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_train_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T05:38:31.664Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_s43 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1-s43 --seed 43\\\"\", \"wandb_run_id\": \"rsft-ced-r1-s43\", \"finished_at\": \"2026-05-15T07:37:49.819Z\", \"training_hours\": 1.99}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_s43 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1-s43 --seed 43\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"165590\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_train_r1_s43.log\", \"submitted_at\": \"2026-05-15T05:39:20.307Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 21148.4, \"gpu_hours\": 5.87}, \"pid\": \"165590\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_train_r1_s43.log\", \"wandb_run_id\": \"rsft-ced-r1-s43\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T07:37:52.173054+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_s43\", \"metrics\": {\"eval_loss\": 0.7622, \"train_loss\": 0.6148, \"eval_entropy\": 0.6724, \"mean_token_accuracy\": 0.8291, \"total_steps\": 510, \"epochs\": 3, \"training_hours\": 1.99}, \"conclusion\": \"success\", \"notes\": \"训练正常完成 (510 steps, 1.99h, eval_loss=0.7622, train_loss=0.6148)。与 s44 (eval_loss=未记录) 和 r1 相近。TaskEvalCallback rel_f1 是已知 bug，需全量 eval。全量 eval 重试 mvp2_eval_rsft_s43_r2 正在运行中。\", \"completed_at\": \"2026-05-15T11:31:48.727Z\"}, \"mvp2_eval_rsft_r1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:40:47.529Z\", \"updated_at\": \"2026-05-15T11:30:26.893Z\", \"hypothesis\": \"Full dev eval of RSFT r1 (seed=42). Same pipeline as s44 eval (985 docs, no-quantize). Need 3-seed data for complete_mvp. s44 PASS: rel_f1=0.4655, evi_f1=0.8087.\", \"parent\": \"mvp2_rsft_train_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"spec\": {\"command\": \"python -m freige.eval.inference --no-quantize (r1 checkpoint on cuda:2)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT r1\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"pid\": \"186329\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output\", \"log_path\": \"/root/autodl-tmp/eval_results/rsft_r1/eval.log\"}, \"metrics\": {\"rel_f1\": 0.4449, \"evi_f1\": 0.8187, \"edcr\": 0.6565, \"num_preds\": 15307, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0392, \"delta_evi_f1\": 0.0208, \"mvp2_pass\": true}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T11:30:26.893Z\"}, \"mvp2_eval_rsft_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:25:26.268Z\", \"updated_at\": \"2026-05-15T11:29:11.205Z\", \"hypothesis\": \"Full dev eval of RSFT s43 (seed=43). 3rd seed for variance estimation. r1: rel_f1=0.4449, s44: rel_f1=0.4655. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_train_r1_s43\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_adapter /root/autodl-tmp/rsft_output_s43 --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/rsft_s43 --no-quantize --gpu 0\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"194296\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_s43.log\", \"submitted_at\": \"2026-05-15T11:26:15.318Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 18.9, \"gpu_hours\": 0.01}, \"pid\": \"194296\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_s43.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_adapter /root/autodl-tmp/rsft_output_s43 --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/rsft_s43 --no-quantize --gpu 0\\\"\", \"finished_at\": \"2026-05-15T11:26:32.872Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T11:26:34.235Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T11:26:36.157796+00:00\"}]}, \"notes\": \"参数名错误导致失败: --rsft_adapter 应为 --model_path, --data_dir 应为 --data_path, --gpu 0 不存在。重试为 mvp2_eval_rsft_s43_r2。\"}, \"mvp2_ced_reranker_poc\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:55:03.414Z\", \"updated_at\": \"2026-05-15T10:27:43.349Z\", \"hypothesis\": \"CED-as-reranker: no fine-tuning, use CED to select best of N=8 SFT candidates at inference time. If rel_f1 > 0.4057 (SFT greedy), CED adds value without training risk. Oracle reranker as upper bound.\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"python /root/autodl-tmp/freige/eval/ced_reranker.py (N=8, CED scoring, 985 docs)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT (greedy N=8 + CED reranker)\", \"seed\": 42, \"pid\": \"178050\"}}, \"mvp2_rsft_train_r1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T05:27:39.073Z\", \"updated_at\": \"2026-05-15T09:40:39.078Z\", \"hypothesis\": \"RSFT training on CED-filtered data (2718 samples, mean CED=0.668). SFT warmup baseline: rel_f1=0.4057, evi_f1=0.798. Pass criteria: rel_f1 > 0.4057 AND evi_f1 > 0.798.\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1 --seed 42\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"165130\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_train_r1.log\", \"submitted_at\": \"2026-05-15T05:37:57.880Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 7210.1, \"gpu_hours\": 2.0}, \"pid\": \"165130\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_train_r1.log\", \"wandb_run_id\": \"rsft-ced-r1\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1 --seed 42\\\"\", \"wandb_run_id\": \"rsft-ced-r1\", \"finished_at\": \"2026-05-15T07:35:10.628Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T07:35:13.068974+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output\", \"metrics\": {\"rel_f1\": 0.0483, \"num_preds\": 848, \"sft_baseline_rel_f1\": 0.4057, \"failure_mode\": \"relation_ontology_collapse_to_freetext\", \"epoch1_eval_loss\": 0.756, \"epoch2_eval_loss\": 0.759}, \"completed_at\": \"2026-05-15T07:38:07.936Z\", \"notes\": \"D037 修正: TaskEvalCallback 的 rel_f1=0.0483 是 eval bug（gold triples 未限制为 eval_max_docs 子集）。全量 eval 待跑。s44 全量 eval 已 PASS: rel_f1=0.4655, evi_f1=0.8087。\"}}, \"count\": 20, \"total\": 74, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2464}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "ed763fc4-1c97-4dc0-9876-569222f82722",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"mvp2_eval_rsft_r2b_maxtok1536\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T11:49:48.849Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:23:59.642Z\\\", \\\"hypothesis\\\": \\\"Truncation diagnosis: r2b eval with max_new_tokens=1536 (vs default 1024). If EDCR improves significantly (from 0.6609 toward 0.71+), current EDCR gap is truncation artifact, not model issue. If EDCR unchanged, distractor citation is genuine RSFT behavior.\\\", \\\"parent\\\": \\\"mvp2_eval_rsft_r2b\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_r2b --data_path /root/autodl-tmp/data/docred --no-quantize --max_new_tokens 1536 --output_dir /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"196700\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:51:37.717Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B+SFT+RSFT r2b\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_r2b\\\", \\\"eval_data\\\": \\\"docred dev (985 docs)\\\", \\\"seed\\\": 42, \\\"purpose\\\": \\\"诊断 EDCR 下降是否因 max_new_tokens=1024 截断导致，179/985 docs 被截断，改用 1536 重跑\\\", \\\"wall_clock_seconds\\\": 5541.9, \\\"gpu_hours\\\": 1.54}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"Reviewer CRITICAL: 命令缺少 --base_model 和 --sft_adapter，模型 stack 是 Base+RSFT LoRA 而非 Base+SFT+RSFT LoRA，结果不可用。PID 196700 已 kill。重试为 mvp2_eval_rsft_r2b_maxtok1536_r2。\\\", \\\"completed_at\\\": \\\"2026-05-15T13:23:59.642Z\\\"}, \\\"mvp2_rsft_ced_scoring_topk3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T07:35:23.225Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:20:42.443Z\\\", \\\"hypothesis\\\": \\\"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Answers: does CED filtering strictness affect RSFT training quality?\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"198680\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:09:41.690Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/rsft_generations/generations.jsonl\\\", \\\"data_count\\\": 21952, \\\"model_name\\\": \\\"cross-encoder/nli-deberta-v3-base\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 4260.8, \\\"gpu_hours\\\": 1.18}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"NLI 模型加载失败 (HuggingFace Network unreachable)。命令缺少 HF_HOME/HF_HUB_OFFLINE/TRANSFORMERS_OFFLINE 环境变量。重试为 mvp2_rsft_ced_scoring_topk3_r2。\\\", \\\"completed_at\\\": \\\"2026-05-15T13:20:42.443Z\\\"}, \\\"mvp2_eval_rsft_s43_r2\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T11:29:17.551Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:19:31.127Z\\\", \\\"hypothesis\\\": \\\"Full dev eval of RSFT s43 (seed=43). 3rd seed for variance estimation. r1: rel_f1=0.4449, s44: rel_f1=0.4655. Pass: rel_f1 > 0.4057, evi_f1 > 0.798. Retry of mvp2_eval_rsft_s43 (fixed arg names).\\\", \\\"parent\\\": \\\"mvp2_rsft_train_r1_s43\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"account\\\": \\\"root\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s43 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/rsft_s43 --no-quantize\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"194837\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_rsft_s43_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:29:48.250Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"194837\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_rsft_s43_r2.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s43 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/rsft_s43 --no-quantize\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T13:16:38.318Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:16:41.689788+00:00\\\"}]}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.4683, \\\"ign_f1\\\": 0.4683, \\\"evi_f1\\\": 0.8156, \\\"edcr\\\": 0.6388, \\\"precision\\\": 0.4817, \\\"recall\\\": 0.4556, \\\"evi_precision\\\": 0.8142, \\\"evi_recall\\\": 0.817, \\\"n_predictions\\\": 14970, \\\"n_truncated\\\": 171, \\\"format_ok_rate\\\": 1, \\\"inference_time_s\\\": 6316.7, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0626, \\\"delta_evi_f1\\\": 0.0177, \\\"mvp2_pass\\\": true}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/eval_results/rsft_s43\\\", \\\"notes\\\": \\\"3rd seed PASS. rel_f1=0.4683 (+6.26pp vs SFT), evi_f1=0.8156 (+1.77pp), EDCR=0.6388. 3-seed 完整表: mean rel_f1=0.4596±0.0127, mean evi_f1=0.8143±0.0051. 三个 seed 均稳定超过 SFT baseline。cuda:2 已释放。\\\"}, \\\"mvp2_rsft_ced_scoring_topk3_r2\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T12:12:38.363Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:19:15.577Z\\\", \\\"hypothesis\\\": \\\"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally).\\\", \\\"parent\\\": \\\"mvp2_rsft_ced_scoring\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-15T12:13:02.778Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T13:19:15.077Z\\\", \\\"training_hours\\\": 1.1}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"198997\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:13:03.900Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"198997\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:19:17.812206+00:00\\\"}]}}, \\\"mvp2_rsft_r2b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:57:46.813Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:14:23.368Z\\\", \\\"hypothesis\\\": \\\"RSFT r2b: data fix + training dynamics fix (1 epoch + filter truncated + LoRA alpha=32/r=64 scaling 0.5 + lr=1e-5). Isolates: is conservative LoRA scaling the key factor? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_train_r1\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-15T08:58:45.465Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train_clean.jsonl --output_dir /root/autodl-tmp/rsft_output_r2b --learning_rate 1e-5 --num_epochs 1 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 32 --weighted_sampling --save_steps 50 --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-r2b --seed 42\\\\\\\"\\\", \\\"wandb_run_id\\\": \\\"rsft-r2b\\\", \\\"finished_at\\\": \\\"2026-05-15T09:35:56.802Z\\\", \\\"training_hours\\\": 0.62}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train_clean.jsonl --output_dir /root/autodl-tmp/rsft_output_r2b --learning_rate 1e-5 --num_epochs 1 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 32 --weighted_sampling --save_steps 50 --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-r2b --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"183587\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_r2b.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:00:01.270Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_r2b\\\", \\\"wall_clock_seconds\\\": 15262.1, \\\"gpu_hours\\\": 4.24}, \\\"pid\\\": \\\"183587\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_r2b.log\\\", \\\"wandb_run_id\\\": \\\"rsft-r2b\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T09:35:58.776100+00:00\\\"}]}, \\\"notes\\\": \\\"训练完成 (160 steps, 33.7min, eval_loss=0.7545)。TaskEvalCallback rel_f1=0.0504 是已知 bug (D038: gold triples 分母不匹配)，不代表真实性能。需全量 dev eval 确认实际指标。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4493, \\\"evi_f1\\\": 0.8128, \\\"edcr\\\": 0.6609, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0436, \\\"delta_evi_f1\\\": 0.0149, \\\"mvp2_pass\\\": true}, \\\"completed_at\\\": \\\"2026-05-15T13:14:23.368Z\\\"}, \\\"mvp2_rsft_r2a\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:57:46.140Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:14:22.509Z\\\", \\\"hypothesis\\\": \\\"RSFT r2a: data fix only (1 epoch + filter 170 truncated JSON → 2548 samples). Same LoRA alpha=128/r=64, lr=2e-5 as r1. Isolates: does 1 epoch + clean data alone fix the ontology collapse? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_train_r1\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T08:58:44.826Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train_clean.jsonl --output_dir /root/autodl-tmp/rsft_output_r2a --learning_rate 2e-5 --num_epochs 1 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --save_steps 50 --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-r2a --seed 42\\\\\\\"\\\", \\\"wandb_run_id\\\": \\\"rsft-r2a\\\", \\\"finished_at\\\": \\\"2026-05-15T09:36:15.752Z\\\", \\\"training_hours\\\": 0.63}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train_clean.jsonl --output_dir /root/autodl-tmp/rsft_output_r2a --learning_rate 2e-5 --num_epochs 1 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --save_steps 50 --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-r2a --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"183504\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_r2a.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T08:59:58.168Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_r2a\\\", \\\"wall_clock_seconds\\\": 15264.3, \\\"gpu_hours\\\": 4.24}, \\\"pid\\\": \\\"183504\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_r2a.log\\\", \\\"wandb_run_id\\\": \\\"rsft-r2a\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T09:36:20.493042+00:00\\\"}]}, \\\"notes\\\": \\\"训练完成 (160 steps, 35.5min, eval_loss=0.7547)。TaskEvalCallback rel_f1=0.0509 是已知 bug (D038: gold triples 分母不匹配)，不代表真实性能。需全量 dev eval 确认实际指标。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4494, \\\"evi_f1\\\": 0.8108, \\\"edcr\\\": 0.6641, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0437, \\\"delta_evi_f1\\\": 0.0129, \\\"mvp2_pass\\\": true}, \\\"completed_at\\\": \\\"2026-05-15T13:14:22.510Z\\\"}, \\\"mvp2_rsft_train_r1_s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T05:36:26.321Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:14:06.295Z\\\", \\\"hypothesis\\\": \\\"RSFT training seed=44 variance estimate. Same params as r1 (bf16 LoRA r=64/α=128, lr=2e-5, 3 epochs, weighted sampling, CED-filtered 2718 samples). Pass: rel_f1 > 0.4057 AND evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_train_r1\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"started_at\\\": \\\"2026-05-15T05:38:32.212Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1-s44 --seed 44\\\\\\\"\\\", \\\"wandb_run_id\\\": \\\"rsft-ced-r1-s44\\\", \\\"finished_at\\\": \\\"2026-05-15T07:32:40.691Z\\\", \\\"training_hours\\\": 1.9}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1-s44 --seed 44\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"165672\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_train_r1_s44.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T05:39:22.747Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_s44\\\", \\\"wall_clock_seconds\\\": 27283.5, \\\"gpu_hours\\\": 7.58}, \\\"pid\\\": \\\"165672\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_train_r1_s44.log\\\", \\\"wandb_run_id\\\": \\\"rsft-ced-r1-s44\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T07:32:43.021519+00:00\\\"}]}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.4655, \\\"evi_f1\\\": 0.8087, \\\"edcr\\\": 0.635, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0598, \\\"delta_evi_f1\\\": 0.0108, \\\"mvp2_pass\\\": true}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T13:14:06.295Z\\\"}, \\\"mvp2_rsft_diagnosis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T07:55:04.100Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:09:32.257Z\\\", \\\"hypothesis\\\": \\\"RSFT failure root cause: rel_f1=0.0483 vs SFT 0.4057. Diagnose: training data distribution (relation count), step-170 checkpoint output analysis, SFT vs RSFT data comparison.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"root_cause\\\": \\\"overfitting_plus_sft_knowledge_overwrite\\\", \\\"truncated_json_samples\\\": 170, \\\"truncated_pct\\\": 6.3, \\\"epoch1_eval_loss\\\": 0.756, \\\"epoch2_eval_loss\\\": 0.759, \\\"lora_scaling\\\": 2, \\\"rsft_zero_relation_samples\\\": 170, \\\"sft_zero_relation_docs\\\": 26, \\\"rsft_mean_relations\\\": 11.2, \\\"sft_mean_relations\\\": 12.5}, \\\"checkpoint_path\\\": \\\"N/A (diagnosis task, no checkpoint)\\\", \\\"log_path\\\": \\\"N/A (diagnosis task)\\\", \\\"completed_at\\\": \\\"2026-05-15T12:09:32.257Z\\\"}, \\\"mvp2_eval_ced_kl001_r4_last\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:10:05.820Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:09:21.004Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 90,100 --quantize\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"unknown\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_last.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T18:10:05.342Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 64755.7, \\\"gpu_hours\\\": 17.99}, \\\"notes\\\": \\\"已被拆分为独立 eval：ckpt-90 → mvp2_eval_ced_kl001_r4_ckpt90 (cuda:3)，ckpt-100 → mvp2_eval_ced_kl001_r4_step100 (cuda:0)。此条目作废。\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-15T12:09:21.004Z\\\"}, \\\"mvp2_grpo_ced_kl001_r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T15:25:06.729Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:09:20.252Z\\\", \\\"hypothesis\\\": \\\"kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary (retry: fix --lr + bash -c wrapping)\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_kl001\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.01 --num_iterations 1 --save_steps 20 --save_total_limit 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --learning_rate 5e-5 --gradient_accumulation_steps 16 --num_generations 4\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"65740\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_grpo_ced_kl001_r3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T15:25:17.200Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 74643.1, \\\"gpu_hours\\\": 20.73}, \\\"notes\\\": \\\"失败原因: datasets 库不支持 thunlp/docred 自定义脚本 (RuntimeError: Dataset scripts are no longer supported)。命令缺少 --data_dir /root/autodl-tmp/data/docred 参数，触发 HF 远程下载失败。需要补全所有必要参数后重新提交。error_type: infrastructure | can_auto_fix: true\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-15T12:09:20.252Z\\\"}, \\\"mvp2_grpo_ced_kl001_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T15:23:16.518Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:09:19.263Z\\\", \\\"hypothesis\\\": \\\"kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary (retry: fix --lr → --learning_rate)\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_kl001\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.01 --num_iterations 1 --save_steps 20 --save_total_limit 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --learning_rate 5e-5 --gradient_accumulation_steps 16 --num_generations 4\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"unknown\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_grpo_ced_kl001_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T15:23:31.047Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 74748.2, \\\"gpu_hours\\\": 20.76}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"失败原因: 命令未用 bash -c 包裹，tmux 以 sh 执行导致 source 命令失败。error_type: infrastructure | can_auto_fix: true\\\", \\\"completed_at\\\": \\\"2026-05-15T12:09:19.263Z\\\"}, \\\"mvp2_rsft_train_r2_fix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:38:03.815Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:09:18.298Z\\\", \\\"hypothesis\\\": \\\"RSFT r2 fix: 4 fixes based on r1 diagnosis. 1) 1 epoch (vs 3), 2) LoRA alpha=32/r=64 (scaling 0.5 vs 2.0), 3) filtered truncated JSON (~2548 vs 2718 samples), 4) lr=1e-5 (vs 2e-5). Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-15T12:09:18.298Z\\\"}, \\\"mvp2_eval_rsft_r2b_maxtok1536_r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T11:54:57.156Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:55:19.483Z\\\", \\\"hypothesis\\\": \\\"Truncation diagnosis: r2b eval with max_new_tokens=1536 (vs default 1024). Retry with correct model stack (Base+SFT+RSFT). If EDCR improves significantly (from 0.6609 toward 0.71+), truncation is the cause. If unchanged, distractor citation is genuine RSFT behavior.\\\", \\\"parent\\\": \\\"mvp2_eval_rsft_r2b\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T11:55:17.608Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/* && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --model_path /root/autodl-tmp/rsft_output_r2b --data_path /root/autodl-tmp/data/docred --no-quantize --max_new_tokens 1536 --output_dir /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\\\\\\\"\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/* && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --model_path /root/autodl-tmp/rsft_output_r2b --data_path /root/autodl-tmp/data/docred --no-quantize --max_new_tokens 1536 --output_dir /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"197381\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:55:18.697Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"197381\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536_r2.log\\\"}, \\\"mvp2_eval_rsft_r2a\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:42:57.684Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:46:56.410Z\\\", \\\"hypothesis\\\": \\\"Full dev eval of r2a (1 epoch, alpha=128, clean data). Ablation: 1 epoch vs 3 epoch (r1). Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_r2a\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.inference --no-quantize (r2a checkpoint on cuda:1)\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + SFT + RSFT r2a\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_r2a\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4494, \\\"ign_f1\\\": 0.4494, \\\"evi_f1\\\": 0.8108, \\\"edcr\\\": 0.6641, \\\"precision\\\": 0.4512, \\\"recall\\\": 0.4475, \\\"evi_precision\\\": 0.8143, \\\"evi_recall\\\": 0.8073, \\\"format_ok_rate\\\": 1, \\\"n_predictions\\\": 15482, \\\"n_truncated\\\": 208, \\\"inference_time_s\\\": 5967.2}, \\\"notes\\\": \\\"RSFT r2a (1ep, alpha=128/r=64, lr=2e-5, clean 2548 samples). rel_f1=0.4494 (+0.0045 vs r1, +0.0001 vs r2b), evi_f1=0.8108 (-0.0079 vs r1, -0.0020 vs r2b), edcr=0.6641 (+0.0032 vs r2b). 1 epoch with clean data matches r1's 3-epoch rel_f1 while being cheaper. r2a vs r2b (alpha=128 vs 32): nearly identical rel_f1, marginal edcr advantage for higher alpha. All RSFT variants beat SFT baseline on rel_f1/evi_f1 but lose on edcr (0.66-0.66 vs 0.71).\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/eval_results/rsft_r2a\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/rsft_r2a/eval.log\\\", \\\"completed_at\\\": \\\"2026-05-15T11:46:56.410Z\\\"}, \\\"mvp2_eval_rsft_r2b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:42:58.437Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:44:40.199Z\\\", \\\"hypothesis\\\": \\\"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_r2b\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.inference --no-quantize (r2b checkpoint on cuda:3)\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + SFT + RSFT r2b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_r2b\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"pid\\\": \\\"189855\\\"}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.4493, \\\"ign_f1\\\": 0.4493, \\\"evi_f1\\\": 0.8128, \\\"edcr\\\": 0.6609, \\\"precision\\\": 0.4566, \\\"recall\\\": 0.4424, \\\"evi_precision\\\": 0.8201, \\\"evi_recall\\\": 0.8056, \\\"pred_count\\\": 14829, \\\"format_ok\\\": \\\"983/985\\\", \\\"truncated\\\": 179, \\\"inference_time_s\\\": 5862}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_r2b\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/rsft_r2b/eval.log\\\", \\\"completed_at\\\": \\\"2026-05-15T11:44:36.428Z\\\"}, \\\"mvp2_rsft_train_r1_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T05:36:25.275Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:31:48.727Z\\\", \\\"hypothesis\\\": \\\"RSFT training seed=43 variance estimate. Same params as r1 (bf16 LoRA r=64/α=128, lr=2e-5, 3 epochs, weighted sampling, CED-filtered 2718 samples). Pass: rel_f1 > 0.4057 AND evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_train_r1\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T05:38:31.664Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_s43 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1-s43 --seed 43\\\\\\\"\\\", \\\"wandb_run_id\\\": \\\"rsft-ced-r1-s43\\\", \\\"finished_at\\\": \\\"2026-05-15T07:37:49.819Z\\\", \\\"training_hours\\\": 1.99}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_s43 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1-s43 --seed 43\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"165590\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_train_r1_s43.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T05:39:20.307Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 21148.4, \\\"gpu_hours\\\": 5.87}, \\\"pid\\\": \\\"165590\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_train_r1_s43.log\\\", \\\"wandb_run_id\\\": \\\"rsft-ced-r1-s43\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T07:37:52.173054+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_s43\\\", \\\"metrics\\\": {\\\"eval_loss\\\": 0.7622, \\\"train_loss\\\": 0.6148, \\\"eval_entropy\\\": 0.6724, \\\"mean_token_accuracy\\\": 0.8291, \\\"total_steps\\\": 510, \\\"epochs\\\": 3, \\\"training_hours\\\": 1.99}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"训练正常完成 (510 steps, 1.99h, eval_loss=0.7622, train_loss=0.6148)。与 s44 (eval_loss=未记录) 和 r1 相近。TaskEvalCallback rel_f1 是已知 bug，需全量 eval。全量 eval 重试 mvp2_eval_rsft_s43_r2 正在运行中。\\\", \\\"completed_at\\\": \\\"2026-05-15T11:31:48.727Z\\\"}, \\\"mvp2_eval_rsft_r1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:40:47.529Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:30:26.893Z\\\", \\\"hypothesis\\\": \\\"Full dev eval of RSFT r1 (seed=42). Same pipeline as s44 eval (985 docs, no-quantize). Need 3-seed data for complete_mvp. s44 PASS: rel_f1=0.4655, evi_f1=0.8087.\\\", \\\"parent\\\": \\\"mvp2_rsft_train_r1\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.inference --no-quantize (r1 checkpoint on cuda:2)\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + SFT + RSFT r1\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"pid\\\": \\\"186329\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/rsft_r1/eval.log\\\"}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.4449, \\\"evi_f1\\\": 0.8187, \\\"edcr\\\": 0.6565, \\\"num_preds\\\": 15307, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"sft_baseline_evi_f1\\\": 0.7979, \\\"delta_rel_f1\\\": 0.0392, \\\"delta_evi_f1\\\": 0.0208, \\\"mvp2_pass\\\": true}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T11:30:26.893Z\\\"}, \\\"mvp2_eval_rsft_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T11:25:26.268Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:29:11.205Z\\\", \\\"hypothesis\\\": \\\"Full dev eval of RSFT s43 (seed=43). 3rd seed for variance estimation. r1: rel_f1=0.4449, s44: rel_f1=0.4655. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\\\", \\\"parent\\\": \\\"mvp2_rsft_train_r1_s43\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"account\\\": \\\"root\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_adapter /root/autodl-tmp/rsft_output_s43 --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/rsft_s43 --no-quantize --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"194296\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_rsft_s43.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:26:15.318Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 18.9, \\\"gpu_hours\\\": 0.01}, \\\"pid\\\": \\\"194296\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_rsft_s43.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_adapter /root/autodl-tmp/rsft_output_s43 --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/rsft_s43 --no-quantize --gpu 0\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T11:26:32.872Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=2 (shell misuse / syntax)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T11:26:34.235Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T11:26:36.157796+00:00\\\"}]}, \\\"notes\\\": \\\"参数名错误导致失败: --rsft_adapter 应为 --model_path, --data_dir 应为 --data_path, --gpu 0 不存在。重试为 mvp2_eval_rsft_s43_r2。\\\"}, \\\"mvp2_ced_reranker_poc\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T07:55:03.414Z\\\", \\\"updated_at\\\": \\\"2026-05-15T10:27:43.349Z\\\", \\\"hypothesis\\\": \\\"CED-as-reranker: no fine-tuning, use CED to select best of N=8 SFT candidates at inference time. If rel_f1 > 0.4057 (SFT greedy), CED adds value without training risk. Oracle reranker as upper bound.\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"spec\\\": {\\\"command\\\": \\\"python /root/autodl-tmp/freige/eval/ced_reranker.py (N=8, CED scoring, 985 docs)\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + SFT (greedy N=8 + CED reranker)\\\", \\\"seed\\\": 42, \\\"pid\\\": \\\"178050\\\"}}, \\\"mvp2_rsft_train_r1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T05:27:39.073Z\\\", \\\"updated_at\\\": \\\"2026-05-15T09:40:39.078Z\\\", \\\"hypothesis\\\": \\\"RSFT training on CED-filtered data (2718 samples, mean CED=0.668). SFT warmup baseline: rel_f1=0.4057, evi_f1=0.798. Pass criteria: rel_f1 > 0.4057 AND evi_f1 > 0.798.\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"165130\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_train_r1.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T05:37:57.880Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 7210.1, \\\"gpu_hours\\\": 2.0}, \\\"pid\\\": \\\"165130\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_train_r1.log\\\", \\\"wandb_run_id\\\": \\\"rsft-ced-r1\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1 --seed 42\\\\\\\"\\\", \\\"wandb_run_id\\\": \\\"rsft-ced-r1\\\", \\\"finished_at\\\": \\\"2026-05-15T07:35:10.628Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T07:35:13.068974+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.0483, \\\"num_preds\\\": 848, \\\"sft_baseline_rel_f1\\\": 0.4057, \\\"failure_mode\\\": \\\"relation_ontology_collapse_to_freetext\\\", \\\"epoch1_eval_loss\\\": 0.756, \\\"epoch2_eval_loss\\\": 0.759}, \\\"completed_at\\\": \\\"2026-05-15T07:38:07.936Z\\\", \\\"notes\\\": \\\"D037 修正: TaskEvalCallback 的 rel_f1=0.0483 是 eval bug（gold triples 未限制为 eval_max_docs 子集）。全量 eval 待跑。s44 全量 eval 已 PASS: rel_f1=0.4655, evi_f1=0.8087。\\\"}}, \\\"count\\\": 20, \\\"total\\\": 74, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2464}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"mvp2_eval_rsft_r2b_maxtok1536\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:49:48.849Z\", \"updated_at\": \"2026-05-15T13:23:59.642Z\", \"hypothesis\": \"Truncation diagnosis: r2b eval with max_new_tokens=1536 (vs default 1024). If EDCR improves significantly (from 0.6609 toward 0.71+), current EDCR gap is truncation artifact, not model issue. If EDCR unchanged, distractor citation is genuine RSFT behavior.\", \"parent\": \"mvp2_eval_rsft_r2b\", \"spec\": {\"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_r2b --data_path /root/autodl-tmp/data/docred --no-quantize --max_new_tokens 1536 --output_dir /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"196700\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536.log\", \"submitted_at\": \"2026-05-15T11:51:37.717Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B+SFT+RSFT r2b\", \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_r2b\", \"eval_data\": \"docred dev (985 docs)\", \"seed\": 42, \"purpose\": \"诊断 EDCR 下降是否因 max_new_tokens=1024 截断导致，179/985 docs 被截断，改用 1536 重跑\", \"wall_clock_seconds\": 5541.9, \"gpu_hours\": 1.54}, \"conclusion\": \"killed\", \"notes\": \"Reviewer CRITICAL: 命令缺少 --base_model 和 --sft_adapter，模型 stack 是 Base+RSFT LoRA 而非 Base+SFT+RSFT LoRA，结果不可用。PID 196700 已 kill。重试为 mvp2_eval_rsft_r2b_maxtok1536_r2。\", \"completed_at\": \"2026-05-15T13:23:59.642Z\"}, \"mvp2_rsft_ced_scoring_topk3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:35:23.225Z\", \"updated_at\": \"2026-05-15T13:20:42.443Z\", \"hypothesis\": \"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Answers: does CED filtering strictness affect RSFT training quality?\", \"spec\": {\"command\": \"python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"198680\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3.log\", \"submitted_at\": \"2026-05-15T12:09:41.690Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/rsft_generations/generations.jsonl\", \"data_count\": 21952, \"model_name\": \"cross-encoder/nli-deberta-v3-base\", \"seed\": 42, \"wall_clock_seconds\": 4260.8, \"gpu_hours\": 1.18}, \"conclusion\": \"killed\", \"notes\": \"NLI 模型加载失败 (HuggingFace Network unreachable)。命令缺少 HF_HOME/HF_HUB_OFFLINE/TRANSFORMERS_OFFLINE 环境变量。重试为 mvp2_rsft_ced_scoring_topk3_r2。\", \"completed_at\": \"2026-05-15T13:20:42.443Z\"}, \"mvp2_eval_rsft_s43_r2\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:29:17.551Z\", \"updated_at\": \"2026-05-15T13:19:31.127Z\", \"hypothesis\": \"Full dev eval of RSFT s43 (seed=43). 3rd seed for variance estimation. r1: rel_f1=0.4449, s44: rel_f1=0.4655. Pass: rel_f1 > 0.4057, evi_f1 > 0.798. Retry of mvp2_eval_rsft_s43 (fixed arg names).\", \"parent\": \"mvp2_rsft_train_r1_s43\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s43 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/rsft_s43 --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"194837\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_s43_r2.log\", \"submitted_at\": \"2026-05-15T11:29:48.250Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"194837\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_s43_r2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s43 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/rsft_s43 --no-quantize\\\"\", \"finished_at\": \"2026-05-15T13:16:38.318Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:16:41.689788+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.4683, \"ign_f1\": 0.4683, \"evi_f1\": 0.8156, \"edcr\": 0.6388, \"precision\": 0.4817, \"recall\": 0.4556, \"evi_precision\": 0.8142, \"evi_recall\": 0.817, \"n_predictions\": 14970, \"n_truncated\": 171, \"format_ok_rate\": 1, \"inference_time_s\": 6316.7, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0626, \"delta_evi_f1\": 0.0177, \"mvp2_pass\": true}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/rsft_s43\", \"notes\": \"3rd seed PASS. rel_f1=0.4683 (+6.26pp vs SFT), evi_f1=0.8156 (+1.77pp), EDCR=0.6388. 3-seed 完整表: mean rel_f1=0.4596±0.0127, mean evi_f1=0.8143±0.0051. 三个 seed 均稳定超过 SFT baseline。cuda:2 已释放。\"}, \"mvp2_rsft_ced_scoring_topk3_r2\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:12:38.363Z\", \"updated_at\": \"2026-05-15T13:19:15.577Z\", \"hypothesis\": \"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally).\", \"parent\": \"mvp2_rsft_ced_scoring\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-15T12:13:02.778Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"finished_at\": \"2026-05-15T13:19:15.077Z\", \"training_hours\": 1.1}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"submitted_at\": \"2026-05-15T12:13:03.900Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:19:17.812206+00:00\"}]}}, \"mvp2_rsft_r2b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:57:46.813Z\", \"updated_at\": \"2026-05-15T13:14:23.368Z\", \"hypothesis\": \"RSFT r2b: data fix + training dynamics fix (1 epoch + filter truncated + LoRA alpha=32/r=64 scaling 0.5 + lr=1e-5). Isolates: is conservative LoRA scaling the key factor? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_train_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-15T08:58:45.465Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train_clean.jsonl --output_dir /root/autodl-tmp/rsft_output_r2b --learning_rate 1e-5 --num_epochs 1 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 32 --weighted_sampling --save_steps 50 --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-r2b --seed 42\\\"\", \"wandb_run_id\": \"rsft-r2b\", \"finished_at\": \"2026-05-15T09:35:56.802Z\", \"training_hours\": 0.62}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train_clean.jsonl --output_dir /root/autodl-tmp/rsft_output_r2b --learning_rate 1e-5 --num_epochs 1 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 32 --weighted_sampling --save_steps 50 --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-r2b --seed 42\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"183587\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_r2b.log\", \"submitted_at\": \"2026-05-15T09:00:01.270Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_r2b\", \"wall_clock_seconds\": 15262.1, \"gpu_hours\": 4.24}, \"pid\": \"183587\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_r2b.log\", \"wandb_run_id\": \"rsft-r2b\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T09:35:58.776100+00:00\"}]}, \"notes\": \"训练完成 (160 steps, 33.7min, eval_loss=0.7545)。TaskEvalCallback rel_f1=0.0504 是已知 bug (D038: gold triples 分母不匹配)，不代表真实性能。需全量 dev eval 确认实际指标。\", \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4493, \"evi_f1\": 0.8128, \"edcr\": 0.6609, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0436, \"delta_evi_f1\": 0.0149, \"mvp2_pass\": true}, \"completed_at\": \"2026-05-15T13:14:23.368Z\"}, \"mvp2_rsft_r2a\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:57:46.140Z\", \"updated_at\": \"2026-05-15T13:14:22.509Z\", \"hypothesis\": \"RSFT r2a: data fix only (1 epoch + filter 170 truncated JSON → 2548 samples). Same LoRA alpha=128/r=64, lr=2e-5 as r1. Isolates: does 1 epoch + clean data alone fix the ontology collapse? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_train_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T08:58:44.826Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train_clean.jsonl --output_dir /root/autodl-tmp/rsft_output_r2a --learning_rate 2e-5 --num_epochs 1 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --save_steps 50 --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-r2a --seed 42\\\"\", \"wandb_run_id\": \"rsft-r2a\", \"finished_at\": \"2026-05-15T09:36:15.752Z\", \"training_hours\": 0.63}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train_clean.jsonl --output_dir /root/autodl-tmp/rsft_output_r2a --learning_rate 2e-5 --num_epochs 1 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --save_steps 50 --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-r2a --seed 42\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"183504\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_r2a.log\", \"submitted_at\": \"2026-05-15T08:59:58.168Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_r2a\", \"wall_clock_seconds\": 15264.3, \"gpu_hours\": 4.24}, \"pid\": \"183504\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_r2a.log\", \"wandb_run_id\": \"rsft-r2a\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T09:36:20.493042+00:00\"}]}, \"notes\": \"训练完成 (160 steps, 35.5min, eval_loss=0.7547)。TaskEvalCallback rel_f1=0.0509 是已知 bug (D038: gold triples 分母不匹配)，不代表真实性能。需全量 dev eval 确认实际指标。\", \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4494, \"evi_f1\": 0.8108, \"edcr\": 0.6641, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0437, \"delta_evi_f1\": 0.0129, \"mvp2_pass\": true}, \"completed_at\": \"2026-05-15T13:14:22.510Z\"}, \"mvp2_rsft_train_r1_s44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T05:36:26.321Z\", \"updated_at\": \"2026-05-15T13:14:06.295Z\", \"hypothesis\": \"RSFT training seed=44 variance estimate. Same params as r1 (bf16 LoRA r=64/α=128, lr=2e-5, 3 epochs, weighted sampling, CED-filtered 2718 samples). Pass: rel_f1 > 0.4057 AND evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_train_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-15T05:38:32.212Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1-s44 --seed 44\\\"\", \"wandb_run_id\": \"rsft-ced-r1-s44\", \"finished_at\": \"2026-05-15T07:32:40.691Z\", \"training_hours\": 1.9}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1-s44 --seed 44\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"165672\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_train_r1_s44.log\", \"submitted_at\": \"2026-05-15T05:39:22.747Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_s44\", \"wall_clock_seconds\": 27283.5, \"gpu_hours\": 7.58}, \"pid\": \"165672\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_train_r1_s44.log\", \"wandb_run_id\": \"rsft-ced-r1-s44\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T07:32:43.021519+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.4655, \"evi_f1\": 0.8087, \"edcr\": 0.635, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0598, \"delta_evi_f1\": 0.0108, \"mvp2_pass\": true}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T13:14:06.295Z\"}, \"mvp2_rsft_diagnosis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:55:04.100Z\", \"updated_at\": \"2026-05-15T12:09:32.257Z\", \"hypothesis\": \"RSFT failure root cause: rel_f1=0.0483 vs SFT 0.4057. Diagnose: training data distribution (relation count), step-170 checkpoint output analysis, SFT vs RSFT data comparison.\", \"conclusion\": \"success\", \"metrics\": {\"root_cause\": \"overfitting_plus_sft_knowledge_overwrite\", \"truncated_json_samples\": 170, \"truncated_pct\": 6.3, \"epoch1_eval_loss\": 0.756, \"epoch2_eval_loss\": 0.759, \"lora_scaling\": 2, \"rsft_zero_relation_samples\": 170, \"sft_zero_relation_docs\": 26, \"rsft_mean_relations\": 11.2, \"sft_mean_relations\": 12.5}, \"checkpoint_path\": \"N/A (diagnosis task, no checkpoint)\", \"log_path\": \"N/A (diagnosis task)\", \"completed_at\": \"2026-05-15T12:09:32.257Z\"}, \"mvp2_eval_ced_kl001_r4_last\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:10:05.820Z\", \"updated_at\": \"2026-05-15T12:09:21.004Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 90,100 --quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_last.log\", \"submitted_at\": \"2026-05-14T18:10:05.342Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 64755.7, \"gpu_hours\": 17.99}, \"notes\": \"已被拆分为独立 eval：ckpt-90 → mvp2_eval_ced_kl001_r4_ckpt90 (cuda:3)，ckpt-100 → mvp2_eval_ced_kl001_r4_step100 (cuda:0)。此条目作废。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:09:21.004Z\"}, \"mvp2_grpo_ced_kl001_r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T15:25:06.729Z\", \"updated_at\": \"2026-05-15T12:09:20.252Z\", \"hypothesis\": \"kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary (retry: fix --lr + bash -c wrapping)\", \"parent\": \"mvp2_grpo_ced_kl001\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.01 --num_iterations 1 --save_steps 20 --save_total_limit 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --learning_rate 5e-5 --gradient_accumulation_steps 16 --num_generations 4\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"65740\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_ced_kl001_r3.log\", \"submitted_at\": \"2026-05-14T15:25:17.200Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 74643.1, \"gpu_hours\": 20.73}, \"notes\": \"失败原因: datasets 库不支持 thunlp/docred 自定义脚本 (RuntimeError: Dataset scripts are no longer supported)。命令缺少 --data_dir /root/autodl-tmp/data/docred 参数，触发 HF 远程下载失败。需要补全所有必要参数后重新提交。error_type: infrastructure | can_auto_fix: true\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:09:20.252Z\"}, \"mvp2_grpo_ced_kl001_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T15:23:16.518Z\", \"updated_at\": \"2026-05-15T12:09:19.263Z\", \"hypothesis\": \"kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary (retry: fix --lr → --learning_rate)\", \"parent\": \"mvp2_grpo_ced_kl001\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.01 --num_iterations 1 --save_steps 20 --save_total_limit 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --learning_rate 5e-5 --gradient_accumulation_steps 16 --num_generations 4\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_ced_kl001_r2.log\", \"submitted_at\": \"2026-05-14T15:23:31.047Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 74748.2, \"gpu_hours\": 20.76}, \"conclusion\": \"killed\", \"notes\": \"失败原因: 命令未用 bash -c 包裹，tmux 以 sh 执行导致 source 命令失败。error_type: infrastructure | can_auto_fix: true\", \"completed_at\": \"2026-05-15T12:09:19.263Z\"}, \"mvp2_rsft_train_r2_fix\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:38:03.815Z\", \"updated_at\": \"2026-05-15T12:09:18.298Z\", \"hypothesis\": \"RSFT r2 fix: 4 fixes based on r1 diagnosis. 1) 1 epoch (vs 3), 2) LoRA alpha=32/r=64 (scaling 0.5 vs 2.0), 3) filtered truncated JSON (~2548 vs 2718 samples), 4) lr=1e-5 (vs 2e-5). Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:09:18.298Z\"}, \"mvp2_eval_rsft_r2b_maxtok1536_r2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:54:57.156Z\", \"updated_at\": \"2026-05-15T11:55:19.483Z\", \"hypothesis\": \"Truncation diagnosis: r2b eval with max_new_tokens=1536 (vs default 1024). Retry with correct model stack (Base+SFT+RSFT). If EDCR improves significantly (from 0.6609 toward 0.71+), truncation is the cause. If unchanged, distractor citation is genuine RSFT behavior.\", \"parent\": \"mvp2_eval_rsft_r2b\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T11:55:17.608Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/* && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --model_path /root/autodl-tmp/rsft_output_r2b --data_path /root/autodl-tmp/data/docred --no-quantize --max_new_tokens 1536 --output_dir /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\\\"\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/* && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --model_path /root/autodl-tmp/rsft_output_r2b --data_path /root/autodl-tmp/data/docred --no-quantize --max_new_tokens 1536 --output_dir /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"197381\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536_r2.log\", \"submitted_at\": \"2026-05-15T11:55:18.697Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"197381\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536_r2.log\"}, \"mvp2_eval_rsft_r2a\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:42:57.684Z\", \"updated_at\": \"2026-05-15T11:46:56.410Z\", \"hypothesis\": \"Full dev eval of r2a (1 epoch, alpha=128, clean data). Ablation: 1 epoch vs 3 epoch (r1). Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_r2a\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"python -m freige.eval.inference --no-quantize (r2a checkpoint on cuda:1)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT r2a\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_r2a\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4494, \"ign_f1\": 0.4494, \"evi_f1\": 0.8108, \"edcr\": 0.6641, \"precision\": 0.4512, \"recall\": 0.4475, \"evi_precision\": 0.8143, \"evi_recall\": 0.8073, \"format_ok_rate\": 1, \"n_predictions\": 15482, \"n_truncated\": 208, \"inference_time_s\": 5967.2}, \"notes\": \"RSFT r2a (1ep, alpha=128/r=64, lr=2e-5, clean 2548 samples). rel_f1=0.4494 (+0.0045 vs r1, +0.0001 vs r2b), evi_f1=0.8108 (-0.0079 vs r1, -0.0020 vs r2b), edcr=0.6641 (+0.0032 vs r2b). 1 epoch with clean data matches r1's 3-epoch rel_f1 while being cheaper. r2a vs r2b (alpha=128 vs 32): nearly identical rel_f1, marginal edcr advantage for higher alpha. All RSFT variants beat SFT baseline on rel_f1/evi_f1 but lose on edcr (0.66-0.66 vs 0.71).\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/rsft_r2a\", \"log_path\": \"/root/autodl-tmp/eval_results/rsft_r2a/eval.log\", \"completed_at\": \"2026-05-15T11:46:56.410Z\"}, \"mvp2_eval_rsft_r2b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:42:58.437Z\", \"updated_at\": \"2026-05-15T11:44:40.199Z\", \"hypothesis\": \"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_r2b\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"spec\": {\"command\": \"python -m freige.eval.inference --no-quantize (r2b checkpoint on cuda:3)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT r2b\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_r2b\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"pid\": \"189855\"}, \"metrics\": {\"rel_f1\": 0.4493, \"ign_f1\": 0.4493, \"evi_f1\": 0.8128, \"edcr\": 0.6609, \"precision\": 0.4566, \"recall\": 0.4424, \"evi_precision\": 0.8201, \"evi_recall\": 0.8056, \"pred_count\": 14829, \"format_ok\": \"983/985\", \"truncated\": 179, \"inference_time_s\": 5862}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_r2b\", \"log_path\": \"/root/autodl-tmp/eval_results/rsft_r2b/eval.log\", \"completed_at\": \"2026-05-15T11:44:36.428Z\"}, \"mvp2_rsft_train_r1_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T05:36:25.275Z\", \"updated_at\": \"2026-05-15T11:31:48.727Z\", \"hypothesis\": \"RSFT training seed=43 variance estimate. Same params as r1 (bf16 LoRA r=64/α=128, lr=2e-5, 3 epochs, weighted sampling, CED-filtered 2718 samples). Pass: rel_f1 > 0.4057 AND evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_train_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T05:38:31.664Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_s43 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1-s43 --seed 43\\\"\", \"wandb_run_id\": \"rsft-ced-r1-s43\", \"finished_at\": \"2026-05-15T07:37:49.819Z\", \"training_hours\": 1.99}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_s43 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1-s43 --seed 43\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"165590\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_train_r1_s43.log\", \"submitted_at\": \"2026-05-15T05:39:20.307Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 21148.4, \"gpu_hours\": 5.87}, \"pid\": \"165590\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_train_r1_s43.log\", \"wandb_run_id\": \"rsft-ced-r1-s43\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T07:37:52.173054+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_s43\", \"metrics\": {\"eval_loss\": 0.7622, \"train_loss\": 0.6148, \"eval_entropy\": 0.6724, \"mean_token_accuracy\": 0.8291, \"total_steps\": 510, \"epochs\": 3, \"training_hours\": 1.99}, \"conclusion\": \"success\", \"notes\": \"训练正常完成 (510 steps, 1.99h, eval_loss=0.7622, train_loss=0.6148)。与 s44 (eval_loss=未记录) 和 r1 相近。TaskEvalCallback rel_f1 是已知 bug，需全量 eval。全量 eval 重试 mvp2_eval_rsft_s43_r2 正在运行中。\", \"completed_at\": \"2026-05-15T11:31:48.727Z\"}, \"mvp2_eval_rsft_r1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:40:47.529Z\", \"updated_at\": \"2026-05-15T11:30:26.893Z\", \"hypothesis\": \"Full dev eval of RSFT r1 (seed=42). Same pipeline as s44 eval (985 docs, no-quantize). Need 3-seed data for complete_mvp. s44 PASS: rel_f1=0.4655, evi_f1=0.8087.\", \"parent\": \"mvp2_rsft_train_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"spec\": {\"command\": \"python -m freige.eval.inference --no-quantize (r1 checkpoint on cuda:2)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT r1\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"pid\": \"186329\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output\", \"log_path\": \"/root/autodl-tmp/eval_results/rsft_r1/eval.log\"}, \"metrics\": {\"rel_f1\": 0.4449, \"evi_f1\": 0.8187, \"edcr\": 0.6565, \"num_preds\": 15307, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0392, \"delta_evi_f1\": 0.0208, \"mvp2_pass\": true}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T11:30:26.893Z\"}, \"mvp2_eval_rsft_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:25:26.268Z\", \"updated_at\": \"2026-05-15T11:29:11.205Z\", \"hypothesis\": \"Full dev eval of RSFT s43 (seed=43). 3rd seed for variance estimation. r1: rel_f1=0.4449, s44: rel_f1=0.4655. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_train_r1_s43\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_adapter /root/autodl-tmp/rsft_output_s43 --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/rsft_s43 --no-quantize --gpu 0\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"194296\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_s43.log\", \"submitted_at\": \"2026-05-15T11:26:15.318Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 18.9, \"gpu_hours\": 0.01}, \"pid\": \"194296\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_s43.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_adapter /root/autodl-tmp/rsft_output_s43 --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/rsft_s43 --no-quantize --gpu 0\\\"\", \"finished_at\": \"2026-05-15T11:26:32.872Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T11:26:34.235Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T11:26:36.157796+00:00\"}]}, \"notes\": \"参数名错误导致失败: --rsft_adapter 应为 --model_path, --data_dir 应为 --data_path, --gpu 0 不存在。重试为 mvp2_eval_rsft_s43_r2。\"}, \"mvp2_ced_reranker_poc\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:55:03.414Z\", \"updated_at\": \"2026-05-15T10:27:43.349Z\", \"hypothesis\": \"CED-as-reranker: no fine-tuning, use CED to select best of N=8 SFT candidates at inference time. If rel_f1 > 0.4057 (SFT greedy), CED adds value without training risk. Oracle reranker as upper bound.\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"python /root/autodl-tmp/freige/eval/ced_reranker.py (N=8, CED scoring, 985 docs)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT (greedy N=8 + CED reranker)\", \"seed\": 42, \"pid\": \"178050\"}}, \"mvp2_rsft_train_r1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T05:27:39.073Z\", \"updated_at\": \"2026-05-15T09:40:39.078Z\", \"hypothesis\": \"RSFT training on CED-filtered data (2718 samples, mean CED=0.668). SFT warmup baseline: rel_f1=0.4057, evi_f1=0.798. Pass criteria: rel_f1 > 0.4057 AND evi_f1 > 0.798.\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1 --seed 42\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"165130\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_train_r1.log\", \"submitted_at\": \"2026-05-15T05:37:57.880Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 7210.1, \"gpu_hours\": 2.0}, \"pid\": \"165130\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_train_r1.log\", \"wandb_run_id\": \"rsft-ced-r1\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1 --seed 42\\\"\", \"wandb_run_id\": \"rsft-ced-r1\", \"finished_at\": \"2026-05-15T07:35:10.628Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T07:35:13.068974+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output\", \"metrics\": {\"rel_f1\": 0.0483, \"num_preds\": 848, \"sft_baseline_rel_f1\": 0.4057, \"failure_mode\": \"relation_ontology_collapse_to_freetext\", \"epoch1_eval_loss\": 0.756, \"epoch2_eval_loss\": 0.759}, \"completed_at\": \"2026-05-15T07:38:07.936Z\", \"notes\": \"D037 修正: TaskEvalCallback 的 rel_f1=0.0483 是 eval bug（gold triples 未限制为 eval_max_docs 子集）。全量 eval 待跑。s44 全量 eval 已 PASS: rel_f1=0.4655, evi_f1=0.8087。\"}}, \"count\": 20, \"total\": 74, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2464}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found the registry entry for `mvp2_rsft_ced_scoring_topk3_r2`. It's in ANALYZING status, PID 198997. The output is at `/root/autodl-tmp/rsft_filtered_topk3/`. Let me read the report file and check sample counts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "87df6da1-1e60-4731-a007-1a3ec959244f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013oXp6swyGdA8JgvJ38hkno",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18033,
+      "cache_read_input_tokens": 25403,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18033
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+Output files exist. Let me read the report and check sample counts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "954af779-9641-45a5-9e48-65e4ab2a2ab1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013oXp6swyGdA8JgvJ38hkno",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18033,
+      "cache_read_input_tokens": 25403,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18033
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016pVn6e2fKebiqR8yQmHDiY`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/rsft_filtered_topk3/rsft_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "8282362e-063f-40d5-9d18-4a2d321c9574",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013oXp6swyGdA8JgvJ38hkno",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18033,
+      "cache_read_input_tokens": 25403,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18033
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T13:24:49.187Z_
+
+<details><summary>↩ Tool result · `toolu_016pVn6e2fKebiqR8yQmHDiY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"total_records\\\": 21728,\\n  \\\"selected_records\\\": 8037,\\n  \\\"filtered_records\\\": 13691,\\n  \\\"selection_rate\\\": 0.3698913843888071,\\n  \\\"unique_docs_total\\\": 2716,\\n  \\\"unique_docs_selected\\\": 2691,\\n  \\\"format_reward_stats\\\": {\\n    \\\"mean\\\": 0.9977448453608248,\\n    \\\"std\\\": 0.04743489134306797,\\n    \\\"min\\\": 0.0,\\n    \\\"max\\\": 1.0,\\n    \\\"median\\\": 1.0,\\n    \\\"p5\\\": 1.0,\\n    \\\"p10\\\": 1.0,\\n    \\\"p25\\\": 1.0,\\n    \\\"p75\\\": 1.0,\\n    \\\"p90\\\": 1.0,\\n    \\\"p95\\\": 1.0,\\n    \\\"histogram\\\": {\\n      \\\"counts\\\": [\\n        49,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        21679\\n      ],\\n      \\\"bin_edges\\\": [\\n        0.0,\\n        0.1,\\n        0.2,\\n        0.3,\\n        0.4,\\n        0.5,\\n        0.6,\\n        0.7,\\n        0.8,\\n        0.9,\\n        1.0\\n      ]\\n    }\\n  },\\n  \\\"f1_reward_stats\\\": {\\n    \\\"mean\\\": 0.4786499040732606,\\n    \\\"std\\\": 0.22561021581316887,\\n    \\\"min\\\": 0.0,\\n    \\\"max\\\": 1.0,\\n    \\\"median\\\": 0.5,\\n    \\\"p5\\\": 0.06896551724137931,\\n    \\\"p10\\\": 0.16666666666666669,\\n    \\\"p25\\\": 0.3225806451612903,\\n    \\\"p75\\\": 0.6428571428571429,\\n    \\\"p90\\\": 0.7586206896551724,\\n    \\\"p95\\\": 0.8275862068965518,\\n    \\\"histogram\\\": {\\n      \\\"counts\\\": [\\n        1348,\\n        1267,\\n        2283,\\n        2585,\\n        3176,\\n        4334,\\n        3136,\\n        2077,\\n        1035,\\n        487\\n      ],\\n      \\\"bin_edges\\\": [\\n        0.0,\\n        0.1,\\n        0.2,\\n        0.3,\\n        0.4,\\n        0.5,\\n        0.6,\\n        0.7,\\n        0.8,\\n        0.9,\\n        1.0\\n      ]\\n    }\\n  },\\n  \\\"ced_reward_stats\\\": {\\n    \\\"mean\\\": 0.503515681798553,\\n    \\\"std\\\": 0.2505861259124492,\\n    \\\"min\\\": 0.0,\\n    \\\"max\\\": 0.9969521531529608,\\n    \\\"median\\\": 0.5180726639826613,\\n    \\\"p5\\\": 0.0,\\n    \\\"p10\\\": 0.1482879311626983,\\n    \\\"p25\\\": 0.33447531682031695,\\n    \\\"p75\\\": 0.6858535954475107,\\n    \\\"p90\\\": 0.823375515639782,\\n    \\\"p95\\\": 0.9062987982838725,\\n    \\\"histogram\\\": {\\n      \\\"counts\\\": [\\n        1790,\\n        1007,\\n        1716,\\n        2583,\\n        3205,\\n        3337,\\n        3008,\\n        2471,\\n        1440,\\n        1171\\n      ],\\n      \\\"bin_edges\\\": [\\n        0.0,\\n        0.0997,\\n        0.1994,\\n        0.2991,\\n        0.3988,\\n        0.4985,\\n        0.5982,\\n        0.6979,\\n        0.7976,\\n        0.8973,\\n        0.997\\n      ]\\n    }\\n  },\\n  \\\"combined_score_stats\\\": {\\n    \\\"mean\\\": 0.5924152034208904,\\n    \\\"std\\\": 0.15714852835674542,\\n    \\\"min\\\": 0.0,\\n    \\\"max\\\": 0.9987808612611844,\\n    \\\"median\\\": 0.6055734156556096,\\n    \\\"p5\\\": 0.2862301264784082,\\n    \\\"p10\\\": 0.3947705845210863,\\n    \\\"p25\\\": 0.503272595121102,\\n    \\\"p75\\\": 0.6988669692331995,\\n    \\\"p90\\\": 0.77455358422184,\\n    \\\"p95\\\": 0.8222071337924375,\\n    \\\"histogram\\\": {\\n      \\\"counts\\\": [\\n        49,\\n        0,\\n        1091,\\n        1112,\\n        3017,\\n        5215,\\n        5824,\\n        3894,\\n        1226,\\n        300\\n      ],\\n      \\\"bin_edges\\\": [\\n        0.0,\\n        0.0999,\\n        0.1998,\\n        0.2996,\\n        0.3995,\\n        0.4994,\\n        0.5993,\\n        0.6991,\\n        0.799,\\n        0.8989,\\n        0.9988\\n      ]\\n    }\\n  },\\n  \\\"selected_stats\\\": {\\n    \\\"format_reward\\\": {\\n      \\\"mean\\\": 1.0,\\n      \\\"std\\\": 0.0,\\n      \\\"min\\\": 1.0,\\n      \\\"max\\\": 1.0,\\n      \\\"median\\\": 1.0,\\n      \\\"p25\\\": 1.0,\\n      \\\"p75\\\": 1.0\\n    },\\n    \\\"f1_reward\\\": {\\n      \\\"mean\\\": 0.5761076687647744,\\n      \\\"std\\\": 0.1968682122891022,\\n      \\\"min\\\": 0.1,\\n      \\\"max\\\": 1.0,\\n      \\\"median\\\": 0.5882352941176471,\\n      \\\"p25\\\": 0.4444444444444444,\\n      \\\"p75\\\": 0.7169811320754716\\n    },\\n    \\\"ced_reward\\\": {\\n      \\\"mean\\\": 0.6205414415824143,\\n      \\\"std\\\": 0.21490758279324315,\\n      \\\"min\\\": 0.0,\\n      \\\"max\\\": 0.9969521531529608,\\n      \\\"median\\\": 0.635444867463472,\\n      \\\"p25\\\": 0.48743214608402924,\\n      \\\"p75\\\": 0.773643243063886\\n    },\\n    \\\"combined_score\\\": {\\n      \\\"mean\\\": 0.6786596441388755,\\n      \\\"std\\\": 0.11811219759944755,\\n      \\\"min\\\": 0.24363636363636365,\\n      \\\"max\\\": 0.9987808612611844,\\n      \\\"median\\\": 0.6828593426512929,\\n      \\\"p25\\\": 0.6001780616284622,\\n      \\\"p75\\\": 0.7580005423227947\\n    }\\n  },\\n  \\\"f1_filter_stats\\\": {\\n    \\\"gens_dropped_by_f1\\\": 1299,\\n    \\\"docs_dropped_by_f1\\\": 25\\n  },\\n  \\\"truncation_analysis\\\": {\\n    \\\"truncated_count\\\": 1924,\\n    \\\"non_truncated_count\\\": 19804,\\n    \\\"truncated_mean_f1\\\": 0.3321,\\n    \\\"non_truncated_mean_f1\\\": 0.4929,\\n    \\\"f1_gap\\\": 0.1608,\\n    \\\"gap_significant\\\": true\\n  },\\n  \\\"args\\\": {\\n    \\\"input_dir\\\": \\\"/root/autodl-tmp/rsft_generations\\\",\\n    \\\"output_path\\\": \\\"/root/autodl-tmp/rsft_filtered_topk3\\\",\\n    \\\"nli_model_path\\\": \\\"cross-encoder/nli-deberta-v3-base\\\",\\n    \\\"nli_device\\\": \\\"cuda:0\\\",\\n    \\\"tau\\\": 0.5,\\n    \\\"format_weight\\\": 0.2,\\n    \\\"f1_weight\\\": 0.4,\\n    \\\"ced_weight\\\": 0.4,\\n    \\\"format_threshold\\\": 0.5,\\n    \\\"f1_threshold\\\": 0.1,\\n    \\\"ced_threshold\\\": 0.0,\\n    \\\"selection_strategy\\\": \\\"top_k\\\",\\n    \\\"top_k\\\": 3,\\n    \\\"top_pct\\\": 25\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "82e02f0c-c85d-48df-b21a-86828d3b04f0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"total_records\\\\\\\": 21728,\\\\n  \\\\\\\"selected_records\\\\\\\": 8037,\\\\n  \\\\\\\"filtered_records\\\\\\\": 13691,\\\\n  \\\\\\\"selection_rate\\\\\\\": 0.3698913843888071,\\\\n  \\\\\\\"unique_docs_total\\\\\\\": 2716,\\\\n  \\\\\\\"unique_docs_selected\\\\\\\": 2691,\\\\n  \\\\\\\"format_reward_stats\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.9977448453608248,\\\\n    \\\\\\\"std\\\\\\\": 0.04743489134306797,\\\\n    \\\\\\\"min\\\\\\\": 0.0,\\\\n    \\\\\\\"max\\\\\\\": 1.0,\\\\n    \\\\\\\"median\\\\\\\": 1.0,\\\\n    \\\\\\\"p5\\\\\\\": 1.0,\\\\n    \\\\\\\"p10\\\\\\\": 1.0,\\\\n    \\\\\\\"p25\\\\\\\": 1.0,\\\\n    \\\\\\\"p75\\\\\\\": 1.0,\\\\n    \\\\\\\"p90\\\\\\\": 1.0,\\\\n    \\\\\\\"p95\\\\\\\": 1.0,\\\\n    \\\\\\\"histogram\\\\\\\": {\\\\n      \\\\\\\"counts\\\\\\\": [\\\\n        49,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        0,\\\\n        21679\\\\n      ],\\\\n      \\\\\\\"bin_edges\\\\\\\": [\\\\n        0.0,\\\\n        0.1,\\\\n        0.2,\\\\n        0.3,\\\\n        0.4,\\\\n        0.5,\\\\n        0.6,\\\\n        0.7,\\\\n        0.8,\\\\n        0.9,\\\\n        1.0\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"f1_reward_stats\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.4786499040732606,\\\\n    \\\\\\\"std\\\\\\\": 0.22561021581316887,\\\\n    \\\\\\\"min\\\\\\\": 0.0,\\\\n    \\\\\\\"max\\\\\\\": 1.0,\\\\n    \\\\\\\"median\\\\\\\": 0.5,\\\\n    \\\\\\\"p5\\\\\\\": 0.06896551724137931,\\\\n    \\\\\\\"p10\\\\\\\": 0.16666666666666669,\\\\n    \\\\\\\"p25\\\\\\\": 0.3225806451612903,\\\\n    \\\\\\\"p75\\\\\\\": 0.6428571428571429,\\\\n    \\\\\\\"p90\\\\\\\": 0.7586206896551724,\\\\n    \\\\\\\"p95\\\\\\\": 0.8275862068965518,\\\\n    \\\\\\\"histogram\\\\\\\": {\\\\n      \\\\\\\"counts\\\\\\\": [\\\\n        1348,\\\\n        1267,\\\\n        2283,\\\\n        2585,\\\\n        3176,\\\\n        4334,\\\\n        3136,\\\\n        2077,\\\\n        1035,\\\\n        487\\\\n      ],\\\\n      \\\\\\\"bin_edges\\\\\\\": [\\\\n        0.0,\\\\n        0.1,\\\\n        0.2,\\\\n        0.3,\\\\n        0.4,\\\\n        0.5,\\\\n        0.6,\\\\n        0.7,\\\\n        0.8,\\\\n        0.9,\\\\n        1.0\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"ced_reward_stats\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.503515681798553,\\\\n    \\\\\\\"std\\\\\\\": 0.2505861259124492,\\\\n    \\\\\\\"min\\\\\\\": 0.0,\\\\n    \\\\\\\"max\\\\\\\": 0.9969521531529608,\\\\n    \\\\\\\"median\\\\\\\": 0.5180726639826613,\\\\n    \\\\\\\"p5\\\\\\\": 0.0,\\\\n    \\\\\\\"p10\\\\\\\": 0.1482879311626983,\\\\n    \\\\\\\"p25\\\\\\\": 0.33447531682031695,\\\\n    \\\\\\\"p75\\\\\\\": 0.6858535954475107,\\\\n    \\\\\\\"p90\\\\\\\": 0.823375515639782,\\\\n    \\\\\\\"p95\\\\\\\": 0.9062987982838725,\\\\n    \\\\\\\"histogram\\\\\\\": {\\\\n      \\\\\\\"counts\\\\\\\": [\\\\n        1790,\\\\n        1007,\\\\n        1716,\\\\n        2583,\\\\n        3205,\\\\n        3337,\\\\n        3008,\\\\n        2471,\\\\n        1440,\\\\n        1171\\\\n      ],\\\\n      \\\\\\\"bin_edges\\\\\\\": [\\\\n        0.0,\\\\n        0.0997,\\\\n        0.1994,\\\\n        0.2991,\\\\n        0.3988,\\\\n        0.4985,\\\\n        0.5982,\\\\n        0.6979,\\\\n        0.7976,\\\\n        0.8973,\\\\n        0.997\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"combined_score_stats\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5924152034208904,\\\\n    \\\\\\\"std\\\\\\\": 0.15714852835674542,\\\\n    \\\\\\\"min\\\\\\\": 0.0,\\\\n    \\\\\\\"max\\\\\\\": 0.9987808612611844,\\\\n    \\\\\\\"median\\\\\\\": 0.6055734156556096,\\\\n    \\\\\\\"p5\\\\\\\": 0.2862301264784082,\\\\n    \\\\\\\"p10\\\\\\\": 0.3947705845210863,\\\\n    \\\\\\\"p25\\\\\\\": 0.503272595121102,\\\\n    \\\\\\\"p75\\\\\\\": 0.6988669692331995,\\\\n    \\\\\\\"p90\\\\\\\": 0.77455358422184,\\\\n    \\\\\\\"p95\\\\\\\": 0.8222071337924375,\\\\n    \\\\\\\"histogram\\\\\\\": {\\\\n      \\\\\\\"counts\\\\\\\": [\\\\n        49,\\\\n        0,\\\\n        1091,\\\\n        1112,\\\\n        3017,\\\\n        5215,\\\\n        5824,\\\\n        3894,\\\\n        1226,\\\\n        300\\\\n      ],\\\\n      \\\\\\\"bin_edges\\\\\\\": [\\\\n        0.0,\\\\n        0.0999,\\\\n        0.1998,\\\\n        0.2996,\\\\n        0.3995,\\\\n        0.4994,\\\\n        0.5993,\\\\n        0.6991,\\\\n        0.799,\\\\n        0.8989,\\\\n        0.9988\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"selected_stats\\\\\\\": {\\\\n    \\\\\\\"format_reward\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 1.0,\\\\n      \\\\\\\"std\\\\\\\": 0.0,\\\\n      \\\\\\\"min\\\\\\\": 1.0,\\\\n      \\\\\\\"max\\\\\\\": 1.0,\\\\n      \\\\\\\"median\\\\\\\": 1.0,\\\\n      \\\\\\\"p25\\\\\\\": 1.0,\\\\n      \\\\\\\"p75\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"f1_reward\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.5761076687647744,\\\\n      \\\\\\\"std\\\\\\\": 0.1968682122891022,\\\\n      \\\\\\\"min\\\\\\\": 0.1,\\\\n      \\\\\\\"max\\\\\\\": 1.0,\\\\n      \\\\\\\"median\\\\\\\": 0.5882352941176471,\\\\n      \\\\\\\"p25\\\\\\\": 0.4444444444444444,\\\\n      \\\\\\\"p75\\\\\\\": 0.7169811320754716\\\\n    },\\\\n    \\\\\\\"ced_reward\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.6205414415824143,\\\\n      \\\\\\\"std\\\\\\\": 0.21490758279324315,\\\\n      \\\\\\\"min\\\\\\\": 0.0,\\\\n      \\\\\\\"max\\\\\\\": 0.9969521531529608,\\\\n      \\\\\\\"median\\\\\\\": 0.635444867463472,\\\\n      \\\\\\\"p25\\\\\\\": 0.48743214608402924,\\\\n      \\\\\\\"p75\\\\\\\": 0.773643243063886\\\\n    },\\\\n    \\\\\\\"combined_score\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.6786596441388755,\\\\n      \\\\\\\"std\\\\\\\": 0.11811219759944755,\\\\n      \\\\\\\"min\\\\\\\": 0.24363636363636365,\\\\n      \\\\\\\"max\\\\\\\": 0.9987808612611844,\\\\n      \\\\\\\"median\\\\\\\": 0.6828593426512929,\\\\n      \\\\\\\"p25\\\\\\\": 0.6001780616284622,\\\\n      \\\\\\\"p75\\\\\\\": 0.7580005423227947\\\\n    }\\\\n  },\\\\n  \\\\\\\"f1_filter_stats\\\\\\\": {\\\\n    \\\\\\\"gens_dropped_by_f1\\\\\\\": 1299,\\\\n    \\\\\\\"docs_dropped_by_f1\\\\\\\": 25\\\\n  },\\\\n  \\\\\\\"truncation_analysis\\\\\\\": {\\\\n    \\\\\\\"truncated_count\\\\\\\": 1924,\\\\n    \\\\\\\"non_truncated_count\\\\\\\": 19804,\\\\n    \\\\\\\"truncated_mean_f1\\\\\\\": 0.3321,\\\\n    \\\\\\\"non_truncated_mean_f1\\\\\\\": 0.4929,\\\\n    \\\\\\\"f1_gap\\\\\\\": 0.1608,\\\\n    \\\\\\\"gap_significant\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"args\\\\\\\": {\\\\n    \\\\\\\"input_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_generations\\\\\\\",\\\\n    \\\\\\\"output_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_filtered_topk3\\\\\\\",\\\\n    \\\\\\\"nli_model_path\\\\\\\": \\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\",\\\\n    \\\\\\\"nli_device\\\\\\\": \\\\\\\"cuda:0\\\\\\\",\\\\n    \\\\\\\"tau\\\\\\\": 0.5,\\\\n    \\\\\\\"format_weight\\\\\\\": 0.2,\\\\n    \\\\\\\"f1_weight\\\\\\\": 0.4,\\\\n    \\\\\\\"ced_weight\\\\\\\": 0.4,\\\\n    \\\\\\\"format_threshold\\\\\\\": 0.5,\\\\n    \\\\\\\"f1_threshold\\\\\\\": 0.1,\\\\n    \\\\\\\"ced_threshold\\\\\\\": 0.0,\\\\n    \\\\\\\"selection_strategy\\\\\\\": \\\\\\\"top_k\\\\\\\",\\\\n    \\\\\\\"top_k\\\\\\\": 3,\\\\n    \\\\\\\"top_pct\\\\\\\": 25\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"total_records\\\": 21728,\\n  \\\"selected_records\\\": 8037,\\n  \\\"filtered_records\\\": 13691,\\n  \\\"selection_rate\\\": 0.3698913843888071,\\n  \\\"unique_docs_total\\\": 2716,\\n  \\\"unique_docs_selected\\\": 2691,\\n  \\\"format_reward_stats\\\": {\\n    \\\"mean\\\": 0.9977448453608248,\\n    \\\"std\\\": 0.04743489134306797,\\n    \\\"min\\\": 0.0,\\n    \\\"max\\\": 1.0,\\n    \\\"median\\\": 1.0,\\n    \\\"p5\\\": 1.0,\\n    \\\"p10\\\": 1.0,\\n    \\\"p25\\\": 1.0,\\n    \\\"p75\\\": 1.0,\\n    \\\"p90\\\": 1.0,\\n    \\\"p95\\\": 1.0,\\n    \\\"histogram\\\": {\\n      \\\"counts\\\": [\\n        49,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        0,\\n        21679\\n      ],\\n      \\\"bin_edges\\\": [\\n        0.0,\\n        0.1,\\n        0.2,\\n        0.3,\\n        0.4,\\n        0.5,\\n        0.6,\\n        0.7,\\n        0.8,\\n        0.9,\\n        1.0\\n      ]\\n    }\\n  },\\n  \\\"f1_reward_stats\\\": {\\n    \\\"mean\\\": 0.4786499040732606,\\n    \\\"std\\\": 0.22561021581316887,\\n    \\\"min\\\": 0.0,\\n    \\\"max\\\": 1.0,\\n    \\\"median\\\": 0.5,\\n    \\\"p5\\\": 0.06896551724137931,\\n    \\\"p10\\\": 0.16666666666666669,\\n    \\\"p25\\\": 0.3225806451612903,\\n    \\\"p75\\\": 0.6428571428571429,\\n    \\\"p90\\\": 0.7586206896551724,\\n    \\\"p95\\\": 0.8275862068965518,\\n    \\\"histogram\\\": {\\n      \\\"counts\\\": [\\n        1348,\\n        1267,\\n        2283,\\n        2585,\\n        3176,\\n        4334,\\n        3136,\\n        2077,\\n        1035,\\n        487\\n      ],\\n      \\\"bin_edges\\\": [\\n        0.0,\\n        0.1,\\n        0.2,\\n        0.3,\\n        0.4,\\n        0.5,\\n        0.6,\\n        0.7,\\n        0.8,\\n        0.9,\\n        1.0\\n      ]\\n    }\\n  },\\n  \\\"ced_reward_stats\\\": {\\n    \\\"mean\\\": 0.503515681798553,\\n    \\\"std\\\": 0.2505861259124492,\\n    \\\"min\\\": 0.0,\\n    \\\"max\\\": 0.9969521531529608,\\n    \\\"median\\\": 0.5180726639826613,\\n    \\\"p5\\\": 0.0,\\n    \\\"p10\\\": 0.1482879311626983,\\n    \\\"p25\\\": 0.33447531682031695,\\n    \\\"p75\\\": 0.6858535954475107,\\n    \\\"p90\\\": 0.823375515639782,\\n    \\\"p95\\\": 0.9062987982838725,\\n    \\\"histogram\\\": {\\n      \\\"counts\\\": [\\n        1790,\\n        1007,\\n        1716,\\n        2583,\\n        3205,\\n        3337,\\n        3008,\\n        2471,\\n        1440,\\n        1171\\n      ],\\n      \\\"bin_edges\\\": [\\n        0.0,\\n        0.0997,\\n        0.1994,\\n        0.2991,\\n        0.3988,\\n        0.4985,\\n        0.5982,\\n        0.6979,\\n        0.7976,\\n        0.8973,\\n        0.997\\n      ]\\n    }\\n  },\\n  \\\"combined_score_stats\\\": {\\n    \\\"mean\\\": 0.5924152034208904,\\n    \\\"std\\\": 0.15714852835674542,\\n    \\\"min\\\": 0.0,\\n    \\\"max\\\": 0.9987808612611844,\\n    \\\"median\\\": 0.6055734156556096,\\n    \\\"p5\\\": 0.2862301264784082,\\n    \\\"p10\\\": 0.3947705845210863,\\n    \\\"p25\\\": 0.503272595121102,\\n    \\\"p75\\\": 0.6988669692331995,\\n    \\\"p90\\\": 0.77455358422184,\\n    \\\"p95\\\": 0.8222071337924375,\\n    \\\"histogram\\\": {\\n      \\\"counts\\\": [\\n        49,\\n        0,\\n        1091,\\n        1112,\\n        3017,\\n        5215,\\n        5824,\\n        3894,\\n        1226,\\n        300\\n      ],\\n      \\\"bin_edges\\\": [\\n        0.0,\\n        0.0999,\\n        0.1998,\\n        0.2996,\\n        0.3995,\\n        0.4994,\\n        0.5993,\\n        0.6991,\\n        0.799,\\n        0.8989,\\n        0.9988\\n      ]\\n    }\\n  },\\n  \\\"selected_stats\\\": {\\n    \\\"format_reward\\\": {\\n      \\\"mean\\\": 1.0,\\n      \\\"std\\\": 0.0,\\n      \\\"min\\\": 1.0,\\n      \\\"max\\\": 1.0,\\n      \\\"median\\\": 1.0,\\n      \\\"p25\\\": 1.0,\\n      \\\"p75\\\": 1.0\\n    },\\n    \\\"f1_reward\\\": {\\n      \\\"mean\\\": 0.5761076687647744,\\n      \\\"std\\\": 0.1968682122891022,\\n      \\\"min\\\": 0.1,\\n      \\\"max\\\": 1.0,\\n      \\\"median\\\": 0.5882352941176471,\\n      \\\"p25\\\": 0.4444444444444444,\\n      \\\"p75\\\": 0.7169811320754716\\n    },\\n    \\\"ced_reward\\\": {\\n      \\\"mean\\\": 0.6205414415824143,\\n      \\\"std\\\": 0.21490758279324315,\\n      \\\"min\\\": 0.0,\\n      \\\"max\\\": 0.9969521531529608,\\n      \\\"median\\\": 0.635444867463472,\\n      \\\"p25\\\": 0.48743214608402924,\\n      \\\"p75\\\": 0.773643243063886\\n    },\\n    \\\"combined_score\\\": {\\n      \\\"mean\\\": 0.6786596441388755,\\n      \\\"std\\\": 0.11811219759944755,\\n      \\\"min\\\": 0.24363636363636365,\\n      \\\"max\\\": 0.9987808612611844,\\n      \\\"median\\\": 0.6828593426512929,\\n      \\\"p25\\\": 0.6001780616284622,\\n      \\\"p75\\\": 0.7580005423227947\\n    }\\n  },\\n  \\\"f1_filter_stats\\\": {\\n    \\\"gens_dropped_by_f1\\\": 1299,\\n    \\\"docs_dropped_by_f1\\\": 25\\n  },\\n  \\\"truncation_analysis\\\": {\\n    \\\"truncated_count\\\": 1924,\\n    \\\"non_truncated_count\\\": 19804,\\n    \\\"truncated_mean_f1\\\": 0.3321,\\n    \\\"non_truncated_mean_f1\\\": 0.4929,\\n    \\\"f1_gap\\\": 0.1608,\\n    \\\"gap_significant\\\": true\\n  },\\n  \\\"args\\\": {\\n    \\\"input_dir\\\": \\\"/root/autodl-tmp/rsft_generations\\\",\\n    \\\"output_path\\\": \\\"/root/autodl-tmp/rsft_filtered_topk3\\\",\\n    \\\"nli_model_path\\\": \\\"cross-encoder/nli-deberta-v3-base\\\",\\n    \\\"nli_device\\\": \\\"cuda:0\\\",\\n    \\\"tau\\\": 0.5,\\n    \\\"format_weight\\\": 0.2,\\n    \\\"f1_weight\\\": 0.4,\\n    \\\"ced_weight\\\": 0.4,\\n    \\\"format_threshold\\\": 0.5,\\n    \\\"f1_threshold\\\": 0.1,\\n    \\\"ced_threshold\\\": 0.0,\\n    \\\"selection_strategy\\\": \\\"top_k\\\",\\n    \\\"top_k\\\": 3,\\n    \\\"top_pct\\\": 25\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GFtd9jm4p7kuXiLszT2fTG`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "wc -l /root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "aca087d1-f878-4e09-8412-dd6ca03885ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013oXp6swyGdA8JgvJ38hkno",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18033,
+      "cache_read_input_tokens": 25403,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18033
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T13:24:50.149Z_
+
+<details><summary>↩ Tool result · `toolu_01GFtd9jm4p7kuXiLszT2fTG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"8037 /root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "adc03b44-e2e0-4bd3-8b1d-b6c85036c9a0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"8037 /root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"8037 /root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CaoeS6LNNp1VWanHoSKNoE`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "wc -l /root/autodl-tmp/rsft_filtered_topk3/rsft_scores.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "591af054-823f-4c56-a250-c5115f8aca04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013oXp6swyGdA8JgvJ38hkno",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18033,
+      "cache_read_input_tokens": 25403,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18033
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T13:24:50.690Z_
+
+<details><summary>↩ Tool result · `toolu_01CaoeS6LNNp1VWanHoSKNoE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"21728 /root/autodl-tmp/rsft_filtered_topk3/rsft_scores.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "d8fc65db-7020-4100-875f-eb0d04dec42e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"21728 /root/autodl-tmp/rsft_filtered_topk3/rsft_scores.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"21728 /root/autodl-tmp/rsft_filtered_topk3/rsft_scores.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Scoring completed successfully. Let me summarize the key metrics:
+
+From the report:
+- total_records: 21728
+- selected_records: 8037 (vs top_k=1's 2718)
+- selection_rate: 36.99%
+- unique_docs_total: 2716
+- unique_docs_selected: 2691
+
+Selected sample stats:
+- mean format_reward: 1.0
+- mean f1_reward: 0.5761
+- mean ced_reward: 0.6205
+- mean combined_score: 0.6787
+
+
+- 
+So with top_k=3, I'm getting nearly 3x more samples than top_k=1 while maintaining comparable CED performance, though the F1 scores are slightly lower. Now I need to update the registry with these results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "846cb494-8bc5-4c45-b94f-3fb50395b44b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T91MvXMmhJZz8ZBBJp9xKS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3764,
+      "cache_read_input_tokens": 43436,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3764
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+Scoring completed successfully. Key results:
+
+| Metric | top_k=1 | top_k=3 |
+|--------|---------|---------|
+| selected_samples | 2718 | **8037** (2.96x) |
+| selection_rate | ~12.4% | **37.0%** |
+| mean CED (selected) | 0.668 | **0.621** |
+| mean F1 (selected) | — | **0.576** |
+| mean combined_score | — | **0.679** |
+| unique_docs_selected | — | **2691/2716** |
+
+Updating registry now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "f7d8ecd3-0f3d-4411-a85a-38c740e0ce91",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T91MvXMmhJZz8ZBBJp9xKS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3764,
+      "cache_read_input_tokens": 43436,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3764
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_015MkLsWyf1J4eAnjdvCgvSU`</summary>
+
+```json
+{
+  "exp_id": "mvp2_rsft_ced_scoring_topk3_r2",
+  "field": "metrics",
+  "value": {
+    "total_records": 21728,
+    "selected_samples": 8037,
+    "filtered_records": 13691,
+    "selection_rate": 0.3699,
+    "unique_docs_total": 2716,
+    "unique_docs_selected": 2691,
+    "mean_ced_all": 0.5035,
+    "mean_f1_all": 0.4786,
+    "mean_combined_all": 0.5924,
+    "mean_ced_selected": 0.6205,
+    "mean_f1_selected": 0.5761,
+    "mean_combined_selected": 0.6787,
+    "mean_format_selected": 1,
+    "topk1_comparison_samples": 2718,
+    "topk3_vs_topk1_ratio": 2.96,
+    "gens_dropped_by_f1_filter": 1299,
+    "docs_dropped_by_f1_filter": 25,
+    "truncated_count": 1924,
+    "truncated_mean_f1": 0.3321,
+    "non_truncated_mean_f1": 0.4929
+  },
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "79b01ec6-8b09-421b-b1a4-8fe64e316a59",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T91MvXMmhJZz8ZBBJp9xKS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3764,
+      "cache_read_input_tokens": 43436,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3764
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T13:25:08.014Z_
+
+<details><summary>↩ Tool result · `toolu_015MkLsWyf1J4eAnjdvCgvSU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp2_rsft_ced_scoring_topk3_r2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:12:38.363Z\", \"updated_at\": \"2026-05-15T13:25:07.770Z\", \"hypothesis\": \"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally).\", \"parent\": \"mvp2_rsft_ced_scoring\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-15T12:13:02.778Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"finished_at\": \"2026-05-15T13:19:15.077Z\", \"training_hours\": 1.1}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"submitted_at\": \"2026-05-15T12:13:03.900Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:19:17.812206+00:00\"}]}, \"metrics\": {\"total_records\": 21728, \"selected_samples\": 8037, \"filtered_records\": 13691, \"selection_rate\": 0.3699, \"unique_docs_total\": 2716, \"unique_docs_selected\": 2691, \"mean_ced_all\": 0.5035, \"mean_f1_all\": 0.4786, \"mean_combined_all\": 0.5924, \"mean_ced_selected\": 0.6205, \"mean_f1_selected\": 0.5761, \"mean_combined_selected\": 0.6787, \"mean_format_selected\": 1, \"topk1_comparison_samples\": 2718, \"topk3_vs_topk1_ratio\": 2.96, \"gens_dropped_by_f1_filter\": 1299, \"docs_dropped_by_f1_filter\": 25, \"truncated_count\": 1924, \"truncated_mean_f1\": 0.3321, \"non_truncated_mean_f1\": 0.4929}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4548}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "c24ddbc4-5049-409e-a92d-a3d3ba351f1b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp2_rsft_ced_scoring_topk3_r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T12:12:38.363Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:25:07.770Z\\\", \\\"hypothesis\\\": \\\"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally).\\\", \\\"parent\\\": \\\"mvp2_rsft_ced_scoring\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-15T12:13:02.778Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T13:19:15.077Z\\\", \\\"training_hours\\\": 1.1}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"198997\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:13:03.900Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"198997\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:19:17.812206+00:00\\\"}]}, \\\"metrics\\\": {\\\"total_records\\\": 21728, \\\"selected_samples\\\": 8037, \\\"filtered_records\\\": 13691, \\\"selection_rate\\\": 0.3699, \\\"unique_docs_total\\\": 2716, \\\"unique_docs_selected\\\": 2691, \\\"mean_ced_all\\\": 0.5035, \\\"mean_f1_all\\\": 0.4786, \\\"mean_combined_all\\\": 0.5924, \\\"mean_ced_selected\\\": 0.6205, \\\"mean_f1_selected\\\": 0.5761, \\\"mean_combined_selected\\\": 0.6787, \\\"mean_format_selected\\\": 1, \\\"topk1_comparison_samples\\\": 2718, \\\"topk3_vs_topk1_ratio\\\": 2.96, \\\"gens_dropped_by_f1_filter\\\": 1299, \\\"docs_dropped_by_f1_filter\\\": 25, \\\"truncated_count\\\": 1924, \\\"truncated_mean_f1\\\": 0.3321, \\\"non_truncated_mean_f1\\\": 0.4929}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4548}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp2_rsft_ced_scoring_topk3_r2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:12:38.363Z\", \"updated_at\": \"2026-05-15T13:25:07.770Z\", \"hypothesis\": \"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally).\", \"parent\": \"mvp2_rsft_ced_scoring\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-15T12:13:02.778Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"finished_at\": \"2026-05-15T13:19:15.077Z\", \"training_hours\": 1.1}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"submitted_at\": \"2026-05-15T12:13:03.900Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:19:17.812206+00:00\"}]}, \"metrics\": {\"total_records\": 21728, \"selected_samples\": 8037, \"filtered_records\": 13691, \"selection_rate\": 0.3699, \"unique_docs_total\": 2716, \"unique_docs_selected\": 2691, \"mean_ced_all\": 0.5035, \"mean_f1_all\": 0.4786, \"mean_combined_all\": 0.5924, \"mean_ced_selected\": 0.6205, \"mean_f1_selected\": 0.5761, \"mean_combined_selected\": 0.6787, \"mean_format_selected\": 1, \"topk1_comparison_samples\": 2718, \"topk3_vs_topk1_ratio\": 2.96, \"gens_dropped_by_f1_filter\": 1299, \"docs_dropped_by_f1_filter\": 25, \"truncated_count\": 1924, \"truncated_mean_f1\": 0.3321, \"non_truncated_mean_f1\": 0.4929}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4548}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_019Uk8BhphhxtKvt1CEzgu5u`</summary>
+
+```json
+{
+  "exp_id": "mvp2_rsft_ced_scoring_topk3_r2",
+  "field": "conclusion",
+  "value": "success",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "633ead4f-3ba4-4f01-8763-f74f05c7658c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7zUpgmxAoocBnXrPUgLSM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2079,
+      "cache_read_input_tokens": 47200,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2079
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T13:25:11.990Z_
+
+<details><summary>↩ Tool result · `toolu_019Uk8BhphhxtKvt1CEzgu5u`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp2_rsft_ced_scoring_topk3_r2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:12:38.363Z\", \"updated_at\": \"2026-05-15T13:25:11.805Z\", \"hypothesis\": \"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally).\", \"parent\": \"mvp2_rsft_ced_scoring\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-15T12:13:02.778Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"finished_at\": \"2026-05-15T13:19:15.077Z\", \"training_hours\": 1.1}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"submitted_at\": \"2026-05-15T12:13:03.900Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:19:17.812206+00:00\"}]}, \"metrics\": {\"total_records\": 21728, \"selected_samples\": 8037, \"filtered_records\": 13691, \"selection_rate\": 0.3699, \"unique_docs_total\": 2716, \"unique_docs_selected\": 2691, \"mean_ced_all\": 0.5035, \"mean_f1_all\": 0.4786, \"mean_combined_all\": 0.5924, \"mean_ced_selected\": 0.6205, \"mean_f1_selected\": 0.5761, \"mean_combined_selected\": 0.6787, \"mean_format_selected\": 1, \"topk1_comparison_samples\": 2718, \"topk3_vs_topk1_ratio\": 2.96, \"gens_dropped_by_f1_filter\": 1299, \"docs_dropped_by_f1_filter\": 25, \"truncated_count\": 1924, \"truncated_mean_f1\": 0.3321, \"non_truncated_mean_f1\": 0.4929}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4118}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "1014cc81-9693-410c-b654-f569570f1056",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp2_rsft_ced_scoring_topk3_r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T12:12:38.363Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:25:11.805Z\\\", \\\"hypothesis\\\": \\\"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally).\\\", \\\"parent\\\": \\\"mvp2_rsft_ced_scoring\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-15T12:13:02.778Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T13:19:15.077Z\\\", \\\"training_hours\\\": 1.1}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"198997\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:13:03.900Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"198997\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:19:17.812206+00:00\\\"}]}, \\\"metrics\\\": {\\\"total_records\\\": 21728, \\\"selected_samples\\\": 8037, \\\"filtered_records\\\": 13691, \\\"selection_rate\\\": 0.3699, \\\"unique_docs_total\\\": 2716, \\\"unique_docs_selected\\\": 2691, \\\"mean_ced_all\\\": 0.5035, \\\"mean_f1_all\\\": 0.4786, \\\"mean_combined_all\\\": 0.5924, \\\"mean_ced_selected\\\": 0.6205, \\\"mean_f1_selected\\\": 0.5761, \\\"mean_combined_selected\\\": 0.6787, \\\"mean_format_selected\\\": 1, \\\"topk1_comparison_samples\\\": 2718, \\\"topk3_vs_topk1_ratio\\\": 2.96, \\\"gens_dropped_by_f1_filter\\\": 1299, \\\"docs_dropped_by_f1_filter\\\": 25, \\\"truncated_count\\\": 1924, \\\"truncated_mean_f1\\\": 0.3321, \\\"non_truncated_mean_f1\\\": 0.4929}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4118}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp2_rsft_ced_scoring_topk3_r2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:12:38.363Z\", \"updated_at\": \"2026-05-15T13:25:11.805Z\", \"hypothesis\": \"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally).\", \"parent\": \"mvp2_rsft_ced_scoring\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-15T12:13:02.778Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"finished_at\": \"2026-05-15T13:19:15.077Z\", \"training_hours\": 1.1}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"submitted_at\": \"2026-05-15T12:13:03.900Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:19:17.812206+00:00\"}]}, \"metrics\": {\"total_records\": 21728, \"selected_samples\": 8037, \"filtered_records\": 13691, \"selection_rate\": 0.3699, \"unique_docs_total\": 2716, \"unique_docs_selected\": 2691, \"mean_ced_all\": 0.5035, \"mean_f1_all\": 0.4786, \"mean_combined_all\": 0.5924, \"mean_ced_selected\": 0.6205, \"mean_f1_selected\": 0.5761, \"mean_combined_selected\": 0.6787, \"mean_format_selected\": 1, \"topk1_comparison_samples\": 2718, \"topk3_vs_topk1_ratio\": 2.96, \"gens_dropped_by_f1_filter\": 1299, \"docs_dropped_by_f1_filter\": 25, \"truncated_count\": 1924, \"truncated_mean_f1\": 0.3321, \"non_truncated_mean_f1\": 0.4929}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4118}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01WmYhjzTdbrZwxL3FgDbZZ4`</summary>
+
+```json
+{
+  "exp_id": "mvp2_rsft_ced_scoring_topk3_r2",
+  "field": "notes",
+  "value": "CED scoring top_k=3 完成。8037 samples selected (vs top_k=1 的 2718, 2.96x)，selection_rate=37.0%，覆盖 2691/2716 docs (99.1%)。Selected 均值: CED=0.621 (vs topk1 0.668, -4.7pp), F1=0.576, combined=0.679。质量略低于 topk1（CED 均值降 4.7pp），但数据量增 3x。Format reward 100% pass。1924 truncated generations (mean F1=0.332 vs non-truncated 0.493)。输出: /root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "bf499b19-48c6-4121-8b2f-79114f95a9f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sc1h8RUGcnw9secgYdYaRQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1452,
+      "cache_read_input_tokens": 49279,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1452
+      },
+      "output_tokens": 54,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01JQ9asjPLedeLSC16QN8SCP`</summary>
+
+```json
+{
+  "exp_id": "mvp2_rsft_ced_scoring_topk3_r2",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/rsft_filtered_topk3",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "4b8de113-681f-4e67-909e-dad83a7b6ff7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sc1h8RUGcnw9secgYdYaRQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1452,
+      "cache_read_input_tokens": 49279,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1452
+      },
+      "output_tokens": 54,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T13:25:22.754Z_
+
+<details><summary>↩ Tool result · `toolu_01WmYhjzTdbrZwxL3FgDbZZ4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp2_rsft_ced_scoring_topk3_r2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:12:38.363Z\", \"updated_at\": \"2026-05-15T13:25:22.445Z\", \"hypothesis\": \"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally).\", \"parent\": \"mvp2_rsft_ced_scoring\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-15T12:13:02.778Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"finished_at\": \"2026-05-15T13:19:15.077Z\", \"training_hours\": 1.1}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"submitted_at\": \"2026-05-15T12:13:03.900Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:19:17.812206+00:00\"}]}, \"metrics\": {\"total_records\": 21728, \"selected_samples\": 8037, \"filtered_records\": 13691, \"selection_rate\": 0.3699, \"unique_docs_total\": 2716, \"unique_docs_selected\": 2691, \"mean_ced_all\": 0.5035, \"mean_f1_all\": 0.4786, \"mean_combined_all\": 0.5924, \"mean_ced_selected\": 0.6205, \"mean_f1_selected\": 0.5761, \"mean_combined_selected\": 0.6787, \"mean_format_selected\": 1, \"topk1_comparison_samples\": 2718, \"topk3_vs_topk1_ratio\": 2.96, \"gens_dropped_by_f1_filter\": 1299, \"docs_dropped_by_f1_filter\": 25, \"truncated_count\": 1924, \"truncated_mean_f1\": 0.3321, \"non_truncated_mean_f1\": 0.4929}, \"conclusion\": \"success\", \"notes\": \"CED scoring top_k=3 完成。8037 samples selected (vs top_k=1 的 2718, 2.96x)，selection_rate=37.0%，覆盖 2691/2716 docs (99.1%)。Selected 均值: CED=0.621 (vs topk1 0.668, -4.7pp), F1=0.576, combined=0.679。质量略低于 topk1（CED 均值降 4.7pp），但数据量增 3x。Format reward 100% pass。1924 truncated generations (mean F1=0.332 vs non-truncated 0.493)。输出: /root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7617}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "0c17a0fd-5cf0-479e-b412-a4f3f913fb71",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp2_rsft_ced_scoring_topk3_r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T12:12:38.363Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:25:22.445Z\\\", \\\"hypothesis\\\": \\\"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally).\\\", \\\"parent\\\": \\\"mvp2_rsft_ced_scoring\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-15T12:13:02.778Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T13:19:15.077Z\\\", \\\"training_hours\\\": 1.1}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"198997\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:13:03.900Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"198997\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:19:17.812206+00:00\\\"}]}, \\\"metrics\\\": {\\\"total_records\\\": 21728, \\\"selected_samples\\\": 8037, \\\"filtered_records\\\": 13691, \\\"selection_rate\\\": 0.3699, \\\"unique_docs_total\\\": 2716, \\\"unique_docs_selected\\\": 2691, \\\"mean_ced_all\\\": 0.5035, \\\"mean_f1_all\\\": 0.4786, \\\"mean_combined_all\\\": 0.5924, \\\"mean_ced_selected\\\": 0.6205, \\\"mean_f1_selected\\\": 0.5761, \\\"mean_combined_selected\\\": 0.6787, \\\"mean_format_selected\\\": 1, \\\"topk1_comparison_samples\\\": 2718, \\\"topk3_vs_topk1_ratio\\\": 2.96, \\\"gens_dropped_by_f1_filter\\\": 1299, \\\"docs_dropped_by_f1_filter\\\": 25, \\\"truncated_count\\\": 1924, \\\"truncated_mean_f1\\\": 0.3321, \\\"non_truncated_mean_f1\\\": 0.4929}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"CED scoring top_k=3 完成。8037 samples selected (vs top_k=1 的 2718, 2.96x)，selection_rate=37.0%，覆盖 2691/2716 docs (99.1%)。Selected 均值: CED=0.621 (vs topk1 0.668, -4.7pp), F1=0.576, combined=0.679。质量略低于 topk1（CED 均值降 4.7pp），但数据量增 3x。Format reward 100% pass。1924 truncated generations (mean F1=0.332 vs non-truncated 0.493)。输出: /root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7617}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp2_rsft_ced_scoring_topk3_r2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:12:38.363Z\", \"updated_at\": \"2026-05-15T13:25:22.445Z\", \"hypothesis\": \"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally).\", \"parent\": \"mvp2_rsft_ced_scoring\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-15T12:13:02.778Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"finished_at\": \"2026-05-15T13:19:15.077Z\", \"training_hours\": 1.1}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"submitted_at\": \"2026-05-15T12:13:03.900Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:19:17.812206+00:00\"}]}, \"metrics\": {\"total_records\": 21728, \"selected_samples\": 8037, \"filtered_records\": 13691, \"selection_rate\": 0.3699, \"unique_docs_total\": 2716, \"unique_docs_selected\": 2691, \"mean_ced_all\": 0.5035, \"mean_f1_all\": 0.4786, \"mean_combined_all\": 0.5924, \"mean_ced_selected\": 0.6205, \"mean_f1_selected\": 0.5761, \"mean_combined_selected\": 0.6787, \"mean_format_selected\": 1, \"topk1_comparison_samples\": 2718, \"topk3_vs_topk1_ratio\": 2.96, \"gens_dropped_by_f1_filter\": 1299, \"docs_dropped_by_f1_filter\": 25, \"truncated_count\": 1924, \"truncated_mean_f1\": 0.3321, \"non_truncated_mean_f1\": 0.4929}, \"conclusion\": \"success\", \"notes\": \"CED scoring top_k=3 完成。8037 samples selected (vs top_k=1 的 2718, 2.96x)，selection_rate=37.0%，覆盖 2691/2716 docs (99.1%)。Selected 均值: CED=0.621 (vs topk1 0.668, -4.7pp), F1=0.576, combined=0.679。质量略低于 topk1（CED 均值降 4.7pp），但数据量增 3x。Format reward 100% pass。1924 truncated generations (mean F1=0.332 vs non-truncated 0.493)。输出: /root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7617}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T13:25:23.514Z_
+
+<details><summary>↩ Tool result · `toolu_01JQ9asjPLedeLSC16QN8SCP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp2_rsft_ced_scoring_topk3_r2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:12:38.363Z\", \"updated_at\": \"2026-05-15T13:25:23.200Z\", \"hypothesis\": \"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally).\", \"parent\": \"mvp2_rsft_ced_scoring\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-15T12:13:02.778Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"finished_at\": \"2026-05-15T13:19:15.077Z\", \"training_hours\": 1.1}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"submitted_at\": \"2026-05-15T12:13:03.900Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:19:17.812206+00:00\"}]}, \"metrics\": {\"total_records\": 21728, \"selected_samples\": 8037, \"filtered_records\": 13691, \"selection_rate\": 0.3699, \"unique_docs_total\": 2716, \"unique_docs_selected\": 2691, \"mean_ced_all\": 0.5035, \"mean_f1_all\": 0.4786, \"mean_combined_all\": 0.5924, \"mean_ced_selected\": 0.6205, \"mean_f1_selected\": 0.5761, \"mean_combined_selected\": 0.6787, \"mean_format_selected\": 1, \"topk1_comparison_samples\": 2718, \"topk3_vs_topk1_ratio\": 2.96, \"gens_dropped_by_f1_filter\": 1299, \"docs_dropped_by_f1_filter\": 25, \"truncated_count\": 1924, \"truncated_mean_f1\": 0.3321, \"non_truncated_mean_f1\": 0.4929}, \"conclusion\": \"success\", \"notes\": \"CED scoring top_k=3 完成。8037 samples selected (vs top_k=1 的 2718, 2.96x)，selection_rate=37.0%，覆盖 2691/2716 docs (99.1%)。Selected 均值: CED=0.621 (vs topk1 0.668, -4.7pp), F1=0.576, combined=0.679。质量略低于 topk1（CED 均值降 4.7pp），但数据量增 3x。Format reward 100% pass。1924 truncated generations (mean F1=0.332 vs non-truncated 0.493)。输出: /root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_filtered_topk3\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7407}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "138589cc-b6f8-4537-80bb-c76242b390ac",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp2_rsft_ced_scoring_topk3_r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T12:12:38.363Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:25:23.200Z\\\", \\\"hypothesis\\\": \\\"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally).\\\", \\\"parent\\\": \\\"mvp2_rsft_ced_scoring\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-15T12:13:02.778Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T13:19:15.077Z\\\", \\\"training_hours\\\": 1.1}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"198997\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:13:03.900Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"198997\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:19:17.812206+00:00\\\"}]}, \\\"metrics\\\": {\\\"total_records\\\": 21728, \\\"selected_samples\\\": 8037, \\\"filtered_records\\\": 13691, \\\"selection_rate\\\": 0.3699, \\\"unique_docs_total\\\": 2716, \\\"unique_docs_selected\\\": 2691, \\\"mean_ced_all\\\": 0.5035, \\\"mean_f1_all\\\": 0.4786, \\\"mean_combined_all\\\": 0.5924, \\\"mean_ced_selected\\\": 0.6205, \\\"mean_f1_selected\\\": 0.5761, \\\"mean_combined_selected\\\": 0.6787, \\\"mean_format_selected\\\": 1, \\\"topk1_comparison_samples\\\": 2718, \\\"topk3_vs_topk1_ratio\\\": 2.96, \\\"gens_dropped_by_f1_filter\\\": 1299, \\\"docs_dropped_by_f1_filter\\\": 25, \\\"truncated_count\\\": 1924, \\\"truncated_mean_f1\\\": 0.3321, \\\"non_truncated_mean_f1\\\": 0.4929}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"CED scoring top_k=3 完成。8037 samples selected (vs top_k=1 的 2718, 2.96x)，selection_rate=37.0%，覆盖 2691/2716 docs (99.1%)。Selected 均值: CED=0.621 (vs topk1 0.668, -4.7pp), F1=0.576, combined=0.679。质量略低于 topk1（CED 均值降 4.7pp），但数据量增 3x。Format reward 100% pass。1924 truncated generations (mean F1=0.332 vs non-truncated 0.493)。输出: /root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_filtered_topk3\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7407}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp2_rsft_ced_scoring_topk3_r2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:12:38.363Z\", \"updated_at\": \"2026-05-15T13:25:23.200Z\", \"hypothesis\": \"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally).\", \"parent\": \"mvp2_rsft_ced_scoring\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-15T12:13:02.778Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"finished_at\": \"2026-05-15T13:19:15.077Z\", \"training_hours\": 1.1}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"submitted_at\": \"2026-05-15T12:13:03.900Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:19:17.812206+00:00\"}]}, \"metrics\": {\"total_records\": 21728, \"selected_samples\": 8037, \"filtered_records\": 13691, \"selection_rate\": 0.3699, \"unique_docs_total\": 2716, \"unique_docs_selected\": 2691, \"mean_ced_all\": 0.5035, \"mean_f1_all\": 0.4786, \"mean_combined_all\": 0.5924, \"mean_ced_selected\": 0.6205, \"mean_f1_selected\": 0.5761, \"mean_combined_selected\": 0.6787, \"mean_format_selected\": 1, \"topk1_comparison_samples\": 2718, \"topk3_vs_topk1_ratio\": 2.96, \"gens_dropped_by_f1_filter\": 1299, \"docs_dropped_by_f1_filter\": 25, \"truncated_count\": 1924, \"truncated_mean_f1\": 0.3321, \"non_truncated_mean_f1\": 0.4929}, \"conclusion\": \"success\", \"notes\": \"CED scoring top_k=3 完成。8037 samples selected (vs top_k=1 的 2718, 2.96x)，selection_rate=37.0%，覆盖 2691/2716 docs (99.1%)。Selected 均值: CED=0.621 (vs topk1 0.668, -4.7pp), F1=0.576, combined=0.679。质量略低于 topk1（CED 均值降 4.7pp），但数据量增 3x。Format reward 100% pass。1924 truncated generations (mean F1=0.332 vs non-truncated 0.493)。输出: /root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_filtered_topk3\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7407}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+Registry 已更新。
+
+**结果摘要：** `mvp2_rsft_ced_scoring_topk3_r2` 成功完成。
+
+- **8037 samples** selected（top_k=1 的 2718 的 2.96 倍），覆盖 2691/2716 docs（99.1%）
+- Selected 均值质量：CED=0.621（比 topk1 低 4.7pp）、F1=0.576、combined=0.679
+- 核心 trade-off：数据量 3x vs 质量降 ~5pp CED
+- 输出路径：`/root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "uuid": "2939b6b4-e937-4f9d-9210-4c97392caeba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013qQyaHZu2rktqMGemtw6q4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3587,
+      "cache_read_input_tokens": 50731,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3587
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 41_
+
+Registry 已更新。
+
+**结果摘要：** `mvp2_rsft_ced_scoring_topk3_r2` 成功完成。
+
+- **8037 samples** selected（top_k=1 的 2718 的 2.96 倍），覆盖 2691/2716 docs（99.1%）
+- Selected 均值质量：CED=0.621（比 topk1 低 4.7pp）、F1=0.576、combined=0.679
+- 核心 trade-off：数据量 3x vs 质量降 ~5pp CED
+- 输出路径：`/root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 72053,
+  "duration_api_ms": 69976,
+  "num_turns": 15,
+  "stop_reason": "end_turn",
+  "session_id": "d2b06282-b57d-473f-82cc-4331ea28f6b4",
+  "total_cost_usd": 0.4807357499999999,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 42477,
+    "cache_read_input_tokens": 275809,
+    "output_tokens": 3039,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 42477,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 195,
+        "cache_read_input_tokens": 50731,
+        "cache_creation_input_tokens": 3587,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3587
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1220,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00132,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 3039,
+      "cacheReadInputTokens": 275809,
+      "cacheCreationInputTokens": 42477,
+      "webSearchRequests": 0,
+      "costUSD": 0.4794157499999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "ff46e459-bfd0-4b74-beed-39beb5b46f3d"
+}
+```
+
+</details>
+
+---

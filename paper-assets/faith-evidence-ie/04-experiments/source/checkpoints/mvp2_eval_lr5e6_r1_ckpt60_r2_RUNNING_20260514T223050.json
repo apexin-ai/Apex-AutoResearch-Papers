@@ -1,0 +1,33 @@
+{
+  "exp_id": "mvp2_eval_lr5e6_r1_ckpt60_r2",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:27:56.124Z",
+    "updated_at": "2026-05-14T22:30:50.197Z",
+    "hypothesis": "P0 ckpt-60 eval retry: 原 submit_on_allocated 失败 (pid=unknown). 手动 SSH 启动 /root/autodl-tmp/scripts/eval_lr5e6_ckpt60.sh. Pass criteria: rel_f1 > 0.30.",
+    "parent": "mvp2_grpo_ced_lr5e6_r1",
+    "spec": {
+      "data_path": "/root/autodl-tmp/data/docred/dev.json",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT + GRPO lr5e6 ckpt-60",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-60",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json",
+      "command": "CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-60 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60 --quantize",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "108185",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt60_r2.log",
+      "account": "root",
+      "backend": "tmux"
+    }
+  },
+  "timestamp": "2026-05-14T22:30:50.339895+00:00",
+  "trigger": "update_registry"
+}

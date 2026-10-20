@@ -1,0 +1,43 @@
+{
+  "exp_id": "test_eval_4b_sft_s42",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:30:25.755Z",
+    "updated_at": "2026-05-21T22:47:54.315Z",
+    "hypothesis": "Re-DocRED test set eval: Qwen3-4B SFT s42 on test_revised.json (500 docs)。4B RSFT adapter 缺失无法做 RSFT test，但 SFT test 对 evidence tax on test 有价值。等 cuda:0 释放后提交。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_4b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+      "data_count": 500,
+      "model_name": "Qwen3-4B + SFT adapter s42",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "re-docred test_revised",
+      "pid": 126048,
+      "gpu": "cuda:0",
+      "log_path": "/root/autodl-tmp/eval_results/test_eval_4b_sft_s42/run.log"
+    },
+    "metrics": {
+      "f1": 0.2232,
+      "ign_f1": 0.2232,
+      "precision": 0.2871,
+      "recall": 0.1826,
+      "evi_f1": 0.164,
+      "evi_f1_tp": 0.6121,
+      "edcr": 0.8652,
+      "n_predictions": 23993,
+      "n_documents": 500,
+      "format_ok": 497,
+      "truncated": 323,
+      "codalab_converted": 10609
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T22:47:55.387613+00:00",
+  "trigger": "update_registry"
+}

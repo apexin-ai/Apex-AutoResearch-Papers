@@ -1,0 +1,22 @@
+{
+  "exp_id": "mvp2_rsft_gen_s3",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:39:34.645Z",
+    "updated_at": "2026-05-15T04:49:43.945Z",
+    "spec": {
+      "pid": "137985"
+    },
+    "hypothesis": "RSFT generation shard 3/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1.",
+    "parent": "mvp2_sft_warmup",
+    "reproduce": {
+      "finished_at": "2026-05-15T04:49:43.444Z"
+    }
+  },
+  "timestamp": "2026-05-15T04:49:44.090712+00:00",
+  "trigger": "update_registry"
+}

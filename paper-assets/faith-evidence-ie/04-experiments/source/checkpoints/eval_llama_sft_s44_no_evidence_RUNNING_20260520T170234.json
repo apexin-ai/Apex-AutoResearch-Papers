@@ -1,0 +1,62 @@
+{
+  "exp_id": "eval_llama_sft_s44_no_evidence",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:49:44.202Z",
+    "updated_at": "2026-05-20T17:02:33.800Z",
+    "hypothesis": "LLaMA SFT s44 标准化 no-evidence eval。补齐 LLaMA SFT 3-seed evidence tax：s42 tax=-1.65pp, s43 RUNNING。s44 with-evidence ign_f1=0.4802。完成后可计算 SFT 3-seed evidence tax mean±std。",
+    "parent": "llama_sft_s44_train_eval_r3",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:2",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx5090-4x",
+      "gpu": "cuda:2",
+      "started_at": "2026-05-20T14:50:38.954Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b_s44 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s44_no_evidence\""
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference --model_path sft_output_llama_3_1_8b_s44 --no_evidence",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "meta-llama/Meta-Llama-3.1-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_llama_3_1_8b_s44",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json"
+    },
+    "pid": "29983",
+    "log_path": "~/runs/faith-evidence-ie/eval_llama_sft_s44_no_evidence.log",
+    "metrics": {
+      "ign_f1": 0.3326,
+      "f1": 0.3348,
+      "precision": 0.4551,
+      "recall": 0.2648,
+      "ign_precision": 0.4346,
+      "ign_recall": 0.2694,
+      "evi_f1": 0,
+      "edcr": 0,
+      "format_ok": "931/985",
+      "format_ok_rate": 0.9452,
+      "n_truncated": 411,
+      "n_predictions": 9926,
+      "n_documents": 985,
+      "fair_comparison": {
+        "full_tax_pp": -14.76,
+        "fair_tax_pp": -12.62,
+        "fair_subset_docs": 931,
+        "with_evi_ign_f1_full": 0.4802,
+        "with_evi_ign_f1_fair": 0.4742,
+        "no_evi_ign_f1_full": 0.3326,
+        "no_evi_ign_f1_fair": 0.3481
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T17:02:34.324284+00:00",
+  "trigger": "update_registry"
+}

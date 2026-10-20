@@ -1,0 +1,47 @@
+{
+  "exp_id": "mvp2_grpo_extract_r4",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:54:59.403Z",
+    "updated_at": "2026-05-14T16:55:24.253Z",
+    "spec": {
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": {
+        "train": 3027,
+        "dev": 985
+      },
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "/root/autodl-tmp/data/docred",
+      "hyperparams": {
+        "learning_rate": "5e-5",
+        "kl_coef": 0.01,
+        "save_steps": 10,
+        "save_total_limit": 20,
+        "max_steps": 100,
+        "num_iterations": 1,
+        "num_generations": 8,
+        "format_reward_weight": 0.3,
+        "f1_reward_weight": 3,
+        "ced_reward_weight": 0,
+        "per_device_batch_size": 1,
+        "gradient_accumulation_steps": 16,
+        "reward_device": "cuda",
+        "quantization": "QLoRA 4-bit NF4"
+      }
+    },
+    "hypothesis": "Extraction-only reward (format×0.3, f1×3.0, ced=0) with kl_coef=0.01 + num_generations=8 trains stably. 100-step probe parallel ablation with ced_kl001_r4 (CED reward) to compare reward type impact under identical stability config.",
+    "parent": "mvp2_grpo_extract_r3"
+  },
+  "timestamp": "2026-05-14T16:55:24.319378+00:00",
+  "trigger": "update_registry"
+}

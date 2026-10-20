@@ -1,0 +1,28 @@
+{
+  "exp_id": "plan_006_qwen3_1_7b_rsft_seed43_eval",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:26:15.446Z",
+    "updated_at": "2026-05-17T14:27:40.284Z",
+    "hypothesis": "Evaluate 1.7B RSFT seed 43 on DocRED dev. Seed 42 gave rel_f1=0.5219. If seed 43 gives similar result (±1pp, i.e., 0.51-0.53), the 1.7B scaling study datapoint is robust.",
+    "parent": "plan_006_qwen3_1_7b_rsft_seed43",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b_seed43/checkpoint-1698 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_qwen3_1_7b_rsft_seed43_eval",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 998,
+      "model_name": "Qwen3-1.7B",
+      "seed": 43,
+      "checkpoint_source": "plan_006_qwen3_1_7b_rsft_seed43",
+      "eval_data": "docred-dev",
+      "pid": 455632,
+      "gpu": "cuda:2"
+    }
+  },
+  "timestamp": "2026-05-17T14:27:40.673737+00:00",
+  "trigger": "update_registry"
+}

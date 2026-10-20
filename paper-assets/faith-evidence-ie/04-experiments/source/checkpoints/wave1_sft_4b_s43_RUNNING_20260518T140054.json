@@ -1,0 +1,29 @@
+{
+  "exp_id": "wave1_sft_4b_s43",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T12:44:52.340Z",
+    "updated_at": "2026-05-18T14:00:53.415Z",
+    "hypothesis": "SFT baseline for Qwen3-4B seed43: standard SFT without CED filtering. Paired with RSFT to measure CED filtering gain. Expected rel_f1 ~50.5 based on prior 8B SFT results scaled down.",
+    "spec": {
+      "command": "bash scripts/d102_next_batch/sft_seed43.sh",
+      "server": "rtx5090-4x",
+      "gpu_id": 0,
+      "pid": 540777,
+      "data_path": "/root/autodl-tmp/data/docred/train_annotated.json",
+      "data_count": 3027,
+      "model_name": "Qwen3-4B",
+      "seed": 43,
+      "output_dir": "/root/autodl-tmp/sft_output_seed43",
+      "plan_id": "plan_w3_sft_seeds",
+      "wandb_run_name": "sft-4b-seed43"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T14:00:54.278416+00:00",
+  "trigger": "update_registry"
+}

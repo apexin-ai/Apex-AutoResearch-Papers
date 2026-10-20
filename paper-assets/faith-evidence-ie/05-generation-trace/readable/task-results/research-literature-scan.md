@@ -1,0 +1,64 @@
+# research literature scan
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_research_literature-scan_20260515T220732_result.json`
+- **Structured JSON:** [`8353c3aed32d15a903d6.json`](../../sessions/83/8353c3aed32d15a903d6.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+文件已直接编辑到磁盘，YAML 验证通过。下面是总结。
+
+---
+
+## 文献扫描结果
+
+### 新增 11 篇论文（分布在 8 个新类别）
+
+| # | 论文 | 类别 | 与 FREIGE 的关系 |
+|---|------|------|-----------------|
+| 1 | **EvidenceRL** (Ben Tamo+, 2026) | evidence_grounded_rl | **最大 novelty 威胁** — GRPO + evidence faithfulness reward，但在 QA 域，非 DocRE |
+| 2 | **MO-GRPO** (Ichihara+, 2025) | multi_objective_grpo | GRPO 多目标 reward hacking 分析 |
+| 3 | **RDPO** (Bai+, 2026) | multi_objective_grpo | Reward 去相关，理论支持 CED 的低相关多维 reward |
+| 4 | **GRPO is Secretly a PRM** (Sullivan & Koller, 2025) | grpo_theory | GRPO=隐式 PRM，解释 DocRE 多 triple 场景下 reward 信号不足 |
+| 5 | **Reward Hacking Survey** (Wang+, 2026) | grpo_theory | Proxy Compression Hypothesis 解释 QLoRA decoupling |
+| 6 | **FP16 for RL** (Qi+, 2025) | training_precision_rl | BF16 导致 RL 训练不稳定，支持 QLoRA-specific instability |
+| 7 | **R²GRPO** (Li+, 2025) | rl_for_ie | GRPO 用于科学 IE，rule-based reward |
+| 8 | **ADELIE** (Qi+, EMNLP 2024) | llm_ie_alignment | SFT+DPO 对齐 IE，代表性 baseline |
+| 9 | **CoT is not Explainability** (Barez+, 2025) | unfaithful_reasoning | CoT = post-rationalization，支持 CED reranker 的必要性 |
+| 10 | **Characterizing LLMs as Rationalizers** (ACL Findings 2024) | unfaithful_reasoning | LLM evidence 不可靠的实证 |
+| 11 | **Latent CoT Survey** (Chen+, 2025) | latent_vs_explicit_reasoning | 显式 vs 隐式推理 trade-off 的全景综述 |
+
+### Novelty 威胁评估
+
+**EvidenceRL 是唯一需要认真对待的 novelty 威胁**，但差异明确：
+
+1. EvidenceRL 在 QA 域，evidence grounding 和 correctness **同时提升**（无 trade-off）；FREIGE 在 DocRE 中发现 evidence generation 有 ~8pp rel_f1 代价（evidence tax）——这是 EvidenceRL 没有的核心发现
+2. EvidenceRL 无 task decoupling 现象（QLoRA-specific）
+3. EvidenceRL 无 inference-time CED reranker
+
+**无人研究过 evidence tax：** 搜索 "evidence generation cost/trade-off in DocRE" 方向，没有找到任何工作量化 evidence generation 对 RE 性能的代价。这是 FREIGE 的独特贡献点。
+
+**无人报告 task decoupling：** QLoRA + GRPO 下 evidence-extraction decoupling 是全新发现，MO-GRPO/RDPO 的多目标分析和 FP16 论文的 precision instability 分析提供了理论支撑但没有直接观察到此现象。
+
+### Related Work 写作建议
+
+- 在 GRPO for IE 段落中，需要讨论 EvidenceRL 并明确与我们的差异
+- MO-GRPO + RDPO 可作为 CED training stabilizer 的理论支撑
+- "GRPO is Secretly a PRM" 可强化 multi-triple DocRE 需要更细粒度 reward 的论点
+- FP16 论文 + Reward Hacking Survey 可支撑 QLoRA decoupling 的机制假说
+
+---

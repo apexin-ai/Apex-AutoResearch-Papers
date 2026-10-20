@@ -1,0 +1,50 @@
+{
+  "exp_id": "plan_006_qwen3_1_7b_rsft_eval_r2",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:35:45.455Z",
+    "updated_at": "2026-05-17T23:17:43.812Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/freige && python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b/checkpoint-1698 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_qwen3_1_7b_rsft_eval_r2\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "431380",
+      "log_path": "~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_rsft_eval_r2.log",
+      "submitted_at": "2026-05-17T08:38:48.805Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen/Qwen3-1.7B + SFT + RSFT",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_qwen3_1_7b/checkpoint-1698",
+      "eval_data": "docred_dev"
+    },
+    "hypothesis": "Evaluate 1.7B RSFT model (checkpoint-1698) on DocRED dev. Retry after disk-full crash. Validates CED-filtered RSFT at smallest model scale in scaling study.",
+    "parent": "plan_006_qwen3_1_7b_rsft_train",
+    "metrics": {
+      "ign_f1": 0.505,
+      "f1": 0.5219,
+      "evi_f1": 0.8309,
+      "edcr": 0.6297,
+      "evi_f1_joint": 0.4223,
+      "format_compliance_rate": 0.999,
+      "field_compliance_rate": 0.732,
+      "n_truncated": 258,
+      "inference_time_seconds": 9464
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T12:11:16.096Z"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T23:17:44.271978+00:00",
+  "trigger": "update_registry"
+}

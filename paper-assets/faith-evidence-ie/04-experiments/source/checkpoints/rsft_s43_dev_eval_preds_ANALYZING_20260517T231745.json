@@ -1,0 +1,49 @@
+{
+  "exp_id": "rsft_s43_dev_eval_preds",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:35:42.135Z",
+    "updated_at": "2026-05-17T23:17:44.940Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/freige && python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/rsft_s43_dev_eval_preds\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "431303",
+      "log_path": "~/runs/faith-evidence-ie/rsft_s43_dev_eval_preds.log",
+      "submitted_at": "2026-05-17T08:38:45.685Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT + RSFT-s43(CED)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510",
+      "eval_data": "docred_dev"
+    },
+    "hypothesis": "Eval RSFT-s43 (CED-scored) on DocRED dev with predictions saved. Prerequisite for Lead 1 CED evidence filtering: per-sentence NLI scoring requires full prediction outputs.",
+    "metrics": {
+      "ign_f1": 0.4512,
+      "f1": 0.4601,
+      "evi_f1": 0.8063,
+      "edcr": 0.6542,
+      "evi_f1_joint": 0.3605,
+      "format_compliance_rate": 1,
+      "field_compliance_rate": 0.809,
+      "n_truncated": 184,
+      "inference_time_seconds": 10982
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T12:11:12.913Z"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T23:17:45.384061+00:00",
+  "trigger": "update_registry"
+}

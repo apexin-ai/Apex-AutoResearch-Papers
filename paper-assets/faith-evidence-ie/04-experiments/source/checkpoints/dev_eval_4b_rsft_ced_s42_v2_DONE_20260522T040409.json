@@ -1,0 +1,35 @@
+{
+  "exp_id": "dev_eval_4b_rsft_ced_s42_v2",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T02:58:09.687Z",
+    "updated_at": "2026-05-22T04:04:08.463Z",
+    "hypothesis": "验证 retrain 4B RSFT CED s42 v2 checkpoint 质量：dev set eval 应与原 4B RSFT s42 dev 水平一致（~0.4517 ign_f1）。偏差 >2pp 需要报告。",
+    "parent": "retrain_4b_rsft_ced_s42_v2",
+    "spec": {
+      "command": "python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s42_v2 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/dev_eval_4b_rsft_ced_s42_v2 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "158764",
+      "log_path": "~/runs/faith-evidence-ie/dev_eval_4b_rsft_ced_s42_v2.log",
+      "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT adapter + RSFT CED s42 v2",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_ced_s42_v2",
+      "eval_data": "re-docred dev"
+    },
+    "conclusion": "failed",
+    "failure_reason": "base_model 路径错误：传入 /root/autodl-tmp/models/Qwen/Qwen3-4B（不存在），正确路径为 /root/autodl-tmp/models/Qwen3-4B。tokenizer 加载时 HFValidationError。",
+    "notes": "首次提交失败：--base_model 路径错误（/root/autodl-tmp/models/Qwen/Qwen3-4B 不存在，正确路径 /root/autodl-tmp/models/Qwen3-4B）。重提。",
+    "completed_at": "2026-05-22T04:04:08.464Z"
+  },
+  "timestamp": "2026-05-22T04:04:09.240861+00:00",
+  "trigger": "update_registry"
+}

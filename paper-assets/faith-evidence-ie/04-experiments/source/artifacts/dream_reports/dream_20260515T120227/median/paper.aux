@@ -1,0 +1,107 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{yao2019docred}
+\citation{zhou2021atlop}
+\citation{tan2022dreeam}
+\citation{xu2024lmrc}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{yao2019docred}
+\citation{zhou2021atlop}
+\citation{zhang2021docunet}
+\citation{tan2022dreeam}
+\citation{xiao2022sais}
+\citation{xu2024lmrc}
+\citation{docks2025}
+\citation{ouyang2022training}
+\citation{rafailov2023direct}
+\citation{shao2024deepseekmath}
+\citation{yuan2024rrhf}
+\citation{tang2024rsftppo}
+\citation{song2026longrlvr}
+\citation{honovich2022true}
+\citation{laban2022summac}
+\citation{hu2022lora}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Document-Level Relation Extraction.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RL for Language Model Alignment.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Faithfulness Evaluation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}SFT Baseline}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Contrastive Evidence Discrimination (CED)}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Claim Construction.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Positive and Negative Sets.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CED Score.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Rejection Sampling Fine-Tuning (RSFT)}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}CED as Inference-Time Reranker}{3}{subsection.3.5}\protected@file@percent }
+\citation{yao2019docred}
+\citation{tan2022redocred}
+\citation{tan2022dreeam}
+\citation{xiao2022sais}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Test set results on DocRED. $^\dagger $Encoder-based methods using attention-based evidence extraction (see \S  \ref {sec:protocol} for evaluation protocol discussion). EDCR computed on dev set (test evidence labels unavailable for EDCR computation). Two RSFT+CED configurations are reported: r2b (1 epoch, $\alpha {=}32$) and s44 (3 epochs, $\alpha {=}128$, seed 44).}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{1}{4}{Test set results on DocRED. $^\dagger $Encoder-based methods using attention-based evidence extraction (see \S \ref {sec:protocol} for evaluation protocol discussion). EDCR computed on dev set (test evidence labels unavailable for EDCR computation). Two RSFT+CED configurations are reported: r2b (1 epoch, $\alpha {=}32$) and s44 (3 epochs, $\alpha {=}128$, seed 44)}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Entity-Sharing Distractor Citation Rate (EDCR)}{4}{subsection.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dataset.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CED Configuration.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Dev$\to $test generalization gap (rel\_F1 / evi\_F1).}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:devtest}{{2}{5}{Dev$\to $test generalization gap (rel\_F1 / evi\_F1)}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces CED vs.\ flat-NLI RSFT ablation (dev set). CED provides consistent improvement across all three metrics.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:ced_nli}{{3}{5}{CED vs.\ flat-NLI RSFT ablation (dev set). CED provides consistent improvement across all three metrics}{table.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Dev$\to $Test Generalization.}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}CED vs.\ Flat-NLI Scoring (Claim 2)}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:ced_vs_nli}{{4.3}{5}{CED vs.\ Flat-NLI Scoring (Claim 2)}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}CED as Inference-Time Reranker}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Online RL Fails: GRPO Analysis (Claim 3)}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:grpo}{{4.5}{5}{Online RL Fails: GRPO Analysis (Claim 3)}{subsection.4.5}{}}
+\citation{song2026longrlvr}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces CED as a composable module (dev set). Reranking uses $N{=}8$ candidates; inference cost is $\sim $8$\times $.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:reranker}{{4}{6}{CED as a composable module (dev set). Reranking uses $N{=}8$ candidates; inference cost is $\sim $8$\times $}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces GRPO trajectory summary. ``Collapse Step'' = step at which rel\_F1 drops below 5\%. All configs start from the same SFT checkpoint (rel\_F1 = 40.6\%).}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:grpo}{{5}{6}{GRPO trajectory summary. ``Collapse Step'' = step at which rel\_F1 drops below 5\%. All configs start from the same SFT checkpoint (rel\_F1 = 40.6\%)}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}EDCR Diagnostic Analysis (Claim 4)}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:edcr}{{4.6}{6}{EDCR Diagnostic Analysis (Claim 4)}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Relation-Type Analysis.}{6}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{6}{section*.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-method EDCR diagnostic (dev set). \#Distr.\ = mean entity-sharing distractor count, \#Gold = mean gold evidence cited, \#Total = mean total citations per instance.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:edcr_diag}{{6}{7}{Cross-method EDCR diagnostic (dev set). \#Distr.\ = mean entity-sharing distractor count, \#Gold = mean gold evidence cited, \#Total = mean total citations per instance}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces EDCR (\%) by relation type (dev set, top-5 and bottom-5). CED reduces EDCR consistently (5--6pp) but high-EDCR relations remain challenging.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:edcr_rel}{{7}{7}{EDCR (\%) by relation type (dev set, top-5 and bottom-5). CED reduces EDCR consistently (5--6pp) but high-EDCR relations remain challenging}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Evidence Baseline Comparison}{7}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:protocol}{{4.7}{7}{Evidence Baseline Comparison}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Model Size Ablation}{7}{subsection.4.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Evidence baseline comparison. $^*$Test evi\_F1 computed locally (not from CodaLab). DREEAM reproduction gap: $-$0.5pp from reported test evi\_F1.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:baseline}{{8}{8}{Evidence baseline comparison. $^*$Test evi\_F1 computed locally (not from CodaLab). DREEAM reproduction gap: $-$0.5pp from reported test evi\_F1}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Model size ablation (dev set). RSFT+CED consistently improves over SFT across 1.7B--8B, with relative gains largely independent of model capacity.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:size}{{9}{8}{Model size ablation (dev set). RSFT+CED consistently improves over SFT across 1.7B--8B, with relative gains largely independent of model capacity}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Re-DocRED Extension}{8}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:redocred}{{4.9}{8}{Re-DocRED Extension}{subsection.4.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Ablation Studies}{8}{subsection.4.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Top-$k$ Selection.}{8}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{NLI Model Capacity.}{8}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Analysis}{8}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why Flat-NLI Fails at Evidence Discrimination.}{8}{section*.17}\protected@file@percent }
+\bibdata{custom}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces DocRED vs.\ Re-DocRED (dev set). Re-DocRED's more complete annotations reduce EDCR by $\sim $13pp across methods.}}{9}{table.10}\protected@file@percent }
+\newlabel{tab:redocred}{{10}{9}{DocRED vs.\ Re-DocRED (dev set). Re-DocRED's more complete annotations reduce EDCR by $\sim $13pp across methods}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Top-$k$ selection ablation (dev set).}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:topk}{{11}{9}{Top-$k$ selection ablation (dev set)}{table.11}{}}
+\@writefile{toc}{\contentsline {paragraph}{Online vs.\ Offline RL for Structured IE.}{9}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CED as a Composable Module.}{9}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{9}{section*.20}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces NLI model ablation (dev set). ``Disc.\ Acc.'' = CED discrimination accuracy on gold vs.\ distractor pairs.}}{10}{table.12}\protected@file@percent }
+\newlabel{tab:nli}{{12}{10}{NLI model ablation (dev set). ``Disc.\ Acc.'' = CED discrimination accuracy on gold vs.\ distractor pairs}{table.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}GRPO Full Configuration Grid}{10}{appendix.A}\protected@file@percent }
+\newlabel{app:grpo}{{A}{10}{GRPO Full Configuration Grid}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}RSFT Hyperparameter Configurations}{10}{appendix.B}\protected@file@percent }
+\newlabel{app:rsft}{{B}{10}{RSFT Hyperparameter Configurations}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces RSFT hyperparameter configurations. All use LoRA with rank 16.}}{10}{table.13}\protected@file@percent }
+\gdef \@abspage@last{10}

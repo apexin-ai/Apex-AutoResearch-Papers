@@ -1,0 +1,37 @@
+{
+  "exp_id": "plan_015_grpo_g4_bf16",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:58:43.784Z",
+    "updated_at": "2026-05-15T16:03:08.279Z",
+    "spec": {
+      "command": "python -m freige.training.grpo_trainer --model_name Qwen3-4B --sft_adapter sft_output --data_dir data/docred --output_dir grpo_ced_g4_bf16 --stage 3 --num_generations 4 --kl_coef 0 --learning_rate 5e-5 --max_steps 100 --no-quantize --wandb_run_name plan_015_grpo_g4_bf16",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "222937",
+      "log_path": "~/runs/faith-evidence-ie/plan_015_grpo_g4_bf16.log",
+      "submitted_at": "2026-05-15T15:58:43.532Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 3027,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "wall_clock_seconds": 264.7,
+      "gpu_hours": 0.07
+    },
+    "hypothesis": "bf16 LoRA GRPO clean control: 与原始 QLoRA GRPO 仅改 quantization（4-bit → bf16），保持 G=4, kl=0, CED reward 不变。验证 catastrophic forgetting 是否由 QLoRA quantization 导致。",
+    "conclusion": "killed",
+    "notes": "cuda:0 冲突，与 plan_001_rsft_flat_nli (PID 219556) 冲突。plan_001 先到先得，plan_015 被终止。待 plan_001 完成后重新提交 plan_015。",
+    "completed_at": "2026-05-15T16:03:08.279Z"
+  },
+  "timestamp": "2026-05-15T16:03:08.454375+00:00",
+  "trigger": "update_registry"
+}

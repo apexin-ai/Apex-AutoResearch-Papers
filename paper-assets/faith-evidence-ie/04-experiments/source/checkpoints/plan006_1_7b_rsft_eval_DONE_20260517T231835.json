@@ -1,0 +1,32 @@
+{
+  "exp_id": "plan006_1_7b_rsft_eval",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T06:10:39.978Z",
+    "updated_at": "2026-05-17T23:18:35.353Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python3 -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_qwen3_1_7b_rsft_eval\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "420013",
+      "log_path": "N/A",
+      "submitted_at": "2026-05-17T06:10:39.457Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "N/A - killed",
+      "wall_clock_seconds": 61675.9,
+      "gpu_hours": 17.13
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-17T23:18:35.353Z"
+  },
+  "timestamp": "2026-05-17T23:18:35.734584+00:00",
+  "trigger": "update_registry"
+}

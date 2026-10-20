@@ -1,0 +1,39 @@
+{
+  "exp_id": "mvp2_eval_lr5e6_r1_ckpt60",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-14T22:13:47.936Z",
+    "updated_at": "2026-05-14T22:29:44.385Z",
+    "hypothesis": "P0 ckpt-60 eval: lr=5e-6 GRPO at step 60. 训练轨迹数据点——ckpt-20 catastrophic forgetting (rel_f1=0.0077)，需看后续 checkpoint 是否恢复。Pass criteria: rel_f1 > 0.30.",
+    "parent": "mvp2_grpo_ced_lr5e6_r1",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_lr5e6 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt60 --checkpoints 60 --quantize\"",
+      "finished_at": "2026-05-14T22:25:13.602Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-14T22:25:14.773Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T22:25:16.365584+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "[2026-05-15 07:28] 手动 SSH 启动成功. PID=108025, cuda:1, log=/tmp/eval_lr5e6_ckpt60.log"
+      }
+    },
+    "notes": "[2026-05-15 07:28] 手动 SSH 启动成功. PID=108025, cuda:1, log=/tmp/eval_lr5e6_ckpt60.log"
+  },
+  "timestamp": "2026-05-14T22:29:44.601942+00:00",
+  "trigger": "update_registry"
+}

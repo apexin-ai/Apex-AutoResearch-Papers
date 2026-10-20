@@ -1,0 +1,15 @@
+{
+  "exp_id": "test_eval_4b_rsft_s42_v2",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T23:21:45.920Z",
+    "updated_at": "2026-05-21T23:58:40.692Z",
+    "hypothesis": "Re-DocRED test set eval: Qwen3-4B RSFT s42 (CED k=1, 重训 v2) on test_revised.json (500 docs)。配对 test_eval_4b_sft_s42 (ign_f1=0.2232)，填充 test table 4B RSFT 数据点。使用 retrain_4b_rsft_ced_s42_v2 产出的 checkpoint。"
+  },
+  "timestamp": "2026-05-21T23:58:41.394938+00:00",
+  "trigger": "update_registry"
+}

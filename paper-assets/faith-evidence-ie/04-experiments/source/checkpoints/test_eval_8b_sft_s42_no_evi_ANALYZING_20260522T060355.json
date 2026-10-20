@@ -1,0 +1,38 @@
+{
+  "exp_id": "test_eval_8b_sft_s42_no_evi",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:41:53.510Z",
+    "updated_at": "2026-05-22T06:03:54.325Z",
+    "hypothesis": "8B SFT model without evidence prompting should achieve competitive relation extraction performance on test set, validating that evidence is not necessary for the extraction task",
+    "parent": "test_eval_8b_sft_s42",
+    "spec": {
+      "command": "python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --output_dir /root/autodl-tmp/eval_results/test_eval_8b_sft_s42_no_evi --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised --no_evidence",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "152868",
+      "log_path": "~/runs/faith-evidence-ie/test_eval_8b_sft_s42_no_evi.log",
+      "submitted_at": "2026-05-22T01:42:06.114Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+      "data_count": 500,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_qwen3_8b_bf16",
+      "eval_data": "test_revised"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T06:03:52.822Z"
+    }
+  },
+  "timestamp": "2026-05-22T06:03:55.025850+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,43 @@
+{
+  "exp_id": "mvp2_grpo_extract_r4",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:54:59.403Z",
+    "updated_at": "2026-05-14T17:40:25.731Z",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && ... && python -m freige.training.grpo_trainer --stage 1 --kl_coef 0.01 --num_generations 8 --max_steps 100 ...\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "73264",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_grpo_extract_r4.log",
+      "submitted_at": "2026-05-14T16:55:57.491Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": {
+        "train": 3027,
+        "dev": 985
+      },
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "/root/autodl-tmp/data/docred",
+      "wall_clock_seconds": 2668.2,
+      "gpu_hours": 0.74
+    },
+    "hypothesis": "Extraction-only reward (format×0.3, f1×3.0, ced=0) with kl_coef=0.01 + num_generations=8 trains stably. 100-step probe parallel ablation with ced_kl001_r4 (CED reward) to compare reward type impact under identical stability config.",
+    "parent": "mvp2_grpo_extract_r3",
+    "notes": "D020 配置：kl_coef=0.01 + num_generations=8 + save_steps=10 + max_steps=100 探测。与 ced_kl001_r4 (cuda:0) 构成并行 ablation——相同稳定配置、不同 reward type (extract-only vs CED)。\n\n**Mode collapse confirmed → KILLED at step ~30**:\n- step 5: frac_zero_std=0.2, f1=0.016（初始信号）\n- step 10-30: frac_zero_std=0.7-0.8, f1_reward=0（完全 collapse）\n- reward 全部来自 format_reward (~0.29)，模型放弃 extraction\n- 对比 ced_kl001_r4 同期在 step 20-40 恢复（frac→0.0, f1→0.240），extract_r4 无恢复信号\n\n**科学价值**：证明 extraction-only reward（format+f1, 无 CED）在 D020 配置下无法维持 GRPO 多样性。CED reward 通道可能是帮助 ced_kl001_r4 摆脱初期 mode collapse 的关键因素。",
+    "conclusion": "killed",
+    "completed_at": "2026-05-14T17:40:25.733Z"
+  },
+  "timestamp": "2026-05-14T17:40:25.905215+00:00",
+  "trigger": "update_registry"
+}

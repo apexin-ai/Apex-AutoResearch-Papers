@@ -1,0 +1,16 @@
+{
+  "exp_id": "test_eval_4b_rsft_s42_v2_reeval",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:48:18.780Z",
+    "updated_at": "2026-05-22T10:50:16.001Z",
+    "hypothesis": "Retrained 4B RSFT CED v2 model on test set should achieve ign_f1 comparable to dev (≈0.25, matching original test_eval_4b_rsft_s42_v2 result of 0.2501)",
+    "parent": "dev_eval_4b_rsft_ced_s42_v2"
+  },
+  "timestamp": "2026-05-22T10:50:16.634036+00:00",
+  "trigger": "update_registry"
+}

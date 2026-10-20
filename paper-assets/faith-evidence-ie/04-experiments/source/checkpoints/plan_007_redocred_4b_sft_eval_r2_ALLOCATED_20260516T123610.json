@@ -1,0 +1,27 @@
+{
+  "exp_id": "plan_007_redocred_4b_sft_eval_r2",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:36:01.717Z",
+    "updated_at": "2026-05-16T12:36:10.170Z",
+    "spec": {
+      "server": "rtx5090-4x",
+      "gpu": "cuda:0",
+      "model_name": "Qwen3-4B",
+      "data_path": "/root/autodl-tmp/data/re-docred",
+      "data_count": 500,
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "re-docred-dev",
+      "parent": "plan_001_sft_train",
+      "hypothesis": "Cross-dataset generalization: 4B SFT with-evidence on Re-DocRED dev. r2 with corrected paths.",
+      "plan_id": "plan_007"
+    }
+  },
+  "timestamp": "2026-05-16T12:36:10.556994+00:00",
+  "trigger": "update_registry"
+}

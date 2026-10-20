@@ -1,0 +1,16 @@
+{
+  "exp_id": "test_eval_4b_rsft_s44_no_evi",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T10:48:04.662Z",
+    "updated_at": "2026-05-23T10:48:23.486Z",
+    "hypothesis": "4B RSFT CED k=1 s44 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 s44 with-evi ign_f1=0.2525 计算 evidence tax。s42 tax=+1.51pp, s43 tax=+1.99pp。3-seed mean±std 完善 4B evidence tax。",
+    "parent": "test_eval_4b_rsft_s44_with_evi"
+  },
+  "timestamp": "2026-05-23T10:48:24.147465+00:00",
+  "trigger": "update_registry"
+}

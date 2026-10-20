@@ -1,0 +1,15 @@
+{
+  "exp_id": "wave1_grpo_bf16_g4",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T12:46:19.740Z",
+    "updated_at": "2026-05-18T12:46:23.981Z",
+    "hypothesis": "GRPO bf16 without quantization (G=4): prior GRPO runs used int4 quantization which may have caused training instability. bf16 full precision should provide clean GRPO signal. If GRPO improves over RSFT, validates Claim 2 (decoupling spectrum). Expected: rel_f1 > RSFT baseline (~52pp)."
+  },
+  "timestamp": "2026-05-18T12:46:24.431596+00:00",
+  "trigger": "update_registry"
+}

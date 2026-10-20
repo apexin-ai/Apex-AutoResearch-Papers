@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_plan_008_rsft_topk3",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:09:51.464Z",
+    "updated_at": "2026-05-15T21:10:03.437Z",
+    "hypothesis": "RSFT top_k=3 dev eval: 对比 top_k=1 RSFT (rel_f1≈0.46) 和 SFT baseline (rel_f1≈0.4057)。验证更多候选是否提升证据质量。",
+    "parent": "plan_008_rsft_topk3",
+    "spec": {
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + RSFT top_k=3 adapter",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_topk3_output",
+      "eval_data": "docred dev (985 docs)"
+    }
+  },
+  "timestamp": "2026-05-15T21:10:03.677189+00:00",
+  "trigger": "update_registry"
+}

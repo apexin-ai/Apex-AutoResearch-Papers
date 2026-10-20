@@ -1,0 +1,14 @@
+{
+  "exp_id": "llama_sft_s44_train_eval_r2",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T04:31:29.281Z",
+    "updated_at": "2026-05-20T04:31:29.281Z"
+  },
+  "timestamp": "2026-05-20T04:31:29.913031+00:00",
+  "trigger": "update_registry"
+}

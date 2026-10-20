@@ -1,0 +1,27 @@
+{
+  "exp_id": "plan_001_flat_nli_scoring",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:36:56.213Z",
+    "updated_at": "2026-05-15T14:37:37.903Z",
+    "hypothesis": "flat-NLI scoring 前置步骤：用 flat_nli 模式（p_pos 概率，无 contrastive margin）对 RSFT 生成候选打分并筛选训练数据。",
+    "spec": {
+      "command": "python -m freige.training.rsft_score_filter --scoring_mode flat_nli --top_k 3 --f1_threshold 0.1",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "208155",
+      "model_name": "DeBERTa-v3-large-mnli-fever-anli-ling-wanli",
+      "data_path": "/root/autodl-tmp/rsft_generations",
+      "data_count": 21728,
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-15T14:37:38.115966+00:00",
+  "trigger": "update_registry"
+}

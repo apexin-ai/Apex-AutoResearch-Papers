@@ -1,0 +1,39 @@
+{
+  "exp_id": "plan_012_dpo_ced_1ep",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:50:44.852Z",
+    "updated_at": "2026-05-15T19:06:44.693Z",
+    "spec": {
+      "hypothesis": "DPO+CED 1-epoch 重训：修复 3-epoch 过拟合问题。epochs=1 (~167 steps, <10min)，其余超参不变（β=0.1, lr=5e-7, loss=sigmoid, seed=42, pairs=2666）。让 DPO 数据点可用于论文。",
+      "parent": "plan_012_dpo_ced",
+      "command": "python -m freige.training.dpo_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --dpo_data_path /root/autodl-tmp/dpo_data/dpo_pairs.jsonl --output_dir /root/autodl-tmp/dpo_output_1ep --beta 0.1 --num_epochs 1 --seed 42 --loss_type sigmoid --wandb_run_name plan_012_dpo_ced_1ep",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/dpo_data/dpo_pairs.jsonl",
+      "data_count": 2666,
+      "model_name": "Qwen3-4B + SFT + CED-DPO (1ep)",
+      "seed": 42,
+      "base_model": "/root/autodl-tmp/models/Qwen3-4B",
+      "sft_adapter": "/root/autodl-tmp/sft_output",
+      "beta": 0.1,
+      "num_epochs": 1,
+      "loss_type": "sigmoid",
+      "checkpoint_path": "/root/autodl-tmp/dpo_output_1ep",
+      "gpu": [
+        "cuda:0"
+      ],
+      "approved_at": "2026-05-15T18:52:00Z",
+      "approval_note": "3-epoch过拟合确凿，1-epoch标准缓解。与ckpt-400 eval互补。"
+    },
+    "gpu_ids": [
+      1
+    ],
+    "hypothesis": "DPO+CED 1 epoch retraining: plan_012_dpo_ced 3 epochs 严重过拟合 (rewards_accuracy=1.0, margins 9x膨胀, entropy崩塌)。重训 1 epoch 验证 early stopping 是否消除 overfitting confound。对比 plan_012 3ep + RSFT (rel_f1=0.46) + SFT baseline (rel_f1=0.4057)。"
+  },
+  "timestamp": "2026-05-15T19:06:45.011904+00:00",
+  "trigger": "update_registry"
+}

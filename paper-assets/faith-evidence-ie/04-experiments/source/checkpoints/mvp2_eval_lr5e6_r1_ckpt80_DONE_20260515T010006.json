@@ -1,0 +1,52 @@
+{
+  "exp_id": "mvp2_eval_lr5e6_r1_ckpt80",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:25:45.043Z",
+    "updated_at": "2026-05-15T01:00:06.612Z",
+    "spec": {
+      "data_path": "/root/autodl-tmp/data/docred/dev.json",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT + GRPO lr5e6 ckpt-80",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-80",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json",
+      "command": "CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-80 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80 --quantize",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "111731",
+      "account": "root",
+      "log_path": "/tmp/eval_lr5e6_ckpt80.log",
+      "checkpoint_path": "/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/"
+    },
+    "hypothesis": "P0 ckpt-80 eval: lr=5e-6 GRPO at step 80. 训练轨迹继续——ckpt-20 FAIL (0.0077), ckpt-40/60 待出. Step 80 reward=0.283 (回升), format_reward=0.249. Pass criteria: rel_f1 > 0.30.",
+    "parent": "mvp2_grpo_ced_lr5e6_r1",
+    "notes": "[2026-05-15 08:56] 正常完成。rel_f1=0.0116，延续 ckpt-20/40/60 的平坦趋势 (0.007-0.012)。evi_f1=0.828 继续上升。lr5e6 轨迹: step 20→40→60→80 rel_f1 = 0.008/0.007/0.009/0.012，无恢复信号。结果路径: /root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/",
+    "conclusion": "negative",
+    "metrics": {
+      "rel_f1": 0.0116,
+      "ign_f1": 0.0116,
+      "precision": 0.0109,
+      "recall": 0.0124,
+      "evi_f1": 0.828,
+      "evi_precision": 0.928,
+      "evi_recall": 0.748,
+      "edcr": 0.993,
+      "format_ok_rate": 0.999,
+      "field_compliance_rate": 0.788,
+      "pred_count": 13828,
+      "gold_count": 12151,
+      "n_truncated": 210,
+      "inference_time_seconds": 6099
+    },
+    "completed_at": "2026-05-15T00:56:43.952Z"
+  },
+  "timestamp": "2026-05-15T01:00:06.773839+00:00",
+  "trigger": "update_registry"
+}

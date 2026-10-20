@@ -1,0 +1,27 @@
+{
+  "exp_id": "rsft_ced_s43_train_r2",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:09:34.266Z",
+    "updated_at": "2026-05-16T00:14:55.685Z",
+    "spec": {
+      "data_path": "/root/autodl-tmp/rsft_filtered/rsft_train.jsonl",
+      "data_count": 2718,
+      "model_name": "Qwen3-4B + LoRA on SFT adapter",
+      "seed": 43,
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "account": "root"
+    },
+    "hypothesis": "CED RSFT seed=43 训练（r2 重试，修正 cwd 错误）。补全 paired t-test 所需的第 3 个 CED seed（现有 s42/s44）。训练数据 2718 samples，3 epochs，~2h。plan_id=plan_mvp2_rsft, claim=3。",
+    "parent": "rsft_ced_s43_train"
+  },
+  "timestamp": "2026-05-16T00:14:55.924278+00:00",
+  "trigger": "update_registry"
+}

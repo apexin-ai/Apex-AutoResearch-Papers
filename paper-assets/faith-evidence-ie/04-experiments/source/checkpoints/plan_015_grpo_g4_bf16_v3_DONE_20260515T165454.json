@@ -1,0 +1,41 @@
+{
+  "exp_id": "plan_015_grpo_g4_bf16_v3",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:27:09.496Z",
+    "updated_at": "2026-05-15T16:54:54.376Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end 0.5 --output_dir /root/autodl-tmp/grpo_g4_bf16_kl001 --num_generations 4 --reward_device cuda --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-6 --seed 42 --kl_coef 0.01 --save_steps 20 --save_total_limit 20 --max_steps 200 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --no-quantize --wandb_run_name plan_015_grpo_g4_bf16_v3\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "226476",
+      "log_path": "~/runs/faith-evidence-ie/plan_015_grpo_g4_bf16_v3.log",
+      "submitted_at": "2026-05-15T16:32:42.980Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 3027,
+      "model_name": "Qwen3-4B + SFT adapter",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "N/A (training)",
+      "checkpoint_path": "/root/autodl-tmp/grpo_g4_bf16_kl001",
+      "notes": "D052: plan_011 vs mvp2_grpo_ced_kl001_r4 已是 clean ablation。v3 取消，cuda:0 腾给 plan_001 eval。",
+      "wall_clock_seconds": 1331.4,
+      "gpu_hours": 0.37
+    },
+    "notes": "Robustness check, 非 single-variable ablation。lr=5e-6 与对照组 (mvp2_grpo_ced_kl001_r4, lr=5e-5) 不一致。D052 确认 plan_011 (bf16 G=8 kl=0.01 lr=5e-5) vs mvp2_grpo_ced_kl001_r4 (QLoRA G=8 kl=0.01 lr=5e-5) 才是 clean ablation。v3 仅作为额外 robustness data point。",
+    "hypothesis": "P2 robustness check: bf16 LoRA GRPO G=4, kl=0.01, lr=5e-6。D052 确认 plan_011 vs mvp2_grpo_ced_kl001_r4 已是 clean single-variable quantization ablation (Δ=+23.8pp)。v3 仅为 robustness data point，lr=5e-6 与对照组 lr=5e-5 不一致。",
+    "conclusion": "killed",
+    "completed_at": "2026-05-15T16:54:54.376Z"
+  },
+  "timestamp": "2026-05-15T16:54:54.555005+00:00",
+  "trigger": "update_registry"
+}

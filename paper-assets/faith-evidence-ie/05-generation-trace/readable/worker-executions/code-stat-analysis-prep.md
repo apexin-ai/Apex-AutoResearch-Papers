@@ -1,0 +1,4317 @@
+# code stat analysis prep
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 92
+- **Recorded user turns:** 0
+- **Tool calls:** 34
+- **Original source:** `logs/workers/worker_code_stat-analysis-prep_20260515T230315.log`
+- **Structured JSON:** [`3f3bbd4d1633a9beb112.json`](../../sessions/3f/3f3bbd4d1633a9beb112.json)
+
+## Before a recorded user message
+
+92 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "2c0a9704-aaf6-446d-960f-1a7385be9c0e",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778903400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "3ae91536-9adf-49af-9103-cd8ee5dd5979",
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by exploring the remote server to understand the existing code structure and check for the EDCR diagnostic script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "992efdff-2f69-4584-aacd-f0d0d90b1005",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qMqNX7qKcwnNeaU69sqPb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12315,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12315
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01NBwHDYcTrDHyLD9Wkc2Bav`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "8bc6752d-8411-4321-bbb9-0eecac818eb1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qMqNX7qKcwnNeaU69sqPb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12315,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12315
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T23:03:26.460Z_
+
+<details><summary>↩ Tool result · `toolu_01NBwHDYcTrDHyLD9Wkc2Bav`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "4bdf4a26-eb27-4505-b63e-9a13cc7a4cb8",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by exploring the remote server to understand the existing structure, check for the EDCR diagnostic script, and look at the eval results directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "8b52eb52-e73b-4ef5-997f-fc1c1f9644d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Z2C8PKybTjwx5e8Qq7iym",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 910,
+      "cache_read_input_tokens": 23762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 910
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018rY7AfS226z8u3efnup7Nt`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/freige/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "3fb6368c-08eb-41c2-9789-c954e4ff2c9e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Z2C8PKybTjwx5e8Qq7iym",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 910,
+      "cache_read_input_tokens": 23762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 910
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LcECKQaDhoBUiEyoCvcxMM`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "2e8bf1bd-c3ce-4f8b-835d-823faea82e0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Z2C8PKybTjwx5e8Qq7iym",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 910,
+      "cache_read_input_tokens": 23762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 910
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T23:03:31.782Z_
+
+<details><summary>↩ Tool result · `toolu_018rY7AfS226z8u3efnup7Nt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"compute_edcr_table.sh\\nedcr_diagnostic.py\\nedcr_diagnostic.sh\\neval_extract_reward_steps.sh\\neval_plan_011_steps.sh\\neval_test_set.sh\\nplot_forgetting_dynamics.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "a96b927c-b4e7-4b5e-bf95-85e56d68a7dd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"compute_edcr_table.sh\\\\nedcr_diagnostic.py\\\\nedcr_diagnostic.sh\\\\neval_extract_reward_steps.sh\\\\neval_plan_011_steps.sh\\\\neval_test_set.sh\\\\nplot_forgetting_dynamics.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"compute_edcr_table.sh\\nedcr_diagnostic.py\\nedcr_diagnostic.sh\\neval_extract_reward_steps.sh\\neval_plan_011_steps.sh\\neval_test_set.sh\\nplot_forgetting_dynamics.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Hy7crQ1AYhaRjjH7RVEoRY`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/eval_results/ -name \"metrics.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "a87552d7-5ad4-4da1-94dc-7482b33c5ab2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Z2C8PKybTjwx5e8Qq7iym",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 910,
+      "cache_read_input_tokens": 23762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 910
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T23:03:32.159Z_
+
+<details><summary>↩ Tool result · `toolu_01LcECKQaDhoBUiEyoCvcxMM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3seed_summary.json\\nbf16_g8_step30\\nbf16_g8_step50\\nced_reranker_dryrun\\nced_reranker_poc\\nced_reranker_poc_dryrun\\ncross_method_table.json\\ndpo_ced_1ep\\ndpo_ced_1ep_fixed\\ndpo_ced_ckpt400\\nedcr_analysis.json\\nedcr_analysis_r2b.md\\nedcr_diagnostic.json\\nedcr_diagnostic.tex\\nevi_f1_joint_comparison.json\\ngrpo_ced_kl001\\ngrpo_ced_kl001_step100\\ngrpo_ced_lr5e6\\ngrpo_ced_lr5e6_ckpt60\\ngrpo_ced_lr5e6_rp\\ngrpo_extract_r4_step10\\ngrpo_flatnli_r3\\ngrpo_g8_bf16\\ngrpo_g8_bf16_ckpt100\\nlr5e6_r1_ckpt100\\nlr5e6_r1_ckpt40\\nlr5e6_r1_ckpt60\\nlr5e6_r1_ckpt80\\nplan_011_bf16_g8_step30\\nplan_011_bf16_g8_step50\\nplan_011_bf16_g8_step70\\nrsft_flat_nli\\nrsft_flat_nli_s43\\nrsft_flat_nli_s43_reeval\\nrsft_r1\\nrsft_r2a\\nrsft_r2b\\nrsft_r2b_maxtok1536\\nrsft_s43\\nrsft_s44\\nrsft_topk3\\nrsft_topk3_fixed\\nsft\\nsft_baseline_noquant\\nsft_no_evidence\\ntest_rsft_s44\\ntest_rsft_s44.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "91013be1-6cc9-43d3-a003-c3123f621413",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3seed_summary.json\\\\nbf16_g8_step30\\\\nbf16_g8_step50\\\\nced_reranker_dryrun\\\\nced_reranker_poc\\\\nced_reranker_poc_dryrun\\\\ncross_method_table.json\\\\ndpo_ced_1ep\\\\ndpo_ced_1ep_fixed\\\\ndpo_ced_ckpt400\\\\nedcr_analysis.json\\\\nedcr_analysis_r2b.md\\\\nedcr_diagnostic.json\\\\nedcr_diagnostic.tex\\\\nevi_f1_joint_comparison.json\\\\ngrpo_ced_kl001\\\\ngrpo_ced_kl001_step100\\\\ngrpo_ced_lr5e6\\\\ngrpo_ced_lr5e6_ckpt60\\\\ngrpo_ced_lr5e6_rp\\\\ngrpo_extract_r4_step10\\\\ngrpo_flatnli_r3\\\\ngrpo_g8_bf16\\\\ngrpo_g8_bf16_ckpt100\\\\nlr5e6_r1_ckpt100\\\\nlr5e6_r1_ckpt40\\\\nlr5e6_r1_ckpt60\\\\nlr5e6_r1_ckpt80\\\\nplan_011_bf16_g8_step30\\\\nplan_011_bf16_g8_step50\\\\nplan_011_bf16_g8_step70\\\\nrsft_flat_nli\\\\nrsft_flat_nli_s43\\\\nrsft_flat_nli_s43_reeval\\\\nrsft_r1\\\\nrsft_r2a\\\\nrsft_r2b\\\\nrsft_r2b_maxtok1536\\\\nrsft_s43\\\\nrsft_s44\\\\nrsft_topk3\\\\nrsft_topk3_fixed\\\\nsft\\\\nsft_baseline_noquant\\\\nsft_no_evidence\\\\ntest_rsft_s44\\\\ntest_rsft_s44.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"3seed_summary.json\\nbf16_g8_step30\\nbf16_g8_step50\\nced_reranker_dryrun\\nced_reranker_poc\\nced_reranker_poc_dryrun\\ncross_method_table.json\\ndpo_ced_1ep\\ndpo_ced_1ep_fixed\\ndpo_ced_ckpt400\\nedcr_analysis.json\\nedcr_analysis_r2b.md\\nedcr_diagnostic.json\\nedcr_diagnostic.tex\\nevi_f1_joint_comparison.json\\ngrpo_ced_kl001\\ngrpo_ced_kl001_step100\\ngrpo_ced_lr5e6\\ngrpo_ced_lr5e6_ckpt60\\ngrpo_ced_lr5e6_rp\\ngrpo_extract_r4_step10\\ngrpo_flatnli_r3\\ngrpo_g8_bf16\\ngrpo_g8_bf16_ckpt100\\nlr5e6_r1_ckpt100\\nlr5e6_r1_ckpt40\\nlr5e6_r1_ckpt60\\nlr5e6_r1_ckpt80\\nplan_011_bf16_g8_step30\\nplan_011_bf16_g8_step50\\nplan_011_bf16_g8_step70\\nrsft_flat_nli\\nrsft_flat_nli_s43\\nrsft_flat_nli_s43_reeval\\nrsft_r1\\nrsft_r2a\\nrsft_r2b\\nrsft_r2b_maxtok1536\\nrsft_s43\\nrsft_s44\\nrsft_topk3\\nrsft_topk3_fixed\\nsft\\nsft_baseline_noquant\\nsft_no_evidence\\ntest_rsft_s44\\ntest_rsft_s44.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T23:03:32.532Z_
+
+<details><summary>↩ Tool result · `toolu_01Hy7crQ1AYhaRjjH7RVEoRY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-50/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-10/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-60/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-20/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-30/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6/checkpoint-20/metrics.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/metrics.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/metrics.json\\n/root/autodl-tmp/eval_results/rsft_s44/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r1/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2a/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2b/metrics.json\\n/root/autodl-tmp/eval_results/rsft_s43/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-80/metrics.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-100/metrics.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-90/metrics.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli/metrics.json\\n/root/autodl-tmp/eval_results/sft_no_evidence/metrics.json\\n/root/autodl-tmp/eval_results/test_rsft_s44/metrics.json\\n/root/autodl-tmp/eval_results/sft_baseline_noquant/metrics.json\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step30/metrics.json\\n/root/autodl-tmp/eval_results/dpo_ced_1ep/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics.json\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step50/metrics.json\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step70/metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "7dbe8222-f0ba-43dd-a96f-ede4d6694ffa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-50/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-10/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-60/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-20/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-30/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6/checkpoint-20/metrics.json\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics.json\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/metrics.json\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_s44/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r1/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r2a/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r2b/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-80/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-100/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-90/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli/metrics.json\\\\n/root/autodl-tmp/eval_results/sft_no_evidence/metrics.json\\\\n/root/autodl-tmp/eval_results/test_rsft_s44/metrics.json\\\\n/root/autodl-tmp/eval_results/sft_baseline_noquant/metrics.json\\\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step30/metrics.json\\\\n/root/autodl-tmp/eval_results/dpo_ced_1ep/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step50/metrics.json\\\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step70/metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-50/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-10/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-60/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-20/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-30/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6/checkpoint-20/metrics.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/metrics.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/metrics.json\\n/root/autodl-tmp/eval_results/rsft_s44/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r1/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2a/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2b/metrics.json\\n/root/autodl-tmp/eval_results/rsft_s43/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-80/metrics.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-100/metrics.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-90/metrics.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli/metrics.json\\n/root/autodl-tmp/eval_results/sft_no_evidence/metrics.json\\n/root/autodl-tmp/eval_results/test_rsft_s44/metrics.json\\n/root/autodl-tmp/eval_results/sft_baseline_noquant/metrics.json\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step30/metrics.json\\n/root/autodl-tmp/eval_results/dpo_ced_1ep/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics.json\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step50/metrics.json\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step70/metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now read the existing EDCR diagnostic script and also look at a few metrics.json files to understand their structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "cc165587-dfe9-47b6-b8d4-18b1a6f87678",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VWvzhpg2DjFBwv5SKoqE6f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2153,
+      "cache_read_input_tokens": 24672,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2153
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Let me read the existing EDCR diagnostic script and examine the metrics.json structure.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "358608c3-6ecb-4360-b8c5-3365b03f4d93",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VWvzhpg2DjFBwv5SKoqE6f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2153,
+      "cache_read_input_tokens": 24672,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2153
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MBeLwWSco7ara7phSmkGCv`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/scripts/edcr_diagnostic.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "fddf4a63-9cff-4f39-a5cd-fbef338f298c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VWvzhpg2DjFBwv5SKoqE6f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2153,
+      "cache_read_input_tokens": 24672,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2153
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T23:03:36.367Z_
+
+<details><summary>↩ Tool result · `toolu_01MBeLwWSco7ara7phSmkGCv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Cross-method EDCR diagnostic analysis.\\n\\nInput:\\n  --methods NAME:PRED_PATH [NAME:PRED_PATH ...]\\n    Each entry is method_name:path_to_predictions.json\\n    predictions.json format: list of {doc_id, parsed_triples, gold_triples}\\n    where each triple has {head, relation, tail, evidence}\\n\\n  OR --auto-discover (scan /root/autodl-tmp/eval_results/*/predictions.json)\\n\\n  --gold PATH  DocRED dev.json for gold (only needed if predictions.json lacks gold_triples)\\n  --output-dir PATH  Where to write results (default: /root/autodl-tmp/eval_results/)\\n\\nOutput (in output_dir):\\n  edcr_diagnostic.json  — per-method: overall EDCR, per-relation-type EDCR, per-document EDCR stats\\n  edcr_diagnostic.tex   — LaTeX table ready for paper\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport statistics\\nimport sys\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\n# Allow importing freige when run from /root/autodl-tmp/\\nsys.path.insert(0, str(Path(__file__).resolve().parents[1]))\\n\\nfrom eval.evaluator import DocREDEvaluator, _triple_key\\n\\n\\n# --------------------------------------------------------------------------\\n# Default method configs for --auto-discover\\n# --------------------------------------------------------------------------\\nAUTO_METHODS = [\\n    (\\\"SFT baseline (quant)\\\", \\\"/root/autodl-tmp/sft_baseline_eval_results/predictions.json\\\"),\\n    (\\\"SFT baseline (noquant)\\\", \\\"/root/autodl-tmp/eval_results/sft_baseline_noquant/predictions.json\\\"),\\n    (\\\"RSFT-CED s42\\\", \\\"/root/autodl-tmp/eval_results/rsft_r1/predictions.json\\\"),\\n    (\\\"RSFT-CED s43\\\", \\\"/root/autodl-tmp/eval_results/rsft_s43/predictions.json\\\"),\\n    (\\\"RSFT-CED s44\\\", \\\"/root/autodl-tmp/eval_results/rsft_s44/predictions.json\\\"),\\n    (\\\"RSFT-CED r2a\\\", \\\"/root/autodl-tmp/eval_results/rsft_r2a/predictions.json\\\"),\\n    (\\\"RSFT-CED r2b\\\", \\\"/root/autodl-tmp/eval_results/rsft_r2b/predictions.json\\\"),\\n    (\\\"RSFT-flatNLI s42\\\", \\\"/root/autodl-tmp/eval_results/rsft_flat_nli/predictions.json\\\"),\\n    (\\\"SFT no-evidence\\\", \\\"/root/autodl-tmp/eval_results/sft_no_evidence/predictions.json\\\"),\\n    (\\\"GRPO bf16 ckpt100\\\", \\\"/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/predictions.json\\\"),\\n    (\\\"GRPO QLoRA kl001 ckpt100\\\", \\\"/root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100/predictions.json\\\"),\\n    (\\\"GRPO QLoRA lr5e6 ckpt100\\\", \\\"/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/predictions.json\\\"),\\n    (\\\"DPO-CED 1ep\\\", \\\"/root/autodl-tmp/eval_results/dpo_ced_1ep/predictions.json\\\"),\\n    (\\\"RSFT-flatNLI s43\\\", \\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s43/predictions.json\\\"),\\n]\\n\\n\\ndef load_predictions(path: str) -> list[dict]:\\n    with open(path) as f:\\n        return json.load(f)\\n\\n\\ndef flatten_predictions(docs: list[dict]) -> tuple[list[dict], list[dict]]:\\n    \\\"\\\"\\\"Flatten per-doc predictions into evaluator format.\\n    Returns (predictions, gold) — both as flat lists of {doc_id, head, tail, relation, evidence}.\\n    \\\"\\\"\\\"\\n    preds = []\\n    gold = []\\n    for doc in docs:\\n        doc_id = doc[\\\"doc_id\\\"]\\n        for t in doc.get(\\\"parsed_triples\\\", []):\\n            preds.append({\\n                \\\"doc_id\\\": doc_id,\\n                \\\"head\\\": t[\\\"head\\\"],\\n                \\\"tail\\\": t[\\\"tail\\\"],\\n                \\\"relation\\\": t[\\\"relation\\\"],\\n                \\\"evidence\\\": t.get(\\\"evidence\\\", []),\\n            })\\n        for g in doc.get(\\\"gold_triples\\\", []):\\n            gold.append({\\n                \\\"doc_id\\\": doc_id,\\n                \\\"head\\\": g[\\\"head\\\"],\\n                \\\"tail\\\": g[\\\"tail\\\"],\\n                \\\"relation\\\": g[\\\"relation\\\"],\\n                \\\"evidence\\\": g.get(\\\"evidence\\\", []),\\n            })\\n    return preds, gold\\n\\n\\ndef compute_per_relation_edcr(predictions: list[dict], gold: list[dict]) -> dict:\\n    \\\"\\\"\\\"EDCR broken down by relation type.\\n    Returns {relation_name: {edcr, n_distractor, n_total, n_triples}}.\\n    \\\"\\\"\\\"\\n    gold_map = {}\\n    for g in gold:\\n        key = _triple_key(g[\\\"doc_id\\\"], g[\\\"head\\\"], g[\\\"tail\\\"], g[\\\"relation\\\"])\\n        gold_map.setdefault(key, set()).update(g.get(\\\"evidence\\\", []))\\n\\n    per_rel = defaultdict(lambda: {\\\"n_distractor\\\": \\n\\n... [截断: 输出过长，省略 4452 字符] ...\\n\\nnes.append(r\\\"\\\\end{table}\\\")\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef generate_per_relation_latex(results: list[dict], top_k: int = 10) -> str:\\n    \\\"\\\"\\\"LaTeX table showing EDCR per relation type for top-K most frequent relations.\\\"\\\"\\\"\\n    # Collect all relation types across methods, rank by total triples\\n    rel_counts = defaultdict(int)\\n    for r in results:\\n        for rel, info in r[\\\"per_relation_edcr\\\"].items():\\n            rel_counts[rel] += info[\\\"n_triples\\\"]\\n    top_rels = sorted(rel_counts.keys(), key=lambda x: -rel_counts[x])[:top_k]\\n\\n    n_methods = len(results)\\n    col_spec = \\\"l\\\" + \\\" c\\\" * n_methods\\n    lines = []\\n    lines.append(r\\\"\\\\begin{table}[t]\\\")\\n    lines.append(r\\\"\\\\centering\\\")\\n    lines.append(r\\\"\\\\small\\\")\\n    lines.append(r\\\"\\\\caption{Per-Relation-Type EDCR (top-%d relations by frequency)}\\\" % top_k)\\n    lines.append(r\\\"\\\\label{tab:edcr-per-relation}\\\")\\n    lines.append(r\\\"\\\\begin{tabular}{%s}\\\" % col_spec)\\n    lines.append(r\\\"\\\\toprule\\\")\\n\\n    header = \\\"Relation\\\"\\n    for r in results:\\n        short = r[\\\"method\\\"][:12]\\n        header += f\\\" & {short}\\\"\\n    header += r\\\" \\\\\\\\\\\"\\n    lines.append(header)\\n    lines.append(r\\\"\\\\midrule\\\")\\n\\n    for rel in top_rels:\\n        row = rel.replace(\\\"_\\\", r\\\"\\\\_\\\")\\n        for r in results:\\n            info = r[\\\"per_relation_edcr\\\"].get(rel)\\n            if info:\\n                row += f\\\" & {info['edcr']:.3f}\\\"\\n            else:\\n                row += \\\" & --\\\"\\n        row += r\\\" \\\\\\\\\\\"\\n        lines.append(f\\\"  {row}\\\")\\n\\n    lines.append(r\\\"\\\\bottomrule\\\")\\n    lines.append(r\\\"\\\\end{tabular}\\\")\\n    lines.append(r\\\"\\\\end{table}\\\")\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Cross-method EDCR diagnostic analysis\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--methods\\\", nargs=\\\"+\\\", metavar=\\\"NAME:PATH\\\",\\n        help=\\\"Method entries as name:predictions_path pairs\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--auto-discover\\\", action=\\\"store_true\\\",\\n        help=\\\"Auto-discover methods from built-in config\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--output-dir\\\", default=\\\"/root/autodl-tmp/eval_results/\\\",\\n        help=\\\"Output directory for diagnostic files\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--top-k-relations\\\", type=int, default=10,\\n        help=\\\"Number of top relations for per-relation table\\\"\\n    )\\n    args = parser.parse_args()\\n\\n    method_list = []\\n    if args.auto_discover:\\n        method_list = AUTO_METHODS\\n    elif args.methods:\\n        for m in args.methods:\\n            if \\\":\\\" not in m:\\n                parser.error(f\\\"Invalid method format: {m} (expected NAME:PATH)\\\")\\n            name, path = m.split(\\\":\\\", 1)\\n            method_list.append((name, path))\\n    else:\\n        parser.error(\\\"Specify --methods or --auto-discover\\\")\\n\\n    results = []\\n    for name, path in method_list:\\n        print(f\\\"Analyzing: {name}\\\")\\n        r = analyze_method(name, path)\\n        if r is not None:\\n            results.append(r)\\n\\n    if not results:\\n        print(\\\"No valid results.\\\")\\n        return\\n\\n    out = Path(args.output_dir)\\n    out.mkdir(parents=True, exist_ok=True)\\n\\n    # Summary JSON\\n    json_path = out / \\\"edcr_diagnostic.json\\\"\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2, ensure_ascii=False)\\n    print(f\\\"\\\\nJSON -> {json_path}\\\")\\n\\n    # LaTeX tables\\n    tex_path = out / \\\"edcr_diagnostic.tex\\\"\\n    with open(tex_path, \\\"w\\\") as f:\\n        f.write(\\\"% Auto-generated by edcr_diagnostic.py\\\\n\\\\n\\\")\\n        f.write(generate_latex_table(results))\\n        f.write(\\\"\\\\n\\\\n\\\")\\n        f.write(generate_per_relation_latex(results, top_k=args.top_k_relations))\\n    print(f\\\"LaTeX -> {tex_path}\\\")\\n\\n    # Console summary\\n    print(f\\\"\\\\n{'Method':<28} {'rel_f1':>7} {'evi_f1':>7} {'EDCR':>7} {'med':>7} {'std':>7} {'n_doc':>6}\\\")\\n    print(\\\"-\\\" * 78)\\n    for r in results:\\n        doc = r[\\\"per_document_edcr\\\"]\\n        print(f\\\"{r['method']:<28} {r['rel_f1']:>7.4f} {r['evi_f1']:>7.4f} \\\"\\n              f\\\"{r['edcr']:>7.4f} {doc['median']:>7.4f} {doc['std']:>7.4f} {doc['n_docs']:>6}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "f68fbeca-4fb0-49c8-a3bd-18176c982086",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Cross-method EDCR diagnostic analysis.\\\\n\\\\nInput:\\\\n  --methods NAME:PRED_PATH [NAME:PRED_PATH ...]\\\\n    Each entry is method_name:path_to_predictions.json\\\\n    predictions.json format: list of {doc_id, parsed_triples, gold_triples}\\\\n    where each triple has {head, relation, tail, evidence}\\\\n\\\\n  OR --auto-discover (scan /root/autodl-tmp/eval_results/*/predictions.json)\\\\n\\\\n  --gold PATH  DocRED dev.json for gold (only needed if predictions.json lacks gold_triples)\\\\n  --output-dir PATH  Where to write results (default: /root/autodl-tmp/eval_results/)\\\\n\\\\nOutput (in output_dir):\\\\n  edcr_diagnostic.json  — per-method: overall EDCR, per-relation-type EDCR, per-document EDCR stats\\\\n  edcr_diagnostic.tex   — LaTeX table ready for paper\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport statistics\\\\nimport sys\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\n# Allow importing freige when run from /root/autodl-tmp/\\\\nsys.path.insert(0, str(Path(__file__).resolve().parents[1]))\\\\n\\\\nfrom eval.evaluator import DocREDEvaluator, _triple_key\\\\n\\\\n\\\\n# --------------------------------------------------------------------------\\\\n# Default method configs for --auto-discover\\\\n# --------------------------------------------------------------------------\\\\nAUTO_METHODS = [\\\\n    (\\\\\\\"SFT baseline (quant)\\\\\\\", \\\\\\\"/root/autodl-tmp/sft_baseline_eval_results/predictions.json\\\\\\\"),\\\\n    (\\\\\\\"SFT baseline (noquant)\\\\\\\", \\\\\\\"/root/autodl-tmp/eval_results/sft_baseline_noquant/predictions.json\\\\\\\"),\\\\n    (\\\\\\\"RSFT-CED s42\\\\\\\", \\\\\\\"/root/autodl-tmp/eval_results/rsft_r1/predictions.json\\\\\\\"),\\\\n    (\\\\\\\"RSFT-CED s43\\\\\\\", \\\\\\\"/root/autodl-tmp/eval_results/rsft_s43/predictions.json\\\\\\\"),\\\\n    (\\\\\\\"RSFT-CED s44\\\\\\\", \\\\\\\"/root/autodl-tmp/eval_results/rsft_s44/predictions.json\\\\\\\"),\\\\n    (\\\\\\\"RSFT-CED r2a\\\\\\\", \\\\\\\"/root/autodl-tmp/eval_results/rsft_r2a/predictions.json\\\\\\\"),\\\\n    (\\\\\\\"RSFT-CED r2b\\\\\\\", \\\\\\\"/root/autodl-tmp/eval_results/rsft_r2b/predictions.json\\\\\\\"),\\\\n    (\\\\\\\"RSFT-flatNLI s42\\\\\\\", \\\\\\\"/root/autodl-tmp/eval_results/rsft_flat_nli/predictions.json\\\\\\\"),\\\\n    (\\\\\\\"SFT no-evidence\\\\\\\", \\\\\\\"/root/autodl-tmp/eval_results/sft_no_evidence/predictions.json\\\\\\\"),\\\\n    (\\\\\\\"GRPO bf16 ckpt100\\\\\\\", \\\\\\\"/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/predictions.json\\\\\\\"),\\\\n    (\\\\\\\"GRPO QLoRA kl001 ckpt100\\\\\\\", \\\\\\\"/root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100/predictions.json\\\\\\\"),\\\\n    (\\\\\\\"GRPO QLoRA lr5e6 ckpt100\\\\\\\", \\\\\\\"/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/predictions.json\\\\\\\"),\\\\n    (\\\\\\\"DPO-CED 1ep\\\\\\\", \\\\\\\"/root/autodl-tmp/eval_results/dpo_ced_1ep/predictions.json\\\\\\\"),\\\\n    (\\\\\\\"RSFT-flatNLI s43\\\\\\\", \\\\\\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s43/predictions.json\\\\\\\"),\\\\n]\\\\n\\\\n\\\\ndef load_predictions(path: str) -> list[dict]:\\\\n    with open(path) as f:\\\\n        return json.load(f)\\\\n\\\\n\\\\ndef flatten_predictions(docs: list[dict]) -> tuple[list[dict], list[dict]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Flatten per-doc predictions into evaluator format.\\\\n    Returns (predictions, gold) — both as flat lists of {doc_id, head, tail, relation, evidence}.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    preds = []\\\\n    gold = []\\\\n    for doc in docs:\\\\n        doc_id = doc[\\\\\\\"doc_id\\\\\\\"]\\\\n        for t in doc.get(\\\\\\\"parsed_triples\\\\\\\", []):\\\\n            preds.append({\\\\n                \\\\\\\"doc_id\\\\\\\": doc_id,\\\\n                \\\\\\\"head\\\\\\\": t[\\\\\\\"head\\\\\\\"],\\\\n                \\\\\\\"tail\\\\\\\": t[\\\\\\\"tail\\\\\\\"],\\\\n                \\\\\\\"relation\\\\\\\": t[\\\\\\\"relation\\\\\\\"],\\\\n                \\\\\\\"evidence\\\\\\\": t.get(\\\\\\\"evidence\\\\\\\", []),\\\\n            })\\\\n        for g in doc.get(\\\\\\\"gold_triples\\\\\\\", []):\\\\n            gold.append({\\\\n                \\\\\\\"doc_id\\\\\\\": doc_id,\\\\n                \\\\\\\"head\\\\\\\": g[\\\\\\\"head\\\\\\\"],\\\\n                \\\\\\\"tail\\\\\\\": g[\\\\\\\"tail\\\\\\\"],\\\\n                \\\\\\\"relation\\\\\\\": g[\\\\\\\"relation\\\\\\\"],\\\\n                \\\\\\\"evidence\\\\\\\": g.get(\\\\\\\"evidence\\\\\\\", []),\\\\n            })\\\\n    return preds, gold\\\\n\\\\n\\\\ndef compute_per_relation_edcr(predictions: list[dict], gold: list[dict]) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"EDCR broken down by relation type.\\\\n    Returns {relation_name: {edcr, n_distractor, n_total, n_triples}}.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    gold_map = {}\\\\n    for g in gold:\\\\n        key = _triple_key(g[\\\\\\\"doc_id\\\\\\\"], g[\\\\\\\"head\\\\\\\"], g[\\\\\\\"tail\\\\\\\"], g[\\\\\\\"relation\\\\\\\"])\\\\n        gold_map.setdefault(key, set()).update(g.get(\\\\\\\"evidence\\\\\\\", []))\\\\n\\\\n    per_rel = defaultdict(lambda: {\\\\\\\"n_distractor\\\\\\\": \\\\n\\\\n... [截断: 输出过长，省略 4452 字符] ...\\\\n\\\\nnes.append(r\\\\\\\"\\\\\\\\end{table}\\\\\\\")\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines)\\\\n\\\\n\\\\ndef generate_per_relation_latex(results: list[dict], top_k: int = 10) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"LaTeX table showing EDCR per relation type for top-K most frequent relations.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    # Collect all relation types across methods, rank by total triples\\\\n    rel_counts = defaultdict(int)\\\\n    for r in results:\\\\n        for rel, info in r[\\\\\\\"per_relation_edcr\\\\\\\"].items():\\\\n            rel_counts[rel] += info[\\\\\\\"n_triples\\\\\\\"]\\\\n    top_rels = sorted(rel_counts.keys(), key=lambda x: -rel_counts[x])[:top_k]\\\\n\\\\n    n_methods = len(results)\\\\n    col_spec = \\\\\\\"l\\\\\\\" + \\\\\\\" c\\\\\\\" * n_methods\\\\n    lines = []\\\\n    lines.append(r\\\\\\\"\\\\\\\\begin{table}[t]\\\\\\\")\\\\n    lines.append(r\\\\\\\"\\\\\\\\centering\\\\\\\")\\\\n    lines.append(r\\\\\\\"\\\\\\\\small\\\\\\\")\\\\n    lines.append(r\\\\\\\"\\\\\\\\caption{Per-Relation-Type EDCR (top-%d relations by frequency)}\\\\\\\" % top_k)\\\\n    lines.append(r\\\\\\\"\\\\\\\\label{tab:edcr-per-relation}\\\\\\\")\\\\n    lines.append(r\\\\\\\"\\\\\\\\begin{tabular}{%s}\\\\\\\" % col_spec)\\\\n    lines.append(r\\\\\\\"\\\\\\\\toprule\\\\\\\")\\\\n\\\\n    header = \\\\\\\"Relation\\\\\\\"\\\\n    for r in results:\\\\n        short = r[\\\\\\\"method\\\\\\\"][:12]\\\\n        header += f\\\\\\\" & {short}\\\\\\\"\\\\n    header += r\\\\\\\" \\\\\\\\\\\\\\\\\\\\\\\"\\\\n    lines.append(header)\\\\n    lines.append(r\\\\\\\"\\\\\\\\midrule\\\\\\\")\\\\n\\\\n    for rel in top_rels:\\\\n        row = rel.replace(\\\\\\\"_\\\\\\\", r\\\\\\\"\\\\\\\\_\\\\\\\")\\\\n        for r in results:\\\\n            info = r[\\\\\\\"per_relation_edcr\\\\\\\"].get(rel)\\\\n            if info:\\\\n                row += f\\\\\\\" & {info['edcr']:.3f}\\\\\\\"\\\\n            else:\\\\n                row += \\\\\\\" & --\\\\\\\"\\\\n        row += r\\\\\\\" \\\\\\\\\\\\\\\\\\\\\\\"\\\\n        lines.append(f\\\\\\\"  {row}\\\\\\\")\\\\n\\\\n    lines.append(r\\\\\\\"\\\\\\\\bottomrule\\\\\\\")\\\\n    lines.append(r\\\\\\\"\\\\\\\\end{tabular}\\\\\\\")\\\\n    lines.append(r\\\\\\\"\\\\\\\\end{table}\\\\\\\")\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines)\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Cross-method EDCR diagnostic analysis\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--methods\\\\\\\", nargs=\\\\\\\"+\\\\\\\", metavar=\\\\\\\"NAME:PATH\\\\\\\",\\\\n        help=\\\\\\\"Method entries as name:predictions_path pairs\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--auto-discover\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Auto-discover methods from built-in config\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--output-dir\\\\\\\", default=\\\\\\\"/root/autodl-tmp/eval_results/\\\\\\\",\\\\n        help=\\\\\\\"Output directory for diagnostic files\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--top-k-relations\\\\\\\", type=int, default=10,\\\\n        help=\\\\\\\"Number of top relations for per-relation table\\\\\\\"\\\\n    )\\\\n    args = parser.parse_args()\\\\n\\\\n    method_list = []\\\\n    if args.auto_discover:\\\\n        method_list = AUTO_METHODS\\\\n    elif args.methods:\\\\n        for m in args.methods:\\\\n            if \\\\\\\":\\\\\\\" not in m:\\\\n                parser.error(f\\\\\\\"Invalid method format: {m} (expected NAME:PATH)\\\\\\\")\\\\n            name, path = m.split(\\\\\\\":\\\\\\\", 1)\\\\n            method_list.append((name, path))\\\\n    else:\\\\n        parser.error(\\\\\\\"Specify --methods or --auto-discover\\\\\\\")\\\\n\\\\n    results = []\\\\n    for name, path in method_list:\\\\n        print(f\\\\\\\"Analyzing: {name}\\\\\\\")\\\\n        r = analyze_method(name, path)\\\\n        if r is not None:\\\\n            results.append(r)\\\\n\\\\n    if not results:\\\\n        print(\\\\\\\"No valid results.\\\\\\\")\\\\n        return\\\\n\\\\n    out = Path(args.output_dir)\\\\n    out.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # Summary JSON\\\\n    json_path = out / \\\\\\\"edcr_diagnostic.json\\\\\\\"\\\\n    with open(json_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2, ensure_ascii=False)\\\\n    print(f\\\\\\\"\\\\\\\\nJSON -> {json_path}\\\\\\\")\\\\n\\\\n    # LaTeX tables\\\\n    tex_path = out / \\\\\\\"edcr_diagnostic.tex\\\\\\\"\\\\n    with open(tex_path, \\\\\\\"w\\\\\\\") as f:\\\\n        f.write(\\\\\\\"% Auto-generated by edcr_diagnostic.py\\\\\\\\n\\\\\\\\n\\\\\\\")\\\\n        f.write(generate_latex_table(results))\\\\n        f.write(\\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\")\\\\n        f.write(generate_per_relation_latex(results, top_k=args.top_k_relations))\\\\n    print(f\\\\\\\"LaTeX -> {tex_path}\\\\\\\")\\\\n\\\\n    # Console summary\\\\n    print(f\\\\\\\"\\\\\\\\n{'Method':<28} {'rel_f1':>7} {'evi_f1':>7} {'EDCR':>7} {'med':>7} {'std':>7} {'n_doc':>6}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 78)\\\\n    for r in results:\\\\n        doc = r[\\\\\\\"per_document_edcr\\\\\\\"]\\\\n        print(f\\\\\\\"{r['method']:<28} {r['rel_f1']:>7.4f} {r['evi_f1']:>7.4f} \\\\\\\"\\\\n              f\\\\\\\"{r['edcr']:>7.4f} {doc['median']:>7.4f} {doc['std']:>7.4f} {doc['n_docs']:>6}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Cross-method EDCR diagnostic analysis.\\n\\nInput:\\n  --methods NAME:PRED_PATH [NAME:PRED_PATH ...]\\n    Each entry is method_name:path_to_predictions.json\\n    predictions.json format: list of {doc_id, parsed_triples, gold_triples}\\n    where each triple has {head, relation, tail, evidence}\\n\\n  OR --auto-discover (scan /root/autodl-tmp/eval_results/*/predictions.json)\\n\\n  --gold PATH  DocRED dev.json for gold (only needed if predictions.json lacks gold_triples)\\n  --output-dir PATH  Where to write results (default: /root/autodl-tmp/eval_results/)\\n\\nOutput (in output_dir):\\n  edcr_diagnostic.json  — per-method: overall EDCR, per-relation-type EDCR, per-document EDCR stats\\n  edcr_diagnostic.tex   — LaTeX table ready for paper\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport statistics\\nimport sys\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\n# Allow importing freige when run from /root/autodl-tmp/\\nsys.path.insert(0, str(Path(__file__).resolve().parents[1]))\\n\\nfrom eval.evaluator import DocREDEvaluator, _triple_key\\n\\n\\n# --------------------------------------------------------------------------\\n# Default method configs for --auto-discover\\n# --------------------------------------------------------------------------\\nAUTO_METHODS = [\\n    (\\\"SFT baseline (quant)\\\", \\\"/root/autodl-tmp/sft_baseline_eval_results/predictions.json\\\"),\\n    (\\\"SFT baseline (noquant)\\\", \\\"/root/autodl-tmp/eval_results/sft_baseline_noquant/predictions.json\\\"),\\n    (\\\"RSFT-CED s42\\\", \\\"/root/autodl-tmp/eval_results/rsft_r1/predictions.json\\\"),\\n    (\\\"RSFT-CED s43\\\", \\\"/root/autodl-tmp/eval_results/rsft_s43/predictions.json\\\"),\\n    (\\\"RSFT-CED s44\\\", \\\"/root/autodl-tmp/eval_results/rsft_s44/predictions.json\\\"),\\n    (\\\"RSFT-CED r2a\\\", \\\"/root/autodl-tmp/eval_results/rsft_r2a/predictions.json\\\"),\\n    (\\\"RSFT-CED r2b\\\", \\\"/root/autodl-tmp/eval_results/rsft_r2b/predictions.json\\\"),\\n    (\\\"RSFT-flatNLI s42\\\", \\\"/root/autodl-tmp/eval_results/rsft_flat_nli/predictions.json\\\"),\\n    (\\\"SFT no-evidence\\\", \\\"/root/autodl-tmp/eval_results/sft_no_evidence/predictions.json\\\"),\\n    (\\\"GRPO bf16 ckpt100\\\", \\\"/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/predictions.json\\\"),\\n    (\\\"GRPO QLoRA kl001 ckpt100\\\", \\\"/root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100/predictions.json\\\"),\\n    (\\\"GRPO QLoRA lr5e6 ckpt100\\\", \\\"/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/predictions.json\\\"),\\n    (\\\"DPO-CED 1ep\\\", \\\"/root/autodl-tmp/eval_results/dpo_ced_1ep/predictions.json\\\"),\\n    (\\\"RSFT-flatNLI s43\\\", \\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s43/predictions.json\\\"),\\n]\\n\\n\\ndef load_predictions(path: str) -> list[dict]:\\n    with open(path) as f:\\n        return json.load(f)\\n\\n\\ndef flatten_predictions(docs: list[dict]) -> tuple[list[dict], list[dict]]:\\n    \\\"\\\"\\\"Flatten per-doc predictions into evaluator format.\\n    Returns (predictions, gold) — both as flat lists of {doc_id, head, tail, relation, evidence}.\\n    \\\"\\\"\\\"\\n    preds = []\\n    gold = []\\n    for doc in docs:\\n        doc_id = doc[\\\"doc_id\\\"]\\n        for t in doc.get(\\\"parsed_triples\\\", []):\\n            preds.append({\\n                \\\"doc_id\\\": doc_id,\\n                \\\"head\\\": t[\\\"head\\\"],\\n                \\\"tail\\\": t[\\\"tail\\\"],\\n                \\\"relation\\\": t[\\\"relation\\\"],\\n                \\\"evidence\\\": t.get(\\\"evidence\\\", []),\\n            })\\n        for g in doc.get(\\\"gold_triples\\\", []):\\n            gold.append({\\n                \\\"doc_id\\\": doc_id,\\n                \\\"head\\\": g[\\\"head\\\"],\\n                \\\"tail\\\": g[\\\"tail\\\"],\\n                \\\"relation\\\": g[\\\"relation\\\"],\\n                \\\"evidence\\\": g.get(\\\"evidence\\\", []),\\n            })\\n    return preds, gold\\n\\n\\ndef compute_per_relation_edcr(predictions: list[dict], gold: list[dict]) -> dict:\\n    \\\"\\\"\\\"EDCR broken down by relation type.\\n    Returns {relation_name: {edcr, n_distractor, n_total, n_triples}}.\\n    \\\"\\\"\\\"\\n    gold_map = {}\\n    for g in gold:\\n        key = _triple_key(g[\\\"doc_id\\\"], g[\\\"head\\\"], g[\\\"tail\\\"], g[\\\"relation\\\"])\\n        gold_map.setdefault(key, set()).update(g.get(\\\"evidence\\\", []))\\n\\n    per_rel = defaultdict(lambda: {\\\"n_distractor\\\": \\n\\n... [截断: 输出过长，省略 4452 字符] ...\\n\\nnes.append(r\\\"\\\\end{table}\\\")\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef generate_per_relation_latex(results: list[dict], top_k: int = 10) -> str:\\n    \\\"\\\"\\\"LaTeX table showing EDCR per relation type for top-K most frequent relations.\\\"\\\"\\\"\\n    # Collect all relation types across methods, rank by total triples\\n    rel_counts = defaultdict(int)\\n    for r in results:\\n        for rel, info in r[\\\"per_relation_edcr\\\"].items():\\n            rel_counts[rel] += info[\\\"n_triples\\\"]\\n    top_rels = sorted(rel_counts.keys(), key=lambda x: -rel_counts[x])[:top_k]\\n\\n    n_methods = len(results)\\n    col_spec = \\\"l\\\" + \\\" c\\\" * n_methods\\n    lines = []\\n    lines.append(r\\\"\\\\begin{table}[t]\\\")\\n    lines.append(r\\\"\\\\centering\\\")\\n    lines.append(r\\\"\\\\small\\\")\\n    lines.append(r\\\"\\\\caption{Per-Relation-Type EDCR (top-%d relations by frequency)}\\\" % top_k)\\n    lines.append(r\\\"\\\\label{tab:edcr-per-relation}\\\")\\n    lines.append(r\\\"\\\\begin{tabular}{%s}\\\" % col_spec)\\n    lines.append(r\\\"\\\\toprule\\\")\\n\\n    header = \\\"Relation\\\"\\n    for r in results:\\n        short = r[\\\"method\\\"][:12]\\n        header += f\\\" & {short}\\\"\\n    header += r\\\" \\\\\\\\\\\"\\n    lines.append(header)\\n    lines.append(r\\\"\\\\midrule\\\")\\n\\n    for rel in top_rels:\\n        row = rel.replace(\\\"_\\\", r\\\"\\\\_\\\")\\n        for r in results:\\n            info = r[\\\"per_relation_edcr\\\"].get(rel)\\n            if info:\\n                row += f\\\" & {info['edcr']:.3f}\\\"\\n            else:\\n                row += \\\" & --\\\"\\n        row += r\\\" \\\\\\\\\\\"\\n        lines.append(f\\\"  {row}\\\")\\n\\n    lines.append(r\\\"\\\\bottomrule\\\")\\n    lines.append(r\\\"\\\\end{tabular}\\\")\\n    lines.append(r\\\"\\\\end{table}\\\")\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Cross-method EDCR diagnostic analysis\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--methods\\\", nargs=\\\"+\\\", metavar=\\\"NAME:PATH\\\",\\n        help=\\\"Method entries as name:predictions_path pairs\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--auto-discover\\\", action=\\\"store_true\\\",\\n        help=\\\"Auto-discover methods from built-in config\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--output-dir\\\", default=\\\"/root/autodl-tmp/eval_results/\\\",\\n        help=\\\"Output directory for diagnostic files\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--top-k-relations\\\", type=int, default=10,\\n        help=\\\"Number of top relations for per-relation table\\\"\\n    )\\n    args = parser.parse_args()\\n\\n    method_list = []\\n    if args.auto_discover:\\n        method_list = AUTO_METHODS\\n    elif args.methods:\\n        for m in args.methods:\\n            if \\\":\\\" not in m:\\n                parser.error(f\\\"Invalid method format: {m} (expected NAME:PATH)\\\")\\n            name, path = m.split(\\\":\\\", 1)\\n            method_list.append((name, path))\\n    else:\\n        parser.error(\\\"Specify --methods or --auto-discover\\\")\\n\\n    results = []\\n    for name, path in method_list:\\n        print(f\\\"Analyzing: {name}\\\")\\n        r = analyze_method(name, path)\\n        if r is not None:\\n            results.append(r)\\n\\n    if not results:\\n        print(\\\"No valid results.\\\")\\n        return\\n\\n    out = Path(args.output_dir)\\n    out.mkdir(parents=True, exist_ok=True)\\n\\n    # Summary JSON\\n    json_path = out / \\\"edcr_diagnostic.json\\\"\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2, ensure_ascii=False)\\n    print(f\\\"\\\\nJSON -> {json_path}\\\")\\n\\n    # LaTeX tables\\n    tex_path = out / \\\"edcr_diagnostic.tex\\\"\\n    with open(tex_path, \\\"w\\\") as f:\\n        f.write(\\\"% Auto-generated by edcr_diagnostic.py\\\\n\\\\n\\\")\\n        f.write(generate_latex_table(results))\\n        f.write(\\\"\\\\n\\\\n\\\")\\n        f.write(generate_per_relation_latex(results, top_k=args.top_k_relations))\\n    print(f\\\"LaTeX -> {tex_path}\\\")\\n\\n    # Console summary\\n    print(f\\\"\\\\n{'Method':<28} {'rel_f1':>7} {'evi_f1':>7} {'EDCR':>7} {'med':>7} {'std':>7} {'n_doc':>6}\\\")\\n    print(\\\"-\\\" * 78)\\n    for r in results:\\n        doc = r[\\\"per_document_edcr\\\"]\\n        print(f\\\"{r['method']:<28} {r['rel_f1']:>7.4f} {r['evi_f1']:>7.4f} \\\"\\n              f\\\"{r['edcr']:>7.4f} {doc['median']:>7.4f} {doc['std']:>7.4f} {doc['n_docs']:>6}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GA4xKDADExW74T7UKJxPYC`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_s44/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "2f49ec52-3819-4673-ba1e-da3049737850",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VWvzhpg2DjFBwv5SKoqE6f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2153,
+      "cache_read_input_tokens": 24672,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2153
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T23:03:37.576Z_
+
+<details><summary>↩ Tool result · `toolu_01GA4xKDADExW74T7UKJxPYC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.47977989344047517,\\n  \\\"recall\\\": 0.452061558719447,\\n  \\\"f1\\\": 0.46550847457627126,\\n  \\\"ign_precision\\\": 0.47977989344047517,\\n  \\\"ign_recall\\\": 0.452061558719447,\\n  \\\"ign_f1\\\": 0.46550847457627126,\\n  \\\"tp\\\": 5493,\\n  \\\"pred_count\\\": 11449,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8117551462621885,\\n  \\\"evi_recall\\\": 0.8057173581862174,\\n  \\\"evi_f1\\\": 0.8087249831346974,\\n  \\\"n_evaluated\\\": 15125,\\n  \\\"edcr\\\": 0.635046273745738,\\n  \\\"n_distractor_citations\\\": 15645,\\n  \\\"n_total_citations\\\": 24636,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.8010152284263959,\\n  \\\"evidence_format_rate\\\": 0.8010152284263959,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 789,\\n  \\\"n_evidence_valid\\\": 789,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15202,\\n  \\\"n_truncated\\\": 189,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 6011.5,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_s44\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_s44\\\",\\n    \\\"batch_size\\\": 8,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "fbffe164-252a-4c9d-87e3-22e566bd7d11",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.47977989344047517,\\\\n  \\\\\\\"recall\\\\\\\": 0.452061558719447,\\\\n  \\\\\\\"f1\\\\\\\": 0.46550847457627126,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.47977989344047517,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.452061558719447,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.46550847457627126,\\\\n  \\\\\\\"tp\\\\\\\": 5493,\\\\n  \\\\\\\"pred_count\\\\\\\": 11449,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8117551462621885,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8057173581862174,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8087249831346974,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15125,\\\\n  \\\\\\\"edcr\\\\\\\": 0.635046273745738,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 15645,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 24636,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.8010152284263959,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.8010152284263959,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 789,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 789,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15202,\\\\n  \\\\\\\"n_truncated\\\\\\\": 189,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 6011.5,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_s44\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_s44\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.47977989344047517,\\n  \\\"recall\\\": 0.452061558719447,\\n  \\\"f1\\\": 0.46550847457627126,\\n  \\\"ign_precision\\\": 0.47977989344047517,\\n  \\\"ign_recall\\\": 0.452061558719447,\\n  \\\"ign_f1\\\": 0.46550847457627126,\\n  \\\"tp\\\": 5493,\\n  \\\"pred_count\\\": 11449,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8117551462621885,\\n  \\\"evi_recall\\\": 0.8057173581862174,\\n  \\\"evi_f1\\\": 0.8087249831346974,\\n  \\\"n_evaluated\\\": 15125,\\n  \\\"edcr\\\": 0.635046273745738,\\n  \\\"n_distractor_citations\\\": 15645,\\n  \\\"n_total_citations\\\": 24636,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.8010152284263959,\\n  \\\"evidence_format_rate\\\": 0.8010152284263959,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 789,\\n  \\\"n_evidence_valid\\\": 789,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15202,\\n  \\\"n_truncated\\\": 189,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 6011.5,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_s44\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_s44\\\",\\n    \\\"batch_size\\\": 8,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015peGrGE1j26x3rTTG5vNfF`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "6783c56c-4fe5-4dda-b5ce-eb2245f6eb43",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VWvzhpg2DjFBwv5SKoqE6f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2153,
+      "cache_read_input_tokens": 24672,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2153
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T23:03:38.339Z_
+
+<details><summary>↩ Tool result · `toolu_015peGrGE1j26x3rTTG5vNfF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.46711958888598554,\\n  \\\"recall\\\": 0.4413628507941733,\\n  \\\"f1\\\": 0.4538761002031144,\\n  \\\"ign_precision\\\": 0.46711958888598554,\\n  \\\"ign_recall\\\": 0.4413628507941733,\\n  \\\"ign_f1\\\": 0.4538761002031144,\\n  \\\"tp\\\": 5363,\\n  \\\"pred_count\\\": 11481,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8143277542762553,\\n  \\\"evi_recall\\\": 0.7944554100125606,\\n  \\\"evi_f1\\\": 0.804268846503179,\\n  \\\"n_evaluated\\\": 15173,\\n  \\\"edcr\\\": 0.6430730783183523,\\n  \\\"n_distractor_citations\\\": 15954,\\n  \\\"n_total_citations\\\": 24809,\\n  \\\"evi_joint_precision\\\": 0.3581005882664688,\\n  \\\"evi_joint_recall\\\": 0.35081252271429314,\\n  \\\"evi_f1_joint\\\": 0.35441909257802257,\\n  \\\"evi_tp\\\": 6757,\\n  \\\"evi_pred_total\\\": 18869,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.7888324873096447,\\n  \\\"evidence_format_rate\\\": 0.7888324873096447,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 777,\\n  \\\"n_evidence_valid\\\": 777,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15294,\\n  \\\"n_truncated\\\": 199,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 3630.6,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_flat_nli\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_flat_nli\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "327535fc-1aae-44fd-940a-de4ecd7ee004",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.46711958888598554,\\\\n  \\\\\\\"recall\\\\\\\": 0.4413628507941733,\\\\n  \\\\\\\"f1\\\\\\\": 0.4538761002031144,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.46711958888598554,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.4413628507941733,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.4538761002031144,\\\\n  \\\\\\\"tp\\\\\\\": 5363,\\\\n  \\\\\\\"pred_count\\\\\\\": 11481,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8143277542762553,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.7944554100125606,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.804268846503179,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15173,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6430730783183523,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 15954,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 24809,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.3581005882664688,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.35081252271429314,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.35441909257802257,\\\\n  \\\\\\\"evi_tp\\\\\\\": 6757,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 18869,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.7888324873096447,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.7888324873096447,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 777,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 777,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15294,\\\\n  \\\\\\\"n_truncated\\\\\\\": 199,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 3630.6,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_flat_nli\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_flat_nli\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.46711958888598554,\\n  \\\"recall\\\": 0.4413628507941733,\\n  \\\"f1\\\": 0.4538761002031144,\\n  \\\"ign_precision\\\": 0.46711958888598554,\\n  \\\"ign_recall\\\": 0.4413628507941733,\\n  \\\"ign_f1\\\": 0.4538761002031144,\\n  \\\"tp\\\": 5363,\\n  \\\"pred_count\\\": 11481,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8143277542762553,\\n  \\\"evi_recall\\\": 0.7944554100125606,\\n  \\\"evi_f1\\\": 0.804268846503179,\\n  \\\"n_evaluated\\\": 15173,\\n  \\\"edcr\\\": 0.6430730783183523,\\n  \\\"n_distractor_citations\\\": 15954,\\n  \\\"n_total_citations\\\": 24809,\\n  \\\"evi_joint_precision\\\": 0.3581005882664688,\\n  \\\"evi_joint_recall\\\": 0.35081252271429314,\\n  \\\"evi_f1_joint\\\": 0.35441909257802257,\\n  \\\"evi_tp\\\": 6757,\\n  \\\"evi_pred_total\\\": 18869,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.7888324873096447,\\n  \\\"evidence_format_rate\\\": 0.7888324873096447,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 777,\\n  \\\"n_evidence_valid\\\": 777,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15294,\\n  \\\"n_truncated\\\": 199,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 3630.6,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_flat_nli\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_flat_nli\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011JtVybiPND2pK63cW9sBKd`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/dpo_ced_1ep/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "7ca31ab9-dc09-4c73-b891-28e52a9ee9a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VWvzhpg2DjFBwv5SKoqE6f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2153,
+      "cache_read_input_tokens": 24672,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2153
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T23:03:38.797Z_
+
+<details><summary>↩ Tool result · `toolu_011JtVybiPND2pK63cW9sBKd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.0018572130878898782,\\n  \\\"recall\\\": 0.0027981236112254136,\\n  \\\"f1\\\": 0.002232582572723094,\\n  \\\"ign_precision\\\": 0.0018572130878898782,\\n  \\\"ign_recall\\\": 0.0027981236112254136,\\n  \\\"ign_f1\\\": 0.002232582572723094,\\n  \\\"tp\\\": 34,\\n  \\\"pred_count\\\": 18307,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.9473684210526315,\\n  \\\"evi_recall\\\": 0.6206896551724138,\\n  \\\"evi_f1\\\": 0.75,\\n  \\\"n_evaluated\\\": 19188,\\n  \\\"edcr\\\": 0.9981656050955414,\\n  \\\"n_distractor_citations\\\": 19589,\\n  \\\"n_total_citations\\\": 19625,\\n  \\\"evi_joint_precision\\\": 0.0018722584786562534,\\n  \\\"evi_joint_recall\\\": 0.0018171434504958206,\\n  \\\"evi_f1_joint\\\": 0.0018442892899486233,\\n  \\\"evi_tp\\\": 35,\\n  \\\"evi_pred_total\\\": 18694,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9959390862944163,\\n  \\\"field_compliance_rate\\\": 0.0,\\n  \\\"evidence_format_rate\\\": 0.0,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 981,\\n  \\\"n_field_complete\\\": 0,\\n  \\\"n_evidence_valid\\\": 0,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 19265,\\n  \\\"n_truncated\\\": 358,\\n  \\\"n_format_ok\\\": 981,\\n  \\\"format_ok_rate\\\": 0.9959390862944163,\\n  \\\"inference_time_seconds\\\": 3643.0,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/dpo_output_1ep/\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": null,\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/dpo_ced_1ep\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "79f0e268-ecfd-44b2-9dac-df400d57d727",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.0018572130878898782,\\\\n  \\\\\\\"recall\\\\\\\": 0.0027981236112254136,\\\\n  \\\\\\\"f1\\\\\\\": 0.002232582572723094,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.0018572130878898782,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.0027981236112254136,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.002232582572723094,\\\\n  \\\\\\\"tp\\\\\\\": 34,\\\\n  \\\\\\\"pred_count\\\\\\\": 18307,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.9473684210526315,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.6206896551724138,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.75,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 19188,\\\\n  \\\\\\\"edcr\\\\\\\": 0.9981656050955414,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 19589,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 19625,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.0018722584786562534,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.0018171434504958206,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.0018442892899486233,\\\\n  \\\\\\\"evi_tp\\\\\\\": 35,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 18694,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9959390862944163,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 981,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 0,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 0,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 19265,\\\\n  \\\\\\\"n_truncated\\\\\\\": 358,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 981,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9959390862944163,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 3643.0,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/dpo_output_1ep/\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": null,\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/dpo_ced_1ep\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.0018572130878898782,\\n  \\\"recall\\\": 0.0027981236112254136,\\n  \\\"f1\\\": 0.002232582572723094,\\n  \\\"ign_precision\\\": 0.0018572130878898782,\\n  \\\"ign_recall\\\": 0.0027981236112254136,\\n  \\\"ign_f1\\\": 0.002232582572723094,\\n  \\\"tp\\\": 34,\\n  \\\"pred_count\\\": 18307,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.9473684210526315,\\n  \\\"evi_recall\\\": 0.6206896551724138,\\n  \\\"evi_f1\\\": 0.75,\\n  \\\"n_evaluated\\\": 19188,\\n  \\\"edcr\\\": 0.9981656050955414,\\n  \\\"n_distractor_citations\\\": 19589,\\n  \\\"n_total_citations\\\": 19625,\\n  \\\"evi_joint_precision\\\": 0.0018722584786562534,\\n  \\\"evi_joint_recall\\\": 0.0018171434504958206,\\n  \\\"evi_f1_joint\\\": 0.0018442892899486233,\\n  \\\"evi_tp\\\": 35,\\n  \\\"evi_pred_total\\\": 18694,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9959390862944163,\\n  \\\"field_compliance_rate\\\": 0.0,\\n  \\\"evidence_format_rate\\\": 0.0,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 981,\\n  \\\"n_field_complete\\\": 0,\\n  \\\"n_evidence_valid\\\": 0,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 19265,\\n  \\\"n_truncated\\\": 358,\\n  \\\"n_format_ok\\\": 981,\\n  \\\"format_ok_rate\\\": 0.9959390862944163,\\n  \\\"inference_time_seconds\\\": 3643.0,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/dpo_output_1ep/\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": null,\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/dpo_ced_1ep\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now look at more metrics files to understand the full picture, and also check the remaining eval results we need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "d8a0c6c4-4dbb-484b-8ddb-59b230fdd675",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WVv1RttEzkV5MdffbbFWmi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7192,
+      "cache_read_input_tokens": 26825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7192
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+DPO 1ep results are broken (f1=0.002, field_compliance=0.0). Let me check a few more metrics files and the existing summary data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "b6fe9742-ac3c-493f-aecf-0b2a5921233e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WVv1RttEzkV5MdffbbFWmi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7192,
+      "cache_read_input_tokens": 26825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7192
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PTDKDkG6vjPVsJDmfBwjXf`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_r1/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "0fb8f94e-f4c5-4a53-9f2c-bff97a8ae87e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WVv1RttEzkV5MdffbbFWmi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7192,
+      "cache_read_input_tokens": 26825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7192
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T23:03:45.090Z_
+
+<details><summary>↩ Tool result · `toolu_01PTDKDkG6vjPVsJDmfBwjXf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.46065039217414294,\\n  \\\"recall\\\": 0.43017035634927164,\\n  \\\"f1\\\": 0.4448889267171674,\\n  \\\"ign_precision\\\": 0.46065039217414294,\\n  \\\"ign_recall\\\": 0.43017035634927164,\\n  \\\"ign_f1\\\": 0.4448889267171674,\\n  \\\"tp\\\": 5227,\\n  \\\"pred_count\\\": 11347,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8206273764258555,\\n  \\\"evi_recall\\\": 0.8168227836124515,\\n  \\\"evi_f1\\\": 0.8187206600597469,\\n  \\\"n_evaluated\\\": 15262,\\n  \\\"edcr\\\": 0.6564800445664717,\\n  \\\"n_distractor_citations\\\": 16498,\\n  \\\"n_total_citations\\\": 25131,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.7817258883248731,\\n  \\\"evidence_format_rate\\\": 0.7817258883248731,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 770,\\n  \\\"n_evidence_valid\\\": 770,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15307,\\n  \\\"n_truncated\\\": 213,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 6033.4,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_r1\\\",\\n    \\\"batch_size\\\": 8,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "8c4e4bc4-6eb1-4c98-a27b-c45dce7fe815",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.46065039217414294,\\\\n  \\\\\\\"recall\\\\\\\": 0.43017035634927164,\\\\n  \\\\\\\"f1\\\\\\\": 0.4448889267171674,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.46065039217414294,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.43017035634927164,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.4448889267171674,\\\\n  \\\\\\\"tp\\\\\\\": 5227,\\\\n  \\\\\\\"pred_count\\\\\\\": 11347,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8206273764258555,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8168227836124515,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8187206600597469,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15262,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6564800445664717,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 16498,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 25131,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.7817258883248731,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.7817258883248731,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 770,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 770,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15307,\\\\n  \\\\\\\"n_truncated\\\\\\\": 213,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 6033.4,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_r1\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.46065039217414294,\\n  \\\"recall\\\": 0.43017035634927164,\\n  \\\"f1\\\": 0.4448889267171674,\\n  \\\"ign_precision\\\": 0.46065039217414294,\\n  \\\"ign_recall\\\": 0.43017035634927164,\\n  \\\"ign_f1\\\": 0.4448889267171674,\\n  \\\"tp\\\": 5227,\\n  \\\"pred_count\\\": 11347,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8206273764258555,\\n  \\\"evi_recall\\\": 0.8168227836124515,\\n  \\\"evi_f1\\\": 0.8187206600597469,\\n  \\\"n_evaluated\\\": 15262,\\n  \\\"edcr\\\": 0.6564800445664717,\\n  \\\"n_distractor_citations\\\": 16498,\\n  \\\"n_total_citations\\\": 25131,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.7817258883248731,\\n  \\\"evidence_format_rate\\\": 0.7817258883248731,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 770,\\n  \\\"n_evidence_valid\\\": 770,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15307,\\n  \\\"n_truncated\\\": 213,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 6033.4,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_r1\\\",\\n    \\\"batch_size\\\": 8,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DrdwspbDMA4M6s5DpBaKck`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_s43/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "49bb3d84-b32d-4ffd-bb07-b86e4001b03f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WVv1RttEzkV5MdffbbFWmi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7192,
+      "cache_read_input_tokens": 26825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7192
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T23:03:45.768Z_
+
+<details><summary>↩ Tool result · `toolu_01DrdwspbDMA4M6s5DpBaKck`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4816845036108936,\\n  \\\"recall\\\": 0.4556003621101144,\\n  \\\"f1\\\": 0.46827947893757405,\\n  \\\"ign_precision\\\": 0.4816845036108936,\\n  \\\"ign_recall\\\": 0.4556003621101144,\\n  \\\"ign_f1\\\": 0.46827947893757405,\\n  \\\"tp\\\": 5536,\\n  \\\"pred_count\\\": 11493,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.814248656661108,\\n  \\\"evi_recall\\\": 0.8170493632053547,\\n  \\\"evi_f1\\\": 0.8156466057259524,\\n  \\\"n_evaluated\\\": 14872,\\n  \\\"edcr\\\": 0.6388181145722035,\\n  \\\"n_distractor_citations\\\": 15545,\\n  \\\"n_total_citations\\\": 24334,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.8142131979695432,\\n  \\\"evidence_format_rate\\\": 0.8142131979695432,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 802,\\n  \\\"n_evidence_valid\\\": 802,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 14970,\\n  \\\"n_truncated\\\": 171,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 6316.7,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_s43\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_s43\\\",\\n    \\\"batch_size\\\": 8,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "41b3a707-5a26-4827-a311-7169e28eb9eb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.4816845036108936,\\\\n  \\\\\\\"recall\\\\\\\": 0.4556003621101144,\\\\n  \\\\\\\"f1\\\\\\\": 0.46827947893757405,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.4816845036108936,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.4556003621101144,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.46827947893757405,\\\\n  \\\\\\\"tp\\\\\\\": 5536,\\\\n  \\\\\\\"pred_count\\\\\\\": 11493,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.814248656661108,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8170493632053547,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8156466057259524,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 14872,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6388181145722035,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 15545,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 24334,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.8142131979695432,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.8142131979695432,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 802,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 802,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 14970,\\\\n  \\\\\\\"n_truncated\\\\\\\": 171,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 6316.7,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_s43\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_s43\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4816845036108936,\\n  \\\"recall\\\": 0.4556003621101144,\\n  \\\"f1\\\": 0.46827947893757405,\\n  \\\"ign_precision\\\": 0.4816845036108936,\\n  \\\"ign_recall\\\": 0.4556003621101144,\\n  \\\"ign_f1\\\": 0.46827947893757405,\\n  \\\"tp\\\": 5536,\\n  \\\"pred_count\\\": 11493,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.814248656661108,\\n  \\\"evi_recall\\\": 0.8170493632053547,\\n  \\\"evi_f1\\\": 0.8156466057259524,\\n  \\\"n_evaluated\\\": 14872,\\n  \\\"edcr\\\": 0.6388181145722035,\\n  \\\"n_distractor_citations\\\": 15545,\\n  \\\"n_total_citations\\\": 24334,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.8142131979695432,\\n  \\\"evidence_format_rate\\\": 0.8142131979695432,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 802,\\n  \\\"n_evidence_valid\\\": 802,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 14970,\\n  \\\"n_truncated\\\": 171,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 6316.7,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_s43\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_s43\\\",\\n    \\\"batch_size\\\": 8,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012vNw4XVNjQnkmncrhaWakW`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "46df2b00-284d-4758-88c9-8be0dcc730f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WVv1RttEzkV5MdffbbFWmi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7192,
+      "cache_read_input_tokens": 26825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7192
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T23:03:46.629Z_
+
+<details><summary>↩ Tool result · `toolu_012vNw4XVNjQnkmncrhaWakW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.00196078431372549,\\n  \\\"recall\\\": 0.002633528104682742,\\n  \\\"f1\\\": 0.002247901373327245,\\n  \\\"ign_precision\\\": 0.00196078431372549,\\n  \\\"ign_recall\\\": 0.002633528104682742,\\n  \\\"ign_f1\\\": 0.002247901373327245,\\n  \\\"tp\\\": 32,\\n  \\\"pred_count\\\": 16320,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 1.0,\\n  \\\"evi_recall\\\": 0.7441860465116279,\\n  \\\"evi_f1\\\": 0.8533333333333333,\\n  \\\"n_evaluated\\\": 17230,\\n  \\\"edcr\\\": 0.9981751824817519,\\n  \\\"n_distractor_citations\\\": 17504,\\n  \\\"n_total_citations\\\": 17536,\\n  \\\"evi_joint_precision\\\": 0.0019154794684544474,\\n  \\\"evi_joint_recall\\\": 0.0016613882975961788,\\n  \\\"evi_f1_joint\\\": 0.0017794089026051659,\\n  \\\"evi_tp\\\": 32,\\n  \\\"evi_pred_total\\\": 16706,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9959390862944163,\\n  \\\"field_compliance_rate\\\": 0.0,\\n  \\\"evidence_format_rate\\\": 0.0,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 981,\\n  \\\"n_field_complete\\\": 0,\\n  \\\"n_evidence_valid\\\": 0,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 17285,\\n  \\\"n_truncated\\\": 251,\\n  \\\"n_format_ok\\\": 981,\\n  \\\"format_ok_rate\\\": 0.9959390862944163,\\n  \\\"inference_time_seconds\\\": 3669.3,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_flat_nli_s43\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": null,\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s43\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 43,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "3ace0dbe-fb1e-4e76-9ece-883350286c00",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.00196078431372549,\\\\n  \\\\\\\"recall\\\\\\\": 0.002633528104682742,\\\\n  \\\\\\\"f1\\\\\\\": 0.002247901373327245,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.00196078431372549,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.002633528104682742,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.002247901373327245,\\\\n  \\\\\\\"tp\\\\\\\": 32,\\\\n  \\\\\\\"pred_count\\\\\\\": 16320,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 1.0,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.7441860465116279,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8533333333333333,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 17230,\\\\n  \\\\\\\"edcr\\\\\\\": 0.9981751824817519,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 17504,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 17536,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.0019154794684544474,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.0016613882975961788,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.0017794089026051659,\\\\n  \\\\\\\"evi_tp\\\\\\\": 32,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 16706,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9959390862944163,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 981,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 0,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 0,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 17285,\\\\n  \\\\\\\"n_truncated\\\\\\\": 251,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 981,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9959390862944163,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 3669.3,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_flat_nli_s43\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": null,\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s43\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 43,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.00196078431372549,\\n  \\\"recall\\\": 0.002633528104682742,\\n  \\\"f1\\\": 0.002247901373327245,\\n  \\\"ign_precision\\\": 0.00196078431372549,\\n  \\\"ign_recall\\\": 0.002633528104682742,\\n  \\\"ign_f1\\\": 0.002247901373327245,\\n  \\\"tp\\\": 32,\\n  \\\"pred_count\\\": 16320,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 1.0,\\n  \\\"evi_recall\\\": 0.7441860465116279,\\n  \\\"evi_f1\\\": 0.8533333333333333,\\n  \\\"n_evaluated\\\": 17230,\\n  \\\"edcr\\\": 0.9981751824817519,\\n  \\\"n_distractor_citations\\\": 17504,\\n  \\\"n_total_citations\\\": 17536,\\n  \\\"evi_joint_precision\\\": 0.0019154794684544474,\\n  \\\"evi_joint_recall\\\": 0.0016613882975961788,\\n  \\\"evi_f1_joint\\\": 0.0017794089026051659,\\n  \\\"evi_tp\\\": 32,\\n  \\\"evi_pred_total\\\": 16706,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9959390862944163,\\n  \\\"field_compliance_rate\\\": 0.0,\\n  \\\"evidence_format_rate\\\": 0.0,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 981,\\n  \\\"n_field_complete\\\": 0,\\n  \\\"n_evidence_valid\\\": 0,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 17285,\\n  \\\"n_truncated\\\": 251,\\n  \\\"n_format_ok\\\": 981,\\n  \\\"format_ok_rate\\\": 0.9959390862944163,\\n  \\\"inference_time_seconds\\\": 3669.3,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_flat_nli_s43\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": null,\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s43\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 43,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ahu2RZCU9ui6Lo4cCVhGPs`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/sft_no_evidence/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "c41ed9ec-2301-44e0-8648-7c2b2b43bebe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WVv1RttEzkV5MdffbbFWmi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7192,
+      "cache_read_input_tokens": 26825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7192
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T23:03:47.452Z_
+
+<details><summary>↩ Tool result · `toolu_01Ahu2RZCU9ui6Lo4cCVhGPs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.48835683830764187,\\n  \\\"recall\\\": 0.4901654184840754,\\n  \\\"f1\\\": 0.4892594570172916,\\n  \\\"ign_precision\\\": 0.48835683830764187,\\n  \\\"ign_recall\\\": 0.4901654184840754,\\n  \\\"ign_f1\\\": 0.4892594570172916,\\n  \\\"tp\\\": 5956,\\n  \\\"pred_count\\\": 12196,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.0,\\n  \\\"evi_recall\\\": 0.0,\\n  \\\"evi_f1\\\": 0.0,\\n  \\\"n_evaluated\\\": 0,\\n  \\\"edcr\\\": 0.0,\\n  \\\"n_distractor_citations\\\": 0,\\n  \\\"n_total_citations\\\": 0,\\n  \\\"evi_joint_precision\\\": 0.0,\\n  \\\"evi_joint_recall\\\": 0.0,\\n  \\\"evi_f1_joint\\\": 0.0,\\n  \\\"evi_tp\\\": 0,\\n  \\\"evi_pred_total\\\": 0,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9918781725888325,\\n  \\\"field_compliance_rate\\\": 0.0,\\n  \\\"evidence_format_rate\\\": 0.0,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 977,\\n  \\\"n_field_complete\\\": 0,\\n  \\\"n_evidence_valid\\\": 0,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 21064,\\n  \\\"n_truncated\\\": 298,\\n  \\\"n_format_ok\\\": 977,\\n  \\\"format_ok_rate\\\": 0.9918781725888325,\\n  \\\"inference_time_seconds\\\": 4103.8,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/sft_no_evidence_output\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": null,\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/sft_no_evidence\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": true,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "f7bf188c-f3ec-4200-9f31-f222477bb798",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.48835683830764187,\\\\n  \\\\\\\"recall\\\\\\\": 0.4901654184840754,\\\\n  \\\\\\\"f1\\\\\\\": 0.4892594570172916,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.48835683830764187,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.4901654184840754,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.4892594570172916,\\\\n  \\\\\\\"tp\\\\\\\": 5956,\\\\n  \\\\\\\"pred_count\\\\\\\": 12196,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.0,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 0,\\\\n  \\\\\\\"edcr\\\\\\\": 0.0,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 0,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 0,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_tp\\\\\\\": 0,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 0,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9918781725888325,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 977,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 0,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 0,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 21064,\\\\n  \\\\\\\"n_truncated\\\\\\\": 298,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 977,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9918781725888325,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 4103.8,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_no_evidence_output\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": null,\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/sft_no_evidence\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": true,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.48835683830764187,\\n  \\\"recall\\\": 0.4901654184840754,\\n  \\\"f1\\\": 0.4892594570172916,\\n  \\\"ign_precision\\\": 0.48835683830764187,\\n  \\\"ign_recall\\\": 0.4901654184840754,\\n  \\\"ign_f1\\\": 0.4892594570172916,\\n  \\\"tp\\\": 5956,\\n  \\\"pred_count\\\": 12196,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.0,\\n  \\\"evi_recall\\\": 0.0,\\n  \\\"evi_f1\\\": 0.0,\\n  \\\"n_evaluated\\\": 0,\\n  \\\"edcr\\\": 0.0,\\n  \\\"n_distractor_citations\\\": 0,\\n  \\\"n_total_citations\\\": 0,\\n  \\\"evi_joint_precision\\\": 0.0,\\n  \\\"evi_joint_recall\\\": 0.0,\\n  \\\"evi_f1_joint\\\": 0.0,\\n  \\\"evi_tp\\\": 0,\\n  \\\"evi_pred_total\\\": 0,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9918781725888325,\\n  \\\"field_compliance_rate\\\": 0.0,\\n  \\\"evidence_format_rate\\\": 0.0,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 977,\\n  \\\"n_field_complete\\\": 0,\\n  \\\"n_evidence_valid\\\": 0,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 21064,\\n  \\\"n_truncated\\\": 298,\\n  \\\"n_format_ok\\\": 977,\\n  \\\"format_ok_rate\\\": 0.9918781725888325,\\n  \\\"inference_time_seconds\\\": 4103.8,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/sft_no_evidence_output\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": null,\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/sft_no_evidence\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": true,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01K7gwvqEXVRebwPCJMKwjwq`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "61c0fb76-905a-4bad-a5e9-ceb6ef4d7833",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WVv1RttEzkV5MdffbbFWmi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7192,
+      "cache_read_input_tokens": 26825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7192
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T23:03:48.896Z_
+
+<details><summary>↩ Tool result · `toolu_01K7gwvqEXVRebwPCJMKwjwq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.5042050460552663,\\n  \\\"recall\\\": 0.41445148547444655,\\n  \\\"f1\\\": 0.45494376439766926,\\n  \\\"ign_precision\\\": 0.5042050460552663,\\n  \\\"ign_recall\\\": 0.41445148547444655,\\n  \\\"ign_f1\\\": 0.45494376439766926,\\n  \\\"tp\\\": 5036,\\n  \\\"pred_count\\\": 9988,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.7915446773626889,\\n  \\\"evi_recall\\\": 0.826485693323551,\\n  \\\"evi_f1\\\": 0.8086379135012263,\\n  \\\"n_evaluated\\\": 10686,\\n  \\\"edcr\\\": 0.6318226386316592,\\n  \\\"n_distractor_citations\\\": 11599,\\n  \\\"n_total_citations\\\": 18358,\\n  \\\"evi_joint_precision\\\": 0.3781259065854366,\\n  \\\"evi_joint_recall\\\": 0.3383521104823218,\\n  \\\"evi_f1_joint\\\": 0.35713502849627354,\\n  \\\"evi_tp\\\": 6517,\\n  \\\"evi_pred_total\\\": 17235,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.9380710659898477,\\n  \\\"evidence_format_rate\\\": 0.9380710659898477,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 924,\\n  \\\"n_evidence_valid\\\": 924,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 10701,\\n  \\\"n_truncated\\\": 61,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 3170.3,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-100\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "9b4d53af-829e-42dd-b871-c5f927192bbe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.5042050460552663,\\\\n  \\\\\\\"recall\\\\\\\": 0.41445148547444655,\\\\n  \\\\\\\"f1\\\\\\\": 0.45494376439766926,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.5042050460552663,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.41445148547444655,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.45494376439766926,\\\\n  \\\\\\\"tp\\\\\\\": 5036,\\\\n  \\\\\\\"pred_count\\\\\\\": 9988,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.7915446773626889,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.826485693323551,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8086379135012263,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 10686,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6318226386316592,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 11599,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 18358,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.3781259065854366,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.3383521104823218,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.35713502849627354,\\\\n  \\\\\\\"evi_tp\\\\\\\": 6517,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 17235,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.9380710659898477,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.9380710659898477,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 924,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 924,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 10701,\\\\n  \\\\\\\"n_truncated\\\\\\\": 61,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 3170.3,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-100\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.5042050460552663,\\n  \\\"recall\\\": 0.41445148547444655,\\n  \\\"f1\\\": 0.45494376439766926,\\n  \\\"ign_precision\\\": 0.5042050460552663,\\n  \\\"ign_recall\\\": 0.41445148547444655,\\n  \\\"ign_f1\\\": 0.45494376439766926,\\n  \\\"tp\\\": 5036,\\n  \\\"pred_count\\\": 9988,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.7915446773626889,\\n  \\\"evi_recall\\\": 0.826485693323551,\\n  \\\"evi_f1\\\": 0.8086379135012263,\\n  \\\"n_evaluated\\\": 10686,\\n  \\\"edcr\\\": 0.6318226386316592,\\n  \\\"n_distractor_citations\\\": 11599,\\n  \\\"n_total_citations\\\": 18358,\\n  \\\"evi_joint_precision\\\": 0.3781259065854366,\\n  \\\"evi_joint_recall\\\": 0.3383521104823218,\\n  \\\"evi_f1_joint\\\": 0.35713502849627354,\\n  \\\"evi_tp\\\": 6517,\\n  \\\"evi_pred_total\\\": 17235,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.9380710659898477,\\n  \\\"evidence_format_rate\\\": 0.9380710659898477,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 924,\\n  \\\"n_evidence_valid\\\": 924,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 10701,\\n  \\\"n_truncated\\\": 61,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 3170.3,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-100\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UZtxFpquk3wWZMb4b8Yb9L`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/sft_baseline_noquant/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "e15e6dd2-26e3-4dc8-9b36-6ccaa28b0ab1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WVv1RttEzkV5MdffbbFWmi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7192,
+      "cache_read_input_tokens": 26825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7192
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T23:03:49.486Z_
+
+<details><summary>↩ Tool result · `toolu_01UZtxFpquk3wWZMb4b8Yb9L`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4197541476833147,\\n  \\\"recall\\\": 0.4018599292239322,\\n  \\\"f1\\\": 0.4106121762529432,\\n  \\\"ign_precision\\\": 0.4197541476833147,\\n  \\\"ign_recall\\\": 0.4018599292239322,\\n  \\\"ign_f1\\\": 0.4106121762529432,\\n  \\\"tp\\\": 4883,\\n  \\\"pred_count\\\": 11633,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.80046358895113,\\n  \\\"evi_recall\\\": 0.8021680216802168,\\n  \\\"evi_f1\\\": 0.8013148989654839,\\n  \\\"n_evaluated\\\": 16647,\\n  \\\"edcr\\\": 0.7038730884664857,\\n  \\\"n_distractor_citations\\\": 19700,\\n  \\\"n_total_citations\\\": 27988,\\n  \\\"evi_joint_precision\\\": 0.3185128596893303,\\n  \\\"evi_joint_recall\\\": 0.3246975754114532,\\n  \\\"evi_f1_joint\\\": 0.32157548334018926,\\n  \\\"evi_tp\\\": 6254,\\n  \\\"evi_pred_total\\\": 19635,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9979695431472081,\\n  \\\"field_compliance_rate\\\": 0.7065989847715736,\\n  \\\"evidence_format_rate\\\": 0.7065989847715736,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 983,\\n  \\\"n_field_complete\\\": 696,\\n  \\\"n_evidence_valid\\\": 696,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 16774,\\n  \\\"n_truncated\\\": 288,\\n  \\\"n_format_ok\\\": 983,\\n  \\\"format_ok_rate\\\": 0.9979695431472081,\\n  \\\"inference_time_seconds\\\": 3677.9,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": null,\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/sft_baseline_noquant\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "72633a06-52ff-44ac-986e-7c1779d4ec63",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.4197541476833147,\\\\n  \\\\\\\"recall\\\\\\\": 0.4018599292239322,\\\\n  \\\\\\\"f1\\\\\\\": 0.4106121762529432,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.4197541476833147,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.4018599292239322,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.4106121762529432,\\\\n  \\\\\\\"tp\\\\\\\": 4883,\\\\n  \\\\\\\"pred_count\\\\\\\": 11633,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.80046358895113,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8021680216802168,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8013148989654839,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 16647,\\\\n  \\\\\\\"edcr\\\\\\\": 0.7038730884664857,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 19700,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 27988,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.3185128596893303,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.3246975754114532,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.32157548334018926,\\\\n  \\\\\\\"evi_tp\\\\\\\": 6254,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 19635,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9979695431472081,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.7065989847715736,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.7065989847715736,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 983,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 696,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 696,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 16774,\\\\n  \\\\\\\"n_truncated\\\\\\\": 288,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 983,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9979695431472081,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 3677.9,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": null,\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/sft_baseline_noquant\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4197541476833147,\\n  \\\"recall\\\": 0.4018599292239322,\\n  \\\"f1\\\": 0.4106121762529432,\\n  \\\"ign_precision\\\": 0.4197541476833147,\\n  \\\"ign_recall\\\": 0.4018599292239322,\\n  \\\"ign_f1\\\": 0.4106121762529432,\\n  \\\"tp\\\": 4883,\\n  \\\"pred_count\\\": 11633,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.80046358895113,\\n  \\\"evi_recall\\\": 0.8021680216802168,\\n  \\\"evi_f1\\\": 0.8013148989654839,\\n  \\\"n_evaluated\\\": 16647,\\n  \\\"edcr\\\": 0.7038730884664857,\\n  \\\"n_distractor_citations\\\": 19700,\\n  \\\"n_total_citations\\\": 27988,\\n  \\\"evi_joint_precision\\\": 0.3185128596893303,\\n  \\\"evi_joint_recall\\\": 0.3246975754114532,\\n  \\\"evi_f1_joint\\\": 0.32157548334018926,\\n  \\\"evi_tp\\\": 6254,\\n  \\\"evi_pred_total\\\": 19635,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9979695431472081,\\n  \\\"field_compliance_rate\\\": 0.7065989847715736,\\n  \\\"evidence_format_rate\\\": 0.7065989847715736,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 983,\\n  \\\"n_field_complete\\\": 696,\\n  \\\"n_evidence_valid\\\": 696,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 16774,\\n  \\\"n_truncated\\\": 288,\\n  \\\"n_format_ok\\\": 983,\\n  \\\"format_ok_rate\\\": 0.9979695431472081,\\n  \\\"inference_time_seconds\\\": 3677.9,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": null,\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/sft_baseline_noquant\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check for CED reranker and rsft_topk3 results, and also check rsft_flat_nli_s43_reeval:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "b7cdf57a-21a1-4a4f-99f5-a5e45dbdab4b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XGuKZcrfnH8hpWd4Xug9xJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6719,
+      "cache_read_input_tokens": 34017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6719
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+Let me also check the reranker, topk3, and reeval results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "80060627-8bfa-43da-beb4-fd4e041056cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XGuKZcrfnH8hpWd4Xug9xJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6719,
+      "cache_read_input_tokens": 34017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6719
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q8f7qkSb95rJjHH6trJ8TC`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/eval_results/ced_reranker_poc -name \"metrics.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "70912604-5fea-4917-909c-4de3c1ebde41",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XGuKZcrfnH8hpWd4Xug9xJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6719,
+      "cache_read_input_tokens": 34017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6719
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T23:03:55.438Z_
+
+<details><summary>↩ Tool result · `toolu_01Q8f7qkSb95rJjHH6trJ8TC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "22694c29-d1ba-4d20-85cf-8f1f013f133f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QLBfzLrz5dZrqAriqCsQTT`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/eval_results/rsft_topk3 -name \"metrics.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "9968d88a-270c-406f-8bd6-7cd8a97159ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XGuKZcrfnH8hpWd4Xug9xJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6719,
+      "cache_read_input_tokens": 34017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6719
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T23:03:56.376Z_
+
+<details><summary>↩ Tool result · `toolu_01QLBfzLrz5dZrqAriqCsQTT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "110b7bf5-5162-4e97-8d36-6c87d6fbb11e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0142qcRVcYbrim7tm1F2qx4z`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval -name \"metrics.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "bd603fd2-b552-43de-bd8e-e1c83e115cf4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XGuKZcrfnH8hpWd4Xug9xJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6719,
+      "cache_read_input_tokens": 34017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6719
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-15T23:03:57.338Z_
+
+<details><summary>↩ Tool result · `toolu_0142qcRVcYbrim7tm1F2qx4z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "907b1f8f-66e1-4ce7-a83e-74f6964f0699",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HTZsNqTY1cc2T8f2BJNQCH`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/eval_results/rsft_topk3_fixed -name \"metrics.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "e1fdc216-f9e8-4b48-bda8-29d453268901",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XGuKZcrfnH8hpWd4Xug9xJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6719,
+      "cache_read_input_tokens": 34017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6719
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T23:03:58.364Z_
+
+<details><summary>↩ Tool result · `toolu_01HTZsNqTY1cc2T8f2BJNQCH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "958c15e5-d98b-48cb-80bc-11dcdfa9b2ec",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HFENzWWyKe5X38ntHj4FB3`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/eval_results/dpo_ced_1ep_fixed -name \"metrics.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "3b7a4958-bcbf-4035-b110-4eae20745f00",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XGuKZcrfnH8hpWd4Xug9xJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6719,
+      "cache_read_input_tokens": 34017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6719
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T23:03:59.098Z_
+
+<details><summary>↩ Tool result · `toolu_01HFENzWWyKe5X38ntHj4FB3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "9bf4cdb2-8cea-4b4a-be88-b59654ef02bd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also check the existing cross-method table and 3seed summary for reference data:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "919f7e2e-62da-42d3-b0d2-785639da6f57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JP7njjTr83WWpWT1vXRioD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1277,
+      "cache_read_input_tokens": 40736,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1277
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+Let me check the existing cross-method data and also look at the reranker results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "c05eaa3e-8d7d-4b9d-8393-4e5876c02626",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JP7njjTr83WWpWT1vXRioD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1277,
+      "cache_read_input_tokens": 40736,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1277
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015AswpHpDbL6SiKybVEpoKM`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/cross_method_table.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "2ee2bee2-9fe3-4a3b-8c4a-36dc19baba6a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JP7njjTr83WWpWT1vXRioD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1277,
+      "cache_read_input_tokens": 40736,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1277
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T23:04:03.750Z_
+
+<details><summary>↩ Tool result · `toolu_015AswpHpDbL6SiKybVEpoKM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"method\\\": \\\"SFT baseline (quant)\\\",\\n    \\\"rel_f1\\\": 0.4057,\\n    \\\"evi_f1\\\": 0.7979,\\n    \\\"edcr\\\": 0.7118,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 0.0,\\n    \\\"delta_edcr_pp\\\": 0.0,\\n    \\\"precision\\\": 0.4043,\\n    \\\"recall\\\": 0.407,\\n    \\\"n_predictions\\\": 18815,\\n    \\\"n_truncated\\\": 367\\n  },\\n  {\\n    \\\"method\\\": \\\"SFT baseline (noquant)\\\",\\n    \\\"rel_f1\\\": 0.4106,\\n    \\\"evi_f1\\\": 0.8013,\\n    \\\"edcr\\\": 0.7039,\\n    \\\"evi_f1_joint\\\": 0.3216,\\n    \\\"delta_rel_f1_pp\\\": 0.5,\\n    \\\"delta_edcr_pp\\\": -0.79,\\n    \\\"precision\\\": 0.4198,\\n    \\\"recall\\\": 0.4019,\\n    \\\"n_predictions\\\": 16774,\\n    \\\"n_truncated\\\": 288\\n  },\\n  {\\n    \\\"method\\\": \\\"SFT no-evidence\\\",\\n    \\\"rel_f1\\\": 0.4893,\\n    \\\"evi_f1\\\": 0.0,\\n    \\\"edcr\\\": 0.0,\\n    \\\"evi_f1_joint\\\": 0.0,\\n    \\\"delta_rel_f1_pp\\\": 8.36,\\n    \\\"delta_edcr_pp\\\": -71.18,\\n    \\\"precision\\\": 0.4884,\\n    \\\"recall\\\": 0.4902,\\n    \\\"n_predictions\\\": 21064,\\n    \\\"n_truncated\\\": 298\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED (s42, 3ep)\\\",\\n    \\\"rel_f1\\\": 0.4449,\\n    \\\"evi_f1\\\": 0.8187,\\n    \\\"edcr\\\": 0.6565,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 3.92,\\n    \\\"delta_edcr_pp\\\": -5.53,\\n    \\\"precision\\\": 0.4607,\\n    \\\"recall\\\": 0.4302,\\n    \\\"n_predictions\\\": 15307,\\n    \\\"n_truncated\\\": 213\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED (s43, 3ep)\\\",\\n    \\\"rel_f1\\\": 0.4683,\\n    \\\"evi_f1\\\": 0.8156,\\n    \\\"edcr\\\": 0.6388,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 6.26,\\n    \\\"delta_edcr_pp\\\": -7.3,\\n    \\\"precision\\\": 0.4817,\\n    \\\"recall\\\": 0.4556,\\n    \\\"n_predictions\\\": 14970,\\n    \\\"n_truncated\\\": 171\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED (s44, 3ep)\\\",\\n    \\\"rel_f1\\\": 0.4655,\\n    \\\"evi_f1\\\": 0.8087,\\n    \\\"edcr\\\": 0.635,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 5.98,\\n    \\\"delta_edcr_pp\\\": -7.67,\\n    \\\"precision\\\": 0.4798,\\n    \\\"recall\\\": 0.4521,\\n    \\\"n_predictions\\\": 15202,\\n    \\\"n_truncated\\\": 189\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED (r2a, 1ep)\\\",\\n    \\\"rel_f1\\\": 0.4494,\\n    \\\"evi_f1\\\": 0.8108,\\n    \\\"edcr\\\": 0.6641,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 4.37,\\n    \\\"delta_edcr_pp\\\": -4.76,\\n    \\\"precision\\\": 0.4512,\\n    \\\"recall\\\": 0.4475,\\n    \\\"n_predictions\\\": 15482,\\n    \\\"n_truncated\\\": 208\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED (r2b, a=32)\\\",\\n    \\\"rel_f1\\\": 0.4493,\\n    \\\"evi_f1\\\": 0.8128,\\n    \\\"edcr\\\": 0.6609,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 4.37,\\n    \\\"delta_edcr_pp\\\": -5.08,\\n    \\\"precision\\\": 0.4566,\\n    \\\"recall\\\": 0.4424,\\n    \\\"n_predictions\\\": 14829,\\n    \\\"n_truncated\\\": 179\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-flatNLI (s42)\\\",\\n    \\\"rel_f1\\\": 0.4539,\\n    \\\"evi_f1\\\": 0.8043,\\n    \\\"edcr\\\": 0.6431,\\n    \\\"evi_f1_joint\\\": 0.3544,\\n    \\\"delta_rel_f1_pp\\\": 4.82,\\n    \\\"delta_edcr_pp\\\": -6.87,\\n    \\\"precision\\\": 0.4671,\\n    \\\"recall\\\": 0.4414,\\n    \\\"n_predictions\\\": 15294,\\n    \\\"n_truncated\\\": 199\\n  },\\n  {\\n    \\\"method\\\": \\\"CED-reranker (N=8)\\\",\\n    \\\"rel_f1\\\": 0.4864,\\n    \\\"evi_f1\\\": 0.8188,\\n    \\\"edcr\\\": 0.6156,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 8.07,\\n    \\\"delta_edcr_pp\\\": -9.62,\\n    \\\"precision\\\": 0.4913,\\n    \\\"recall\\\": 0.4815,\\n    \\\"n_predictions\\\": 14782,\\n    \\\"n_truncated\\\": null\\n  },\\n  {\\n    \\\"method\\\": \\\"GRPO bf16 (G=8, ckpt100)\\\",\\n    \\\"rel_f1\\\": 0.4549,\\n    \\\"evi_f1\\\": 0.8086,\\n    \\\"edcr\\\": 0.6318,\\n    \\\"evi_f1_joint\\\": 0.3571,\\n    \\\"delta_rel_f1_pp\\\": 4.93,\\n    \\\"delta_edcr_pp\\\": -8.0,\\n    \\\"precision\\\": 0.5042,\\n    \\\"recall\\\": 0.4145,\\n    \\\"n_predictions\\\": 10701,\\n    \\\"n_truncated\\\": 61\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED 3-seed mean\\\",\\n    \\\"rel_f1\\\": 0.4596,\\n    \\\"rel_f1_std\\\": 0.0128,\\n    \\\"evi_f1\\\": 0.8144,\\n    \\\"evi_f1_std\\\": 0.0051,\\n    \\\"edcr\\\": 0.6434,\\n    \\\"edcr_std\\\": 0.0114\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "3850f2f3-5ee2-4046-91b3-39869b357bfe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"SFT baseline (quant)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4057,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.7979,\\\\n    \\\\\\\"edcr\\\\\\\": 0.7118,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 0.0,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": 0.0,\\\\n    \\\\\\\"precision\\\\\\\": 0.4043,\\\\n    \\\\\\\"recall\\\\\\\": 0.407,\\\\n    \\\\\\\"n_predictions\\\\\\\": 18815,\\\\n    \\\\\\\"n_truncated\\\\\\\": 367\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"SFT baseline (noquant)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4106,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8013,\\\\n    \\\\\\\"edcr\\\\\\\": 0.7039,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.3216,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 0.5,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -0.79,\\\\n    \\\\\\\"precision\\\\\\\": 0.4198,\\\\n    \\\\\\\"recall\\\\\\\": 0.4019,\\\\n    \\\\\\\"n_predictions\\\\\\\": 16774,\\\\n    \\\\\\\"n_truncated\\\\\\\": 288\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"SFT no-evidence\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4893,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.0,\\\\n    \\\\\\\"edcr\\\\\\\": 0.0,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 8.36,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -71.18,\\\\n    \\\\\\\"precision\\\\\\\": 0.4884,\\\\n    \\\\\\\"recall\\\\\\\": 0.4902,\\\\n    \\\\\\\"n_predictions\\\\\\\": 21064,\\\\n    \\\\\\\"n_truncated\\\\\\\": 298\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED (s42, 3ep)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4449,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8187,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6565,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 3.92,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -5.53,\\\\n    \\\\\\\"precision\\\\\\\": 0.4607,\\\\n    \\\\\\\"recall\\\\\\\": 0.4302,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15307,\\\\n    \\\\\\\"n_truncated\\\\\\\": 213\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED (s43, 3ep)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4683,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8156,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6388,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 6.26,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -7.3,\\\\n    \\\\\\\"precision\\\\\\\": 0.4817,\\\\n    \\\\\\\"recall\\\\\\\": 0.4556,\\\\n    \\\\\\\"n_predictions\\\\\\\": 14970,\\\\n    \\\\\\\"n_truncated\\\\\\\": 171\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED (s44, 3ep)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4655,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8087,\\\\n    \\\\\\\"edcr\\\\\\\": 0.635,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 5.98,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -7.67,\\\\n    \\\\\\\"precision\\\\\\\": 0.4798,\\\\n    \\\\\\\"recall\\\\\\\": 0.4521,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15202,\\\\n    \\\\\\\"n_truncated\\\\\\\": 189\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED (r2a, 1ep)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4494,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8108,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6641,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 4.37,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -4.76,\\\\n    \\\\\\\"precision\\\\\\\": 0.4512,\\\\n    \\\\\\\"recall\\\\\\\": 0.4475,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15482,\\\\n    \\\\\\\"n_truncated\\\\\\\": 208\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED (r2b, a=32)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4493,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8128,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6609,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 4.37,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -5.08,\\\\n    \\\\\\\"precision\\\\\\\": 0.4566,\\\\n    \\\\\\\"recall\\\\\\\": 0.4424,\\\\n    \\\\\\\"n_predictions\\\\\\\": 14829,\\\\n    \\\\\\\"n_truncated\\\\\\\": 179\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-flatNLI (s42)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4539,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8043,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6431,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.3544,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 4.82,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -6.87,\\\\n    \\\\\\\"precision\\\\\\\": 0.4671,\\\\n    \\\\\\\"recall\\\\\\\": 0.4414,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15294,\\\\n    \\\\\\\"n_truncated\\\\\\\": 199\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"CED-reranker (N=8)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4864,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8188,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6156,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 8.07,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -9.62,\\\\n    \\\\\\\"precision\\\\\\\": 0.4913,\\\\n    \\\\\\\"recall\\\\\\\": 0.4815,\\\\n    \\\\\\\"n_predictions\\\\\\\": 14782,\\\\n    \\\\\\\"n_truncated\\\\\\\": null\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"GRPO bf16 (G=8, ckpt100)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4549,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8086,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6318,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.3571,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 4.93,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -8.0,\\\\n    \\\\\\\"precision\\\\\\\": 0.5042,\\\\n    \\\\\\\"recall\\\\\\\": 0.4145,\\\\n    \\\\\\\"n_predictions\\\\\\\": 10701,\\\\n    \\\\\\\"n_truncated\\\\\\\": 61\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED 3-seed mean\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4596,\\\\n    \\\\\\\"rel_f1_std\\\\\\\": 0.0128,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8144,\\\\n    \\\\\\\"evi_f1_std\\\\\\\": 0.0051,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6434,\\\\n    \\\\\\\"edcr_std\\\\\\\": 0.0114\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"method\\\": \\\"SFT baseline (quant)\\\",\\n    \\\"rel_f1\\\": 0.4057,\\n    \\\"evi_f1\\\": 0.7979,\\n    \\\"edcr\\\": 0.7118,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 0.0,\\n    \\\"delta_edcr_pp\\\": 0.0,\\n    \\\"precision\\\": 0.4043,\\n    \\\"recall\\\": 0.407,\\n    \\\"n_predictions\\\": 18815,\\n    \\\"n_truncated\\\": 367\\n  },\\n  {\\n    \\\"method\\\": \\\"SFT baseline (noquant)\\\",\\n    \\\"rel_f1\\\": 0.4106,\\n    \\\"evi_f1\\\": 0.8013,\\n    \\\"edcr\\\": 0.7039,\\n    \\\"evi_f1_joint\\\": 0.3216,\\n    \\\"delta_rel_f1_pp\\\": 0.5,\\n    \\\"delta_edcr_pp\\\": -0.79,\\n    \\\"precision\\\": 0.4198,\\n    \\\"recall\\\": 0.4019,\\n    \\\"n_predictions\\\": 16774,\\n    \\\"n_truncated\\\": 288\\n  },\\n  {\\n    \\\"method\\\": \\\"SFT no-evidence\\\",\\n    \\\"rel_f1\\\": 0.4893,\\n    \\\"evi_f1\\\": 0.0,\\n    \\\"edcr\\\": 0.0,\\n    \\\"evi_f1_joint\\\": 0.0,\\n    \\\"delta_rel_f1_pp\\\": 8.36,\\n    \\\"delta_edcr_pp\\\": -71.18,\\n    \\\"precision\\\": 0.4884,\\n    \\\"recall\\\": 0.4902,\\n    \\\"n_predictions\\\": 21064,\\n    \\\"n_truncated\\\": 298\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED (s42, 3ep)\\\",\\n    \\\"rel_f1\\\": 0.4449,\\n    \\\"evi_f1\\\": 0.8187,\\n    \\\"edcr\\\": 0.6565,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 3.92,\\n    \\\"delta_edcr_pp\\\": -5.53,\\n    \\\"precision\\\": 0.4607,\\n    \\\"recall\\\": 0.4302,\\n    \\\"n_predictions\\\": 15307,\\n    \\\"n_truncated\\\": 213\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED (s43, 3ep)\\\",\\n    \\\"rel_f1\\\": 0.4683,\\n    \\\"evi_f1\\\": 0.8156,\\n    \\\"edcr\\\": 0.6388,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 6.26,\\n    \\\"delta_edcr_pp\\\": -7.3,\\n    \\\"precision\\\": 0.4817,\\n    \\\"recall\\\": 0.4556,\\n    \\\"n_predictions\\\": 14970,\\n    \\\"n_truncated\\\": 171\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED (s44, 3ep)\\\",\\n    \\\"rel_f1\\\": 0.4655,\\n    \\\"evi_f1\\\": 0.8087,\\n    \\\"edcr\\\": 0.635,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 5.98,\\n    \\\"delta_edcr_pp\\\": -7.67,\\n    \\\"precision\\\": 0.4798,\\n    \\\"recall\\\": 0.4521,\\n    \\\"n_predictions\\\": 15202,\\n    \\\"n_truncated\\\": 189\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED (r2a, 1ep)\\\",\\n    \\\"rel_f1\\\": 0.4494,\\n    \\\"evi_f1\\\": 0.8108,\\n    \\\"edcr\\\": 0.6641,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 4.37,\\n    \\\"delta_edcr_pp\\\": -4.76,\\n    \\\"precision\\\": 0.4512,\\n    \\\"recall\\\": 0.4475,\\n    \\\"n_predictions\\\": 15482,\\n    \\\"n_truncated\\\": 208\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED (r2b, a=32)\\\",\\n    \\\"rel_f1\\\": 0.4493,\\n    \\\"evi_f1\\\": 0.8128,\\n    \\\"edcr\\\": 0.6609,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 4.37,\\n    \\\"delta_edcr_pp\\\": -5.08,\\n    \\\"precision\\\": 0.4566,\\n    \\\"recall\\\": 0.4424,\\n    \\\"n_predictions\\\": 14829,\\n    \\\"n_truncated\\\": 179\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-flatNLI (s42)\\\",\\n    \\\"rel_f1\\\": 0.4539,\\n    \\\"evi_f1\\\": 0.8043,\\n    \\\"edcr\\\": 0.6431,\\n    \\\"evi_f1_joint\\\": 0.3544,\\n    \\\"delta_rel_f1_pp\\\": 4.82,\\n    \\\"delta_edcr_pp\\\": -6.87,\\n    \\\"precision\\\": 0.4671,\\n    \\\"recall\\\": 0.4414,\\n    \\\"n_predictions\\\": 15294,\\n    \\\"n_truncated\\\": 199\\n  },\\n  {\\n    \\\"method\\\": \\\"CED-reranker (N=8)\\\",\\n    \\\"rel_f1\\\": 0.4864,\\n    \\\"evi_f1\\\": 0.8188,\\n    \\\"edcr\\\": 0.6156,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 8.07,\\n    \\\"delta_edcr_pp\\\": -9.62,\\n    \\\"precision\\\": 0.4913,\\n    \\\"recall\\\": 0.4815,\\n    \\\"n_predictions\\\": 14782,\\n    \\\"n_truncated\\\": null\\n  },\\n  {\\n    \\\"method\\\": \\\"GRPO bf16 (G=8, ckpt100)\\\",\\n    \\\"rel_f1\\\": 0.4549,\\n    \\\"evi_f1\\\": 0.8086,\\n    \\\"edcr\\\": 0.6318,\\n    \\\"evi_f1_joint\\\": 0.3571,\\n    \\\"delta_rel_f1_pp\\\": 4.93,\\n    \\\"delta_edcr_pp\\\": -8.0,\\n    \\\"precision\\\": 0.5042,\\n    \\\"recall\\\": 0.4145,\\n    \\\"n_predictions\\\": 10701,\\n    \\\"n_truncated\\\": 61\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED 3-seed mean\\\",\\n    \\\"rel_f1\\\": 0.4596,\\n    \\\"rel_f1_std\\\": 0.0128,\\n    \\\"evi_f1\\\": 0.8144,\\n    \\\"evi_f1_std\\\": 0.0051,\\n    \\\"edcr\\\": 0.6434,\\n    \\\"edcr_std\\\": 0.0114\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HGgtYhLqo3K6g9TE9hrJHQ`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/3seed_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "8dabd64d-ea12-4431-b690-9f053d1a4269",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JP7njjTr83WWpWT1vXRioD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1277,
+      "cache_read_input_tokens": 40736,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1277
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T23:04:04.208Z_
+
+<details><summary>↩ Tool result · `toolu_01HGgtYhLqo3K6g9TE9hrJHQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_seeds\\\": 2,\\n  \\\"missing\\\": [\\n    \\\"s43 (seed=43)\\\"\\n  ],\\n  \\\"per_seed\\\": {\\n    \\\"r1 (seed=42)\\\": {\\n      \\\"f1\\\": 0.4448889267171674,\\n      \\\"evi_f1\\\": 0.8187206600597469,\\n      \\\"edcr\\\": 0.6564800445664717,\\n      \\\"precision\\\": 0.46065039217414294,\\n      \\\"recall\\\": 0.43017035634927164,\\n      \\\"pred_count\\\": 11347,\\n      \\\"n_truncated\\\": 213\\n    },\\n    \\\"s44 (seed=44)\\\": {\\n      \\\"f1\\\": 0.46550847457627126,\\n      \\\"evi_f1\\\": 0.8087249831346974,\\n      \\\"edcr\\\": 0.635046273745738,\\n      \\\"precision\\\": 0.47977989344047517,\\n      \\\"recall\\\": 0.452061558719447,\\n      \\\"pred_count\\\": 11449,\\n      \\\"n_truncated\\\": 189\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"f1\\\": {\\n      \\\"mean\\\": 0.4551987006467193,\\n      \\\"std\\\": 0.014580222116172898,\\n      \\\"n\\\": 2,\\n      \\\"sft\\\": 0.4057,\\n      \\\"delta\\\": 0.049498700646719296\\n    },\\n    \\\"evi_f1\\\": {\\n      \\\"mean\\\": 0.8137228215972221,\\n      \\\"std\\\": 0.007068010936252353,\\n      \\\"n\\\": 2,\\n      \\\"sft\\\": 0.7979,\\n      \\\"delta\\\": 0.015822821597222037\\n    },\\n    \\\"edcr\\\": {\\n      \\\"mean\\\": 0.6457631591561048,\\n      \\\"std\\\": 0.015155964693739168,\\n      \\\"n\\\": 2,\\n      \\\"sft\\\": 0.7118,\\n      \\\"delta\\\": -0.06603684084389516\\n    },\\n    \\\"precision\\\": {\\n      \\\"mean\\\": 0.47021514280730903,\\n      \\\"std\\\": 0.013526600066140166,\\n      \\\"n\\\": 2\\n    },\\n    \\\"recall\\\": {\\n      \\\"mean\\\": 0.4411159575343593,\\n      \\\"std\\\": 0.015479417644278,\\n      \\\"n\\\": 2\\n    },\\n    \\\"pred_count\\\": {\\n      \\\"mean\\\": 11398.0,\\n      \\\"std\\\": 72.12489168102785,\\n      \\\"n\\\": 2\\n    },\\n    \\\"n_truncated\\\": {\\n      \\\"mean\\\": 201.0,\\n      \\\"std\\\": 16.97056274847714,\\n      \\\"n\\\": 2\\n    }\\n  },\\n  \\\"sft_baseline\\\": {\\n    \\\"f1\\\": 0.4057,\\n    \\\"evi_f1\\\": 0.7979,\\n    \\\"edcr\\\": 0.7118\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "e6185a08-fd7d-4c45-ba15-8e53f316336a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_seeds\\\\\\\": 2,\\\\n  \\\\\\\"missing\\\\\\\": [\\\\n    \\\\\\\"s43 (seed=43)\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"per_seed\\\\\\\": {\\\\n    \\\\\\\"r1 (seed=42)\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4448889267171674,\\\\n      \\\\\\\"evi_f1\\\\\\\": 0.8187206600597469,\\\\n      \\\\\\\"edcr\\\\\\\": 0.6564800445664717,\\\\n      \\\\\\\"precision\\\\\\\": 0.46065039217414294,\\\\n      \\\\\\\"recall\\\\\\\": 0.43017035634927164,\\\\n      \\\\\\\"pred_count\\\\\\\": 11347,\\\\n      \\\\\\\"n_truncated\\\\\\\": 213\\\\n    },\\\\n    \\\\\\\"s44 (seed=44)\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.46550847457627126,\\\\n      \\\\\\\"evi_f1\\\\\\\": 0.8087249831346974,\\\\n      \\\\\\\"edcr\\\\\\\": 0.635046273745738,\\\\n      \\\\\\\"precision\\\\\\\": 0.47977989344047517,\\\\n      \\\\\\\"recall\\\\\\\": 0.452061558719447,\\\\n      \\\\\\\"pred_count\\\\\\\": 11449,\\\\n      \\\\\\\"n_truncated\\\\\\\": 189\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.4551987006467193,\\\\n      \\\\\\\"std\\\\\\\": 0.014580222116172898,\\\\n      \\\\\\\"n\\\\\\\": 2,\\\\n      \\\\\\\"sft\\\\\\\": 0.4057,\\\\n      \\\\\\\"delta\\\\\\\": 0.049498700646719296\\\\n    },\\\\n    \\\\\\\"evi_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.8137228215972221,\\\\n      \\\\\\\"std\\\\\\\": 0.007068010936252353,\\\\n      \\\\\\\"n\\\\\\\": 2,\\\\n      \\\\\\\"sft\\\\\\\": 0.7979,\\\\n      \\\\\\\"delta\\\\\\\": 0.015822821597222037\\\\n    },\\\\n    \\\\\\\"edcr\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.6457631591561048,\\\\n      \\\\\\\"std\\\\\\\": 0.015155964693739168,\\\\n      \\\\\\\"n\\\\\\\": 2,\\\\n      \\\\\\\"sft\\\\\\\": 0.7118,\\\\n      \\\\\\\"delta\\\\\\\": -0.06603684084389516\\\\n    },\\\\n    \\\\\\\"precision\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.47021514280730903,\\\\n      \\\\\\\"std\\\\\\\": 0.013526600066140166,\\\\n      \\\\\\\"n\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"recall\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.4411159575343593,\\\\n      \\\\\\\"std\\\\\\\": 0.015479417644278,\\\\n      \\\\\\\"n\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"pred_count\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 11398.0,\\\\n      \\\\\\\"std\\\\\\\": 72.12489168102785,\\\\n      \\\\\\\"n\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"n_truncated\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 201.0,\\\\n      \\\\\\\"std\\\\\\\": 16.97056274847714,\\\\n      \\\\\\\"n\\\\\\\": 2\\\\n    }\\\\n  },\\\\n  \\\\\\\"sft_baseline\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.4057,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.7979,\\\\n    \\\\\\\"edcr\\\\\\\": 0.7118\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_seeds\\\": 2,\\n  \\\"missing\\\": [\\n    \\\"s43 (seed=43)\\\"\\n  ],\\n  \\\"per_seed\\\": {\\n    \\\"r1 (seed=42)\\\": {\\n      \\\"f1\\\": 0.4448889267171674,\\n      \\\"evi_f1\\\": 0.8187206600597469,\\n      \\\"edcr\\\": 0.6564800445664717,\\n      \\\"precision\\\": 0.46065039217414294,\\n      \\\"recall\\\": 0.43017035634927164,\\n      \\\"pred_count\\\": 11347,\\n      \\\"n_truncated\\\": 213\\n    },\\n    \\\"s44 (seed=44)\\\": {\\n      \\\"f1\\\": 0.46550847457627126,\\n      \\\"evi_f1\\\": 0.8087249831346974,\\n      \\\"edcr\\\": 0.635046273745738,\\n      \\\"precision\\\": 0.47977989344047517,\\n      \\\"recall\\\": 0.452061558719447,\\n      \\\"pred_count\\\": 11449,\\n      \\\"n_truncated\\\": 189\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"f1\\\": {\\n      \\\"mean\\\": 0.4551987006467193,\\n      \\\"std\\\": 0.014580222116172898,\\n      \\\"n\\\": 2,\\n      \\\"sft\\\": 0.4057,\\n      \\\"delta\\\": 0.049498700646719296\\n    },\\n    \\\"evi_f1\\\": {\\n      \\\"mean\\\": 0.8137228215972221,\\n      \\\"std\\\": 0.007068010936252353,\\n      \\\"n\\\": 2,\\n      \\\"sft\\\": 0.7979,\\n      \\\"delta\\\": 0.015822821597222037\\n    },\\n    \\\"edcr\\\": {\\n      \\\"mean\\\": 0.6457631591561048,\\n      \\\"std\\\": 0.015155964693739168,\\n      \\\"n\\\": 2,\\n      \\\"sft\\\": 0.7118,\\n      \\\"delta\\\": -0.06603684084389516\\n    },\\n    \\\"precision\\\": {\\n      \\\"mean\\\": 0.47021514280730903,\\n      \\\"std\\\": 0.013526600066140166,\\n      \\\"n\\\": 2\\n    },\\n    \\\"recall\\\": {\\n      \\\"mean\\\": 0.4411159575343593,\\n      \\\"std\\\": 0.015479417644278,\\n      \\\"n\\\": 2\\n    },\\n    \\\"pred_count\\\": {\\n      \\\"mean\\\": 11398.0,\\n      \\\"std\\\": 72.12489168102785,\\n      \\\"n\\\": 2\\n    },\\n    \\\"n_truncated\\\": {\\n      \\\"mean\\\": 201.0,\\n      \\\"std\\\": 16.97056274847714,\\n      \\\"n\\\": 2\\n    }\\n  },\\n  \\\"sft_baseline\\\": {\\n    \\\"f1\\\": 0.4057,\\n    \\\"evi_f1\\\": 0.7979,\\n    \\\"edcr\\\": 0.7118\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017Hc5SkENUxcGrCgCEag1bV`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/eval_results/ced_reranker_poc/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "195a7a1a-6825-4f52-8161-a704906b6ac3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JP7njjTr83WWpWT1vXRioD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1277,
+      "cache_read_input_tokens": 40736,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1277
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-15T23:04:06.362Z_
+
+<details><summary>↩ Tool result · `toolu_017Hc5SkENUxcGrCgCEag1bV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"generations.jsonl\\nper_doc_scores.jsonl\\nresults.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "fa4f2453-9877-4401-93d2-1c0a64382d59",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"generations.jsonl\\\\nper_doc_scores.jsonl\\\\nresults.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"generations.jsonl\\nper_doc_scores.jsonl\\nresults.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture. Let me also check what the `ign_f1` vs `f1` situation is - looks like they're the same. The task says `rel_f1` which seems to correspond to `f1` in the metrics.json (or `ign_f1`). Let me also check the eval module to understand the imports needed for the EDCR diagnostic.
+
+Now let me also check the existing eval_results structure to see what's available for rsft_flat_nli_s43_reeval and dpo_ced_1ep_fixed:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "724e35f3-6fdb-4fe8-b9a0-2f99020ebf01",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FkTAfZGbvZhgoChLNwN4Pr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4319,
+      "cache_read_input_tokens": 42013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4319
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+Now I have a clear picture of all available data. Let me also check the reranker results format and the ced_reranker directories.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "e5d2f735-fabb-4e23-9bd4-5a21c14afb19",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FkTAfZGbvZhgoChLNwN4Pr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4319,
+      "cache_read_input_tokens": 42013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4319
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01B9Gj8hgb1E3hjSKAG7MbXu`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/ced_reranker_poc/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "48d4be0d-29b2-4e00-8be1-65eef439576d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FkTAfZGbvZhgoChLNwN4Pr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4319,
+      "cache_read_input_tokens": 42013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4319
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-15T23:04:14.108Z_
+
+<details><summary>↩ Tool result · `toolu_01B9Gj8hgb1E3hjSKAG7MbXu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"ced_reranker\\\": {\\n    \\\"precision\\\": 0.49130909396254935,\\n    \\\"recall\\\": 0.48152415439058516,\\n    \\\"f1\\\": 0.4863674147963425,\\n    \\\"ign_precision\\\": 0.49130909396254935,\\n    \\\"ign_recall\\\": 0.48152415439058516,\\n    \\\"ign_f1\\\": 0.4863674147963425,\\n    \\\"tp\\\": 5851,\\n    \\\"pred_count\\\": 11909,\\n    \\\"gold_count\\\": 12151,\\n    \\\"evi_precision\\\": 0.8015752032520326,\\n    \\\"evi_recall\\\": 0.8367220650636492,\\n    \\\"evi_f1\\\": 0.8187716262975778,\\n    \\\"n_evaluated\\\": 14635,\\n    \\\"edcr\\\": 0.6155564581640942,\\n    \\\"n_distractor_citations\\\": 15155,\\n    \\\"n_total_citations\\\": 24620,\\n    \\\"n_docs\\\": 985,\\n    \\\"n_predictions\\\": 14782,\\n    \\\"format_ok_rate\\\": 1.0\\n  },\\n  \\\"oracle_reranker\\\": {\\n    \\\"precision\\\": 0.6211033132038518,\\n    \\\"recall\\\": 0.626368200148136,\\n    \\\"f1\\\": 0.6237246465888138,\\n    \\\"ign_precision\\\": 0.6211033132038518,\\n    \\\"ign_recall\\\": 0.626368200148136,\\n    \\\"ign_f1\\\": 0.6237246465888138,\\n    \\\"tp\\\": 7611,\\n    \\\"pred_count\\\": 12254,\\n    \\\"gold_count\\\": 12151,\\n    \\\"evi_precision\\\": 0.8042586750788644,\\n    \\\"evi_recall\\\": 0.7844615384615384,\\n    \\\"evi_f1\\\": 0.7942367601246105,\\n    \\\"n_evaluated\\\": 13249,\\n    \\\"edcr\\\": 0.5262253193960511,\\n    \\\"n_distractor_citations\\\": 11327,\\n    \\\"n_total_citations\\\": 21525,\\n    \\\"n_docs\\\": 985,\\n    \\\"n_predictions\\\": 13418,\\n    \\\"format_ok_rate\\\": 1.0\\n  },\\n  \\\"random_baseline\\\": {\\n    \\\"precision\\\": 0.43477605187754487,\\n    \\\"recall\\\": 0.4745288453625216,\\n    \\\"f1\\\": 0.4537834966355802,\\n    \\\"ign_precision\\\": 0.43477605187754487,\\n    \\\"ign_recall\\\": 0.4745288453625216,\\n    \\\"ign_f1\\\": 0.4537834966355802,\\n    \\\"tp\\\": 5766,\\n    \\\"pred_count\\\": 13262,\\n    \\\"gold_count\\\": 12151,\\n    \\\"evi_precision\\\": 0.8097686375321337,\\n    \\\"evi_recall\\\": 0.7960730948678072,\\n    \\\"evi_f1\\\": 0.8028624644642682,\\n    \\\"n_evaluated\\\": 15271,\\n    \\\"edcr\\\": 0.6762845849802371,\\n    \\\"n_distractor_citations\\\": 17110,\\n    \\\"n_total_citations\\\": 25300,\\n    \\\"n_docs\\\": 985,\\n    \\\"n_predictions\\\": 15642,\\n    \\\"format_ok_rate\\\": 0.9979695431472081\\n  },\\n  \\\"ced_f1_correlation\\\": {\\n    \\\"spearman_r\\\": 0.3235,\\n    \\\"p_value\\\": 2.46e-191,\\n    \\\"n_samples\\\": 7880\\n  },\\n  \\\"sft_baseline_reference\\\": {\\n    \\\"f1\\\": 0.4057,\\n    \\\"evi_f1\\\": 0.7979,\\n    \\\"edcr\\\": 0.7118,\\n    \\\"note\\\": \\\"greedy decode baseline\\\"\\n  },\\n  \\\"config\\\": {\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_dir\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/ced_reranker_poc\\\",\\n    \\\"nli_model\\\": \\\"cross-encoder/nli-deberta-v3-base\\\",\\n    \\\"num_generations\\\": 8,\\n    \\\"temperature\\\": 0.7,\\n    \\\"max_new_tokens\\\": 2048,\\n    \\\"tau\\\": 0.5,\\n    \\\"seed\\\": 42,\\n    \\\"max_docs\\\": null\\n  },\\n  \\\"generation_time_seconds\\\": 20872.6\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "b4e13629-b0f2-42ee-a7fb-c7690ab8d1f1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"ced_reranker\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.49130909396254935,\\\\n    \\\\\\\"recall\\\\\\\": 0.48152415439058516,\\\\n    \\\\\\\"f1\\\\\\\": 0.4863674147963425,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.49130909396254935,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.48152415439058516,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.4863674147963425,\\\\n    \\\\\\\"tp\\\\\\\": 5851,\\\\n    \\\\\\\"pred_count\\\\\\\": 11909,\\\\n    \\\\\\\"gold_count\\\\\\\": 12151,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.8015752032520326,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.8367220650636492,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8187716262975778,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 14635,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6155564581640942,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 15155,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 24620,\\\\n    \\\\\\\"n_docs\\\\\\\": 985,\\\\n    \\\\\\\"n_predictions\\\\\\\": 14782,\\\\n    \\\\\\\"format_ok_rate\\\\\\\": 1.0\\\\n  },\\\\n  \\\\\\\"oracle_reranker\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.6211033132038518,\\\\n    \\\\\\\"recall\\\\\\\": 0.626368200148136,\\\\n    \\\\\\\"f1\\\\\\\": 0.6237246465888138,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.6211033132038518,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.626368200148136,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.6237246465888138,\\\\n    \\\\\\\"tp\\\\\\\": 7611,\\\\n    \\\\\\\"pred_count\\\\\\\": 12254,\\\\n    \\\\\\\"gold_count\\\\\\\": 12151,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.8042586750788644,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.7844615384615384,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.7942367601246105,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 13249,\\\\n    \\\\\\\"edcr\\\\\\\": 0.5262253193960511,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 11327,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 21525,\\\\n    \\\\\\\"n_docs\\\\\\\": 985,\\\\n    \\\\\\\"n_predictions\\\\\\\": 13418,\\\\n    \\\\\\\"format_ok_rate\\\\\\\": 1.0\\\\n  },\\\\n  \\\\\\\"random_baseline\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.43477605187754487,\\\\n    \\\\\\\"recall\\\\\\\": 0.4745288453625216,\\\\n    \\\\\\\"f1\\\\\\\": 0.4537834966355802,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.43477605187754487,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.4745288453625216,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.4537834966355802,\\\\n    \\\\\\\"tp\\\\\\\": 5766,\\\\n    \\\\\\\"pred_count\\\\\\\": 13262,\\\\n    \\\\\\\"gold_count\\\\\\\": 12151,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.8097686375321337,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.7960730948678072,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8028624644642682,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 15271,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6762845849802371,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 17110,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 25300,\\\\n    \\\\\\\"n_docs\\\\\\\": 985,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15642,\\\\n    \\\\\\\"format_ok_rate\\\\\\\": 0.9979695431472081\\\\n  },\\\\n  \\\\\\\"ced_f1_correlation\\\\\\\": {\\\\n    \\\\\\\"spearman_r\\\\\\\": 0.3235,\\\\n    \\\\\\\"p_value\\\\\\\": 2.46e-191,\\\\n    \\\\\\\"n_samples\\\\\\\": 7880\\\\n  },\\\\n  \\\\\\\"sft_baseline_reference\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.4057,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.7979,\\\\n    \\\\\\\"edcr\\\\\\\": 0.7118,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"greedy decode baseline\\\\\\\"\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/ced_reranker_poc\\\\\\\",\\\\n    \\\\\\\"nli_model\\\\\\\": \\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\",\\\\n    \\\\\\\"num_generations\\\\\\\": 8,\\\\n    \\\\\\\"temperature\\\\\\\": 0.7,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 2048,\\\\n    \\\\\\\"tau\\\\\\\": 0.5,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"max_docs\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"generation_time_seconds\\\\\\\": 20872.6\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"ced_reranker\\\": {\\n    \\\"precision\\\": 0.49130909396254935,\\n    \\\"recall\\\": 0.48152415439058516,\\n    \\\"f1\\\": 0.4863674147963425,\\n    \\\"ign_precision\\\": 0.49130909396254935,\\n    \\\"ign_recall\\\": 0.48152415439058516,\\n    \\\"ign_f1\\\": 0.4863674147963425,\\n    \\\"tp\\\": 5851,\\n    \\\"pred_count\\\": 11909,\\n    \\\"gold_count\\\": 12151,\\n    \\\"evi_precision\\\": 0.8015752032520326,\\n    \\\"evi_recall\\\": 0.8367220650636492,\\n    \\\"evi_f1\\\": 0.8187716262975778,\\n    \\\"n_evaluated\\\": 14635,\\n    \\\"edcr\\\": 0.6155564581640942,\\n    \\\"n_distractor_citations\\\": 15155,\\n    \\\"n_total_citations\\\": 24620,\\n    \\\"n_docs\\\": 985,\\n    \\\"n_predictions\\\": 14782,\\n    \\\"format_ok_rate\\\": 1.0\\n  },\\n  \\\"oracle_reranker\\\": {\\n    \\\"precision\\\": 0.6211033132038518,\\n    \\\"recall\\\": 0.626368200148136,\\n    \\\"f1\\\": 0.6237246465888138,\\n    \\\"ign_precision\\\": 0.6211033132038518,\\n    \\\"ign_recall\\\": 0.626368200148136,\\n    \\\"ign_f1\\\": 0.6237246465888138,\\n    \\\"tp\\\": 7611,\\n    \\\"pred_count\\\": 12254,\\n    \\\"gold_count\\\": 12151,\\n    \\\"evi_precision\\\": 0.8042586750788644,\\n    \\\"evi_recall\\\": 0.7844615384615384,\\n    \\\"evi_f1\\\": 0.7942367601246105,\\n    \\\"n_evaluated\\\": 13249,\\n    \\\"edcr\\\": 0.5262253193960511,\\n    \\\"n_distractor_citations\\\": 11327,\\n    \\\"n_total_citations\\\": 21525,\\n    \\\"n_docs\\\": 985,\\n    \\\"n_predictions\\\": 13418,\\n    \\\"format_ok_rate\\\": 1.0\\n  },\\n  \\\"random_baseline\\\": {\\n    \\\"precision\\\": 0.43477605187754487,\\n    \\\"recall\\\": 0.4745288453625216,\\n    \\\"f1\\\": 0.4537834966355802,\\n    \\\"ign_precision\\\": 0.43477605187754487,\\n    \\\"ign_recall\\\": 0.4745288453625216,\\n    \\\"ign_f1\\\": 0.4537834966355802,\\n    \\\"tp\\\": 5766,\\n    \\\"pred_count\\\": 13262,\\n    \\\"gold_count\\\": 12151,\\n    \\\"evi_precision\\\": 0.8097686375321337,\\n    \\\"evi_recall\\\": 0.7960730948678072,\\n    \\\"evi_f1\\\": 0.8028624644642682,\\n    \\\"n_evaluated\\\": 15271,\\n    \\\"edcr\\\": 0.6762845849802371,\\n    \\\"n_distractor_citations\\\": 17110,\\n    \\\"n_total_citations\\\": 25300,\\n    \\\"n_docs\\\": 985,\\n    \\\"n_predictions\\\": 15642,\\n    \\\"format_ok_rate\\\": 0.9979695431472081\\n  },\\n  \\\"ced_f1_correlation\\\": {\\n    \\\"spearman_r\\\": 0.3235,\\n    \\\"p_value\\\": 2.46e-191,\\n    \\\"n_samples\\\": 7880\\n  },\\n  \\\"sft_baseline_reference\\\": {\\n    \\\"f1\\\": 0.4057,\\n    \\\"evi_f1\\\": 0.7979,\\n    \\\"edcr\\\": 0.7118,\\n    \\\"note\\\": \\\"greedy decode baseline\\\"\\n  },\\n  \\\"config\\\": {\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_dir\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/ced_reranker_poc\\\",\\n    \\\"nli_model\\\": \\\"cross-encoder/nli-deberta-v3-base\\\",\\n    \\\"num_generations\\\": 8,\\n    \\\"temperature\\\": 0.7,\\n    \\\"max_new_tokens\\\": 2048,\\n    \\\"tau\\\": 0.5,\\n    \\\"seed\\\": 42,\\n    \\\"max_docs\\\": null\\n  },\\n  \\\"generation_time_seconds\\\": 20872.6\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017sfba6F6MPUyXxDc6wYZLA`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "5c4c6285-aba7-402c-8470-4bf8bc9e3baa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FkTAfZGbvZhgoChLNwN4Pr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4319,
+      "cache_read_input_tokens": 42013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4319
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-15T23:04:15.168Z_
+
+<details><summary>↩ Tool result · `toolu_017sfba6F6MPUyXxDc6wYZLA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "047842e8-c8ee-437b-a361-ee8f7f78d90f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TNTKYrid5WtCQjjMzHa6sg`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/eval_results/dpo_ced_1ep_fixed/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "f10ad75a-295d-42fd-abbd-99375a18f176",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FkTAfZGbvZhgoChLNwN4Pr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4319,
+      "cache_read_input_tokens": 42013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4319
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-15T23:04:15.627Z_
+
+<details><summary>↩ Tool result · `toolu_01TNTKYrid5WtCQjjMzHa6sg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "7c6394bd-f0dc-4019-a059-59abdfa0aad0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture of all the data. Let me summarize what I know:
+
+**Available metrics.json files:**
+- `sft_baseline_noquant`: rel_f1=0.4106, evi_f1=0.8013, edcr=0.7039
+- `sft_no_evidence`: rel_f1=0.4893, evi_f1=0.0, edcr=0.0
+- `rsft_r1` (CED s42): rel_f1=0.4449, evi_f1=0.8187, edcr=0.6565
+
+
+- `rsft_s43` (CED s43): rel_f1=0.4683, evi_f1=0.8156, edcr=0.6388
+- `rsft_s44` (CED s44): rel_f1=0.4655, evi_f1=0.8087, edcr=0.6350
+- `rsft_flat_nli` (flat-NLI s42): rel_f1=0.4539, evi_f1=0.8043, edcr=0.6431
+- `rsft_flat_nli_s43`: appears to be broken with near-zero f1 scores
+
+Looking at the rest of the results, I see a few more models with usable metrics—the GRPO variant and the CED reranker POC are performing reasonably well—but several experiments are still missing or have corrupted evaluations that need to be rerun.
+
+Now I'm noticing some discrepancies between what the task description claims for the CED RSFT results and what the actual metrics files show. The task lists s42 at 0.4549, but the stored metrics have it at 0.4449, and there are similar small mismatches for s43 as well. I'm noticing the cross_method_table values match the rounded versions from metrics.json—the individual f1 scores get rounded to 4 decimal places, and the mean of 0.4596 does align with the task description. The issue is that the task has hardcoded values that don't match the actual metrics, so the script needs to pull directly from metrics.json instead of using fixed numbers. I'm also seeing that the table uses the `ign_f1` field which equals `f1`, then rounds it for display.
+
+Now I need to set up the stat_analysis.py script to auto-scan the eval_results directory for metrics.json files, map directory patterns to method groups, and run paired t-tests between the CED RSFT and flat-NLI RSFT seeds.
+
+The tricky part is handling the various naming conventions across different methods—some directories follow patterns like rsft_r1 or rsft_s43 for CED variants, while flat-NLI has rsft_flat_nli with different seed availability, and then there are the baseline methods like sft_baseline_noquant, plus special cases like the CED reranker that uses results.json instead of metrics.json.
+
+For the analysis script, I need to build an auto-discovery system that can identify method groups from directory names, gracefully handle missing or broken results, and support different file formats. I'm also going to leverage the existing EDCR diagnostic script since it already covers comprehensive evaluation. Now I'm writing a statistical analysis script that will parse the results directory, group methods intelligently, and perform statistical testing with flexible output formatting.
+
+Writing the analysis script... Continuing to define the remaining method groups for GRPO, DPO, the CED reranker, and RSFT with different top-k settings, then setting a minimum F1 threshold and starting to write a function that loads metrics from a results directory. I'm continuing to build out the metrics extraction logic, now handling the special case where evaluation results are stored in a results.json file instead, specifically for the CED reranker variant which has its own data structure I need to parse and map to the same metrics format.
+
+Then I'm defining a function that iterates through method groups, loads the metrics for each seed variant, and organizes them into a dictionary keyed by group name with lists of individual results.
+
+Now I'm implementing a paired t-test function that compares two groups on a specific metric, choosing between a paired test if they have equal sample sizes or an independent samples test otherwise.
+
+Calculating Cohen's d to measure effect size...
+
+Now I'm building a function that generates summary statistics for each group, aggregating metrics like F1 scores and EDCR across different random seeds, then computing means and standard deviations for each metric.
+
+Formatting the results as text...
+
+Now I'm setting up the main function with argument parsing to handle the results directory, output format choice, and optional output file. I'm collecting the grouped results and preparing to generate a summary table, then starting to print the formatted output. Writing statistical output... I'm noticing a discrepancy between the task description values and what's actually in the cross_method_table. The CED seed results don't match up—the task lists different rel_f1 scores than what I'm seeing in the actual metrics. Let me verify by checking if the cross_method_table is using a different calculation or rounding approach, since ign_f1 should equal f1 in this case.
+
+Looking at the actual data, the cross_method_table values do match the metrics.json files, so the task description appears to have outdated or incorrect numbers. For flat-NLI specifically, there's a bigger problem: the task mentions seeds s42 through s45, but s43's eval is broken with an f1 of 0.0022, the reeval directory is empty, and s44/s45 don't exist at all. So I only have s42 as a valid data point for flat-NLI right now.
+
+I should write a script that reads directly from the actual files rather than relying on the task description, and I need to handle these edge cases carefully. Let me also check whether scipy is available on the server before proceeding.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "ef3d645c-8b74-4b6d-b2c7-877043ff035d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Dxi2AEMC9NFGt3s4ozo1f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2464,
+      "cache_read_input_tokens": 46332,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2464
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+Let me check if scipy is available and verify the EDCR script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "a2a7dad1-cd5b-42cc-b13f-0efc2644844f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Dxi2AEMC9NFGt3s4ozo1f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2464,
+      "cache_read_input_tokens": 46332,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2464
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FbD8h2BNGdEDKcx9vCgeYn`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "python3 -c \"import scipy; print(scipy.__version__); import numpy; print(numpy.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "29e4d58e-8b25-4aa9-bd91-db49a7f0e496",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Dxi2AEMC9NFGt3s4ozo1f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2464,
+      "cache_read_input_tokens": 46332,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2464
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-15T23:05:28.320Z_
+
+<details><summary>↩ Tool result · `toolu_01FbD8h2BNGdEDKcx9vCgeYn`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "871ded14-6305-4924-86d4-24fc9075705c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019gpqVhCDAYQBgGswsEbYcx`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "python3 -c \"import scipy; print(scipy.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "95aa7549-d60b-4f94-ab32-b99b3e2e8410",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCiRd3Q1qZ9hEZehZ1nFdo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5578,
+      "cache_read_input_tokens": 48796,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5578
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-15T23:05:31.978Z_
+
+<details><summary>↩ Tool result · `toolu_019gpqVhCDAYQBgGswsEbYcx`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "80dbd283-e9f1-44e5-881b-bf22d2a50310",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01A4wHjoQSxhKsYgyQzjmFmG`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "python3 -c \"import numpy; print(numpy.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "e99826e7-2823-4cf2-b4f3-88a24d1063ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCiRd3Q1qZ9hEZehZ1nFdo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5578,
+      "cache_read_input_tokens": 48796,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5578
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-15T23:05:32.263Z_
+
+<details><summary>↩ Tool result · `toolu_01A4wHjoQSxhKsYgyQzjmFmG`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "7d3143bb-dfcc-40fa-8176-caa02f3a8f90",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016fzRwazp5hAY9ghA5XXkUr`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import scipy; print('scipy', scipy.__version__)\" && python3 -c \"import numpy; print('numpy', numpy.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "c5df3498-1eba-48f1-9171-64f4d8b1c925",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FaserriiKdebe9NAZH5M48",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 468,
+      "cache_read_input_tokens": 54374,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 468
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-15T23:05:37.168Z_
+
+<details><summary>↩ Tool result · `toolu_016fzRwazp5hAY9ghA5XXkUr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"scipy 1.17.1\\nnumpy 2.2.6\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "35788fc6-c1da-4e43-b7dd-e6d61cea28aa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"scipy 1.17.1\\\\nnumpy 2.2.6\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"scipy 1.17.1\\nnumpy 2.2.6\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019qmuy5H8D8WobL6XDRKVJf`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python3 scripts/edcr_diagnostic.py --help",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "114ae560-4d83-41f3-a7e1-c7be0f48c6dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FaserriiKdebe9NAZH5M48",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 468,
+      "cache_read_input_tokens": 54374,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 468
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-15T23:05:37.800Z_
+
+<details><summary>↩ Tool result · `toolu_019qmuy5H8D8WobL6XDRKVJf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: edcr_diagnostic.py [-h] [--methods NAME:PATH [NAME:PATH ...]]\\n                          [--auto-discover] [--output-dir OUTPUT_DIR]\\n                          [--top-k-relations TOP_K_RELATIONS]\\n\\nCross-method EDCR diagnostic analysis\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --methods NAME:PATH [NAME:PATH ...]\\n                        Method entries as name:predictions_path pairs\\n  --auto-discover       Auto-discover methods from built-in config\\n  --output-dir OUTPUT_DIR\\n                        Output directory for diagnostic files\\n  --top-k-relations TOP_K_RELATIONS\\n                        Number of top relations for per-relation table\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "908679f3-a9ac-44a4-b2a3-35b96b0192d7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: edcr_diagnostic.py [-h] [--methods NAME:PATH [NAME:PATH ...]]\\\\n                          [--auto-discover] [--output-dir OUTPUT_DIR]\\\\n                          [--top-k-relations TOP_K_RELATIONS]\\\\n\\\\nCross-method EDCR diagnostic analysis\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --methods NAME:PATH [NAME:PATH ...]\\\\n                        Method entries as name:predictions_path pairs\\\\n  --auto-discover       Auto-discover methods from built-in config\\\\n  --output-dir OUTPUT_DIR\\\\n                        Output directory for diagnostic files\\\\n  --top-k-relations TOP_K_RELATIONS\\\\n                        Number of top relations for per-relation table\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: edcr_diagnostic.py [-h] [--methods NAME:PATH [NAME:PATH ...]]\\n                          [--auto-discover] [--output-dir OUTPUT_DIR]\\n                          [--top-k-relations TOP_K_RELATIONS]\\n\\nCross-method EDCR diagnostic analysis\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --methods NAME:PATH [NAME:PATH ...]\\n                        Method entries as name:predictions_path pairs\\n  --auto-discover       Auto-discover methods from built-in config\\n  --output-dir OUTPUT_DIR\\n                        Output directory for diagnostic files\\n  --top-k-relations TOP_K_RELATIONS\\n                        Number of top relations for per-relation table\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+EDCR diagnostic script exists and works fine. scipy and numpy are available. Now let me create the stat_analysis.py script.
+
+Let me carefully think about the design:
+
+1. The script should auto-scan results_dir
+2. Key method groups and their directory mappings
+3. Handle different result file formats (metrics.json vs results.json for reranker)
+4. Filter out broken results (f1 < 0.01)
+5. Paired t-test when both groups have matched seeds
+6. Independent t-test when seed counts differ
+7. Summary table with mean ± std
+
+Let me also check the dpo_ced_ckpt400 results:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "4458a7d2-2939-4ac7-99fd-603604841de5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013UGHkBg8iJcSybR1zwfQm3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 705,
+      "cache_read_input_tokens": 54842,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 705
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79_
+
+scipy 1.17.1 and numpy 2.2.6 are available. EDCR diagnostic script works. Now let me create stat_analysis.py.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "9f044885-ced5-473d-bcc7-198f210fb5d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013UGHkBg8iJcSybR1zwfQm3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 705,
+      "cache_read_input_tokens": 54842,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 705
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HwGGod4iqHBoTHnwq5jHYt`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat > /root/autodl-tmp/freige/scripts/stat_analysis.py << 'PYEOF'\n\"\"\"Statistical analysis of FREIGE eval results.\"\"\"\n\nimport argparse\nimport json\nimport math\nimport sys\nfrom collections import defaultdict\nfrom pathlib import Path\n\nimport numpy as np\nfrom scipy import stats\n\n\n# ── Method group definitions ──────────────────────────────────────────\n# group_name -> list of (subdir, seed_label)\n# For groups with fallback dirs, first match wins per seed slot.\nMETHOD_GROUPS = {\n    \"SFT baseline\": {\n        \"seeds\": [(\"sft_baseline_noquant\", None)],\n    },\n    \"SFT no-evidence\": {\n        \"seeds\": [(\"sft_no_evidence\", None)],\n    },\n    \"RSFT-CED\": {\n        \"seeds\": [\n            (\"rsft_r1\", \"s42\"),\n            (\"rsft_s43\", \"s43\"),\n            (\"rsft_s44\", \"s44\"),\n        ],\n    },\n    \"RSFT-flatNLI\": {\n        \"seeds\": [\n            (\"rsft_flat_nli\", \"s42\"),\n            (\"rsft_flat_nli_s43_reeval\", \"s43\"),\n            (\"rsft_flat_nli_s43\", \"s43\"),  # fallback\n            (\"rsft_flat_nli_s44\", \"s44\"),\n            (\"rsft_flat_nli_s45\", \"s45\"),\n        ],\n    },\n    \"GRPO bf16\": {\n        \"seeds\": [(\"grpo_g8_bf16_ckpt100\", None)],\n    },\n    \"DPO-CED 1ep\": {\n        \"seeds\": [\n            (\"dpo_ced_1ep_fixed\", None),\n            (\"dpo_ced_1ep\", None),\n        ],\n    },\n    \"CED reranker\": {\n        \"seeds\": [(\"ced_reranker_poc\", None)],\n        \"loader\": \"reranker\",\n    },\n    \"RSFT top_k=3\": {\n        \"seeds\": [\n            (\"rsft_topk3_fixed\", None),\n            (\"rsft_topk3\", None),\n        ],\n    },\n}\n\nMIN_F1 = 0.01\nMETRICS_KEYS = [\"rel_f1\", \"evi_f1\", \"edcr\", \"precision\", \"recall\",\n                \"evi_f1_joint\", \"n_predictions\", \"n_truncated\"]\n\n\n# ── Loaders ───────────────────────────────────────────────────────────\n\ndef _load_standard(path: Path) -> dict | None:\n    mf = path / \"metrics.json\"\n    if not mf.exists():\n        return None\n    with open(mf) as f:\n        m = json.load(f)\n    if m.get(\"f1\", 0) < MIN_F1:\n        return None\n    return {\n        \"rel_f1\": m[\"f1\"],\n        \"evi_f1\": m.get(\"evi_f1\", 0.0),\n        \"edcr\": m.get(\"edcr\", 0.0),\n        \"precision\": m.get(\"precision\", 0.0),\n        \"recall\": m.get(\"recall\", 0.0),\n        \"evi_f1_joint\": m.get(\"evi_f1_joint\", 0.0),\n        \"n_predictions\": m.get(\"n_predictions\", 0),\n        \"n_truncated\": m.get(\"n_truncated\", 0),\n    }\n\n\ndef _load_reranker(path: Path) -> dict | None:\n    rf = path / \"results.json\"\n    if not rf.exists():\n        return None\n    with open(rf) as f:\n        data = json.load(f)\n    r = data.get(\"ced_reranker\")\n    if not r or r.get(\"f1\", 0) < MIN_F1:\n        return None\n    return {\n        \"rel_f1\": r[\"f1\"],\n        \"evi_f1\": r.get(\"evi_f1\", 0.0),\n        \"edcr\": r.get(\"edcr\", 0.0),\n        \"precision\": r.get(\"precision\", 0.0),\n        \"recall\": r.get(\"recall\", 0.0),\n        \"evi_f1_joint\": 0.0,\n        \"n_predictions\": r.get(\"n_predictions\", 0),\n        \"n_truncated\": r.get(\"n_truncated\", 0),\n    }\n\n\nLOADERS = {\n    \"standard\": _load_standard,\n    \"reranker\": _load_reranker,\n}\n\n\n# ── Data collection ──────────────────────────────────────────────────\n\ndef collect(results_dir: Path) -> dict[str, list[dict]]:\n    groups = {}\n    for gname, cfg in METHOD_GROUPS.items():\n        loader = LOADERS[cfg.get(\"loader\", \"standard\")]\n        seen_seeds = set()\n        results = []\n        for subdir, seed in cfg[\"seeds\"]:\n            if seed and seed in seen_seeds:\n                continue\n            path = results_dir / subdir\n            m = loader(path)\n            if m is not None:\n                m[\"subdir\"] = subdir\n                m[\"seed\"] = seed\n                results.append(m)\n                if seed:\n                    seen_seeds.add(seed)\n        if results:\n            groups[gname] = results\n    return groups\n\n\n# ── Statistics ────────────────────────────────────────────────────────\n\ndef cohens_d(a, b):\n    na, nb = len(a), len(b)\n    if na < 2 or nb < 2:\n        return float(\"nan\")\n    va = np.var(a, ddof=1)\n    vb = np.var(b, ddof=1)\n    pooled = np.sqrt((va + vb) / 2)\n    if pooled == 0:\n        return float(\"inf\")\n    return (np.mean(a) - np.mean(b)) / pooled\n\n\ndef ttest(group_a, group_b, metric=\"rel_f1\"):\n    va = np.array([s[metric] for s in group_a])\n    vb = np.array([s[metric] for s in group_b])\n\n    if len(va) < 2 or len(vb) < 2:\n        return {\n            \"status\": \"insufficient_data\",\n            \"n_a\": len(va), \"n_b\": len(vb),\n            \"mean_a\": float(np.mean(va)), \"mean_b\": float(np.mean(vb)),\n        }\n\n    if len(va) == len(vb):\n        t, p = stats.ttest_rel(va, vb)\n        kind = \"paired\"\n    else:\n        t, p = stats.ttest_ind(va, vb, equal_var=False)\n        kind = \"welch\"\n\n    return {\n        \"status\": \"ok\",\n        \"test\": kind,\n        \"t\": float(t),\n        \"p\": float(p),\n        \"cohens_d\": float(cohens_d(va, vb)),\n        \"n_a\": len(va), \"n_b\": len(vb),\n        \"mean_a\": float(np.mean(va)),\n        \"mean_b\": float(np.mean(vb)),\n        \"std_a\": float(np.std(va, ddof=1)),\n        \"std_b\": float(np.std(vb, ddof=1)),\n    }\n\n\n# ── Formatting ────────────────────────────────────────────────────────\n\ndef _val(mean, std, n):\n    if n > 1 and std > 0:\n        return f\"{mean:.4f}±{std:.4f}\"\n    return f\"{mean:.4f}\"\n\n\ndef print_summary(groups):\n    header = f\"{'Method':<22} {'n':>2} {'rel_f1':>14} {'evi_f1':>14} {'EDCR':>14}\"\n    print(header)\n    print(\"-\" * len(header))\n    for gname, seeds in groups.items():\n        n = len(seeds)\n        vals = {k: [s[k] for s in seeds] for k in [\"rel_f1\", \"evi_f1\", \"edcr\"]}\n        rf = _val(np.mean(vals[\"rel_f1\"]), np.std(vals[\"rel_f1\"], ddof=1) if n > 1 else 0, n)\n        ef = _val(np.mean(vals[\"evi_f1\"]), np.std(vals[\"evi_f1\"], ddof=1) if n > 1 else 0, n)\n        ed = _val(np.mean(vals[\"edcr\"]), np.std(vals[\"edcr\"], ddof=1) if n > 1 else 0, n)\n        print(f\"{gname:<22} {n:>2} {rf:>14} {ef:>14} {ed:>14}\")\n\n\ndef print_ttest(name_a, name_b, groups):\n    ga = groups.get(name_a)\n    gb = groups.get(name_b)\n    if not ga or not gb:\n        print(f\"\\n  Cannot compare: {name_a} has {len(ga) if ga else 0}, \"\n              f\"{name_b} has {len(gb) if gb else 0} results\")\n        return\n\n    for metric in [\"rel_f1\", \"evi_f1\", \"edcr\"]:\n        r = ttest(ga, gb, metric)\n        print(f\"\\n  {metric}:\")\n        print(f\"    {name_a}: {r['mean_a']:.4f}\" +\n              (f\" ± {r['std_a']:.4f}\" if r.get(\"std_a\") else \"\") +\n              f\" (n={r['n_a']})\")\n        print(f\"    {name_b}: {r['mean_b']:.4f}\" +\n              (f\" ± {r['std_b']:.4f}\" if r.get(\"std_b\") else \"\") +\n              f\" (n={r['n_b']})\")\n        if r[\"status\"] == \"ok\":\n            sig = \"***\" if r[\"p\"] < 0.001 else \"**\" if r[\"p\"] < 0.01 else \"*\" if r[\"p\"] < 0.05 else \"ns\"\n            print(f\"    {r['test']} t={r['t']:.3f}, p={r['p']:.4f} {sig}, Cohen's d={r['cohens_d']:.3f}\")\n        else:\n            print(f\"    [insufficient data for t-test]\")\n\n\ndef print_seed_detail(groups):\n    for gname, seeds in groups.items():\n        if len(seeds) <= 1:\n            continue\n        print(f\"\\n  {gname}:\")\n        for s in seeds:\n            label = s.get(\"seed\") or s[\"subdir\"]\n            print(f\"    {label:<6} rel_f1={s['rel_f1']:.4f}  evi_f1={s['evi_f1']:.4f}  edcr={s['edcr']:.4f}\")\n\n\ndef to_json(groups):\n    out = {\"summary\": {}, \"groups\": {}, \"tests\": {}}\n    for gname, seeds in groups.items():\n        vals = {k: [s[k] for s in seeds] for k in [\"rel_f1\", \"evi_f1\", \"edcr\"]}\n        n = len(seeds)\n        out[\"summary\"][gname] = {\n            \"n\": n,\n            \"rel_f1_mean\": float(np.mean(vals[\"rel_f1\"])),\n            \"rel_f1_std\": float(np.std(vals[\"rel_f1\"], ddof=1)) if n > 1 else 0.0,\n            \"evi_f1_mean\": float(np.mean(vals[\"evi_f1\"])),\n            \"evi_f1_std\": float(np.std(vals[\"evi_f1\"], ddof=1)) if n > 1 else 0.0,\n            \"edcr_mean\": float(np.mean(vals[\"edcr\"])),\n            \"edcr_std\": float(np.std(vals[\"edcr\"], ddof=1)) if n > 1 else 0.0,\n        }\n        out[\"groups\"][gname] = seeds\n\n    for a, b in [(\"RSFT-CED\", \"RSFT-flatNLI\"), (\"RSFT-CED\", \"SFT baseline\")]:\n        if a in groups and b in groups:\n            out[\"tests\"][f\"{a}_vs_{b}\"] = {\n                m: ttest(groups[a], groups[b], m) for m in [\"rel_f1\", \"evi_f1\", \"edcr\"]\n            }\n    return out\n\n\ndef generate_latex(groups):\n    lines = [\n        r\"\\begin{table}[t]\",\n        r\"\\centering\",\n        r\"\\small\",\n        r\"\\caption{Cross-method comparison on DocRED dev set}\",\n        r\"\\label{tab:cross-method}\",\n        r\"\\begin{tabular}{l c c c c}\",\n        r\"\\toprule\",\n        r\"Method & $n$ & Rel F\\textsubscript{1} & Evi F\\textsubscript{1} & EDCR \\\\\",\n        r\"\\midrule\",\n    ]\n    for gname, seeds in groups.items():\n        n = len(seeds)\n        vals = {k: [s[k] for s in seeds] for k in [\"rel_f1\", \"evi_f1\", \"edcr\"]}\n        rf_m = np.mean(vals[\"rel_f1\"])\n        ef_m = np.mean(vals[\"evi_f1\"])\n        ed_m = np.mean(vals[\"edcr\"])\n        name_tex = gname.replace(\"_\", r\"\\_\")\n        if n > 1:\n            rf_s = np.std(vals[\"rel_f1\"], ddof=1)\n            ef_s = np.std(vals[\"evi_f1\"], ddof=1)\n            ed_s = np.std(vals[\"edcr\"], ddof=1)\n            lines.append(\n                f\"  {name_tex} & {n} & \"\n                f\"{rf_m:.4f}$\\\\pm${rf_s:.4f} & \"\n                f\"{ef_m:.4f}$\\\\pm${ef_s:.4f} & \"\n                f\"{ed_m:.4f}$\\\\pm${ed_s:.4f} \\\\\\\\\"\n            )\n        else:\n            lines.append(\n                f\"  {name_tex} & {n} & {rf_m:.4f} & {ef_m:.4f} & {ed_m:.4f} \\\\\\\\\"\n            )\n    lines += [r\"\\bottomrule\", r\"\\end{tabular}\", r\"\\end{table}\"]\n    return \"\\n\".join(lines)\n\n\n# ── Main ──────────────────────────────────────────────────────────────\n\ndef main():\n    ap = argparse.ArgumentParser(description=\"FREIGE stat analysis\")\n    ap.add_argument(\"--results_dir\", default=\"/root/autodl-tmp/eval_results/\")\n    ap.add_argument(\"--format\", choices=[\"text\", \"json\", \"latex\"], default=\"text\")\n    ap.add_argument(\"--output\", default=None)\n    args = ap.parse_args()\n\n    groups = collect(Path(args.results_dir))\n    if not groups:\n        print(\"No valid results found.\", file=sys.stderr)\n        sys.exit(1)\n\n    if args.format == \"json\":\n        out = to_json(groups)\n        text = json.dumps(out, indent=2, ensure_ascii=False)\n    elif args.format == \"latex\":\n        text = generate_latex(groups)\n    else:\n        print(\"=\" * 72)\n        print(\"FREIGE Cross-Method Summary\")\n        print(\"=\" * 72)\n        print_summary(groups)\n\n        print(\"\\n\" + \"=\" * 72)\n        print(\"Per-Seed Detail\")\n        print(\"=\" * 72)\n        print_seed_detail(groups)\n\n        print(\"\\n\" + \"=\" * 72)\n        print(\"t-test: RSFT-CED vs RSFT-flatNLI\")\n        print(\"=\" * 72)\n        print_ttest(\"RSFT-CED\", \"RSFT-flatNLI\", groups)\n\n        print(\"\\n\" + \"=\" * 72)\n        print(\"t-test: RSFT-CED vs SFT baseline\")\n        print(\"=\" * 72)\n        print_ttest(\"RSFT-CED\", \"SFT baseline\", groups)\n        text = None\n\n    if text is not None:\n        if args.output:\n            Path(args.output).write_text(text)\n            print(f\"Written to {args.output}\", file=sys.stderr)\n        else:\n            print(text)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "c7e09c90-4de8-4171-a59e-91cb39273f97",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013UGHkBg8iJcSybR1zwfQm3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 705,
+      "cache_read_input_tokens": 54842,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 705
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-15T23:06:46.294Z_
+
+<details><summary>↩ Tool result · `toolu_01HwGGod4iqHBoTHnwq5jHYt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "b1009a76-8d39-48d0-a2d1-a9b94e79ee9b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82_
+
+Script created. Dry-run it now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "02cdb236-df2b-4dcc-a119-1bc4354090c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GKLVthFL4MzztELFaUoGcJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4712,
+      "cache_read_input_tokens": 55547,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4712
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019J7Nb8nkpgiaCCSftgysfw`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python3 scripts/stat_analysis.py --results_dir /root/autodl-tmp/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "ecdbb83e-4e75-418d-a4e6-def12adc4b37",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GKLVthFL4MzztELFaUoGcJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4712,
+      "cache_read_input_tokens": 55547,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4712
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-15T23:06:52.265Z_
+
+<details><summary>↩ Tool result · `toolu_019J7Nb8nkpgiaCCSftgysfw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"========================================================================\\nFREIGE Cross-Method Summary\\n========================================================================\\nMethod                  n         rel_f1         evi_f1           EDCR\\n----------------------------------------------------------------------\\nSFT baseline            1         0.4106         0.8013         0.7039\\nSFT no-evidence         1         0.4893         0.0000         0.0000\\nRSFT-CED                3  0.4596±0.0128  0.8144±0.0051  0.6434±0.0114\\nRSFT-flatNLI            1         0.4539         0.8043         0.6431\\nGRPO bf16               1         0.4549         0.8086         0.6318\\nCED reranker            1         0.4864         0.8188         0.6156\\n\\n========================================================================\\nPer-Seed Detail\\n========================================================================\\n\\n  RSFT-CED:\\n    s42    rel_f1=0.4449  evi_f1=0.8187  edcr=0.6565\\n    s43    rel_f1=0.4683  evi_f1=0.8156  edcr=0.6388\\n    s44    rel_f1=0.4655  evi_f1=0.8087  edcr=0.6350\\n\\n========================================================================\\nt-test: RSFT-CED vs RSFT-flatNLI\\n========================================================================\\n\\n  rel_f1:\\n    RSFT-CED: 0.4596 (n=3)\\n    RSFT-flatNLI: 0.4539 (n=1)\\n    [insufficient data for t-test]\\n\\n  evi_f1:\\n    RSFT-CED: 0.8144 (n=3)\\n    RSFT-flatNLI: 0.8043 (n=1)\\n    [insufficient data for t-test]\\n\\n  edcr:\\n    RSFT-CED: 0.6434 (n=3)\\n    RSFT-flatNLI: 0.6431 (n=1)\\n    [insufficient data for t-test]\\n\\n========================================================================\\nt-test: RSFT-CED vs SFT baseline\\n========================================================================\\n\\n  rel_f1:\\n    RSFT-CED: 0.4596 (n=3)\\n    SFT baseline: 0.4106 (n=1)\\n    [insufficient data for t-test]\\n\\n  evi_f1:\\n    RSFT-CED: 0.8144 (n=3)\\n    SFT baseline: 0.8013 (n=1)\\n    [insufficient data for t-test]\\n\\n  edcr:\\n    RSFT-CED: 0.6434 (n=3)\\n    SFT baseline: 0.7039 (n=1)\\n    [insufficient data for t-test]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "2c495d7e-4b89-4116-bb8d-70de5a8cc0e5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"========================================================================\\\\nFREIGE Cross-Method Summary\\\\n========================================================================\\\\nMethod                  n         rel_f1         evi_f1           EDCR\\\\n----------------------------------------------------------------------\\\\nSFT baseline            1         0.4106         0.8013         0.7039\\\\nSFT no-evidence         1         0.4893         0.0000         0.0000\\\\nRSFT-CED                3  0.4596±0.0128  0.8144±0.0051  0.6434±0.0114\\\\nRSFT-flatNLI            1         0.4539         0.8043         0.6431\\\\nGRPO bf16               1         0.4549         0.8086         0.6318\\\\nCED reranker            1         0.4864         0.8188         0.6156\\\\n\\\\n========================================================================\\\\nPer-Seed Detail\\\\n========================================================================\\\\n\\\\n  RSFT-CED:\\\\n    s42    rel_f1=0.4449  evi_f1=0.8187  edcr=0.6565\\\\n    s43    rel_f1=0.4683  evi_f1=0.8156  edcr=0.6388\\\\n    s44    rel_f1=0.4655  evi_f1=0.8087  edcr=0.6350\\\\n\\\\n========================================================================\\\\nt-test: RSFT-CED vs RSFT-flatNLI\\\\n========================================================================\\\\n\\\\n  rel_f1:\\\\n    RSFT-CED: 0.4596 (n=3)\\\\n    RSFT-flatNLI: 0.4539 (n=1)\\\\n    [insufficient data for t-test]\\\\n\\\\n  evi_f1:\\\\n    RSFT-CED: 0.8144 (n=3)\\\\n    RSFT-flatNLI: 0.8043 (n=1)\\\\n    [insufficient data for t-test]\\\\n\\\\n  edcr:\\\\n    RSFT-CED: 0.6434 (n=3)\\\\n    RSFT-flatNLI: 0.6431 (n=1)\\\\n    [insufficient data for t-test]\\\\n\\\\n========================================================================\\\\nt-test: RSFT-CED vs SFT baseline\\\\n========================================================================\\\\n\\\\n  rel_f1:\\\\n    RSFT-CED: 0.4596 (n=3)\\\\n    SFT baseline: 0.4106 (n=1)\\\\n    [insufficient data for t-test]\\\\n\\\\n  evi_f1:\\\\n    RSFT-CED: 0.8144 (n=3)\\\\n    SFT baseline: 0.8013 (n=1)\\\\n    [insufficient data for t-test]\\\\n\\\\n  edcr:\\\\n    RSFT-CED: 0.6434 (n=3)\\\\n    SFT baseline: 0.7039 (n=1)\\\\n    [insufficient data for t-test]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"========================================================================\\nFREIGE Cross-Method Summary\\n========================================================================\\nMethod                  n         rel_f1         evi_f1           EDCR\\n----------------------------------------------------------------------\\nSFT baseline            1         0.4106         0.8013         0.7039\\nSFT no-evidence         1         0.4893         0.0000         0.0000\\nRSFT-CED                3  0.4596±0.0128  0.8144±0.0051  0.6434±0.0114\\nRSFT-flatNLI            1         0.4539         0.8043         0.6431\\nGRPO bf16               1         0.4549         0.8086         0.6318\\nCED reranker            1         0.4864         0.8188         0.6156\\n\\n========================================================================\\nPer-Seed Detail\\n========================================================================\\n\\n  RSFT-CED:\\n    s42    rel_f1=0.4449  evi_f1=0.8187  edcr=0.6565\\n    s43    rel_f1=0.4683  evi_f1=0.8156  edcr=0.6388\\n    s44    rel_f1=0.4655  evi_f1=0.8087  edcr=0.6350\\n\\n========================================================================\\nt-test: RSFT-CED vs RSFT-flatNLI\\n========================================================================\\n\\n  rel_f1:\\n    RSFT-CED: 0.4596 (n=3)\\n    RSFT-flatNLI: 0.4539 (n=1)\\n    [insufficient data for t-test]\\n\\n  evi_f1:\\n    RSFT-CED: 0.8144 (n=3)\\n    RSFT-flatNLI: 0.8043 (n=1)\\n    [insufficient data for t-test]\\n\\n  edcr:\\n    RSFT-CED: 0.6434 (n=3)\\n    RSFT-flatNLI: 0.6431 (n=1)\\n    [insufficient data for t-test]\\n\\n========================================================================\\nt-test: RSFT-CED vs SFT baseline\\n========================================================================\\n\\n  rel_f1:\\n    RSFT-CED: 0.4596 (n=3)\\n    SFT baseline: 0.4106 (n=1)\\n    [insufficient data for t-test]\\n\\n  evi_f1:\\n    RSFT-CED: 0.8144 (n=3)\\n    SFT baseline: 0.8013 (n=1)\\n    [insufficient data for t-test]\\n\\n  edcr:\\n    RSFT-CED: 0.6434 (n=3)\\n    SFT baseline: 0.7039 (n=1)\\n    [insufficient data for t-test]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The script works. Let me also test JSON and LaTeX output, and verify that the DPO 1ep broken result is correctly filtered out (it's not showing in the output, which is correct since there's no "DPO-CED 1ep" or "RSFT top_k=3" in the output — they were filtered because their results were either broken or missing).
+
+Let me test JSON format too:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "d7567611-bc68-49f0-b19c-8b5b137d9263",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UfbGCrzLRpdty9TZYnhpqL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1021,
+      "cache_read_input_tokens": 60259,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1021
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86_
+
+Dry-run works. Let me also test JSON output format.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "48eacf6b-7fe8-4875-b563-13432b918fe5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UfbGCrzLRpdty9TZYnhpqL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1021,
+      "cache_read_input_tokens": 60259,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1021
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014MKE7xsU1rB7vNokU3cN1f`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python3 scripts/stat_analysis.py --results_dir /root/autodl-tmp/eval_results/ --format json 2>&1 | head -40",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "5ca78631-7a11-43e1-b4a8-d09345f26efd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UfbGCrzLRpdty9TZYnhpqL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1021,
+      "cache_read_input_tokens": 60259,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1021
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011Goe5TqkXwthTNeRda967b`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python3 scripts/stat_analysis.py --results_dir /root/autodl-tmp/eval_results/ --format latex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "9bfdf732-9010-4b3b-b45c-2b8113380d73",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UfbGCrzLRpdty9TZYnhpqL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1021,
+      "cache_read_input_tokens": 60259,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1021
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-15T23:07:00.181Z_
+
+<details><summary>↩ Tool result · `toolu_014MKE7xsU1rB7vNokU3cN1f`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"SFT baseline\\\": {\\n      \\\"n\\\": 1,\\n      \\\"rel_f1_mean\\\": 0.4106121762529432,\\n      \\\"rel_f1_std\\\": 0.0,\\n      \\\"evi_f1_mean\\\": 0.8013148989654839,\\n      \\\"evi_f1_std\\\": 0.0,\\n      \\\"edcr_mean\\\": 0.7038730884664857,\\n      \\\"edcr_std\\\": 0.0\\n    },\\n    \\\"SFT no-evidence\\\": {\\n      \\\"n\\\": 1,\\n      \\\"rel_f1_mean\\\": 0.4892594570172916,\\n      \\\"rel_f1_std\\\": 0.0,\\n      \\\"evi_f1_mean\\\": 0.0,\\n      \\\"evi_f1_std\\\": 0.0,\\n      \\\"edcr_mean\\\": 0.0,\\n      \\\"edcr_std\\\": 0.0\\n    },\\n    \\\"RSFT-CED\\\": {\\n      \\\"n\\\": 3,\\n      \\\"rel_f1_mean\\\": 0.45955896007700425,\\n      \\\"rel_f1_std\\\": 0.012779946219629955,\\n      \\\"evi_f1_mean\\\": 0.8143640829734656,\\n      \\\"evi_f1_std\\\": 0.005119769306861024,\\n      \\\"edcr_mean\\\": 0.6434481442948043,\\n      \\\"edcr_std\\\": 0.011442443546859202\\n    },\\n    \\\"RSFT-flatNLI\\\": {\\n      \\\"n\\\": 1,\\n      \\\"rel_f1_mean\\\": 0.4538761002031144,\\n      \\\"rel_f1_std\\\": 0.0,\\n      \\\"evi_f1_mean\\\": 0.804268846503179,\\n      \\\"evi_f1_std\\\": 0.0,\\n      \\\"edcr_mean\\\": 0.6430730783183523,\\n      \\\"edcr_std\\\": 0.0\\n    },\\n    \\\"GRPO bf16\\\": {\\n      \\\"n\\\": 1,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "7375ae43-030b-4741-822d-315a8c8ff45d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"SFT baseline\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 1,\\\\n      \\\\\\\"rel_f1_mean\\\\\\\": 0.4106121762529432,\\\\n      \\\\\\\"rel_f1_std\\\\\\\": 0.0,\\\\n      \\\\\\\"evi_f1_mean\\\\\\\": 0.8013148989654839,\\\\n      \\\\\\\"evi_f1_std\\\\\\\": 0.0,\\\\n      \\\\\\\"edcr_mean\\\\\\\": 0.7038730884664857,\\\\n      \\\\\\\"edcr_std\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"SFT no-evidence\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 1,\\\\n      \\\\\\\"rel_f1_mean\\\\\\\": 0.4892594570172916,\\\\n      \\\\\\\"rel_f1_std\\\\\\\": 0.0,\\\\n      \\\\\\\"evi_f1_mean\\\\\\\": 0.0,\\\\n      \\\\\\\"evi_f1_std\\\\\\\": 0.0,\\\\n      \\\\\\\"edcr_mean\\\\\\\": 0.0,\\\\n      \\\\\\\"edcr_std\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"RSFT-CED\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 3,\\\\n      \\\\\\\"rel_f1_mean\\\\\\\": 0.45955896007700425,\\\\n      \\\\\\\"rel_f1_std\\\\\\\": 0.012779946219629955,\\\\n      \\\\\\\"evi_f1_mean\\\\\\\": 0.8143640829734656,\\\\n      \\\\\\\"evi_f1_std\\\\\\\": 0.005119769306861024,\\\\n      \\\\\\\"edcr_mean\\\\\\\": 0.6434481442948043,\\\\n      \\\\\\\"edcr_std\\\\\\\": 0.011442443546859202\\\\n    },\\\\n    \\\\\\\"RSFT-flatNLI\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 1,\\\\n      \\\\\\\"rel_f1_mean\\\\\\\": 0.4538761002031144,\\\\n      \\\\\\\"rel_f1_std\\\\\\\": 0.0,\\\\n      \\\\\\\"evi_f1_mean\\\\\\\": 0.804268846503179,\\\\n      \\\\\\\"evi_f1_std\\\\\\\": 0.0,\\\\n      \\\\\\\"edcr_mean\\\\\\\": 0.6430730783183523,\\\\n      \\\\\\\"edcr_std\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"GRPO bf16\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 1,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"SFT baseline\\\": {\\n      \\\"n\\\": 1,\\n      \\\"rel_f1_mean\\\": 0.4106121762529432,\\n      \\\"rel_f1_std\\\": 0.0,\\n      \\\"evi_f1_mean\\\": 0.8013148989654839,\\n      \\\"evi_f1_std\\\": 0.0,\\n      \\\"edcr_mean\\\": 0.7038730884664857,\\n      \\\"edcr_std\\\": 0.0\\n    },\\n    \\\"SFT no-evidence\\\": {\\n      \\\"n\\\": 1,\\n      \\\"rel_f1_mean\\\": 0.4892594570172916,\\n      \\\"rel_f1_std\\\": 0.0,\\n      \\\"evi_f1_mean\\\": 0.0,\\n      \\\"evi_f1_std\\\": 0.0,\\n      \\\"edcr_mean\\\": 0.0,\\n      \\\"edcr_std\\\": 0.0\\n    },\\n    \\\"RSFT-CED\\\": {\\n      \\\"n\\\": 3,\\n      \\\"rel_f1_mean\\\": 0.45955896007700425,\\n      \\\"rel_f1_std\\\": 0.012779946219629955,\\n      \\\"evi_f1_mean\\\": 0.8143640829734656,\\n      \\\"evi_f1_std\\\": 0.005119769306861024,\\n      \\\"edcr_mean\\\": 0.6434481442948043,\\n      \\\"edcr_std\\\": 0.011442443546859202\\n    },\\n    \\\"RSFT-flatNLI\\\": {\\n      \\\"n\\\": 1,\\n      \\\"rel_f1_mean\\\": 0.4538761002031144,\\n      \\\"rel_f1_std\\\": 0.0,\\n      \\\"evi_f1_mean\\\": 0.804268846503179,\\n      \\\"evi_f1_std\\\": 0.0,\\n      \\\"edcr_mean\\\": 0.6430730783183523,\\n      \\\"edcr_std\\\": 0.0\\n    },\\n    \\\"GRPO bf16\\\": {\\n      \\\"n\\\": 1,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-15T23:07:01.377Z_
+
+<details><summary>↩ Tool result · `toolu_011Goe5TqkXwthTNeRda967b`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\begin{table}[t]\\n\\\\centering\\n\\\\small\\n\\\\caption{Cross-method comparison on DocRED dev set}\\n\\\\label{tab:cross-method}\\n\\\\begin{tabular}{l c c c c}\\n\\\\toprule\\nMethod & $n$ & Rel F\\\\textsubscript{1} & Evi F\\\\textsubscript{1} & EDCR \\\\\\\\\\n\\\\midrule\\n  SFT baseline & 1 & 0.4106 & 0.8013 & 0.7039 \\\\\\\\\\n  SFT no-evidence & 1 & 0.4893 & 0.0000 & 0.0000 \\\\\\\\\\n  RSFT-CED & 3 & 0.4596$\\\\pm$0.0128 & 0.8144$\\\\pm$0.0051 & 0.6434$\\\\pm$0.0114 \\\\\\\\\\n  RSFT-flatNLI & 1 & 0.4539 & 0.8043 & 0.6431 \\\\\\\\\\n  GRPO bf16 & 1 & 0.4549 & 0.8086 & 0.6318 \\\\\\\\\\n  CED reranker & 1 & 0.4864 & 0.8188 & 0.6156 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "0692c1b5-bbaa-4c28-82ac-aecc98ccfa72",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Cross-method comparison on DocRED dev set}\\\\n\\\\\\\\label{tab:cross-method}\\\\n\\\\\\\\begin{tabular}{l c c c c}\\\\n\\\\\\\\toprule\\\\nMethod & $n$ & Rel F\\\\\\\\textsubscript{1} & Evi F\\\\\\\\textsubscript{1} & EDCR \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n  SFT baseline & 1 & 0.4106 & 0.8013 & 0.7039 \\\\\\\\\\\\\\\\\\\\n  SFT no-evidence & 1 & 0.4893 & 0.0000 & 0.0000 \\\\\\\\\\\\\\\\\\\\n  RSFT-CED & 3 & 0.4596$\\\\\\\\pm$0.0128 & 0.8144$\\\\\\\\pm$0.0051 & 0.6434$\\\\\\\\pm$0.0114 \\\\\\\\\\\\\\\\\\\\n  RSFT-flatNLI & 1 & 0.4539 & 0.8043 & 0.6431 \\\\\\\\\\\\\\\\\\\\n  GRPO bf16 & 1 & 0.4549 & 0.8086 & 0.6318 \\\\\\\\\\\\\\\\\\\\n  CED reranker & 1 & 0.4864 & 0.8188 & 0.6156 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\begin{table}[t]\\n\\\\centering\\n\\\\small\\n\\\\caption{Cross-method comparison on DocRED dev set}\\n\\\\label{tab:cross-method}\\n\\\\begin{tabular}{l c c c c}\\n\\\\toprule\\nMethod & $n$ & Rel F\\\\textsubscript{1} & Evi F\\\\textsubscript{1} & EDCR \\\\\\\\\\n\\\\midrule\\n  SFT baseline & 1 & 0.4106 & 0.8013 & 0.7039 \\\\\\\\\\n  SFT no-evidence & 1 & 0.4893 & 0.0000 & 0.0000 \\\\\\\\\\n  RSFT-CED & 3 & 0.4596$\\\\pm$0.0128 & 0.8144$\\\\pm$0.0051 & 0.6434$\\\\pm$0.0114 \\\\\\\\\\n  RSFT-flatNLI & 1 & 0.4539 & 0.8043 & 0.6431 \\\\\\\\\\n  GRPO bf16 & 1 & 0.4549 & 0.8086 & 0.6318 \\\\\\\\\\n  CED reranker & 1 & 0.4864 & 0.8188 & 0.6156 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91_
+
+All three output formats work. Here's the summary:
+
+---
+
+### 任务 1：stat_analysis.py — 完成
+
+脚本已创建在 `/root/autodl-tmp/freige/scripts/stat_analysis.py`，功能：
+
+- `--results_dir` 自动扫描各子目录的 metrics.json（和 reranker 的 results.json）
+- 自动过滤坏结果（f1 < 0.01，已正确排除掉 broken 的 dpo_ced_1ep 和 rsft_flat_nli_s43）
+- 支持 `--format text/json/latex` 三种输出
+- Paired/Welch t-test + Cohen's d（当前 flatNLI 只有 1 个 seed，无法做 t-test，待 s43-s45 收齐后自动启用）
+
+当前有效数据：
+
+| Method | n | rel_f1 | evi_f1 | EDCR |
+|--------|---|--------|--------|------|
+| SFT baseline | 1 | 0.4106 | 0.8013 | 0.7039 |
+| SFT no-evidence | 1 | 0.4893 | 0.0000 | 0.0000 |
+| RSFT-CED | 3 | 0.4596±0.0128 | 0.8144±0.0051 | 0.6434±0.0114 |
+| RSFT-flatNLI | 1 | 0.4539 | 0.8043 | 0.6431 |
+| GRPO bf16 | 1 | 0.4549 | 0.8086 | 0.6318 |
+| CED reranker | 1 | 0.4864 | 0.8188 | 0.6156 |
+
+**缺失/坏数据：**
+- DPO 1ep: f1=0.002, field_compliance=0.0 — 明显坏掉了，`dpo_ced_1ep_fixed` 目录为空
+- flat-NLI s43: 同样坏掉（f1=0.002），reeval 目录为空
+- flat-NLI s44/s45: 尚未创建
+- RSFT top_k=3: 无 metrics.json
+
+---
+
+### 任务 2：EDCR 诊断脚本验证 — 通过
+
+`edcr_diagnostic.py` 存在且功能完整：
+- `--help` 正常输出
+- 支持 `--auto-discover`（内置 14 个方法路径）和 `--methods NAME:PATH`
+- 依赖 `eval.evaluator` 模块（项目内部），无额外依赖
+- 输出 JSON + LaTeX 两种格式
+- AUTO_METHODS 列表已包含 DPO-CED 1ep 和 RSFT-flatNLI s43 条目，待这些 eval 修复后可直接运行
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "uuid": "b99b6fc2-9637-4fb5-a4c2-cb7ee34954dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016dPT3rmCSM77EVCmJb8Nsw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1872,
+      "cache_read_input_tokens": 61280,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1872
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 92_
+
+All three output formats work. Here's the summary:
+
+---
+
+### 任务 1：stat_analysis.py — 完成
+
+脚本已创建在 `/root/autodl-tmp/freige/scripts/stat_analysis.py`，功能：
+
+- `--results_dir` 自动扫描各子目录的 metrics.json（和 reranker 的 results.json）
+- 自动过滤坏结果（f1 < 0.01，已正确排除掉 broken 的 dpo_ced_1ep 和 rsft_flat_nli_s43）
+- 支持 `--format text/json/latex` 三种输出
+- Paired/Welch t-test + Cohen's d（当前 flatNLI 只有 1 个 seed，无法做 t-test，待 s43-s45 收齐后自动启用）
+
+当前有效数据：
+
+| Method | n | rel_f1 | evi_f1 | EDCR |
+|--------|---|--------|--------|------|
+| SFT baseline | 1 | 0.4106 | 0.8013 | 0.7039 |
+| SFT no-evidence | 1 | 0.4893 | 0.0000 | 0.0000 |
+| RSFT-CED | 3 | 0.4596±0.0128 | 0.8144±0.0051 | 0.6434±0.0114 |
+| RSFT-flatNLI | 1 | 0.4539 | 0.8043 | 0.6431 |
+| GRPO bf16 | 1 | 0.4549 | 0.8086 | 0.6318 |
+| CED reranker | 1 | 0.4864 | 0.8188 | 0.6156 |
+
+**缺失/坏数据：**
+- DPO 1ep: f1=0.002, field_compliance=0.0 — 明显坏掉了，`dpo_ced_1ep_fixed` 目录为空
+- flat-NLI s43: 同样坏掉（f1=0.002），reeval 目录为空
+- flat-NLI s44/s45: 尚未创建
+- RSFT top_k=3: 无 metrics.json
+
+---
+
+### 任务 2：EDCR 诊断脚本验证 — 通过
+
+`edcr_diagnostic.py` 存在且功能完整：
+- `--help` 正常输出
+- 支持 `--auto-discover`（内置 14 个方法路径）和 `--methods NAME:PATH`
+- 依赖 `eval.evaluator` 模块（项目内部），无额外依赖
+- 输出 JSON + LaTeX 两种格式
+- AUTO_METHODS 列表已包含 DPO-CED 1ep 和 RSFT-flatNLI s43 条目，待这些 eval 修复后可直接运行
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 235607,
+  "duration_api_ms": 230926,
+  "num_turns": 35,
+  "stop_reason": "end_turn",
+  "session_id": "b24fccdd-166d-46e2-b250-54d219794210",
+  "total_cost_usd": 1.03030525,
+  "usage": {
+    "input_tokens": 17,
+    "cache_creation_input_tokens": 51705,
+    "cache_read_input_tokens": 584902,
+    "output_tokens": 16510,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 51705,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 814,
+        "cache_read_input_tokens": 61280,
+        "cache_creation_input_tokens": 1872,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1872
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1773,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001863,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 17,
+      "outputTokens": 16510,
+      "cacheReadInputTokens": 584902,
+      "cacheCreationInputTokens": 51705,
+      "webSearchRequests": 0,
+      "costUSD": 1.0284422500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "f5e80571-806a-4d1f-9332-8a096e5c4952"
+}
+```
+
+</details>
+
+---

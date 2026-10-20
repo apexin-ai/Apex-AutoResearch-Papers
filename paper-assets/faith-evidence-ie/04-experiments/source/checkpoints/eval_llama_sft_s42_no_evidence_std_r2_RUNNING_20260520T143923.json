@@ -1,0 +1,55 @@
+{
+  "exp_id": "eval_llama_sft_s42_no_evidence_std_r2",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:30:09.424Z",
+    "updated_at": "2026-05-20T14:39:23.071Z",
+    "hypothesis": "标准化 LLaMA SFT s42 inference-time evidence tax 测量（r2: 修复 SCP 嵌套路径）。用同一 SFT adapter (sft_output_llama_3_1_8b) + --no_evidence flag 推理，与 with-evidence eval (ign_f1=0.5384) 直接对比。",
+    "parent": "eval_llama_sft_s42_no_evidence_std",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx5090-4x",
+      "gpu": "cuda:3",
+      "started_at": "2026-05-20T11:31:09.944Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s42_no_evidence_std\""
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s42_no_evidence_std\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "16978",
+      "log_path": "~/runs/faith-evidence-ie/eval_llama_sft_s42_no_evidence_std_r2.log",
+      "submitted_at": "2026-05-20T11:31:12.890Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "16978",
+    "log_path": "~/runs/faith-evidence-ie/eval_llama_sft_s42_no_evidence_std_r2.log",
+    "metrics": {
+      "ign_f1": 0.5219,
+      "f1": 0.5311,
+      "ign_precision": 0.542,
+      "ign_recall": 0.5031,
+      "evi_f1_joint": 0.0005,
+      "evi_f1_tp": 0.0102,
+      "edcr": 0.58,
+      "format_ok_rate": 0.8873,
+      "n_truncated": 219,
+      "n_predictions": 16292,
+      "inference_time_seconds": 6927.2
+    },
+    "checkpoint_path": "/root/autodl-tmp/eval_results/eval_llama_sft_s42_no_evidence_std",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T14:39:23.590015+00:00",
+  "trigger": "update_registry"
+}

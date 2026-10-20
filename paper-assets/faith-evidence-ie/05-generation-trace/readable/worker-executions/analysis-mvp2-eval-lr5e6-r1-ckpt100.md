@@ -1,0 +1,1412 @@
+# analysis mvp2 eval lr5e6 r1 ckpt100
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 27
+- **Recorded user turns:** 0
+- **Tool calls:** 9
+- **Original source:** `logs/workers/worker_analysis_mvp2_eval_lr5e6_r1_ckpt100_20260515T012129.log`
+- **Structured JSON:** [`a9785ac4b53f7a833abf.json`](../../sessions/a9/a9785ac4b53f7a833abf.json)
+
+## Before a recorded user message
+
+27 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "bb271cbf-3d4e-4802-b20e-3781a79e89c7",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778824200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "ec4e160c-cddb-4447-969a-bf7dd0c0d9fa",
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the experiment results from the server. I'll start by reading the log file and checking the eval output directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "ac3a7cc1-8288-47da-a60a-98d979aa0e78",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0156fEwLhAA3gKRVuJ4ixjCg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11328,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11328
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019tLiKhDpTyVwePa5jYkZEh`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "67ab8d6d-8665-4d32-adc7-8cc01c7d64b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0156fEwLhAA3gKRVuJ4ixjCg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11328,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11328
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T01:21:44.952Z_
+
+<details><summary>↩ Tool result · `toolu_019tLiKhDpTyVwePa5jYkZEh`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "02cb9935-c785-4009-a9a3-5ca3f155096c",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the log file and check the eval output directory in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "68e5f92e-5d80-45ff-b86a-05da386e68db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzfPCeyp2DqruTxrSaMQjQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 874,
+      "cache_read_input_tokens": 23169,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 874
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SZjW3aACJGHsZNkZXuewCS`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -100 ~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "541bce7e-dd9c-4b1e-a6cf-70f966b9d051",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzfPCeyp2DqruTxrSaMQjQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 874,
+      "cache_read_input_tokens": 23169,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 874
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Pft5TrAX5cizVwKNt27M9T`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "bb93b1af-ee0e-4607-aa47-68ef5f928672",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzfPCeyp2DqruTxrSaMQjQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 874,
+      "cache_read_input_tokens": 23169,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 874
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T01:21:50.015Z_
+
+<details><summary>↩ Tool result · `toolu_01SZjW3aACJGHsZNkZXuewCS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 07:39:55,325 INFO Detected adapter at /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100, base: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-15 07:39:55,326 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-15 07:39:55,630 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-15 07:39:57,576 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.73s/it]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:06<00:03,  3.06s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.04s/it]\\n2026-05-15 07:40:03,756 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output\\n/root/miniconda3/lib/python3.12/site-packages/peft/tuners/lora/bnb.py:373: UserWarning: Merge lora module to 4-bit linear may get different generations due to rounding errors.\\n  warnings.warn(\\n2026-05-15 07:40:13,494 INFO Loading LoRA adapter: /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\\n2026-05-15 07:40:15,008 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\n2026-05-15 07:40:15,280 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\n2026-05-15 07:40:15,458 INFO Prepared 985 eval documents, 12275 gold triples\\n\\rInference:   0%|          | 0/62 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n\\rInference:   2%|▏         | 1/62 [01:32<1:34:28, 92.93s/it]\\rInference:   3%|▎         | 2/62 [03:05<1:32:32, 92.53s/it]\\rInference:   5%|▍         | 3/62 [04:38<1:31:07, 92.68s/it]\\rInference:   6%|▋         | 4/62 [06:11<1:29:55, 93.03s/it]\\rInference:   8%|▊         | 5/62 [07:52<1:31:13, 96.03s/it]\\rInference:  10%|▉         | 6/62 [09:32<1:30:52, 97.37s/it]\\rInference:  11%|█▏        | 7/62 [11:04<1:27:36, 95.57s/it]\\rInference:  13%|█▎        | 8/62 [12:38<1:25:31, 95.02s/it]\\rInference:  15%|█▍        | 9/62 [14:11<1:23:12, 94.20s/it]\\rInference:  16%|█▌        | 10/62 [15:43<1:21:13, 93.72s/it]\\rInference:  18%|█▊        | 11/62 [17:18<1:20:04, 94.21s/it]\\rInference:  19%|█▉        | 12/62 [18:53<1:18:35, 94.30s/it]\\rInference:  21%|██        | 13/62 [20:27<1:16:57, 94.24s/it]\\rInference:  23%|██▎       | 14/62 [22:03<1:15:40, 94.60s/it]\\rInference:  24%|██▍       | 15/62 [23:38<1:14:13, 94.75s/it]\\rInference:  26%|██▌       | 16/62 [25:13<1:12:43, 94.86s/it]\\rInference:  27%|██▋       | 17/62 [26:49<1:11:25, 95.24s/it]\\rInference:  29%|██▉       | 18/62 [28:25<1:09:56, 95.36s/it]\\rInference:  31%|███       | 19/62 [30:00<1:08:19, 95.34s/it]\\rInference:  32%|███▏      | 20/62 [31:35<1:06:45, 95.38s/it]\\rInference:  34%|███▍      | 21/62 [33:11<1:05:17, 95.54s/it]\\rInference:  35%|███▌      | 22/62 [34:47<1:03:50, 95.75s/it]\\rInference:  37%|███▋      | 23/62 [36:24<1:02:23, 95.98s/it]\\rInference:  39%|███▊      | 24/62 [38:00<1:00:47, 96.00s/it]\\rInference:  40%|████      | 25/62 [39:35<59:05, 95.82s/it]  \\rInference:  42%|████▏     | 26/62 [41:11<57:26, 95.75s/it]\\rInference:  44%|████▎     | 27/62 [42:46<55:48, 95.68s/it]\\rInference:  45%|████▌     | 28/62 [44:22<54:11, 95.64s/it]\\rInference:  47%|████▋     | 29/62 [45:57<52:28, 95.40s/it]\\rInference:  48%|████▊     | 30/62 [47:31<50:43, 95.12s/it]\\rInference:  50%|█████     | 31/62 [49:08<49:23, 95.61s/it]\\rInference:  52%|█████▏    | 32/62 [50:44<47:46, 95.55s/it]\\rInference:  53%|█████▎    | 33/62 [52:18<45:58, 95.12s/it]\\rInference:  55%|█████▍    | 34/62 [53:51<44:12, 94.74s/it]\\rInference:  56%|█████▋    | 35/62 [55:25<42:27, 94.34s/it]\\rInference:  58%|█████▊    | 36/62 [57:00<40:57, 94.51s/it]\\rInference:  60%|█████▉    | 37/62 [58:35<39:27, 94.71s/it]\\rInference:  61%|██████▏   | 38/62 [1:00:10<37:55, 94.81s/it]\\rInference:  63%|██████▎   | 39/62 [1:01:45<36:24, 94.99s/it]\\rInference:  65%|██████▍   | 40/62 [1:03:21<34:51, 95.05s/it]\\rInference:  66%|██████▌   | 41/62 [1:04:56<33:15, 95.02s/it]\\rInference:  68%|██████▊   | 42/62 [1:06:30<31:38, 94.95s/it]\\rInference:  69%|██████▉   | 43/62 [1:08:03<29:50, 94.23s/it]\\rInference:  71%|███████   | 44/62 [1:09:39<28:24, 94.71s/it]\\rInference:  73%|███████▎  | 45/62 [1:11:14<26:53, 94.89s/it]\\rInference:  74%|███████▍  | 46/62 [1:12:50<25:24, 95.26s/it]\\rInference:  76%|███████▌  | 47/62 [1:14:26<23:51, 95.40s/it]\\rInference:  77%|███████▋  | 48/62 [1:16:01<22:15, 95.40s/it]\\rInference:  79%|███████▉  | 49/62 [1:17:36<20:39, 95.33s/it]\\rInference:  81%|████████  | 50/62 [1:19:12<19:05, 95.47s/it]\\rInference:  82%|████████▏ | 51/62 [1:20:47<17:28, 95.29s/it]\\rInference:  84%|████████▍ | 52/62 [1:22:23<15:55, 95.56s/it]\\rInference:  85%|████████▌ | 53/62 [1:24:00<14:23, 95.91s/it]\\rInference:  87%|████████▋ | 54/62 [1:25:36<12:46, 95.85s/it]\\rInference:  89%|████████▊ | 55/62 [1:27:12<11:11, 95.88s/it]\\rInference:  90%|█████████ | 56/62 [1:28:48<09:35, 95.99s/it]\\rInference:  92%|█████████▏| 57/62 [1:30:24<07:59, 95.87s/it]\\rInference:  94%|█████████▎| 58/62 [1:31:59<06:23, 95.82s/it]\\rInference:  95%|█████████▌| 59/62 [1:33:35<04:47, 95.95s/it]\\rInference:  97%|█████████▋| 60/62 [1:35:11<03:11, 95.82s/it]\\rInference:  98%|███��█████▊| 61/62 [1:36:46<01:35, 95.66s/it]\\rInference: 100%|██████████| 62/62 [1:38:21<00:00, 95.44s/it]\\rInference: 100%|██████████| 62/62 [1:38:21<00:00, 95.19s/it]\\n2026-05-15 09:18:37,160 INFO Inference done. 181/985 truncated, 0 errors.\\n2026-05-15 09:18:37,162 INFO Inference: 5901.7s (5.99 s/doc)\\n2026-05-15 09:18:37,873 INFO Loaded 37785 training triples for Ign-F1\\n2026-05-15 09:18:38,015 INFO Metrics → /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/metrics.json\\n2026-05-15 09:18:38,173 INFO Predictions → /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/predictions.json\\n\\n==================================================\\n  F1:          0.0138\\n  Ign-F1:      0.0138\\n  Evi-F1:      0.8504\\n  EDCR:        0.9876\\n  Format OK:   984/985 (99.9%)\\n  Truncated:   181/985\\n  Predictions: 15498\\n==================================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "0091feb6-e25b-4d43-984a-0530afd71571",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 07:39:55,325 INFO Detected adapter at /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100, base: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-15 07:39:55,326 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-15 07:39:55,630 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-15 07:39:57,576 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.73s/it]\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:06<00:03,  3.06s/it]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.04s/it]\\\\n2026-05-15 07:40:03,756 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output\\\\n/root/miniconda3/lib/python3.12/site-packages/peft/tuners/lora/bnb.py:373: UserWarning: Merge lora module to 4-bit linear may get different generations due to rounding errors.\\\\n  warnings.warn(\\\\n2026-05-15 07:40:13,494 INFO Loading LoRA adapter: /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\\\\n2026-05-15 07:40:15,008 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\\\n2026-05-15 07:40:15,280 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\\\n2026-05-15 07:40:15,458 INFO Prepared 985 eval documents, 12275 gold triples\\\\n\\\\rInference:   0%|          | 0/62 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n\\\\rInference:   2%|▏         | 1/62 [01:32<1:34:28, 92.93s/it]\\\\rInference:   3%|▎         | 2/62 [03:05<1:32:32, 92.53s/it]\\\\rInference:   5%|▍         | 3/62 [04:38<1:31:07, 92.68s/it]\\\\rInference:   6%|▋         | 4/62 [06:11<1:29:55, 93.03s/it]\\\\rInference:   8%|▊         | 5/62 [07:52<1:31:13, 96.03s/it]\\\\rInference:  10%|▉         | 6/62 [09:32<1:30:52, 97.37s/it]\\\\rInference:  11%|█▏        | 7/62 [11:04<1:27:36, 95.57s/it]\\\\rInference:  13%|█▎        | 8/62 [12:38<1:25:31, 95.02s/it]\\\\rInference:  15%|█▍        | 9/62 [14:11<1:23:12, 94.20s/it]\\\\rInference:  16%|█▌        | 10/62 [15:43<1:21:13, 93.72s/it]\\\\rInference:  18%|█▊        | 11/62 [17:18<1:20:04, 94.21s/it]\\\\rInference:  19%|█▉        | 12/62 [18:53<1:18:35, 94.30s/it]\\\\rInference:  21%|██        | 13/62 [20:27<1:16:57, 94.24s/it]\\\\rInference:  23%|██▎       | 14/62 [22:03<1:15:40, 94.60s/it]\\\\rInference:  24%|██▍       | 15/62 [23:38<1:14:13, 94.75s/it]\\\\rInference:  26%|██▌       | 16/62 [25:13<1:12:43, 94.86s/it]\\\\rInference:  27%|██▋       | 17/62 [26:49<1:11:25, 95.24s/it]\\\\rInference:  29%|██▉       | 18/62 [28:25<1:09:56, 95.36s/it]\\\\rInference:  31%|███       | 19/62 [30:00<1:08:19, 95.34s/it]\\\\rInference:  32%|███▏      | 20/62 [31:35<1:06:45, 95.38s/it]\\\\rInference:  34%|███▍      | 21/62 [33:11<1:05:17, 95.54s/it]\\\\rInference:  35%|███▌      | 22/62 [34:47<1:03:50, 95.75s/it]\\\\rInference:  37%|███▋      | 23/62 [36:24<1:02:23, 95.98s/it]\\\\rInference:  39%|███▊      | 24/62 [38:00<1:00:47, 96.00s/it]\\\\rInference:  40%|████      | 25/62 [39:35<59:05, 95.82s/it]  \\\\rInference:  42%|████▏     | 26/62 [41:11<57:26, 95.75s/it]\\\\rInference:  44%|████▎     | 27/62 [42:46<55:48, 95.68s/it]\\\\rInference:  45%|████▌     | 28/62 [44:22<54:11, 95.64s/it]\\\\rInference:  47%|████▋     | 29/62 [45:57<52:28, 95.40s/it]\\\\rInference:  48%|████▊     | 30/62 [47:31<50:43, 95.12s/it]\\\\rInference:  50%|█████     | 31/62 [49:08<49:23, 95.61s/it]\\\\rInference:  52%|█████▏    | 32/62 [50:44<47:46, 95.55s/it]\\\\rInference:  53%|█████▎    | 33/62 [52:18<45:58, 95.12s/it]\\\\rInference:  55%|█████▍    | 34/62 [53:51<44:12, 94.74s/it]\\\\rInference:  56%|█████▋    | 35/62 [55:25<42:27, 94.34s/it]\\\\rInference:  58%|█████▊    | 36/62 [57:00<40:57, 94.51s/it]\\\\rInference:  60%|█████▉    | 37/62 [58:35<39:27, 94.71s/it]\\\\rInference:  61%|██████▏   | 38/62 [1:00:10<37:55, 94.81s/it]\\\\rInference:  63%|██████▎   | 39/62 [1:01:45<36:24, 94.99s/it]\\\\rInference:  65%|██████▍   | 40/62 [1:03:21<34:51, 95.05s/it]\\\\rInference:  66%|██████▌   | 41/62 [1:04:56<33:15, 95.02s/it]\\\\rInference:  68%|██████▊   | 42/62 [1:06:30<31:38, 94.95s/it]\\\\rInference:  69%|██████▉   | 43/62 [1:08:03<29:50, 94.23s/it]\\\\rInference:  71%|███████   | 44/62 [1:09:39<28:24, 94.71s/it]\\\\rInference:  73%|███████▎  | 45/62 [1:11:14<26:53, 94.89s/it]\\\\rInference:  74%|███████▍  | 46/62 [1:12:50<25:24, 95.26s/it]\\\\rInference:  76%|███████▌  | 47/62 [1:14:26<23:51, 95.40s/it]\\\\rInference:  77%|███████▋  | 48/62 [1:16:01<22:15, 95.40s/it]\\\\rInference:  79%|███████▉  | 49/62 [1:17:36<20:39, 95.33s/it]\\\\rInference:  81%|████████  | 50/62 [1:19:12<19:05, 95.47s/it]\\\\rInference:  82%|████████▏ | 51/62 [1:20:47<17:28, 95.29s/it]\\\\rInference:  84%|████████▍ | 52/62 [1:22:23<15:55, 95.56s/it]\\\\rInference:  85%|████████▌ | 53/62 [1:24:00<14:23, 95.91s/it]\\\\rInference:  87%|████████▋ | 54/62 [1:25:36<12:46, 95.85s/it]\\\\rInference:  89%|████████▊ | 55/62 [1:27:12<11:11, 95.88s/it]\\\\rInference:  90%|█████████ | 56/62 [1:28:48<09:35, 95.99s/it]\\\\rInference:  92%|█████████▏| 57/62 [1:30:24<07:59, 95.87s/it]\\\\rInference:  94%|█████████▎| 58/62 [1:31:59<06:23, 95.82s/it]\\\\rInference:  95%|█████████▌| 59/62 [1:33:35<04:47, 95.95s/it]\\\\rInference:  97%|█████████▋| 60/62 [1:35:11<03:11, 95.82s/it]\\\\rInference:  98%|███��█████▊| 61/62 [1:36:46<01:35, 95.66s/it]\\\\rInference: 100%|██████████| 62/62 [1:38:21<00:00, 95.44s/it]\\\\rInference: 100%|██████████| 62/62 [1:38:21<00:00, 95.19s/it]\\\\n2026-05-15 09:18:37,160 INFO Inference done. 181/985 truncated, 0 errors.\\\\n2026-05-15 09:18:37,162 INFO Inference: 5901.7s (5.99 s/doc)\\\\n2026-05-15 09:18:37,873 INFO Loaded 37785 training triples for Ign-F1\\\\n2026-05-15 09:18:38,015 INFO Metrics → /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/metrics.json\\\\n2026-05-15 09:18:38,173 INFO Predictions → /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/predictions.json\\\\n\\\\n==================================================\\\\n  F1:          0.0138\\\\n  Ign-F1:      0.0138\\\\n  Evi-F1:      0.8504\\\\n  EDCR:        0.9876\\\\n  Format OK:   984/985 (99.9%)\\\\n  Truncated:   181/985\\\\n  Predictions: 15498\\\\n==================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 07:39:55,325 INFO Detected adapter at /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100, base: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-15 07:39:55,326 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-15 07:39:55,630 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-15 07:39:57,576 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.73s/it]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:06<00:03,  3.06s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.04s/it]\\n2026-05-15 07:40:03,756 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output\\n/root/miniconda3/lib/python3.12/site-packages/peft/tuners/lora/bnb.py:373: UserWarning: Merge lora module to 4-bit linear may get different generations due to rounding errors.\\n  warnings.warn(\\n2026-05-15 07:40:13,494 INFO Loading LoRA adapter: /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\\n2026-05-15 07:40:15,008 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\n2026-05-15 07:40:15,280 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\n2026-05-15 07:40:15,458 INFO Prepared 985 eval documents, 12275 gold triples\\n\\rInference:   0%|          | 0/62 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n\\rInference:   2%|▏         | 1/62 [01:32<1:34:28, 92.93s/it]\\rInference:   3%|▎         | 2/62 [03:05<1:32:32, 92.53s/it]\\rInference:   5%|▍         | 3/62 [04:38<1:31:07, 92.68s/it]\\rInference:   6%|▋         | 4/62 [06:11<1:29:55, 93.03s/it]\\rInference:   8%|▊         | 5/62 [07:52<1:31:13, 96.03s/it]\\rInference:  10%|▉         | 6/62 [09:32<1:30:52, 97.37s/it]\\rInference:  11%|█▏        | 7/62 [11:04<1:27:36, 95.57s/it]\\rInference:  13%|█▎        | 8/62 [12:38<1:25:31, 95.02s/it]\\rInference:  15%|█▍        | 9/62 [14:11<1:23:12, 94.20s/it]\\rInference:  16%|█▌        | 10/62 [15:43<1:21:13, 93.72s/it]\\rInference:  18%|█▊        | 11/62 [17:18<1:20:04, 94.21s/it]\\rInference:  19%|█▉        | 12/62 [18:53<1:18:35, 94.30s/it]\\rInference:  21%|██        | 13/62 [20:27<1:16:57, 94.24s/it]\\rInference:  23%|██▎       | 14/62 [22:03<1:15:40, 94.60s/it]\\rInference:  24%|██▍       | 15/62 [23:38<1:14:13, 94.75s/it]\\rInference:  26%|██▌       | 16/62 [25:13<1:12:43, 94.86s/it]\\rInference:  27%|██▋       | 17/62 [26:49<1:11:25, 95.24s/it]\\rInference:  29%|██▉       | 18/62 [28:25<1:09:56, 95.36s/it]\\rInference:  31%|███       | 19/62 [30:00<1:08:19, 95.34s/it]\\rInference:  32%|███▏      | 20/62 [31:35<1:06:45, 95.38s/it]\\rInference:  34%|███▍      | 21/62 [33:11<1:05:17, 95.54s/it]\\rInference:  35%|███▌      | 22/62 [34:47<1:03:50, 95.75s/it]\\rInference:  37%|███▋      | 23/62 [36:24<1:02:23, 95.98s/it]\\rInference:  39%|███▊      | 24/62 [38:00<1:00:47, 96.00s/it]\\rInference:  40%|████      | 25/62 [39:35<59:05, 95.82s/it]  \\rInference:  42%|████▏     | 26/62 [41:11<57:26, 95.75s/it]\\rInference:  44%|████▎     | 27/62 [42:46<55:48, 95.68s/it]\\rInference:  45%|████▌     | 28/62 [44:22<54:11, 95.64s/it]\\rInference:  47%|████▋     | 29/62 [45:57<52:28, 95.40s/it]\\rInference:  48%|████▊     | 30/62 [47:31<50:43, 95.12s/it]\\rInference:  50%|█████     | 31/62 [49:08<49:23, 95.61s/it]\\rInference:  52%|█████▏    | 32/62 [50:44<47:46, 95.55s/it]\\rInference:  53%|█████▎    | 33/62 [52:18<45:58, 95.12s/it]\\rInference:  55%|█████▍    | 34/62 [53:51<44:12, 94.74s/it]\\rInference:  56%|█████▋    | 35/62 [55:25<42:27, 94.34s/it]\\rInference:  58%|█████▊    | 36/62 [57:00<40:57, 94.51s/it]\\rInference:  60%|█████▉    | 37/62 [58:35<39:27, 94.71s/it]\\rInference:  61%|██████▏   | 38/62 [1:00:10<37:55, 94.81s/it]\\rInference:  63%|██████▎   | 39/62 [1:01:45<36:24, 94.99s/it]\\rInference:  65%|██████▍   | 40/62 [1:03:21<34:51, 95.05s/it]\\rInference:  66%|██████▌   | 41/62 [1:04:56<33:15, 95.02s/it]\\rInference:  68%|██████▊   | 42/62 [1:06:30<31:38, 94.95s/it]\\rInference:  69%|██████▉   | 43/62 [1:08:03<29:50, 94.23s/it]\\rInference:  71%|███████   | 44/62 [1:09:39<28:24, 94.71s/it]\\rInference:  73%|███████▎  | 45/62 [1:11:14<26:53, 94.89s/it]\\rInference:  74%|███████▍  | 46/62 [1:12:50<25:24, 95.26s/it]\\rInference:  76%|███████▌  | 47/62 [1:14:26<23:51, 95.40s/it]\\rInference:  77%|███████▋  | 48/62 [1:16:01<22:15, 95.40s/it]\\rInference:  79%|███████▉  | 49/62 [1:17:36<20:39, 95.33s/it]\\rInference:  81%|████████  | 50/62 [1:19:12<19:05, 95.47s/it]\\rInference:  82%|████████▏ | 51/62 [1:20:47<17:28, 95.29s/it]\\rInference:  84%|████████▍ | 52/62 [1:22:23<15:55, 95.56s/it]\\rInference:  85%|████████▌ | 53/62 [1:24:00<14:23, 95.91s/it]\\rInference:  87%|████████▋ | 54/62 [1:25:36<12:46, 95.85s/it]\\rInference:  89%|████████▊ | 55/62 [1:27:12<11:11, 95.88s/it]\\rInference:  90%|█████████ | 56/62 [1:28:48<09:35, 95.99s/it]\\rInference:  92%|█████████▏| 57/62 [1:30:24<07:59, 95.87s/it]\\rInference:  94%|█████████▎| 58/62 [1:31:59<06:23, 95.82s/it]\\rInference:  95%|█████████▌| 59/62 [1:33:35<04:47, 95.95s/it]\\rInference:  97%|█████████▋| 60/62 [1:35:11<03:11, 95.82s/it]\\rInference:  98%|███��█████▊| 61/62 [1:36:46<01:35, 95.66s/it]\\rInference: 100%|██████████| 62/62 [1:38:21<00:00, 95.44s/it]\\rInference: 100%|██████████| 62/62 [1:38:21<00:00, 95.19s/it]\\n2026-05-15 09:18:37,160 INFO Inference done. 181/985 truncated, 0 errors.\\n2026-05-15 09:18:37,162 INFO Inference: 5901.7s (5.99 s/doc)\\n2026-05-15 09:18:37,873 INFO Loaded 37785 training triples for Ign-F1\\n2026-05-15 09:18:38,015 INFO Metrics → /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/metrics.json\\n2026-05-15 09:18:38,173 INFO Predictions → /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/predictions.json\\n\\n==================================================\\n  F1:          0.0138\\n  Ign-F1:      0.0138\\n  Evi-F1:      0.8504\\n  EDCR:        0.9876\\n  Format OK:   984/985 (99.9%)\\n  Truncated:   181/985\\n  Predictions: 15498\\n==================================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T01:21:50.393Z_
+
+<details><summary>↩ Tool result · `toolu_01Pft5TrAX5cizVwKNt27M9T`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"metrics.json\\npredictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "d5843efc-af7f-4c0c-a4ac-03e97ccb34e9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"metrics.json\\\\npredictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"metrics.json\\npredictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WW31Ubd7DdN4KQNiQarLUr`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "d5fde662-6833-47a5-9c4a-03e5bff5c4d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LYgFdBZ6aRqpaMYiC8KpAT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3910,
+      "cache_read_input_tokens": 24043,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3910
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T01:21:56.216Z_
+
+<details><summary>↩ Tool result · `toolu_01WW31Ubd7DdN4KQNiQarLUr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.013157894736842105,\\n  \\\"recall\\\": 0.014402106822483746,\\n  \\\"f1\\\": 0.013751915445365604,\\n  \\\"ign_precision\\\": 0.013157894736842105,\\n  \\\"ign_recall\\\": 0.014402106822483746,\\n  \\\"ign_f1\\\": 0.013751915445365604,\\n  \\\"tp\\\": 175,\\n  \\\"pred_count\\\": 13300,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.9255813953488372,\\n  \\\"evi_recall\\\": 0.7865612648221344,\\n  \\\"evi_f1\\\": 0.8504273504273504,\\n  \\\"n_evaluated\\\": 15456,\\n  \\\"edcr\\\": 0.9876051074431641,\\n  \\\"n_distractor_citations\\\": 15856,\\n  \\\"n_total_citations\\\": 16055,\\n  \\\"format_compliance_rate\\\": 0.9989847715736041,\\n  \\\"field_compliance_rate\\\": 0.8162436548223351,\\n  \\\"evidence_format_rate\\\": 0.8162436548223351,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 984,\\n  \\\"n_field_complete\\\": 804,\\n  \\\"n_evidence_valid\\\": 804,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15498,\\n  \\\"n_truncated\\\": 181,\\n  \\\"n_format_ok\\\": 984,\\n  \\\"format_ok_rate\\\": 0.9989847715736041,\\n  \\\"inference_time_seconds\\\": 5901.7,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"quantize\\\": true\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "47811f32-2319-4f91-8ec6-78002b32bd59",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.013157894736842105,\\\\n  \\\\\\\"recall\\\\\\\": 0.014402106822483746,\\\\n  \\\\\\\"f1\\\\\\\": 0.013751915445365604,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.013157894736842105,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.014402106822483746,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.013751915445365604,\\\\n  \\\\\\\"tp\\\\\\\": 175,\\\\n  \\\\\\\"pred_count\\\\\\\": 13300,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.9255813953488372,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.7865612648221344,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8504273504273504,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15456,\\\\n  \\\\\\\"edcr\\\\\\\": 0.9876051074431641,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 15856,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 16055,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.8162436548223351,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.8162436548223351,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 984,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 804,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 804,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15498,\\\\n  \\\\\\\"n_truncated\\\\\\\": 181,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 984,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 5901.7,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"quantize\\\\\\\": true\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.013157894736842105,\\n  \\\"recall\\\": 0.014402106822483746,\\n  \\\"f1\\\": 0.013751915445365604,\\n  \\\"ign_precision\\\": 0.013157894736842105,\\n  \\\"ign_recall\\\": 0.014402106822483746,\\n  \\\"ign_f1\\\": 0.013751915445365604,\\n  \\\"tp\\\": 175,\\n  \\\"pred_count\\\": 13300,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.9255813953488372,\\n  \\\"evi_recall\\\": 0.7865612648221344,\\n  \\\"evi_f1\\\": 0.8504273504273504,\\n  \\\"n_evaluated\\\": 15456,\\n  \\\"edcr\\\": 0.9876051074431641,\\n  \\\"n_distractor_citations\\\": 15856,\\n  \\\"n_total_citations\\\": 16055,\\n  \\\"format_compliance_rate\\\": 0.9989847715736041,\\n  \\\"field_compliance_rate\\\": 0.8162436548223351,\\n  \\\"evidence_format_rate\\\": 0.8162436548223351,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 984,\\n  \\\"n_field_complete\\\": 804,\\n  \\\"n_evidence_valid\\\": 804,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15498,\\n  \\\"n_truncated\\\": 181,\\n  \\\"n_format_ok\\\": 984,\\n  \\\"format_ok_rate\\\": 0.9989847715736041,\\n  \\\"inference_time_seconds\\\": 5901.7,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"quantize\\\": true\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The results are clear. rel_f1 = 0.0138, which is far below the pass threshold of 0.30. This is a negative result. Let me update the registry.
+
+Key metrics:
+- rel_f1: 0.0138
+- rel_precision: 0.0132
+- rel_recall: 0.0144
+- ign_f1: 0.0138
+- evi_f1: 0.8504
+- evi_precision: 0.9256
+
+
+- evi_recall: 0.7866
+- edcr: 0.9876
+- format_ok_rate: 0.9990
+- field_compliance_rate: 0.8162
+- pred_count: 13300 (gold: 12151, but tp only 175!)
+- n_truncated: 181
+- inference_time_seconds: 5901.7
+
+The evidence metrics look solid, but the relation extraction is failing badly with only 175 true positives out of 13300 predictions. Now I'll update the registry with these results and mark this as a negative outcome.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "1e0ff0f1-372c-4f97-ba62-000000000000",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AQib3tR68gLN3dkg49Ynnu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1045,
+      "cache_read_input_tokens": 27953,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1045
+      },
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 646,
+          "cache_read_input_tokens": 27953,
+          "cache_creation_input_tokens": 1045,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1045
+          },
+          "type": "message"
+        }
+      ],
+      "output_tokens": 646,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": {
+      "applied_edits": []
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+结果已读取。rel_f1=0.0138，远低于 0.30 阈值，结论为 negative。更新 registry：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "1e0ff0f1-372c-4f97-ba62-000000000001",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AQib3tR68gLN3dkg49Ynnu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1045,
+      "cache_read_input_tokens": 27953,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1045
+      },
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 646,
+          "cache_read_input_tokens": 27953,
+          "cache_creation_input_tokens": 1045,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1045
+          },
+          "type": "message"
+        }
+      ],
+      "output_tokens": 646,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": {
+      "applied_edits": []
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_013Z96Wo5KtmMyDfAVZrtrLY`</summary>
+
+```json
+{
+  "exp_id": "mvp2_eval_lr5e6_r1_ckpt100",
+  "field": "metrics",
+  "value": {
+    "rel_f1": 0.0138,
+    "rel_precision": 0.0132,
+    "rel_recall": 0.0144,
+    "ign_f1": 0.0138,
+    "evi_f1": 0.8504,
+    "evi_precision": 0.9256,
+    "evi_recall": 0.7866,
+    "edcr": 0.9876,
+    "format_ok_rate": 0.999,
+    "field_compliance_rate": 0.8162,
+    "evidence_format_rate": 0.8162,
+    "tp": 175,
+    "pred_count": 13300,
+    "gold_count": 12151,
+    "n_predictions": 15498,
+    "n_truncated": 181,
+    "n_documents": 985,
+    "n_parseable": 984,
+    "inference_time_seconds": 5901.7
+  },
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "1e0ff0f1-372c-4f97-ba62-000000000002",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AQib3tR68gLN3dkg49Ynnu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1045,
+      "cache_read_input_tokens": 27953,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1045
+      },
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 646,
+          "cache_read_input_tokens": 27953,
+          "cache_creation_input_tokens": 1045,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1045
+          },
+          "type": "message"
+        }
+      ],
+      "output_tokens": 646,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": {
+      "applied_edits": []
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T01:22:10.428Z_
+
+<details><summary>↩ Tool result · `toolu_013Z96Wo5KtmMyDfAVZrtrLY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp2_eval_lr5e6_r1_ckpt100\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:00:57.035Z\", \"updated_at\": \"2026-05-15T01:22:10.122Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"submitted_at\": \"2026-05-14T23:39:51.199Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T23:39:49.461Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"finished_at\": \"2026-05-15T01:19:34.927Z\", \"training_hours\": 1.66}, \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:19:36.799167+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.0138, \"rel_precision\": 0.0132, \"rel_recall\": 0.0144, \"ign_f1\": 0.0138, \"evi_f1\": 0.8504, \"evi_precision\": 0.9256, \"evi_recall\": 0.7866, \"edcr\": 0.9876, \"format_ok_rate\": 0.999, \"field_compliance_rate\": 0.8162, \"evidence_format_rate\": 0.8162, \"tp\": 175, \"pred_count\": 13300, \"gold_count\": 12151, \"n_predictions\": 15498, \"n_truncated\": 181, \"n_documents\": 985, \"n_parseable\": 984, \"inference_time_seconds\": 5901.7}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6771}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "c1bdd9e9-a9a5-403f-8927-4ab7dd2560b8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp2_eval_lr5e6_r1_ckpt100\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T23:00:57.035Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:22:10.122Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"117635\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T23:39:51.199Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_lr5e6_r1\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-14T23:39:49.461Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T01:19:34.927Z\\\", \\\"training_hours\\\": 1.66}, \\\"pid\\\": \\\"117635\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T01:19:36.799167+00:00\\\"}]}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.0138, \\\"rel_precision\\\": 0.0132, \\\"rel_recall\\\": 0.0144, \\\"ign_f1\\\": 0.0138, \\\"evi_f1\\\": 0.8504, \\\"evi_precision\\\": 0.9256, \\\"evi_recall\\\": 0.7866, \\\"edcr\\\": 0.9876, \\\"format_ok_rate\\\": 0.999, \\\"field_compliance_rate\\\": 0.8162, \\\"evidence_format_rate\\\": 0.8162, \\\"tp\\\": 175, \\\"pred_count\\\": 13300, \\\"gold_count\\\": 12151, \\\"n_predictions\\\": 15498, \\\"n_truncated\\\": 181, \\\"n_documents\\\": 985, \\\"n_parseable\\\": 984, \\\"inference_time_seconds\\\": 5901.7}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6771}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp2_eval_lr5e6_r1_ckpt100\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:00:57.035Z\", \"updated_at\": \"2026-05-15T01:22:10.122Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"submitted_at\": \"2026-05-14T23:39:51.199Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T23:39:49.461Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"finished_at\": \"2026-05-15T01:19:34.927Z\", \"training_hours\": 1.66}, \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:19:36.799167+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.0138, \"rel_precision\": 0.0132, \"rel_recall\": 0.0144, \"ign_f1\": 0.0138, \"evi_f1\": 0.8504, \"evi_precision\": 0.9256, \"evi_recall\": 0.7866, \"edcr\": 0.9876, \"format_ok_rate\": 0.999, \"field_compliance_rate\": 0.8162, \"evidence_format_rate\": 0.8162, \"tp\": 175, \"pred_count\": 13300, \"gold_count\": 12151, \"n_predictions\": 15498, \"n_truncated\": 181, \"n_documents\": 985, \"n_parseable\": 984, \"inference_time_seconds\": 5901.7}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6771}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01TTUfEKbQZBWWdyb3cdoB4i`</summary>
+
+```json
+{
+  "exp_id": "mvp2_eval_lr5e6_r1_ckpt100",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "eee288a0-b0e0-42fd-871d-18f013aaf016",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oEsC6cVNC7Dd9qm4edyvq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1893,
+      "cache_read_input_tokens": 28998,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1893
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T01:22:13.574Z_
+
+<details><summary>↩ Tool result · `toolu_01TTUfEKbQZBWWdyb3cdoB4i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp2_eval_lr5e6_r1_ckpt100\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:00:57.035Z\", \"updated_at\": \"2026-05-15T01:22:13.442Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"submitted_at\": \"2026-05-14T23:39:51.199Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T23:39:49.461Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"finished_at\": \"2026-05-15T01:19:34.927Z\", \"training_hours\": 1.66}, \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:19:36.799167+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.0138, \"rel_precision\": 0.0132, \"rel_recall\": 0.0144, \"ign_f1\": 0.0138, \"evi_f1\": 0.8504, \"evi_precision\": 0.9256, \"evi_recall\": 0.7866, \"edcr\": 0.9876, \"format_ok_rate\": 0.999, \"field_compliance_rate\": 0.8162, \"evidence_format_rate\": 0.8162, \"tp\": 175, \"pred_count\": 13300, \"gold_count\": 12151, \"n_predictions\": 15498, \"n_truncated\": 181, \"n_documents\": 985, \"n_parseable\": 984, \"inference_time_seconds\": 5901.7}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3136}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "edd342e3-0c93-4623-904a-0d2e1b15a988",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp2_eval_lr5e6_r1_ckpt100\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T23:00:57.035Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:22:13.442Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"117635\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T23:39:51.199Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_lr5e6_r1\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-14T23:39:49.461Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T01:19:34.927Z\\\", \\\"training_hours\\\": 1.66}, \\\"pid\\\": \\\"117635\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T01:19:36.799167+00:00\\\"}]}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.0138, \\\"rel_precision\\\": 0.0132, \\\"rel_recall\\\": 0.0144, \\\"ign_f1\\\": 0.0138, \\\"evi_f1\\\": 0.8504, \\\"evi_precision\\\": 0.9256, \\\"evi_recall\\\": 0.7866, \\\"edcr\\\": 0.9876, \\\"format_ok_rate\\\": 0.999, \\\"field_compliance_rate\\\": 0.8162, \\\"evidence_format_rate\\\": 0.8162, \\\"tp\\\": 175, \\\"pred_count\\\": 13300, \\\"gold_count\\\": 12151, \\\"n_predictions\\\": 15498, \\\"n_truncated\\\": 181, \\\"n_documents\\\": 985, \\\"n_parseable\\\": 984, \\\"inference_time_seconds\\\": 5901.7}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3136}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp2_eval_lr5e6_r1_ckpt100\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:00:57.035Z\", \"updated_at\": \"2026-05-15T01:22:13.442Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"submitted_at\": \"2026-05-14T23:39:51.199Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T23:39:49.461Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"finished_at\": \"2026-05-15T01:19:34.927Z\", \"training_hours\": 1.66}, \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:19:36.799167+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.0138, \"rel_precision\": 0.0132, \"rel_recall\": 0.0144, \"ign_f1\": 0.0138, \"evi_f1\": 0.8504, \"evi_precision\": 0.9256, \"evi_recall\": 0.7866, \"edcr\": 0.9876, \"format_ok_rate\": 0.999, \"field_compliance_rate\": 0.8162, \"evidence_format_rate\": 0.8162, \"tp\": 175, \"pred_count\": 13300, \"gold_count\": 12151, \"n_predictions\": 15498, \"n_truncated\": 181, \"n_documents\": 985, \"n_parseable\": 984, \"inference_time_seconds\": 5901.7}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3136}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01FDcw4BzzxebC4rmarkmSnw`</summary>
+
+```json
+{
+  "exp_id": "mvp2_eval_lr5e6_r1_ckpt100",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "d403c1d5-125f-469a-8715-a228baf91253",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UiPZ9QKZ2Vrr3SV3mrs1H3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 30891,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1392
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T01:22:17.629Z_
+
+<details><summary>↩ Tool result · `toolu_01FDcw4BzzxebC4rmarkmSnw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp2_eval_lr5e6_r1_ckpt100\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:00:57.035Z\", \"updated_at\": \"2026-05-15T01:22:17.491Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"submitted_at\": \"2026-05-14T23:39:51.199Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T23:39:49.461Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"finished_at\": \"2026-05-15T01:19:34.927Z\", \"training_hours\": 1.66}, \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:19:36.799167+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.0138, \"rel_precision\": 0.0132, \"rel_recall\": 0.0144, \"ign_f1\": 0.0138, \"evi_f1\": 0.8504, \"evi_precision\": 0.9256, \"evi_recall\": 0.7866, \"edcr\": 0.9876, \"format_ok_rate\": 0.999, \"field_compliance_rate\": 0.8162, \"evidence_format_rate\": 0.8162, \"tp\": 175, \"pred_count\": 13300, \"gold_count\": 12151, \"n_predictions\": 15498, \"n_truncated\": 181, \"n_documents\": 985, \"n_parseable\": 984, \"inference_time_seconds\": 5901.7}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3275}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "a3720ab3-13c2-41f4-9813-e7ef57351c65",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp2_eval_lr5e6_r1_ckpt100\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T23:00:57.035Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:22:17.491Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"117635\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T23:39:51.199Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_lr5e6_r1\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-14T23:39:49.461Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T01:19:34.927Z\\\", \\\"training_hours\\\": 1.66}, \\\"pid\\\": \\\"117635\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T01:19:36.799167+00:00\\\"}]}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.0138, \\\"rel_precision\\\": 0.0132, \\\"rel_recall\\\": 0.0144, \\\"ign_f1\\\": 0.0138, \\\"evi_f1\\\": 0.8504, \\\"evi_precision\\\": 0.9256, \\\"evi_recall\\\": 0.7866, \\\"edcr\\\": 0.9876, \\\"format_ok_rate\\\": 0.999, \\\"field_compliance_rate\\\": 0.8162, \\\"evidence_format_rate\\\": 0.8162, \\\"tp\\\": 175, \\\"pred_count\\\": 13300, \\\"gold_count\\\": 12151, \\\"n_predictions\\\": 15498, \\\"n_truncated\\\": 181, \\\"n_documents\\\": 985, \\\"n_parseable\\\": 984, \\\"inference_time_seconds\\\": 5901.7}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3275}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp2_eval_lr5e6_r1_ckpt100\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:00:57.035Z\", \"updated_at\": \"2026-05-15T01:22:17.491Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"submitted_at\": \"2026-05-14T23:39:51.199Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T23:39:49.461Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"finished_at\": \"2026-05-15T01:19:34.927Z\", \"training_hours\": 1.66}, \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:19:36.799167+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.0138, \"rel_precision\": 0.0132, \"rel_recall\": 0.0144, \"ign_f1\": 0.0138, \"evi_f1\": 0.8504, \"evi_precision\": 0.9256, \"evi_recall\": 0.7866, \"edcr\": 0.9876, \"format_ok_rate\": 0.999, \"field_compliance_rate\": 0.8162, \"evidence_format_rate\": 0.8162, \"tp\": 175, \"pred_count\": 13300, \"gold_count\": 12151, \"n_predictions\": 15498, \"n_truncated\": 181, \"n_documents\": 985, \"n_parseable\": 984, \"inference_time_seconds\": 5901.7}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3275}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01NXA9T6vMd5nTXQSrsbMLwa`</summary>
+
+```json
+{
+  "exp_id": "mvp2_eval_lr5e6_r1_ckpt100",
+  "field": "log_path",
+  "value": "~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "e0423c88-c962-49c6-8689-238a6ec65632",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UiPZ9QKZ2Vrr3SV3mrs1H3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 30891,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1392
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T01:22:18.687Z_
+
+<details><summary>↩ Tool result · `toolu_01NXA9T6vMd5nTXQSrsbMLwa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp2_eval_lr5e6_r1_ckpt100\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:00:57.035Z\", \"updated_at\": \"2026-05-15T01:22:18.514Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"submitted_at\": \"2026-05-14T23:39:51.199Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T23:39:49.461Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"finished_at\": \"2026-05-15T01:19:34.927Z\", \"training_hours\": 1.66}, \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:19:36.799167+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.0138, \"rel_precision\": 0.0132, \"rel_recall\": 0.0144, \"ign_f1\": 0.0138, \"evi_f1\": 0.8504, \"evi_precision\": 0.9256, \"evi_recall\": 0.7866, \"edcr\": 0.9876, \"format_ok_rate\": 0.999, \"field_compliance_rate\": 0.8162, \"evidence_format_rate\": 0.8162, \"tp\": 175, \"pred_count\": 13300, \"gold_count\": 12151, \"n_predictions\": 15498, \"n_truncated\": 181, \"n_documents\": 985, \"n_parseable\": 984, \"inference_time_seconds\": 5901.7}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4078}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "411ca37e-7e13-4079-831f-837710d3064b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp2_eval_lr5e6_r1_ckpt100\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T23:00:57.035Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:22:18.514Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"117635\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T23:39:51.199Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_lr5e6_r1\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-14T23:39:49.461Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T01:19:34.927Z\\\", \\\"training_hours\\\": 1.66}, \\\"pid\\\": \\\"117635\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T01:19:36.799167+00:00\\\"}]}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.0138, \\\"rel_precision\\\": 0.0132, \\\"rel_recall\\\": 0.0144, \\\"ign_f1\\\": 0.0138, \\\"evi_f1\\\": 0.8504, \\\"evi_precision\\\": 0.9256, \\\"evi_recall\\\": 0.7866, \\\"edcr\\\": 0.9876, \\\"format_ok_rate\\\": 0.999, \\\"field_compliance_rate\\\": 0.8162, \\\"evidence_format_rate\\\": 0.8162, \\\"tp\\\": 175, \\\"pred_count\\\": 13300, \\\"gold_count\\\": 12151, \\\"n_predictions\\\": 15498, \\\"n_truncated\\\": 181, \\\"n_documents\\\": 985, \\\"n_parseable\\\": 984, \\\"inference_time_seconds\\\": 5901.7}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4078}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp2_eval_lr5e6_r1_ckpt100\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:00:57.035Z\", \"updated_at\": \"2026-05-15T01:22:18.514Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"submitted_at\": \"2026-05-14T23:39:51.199Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T23:39:49.461Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"finished_at\": \"2026-05-15T01:19:34.927Z\", \"training_hours\": 1.66}, \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:19:36.799167+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.0138, \"rel_precision\": 0.0132, \"rel_recall\": 0.0144, \"ign_f1\": 0.0138, \"evi_f1\": 0.8504, \"evi_precision\": 0.9256, \"evi_recall\": 0.7866, \"edcr\": 0.9876, \"format_ok_rate\": 0.999, \"field_compliance_rate\": 0.8162, \"evidence_format_rate\": 0.8162, \"tp\": 175, \"pred_count\": 13300, \"gold_count\": 12151, \"n_predictions\": 15498, \"n_truncated\": 181, \"n_documents\": 985, \"n_parseable\": 984, \"inference_time_seconds\": 5901.7}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4078}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01FCPpGqo2WXkBoRPBHwZHVz`</summary>
+
+```json
+{
+  "exp_id": "mvp2_eval_lr5e6_r1_ckpt100",
+  "field": "status",
+  "value": "DONE",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "cc0cb047-a9a2-44e4-a2aa-16dc4425dad1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HUSasG9hXwkZcT5zyBqsRt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2939,
+      "cache_read_input_tokens": 32283,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2939
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T01:22:32.434Z_
+
+<details><summary>↩ Tool result · `toolu_01FCPpGqo2WXkBoRPBHwZHVz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp2_eval_lr5e6_r1_ckpt100\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:00:57.035Z\", \"updated_at\": \"2026-05-15T01:22:32.071Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"submitted_at\": \"2026-05-14T23:39:51.199Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 6160.9, \"gpu_hours\": 1.71}, \"hypothesis\": \"P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T23:39:49.461Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"finished_at\": \"2026-05-15T01:19:34.927Z\", \"training_hours\": 1.66}, \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:19:36.799167+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.0138, \"rel_precision\": 0.0132, \"rel_recall\": 0.0144, \"ign_f1\": 0.0138, \"evi_f1\": 0.8504, \"evi_precision\": 0.9256, \"evi_recall\": 0.7866, \"edcr\": 0.9876, \"format_ok_rate\": 0.999, \"field_compliance_rate\": 0.8162, \"evidence_format_rate\": 0.8162, \"tp\": 175, \"pred_count\": 13300, \"gold_count\": 12151, \"n_predictions\": 15498, \"n_truncated\": 181, \"n_documents\": 985, \"n_parseable\": 984, \"inference_time_seconds\": 5901.7}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\", \"completed_at\": \"2026-05-15T01:22:32.071Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5602}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "fc3c5c98-8101-4c0c-960e-b10fef2a6db4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp2_eval_lr5e6_r1_ckpt100\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T23:00:57.035Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:22:32.071Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"117635\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T23:39:51.199Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 6160.9, \\\"gpu_hours\\\": 1.71}, \\\"hypothesis\\\": \\\"P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_lr5e6_r1\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-14T23:39:49.461Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T01:19:34.927Z\\\", \\\"training_hours\\\": 1.66}, \\\"pid\\\": \\\"117635\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T01:19:36.799167+00:00\\\"}]}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.0138, \\\"rel_precision\\\": 0.0132, \\\"rel_recall\\\": 0.0144, \\\"ign_f1\\\": 0.0138, \\\"evi_f1\\\": 0.8504, \\\"evi_precision\\\": 0.9256, \\\"evi_recall\\\": 0.7866, \\\"edcr\\\": 0.9876, \\\"format_ok_rate\\\": 0.999, \\\"field_compliance_rate\\\": 0.8162, \\\"evidence_format_rate\\\": 0.8162, \\\"tp\\\": 175, \\\"pred_count\\\": 13300, \\\"gold_count\\\": 12151, \\\"n_predictions\\\": 15498, \\\"n_truncated\\\": 181, \\\"n_documents\\\": 985, \\\"n_parseable\\\": 984, \\\"inference_time_seconds\\\": 5901.7}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\\\", \\\"completed_at\\\": \\\"2026-05-15T01:22:32.071Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5602}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp2_eval_lr5e6_r1_ckpt100\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:00:57.035Z\", \"updated_at\": \"2026-05-15T01:22:32.071Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"submitted_at\": \"2026-05-14T23:39:51.199Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 6160.9, \"gpu_hours\": 1.71}, \"hypothesis\": \"P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T23:39:49.461Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"finished_at\": \"2026-05-15T01:19:34.927Z\", \"training_hours\": 1.66}, \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:19:36.799167+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.0138, \"rel_precision\": 0.0132, \"rel_recall\": 0.0144, \"ign_f1\": 0.0138, \"evi_f1\": 0.8504, \"evi_precision\": 0.9256, \"evi_recall\": 0.7866, \"edcr\": 0.9876, \"format_ok_rate\": 0.999, \"field_compliance_rate\": 0.8162, \"evidence_format_rate\": 0.8162, \"tp\": 175, \"pred_count\": 13300, \"gold_count\": 12151, \"n_predictions\": 15498, \"n_truncated\": 181, \"n_documents\": 985, \"n_parseable\": 984, \"inference_time_seconds\": 5901.7}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\", \"completed_at\": \"2026-05-15T01:22:32.071Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5602}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+Registry 已更新完毕。汇总：
+
+## mvp2_eval_lr5e6_r1_ckpt100 结果
+
+| 指标 | 值 |
+|------|-----|
+| **rel_f1** | **0.0138** |
+| rel_precision | 0.0132 |
+| rel_recall | 0.0144 |
+| ign_f1 | 0.0138 |
+| evi_f1 | 0.8504 |
+| evi_precision | 0.9256 |
+| evi_recall | 0.7866 |
+| edcr | 0.9876 |
+| format_ok_rate | 99.9% |
+| field_compliance_rate | 81.6% |
+| tp / pred / gold | 175 / 13300 / 12151 |
+| n_truncated | 181/985 |
+| inference_time | 5901.7s |
+
+**结论：negative**。rel_f1=0.0138 远低于 pass criteria 0.30，也远低于 SFT baseline 0.4057。与 ckpt-80 (0.0116) 和 ckpt-60 (0.0093) 相当——模型预测了大量关系（13300）但几乎全错（tp 仅 175），说明 lr=5e-6 的 GRPO 训练在关系抽取准确性上严重退化，虽然格式和证据质量维持良好。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "uuid": "af9ba10b-7e5f-40c6-be13-42edec5f26c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MHdkDG8LiQbc1aBriEqwhn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1506,
+      "cache_read_input_tokens": 35222,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1506
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 27_
+
+Registry 已更新完毕。汇总：
+
+## mvp2_eval_lr5e6_r1_ckpt100 结果
+
+| 指标 | 值 |
+|------|-----|
+| **rel_f1** | **0.0138** |
+| rel_precision | 0.0132 |
+| rel_recall | 0.0144 |
+| ign_f1 | 0.0138 |
+| evi_f1 | 0.8504 |
+| evi_precision | 0.9256 |
+| evi_recall | 0.7866 |
+| edcr | 0.9876 |
+| format_ok_rate | 99.9% |
+| field_compliance_rate | 81.6% |
+| tp / pred / gold | 175 / 13300 / 12151 |
+| n_truncated | 181/985 |
+| inference_time | 5901.7s |
+
+**结论：negative**。rel_f1=0.0138 远低于 pass criteria 0.30，也远低于 SFT baseline 0.4057。与 ckpt-80 (0.0116) 和 ckpt-60 (0.0093) 相当——模型预测了大量关系（13300）但几乎全错（tp 仅 175），说明 lr=5e-6 的 GRPO 训练在关系抽取准确性上严重退化，虽然格式和证据质量维持良好。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 62561,
+  "duration_api_ms": 60742,
+  "num_turns": 10,
+  "stop_reason": "end_turn",
+  "session_id": "22d02c97-6c23-4f87-82c9-a4b0c5fb64e8",
+  "total_cost_usd": 0.31870475,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 23842,
+    "cache_read_input_tokens": 186447,
+    "output_tokens": 1538,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 23842,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 399,
+        "cache_read_input_tokens": 35222,
+        "cache_creation_input_tokens": 1506,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1506
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1156,
+      "outputTokens": 29,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0013009999999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 2184,
+      "cacheReadInputTokens": 214400,
+      "cacheCreationInputTokens": 24887,
+      "webSearchRequests": 0,
+      "costUSD": 0.31740375,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "70561f16-574d-441b-bb86-5835daad68e8"
+}
+```
+
+</details>
+
+---

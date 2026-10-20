@@ -1,0 +1,43 @@
+{
+  "exp_id": "mvp2_grpo_flatnli_r5",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:55:02.197Z",
+    "updated_at": "2026-05-14T17:26:55.692Z",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && ... && python -m freige.training.grpo_trainer --stage 2 --kl_coef 0.01 --num_generations 8 --max_steps 200 --resume_from_checkpoint /root/autodl-tmp/grpo_flatnli_r3/checkpoint-100 ...\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "73407",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_grpo_flatnli_r5.log",
+      "submitted_at": "2026-05-14T16:56:01.219Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": {
+        "train": 3027,
+        "dev": 985
+      },
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "/root/autodl-tmp/data/docred",
+      "wall_clock_seconds": 1854.5,
+      "gpu_hours": 0.52
+    },
+    "hypothesis": "Flat-NLI reward with kl_coef=0.01 + num_generations=8 prevents mode collapse. Resume from flatnli_r3 checkpoint-100 (healthy). 100-step probe (steps 100→200) to verify stability before full run.",
+    "parent": "mvp2_grpo_flatnli_r4",
+    "notes": "Director 决策 kill：从 r3 (kl_coef=0) checkpoint-100 恢复后立即崩溃。frac_zero_std: 0.0(r3)→0.9(step 105)→0.7→0.5→0.8(step 120)，0.5-0.9 震荡无收敛。KL 全程 0.44-0.49 高位。根因：kl_coef=0 累积的 policy 漂移 + kl_coef=0.01 penalty 形成对抗。教训：不能从 kl_coef=0 的 checkpoint 恢复加 KL penalty。flatnli_r6 从 SFT 全新训练。",
+    "conclusion": "killed",
+    "completed_at": "2026-05-14T17:26:55.692Z"
+  },
+  "timestamp": "2026-05-14T17:26:55.770977+00:00",
+  "trigger": "update_registry"
+}

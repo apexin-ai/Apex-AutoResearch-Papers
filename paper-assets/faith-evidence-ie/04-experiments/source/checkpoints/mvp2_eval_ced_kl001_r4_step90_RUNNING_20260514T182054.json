@@ -1,0 +1,36 @@
+{
+  "exp_id": "mvp2_eval_ced_kl001_r4_step90",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:19:58.623Z",
+    "updated_at": "2026-05-14T18:20:54.760Z",
+    "hypothesis": "Eval ced_kl001_r4 best-reward checkpoint (step 90, reward=1.37) — the true best by training reward. Critical for MVP-2 judgment: if step-90 Evi-F1 ≥ SFT+2pp, MVP-2 passes.",
+    "parent": "mvp2_grpo_ced_kl001_r4",
+    "spec": {
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 998,
+      "model_name": "Qwen3-4B + SFT adapter + GRPO ced_kl001 step-90",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/grpo_ced_kl001/checkpoint-90",
+      "eval_data": "DocRED dev set",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001_step90 --checkpoints 90 --quantize\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_step90.log",
+      "submitted_at": "2026-05-14T18:20:05Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "notes": "Eval ced_kl001_r4 training-reward-best checkpoint (step 90, reward=1.37) on cuda:3. 预计 ~40-60 min。这是 MVP-2 判定的关键 checkpoint——如果 step-90 Evi-F1 ≥ SFT_Evi-F1(0.7979)+2pp=0.8179, MVP-2 核心 pass。"
+  },
+  "timestamp": "2026-05-14T18:20:54.828587+00:00",
+  "trigger": "update_registry"
+}

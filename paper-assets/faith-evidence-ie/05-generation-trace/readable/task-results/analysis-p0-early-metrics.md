@@ -1,0 +1,54 @@
+# analysis p0 early metrics
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_analysis_p0-early-metrics_20260514T210330_result.json`
+- **Structured JSON:** [`dc97e11978fb17665ab1.json`](../../sessions/dc/dc97e11978fb17665ab1.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+数据全部拿到了。metrics 每 5 步记录一次，当前训练到 step 45。
+
+## P0 训练指标 (step 5-40)
+
+| Step | f1_reward | ced_reward | format | reward_mean | reward_std | frac_zero_std | grad_norm | KL | loss |
+|------|-----------|------------|--------|-------------|------------|---------------|-----------|-----|------|
+| 5 | 0.0185 | 0.0114 | 0.057 | 0.087 | 0.139 | 0.2 | 0.224 | **2.4e9** | **2.4e7** |
+| 10 | **0.0** | 0.0 | 0.068 | 0.068 | 0.110 | 0.1 | 0.187 | 0.002 | -0.002 |
+| 15 | 0.0109 | 0.0036 | 0.141 | 0.155 | 0.167 | 0.2 | 0.393 | 0.002 | 0.048 |
+| 20 | **0.0** | 0.0 | 0.101 | 0.101 | 0.121 | 0.2 | 0.115 | 1.374 | 0.046 |
+| 25 | **0.0** | 0.0 | 0.176 | 0.176 | 0.137 | 0.2 | 0.445 | 0.004 | 0.029 |
+| 30 | 0.0023 | 0.0015 | 0.128 | 0.131 | 0.140 | 0.1 | 0.250 | **7.0e13** | **9.9e11** |
+| 35 | 0.0101 | 0.0154 | 0.168 | 0.193 | 0.188 | 0.1 | 0.190 | 0.157 | 0.053 |
+| 40 | 0.0381 | 0.0786 | 0.201 | 0.318 | 0.345 | 0.3 | 0.137 | 0.006 | 0.023 |
+
+## 健康评估
+
+- **step 10 f1_reward: 0.0** — 与 ced_kl001_r4 (lr=5e-5) 相同，lr 修复**在 step 10 未见效**
+- **step 40 f1_reward: 0.038** — 到了后半段开始缓慢上升，说明模型在慢慢学 extraction，但速度很慢
+- **KL 爆炸**: step 5 (2.4e9) 和 step 30 (7.0e13) 出现灾难性 KL spike，伴随 loss spike。其余 step KL 正常 (0.002-1.4)。这是 QLoRA + GRPO 的数值不稳定问题，模型每次都恢复了，但这是定时炸弹
+- **format_reward**: 0.057 → 0.201，格式学习正常
+- **frac_zero_std**: 0.1-0.3，多样性尚可
+- **ced_reward**: 仅在 step 35-40 才开始起步 (0.015 → 0.079)
+
+### 整体判断: ⚠️ 警告
+
+1. **f1_reward 学习极慢** — 40 步仅到 0.038，多数 step 为 0
+2. **KL 数值爆炸** — 两次 spike（step 5, 30），尽管自动恢复，但可能在后续更大 step 造成不可逆损伤
+3. **唯一积极信号**: step 35-40 的 f1/ced 同时上升，reward_mean 从 ~0.1 跳到 0.318，如果趋势持续则可能逐渐健康化
+4. 建议观察到 step 60-80 再做 kill/continue 决策——如果 f1_reward 持续上升则保留，如果回落到 0 则终止
+
+---

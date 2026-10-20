@@ -1,0 +1,16 @@
+{
+  "exp_id": "r3_grpo_bf16_g4",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T23:22:08.526Z",
+    "updated_at": "2026-05-24T23:23:17.624Z",
+    "hypothesis": "GRPO bf16 G=4 控制实验。照搬 plan_011 (bf16 G=8) 全部超参仅改 G=4。如果 bf16 G=4 不 collapse → quantization 是 primary factor；如果 collapse → group size 是 key factor。",
+    "parent": "plan_011_grpo_g8_bf16"
+  },
+  "timestamp": "2026-05-24T23:23:18.324716+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "mvp2_grpo_flatnli_r4",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T15:32:31.804Z",
+    "updated_at": "2026-05-14T15:32:31.804Z"
+  },
+  "timestamp": "2026-05-14T15:32:31.977258+00:00",
+  "trigger": "update_registry"
+}

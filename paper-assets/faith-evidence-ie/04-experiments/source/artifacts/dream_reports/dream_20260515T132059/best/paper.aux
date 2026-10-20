@@ -1,0 +1,82 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Document-Level Relation Extraction.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reward Hacking and Overoptimization.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Rejection Sampling Fine-Tuning.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Contrastive Evidence Discrimination (CED{})}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}CED{}-Guided Rejection Sampling Fine-Tuning}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stage 1: SFT.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stage 2: Candidate Generation and CED{} Filtering.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stage 3: RSFT{}.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}EDCR{}: Entity-Sharing Distractor Citation Rate}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:edcr}{{3.4}{3}{\edcr {}: Entity-Sharing Distractor Citation Rate}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dataset.}{3}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Test set results on DocRED. $\dagger $: encoder-based methods with attention-threshold evidence. $\ddagger $: generative LLM methods. Evi-F1\textsubscript  {J} = joint (DREEAM protocol); Evi-F1\textsubscript  {C} = conditional on correct relation.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:main_results}{{1}{4}{Test set results on DocRED. $\dagger $: encoder-based methods with attention-threshold evidence. $\ddagger $: generative LLM methods. Evi-F1\textsubscript {J} = joint (DREEAM protocol); Evi-F1\textsubscript {C} = conditional on correct relation}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Conditional vs.\ Joint Evi-F1 on DocRED dev set. Joint Evi-F1 penalizes incorrect relation predictions with zero evidence credit.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:joint_vs_cond}{{2}{4}{Conditional vs.\ Joint Evi-F1 on DocRED dev set. Joint Evi-F1 penalizes incorrect relation predictions with zero evidence credit}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Model and Training.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:main_results}{{4.2}{4}{Main Results}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Online--offline RL spectrum on DocRED dev set. GRPO exhibits catastrophic forgetting across configurations. DPO avoids collapse but degrades below SFT. Only RSFT{} improves over SFT.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:rl_spectrum}{{3}{5}{Online--offline RL spectrum on DocRED dev set. GRPO exhibits catastrophic forgetting across configurations. DPO avoids collapse but degrades below SFT. Only \rsft {} improves over SFT}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Why Online RL Fails: Evidence--Extraction Decoupling}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:grpo_failure}{{4.3}{5}{Why Online RL Fails: Evidence--Extraction Decoupling}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{GRPO Catastrophic Forgetting.}{5}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DPO as Intermediate Baseline.}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Forgetting Dynamics.}{5}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}CED{} vs.\ Flat-NLI Scoring}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:ced_vs_flatnli}{{4.4}{5}{\ced {} vs.\ Flat-NLI Scoring}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces CED vs.\ flat-NLI as RSFT{} filtering signal (DocRED dev set). Both RSFT{} variants improve over SFT; CED significantly outperforms flat-NLI ($p < 0.01$ for all metrics, paired bootstrap).}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:ced_ablation}{{4}{6}{CED vs.\ flat-NLI as \rsft {} filtering signal (DocRED dev set). Both \rsft {} variants improve over SFT; CED significantly outperforms flat-NLI ($p < 0.01$ for all metrics, paired bootstrap)}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces CED usage modes (DocRED dev set). CED as training signal (RSFT{}) substantially outperforms CED as inference-time reranker.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:ced_modes}{{5}{6}{CED usage modes (DocRED dev set). CED as training signal (\rsft {}) substantially outperforms CED as inference-time reranker}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}CED{} Usage Modes: Training vs.\ Inference}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:ced_usage}{{4.5}{6}{\ced {} Usage Modes: Training vs.\ Inference}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}EDCR{} as a Diagnostic Metric}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:edcr_analysis}{{4.6}{6}{\edcr {} as a Diagnostic Metric}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Method Diagnostic.}{6}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Human Validation.}{6}{section*.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-method EDCR{} diagnostic (DocRED dev set). Methods sorted by EDCR{} descending. EDCR{} captures a systematic gradient from catastrophic GRPO to CED-reranker.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:edcr_diagnostic}{{6}{7}{Cross-method \edcr {} diagnostic (DocRED dev set). Methods sorted by \edcr {} descending. \edcr {} captures a systematic gradient from catastrophic GRPO to CED-reranker}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Human validation of EDCR{} (100 samples, 3 annotators, $\kappa $=0.72). Auto EDCR{} correlates with human distractor rate at Pearson $r$=0.62.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:human_edcr}{{7}{7}{Human validation of \edcr {} (100 samples, 3 annotators, $\kappa $=0.72). Auto \edcr {} correlates with human distractor rate at Pearson $r$=0.62}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Generalization Experiments}{7}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:generalization}{{4.7}{7}{Generalization Experiments}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Model Size Ablation.}{7}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Re-DocRED.}{7}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{top-$k$ Ablation.}{7}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{NLI Model Ablation.}{7}{section*.19}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Model size ablation (DocRED dev set). RSFT{}+CED improves consistently across 1.7B--8B.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:model_size}{{8}{8}{Model size ablation (DocRED dev set). \rsft {}+CED improves consistently across 1.7B--8B}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces DocRED vs.\ Re-DocRED (dev set). RSFT{}+CED gains are preserved on cleaner annotations.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:redocred}{{9}{8}{DocRED vs.\ Re-DocRED (dev set). \rsft {}+CED gains are preserved on cleaner annotations}{table.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Baseline Comparison with Evidence Methods.}{8}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{8}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{8}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why RSFT{} Succeeds Where RL Fails.}{8}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations of EDCR{}.}{8}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Extraction Gap vs.\ Encoders.}{8}{section*.23}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces top-$k$ ablation for CED filtering (DocRED dev set). Stricter filtering ($k$=1) yields higher quality despite fewer training samples.}}{9}{table.10}\protected@file@percent }
+\newlabel{tab:topk}{{10}{9}{top-$k$ ablation for CED filtering (DocRED dev set). Stricter filtering ($k$=1) yields higher quality despite fewer training samples}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces NLI model ablation for CED scoring. Larger NLI model provides marginal gains.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:nli_ablation}{{11}{9}{NLI model ablation for CED scoring. Larger NLI model provides marginal gains}{table.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{9}{Conclusion}{section.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Evidence baseline comparison (dev set). FREIGE{} is the first generative LLM method with explicit evidence; the Evi-F1\textsubscript  {J} gap vs.\ encoders is driven by extraction accuracy, not evidence quality.}}{10}{table.12}\protected@file@percent }
+\newlabel{tab:evidence_comparison}{{12}{10}{Evidence baseline comparison (dev set). \method {} is the first generative LLM method with explicit evidence; the Evi-F1\textsubscript {J} gap vs.\ encoders is driven by extraction accuracy, not evidence quality}{table.12}{}}
+\gdef \@abspage@last{10}

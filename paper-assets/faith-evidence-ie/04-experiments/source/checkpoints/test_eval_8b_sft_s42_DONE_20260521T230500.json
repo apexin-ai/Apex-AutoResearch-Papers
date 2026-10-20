@@ -1,0 +1,42 @@
+{
+  "exp_id": "test_eval_8b_sft_s42",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:30:22.780Z",
+    "updated_at": "2026-05-21T23:04:59.905Z",
+    "hypothesis": "Re-DocRED test set eval: Qwen3-8B SFT s42 on test_revised.json (500 docs)。配对 8B RSFT test=0.3353，补全 test set scaling table 的 8B SFT baseline。",
+    "spec": {
+      "command": "python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_8b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+      "data_count": 500,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_qwen3_8b_bf16",
+      "eval_data": "re-docred test_revised",
+      "pid": 125615,
+      "gpu": "cuda:2",
+      "log_path": "/root/autodl-tmp/eval_results/test_eval_8b_sft_s42/log.txt"
+    },
+    "metrics": {
+      "f1": 0.3106,
+      "ign_f1": 0.3106,
+      "evi_f1_joint": 0.2279,
+      "evi_f1_tp": 0.5949,
+      "edcr": 0.8432,
+      "precision": 0.4543,
+      "recall": 0.2359,
+      "format_ok_rate": 0.996,
+      "truncated": "410/500"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/sft_output_qwen3_8b_bf16",
+    "completed_at": "2026-05-21T23:04:59.905Z"
+  },
+  "timestamp": "2026-05-21T23:05:00.687995+00:00",
+  "trigger": "update_registry"
+}

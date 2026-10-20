@@ -1,0 +1,1671 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{zhou2021atlop}
+\citation{autore2024}
+\citation{xu2024lmrc}
+\citation{xu2025docksrag}
+\citation{yao2019docred}
+\citation{tan2022redocred}
+\citation{xiao2022sais}
+\citation{ma2023dreeam}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@LN{30}{0}
+\@LN{31}{0}
+\@LN{32}{0}
+\@LN{33}{0}
+\@LN{34}{0}
+\@LN{35}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN{38}{0}
+\@LN{39}{0}
+\@LN{40}{0}
+\@LN@col{2}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\@LN{77}{0}
+\@LN{78}{0}
+\@LN{79}{0}
+\@LN{80}{0}
+\@LN{81}{0}
+\citation{shao2024deepseekmath}
+\citation{rafailov2023direct}
+\citation{zelikman2022star}
+\citation{zhou2021atlop}
+\citation{zeng2020gain}
+\citation{xiao2022sais}
+\citation{ma2023dreeam}
+\citation{xie2022eider}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Evidence-grounded DocRE produces relation triples with supporting sentence indices, unlike standard DocRE which outputs bare triples. RSFT selects the top-$k$ of $N$ candidates per document, scored by Contrastive Evidence Discrimination (CED; \S  \ref {sec:ced}), for fine-tuning.}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:overview}{{1}{2}{Evidence-grounded DocRE produces relation triples with supporting sentence indices, unlike standard DocRE which outputs bare triples. RSFT selects the top-$k$ of $N$ candidates per document, scored by Contrastive Evidence Discrimination (CED; \S \ref {sec:ced}), for fine-tuning}{figure.caption.1}{}}
+\@LN@col{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN{108}{1}
+\@LN{109}{1}
+\@LN{110}{1}
+\@LN{111}{1}
+\@LN@col{2}
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN{115}{1}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@LN{120}{1}
+\@LN{121}{1}
+\@LN{122}{1}
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN{128}{1}
+\@LN{129}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related_work}{{2}{2}{Related Work}{section.2}{}}
+\@LN{130}{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Document-Level Relation Extraction}{2}{subsection.2.1}\protected@file@percent }
+\newlabel{sec:rw_docre}{{2.1}{2}{Document-Level Relation Extraction}{subsection.2.1}{}}
+\@LN{131}{1}
+\@LN{132}{1}
+\@LN{133}{1}
+\@LN{134}{1}
+\@LN{135}{1}
+\@LN{136}{1}
+\@LN{137}{1}
+\@LN{138}{1}
+\@LN{139}{1}
+\citation{autore2024}
+\citation{xu2024lmrc}
+\citation{wang2025relprior}
+\citation{xu2025docksrag}
+\citation{wang2025relprior}
+\citation{shao2024deepseekmath}
+\citation{schulman2017ppo}
+\citation{deepseek2025r1}
+\citation{yu2025dapo}
+\citation{liu2025drgrpo}
+\citation{dai2025r1re}
+\citation{wang2025rear}
+\citation{rafailov2023direct}
+\citation{ouyang2022instructgpt}
+\citation{jin2025rl_panacea}
+\citation{ruder2017overview}
+\citation{dettmers2023qlora}
+\citation{gao2023scaling}
+\citation{laban2022summac,zhang2024infuse}
+\citation{li2025srvf,tamo2026evidencerl}
+\citation{zelikman2022star}
+\citation{gulcehre2023rest,yuan2023rft}
+\citation{tang2025rsftppo}
+\citation{xiao2022sais}
+\citation{ma2023dreeam}
+\@LN@col{1}
+\@LN{140}{2}
+\@LN{141}{2}
+\@LN{142}{2}
+\@LN{143}{2}
+\@LN{144}{2}
+\@LN{145}{2}
+\@LN{146}{2}
+\@LN{147}{2}
+\@LN{148}{2}
+\@LN{149}{2}
+\@LN{150}{2}
+\@LN{151}{2}
+\@LN{152}{2}
+\@LN{153}{2}
+\@LN{154}{2}
+\@LN{155}{2}
+\@LN{156}{2}
+\@LN{157}{2}
+\@LN{158}{2}
+\@LN{159}{2}
+\@LN{160}{2}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Reinforcement Learning for Structured Generation}{3}{subsection.2.2}\protected@file@percent }
+\newlabel{sec:rw_rl}{{2.2}{3}{Reinforcement Learning for Structured Generation}{subsection.2.2}{}}
+\@LN{164}{2}
+\@LN{165}{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\@LN{169}{2}
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@LN{173}{2}
+\@LN{174}{2}
+\@LN{175}{2}
+\@LN{176}{2}
+\@LN{177}{2}
+\@LN{178}{2}
+\@LN{179}{2}
+\@LN{180}{2}
+\@LN{181}{2}
+\@LN{182}{2}
+\@LN{183}{2}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Evidence-grounded DocRE example. Given a document with entity mentions, the model jointly predicts relation triples and supporting evidence sentences in a single structured output.}}{3}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:task_example}{{2}{3}{Evidence-grounded DocRE example. Given a document with entity mentions, the model jointly predicts relation triples and supporting evidence sentences in a single structured output}{figure.caption.2}{}}
+\@LN{184}{2}
+\@LN{185}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Evidence Faithfulness and Rejection Sampling}{3}{subsection.2.3}\protected@file@percent }
+\newlabel{sec:rw_faithfulness}{{2.3}{3}{Evidence Faithfulness and Rejection Sampling}{subsection.2.3}{}}
+\@LN{186}{2}
+\@LN{187}{2}
+\@LN{188}{2}
+\@LN{189}{2}
+\@LN{190}{2}
+\@LN{191}{2}
+\@LN{192}{2}
+\@LN{193}{2}
+\@LN{194}{2}
+\@LN{195}{2}
+\@LN{196}{2}
+\@LN{197}{2}
+\@LN{198}{2}
+\@LN{199}{2}
+\@LN{200}{2}
+\@LN{201}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@LN{202}{2}
+\@LN{203}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task: Evidence-Grounded Document-Level Relation Extraction}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:task}{{3.1}{3}{Task: Evidence-Grounded Document-Level Relation Extraction}{subsection.3.1}{}}
+\@LN{204}{2}
+\@LN{205}{2}
+\@LN{206}{2}
+\@LN{207}{2}
+\@LN{208}{2}
+\@LN{209}{2}
+\@LN{210}{2}
+\@LN{211}{2}
+\@LN{212}{2}
+\@LN{213}{2}
+\@LN{214}{2}
+\@LN{215}{2}
+\@LN{216}{2}
+\@LN{217}{2}
+\@LN{218}{2}
+\citation{hu2022lora}
+\citation{yao2019docred}
+\citation{shao2024deepseekmath}
+\citation{dettmers2023qlora}
+\citation{rafailov2023direct}
+\citation{ouyang2022instructgpt}
+\citation{zelikman2022star}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Comparison of post-SFT optimization paradigms. All three use CED scoring but differ in how quality signals reach the model.}}{4}{table.caption.3}\protected@file@percent }
+\newlabel{tab:paradigm_comparison}{{1}{4}{Comparison of post-SFT optimization paradigms. All three use CED scoring but differ in how quality signals reach the model}{table.caption.3}{}}
+\@LN{219}{3}
+\@LN{220}{3}
+\@LN{221}{3}
+\@LN{222}{3}
+\@LN{223}{3}
+\@LN{224}{3}
+\@LN{225}{3}
+\@LN{226}{3}
+\@LN{227}{3}
+\@LN{228}{3}
+\@LN{229}{3}
+\@LN{230}{3}
+\@LN{231}{3}
+\@LN{232}{3}
+\@LN{233}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Supervised Fine-Tuning Baseline}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:sft}{{3.2}{4}{Supervised Fine-Tuning Baseline}{subsection.3.2}{}}
+\@LN{234}{3}
+\@LN{235}{3}
+\@LN{236}{3}
+\@LN{237}{3}
+\@LN{238}{3}
+\@LN{239}{3}
+\@LN{240}{3}
+\@LN{241}{3}
+\@LN{242}{3}
+\@LN{243}{3}
+\@LN{244}{3}
+\@LN{245}{3}
+\@LN{246}{3}
+\@LN{247}{3}
+\@LN{248}{3}
+\@LN{249}{3}
+\@LN{250}{3}
+\@LN{251}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Optimization Paradigms}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:paradigms}{{3.3}{4}{Optimization Paradigms}{subsection.3.3}{}}
+\@LN{252}{3}
+\@LN{253}{3}
+\@LN{254}{3}
+\@LN{255}{3}
+\@writefile{toc}{\contentsline {paragraph}{GRPO.}{4}{section*.4}\protected@file@percent }
+\@LN{256}{3}
+\@LN{257}{3}
+\@LN{258}{3}
+\@LN@col{2}
+\@LN{259}{3}
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN{262}{3}
+\@LN{263}{3}
+\@LN{264}{3}
+\@LN{265}{3}
+\@LN{266}{3}
+\@LN{267}{3}
+\@LN{268}{3}
+\@LN{269}{3}
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN{272}{3}
+\@writefile{toc}{\contentsline {paragraph}{DPO.}{4}{section*.5}\protected@file@percent }
+\@LN{273}{3}
+\@LN{274}{3}
+\@LN{275}{3}
+\@LN{276}{3}
+\@LN{277}{3}
+\@LN{278}{3}
+\@LN{279}{3}
+\@LN{280}{3}
+\@LN{281}{3}
+\@LN{282}{3}
+\@LN{283}{3}
+\@LN{284}{3}
+\@LN{285}{3}
+\@writefile{toc}{\contentsline {paragraph}{RSFT.}{4}{section*.6}\protected@file@percent }
+\@LN{286}{3}
+\@LN{287}{3}
+\@LN{288}{3}
+\@LN{289}{3}
+\@LN{290}{3}
+\@LN{291}{3}
+\@LN{292}{3}
+\@LN{293}{3}
+\@LN{294}{3}
+\@LN{295}{3}
+\@LN{296}{3}
+\@LN{297}{3}
+\@LN{298}{3}
+\@LN{299}{3}
+\@LN{300}{3}
+\@LN{301}{3}
+\@LN{302}{3}
+\@LN{303}{3}
+\@LN{304}{3}
+\@LN{305}{3}
+\@LN{306}{3}
+\@LN{307}{3}
+\@LN{308}{3}
+\@LN{309}{3}
+\citation{he2023debertav3}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces CED scoring example. The positive pair (evidence $\to $ hypothesis) yields high entailment; the contrastive distractor (entity-sharing non-evidence) yields low entailment. CED measures the margin between them.}}{5}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:ced_scoring}{{3}{5}{CED scoring example. The positive pair (evidence $\to $ hypothesis) yields high entailment; the contrastive distractor (entity-sharing non-evidence) yields low entailment. CED measures the margin between them}{figure.caption.7}{}}
+\@LN{310}{4}
+\@LN{311}{4}
+\@LN{312}{4}
+\@LN{313}{4}
+\@LN{314}{4}
+\@LN{315}{4}
+\@LN{316}{4}
+\@LN{317}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Contrastive Evidence Discrimination}{5}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:ced}{{3.4}{5}{Contrastive Evidence Discrimination}{subsection.3.4}{}}
+\@LN{318}{4}
+\@LN{319}{4}
+\@LN{320}{4}
+\@LN{321}{4}
+\@LN{322}{4}
+\@LN{323}{4}
+\@LN{324}{4}
+\@LN{325}{4}
+\@LN{326}{4}
+\@LN{327}{4}
+\@LN{328}{4}
+\@LN{329}{4}
+\@LN{330}{4}
+\@LN{331}{4}
+\@LN{332}{4}
+\@LN{333}{4}
+\@LN{334}{4}
+\@LN{335}{4}
+\@LN{336}{4}
+\@LN{337}{4}
+\@LN{338}{4}
+\newlabel{eq:ced}{{1}{5}{Contrastive Evidence Discrimination}{equation.1}{}}
+\@LN{339}{4}
+\@LN{340}{4}
+\@LN{341}{4}
+\@LN{342}{4}
+\@LN@col{2}
+\@LN{343}{4}
+\@LN{344}{4}
+\@LN{345}{4}
+\@LN{346}{4}
+\@LN{347}{4}
+\@LN{348}{4}
+\@LN{349}{4}
+\@LN{350}{4}
+\@LN{351}{4}
+\@LN{352}{4}
+\@LN{353}{4}
+\@LN{354}{4}
+\@LN{355}{4}
+\@LN{356}{4}
+\@LN{357}{4}
+\@LN{358}{4}
+\@LN{359}{4}
+\@LN{360}{4}
+\@LN{361}{4}
+\@LN{362}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Evidence-Decoupling Ratio}{5}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:edcr}{{3.5}{5}{Evidence-Decoupling Ratio}{subsection.3.5}{}}
+\@LN{363}{4}
+\@LN{364}{4}
+\@LN{365}{4}
+\@LN{366}{4}
+\@LN{367}{4}
+\@LN{368}{4}
+\@LN{369}{4}
+\@LN{370}{4}
+\newlabel{eq:edcr}{{2}{5}{Evidence-Decoupling Ratio}{equation.2}{}}
+\@LN{371}{4}
+\@LN{372}{4}
+\@LN{373}{4}
+\@LN{374}{4}
+\@LN{375}{4}
+\@LN{376}{4}
+\@LN{377}{4}
+\@LN{378}{4}
+\@LN{379}{4}
+\@LN{380}{4}
+\@LN{381}{4}
+\@LN{382}{4}
+\@LN{383}{4}
+\@LN{384}{4}
+\@LN{385}{4}
+\@LN{386}{4}
+\@LN{387}{4}
+\@LN{388}{4}
+\@LN{389}{4}
+\@LN{390}{4}
+\@LN{391}{4}
+\citation{yao2019docred}
+\citation{tan2022redocred}
+\citation{hu2022lora}
+\citation{ma2023dreeam}
+\citation{gao2023scaling}
+\citation{li2026qurl}
+\@LN@col{1}
+\@LN{392}{5}
+\@LN{393}{5}
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@LN{397}{5}
+\@LN{398}{5}
+\@LN{399}{5}
+\@LN{400}{5}
+\@LN{401}{5}
+\@LN{402}{5}
+\@LN{403}{5}
+\@LN{404}{5}
+\@LN{405}{5}
+\@LN{406}{5}
+\@LN{407}{5}
+\@LN{408}{5}
+\@LN{409}{5}
+\@LN{410}{5}
+\@LN{411}{5}
+\@LN{412}{5}
+\@LN{413}{5}
+\@LN{414}{5}
+\@LN{415}{5}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{6}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{6}{Experiments}{section.4}{}}
+\@LN{416}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{6}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:setup}{{4.1}{6}{Experimental Setup}{subsection.4.1}{}}
+\@LN{417}{5}
+\@LN{418}{5}
+\@LN{419}{5}
+\@LN{420}{5}
+\@LN{421}{5}
+\@LN{422}{5}
+\@LN{423}{5}
+\@LN{424}{5}
+\@LN{425}{5}
+\@LN{426}{5}
+\@LN{427}{5}
+\@LN{428}{5}
+\@LN{429}{5}
+\@LN{430}{5}
+\@LN{431}{5}
+\@LN{432}{5}
+\@LN{433}{5}
+\@LN{434}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results}{6}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:main_results}{{4.2}{6}{Main Results}{subsection.4.2}{}}
+\@LN{435}{5}
+\@LN{436}{5}
+\@LN{437}{5}
+\@LN{438}{5}
+\@LN{439}{5}
+\@LN{440}{5}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Main results on DocRED dev (Qwen3-4B). Ign-F1 shows mean $\pm $ std$^{(\text  {seeds})}$; other metrics are same-seed means. Best \textbf  {bold}; best evidence-generating \underline  {underlined}. Per-seed: Appendix~\ref {tab:ablation_full}.}}{6}{table.caption.8}\protected@file@percent }
+\newlabel{tab:main}{{2}{6}{Main results on DocRED dev (Qwen3-4B). Ign-F1 shows mean $\pm $ std$^{(\text {seeds})}$; other metrics are same-seed means. Best \textbf {bold}; best evidence-generating \underline {underlined}. Per-seed: Appendix~\ref {tab:ablation_full}}{table.caption.8}{}}
+\@LN{441}{5}
+\@LN{442}{5}
+\@LN{443}{5}
+\@LN{444}{5}
+\@LN{445}{5}
+\@LN{446}{5}
+\@LN{447}{5}
+\@LN{448}{5}
+\@LN{449}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Evidence-Extraction Decoupling Spectrum}{6}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:spectrum}{{4.3}{6}{Evidence-Extraction Decoupling Spectrum}{subsection.4.3}{}}
+\@LN{450}{5}
+\@LN{451}{5}
+\@LN{452}{5}
+\@LN{453}{5}
+\@LN{454}{5}
+\@LN{455}{5}
+\@LN{456}{5}
+\@writefile{toc}{\contentsline {paragraph}{GRPO.}{6}{section*.9}\protected@file@percent }
+\@LN{457}{5}
+\@LN{458}{5}
+\@LN{459}{5}
+\@LN{460}{5}
+\@LN{461}{5}
+\@LN{462}{5}
+\@LN{463}{5}
+\@LN{464}{5}
+\@LN{465}{5}
+\@LN{466}{5}
+\@LN{467}{5}
+\@LN{468}{5}
+\@LN{469}{5}
+\@LN{470}{5}
+\@writefile{toc}{\contentsline {paragraph}{DPO and RSFT.}{6}{section*.10}\protected@file@percent }
+\@LN{471}{5}
+\@LN{472}{5}
+\@LN{473}{5}
+\@LN{474}{5}
+\@LN{475}{5}
+\@LN{476}{5}
+\@LN{477}{5}
+\@LN{478}{5}
+\@LN{479}{5}
+\@LN{480}{5}
+\@LN{481}{5}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Decoupling spectrum. Each method is plotted by Rel-F1 (x-axis) and Evi-F1 (y-axis). Arrows indicate training progression for DPO and GRPO bf16. Decoupled methods drift toward the upper-left.}}{7}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:spectrum}{{4}{7}{Decoupling spectrum. Each method is plotted by Rel-F1 (x-axis) and Evi-F1 (y-axis). Arrows indicate training progression for DPO and GRPO bf16. Decoupled methods drift toward the upper-left}{figure.caption.11}{}}
+\@LN{482}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Scale-Dependent Evidence Tax}{7}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:scaling}{{4.4}{7}{Scale-Dependent Evidence Tax}{subsection.4.4}{}}
+\@LN{483}{6}
+\@LN{484}{6}
+\@LN{485}{6}
+\@LN{486}{6}
+\@LN{487}{6}
+\@LN{488}{6}
+\@LN{489}{6}
+\@LN{490}{6}
+\@LN{491}{6}
+\@LN{492}{6}
+\@LN{493}{6}
+\@LN{494}{6}
+\@LN{495}{6}
+\@LN{496}{6}
+\@LN{497}{6}
+\@LN{498}{6}
+\@LN{499}{6}
+\@LN{500}{6}
+\@LN{501}{6}
+\@LN{502}{6}
+\@LN{503}{6}
+\@LN{504}{6}
+\@LN{505}{6}
+\@LN{506}{6}
+\@LN{507}{6}
+\@LN{508}{6}
+\@LN{509}{6}
+\@LN{510}{6}
+\@LN{511}{6}
+\@LN{512}{6}
+\@LN{513}{6}
+\@LN{514}{6}
+\@LN{515}{6}
+\@LN{516}{6}
+\@LN@col{2}
+\@LN{517}{6}
+\@LN{518}{6}
+\@LN{519}{6}
+\@LN{520}{6}
+\@LN{521}{6}
+\@LN{522}{6}
+\@LN{523}{6}
+\@LN{524}{6}
+\@LN{525}{6}
+\@LN{526}{6}
+\@LN{527}{6}
+\@LN{528}{6}
+\@LN{529}{6}
+\@LN{530}{6}
+\@LN{531}{6}
+\@LN{532}{6}
+\@LN{533}{6}
+\@LN{534}{6}
+\@LN{535}{6}
+\@LN{536}{6}
+\@LN{537}{6}
+\@LN{538}{6}
+\@LN{539}{6}
+\@LN{540}{6}
+\@LN{541}{6}
+\@LN{542}{6}
+\@LN{543}{6}
+\@LN{544}{6}
+\@LN{545}{6}
+\@LN{546}{6}
+\@LN{547}{6}
+\@LN{548}{6}
+\@LN{549}{6}
+\@LN{550}{6}
+\@LN{551}{6}
+\@LN{552}{6}
+\@LN{553}{6}
+\@LN{554}{6}
+\@LN{555}{6}
+\@LN{556}{6}
+\@LN{557}{6}
+\@LN{558}{6}
+\@LN{559}{6}
+\@LN{560}{6}
+\@LN{561}{6}
+\@LN{562}{6}
+\@LN{563}{6}
+\@LN{564}{6}
+\@LN{565}{6}
+\@LN{566}{6}
+\@LN{567}{6}
+\@LN{568}{6}
+\citation{ma2023dreeam}
+\citation{tan2022redocred}
+\citation{ma2023dreeam}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces RSFT performance and inference-time evidence tax across model scales (DocRED dev Ign-F1). LLaMA-3.1-8B included for cross-family validation. Mean $\pm $ std$^{(\text  {seeds})}$.}}{8}{table.caption.12}\protected@file@percent }
+\newlabel{tab:scaling}{{3}{8}{RSFT performance and inference-time evidence tax across model scales (DocRED dev Ign-F1). LLaMA-3.1-8B included for cross-family validation. Mean $\pm $ std$^{(\text {seeds})}$}{table.caption.12}{}}
+\@LN{569}{7}
+\@LN{570}{7}
+\@LN{571}{7}
+\@LN{572}{7}
+\@LN{573}{7}
+\@LN{574}{7}
+\@LN{575}{7}
+\@LN{576}{7}
+\@LN{577}{7}
+\@LN{578}{7}
+\@LN{579}{7}
+\@LN{580}{7}
+\@LN{581}{7}
+\@LN{582}{7}
+\@LN{583}{7}
+\@LN{584}{7}
+\@LN{585}{7}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Evidence Strategy Comparison}{8}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:evidence_strategy}{{4.5}{8}{Evidence Strategy Comparison}{subsection.4.5}{}}
+\@LN{586}{7}
+\@LN{587}{7}
+\@LN{588}{7}
+\@LN{589}{7}
+\@LN{590}{7}
+\@LN{591}{7}
+\@LN{592}{7}
+\@LN{593}{7}
+\@LN{594}{7}
+\@LN{595}{7}
+\@LN{596}{7}
+\@LN{597}{7}
+\@LN{598}{7}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Generalization}{8}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:generalization}{{4.6}{8}{Generalization}{subsection.4.6}{}}
+\@LN{599}{7}
+\@LN{600}{7}
+\@LN{601}{7}
+\@LN{602}{7}
+\@LN{603}{7}
+\@LN{604}{7}
+\@LN{605}{7}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Inference-time evidence tax across model scales (RSFT models, Re-DocRED test). Negative values indicate evidence \emph  {benefits} extraction. Error bars show $\pm $1 std (all scales have $\geq $2 seeds).}}{8}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:evidence_tax}{{5}{8}{Inference-time evidence tax across model scales (RSFT models, Re-DocRED test). Negative values indicate evidence \emph {benefits} extraction. Error bars show $\pm $1 std (all scales have $\geq $2 seeds)}{figure.caption.13}{}}
+\@LN{606}{7}
+\@LN{607}{7}
+\@LN{608}{7}
+\@LN{609}{7}
+\@LN{610}{7}
+\@LN{611}{7}
+\@LN{612}{7}
+\@LN{613}{7}
+\@LN{614}{7}
+\@LN{615}{7}
+\@LN{616}{7}
+\@LN{617}{7}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Discussion}{8}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:analysis}{{4.7}{8}{Discussion}{subsection.4.7}{}}
+\@LN{618}{7}
+\@LN{619}{7}
+\@LN{620}{7}
+\@LN{621}{7}
+\@LN{622}{7}
+\@LN{623}{7}
+\@LN{624}{7}
+\@LN{625}{7}
+\@LN{626}{7}
+\@LN{627}{7}
+\@LN{628}{7}
+\@LN{629}{7}
+\@LN{630}{7}
+\@LN{631}{7}
+\@LN{632}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{8}{section.5}\protected@file@percent }
+\newlabel{sec:conclusion}{{5}{8}{Conclusion}{section.5}{}}
+\@LN{633}{7}
+\@LN{634}{7}
+\@LN{635}{7}
+\@LN{636}{7}
+\@LN{637}{7}
+\@LN{638}{7}
+\@LN{639}{7}
+\bibdata{references}
+\bibcite{tang2025rsftppo}{{1}{2025}{{Anil et~al.}}{{Anil, Nagaraj, Shanmugam, and Shakkottai}}}
+\bibcite{dai2025r1re}{{2}{2025}{{Dai et~al.}}{{Dai, Zheng, Yang, Yu, and Zhu}}}
+\bibcite{deepseek2025r1}{{3}{2025}{{DeepSeek-AI}}{{}}}
+\bibcite{dettmers2023qlora}{{4}{2023}{{Dettmers et~al.}}{{Dettmers, Pagnoni, Holtzman, and Zettlemoyer}}}
+\bibcite{gao2023scaling}{{5}{2023}{{Gao et~al.}}{{Gao, Schulman, and Hilton}}}
+\bibcite{gulcehre2023rest}{{6}{2023}{{Gulcehre et~al.}}{{Gulcehre, Paine, Srinivasan, Konyushkova, Weerts, Sharma, Siddhant, Ahern, Wang, Gu, Macherey, Doucet, Firat, and de~Freitas}}}
+\bibcite{he2023debertav3}{{7}{2023}{{He et~al.}}{{He, Gao, and Chen}}}
+\bibcite{hu2022lora}{{8}{2022}{{Hu et~al.}}{{Hu, Shen, Wallis, Allen-Zhu, Li, Wang, Wang, and Chen}}}
+\bibcite{jin2025rl_panacea}{{9}{2025}{{Jin et~al.}}{{Jin, Lv, Wu, and Hamdaqa}}}
+\bibcite{laban2022summac}{{10}{2022}{{Laban et~al.}}{{Laban, Schnabel, Bennett, and Hearst}}}
+\bibcite{xu2024lmrc}{{11}{2024}{{Li et~al.}}{{Li, Chen, Long, and Zhang}}}
+\bibcite{li2025srvf}{{12}{2025}{{Li et~al.}}{{Li, Miao, Zhou, Xu, Ren, and Qian}}}
+\bibcite{li2026qurl}{{13}{2026}{{Li et~al.}}{{Li, Elangovan, Dong, Panda, and Khailany}}}
+\bibcite{liu2025drgrpo}{{14}{2025}{{Liu et~al.}}{{Liu, Chen, Li, Qi, Pang, Du, Lee, and Lin}}}
+\@LN@col{1}
+\@LN{640}{8}
+\@writefile{toc}{\contentsline {paragraph}{Data and architecture scope.}{9}{section*.15}\protected@file@percent }
+\@LN{641}{8}
+\@LN{642}{8}
+\@LN{643}{8}
+\@LN{644}{8}
+\@LN{645}{8}
+\@LN{646}{8}
+\@LN{647}{8}
+\@LN{648}{8}
+\@LN{649}{8}
+\@LN{650}{8}
+\@LN{651}{8}
+\@LN{652}{8}
+\@LN{653}{8}
+\@LN{654}{8}
+\@LN{655}{8}
+\@writefile{toc}{\contentsline {paragraph}{CED scoring sensitivity.}{9}{section*.16}\protected@file@percent }
+\@LN{656}{8}
+\@LN{657}{8}
+\@LN{658}{8}
+\@LN{659}{8}
+\@LN{660}{8}
+\@writefile{toc}{\contentsline {paragraph}{RSFT mechanistic explanation.}{9}{section*.17}\protected@file@percent }
+\@LN{661}{8}
+\@LN{662}{8}
+\@LN{663}{8}
+\@LN{664}{8}
+\@LN{665}{8}
+\@LN{666}{8}
+\@LN{667}{8}
+\@LN{668}{8}
+\@LN{669}{8}
+\@LN{670}{8}
+\@LN{671}{8}
+\@LN{672}{8}
+\@LN{673}{8}
+\@LN{674}{8}
+\@LN{675}{8}
+\@LN{676}{8}
+\@LN{677}{8}
+\@LN{678}{8}
+\@LN{679}{8}
+\@LN{680}{8}
+\@LN{681}{8}
+\@LN{682}{8}
+\@LN{683}{8}
+\@LN{684}{8}
+\@LN{685}{8}
+\@LN{686}{8}
+\@LN{687}{8}
+\@LN@col{2}
+\@LN{688}{8}
+\@LN{689}{8}
+\@LN{690}{8}
+\@LN{691}{8}
+\@LN{692}{8}
+\@LN{693}{8}
+\@LN{694}{8}
+\@LN{695}{8}
+\@LN{696}{8}
+\@LN{697}{8}
+\@LN{698}{8}
+\@LN{699}{8}
+\@LN{700}{8}
+\@LN{701}{8}
+\@LN{702}{8}
+\@LN{703}{8}
+\@LN{704}{8}
+\@LN{705}{8}
+\@LN{706}{8}
+\@LN{707}{8}
+\@LN{708}{8}
+\@LN{709}{8}
+\@LN{710}{8}
+\@LN{711}{8}
+\@LN{712}{8}
+\@LN{713}{8}
+\@LN{714}{8}
+\@LN{715}{8}
+\@LN{716}{8}
+\@LN{717}{8}
+\@LN{718}{8}
+\@LN{719}{8}
+\@LN{720}{8}
+\@LN{721}{8}
+\@LN{722}{8}
+\@LN{723}{8}
+\@LN{724}{8}
+\@LN{725}{8}
+\@LN{726}{8}
+\@LN{727}{8}
+\@LN{728}{8}
+\@LN{729}{8}
+\@LN{730}{8}
+\@LN{731}{8}
+\@LN{732}{8}
+\@LN{733}{8}
+\@LN{734}{8}
+\@LN{735}{8}
+\@LN{736}{8}
+\@LN{737}{8}
+\@LN{738}{8}
+\@LN{739}{8}
+\@LN{740}{8}
+\@LN{741}{8}
+\@LN{742}{8}
+\bibcite{wang2025rear}{{15}{2025}{{Luo et~al.}}{{Luo, Hong, Yang, and Yao}}}
+\bibcite{ma2023dreeam}{{16}{2023}{{Ma et~al.}}{{Ma, Wang, and Okazaki}}}
+\bibcite{ouyang2022instructgpt}{{17}{2022}{{Ouyang et~al.}}{{Ouyang, Wu, Jiang, Almeida, Wainwright, Mishkin, Zhang, Agarwal, Slama, Ray, Schulman, Hilton, Kelton, Miller, Simens, Askell, Welinder, Christiano, Leike, and Lowe}}}
+\bibcite{wang2025relprior}{{18}{2025}{{Pi et~al.}}{{Pi, Sun, Lu, Fan, Huang, and Wang}}}
+\bibcite{rafailov2023direct}{{19}{2023}{{Rafailov et~al.}}{{Rafailov, Sharma, Mitchell, Ermon, Manning, and Finn}}}
+\bibcite{ruder2017overview}{{20}{2017}{{Ruder}}{{}}}
+\bibcite{schulman2017ppo}{{21}{2017}{{Schulman et~al.}}{{Schulman, Wolski, Dhariwal, Radford, and Klimov}}}
+\bibcite{shao2024deepseekmath}{{22}{2024}{{Shao et~al.}}{{Shao, Wang, Zhu, Xu, Song, Bi, Zhang, Zhang, Li, Wu, and Guo}}}
+\bibcite{tamo2026evidencerl}{{23}{2026}{{Tamo et~al.}}{{Tamo, Lu, Marteau, Nnamdi, and Wang}}}
+\bibcite{tan2022redocred}{{24}{2022}{{Tan et~al.}}{{Tan, Xu, Bing, Ng, and Aljunied}}}
+\bibcite{xiao2022sais}{{25}{2022}{{Xiao et~al.}}{{Xiao, Zhang, Mao, Yang, and Han}}}
+\bibcite{xie2022eider}{{26}{2022}{{Xie et~al.}}{{Xie, Shen, Li, Mao, and Han}}}
+\bibcite{xu2025docksrag}{{27}{2025}{{Xu et~al.}}{{Xu, Zhou, Xiang, Li, Zhang, Qi, and Dou}}}
+\bibcite{autore2024}{{28}{2024}{{Xue et~al.}}{{Xue, Zhang, Dong, and Tang}}}
+\bibcite{yao2019docred}{{29}{2019}{{Yao et~al.}}{{Yao, Ye, Li, Han, Lin, Liu, Liu, Huang, Zhou, and Sun}}}
+\bibcite{yu2025dapo}{{30}{2025}{{Yu et~al.}}{{Yu, Zhang, Zhu, Yuan, Zuo, Yue, Dai, Fan, Liu, Liu, Liu, Lin, Lin, Ma, Sheng, Tong, Zhang, Zhang, Zhang, Zhu, Zhu, Chen, Chen, Wang, Yu, Song, Wei, Zhou, Liu, Ma, Zhang, Yan, Qiao, Wu, and Wang}}}
+\bibcite{yuan2023rft}{{31}{2023}{{Yuan et~al.}}{{Yuan, Yuan, Li, Dong, Lu, Tan, Zhou, and Zhou}}}
+\bibcite{zelikman2022star}{{32}{2022}{{Zelikman et~al.}}{{Zelikman, Wu, Mu, and Goodman}}}
+\bibcite{zeng2020gain}{{33}{2020}{{Zeng et~al.}}{{Zeng, Xu, Chang, and Li}}}
+\bibcite{zhang2024infuse}{{34}{2024}{{Zhang et~al.}}{{Zhang, Xu, and Perez-Beltrachini}}}
+\@LN@col{1}
+\@LN{743}{9}
+\@LN{744}{9}
+\@LN{745}{9}
+\@LN{746}{9}
+\@LN{747}{9}
+\@LN{748}{9}
+\@LN{749}{9}
+\@LN{750}{9}
+\@LN{751}{9}
+\@LN{752}{9}
+\@LN{753}{9}
+\@LN{754}{9}
+\@LN{755}{9}
+\@LN{756}{9}
+\@LN{757}{9}
+\@LN{758}{9}
+\@LN{759}{9}
+\@LN{760}{9}
+\@LN{761}{9}
+\@LN{762}{9}
+\@LN{763}{9}
+\@LN{764}{9}
+\@LN{765}{9}
+\@LN{766}{9}
+\@LN{767}{9}
+\@LN{768}{9}
+\@LN{769}{9}
+\@LN{770}{9}
+\@LN{771}{9}
+\@LN{772}{9}
+\@LN{773}{9}
+\@LN{774}{9}
+\@LN{775}{9}
+\@LN{776}{9}
+\@LN{777}{9}
+\@LN{778}{9}
+\@LN{779}{9}
+\@LN{780}{9}
+\@LN{781}{9}
+\@LN{782}{9}
+\@LN{783}{9}
+\@LN{784}{9}
+\@LN{785}{9}
+\@LN{786}{9}
+\@LN{787}{9}
+\@LN{788}{9}
+\@LN{789}{9}
+\@LN{790}{9}
+\@LN{791}{9}
+\@LN{792}{9}
+\@LN{793}{9}
+\@LN{794}{9}
+\@LN{795}{9}
+\@LN{796}{9}
+\@LN{797}{9}
+\@LN{798}{9}
+\@LN@col{2}
+\@LN{799}{9}
+\@LN{800}{9}
+\@LN{801}{9}
+\@LN{802}{9}
+\@LN{803}{9}
+\@LN{804}{9}
+\@LN{805}{9}
+\@LN{806}{9}
+\@LN{807}{9}
+\@LN{808}{9}
+\@LN{809}{9}
+\@LN{810}{9}
+\@LN{811}{9}
+\@LN{812}{9}
+\@LN{813}{9}
+\@LN{814}{9}
+\@LN{815}{9}
+\@LN{816}{9}
+\@LN{817}{9}
+\@LN{818}{9}
+\@LN{819}{9}
+\@LN{820}{9}
+\@LN{821}{9}
+\@LN{822}{9}
+\@LN{823}{9}
+\@LN{824}{9}
+\@LN{825}{9}
+\@LN{826}{9}
+\@LN{827}{9}
+\@LN{828}{9}
+\@LN{829}{9}
+\@LN{830}{9}
+\@LN{831}{9}
+\@LN{832}{9}
+\@LN{833}{9}
+\@LN{834}{9}
+\@LN{835}{9}
+\@LN{836}{9}
+\@LN{837}{9}
+\@LN{838}{9}
+\@LN{839}{9}
+\@LN{840}{9}
+\@LN{841}{9}
+\@LN{842}{9}
+\@LN{843}{9}
+\@LN{844}{9}
+\@LN{845}{9}
+\@LN{846}{9}
+\@LN{847}{9}
+\@LN{848}{9}
+\@LN{849}{9}
+\@LN{850}{9}
+\@LN{851}{9}
+\@LN{852}{9}
+\@LN{853}{9}
+\@LN{854}{9}
+\bibcite{zhou2021atlop}{{35}{2021}{{Zhou et~al.}}{{Zhou, Huang, Ma, and Huang}}}
+\@LN@col{1}
+\@LN{855}{10}
+\@LN{856}{10}
+\@LN{857}{10}
+\@LN{858}{10}
+\@LN{859}{10}
+\@LN{860}{10}
+\@LN{861}{10}
+\@LN{862}{10}
+\@LN{863}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Training Hyperparameters}{11}{appendix.A}\protected@file@percent }
+\newlabel{sec:hyperparams}{{A}{11}{Training Hyperparameters}{appendix.A}{}}
+\@LN{864}{10}
+\@LN{865}{10}
+\@LN{866}{10}
+\@LN{867}{10}
+\@LN{868}{10}
+\@LN{869}{10}
+\@LN{870}{10}
+\@LN{871}{10}
+\@LN{872}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Full Ablation Results}{11}{appendix.B}\protected@file@percent }
+\newlabel{sec:ablation_full}{{B}{11}{Full Ablation Results}{appendix.B}{}}
+\@LN{873}{10}
+\@LN{874}{10}
+\@LN{875}{10}
+\@LN{876}{10}
+\@LN{877}{10}
+\@LN{878}{10}
+\@LN{879}{10}
+\@LN{880}{10}
+\@LN{881}{10}
+\@LN{882}{10}
+\@LN{883}{10}
+\@LN{884}{10}
+\@LN{885}{10}
+\@LN{886}{10}
+\@LN{887}{10}
+\@LN{888}{10}
+\@LN{889}{10}
+\@LN{890}{10}
+\@LN{891}{10}
+\@LN{892}{10}
+\@LN{893}{10}
+\@LN{894}{10}
+\@LN{895}{10}
+\@writefile{toc}{\contentsline {paragraph}{NLI scoring comparison.}{11}{section*.21}\protected@file@percent }
+\@LN{896}{10}
+\@LN{897}{10}
+\@LN{898}{10}
+\@LN{899}{10}
+\@LN{900}{10}
+\@LN{901}{10}
+\@LN{902}{10}
+\@LN{903}{10}
+\@LN@col{2}
+\@LN{904}{10}
+\@LN{905}{10}
+\@LN{906}{10}
+\@writefile{toc}{\contentsline {paragraph}{Top-$k$ selection.}{11}{section*.22}\protected@file@percent }
+\@LN{907}{10}
+\@LN{908}{10}
+\@LN{909}{10}
+\@LN{910}{10}
+\@LN{911}{10}
+\@LN{912}{10}
+\@LN{913}{10}
+\@LN{914}{10}
+\@LN{915}{10}
+\@writefile{toc}{\contentsline {paragraph}{NLI scorer capacity.}{11}{section*.23}\protected@file@percent }
+\@LN{916}{10}
+\@LN{917}{10}
+\@LN{918}{10}
+\@LN{919}{10}
+\@LN{920}{10}
+\@LN{921}{10}
+\@LN{922}{10}
+\@LN{923}{10}
+\@LN{924}{10}
+\@LN{925}{10}
+\@LN{926}{10}
+\@LN{927}{10}
+\@LN{928}{10}
+\@LN{929}{10}
+\@LN{930}{10}
+\@LN{931}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Scaling Details}{11}{appendix.C}\protected@file@percent }
+\newlabel{sec:scaling_details}{{C}{11}{Scaling Details}{appendix.C}{}}
+\@LN{932}{10}
+\@LN{933}{10}
+\@LN{934}{10}
+\@LN{935}{10}
+\@LN{936}{10}
+\@LN{937}{10}
+\@LN{938}{10}
+\@LN{939}{10}
+\@LN{940}{10}
+\@LN{941}{10}
+\@LN{942}{10}
+\@LN{943}{10}
+\@LN{944}{10}
+\@LN{945}{10}
+\@LN{946}{10}
+\@LN{947}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Variance Compression Confidence Intervals}{11}{appendix.D}\protected@file@percent }
+\newlabel{sec:variance_ci}{{D}{11}{Variance Compression Confidence Intervals}{appendix.D}{}}
+\@LN{948}{10}
+\@LN{949}{10}
+\@LN{950}{10}
+\@LN{951}{10}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Training hyperparameters for all optimization paradigms. All experiments use Qwen3-4B with LoRA. A dash indicates non-applicable parameters. \textsuperscript  {$\dagger $}QLoRA trained for 200 steps; results reported at step-100 checkpoint. \textsuperscript  {$\star $}DPO is trained for both 1 and 3 epochs to observe temporal dynamics of the evidence-extraction trade-off (\S  \ref {sec:spectrum}).}}{12}{table.caption.20}\protected@file@percent }
+\newlabel{tab:hyperparams}{{4}{12}{Training hyperparameters for all optimization paradigms. All experiments use Qwen3-4B with LoRA. A dash indicates non-applicable parameters. \textsuperscript {$\dagger $}QLoRA trained for 200 steps; results reported at step-100 checkpoint. \textsuperscript {$\star $}DPO is trained for both 1 and 3 epochs to observe temporal dynamics of the evidence-extraction trade-off (\S \ref {sec:spectrum})}{table.caption.20}{}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Full RSFT ablation on DocRED dev set (Qwen3-4B). CED and flat-NLI denote the scoring function used for candidate selection. Best Ign-F1 among evidence-generating methods in \textbf  {bold}.}}{12}{table.caption.24}\protected@file@percent }
+\newlabel{tab:ablation_full}{{5}{12}{Full RSFT ablation on DocRED dev set (Qwen3-4B). CED and flat-NLI denote the scoring function used for candidate selection. Best Ign-F1 among evidence-generating methods in \textbf {bold}}{table.caption.24}{}}
+\@LN{952}{11}
+\@LN{953}{11}
+\@LN{954}{11}
+\@LN{955}{11}
+\@LN{956}{11}
+\@LN{957}{11}
+\@LN{958}{11}
+\@LN{959}{11}
+\@LN{960}{11}
+\@LN{961}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Controlled Evaluation Subset}{12}{appendix.E}\protected@file@percent }
+\newlabel{sec:fair_subset}{{E}{12}{Controlled Evaluation Subset}{appendix.E}{}}
+\@LN{962}{11}
+\@LN{963}{11}
+\@LN{964}{11}
+\@LN{965}{11}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Detailed Rel-F1 and Evi-F1 across model scales on DocRED dev set. SFT and RSFT columns show multi-seed means where available (Qwen3 1.7B/4B/8B/14B: 3-seed; LLaMA SFT Rel-F1/Evi-F1: s42 only; LLaMA RSFT: 3-seed).}}{12}{table.caption.25}\protected@file@percent }
+\newlabel{tab:cross_detail}{{6}{12}{Detailed Rel-F1 and Evi-F1 across model scales on DocRED dev set. SFT and RSFT columns show multi-seed means where available (Qwen3 1.7B/4B/8B/14B: 3-seed; LLaMA SFT Rel-F1/Evi-F1: s42 only; LLaMA RSFT: 3-seed)}{table.caption.25}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces 95\% confidence intervals for training variance ($\chi ^2$ method, $N{=}3$ seeds). Compression is the ratio of SFT to RSFT point estimates (unrounded).}}{12}{table.caption.27}\protected@file@percent }
+\newlabel{tab:variance_ci}{{7}{12}{95\% confidence intervals for training variance ($\chi ^2$ method, $N{=}3$ seeds). Compression is the ratio of SFT to RSFT point estimates (unrounded)}{table.caption.27}{}}
+\@LN{966}{11}
+\@LN{967}{11}
+\@LN{968}{11}
+\@LN{969}{11}
+\@LN{970}{11}
+\@LN{971}{11}
+\@LN{972}{11}
+\@LN{973}{11}
+\@LN{974}{11}
+\@LN{975}{11}
+\@LN{976}{11}
+\@LN{977}{11}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Evidence tax and RSFT gain across model scales. Bar heights show Ign-F1 for SFT with evidence (s42), SFT without evidence (s42), and RSFT (mean). The gap between no-evidence and SFT bars reverses direction between 1.7B and 4B, revealing the scale-dependent evidence tax. RSFT consistently narrows the gap toward the no-evidence upper bound.}}{13}{figure.caption.26}\protected@file@percent }
+\newlabel{fig:scaling}{{6}{13}{Evidence tax and RSFT gain across model scales. Bar heights show Ign-F1 for SFT with evidence (s42), SFT without evidence (s42), and RSFT (mean). The gap between no-evidence and SFT bars reverses direction between 1.7B and 4B, revealing the scale-dependent evidence tax. RSFT consistently narrows the gap toward the no-evidence upper bound}{figure.caption.26}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Mechanistic breakdown of output quality across scales. Duplication rate: fraction of documents with degenerate outputs. Truncation $\Delta $: no-evidence rate minus with-evidence rate (positive means no-evidence truncates more).}}{13}{table.caption.28}\protected@file@percent }
+\newlabel{tab:mechanistic}{{8}{13}{Mechanistic breakdown of output quality across scales. Duplication rate: fraction of documents with degenerate outputs. Truncation $\Delta $: no-evidence rate minus with-evidence rate (positive means no-evidence truncates more)}{table.caption.28}{}}
+\@LN{978}{12}
+\@LN{979}{12}
+\@LN{980}{12}
+\@LN{981}{12}
+\@LN{982}{12}
+\@LN{983}{12}
+\@LN{984}{12}
+\@LN{985}{12}
+\@LN{986}{12}
+\@LN{987}{12}
+\@LN{988}{12}
+\@LN{989}{12}
+\@LN{990}{12}
+\@LN{991}{12}
+\@LN{992}{12}
+\@LN{993}{12}
+\@LN{994}{12}
+\@LN{995}{12}
+\@LN{996}{12}
+\@LN{997}{12}
+\@LN{998}{12}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Training-time evidence tax under matched@2048 fair evaluation (DocRED dev Ign-F1). Tax $=$ no-evi $-$ with-evi; positive $=$ cost.}}{13}{table.caption.29}\protected@file@percent }
+\newlabel{tab:training_tax}{{9}{13}{Training-time evidence tax under matched@2048 fair evaluation (DocRED dev Ign-F1). Tax $=$ no-evi $-$ with-evi; positive $=$ cost}{table.caption.29}{}}
+\@LN{999}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Training-Time Evidence Tax}{13}{appendix.F}\protected@file@percent }
+\newlabel{sec:training_tax}{{F}{13}{Training-Time Evidence Tax}{appendix.F}{}}
+\@LN{1000}{12}
+\@LN{1001}{12}
+\@LN{1002}{12}
+\@LN{1003}{12}
+\@LN{1004}{12}
+\@LN{1005}{12}
+\@LN{1006}{12}
+\@LN{1007}{12}
+\@LN{1008}{12}
+\@LN{1009}{12}
+\@LN{1010}{12}
+\@LN{1011}{12}
+\@LN{1012}{12}
+\@LN{1013}{12}
+\@LN{1014}{12}
+\@LN{1015}{12}
+\@LN{1016}{12}
+\@LN{1017}{12}
+\@LN{1018}{12}
+\@LN{1019}{12}
+\@LN{1020}{12}
+\@LN{1021}{12}
+\@LN{1022}{12}
+\@LN{1023}{12}
+\@LN{1024}{12}
+\@LN{1025}{12}
+\@LN{1026}{12}
+\@LN{1027}{12}
+\@LN{1028}{12}
+\@LN{1029}{12}
+\@LN{1030}{12}
+\@writefile{toc}{\contentsline {paragraph}{Evidence training and SFT seed variance.}{13}{section*.30}\protected@file@percent }
+\@LN{1031}{12}
+\@LN{1032}{12}
+\@LN{1033}{12}
+\@LN{1034}{12}
+\@LN{1035}{12}
+\@LN{1036}{12}
+\@LN{1037}{12}
+\citation{tan2022redocred}
+\@LN@col{1}
+\@LN{1038}{13}
+\@LN{1039}{13}
+\@LN{1040}{13}
+\@LN{1041}{13}
+\@LN{1042}{13}
+\@LN{1043}{13}
+\@LN{1044}{13}
+\@LN{1045}{13}
+\@LN{1046}{13}
+\@LN{1047}{13}
+\@LN{1048}{13}
+\@LN{1049}{13}
+\@LN{1050}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {G}Why RSFT Avoids Decoupling}{14}{appendix.G}\protected@file@percent }
+\newlabel{sec:rsft_theory}{{G}{14}{Why RSFT Avoids Decoupling}{appendix.G}{}}
+\@LN{1051}{13}
+\@LN{1052}{13}
+\@LN{1053}{13}
+\@LN{1054}{13}
+\@LN{1055}{13}
+\@LN{1056}{13}
+\@LN{1057}{13}
+\@LN{1058}{13}
+\@LN{1059}{13}
+\@LN{1060}{13}
+\@LN{1061}{13}
+\@LN{1062}{13}
+\@LN{1063}{13}
+\@LN{1064}{13}
+\@LN{1065}{13}
+\@LN{1066}{13}
+\@LN{1067}{13}
+\@LN{1068}{13}
+\@LN{1069}{13}
+\@LN{1070}{13}
+\@LN{1071}{13}
+\@LN{1072}{13}
+\@LN{1073}{13}
+\@LN{1074}{13}
+\@LN{1075}{13}
+\@LN{1076}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Full Generalization Results}{14}{appendix.H}\protected@file@percent }
+\newlabel{sec:generalization_full}{{H}{14}{Full Generalization Results}{appendix.H}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-family transfer.}{14}{section*.31}\protected@file@percent }
+\@LN{1077}{13}
+\@LN{1078}{13}
+\@LN{1079}{13}
+\@LN{1080}{13}
+\@LN{1081}{13}
+\@LN{1082}{13}
+\@LN{1083}{13}
+\@LN{1084}{13}
+\@LN{1085}{13}
+\@LN{1086}{13}
+\@LN@col{2}
+\@LN{1087}{13}
+\@LN{1088}{13}
+\@LN{1089}{13}
+\@LN{1090}{13}
+\@LN{1091}{13}
+\@LN{1092}{13}
+\@LN{1093}{13}
+\@LN{1094}{13}
+\@LN{1095}{13}
+\@LN{1096}{13}
+\@LN{1097}{13}
+\@LN{1098}{13}
+\@writefile{toc}{\contentsline {paragraph}{Cross-dataset robustness.}{14}{section*.32}\protected@file@percent }
+\@LN{1099}{13}
+\@LN{1100}{13}
+\@LN{1101}{13}
+\@LN{1102}{13}
+\@LN{1103}{13}
+\@LN{1104}{13}
+\@LN{1105}{13}
+\@LN{1106}{13}
+\@LN{1107}{13}
+\@LN{1108}{13}
+\@LN{1109}{13}
+\@LN{1110}{13}
+\@LN{1111}{13}
+\@LN{1112}{13}
+\@writefile{toc}{\contentsline {paragraph}{Re-DocRED test set evaluation.}{14}{section*.33}\protected@file@percent }
+\@LN{1113}{13}
+\@LN{1114}{13}
+\@LN{1115}{13}
+\@LN{1116}{13}
+\@LN{1117}{13}
+\@LN{1118}{13}
+\@LN{1119}{13}
+\@LN{1120}{13}
+\@LN{1121}{13}
+\@LN{1122}{13}
+\@LN{1123}{13}
+\@LN{1124}{13}
+\@LN{1125}{13}
+\@LN{1126}{13}
+\@LN{1127}{13}
+\@LN{1128}{13}
+\@LN{1129}{13}
+\@LN{1130}{13}
+\@LN{1131}{13}
+\@LN{1132}{13}
+\@LN{1133}{13}
+\@LN{1134}{13}
+\@writefile{toc}{\contentsline {paragraph}{Test-set evidence tax.}{14}{section*.35}\protected@file@percent }
+\@LN{1135}{13}
+\@LN{1136}{13}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces SFT and RSFT performance on Re-DocRED test set (Ign-F1 \%). Dev Ign-F1 (RSFT) from Table~\ref {tab:scaling}. All test results use s42.}}{15}{table.caption.34}\protected@file@percent }
+\newlabel{tab:test_results}{{10}{15}{SFT and RSFT performance on Re-DocRED test set (Ign-F1 \%). Dev Ign-F1 (RSFT) from Table~\ref {tab:scaling}. All test results use s42}{table.caption.34}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Evidence tax on Re-DocRED test set (Ign-F1 \%). Tax $=$ no-evi $-$ with-evi; negative $=$ benefit. All results use s42. Dev tax from Table~\ref {tab:training_tax}.}}{15}{table.caption.36}\protected@file@percent }
+\newlabel{tab:test_tax}{{11}{15}{Evidence tax on Re-DocRED test set (Ign-F1 \%). Tax $=$ no-evi $-$ with-evi; negative $=$ benefit. All results use s42. Dev tax from Table~\ref {tab:training_tax}}{table.caption.36}{}}
+\@LN{1137}{14}
+\@LN{1138}{14}
+\@LN{1139}{14}
+\@LN{1140}{14}
+\@LN{1141}{14}
+\@LN{1142}{14}
+\@LN{1143}{14}
+\@LN{1144}{14}
+\@LN{1145}{14}
+\@LN{1146}{14}
+\@LN{1147}{14}
+\@writefile{toc}{\contentsline {paragraph}{RSFT test-set evidence tax.}{15}{section*.37}\protected@file@percent }
+\@LN{1148}{14}
+\@LN{1149}{14}
+\@LN{1150}{14}
+\@LN{1151}{14}
+\@LN{1152}{14}
+\@LN{1153}{14}
+\@LN{1154}{14}
+\@LN{1155}{14}
+\@LN{1156}{14}
+\@LN{1157}{14}
+\@LN{1158}{14}
+\@LN{1159}{14}
+\@LN{1160}{14}
+\@LN{1161}{14}
+\@LN{1162}{14}
+\@LN{1163}{14}
+\@LN{1164}{14}
+\@LN{1165}{14}
+\@LN{1166}{14}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces RSFT inference-time evidence tax on Re-DocRED test set (Ign-F1 \%). Tax $=$ no-evi $-$ with-evi; positive $=$ cost. Per-seed s42 except where noted.}}{15}{table.caption.38}\protected@file@percent }
+\newlabel{tab:rsft_test_tax}{{12}{15}{RSFT inference-time evidence tax on Re-DocRED test set (Ign-F1 \%). Tax $=$ no-evi $-$ with-evi; positive $=$ cost. Per-seed s42 except where noted}{table.caption.38}{}}
+\@LN{1167}{14}
+\@LN{1168}{14}
+\@LN{1169}{14}
+\@LN{1170}{14}
+\@LN{1171}{14}
+\@writefile{toc}{\contentsline {paragraph}{Comparison to supervised methods.}{15}{section*.39}\protected@file@percent }
+\@LN{1172}{14}
+\@LN{1173}{14}
+\@LN{1174}{14}
+\@LN{1175}{14}
+\@LN{1176}{14}
+\@LN{1177}{14}
+\@LN{1178}{14}
+\@LN{1179}{14}
+\@LN{1180}{14}
+\@LN{1181}{14}
+\@LN{1182}{14}
+\@LN{1183}{14}
+\@LN{1184}{14}
+\@LN{1185}{14}
+\@LN{1186}{14}
+\@LN{1187}{14}
+\@LN{1188}{14}
+\@LN{1189}{14}
+\@LN{1190}{14}
+\@LN{1191}{14}
+\@LN{1192}{14}
+\@LN{1193}{14}
+\@LN{1194}{14}
+\@LN{1195}{14}
+\@LN{1196}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Decoupling Spectrum Data}{15}{appendix.I}\protected@file@percent }
+\newlabel{sec:spectrum_data}{{I}{15}{Decoupling Spectrum Data}{appendix.I}{}}
+\@LN{1197}{14}
+\@LN{1198}{14}
+\@LN{1199}{14}
+\@LN{1200}{14}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Comparison with encoder-based methods on DocRED dev set. Encoder methods use RoBERTa-large; LLM methods use Qwen3. Evi-F1 for encoder methods uses joint evaluation (all triples in denominator); our joint Evi-F1 follows the same protocol for fair comparison. TP-only Evi-F1 conditions on correctly predicted triples. Rel-F1 is reported in percentage for all methods.}}{16}{table.caption.40}\protected@file@percent }
+\newlabel{tab:encoder_comparison}{{13}{16}{Comparison with encoder-based methods on DocRED dev set. Encoder methods use RoBERTa-large; LLM methods use Qwen3. Evi-F1 for encoder methods uses joint evaluation (all triples in denominator); our joint Evi-F1 follows the same protocol for fair comparison. TP-only Evi-F1 conditions on correctly predicted triples. Rel-F1 is reported in percentage for all methods}{table.caption.40}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Evidence-extraction decoupling across RL paradigms (Qwen3-4B). Severity indicates the degree of extraction collapse relative to evidence improvement.}}{16}{table.caption.41}\protected@file@percent }
+\newlabel{tab:spectrum}{{14}{16}{Evidence-extraction decoupling across RL paradigms (Qwen3-4B). Severity indicates the degree of extraction collapse relative to evidence improvement}{table.caption.41}{}}
+\@LN{1201}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {J}GRPO Training Dynamics}{16}{appendix.J}\protected@file@percent }
+\newlabel{sec:grpo_dynamics}{{J}{16}{GRPO Training Dynamics}{appendix.J}{}}
+\@LN{1202}{15}
+\@LN{1203}{15}
+\@LN{1204}{15}
+\@LN{1205}{15}
+\@LN{1206}{15}
+\@LN{1207}{15}
+\@LN{1208}{15}
+\@LN{1209}{15}
+\@LN{1210}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {K}Error Analysis: SFT vs.\ RSFT}{16}{appendix.K}\protected@file@percent }
+\newlabel{sec:error_analysis}{{K}{16}{Error Analysis: SFT vs.\ RSFT}{appendix.K}{}}
+\@LN{1211}{15}
+\@LN{1212}{15}
+\@LN{1213}{15}
+\@writefile{toc}{\contentsline {paragraph}{Truncation false negatives.}{16}{section*.43}\protected@file@percent }
+\@LN{1214}{15}
+\@LN{1215}{15}
+\@LN{1216}{15}
+\@LN{1217}{15}
+\@LN{1218}{15}
+\@LN{1219}{15}
+\@LN{1220}{15}
+\@writefile{toc}{\contentsline {paragraph}{Hallucinated false positives.}{16}{section*.44}\protected@file@percent }
+\@LN{1221}{15}
+\@LN{1222}{15}
+\@LN{1223}{15}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Error pattern changes from SFT to RSFT across scales. $\Delta $\% shows relative change. Truncation FN, hallucinated FP, and duplicates all decrease; evidence quality and residual FN difficulty are unchanged.}}{16}{table.caption.48}\protected@file@percent }
+\newlabel{tab:error_analysis}{{15}{16}{Error pattern changes from SFT to RSFT across scales. $\Delta $\% shows relative change. Truncation FN, hallucinated FP, and duplicates all decrease; evidence quality and residual FN difficulty are unchanged}{table.caption.48}{}}
+\@LN{1224}{15}
+\@LN{1225}{15}
+\@LN{1226}{15}
+\@writefile{toc}{\contentsline {paragraph}{Duplicate predictions.}{16}{section*.45}\protected@file@percent }
+\@LN{1227}{15}
+\@LN{1228}{15}
+\@LN{1229}{15}
+\@LN{1230}{15}
+\@LN{1231}{15}
+\@writefile{toc}{\contentsline {paragraph}{Evidence quality unchanged.}{16}{section*.46}\protected@file@percent }
+\@LN{1232}{15}
+\@LN{1233}{15}
+\@LN{1234}{15}
+\@LN{1235}{15}
+\@LN{1236}{15}
+\@LN{1237}{15}
+\@LN{1238}{15}
+\@LN{1239}{15}
+\@LN{1240}{15}
+\@writefile{toc}{\contentsline {paragraph}{Residual difficulty.}{16}{section*.47}\protected@file@percent }
+\@LN{1241}{15}
+\@LN{1242}{15}
+\@LN{1243}{15}
+\@LN{1244}{15}
+\@LN{1245}{15}
+\@LN{1246}{15}
+\@LN{1247}{15}
+\@LN{1248}{15}
+\@LN{1249}{15}
+\@LN{1250}{15}
+\@LN{1251}{15}
+\@LN{1252}{15}
+\@LN{1253}{15}
+\@LN{1254}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {L}Per-Relation EDCR Distribution}{16}{appendix.L}\protected@file@percent }
+\newlabel{sec:edcr_per_relation}{{L}{16}{Per-Relation EDCR Distribution}{appendix.L}{}}
+\@LN{1255}{15}
+\@LN{1256}{15}
+\@LN{1257}{15}
+\@LN{1258}{15}
+\@LN{1259}{15}
+\@LN{1260}{15}
+\@LN{1261}{15}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Training dynamics of GRPO (both $G{=}8$). The QLoRA trajectory uses lr $5\text  {e-}5$; the lr $5\text  {e-}6$ configuration in Table~\ref {tab:spectrum} shows more extreme collapse (Rel-F1 1.38). (a)~Rel-F1: QLoRA collapses at step~10 before partial recovery; bf16 remains stable. (b)~Evi-F1 stays intact for bf16. (c)~EDCR shows severe decoupling under QLoRA versus healthy ratios for bf16.}}{17}{figure.caption.42}\protected@file@percent }
+\newlabel{fig:grpo_dynamics}{{7}{17}{Training dynamics of GRPO (both $G{=}8$). The QLoRA trajectory uses lr $5\text {e-}5$; the lr $5\text {e-}6$ configuration in Table~\ref {tab:spectrum} shows more extreme collapse (Rel-F1 1.38). (a)~Rel-F1: QLoRA collapses at step~10 before partial recovery; bf16 remains stable. (b)~Evi-F1 stays intact for bf16. (c)~EDCR shows severe decoupling under QLoRA versus healthy ratios for bf16}{figure.caption.42}{}}
+\@LN@col{1}
+\@LN{1262}{16}
+\@LN{1263}{16}
+\@LN{1264}{16}
+\@LN{1265}{16}
+\@LN{1266}{16}
+\@LN{1267}{16}
+\@LN{1268}{16}
+\@LN{1269}{16}
+\@LN{1270}{16}
+\@LN{1271}{16}
+\@LN{1272}{16}
+\@LN{1273}{16}
+\@LN{1274}{16}
+\@LN{1275}{16}
+\@LN{1276}{16}
+\@LN{1277}{16}
+\@LN{1278}{16}
+\@LN{1279}{16}
+\@writefile{toc}{\contentsline {paragraph}{Partial correlations controlling for TP.}{17}{section*.49}\protected@file@percent }
+\@LN{1280}{16}
+\@LN{1281}{16}
+\@LN{1282}{16}
+\@LN{1283}{16}
+\@LN{1284}{16}
+\@LN{1285}{16}
+\@LN{1286}{16}
+\@LN{1287}{16}
+\@LN{1288}{16}
+\@LN{1289}{16}
+\@LN{1290}{16}
+\@LN{1291}{16}
+\@LN{1292}{16}
+\@LN{1293}{16}
+\@LN{1294}{16}
+\@LN{1295}{16}
+\@LN{1296}{16}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Per-relation EDCR distribution across all 93 relation types observed in the development set (of 96 defined in DocRED). The correlation analysis in the text uses the 76 types with $\geq $5 samples for statistical reliability. Red bars indicate EDCR $\geq $ 0.70 (severe decoupling), green bars indicate EDCR $<$ 0.30 (healthy evidence grounding). Seven types exhibit EDCR = 1.0.}}{17}{figure.caption.51}\protected@file@percent }
+\newlabel{fig:edcr_relations}{{8}{17}{Per-relation EDCR distribution across all 93 relation types observed in the development set (of 96 defined in DocRED). The correlation analysis in the text uses the 76 types with $\geq $5 samples for statistical reliability. Red bars indicate EDCR $\geq $ 0.70 (severe decoupling), green bars indicate EDCR $<$ 0.30 (healthy evidence grounding). Seven types exhibit EDCR = 1.0}{figure.caption.51}{}}
+\@writefile{toc}{\contentsline {paragraph}{Similar-TP, different-EDCR pairs.}{17}{section*.50}\protected@file@percent }
+\@LN{1297}{16}
+\@LN{1298}{16}
+\@LN{1299}{16}
+\@LN{1300}{16}
+\@LN{1301}{16}
+\@LN{1302}{16}
+\@LN{1303}{16}
+\@LN{1304}{16}
+\@LN{1305}{16}
+\@LN{1306}{16}
+\@LN{1307}{16}
+\@LN{1308}{16}
+\@LN{1309}{16}
+\@LN{1310}{16}
+\@LN{1311}{16}
+\@writefile{toc}{\contentsline {section}{\numberline {M}Qualitative Analysis}{17}{appendix.M}\protected@file@percent }
+\newlabel{sec:qualitative}{{M}{17}{Qualitative Analysis}{appendix.M}{}}
+\@LN{1312}{16}
+\@LN{1313}{16}
+\@LN{1314}{16}
+\@LN{1315}{16}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Evidence citation comparison between SFT and RSFT. Precision measures the fraction of cited sentences that match gold evidence.}}{18}{table.caption.53}\protected@file@percent }
+\newlabel{tab:case_evidence}{{16}{18}{Evidence citation comparison between SFT and RSFT. Precision measures the fraction of cited sentences that match gold evidence}{table.caption.53}{}}
+\@LN{1316}{17}
+\@writefile{toc}{\contentsline {paragraph}{Case 1: Evidence quality.}{18}{section*.52}\protected@file@percent }
+\@LN{1317}{17}
+\@LN{1318}{17}
+\@LN{1319}{17}
+\@LN{1320}{17}
+\@LN{1321}{17}
+\@LN{1322}{17}
+\@LN{1323}{17}
+\@LN{1324}{17}
+\@LN{1325}{17}
+\@LN{1326}{17}
+\@LN{1327}{17}
+\@writefile{toc}{\contentsline {paragraph}{Case 2: GRPO format gaming.}{18}{section*.54}\protected@file@percent }
+\@LN{1328}{17}
+\@LN{1329}{17}
+\@LN{1330}{17}
+\@LN{1331}{17}
+\@LN{1332}{17}
+\@LN{1333}{17}
+\@LN{1334}{17}
+\@LN{1335}{17}
+\@LN{1336}{17}
+\@LN{1337}{17}
+\@LN{1338}{17}
+\@LN{1339}{17}
+\@LN{1340}{17}
+\@LN{1341}{17}
+\@writefile{toc}{\contentsline {paragraph}{Case 3: EDCR diagnostics.}{18}{section*.55}\protected@file@percent }
+\@LN{1342}{17}
+\@LN{1343}{17}
+\@LN{1344}{17}
+\@LN{1345}{17}
+\@LN{1346}{17}
+\@LN{1347}{17}
+\@LN{1348}{17}
+\@LN{1349}{17}
+\@LN{1350}{17}
+\@LN{1351}{17}
+\@LN{1352}{17}
+\@LN{1353}{17}
+\@LN{1354}{17}
+\@LN{1355}{17}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Inference time (seconds) for SFT with vs.\ without evidence output. Overhead $=$ (with-evi $-$ no-evi) / no-evi; negative means with-evidence is faster. 1.7B--8B use batch size 4; 14B uses batch size 1.}}{18}{table.caption.56}\protected@file@percent }
+\newlabel{tab:inference_efficiency}{{17}{18}{Inference time (seconds) for SFT with vs.\ without evidence output. Overhead $=$ (with-evi $-$ no-evi) / no-evi; negative means with-evidence is faster. 1.7B--8B use batch size 4; 14B uses batch size 1}{table.caption.56}{}}
+\@LN{1356}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {N}Inference Efficiency Analysis}{18}{appendix.N}\protected@file@percent }
+\newlabel{sec:inference_efficiency}{{N}{18}{Inference Efficiency Analysis}{appendix.N}{}}
+\@LN{1357}{17}
+\@LN{1358}{17}
+\@LN{1359}{17}
+\@LN{1360}{17}
+\@LN{1361}{17}
+\@LN{1362}{17}
+\@LN{1363}{17}
+\@LN{1364}{17}
+\@LN{1365}{17}
+\@LN{1366}{17}
+\@LN{1367}{17}
+\@LN{1368}{17}
+\@LN{1369}{17}
+\@LN{1370}{17}
+\@LN{1371}{17}
+\@LN{1372}{17}
+\@LN{1373}{17}
+\@LN{1374}{17}
+\@LN{1375}{17}
+\@LN{1376}{17}
+\@LN{1377}{17}
+\@LN{1378}{17}
+\@LN{1379}{17}
+\@LN{1380}{17}
+\@LN{1381}{17}
+\@LN{1382}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {O}Use of AI Assistance}{18}{appendix.O}\protected@file@percent }
+\@LN{1383}{17}
+\@LN{1384}{17}
+\gdef \@abspage@last{18}

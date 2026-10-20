@@ -1,0 +1,29 @@
+{
+  "exp_id": "lead2_rsft_grpo_ced",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T05:57:53.951Z",
+    "updated_at": "2026-05-17T06:00:15.489Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python /root/autodl-tmp/freige/scripts/merge_sft_rsft.py && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/merged_sft_rsft_ced_s43 --stage 3 --max_steps 50 --learning_rate 1e-6 --num_generations 8 --kl_coef 0.01 --no-quantize --bf16 --ced_reward_weight 1.0 --f1_reward_weight 0.0 --format_reward_weight 0.5 --output_dir /root/autodl-tmp/grpo_from_rsft_lead2 --wandb_run_name lead2_rsft_grpo_ced --save_steps 10 --seed 42\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "418198",
+      "log_path": "~/runs/faith-evidence-ie/lead2_rsft_grpo_ced.log",
+      "submitted_at": "2026-05-17T05:57:53.332Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "RSFT→bf16 GRPO two-stage: starting from RSFT best checkpoint (s43, rel_f1=0.46), short-range GRPO (50 steps, lr=1e-6) with CED-only reward should further improve evidence quality (EDCR) while preserving rel_f1, because RSFT provides stable base preventing catastrophic forgetting seen in SFT→GRPO.",
+    "parent": "mvp2_rsft_train_r1_s43"
+  },
+  "timestamp": "2026-05-17T06:00:15.827549+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,2442 @@
+# ssh fix load generations
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 52
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/workers/worker_ssh_fix-load-generations_20260515T015836.log`
+- **Structured JSON:** [`5cd6ba8ce3a9d048ca5c.json`](../../sessions/5c/5cd6ba8ce3a9d048ca5c.json)
+
+## Before a recorded user message
+
+52 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "9ce79685-1d80-4d2d-9110-3777d52f5bbc",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778824200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "1b73c999-9628-4315-a240-950dbd54fc64",
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the current `rsft_score_filter.py` on the server to understand the `load_generations()` function.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "ee71c961-88e2-4be3-bf4f-dbd579aca187",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017BAFvBXJah6ZQesFyyqubP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12350,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12350
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先读取当前代码，看 `load_generations()` 的完整实现。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "6818ae3b-6617-4843-b104-b96f616d58cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017BAFvBXJah6ZQesFyyqubP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12350,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12350
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0181mdj5cAJkTiBAqn3dofH8`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "56ff43b3-877b-46d7-9902-142748c1cfc1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017BAFvBXJah6ZQesFyyqubP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12350,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12350
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T01:58:50.424Z_
+
+<details><summary>↩ Tool result · `toolu_0181mdj5cAJkTiBAqn3dofH8`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "8edbdb9a-0b5a-46e8-8d6a-10b2b46bfc45",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Vg5gDxym5oJsfr8KY2jyXN`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/training/rsft_score_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "3c1ed792-4111-4ecc-8ac4-96cf376e7135",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GZ9eBLhmwktLPPoWoxngH5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 740,
+      "cache_read_input_tokens": 24191,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 740
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XbP6H8VUFPd2bV3NTkfjqa`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "wc -l /root/autodl-tmp/rsft_generations/generations.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "9758c0c7-cdb2-46f1-ab1a-9ec423b49892",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GZ9eBLhmwktLPPoWoxngH5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 740,
+      "cache_read_input_tokens": 24191,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 740
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T01:58:55.502Z_
+
+<details><summary>↩ Tool result · `toolu_01Vg5gDxym5oJsfr8KY2jyXN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"RSFT Step 2: CED 打分 + 筛选。\\n\\n读取 rsft_generate.py 生成的 JSONL，对每个候选输出计算三种奖励:\\n  - format_reward: JSON 格式合规性\\n  - f1_reward: 与 gold triples 的 micro-F1\\n  - ced_reward: CED 对比证据判别奖励\\n\\n按组合阈值筛选高质量样本，输出 SFT 训练兼容格式。\\n\\n输入:\\n  - generations.jsonl (rsft_generate.py 的输出)\\n\\n输出 (保存到 --output_path):\\n  - rsft_train.jsonl: 筛选后的 SFT 训练数据 (JSONL)\\n  - rsft_scores.jsonl: 带分数的完整记录（供分析）\\n  - rsft_report.json: 统计报告\\n\\n依赖: transformers, torch, freige.rewards.ced_reward\\n\\n用法:\\n  python -m freige.training.rsft_score_filter \\\\\\n      --input_dir /root/autodl-tmp/rsft_generations \\\\\\n      --output_path /root/autodl-tmp/rsft_filtered \\\\\\n      --selection_strategy top_pct --top_pct 25 \\\\\\n      --nli_model_path /root/autodl-tmp/models/nli-deberta-v3-base\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\n\\n# ---------------------------------------------------------------------------\\n# Reward functions — 复用 grpo_trainer 中的逻辑\\n# ---------------------------------------------------------------------------\\n\\ndef compute_format_reward(parsed_triples, format_ok):\\n    \\\"\\\"\\\"格式奖励，复用 grpo_trainer.format_reward_fn 的逻辑。\\\"\\\"\\\"\\n    if not format_ok:\\n        return 0.0\\n    if not parsed_triples:\\n        return 0.1\\n    valid = 0\\n    for item in parsed_triples:\\n        if (isinstance(item, dict) and \\\"head\\\" in item\\n                and \\\"relation\\\" in item and \\\"tail\\\" in item\\n                and \\\"evidence\\\" in item\\n                and isinstance(item[\\\"evidence\\\"], list)):\\n            valid += 1\\n    return valid / len(parsed_triples)\\n\\n\\ndef compute_f1_reward(parsed_triples, gold_triples):\\n    \\\"\\\"\\\"F1 奖励，复用 grpo_trainer.f1_reward_fn 的逻辑。\\\"\\\"\\\"\\n    gold_set = set()\\n    for g in gold_triples:\\n        gold_set.add((\\n            str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n        ))\\n\\n    pred_set = set()\\n    for p in parsed_triples:\\n        if isinstance(p, dict):\\n            pred_set.add((\\n                str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n            ))\\n\\n    if not gold_set:\\n        return 1.0 if not pred_set else 0.0\\n\\n    tp = len(pred_set & gold_set)\\n    prec = tp / len(pred_set) if pred_set else 0.0\\n    rec = tp / len(gold_set) if gold_set else 0.0\\n    f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\\n    return f1\\n\\n\\ndef compute_ced_reward_for_record(record, ced_model, tau=0.5):\\n    \\\"\\\"\\\"CED 奖励，复用 grpo_trainer.CEDRewardWrapper.__call__ 的逻辑。\\n\\n    对一条记录中的所有 parsed_triples 计算平均 CED reward。\\n    \\\"\\\"\\\"\\n    from freige.rewards.ced_reward import verbalize_triple\\n\\n    parsed_triples = record[\\\"parsed_triples\\\"]\\n    gold_triples = record[\\\"gold_triples\\\"]\\n    sents = record[\\\"sents\\\"]\\n\\n    if not parsed_triples:\\n        return {\\\"ced_reward\\\": 0.0, \\\"triple_details\\\": []}\\n\\n    # 构建 gold_map\\n    gold_map = {}\\n    for g in gold_triples:\\n        key = (\\n            str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n        )\\n        gold_map[key] = g\\n\\n    # F1 gate: ��少一个预测 triple 匹配 gold\\n    has_gold_match = False\\n    for p in parsed_triples:\\n        if isinstance(p, dict):\\n            pk = (\\n                str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip()\\n\\n... [截断: 输出过长，省略 10078 字符] ...\\n\\n\\\", type=str,\\n                        default=\\\"cross-encoder/nli-deberta-v3-base\\\",\\n                        help=\\\"NLI 模型路径（用于 CED 打分）\\\")\\n    parser.add_argument(\\\"--nli_device\\\", type=str, default=None,\\n                        help=\\\"NLI 模型运行设备 (default: auto)\\\")\\n    parser.add_argument(\\\"--tau\\\", type=float, default=0.5,\\n                        help=\\\"CED tau 阈值 (default: 0.5)\\\")\\n\\n    # 筛选参数\\n    parser.add_argument(\\\"--format_weight\\\", type=float, default=0.2,\\n                        help=\\\"combined_score 中 format_reward 的权重 (default: 0.2)\\\")\\n    parser.add_argument(\\\"--f1_weight\\\", type=float, default=0.4,\\n                        help=\\\"combined_score 中 f1_reward 的权重 (default: 0.4)\\\")\\n    parser.add_argument(\\\"--ced_weight\\\", type=float, default=0.4,\\n                        help=\\\"combined_score 中 ced_reward 的权重 (default: 0.4)\\\")\\n\\n    # 筛选参数\\n    parser.add_argument(\\\"--format_threshold\\\", type=float, default=0.5,\\n                        help=\\\"format_reward 最低阈值 (default: 0.5)\\\")\\n    parser.add_argument(\\\"--f1_threshold\\\", type=float, default=0.0,\\n                        help=\\\"f1_reward 最低阈值 (default: 0.0)\\\")\\n    parser.add_argument(\\\"--ced_threshold\\\", type=float, default=0.0,\\n                        help=\\\"ced_reward 最低���值 (default: 0.0)\\\")\\n    parser.add_argument(\\\"--selection_strategy\\\", type=str, default=\\\"top_pct\\\",\\n                        choices=[\\\"threshold\\\", \\\"top_k\\\", \\\"top_pct\\\"],\\n                        help=\\\"筛选策略 (default: top_pct)\\\")\\n    parser.add_argument(\\\"--top_k\\\", type=int, default=2,\\n                        help=\\\"top_k 策略: 每个文档取 top-K (default: 2)\\\")\\n    parser.add_argument(\\\"--top_pct\\\", type=int, default=25,\\n                        help=\\\"top_pct 策略: 每个文档取 top N%% (default: 25)\\\")\\n    args = parser.parse_args()\\n\\n    output_dir = Path(args.output_path)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # 1. 加载生成结果\\n    records = load_generations(args.input_dir)\\n\\n    # 2. 加载 CED 模型并打分\\n    logger.info(\\\"Loading NLI model: %s\\\", args.nli_model_path)\\n    from freige.rewards.ced_reward import CEDRewardModel\\n    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\n\\n    scored = score_all_records(records, ced_model, tau=args.tau, format_weight=args.format_weight, f1_weight=args.f1_weight, ced_weight=args.ced_weight)\\n\\n    # 保存带分数的完整记录\\n    scores_path = output_dir / \\\"rsft_scores.jsonl\\\"\\n    with open(scores_path, \\\"w\\\") as f:\\n        for rec in scored:\\n            # 不保存大字段以节省空间\\n            slim = {k: v for k, v in rec.items() if k not in (\\\"prompt\\\", \\\"sents\\\", \\\"gold_triples\\\")}\\n            f.write(json.dumps(slim, ensure_ascii=False) + \\\"\\\\n\\\")\\n    logger.info(\\\"Scores → %s\\\", scores_path)\\n\\n    # 3. 筛选\\n    selected = filter_records(scored, args)\\n\\n    # 4. 转换为 SFT 训练格式\\n    sft_data = format_sft_training_data(selected)\\n    train_path = output_dir / \\\"rsft_train.jsonl\\\"\\n    with open(train_path, \\\"w\\\") as f:\\n        for item in sft_data:\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\"\\\\n\\\")\\n    logger.info(\\\"Training data → %s (%d samples)\\\", train_path, len(sft_data))\\n\\n    # 5. 统计报告\\n    report = generate_report(scored, selected)\\n    report[\\\"args\\\"] = vars(args)\\n    report_path = output_dir / \\\"rsft_report.json\\\"\\n    with open(report_path, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2, ensure_ascii=False)\\n    logger.info(\\\"Report → %s\\\", report_path)\\n\\n    # 控制台摘要\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(f\\\"  Total records:    {report['total_records']}\\\")\\n    print(f\\\"  Selected:         {report['selected_records']}\\\")\\n    print(f\\\"  Selection rate:   {report['selection_rate']:.1%}\\\")\\n    print(f\\\"  Unique docs:      {report['unique_docs_selected']}/{report['unique_docs_total']}\\\")\\n    print(\\\"-\\\" * 60)\\n    for name in [\\\"format_reward\\\", \\\"f1_reward\\\", \\\"ced_reward\\\", \\\"combined_score\\\"]:\\n        stats = report[f\\\"{name}_stats\\\"]\\n        print(f\\\"  {name:20s}  mean={stats['mean']:.3f}  std={stats['std']:.3f}  \\\"\\n              f\\\"median={stats['median']:.3f}  [min={stats['min']:.3f}, max={stats['max']:.3f}]\\\")\\n    print(\\\"=\\\" * 60)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "d2fc7825-aec8-4f41-8054-c1bf4a65233a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"RSFT Step 2: CED 打分 + 筛选。\\\\n\\\\n读取 rsft_generate.py 生成的 JSONL，对每个候选输出计算三种奖励:\\\\n  - format_reward: JSON 格式合规性\\\\n  - f1_reward: 与 gold triples 的 micro-F1\\\\n  - ced_reward: CED 对比证据判别奖励\\\\n\\\\n按组合阈值筛选高质量样本，输出 SFT 训练兼容格式。\\\\n\\\\n输入:\\\\n  - generations.jsonl (rsft_generate.py 的输出)\\\\n\\\\n输出 (保存到 --output_path):\\\\n  - rsft_train.jsonl: 筛选后的 SFT 训练数据 (JSONL)\\\\n  - rsft_scores.jsonl: 带分数的完整记录（供分析）\\\\n  - rsft_report.json: 统计报告\\\\n\\\\n依赖: transformers, torch, freige.rewards.ced_reward\\\\n\\\\n用法:\\\\n  python -m freige.training.rsft_score_filter \\\\\\\\\\\\n      --input_dir /root/autodl-tmp/rsft_generations \\\\\\\\\\\\n      --output_path /root/autodl-tmp/rsft_filtered \\\\\\\\\\\\n      --selection_strategy top_pct --top_pct 25 \\\\\\\\\\\\n      --nli_model_path /root/autodl-tmp/models/nli-deberta-v3-base\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are an information extraction model. Given a document with numbered sentences \\\\\\\"\\\\n    \\\\\\\"and a list of entities, extract all relation triples. For each triple, provide the \\\\\\\"\\\\n    \\\\\\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\\\\\"\\\\n    \\\\\\\"Output as a JSON list.\\\\\\\"\\\\n)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Reward functions — 复用 grpo_trainer 中的逻辑\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef compute_format_reward(parsed_triples, format_ok):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"格式奖励，复用 grpo_trainer.format_reward_fn 的逻辑。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not format_ok:\\\\n        return 0.0\\\\n    if not parsed_triples:\\\\n        return 0.1\\\\n    valid = 0\\\\n    for item in parsed_triples:\\\\n        if (isinstance(item, dict) and \\\\\\\"head\\\\\\\" in item\\\\n                and \\\\\\\"relation\\\\\\\" in item and \\\\\\\"tail\\\\\\\" in item\\\\n                and \\\\\\\"evidence\\\\\\\" in item\\\\n                and isinstance(item[\\\\\\\"evidence\\\\\\\"], list)):\\\\n            valid += 1\\\\n    return valid / len(parsed_triples)\\\\n\\\\n\\\\ndef compute_f1_reward(parsed_triples, gold_triples):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"F1 奖励，复用 grpo_trainer.f1_reward_fn 的逻辑。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    gold_set = set()\\\\n    for g in gold_triples:\\\\n        gold_set.add((\\\\n            str(g.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            str(g.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            str(g.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n        ))\\\\n\\\\n    pred_set = set()\\\\n    for p in parsed_triples:\\\\n        if isinstance(p, dict):\\\\n            pred_set.add((\\\\n                str(p.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(p.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(p.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            ))\\\\n\\\\n    if not gold_set:\\\\n        return 1.0 if not pred_set else 0.0\\\\n\\\\n    tp = len(pred_set & gold_set)\\\\n    prec = tp / len(pred_set) if pred_set else 0.0\\\\n    rec = tp / len(gold_set) if gold_set else 0.0\\\\n    f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\\\\n    return f1\\\\n\\\\n\\\\ndef compute_ced_reward_for_record(record, ced_model, tau=0.5):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"CED 奖励，复用 grpo_trainer.CEDRewardWrapper.__call__ 的逻辑。\\\\n\\\\n    对一条记录中的所有 parsed_triples 计算平均 CED reward。\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from freige.rewards.ced_reward import verbalize_triple\\\\n\\\\n    parsed_triples = record[\\\\\\\"parsed_triples\\\\\\\"]\\\\n    gold_triples = record[\\\\\\\"gold_triples\\\\\\\"]\\\\n    sents = record[\\\\\\\"sents\\\\\\\"]\\\\n\\\\n    if not parsed_triples:\\\\n        return {\\\\\\\"ced_reward\\\\\\\": 0.0, \\\\\\\"triple_details\\\\\\\": []}\\\\n\\\\n    # 构建 gold_map\\\\n    gold_map = {}\\\\n    for g in gold_triples:\\\\n        key = (\\\\n            str(g.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            str(g.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            str(g.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n        )\\\\n        gold_map[key] = g\\\\n\\\\n    # F1 gate: ��少一个预测 triple 匹配 gold\\\\n    has_gold_match = False\\\\n    for p in parsed_triples:\\\\n        if isinstance(p, dict):\\\\n            pk = (\\\\n                str(p.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(p.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(p.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip()\\\\n\\\\n... [截断: 输出过长，省略 10078 字符] ...\\\\n\\\\n\\\\\\\", type=str,\\\\n                        default=\\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\",\\\\n                        help=\\\\\\\"NLI 模型路径（用于 CED 打分）\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--nli_device\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"NLI 模型运行设备 (default: auto)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--tau\\\\\\\", type=float, default=0.5,\\\\n                        help=\\\\\\\"CED tau 阈值 (default: 0.5)\\\\\\\")\\\\n\\\\n    # 筛选参数\\\\n    parser.add_argument(\\\\\\\"--format_weight\\\\\\\", type=float, default=0.2,\\\\n                        help=\\\\\\\"combined_score 中 format_reward 的权重 (default: 0.2)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--f1_weight\\\\\\\", type=float, default=0.4,\\\\n                        help=\\\\\\\"combined_score 中 f1_reward 的权重 (default: 0.4)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--ced_weight\\\\\\\", type=float, default=0.4,\\\\n                        help=\\\\\\\"combined_score 中 ced_reward 的权重 (default: 0.4)\\\\\\\")\\\\n\\\\n    # 筛选参数\\\\n    parser.add_argument(\\\\\\\"--format_threshold\\\\\\\", type=float, default=0.5,\\\\n                        help=\\\\\\\"format_reward 最低阈值 (default: 0.5)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--f1_threshold\\\\\\\", type=float, default=0.0,\\\\n                        help=\\\\\\\"f1_reward 最低阈值 (default: 0.0)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--ced_threshold\\\\\\\", type=float, default=0.0,\\\\n                        help=\\\\\\\"ced_reward 最低���值 (default: 0.0)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--selection_strategy\\\\\\\", type=str, default=\\\\\\\"top_pct\\\\\\\",\\\\n                        choices=[\\\\\\\"threshold\\\\\\\", \\\\\\\"top_k\\\\\\\", \\\\\\\"top_pct\\\\\\\"],\\\\n                        help=\\\\\\\"筛选策略 (default: top_pct)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--top_k\\\\\\\", type=int, default=2,\\\\n                        help=\\\\\\\"top_k 策略: 每个文档取 top-K (default: 2)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--top_pct\\\\\\\", type=int, default=25,\\\\n                        help=\\\\\\\"top_pct 策略: 每个文档取 top N%% (default: 25)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    output_dir = Path(args.output_path)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # 1. 加载生成结果\\\\n    records = load_generations(args.input_dir)\\\\n\\\\n    # 2. 加载 CED 模型并打分\\\\n    logger.info(\\\\\\\"Loading NLI model: %s\\\\\\\", args.nli_model_path)\\\\n    from freige.rewards.ced_reward import CEDRewardModel\\\\n    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\\\n\\\\n    scored = score_all_records(records, ced_model, tau=args.tau, format_weight=args.format_weight, f1_weight=args.f1_weight, ced_weight=args.ced_weight)\\\\n\\\\n    # 保存带分数的完整记录\\\\n    scores_path = output_dir / \\\\\\\"rsft_scores.jsonl\\\\\\\"\\\\n    with open(scores_path, \\\\\\\"w\\\\\\\") as f:\\\\n        for rec in scored:\\\\n            # 不保存大字段以节省空间\\\\n            slim = {k: v for k, v in rec.items() if k not in (\\\\\\\"prompt\\\\\\\", \\\\\\\"sents\\\\\\\", \\\\\\\"gold_triples\\\\\\\")}\\\\n            f.write(json.dumps(slim, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    logger.info(\\\\\\\"Scores → %s\\\\\\\", scores_path)\\\\n\\\\n    # 3. 筛选\\\\n    selected = filter_records(scored, args)\\\\n\\\\n    # 4. 转换为 SFT 训练格式\\\\n    sft_data = format_sft_training_data(selected)\\\\n    train_path = output_dir / \\\\\\\"rsft_train.jsonl\\\\\\\"\\\\n    with open(train_path, \\\\\\\"w\\\\\\\") as f:\\\\n        for item in sft_data:\\\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    logger.info(\\\\\\\"Training data → %s (%d samples)\\\\\\\", train_path, len(sft_data))\\\\n\\\\n    # 5. 统计报告\\\\n    report = generate_report(scored, selected)\\\\n    report[\\\\\\\"args\\\\\\\"] = vars(args)\\\\n    report_path = output_dir / \\\\\\\"rsft_report.json\\\\\\\"\\\\n    with open(report_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(report, f, indent=2, ensure_ascii=False)\\\\n    logger.info(\\\\\\\"Report → %s\\\\\\\", report_path)\\\\n\\\\n    # 控制台摘要\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(f\\\\\\\"  Total records:    {report['total_records']}\\\\\\\")\\\\n    print(f\\\\\\\"  Selected:         {report['selected_records']}\\\\\\\")\\\\n    print(f\\\\\\\"  Selection rate:   {report['selection_rate']:.1%}\\\\\\\")\\\\n    print(f\\\\\\\"  Unique docs:      {report['unique_docs_selected']}/{report['unique_docs_total']}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    for name in [\\\\\\\"format_reward\\\\\\\", \\\\\\\"f1_reward\\\\\\\", \\\\\\\"ced_reward\\\\\\\", \\\\\\\"combined_score\\\\\\\"]:\\\\n        stats = report[f\\\\\\\"{name}_stats\\\\\\\"]\\\\n        print(f\\\\\\\"  {name:20s}  mean={stats['mean']:.3f}  std={stats['std']:.3f}  \\\\\\\"\\\\n              f\\\\\\\"median={stats['median']:.3f}  [min={stats['min']:.3f}, max={stats['max']:.3f}]\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"RSFT Step 2: CED 打分 + 筛选。\\n\\n读取 rsft_generate.py 生成的 JSONL，对每个候选输出计算三种奖励:\\n  - format_reward: JSON 格式合规性\\n  - f1_reward: 与 gold triples 的 micro-F1\\n  - ced_reward: CED 对比证据判别奖励\\n\\n按组合阈值筛选高质量样本，输出 SFT 训练兼容格式。\\n\\n输入:\\n  - generations.jsonl (rsft_generate.py 的输出)\\n\\n输出 (保存到 --output_path):\\n  - rsft_train.jsonl: 筛选后的 SFT 训练数据 (JSONL)\\n  - rsft_scores.jsonl: 带分数的完整记录（供分析）\\n  - rsft_report.json: 统计报告\\n\\n依赖: transformers, torch, freige.rewards.ced_reward\\n\\n用法:\\n  python -m freige.training.rsft_score_filter \\\\\\n      --input_dir /root/autodl-tmp/rsft_generations \\\\\\n      --output_path /root/autodl-tmp/rsft_filtered \\\\\\n      --selection_strategy top_pct --top_pct 25 \\\\\\n      --nli_model_path /root/autodl-tmp/models/nli-deberta-v3-base\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\n\\n# ---------------------------------------------------------------------------\\n# Reward functions — 复用 grpo_trainer 中的逻辑\\n# ---------------------------------------------------------------------------\\n\\ndef compute_format_reward(parsed_triples, format_ok):\\n    \\\"\\\"\\\"格式奖励，复用 grpo_trainer.format_reward_fn 的逻辑。\\\"\\\"\\\"\\n    if not format_ok:\\n        return 0.0\\n    if not parsed_triples:\\n        return 0.1\\n    valid = 0\\n    for item in parsed_triples:\\n        if (isinstance(item, dict) and \\\"head\\\" in item\\n                and \\\"relation\\\" in item and \\\"tail\\\" in item\\n                and \\\"evidence\\\" in item\\n                and isinstance(item[\\\"evidence\\\"], list)):\\n            valid += 1\\n    return valid / len(parsed_triples)\\n\\n\\ndef compute_f1_reward(parsed_triples, gold_triples):\\n    \\\"\\\"\\\"F1 奖励，复用 grpo_trainer.f1_reward_fn 的逻辑。\\\"\\\"\\\"\\n    gold_set = set()\\n    for g in gold_triples:\\n        gold_set.add((\\n            str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n        ))\\n\\n    pred_set = set()\\n    for p in parsed_triples:\\n        if isinstance(p, dict):\\n            pred_set.add((\\n                str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n            ))\\n\\n    if not gold_set:\\n        return 1.0 if not pred_set else 0.0\\n\\n    tp = len(pred_set & gold_set)\\n    prec = tp / len(pred_set) if pred_set else 0.0\\n    rec = tp / len(gold_set) if gold_set else 0.0\\n    f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\\n    return f1\\n\\n\\ndef compute_ced_reward_for_record(record, ced_model, tau=0.5):\\n    \\\"\\\"\\\"CED 奖励，复用 grpo_trainer.CEDRewardWrapper.__call__ 的逻辑。\\n\\n    对一条记录中的所有 parsed_triples 计算平均 CED reward。\\n    \\\"\\\"\\\"\\n    from freige.rewards.ced_reward import verbalize_triple\\n\\n    parsed_triples = record[\\\"parsed_triples\\\"]\\n    gold_triples = record[\\\"gold_triples\\\"]\\n    sents = record[\\\"sents\\\"]\\n\\n    if not parsed_triples:\\n        return {\\\"ced_reward\\\": 0.0, \\\"triple_details\\\": []}\\n\\n    # 构建 gold_map\\n    gold_map = {}\\n    for g in gold_triples:\\n        key = (\\n            str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n        )\\n        gold_map[key] = g\\n\\n    # F1 gate: ��少一个预测 triple 匹配 gold\\n    has_gold_match = False\\n    for p in parsed_triples:\\n        if isinstance(p, dict):\\n            pk = (\\n                str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip()\\n\\n... [截断: 输出过长，省略 10078 字符] ...\\n\\n\\\", type=str,\\n                        default=\\\"cross-encoder/nli-deberta-v3-base\\\",\\n                        help=\\\"NLI 模型路径（用于 CED 打分）\\\")\\n    parser.add_argument(\\\"--nli_device\\\", type=str, default=None,\\n                        help=\\\"NLI 模型运行设备 (default: auto)\\\")\\n    parser.add_argument(\\\"--tau\\\", type=float, default=0.5,\\n                        help=\\\"CED tau 阈值 (default: 0.5)\\\")\\n\\n    # 筛选参数\\n    parser.add_argument(\\\"--format_weight\\\", type=float, default=0.2,\\n                        help=\\\"combined_score 中 format_reward 的权重 (default: 0.2)\\\")\\n    parser.add_argument(\\\"--f1_weight\\\", type=float, default=0.4,\\n                        help=\\\"combined_score 中 f1_reward 的权重 (default: 0.4)\\\")\\n    parser.add_argument(\\\"--ced_weight\\\", type=float, default=0.4,\\n                        help=\\\"combined_score 中 ced_reward 的权重 (default: 0.4)\\\")\\n\\n    # 筛选参数\\n    parser.add_argument(\\\"--format_threshold\\\", type=float, default=0.5,\\n                        help=\\\"format_reward 最低阈值 (default: 0.5)\\\")\\n    parser.add_argument(\\\"--f1_threshold\\\", type=float, default=0.0,\\n                        help=\\\"f1_reward 最低阈值 (default: 0.0)\\\")\\n    parser.add_argument(\\\"--ced_threshold\\\", type=float, default=0.0,\\n                        help=\\\"ced_reward 最低���值 (default: 0.0)\\\")\\n    parser.add_argument(\\\"--selection_strategy\\\", type=str, default=\\\"top_pct\\\",\\n                        choices=[\\\"threshold\\\", \\\"top_k\\\", \\\"top_pct\\\"],\\n                        help=\\\"筛选策略 (default: top_pct)\\\")\\n    parser.add_argument(\\\"--top_k\\\", type=int, default=2,\\n                        help=\\\"top_k 策略: 每个文档取 top-K (default: 2)\\\")\\n    parser.add_argument(\\\"--top_pct\\\", type=int, default=25,\\n                        help=\\\"top_pct 策略: 每个文档取 top N%% (default: 25)\\\")\\n    args = parser.parse_args()\\n\\n    output_dir = Path(args.output_path)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # 1. 加载生成结果\\n    records = load_generations(args.input_dir)\\n\\n    # 2. 加载 CED 模型并打分\\n    logger.info(\\\"Loading NLI model: %s\\\", args.nli_model_path)\\n    from freige.rewards.ced_reward import CEDRewardModel\\n    ced_model = CEDRewardModel(model_name=args.nli_model_path, device=args.nli_device)\\n\\n    scored = score_all_records(records, ced_model, tau=args.tau, format_weight=args.format_weight, f1_weight=args.f1_weight, ced_weight=args.ced_weight)\\n\\n    # 保存带分数的完整记录\\n    scores_path = output_dir / \\\"rsft_scores.jsonl\\\"\\n    with open(scores_path, \\\"w\\\") as f:\\n        for rec in scored:\\n            # 不保存大字段以节省空间\\n            slim = {k: v for k, v in rec.items() if k not in (\\\"prompt\\\", \\\"sents\\\", \\\"gold_triples\\\")}\\n            f.write(json.dumps(slim, ensure_ascii=False) + \\\"\\\\n\\\")\\n    logger.info(\\\"Scores → %s\\\", scores_path)\\n\\n    # 3. 筛选\\n    selected = filter_records(scored, args)\\n\\n    # 4. 转换为 SFT 训练格式\\n    sft_data = format_sft_training_data(selected)\\n    train_path = output_dir / \\\"rsft_train.jsonl\\\"\\n    with open(train_path, \\\"w\\\") as f:\\n        for item in sft_data:\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\"\\\\n\\\")\\n    logger.info(\\\"Training data → %s (%d samples)\\\", train_path, len(sft_data))\\n\\n    # 5. 统计报告\\n    report = generate_report(scored, selected)\\n    report[\\\"args\\\"] = vars(args)\\n    report_path = output_dir / \\\"rsft_report.json\\\"\\n    with open(report_path, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2, ensure_ascii=False)\\n    logger.info(\\\"Report → %s\\\", report_path)\\n\\n    # 控制台摘要\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(f\\\"  Total records:    {report['total_records']}\\\")\\n    print(f\\\"  Selected:         {report['selected_records']}\\\")\\n    print(f\\\"  Selection rate:   {report['selection_rate']:.1%}\\\")\\n    print(f\\\"  Unique docs:      {report['unique_docs_selected']}/{report['unique_docs_total']}\\\")\\n    print(\\\"-\\\" * 60)\\n    for name in [\\\"format_reward\\\", \\\"f1_reward\\\", \\\"ced_reward\\\", \\\"combined_score\\\"]:\\n        stats = report[f\\\"{name}_stats\\\"]\\n        print(f\\\"  {name:20s}  mean={stats['mean']:.3f}  std={stats['std']:.3f}  \\\"\\n              f\\\"median={stats['median']:.3f}  [min={stats['min']:.3f}, max={stats['max']:.3f}]\\\")\\n    print(\\\"=\\\" * 60)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01U4JCHrLjc15HaNE1SMr1X7`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/rsft_generations/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "59dc7ad9-fae7-4e7a-a85c-cb51916722b6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GZ9eBLhmwktLPPoWoxngH5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 740,
+      "cache_read_input_tokens": 24191,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 740
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T01:58:55.872Z_
+
+<details><summary>↩ Tool result · `toolu_01XbP6H8VUFPd2bV3NTkfjqa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2416 /root/autodl-tmp/rsft_generations/generations.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "bcdd3069-bef9-4987-b942-b94db8dbf5b5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2416 /root/autodl-tmp/rsft_generations/generations.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2416 /root/autodl-tmp/rsft_generations/generations.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T01:58:56.273Z_
+
+<details><summary>↩ Tool result · `toolu_01U4JCHrLjc15HaNE1SMr1X7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"generations.jsonl\\nprogress.json\\nshard_0\\nshard_1\\nshard_2\\nshard_3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "6e2b9ce9-f75b-46d7-9e59-cfee32ffbbd4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"generations.jsonl\\\\nprogress.json\\\\nshard_0\\\\nshard_1\\\\nshard_2\\\\nshard_3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"generations.jsonl\\nprogress.json\\nshard_0\\nshard_1\\nshard_2\\nshard_3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated. I need to find the `load_generations` function specifically. Let me grep for it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "43b2446b-18cc-4594-a35d-65a66861fec4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YQjkiS88AiXbPPqRq3eGai",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4317,
+      "cache_read_input_tokens": 24931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4317
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+输出被截断了，需要单独读取 `load_generations()` 函数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "aef8f671-b63c-43b6-84e1-cbcda78920b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YQjkiS88AiXbPPqRq3eGai",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4317,
+      "cache_read_input_tokens": 24931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4317
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Jo8pw3jp1C2NAURTePWtdD`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"def load_generations\\|def score_all\\|def filter_records\\|def format_sft\\|def generate_report\" /root/autodl-tmp/freige/training/rsft_score_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "847e0abd-8bc2-46b7-b2cf-5aa9fc840321",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YQjkiS88AiXbPPqRq3eGai",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4317,
+      "cache_read_input_tokens": 24931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4317
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T01:59:01.665Z_
+
+<details><summary>↩ Tool result · `toolu_01Jo8pw3jp1C2NAURTePWtdD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "4133522c-48ed-4784-a3c5-a863be2c4651",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TqgVK2FnkKZNunsTdakLfb`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"def \" /root/autodl-tmp/freige/training/rsft_score_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "08b56174-dac1-422d-abca-e30872644ede",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XBSbSYL4KgNDhQEqdomJWm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 316,
+      "cache_read_input_tokens": 29248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 316
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T01:59:04.418Z_
+
+<details><summary>↩ Tool result · `toolu_01TqgVK2FnkKZNunsTdakLfb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"52:def compute_format_reward(parsed_triples, format_ok):\\n68:def compute_f1_reward(parsed_triples, gold_triples):\\n97:def compute_ced_reward_for_record(record, ced_model, tau=0.5):\\n179:def load_generations(input_dir):\\n224:def score_all_records(records, ced_model, tau=0.5, format_weight=0.2, f1_weight=0.4, ced_weight=0.4):\\n255:def filter_records(scored_records, args):\\n309:def format_sft_training_data(selected_records, tokenizer_name=None):\\n327:def _extract_user_content(prompt_text):\\n344:def generate_report(scored_records, selected_records):\\n398:def main():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "ce4377c0-7741-48d4-abb8-35ae11ba8ef4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"52:def compute_format_reward(parsed_triples, format_ok):\\\\n68:def compute_f1_reward(parsed_triples, gold_triples):\\\\n97:def compute_ced_reward_for_record(record, ced_model, tau=0.5):\\\\n179:def load_generations(input_dir):\\\\n224:def score_all_records(records, ced_model, tau=0.5, format_weight=0.2, f1_weight=0.4, ced_weight=0.4):\\\\n255:def filter_records(scored_records, args):\\\\n309:def format_sft_training_data(selected_records, tokenizer_name=None):\\\\n327:def _extract_user_content(prompt_text):\\\\n344:def generate_report(scored_records, selected_records):\\\\n398:def main():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"52:def compute_format_reward(parsed_triples, format_ok):\\n68:def compute_f1_reward(parsed_triples, gold_triples):\\n97:def compute_ced_reward_for_record(record, ced_model, tau=0.5):\\n179:def load_generations(input_dir):\\n224:def score_all_records(records, ced_model, tau=0.5, format_weight=0.2, f1_weight=0.4, ced_weight=0.4):\\n255:def filter_records(scored_records, args):\\n309:def format_sft_training_data(selected_records, tokenizer_name=None):\\n327:def _extract_user_content(prompt_text):\\n344:def generate_report(scored_records, selected_records):\\n398:def main():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013GybE3WYssLEXuGsq2NgKX`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "head -n 223 /root/autodl-tmp/freige/training/rsft_score_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "d07dbe14-6607-42c6-beb5-180fbba0b88f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014U5snDGwkqYwECrCEmFPd6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 417,
+      "cache_read_input_tokens": 29564,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 417
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T01:59:09.177Z_
+
+<details><summary>↩ Tool result · `toolu_013GybE3WYssLEXuGsq2NgKX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"RSFT Step 2: CED 打分 + 筛选。\\n\\n读取 rsft_generate.py 生成的 JSONL，对每个候选输出计算三种奖励:\\n  - format_reward: JSON 格式合规性\\n  - f1_reward: 与 gold triples 的 micro-F1\\n  - ced_reward: CED 对比证据判别奖励\\n\\n按组合阈值筛选高质量样本，输出 SFT 训练兼容格式。\\n\\n输入:\\n  - generations.jsonl (rsft_generate.py 的输出)\\n\\n输出 (保存到 --output_path):\\n  - rsft_train.jsonl: 筛选后的 SFT 训练数据 (JSONL)\\n  - rsft_scores.jsonl: 带分数的完整记录（供分析）\\n  - rsft_report.json: 统计报告\\n\\n依赖: transformers, torch, freige.rewards.ced_reward\\n\\n用法:\\n  python -m freige.training.rsft_score_filter \\\\\\n      --input_dir /root/autodl-tmp/rsft_generations \\\\\\n      --output_path /root/autodl-tmp/rsft_filtered \\\\\\n      --selection_strategy top_pct --top_pct 25 \\\\\\n      --nli_model_path /root/autodl-tmp/models/nli-deberta-v3-base\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\n\\n# ---------------------------------------------------------------------------\\n# Reward functions — 复用 grpo_trainer 中的逻辑\\n# ---------------------------------------------------------------------------\\n\\ndef compute_format_reward(parsed_triples, format_ok):\\n    \\\"\\\"\\\"格式奖励，复用 grpo_trainer.format_reward_fn 的逻辑。\\\"\\\"\\\"\\n    if not format_ok:\\n        return 0.0\\n    if not parsed_triples:\\n        return 0.1\\n    valid = 0\\n    for item in parsed_triples:\\n        if (isinstance(item, dict) and \\\"head\\\" in item\\n                and \\\"relation\\\" in item and \\\"tail\\\" in item\\n                and \\\"evidence\\\" in item\\n                and isinstance(item[\\\"evidence\\\"], list)):\\n            valid += 1\\n    return valid / len(parsed_triples)\\n\\n\\ndef compute_f1_reward(parsed_triples, gold_triples):\\n    \\\"\\\"\\\"F1 奖励，复用 grpo_trainer.f1_reward_fn 的逻辑。\\\"\\\"\\\"\\n    gold_set = set()\\n    for g in gold_triples:\\n        gold_set.add((\\n            str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n        ))\\n\\n    pred_set = set()\\n    for p in parsed_triples:\\n        if isinstance(p, dict):\\n            pred_set.add((\\n                str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n            ))\\n\\n    if not gold_set:\\n        return 1.0 if not pred_set else 0.0\\n\\n    tp = len(pred_set & gold_set)\\n    prec = tp / len(pred_set) if pred_set else 0.0\\n    rec = tp / len(gold_set) if gold_set else 0.0\\n    f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\\n    return f1\\n\\n\\ndef compute_ced_reward_for_record(record, ced_model, tau=0.5):\\n    \\\"\\\"\\\"CED 奖励，复用 grpo_trainer.CEDRewardWrapper.__call__ 的逻辑。\\n\\n    对一条记录中的所有 parsed_triples 计算平均 CED reward。\\n    \\\"\\\"\\\"\\n    from freige.rewards.ced_reward import verbalize_triple\\n\\n    parsed_triples = record[\\\"parsed_triples\\\"]\\n    gold_triples = record[\\\"gold_triples\\\"]\\n    sents = record[\\\"sents\\\"]\\n\\n    if not parsed_triples:\\n        return {\\\"ced_reward\\\": 0.0, \\\"triple_details\\\": []}\\n\\n    # 构建 gold_map\\n    gold_map = {}\\n    for g in gold_triples:\\n        key = (\\n            str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n        )\\n        gold_map[key] = g\\n\\n    # F1 gate: ��少一个预测 triple 匹配 gold\\n    has_gold_match = False\\n    for p in parsed_triples:\\n        if isinstance(p, dict):\\n            pk = (\\n                str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n            )\\n            if pk in gold_map:\\n                has_gold_match = True\\n                break\\n    if not has_gold_match:\\n        return {\\\"ced_reward\\\": 0.0, \\\"triple_details\\\": []}\\n\\n    triple_details = []\\n    triple_rewards = []\\n    for p in parsed_triples:\\n        if not isinstance(p, dict):\\n            continue\\n        pred_evi_ids = p.get(\\\"evidence\\\", [])\\n        if not isinstance(pred_evi_ids, list) or not pred_evi_ids:\\n            triple_rewards.append(0.0)\\n            triple_details.append({\\\"reward\\\": 0.0, \\\"reason\\\": \\\"no_evidence\\\"})\\n            continue\\n\\n        claim = verbalize_triple(\\n            str(p.get(\\\"head\\\") or \\\"\\\"),\\n            str(p.get(\\\"relation\\\") or \\\"\\\"),\\n            str(p.get(\\\"tail\\\") or \\\"\\\"),\\n        )\\n        cited_sents = [sents[idx] for idx in pred_evi_ids\\n                       if isinstance(idx, int) and 0 <= idx < len(sents)]\\n        if not cited_sents:\\n            triple_rewards.append(0.0)\\n            triple_details.append({\\\"reward\\\": 0.0, \\\"reason\\\": \\\"invalid_evidence_ids\\\"})\\n            continue\\n\\n        key = (\\n            str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n            str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n            str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n        )\\n        matched_gold = gold_map.get(key, {})\\n        hard_neg_ids = matched_gold.get(\\\"hard_negative_sent_ids\\\", [])\\n        hard_neg_sents = [sents[idx] for idx in hard_neg_ids\\n                          if isinstance(idx, int) and 0 <= idx < len(sents)]\\n\\n        result = ced_model.compute_ced_reward(\\n            claim, cited_sents, hard_neg_sents, tau=tau,\\n        )\\n        triple_rewards.append(result[\\\"reward\\\"])\\n        triple_details.append(result)\\n\\n    mean_ced = sum(triple_rewards) / len(triple_rewards) if triple_rewards else 0.0\\n    return {\\\"ced_reward\\\": mean_ced, \\\"triple_details\\\": triple_details}\\n\\n\\ndef load_generations(input_dir):\\n    \\\"\\\"\\\"加载 generations.jsonl，支持多 shard 目录合并。\\n\\n    查找顺序：\\n    1. input_dir/shard_*/generations.jsonl — 合并所有 shard\\n    2. input_dir/generations.jsonl — 单文件回退\\n    按 (doc_id, generation_idx) 去重。\\n    \\\"\\\"\\\"\\n    input_path = Path(input_dir)\\n    shard_files = sorted(input_path.glob(\\\"shard_*/generations.jsonl\\\"))\\n\\n    raw_records = []\\n    if shard_files:\\n        for sf in shard_files:\\n            count = 0\\n            with open(sf) as f:\\n                for line in f:\\n                    line = line.strip()\\n                    if line:\\n                        raw_records.append(json.loads(line))\\n                        count += 1\\n            logger.info(\\\"  shard %s: %d records\\\", sf.parent.name, count)\\n        logger.info(\\\"Loaded %d records from %d shards\\\", len(raw_records), len(shard_files))\\n    else:\\n        single = input_path / \\\"generations.jsonl\\\"\\n        with open(single) as f:\\n            for line in f:\\n                line = line.strip()\\n                if line:\\n                    raw_records.append(json.loads(line))\\n        logger.info(\\\"Loaded %d records from %s\\\", len(raw_records), single)\\n\\n    seen = set()\\n    records = []\\n    for rec in raw_records:\\n        key = (rec[\\\"doc_id\\\"], rec[\\\"generation_idx\\\"])\\n        if key not in seen:\\n            seen.add(key)\\n            records.append(rec)\\n    if len(records) < len(raw_records):\\n        logger.info(\\\"Deduplicated: %d → %d records\\\", len(raw_records), len(records))\\n\\n    return records\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "7cd2eb04-6d14-48b9-9ab9-a7dbddb32644",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"RSFT Step 2: CED 打分 + 筛选。\\\\n\\\\n读取 rsft_generate.py 生成的 JSONL，对每个候选输出计算三种奖励:\\\\n  - format_reward: JSON 格式合规性\\\\n  - f1_reward: 与 gold triples 的 micro-F1\\\\n  - ced_reward: CED 对比证据判别奖励\\\\n\\\\n按组合阈值筛选高质量样本，输出 SFT 训练兼容格式。\\\\n\\\\n输入:\\\\n  - generations.jsonl (rsft_generate.py 的输出)\\\\n\\\\n输出 (保存到 --output_path):\\\\n  - rsft_train.jsonl: 筛选后的 SFT 训练数据 (JSONL)\\\\n  - rsft_scores.jsonl: 带分数的完整记录（供分析）\\\\n  - rsft_report.json: 统计报告\\\\n\\\\n依赖: transformers, torch, freige.rewards.ced_reward\\\\n\\\\n用法:\\\\n  python -m freige.training.rsft_score_filter \\\\\\\\\\\\n      --input_dir /root/autodl-tmp/rsft_generations \\\\\\\\\\\\n      --output_path /root/autodl-tmp/rsft_filtered \\\\\\\\\\\\n      --selection_strategy top_pct --top_pct 25 \\\\\\\\\\\\n      --nli_model_path /root/autodl-tmp/models/nli-deberta-v3-base\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are an information extraction model. Given a document with numbered sentences \\\\\\\"\\\\n    \\\\\\\"and a list of entities, extract all relation triples. For each triple, provide the \\\\\\\"\\\\n    \\\\\\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\\\\\"\\\\n    \\\\\\\"Output as a JSON list.\\\\\\\"\\\\n)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Reward functions — 复用 grpo_trainer 中的逻辑\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef compute_format_reward(parsed_triples, format_ok):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"格式奖励，复用 grpo_trainer.format_reward_fn 的逻辑。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not format_ok:\\\\n        return 0.0\\\\n    if not parsed_triples:\\\\n        return 0.1\\\\n    valid = 0\\\\n    for item in parsed_triples:\\\\n        if (isinstance(item, dict) and \\\\\\\"head\\\\\\\" in item\\\\n                and \\\\\\\"relation\\\\\\\" in item and \\\\\\\"tail\\\\\\\" in item\\\\n                and \\\\\\\"evidence\\\\\\\" in item\\\\n                and isinstance(item[\\\\\\\"evidence\\\\\\\"], list)):\\\\n            valid += 1\\\\n    return valid / len(parsed_triples)\\\\n\\\\n\\\\ndef compute_f1_reward(parsed_triples, gold_triples):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"F1 奖励，复用 grpo_trainer.f1_reward_fn 的逻辑。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    gold_set = set()\\\\n    for g in gold_triples:\\\\n        gold_set.add((\\\\n            str(g.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            str(g.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            str(g.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n        ))\\\\n\\\\n    pred_set = set()\\\\n    for p in parsed_triples:\\\\n        if isinstance(p, dict):\\\\n            pred_set.add((\\\\n                str(p.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(p.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(p.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            ))\\\\n\\\\n    if not gold_set:\\\\n        return 1.0 if not pred_set else 0.0\\\\n\\\\n    tp = len(pred_set & gold_set)\\\\n    prec = tp / len(pred_set) if pred_set else 0.0\\\\n    rec = tp / len(gold_set) if gold_set else 0.0\\\\n    f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\\\\n    return f1\\\\n\\\\n\\\\ndef compute_ced_reward_for_record(record, ced_model, tau=0.5):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"CED 奖励，复用 grpo_trainer.CEDRewardWrapper.__call__ 的逻辑。\\\\n\\\\n    对一条记录中的所有 parsed_triples 计算平均 CED reward。\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from freige.rewards.ced_reward import verbalize_triple\\\\n\\\\n    parsed_triples = record[\\\\\\\"parsed_triples\\\\\\\"]\\\\n    gold_triples = record[\\\\\\\"gold_triples\\\\\\\"]\\\\n    sents = record[\\\\\\\"sents\\\\\\\"]\\\\n\\\\n    if not parsed_triples:\\\\n        return {\\\\\\\"ced_reward\\\\\\\": 0.0, \\\\\\\"triple_details\\\\\\\": []}\\\\n\\\\n    # 构建 gold_map\\\\n    gold_map = {}\\\\n    for g in gold_triples:\\\\n        key = (\\\\n            str(g.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            str(g.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            str(g.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n        )\\\\n        gold_map[key] = g\\\\n\\\\n    # F1 gate: ��少一个预测 triple 匹配 gold\\\\n    has_gold_match = False\\\\n    for p in parsed_triples:\\\\n        if isinstance(p, dict):\\\\n            pk = (\\\\n                str(p.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(p.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(p.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            )\\\\n            if pk in gold_map:\\\\n                has_gold_match = True\\\\n                break\\\\n    if not has_gold_match:\\\\n        return {\\\\\\\"ced_reward\\\\\\\": 0.0, \\\\\\\"triple_details\\\\\\\": []}\\\\n\\\\n    triple_details = []\\\\n    triple_rewards = []\\\\n    for p in parsed_triples:\\\\n        if not isinstance(p, dict):\\\\n            continue\\\\n        pred_evi_ids = p.get(\\\\\\\"evidence\\\\\\\", [])\\\\n        if not isinstance(pred_evi_ids, list) or not pred_evi_ids:\\\\n            triple_rewards.append(0.0)\\\\n            triple_details.append({\\\\\\\"reward\\\\\\\": 0.0, \\\\\\\"reason\\\\\\\": \\\\\\\"no_evidence\\\\\\\"})\\\\n            continue\\\\n\\\\n        claim = verbalize_triple(\\\\n            str(p.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\"),\\\\n            str(p.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\"),\\\\n            str(p.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\"),\\\\n        )\\\\n        cited_sents = [sents[idx] for idx in pred_evi_ids\\\\n                       if isinstance(idx, int) and 0 <= idx < len(sents)]\\\\n        if not cited_sents:\\\\n            triple_rewards.append(0.0)\\\\n            triple_details.append({\\\\\\\"reward\\\\\\\": 0.0, \\\\\\\"reason\\\\\\\": \\\\\\\"invalid_evidence_ids\\\\\\\"})\\\\n            continue\\\\n\\\\n        key = (\\\\n            str(p.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            str(p.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            str(p.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n        )\\\\n        matched_gold = gold_map.get(key, {})\\\\n        hard_neg_ids = matched_gold.get(\\\\\\\"hard_negative_sent_ids\\\\\\\", [])\\\\n        hard_neg_sents = [sents[idx] for idx in hard_neg_ids\\\\n                          if isinstance(idx, int) and 0 <= idx < len(sents)]\\\\n\\\\n        result = ced_model.compute_ced_reward(\\\\n            claim, cited_sents, hard_neg_sents, tau=tau,\\\\n        )\\\\n        triple_rewards.append(result[\\\\\\\"reward\\\\\\\"])\\\\n        triple_details.append(result)\\\\n\\\\n    mean_ced = sum(triple_rewards) / len(triple_rewards) if triple_rewards else 0.0\\\\n    return {\\\\\\\"ced_reward\\\\\\\": mean_ced, \\\\\\\"triple_details\\\\\\\": triple_details}\\\\n\\\\n\\\\ndef load_generations(input_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"加载 generations.jsonl，支持多 shard 目录合并。\\\\n\\\\n    查找顺序：\\\\n    1. input_dir/shard_*/generations.jsonl — 合并所有 shard\\\\n    2. input_dir/generations.jsonl — 单文件回退\\\\n    按 (doc_id, generation_idx) 去重。\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    input_path = Path(input_dir)\\\\n    shard_files = sorted(input_path.glob(\\\\\\\"shard_*/generations.jsonl\\\\\\\"))\\\\n\\\\n    raw_records = []\\\\n    if shard_files:\\\\n        for sf in shard_files:\\\\n            count = 0\\\\n            with open(sf) as f:\\\\n                for line in f:\\\\n                    line = line.strip()\\\\n                    if line:\\\\n                        raw_records.append(json.loads(line))\\\\n                        count += 1\\\\n            logger.info(\\\\\\\"  shard %s: %d records\\\\\\\", sf.parent.name, count)\\\\n        logger.info(\\\\\\\"Loaded %d records from %d shards\\\\\\\", len(raw_records), len(shard_files))\\\\n    else:\\\\n        single = input_path / \\\\\\\"generations.jsonl\\\\\\\"\\\\n        with open(single) as f:\\\\n            for line in f:\\\\n                line = line.strip()\\\\n                if line:\\\\n                    raw_records.append(json.loads(line))\\\\n        logger.info(\\\\\\\"Loaded %d records from %s\\\\\\\", len(raw_records), single)\\\\n\\\\n    seen = set()\\\\n    records = []\\\\n    for rec in raw_records:\\\\n        key = (rec[\\\\\\\"doc_id\\\\\\\"], rec[\\\\\\\"generation_idx\\\\\\\"])\\\\n        if key not in seen:\\\\n            seen.add(key)\\\\n            records.append(rec)\\\\n    if len(records) < len(raw_records):\\\\n        logger.info(\\\\\\\"Deduplicated: %d → %d records\\\\\\\", len(raw_records), len(records))\\\\n\\\\n    return records\\\\n\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"RSFT Step 2: CED 打分 + 筛选。\\n\\n读取 rsft_generate.py 生成的 JSONL，对每个候选输出计算三种奖励:\\n  - format_reward: JSON 格式合规性\\n  - f1_reward: 与 gold triples 的 micro-F1\\n  - ced_reward: CED 对比证据判别奖励\\n\\n按组合阈值筛选高质量样本，输出 SFT 训练兼容格式。\\n\\n输入:\\n  - generations.jsonl (rsft_generate.py 的输出)\\n\\n输出 (保存到 --output_path):\\n  - rsft_train.jsonl: 筛选后的 SFT 训练数据 (JSONL)\\n  - rsft_scores.jsonl: 带分数的完整记录（供分析）\\n  - rsft_report.json: 统计报告\\n\\n依赖: transformers, torch, freige.rewards.ced_reward\\n\\n用法:\\n  python -m freige.training.rsft_score_filter \\\\\\n      --input_dir /root/autodl-tmp/rsft_generations \\\\\\n      --output_path /root/autodl-tmp/rsft_filtered \\\\\\n      --selection_strategy top_pct --top_pct 25 \\\\\\n      --nli_model_path /root/autodl-tmp/models/nli-deberta-v3-base\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\n\\n# ---------------------------------------------------------------------------\\n# Reward functions — 复用 grpo_trainer 中的逻辑\\n# ---------------------------------------------------------------------------\\n\\ndef compute_format_reward(parsed_triples, format_ok):\\n    \\\"\\\"\\\"格式奖励，复用 grpo_trainer.format_reward_fn 的逻辑。\\\"\\\"\\\"\\n    if not format_ok:\\n        return 0.0\\n    if not parsed_triples:\\n        return 0.1\\n    valid = 0\\n    for item in parsed_triples:\\n        if (isinstance(item, dict) and \\\"head\\\" in item\\n                and \\\"relation\\\" in item and \\\"tail\\\" in item\\n                and \\\"evidence\\\" in item\\n                and isinstance(item[\\\"evidence\\\"], list)):\\n            valid += 1\\n    return valid / len(parsed_triples)\\n\\n\\ndef compute_f1_reward(parsed_triples, gold_triples):\\n    \\\"\\\"\\\"F1 奖励，复用 grpo_trainer.f1_reward_fn 的逻辑。\\\"\\\"\\\"\\n    gold_set = set()\\n    for g in gold_triples:\\n        gold_set.add((\\n            str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n        ))\\n\\n    pred_set = set()\\n    for p in parsed_triples:\\n        if isinstance(p, dict):\\n            pred_set.add((\\n                str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n            ))\\n\\n    if not gold_set:\\n        return 1.0 if not pred_set else 0.0\\n\\n    tp = len(pred_set & gold_set)\\n    prec = tp / len(pred_set) if pred_set else 0.0\\n    rec = tp / len(gold_set) if gold_set else 0.0\\n    f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\\n    return f1\\n\\n\\ndef compute_ced_reward_for_record(record, ced_model, tau=0.5):\\n    \\\"\\\"\\\"CED 奖励，复用 grpo_trainer.CEDRewardWrapper.__call__ 的逻辑。\\n\\n    对一条记录中的所有 parsed_triples 计算平均 CED reward。\\n    \\\"\\\"\\\"\\n    from freige.rewards.ced_reward import verbalize_triple\\n\\n    parsed_triples = record[\\\"parsed_triples\\\"]\\n    gold_triples = record[\\\"gold_triples\\\"]\\n    sents = record[\\\"sents\\\"]\\n\\n    if not parsed_triples:\\n        return {\\\"ced_reward\\\": 0.0, \\\"triple_details\\\": []}\\n\\n    # 构建 gold_map\\n    gold_map = {}\\n    for g in gold_triples:\\n        key = (\\n            str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n            str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n        )\\n        gold_map[key] = g\\n\\n    # F1 gate: ��少一个预测 triple 匹配 gold\\n    has_gold_match = False\\n    for p in parsed_triples:\\n        if isinstance(p, dict):\\n            pk = (\\n                str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n            )\\n            if pk in gold_map:\\n                has_gold_match = True\\n                break\\n    if not has_gold_match:\\n        return {\\\"ced_reward\\\": 0.0, \\\"triple_details\\\": []}\\n\\n    triple_details = []\\n    triple_rewards = []\\n    for p in parsed_triples:\\n        if not isinstance(p, dict):\\n            continue\\n        pred_evi_ids = p.get(\\\"evidence\\\", [])\\n        if not isinstance(pred_evi_ids, list) or not pred_evi_ids:\\n            triple_rewards.append(0.0)\\n            triple_details.append({\\\"reward\\\": 0.0, \\\"reason\\\": \\\"no_evidence\\\"})\\n            continue\\n\\n        claim = verbalize_triple(\\n            str(p.get(\\\"head\\\") or \\\"\\\"),\\n            str(p.get(\\\"relation\\\") or \\\"\\\"),\\n            str(p.get(\\\"tail\\\") or \\\"\\\"),\\n        )\\n        cited_sents = [sents[idx] for idx in pred_evi_ids\\n                       if isinstance(idx, int) and 0 <= idx < len(sents)]\\n        if not cited_sents:\\n            triple_rewards.append(0.0)\\n            triple_details.append({\\\"reward\\\": 0.0, \\\"reason\\\": \\\"invalid_evidence_ids\\\"})\\n            continue\\n\\n        key = (\\n            str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n            str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n            str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n        )\\n        matched_gold = gold_map.get(key, {})\\n        hard_neg_ids = matched_gold.get(\\\"hard_negative_sent_ids\\\", [])\\n        hard_neg_sents = [sents[idx] for idx in hard_neg_ids\\n                          if isinstance(idx, int) and 0 <= idx < len(sents)]\\n\\n        result = ced_model.compute_ced_reward(\\n            claim, cited_sents, hard_neg_sents, tau=tau,\\n        )\\n        triple_rewards.append(result[\\\"reward\\\"])\\n        triple_details.append(result)\\n\\n    mean_ced = sum(triple_rewards) / len(triple_rewards) if triple_rewards else 0.0\\n    return {\\\"ced_reward\\\": mean_ced, \\\"triple_details\\\": triple_details}\\n\\n\\ndef load_generations(input_dir):\\n    \\\"\\\"\\\"加载 generations.jsonl，支持多 shard 目录合并。\\n\\n    查找顺序：\\n    1. input_dir/shard_*/generations.jsonl — 合并所有 shard\\n    2. input_dir/generations.jsonl — 单文件回退\\n    按 (doc_id, generation_idx) 去重。\\n    \\\"\\\"\\\"\\n    input_path = Path(input_dir)\\n    shard_files = sorted(input_path.glob(\\\"shard_*/generations.jsonl\\\"))\\n\\n    raw_records = []\\n    if shard_files:\\n        for sf in shard_files:\\n            count = 0\\n            with open(sf) as f:\\n                for line in f:\\n                    line = line.strip()\\n                    if line:\\n                        raw_records.append(json.loads(line))\\n                        count += 1\\n            logger.info(\\\"  shard %s: %d records\\\", sf.parent.name, count)\\n        logger.info(\\\"Loaded %d records from %d shards\\\", len(raw_records), len(shard_files))\\n    else:\\n        single = input_path / \\\"generations.jsonl\\\"\\n        with open(single) as f:\\n            for line in f:\\n                line = line.strip()\\n                if line:\\n                    raw_records.append(json.loads(line))\\n        logger.info(\\\"Loaded %d records from %s\\\", len(raw_records), single)\\n\\n    seen = set()\\n    records = []\\n    for rec in raw_records:\\n        key = (rec[\\\"doc_id\\\"], rec[\\\"generation_idx\\\"])\\n        if key not in seen:\\n            seen.add(key)\\n            records.append(rec)\\n    if len(records) < len(raw_records):\\n        logger.info(\\\"Deduplicated: %d → %d records\\\", len(raw_records), len(records))\\n\\n    return records\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full `load_generations()` function (lines 179-223). The problem is clear:
+
+1. It first checks for `shard_*/generations.jsonl` files
+2. If shard files exist, it loads ONLY from shards (the `else` branch for root file is only used when NO shard files are found)
+3. The root `generations.jsonl` (302 docs, 2416 lines) is never loaded when shards exist
+
+The fix needs to:
+1. After loading shard files, also check and load the root `generations.jsonl`
+
+
+2. Dedup by `(doc_id, generation_idx)`, preferring shard versions since they'll overwrite root records
+3. Add shard consistency checking between progress.json and the JSONL files
+
+I should also check `diversity_metrics.py` to understand how `compute_diversity_from_file` works before writing the cross-check script, then I'll prepare the modified function and deploy it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "476d949f-22ab-4708-8f06-d47da13ac452",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ktmvXVvHPH2KTwrh7MZyG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3255,
+      "cache_read_input_tokens": 29981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3255
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+现在清楚了。`load_generations()` (行 179-223) 的逻辑是：有 shard 文件时**只加载 shard，跳过根目录文件**。需要改为：先加载根目录，再加载 shard（shard 去重时覆盖根目录版本）。同时加入 shard 一致性检查。
+
+现在写修复代码并推送到服务器。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "82a3424e-15d8-4d2f-a4a4-1a07a183c188",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ktmvXVvHPH2KTwrh7MZyG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3255,
+      "cache_read_input_tokens": 29981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3255
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YULmmdSYaynxKGDsfrPoNf`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"compute_diversity_from_file\" /root/autodl-tmp/freige/training/diversity_metrics.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "f82aa955-92b6-48cc-9f54-6920157fa59a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ktmvXVvHPH2KTwrh7MZyG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3255,
+      "cache_read_input_tokens": 29981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3255
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T01:59:23.403Z_
+
+<details><summary>↩ Tool result · `toolu_01YULmmdSYaynxKGDsfrPoNf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"46:def compute_diversity_from_file(generations_path: str, parse_fn=None) -> dict:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "1d4882e1-2ef0-43c0-8149-95380022ca2e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"46:def compute_diversity_from_file(generations_path: str, parse_fn=None) -> dict:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"46:def compute_diversity_from_file(generations_path: str, parse_fn=None) -> dict:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016ivX7F9kTuuMk4HEdLebeC`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat > /tmp/patch_load_gen.py << 'PYEOF'\nimport re\n\nfilepath = \"/root/autodl-tmp/freige/training/rsft_score_filter.py\"\n\nwith open(filepath, \"r\") as f:\n    content = f.read()\n\nold_func = '''def load_generations(input_dir):\n    \"\"\"加载 generations.jsonl，支持多 shard 目录合并。\n\n    查找顺序：\n    1. input_dir/shard_*/generations.jsonl — 合并所有 shard\n    2. input_dir/generations.jsonl — 单文件回退\n    按 (doc_id, generation_idx) 去重。\n    \"\"\"\n    input_path = Path(input_dir)\n    shard_files = sorted(input_path.glob(\"shard_*/generations.jsonl\"))\n\n    raw_records = []\n    if shard_files:\n        for sf in shard_files:\n            count = 0\n            with open(sf) as f:\n                for line in f:\n                    line = line.strip()\n                    if line:\n                        raw_records.append(json.loads(line))\n                        count += 1\n            logger.info(\"  shard %s: %d records\", sf.parent.name, count)\n        logger.info(\"Loaded %d records from %d shards\", len(raw_records), len(shard_files))\n    else:\n        single = input_path / \"generations.jsonl\"\n        with open(single) as f:\n            for line in f:\n                line = line.strip()\n                if line:\n                    raw_records.append(json.loads(line))\n        logger.info(\"Loaded %d records from %s\", len(raw_records), single)\n\n    seen = set()\n    records = []\n    for rec in raw_records:\n        key = (rec[\"doc_id\"], rec[\"generation_idx\"])\n        if key not in seen:\n            seen.add(key)\n            records.append(rec)\n    if len(records) < len(raw_records):\n        logger.info(\"Deduplicated: %d → %d records\", len(raw_records), len(records))\n\n    return records'''\n\nnew_func = '''def _check_shard_consistency(shard_dir, actual_doc_ids):\n    \"\"\"检查 shard 的 progress.json 与 JSONL 实际数据是否一致。\"\"\"\n    progress_file = shard_dir / \"progress.json\"\n    if not progress_file.exists():\n        return\n    try:\n        with open(progress_file) as f:\n            progress = json.load(f)\n        expected = progress.get(\"completed_docs\", progress.get(\"total_docs\"))\n        if expected is None:\n            return\n        actual = len(actual_doc_ids)\n        if actual != expected:\n            logger.warning(\n                \"  %s consistency: progress.json expects %d docs, JSONL has %d (delta=%d)\",\n                shard_dir.name, expected, actual, actual - expected,\n            )\n    except Exception as e:\n        logger.warning(\"  %s: failed to read progress.json: %s\", shard_dir.name, e)\n\n\ndef load_generations(input_dir):\n    \"\"\"加载 generations.jsonl，支持根目录 + 多 shard 目录合并。\n\n    加载顺序（后加载的覆盖先加载的）：\n    1. input_dir/generations.jsonl — 根目录文件\n    2. input_dir/shard_*/generations.jsonl — 所有 shard\n    按 (doc_id, generation_idx) 去重，shard 版本优先。\n    \"\"\"\n    input_path = Path(input_dir)\n    shard_files = sorted(input_path.glob(\"shard_*/generations.jsonl\"))\n\n    raw_records = []\n\n    root_file = input_path / \"generations.jsonl\"\n    root_count = 0\n    if root_file.exists():\n        with open(root_file) as f:\n            for line in f:\n                line = line.strip()\n                if line:\n                    raw_records.append(json.loads(line))\n                    root_count += 1\n        root_doc_ids = set(r[\"doc_id\"] for r in raw_records[:root_count])\n        logger.info(\"  root: %d records (%d unique docs)\", root_count, len(root_doc_ids))\n\n    if shard_files:\n        for sf in shard_files:\n            shard_start = len(raw_records)\n            count = 0\n            with open(sf) as f:\n                for line in f:\n                    line = line.strip()\n                    if line:\n                        raw_records.append(json.loads(line))\n                        count += 1\n            shard_doc_ids = set(r[\"doc_id\"] for r in raw_records[shard_start:])\n            logger.info(\"  shard %s: %d records (%d unique docs)\", sf.parent.name, count, len(shard_doc_ids))\n            _check_shard_consistency(sf.parent, shard_doc_ids)\n\n    total_sources = (1 if root_count > 0 else 0) + len(shard_files)\n    logger.info(\"Loaded %d raw records from %d source(s)\", len(raw_records), total_sources)\n\n    if not raw_records:\n        raise FileNotFoundError(f\"No generations.jsonl found in {input_path}\")\n\n    seen = {}\n    for idx, rec in enumerate(raw_records):\n        key = (rec[\"doc_id\"], rec[\"generation_idx\"])\n        seen[key] = idx\n    records = [raw_records[i] for i in sorted(seen.values())]\n\n    unique_docs = set(r[\"doc_id\"] for r in records)\n    logger.info(\"After dedup: %d records, %d unique docs\", len(records), len(unique_docs))\n    if len(records) < len(raw_records):\n        logger.info(\"Deduplicated: %d → %d records (removed %d duplicates)\",\n                     len(raw_records), len(records), len(raw_records) - len(records))\n\n    return records'''\n\nif old_func not in content:\n    print(\"ERROR: old function not found in file!\")\n    import sys; sys.exit(1)\n\ncontent = content.replace(old_func, new_func)\n\nwith open(filepath, \"w\") as f:\n    f.write(content)\n\nprint(\"OK: load_generations patched successfully\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/patch_load_gen.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "14996e58-7e06-4c35-9778-d8becf0fd3b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DU7VNK6Pz3U4r3qQsHghP1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 715,
+      "cache_read_input_tokens": 33236,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 715
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T01:59:47.823Z_
+
+<details><summary>↩ Tool result · `toolu_016ivX7F9kTuuMk4HEdLebeC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"OK: load_generations patched successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "4c355e35-4dd4-494f-812f-b02697730f73",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK: load_generations patched successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"OK: load_generations patched successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+代码已修补。现在验证修复 + 创建 cross-check 脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "30f4341b-397d-4dfd-8235-062bc68a8c4c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LSEZuU2vc1gEyDVKDfVLK6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1868,
+      "cache_read_input_tokens": 33951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1868
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_018PiD8VfU71bAVX2tURk7Az`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python3 -c \"\nfrom freige.training.rsft_score_filter import load_generations\nfrom pathlib import Path\nrecords = load_generations(Path('/root/autodl-tmp/rsft_generations'))\ndocs = set(r.get('doc_id') for r in records)\nprint(f'Total records: {len(records)}, unique docs: {len(docs)}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "98586769-232c-4ea8-a8b4-6300a5bdfcda",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LSEZuU2vc1gEyDVKDfVLK6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1868,
+      "cache_read_input_tokens": 33951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1868
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XpWhTNhkd74rJPe2enUnjG`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"def load_generations\\|def _check_shard\" /root/autodl-tmp/freige/training/rsft_score_filter.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "11af9d35-da48-40c9-877f-19625bdf64b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LSEZuU2vc1gEyDVKDfVLK6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1868,
+      "cache_read_input_tokens": 33951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1868
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T01:59:55.664Z_
+
+<details><summary>↩ Tool result · `toolu_018PiD8VfU71bAVX2tURk7Az`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total records: 4584, unique docs: 573\\n\", \"stderr\": \"2026-05-15 09:59:55,348 INFO   root: 2416 records (302 unique docs)\\n2026-05-15 09:59:55,389 INFO   shard shard_0: 616 records (77 unique docs)\\n2026-05-15 09:59:55,485 INFO   shard shard_1: 656 records (82 unique docs)\\n2026-05-15 09:59:55,528 INFO   shard shard_2: 688 records (86 unique docs)\\n2026-05-15 09:59:55,547 INFO   shard shard_3: 328 records (39 unique docs)\\n2026-05-15 09:59:55,548 INFO Loaded 4704 raw records from 5 source(s)\\n2026-05-15 09:59:55,551 INFO After dedup: 4584 records, 573 unique docs\\n2026-05-15 09:59:55,551 INFO Deduplicated: 4704 → 4584 records (removed 120 duplicates)\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "bf34d26d-e6fe-4842-bcad-57b4400c6368",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total records: 4584, unique docs: 573\\\\n\\\", \\\"stderr\\\": \\\"2026-05-15 09:59:55,348 INFO   root: 2416 records (302 unique docs)\\\\n2026-05-15 09:59:55,389 INFO   shard shard_0: 616 records (77 unique docs)\\\\n2026-05-15 09:59:55,485 INFO   shard shard_1: 656 records (82 unique docs)\\\\n2026-05-15 09:59:55,528 INFO   shard shard_2: 688 records (86 unique docs)\\\\n2026-05-15 09:59:55,547 INFO   shard shard_3: 328 records (39 unique docs)\\\\n2026-05-15 09:59:55,548 INFO Loaded 4704 raw records from 5 source(s)\\\\n2026-05-15 09:59:55,551 INFO After dedup: 4584 records, 573 unique docs\\\\n2026-05-15 09:59:55,551 INFO Deduplicated: 4704 → 4584 records (removed 120 duplicates)\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Total records: 4584, unique docs: 573\\n\", \"stderr\": \"2026-05-15 09:59:55,348 INFO   root: 2416 records (302 unique docs)\\n2026-05-15 09:59:55,389 INFO   shard shard_0: 616 records (77 unique docs)\\n2026-05-15 09:59:55,485 INFO   shard shard_1: 656 records (82 unique docs)\\n2026-05-15 09:59:55,528 INFO   shard shard_2: 688 records (86 unique docs)\\n2026-05-15 09:59:55,547 INFO   shard shard_3: 328 records (39 unique docs)\\n2026-05-15 09:59:55,548 INFO Loaded 4704 raw records from 5 source(s)\\n2026-05-15 09:59:55,551 INFO After dedup: 4584 records, 573 unique docs\\n2026-05-15 09:59:55,551 INFO Deduplicated: 4704 → 4584 records (removed 120 duplicates)\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T01:59:55.675Z_
+
+<details><summary>↩ Tool result · `toolu_01XpWhTNhkd74rJPe2enUnjG`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "6333f88f-7579-4554-9a0b-346b360861c6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The fix is working:
+- root: 2416 records (302 unique docs) ✓
+- shard_0: 616 records (77 docs)
+- shard_1: 656 records (82 docs)
+- shard_2: 688 records (86 docs)
+- shard_3: 328 records (39 docs)
+- Total raw: 4704, after dedup: 4584 records, 573 unique docs
+- 120 duplicates removed (some shard docs overlap with root)
+
+The shard consistency check didn't trigger warnings, which means either the progress.json files matched or they don't have the expected keys. 
+
+Now I'm examining the shard progress files to verify the consistency check is functioning properly, then I'll build a diversity cross-check script to validate the data further.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "ae9867d8-5816-4373-b2a0-341f50a67c24",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tvr9HBdJm6LFLTKqSkoYtR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 900,
+      "cache_read_input_tokens": 35819,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 900
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+验证成功：
+- root: 302 unique docs (之前被丢失的)
+- 4 shards: 77+82+86+39 = 284 docs (部分在进行中)
+- 去重后 4584 records, 573 unique docs, 移除了 120 条重叠记录
+
+现在检查 shard 一致性是否触发了检查，以及创建 cross-check 脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "71213783-f17b-4876-b1f1-b61ad6ac9eb8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tvr9HBdJm6LFLTKqSkoYtR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 900,
+      "cache_read_input_tokens": 35819,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 900
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014SWhzH51vXmDGxYygZGeYg`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/rsft_generations/shard_3/progress.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "d725e6af-1dea-4fdd-a8b1-fa66fa874298",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tvr9HBdJm6LFLTKqSkoYtR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 900,
+      "cache_read_input_tokens": 35819,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 900
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T02:00:06.169Z_
+
+<details><summary>↩ Tool result · `toolu_014SWhzH51vXmDGxYygZGeYg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"completed_doc_ids\\\": [\\\"Aapravasi Ghat\\\", \\\"Ali-Reza Asgari\\\", \\\"Alicia Lemme\\\", \\\"Bartolomeo Passarotti\\\", \\\"Beaver River, New York\\\", \\\"Bertrand de Poulengy\\\", \\\"Brazoria National Wildlife Refuge\\\", \\\"Cagayan\\\", \\\"Calais Conference\\\", \\\"Chung Hwan Kwak\\\", \\\"Cianjur, Cianjur Regency\\\", \\\"Claude Pascal\\\", \\\"Clube de Regatas do Flamengo\\\\u2013Clube Atl\\\\u00e9tico Mineiro rivalry\\\", \\\"Edith Tiempo\\\", \\\"Edward M. House\\\", \\\"Elazar Shach\\\", \\\"Famatinian orogeny\\\", \\\"Gales Creek, Oregon\\\", \\\"Gilbert Miller\\\", \\\"Healing Camp, Aren't You Happy\\\", \\\"Helldivers\\\", \\\"Holy Cross Church, Hanga Roa\\\", \\\"I Love Katamari\\\", \\\"If This Isn't Love (Jennifer Hudson song)\\\", \\\"Iva imbricata\\\", \\\"I\\\\u00f1aki Ochoa de Olza\\\", \\\"John III Comyn, Lord of Badenoch\\\", \\\"Jonah Fisher\\\", \\\"Julius Strasburger\\\", \\\"Kamerik\\\", \\\"Kaohsiung Incident\\\", \\\"K\\\\u00e1roly G\\\\u00fcttler\\\", \\\"Leonardtown, Maryland\\\", \\\"List of ambassadors of the United States to the Democratic Republic of the Congo\\\", \\\"List of counties in Washington\\\", \\\"List of mountains in South Africa\\\", \\\"Mascarene martin\\\", \\\"Mats R\\\\u00e5dberg\\\", \\\"Mega Man ZX Advent\\\", \\\"Milton, New South Wales\\\", \\\"Music for a Blue Train\\\", \\\"Negri River (Australia)\\\", \\\"Nicholas Bloom\\\", \\\"Nushagak River\\\", \\\"Occupation of the Hainburger Au\\\", \\\"Palace Rebellion\\\", \\\"Pale-breasted thrush\\\", \\\"Paska\\\\u010di\\\\u0107 noble family\\\", \\\"Pattukkottai\\\", \\\"Public holidays in Canada\\\", \\\"Qu River (Nanpan River)\\\", \\\"Rafael Carrera\\\", \\\"Reginald Miles\\\", \\\"Return to Castle Wolfenstein\\\", \\\"Saint Louis (El Greco)\\\", \\\"Sanguinarium\\\", \\\"Sima Shi\\\", \\\"Smith's Bible Dictionary\\\", \\\"South (Heather Nova album)\\\", \\\"Stay (Faraway, So Close!)\\\", \\\"Stephen Phillips House\\\", \\\"The Emergency (Ireland)\\\", \\\"The Grand Magazine\\\", \\\"The Invisible Man (Queen song)\\\", \\\"The Moviegoer\\\", \\\"The Out Crowd\\\", \\\"The Used\\\", \\\"Thomas McLaughlin (engineer)\\\", \\\"Victor Albert Sinclair\\\", \\\"With All My Heart and Soul (album)\\\", \\\"\\\\u00c9cole Polytechnique\\\"]}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "a9d92bbd-5986-4bab-9e22-af70cd0591d3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"completed_doc_ids\\\\\\\": [\\\\\\\"Aapravasi Ghat\\\\\\\", \\\\\\\"Ali-Reza Asgari\\\\\\\", \\\\\\\"Alicia Lemme\\\\\\\", \\\\\\\"Bartolomeo Passarotti\\\\\\\", \\\\\\\"Beaver River, New York\\\\\\\", \\\\\\\"Bertrand de Poulengy\\\\\\\", \\\\\\\"Brazoria National Wildlife Refuge\\\\\\\", \\\\\\\"Cagayan\\\\\\\", \\\\\\\"Calais Conference\\\\\\\", \\\\\\\"Chung Hwan Kwak\\\\\\\", \\\\\\\"Cianjur, Cianjur Regency\\\\\\\", \\\\\\\"Claude Pascal\\\\\\\", \\\\\\\"Clube de Regatas do Flamengo\\\\\\\\u2013Clube Atl\\\\\\\\u00e9tico Mineiro rivalry\\\\\\\", \\\\\\\"Edith Tiempo\\\\\\\", \\\\\\\"Edward M. House\\\\\\\", \\\\\\\"Elazar Shach\\\\\\\", \\\\\\\"Famatinian orogeny\\\\\\\", \\\\\\\"Gales Creek, Oregon\\\\\\\", \\\\\\\"Gilbert Miller\\\\\\\", \\\\\\\"Healing Camp, Aren't You Happy\\\\\\\", \\\\\\\"Helldivers\\\\\\\", \\\\\\\"Holy Cross Church, Hanga Roa\\\\\\\", \\\\\\\"I Love Katamari\\\\\\\", \\\\\\\"If This Isn't Love (Jennifer Hudson song)\\\\\\\", \\\\\\\"Iva imbricata\\\\\\\", \\\\\\\"I\\\\\\\\u00f1aki Ochoa de Olza\\\\\\\", \\\\\\\"John III Comyn, Lord of Badenoch\\\\\\\", \\\\\\\"Jonah Fisher\\\\\\\", \\\\\\\"Julius Strasburger\\\\\\\", \\\\\\\"Kamerik\\\\\\\", \\\\\\\"Kaohsiung Incident\\\\\\\", \\\\\\\"K\\\\\\\\u00e1roly G\\\\\\\\u00fcttler\\\\\\\", \\\\\\\"Leonardtown, Maryland\\\\\\\", \\\\\\\"List of ambassadors of the United States to the Democratic Republic of the Congo\\\\\\\", \\\\\\\"List of counties in Washington\\\\\\\", \\\\\\\"List of mountains in South Africa\\\\\\\", \\\\\\\"Mascarene martin\\\\\\\", \\\\\\\"Mats R\\\\\\\\u00e5dberg\\\\\\\", \\\\\\\"Mega Man ZX Advent\\\\\\\", \\\\\\\"Milton, New South Wales\\\\\\\", \\\\\\\"Music for a Blue Train\\\\\\\", \\\\\\\"Negri River (Australia)\\\\\\\", \\\\\\\"Nicholas Bloom\\\\\\\", \\\\\\\"Nushagak River\\\\\\\", \\\\\\\"Occupation of the Hainburger Au\\\\\\\", \\\\\\\"Palace Rebellion\\\\\\\", \\\\\\\"Pale-breasted thrush\\\\\\\", \\\\\\\"Paska\\\\\\\\u010di\\\\\\\\u0107 noble family\\\\\\\", \\\\\\\"Pattukkottai\\\\\\\", \\\\\\\"Public holidays in Canada\\\\\\\", \\\\\\\"Qu River (Nanpan River)\\\\\\\", \\\\\\\"Rafael Carrera\\\\\\\", \\\\\\\"Reginald Miles\\\\\\\", \\\\\\\"Return to Castle Wolfenstein\\\\\\\", \\\\\\\"Saint Louis (El Greco)\\\\\\\", \\\\\\\"Sanguinarium\\\\\\\", \\\\\\\"Sima Shi\\\\\\\", \\\\\\\"Smith's Bible Dictionary\\\\\\\", \\\\\\\"South (Heather Nova album)\\\\\\\", \\\\\\\"Stay (Faraway, So Close!)\\\\\\\", \\\\\\\"Stephen Phillips House\\\\\\\", \\\\\\\"The Emergency (Ireland)\\\\\\\", \\\\\\\"The Grand Magazine\\\\\\\", \\\\\\\"The Invisible Man (Queen song)\\\\\\\", \\\\\\\"The Moviegoer\\\\\\\", \\\\\\\"The Out Crowd\\\\\\\", \\\\\\\"The Used\\\\\\\", \\\\\\\"Thomas McLaughlin (engineer)\\\\\\\", \\\\\\\"Victor Albert Sinclair\\\\\\\", \\\\\\\"With All My Heart and Soul (album)\\\\\\\", \\\\\\\"\\\\\\\\u00c9cole Polytechnique\\\\\\\"]}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"completed_doc_ids\\\": [\\\"Aapravasi Ghat\\\", \\\"Ali-Reza Asgari\\\", \\\"Alicia Lemme\\\", \\\"Bartolomeo Passarotti\\\", \\\"Beaver River, New York\\\", \\\"Bertrand de Poulengy\\\", \\\"Brazoria National Wildlife Refuge\\\", \\\"Cagayan\\\", \\\"Calais Conference\\\", \\\"Chung Hwan Kwak\\\", \\\"Cianjur, Cianjur Regency\\\", \\\"Claude Pascal\\\", \\\"Clube de Regatas do Flamengo\\\\u2013Clube Atl\\\\u00e9tico Mineiro rivalry\\\", \\\"Edith Tiempo\\\", \\\"Edward M. House\\\", \\\"Elazar Shach\\\", \\\"Famatinian orogeny\\\", \\\"Gales Creek, Oregon\\\", \\\"Gilbert Miller\\\", \\\"Healing Camp, Aren't You Happy\\\", \\\"Helldivers\\\", \\\"Holy Cross Church, Hanga Roa\\\", \\\"I Love Katamari\\\", \\\"If This Isn't Love (Jennifer Hudson song)\\\", \\\"Iva imbricata\\\", \\\"I\\\\u00f1aki Ochoa de Olza\\\", \\\"John III Comyn, Lord of Badenoch\\\", \\\"Jonah Fisher\\\", \\\"Julius Strasburger\\\", \\\"Kamerik\\\", \\\"Kaohsiung Incident\\\", \\\"K\\\\u00e1roly G\\\\u00fcttler\\\", \\\"Leonardtown, Maryland\\\", \\\"List of ambassadors of the United States to the Democratic Republic of the Congo\\\", \\\"List of counties in Washington\\\", \\\"List of mountains in South Africa\\\", \\\"Mascarene martin\\\", \\\"Mats R\\\\u00e5dberg\\\", \\\"Mega Man ZX Advent\\\", \\\"Milton, New South Wales\\\", \\\"Music for a Blue Train\\\", \\\"Negri River (Australia)\\\", \\\"Nicholas Bloom\\\", \\\"Nushagak River\\\", \\\"Occupation of the Hainburger Au\\\", \\\"Palace Rebellion\\\", \\\"Pale-breasted thrush\\\", \\\"Paska\\\\u010di\\\\u0107 noble family\\\", \\\"Pattukkottai\\\", \\\"Public holidays in Canada\\\", \\\"Qu River (Nanpan River)\\\", \\\"Rafael Carrera\\\", \\\"Reginald Miles\\\", \\\"Return to Castle Wolfenstein\\\", \\\"Saint Louis (El Greco)\\\", \\\"Sanguinarium\\\", \\\"Sima Shi\\\", \\\"Smith's Bible Dictionary\\\", \\\"South (Heather Nova album)\\\", \\\"Stay (Faraway, So Close!)\\\", \\\"Stephen Phillips House\\\", \\\"The Emergency (Ireland)\\\", \\\"The Grand Magazine\\\", \\\"The Invisible Man (Queen song)\\\", \\\"The Moviegoer\\\", \\\"The Out Crowd\\\", \\\"The Used\\\", \\\"Thomas McLaughlin (engineer)\\\", \\\"Victor Albert Sinclair\\\", \\\"With All My Heart and Soul (album)\\\", \\\"\\\\u00c9cole Polytechnique\\\"]}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01DTvhQJLzqg42eQH6R31ccp`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "mkdir -p /root/autodl-tmp/scripts && cat > /root/autodl-tmp/scripts/diversity_crosscheck.sh << 'BASHEOF'\n#!/bin/bash\ncd /root/autodl-tmp\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython3 -c \"\nfrom freige.training.diversity_metrics import compute_diversity_from_file\nimport os\n\nbase = 'rsft_generations'\nsources = ['root'] + [f'shard_{i}' for i in range(4)]\npaths = [f'{base}/generations.jsonl'] + [f'{base}/shard_{i}/generations.jsonl' for i in range(4)]\n\nprint(f'{\\\"source\\\":<10} {\\\"docs\\\":>5} {\\\"mean_div\\\":>9} {\\\"median\\\":>7} {\\\"low_div\\\":>8}')\nprint('-' * 45)\nfor name, path in zip(sources, paths):\n    if not os.path.exists(path):\n        print(f'{name:<10} -- file not found')\n        continue\n    try:\n        stats = compute_diversity_from_file(path)\n        low = stats.get('low_diversity_pct', 'N/A')\n        low_str = f'{low:.1f}%' if isinstance(low, float) else str(low)\n        print(f'{name:<10} {stats[\\\"n_docs\\\"]:>5} {stats[\\\"mean_diversity\\\"]:>8.2f} {stats[\\\"median_diversity\\\"]:>7.1f} {low_str:>8}')\n    except Exception as e:\n        print(f'{name:<10} ERROR: {e}')\n\"\nBASHEOF\nchmod +x /root/autodl-tmp/scripts/diversity_crosscheck.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "9a038474-e681-4988-93e2-e7d4489dce1f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tvr9HBdJm6LFLTKqSkoYtR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 900,
+      "cache_read_input_tokens": 35819,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 900
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T02:00:13.325Z_
+
+<details><summary>↩ Tool result · `toolu_01DTvhQJLzqg42eQH6R31ccp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "90399d75-e9e2-4bfd-913f-7bf4ae9b47e5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The shard_3 progress.json has `completed_doc_ids` (not `completed_docs` or `total_docs`), so the consistency check needs to handle this format. Let me count the doc_ids in the progress.json - it looks like 72 docs are listed there. But the JSONL only has 39 unique docs. That's the inconsistency!
+
+Let me update `_check_shard_consistency` to also handle the `completed_doc_ids` key.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "c3fcd49d-b89a-4d6e-993b-d946849fb668",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MfnDwQAnTdSrfYA8oCt2sm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2112,
+      "cache_read_input_tokens": 36719,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2112
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+shard_3 的 progress.json 用的是 `completed_doc_ids` (列表)，不是 `completed_docs` (计数)。一致性检查需要适配这个格式。progress.json 有 72 个 doc_id，但 JSONL 只有 39 个 — 这正是需要检测的不一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "40d8e1cc-1255-4953-a870-1275f145d024",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MfnDwQAnTdSrfYA8oCt2sm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2112,
+      "cache_read_input_tokens": 36719,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2112
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AVzAKDGWN2ffJJGMAEApgB`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/rsft_generations/shard_0/progress.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "70d9ebff-03bb-489d-b536-ea2656f11b75",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MfnDwQAnTdSrfYA8oCt2sm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2112,
+      "cache_read_input_tokens": 36719,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2112
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778824200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "04adbf49-1e76-459b-a33e-9fc3853b3e17",
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e"
+}
+```
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T02:00:22.709Z_
+
+<details><summary>↩ Tool result · `toolu_01AVzAKDGWN2ffJJGMAEApgB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"completed_doc_ids\\\": [\\\"AIDAblu\\\", \\\"Ahmed Djoghlaf\\\", \\\"AirAsia Zest\\\", \\\"Alfred Edward Moffat\\\", \\\"Amras\\\", \\\"Anton Antonov-Ovseyenko\\\", \\\"Askar Simitko\\\", \\\"Assam Rifles\\\", \\\"Bastille Day military parade\\\", \\\"Battle of Mansfield\\\", \\\"Beautiful Surrender\\\", \\\"Because You Left\\\", \\\"Beyaz\\\\u0131t Square\\\", \\\"Birendra Krishna Bhadra\\\", \\\"Brain-Washing (book)\\\", \\\"Bridge River Country\\\", \\\"Burial (musician)\\\", \\\"Castro Theatre\\\", \\\"Darksiders\\\", \\\"EFTA Court\\\", \\\"El Lado Oscuro\\\", \\\"Family Affair\\\", \\\"Francesc Xavier Bult\\\\u00f3\\\", \\\"General People's Committee\\\", \\\"Geography of Antarctica\\\", \\\"Gett: The Trial of Viviane Amsalem\\\", \\\"Government of the Autonomous Republic of Abkhazia\\\", \\\"Helsinki County Prison\\\", \\\"Historical and Literary Society\\\", \\\"Hydrozagadka\\\", \\\"I Am Woman (Jordin Sparks song)\\\", \\\"Itzhak Fintzi\\\", \\\"Japan Evangelistic Band\\\", \\\"John Dugard\\\", \\\"Joseph Matth\\\\u00e4us Aigner\\\", \\\"Kevin Edwards\\\", \\\"Little Big Town discography\\\", \\\"Little Vera\\\", \\\"Maier Zipser\\\", \\\"Malinda Damgaard\\\", \\\"Mexican Football Federation\\\", \\\"Miina Turunen\\\", \\\"Mohamed Afrah Qanyare\\\", \\\"New Armenian Resistance Group\\\", \\\"Niklas Bergqvist\\\", \\\"Nitin Bose\\\", \\\"Northern Baptist Theological Seminary\\\", \\\"Olga Barabanschikova\\\", \\\"Pacific Fair Shopping Centre\\\", \\\"Peter Merian\\\", \\\"Pictured Rocks National Lakeshore\\\", \\\"Political positions of Hillary Clinton\\\", \\\"Resogun\\\", \\\"Rick Barton (musician)\\\", \\\"Ring of Fire (radio program)\\\", \\\"Ruslan Salei\\\", \\\"Serpentine, Victoria\\\", \\\"Somdet Kiaw\\\", \\\"Stahlmusik\\\", \\\"Strawhead\\\", \\\"Surrealist cinema\\\", \\\"Tarek al-Zumar\\\", \\\"The Rankenian Club\\\", \\\"The Saint in Europe\\\", \\\"Tokyo Story\\\", \\\"Totes Isotoner\\\", \\\"Uchylsko\\\", \\\"Upper Galilee\\\", \\\"Vito Frazzi\\\"]}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "befd5052-1e10-47b4-a06d-33c56a33c9e9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"completed_doc_ids\\\\\\\": [\\\\\\\"AIDAblu\\\\\\\", \\\\\\\"Ahmed Djoghlaf\\\\\\\", \\\\\\\"AirAsia Zest\\\\\\\", \\\\\\\"Alfred Edward Moffat\\\\\\\", \\\\\\\"Amras\\\\\\\", \\\\\\\"Anton Antonov-Ovseyenko\\\\\\\", \\\\\\\"Askar Simitko\\\\\\\", \\\\\\\"Assam Rifles\\\\\\\", \\\\\\\"Bastille Day military parade\\\\\\\", \\\\\\\"Battle of Mansfield\\\\\\\", \\\\\\\"Beautiful Surrender\\\\\\\", \\\\\\\"Because You Left\\\\\\\", \\\\\\\"Beyaz\\\\\\\\u0131t Square\\\\\\\", \\\\\\\"Birendra Krishna Bhadra\\\\\\\", \\\\\\\"Brain-Washing (book)\\\\\\\", \\\\\\\"Bridge River Country\\\\\\\", \\\\\\\"Burial (musician)\\\\\\\", \\\\\\\"Castro Theatre\\\\\\\", \\\\\\\"Darksiders\\\\\\\", \\\\\\\"EFTA Court\\\\\\\", \\\\\\\"El Lado Oscuro\\\\\\\", \\\\\\\"Family Affair\\\\\\\", \\\\\\\"Francesc Xavier Bult\\\\\\\\u00f3\\\\\\\", \\\\\\\"General People's Committee\\\\\\\", \\\\\\\"Geography of Antarctica\\\\\\\", \\\\\\\"Gett: The Trial of Viviane Amsalem\\\\\\\", \\\\\\\"Government of the Autonomous Republic of Abkhazia\\\\\\\", \\\\\\\"Helsinki County Prison\\\\\\\", \\\\\\\"Historical and Literary Society\\\\\\\", \\\\\\\"Hydrozagadka\\\\\\\", \\\\\\\"I Am Woman (Jordin Sparks song)\\\\\\\", \\\\\\\"Itzhak Fintzi\\\\\\\", \\\\\\\"Japan Evangelistic Band\\\\\\\", \\\\\\\"John Dugard\\\\\\\", \\\\\\\"Joseph Matth\\\\\\\\u00e4us Aigner\\\\\\\", \\\\\\\"Kevin Edwards\\\\\\\", \\\\\\\"Little Big Town discography\\\\\\\", \\\\\\\"Little Vera\\\\\\\", \\\\\\\"Maier Zipser\\\\\\\", \\\\\\\"Malinda Damgaard\\\\\\\", \\\\\\\"Mexican Football Federation\\\\\\\", \\\\\\\"Miina Turunen\\\\\\\", \\\\\\\"Mohamed Afrah Qanyare\\\\\\\", \\\\\\\"New Armenian Resistance Group\\\\\\\", \\\\\\\"Niklas Bergqvist\\\\\\\", \\\\\\\"Nitin Bose\\\\\\\", \\\\\\\"Northern Baptist Theological Seminary\\\\\\\", \\\\\\\"Olga Barabanschikova\\\\\\\", \\\\\\\"Pacific Fair Shopping Centre\\\\\\\", \\\\\\\"Peter Merian\\\\\\\", \\\\\\\"Pictured Rocks National Lakeshore\\\\\\\", \\\\\\\"Political positions of Hillary Clinton\\\\\\\", \\\\\\\"Resogun\\\\\\\", \\\\\\\"Rick Barton (musician)\\\\\\\", \\\\\\\"Ring of Fire (radio program)\\\\\\\", \\\\\\\"Ruslan Salei\\\\\\\", \\\\\\\"Serpentine, Victoria\\\\\\\", \\\\\\\"Somdet Kiaw\\\\\\\", \\\\\\\"Stahlmusik\\\\\\\", \\\\\\\"Strawhead\\\\\\\", \\\\\\\"Surrealist cinema\\\\\\\", \\\\\\\"Tarek al-Zumar\\\\\\\", \\\\\\\"The Rankenian Club\\\\\\\", \\\\\\\"The Saint in Europe\\\\\\\", \\\\\\\"Tokyo Story\\\\\\\", \\\\\\\"Totes Isotoner\\\\\\\", \\\\\\\"Uchylsko\\\\\\\", \\\\\\\"Upper Galilee\\\\\\\", \\\\\\\"Vito Frazzi\\\\\\\"]}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"completed_doc_ids\\\": [\\\"AIDAblu\\\", \\\"Ahmed Djoghlaf\\\", \\\"AirAsia Zest\\\", \\\"Alfred Edward Moffat\\\", \\\"Amras\\\", \\\"Anton Antonov-Ovseyenko\\\", \\\"Askar Simitko\\\", \\\"Assam Rifles\\\", \\\"Bastille Day military parade\\\", \\\"Battle of Mansfield\\\", \\\"Beautiful Surrender\\\", \\\"Because You Left\\\", \\\"Beyaz\\\\u0131t Square\\\", \\\"Birendra Krishna Bhadra\\\", \\\"Brain-Washing (book)\\\", \\\"Bridge River Country\\\", \\\"Burial (musician)\\\", \\\"Castro Theatre\\\", \\\"Darksiders\\\", \\\"EFTA Court\\\", \\\"El Lado Oscuro\\\", \\\"Family Affair\\\", \\\"Francesc Xavier Bult\\\\u00f3\\\", \\\"General People's Committee\\\", \\\"Geography of Antarctica\\\", \\\"Gett: The Trial of Viviane Amsalem\\\", \\\"Government of the Autonomous Republic of Abkhazia\\\", \\\"Helsinki County Prison\\\", \\\"Historical and Literary Society\\\", \\\"Hydrozagadka\\\", \\\"I Am Woman (Jordin Sparks song)\\\", \\\"Itzhak Fintzi\\\", \\\"Japan Evangelistic Band\\\", \\\"John Dugard\\\", \\\"Joseph Matth\\\\u00e4us Aigner\\\", \\\"Kevin Edwards\\\", \\\"Little Big Town discography\\\", \\\"Little Vera\\\", \\\"Maier Zipser\\\", \\\"Malinda Damgaard\\\", \\\"Mexican Football Federation\\\", \\\"Miina Turunen\\\", \\\"Mohamed Afrah Qanyare\\\", \\\"New Armenian Resistance Group\\\", \\\"Niklas Bergqvist\\\", \\\"Nitin Bose\\\", \\\"Northern Baptist Theological Seminary\\\", \\\"Olga Barabanschikova\\\", \\\"Pacific Fair Shopping Centre\\\", \\\"Peter Merian\\\", \\\"Pictured Rocks National Lakeshore\\\", \\\"Political positions of Hillary Clinton\\\", \\\"Resogun\\\", \\\"Rick Barton (musician)\\\", \\\"Ring of Fire (radio program)\\\", \\\"Ruslan Salei\\\", \\\"Serpentine, Victoria\\\", \\\"Somdet Kiaw\\\", \\\"Stahlmusik\\\", \\\"Strawhead\\\", \\\"Surrealist cinema\\\", \\\"Tarek al-Zumar\\\", \\\"The Rankenian Club\\\", \\\"The Saint in Europe\\\", \\\"Tokyo Story\\\", \\\"Totes Isotoner\\\", \\\"Uchylsko\\\", \\\"Upper Galilee\\\", \\\"Vito Frazzi\\\"]}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Shard_0 progress.json has 69 doc_ids, but JSONL has 77 unique docs. That's also inconsistent (more in JSONL than progress).
+
+Wait, let me re-count. The shard may still be running and the JSONL may have more records than what progress.json reports (progress.json is updated periodically). Or vice versa for shard_3.
+
+The consistency check function currently looks for `completed_docs` or `total_docs` keys, but the actual format is `completed_doc_ids` (a list). I need to update `_check_shard_consistency` to count the length of the `completed_doc_ids` list.
+
+
+Now I'm writing the fix to properly count the completed documents from the list structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "0e151750-a9a8-4d9a-97d3-3efcff856fd0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uv9bkA7KBf9NMqpNJhtM46",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1247,
+      "cache_read_input_tokens": 38831,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1247
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+progress.json 格式是 `completed_doc_ids` 列表。需要更新 `_check_shard_consistency` 来处理这个格式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "724b4c37-5c39-4b19-bc9b-8d878b82ffe6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uv9bkA7KBf9NMqpNJhtM46",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1247,
+      "cache_read_input_tokens": 38831,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1247
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01H2jJpooF3B7TadpnxVFkUt`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat > /tmp/patch_consistency.py << 'PYEOF'\nfilepath = \"/root/autodl-tmp/freige/training/rsft_score_filter.py\"\n\nwith open(filepath, \"r\") as f:\n    content = f.read()\n\nold = '''def _check_shard_consistency(shard_dir, actual_doc_ids):\n    \"\"\"检查 shard 的 progress.json 与 JSONL 实际数据是否一致。\"\"\"\n    progress_file = shard_dir / \"progress.json\"\n    if not progress_file.exists():\n        return\n    try:\n        with open(progress_file) as f:\n            progress = json.load(f)\n        expected = progress.get(\"completed_docs\", progress.get(\"total_docs\"))\n        if expected is None:\n            return\n        actual = len(actual_doc_ids)\n        if actual != expected:\n            logger.warning(\n                \"  %s consistency: progress.json expects %d docs, JSONL has %d (delta=%d)\",\n                shard_dir.name, expected, actual, actual - expected,\n            )\n    except Exception as e:\n        logger.warning(\"  %s: failed to read progress.json: %s\", shard_dir.name, e)'''\n\nnew = '''def _check_shard_consistency(shard_dir, actual_doc_ids):\n    \"\"\"检查 shard 的 progress.json 与 JSONL 实际数据是否一致。\"\"\"\n    progress_file = shard_dir / \"progress.json\"\n    if not progress_file.exists():\n        return\n    try:\n        with open(progress_file) as f:\n            progress = json.load(f)\n        if \"completed_doc_ids\" in progress:\n            expected_ids = set(progress[\"completed_doc_ids\"])\n            expected = len(expected_ids)\n            missing_in_jsonl = expected_ids - actual_doc_ids\n            extra_in_jsonl = actual_doc_ids - expected_ids\n        else:\n            expected = progress.get(\"completed_docs\", progress.get(\"total_docs\"))\n            if expected is None:\n                return\n            missing_in_jsonl = set()\n            extra_in_jsonl = set()\n        actual = len(actual_doc_ids)\n        if actual != expected:\n            logger.warning(\n                \"  %s consistency: progress.json=%d docs, JSONL=%d docs (delta=%+d)\",\n                shard_dir.name, expected, actual, actual - expected,\n            )\n            if missing_in_jsonl:\n                logger.warning(\"    missing in JSONL (%d): %s\",\n                               len(missing_in_jsonl), sorted(missing_in_jsonl)[:5])\n            if extra_in_jsonl:\n                logger.warning(\"    extra in JSONL (%d): %s\",\n                               len(extra_in_jsonl), sorted(extra_in_jsonl)[:5])\n    except Exception as e:\n        logger.warning(\"  %s: failed to read progress.json: %s\", shard_dir.name, e)'''\n\nif old not in content:\n    print(\"ERROR: old function not found!\")\n    import sys; sys.exit(1)\n\ncontent = content.replace(old, new)\nwith open(filepath, \"w\") as f:\n    f.write(content)\nprint(\"OK: _check_shard_consistency patched\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/patch_consistency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "8df0ff1c-92a1-4ae6-a452-e77933a26707",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uv9bkA7KBf9NMqpNJhtM46",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1247,
+      "cache_read_input_tokens": 38831,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1247
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T02:00:45.060Z_
+
+<details><summary>↩ Tool result · `toolu_01H2jJpooF3B7TadpnxVFkUt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"OK: _check_shard_consistency patched\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "43c1acad-0c00-4e64-aeb6-1d0047b80101",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK: _check_shard_consistency patched\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"OK: _check_shard_consistency patched\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+再次验证，确认一致性检查能正确检测 shard 差异。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "05420666-4d05-497b-b879-006122ea1ebe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BrZWDjoL8EXTdPPqbC3AKt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1395,
+      "cache_read_input_tokens": 40078,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1395
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019Ks6xXah6PgCBcs21mUzo7`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python3 -c \"\nfrom freige.training.rsft_score_filter import load_generations\nfrom pathlib import Path\nrecords = load_generations(Path('/root/autodl-tmp/rsft_generations'))\ndocs = set(r.get('doc_id') for r in records)\nprint(f'Total records: {len(records)}, unique docs: {len(docs)}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "13128085-de7c-4efc-a6ff-29b9ae401d22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BrZWDjoL8EXTdPPqbC3AKt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1395,
+      "cache_read_input_tokens": 40078,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1395
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T02:00:52.515Z_
+
+<details><summary>↩ Tool result · `toolu_019Ks6xXah6PgCBcs21mUzo7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total records: 4744, unique docs: 593\\n\", \"stderr\": \"2026-05-15 10:00:52,177 INFO   root: 2416 records (302 unique docs)\\n2026-05-15 10:00:52,220 INFO   shard shard_0: 672 records (84 unique docs)\\n2026-05-15 10:00:52,220 WARNING   shard_0 consistency: progress.json=74 docs, JSONL=84 docs (delta=+10)\\n2026-05-15 10:00:52,220 WARNING     extra in JSONL (10): ['Alton, Illinois', 'Jonas Geirnaert', 'Ministry of Home Security', 'Monson, Maine', 'Nicola Lake']\\n2026-05-15 10:00:52,310 INFO   shard shard_1: 688 records (86 unique docs)\\n2026-05-15 10:00:52,310 WARNING   shard_1 consistency: progress.json=79 docs, JSONL=86 docs (delta=+7)\\n2026-05-15 10:00:52,310 WARNING     extra in JSONL (7): ['Descent of Mary', 'East River (New River tributary)', 'KFXL-TV', 'Michael H. Robinson', 'Subaltern (postcolonialism)']\\n2026-05-15 10:00:52,355 INFO   shard shard_2: 720 records (90 unique docs)\\n2026-05-15 10:00:52,356 WARNING   shard_2 consistency: progress.json=85 docs, JSONL=90 docs (delta=+5)\\n2026-05-15 10:00:52,356 WARNING     extra in JSONL (5): ['Battle of Ager Falernus', 'Desperate Souls', 'Fanny Rabel', 'Johan Peter Falk', 'Wanna Be a Star']\\n2026-05-15 10:00:52,378 INFO   shard shard_3: 368 records (44 unique docs)\\n2026-05-15 10:00:52,378 WARNING   shard_3 consistency: progress.json=75 docs, JSONL=44 docs (delta=-31)\\n2026-05-15 10:00:52,378 WARNING     missing in JSONL (31): ['Ali-Reza Asgari', 'Alicia Lemme', 'Beaver River, New York', 'Brazoria National Wildlife Refuge', 'Calais Conference']\\n2026-05-15 10:00:52,378 INFO Loaded 4864 raw records from 5 source(s)\\n2026-05-15 10:00:52,381 INFO After dedup: 4744 records, 593 unique docs\\n2026-05-15 10:00:52,381 INFO Deduplicated: 4864 → 4744 records (removed 120 duplicates)\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "8b274b26-14ee-4f5d-b926-55ecf20c0ba6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total records: 4744, unique docs: 593\\\\n\\\", \\\"stderr\\\": \\\"2026-05-15 10:00:52,177 INFO   root: 2416 records (302 unique docs)\\\\n2026-05-15 10:00:52,220 INFO   shard shard_0: 672 records (84 unique docs)\\\\n2026-05-15 10:00:52,220 WARNING   shard_0 consistency: progress.json=74 docs, JSONL=84 docs (delta=+10)\\\\n2026-05-15 10:00:52,220 WARNING     extra in JSONL (10): ['Alton, Illinois', 'Jonas Geirnaert', 'Ministry of Home Security', 'Monson, Maine', 'Nicola Lake']\\\\n2026-05-15 10:00:52,310 INFO   shard shard_1: 688 records (86 unique docs)\\\\n2026-05-15 10:00:52,310 WARNING   shard_1 consistency: progress.json=79 docs, JSONL=86 docs (delta=+7)\\\\n2026-05-15 10:00:52,310 WARNING     extra in JSONL (7): ['Descent of Mary', 'East River (New River tributary)', 'KFXL-TV', 'Michael H. Robinson', 'Subaltern (postcolonialism)']\\\\n2026-05-15 10:00:52,355 INFO   shard shard_2: 720 records (90 unique docs)\\\\n2026-05-15 10:00:52,356 WARNING   shard_2 consistency: progress.json=85 docs, JSONL=90 docs (delta=+5)\\\\n2026-05-15 10:00:52,356 WARNING     extra in JSONL (5): ['Battle of Ager Falernus', 'Desperate Souls', 'Fanny Rabel', 'Johan Peter Falk', 'Wanna Be a Star']\\\\n2026-05-15 10:00:52,378 INFO   shard shard_3: 368 records (44 unique docs)\\\\n2026-05-15 10:00:52,378 WARNING   shard_3 consistency: progress.json=75 docs, JSONL=44 docs (delta=-31)\\\\n2026-05-15 10:00:52,378 WARNING     missing in JSONL (31): ['Ali-Reza Asgari', 'Alicia Lemme', 'Beaver River, New York', 'Brazoria National Wildlife Refuge', 'Calais Conference']\\\\n2026-05-15 10:00:52,378 INFO Loaded 4864 raw records from 5 source(s)\\\\n2026-05-15 10:00:52,381 INFO After dedup: 4744 records, 593 unique docs\\\\n2026-05-15 10:00:52,381 INFO Deduplicated: 4864 → 4744 records (removed 120 duplicates)\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Total records: 4744, unique docs: 593\\n\", \"stderr\": \"2026-05-15 10:00:52,177 INFO   root: 2416 records (302 unique docs)\\n2026-05-15 10:00:52,220 INFO   shard shard_0: 672 records (84 unique docs)\\n2026-05-15 10:00:52,220 WARNING   shard_0 consistency: progress.json=74 docs, JSONL=84 docs (delta=+10)\\n2026-05-15 10:00:52,220 WARNING     extra in JSONL (10): ['Alton, Illinois', 'Jonas Geirnaert', 'Ministry of Home Security', 'Monson, Maine', 'Nicola Lake']\\n2026-05-15 10:00:52,310 INFO   shard shard_1: 688 records (86 unique docs)\\n2026-05-15 10:00:52,310 WARNING   shard_1 consistency: progress.json=79 docs, JSONL=86 docs (delta=+7)\\n2026-05-15 10:00:52,310 WARNING     extra in JSONL (7): ['Descent of Mary', 'East River (New River tributary)', 'KFXL-TV', 'Michael H. Robinson', 'Subaltern (postcolonialism)']\\n2026-05-15 10:00:52,355 INFO   shard shard_2: 720 records (90 unique docs)\\n2026-05-15 10:00:52,356 WARNING   shard_2 consistency: progress.json=85 docs, JSONL=90 docs (delta=+5)\\n2026-05-15 10:00:52,356 WARNING     extra in JSONL (5): ['Battle of Ager Falernus', 'Desperate Souls', 'Fanny Rabel', 'Johan Peter Falk', 'Wanna Be a Star']\\n2026-05-15 10:00:52,378 INFO   shard shard_3: 368 records (44 unique docs)\\n2026-05-15 10:00:52,378 WARNING   shard_3 consistency: progress.json=75 docs, JSONL=44 docs (delta=-31)\\n2026-05-15 10:00:52,378 WARNING     missing in JSONL (31): ['Ali-Reza Asgari', 'Alicia Lemme', 'Beaver River, New York', 'Brazoria National Wildlife Refuge', 'Calais Conference']\\n2026-05-15 10:00:52,378 INFO Loaded 4864 raw records from 5 source(s)\\n2026-05-15 10:00:52,381 INFO After dedup: 4744 records, 593 unique docs\\n2026-05-15 10:00:52,381 INFO Deduplicated: 4864 → 4744 records (removed 120 duplicates)\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+一致性检查正常工作。结果：
+
+- **root**: 302 docs (之前被丢失，现已加载)
+- **shard_0**: JSONL 84 docs > progress 74 (正常, 还在生成中)
+- **shard_1**: JSONL 86 > progress 79
+- **shard_2**: JSONL 90 > progress 85
+- **shard_3**: JSONL 44 < progress 75 (**缺 31 docs** — 确认了之前发现的不一致)
+- 去重后: **4744 records, 593 unique docs**
+- 120 条根目录/shard 重叠记录被正确去重
+
+所有任务完成：
+1. `load_generations()` 已修复 — 现在加载根目录 + 所有 shard，shard 版本去重优先
+2. `_check_shard_consistency()` 已添加 — 对比 progress.json 与 JSONL，报告缺失/多余的 doc_id
+3. cross-check 脚本已创建在 `/root/autodl-tmp/scripts/diversity_crosscheck.sh`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "uuid": "70c479b4-1082-41d8-9a34-47c13fb95f7c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TdyRo71tYNDRVm4VEEwwBX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1090,
+      "cache_read_input_tokens": 41473,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1090
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 52_
+
+一致性检查正常工作。结果：
+
+- **root**: 302 docs (之前被丢失，现已加载)
+- **shard_0**: JSONL 84 docs > progress 74 (正常, 还在生成中)
+- **shard_1**: JSONL 86 > progress 79
+- **shard_2**: JSONL 90 > progress 85
+- **shard_3**: JSONL 44 < progress 75 (**缺 31 docs** — 确认了之前发现的不一致)
+- 去重后: **4744 records, 593 unique docs**
+- 120 条根目录/shard 重叠记录被正确去重
+
+所有任务完成：
+1. `load_generations()` 已修复 — 现在加载根目录 + 所有 shard，shard 版本去重优先
+2. `_check_shard_consistency()` 已添加 — 对比 progress.json 与 JSONL，报告缺失/多余的 doc_id
+3. cross-check 脚本已创建在 `/root/autodl-tmp/scripts/diversity_crosscheck.sh`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 146464,
+  "duration_api_ms": 143453,
+  "num_turns": 17,
+  "stop_reason": "end_turn",
+  "session_id": "4af81210-769b-4fc0-badf-a0c8a4a5ec2e",
+  "total_cost_usd": 0.5681299999999999,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 30722,
+    "cache_read_input_tokens": 409863,
+    "output_tokens": 6752,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 30722,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 316,
+        "cache_read_input_tokens": 41473,
+        "cache_creation_input_tokens": 1090,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1090
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2216,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002306,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 16,
+      "outputTokens": 6752,
+      "cacheReadInputTokens": 409863,
+      "cacheCreationInputTokens": 30722,
+      "webSearchRequests": 0,
+      "costUSD": 0.565824,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "f292b161-a99b-4bef-9bb1-326ac305fb93"
+}
+```
+
+</details>
+
+---

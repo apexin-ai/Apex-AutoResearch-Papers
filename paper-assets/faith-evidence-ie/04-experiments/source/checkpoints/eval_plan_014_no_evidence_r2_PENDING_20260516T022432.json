@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_plan_014_no_evidence_r2",
+  "project": "faith-evidence-ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:34:45.302Z",
+    "updated_at": "2026-05-16T02:24:32.157Z",
+    "hypothesis": "Retry of eval_plan_014_no_evidence with corrected command: --model_path 传底座 Qwen3-4B, --sft_adapter 传 SFT no-evidence adapter。修复 adapter 检测逻辑冲突。plan_id=plan_014, claim=1。",
+    "parent": "plan_014_sft_no_evidence"
+  },
+  "timestamp": "2026-05-16T02:24:32.468877+00:00",
+  "trigger": "update_registry"
+}

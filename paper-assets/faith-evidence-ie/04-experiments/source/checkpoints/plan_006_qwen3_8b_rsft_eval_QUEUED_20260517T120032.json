@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_006_qwen3_8b_rsft_eval",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:00:05.493Z",
+    "updated_at": "2026-05-17T12:00:31.682Z",
+    "hypothesis": "Evaluate Qwen3-8B RSFT (CED-scored data, 9041 samples) on DocRED dev. At 8B scale with near-zero evidence tax, CED-RSFT should achieve highest absolute Ign-F1 in the scaling study.",
+    "parent": "plan_006_qwen3_8b_rsft_train_r2"
+  },
+  "timestamp": "2026-05-17T12:00:32.127988+00:00",
+  "trigger": "update_registry"
+}

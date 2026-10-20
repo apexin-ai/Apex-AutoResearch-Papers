@@ -1,0 +1,15 @@
+{
+  "exp_id": "test_eval_14b_sft_s42",
+  "project": "faith-evidence-ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:30:20.254Z",
+    "updated_at": "2026-05-21T18:34:07.319Z",
+    "hypothesis": "Re-DocRED test set eval: Qwen3-14B SFT s42 on test_revised.json (500 docs)。14B RSFT test=0.3849，需要 SFT baseline 配对。14B 是项目最强 scale，SFT test baseline 是 test table 最重要的一行。"
+  },
+  "timestamp": "2026-05-21T18:34:07.960548+00:00",
+  "trigger": "update_registry"
+}

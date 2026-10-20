@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp2_eval_lr5e6_rp_r2_ckpt20",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:44:56.448Z",
+    "updated_at": "2026-05-14T21:45:23.465Z",
+    "hypothesis": "P0+P1 ckpt-20 eval: lr=5e-6 + recall_penalty GRPO at step 20. Director killed rp_r2 training (loss divergence), but ckpt-20 eval needed to close P0+P1 comparison line. Pass criteria: rel_f1 > 0.30 AND pred_count >= 9720.",
+    "parent": "mvp2_grpo_ced_lr5e6_rp_r2"
+  },
+  "timestamp": "2026-05-14T21:45:23.565477+00:00",
+  "trigger": "update_registry"
+}

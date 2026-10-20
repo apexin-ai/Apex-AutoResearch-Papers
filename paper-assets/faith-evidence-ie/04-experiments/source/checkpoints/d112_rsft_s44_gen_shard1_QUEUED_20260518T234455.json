@@ -1,0 +1,16 @@
+{
+  "exp_id": "d112_rsft_s44_gen_shard1",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:43:46.463Z",
+    "updated_at": "2026-05-18T23:44:54.668Z",
+    "hypothesis": "D112 shard 1: 并行候选生成加速。与 shard 0 (cuda:3) 合作覆盖全部 3053 docs 的 1/4。",
+    "parent": "d112_rsft_s44_generate"
+  },
+  "timestamp": "2026-05-18T23:44:55.193668+00:00",
+  "trigger": "update_registry"
+}

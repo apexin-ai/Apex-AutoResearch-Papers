@@ -1,0 +1,17 @@
+{
+  "exp_id": "plan019_8b_sft_s43_eval",
+  "project": "faith-evidence-ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:00:00.027Z",
+    "updated_at": "2026-05-19T14:00:14.051Z",
+    "hypothesis": "D076 eval for 8B SFT s43. 补齐第 3 个 8B SFT seed 的 eval 结果。8B SFT s42 ign_f1=0.5128, s44 ign_f1=0.4604. 预期 s43 在此范围内，3-seed mean 改善 claim 统计力。",
+    "parent": "plan019_8b_sft_s43",
+    "plan_id": "plan_019"
+  },
+  "timestamp": "2026-05-19T14:00:14.660622+00:00",
+  "trigger": "update_registry"
+}

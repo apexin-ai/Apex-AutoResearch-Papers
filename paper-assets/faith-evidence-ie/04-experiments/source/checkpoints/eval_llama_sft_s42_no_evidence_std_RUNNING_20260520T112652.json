@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval_llama_sft_s42_no_evidence_std",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T04:46:48.472Z",
+    "updated_at": "2026-05-20T11:26:51.203Z",
+    "hypothesis": "标准化 LLaMA SFT s42 inference-time evidence tax 测量。用同一 SFT adapter (sft_output_llama_3_1_8b) + --no_evidence flag 推理，与 with-evidence eval (ign_f1=0.5384) 直接对比。之前的 no-evidence 结果 (ign_f1=0.5452) 来自独立训练的 no-evidence 模型，方法论不一致。",
+    "parent": "plan_016_llama_3_1_8b_sft_eval",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx5090-4x",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-20T11:26:43.504Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s42_no_evidence_std\""
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s42_no_evidence_std\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "16195",
+      "log_path": "~/runs/faith-evidence-ie/eval_llama_sft_s42_no_evidence_std.log",
+      "submitted_at": "2026-05-20T11:26:47.262Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "16195",
+    "log_path": "~/runs/faith-evidence-ie/eval_llama_sft_s42_no_evidence_std.log"
+  },
+  "timestamp": "2026-05-20T11:26:52.215711+00:00",
+  "trigger": "update_registry"
+}

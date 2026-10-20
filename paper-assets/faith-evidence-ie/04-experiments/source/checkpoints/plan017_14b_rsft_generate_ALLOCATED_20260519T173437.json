@@ -1,0 +1,26 @@
+{
+  "exp_id": "plan017_14b_rsft_generate",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:32:54.460Z",
+    "updated_at": "2026-05-19T17:34:37.080Z",
+    "hypothesis": "14B RSFT Step 1: 用 14B SFT adapter (ign_f1=0.5507) 在 DocRED 训练集上生成 N=8 RSFT 候选。验证 RSFT pipeline 在第 4 尺度档 (14B) 的有效性，补齐 scaling table 最后一行。D112 已确认 RSFT pipeline 从强 SFT base 出发可提升 +4.18pp (4B)。",
+    "parent": "plan017_14b_sft_eval_r2",
+    "spec": {
+      "data_path": "/root/autodl-tmp/data/docred/train_annotated.json",
+      "data_count": 3027,
+      "model_name": "Qwen3-14B + SFT adapter",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_14b",
+      "eval_data": "docred-train_annotated (N=8 generation)",
+      "checkpoint_path": "/root/autodl-tmp/rsft_generations_14b",
+      "log_path": "~/runs/faith-evidence-ie/plan017_14b_rsft_generate.log"
+    }
+  },
+  "timestamp": "2026-05-19T17:34:37.572455+00:00",
+  "trigger": "update_registry"
+}

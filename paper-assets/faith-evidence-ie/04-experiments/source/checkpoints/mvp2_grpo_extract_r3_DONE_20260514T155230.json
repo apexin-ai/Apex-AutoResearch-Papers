@@ -1,0 +1,60 @@
+{
+  "exp_id": "mvp2_grpo_extract_r3",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:31:48.781Z",
+    "updated_at": "2026-05-14T15:52:29.969Z",
+    "spec": {
+      "command": "python -m freige.training.grpo_trainer --stage 1 --kl_coef 0.0 --num_iterations 1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 0.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "53149",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_grpo_extract_r3.log",
+      "submitted_at": "2026-05-14T12:31:48.738Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": {
+        "train": 3027,
+        "dev": 985
+      },
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "Extraction-only reward (format×0.3, f1×3.0, ced=0) with kl_coef=0 establishes stable GRPO baseline",
+      "parent": "mvp2_grpo_extract",
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "/root/autodl-tmp/data/docred",
+      "hyperparams": {
+        "learning_rate": "5e-5",
+        "kl_coef": 0,
+        "save_steps": 20,
+        "num_iterations": 1,
+        "format_reward_weight": 0.3,
+        "f1_reward_weight": 3,
+        "ced_reward_weight": 0,
+        "per_device_batch_size": 1,
+        "gradient_accumulation_steps": 16,
+        "num_generations": 4,
+        "quantization": "QLoRA 4-bit NF4"
+      },
+      "wall_clock_seconds": 12041.2,
+      "gpu_hours": 3.34
+    },
+    "notes": "⚠️ 不可恢复停滞（step ~70/756 起）。崩塌机制：kl_coef=0 + num_generations=4 → 模型 step 65 学会 44-token 短模板 → 4 个相同输出 reward_std=0 → GRPO advantage=0 → grad_norm=0 → 策略锁死。所有 checkpoint (520-600) 均在崩塌区，无健康 checkpoint 可恢复。需 kl_coef>0 + num_generations≥8 才能避免。",
+    "reproduce": {
+      "finished_at": "2026-05-14T15:52:29.058Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-14T15:52:29.969Z"
+  },
+  "timestamp": "2026-05-14T15:52:30.042801+00:00",
+  "trigger": "update_registry"
+}

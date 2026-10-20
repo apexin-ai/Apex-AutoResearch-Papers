@@ -1,0 +1,77 @@
+{
+  "exp_id": "plan_012_dpo_ced_1ep",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:50:44.852Z",
+    "updated_at": "2026-05-15T21:36:34.720Z",
+    "spec": {
+      "hypothesis": "DPO+CED 1-epoch 重训：修复 3-epoch 过拟合问题。epochs=1 (~167 steps, <10min)，其余超参不变（β=0.1, lr=5e-7, loss=sigmoid, seed=42, pairs=2666）。让 DPO 数据点可用于论文。",
+      "parent": "plan_012_dpo_ced",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 WANDB_PROJECT=freige-dpo PYTHONUNBUFFERED=1 python -m freige.training.dpo_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --dpo_data_path /root/autodl-tmp/dpo_data/dpo_pairs.jsonl --output_dir /root/autodl-tmp/dpo_output_1ep --beta 0.1 --num_epochs 1 --seed 42 --loss_type sigmoid --per_device_batch_size 1 --gradient_accumulation_steps 16 --wandb_run_name plan_012_dpo_ced_1ep\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "245103",
+      "log_path": "~/runs/faith-evidence-ie/plan_012_dpo_ced_1ep.log",
+      "submitted_at": "2026-05-15T19:43:02.707Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/dpo_data/dpo_pairs.jsonl",
+      "data_count": 2666,
+      "model_name": "Qwen3-4B + SFT + CED-DPO (1ep)",
+      "seed": 42,
+      "base_model": "/root/autodl-tmp/models/Qwen3-4B",
+      "sft_adapter": "/root/autodl-tmp/sft_output",
+      "beta": 0.1,
+      "num_epochs": 1,
+      "loss_type": "sigmoid",
+      "checkpoint_path": "/root/autodl-tmp/dpo_output_1ep",
+      "wall_clock_seconds": 6812.0,
+      "gpu_hours": 1.89
+    },
+    "gpu_ids": [
+      3
+    ],
+    "hypothesis": "DPO+CED 1 epoch retraining: plan_012_dpo_ced 3 epochs 严重过拟合 (rewards_accuracy=1.0, margins 9x膨胀, entropy崩塌)。重训 1 epoch 验证 early stopping 是否消除 overfitting confound。对比 plan_012 3ep + RSFT (rel_f1=0.46) + SFT baseline (rel_f1=0.4057)。",
+    "gpu": "cuda:3",
+    "account": "root",
+    "notes": "DPO+CED 完全失败。1ep eval: rel_f1=0.0022 (34 TPs / 19265 preds)，比 3ep (0.3429) 更差。训练指标正常 (accuracy=0.82, margins=0.86)，但模型输出几乎无法匹配正确 relation。evi_f1=0.75 说明模型仍生成 evidence，但 relation extraction 崩溃。358/985 truncated (36%)。DPO 对 evidence-grounded DocRE 完全不适用——不是过拟合问题，是方法本身失效。D061 已关闭 DPO 实验线。",
+    "reproduce": {
+      "finished_at": "2026-05-15T20:17:44.285Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T20:17:46.894275+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "rel_f1": 0.0022,
+      "evi_f1": 0.75,
+      "edcr": 0.9982,
+      "format_ok": "981/985",
+      "truncated": "358/985",
+      "tp": 34,
+      "n_preds": 19265,
+      "inference_time_s": 3643,
+      "train_loss_final": 0.59,
+      "rewards_accuracy": 0.82,
+      "rewards_margins": 0.86,
+      "total_steps": 167,
+      "training_time_min": 33
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-15T21:36:34.720Z"
+  },
+  "timestamp": "2026-05-15T21:36:34.949953+00:00",
+  "trigger": "update_registry"
+}

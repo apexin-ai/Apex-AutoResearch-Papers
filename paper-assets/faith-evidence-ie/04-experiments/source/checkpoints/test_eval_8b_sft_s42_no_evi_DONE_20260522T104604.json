@@ -1,0 +1,66 @@
+{
+  "exp_id": "test_eval_8b_sft_s42_no_evi",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:41:53.510Z",
+    "updated_at": "2026-05-22T10:46:04.142Z",
+    "hypothesis": "8B SFT model without evidence prompting should achieve competitive relation extraction performance on test set, validating that evidence is not necessary for the extraction task",
+    "parent": "test_eval_8b_sft_s42",
+    "spec": {
+      "command": "python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --output_dir /root/autodl-tmp/eval_results/test_eval_8b_sft_s42_no_evi --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised --no_evidence",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "152868",
+      "log_path": "~/runs/faith-evidence-ie/test_eval_8b_sft_s42_no_evi.log",
+      "submitted_at": "2026-05-22T01:42:06.114Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+      "data_count": 500,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_qwen3_8b_bf16",
+      "eval_data": "test_revised",
+      "wall_clock_seconds": 32638.0,
+      "gpu_hours": 9.07
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T06:03:52.822Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T06:04:00.972413+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ign_f1": 0.2935,
+      "f1": 0.2935,
+      "precision": 0.4336,
+      "recall": 0.2218,
+      "evi_f1_joint": 0.0409,
+      "evi_f1_tp": 0.1175,
+      "edcr": 0.7995,
+      "format_ok_rate": 0.998,
+      "truncated": "399/500",
+      "n_predictions": 32909,
+      "field_compliance_rate": 0.062,
+      "evidence_format_rate": 0.058
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/sft_output_qwen3_8b_bf16",
+    "completed_at": "2026-05-22T10:46:04.142Z"
+  },
+  "timestamp": "2026-05-22T10:46:04.890555+00:00",
+  "trigger": "update_registry"
+}

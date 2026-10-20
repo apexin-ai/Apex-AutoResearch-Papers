@@ -1,0 +1,37 @@
+{
+  "exp_id": "d158_14b_sft_s44",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T08:29:14.167Z",
+    "updated_at": "2026-05-24T09:09:33.950Z",
+    "hypothesis": "14B SFT seed=44 训练。补全 14B scale 3-seed 统计鲁棒性，解决 Reviewer cherry-picking 质疑。超参完全复制 plan017_14b_sft_s43。对应 Claim 1 + Claim 3。",
+    "spec": {
+      "command": "nohup python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-14B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_14b_s44 --no-quantize --lora_rank 64 --lora_alpha 128 --lora_dropout 0.05 --max_length 4096 --per_device_batch_size 1 --gradient_accumulation_steps 64 --num_epochs 3 --learning_rate 2e-4 --warmup_ratio 0.05 --seed 44 --bf16",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:2",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 3027,
+      "model_name": "Qwen3-14B",
+      "seed": 44,
+      "hyperparams": {
+        "lr": "2e-4",
+        "epochs": 3,
+        "batch": 1,
+        "grad_accum": 64,
+        "lora_rank": 64,
+        "lora_alpha": 128,
+        "lora_dropout": 0.05,
+        "max_length": 4096,
+        "warmup_ratio": 0.05
+      },
+      "pid": "302391",
+      "log_path": "/root/autodl-tmp/d158_14b_sft_s44.log"
+    }
+  },
+  "timestamp": "2026-05-24T09:09:34.639694+00:00",
+  "trigger": "update_registry"
+}

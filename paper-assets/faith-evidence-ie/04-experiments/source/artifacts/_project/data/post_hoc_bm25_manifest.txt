@@ -1,0 +1,3 @@
+script: /root/autodl-tmp/freige/eval/post_hoc_retrieval.py
+output_dir: /root/autodl-tmp/eval_results/post_hoc_bm25/
+summary: comparison_summary.json

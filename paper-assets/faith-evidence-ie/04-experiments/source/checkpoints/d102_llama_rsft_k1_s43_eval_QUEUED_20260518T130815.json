@@ -1,0 +1,16 @@
+{
+  "exp_id": "d102_llama_rsft_k1_s43_eval",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:06:23.193Z",
+    "updated_at": "2026-05-18T13:08:15.160Z",
+    "hypothesis": "LLaMA-8B RSFT k=1 seed43 eval: paired with s42 (rel_f1=0.5839) for seed robustness. If s43 gives similar results (±1.5pp), cross-architecture RSFT k=1 claim is robust. Expected rel_f1 ~0.58±0.015.",
+    "parent": "rsft_llama_k1_s43_train"
+  },
+  "timestamp": "2026-05-18T13:08:15.592187+00:00",
+  "trigger": "update_registry"
+}

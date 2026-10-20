@@ -1,0 +1,50 @@
+{
+  "exp_id": "mvp2_grpo_extract",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:10:35.796Z",
+    "updated_at": "2026-05-14T12:03:50.609Z",
+    "spec": {
+      "command": "python -m freige.training.grpo_trainer --stage 1 --ced_reward_weight 0.0 --format_reward_weight 0.3 --f1_reward_weight 3.0 --num_iterations 1 --kl_coef 0.05 --lr 5e-5",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "47561",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_grpo_extract.log",
+      "submitted_at": "2026-05-14T11:48:50.108Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": {
+        "train": 3027,
+        "dev": 985
+      },
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "Extraction-only reward (format+F1, no CED) establishes GRPO baseline",
+      "parent": "mvp2_sft_warmup",
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "/root/autodl-tmp/data/docred",
+      "hyperparams": {
+        "learning_rate": "5e-5",
+        "kl_coef": 0.05,
+        "num_iterations": 1,
+        "format_reward_weight": 0.3,
+        "f1_reward_weight": 3,
+        "ced_reward_weight": 0
+      }
+    },
+    "hypothesis": "Extraction-only reward (format+F1, no CED) establishes GRPO baseline — CED r3 should exceed this on Evi-F1",
+    "reproduce": {
+      "finished_at": "2026-05-14T12:03:50.563Z"
+    }
+  },
+  "timestamp": "2026-05-14T12:03:50.633284+00:00",
+  "trigger": "update_registry"
+}

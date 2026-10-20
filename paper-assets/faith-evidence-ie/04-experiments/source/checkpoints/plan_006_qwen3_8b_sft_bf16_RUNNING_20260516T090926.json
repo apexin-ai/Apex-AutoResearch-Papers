@@ -1,0 +1,47 @@
+{
+  "exp_id": "plan_006_qwen3_8b_sft_bf16",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:50:55.793Z",
+    "updated_at": "2026-05-16T09:09:25.907Z",
+    "spec": {
+      "hypothesis": "Model size ablation: Qwen3-8B bf16 LoRA SFT（与 4B/1.7B 训练 regime 一致），验证 evidence generation pipeline 在大模型上的表现。plan_id=plan_006, claim=1。",
+      "model_name": "Qwen3-8B",
+      "server": "rtx5090-4x",
+      "plan_id": "plan_006",
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_8b_bf16 --no-quantize --seed 42 --wandb_run_name qwen3_8b_sft_bf16",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 3027,
+      "seed": 42,
+      "pid": "317310",
+      "gpu": [
+        "cuda:3"
+      ],
+      "log_path": "~/runs/faith-evidence-ie/plan_006_qwen3_8b_sft_bf16.log",
+      "backend": "tmux",
+      "account": "root",
+      "lora_rank": 64,
+      "lora_alpha": 128,
+      "target_modules": 7,
+      "quantize": "none (bf16 LoRA)",
+      "trainable_params": "174.6M / 8.37B (2.09%)",
+      "num_epochs": 3,
+      "batch_size": 1,
+      "gradient_accumulation_steps": 16,
+      "learning_rate": 0.0002,
+      "output_dir": "/root/autodl-tmp/sft_output_qwen3_8b_bf16",
+      "checkpoint_path": "N/A"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T09:09:24.282Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-16T09:09:26.336407+00:00",
+  "trigger": "update_registry"
+}

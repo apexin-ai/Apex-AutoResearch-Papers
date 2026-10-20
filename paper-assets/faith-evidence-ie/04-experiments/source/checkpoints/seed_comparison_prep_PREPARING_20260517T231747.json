@@ -1,0 +1,16 @@
+{
+  "exp_id": "seed_comparison_prep",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:35:52.694Z",
+    "updated_at": "2026-05-17T23:17:46.922Z",
+    "notes": "## Seed Comparison Pre-Analysis (2026-05-16)\n\n### Available Results (3/4 seeds each, s45 pending for both):\n\n**flat-NLI RSFT:**\n- s42: rel_f1=0.4539 (dir: rsft_flat_nli)\n- s43: rel_f1=0.4523 (dir: rsft_flat_nli_s43_reeval; original rsft_flat_nli_s43 was broken f1=0.002)\n- s44: rel_f1=0.4615 (dir: rsft_flat_nli_s44; NOTE: only metrics.json, no metrics_v2.json with fixed Ign-F1)\n- s45: PENDING (empty dir)\n- Mean: 0.4559 ± 0.0049\n\n**CED RSFT:**\n- s42: rel_f1=0.4504 (dir: rsft_r2b_maxtok1536)\n- s43: rel_f1=0.4683 (dir: rsft_s43)\n- s44: rel_f1=0.4655 (dir: rsft_s44)\n- s45: PENDING (empty dir)\n- Mean: 0.4614 ± 0.0096\n\n### Pre-comparison (N=3):\n- rel_f1 Delta (fNLI - CED): -0.0055 (CED slightly better)\n- Paired t-test: t=0.967, p=0.4357 (NOT significant)\n- 95% CI for delta: [-0.0299, +0.0189] (crosses zero)\n- Cohen's d: -0.558\n\n### seed_comparison.py status: WORKING\n- Auto-discovers all seeds, handles fallback dirs, filters broken results (f1<0.01)\n- Outputs to /root/autodl-tmp/eval_results/seed_comparison.{md,json}\n- Supports --watch mode for polling",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-17T23:17:47.300962+00:00",
+  "trigger": "update_registry"
+}

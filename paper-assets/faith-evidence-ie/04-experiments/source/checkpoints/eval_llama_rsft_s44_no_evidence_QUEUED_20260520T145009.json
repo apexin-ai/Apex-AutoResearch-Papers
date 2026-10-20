@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_llama_rsft_s44_no_evidence",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:49:46.158Z",
+    "updated_at": "2026-05-20T14:50:08.156Z",
+    "hypothesis": "LLaMA RSFT s44 no-evidence eval。补齐 LLaMA RSFT 3-seed evidence tax：s42 tax=-1.88pp (ign_f1=0.5526), s43 tax=-1.16pp (ign_f1=0.5546)。s44 with-evidence ign_f1=0.5587。完成后可计算跨家族 RSFT evidence tax mean±std。",
+    "parent": "llama_rsft_s44_pipeline"
+  },
+  "timestamp": "2026-05-20T14:50:09.113825+00:00",
+  "trigger": "update_registry"
+}

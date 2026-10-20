@@ -1,0 +1,15 @@
+{
+  "exp_id": "dpo_rebuilt_1ep",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T02:34:23.813Z",
+    "updated_at": "2026-05-23T02:35:33.475Z",
+    "hypothesis": "DPO 1-epoch 重建训练。从 RSFT candidate generations + CED scores 重建 DPO pairs (2977 pairs, rank_by=ced_reward, min_margin=0.05)。原始 DPO checkpoint 已丢失，需重建以统一 Table 2 eval protocol (matched@2048)。对比原始 1ep eval: Ign-F1=38.9。"
+  },
+  "timestamp": "2026-05-23T02:35:34.105283+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "test_eval_1_7b_rsft_s44_no_evi",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T04:56:00.551Z",
+    "updated_at": "2026-05-25T04:56:14.959Z",
+    "hypothesis": "RSFT-trained 1.7B model (seed 44) without evidence output should show higher recall/ign_f1 than with-evi variant by avoiding token waste on evidence fields, testing whether evidence generation hurts RE performance",
+    "parent": "test_eval_1_7b_rsft_s44_with_evi"
+  },
+  "timestamp": "2026-05-25T04:56:15.660788+00:00",
+  "trigger": "update_registry"
+}

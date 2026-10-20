@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_llama_sft_s43_with_evidence_2048",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:47:46.702Z",
+    "updated_at": "2026-05-21T00:48:03.641Z",
+    "hypothesis": "matched@2048 methodology: s43 SFT with-evidence eval at max_new_tokens=2048. 配对 s43 no-evi@2048 计算 matched evidence tax。",
+    "parent": "llama_sft_s43_train_eval_r3"
+  },
+  "timestamp": "2026-05-21T00:48:04.372053+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,32 @@
+{
+  "exp_id": "test_eval_4b_rsft_s42_v2",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-21T23:21:45.920Z",
+    "updated_at": "2026-05-22T00:04:13.315Z",
+    "hypothesis": "Re-DocRED test set eval: Qwen3-4B RSFT s42 (CED k=1, 重训 v2) on test_revised.json (500 docs)。配对 test_eval_4b_sft_s42 (ign_f1=0.2232)，填充 test table 4B RSFT 数据点。使用 retrain_4b_rsft_ced_s42_v2 产出的 checkpoint。Dev RSFT ign_f1 基准见原 4B RSFT 数据。",
+    "reproduce": {
+      "finished_at": "2026-05-22T00:02:03.249Z"
+    },
+    "failure_reason": "EXIT_CODE=2 (shell misuse / syntax)",
+    "completed_at": "2026-05-22T00:02:09.586Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T00:02:16.582942+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-22T00:04:13.981813+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,57 @@
+{
+  "exp_id": "plan019_1_7b_rsft_s44_r2_eval",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T08:43:01.975Z",
+    "updated_at": "2026-05-19T11:42:55.763Z",
+    "hypothesis": "D076 eval for 1.7B RSFT s44_r2 (Method A: s42 SFT adapter + s42 CED k=1 data, RSFT seed=44). 预期 ign_f1 接近 s42 (0.5122) 和 s43 (0.5109)，完成 1.7B 3-seed RSFT 统计。",
+    "parent": "plan019_1_7b_rsft_s44_r2",
+    "spec": {
+      "command": "bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_s44_r2.sh",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:3",
+      "pid": 632051,
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 998,
+      "model_name": "Qwen3-1.7B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s44",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json",
+      "checkpoint_path": "/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s44",
+      "log_path": "/root/autodl-tmp/eval_results/rsft_1_7b_s44_r2_eval/metrics.json"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T11:08:54.591Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T11:09:01.496305+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ign_f1": 0.5125,
+      "f1": 0.5294,
+      "evi_f1": 0.8267,
+      "evi_f1_joint": 0.4289,
+      "edcr": 0.6181,
+      "n_truncated": 240,
+      "format_compliance_rate": 0.999,
+      "field_compliance_rate": 0.7543,
+      "n_total": 985,
+      "n_parseable": 984,
+      "inference_time_seconds": 8615.6
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T11:42:55.763Z"
+  },
+  "timestamp": "2026-05-19T11:42:56.214705+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,53 @@
+{
+  "exp_id": "mvp2_eval_ced_kl001_r4_step90",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:19:58.623Z",
+    "updated_at": "2026-05-14T20:00:05.763Z",
+    "hypothesis": "Eval true best checkpoint (step 90, reward=1.370). Critical after ckpt-50 showed reward hacking (rel_f1 -24.9pp). If step 90 also fails, CED reward design has fundamental issue.",
+    "parent": "mvp2_grpo_ced_kl001_r4",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && PYTHONUNBUFFERED=1 python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 90 --quantize\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "83207",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_step90.log",
+      "submitted_at": "2026-05-14T18:32:46.178Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "notes": "2026-05-15 03:20 UTC: ckpt-90 inference 31/62 (50%), ~45 min remaining. Started 02:32 UTC.",
+    "reproduce": {
+      "finished_at": "2026-05-14T19:57:37.435Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T19:57:39.702949+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "rel_f1": 0.2108,
+      "ign_f1": 0.2108,
+      "evi_f1": 0.5666,
+      "edcr": 0.8584,
+      "pred_count": 11160,
+      "n_truncated": 22,
+      "format_ok_rate": 1,
+      "n_documents": 985
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-14T20:00:05.920918+00:00",
+  "trigger": "update_registry"
+}

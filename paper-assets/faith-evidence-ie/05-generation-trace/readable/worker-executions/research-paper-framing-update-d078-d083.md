@@ -1,0 +1,891 @@
+# research paper framing update d078 d083
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 15
+- **Recorded user turns:** 0
+- **Tool calls:** 3
+- **Original source:** `logs/workers/worker_research_paper-framing-update-d078-d083_20260516T154301.log`
+- **Structured JSON:** [`e03ae87e1fb3067aab13.json`](../../sessions/e0/e03ae87e1fb3067aab13.json)
+
+## Before a recorded user message
+
+15 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "29d26092-9fac-4ff8-b1d5-e90783df3dff",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "58a00a94-1ee6-41e1-af68-6276ad95153b",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778957400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "fb5675b9-c739-4f21-839d-1d13c56ac3d3",
+  "session_id": "29d26092-9fac-4ff8-b1d5-e90783df3dff"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我先读取当前的 paper_framing.md。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29d26092-9fac-4ff8-b1d5-e90783df3dff",
+  "uuid": "dd3c53c5-4d55-4295-b985-ebd1c8c611c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WunPC8YsQoBp83zdXhQRii",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12769,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12769
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UNuQpM6rfSRSs2sjh8VxSj`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29d26092-9fac-4ff8-b1d5-e90783df3dff",
+  "uuid": "700ac63f-0646-447b-a2ad-85203a500c75",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WunPC8YsQoBp83zdXhQRii",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12769,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12769
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T15:43:11.129Z_
+
+<details><summary>↩ Tool result · `toolu_01UNuQpM6rfSRSs2sjh8VxSj`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29d26092-9fac-4ff8-b1d5-e90783df3dff",
+  "uuid": "c73dd212-c202-4906-9f30-2ba6b1c054f6",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the current paper_framing.md file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29d26092-9fac-4ff8-b1d5-e90783df3dff",
+  "uuid": "bb271321-c80b-4b1e-bde7-ae94c88a0b75",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011z5Q79iSKGbpdrhDRwCBDH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 716,
+      "cache_read_input_tokens": 24216,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 716
+      },
+      "output_tokens": 60,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01D8FAzZ2nCf7d82RVjmpBU6`</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29d26092-9fac-4ff8-b1d5-e90783df3dff",
+  "uuid": "f6d0901b-0d00-4ff4-b87c-a38af14ca08d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011z5Q79iSKGbpdrhDRwCBDH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 716,
+      "cache_read_input_tokens": 24216,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 716
+      },
+      "output_tokens": 60,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T15:43:14.154Z_
+
+<details><summary>↩ Tool result · `toolu_01D8FAzZ2nCf7d82RVjmpBU6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md\", \"content\": \"# Paper Framing — FREIGE\\n\\n> **状态**: POST-MVP + DREAM v2 完成（D047 分析）\\n> **最后更新**: 2026-05-16\\n> **Dream v1**: best=2.5, median=3.0, worst=2.5 → reframe 完成\\n> **Dream v2**: best=3.0, median=2.5, worst=2.5 → best 提升但 median 下降，未达标。关键路径：plan_011 bf16 GRPO eval + structural fixes → re-dream v3\\n\\n## Target Venue\\n\\n- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25 → commit EMNLP Aug/Sep)\\n- Fallback: AAAI 2027 (abstract July 25, paper Aug 1)\\n\\n## Core Insight\\n\\nLLM-based document-level IE 已逼近 encoder SOTA 的抽取精度，但零方法能生成可验证证据。本文提出 **evidence-grounded DocRE** 作为新任务范式：LLM 同时输出关系三元组和支撑证据句。\\n\\n我们系统性地探索了 online RL (GRPO) 、offline preference optimization (DPO) 和 offline RL (RSFT) 三条技术路线。关键发现：**RL optimization pressure 与 evidence-extraction decoupling severity 正相关**——优化强度越大，evidence 质量提升的同时抽取能力退化越严重。QLoRA 放大至 catastrophic（rel_f1<0.02），bf16 GRPO 从 0.4549 退化至 ~0.434（mild, -2pp），DPO 呈 gradual 退化（1ep→3ep rel_f1 从 0.4034→0.3429），RSFT 无 decoupling。\\n\\nCED (Contrastive Evidence Discrimination) 是一种 NLI-based 候选筛选函数，通过文档内 hard negative 对比评估 evidence 质量。CED 作为 RSFT 的 scoring function 之一进行测试，其相对于 flat-NLI 的优势需要通过充分的统计检验验证。\\n\\n## Story Arc\\n\\n1. **Problem**: LLM DocRE 无证据 → 部署障碍\\n2. **New task**: evidence-grounded DocRE — 同时生成关系和证据\\n3. **Cost of faithfulness**: evidence generation 代价 ~7pp Ign-F1（no-evidence 47.36 vs evidence-SFT 40.36）——这是 faithfulness 的真实成本\\n4. **Exploration**: 系统性比较 online RL (GRPO) vs offline preference (DPO) vs offline RL (RSFT)\\n5. **Key finding**: evidence-extraction decoupling — RL optimization pressure 与 decoupling severity 正相关，形成连续谱系（GRPO-QLoRA catastrophic > GRPO-bf16 mild > DPO gradual > RSFT none）\\n6. **QLoRA amplification**: QLoRA 量化将 mild decoupling 放大至 catastrophic forgetting——decoupling 是 RL-for-IE 中 multi-objective competition 的通用梯度（intra-task trade-off，非 inter-task forgetting），QLoRA 是 catastrophic amplifier\\n7. **What works**: RSFT with NLI-based scoring 是唯一有效路线——提升 evidence 质量而不牺牲抽取\\n8. **Best practical solution**: CED reranker 恢复 97% 的 evidence 代价，同时保留高质量 evidence（evi_f1=0.8188）\\n9. **Diagnostic tool**: EDCR 双层诊断——方法级量化 decoupling（与 Claim 2 呼应），per-relation 级揭示 evi_f1 不捕捉的 relation-type 难度差异（D070 ✅）\\n\\n## Core Claims (reframed after Dream v1, updated D068/D069/D070/D071/D072)\\n\\n### Claim 1 (Main): Evidence-grounded DocRE 是可行的新能力\\n- FREIGE 是首个**基于生成式 LLM** 的 evidence-grounded DocRE 方法（⚠️ 必须始终保持 \\\"generative LLM\\\" 限定词——SAIS 已做 encoder-based evidence retrieval + DocRE）\\n- **关键区分 (Reviewer warning)**：encoder-based evidence *retrieval*（SAIS, DREEAM — 分类哪些句子是证据，evidence supervision 提升 RE）vs generative evidence *production*（FREIGE — LLM 生成证据文本，额外生成负担导致 ~7pp 代价）。论文 Related Work 必须精准讨论此对比，否则审稿人会问 \\\"为什么 SAIS 说 evidence 有用，你说 evidence 有害\\\"\\n- **Evidence generation tax**: no-evidence SFT Ign-F1=47.36 vs evidence-SFT 40.36，代价 ~7pp（plan_014 ✅）\\n- RSFT 在 4/4 配置下均超过 SFT baseline（Ign-F1 +3.3~5.5pp）\\n- **CED reranker 是最优实用方案**: rel_f1=0.4864（仅低于 no-evidence 0.29pp），evi_f1=0.8188（plan_005 ✅）\\n- 需要 DREEAM-protocol 对齐的 Evi-F1 对比（D041 在处理中）\\n- **RSFT 方法论定位**：诚实承认 RSFT 是 STaR (NeurIPS 2022) 的单轮变体 + evidence quality scoring。创新点在于将 STaR-like self-improvement 应用于 evidence-grounded DocRE + CED/NLI 作为 domain-specific quality filter，而非框架本身\\n- **Evaluation caveat** (Limitations): GenRES 指出 exact match F1 低估 generative RE，FREIGE 所有 eval 用 exact match，应承认此局限（对所有方法同等适用，相对比较有效）\\n\\n### Claim 2 (Core finding): RL optimization pressure 与 evidence-extraction decoupling severity 正相关（D068/D069 修正）\\n- **Decoupling spectrum**: 优化强度越大，decoupling 越严重\\n  - GRPO QLoRA: catastrophic（rel_f1=0.0138, evi_f1=0.850, EDCR=0.99）— QLoRA 放大 decoupling\\n  - GRPO bf16: mild（rel_f1 从 0.4549→~0.434, -2pp; step_30=0.434, step_50=0.4276, step_70=0.4341）— 退化可控但持续（D065/D066）\\n  - DPO bf16 1ep→3ep: gradual（Ign-F1 38.88→TBD, rel_f1 0.4034→0.3429）— 随训练渐进退化（D067/D068）\\n  - RSFT: none — 无 decoupling，唯一有效路线\\n- **QLoRA 是 catastrophic amplifier，不是 root cause**: bf16 GRPO 仅 mild decoupling（-2pp），QLoRA 放大至 catastrophic（-39pp）（D054/D065/D066）\\n- **Decoupling 是 RL-for-IE 的通用梯度**: 跨方法（GRPO/DPO）、跨量化策略（QLoRA/bf16）一致出现，严重程度与优化压力正相关\\n- 三档 Dream 审稿均认为此发现\\\\\\\"genuinely novel and striking\\\\\\\"\\n- **已完成**: GRPO G=8 bf16 确认 mild decoupling（plan_011 ✅）; DPO 1ep/3ep 确认 gradual decoupling（plan_012 ✅）\\n\\n### Claim 3 (Ablation): NLI-based scoring 提升 RSFT 质量\\n- CED 和 flat-NLI 都优于 random/no scoring\\n- CED vs flat-NLI 的差异需统计验证（Dream 报告 p=0.08/0.38/0.12 不显著）\\n- **Critical**: 如果 CED 不显著优于 flat-NLI → CED 降级为\\\"one possible scoring function\\\"\\n- **行动**: 5+ seeds for significance testing\\n- **top_k selection ablation (k=1 vs k=3)**:\\n  - k=1 (best-of-8) 优于 k=3 (top3-of-8)，CED scoring precision 随 k 增大下降\\n  - k=1 均值 (3 seeds s42/s43/s44): Ign-F1=45.00, rel_f1=0.4596, evi_f1=81.43, EDCR=0.6434\\n  - k=3 (1 seed, reeval_rsft_topk3): Ign-F1=43.64, rel_f1=0.4454, evi_f1=80.88, EDCR=0.6635\\n  - Δ (k=3 vs k=1 mean): Ign-F1 **-1.36pp**, rel_f1 **-1.42pp**, evi_f1 **-0.55pp**, EDCR +0.02\\n  - 训练数据质量下降: k=1 mean_f1=0.6157, mean_ced=0.6683 → k=3 mean_f1=0.5761, mean_ced=0.6205（来源: mvp2_rsft_ced_scoring / mvp2_rsft_ced_scoring_topk3_r2）\\n  - 训练集规模: k=1 选出 2718 样本 (12.4%), k=3 选出 8037 样本 (37%), 数据量 ×2.96 但质量下降抵消数量优势\\n  - **叙事**: 低排名 response 引入噪声——rank 2-3 样本的 F1 和 CED 分数均显著低于 rank 1，扩大训练集规模无法补偿数据质量的稀释。这表明 RSFT 的关键不在数据量而在 scoring precision\\n  - **注**: k=3 仅 1 seed，差异方向一致但尚不具备统计显著性；作为 ablation table 中的辅助行呈现，不作为独立 claim\\n\\n### Claim 4 (Diagnostic): EDCR 双层诊断价值（D070/D072）\\n- **Layer 1 — 方法级**: EDCR 量化 evidence-extraction decoupling，与 Claim 2 spectrum 呼应\\n  - 方法级 EDCR 与 rel_f1 Spearman ρ=-0.965（plan_003 ✅）——本质是 decoupling 的度量\\n  - EDCR 识别病理模型（GRPO QLoRA: EDCR≈1.0）\\n- **Layer 2 — per-relation-type**: EDCR 提供 evi_f1 不捕捉的 relation-type 诊断信息 ✅\\n  - per-relation ρ(EDCR, evi_f1) = **-0.064** (p=0.58) → **完全独立于 evi_f1**\\n  - per-relation ρ(EDCR, rel_f1) = -0.793 (p<0.001) → 与 rel_f1 强相关但非完美\\n  - per-relation ρ(evi_f1, rel_f1) = -0.013 (p=0.91) → evidence 质量与抽取能力在 relation type 间完全解耦\\n  - 典型案例：date_of_birth (EDCR=0.118, 高 faithful) vs head_of_government (EDCR=0.956, 高 decoupled)\\n  - 93 relation types 分析（≥5 样本），76 个有非零数据\\n- **论文叙事**: EDCR 在方法级是 decoupling 度量工具（横向对比方法），在 relation 级是难度诊断工具（纵向定位薄弱 relation）——两层叙事互补\\n- **仍需**: 100 例人工标注验证（RC6）\\n\\n## MVP Evidence Summary (D071: 主表报 Ign-F1，附录报 F1)\\n\\n| Config | Ign-F1 | F1 | Δ vs SFT (Ign-F1) | Evi-F1 (cond) | Evi-F1 (joint) | EDCR |\\n|--------|--------|------|-------------------|---------------|---------------|------|\\n| **SFT no-evidence** | **47.36** | 48.93 | **+7.00pp** | **—** | **—** | **—** |\\n| SFT baseline (noquant) | 40.36 | 41.06 | — | 80.13 | 31.17 | 0.7118 |\\n| **CED reranker** | **TBD** | 48.64 | **TBD** | **81.88** | — | **0.6156** |\\n| RSFT CED s43 (best) | **45.85** | 46.83 | **+5.49pp** | 81.56 | 37.11 | 0.6388 |\\n| RSFT CED s44 | 45.51 | 46.55 | +5.15pp | 80.87 | 37.13 | 0.6350 |\\n| RSFT CED s42 | 43.63 | 44.49 | +3.27pp | 81.87 | 34.68 | 0.6565 |\\n| RSFT CED k=3 | 43.64 | 44.54 | +3.28pp | 80.88 | — | 0.6635 |\\n| RSFT r2a (1ep) | 44.01 | 44.94 | +3.65pp | 81.08 | 35.09 | 0.6641 |\\n| RSFT r2b (1ep) | 44.10 | 44.93 | +3.74pp | 81.28 | 34.90 | 0.6609 |\\n| flat-NLI s42 | 44.49 | 45.39 | +4.13pp | 80.43 | — | 0.6431 |\\n| flat-NLI s43 (reeval) | TBD | 45.23 | TBD | 81.58 | — | 0.6505 |\\n| DPO bf16 1ep | 38.88 | 40.34 | -1.48pp | 80.88 | — | 0.7139 |\\n| DPO bf16 3ep | TBD | 34.29 | TBD | — | — | — |\\n| GRPO bf16 G=8 (best step) | 45.59 | ~43.4 | +5.23pp | 80.86 | — | — |\\n| GRPO QLoRA (lr=5e-6) | TBD | 1.38 | TBD | 85.00 | — | 0.9900 |\\n\\n注：Evi-F1 以百分比显示（×100）。Ign-F1 修正后排名无实质变化（仅 r2a/r2b 互换，差 0.09pp）。TBD 项等待 metrics_v2.json 补算。GRPO bf16 Ign-F1=45.59 > F1=43.4 因 train triples 过滤效应。RSFT CED k=3 数据来源: reeval_rsft_topk3 (ign_f1_corrected=true)。\\n\\n## Anticipated Reviewer Concerns (updated from Dream, D068/D069)\\n\\n### RC1: \\\"Online RL\\\" 标题过度声称（Dream 三档一致 Critical）\\n- ~~标题和 claim 收窄到 \\\"GRPO fails for DocRE\\\"~~\\n- **D068/D069 修正**: 重新定位为 \\\"RL optimization pressure correlates with decoupling severity\\\"——不是 GRPO 特有问题，而是 RL-for-IE 的通用梯度\\n- DPO 数据支撑 decoupling spectrum（gradual decay confirms the pattern）\\n\\n### RC2: GRPO G=4 太小 + LoRA confound（Dream 三档一致 Major）\\n- GRPO G=8 bf16 实验 ✅ — 确认 mild decoupling（-2pp），QLoRA 是 catastrophic amplifier（D065/D066）\\n- LoRA confound 已解决：bf16 LoRA vs QLoRA 直接对比\\n\\n### RC3: CED 不显著优于 flat-NLI（Dream 三档一致 Major）\\n- 5+ seeds 统计检验；如不显著 → CED 降级\\n\\n### RC4: RSFT 不新颖\\n- 不声称 RSFT 是贡献；贡献在于任务定义 + decoupling 发现 + EDCR\\n- 诚实定位 RSFT 为 STaR (NeurIPS 2022) 单轮变体 + domain-specific quality filter\\n\\n### RC12: SAIS 说 evidence 有用，为何 FREIGE 说 evidence 有害？（文献审查 2026-05-16）\\n- **关键区分**: discriminative evidence *retrieval*（SAIS/DREEAM — 分类句子是否为证据，作为监督信号提升 RE）vs generative evidence *production*（FREIGE — LLM 生成完整证据文本，额外生成负担导致 ~7pp 代价）\\n- SAIS 的 evidence supervision 是分类任务，不增加输出长度；FREIGE 的 evidence generation 显著增加生成序列长度，模型需分配容量同时完成 RE + evidence 生成\\n- **应对**: Related Work 中精准讨论此对比，明确 FREIGE 研究的是 *generative production* 设定下的代价，与 *retrieval* 设定下的增益不矛盾——两者揭示了 evidence 在不同范式下的不同角色\\n\\n### RC13: 单模型单数据集泛化性不足（D077 scope 扩展）\\n- plan_006: Qwen3-1.7B / 8B model size ablation\\n- plan_016: LLaMA-3.1-8B cross-family validation\\n- plan_007: Re-DocRED cross-dataset evaluation\\n\\n### RC5: 评测可比性（D041）\\n- DREEAM-protocol Evi-F1；conditional Evi-F1 作为辅助指标\\n\\n### RC6: EDCR 缺人工验证\\n- 100 例小规模标注\\n\\n### RC7: Missing DPO/PPO（Dream 两档 Major）\\n- DPO experiment ✅ — 结果确认 decoupling spectrum（D067/D068）\\n\\n### RC8: Dev-test degradation\\n- 观察项，等 test set 数据\\n\\n### RC9: 连接 reward overoptimization 文献\\n- 显式引用 Gao et al. 2023\\n\\n### RC10: Post-hoc evidence retrieval baseline\\n- SFT + BM25 evidence retrieval\\n\\n### RC11: \\\"RL 不遗忘\\\" 文献与 Claim 2 的张力（文献扫描 2026-05-16）\\n- 近期多篇论文（arXiv 2507.05386, 2506.23508, 2509.04259）论证 RL fine-tuning 天然缓解 catastrophic forgetting\\n- **关键区分**: FREIGE 的 decoupling 是 **intra-task multi-objective trade-off**（RE 抽取 vs evidence 生成两个优化目标的竞争），不是 **inter-task forgetting**（丢失预训练知识）。两者机制不同\\n- bf16 GRPO 的 mild decoupling（-2pp）恰好印证这一点：模型没有忘记\\\"怎么做 IE\\\"，而是在 evidence reward 压力下偏移了 RE-evidence 的资源分配\\n- **应对**: Related Work / Discussion 中显式回应这组文献，区分 intra-task trade-off vs inter-task forgetting\\n- **QuRL/QaRL 文献支撑 Claim 2**: QuRL 发现 quantized vs full-precision actor divergence 在长训练中指数增长（直接支撑 QLoRA amplification 叙事）；QaRL 的 error token failure mode 与 QLoRA GRPO garbled evidence 吻合\\n\\n## Key Baselines (12+)\\n\\n1. **SFT-only**: Qwen3-4B + LoRA SFT（with evidence）\\n1b. **SFT no-evidence**: Qwen3-4B + LoRA SFT（无 evidence，upper bound ablation）\\n2. **RSFT flat-NLI**: flat-NLI scored RSFT（核心 ablation）\\n3. **RSFT CED**: CED scored RSFT（主方法）\\n4. **CED-as-reranker**: 推理时 CED 重排（无训练）\\n5. **DPO+CED**: offline preference learning — gradual decoupling（D067/D068）\\n6. **GRPO+CED (QLoRA, G=4)**: catastrophic decoupling baseline\\n7. **GRPO+CED (bf16, G=8)**: mild decoupling — QLoRA confound 排除（D065/D066）\\n8. **Post-hoc retrieval**: SFT + BM25 evidence（NEW）\\n9. **DREEAM**: encoder evidence SOTA\\n10. **SAIS**: encoder evidence baseline\\n11. **DocKS-RAG**: extraction SOTA（无 evidence）\\n12. **LMRC**: generative LLM SOTA（无 evidence）\\n\\n## Publishability Threshold (revised after Dream, D068/D069)\\n\\n- **必要条件**: (1) RSFT 在 test set 上 Ign-F1 显著 > SFT (2) DREEAM-protocol Evi-F1 可报告 (3) Decoupling spectrum 有完整数据支撑（GRPO QLoRA/bf16 + DPO + RSFT）\\n- **充分条件**: 上述 + CED 显著 > flat-NLI + EDCR 人工验证\\n- **Failure pivot**: decoupling spectrum 不成立（bf16 GRPO 也 catastrophic）→ scope 大幅缩减。**已排除**: bf16 GRPO 确认 mild（D065/D066）\\n\\n## Research Phase Priorities (revised after Dream v1)\\n\\n| Priority | 实验 | Claim | GPU-h |\\n|----------|------|-------|-------|\\n| P0 | flat-NLI RSFT ablation (5 seeds) | C3 | ~25h |\\n| P0 | CED RSFT additional seeds (→5 total) | C3 | ~10h |\\n| P0 | DREEAM-protocol Evi-F1 对齐 | C1 | CPU |\\n| P0 | Test set evaluation | C1 | ~4h |\\n| P0 | DREEAM baseline reproduction | C1 | ~8h |\\n| ~~P0~~ | ~~GRPO G=8 experiment~~ ✅ | C2 | ~16h |\\n| ~~P0~~ | ~~DPO+CED experiment~~ ✅ | C2 | ~12h |\\n| ~~P0~~ | ~~EDCR per-relation analysis (D070)~~ ✅ | C4 | CPU |\\n| ~~P0~~ | ~~Ign-F1 bugfix + data sync (D071)~~ ✅ | ALL | CPU |\\n| P1 | EDCR human validation | C4 | API |\\n| P1 | Post-hoc evidence retrieval baseline | C1 | ~4h |\\n| P1 | CED-as-reranker (running) | C1 | ~6h |\\n| P1 | Model size ablation | RC | ~24h |\\n| P1 | Re-DocRED extension | RC | ~12h |\\n| ~~P0~~ | ~~GRPO forgetting dynamics figure (plan_009)~~ ✅ | C2 | ~2h |\\n| ~~P0~~ | ~~SFT-without-evidence ablation (plan_014)~~ ✅ | C1 | ~8h |\\n| P2 | Advantage variance measurement | C2 | CPU |\\n\", \"total_chars\": 12151, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29d26092-9fac-4ff8-b1d5-e90783df3dff",
+  "uuid": "d6c88fe2-af85-4a79-9592-97a048e8ab79",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — FREIGE\\\\n\\\\n> **状态**: POST-MVP + DREAM v2 完成（D047 分析）\\\\n> **最后更新**: 2026-05-16\\\\n> **Dream v1**: best=2.5, median=3.0, worst=2.5 → reframe 完成\\\\n> **Dream v2**: best=3.0, median=2.5, worst=2.5 → best 提升但 median 下降，未达标。关键路径：plan_011 bf16 GRPO eval + structural fixes → re-dream v3\\\\n\\\\n## Target Venue\\\\n\\\\n- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25 → commit EMNLP Aug/Sep)\\\\n- Fallback: AAAI 2027 (abstract July 25, paper Aug 1)\\\\n\\\\n## Core Insight\\\\n\\\\nLLM-based document-level IE 已逼近 encoder SOTA 的抽取精度，但零方法能生成可验证证据。本文提出 **evidence-grounded DocRE** 作为新任务范式：LLM 同时输出关系三元组和支撑证据句。\\\\n\\\\n我们系统性地探索了 online RL (GRPO) 、offline preference optimization (DPO) 和 offline RL (RSFT) 三条技术路线。关键发现：**RL optimization pressure 与 evidence-extraction decoupling severity 正相关**——优化强度越大，evidence 质量提升的同时抽取能力退化越严重。QLoRA 放大至 catastrophic（rel_f1<0.02），bf16 GRPO 从 0.4549 退化至 ~0.434（mild, -2pp），DPO 呈 gradual 退化（1ep→3ep rel_f1 从 0.4034→0.3429），RSFT 无 decoupling。\\\\n\\\\nCED (Contrastive Evidence Discrimination) 是一种 NLI-based 候选筛选函数，通过文档内 hard negative 对比评估 evidence 质量。CED 作为 RSFT 的 scoring function 之一进行测试，其相对于 flat-NLI 的优势需要通过充分的统计检验验证。\\\\n\\\\n## Story Arc\\\\n\\\\n1. **Problem**: LLM DocRE 无证据 → 部署障碍\\\\n2. **New task**: evidence-grounded DocRE — 同时生成关系和证据\\\\n3. **Cost of faithfulness**: evidence generation 代价 ~7pp Ign-F1（no-evidence 47.36 vs evidence-SFT 40.36）——这是 faithfulness 的真实成本\\\\n4. **Exploration**: 系统性比较 online RL (GRPO) vs offline preference (DPO) vs offline RL (RSFT)\\\\n5. **Key finding**: evidence-extraction decoupling — RL optimization pressure 与 decoupling severity 正相关，形成连续谱系（GRPO-QLoRA catastrophic > GRPO-bf16 mild > DPO gradual > RSFT none）\\\\n6. **QLoRA amplification**: QLoRA 量化将 mild decoupling 放大至 catastrophic forgetting——decoupling 是 RL-for-IE 中 multi-objective competition 的通用梯度（intra-task trade-off，非 inter-task forgetting），QLoRA 是 catastrophic amplifier\\\\n7. **What works**: RSFT with NLI-based scoring 是唯一有效路线——提升 evidence 质量而不牺牲抽取\\\\n8. **Best practical solution**: CED reranker 恢复 97% 的 evidence 代价，同时保留高质量 evidence（evi_f1=0.8188）\\\\n9. **Diagnostic tool**: EDCR 双层诊断——方法级量化 decoupling（与 Claim 2 呼应），per-relation 级揭示 evi_f1 不捕捉的 relation-type 难度差异（D070 ✅）\\\\n\\\\n## Core Claims (reframed after Dream v1, updated D068/D069/D070/D071/D072)\\\\n\\\\n### Claim 1 (Main): Evidence-grounded DocRE 是可行的新能力\\\\n- FREIGE 是首个**基于生成式 LLM** 的 evidence-grounded DocRE 方法（⚠️ 必须始终保持 \\\\\\\"generative LLM\\\\\\\" 限定词——SAIS 已做 encoder-based evidence retrieval + DocRE）\\\\n- **关键区分 (Reviewer warning)**：encoder-based evidence *retrieval*（SAIS, DREEAM — 分类哪些句子是证据，evidence supervision 提升 RE）vs generative evidence *production*（FREIGE — LLM 生成证据文本，额外生成负担导致 ~7pp 代价）。论文 Related Work 必须精准讨论此对比，否则审稿人会问 \\\\\\\"为什么 SAIS 说 evidence 有用，你说 evidence 有害\\\\\\\"\\\\n- **Evidence generation tax**: no-evidence SFT Ign-F1=47.36 vs evidence-SFT 40.36，代价 ~7pp（plan_014 ✅）\\\\n- RSFT 在 4/4 配置下均超过 SFT baseline（Ign-F1 +3.3~5.5pp）\\\\n- **CED reranker 是最优实用方案**: rel_f1=0.4864（仅低于 no-evidence 0.29pp），evi_f1=0.8188（plan_005 ✅）\\\\n- 需要 DREEAM-protocol 对齐的 Evi-F1 对比（D041 在处理中）\\\\n- **RSFT 方法论定位**：诚实承认 RSFT 是 STaR (NeurIPS 2022) 的单轮变体 + evidence quality scoring。创新点在于将 STaR-like self-improvement 应用于 evidence-grounded DocRE + CED/NLI 作为 domain-specific quality filter，而非框架本身\\\\n- **Evaluation caveat** (Limitations): GenRES 指出 exact match F1 低估 generative RE，FREIGE 所有 eval 用 exact match，应承认此局限（对所有方法同等适用，相对比较有效）\\\\n\\\\n### Claim 2 (Core finding): RL optimization pressure 与 evidence-extraction decoupling severity 正相关（D068/D069 修正）\\\\n- **Decoupling spectrum**: 优化强度越大，decoupling 越严重\\\\n  - GRPO QLoRA: catastrophic（rel_f1=0.0138, evi_f1=0.850, EDCR=0.99）— QLoRA 放大 decoupling\\\\n  - GRPO bf16: mild（rel_f1 从 0.4549→~0.434, -2pp; step_30=0.434, step_50=0.4276, step_70=0.4341）— 退化可控但持续（D065/D066）\\\\n  - DPO bf16 1ep→3ep: gradual（Ign-F1 38.88→TBD, rel_f1 0.4034→0.3429）— 随训练渐进退化（D067/D068）\\\\n  - RSFT: none — 无 decoupling，唯一有效路线\\\\n- **QLoRA 是 catastrophic amplifier，不是 root cause**: bf16 GRPO 仅 mild decoupling（-2pp），QLoRA 放大至 catastrophic（-39pp）（D054/D065/D066）\\\\n- **Decoupling 是 RL-for-IE 的通用梯度**: 跨方法（GRPO/DPO）、跨量化策略（QLoRA/bf16）一致出现，严重程度与优化压力正相关\\\\n- 三档 Dream 审稿均认为此发现\\\\\\\\\\\\\\\"genuinely novel and striking\\\\\\\\\\\\\\\"\\\\n- **已完成**: GRPO G=8 bf16 确认 mild decoupling（plan_011 ✅）; DPO 1ep/3ep 确认 gradual decoupling（plan_012 ✅）\\\\n\\\\n### Claim 3 (Ablation): NLI-based scoring 提升 RSFT 质量\\\\n- CED 和 flat-NLI 都优于 random/no scoring\\\\n- CED vs flat-NLI 的差异需统计验证（Dream 报告 p=0.08/0.38/0.12 不显著）\\\\n- **Critical**: 如果 CED 不显著优于 flat-NLI → CED 降级为\\\\\\\"one possible scoring function\\\\\\\"\\\\n- **行动**: 5+ seeds for significance testing\\\\n- **top_k selection ablation (k=1 vs k=3)**:\\\\n  - k=1 (best-of-8) 优于 k=3 (top3-of-8)，CED scoring precision 随 k 增大下降\\\\n  - k=1 均值 (3 seeds s42/s43/s44): Ign-F1=45.00, rel_f1=0.4596, evi_f1=81.43, EDCR=0.6434\\\\n  - k=3 (1 seed, reeval_rsft_topk3): Ign-F1=43.64, rel_f1=0.4454, evi_f1=80.88, EDCR=0.6635\\\\n  - Δ (k=3 vs k=1 mean): Ign-F1 **-1.36pp**, rel_f1 **-1.42pp**, evi_f1 **-0.55pp**, EDCR +0.02\\\\n  - 训练数据质量下降: k=1 mean_f1=0.6157, mean_ced=0.6683 → k=3 mean_f1=0.5761, mean_ced=0.6205（来源: mvp2_rsft_ced_scoring / mvp2_rsft_ced_scoring_topk3_r2）\\\\n  - 训练集规模: k=1 选出 2718 样本 (12.4%), k=3 选出 8037 样本 (37%), 数据量 ×2.96 但质量下降抵消数量优势\\\\n  - **叙事**: 低排名 response 引入噪声——rank 2-3 样本的 F1 和 CED 分数均显著低于 rank 1，扩大训练集规模无法补偿数据质量的稀释。这表明 RSFT 的关键不在数据量而在 scoring precision\\\\n  - **注**: k=3 仅 1 seed，差异方向一致但尚不具备统计显著性；作为 ablation table 中的辅助行呈现，不作为独立 claim\\\\n\\\\n### Claim 4 (Diagnostic): EDCR 双层诊断价值（D070/D072）\\\\n- **Layer 1 — 方法级**: EDCR 量化 evidence-extraction decoupling，与 Claim 2 spectrum 呼应\\\\n  - 方法级 EDCR 与 rel_f1 Spearman ρ=-0.965（plan_003 ✅）——本质是 decoupling 的度量\\\\n  - EDCR 识别病理模型（GRPO QLoRA: EDCR≈1.0）\\\\n- **Layer 2 — per-relation-type**: EDCR 提供 evi_f1 不捕捉的 relation-type 诊断信息 ✅\\\\n  - per-relation ρ(EDCR, evi_f1) = **-0.064** (p=0.58) → **完全独立于 evi_f1**\\\\n  - per-relation ρ(EDCR, rel_f1) = -0.793 (p<0.001) → 与 rel_f1 强相关但非完美\\\\n  - per-relation ρ(evi_f1, rel_f1) = -0.013 (p=0.91) → evidence 质量与抽取能力在 relation type 间完全解耦\\\\n  - 典型案例：date_of_birth (EDCR=0.118, 高 faithful) vs head_of_government (EDCR=0.956, 高 decoupled)\\\\n  - 93 relation types 分析（≥5 样本），76 个有非零数据\\\\n- **论文叙事**: EDCR 在方法级是 decoupling 度量工具（横向对比方法），在 relation 级是难度诊断工具（纵向定位薄弱 relation）——两层叙事互补\\\\n- **仍需**: 100 例人工标注验证（RC6）\\\\n\\\\n## MVP Evidence Summary (D071: 主表报 Ign-F1，附录报 F1)\\\\n\\\\n| Config | Ign-F1 | F1 | Δ vs SFT (Ign-F1) | Evi-F1 (cond) | Evi-F1 (joint) | EDCR |\\\\n|--------|--------|------|-------------------|---------------|---------------|------|\\\\n| **SFT no-evidence** | **47.36** | 48.93 | **+7.00pp** | **—** | **—** | **—** |\\\\n| SFT baseline (noquant) | 40.36 | 41.06 | — | 80.13 | 31.17 | 0.7118 |\\\\n| **CED reranker** | **TBD** | 48.64 | **TBD** | **81.88** | — | **0.6156** |\\\\n| RSFT CED s43 (best) | **45.85** | 46.83 | **+5.49pp** | 81.56 | 37.11 | 0.6388 |\\\\n| RSFT CED s44 | 45.51 | 46.55 | +5.15pp | 80.87 | 37.13 | 0.6350 |\\\\n| RSFT CED s42 | 43.63 | 44.49 | +3.27pp | 81.87 | 34.68 | 0.6565 |\\\\n| RSFT CED k=3 | 43.64 | 44.54 | +3.28pp | 80.88 | — | 0.6635 |\\\\n| RSFT r2a (1ep) | 44.01 | 44.94 | +3.65pp | 81.08 | 35.09 | 0.6641 |\\\\n| RSFT r2b (1ep) | 44.10 | 44.93 | +3.74pp | 81.28 | 34.90 | 0.6609 |\\\\n| flat-NLI s42 | 44.49 | 45.39 | +4.13pp | 80.43 | — | 0.6431 |\\\\n| flat-NLI s43 (reeval) | TBD | 45.23 | TBD | 81.58 | — | 0.6505 |\\\\n| DPO bf16 1ep | 38.88 | 40.34 | -1.48pp | 80.88 | — | 0.7139 |\\\\n| DPO bf16 3ep | TBD | 34.29 | TBD | — | — | — |\\\\n| GRPO bf16 G=8 (best step) | 45.59 | ~43.4 | +5.23pp | 80.86 | — | — |\\\\n| GRPO QLoRA (lr=5e-6) | TBD | 1.38 | TBD | 85.00 | — | 0.9900 |\\\\n\\\\n注：Evi-F1 以百分比显示（×100）。Ign-F1 修正后排名无实质变化（仅 r2a/r2b 互换，差 0.09pp）。TBD 项等待 metrics_v2.json 补算。GRPO bf16 Ign-F1=45.59 > F1=43.4 因 train triples 过滤效应。RSFT CED k=3 数据来源: reeval_rsft_topk3 (ign_f1_corrected=true)。\\\\n\\\\n## Anticipated Reviewer Concerns (updated from Dream, D068/D069)\\\\n\\\\n### RC1: \\\\\\\"Online RL\\\\\\\" 标题过度声称（Dream 三档一致 Critical）\\\\n- ~~标题和 claim 收窄到 \\\\\\\"GRPO fails for DocRE\\\\\\\"~~\\\\n- **D068/D069 修正**: 重新定位为 \\\\\\\"RL optimization pressure correlates with decoupling severity\\\\\\\"——不是 GRPO 特有问题，而是 RL-for-IE 的通用梯度\\\\n- DPO 数据支撑 decoupling spectrum（gradual decay confirms the pattern）\\\\n\\\\n### RC2: GRPO G=4 太小 + LoRA confound（Dream 三档一致 Major）\\\\n- GRPO G=8 bf16 实验 ✅ — 确认 mild decoupling（-2pp），QLoRA 是 catastrophic amplifier（D065/D066）\\\\n- LoRA confound 已解决：bf16 LoRA vs QLoRA 直接对比\\\\n\\\\n### RC3: CED 不显著优于 flat-NLI（Dream 三档一致 Major）\\\\n- 5+ seeds 统计检验；如不显著 → CED 降级\\\\n\\\\n### RC4: RSFT 不新颖\\\\n- 不声称 RSFT 是贡献；贡献在于任务定义 + decoupling 发现 + EDCR\\\\n- 诚实定位 RSFT 为 STaR (NeurIPS 2022) 单轮变体 + domain-specific quality filter\\\\n\\\\n### RC12: SAIS 说 evidence 有用，为何 FREIGE 说 evidence 有害？（文献审查 2026-05-16）\\\\n- **关键区分**: discriminative evidence *retrieval*（SAIS/DREEAM — 分类句子是否为证据，作为监督信号提升 RE）vs generative evidence *production*（FREIGE — LLM 生成完整证据文本，额外生成负担导致 ~7pp 代价）\\\\n- SAIS 的 evidence supervision 是分类任务，不增加输出长度；FREIGE 的 evidence generation 显著增加生成序列长度，模型需分配容量同时完成 RE + evidence 生成\\\\n- **应对**: Related Work 中精准讨论此对比，明确 FREIGE 研究的是 *generative production* 设定下的代价，与 *retrieval* 设定下的增益不矛盾——两者揭示了 evidence 在不同范式下的不同角色\\\\n\\\\n### RC13: 单模型单数据集泛化性不足（D077 scope 扩展）\\\\n- plan_006: Qwen3-1.7B / 8B model size ablation\\\\n- plan_016: LLaMA-3.1-8B cross-family validation\\\\n- plan_007: Re-DocRED cross-dataset evaluation\\\\n\\\\n### RC5: 评测可比性（D041）\\\\n- DREEAM-protocol Evi-F1；conditional Evi-F1 作为辅助指标\\\\n\\\\n### RC6: EDCR 缺人工验证\\\\n- 100 例小规模标注\\\\n\\\\n### RC7: Missing DPO/PPO（Dream 两档 Major）\\\\n- DPO experiment ✅ — 结果确认 decoupling spectrum（D067/D068）\\\\n\\\\n### RC8: Dev-test degradation\\\\n- 观察项，等 test set 数据\\\\n\\\\n### RC9: 连接 reward overoptimization 文献\\\\n- 显式引用 Gao et al. 2023\\\\n\\\\n### RC10: Post-hoc evidence retrieval baseline\\\\n- SFT + BM25 evidence retrieval\\\\n\\\\n### RC11: \\\\\\\"RL 不遗忘\\\\\\\" 文献与 Claim 2 的张力（文献扫描 2026-05-16）\\\\n- 近期多篇论文（arXiv 2507.05386, 2506.23508, 2509.04259）论证 RL fine-tuning 天然缓解 catastrophic forgetting\\\\n- **关键区分**: FREIGE 的 decoupling 是 **intra-task multi-objective trade-off**（RE 抽取 vs evidence 生成两个优化目标的竞争），不是 **inter-task forgetting**（丢失预训练知识）。两者机制不同\\\\n- bf16 GRPO 的 mild decoupling（-2pp）恰好印证这一点：模型没有忘记\\\\\\\"怎么做 IE\\\\\\\"，而是在 evidence reward 压力下偏移了 RE-evidence 的资源分配\\\\n- **应对**: Related Work / Discussion 中显式回应这组文献，区分 intra-task trade-off vs inter-task forgetting\\\\n- **QuRL/QaRL 文献支撑 Claim 2**: QuRL 发现 quantized vs full-precision actor divergence 在长训练中指数增长（直接支撑 QLoRA amplification 叙事）；QaRL 的 error token failure mode 与 QLoRA GRPO garbled evidence 吻合\\\\n\\\\n## Key Baselines (12+)\\\\n\\\\n1. **SFT-only**: Qwen3-4B + LoRA SFT（with evidence）\\\\n1b. **SFT no-evidence**: Qwen3-4B + LoRA SFT（无 evidence，upper bound ablation）\\\\n2. **RSFT flat-NLI**: flat-NLI scored RSFT（核心 ablation）\\\\n3. **RSFT CED**: CED scored RSFT（主方法）\\\\n4. **CED-as-reranker**: 推理时 CED 重排（无训练）\\\\n5. **DPO+CED**: offline preference learning — gradual decoupling（D067/D068）\\\\n6. **GRPO+CED (QLoRA, G=4)**: catastrophic decoupling baseline\\\\n7. **GRPO+CED (bf16, G=8)**: mild decoupling — QLoRA confound 排除（D065/D066）\\\\n8. **Post-hoc retrieval**: SFT + BM25 evidence（NEW）\\\\n9. **DREEAM**: encoder evidence SOTA\\\\n10. **SAIS**: encoder evidence baseline\\\\n11. **DocKS-RAG**: extraction SOTA（无 evidence）\\\\n12. **LMRC**: generative LLM SOTA（无 evidence）\\\\n\\\\n## Publishability Threshold (revised after Dream, D068/D069)\\\\n\\\\n- **必要条件**: (1) RSFT 在 test set 上 Ign-F1 显著 > SFT (2) DREEAM-protocol Evi-F1 可报告 (3) Decoupling spectrum 有完整数据支撑（GRPO QLoRA/bf16 + DPO + RSFT）\\\\n- **充分条件**: 上述 + CED 显著 > flat-NLI + EDCR 人工验证\\\\n- **Failure pivot**: decoupling spectrum 不成立（bf16 GRPO 也 catastrophic）→ scope 大幅缩减。**已排除**: bf16 GRPO 确认 mild（D065/D066）\\\\n\\\\n## Research Phase Priorities (revised after Dream v1)\\\\n\\\\n| Priority | 实验 | Claim | GPU-h |\\\\n|----------|------|-------|-------|\\\\n| P0 | flat-NLI RSFT ablation (5 seeds) | C3 | ~25h |\\\\n| P0 | CED RSFT additional seeds (→5 total) | C3 | ~10h |\\\\n| P0 | DREEAM-protocol Evi-F1 对齐 | C1 | CPU |\\\\n| P0 | Test set evaluation | C1 | ~4h |\\\\n| P0 | DREEAM baseline reproduction | C1 | ~8h |\\\\n| ~~P0~~ | ~~GRPO G=8 experiment~~ ✅ | C2 | ~16h |\\\\n| ~~P0~~ | ~~DPO+CED experiment~~ ✅ | C2 | ~12h |\\\\n| ~~P0~~ | ~~EDCR per-relation analysis (D070)~~ ✅ | C4 | CPU |\\\\n| ~~P0~~ | ~~Ign-F1 bugfix + data sync (D071)~~ ✅ | ALL | CPU |\\\\n| P1 | EDCR human validation | C4 | API |\\\\n| P1 | Post-hoc evidence retrieval baseline | C1 | ~4h |\\\\n| P1 | CED-as-reranker (running) | C1 | ~6h |\\\\n| P1 | Model size ablation | RC | ~24h |\\\\n| P1 | Re-DocRED extension | RC | ~12h |\\\\n| ~~P0~~ | ~~GRPO forgetting dynamics figure (plan_009)~~ ✅ | C2 | ~2h |\\\\n| ~~P0~~ | ~~SFT-without-evidence ablation (plan_014)~~ ✅ | C1 | ~8h |\\\\n| P2 | Advantage variance measurement | C2 | CPU |\\\\n\\\", \\\"total_chars\\\": 12151, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md\", \"content\": \"# Paper Framing — FREIGE\\n\\n> **状态**: POST-MVP + DREAM v2 完成（D047 分析）\\n> **最后更新**: 2026-05-16\\n> **Dream v1**: best=2.5, median=3.0, worst=2.5 → reframe 完成\\n> **Dream v2**: best=3.0, median=2.5, worst=2.5 → best 提升但 median 下降，未达标。关键路径：plan_011 bf16 GRPO eval + structural fixes → re-dream v3\\n\\n## Target Venue\\n\\n- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25 → commit EMNLP Aug/Sep)\\n- Fallback: AAAI 2027 (abstract July 25, paper Aug 1)\\n\\n## Core Insight\\n\\nLLM-based document-level IE 已逼近 encoder SOTA 的抽取精度，但零方法能生成可验证证据。本文提出 **evidence-grounded DocRE** 作为新任务范式：LLM 同时输出关系三元组和支撑证据句。\\n\\n我们系统性地探索了 online RL (GRPO) 、offline preference optimization (DPO) 和 offline RL (RSFT) 三条技术路线。关键发现：**RL optimization pressure 与 evidence-extraction decoupling severity 正相关**——优化强度越大，evidence 质量提升的同时抽取能力退化越严重。QLoRA 放大至 catastrophic（rel_f1<0.02），bf16 GRPO 从 0.4549 退化至 ~0.434（mild, -2pp），DPO 呈 gradual 退化（1ep→3ep rel_f1 从 0.4034→0.3429），RSFT 无 decoupling。\\n\\nCED (Contrastive Evidence Discrimination) 是一种 NLI-based 候选筛选函数，通过文档内 hard negative 对比评估 evidence 质量。CED 作为 RSFT 的 scoring function 之一进行测试，其相对于 flat-NLI 的优势需要通过充分的统计检验验证。\\n\\n## Story Arc\\n\\n1. **Problem**: LLM DocRE 无证据 → 部署障碍\\n2. **New task**: evidence-grounded DocRE — 同时生成关系和证据\\n3. **Cost of faithfulness**: evidence generation 代价 ~7pp Ign-F1（no-evidence 47.36 vs evidence-SFT 40.36）——这是 faithfulness 的真实成本\\n4. **Exploration**: 系统性比较 online RL (GRPO) vs offline preference (DPO) vs offline RL (RSFT)\\n5. **Key finding**: evidence-extraction decoupling — RL optimization pressure 与 decoupling severity 正相关，形成连续谱系（GRPO-QLoRA catastrophic > GRPO-bf16 mild > DPO gradual > RSFT none）\\n6. **QLoRA amplification**: QLoRA 量化将 mild decoupling 放大至 catastrophic forgetting——decoupling 是 RL-for-IE 中 multi-objective competition 的通用梯度（intra-task trade-off，非 inter-task forgetting），QLoRA 是 catastrophic amplifier\\n7. **What works**: RSFT with NLI-based scoring 是唯一有效路线——提升 evidence 质量而不牺牲抽取\\n8. **Best practical solution**: CED reranker 恢复 97% 的 evidence 代价，同时保留高质量 evidence（evi_f1=0.8188）\\n9. **Diagnostic tool**: EDCR 双层诊断——方法级量化 decoupling（与 Claim 2 呼应），per-relation 级揭示 evi_f1 不捕捉的 relation-type 难度差异（D070 ✅）\\n\\n## Core Claims (reframed after Dream v1, updated D068/D069/D070/D071/D072)\\n\\n### Claim 1 (Main): Evidence-grounded DocRE 是可行的新能力\\n- FREIGE 是首个**基于生成式 LLM** 的 evidence-grounded DocRE 方法（⚠️ 必须始终保持 \\\"generative LLM\\\" 限定词——SAIS 已做 encoder-based evidence retrieval + DocRE）\\n- **关键区分 (Reviewer warning)**：encoder-based evidence *retrieval*（SAIS, DREEAM — 分类哪些句子是证据，evidence supervision 提升 RE）vs generative evidence *production*（FREIGE — LLM 生成证据文本，额外生成负担导致 ~7pp 代价）。论文 Related Work 必须精准讨论此对比，否则审稿人会问 \\\"为什么 SAIS 说 evidence 有用，你说 evidence 有害\\\"\\n- **Evidence generation tax**: no-evidence SFT Ign-F1=47.36 vs evidence-SFT 40.36，代价 ~7pp（plan_014 ✅）\\n- RSFT 在 4/4 配置下均超过 SFT baseline（Ign-F1 +3.3~5.5pp）\\n- **CED reranker 是最优实用方案**: rel_f1=0.4864（仅低于 no-evidence 0.29pp），evi_f1=0.8188（plan_005 ✅）\\n- 需要 DREEAM-protocol 对齐的 Evi-F1 对比（D041 在处理中）\\n- **RSFT 方法论定位**：诚实承认 RSFT 是 STaR (NeurIPS 2022) 的单轮变体 + evidence quality scoring。创新点在于将 STaR-like self-improvement 应用于 evidence-grounded DocRE + CED/NLI 作为 domain-specific quality filter，而非框架本身\\n- **Evaluation caveat** (Limitations): GenRES 指出 exact match F1 低估 generative RE，FREIGE 所有 eval 用 exact match，应承认此局限（对所有方法同等适用，相对比较有效）\\n\\n### Claim 2 (Core finding): RL optimization pressure 与 evidence-extraction decoupling severity 正相关（D068/D069 修正）\\n- **Decoupling spectrum**: 优化强度越大，decoupling 越严重\\n  - GRPO QLoRA: catastrophic（rel_f1=0.0138, evi_f1=0.850, EDCR=0.99）— QLoRA 放大 decoupling\\n  - GRPO bf16: mild（rel_f1 从 0.4549→~0.434, -2pp; step_30=0.434, step_50=0.4276, step_70=0.4341）— 退化可控但持续（D065/D066）\\n  - DPO bf16 1ep→3ep: gradual（Ign-F1 38.88→TBD, rel_f1 0.4034→0.3429）— 随训练渐进退化（D067/D068）\\n  - RSFT: none — 无 decoupling，唯一有效路线\\n- **QLoRA 是 catastrophic amplifier，不是 root cause**: bf16 GRPO 仅 mild decoupling（-2pp），QLoRA 放大至 catastrophic（-39pp）（D054/D065/D066）\\n- **Decoupling 是 RL-for-IE 的通用梯度**: 跨方法（GRPO/DPO）、跨量化策略（QLoRA/bf16）一致出现，严重程度与优化压力正相关\\n- 三档 Dream 审稿均认为此发现\\\\\\\"genuinely novel and striking\\\\\\\"\\n- **已完成**: GRPO G=8 bf16 确认 mild decoupling（plan_011 ✅）; DPO 1ep/3ep 确认 gradual decoupling（plan_012 ✅）\\n\\n### Claim 3 (Ablation): NLI-based scoring 提升 RSFT 质量\\n- CED 和 flat-NLI 都优于 random/no scoring\\n- CED vs flat-NLI 的差异需统计验证（Dream 报告 p=0.08/0.38/0.12 不显著）\\n- **Critical**: 如果 CED 不显著优于 flat-NLI → CED 降级为\\\"one possible scoring function\\\"\\n- **行动**: 5+ seeds for significance testing\\n- **top_k selection ablation (k=1 vs k=3)**:\\n  - k=1 (best-of-8) 优于 k=3 (top3-of-8)，CED scoring precision 随 k 增大下降\\n  - k=1 均值 (3 seeds s42/s43/s44): Ign-F1=45.00, rel_f1=0.4596, evi_f1=81.43, EDCR=0.6434\\n  - k=3 (1 seed, reeval_rsft_topk3): Ign-F1=43.64, rel_f1=0.4454, evi_f1=80.88, EDCR=0.6635\\n  - Δ (k=3 vs k=1 mean): Ign-F1 **-1.36pp**, rel_f1 **-1.42pp**, evi_f1 **-0.55pp**, EDCR +0.02\\n  - 训练数据质量下降: k=1 mean_f1=0.6157, mean_ced=0.6683 → k=3 mean_f1=0.5761, mean_ced=0.6205（来源: mvp2_rsft_ced_scoring / mvp2_rsft_ced_scoring_topk3_r2）\\n  - 训练集规模: k=1 选出 2718 样本 (12.4%), k=3 选出 8037 样本 (37%), 数据量 ×2.96 但质量下降抵消数量优势\\n  - **叙事**: 低排名 response 引入噪声——rank 2-3 样本的 F1 和 CED 分数均显著低于 rank 1，扩大训练集规模无法补偿数据质量的稀释。这表明 RSFT 的关键不在数据量而在 scoring precision\\n  - **注**: k=3 仅 1 seed，差异方向一致但尚不具备统计显著性；作为 ablation table 中的辅助行呈现，不作为独立 claim\\n\\n### Claim 4 (Diagnostic): EDCR 双层诊断价值（D070/D072）\\n- **Layer 1 — 方法级**: EDCR 量化 evidence-extraction decoupling，与 Claim 2 spectrum 呼应\\n  - 方法级 EDCR 与 rel_f1 Spearman ρ=-0.965（plan_003 ✅）——本质是 decoupling 的度量\\n  - EDCR 识别病理模型（GRPO QLoRA: EDCR≈1.0）\\n- **Layer 2 — per-relation-type**: EDCR 提供 evi_f1 不捕捉的 relation-type 诊断信息 ✅\\n  - per-relation ρ(EDCR, evi_f1) = **-0.064** (p=0.58) → **完全独立于 evi_f1**\\n  - per-relation ρ(EDCR, rel_f1) = -0.793 (p<0.001) → 与 rel_f1 强相关但非完美\\n  - per-relation ρ(evi_f1, rel_f1) = -0.013 (p=0.91) → evidence 质量与抽取能力在 relation type 间完全解耦\\n  - 典型案例：date_of_birth (EDCR=0.118, 高 faithful) vs head_of_government (EDCR=0.956, 高 decoupled)\\n  - 93 relation types 分析（≥5 样本），76 个有非零数据\\n- **论文叙事**: EDCR 在方法级是 decoupling 度量工具（横向对比方法），在 relation 级是难度诊断工具（纵向定位薄弱 relation）——两层叙事互补\\n- **仍需**: 100 例人工标注验证（RC6）\\n\\n## MVP Evidence Summary (D071: 主表报 Ign-F1，附录报 F1)\\n\\n| Config | Ign-F1 | F1 | Δ vs SFT (Ign-F1) | Evi-F1 (cond) | Evi-F1 (joint) | EDCR |\\n|--------|--------|------|-------------------|---------------|---------------|------|\\n| **SFT no-evidence** | **47.36** | 48.93 | **+7.00pp** | **—** | **—** | **—** |\\n| SFT baseline (noquant) | 40.36 | 41.06 | — | 80.13 | 31.17 | 0.7118 |\\n| **CED reranker** | **TBD** | 48.64 | **TBD** | **81.88** | — | **0.6156** |\\n| RSFT CED s43 (best) | **45.85** | 46.83 | **+5.49pp** | 81.56 | 37.11 | 0.6388 |\\n| RSFT CED s44 | 45.51 | 46.55 | +5.15pp | 80.87 | 37.13 | 0.6350 |\\n| RSFT CED s42 | 43.63 | 44.49 | +3.27pp | 81.87 | 34.68 | 0.6565 |\\n| RSFT CED k=3 | 43.64 | 44.54 | +3.28pp | 80.88 | — | 0.6635 |\\n| RSFT r2a (1ep) | 44.01 | 44.94 | +3.65pp | 81.08 | 35.09 | 0.6641 |\\n| RSFT r2b (1ep) | 44.10 | 44.93 | +3.74pp | 81.28 | 34.90 | 0.6609 |\\n| flat-NLI s42 | 44.49 | 45.39 | +4.13pp | 80.43 | — | 0.6431 |\\n| flat-NLI s43 (reeval) | TBD | 45.23 | TBD | 81.58 | — | 0.6505 |\\n| DPO bf16 1ep | 38.88 | 40.34 | -1.48pp | 80.88 | — | 0.7139 |\\n| DPO bf16 3ep | TBD | 34.29 | TBD | — | — | — |\\n| GRPO bf16 G=8 (best step) | 45.59 | ~43.4 | +5.23pp | 80.86 | — | — |\\n| GRPO QLoRA (lr=5e-6) | TBD | 1.38 | TBD | 85.00 | — | 0.9900 |\\n\\n注：Evi-F1 以百分比显示（×100）。Ign-F1 修正后排名无实质变化（仅 r2a/r2b 互换，差 0.09pp）。TBD 项等待 metrics_v2.json 补算。GRPO bf16 Ign-F1=45.59 > F1=43.4 因 train triples 过滤效应。RSFT CED k=3 数据来源: reeval_rsft_topk3 (ign_f1_corrected=true)。\\n\\n## Anticipated Reviewer Concerns (updated from Dream, D068/D069)\\n\\n### RC1: \\\"Online RL\\\" 标题过度声称（Dream 三档一致 Critical）\\n- ~~标题和 claim 收窄到 \\\"GRPO fails for DocRE\\\"~~\\n- **D068/D069 修正**: 重新定位为 \\\"RL optimization pressure correlates with decoupling severity\\\"——不是 GRPO 特有问题，而是 RL-for-IE 的通用梯度\\n- DPO 数据支撑 decoupling spectrum（gradual decay confirms the pattern）\\n\\n### RC2: GRPO G=4 太小 + LoRA confound（Dream 三档一致 Major）\\n- GRPO G=8 bf16 实验 ✅ — 确认 mild decoupling（-2pp），QLoRA 是 catastrophic amplifier（D065/D066）\\n- LoRA confound 已解决：bf16 LoRA vs QLoRA 直接对比\\n\\n### RC3: CED 不显著优于 flat-NLI（Dream 三档一致 Major）\\n- 5+ seeds 统计检验；如不显著 → CED 降级\\n\\n### RC4: RSFT 不新颖\\n- 不声称 RSFT 是贡献；贡献在于任务定义 + decoupling 发现 + EDCR\\n- 诚实定位 RSFT 为 STaR (NeurIPS 2022) 单轮变体 + domain-specific quality filter\\n\\n### RC12: SAIS 说 evidence 有用，为何 FREIGE 说 evidence 有害？（文献审查 2026-05-16）\\n- **关键区分**: discriminative evidence *retrieval*（SAIS/DREEAM — 分类句子是否为证据，作为监督信号提升 RE）vs generative evidence *production*（FREIGE — LLM 生成完整证据文本，额外生成负担导致 ~7pp 代价）\\n- SAIS 的 evidence supervision 是分类任务，不增加输出长度；FREIGE 的 evidence generation 显著增加生成序列长度，模型需分配容量同时完成 RE + evidence 生成\\n- **应对**: Related Work 中精准讨论此对比，明确 FREIGE 研究的是 *generative production* 设定下的代价，与 *retrieval* 设定下的增益不矛盾——两者揭示了 evidence 在不同范式下的不同角色\\n\\n### RC13: 单模型单数据集泛化性不足（D077 scope 扩展）\\n- plan_006: Qwen3-1.7B / 8B model size ablation\\n- plan_016: LLaMA-3.1-8B cross-family validation\\n- plan_007: Re-DocRED cross-dataset evaluation\\n\\n### RC5: 评测可比性（D041）\\n- DREEAM-protocol Evi-F1；conditional Evi-F1 作为辅助指标\\n\\n### RC6: EDCR 缺人工验证\\n- 100 例小规模标注\\n\\n### RC7: Missing DPO/PPO（Dream 两档 Major）\\n- DPO experiment ✅ — 结果确认 decoupling spectrum（D067/D068）\\n\\n### RC8: Dev-test degradation\\n- 观察项，等 test set 数据\\n\\n### RC9: 连接 reward overoptimization 文献\\n- 显式引用 Gao et al. 2023\\n\\n### RC10: Post-hoc evidence retrieval baseline\\n- SFT + BM25 evidence retrieval\\n\\n### RC11: \\\"RL 不遗忘\\\" 文献与 Claim 2 的张力（文献扫描 2026-05-16）\\n- 近期多篇论文（arXiv 2507.05386, 2506.23508, 2509.04259）论证 RL fine-tuning 天然缓解 catastrophic forgetting\\n- **关键区分**: FREIGE 的 decoupling 是 **intra-task multi-objective trade-off**（RE 抽取 vs evidence 生成两个优化目标的竞争），不是 **inter-task forgetting**（丢失预训练知识）。两者机制不同\\n- bf16 GRPO 的 mild decoupling（-2pp）恰好印证这一点：模型没有忘记\\\"怎么做 IE\\\"，而是在 evidence reward 压力下偏移了 RE-evidence 的资源分配\\n- **应对**: Related Work / Discussion 中显式回应这组文献，区分 intra-task trade-off vs inter-task forgetting\\n- **QuRL/QaRL 文献支撑 Claim 2**: QuRL 发现 quantized vs full-precision actor divergence 在长训练中指数增长（直接支撑 QLoRA amplification 叙事）；QaRL 的 error token failure mode 与 QLoRA GRPO garbled evidence 吻合\\n\\n## Key Baselines (12+)\\n\\n1. **SFT-only**: Qwen3-4B + LoRA SFT（with evidence）\\n1b. **SFT no-evidence**: Qwen3-4B + LoRA SFT（无 evidence，upper bound ablation）\\n2. **RSFT flat-NLI**: flat-NLI scored RSFT（核心 ablation）\\n3. **RSFT CED**: CED scored RSFT（主方法）\\n4. **CED-as-reranker**: 推理时 CED 重排（无训练）\\n5. **DPO+CED**: offline preference learning — gradual decoupling（D067/D068）\\n6. **GRPO+CED (QLoRA, G=4)**: catastrophic decoupling baseline\\n7. **GRPO+CED (bf16, G=8)**: mild decoupling — QLoRA confound 排除（D065/D066）\\n8. **Post-hoc retrieval**: SFT + BM25 evidence（NEW）\\n9. **DREEAM**: encoder evidence SOTA\\n10. **SAIS**: encoder evidence baseline\\n11. **DocKS-RAG**: extraction SOTA（无 evidence）\\n12. **LMRC**: generative LLM SOTA（无 evidence）\\n\\n## Publishability Threshold (revised after Dream, D068/D069)\\n\\n- **必要条件**: (1) RSFT 在 test set 上 Ign-F1 显著 > SFT (2) DREEAM-protocol Evi-F1 可报告 (3) Decoupling spectrum 有完整数据支撑（GRPO QLoRA/bf16 + DPO + RSFT）\\n- **充分条件**: 上述 + CED 显著 > flat-NLI + EDCR 人工验证\\n- **Failure pivot**: decoupling spectrum 不成立（bf16 GRPO 也 catastrophic）→ scope 大幅缩减。**已排除**: bf16 GRPO 确认 mild（D065/D066）\\n\\n## Research Phase Priorities (revised after Dream v1)\\n\\n| Priority | 实验 | Claim | GPU-h |\\n|----------|------|-------|-------|\\n| P0 | flat-NLI RSFT ablation (5 seeds) | C3 | ~25h |\\n| P0 | CED RSFT additional seeds (→5 total) | C3 | ~10h |\\n| P0 | DREEAM-protocol Evi-F1 对齐 | C1 | CPU |\\n| P0 | Test set evaluation | C1 | ~4h |\\n| P0 | DREEAM baseline reproduction | C1 | ~8h |\\n| ~~P0~~ | ~~GRPO G=8 experiment~~ ✅ | C2 | ~16h |\\n| ~~P0~~ | ~~DPO+CED experiment~~ ✅ | C2 | ~12h |\\n| ~~P0~~ | ~~EDCR per-relation analysis (D070)~~ ✅ | C4 | CPU |\\n| ~~P0~~ | ~~Ign-F1 bugfix + data sync (D071)~~ ✅ | ALL | CPU |\\n| P1 | EDCR human validation | C4 | API |\\n| P1 | Post-hoc evidence retrieval baseline | C1 | ~4h |\\n| P1 | CED-as-reranker (running) | C1 | ~6h |\\n| P1 | Model size ablation | RC | ~24h |\\n| P1 | Re-DocRED extension | RC | ~12h |\\n| ~~P0~~ | ~~GRPO forgetting dynamics figure (plan_009)~~ ✅ | C2 | ~2h |\\n| ~~P0~~ | ~~SFT-without-evidence ablation (plan_014)~~ ✅ | C1 | ~8h |\\n| P2 | Advantage variance measurement | C2 | CPU |\\n\", \"total_chars\": 12151, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full content. Let me carefully update it based on the D078-D083 findings. Let me map out all the changes needed:
+
+1. **D078 — paired t-test**: C3 (CED vs flat-NLI) statistically indistinguishable, p=0.44. Downgrade C3.
+
+2. **D079 & D082 — Evidence Tax Scaling Pattern**:
+   - 1.7B: +6.2pp BENEFIT (evidence acts as implicit regularization, D083 fair subset analysis)
+   - 4B: -7.9pp cost (standard evidence generation burden) — wait, let me check. 
+
+The original text says "~7pp" cost. The user says -7.9pp for 4B. Let me use the numbers given.
+   - 8B Qwen: ≈0 (model capacity sufficient to absorb)
+   - 8B LLaMA: -0.7pp (cross-family confirmation)
+   - This is a non-linear U-shape pattern.
+
+3. **D080 — Re-DocRED cross-dataset**:
+   - Ign-F1 drops 3.15pp but Evi-F1 remains high (0.817)
+   - Evidence extraction ability generalizes cross-dataset
+
+4. **D076 re
+
+-eval final numbers**: Looking at the performance across different configurations—the SFT baseline sits at 0.4049 rel_f1, while both CED and flat-NLI RSFT variants cluster around 0.456, with LLaMA-8B showing stronger gains at 0.5514 rel_f1 and notably 0.5624 when evidence isn't required. Now I need to update the status line and refine the core insight to emphasize this scale-dependent U-shape pattern rather than treating the evidence cost as a simple fixed penalty.
+
+For the story arc, I'm shifting point 3 to capture how the evidence generation cost varies across model scales instead of the flat ~7pp estimate. I also need to add a new claim about this scaling pattern and update the evidence summary table with the LLaMA results and cross-dataset findings. The key reframing for C3 is that the methods are statistically equivalent based on the paired t-test, so I should present them as equally effective with CED winning on interpretability grounds rather than performance. grade C3 but don't delete it
+
+Let me draft the full updated file with these revisions in mind. I need to update the status line to reflect the completion of the scaling analysis, then reframe the core insight around the U-shaped pattern we discovered. For C3, I'm downgrading it based on the paired t-test result showing p=0.44, and reframing the conclusion to emphasize that both methods are equivalently effective with CED preferred for interpretability. I'll add the new C5 section documenting the scaling pattern across model sizes, incorporate the D076 final numbers for the baselines, include the LLaMA-8B cross-family results, and update the MVP evidence summary table accordingly. Let me also make sure to remove the resolved action item about significance testing and update RC13 with the actual results. I'm realizing the D076 numbers use a different metric space than the existing Ign-F1 values in the table—rel_f1 appears to be calculated differently. The user wants me to replace the old numbers with D076's final values, but I need to figure out the correct mapping between these metrics since they're not directly comparable. Looking at the specific entries, the rel_f1 scores from D076 don't align numerically with the Ign-F1 scores already in the table, so I need to understand whether these should replace them or exist as separate columns. I need to figure out what metric these scaling pattern numbers are based on. The user mentions "evidence tax" which refers to the Ign-F1 difference between models with and without evidence, but the numbers they're giving don't quite match my calculations from the existing data. Let me just use the exact figures they provided and incorporate them as the canonical D076 numbers.
+
+Now I'm going to systematically update the document with these precise values, making targeted changes to the status line, core insight section, and story arc points rather than rewriting everything from scratch. I'm settling on a cleaner structure: update the status and core insight, revise the story arc to emphasize the scaling pattern, reframe C1 around scale-dependent effects with cross-family results, downgrade C3 based on the D078 p-value, add a new C5 for the evidence tax scaling insight, then update the table with LLaMA rows and D076 numbers, refresh RC13, and finalize the research priorities.
+
+For the evidence tax specifically, the 4B scaling data shows -7.9pp which refines the earlier ~7pp estimate, so I'll use that more precise figure. On the table side, I need to preserve the existing Ign-F1 entries unchanged and add a separate D076 section with rel_f1 scores to avoid mixing evaluation protocols.
+
+Writing the updated document... bf16 GRPO eval + structural fixes → re-dream v3
+
+## Target Venue
+
+- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25 → commit EMNLP Aug/Sep)
+- Fallback: AAAI 2027 (abstract July 25, paper Aug 1)
+
+## Core Insight
+
+LLM-based document-level IE 已逼近 encoder SOTA 的抽取精度，但零方法能生成可验证证据。本文提出 **evidence-grounded DocRE** 作为新任务范式：LLM 同时输出关系三元组和支撑证据句。
+
+我们系统性地探索了 online RL (GRPO) 、offline preference optimization (DPO) 和 offline RL (RSFT) 三条技术路线。关键发现：**RL optimization pressure 与 evidence-extraction decoupling severity 正相关**——优化强度越大，evidence 质量提升的同时抽取能力退化越严重。QLoRA 放大至 catastrophic（rel_f1<0.02），bf16 GRPO 从 0.4549 退化至 ~0.434（mild, -2pp），DPO 呈 gradual 退化（1ep→3ep rel_f1 从 0.4034→0.3429），RSFT 无 decoupling。
+
+**Evidence tax 是 scale-dependent 的（U-shape pattern）**：小模型（1.7B）中 evidence generation 反而带来隐式正则化效果（+6.2pp 收益），但中等规模模型（4B）付出显著代价（-7.9pp），
+
+而大模型（8B）容量足以吸收这一开销（Qwen 约 0，LLaMA 跨家族确认 -0.7pp）。这推翻了"evidence 总有代价"的简单叙事。
+
+我们引入 CED（Contrastive Evidence Discrimination），一种基于 NLI 的候选筛选函数，通过文档内 hard negative 对比评估 evidence 质量。CED 和 flat-NLI 作为 RSFT scoring functions 统计不可区分（配对 t 检验 p=0.44），但均显著优于随机或无评分方案。CED 因可解释性优势作为默认推荐方案。
+
+故事线条上，问题是 LLM 在 DocRE 中缺乏证据支撑，新任务是实现 evidence-grounded DocRE——同时生成关系和证据。关键发现是 faithfulness 的代价与模型容量呈非线性关系：4B 模型付出 -7.9pp Ign-F1 代价，1.7B 反而获益 +6.2pp，8B 趋近于零。我系统性比较了在线 RL、离线偏好学习和离线 RL 三种方法，发现 RL 优化压力与 evidence-extraction decoupling 严重程度正相关，形成连续的权衡谱。
+
+QLoRA 量化会将温和的 decoupling 放大至灾难性遗忘，这是 RL 中多目标竞争的梯度现象。唯一有效的路线是用 NLI 评分的 RSFT，既能提升证据质量又不牺牲抽取性能。最终的实用方案是用 CED reranker 恢复 97% 的证据代价，同时保留高质量证据。
+
+现在我用 EDCR 双层诊断来量化方法级的 decoupling，并在关系类型层面揭示 evi_f1 无法捕捉的难度差异。证据成本呈现 U 形缩放模式，这个规律在不同模型家族和数据集上都能验证，说明这是一个通用现象。
+
+关键是要始终强调 FREIGE 是基于生成式 LLM 的方法——这与 SAIS 那类编码器模型的证据检索方式有本质区别。编码器模型是对现有句子分类来识别证据，而生成式方法是让 LLM 直接生成证据文本，这带来了额外的计算负担。论文的相关工作部分必须清楚地阐明这个对比，否则审稿人会质疑为什么 SAIS 说证据有帮助，我们却说证据有代价。
+
+现在看实验结果，RSFT 在所有配置下都超过了 SFT 基线，关系抽取 F1 提升了 3.3 到 5.5 个百分点。CED 重排器是最实用的方案，关系 F1 达到 0.4864，证据 F1 达到 0.8188。统一的数字显示 SFT 基线的关系 F1 是 0.4049，而 CED RSFT 平均达到 0.4569，flat-NLI RSFT 平均达到 0.4561。
+
+两种方法的差异很小，统计上无法区分。跨模型验证显示 LLaMA-3.1-8B 的表现更好，关系 F1 达到 0.5514，而且不使用证据时反而略高，说明 8B 模型容量足够吸收证据信息。跨数据集验证在 Re-DocRED 上关系 F1 下降了 3.15 个百分点，但证据 F1 保持在 0.817，表明证据抽取能力能够很好地泛化到新数据集。
+
+关于方法论，我需要坦诚地承认 RSFT 本质上是 STaR 的单轮变体加上证据质量评分，创新点在于将这种自我改进策略应用到证据驱动的文档关系抽取中，并用 CED/NLI 作为领域特定的质量过滤器。在评估方面，我应该指出精确匹配 F1 可能低估了生成式关系抽取的性能，这是所有方法都面临的局限，但相对比较仍然有效。
+
+核心发现是强化学习的优化压力与证据提取的解耦程度呈正相关。我看到了一个清晰的光谱：QLoRA 在 GRPO 中导致灾难性的解耦（关系 F1 跌至 0.0138 而证据 F1 仍有 0.850），bf16 精度下的 GRPO 表现出可控但持续的退化，DPO 则随着训练轮数增加逐步恶化，而 RSFT 没有出现这种问题。
+
+关键洞察是 QLoRA 本身不是根本原因，而是一个放大器——bf16 GRPO 只有轻微的解耦（-2pp），但 QLoRA 将其扩大到灾难级别（-39pp）。这个解耦现象在不同方法和量化策略间一致出现，审稿人都认为这是一个真正新颖且引人注目的发现。我已经确认了 GRPO 在 G=8 bf16 配置下的轻微解耦，DPO 的单轮和三轮实验也验证了这一趋势。
+
+对于 NLI 评分的消融实验，CED 和 flat-NLI 在统计上无法区分（p=0.44），两者的相对 F1 分数几乎相同，所以我推荐 CED 作为默认方案，主要是因为它提供了更好的可解释性。
+
+在论文中，我会强调 NLI 评分本身（无论哪种变体）才是 RSFT 有效的核心，而 CED 的额外价值在于能够区分对比证据。现在看 top-k 选择的消融结果，k=1 表现优于 k=3，这表明 CED 的评分精度随着候选数量增加而下降，k=1 在三个种子上的平均 Ign-F1 达到 45.00。
+
+对比 k=3 的单次评估，各项指标都有所下滑——Ign-F1 下降 1.36 个百分点，rel_f1 下降 1.42 个百分点，evi_f1 下降 0.55 个百分点——这反映出训练数据质量的恶化，k=1 时的平均 F1 和 CED 分数都明显高于 k=3。
+
+虽然 k=3 选出的样本数量增加了近 3 倍（从 2718 扩展到 8037），但这个数量优势被数据质量的下降所抵消，因为低排名的 response 引入了噪声，rank 2-3 的样本在 F1 和 CED 上都显著弱于 rank 1，说明 RSFT 的瓶颈不在数据规模而在评分精度。
+
+k=3 目前只有 1 个 seed 的结果，虽然方向一致但还缺乏统计显著性，所以作为消融表的辅助行呈现。
+
+现在看 EDCR 的诊断价值，它在两个层面上都有意义：方法层面上，EDCR 量化了 evidence-extraction 的解耦程度，与之前的 spectrum 分析相呼应，方法级 EDCR 与 rel_f1 的 Spearman 相关系数达到 -0.965，本质上就是在度量解耦的程度，同时 EDCR 也能识别出病理模型比如 GRPO QLoRA 的 EDCR 接近 1.0；在关系类型层面，EDCR 提供了更细粒度的诊断信息。
+
+具体来看，per-relation 的相关性分析显示 EDCR 与 evi_f1 几乎完全独立（ρ=-0.064, p=0.58），但与 rel_f1 有较强的负相关（ρ=-0.793, p<0.001），而 evi_f1 和 rel_f1 之间则完全解耦（ρ=-0.013, p=0.91），说明 evidence 质量和抽取能力在不同关系类型间是独立变化的，比如 date_of_birth 这个关系类型就展现出很低的 EDCR（0.118）但有较高的 faithful 程度。
+
+对 93 个关系类型的分析中有 76 个包含足够数据，而 EDCR 这个指标在方法层面用于横向对比不同方法的解耦程度，在关系层面则用于纵向诊断具体哪些关系类型存在薄弱环节，这两个层面的叙事相互补充。接下来需要通过 100 例人工标注来验证这些发现。现在转向一个新的发现——evidence 生成的成本呈现非线性的 U 形缩放模式，这个成本并不是固定的。
+
+在 1.7B 模型上，evidence 生成反而带来 6.2 个百分点的收益，因为它对小模型起到了隐式正则化的作用；但在 4B 模型上就变成了 7.9 个百分点的代价，因为模型容量不足以同时处理两个优化目标；到了 8B 规模，无论是 Qwen 还是 LLaMA 家族，这个成本都基本消失或接近零，说明模型有足够的容量来吸收 evidence 生成带来的额外负担。
+
+这个 U 形曲线推翻了"evidence 总是有代价"的简单认知，揭示了 evidence 生成与模型规模之间的非线性关系，为实际部署提供了明确的指导——选择合适的模型规模至关重要。
+
+跨模型族的一致性验证（LLaMA-8B 和 Qwen-8B 都在 8B 规模达到零 evidence tax）进一步强化了这个发现。现在我在查看具体的性能指标表，对比不同配置下的 Ign-F1、F1 以及 evidence 相关的指标。 Generating performance metrics table... Now I'm looking at the unified protocol results for rel_f1 metrics that can go directly into the paper, comparing the SFT baseline against the CED RSFT configurations with their respective performance scores.
+
+Generating markdown table... Looking at the cross-dataset validation results, the evidence extraction generalizes well across DocRED and Re-DocRED with only a 3.15pp drop in F1, but relation extraction performance degrades noticeably. For the reviewer concerns, I'm reconceptualizing the core claim away from "GRPO fails" toward a broader finding that RL optimization pressure drives the decoupling between relation and evidence extraction—a pattern that appears across different RL approaches, not just GRPO. The DPO experiments support this gradient spectrum interpretation. I'm also planning to run GRPO with larger gradient accumulation steps and address the potential confound from LoRA by testing with bf16 precision.
+
+On the CED versus flat-NLI comparison, the paired t-test shows they're statistically indistinguishable, so I'm shifting the framing to emphasize that NLI-based scoring itself is the critical component, with CED recommended primarily for interpretability rather than performance gains.
+
+For RSFT, I'm being clearer that the novelty lies in the task formulation, the decoupling discovery, and EDCR—RSFT itself is just a single-turn variant of STaR with a domain-specific quality filter, which I should acknowledge directly.
+
+Now I'm looking at the distinction between how SAIS treats evidence as useful in discriminative retrieval versus FREIGE's findings that evidence can be harmful—this seems to hinge on whether we're classifying sentences as evidence versus using evidence directly in generation.
+
+The key insight is that evidence supervision in SAIS is a classification task that doesn't lengthen outputs, while FREIGE's evidence generation significantly increases sequence length and creates a capacity trade-off. My new experiments show this evidence tax is actually scale-dependent: smaller models benefit from evidence, which aligns with SAIS's findings and suggests the effect depends on model capacity and task design rather than evidence being inherently harmful.
+
+For the generative versus retrieval distinction, I should clarify in the related work that FREIGE examines the costs of generative evidence production specifically, which doesn't contradict the benefits found in retrieval settings—they're revealing how evidence plays different roles across paradigms.
+
+I've now completed the generalization experiments across model sizes and families, plus cross-dataset validation, so I have solid evidence that the findings hold beyond the initial setup.
+
+For the evaluation metrics, I'm using the DREEAM protocol with conditional F1 as a supporting measure. I've also done a small manual validation pass on EDCR with 100 examples, and the DPO experiments confirmed the decoupling spectrum I observed. I'm still waiting on test set results to assess the dev-test degradation, and I need to connect this work to the reward overoptimization literature.
+
+Now looking at the post-hoc evidence retrieval baseline with SFT plus BM25, and I'm noticing an important distinction in the recent literature around RL and catastrophic forgetting. Several papers from this year argue that RL fine-tuning naturally mitigates forgetting, but what I'm seeing in FREIGE is different—it's an intra-task trade-off between relation extraction and evidence generation objectives, not inter-task forgetting of pretraining knowledge.
+
+The mild decoupling we observe with bf16 GRPO actually supports this: the model hasn't forgotten how to do information extraction, it's just reallocating resources between RE and evidence under the evidence reward pressure. I should explicitly address this distinction in the related work and discussion sections.
+
+The QuRL and QaRL literature provides good support here—QuRL shows that quantization divergence grows exponentially during long training, which directly backs up the QLoRA amplification narrative, and QaRL's error token failure mode aligns with what we're seeing in the QLoRA GRPO garbled evidence.
+
+Now I'm laying out the baseline experiments: starting with SFT-only using LoRA with evidence, then an ablation without evidence as an upper bound, followed by RSFT with flat-NLI scoring as the core ablation and CED scoring as the main method. I'm also including CED as a reranker at inference time without training, DPO combined with CED for offline preference learning, and then the two GRPO variants—one with QLoRA showing catastrophic decoupling and one with bf16 showing the milder decoupling pattern that isolates the QLoRA confound.
+
+Beyond that, I'm adding post-hoc retrieval with BM25 evidence, comparing against DREEAM and SAIS as encoder-based evidence baselines, plus DocKS-RAG and LMRC as extraction and generative LLM SOTAs without evidence. For publishability, I need RSFT to significantly outperform SFT on the test set's Ign-F1, the DREEAM protocol to give reportable Evi-F1 numbers, and complete data across the decoupling spectrum from GRPO variants, DPO, and RSFT.
+
+The sufficient conditions require the above plus EDCR human validation and full scaling patterns on C5, though I've ruled out the CED comparison since it's indistinguishable from flat-NLI. If the decoupling spectrum doesn't hold—even with bf16 GRPO showing only mild degradation—I'll need to significantly narrow the scope. Now I'm looking at the research priorities and which experiments are still needed versus what's already been concluded. Looking at the remaining tasks on my list—I've got several completed experiments marked off, and now I'm focusing on the P1 priority items like human validation for EDCR, setting up a post-hoc evidence retrieval baseline, and testing CED as a reranker which is currently running. I'm verifying all the numerical results match across the different experimental conditions—the baseline SFT scores, the CED and flat-NLI RSFT means with their seed variations, and the LLaMA-8B results with and without evidence. Everything checks out, so I can finalize these changes while keeping the existing structure intact. I'm noticing a discrepancy with the 4B numbers—the old calculation showed around 7.0pp difference, but the user specified -7.9pp, which might reflect updated values from the D076 protocol or a different metric like rel_f1. Since they explicitly stated -7.9pp, I'll use that exact figure.
+
+For the table, I should simplify by showing just the delta values without the individual absolute numbers, since that's where the inconsistency lies and I don't have complete absolute numbers for all models anyway.
+
+Generating markdown table... I'm being careful not to assert which specific metric these deltas apply to since the user only provided the raw numbers without metric labels. I'll remove the metric name from places where I speculated, like changing the reference to just "-7.9pp 代价" instead of claiming it's Ign-F1. Now I need to finalize the content and make sure the cross-references between sections are clear. I'm checking whether the -7.9pp evidence tax discrepancy comes from the D076 rel_f1 numbers rather than the existing 4B calculation, since the current text shows ~7pp but the user specified -7.9pp. I'm going back and forth on how to present these numbers—whether to specify the metric or just use them as deltas like the user provided. Looking at the user's reference to D083 fair subset analysis, it's clear these are controlled comparisons using the rel_f1 metric from the D076 protocol. I should just present the numbers clearly without overthinking the presentation, stick to what was given, and avoid making up any details.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29d26092-9fac-4ff8-b1d5-e90783df3dff",
+  "uuid": "754fe530-230f-40f8-92b5-955d9a084365",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PTpWaadUjwtjA6w4YKi2Gb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7277,
+      "cache_read_input_tokens": 24932,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7277
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+读取完成，内容 12151 字符。现在根据 D078-D083 更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29d26092-9fac-4ff8-b1d5-e90783df3dff",
+  "uuid": "5107d6d5-3467-4597-9b48-2bea7899c518",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PTpWaadUjwtjA6w4YKi2Gb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7277,
+      "cache_read_input_tokens": 24932,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7277
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_013t1UrXu6hU9m7FuFQ5MXxm`</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "paper_framing.md",
+  "content": "# Paper Framing — FREIGE\n\n> **状态**: POST-MVP + D078-D083 scaling analysis & cross-validation complete\n> **最后更新**: 2026-05-16\n> **Dream v1**: best=2.5, median=3.0, worst=2.5 → reframe 完成\n> **Dream v2**: best=3.0, median=2.5, worst=2.5 → best 提升但 median 下降，未达标。关键路径：plan_011 bf16 GRPO eval + structural fixes → re-dream v3\n\n## Target Venue\n\n- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25 → commit EMNLP Aug/Sep)\n- Fallback: AAAI 2027 (abstract July 25, paper Aug 1)\n\n## Core Insight\n\nLLM-based document-level IE 已逼近 encoder SOTA 的抽取精度，但零方法能生成可验证证据。本文提出 **evidence-grounded DocRE** 作为新任务范式：LLM 同时输出关系三元组和支撑证据句。\n\n我们系统性地探索了 online RL (GRPO) 、offline preference optimization (DPO) 和 offline RL (RSFT) 三条技术路线。关键发现：**RL optimization pressure 与 evidence-extraction decoupling severity 正相关**——优化强度越大，evidence 质量提升的同时抽取能力退化越严重。QLoRA 放大至 catastrophic（rel_f1<0.02），bf16 GRPO 从 0.4549 退化至 ~0.434（mild, -2pp），DPO 呈 gradual 退化（1ep→3ep rel_f1 从 0.4034→0.3429），RSFT 无 decoupling。\n\n**Evidence tax 是 scale-dependent 的（U-shape pattern, D079/D082/D083）**：1.7B 模型中 evidence generation 反而带来 +6.2pp 收益（隐式正则化），4B 模型付出 -7.9pp 代价，8B Qwen 模型容量足够 absorb（≈0），8B LLaMA 跨家族确认（-0.7pp）。这推翻了\"evidence 总有代价\"的简单叙事。\n\nCED (Contrastive Evidence Discrimination) 是一种 NLI-based 候选筛选函数，通过文档内 hard negative 对比评估 evidence 质量。CED 和 flat-NLI 作为 RSFT scoring functions 统计不可区分（D078 paired t-test p=0.44），但均显著优于 random/no scoring。CED 因可解释性优势作为默认推荐方案。\n\n## Story Arc\n\n1. **Problem**: LLM DocRE 无证据 → 部署障碍\n2. **New task**: evidence-grounded DocRE — 同时生成关系和证据\n3. **Cost of faithfulness**: evidence generation 代价是 **scale-dependent** 的——4B 模型付出 -7.9pp 代价，但 1.7B 反而获益 +6.2pp，8B 趋近于零。这不是固定成本，而是与模型容量的非线性交互（D079/D082/D083）\n4. **Exploration**: 系统性比较 online RL (GRPO) vs offline preference (DPO) vs offline RL (RSFT)\n5. **Key finding**: evidence-extraction decoupling — RL optimization pressure 与 decoupling severity 正相关，形成连续谱系（GRPO-QLoRA catastrophic > GRPO-bf16 mild > DPO gradual > RSFT none）\n6. **QLoRA amplification**: QLoRA 量化将 mild decoupling 放大至 catastrophic forgetting——decoupling 是 RL-for-IE 中 multi-objective competition 的通用梯度（intra-task trade-off，非 inter-task forgetting），QLoRA 是 catastrophic amplifier\n7. **What works**: RSFT with NLI-based scoring 是唯一有效路线——提升 evidence 质量而不牺牲抽取\n8. **Best practical solution**: CED reranker 恢复 97% 的 evidence 代价，同时保留高质量 evidence（evi_f1=0.8188）\n9. **Diagnostic tool**: EDCR 双层诊断——方法级量化 decoupling（与 Claim 2 呼应），per-relation 级揭示 evi_f1 不捕捉的 relation-type 难度差异（D070 ✅）\n10. **Scaling & generalization**: evidence tax 呈 U-shape scaling pattern（D079/D082/D083），跨模型家族（LLaMA-8B, D082）和跨数据集（Re-DocRED, D080）验证泛化性\n\n## Core Claims (reframed after Dream v1, updated D068-D083)\n\n### Claim 1 (Main): Evidence-grounded DocRE 是可行的新能力\n- FREIGE 是首个**基于生成式 LLM** 的 evidence-grounded DocRE 方法（⚠️ 必须始终保持 \"generative LLM\" 限定词——SAIS 已做 encoder-based evidence retrieval + DocRE）\n- **关键区分 (Reviewer warning)**：encoder-based evidence *retrieval*（SAIS, DREEAM — 分类哪些句子是证据，evidence supervision 提升 RE）vs generative evidence *production*（FREIGE — LLM 生成证据文本，额外生成负担导致 scale-dependent 代价）。论文 Related Work 必须精准讨论此对比，否则审稿人会问 \"为什么 SAIS 说 evidence 有用，你说 evidence 有害\"\n- **Evidence generation tax**: scale-dependent，详见 Claim 5（D079/D082/D083）\n- RSFT 在 4/4 配置下均超过 SFT baseline（Ign-F1 +3.3~5.5pp）\n- **CED reranker 是最优实用方案**: rel_f1=0.4864（仅低于 no-evidence 0.29pp），evi_f1=0.8188（plan_005 ✅）\n- **D076 统一协议最终数字（可写入论文）**:\n  - SFT baseline: rel_f1=0.4049\n  - CED RSFT mean: rel_f1=0.4569 (s42=0.4517, s44=0.4621)\n  - flat-NLI RSFT mean: rel_f1=0.4561 (s42=0.4535, s43_r2=0.4586)\n  - CED vs flat-NLI Δ=0.0008，统计不可区分（D078 p=0.44）\n- **Cross-family validation (D082)**: LLaMA-3.1-8B SFT rel_f1=0.5514, evi_f1=0.8151; no-evidence rel_f1=0.5624（evidence tax = -0.7pp，8B 容量足够 absorb）\n- **Cross-dataset validation (D080)**: Re-DocRED Ign-F1 下降 3.15pp 但 Evi-F1 保持 0.817——evidence extraction 能力跨数据集泛化\n- 需要 DREEAM-protocol 对齐的 Evi-F1 对比（D041 在处理中）\n- **RSFT 方法论定位**：诚实承认 RSFT 是 STaR (NeurIPS 2022) 的单轮变体 + evidence quality scoring。创新点在于将 STaR-like self-improvement 应用于 evidence-grounded DocRE + CED/NLI 作为 domain-specific quality filter，而非框架本身\n- **Evaluation caveat** (Limitations): GenRES 指出 exact match F1 低估 generative RE，FREIGE 所有 eval 用 exact match，应承认此局限（对所有方法同等适用，相对比较有效）\n\n### Claim 2 (Core finding): RL optimization pressure 与 evidence-extraction decoupling severity 正相关（D068/D069 修正）\n- **Decoupling spectrum**: 优化强度越大，decoupling 越严重\n  - GRPO QLoRA: catastrophic（rel_f1=0.0138, evi_f1=0.850, EDCR=0.99）— QLoRA 放大 decoupling\n  - GRPO bf16: mild（rel_f1 从 0.4549→~0.434, -2pp; step_30=0.434, step_50=0.4276, step_70=0.4341）— 退化可控但持续（D065/D066）\n  - DPO bf16 1ep→3ep: gradual（Ign-F1 38.88→TBD, rel_f1 0.4034→0.3429）— 随训练渐进退化（D067/D068）\n  - RSFT: none — 无 decoupling，唯一有效路线\n- **QLoRA 是 catastrophic amplifier，不是 root cause**: bf16 GRPO 仅 mild decoupling（-2pp），QLoRA 放大至 catastrophic（-39pp）（D054/D065/D066）\n- **Decoupling 是 RL-for-IE 的通用梯度**: 跨方法（GRPO/DPO）、跨量化策略（QLoRA/bf16）一致出现，严重程度与优化压力正相关\n- 三档 Dream 审稿均认为此发现\\\"genuinely novel and striking\\\"\n- **已完成**: GRPO G=8 bf16 确认 mild decoupling（plan_011 ✅）; DPO 1ep/3ep 确认 gradual decoupling（plan_012 ✅）\n\n### Claim 3 (Ablation): NLI-based scoring 提升 RSFT 质量——CED 与 flat-NLI 统计不可区分（D078）\n- CED 和 flat-NLI 都显著优于 random/no scoring\n- **D078 paired t-test 最终结论**: CED vs flat-NLI p=0.44，统计不可区分\n  - CED RSFT mean rel_f1=0.4569 vs flat-NLI mean rel_f1=0.4561（Δ=0.0008）\n  - 两种 scoring function 等效，CED 因可解释性（contrastive evidence discrimination）作为默认推荐\n- ~~**Critical**: 如果 CED 不显著优于 flat-NLI → CED 降级为\"one possible scoring function\"~~ → **已确认降级（D078）**\n- **论文叙事**: \"NLI-based scoring（无论 CED 或 flat-NLI）是 RSFT 有效的关键——两种变体均等效提升质量，CED 额外提供可解释的 evidence discrimination\"\n- **top_k selection ablation (k=1 vs k=3)**:\n  - k=1 (best-of-8) 优于 k=3 (top3-of-8)，CED scoring precision 随 k 增大下降\n  - k=1 均值 (3 seeds s42/s43/s44): Ign-F1=45.00, rel_f1=0.4596, evi_f1=81.43, EDCR=0.6434\n  - k=3 (1 seed, reeval_rsft_topk3): Ign-F1=43.64, rel_f1=0.4454, evi_f1=80.88, EDCR=0.6635\n  - Δ (k=3 vs k=1 mean): Ign-F1 **-1.36pp**, rel_f1 **-1.42pp**, evi_f1 **-0.55pp**, EDCR +0.02\n  - 训练数据质量下降: k=1 mean_f1=0.6157, mean_ced=0.6683 → k=3 mean_f1=0.5761, mean_ced=0.6205（来源: mvp2_rsft_ced_scoring / mvp2_rsft_ced_scoring_topk3_r2）\n  - 训练集规模: k=1 选出 2718 样本 (12.4%), k=3 选出 8037 样本 (37%), 数据量 ×2.96 但质量下降抵消数量优势\n  - **叙事**: 低排名 response 引入噪声——rank 2-3 样本的 F1 和 CED 分数均显著低于 rank 1，扩大训练集规模无法补偿数据质量的稀释。这表明 RSFT 的关键不在数据量而在 scoring precision\n  - **注**: k=3 仅 1 seed，差异方向一致但尚不具备统计显著性；作为 ablation table 中的辅助行呈现，不作为独立 claim\n\n### Claim 4 (Diagnostic): EDCR 双层诊断价值（D070/D072）\n- **Layer 1 — 方法级**: EDCR 量化 evidence-extraction decoupling，与 Claim 2 spectrum 呼应\n  - 方法级 EDCR 与 rel_f1 Spearman ρ=-0.965（plan_003 ✅）——本质是 decoupling 的度量\n  - EDCR 识别病理模型（GRPO QLoRA: EDCR≈1.0）\n- **Layer 2 — per-relation-type**: EDCR 提供 evi_f1 不捕捉的 relation-type 诊断信息 ✅\n  - per-relation ρ(EDCR, evi_f1) = **-0.064** (p=0.58) → **完全独立于 evi_f1**\n  - per-relation ρ(EDCR, rel_f1) = -0.793 (p<0.001) → 与 rel_f1 强相关但非完美\n  - per-relation ρ(evi_f1, rel_f1) = -0.013 (p=0.91) → evidence 质量与抽取能力在 relation type 间完全解耦\n  - 典型案例：date_of_birth (EDCR=0.118, 高 faithful) vs head_of_government (EDCR=0.956, 高 decoupled)\n  - 93 relation types 分析（≥5 样本），76 个有非零数据\n- **论文叙事**: EDCR 在方法级是 decoupling 度量工具（横向对比方法），在 relation 级是难度诊断工具（纵向定位薄弱 relation）——两层叙事互补\n- **仍需**: 100 例人工标注验证（RC6）\n\n### Claim 5 (NEW — Scaling): Evidence Tax 呈非线性 U-shape Scaling Pattern（D079/D082/D083）\n- **核心发现**: evidence generation 的代价不是固定的——它与模型容量呈非线性关系\n  - **1.7B (Qwen3-1.7B)**: +6.2pp BENEFIT — evidence generation 起隐式正则化作用，防止小模型过拟合（D083 公平子集分析确认）\n  - **4B (Qwen3-4B)**: -7.9pp cost — 标准 evidence generation 负担，模型容量不足以同时优化两个目标\n  - **8B Qwen (Qwen3-8B)**: ≈0 — 模型容量足够 absorb evidence generation 的额外负担\n  - **8B LLaMA (LLaMA-3.1-8B)**: -0.7pp — 跨家族确认，8B 规模的 evidence tax 趋近于零\n- **U-shape 解释**: 小模型从 evidence 的正则化效应获益 > 生成负担；中等模型容量不足以同时做好两件事；大模型容量充裕，两个目标互不干扰\n- **论文叙事**: 推翻 \"evidence 总有代价\" 的简单叙事，揭示 evidence generation 与模型容量的非线性交互——这为选择何种规模模型部署 evidence-grounded IE 提供实际指导\n- **Cross-family robustness**: LLaMA-8B 与 Qwen-8B 一致确认 8B 规模 evidence tax ≈ 0\n\n## MVP Evidence Summary (D071: 主表报 Ign-F1，附录报 F1; D076 统一协议 rel_f1)\n\n| Config | Ign-F1 | F1 | Δ vs SFT (Ign-F1) | Evi-F1 (cond) | Evi-F1 (joint) | EDCR |\n|--------|--------|------|-------------------|---------------|---------------|------|\n| **SFT no-evidence** | **47.36** | 48.93 | **+7.00pp** | **—** | **—** | **—** |\n| SFT baseline (noquant) | 40.36 | 41.06 | — | 80.13 | 31.17 | 0.7118 |\n| **CED reranker** | **TBD** | 48.64 | **TBD** | **81.88** | — | **0.6156** |\n| RSFT CED s43 (best) | **45.85** | 46.83 | **+5.49pp** | 81.56 | 37.11 | 0.6388 |\n| RSFT CED s44 | 45.51 | 46.55 | +5.15pp | 80.87 | 37.13 | 0.6350 |\n| RSFT CED s42 | 43.63 | 44.49 | +3.27pp | 81.87 | 34.68 | 0.6565 |\n| RSFT CED k=3 | 43.64 | 44.54 | +3.28pp | 80.88 | — | 0.6635 |\n| RSFT r2a (1ep) | 44.01 | 44.94 | +3.65pp | 81.08 | 35.09 | 0.6641 |\n| RSFT r2b (1ep) | 44.10 | 44.93 | +3.74pp | 81.28 | 34.90 | 0.6609 |\n| flat-NLI s42 | 44.49 | 45.39 | +4.13pp | 80.43 | — | 0.6431 |\n| flat-NLI s43 (reeval) | TBD | 45.23 | TBD | 81.58 | — | 0.6505 |\n| DPO bf16 1ep | 38.88 | 40.34 | -1.48pp | 80.88 | — | 0.7139 |\n| DPO bf16 3ep | TBD | 34.29 | TBD | — | — | — |\n| GRPO bf16 G=8 (best step) | 45.59 | ~43.4 | +5.23pp | 80.86 | — | — |\n| GRPO QLoRA (lr=5e-6) | TBD | 1.38 | TBD | 85.00 | — | 0.9900 |\n\n注：Evi-F1 以百分比显示（×100）。Ign-F1 修正后排名无实质变化（仅 r2a/r2b 互换，差 0.09pp）。TBD 项等待 metrics_v2.json 补算。GRPO bf16 Ign-F1=45.59 > F1=43.4 因 train triples 过滤效应。RSFT CED k=3 数据来源: reeval_rsft_topk3 (ign_f1_corrected=true)。\n\n### D076 统一协议 rel_f1（可直接写入论文）\n\n| Config | rel_f1 | evi_f1 |\n|--------|--------|--------|\n| SFT baseline | 0.4049 | — |\n| CED RSFT mean (s42, s44) | **0.4569** | — |\n| CED RSFT s42 | 0.4517 | — |\n| CED RSFT s44 | 0.4621 | — |\n| flat-NLI RSFT mean (s42, s43_r2) | **0.4561** | — |\n| flat-NLI RSFT s42 | 0.4535 | — |\n| flat-NLI RSFT s43_r2 | 0.4586 | — |\n| LLaMA-8B SFT | 0.5514 | 0.8151 |\n| LLaMA-8B no-evidence | 0.5624 | — |\n\n### Evidence Tax Scaling（D079/D082/D083）\n\n| Model | Evidence Tax (Δ) | 方向 |\n|-------|-----------------|------|\n| Qwen3-1.7B | **+6.2pp** | BENEFIT（隐式正则化） |\n| Qwen3-4B | **-7.9pp** | cost |\n| Qwen3-8B | **≈0** | neutral |\n| LLaMA-3.1-8B | **-0.7pp** | near-neutral（跨家族确认） |\n\n### Cross-Dataset Validation（D080）\n\n| Dataset | Ign-F1 Δ | Evi-F1 | 说明 |\n|---------|----------|--------|------|\n| DocRED (in-domain) | baseline | — | — |\n| Re-DocRED | -3.15pp | 0.817 | evidence extraction 泛化，relation extraction 有损 |\n\n## Anticipated Reviewer Concerns (updated from Dream, D068-D083)\n\n### RC1: \"Online RL\" 标题过度声称（Dream 三档一致 Critical）\n- ~~标题和 claim 收窄到 \"GRPO fails for DocRE\"~~\n- **D068/D069 修正**: 重新定位为 \"RL optimization pressure correlates with decoupling severity\"——不是 GRPO 特有问题，而是 RL-for-IE 的通用梯度\n- DPO 数据支撑 decoupling spectrum（gradual decay confirms the pattern）\n\n### RC2: GRPO G=4 太小 + LoRA confound（Dream 三档一致 Major）\n- GRPO G=8 bf16 实验 ✅ — 确认 mild decoupling（-2pp），QLoRA 是 catastrophic amplifier（D065/D066）\n- LoRA confound 已解决：bf16 LoRA vs QLoRA 直接对比\n\n### RC3: CED 不显著优于 flat-NLI（Dream 三档一致 Major）\n- **已解决（D078）**: paired t-test p=0.44，CED 与 flat-NLI 统计不可区分\n- **应对**: 不再声称 CED > flat-NLI；论文定位为 \"NLI-based scoring 是关键（CED 和 flat-NLI 均有效），CED 因可解释性作为默认推荐\"\n- ~~5+ seeds 统计检验~~ → 不再需要，D078 已给出明确结论\n\n### RC4: RSFT 不新颖\n- 不声称 RSFT 是贡献；贡献在于任务定义 + decoupling 发现 + EDCR\n- 诚实定位 RSFT 为 STaR (NeurIPS 2022) 单轮变体 + domain-specific quality filter\n\n### RC12: SAIS 说 evidence 有用，为何 FREIGE 说 evidence 有害？（文献审查 2026-05-16）\n- **关键区分**: discriminative evidence *retrieval*（SAIS/DREEAM — 分类句子是否为证据，作为监督信号提升 RE）vs generative evidence *production*（FREIGE — LLM 生成完整证据文本，额外生成负担导致 scale-dependent 代价）\n- SAIS 的 evidence supervision 是分类任务，不增加输出长度；FREIGE 的 evidence generation 显著增加生成序列长度，模型需分配容量同时完成 RE + evidence 生成\n- **D079/D083 新弹药**: evidence tax 是 scale-dependent 的——1.7B 模型中 evidence 反而有益（+6.2pp），与 SAIS 的发现方向一致。这说明 evidence 的效果取决于模型容量和任务范式的交互，而非简单的有害/有益二分\n- **应对**: Related Work 中精准讨论此对比，明确 FREIGE 研究的是 *generative production* 设定下的代价，与 *retrieval* 设定下的增益不矛盾——两者揭示了 evidence 在不同范式下的不同角色\n\n### RC13: 单模型单数据集泛化性不足（D077 scope 扩展）\n- ~~plan_006: Qwen3-1.7B / 8B model size ablation~~ ✅ D079/D083 完成\n- ~~plan_016: LLaMA-3.1-8B cross-family validation~~ ✅ D082 完成\n- ~~plan_007: Re-DocRED cross-dataset evaluation~~ ✅ D080 完成\n- **结果**: 三项泛化实验全部完成，支撑 C5 scaling pattern + cross-family + cross-dataset 叙事\n\n### RC5: 评测可比性（D041）\n- DREEAM-protocol Evi-F1；conditional Evi-F1 作为辅助指标\n\n### RC6: EDCR 缺人工验证\n- 100 例小规模标注\n\n### RC7: Missing DPO/PPO（Dream 两档 Major）\n- DPO experiment ✅ — 结果确认 decoupling spectrum（D067/D068）\n\n### RC8: Dev-test degradation\n- 观察项，等 test set 数据\n\n### RC9: 连接 reward overoptimization 文献\n- 显式引用 Gao et al. 2023\n\n### RC10: Post-hoc evidence retrieval baseline\n- SFT + BM25 evidence retrieval\n\n### RC11: \"RL 不遗忘\" 文献与 Claim 2 的张力（文献扫描 2026-05-16）\n- 近期多篇论文（arXiv 2507.05386, 2506.23508, 2509.04259）论证 RL fine-tuning 天然缓解 catastrophic forgetting\n- **关键区分**: FREIGE 的 decoupling 是 **intra-task multi-objective trade-off**（RE 抽取 vs evidence 生成两个优化目标的竞争），不是 **inter-task forgetting**（丢失预训练知识）。两者机制不同\n- bf16 GRPO 的 mild decoupling（-2pp）恰好印证这一点：模型没有忘记\"怎么做 IE\"，而是在 evidence reward 压力下偏移了 RE-evidence 的资源分配\n- **应对**: Related Work / Discussion 中显式回应这组文献，区分 intra-task trade-off vs inter-task forgetting\n- **QuRL/QaRL 文献支撑 Claim 2**: QuRL 发现 quantized vs full-precision actor divergence 在长训练中指数增长（直接支撑 QLoRA amplification 叙事）；QaRL 的 error token failure mode 与 QLoRA GRPO garbled evidence 吻合\n\n## Key Baselines (12+)\n\n1. **SFT-only**: Qwen3-4B + LoRA SFT（with evidence）\n1b. **SFT no-evidence**: Qwen3-4B + LoRA SFT（无 evidence，upper bound ablation）\n2. **RSFT flat-NLI**: flat-NLI scored RSFT（核心 ablation）\n3. **RSFT CED**: CED scored RSFT（主方法）\n4. **CED-as-reranker**: 推理时 CED 重排（无训练）\n5. **DPO+CED**: offline preference learning — gradual decoupling（D067/D068）\n6. **GRPO+CED (QLoRA, G=4)**: catastrophic decoupling baseline\n7. **GRPO+CED (bf16, G=8)**: mild decoupling — QLoRA confound 排除（D065/D066）\n8. **Post-hoc retrieval**: SFT + BM25 evidence（NEW）\n9. **DREEAM**: encoder evidence SOTA\n10. **SAIS**: encoder evidence baseline\n11. **DocKS-RAG**: extraction SOTA（无 evidence）\n12. **LMRC**: generative LLM SOTA（无 evidence）\n\n## Publishability Threshold (revised after D078-D083)\n\n- **必要条件**: (1) RSFT 在 test set 上 Ign-F1 显著 > SFT (2) DREEAM-protocol Evi-F1 可报告 (3) Decoupling spectrum 有完整数据支撑（GRPO QLoRA/bf16 + DPO + RSFT）\n- **充分条件**: 上述 + EDCR 人工验证 + scaling pattern (C5) 完整\n- **已达成**: CED vs flat-NLI 统计检验完成（D078: 不可区分，不再是充分条件要素）; 泛化实验完成（D079/D080/D082/D083）\n- **Failure pivot**: decoupling spectrum 不成立（bf16 GRPO 也 catastrophic）→ scope 大幅缩减。**已排除**: bf16 GRPO 确认 mild（D065/D066）\n\n## Research Phase Priorities (revised after D078-D083)\n\n| Priority | 实验 | Claim | GPU-h |\n|----------|------|-------|-------|\n| ~~P0~~ | ~~flat-NLI RSFT ablation (5 seeds)~~ → D078 已结论 | C3 | — |\n| ~~P0~~ | ~~CED RSFT additional seeds (→5 total)~~ → D078 已结论 | C3 | — |\n| P0 | DREEAM-protocol Evi-F1 对齐 | C1 | CPU |\n| P0 | Test set evaluation | C1 | ~4h |\n| P0 | DREEAM baseline reproduction | C1 | ~8h |\n| ~~P0~~ | ~~GRPO G=8 experiment~~ ✅ | C2 | ~16h |\n| ~~P0~~ | ~~DPO+CED experiment~~ ✅ | C2 | ~12h |\n| ~~P0~~ | ~~EDCR per-relation analysis (D070)~~ ✅ | C4 | CPU |\n| ~~P0~~ | ~~Ign-F1 bugfix + data sync (D071)~~ ✅ | ALL | CPU |\n| ~~P0~~ | ~~Model size ablation (1.7B/8B)~~ ✅ D079/D083 | C5 | — |\n| ~~P0~~ | ~~LLaMA-3.1-8B cross-family~~ ✅ D082 | C5 | — |\n| ~~P0~~ | ~~Re-DocRED cross-dataset~~ ✅ D080 | C1/C5 | — |\n| P1 | EDCR human validation | C4 | API |\n| P1 | Post-hoc evidence retrieval baseline | C1 | ~4h |\n| P1 | CED-as-reranker (running) | C1 | ~6h |\n| ~~P0~~ | ~~GRPO forgetting dynamics figure (plan_009)~~ ✅ | C2 | ~2h |\n| ~~P0~~ | ~~SFT-without-evidence ablation (plan_014)~~ ✅ | C1 | ~8h |\n| P2 | Advantage variance measurement | C2 | CPU |\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29d26092-9fac-4ff8-b1d5-e90783df3dff",
+  "uuid": "6a60cc49-e834-4ad0-ba11-2609c85cc273",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PTpWaadUjwtjA6w4YKi2Gb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7277,
+      "cache_read_input_tokens": 24932,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7277
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T15:50:29.581Z_
+
+<details><summary>↩ Tool result · `toolu_013t1UrXu6hU9m7FuFQ5MXxm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29d26092-9fac-4ff8-b1d5-e90783df3dff",
+  "uuid": "cd1f263b-eee5-41b7-9023-35f4d4618f37",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_framing.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+更新完成。主要变更：
+
+**结构性变更:**
+- 新增 **Claim 5 (Scaling)**: Evidence Tax U-shape pattern（1.7B +6.2pp / 4B -7.9pp / 8B ≈0 / LLaMA-8B -0.7pp）
+- 新增三个子表：D076 rel_f1 统一协议、Evidence Tax Scaling、Cross-Dataset Validation
+
+**C1 更新:** evidence tax 从固定 "~7pp" 改为 pointer 到 C5 的 scale-dependent 叙事；写入 D076 最终数字、LLaMA cross-family 和 Re-DocRED cross-dataset 结果
+
+**C3 降级:** 标题改为 "CED 与 flat-NLI 统计不可区分（D078）"；写入 p=0.44、Δ=0.0008；叙事改为 "NLI-based scoring 是关键，CED 因可解释性作为默认推荐"
+
+**Story Arc:** 第 3 点改为 scale-dependent 叙事，新增第 10 点 scaling & generalization
+
+**RC 更新:** RC3 标记已解决，RC12 新增 D079/D083 弹药（1.7B evidence 有益与 SAIS 方向一致），RC13 三项泛化实验全标记完成
+
+**优先级:** seed 实验标记为不再需要，三项泛化实验标记完成，Publishability Threshold 更新
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29d26092-9fac-4ff8-b1d5-e90783df3dff",
+  "uuid": "66ba2032-d2ae-45bd-912a-88df0f686085",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NEMfSdrC1F4AcqecRYr8r9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23284,
+      "cache_read_input_tokens": 32209,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23284
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 15_
+
+更新完成。主要变更：
+
+**结构性变更:**
+- 新增 **Claim 5 (Scaling)**: Evidence Tax U-shape pattern（1.7B +6.2pp / 4B -7.9pp / 8B ≈0 / LLaMA-8B -0.7pp）
+- 新增三个子表：D076 rel_f1 统一协议、Evidence Tax Scaling、Cross-Dataset Validation
+
+**C1 更新:** evidence tax 从固定 "~7pp" 改为 pointer 到 C5 的 scale-dependent 叙事；写入 D076 最终数字、LLaMA cross-family 和 Re-DocRED cross-dataset 结果
+
+**C3 降级:** 标题改为 "CED 与 flat-NLI 统计不可区分（D078）"；写入 p=0.44、Δ=0.0008；叙事改为 "NLI-based scoring 是关键，CED 因可解释性作为默认推荐"
+
+**Story Arc:** 第 3 点改为 scale-dependent 叙事，新增第 10 点 scaling & generalization
+
+**RC 更新:** RC3 标记已解决，RC12 新增 D079/D083 弹药（1.7B evidence 有益与 SAIS 方向一致），RC13 三项泛化实验全标记完成
+
+**优先级:** seed 实验标记为不再需要，三项泛化实验标记完成，Publishability Threshold 更新
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 453576,
+  "duration_api_ms": 454581,
+  "num_turns": 4,
+  "stop_reason": "end_turn",
+  "session_id": "29d26092-9fac-4ff8-b1d5-e90783df3dff",
+  "total_cost_usd": 0.9214335000000001,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 44046,
+    "cache_read_input_tokens": 92804,
+    "output_tokens": 23894,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 44046,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 420,
+        "cache_read_input_tokens": 32209,
+        "cache_creation_input_tokens": 23284,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 23284
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2239,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002354,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 23894,
+      "cacheReadInputTokens": 92804,
+      "cacheCreationInputTokens": 44046,
+      "webSearchRequests": 0,
+      "costUSD": 0.9190795,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "09754e87-5bbe-43a4-91fc-3827d639a08c"
+}
+```
+
+</details>
+
+---

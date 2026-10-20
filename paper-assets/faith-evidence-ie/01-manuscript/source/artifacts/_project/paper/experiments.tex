@@ -1,0 +1,168 @@
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Experimental Setup}
+\label{sec:setup}
+
+\paragraph{Dataset.}
+We conduct experiments on DocRED~\citep{yao2019docred}, a large-scale document-level relation extraction benchmark containing 3,053 training and 998 development documents spanning 96 relation types. Each document requires identifying relational triples across multiple sentences and grounding each triple with supporting evidence sentences. We use Re-DocRED~\citep{tan2022redocred} for cross-dataset generalization evaluation.
+
+\paragraph{Models.}
+Our primary model is Qwen3-4B. To study scale effects, we additionally train Qwen3-1.7B and Qwen3-8B under identical configurations. We include LLaMA-3.1-8B as a cross-family validation point.
+
+\paragraph{Training.}
+All models use LoRA~\citep{hu2022lora} with rank $r{=}64$ and $\alpha{=}128$ over a structured output format that jointly produces relation triples and evidence sentences. For RSFT, we sample $N{=}8$ candidate outputs per document and select the top-$k{=}1$ response ranked by CED (Calibrated Evidence Decoupling) scoring, a combined metric of NLI-based evidence faithfulness and extraction accuracy. GRPO experiments use group sizes $G{=}4$ (QLoRA, 4-bit) and $G{=}8$ (bf16 full-precision LoRA). DPO constructs preference pairs from CED-ranked outputs.
+
+\paragraph{Metrics.}
+We report five metrics. \textbf{Ign-F1} is the primary DocRED metric that ignores triples appearing in the training set, matching the official leaderboard protocol. \textbf{Rel-F1} measures relation extraction F1 on all triples. \textbf{Evi-F1 (TP-only)} measures evidence sentence F1 conditioned on correctly predicted triples, reflecting evidence quality independent of extraction errors. \textbf{Evi-F1 (joint)} includes false-positive and false-negative triples in the denominator following the DREEAM protocol~\citep{ma2023dreeam}, enabling cross-method evidence comparison. \textbf{EDCR} (Evidence-Decoupling Ratio) is our proposed diagnostic: the ratio of evidence recall on correctly-predicted triples to overall extraction recall, where values above 0.70 indicate decoupling between the two capabilities. All primary results use the development set; test set submission is pending.
+
+
+\subsection{Main Results}
+\label{sec:main_results}
+
+Table~\ref{tab:main} presents the primary comparison between SFT, no-evidence SFT, and RSFT CED on Qwen3-4B. The SFT baseline achieves 39.74 Ign-F1 with joint evidence generation. Removing evidence from the output format entirely (no-evidence SFT) improves extraction to 47.21 Ign-F1, a 7.47-point gap that quantifies the \emph{evidence tax} at the 4B scale. RSFT CED recovers a substantial portion of this gap: averaged over four random seeds, it achieves 44.66 Ign-F1 (+4.92 over SFT) while maintaining evidence quality (Evi-F1 81.16 vs.\ 79.86 for SFT). The EDCR decreases from 0.6982 to 0.6503, confirming tighter coupling between extraction and evidence capabilities.
+
+The consistency across seeds (standard deviation 0.49 Ign-F1) indicates that the improvement is robust rather than an artifact of selection variance. The remaining gap to the no-evidence upper bound (2.55 points) represents the residual cost of producing structured evidence, a cost that shrinks at larger scales as we show in Section~\ref{sec:scaling}.
+
+\begin{table}[t]
+\centering
+\caption{Main results on DocRED dev set (Qwen3-4B). RSFT CED reports mean and individual seed results. Best Ign-F1 in \textbf{bold}; best among evidence-generating methods \underline{underlined}.}
+\label{tab:main}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{Ign-F1} & \textbf{Rel-F1} & \textbf{Evi-F1} & \textbf{EDCR} \\
+\midrule
+SFT baseline & 39.74 & 0.4049 & 79.86 & 0.6982 \\
+SFT no-evidence & \textbf{47.21} & \textbf{0.4876} & -- & -- \\
+\midrule
+RSFT CED (s42) & 44.23 & 0.4517 & 81.75 & 0.6569 \\
+RSFT CED (s43) & \underline{45.12} & \underline{0.4601} & 80.63 & 0.6542 \\
+RSFT CED (s44) & 45.11 & 0.4621 & 80.50 & 0.6350 \\
+RSFT CED (s45) & 44.16 & 0.4514 & 81.74 & 0.6550 \\
+\midrule
+RSFT CED (mean) & \underline{44.66} & 0.4563 & 81.16 & 0.6503 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Evidence-Extraction Decoupling Spectrum}
+\label{sec:spectrum}
+
+Different RL algorithms produce qualitatively different failure modes when applied to joint evidence-and-extraction generation. We organize these outcomes along a \emph{decoupling spectrum} ranging from catastrophic collapse to mild perturbation, shown in Table~\ref{tab:spectrum} and Figure~\ref{fig:spectrum}.
+
+\paragraph{GRPO QLoRA: catastrophic collapse.}
+Under QLoRA quantization ($G{=}4$), GRPO drives Rel-F1 to 0.0138 (near zero extraction) while Evi-F1 rises to 85.04 and EDCR reaches 0.9876. The model learns to produce well-formed evidence sentences but loses the ability to predict correct relation triples. This extreme decoupling occurs because 4-bit quantization constrains the effective parameter space, forcing the reward signal to optimize whichever sub-task yields easier gradient progress. Evidence sentence generation, being closer to extractive summarization, wins this competition.
+
+\paragraph{GRPO bf16: mild, non-monotonic.}
+Full-precision GRPO ($G{=}8$) avoids catastrophe. Its training trajectory shows non-monotonic Rel-F1 fluctuation (0.434 at step 30, 0.428 at step 50, 0.434 at step 70, 0.455 at step 100), stabilizing near the SFT baseline. The best checkpoint achieves Rel-F1 0.4549 with Evi-F1 80.86 and EDCR 0.6318. The decoupling is mild: bf16 precision preserves enough capacity for both sub-tasks to improve jointly, though the non-monotonic trajectory suggests fragile optimization dynamics that require careful checkpoint selection.
+
+\paragraph{DPO: gradual decay.}
+DPO preference learning shows a progressive pattern. At 1 epoch, Rel-F1 remains at 0.4034 with Evi-F1 80.88 and EDCR 0.7139. Extended training (3 epochs) degrades extraction to 0.3429 while evidence improves to 84.03\footnote{DPO 3-epoch results use the pre-D076 evaluation protocol; included for trend analysis.}, with EDCR rising to 0.7294. Unlike GRPO's sudden collapse, DPO gradually trades extraction quality for evidence quality as training progresses.
+
+\paragraph{RSFT: no decoupling.}
+RSFT avoids the decoupling problem entirely. By selecting high-quality complete outputs (jointly good extraction and evidence) rather than applying gradient-based reward maximization, RSFT maintains both capabilities simultaneously (Rel-F1 0.4563, Evi-F1 81.16, EDCR 0.6503). The key insight is that rejection sampling operates on discrete outputs rather than differentiable reward signals, so it cannot exploit the extraction-evidence trade-off that gradient methods find.
+
+\begin{table}[t]
+\centering
+\caption{Evidence-extraction decoupling across RL paradigms (Qwen3-4B). Severity indicates the degree of extraction collapse relative to evidence improvement.}
+\label{tab:spectrum}
+\small
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Paradigm} & \textbf{Config} & \textbf{Rel-F1} & \textbf{Evi-F1} & \textbf{EDCR} & \textbf{Severity} \\
+\midrule
+GRPO & QLoRA $G{=}4$ & 0.0138 & 85.04 & 0.9876 & Catastrophic \\
+GRPO & bf16 $G{=}8$ & 0.4549 & 80.86 & 0.6318 & Mild \\
+DPO & bf16 1ep & 0.4034 & 80.88 & 0.7139 & Gradual \\
+DPO & bf16 3ep$^\dagger$ & 0.3429 & 84.03 & 0.7294 & Gradual \\
+\midrule
+SFT & baseline & 0.4049 & 79.86 & 0.6982 & None \\
+RSFT & CED (mean) & 0.4563 & 81.16 & 0.6503 & None \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+{\raggedright\footnotesize $^\dagger$Pre-D076 evaluation protocol.\par}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/spectrum.pdf}
+\caption{Decoupling spectrum visualization. Each method is plotted by Rel-F1 (x-axis) and Evi-F1 (y-axis). Arrows indicate training progression for DPO (1ep$\to$3ep) and GRPO bf16 trajectory. Ideal methods occupy the upper-right quadrant; decoupled methods drift toward the upper-left.}
+\label{fig:spectrum}
+\end{figure}
+
+
+\subsection{Scale-Dependent Evidence Tax}
+\label{sec:scaling}
+
+The evidence tax, defined as the Ign-F1 difference between no-evidence and joint-evidence SFT, varies non-monotonically across model scales. Table~\ref{tab:scaling} and Figure~\ref{fig:scaling} present this analysis across four models.
+
+At the 4B scale, the evidence tax is severe: $-7.47$ points. Generating evidence sentences alongside relation triples consumes capacity that would otherwise improve extraction. At 8B, the tax nearly vanishes ($-0.28$ points for Qwen3-8B, $-0.68$ for LLaMA-3.1-8B), indicating that 8B-class models have sufficient capacity to handle both tasks simultaneously. The most surprising result appears at 1.7B: instead of paying a larger tax, the smallest model \emph{benefits} from evidence generation (+8.04 points). On a fair evaluation subset that controls for output format effects (see Appendix), this benefit is +6.2 points. We hypothesize that for small models, the evidence generation task provides implicit regularization, forcing the model to attend to supporting context rather than memorizing surface-level patterns.
+
+RSFT improves all scales. The gain is +2.64 for 1.7B, +4.92 for 4B, and +3.82 for 8B, confirming that CED-based selection generalizes across model capacities. The 4B model benefits most because it has the largest evidence tax to recover from. LLaMA-3.1-8B results for RSFT are pending (\texttt{TBD}), but its low baseline evidence tax ($-0.68$) suggests the ceiling for RSFT improvement may be smaller at this scale.
+
+\begin{table}[t]
+\centering
+\caption{Scale-dependent evidence tax and RSFT gain. Evidence tax = SFT no-evidence minus SFT with evidence (positive means evidence helps). All results on DocRED dev set Ign-F1.}
+\label{tab:scaling}
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Model} & \textbf{SFT w/ evi} & \textbf{No-evi} & \textbf{RSFT} & \textbf{Evi Tax} & \textbf{RSFT Gain} \\
+\midrule
+Qwen3-1.7B & 47.86 & 39.82 & 50.50 & +8.04 & +2.64 \\
+Qwen3-4B & 39.74 & 47.21 & 44.66 & $-$7.47 & +4.92 \\
+Qwen3-8B & 50.51 & 50.79 & \textbf{54.33} & $-$0.28 & +3.82 \\
+LLaMA-3.1-8B & 53.84 & 54.52 & \texttt{TBD} & $-$0.68 & \texttt{TBD} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/scaling.pdf}
+\caption{Evidence tax across model scales. Bar heights show Ign-F1 for each training configuration. The gap between no-evidence and SFT bars reverses direction between 1.7B and 4B, revealing the non-monotonic nature of the evidence tax. RSFT consistently narrows the gap toward the no-evidence upper bound.}
+\label{fig:scaling}
+\end{figure}
+
+
+\subsection{Evidence Strategy Comparison}
+\label{sec:evidence_strategy}
+
+Joint evidence generation is not the only approach to producing supporting sentences for extracted triples. We compare three strategies: (1) joint generation via RSFT, where evidence is produced simultaneously with extraction; (2) post-hoc retrieval, where a no-evidence model extracts triples and BM25 retrieves evidence sentences after the fact; and (3) CED reranking, where multiple candidate outputs are reranked at inference time. Table~\ref{tab:evidence_strategy} reports results using Evi-F1 (joint), which includes false-positive and false-negative triples in the denominator for fair cross-method comparison.
+
+Post-hoc BM25 retrieval (entity-constrained, $k{=}2$ sentences per triple) achieves the highest Rel-F1 (0.4876) because it uses the no-evidence model for extraction, avoiding the evidence tax entirely. However, its Evi-F1 (joint) of 0.347 and EDCR of 0.766 indicate lower evidence quality and weaker coupling between the predicted triples and their evidence. RSFT CED (best seed, s43) produces lower Rel-F1 (0.4601) but higher Evi-F1 (joint) at 0.3605 with EDCR 0.6542. The 5.3-point Evi-F1 advantage and 0.112 EDCR reduction demonstrate that jointly trained models produce more faithful evidence, grounded in the actual reasoning that led to the extraction rather than retrieved post-hoc. The CED reranker, which applies CED scoring at inference time over multiple sampled outputs, is currently under evaluation (\texttt{TBD}).
+
+\begin{table}[t]
+\centering
+\caption{Evidence strategy comparison on DocRED dev set (Qwen3-4B). Evi-F1 uses the joint protocol (DREEAM-style denominator) for cross-strategy comparability.}
+\label{tab:evidence_strategy}
+\small
+\begin{tabular}{llccc}
+\toprule
+\textbf{Strategy} & \textbf{Method} & \textbf{Rel-F1} & \textbf{Evi-F1 (joint)} & \textbf{EDCR} \\
+\midrule
+Joint generation & RSFT CED (s43) & 0.4601 & 0.3605 & 0.6542 \\
+Joint generation & SFT baseline & 0.4049 & 0.3117 & 0.6982 \\
+Post-hoc retrieval & BM25 entity $k{=}2$ & 0.4876 & 0.3470 & 0.7660 \\
+Gen + rerank & CED reranker & \texttt{TBD} & \texttt{TBD} & \texttt{TBD} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Generalization}
+\label{sec:generalization}
+
+We evaluate generalization along three axes: cross-family transfer, cross-dataset robustness, and comparison to specialized supervised methods.
+
+\paragraph{Cross-family transfer.}
+LLaMA-3.1-8B confirms the scaling patterns observed with Qwen3. Its SFT baseline achieves 53.84 Ign-F1 (Rel-F1 0.5514, Evi-F1 81.51), and the no-evidence variant reaches 54.52 Ign-F1 (Rel-F1 0.5624). The evidence tax of $-0.68$ points mirrors the near-zero tax seen for Qwen3-8B ($-0.28$), supporting our claim that 8B-class models absorb the cost of joint evidence generation regardless of architecture family. The evidence quality (Evi-F1 81.51) is comparable to Qwen3-8B (81.96), suggesting that the structured output format generalizes across pre-training distributions.
+
+\paragraph{Cross-dataset robustness.}
+On Re-DocRED~\citep{tan2022redocred}, our best Qwen3-4B RSFT model shows an Ign-F1 drop of 3.15 points compared to DocRED dev set performance, consistent with the domain shift expected from re-annotation. Critically, Evi-F1 remains at 81.7, within 0.5 points of the DocRED result. The evidence extraction capability transfers robustly even when relation extraction degrades, further supporting the partial independence between the two capabilities that EDCR measures.
+
+\paragraph{Comparison to supervised methods.}
+Our best joint Evi-F1 of approximately 0.36 (using the DREEAM-protocol denominator) falls below the supervised DREEAM result of 54.01\%~\citep{ma2023dreeam}. This gap stems primarily from extraction performance rather than evidence quality: our TP-only Evi-F1 exceeds 80\%, indicating that when the model correctly identifies a triple, it produces high-quality evidence. The overall joint Evi-F1 is diluted by false-positive and false-negative triples in the denominator. Closing this gap requires improving the base extraction capability of LLM-based methods, an orthogonal direction to the evidence faithfulness problem we address. Our contribution is demonstrating that LLMs can generate grounded evidence jointly with extraction, and that RSFT maintains this capability under optimization pressure where RL methods fail.

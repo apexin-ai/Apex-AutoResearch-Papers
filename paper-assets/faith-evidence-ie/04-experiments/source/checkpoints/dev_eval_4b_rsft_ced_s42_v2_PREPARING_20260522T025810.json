@@ -1,0 +1,14 @@
+{
+  "exp_id": "dev_eval_4b_rsft_ced_s42_v2",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T02:58:09.687Z",
+    "updated_at": "2026-05-22T02:58:09.687Z"
+  },
+  "timestamp": "2026-05-22T02:58:10.337116+00:00",
+  "trigger": "update_registry"
+}

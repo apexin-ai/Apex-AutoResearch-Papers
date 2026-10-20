@@ -1,0 +1,1050 @@
+# ops check llama seed43 result
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 21
+- **Recorded user turns:** 0
+- **Tool calls:** 6
+- **Original source:** `logs/workers/worker_ops_check_llama_seed43_result_20260517T155759.log`
+- **Structured JSON:** [`1af87f27fb21ec8b6a9b.json`](../../sessions/1a/1af87f27fb21ec8b6a9b.json)
+
+## Before a recorded user message
+
+21 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "d8228f50-61c8-45aa-8763-d1a0afa8a516",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__delete_cron",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "b6071c6e-d763-4202-b2dd-cc5613fdc420",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779050400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "19baad39-6d36-46e6-ae27-69e1a198c18f",
+  "session_id": "d8228f50-61c8-45aa-8763-d1a0afa8a516"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the training status for the LLaMA-3.1-8B RSFT seed 43 training job.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8228f50-61c8-45aa-8763-d1a0afa8a516",
+  "uuid": "99c30aa4-de24-4155-9d88-2940366c558d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xzhhau8sWi1TwQBuqXsX9X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13189,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13189
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_015eMnCEA4VPdegw38MaQnxz`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__delete_cron",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8228f50-61c8-45aa-8763-d1a0afa8a516",
+  "uuid": "c7d2996d-a36a-455f-86f4-9c13d2125c2c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xzhhau8sWi1TwQBuqXsX9X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13189,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13189
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T15:58:13.841Z_
+
+<details><summary>↩ Tool result · `toolu_015eMnCEA4VPdegw38MaQnxz`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__delete_cron"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8228f50-61c8-45aa-8763-d1a0afa8a516",
+  "uuid": "f74ed004-1467-430a-b31b-41a6beacbbea",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__delete_cron"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__delete_cron",
+    "total_deferred_tools": 27
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check the training log and checkpoint directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8228f50-61c8-45aa-8763-d1a0afa8a516",
+  "uuid": "9a017ddc-6ba0-4441-bb39-cd93c4553687",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V8aWMagyhLQYkmARuT2Rge",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1082,
+      "cache_read_input_tokens": 25030,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017xftKWfpS436YPq3yYCnCJ`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -50 /root/runs/faith-evidence-ie/plan_006_llama_rsft_seed43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8228f50-61c8-45aa-8763-d1a0afa8a516",
+  "uuid": "e7d10c6a-86f1-4b45-bbd3-fdeb60ee284c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V8aWMagyhLQYkmARuT2Rge",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1082,
+      "cache_read_input_tokens": 25030,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JncqtqKsYVd1TYjb3razYG`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /root/autodl-tmp/freige/rsft_output_llama_3_1_8b_r3_seed43/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8228f50-61c8-45aa-8763-d1a0afa8a516",
+  "uuid": "23e55c42-9a60-4f08-9218-9ebed2f06796",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V8aWMagyhLQYkmARuT2Rge",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1082,
+      "cache_read_input_tokens": 25030,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T15:58:19.392Z_
+
+<details><summary>↩ Tool result · `toolu_017xftKWfpS436YPq3yYCnCJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r 86%|████████▌ | 2850/3312 [2:25:13<23:14,  3.02s/it]\\r 86%|████████▌ | 2851/3312 [2:25:18<28:32,  3.72s/it]\\r 86%|████████▌ | 2852/3312 [2:25:21<26:03,  3.40s/it]\\r 86%|████████▌ | 2853/3312 [2:25:24<24:52,  3.25s/it]\\r 86%|████████▌ | 2854/3312 [2:25:27<24:40,  3.23s/it]\\r 86%|████████▌ | 2855/3312 [2:25:30<23:29,  3.08s/it]\\r 86%|████████▌ | 2856/3312 [2:25:33<22:49,  3.00s/it]\\r 86%|████████▋ | 2857/3312 [2:25:36<23:55,  3.15s/it]\\r 86%|████████▋ | 2858/3312 [2:25:39<23:08,  3.06s/it]\\r 86%|████████▋ | 2859/3312 [2:25:42<22:38,  3.00s/it]\\r 86%|████████▋ | 2860/3312 [2:25:45<23:14,  3.08s/it]\\r                                                     \\r{'loss': 0.2591, 'grad_norm': 0.8452499508857727, 'learning_rate': 2.820672478206725e-06, 'entropy': 0.31506113428622484, 'num_tokens': 21780720.0, 'mean_token_accuracy': 0.9393975473940372, 'epoch': 2.59}\\n\\r 86%|████████▋ | 2860/3312 [2:25:45<23:14,  3.08s/it]\\r 86%|████████▋ | 2861/3312 [2:25:49<24:04,  3.20s/it]\\r 86%|████████▋ | 2862/3312 [2:25:52<23:07,  3.08s/it]\\r 86%|████████▋ | 2863/3312 [2:25:55<22:55,  3.06s/it]\\r 86%|████████▋ | 2864/3312 [2:25:57<22:21,  2.99s/it]\\r 87%|████████▋ | 2865/3312 [2:26:00<21:50,  2.93s/it]\\r 87%|████████▋ | 2866/3312 [2:26:04<22:54,  3.08s/it]\\r 87%|████████▋ | 2867/3312 [2:26:06<22:04,  2.98s/it]\\r 87%|████████▋ | 2868/3312 [2:26:09<21:14,  2.87s/it]\\r 87%|████████▋ | 2869/3312 [2:26:12<21:29,  2.91s/it]\\r 87%|████████▋ | 2870/3312 [2:26:15<21:35,  2.93s/it]\\r                                                     \\r{'loss': 0.267, 'grad_norm': 0.890686571598053, 'learning_rate': 2.75840597758406e-06, 'entropy': 0.3159894736483693, 'num_tokens': 21855753.0, 'mean_token_accuracy': 0.9378606803715229, 'epoch': 2.6}\\n\\r 87%|████████▋ | 2870/3312 [2:26:15<21:35,  2.93s/it]\\r 87%|████████▋ | 2871/3312 [2:26:18<21:41,  2.95s/it]\\r 87%|████████▋ | 2872/3312 [2:26:22<22:58,  3.13s/it]\\r 87%|████████▋ | 2873/3312 [2:26:24<22:14,  3.04s/it]\\r 87%|████████▋ | 2874/3312 [2:26:27<22:13,  3.04s/it]\\r 87%|████████▋ | 2875/3312 [2:26:31<22:23,  3.07s/it]\\r 87%|████████▋ | 2876/3312 [2:26:34<23:27,  3.23s/it]\\r 87%|████████▋ | 2877/3312 [2:26:37<22:41,  3.13s/it]\\r 87%|████████▋ | 2878/3312 [2:26:40<22:09,  3.06s/it]\\r 87%|████████▋ | 2879/3312 [2:26:43<22:19,  3.09s/it]\\r 87%|████████▋ | 2880/3312 [2:26:46<21:24,  2.97s/it]\\r                                                     \\r{'loss': 0.2584, 'grad_norm': 0.9154348373413086, 'learning_rate': 2.696139476961395e-06, 'entropy': 0.3165863724425435, 'num_tokens': 21935019.0, 'mean_token_accuracy': 0.9378135293722153, 'epoch': 2.61}\\n\\r 87%|████████▋ | 2880/3312 [2:26:46<21:24,  2.97s/it]\\r 87%|████████▋ | 2881/3312 [2:26:49<20:58,  2.92s/it]\\r 87%|████████▋ | 2882/3312 [2:26:51<20:34,  2.87s/it]\\r 87%|████████▋ | 2883/3312 [2:26:54<20:26,  2.86s/it]\\r 87%|████████▋ | 2884/3312 [2:26:57<21:16,  2.98s/it]\\r 87%|████████▋ | 2885/3312 [2:27:00<20:33,  2.89s/it]\\r 87%|████████▋ | 2886/3312 [2:27:04<21:35,  3.04s/it]\\r 87%|████████▋ | 2887/3312 [2:27:07<21:40,  3.06s/it]\\r 87%|████████▋ | 2888/3312 [2:27:10<21:16,  3.01s/it]\\r 87%|████████▋ | 2889/3312 [2:27:12<21:02,  2.98s/it]\\r 87%|████████▋ | 2890/3312 [2:27:15<20:37,  2.93s/it]\\r                                                     \\r{'loss': 0.2578, 'grad_norm': 1.058172345161438, 'learning_rate': 2.63387297633873e-06, 'entropy': 0.3154133208096027, 'num_tokens': 22009485.0, 'mean_token_accuracy': 0.9385336741805077, 'epoch': 2.62}\\n\\r 87%|████████▋ | 2890/3312 [2:27:15<20:37,  2.93s/it]\\r 87%|████████▋ | 2891/3312 [2:27:18<20:59,  2.99s/it]\\r 87%|████████▋ | 2892/3312 [2:27:21<21:01,  3.00s/it]\\r 87%|████████▋ | 2893/3312 [2:27:24<20:33,  2.94s/it]\\r 87%|████████▋ | 2894/3312 [2:27:28<21:26,  3.08s/it]\\r 87%|████████▋ | 2895/3312 [2:27:31<21:09,  3.04s/it]\\r 87%|████████▋ | 2896/3312 [2:27:33<20:31,  2.96s/it]\\r 87%|████████▋ | 2897/3312 [2:27:36<19:59,  2.89s/it]\\r 88%|████████▊ | 2898/3312 [2:27:39<19:53,  2.88s/it]\\r 88%|████████▊ | 2899/3312 [2:27:42<20:30,  2.98s/it]\\r 88%|████████▊ | 2900/3312 [2:27:45<20:48,  3.03\\n\\n... [截断: 输出过长，省略 32021 字符] ...\\n\\n2:46:52<01:58,  2.96s/it]\\r 99%|█████████▉| 3273/3312 [2:46:55<01:53,  2.90s/it]\\r 99%|█████████▉| 3274/3312 [2:46:58<01:48,  2.87s/it]\\r 99%|█████████▉| 3275/3312 [2:47:01<01:52,  3.03s/it]\\r 99%|█████████▉| 3276/3312 [2:47:04<01:48,  3.02s/it]\\r 99%|█████████▉| 3277/3312 [2:47:07<01:46,  3.04s/it]\\r 99%|█████████▉| 3278/3312 [2:47:10<01:40,  2.97s/it]\\r 99%|█████████▉| 3279/3312 [2:47:13<01:34,  2.88s/it]\\r 99%|█████████▉| 3280/3312 [2:47:15<01:31,  2.85s/it]\\r                                                     \\r{'loss': 0.2521, 'grad_norm': 0.8145761489868164, 'learning_rate': 2.0547945205479452e-07, 'entropy': 0.3076565608382225, 'num_tokens': 24990071.0, 'mean_token_accuracy': 0.9403215177357197, 'epoch': 2.97}\\n\\r 99%|█████████▉| 3280/3312 [2:47:15<01:31,  2.85s/it]\\r 99%|█████████▉| 3281/3312 [2:47:18<01:31,  2.94s/it]\\r 99%|█████████▉| 3282/3312 [2:47:22<01:33,  3.11s/it]\\r 99%|█████████▉| 3283/3312 [2:47:24<01:23,  2.87s/it]\\r 99%|█████████▉| 3284/3312 [2:47:28<01:23,  3.00s/it]\\r 99%|█████████▉| 3285/3312 [2:47:31<01:22,  3.07s/it]\\r 99%|█████████▉| 3286/3312 [2:47:33<01:15,  2.92s/it]\\r 99%|█████████▉| 3287/3312 [2:47:37<01:15,  3.03s/it]\\r 99%|█████████▉| 3288/3312 [2:47:40<01:12,  3.04s/it]\\r 99%|█████████▉| 3289/3312 [2:47:43<01:11,  3.10s/it]\\r 99%|█████████▉| 3290/3312 [2:47:46<01:08,  3.14s/it]\\r                                                     \\r{'loss': 0.2657, 'grad_norm': 0.774990975856781, 'learning_rate': 1.4321295143212954e-07, 'entropy': 0.3262269595637918, 'num_tokens': 25067392.0, 'mean_token_accuracy': 0.9362823441624641, 'epoch': 2.98}\\n\\r 99%|█████████▉| 3290/3312 [2:47:46<01:08,  3.14s/it]\\r 99%|█████████▉| 3291/3312 [2:47:50<01:08,  3.27s/it]\\r 99%|█████████▉| 3292/3312 [2:47:52<01:01,  3.06s/it]\\r 99%|█████████▉| 3293/3312 [2:47:55<00:56,  2.96s/it]\\r 99%|█████████▉| 3294/3312 [2:47:58<00:51,  2.88s/it]\\r 99%|█████████▉| 3295/3312 [2:48:01<00:48,  2.84s/it]\\r100%|█████████▉| 3296/3312 [2:48:03<00:45,  2.81s/it]\\r100%|█████████▉| 3297/3312 [2:48:06<00:42,  2.82s/it]\\r100%|█████████▉| 3298/3312 [2:48:09<00:39,  2.82s/it]\\r100%|█████████▉| 3299/3312 [2:48:12<00:36,  2.81s/it]\\r100%|█████████▉| 3300/3312 [2:48:15<00:34,  2.85s/it]\\r                                                     \\r{'loss': 0.2761, 'grad_norm': 0.9218071103096008, 'learning_rate': 8.094645080946451e-08, 'entropy': 0.3370864041149616, 'num_tokens': 25136933.0, 'mean_token_accuracy': 0.9357126265764236, 'epoch': 2.99}\\n\\r100%|█████████▉| 3300/3312 [2:48:15<00:34,  2.85s/it]\\r100%|█████████▉| 3301/3312 [2:48:20<00:39,  3.55s/it]\\r100%|█████████▉| 3302/3312 [2:48:23<00:34,  3.43s/it]\\r100%|█████████▉| 3303/3312 [2:48:26<00:29,  3.32s/it]\\r100%|█████████▉| 3304/3312 [2:48:29<00:25,  3.19s/it]\\r100%|█████████▉| 3305/3312 [2:48:32<00:22,  3.22s/it]\\r100%|█████████▉| 3306/3312 [2:48:35<00:19,  3.21s/it]\\r100%|█████████▉| 3307/3312 [2:48:38<00:15,  3.05s/it]\\r100%|█████████▉| 3308/3312 [2:48:41<00:12,  3.09s/it]\\r100%|█████████▉| 3309/3312 [2:48:44<00:09,  3.12s/it]\\r100%|█████████▉| 3310/3312 [2:48:48<00:06,  3.26s/it]\\r                                                     \\r{'loss': 0.2508, 'grad_norm': 0.7142494320869446, 'learning_rate': 1.8679950186799504e-08, 'entropy': 0.3075642928481102, 'num_tokens': 25217703.0, 'mean_token_accuracy': 0.9401899099349975, 'epoch': 3.0}\\n\\r100%|█████████▉| 3310/3312 [2:48:48<00:06,  3.26s/it]\\r100%|█████████▉| 3311/3312 [2:48:51<00:03,  3.19s/it]\\r100%|██████████| 3312/3312 [2:48:53<00:00,  2.93s/it]\\r                                                     \\r{'train_runtime': 10136.1463, 'train_samples_per_second': 2.613, 'train_steps_per_second': 0.327, 'train_loss': 0.3715360457446552, 'entropy': 0.29116106835695416, 'num_tokens': 25231431.0, 'mean_token_accuracy': 0.9417764085989732, 'epoch': 3.0}\\n\\r100%|██████████| 3312/3312 [2:48:56<00:00,  2.93s/it]\\r100%|██████████| 3312/3312 [2:48:56<00:00,  3.06s/it]\\n2026-05-17 23:56:54,671 INFO Saving model to /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43\\n2026-05-17 23:56:55,417 INFO RSFT training complete.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8228f50-61c8-45aa-8763-d1a0afa8a516",
+  "uuid": "880c26e9-7a59-4e65-9aff-7f198e9d014f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 86%|████████▌ | 2850/3312 [2:25:13<23:14,  3.02s/it]\\\\r 86%|████████▌ | 2851/3312 [2:25:18<28:32,  3.72s/it]\\\\r 86%|████████▌ | 2852/3312 [2:25:21<26:03,  3.40s/it]\\\\r 86%|████████▌ | 2853/3312 [2:25:24<24:52,  3.25s/it]\\\\r 86%|████████▌ | 2854/3312 [2:25:27<24:40,  3.23s/it]\\\\r 86%|████████▌ | 2855/3312 [2:25:30<23:29,  3.08s/it]\\\\r 86%|████████▌ | 2856/3312 [2:25:33<22:49,  3.00s/it]\\\\r 86%|████████▋ | 2857/3312 [2:25:36<23:55,  3.15s/it]\\\\r 86%|████████▋ | 2858/3312 [2:25:39<23:08,  3.06s/it]\\\\r 86%|████████▋ | 2859/3312 [2:25:42<22:38,  3.00s/it]\\\\r 86%|████████▋ | 2860/3312 [2:25:45<23:14,  3.08s/it]\\\\r                                                     \\\\r{'loss': 0.2591, 'grad_norm': 0.8452499508857727, 'learning_rate': 2.820672478206725e-06, 'entropy': 0.31506113428622484, 'num_tokens': 21780720.0, 'mean_token_accuracy': 0.9393975473940372, 'epoch': 2.59}\\\\n\\\\r 86%|████████▋ | 2860/3312 [2:25:45<23:14,  3.08s/it]\\\\r 86%|████████▋ | 2861/3312 [2:25:49<24:04,  3.20s/it]\\\\r 86%|████████▋ | 2862/3312 [2:25:52<23:07,  3.08s/it]\\\\r 86%|████████▋ | 2863/3312 [2:25:55<22:55,  3.06s/it]\\\\r 86%|████████▋ | 2864/3312 [2:25:57<22:21,  2.99s/it]\\\\r 87%|████████▋ | 2865/3312 [2:26:00<21:50,  2.93s/it]\\\\r 87%|████████▋ | 2866/3312 [2:26:04<22:54,  3.08s/it]\\\\r 87%|████████▋ | 2867/3312 [2:26:06<22:04,  2.98s/it]\\\\r 87%|████████▋ | 2868/3312 [2:26:09<21:14,  2.87s/it]\\\\r 87%|████████▋ | 2869/3312 [2:26:12<21:29,  2.91s/it]\\\\r 87%|████████▋ | 2870/3312 [2:26:15<21:35,  2.93s/it]\\\\r                                                     \\\\r{'loss': 0.267, 'grad_norm': 0.890686571598053, 'learning_rate': 2.75840597758406e-06, 'entropy': 0.3159894736483693, 'num_tokens': 21855753.0, 'mean_token_accuracy': 0.9378606803715229, 'epoch': 2.6}\\\\n\\\\r 87%|████████▋ | 2870/3312 [2:26:15<21:35,  2.93s/it]\\\\r 87%|████████▋ | 2871/3312 [2:26:18<21:41,  2.95s/it]\\\\r 87%|████████▋ | 2872/3312 [2:26:22<22:58,  3.13s/it]\\\\r 87%|████████▋ | 2873/3312 [2:26:24<22:14,  3.04s/it]\\\\r 87%|████████▋ | 2874/3312 [2:26:27<22:13,  3.04s/it]\\\\r 87%|████████▋ | 2875/3312 [2:26:31<22:23,  3.07s/it]\\\\r 87%|████████▋ | 2876/3312 [2:26:34<23:27,  3.23s/it]\\\\r 87%|████████▋ | 2877/3312 [2:26:37<22:41,  3.13s/it]\\\\r 87%|████████▋ | 2878/3312 [2:26:40<22:09,  3.06s/it]\\\\r 87%|████████▋ | 2879/3312 [2:26:43<22:19,  3.09s/it]\\\\r 87%|████████▋ | 2880/3312 [2:26:46<21:24,  2.97s/it]\\\\r                                                     \\\\r{'loss': 0.2584, 'grad_norm': 0.9154348373413086, 'learning_rate': 2.696139476961395e-06, 'entropy': 0.3165863724425435, 'num_tokens': 21935019.0, 'mean_token_accuracy': 0.9378135293722153, 'epoch': 2.61}\\\\n\\\\r 87%|████████▋ | 2880/3312 [2:26:46<21:24,  2.97s/it]\\\\r 87%|████████▋ | 2881/3312 [2:26:49<20:58,  2.92s/it]\\\\r 87%|████████▋ | 2882/3312 [2:26:51<20:34,  2.87s/it]\\\\r 87%|████████▋ | 2883/3312 [2:26:54<20:26,  2.86s/it]\\\\r 87%|████████▋ | 2884/3312 [2:26:57<21:16,  2.98s/it]\\\\r 87%|████████▋ | 2885/3312 [2:27:00<20:33,  2.89s/it]\\\\r 87%|████████▋ | 2886/3312 [2:27:04<21:35,  3.04s/it]\\\\r 87%|████████▋ | 2887/3312 [2:27:07<21:40,  3.06s/it]\\\\r 87%|████████▋ | 2888/3312 [2:27:10<21:16,  3.01s/it]\\\\r 87%|████████▋ | 2889/3312 [2:27:12<21:02,  2.98s/it]\\\\r 87%|████████▋ | 2890/3312 [2:27:15<20:37,  2.93s/it]\\\\r                                                     \\\\r{'loss': 0.2578, 'grad_norm': 1.058172345161438, 'learning_rate': 2.63387297633873e-06, 'entropy': 0.3154133208096027, 'num_tokens': 22009485.0, 'mean_token_accuracy': 0.9385336741805077, 'epoch': 2.62}\\\\n\\\\r 87%|████████▋ | 2890/3312 [2:27:15<20:37,  2.93s/it]\\\\r 87%|████████▋ | 2891/3312 [2:27:18<20:59,  2.99s/it]\\\\r 87%|████████▋ | 2892/3312 [2:27:21<21:01,  3.00s/it]\\\\r 87%|████████▋ | 2893/3312 [2:27:24<20:33,  2.94s/it]\\\\r 87%|████████▋ | 2894/3312 [2:27:28<21:26,  3.08s/it]\\\\r 87%|████████▋ | 2895/3312 [2:27:31<21:09,  3.04s/it]\\\\r 87%|████████▋ | 2896/3312 [2:27:33<20:31,  2.96s/it]\\\\r 87%|████████▋ | 2897/3312 [2:27:36<19:59,  2.89s/it]\\\\r 88%|████████▊ | 2898/3312 [2:27:39<19:53,  2.88s/it]\\\\r 88%|████████▊ | 2899/3312 [2:27:42<20:30,  2.98s/it]\\\\r 88%|████████▊ | 2900/3312 [2:27:45<20:48,  3.03\\\\n\\\\n... [截断: 输出过长，省略 32021 字符] ...\\\\n\\\\n2:46:52<01:58,  2.96s/it]\\\\r 99%|█████████▉| 3273/3312 [2:46:55<01:53,  2.90s/it]\\\\r 99%|█████████▉| 3274/3312 [2:46:58<01:48,  2.87s/it]\\\\r 99%|█████████▉| 3275/3312 [2:47:01<01:52,  3.03s/it]\\\\r 99%|█████████▉| 3276/3312 [2:47:04<01:48,  3.02s/it]\\\\r 99%|█████████▉| 3277/3312 [2:47:07<01:46,  3.04s/it]\\\\r 99%|█████████▉| 3278/3312 [2:47:10<01:40,  2.97s/it]\\\\r 99%|█████████▉| 3279/3312 [2:47:13<01:34,  2.88s/it]\\\\r 99%|█████████▉| 3280/3312 [2:47:15<01:31,  2.85s/it]\\\\r                                                     \\\\r{'loss': 0.2521, 'grad_norm': 0.8145761489868164, 'learning_rate': 2.0547945205479452e-07, 'entropy': 0.3076565608382225, 'num_tokens': 24990071.0, 'mean_token_accuracy': 0.9403215177357197, 'epoch': 2.97}\\\\n\\\\r 99%|█████████▉| 3280/3312 [2:47:15<01:31,  2.85s/it]\\\\r 99%|█████████▉| 3281/3312 [2:47:18<01:31,  2.94s/it]\\\\r 99%|█████████▉| 3282/3312 [2:47:22<01:33,  3.11s/it]\\\\r 99%|█████████▉| 3283/3312 [2:47:24<01:23,  2.87s/it]\\\\r 99%|█████████▉| 3284/3312 [2:47:28<01:23,  3.00s/it]\\\\r 99%|█████████▉| 3285/3312 [2:47:31<01:22,  3.07s/it]\\\\r 99%|█████████▉| 3286/3312 [2:47:33<01:15,  2.92s/it]\\\\r 99%|█████████▉| 3287/3312 [2:47:37<01:15,  3.03s/it]\\\\r 99%|█████████▉| 3288/3312 [2:47:40<01:12,  3.04s/it]\\\\r 99%|█████████▉| 3289/3312 [2:47:43<01:11,  3.10s/it]\\\\r 99%|█████████▉| 3290/3312 [2:47:46<01:08,  3.14s/it]\\\\r                                                     \\\\r{'loss': 0.2657, 'grad_norm': 0.774990975856781, 'learning_rate': 1.4321295143212954e-07, 'entropy': 0.3262269595637918, 'num_tokens': 25067392.0, 'mean_token_accuracy': 0.9362823441624641, 'epoch': 2.98}\\\\n\\\\r 99%|█████████▉| 3290/3312 [2:47:46<01:08,  3.14s/it]\\\\r 99%|█████████▉| 3291/3312 [2:47:50<01:08,  3.27s/it]\\\\r 99%|█████████▉| 3292/3312 [2:47:52<01:01,  3.06s/it]\\\\r 99%|█████████▉| 3293/3312 [2:47:55<00:56,  2.96s/it]\\\\r 99%|█████████▉| 3294/3312 [2:47:58<00:51,  2.88s/it]\\\\r 99%|█████████▉| 3295/3312 [2:48:01<00:48,  2.84s/it]\\\\r100%|█████████▉| 3296/3312 [2:48:03<00:45,  2.81s/it]\\\\r100%|█████████▉| 3297/3312 [2:48:06<00:42,  2.82s/it]\\\\r100%|█████████▉| 3298/3312 [2:48:09<00:39,  2.82s/it]\\\\r100%|█████████▉| 3299/3312 [2:48:12<00:36,  2.81s/it]\\\\r100%|█████████▉| 3300/3312 [2:48:15<00:34,  2.85s/it]\\\\r                                                     \\\\r{'loss': 0.2761, 'grad_norm': 0.9218071103096008, 'learning_rate': 8.094645080946451e-08, 'entropy': 0.3370864041149616, 'num_tokens': 25136933.0, 'mean_token_accuracy': 0.9357126265764236, 'epoch': 2.99}\\\\n\\\\r100%|█████████▉| 3300/3312 [2:48:15<00:34,  2.85s/it]\\\\r100%|█████████▉| 3301/3312 [2:48:20<00:39,  3.55s/it]\\\\r100%|█████████▉| 3302/3312 [2:48:23<00:34,  3.43s/it]\\\\r100%|█████████▉| 3303/3312 [2:48:26<00:29,  3.32s/it]\\\\r100%|█████████▉| 3304/3312 [2:48:29<00:25,  3.19s/it]\\\\r100%|█████████▉| 3305/3312 [2:48:32<00:22,  3.22s/it]\\\\r100%|█████████▉| 3306/3312 [2:48:35<00:19,  3.21s/it]\\\\r100%|█████████▉| 3307/3312 [2:48:38<00:15,  3.05s/it]\\\\r100%|█████████▉| 3308/3312 [2:48:41<00:12,  3.09s/it]\\\\r100%|█████████▉| 3309/3312 [2:48:44<00:09,  3.12s/it]\\\\r100%|█████████▉| 3310/3312 [2:48:48<00:06,  3.26s/it]\\\\r                                                     \\\\r{'loss': 0.2508, 'grad_norm': 0.7142494320869446, 'learning_rate': 1.8679950186799504e-08, 'entropy': 0.3075642928481102, 'num_tokens': 25217703.0, 'mean_token_accuracy': 0.9401899099349975, 'epoch': 3.0}\\\\n\\\\r100%|█████████▉| 3310/3312 [2:48:48<00:06,  3.26s/it]\\\\r100%|█████████▉| 3311/3312 [2:48:51<00:03,  3.19s/it]\\\\r100%|██████████| 3312/3312 [2:48:53<00:00,  2.93s/it]\\\\r                                                     \\\\r{'train_runtime': 10136.1463, 'train_samples_per_second': 2.613, 'train_steps_per_second': 0.327, 'train_loss': 0.3715360457446552, 'entropy': 0.29116106835695416, 'num_tokens': 25231431.0, 'mean_token_accuracy': 0.9417764085989732, 'epoch': 3.0}\\\\n\\\\r100%|██████████| 3312/3312 [2:48:56<00:00,  2.93s/it]\\\\r100%|██████████| 3312/3312 [2:48:56<00:00,  3.06s/it]\\\\n2026-05-17 23:56:54,671 INFO Saving model to /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43\\\\n2026-05-17 23:56:55,417 INFO RSFT training complete.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\r 86%|████████▌ | 2850/3312 [2:25:13<23:14,  3.02s/it]\\r 86%|████████▌ | 2851/3312 [2:25:18<28:32,  3.72s/it]\\r 86%|████████▌ | 2852/3312 [2:25:21<26:03,  3.40s/it]\\r 86%|████████▌ | 2853/3312 [2:25:24<24:52,  3.25s/it]\\r 86%|████████▌ | 2854/3312 [2:25:27<24:40,  3.23s/it]\\r 86%|████████▌ | 2855/3312 [2:25:30<23:29,  3.08s/it]\\r 86%|████████▌ | 2856/3312 [2:25:33<22:49,  3.00s/it]\\r 86%|████████▋ | 2857/3312 [2:25:36<23:55,  3.15s/it]\\r 86%|████████▋ | 2858/3312 [2:25:39<23:08,  3.06s/it]\\r 86%|████████▋ | 2859/3312 [2:25:42<22:38,  3.00s/it]\\r 86%|████████▋ | 2860/3312 [2:25:45<23:14,  3.08s/it]\\r                                                     \\r{'loss': 0.2591, 'grad_norm': 0.8452499508857727, 'learning_rate': 2.820672478206725e-06, 'entropy': 0.31506113428622484, 'num_tokens': 21780720.0, 'mean_token_accuracy': 0.9393975473940372, 'epoch': 2.59}\\n\\r 86%|████████▋ | 2860/3312 [2:25:45<23:14,  3.08s/it]\\r 86%|████████▋ | 2861/3312 [2:25:49<24:04,  3.20s/it]\\r 86%|████████▋ | 2862/3312 [2:25:52<23:07,  3.08s/it]\\r 86%|████████▋ | 2863/3312 [2:25:55<22:55,  3.06s/it]\\r 86%|████████▋ | 2864/3312 [2:25:57<22:21,  2.99s/it]\\r 87%|████████▋ | 2865/3312 [2:26:00<21:50,  2.93s/it]\\r 87%|████████▋ | 2866/3312 [2:26:04<22:54,  3.08s/it]\\r 87%|████████▋ | 2867/3312 [2:26:06<22:04,  2.98s/it]\\r 87%|████████▋ | 2868/3312 [2:26:09<21:14,  2.87s/it]\\r 87%|████████▋ | 2869/3312 [2:26:12<21:29,  2.91s/it]\\r 87%|████████▋ | 2870/3312 [2:26:15<21:35,  2.93s/it]\\r                                                     \\r{'loss': 0.267, 'grad_norm': 0.890686571598053, 'learning_rate': 2.75840597758406e-06, 'entropy': 0.3159894736483693, 'num_tokens': 21855753.0, 'mean_token_accuracy': 0.9378606803715229, 'epoch': 2.6}\\n\\r 87%|████████▋ | 2870/3312 [2:26:15<21:35,  2.93s/it]\\r 87%|████████▋ | 2871/3312 [2:26:18<21:41,  2.95s/it]\\r 87%|████████▋ | 2872/3312 [2:26:22<22:58,  3.13s/it]\\r 87%|████████▋ | 2873/3312 [2:26:24<22:14,  3.04s/it]\\r 87%|████████▋ | 2874/3312 [2:26:27<22:13,  3.04s/it]\\r 87%|████████▋ | 2875/3312 [2:26:31<22:23,  3.07s/it]\\r 87%|████████▋ | 2876/3312 [2:26:34<23:27,  3.23s/it]\\r 87%|████████▋ | 2877/3312 [2:26:37<22:41,  3.13s/it]\\r 87%|████████▋ | 2878/3312 [2:26:40<22:09,  3.06s/it]\\r 87%|████████▋ | 2879/3312 [2:26:43<22:19,  3.09s/it]\\r 87%|████████▋ | 2880/3312 [2:26:46<21:24,  2.97s/it]\\r                                                     \\r{'loss': 0.2584, 'grad_norm': 0.9154348373413086, 'learning_rate': 2.696139476961395e-06, 'entropy': 0.3165863724425435, 'num_tokens': 21935019.0, 'mean_token_accuracy': 0.9378135293722153, 'epoch': 2.61}\\n\\r 87%|████████▋ | 2880/3312 [2:26:46<21:24,  2.97s/it]\\r 87%|████████▋ | 2881/3312 [2:26:49<20:58,  2.92s/it]\\r 87%|████████▋ | 2882/3312 [2:26:51<20:34,  2.87s/it]\\r 87%|████████▋ | 2883/3312 [2:26:54<20:26,  2.86s/it]\\r 87%|████████▋ | 2884/3312 [2:26:57<21:16,  2.98s/it]\\r 87%|████████▋ | 2885/3312 [2:27:00<20:33,  2.89s/it]\\r 87%|████████▋ | 2886/3312 [2:27:04<21:35,  3.04s/it]\\r 87%|████████▋ | 2887/3312 [2:27:07<21:40,  3.06s/it]\\r 87%|████████▋ | 2888/3312 [2:27:10<21:16,  3.01s/it]\\r 87%|████████▋ | 2889/3312 [2:27:12<21:02,  2.98s/it]\\r 87%|████████▋ | 2890/3312 [2:27:15<20:37,  2.93s/it]\\r                                                     \\r{'loss': 0.2578, 'grad_norm': 1.058172345161438, 'learning_rate': 2.63387297633873e-06, 'entropy': 0.3154133208096027, 'num_tokens': 22009485.0, 'mean_token_accuracy': 0.9385336741805077, 'epoch': 2.62}\\n\\r 87%|████████▋ | 2890/3312 [2:27:15<20:37,  2.93s/it]\\r 87%|████████▋ | 2891/3312 [2:27:18<20:59,  2.99s/it]\\r 87%|████████▋ | 2892/3312 [2:27:21<21:01,  3.00s/it]\\r 87%|████████▋ | 2893/3312 [2:27:24<20:33,  2.94s/it]\\r 87%|████████▋ | 2894/3312 [2:27:28<21:26,  3.08s/it]\\r 87%|████████▋ | 2895/3312 [2:27:31<21:09,  3.04s/it]\\r 87%|████████▋ | 2896/3312 [2:27:33<20:31,  2.96s/it]\\r 87%|████████▋ | 2897/3312 [2:27:36<19:59,  2.89s/it]\\r 88%|████████▊ | 2898/3312 [2:27:39<19:53,  2.88s/it]\\r 88%|████████▊ | 2899/3312 [2:27:42<20:30,  2.98s/it]\\r 88%|████████▊ | 2900/3312 [2:27:45<20:48,  3.03\\n\\n... [截断: 输出过长，省略 32021 字符] ...\\n\\n2:46:52<01:58,  2.96s/it]\\r 99%|█████████▉| 3273/3312 [2:46:55<01:53,  2.90s/it]\\r 99%|█████████▉| 3274/3312 [2:46:58<01:48,  2.87s/it]\\r 99%|█████████▉| 3275/3312 [2:47:01<01:52,  3.03s/it]\\r 99%|█████████▉| 3276/3312 [2:47:04<01:48,  3.02s/it]\\r 99%|█████████▉| 3277/3312 [2:47:07<01:46,  3.04s/it]\\r 99%|█████████▉| 3278/3312 [2:47:10<01:40,  2.97s/it]\\r 99%|█████████▉| 3279/3312 [2:47:13<01:34,  2.88s/it]\\r 99%|█████████▉| 3280/3312 [2:47:15<01:31,  2.85s/it]\\r                                                     \\r{'loss': 0.2521, 'grad_norm': 0.8145761489868164, 'learning_rate': 2.0547945205479452e-07, 'entropy': 0.3076565608382225, 'num_tokens': 24990071.0, 'mean_token_accuracy': 0.9403215177357197, 'epoch': 2.97}\\n\\r 99%|█████████▉| 3280/3312 [2:47:15<01:31,  2.85s/it]\\r 99%|█████████▉| 3281/3312 [2:47:18<01:31,  2.94s/it]\\r 99%|█████████▉| 3282/3312 [2:47:22<01:33,  3.11s/it]\\r 99%|█████████▉| 3283/3312 [2:47:24<01:23,  2.87s/it]\\r 99%|█████████▉| 3284/3312 [2:47:28<01:23,  3.00s/it]\\r 99%|█████████▉| 3285/3312 [2:47:31<01:22,  3.07s/it]\\r 99%|█████████▉| 3286/3312 [2:47:33<01:15,  2.92s/it]\\r 99%|█████████▉| 3287/3312 [2:47:37<01:15,  3.03s/it]\\r 99%|█████████▉| 3288/3312 [2:47:40<01:12,  3.04s/it]\\r 99%|█████████▉| 3289/3312 [2:47:43<01:11,  3.10s/it]\\r 99%|█████████▉| 3290/3312 [2:47:46<01:08,  3.14s/it]\\r                                                     \\r{'loss': 0.2657, 'grad_norm': 0.774990975856781, 'learning_rate': 1.4321295143212954e-07, 'entropy': 0.3262269595637918, 'num_tokens': 25067392.0, 'mean_token_accuracy': 0.9362823441624641, 'epoch': 2.98}\\n\\r 99%|█████████▉| 3290/3312 [2:47:46<01:08,  3.14s/it]\\r 99%|█████████▉| 3291/3312 [2:47:50<01:08,  3.27s/it]\\r 99%|█████████▉| 3292/3312 [2:47:52<01:01,  3.06s/it]\\r 99%|█████████▉| 3293/3312 [2:47:55<00:56,  2.96s/it]\\r 99%|█████████▉| 3294/3312 [2:47:58<00:51,  2.88s/it]\\r 99%|█████████▉| 3295/3312 [2:48:01<00:48,  2.84s/it]\\r100%|█████████▉| 3296/3312 [2:48:03<00:45,  2.81s/it]\\r100%|█████████▉| 3297/3312 [2:48:06<00:42,  2.82s/it]\\r100%|█████████▉| 3298/3312 [2:48:09<00:39,  2.82s/it]\\r100%|█████████▉| 3299/3312 [2:48:12<00:36,  2.81s/it]\\r100%|█████████▉| 3300/3312 [2:48:15<00:34,  2.85s/it]\\r                                                     \\r{'loss': 0.2761, 'grad_norm': 0.9218071103096008, 'learning_rate': 8.094645080946451e-08, 'entropy': 0.3370864041149616, 'num_tokens': 25136933.0, 'mean_token_accuracy': 0.9357126265764236, 'epoch': 2.99}\\n\\r100%|█████████▉| 3300/3312 [2:48:15<00:34,  2.85s/it]\\r100%|█████████▉| 3301/3312 [2:48:20<00:39,  3.55s/it]\\r100%|█████████▉| 3302/3312 [2:48:23<00:34,  3.43s/it]\\r100%|█████████▉| 3303/3312 [2:48:26<00:29,  3.32s/it]\\r100%|█████████▉| 3304/3312 [2:48:29<00:25,  3.19s/it]\\r100%|█████████▉| 3305/3312 [2:48:32<00:22,  3.22s/it]\\r100%|█████████▉| 3306/3312 [2:48:35<00:19,  3.21s/it]\\r100%|█████████▉| 3307/3312 [2:48:38<00:15,  3.05s/it]\\r100%|█████████▉| 3308/3312 [2:48:41<00:12,  3.09s/it]\\r100%|█████████▉| 3309/3312 [2:48:44<00:09,  3.12s/it]\\r100%|█████████▉| 3310/3312 [2:48:48<00:06,  3.26s/it]\\r                                                     \\r{'loss': 0.2508, 'grad_norm': 0.7142494320869446, 'learning_rate': 1.8679950186799504e-08, 'entropy': 0.3075642928481102, 'num_tokens': 25217703.0, 'mean_token_accuracy': 0.9401899099349975, 'epoch': 3.0}\\n\\r100%|█████████▉| 3310/3312 [2:48:48<00:06,  3.26s/it]\\r100%|█████████▉| 3311/3312 [2:48:51<00:03,  3.19s/it]\\r100%|██████████| 3312/3312 [2:48:53<00:00,  2.93s/it]\\r                                                     \\r{'train_runtime': 10136.1463, 'train_samples_per_second': 2.613, 'train_steps_per_second': 0.327, 'train_loss': 0.3715360457446552, 'entropy': 0.29116106835695416, 'num_tokens': 25231431.0, 'mean_token_accuracy': 0.9417764085989732, 'epoch': 3.0}\\n\\r100%|██████████| 3312/3312 [2:48:56<00:00,  2.93s/it]\\r100%|██████████| 3312/3312 [2:48:56<00:00,  3.06s/it]\\n2026-05-17 23:56:54,671 INFO Saving model to /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43\\n2026-05-17 23:56:55,417 INFO RSFT training complete.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T15:58:19.797Z_
+
+<details><summary>↩ Tool result · `toolu_01JncqtqKsYVd1TYjb3razYG`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/freige/rsft_output_llama_3_1_8b_r3_seed43/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8228f50-61c8-45aa-8763-d1a0afa8a516",
+  "uuid": "bb6c7303-bc46-4c57-b53d-b50be4548952",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/freige/rsft_output_llama_3_1_8b_r3_seed43/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/freige/rsft_output_llama_3_1_8b_r3_seed43/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+训练成功完成。日志显示保存路径是 `/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43`。确认 checkpoint 存在：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8228f50-61c8-45aa-8763-d1a0afa8a516",
+  "uuid": "c9cda257-8450-452e-bb31-cc359007e5cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NmFqoB3LwEsKnVjaanoCqG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5450,
+      "cache_read_input_tokens": 26112,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5450
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LBLFvWckEA2Y3maE4hRd6x`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8228f50-61c8-45aa-8763-d1a0afa8a516",
+  "uuid": "4c4afe72-f008-4dd8-a37d-44d56c242973",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NmFqoB3LwEsKnVjaanoCqG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5450,
+      "cache_read_input_tokens": 26112,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5450
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T15:58:25.179Z_
+
+<details><summary>↩ Tool result · `toolu_01LBLFvWckEA2Y3maE4hRd6x`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 672336\\ndrwxr-xr-x  7 root root      4096 May 17 23:56 .\\ndrwxr-xr-x 70 root root      4096 May 17 21:07 ..\\n-rw-r--r--  1 root root      1532 May 17 23:56 README.md\\n-rw-r--r--  1 root root      1132 May 17 23:56 adapter_config.json\\n-rw-r--r--  1 root root 671149168 May 17 23:56 adapter_model.safetensors\\n-rw-r--r--  1 root root       384 May 17 23:56 chat_template.jinja\\ndrwxr-xr-x  2 root root      4096 May 17 23:48 checkpoint-3150\\ndrwxr-xr-x  2 root root      4096 May 17 23:51 checkpoint-3200\\ndrwxr-xr-x  2 root root      4096 May 17 23:53 checkpoint-3250\\ndrwxr-xr-x  2 root root      4096 May 17 23:56 checkpoint-3300\\ndrwxr-xr-x  2 root root      4096 May 17 23:56 checkpoint-3312\\n-rw-r--r--  1 root root       335 May 17 23:56 special_tokens_map.json\\n-rw-r--r--  1 root root  17209920 May 17 23:56 tokenizer.json\\n-rw-r--r--  1 root root     50591 May 17 23:56 tokenizer_config.json\\n-rw-r--r--  1 root root      6353 May 17 23:56 training_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8228f50-61c8-45aa-8763-d1a0afa8a516",
+  "uuid": "2635db66-0e3d-48e4-8266-a3fd30e9ab78",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 672336\\\\ndrwxr-xr-x  7 root root      4096 May 17 23:56 .\\\\ndrwxr-xr-x 70 root root      4096 May 17 21:07 ..\\\\n-rw-r--r--  1 root root      1532 May 17 23:56 README.md\\\\n-rw-r--r--  1 root root      1132 May 17 23:56 adapter_config.json\\\\n-rw-r--r--  1 root root 671149168 May 17 23:56 adapter_model.safetensors\\\\n-rw-r--r--  1 root root       384 May 17 23:56 chat_template.jinja\\\\ndrwxr-xr-x  2 root root      4096 May 17 23:48 checkpoint-3150\\\\ndrwxr-xr-x  2 root root      4096 May 17 23:51 checkpoint-3200\\\\ndrwxr-xr-x  2 root root      4096 May 17 23:53 checkpoint-3250\\\\ndrwxr-xr-x  2 root root      4096 May 17 23:56 checkpoint-3300\\\\ndrwxr-xr-x  2 root root      4096 May 17 23:56 checkpoint-3312\\\\n-rw-r--r--  1 root root       335 May 17 23:56 special_tokens_map.json\\\\n-rw-r--r--  1 root root  17209920 May 17 23:56 tokenizer.json\\\\n-rw-r--r--  1 root root     50591 May 17 23:56 tokenizer_config.json\\\\n-rw-r--r--  1 root root      6353 May 17 23:56 training_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 672336\\ndrwxr-xr-x  7 root root      4096 May 17 23:56 .\\ndrwxr-xr-x 70 root root      4096 May 17 21:07 ..\\n-rw-r--r--  1 root root      1532 May 17 23:56 README.md\\n-rw-r--r--  1 root root      1132 May 17 23:56 adapter_config.json\\n-rw-r--r--  1 root root 671149168 May 17 23:56 adapter_model.safetensors\\n-rw-r--r--  1 root root       384 May 17 23:56 chat_template.jinja\\ndrwxr-xr-x  2 root root      4096 May 17 23:48 checkpoint-3150\\ndrwxr-xr-x  2 root root      4096 May 17 23:51 checkpoint-3200\\ndrwxr-xr-x  2 root root      4096 May 17 23:53 checkpoint-3250\\ndrwxr-xr-x  2 root root      4096 May 17 23:56 checkpoint-3300\\ndrwxr-xr-x  2 root root      4096 May 17 23:56 checkpoint-3312\\n-rw-r--r--  1 root root       335 May 17 23:56 special_tokens_map.json\\n-rw-r--r--  1 root root  17209920 May 17 23:56 tokenizer.json\\n-rw-r--r--  1 root root     50591 May 17 23:56 tokenizer_config.json\\n-rw-r--r--  1 root root      6353 May 17 23:56 training_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Checkpoint 存在，adapter_model.safetensors (671MB) 已保存。更新 registry 并删除 cron：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8228f50-61c8-45aa-8763-d1a0afa8a516",
+  "uuid": "15d156d2-219b-41a8-917f-02a9c102ca56",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A3Afnq6LuZsWvieTkZxzg5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 742,
+      "cache_read_input_tokens": 31562,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 742
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_011b5nTDB133W7ATsPV9yhD2`</summary>
+
+```json
+{
+  "exp_id": "plan_006_llama_rsft_seed43",
+  "field": "conclusion",
+  "value": "success",
+  "project": "faith-evidence-ie",
+  "spec": {
+    "checkpoint_path": "/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43",
+    "log_path": "/root/runs/faith-evidence-ie/plan_006_llama_rsft_seed43.log",
+    "final_loss": 0.3715,
+    "mean_token_accuracy": 0.9418,
+    "train_runtime_seconds": 10136,
+    "epochs": 3,
+    "total_steps": 3312
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8228f50-61c8-45aa-8763-d1a0afa8a516",
+  "uuid": "4c715984-13b3-4fbd-aeeb-d96e5ca6eeb6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A3Afnq6LuZsWvieTkZxzg5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 742,
+      "cache_read_input_tokens": 31562,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 742
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__delete_cron · `toolu_01QJHMqsGT1G4hpSh9rk7BNX`</summary>
+
+```json
+{
+  "exp_id": "plan_006_llama_rsft_seed43"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8228f50-61c8-45aa-8763-d1a0afa8a516",
+  "uuid": "3e3b2d57-5e30-4a5a-bfce-bc6cf47c9b4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A3Afnq6LuZsWvieTkZxzg5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 742,
+      "cache_read_input_tokens": 31562,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 742
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T15:58:33.552Z_
+
+<details><summary>↩ Tool result · `toolu_011b5nTDB133W7ATsPV9yhD2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_llama_rsft_seed43\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:07:02.215Z\", \"updated_at\": \"2026-05-17T15:58:33.125Z\", \"hypothesis\": \"Validate LLaMA-8B RSFT robustness across seeds. Seed 42 gave rel_f1=0.5674 (+1.6pp over SFT baseline 0.5514). If seed 43 gives similar result, the cross-architecture RSFT claim is robust against seed variance.\", \"parent\": \"plan_016_llama_rsft_train_r3\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --rsft_data_path /root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl --num_epochs 3 --output_dir /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43 --per_device_batch_size 1 --gradient_accumulation_steps 8 --seed 43 --bf16 --wandb_run_name plan_006_llama_rsft_seed43\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl\", \"data_count\": 8829, \"model_name\": \"Meta-Llama-3.1-8B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_llama_3_1_8b\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43\", \"log_path\": \"/root/runs/faith-evidence-ie/plan_006_llama_rsft_seed43.log\", \"gpu\": \"cuda:0\", \"pid\": 450239, \"submitted_at\": \"2026-05-17T21:07:00Z\", \"backend\": \"tmux\", \"account\": \"root\", \"bf16\": true, \"quantize\": false, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 8, \"effective_batch_size\": 8, \"total_steps\": 3312, \"eval_data\": \"N/A - training experiment\", \"final_loss\": 0.3715, \"mean_token_accuracy\": 0.9418, \"train_runtime_seconds\": 10136, \"epochs\": 3}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0212}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8228f50-61c8-45aa-8763-d1a0afa8a516",
+  "uuid": "f2cef3f3-31b7-4990-b85e-0b3962dc5c55",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_llama_rsft_seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T13:07:02.215Z\\\", \\\"updated_at\\\": \\\"2026-05-17T15:58:33.125Z\\\", \\\"hypothesis\\\": \\\"Validate LLaMA-8B RSFT robustness across seeds. Seed 42 gave rel_f1=0.5674 (+1.6pp over SFT baseline 0.5514). If seed 43 gives similar result, the cross-architecture RSFT claim is robust against seed variance.\\\", \\\"parent\\\": \\\"plan_016_llama_rsft_train_r3\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --rsft_data_path /root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl --num_epochs 3 --output_dir /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43 --per_device_batch_size 1 --gradient_accumulation_steps 8 --seed 43 --bf16 --wandb_run_name plan_006_llama_rsft_seed43\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl\\\", \\\"data_count\\\": 8829, \\\"model_name\\\": \\\"Meta-Llama-3.1-8B\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_llama_3_1_8b\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43\\\", \\\"log_path\\\": \\\"/root/runs/faith-evidence-ie/plan_006_llama_rsft_seed43.log\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 450239, \\\"submitted_at\\\": \\\"2026-05-17T21:07:00Z\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"bf16\\\": true, \\\"quantize\\\": false, \\\"per_device_batch_size\\\": 1, \\\"gradient_accumulation_steps\\\": 8, \\\"effective_batch_size\\\": 8, \\\"total_steps\\\": 3312, \\\"eval_data\\\": \\\"N/A - training experiment\\\", \\\"final_loss\\\": 0.3715, \\\"mean_token_accuracy\\\": 0.9418, \\\"train_runtime_seconds\\\": 10136, \\\"epochs\\\": 3}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0212}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan_006_llama_rsft_seed43\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:07:02.215Z\", \"updated_at\": \"2026-05-17T15:58:33.125Z\", \"hypothesis\": \"Validate LLaMA-8B RSFT robustness across seeds. Seed 42 gave rel_f1=0.5674 (+1.6pp over SFT baseline 0.5514). If seed 43 gives similar result, the cross-architecture RSFT claim is robust against seed variance.\", \"parent\": \"plan_016_llama_rsft_train_r3\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --rsft_data_path /root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl --num_epochs 3 --output_dir /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43 --per_device_batch_size 1 --gradient_accumulation_steps 8 --seed 43 --bf16 --wandb_run_name plan_006_llama_rsft_seed43\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl\", \"data_count\": 8829, \"model_name\": \"Meta-Llama-3.1-8B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_llama_3_1_8b\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43\", \"log_path\": \"/root/runs/faith-evidence-ie/plan_006_llama_rsft_seed43.log\", \"gpu\": \"cuda:0\", \"pid\": 450239, \"submitted_at\": \"2026-05-17T21:07:00Z\", \"backend\": \"tmux\", \"account\": \"root\", \"bf16\": true, \"quantize\": false, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 8, \"effective_batch_size\": 8, \"total_steps\": 3312, \"eval_data\": \"N/A - training experiment\", \"final_loss\": 0.3715, \"mean_token_accuracy\": 0.9418, \"train_runtime_seconds\": 10136, \"epochs\": 3}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0212}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T15:58:33.703Z_
+
+<details><summary>↩ Tool result · `toolu_01QJHMqsGT1G4hpSh9rk7BNX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"deleted\": \"plan_006_llama_rsft_seed43\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d8228f50-61c8-45aa-8763-d1a0afa8a516",
+  "uuid": "b0683c57-4389-4810-9653-7091bf06bad9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": \\\"plan_006_llama_rsft_seed43\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"deleted\": \"plan_006_llama_rsft_seed43\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+**结果：训练成功完成。**
+
+| 指标 | 值 |
+|------|-----|
+| Final loss | 0.3715 |
+| Mean token accuracy | 94.18% |
+| 训练时长 | 2h 49m |
+| Epochs | 3 (3312 steps) |
+| Checkpoint | `/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/` |
+
+Registry 已更新为 success，cron 已删除。可以开始 eval。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d8228f50-61c8-45aa-8763-d1a0afa8a516",
+  "uuid": "e2187a6f-bf85-4e95-b1ab-e28984323e29",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016thWX3XPW8HoNTiGkUJSnf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1303,
+      "cache_read_input_tokens": 32304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1303
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 21_
+
+**结果：训练成功完成。**
+
+| 指标 | 值 |
+|------|-----|
+| Final loss | 0.3715 |
+| Mean token accuracy | 94.18% |
+| 训练时长 | 2h 49m |
+| Epochs | 3 (3312 steps) |
+| Checkpoint | `/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/` |
+
+Registry 已更新为 success，cron 已删除。可以开始 eval。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 30012,
+  "duration_api_ms": 29301,
+  "num_turns": 7,
+  "stop_reason": "end_turn",
+  "session_id": "d8228f50-61c8-45aa-8763-d1a0afa8a516",
+  "total_cost_usd": 0.229389,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 21766,
+    "cache_read_input_tokens": 126849,
+    "output_tokens": 1120,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 21766,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 144,
+        "cache_read_input_tokens": 32304,
+        "cache_creation_input_tokens": 1303,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1303
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1742,
+      "outputTokens": 29,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001887,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 1120,
+      "cacheReadInputTokens": 126849,
+      "cacheCreationInputTokens": 21766,
+      "webSearchRequests": 0,
+      "costUSD": 0.227502,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "dbd5f833-e86e-4c60-b4ad-437aaf363fe3"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,38 @@
+{
+  "exp_id": "d158_14b_rsft_s44_train",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T05:14:57.540Z",
+    "updated_at": "2026-05-25T09:01:27.762Z",
+    "hypothesis": "14B RSFT k=1 CED train seed=44 (seed-matched pipeline)。使用 sft_output_14b_s44 + 3016 CED-scored samples。补全 14B scale seed-matched 数据。",
+    "parent": "d158_14b_rsft_s44_ced_score",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s44 --rsft_data_path /root/autodl-tmp/rsft_scored_14b_s44/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_14b_s44 --seed 44",
+      "server": "rtx5090-4x",
+      "gpu_id": "cuda:1",
+      "pid": 357577,
+      "data_path": "/root/autodl-tmp/rsft_scored_14b_s44/rsft_train.jsonl",
+      "data_count": 3016,
+      "model_name": "Qwen3-14B",
+      "seed": 44,
+      "checkpoint_path": "/root/autodl-tmp/rsft_output_14b_s44",
+      "log_path": "/root/autodl-tmp/logs/d158_14b_rsft_s44_train.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "train_loss": 0.5063,
+      "mean_token_accuracy": 0.8678,
+      "entropy": 0.541,
+      "train_runtime_sec": 4009,
+      "epochs": 3,
+      "steps": 567
+    },
+    "completed_at": "2026-05-25T09:01:27.762Z"
+  },
+  "timestamp": "2026-05-25T09:01:28.470553+00:00",
+  "trigger": "update_registry"
+}

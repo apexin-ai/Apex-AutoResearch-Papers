@@ -1,0 +1,16 @@
+{
+  "exp_id": "r3_grpo_bf16_g4_eval",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T00:43:14.240Z",
+    "updated_at": "2026-05-25T00:45:04.566Z",
+    "hypothesis": "r3_grpo_bf16_g4 dev eval。判断 bf16 G=4 是否 collapse。如果 Rel-F1 > 10 = no collapse（量化是 collapse 主因），如果 Rel-F1 < 10 = collapse（group size 也是因素）。",
+    "parent": "r3_grpo_bf16_g4"
+  },
+  "timestamp": "2026-05-25T00:45:05.526849+00:00",
+  "trigger": "update_registry"
+}

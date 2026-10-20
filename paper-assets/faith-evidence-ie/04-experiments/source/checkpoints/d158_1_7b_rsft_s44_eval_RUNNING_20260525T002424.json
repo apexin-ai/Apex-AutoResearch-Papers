@@ -1,0 +1,29 @@
+{
+  "exp_id": "d158_1_7b_rsft_s44_eval",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T00:23:47.893Z",
+    "updated_at": "2026-05-25T00:24:24.099Z",
+    "hypothesis": "1.7B RSFT s44 dev eval（seed-matched pipeline）。验证 seed-matched RSFT 性能，对比共享 s42 SFT 的 plan019 结果（ign_f1=51.09/51.25）。如果 seed-matched 结果在相似范围，说明共享初始化并未严重扭曲 variance estimate。",
+    "parent": "d158_1_7b_rsft_s44_train",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_1_7b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16_seed44 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/eval_results/d158_1_7b_rsft_s44_eval --batch_size 4 --max_new_tokens 1024 --no-quantize --seed 44",
+      "server": "rtx5090-4x",
+      "gpu_id": "cuda:0",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": null,
+      "model_name": "Qwen3-1.7B",
+      "seed": 44,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_1_7b_s44",
+      "eval_data": "docred-dev",
+      "pid": 342049,
+      "log_path": "/root/autodl-tmp/logs/d158_1_7b_rsft_s44_eval.log"
+    }
+  },
+  "timestamp": "2026-05-25T00:24:24.827291+00:00",
+  "trigger": "update_registry"
+}

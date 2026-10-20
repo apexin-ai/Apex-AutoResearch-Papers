@@ -1,0 +1,1226 @@
+# analyze eval llama sft s43 no evidence r2
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 23
+- **Recorded user turns:** 0
+- **Tool calls:** 7
+- **Original source:** `logs/workers/worker_analyze_eval_llama_sft_s43_no_evidence_r2_20260520T182543.log`
+- **Structured JSON:** [`fb2f9e687544d3c72555.json`](../../sessions/fb/fb2f9e687544d3c72555.json)
+
+## Before a recorded user message
+
+23 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "f937a8c4-6e09-422c-845d-0ea39234c73b",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779313200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "40878541-a878-4e92-a89d-89891853fbcc",
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the log file and checking the output directory on the server, and also query the registry for comparison data. I'll do these in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "uuid": "df26e3df-5434-4d2e-9843-0d72deab7aa6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJNekQ41MPsm5KuMR9k443",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12720,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12720
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01QkUSkETGCeMUc6Chuihfqw`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "uuid": "8250a50d-6895-4ba5-95e3-eaf2b361ff82",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJNekQ41MPsm5KuMR9k443",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12720,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12720
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T18:25:54.683Z_
+
+<details><summary>↩ Tool result · `toolu_01QkUSkETGCeMUc6Chuihfqw`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "uuid": "db368455-1894-4719-a1e9-c7b7b481cde3",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G9uT7Fq6rovz2MHZE7rFGD`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -100 ~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_r2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "uuid": "fce6cfbd-f53e-4a24-8a37-a599e91a8708",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018uSiZdPQsGNuNmSg8zfzvd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 24561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 821
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ez6FKncoooghWm1wJ3XxPp`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_r2/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "uuid": "bdf1a87b-9c46-4e47-8a83-427f1cc83d37",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018uSiZdPQsGNuNmSg8zfzvd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 24561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 821
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-20T18:25:59.442Z_
+
+<details><summary>↩ Tool result · `toolu_01G9uT7Fq6rovz2MHZE7rFGD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-21 00:13:14,356 INFO Detected adapter at /root/autodl-tmp/sft_output_llama_3_1_8b_s43, base: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\n2026-05-21 00:13:14,356 WARNING --sft_adapter not set but --base_model is non-default (/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B); assuming base is already merged.\\n2026-05-21 00:13:14,356 INFO Loading tokenizer: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\n2026-05-21 00:13:15,232 INFO Loading model: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/291 [00:00<00:51,  5.62it/s]\\rLoading weights:   1%|          | 2/291 [00:00<00:50,  5.75it/s]\\rLoading weights:   5%|▍         | 14/291 [00:00<00:06, 40.23it/s]\\rLoading weights:   9%|▉         | 27/291 [00:00<00:03, 66.55it/s]\\rLoading weights:  14%|█▎        | 40/291 [00:00<00:02, 84.01it/s]\\rLoading weights:  18%|█▊        | 51/291 [00:00<00:02, 87.07it/s]\\rLoading weights:  23%|██▎       | 67/291 [00:00<00:02, 103.98it/s]\\rLoading weights:  27%|██▋       | 78/291 [00:01<00:02, 100.81it/s]\\rLoading weights:  32%|███▏      | 94/291 [00:01<00:01, 110.77it/s]\\rLoading weights:  36%|███▋      | 106/291 [00:01<00:01, 105.22it/s]\\rLoading weights:  42%|████▏     | 121/291 [00:01<00:01, 111.58it/s]\\rLoading weights:  46%|████▌     | 133/291 [00:01<00:01, 107.91it/s]\\rLoading weights:  51%|█████     | 148/291 [00:01<00:01, 115.46it/s]\\rLoading weights:  55%|█████▍    | 160/291 [00:01<00:01, 112.02it/s]\\rLoading weights:  60%|██████    | 175/291 [00:01<00:00, 117.60it/s]\\rLoading weights:  64%|██████▍   | 187/291 [00:01<00:00, 109.79it/s]\\rLoading weights:  68%|██████▊   | 199/291 [00:02<00:00, 111.48it/s]\\rLoading weights:  73%|███████▎  | 211/291 [00:02<00:00, 113.08it/s]\\rLoading weights:  77%|███████▋  | 223/291 [00:02<00:00, 107.44it/s]\\rLoading weights:  82%|████████▏ | 238/291 [00:02<00:00, 114.73it/s]\\rLoading weights:  86%|████████▌ | 250/291 [00:02<00:00, 112.12it/s]\\rLoading weights:  91%|█████████ | 265/291 [00:02<00:00, 118.64it/s]\\rLoading weights:  95%|█████████▌| 277/291 [00:02<00:00, 114.73it/s]\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 101.50it/s]\\n2026-05-21 00:13:18,915 INFO Loading LoRA adapter: /root/autodl-tmp/sft_output_llama_3_1_8b_s43\\n2026-05-21 00:13:20,903 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\n2026-05-21 00:13:21,142 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\n2026-05-21 00:13:21,265 INFO Prepared 985 eval documents, 12275 gold triples\\n\\rInference:   0%|          | 0/247 [00:00<?, ?it/s][transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.\\n\\rInference:   0%|          | 1/247 [00:34<2:22:07, 34.67s/it]\\rInference:   1%|          | 2/247 [01:08<2:20:41, 34.46s/it]\\rInference:   1%|          | 3/247 [01:42<2:19:11, 34.23s/it]\\rInference:   2%|▏         | 4/247 [02:00<1:51:41, 27.58s/it]\\rInference:   2%|▏         | 5/247 [02:33<1:59:48, 29.71s/it]\\rInference:   2%|▏         | 6/247 [03:07<2:04:59, 31.12s/it]\\rInference:   3%|▎         | 7/247 [03:41<2:07:37, 31.90s/it]\\rInference:   3%|▎         | 8/247 [04:14<2:09:07, 32.42s/it]\\rInference:   4%|▎         | 9/247 [04:47<2:09:29, 32.64s/it]\\rInference:   4%|▍         | 10/247 [05:22<2:10:50, 33.12s/it]\\rInference:   4%|▍         | 11/247 [05:55<2:11:02, 33.31s/it]\\rInference:   5%|▍         | 12/247 [06:29<2:10:31, 33.32s/it]\\rInference:   5%|▌         | 13/247 [07:02<2:10:17, 33.41s/it]\\rInference:   6%|▌         | 14/247 [07:36<2:10:30, 33.61s/it]\\rInference:   6%|▌   \\n\\n... [截断: 输出过长，省略 11454 字符] ...\\n\\n6, 31.14s/it]\\rInference:  80%|████████  | 198/247 [1:42:51<26:23, 32.31s/it]\\rInference:  81%|████████  | 199/247 [1:43:06<21:40, 27.10s/it]\\rInference:  81%|████████  | 200/247 [1:43:41<23:09, 29.56s/it]\\rInference:  81%|████████▏ | 201/247 [1:44:18<24:18, 31.71s/it]\\rInference:  82%|████████▏ | 202/247 [1:44:52<24:29, 32.65s/it]\\rInference:  82%|████████▏ | 203/247 [1:45:28<24:30, 33.42s/it]\\rInference:  83%|████████▎ | 204/247 [1:46:03<24:18, 33.92s/it]\\rInference:  83%|████████▎ | 205/247 [1:46:37<23:53, 34.14s/it]\\rInference:  83%|████████▎ | 206/247 [1:47:11<23:16, 34.05s/it]\\rInference:  84%|████████▍ | 207/247 [1:47:46<22:56, 34.41s/it]\\rInference:  84%|████████▍ | 208/247 [1:48:20<22:13, 34.20s/it]\\rInference:  85%|████████▍ | 209/247 [1:48:55<21:42, 34.28s/it]\\rInference:  85%|████████▌ | 210/247 [1:49:29<21:08, 34.28s/it]\\rInference:  85%|████████▌ | 211/247 [1:50:03<20:27, 34.09s/it]\\rInference:  86%|████████▌ | 212/247 [1:50:37<19:59, 34.26s/it]\\rInference:  86%|████████▌ | 213/247 [1:50:49<15:36, 27.54s/it]\\rInference:  87%|████████▋ | 214/247 [1:51:23<16:10, 29.42s/it]\\rInference:  87%|████████▋ | 215/247 [1:51:56<16:20, 30.65s/it]\\rInference:  87%|████████▋ | 216/247 [1:52:30<16:20, 31.62s/it]\\rInference:  88%|████████▊ | 217/247 [1:53:04<16:03, 32.13s/it]\\rInference:  88%|████████▊ | 218/247 [1:53:38<15:47, 32.67s/it]\\rInference:  89%|████████▊ | 219/247 [1:54:11<15:18, 32.81s/it]\\rInference:  89%|████████▉ | 220/247 [1:54:44<14:49, 32.95s/it]\\rInference:  89%|████████▉ | 221/247 [1:55:17<14:19, 33.07s/it]\\rInference:  90%|████████▉ | 222/247 [1:55:50<13:45, 33.03s/it]\\rInference:  90%|█████████ | 223/247 [1:56:24<13:15, 33.15s/it]\\rInference:  91%|█████████ | 224/247 [1:56:56<12:39, 33.04s/it]\\rInference:  91%|█████████ | 225/247 [1:57:30<12:06, 33.04s/it]\\rInference:  91%|█████████▏| 226/247 [1:58:03<11:36, 33.19s/it]\\rInference:  92%|█████████▏| 227/247 [1:58:36<11:04, 33.20s/it]\\rInference:  92%|█████████▏| 228/247 [1:59:09<10:29, 33.16s/it]\\rInference:  93%|█████████▎| 229/247 [1:59:43<09:57, 33.19s/it]\\rInference:  93%|█████████▎| 230/247 [2:00:16<09:23, 33.17s/it]\\rInference:  94%|█████████▎| 231/247 [2:00:49<08:52, 33.27s/it]\\rInference:  94%|█████████▍| 232/247 [2:01:23<08:21, 33.44s/it]\\rInference:  94%|█████████▍| 233/247 [2:01:57<07:48, 33.49s/it]\\rInference:  95%|█████████▍| 234/247 [2:02:30<07:15, 33.52s/it]\\rInference:  95%|█████████▌| 235/247 [2:03:04<06:42, 33.55s/it]\\rInference:  96%|█████████▌| 236/247 [2:03:37<06:07, 33.40s/it]\\rInference:  96%|█████████▌| 237/247 [2:04:11<05:35, 33.56s/it]\\rInference:  96%|█████████▋| 238/247 [2:04:44<05:00, 33.43s/it]\\rInference:  97%|█████████▋| 239/247 [2:05:17<04:27, 33.40s/it]\\rInference:  97%|█████████▋| 240/247 [2:05:51<03:53, 33.35s/it]\\rInference:  98%|█████████▊| 241/247 [2:06:24<03:20, 33.34s/it]\\rInference:  98%|█████████▊| 242/247 [2:06:57<02:46, 33.25s/it]\\rInference:  98%|█████████▊| 243/247 [2:07:30<02:13, 33.26s/it]\\rInference:  99%|█████████▉| 244/247 [2:08:04<01:40, 33.51s/it]\\rInference:  99%|█████████▉| 245/247 [2:08:38<01:07, 33.55s/it]\\rInference: 100%|█████████▉| 246/247 [2:09:11<00:33, 33.37s/it]\\rInference: 100%|██████████| 247/247 [2:09:15<00:00, 24.45s/it]\\rInference: 100%|██████████| 247/247 [2:09:15<00:00, 31.40s/it]\\n2026-05-21 02:22:36,289 INFO Inference done. 378/985 truncated, 0 errors.\\n2026-05-21 02:22:36,289 INFO Inference: 7755.0s (7.87 s/doc)\\n2026-05-21 02:22:36,837 INFO Loaded 37785 training triples (34610 unique facts) for Ign-F1\\n2026-05-21 02:22:37,003 INFO Metrics → /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_r2/metrics.json\\n2026-05-21 02:22:37,121 INFO Predictions �� /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_r2/predictions.json\\n\\n==================================================\\n  F1:          0.3579\\n  Ign-F1:      0.3391\\n  Evi-F1(DREEAM): 0.0000\\n  Evi-F1(TP):     0.0000\\n  EDCR:        0.0000\\n  Format OK:   835/985 (84.8%)\\n  Truncated:   378/985\\n  Predictions: 14538\\n==================================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "uuid": "1010d2da-97fe-4345-943c-6734f3b0ec70",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-21 00:13:14,356 INFO Detected adapter at /root/autodl-tmp/sft_output_llama_3_1_8b_s43, base: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\n2026-05-21 00:13:14,356 WARNING --sft_adapter not set but --base_model is non-default (/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B); assuming base is already merged.\\\\n2026-05-21 00:13:14,356 INFO Loading tokenizer: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\n2026-05-21 00:13:15,232 INFO Loading model: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:51,  5.62it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:50,  5.75it/s]\\\\rLoading weights:   5%|▍         | 14/291 [00:00<00:06, 40.23it/s]\\\\rLoading weights:   9%|▉         | 27/291 [00:00<00:03, 66.55it/s]\\\\rLoading weights:  14%|█▎        | 40/291 [00:00<00:02, 84.01it/s]\\\\rLoading weights:  18%|█▊        | 51/291 [00:00<00:02, 87.07it/s]\\\\rLoading weights:  23%|██▎       | 67/291 [00:00<00:02, 103.98it/s]\\\\rLoading weights:  27%|██▋       | 78/291 [00:01<00:02, 100.81it/s]\\\\rLoading weights:  32%|███▏      | 94/291 [00:01<00:01, 110.77it/s]\\\\rLoading weights:  36%|███▋      | 106/291 [00:01<00:01, 105.22it/s]\\\\rLoading weights:  42%|████▏     | 121/291 [00:01<00:01, 111.58it/s]\\\\rLoading weights:  46%|████▌     | 133/291 [00:01<00:01, 107.91it/s]\\\\rLoading weights:  51%|█████     | 148/291 [00:01<00:01, 115.46it/s]\\\\rLoading weights:  55%|█████▍    | 160/291 [00:01<00:01, 112.02it/s]\\\\rLoading weights:  60%|██████    | 175/291 [00:01<00:00, 117.60it/s]\\\\rLoading weights:  64%|██████▍   | 187/291 [00:01<00:00, 109.79it/s]\\\\rLoading weights:  68%|██████▊   | 199/291 [00:02<00:00, 111.48it/s]\\\\rLoading weights:  73%|███████▎  | 211/291 [00:02<00:00, 113.08it/s]\\\\rLoading weights:  77%|███████▋  | 223/291 [00:02<00:00, 107.44it/s]\\\\rLoading weights:  82%|████████▏ | 238/291 [00:02<00:00, 114.73it/s]\\\\rLoading weights:  86%|████████▌ | 250/291 [00:02<00:00, 112.12it/s]\\\\rLoading weights:  91%|█████████ | 265/291 [00:02<00:00, 118.64it/s]\\\\rLoading weights:  95%|█████████▌| 277/291 [00:02<00:00, 114.73it/s]\\\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 101.50it/s]\\\\n2026-05-21 00:13:18,915 INFO Loading LoRA adapter: /root/autodl-tmp/sft_output_llama_3_1_8b_s43\\\\n2026-05-21 00:13:20,903 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\\\n2026-05-21 00:13:21,142 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\\\n2026-05-21 00:13:21,265 INFO Prepared 985 eval documents, 12275 gold triples\\\\n\\\\rInference:   0%|          | 0/247 [00:00<?, ?it/s][transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.\\\\n\\\\rInference:   0%|          | 1/247 [00:34<2:22:07, 34.67s/it]\\\\rInference:   1%|          | 2/247 [01:08<2:20:41, 34.46s/it]\\\\rInference:   1%|          | 3/247 [01:42<2:19:11, 34.23s/it]\\\\rInference:   2%|▏         | 4/247 [02:00<1:51:41, 27.58s/it]\\\\rInference:   2%|▏         | 5/247 [02:33<1:59:48, 29.71s/it]\\\\rInference:   2%|▏         | 6/247 [03:07<2:04:59, 31.12s/it]\\\\rInference:   3%|▎         | 7/247 [03:41<2:07:37, 31.90s/it]\\\\rInference:   3%|▎         | 8/247 [04:14<2:09:07, 32.42s/it]\\\\rInference:   4%|▎         | 9/247 [04:47<2:09:29, 32.64s/it]\\\\rInference:   4%|▍         | 10/247 [05:22<2:10:50, 33.12s/it]\\\\rInference:   4%|▍         | 11/247 [05:55<2:11:02, 33.31s/it]\\\\rInference:   5%|▍         | 12/247 [06:29<2:10:31, 33.32s/it]\\\\rInference:   5%|▌         | 13/247 [07:02<2:10:17, 33.41s/it]\\\\rInference:   6%|▌         | 14/247 [07:36<2:10:30, 33.61s/it]\\\\rInference:   6%|▌   \\\\n\\\\n... [截断: 输出过长，省略 11454 字符] ...\\\\n\\\\n6, 31.14s/it]\\\\rInference:  80%|████████  | 198/247 [1:42:51<26:23, 32.31s/it]\\\\rInference:  81%|████████  | 199/247 [1:43:06<21:40, 27.10s/it]\\\\rInference:  81%|████████  | 200/247 [1:43:41<23:09, 29.56s/it]\\\\rInference:  81%|████████▏ | 201/247 [1:44:18<24:18, 31.71s/it]\\\\rInference:  82%|████████▏ | 202/247 [1:44:52<24:29, 32.65s/it]\\\\rInference:  82%|████████▏ | 203/247 [1:45:28<24:30, 33.42s/it]\\\\rInference:  83%|████████▎ | 204/247 [1:46:03<24:18, 33.92s/it]\\\\rInference:  83%|████████▎ | 205/247 [1:46:37<23:53, 34.14s/it]\\\\rInference:  83%|████████▎ | 206/247 [1:47:11<23:16, 34.05s/it]\\\\rInference:  84%|████████▍ | 207/247 [1:47:46<22:56, 34.41s/it]\\\\rInference:  84%|████████▍ | 208/247 [1:48:20<22:13, 34.20s/it]\\\\rInference:  85%|████████▍ | 209/247 [1:48:55<21:42, 34.28s/it]\\\\rInference:  85%|████████▌ | 210/247 [1:49:29<21:08, 34.28s/it]\\\\rInference:  85%|████████▌ | 211/247 [1:50:03<20:27, 34.09s/it]\\\\rInference:  86%|████████▌ | 212/247 [1:50:37<19:59, 34.26s/it]\\\\rInference:  86%|████████▌ | 213/247 [1:50:49<15:36, 27.54s/it]\\\\rInference:  87%|████████▋ | 214/247 [1:51:23<16:10, 29.42s/it]\\\\rInference:  87%|████████▋ | 215/247 [1:51:56<16:20, 30.65s/it]\\\\rInference:  87%|████████▋ | 216/247 [1:52:30<16:20, 31.62s/it]\\\\rInference:  88%|████████▊ | 217/247 [1:53:04<16:03, 32.13s/it]\\\\rInference:  88%|████████▊ | 218/247 [1:53:38<15:47, 32.67s/it]\\\\rInference:  89%|████████▊ | 219/247 [1:54:11<15:18, 32.81s/it]\\\\rInference:  89%|████████▉ | 220/247 [1:54:44<14:49, 32.95s/it]\\\\rInference:  89%|████████▉ | 221/247 [1:55:17<14:19, 33.07s/it]\\\\rInference:  90%|████████▉ | 222/247 [1:55:50<13:45, 33.03s/it]\\\\rInference:  90%|█████████ | 223/247 [1:56:24<13:15, 33.15s/it]\\\\rInference:  91%|█████████ | 224/247 [1:56:56<12:39, 33.04s/it]\\\\rInference:  91%|█████████ | 225/247 [1:57:30<12:06, 33.04s/it]\\\\rInference:  91%|█████████▏| 226/247 [1:58:03<11:36, 33.19s/it]\\\\rInference:  92%|█████████▏| 227/247 [1:58:36<11:04, 33.20s/it]\\\\rInference:  92%|█████████▏| 228/247 [1:59:09<10:29, 33.16s/it]\\\\rInference:  93%|█████████▎| 229/247 [1:59:43<09:57, 33.19s/it]\\\\rInference:  93%|█████████▎| 230/247 [2:00:16<09:23, 33.17s/it]\\\\rInference:  94%|█████████▎| 231/247 [2:00:49<08:52, 33.27s/it]\\\\rInference:  94%|█████████▍| 232/247 [2:01:23<08:21, 33.44s/it]\\\\rInference:  94%|█████████▍| 233/247 [2:01:57<07:48, 33.49s/it]\\\\rInference:  95%|█████████▍| 234/247 [2:02:30<07:15, 33.52s/it]\\\\rInference:  95%|█████████▌| 235/247 [2:03:04<06:42, 33.55s/it]\\\\rInference:  96%|█████████▌| 236/247 [2:03:37<06:07, 33.40s/it]\\\\rInference:  96%|█████████▌| 237/247 [2:04:11<05:35, 33.56s/it]\\\\rInference:  96%|█████████▋| 238/247 [2:04:44<05:00, 33.43s/it]\\\\rInference:  97%|█████████▋| 239/247 [2:05:17<04:27, 33.40s/it]\\\\rInference:  97%|█████████▋| 240/247 [2:05:51<03:53, 33.35s/it]\\\\rInference:  98%|█████████▊| 241/247 [2:06:24<03:20, 33.34s/it]\\\\rInference:  98%|█████████▊| 242/247 [2:06:57<02:46, 33.25s/it]\\\\rInference:  98%|█████████▊| 243/247 [2:07:30<02:13, 33.26s/it]\\\\rInference:  99%|█████████▉| 244/247 [2:08:04<01:40, 33.51s/it]\\\\rInference:  99%|█████████▉| 245/247 [2:08:38<01:07, 33.55s/it]\\\\rInference: 100%|█████████▉| 246/247 [2:09:11<00:33, 33.37s/it]\\\\rInference: 100%|██████████| 247/247 [2:09:15<00:00, 24.45s/it]\\\\rInference: 100%|██████████| 247/247 [2:09:15<00:00, 31.40s/it]\\\\n2026-05-21 02:22:36,289 INFO Inference done. 378/985 truncated, 0 errors.\\\\n2026-05-21 02:22:36,289 INFO Inference: 7755.0s (7.87 s/doc)\\\\n2026-05-21 02:22:36,837 INFO Loaded 37785 training triples (34610 unique facts) for Ign-F1\\\\n2026-05-21 02:22:37,003 INFO Metrics → /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_r2/metrics.json\\\\n2026-05-21 02:22:37,121 INFO Predictions �� /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_r2/predictions.json\\\\n\\\\n==================================================\\\\n  F1:          0.3579\\\\n  Ign-F1:      0.3391\\\\n  Evi-F1(DREEAM): 0.0000\\\\n  Evi-F1(TP):     0.0000\\\\n  EDCR:        0.0000\\\\n  Format OK:   835/985 (84.8%)\\\\n  Truncated:   378/985\\\\n  Predictions: 14538\\\\n==================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-21 00:13:14,356 INFO Detected adapter at /root/autodl-tmp/sft_output_llama_3_1_8b_s43, base: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\n2026-05-21 00:13:14,356 WARNING --sft_adapter not set but --base_model is non-default (/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B); assuming base is already merged.\\n2026-05-21 00:13:14,356 INFO Loading tokenizer: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\n2026-05-21 00:13:15,232 INFO Loading model: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/291 [00:00<00:51,  5.62it/s]\\rLoading weights:   1%|          | 2/291 [00:00<00:50,  5.75it/s]\\rLoading weights:   5%|▍         | 14/291 [00:00<00:06, 40.23it/s]\\rLoading weights:   9%|▉         | 27/291 [00:00<00:03, 66.55it/s]\\rLoading weights:  14%|█▎        | 40/291 [00:00<00:02, 84.01it/s]\\rLoading weights:  18%|█▊        | 51/291 [00:00<00:02, 87.07it/s]\\rLoading weights:  23%|██▎       | 67/291 [00:00<00:02, 103.98it/s]\\rLoading weights:  27%|██▋       | 78/291 [00:01<00:02, 100.81it/s]\\rLoading weights:  32%|███▏      | 94/291 [00:01<00:01, 110.77it/s]\\rLoading weights:  36%|███▋      | 106/291 [00:01<00:01, 105.22it/s]\\rLoading weights:  42%|████▏     | 121/291 [00:01<00:01, 111.58it/s]\\rLoading weights:  46%|████▌     | 133/291 [00:01<00:01, 107.91it/s]\\rLoading weights:  51%|█████     | 148/291 [00:01<00:01, 115.46it/s]\\rLoading weights:  55%|█████▍    | 160/291 [00:01<00:01, 112.02it/s]\\rLoading weights:  60%|██████    | 175/291 [00:01<00:00, 117.60it/s]\\rLoading weights:  64%|██████▍   | 187/291 [00:01<00:00, 109.79it/s]\\rLoading weights:  68%|██████▊   | 199/291 [00:02<00:00, 111.48it/s]\\rLoading weights:  73%|███████▎  | 211/291 [00:02<00:00, 113.08it/s]\\rLoading weights:  77%|███████▋  | 223/291 [00:02<00:00, 107.44it/s]\\rLoading weights:  82%|████████▏ | 238/291 [00:02<00:00, 114.73it/s]\\rLoading weights:  86%|████████▌ | 250/291 [00:02<00:00, 112.12it/s]\\rLoading weights:  91%|█████████ | 265/291 [00:02<00:00, 118.64it/s]\\rLoading weights:  95%|█████████▌| 277/291 [00:02<00:00, 114.73it/s]\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 101.50it/s]\\n2026-05-21 00:13:18,915 INFO Loading LoRA adapter: /root/autodl-tmp/sft_output_llama_3_1_8b_s43\\n2026-05-21 00:13:20,903 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\n2026-05-21 00:13:21,142 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\n2026-05-21 00:13:21,265 INFO Prepared 985 eval documents, 12275 gold triples\\n\\rInference:   0%|          | 0/247 [00:00<?, ?it/s][transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.\\n\\rInference:   0%|          | 1/247 [00:34<2:22:07, 34.67s/it]\\rInference:   1%|          | 2/247 [01:08<2:20:41, 34.46s/it]\\rInference:   1%|          | 3/247 [01:42<2:19:11, 34.23s/it]\\rInference:   2%|▏         | 4/247 [02:00<1:51:41, 27.58s/it]\\rInference:   2%|▏         | 5/247 [02:33<1:59:48, 29.71s/it]\\rInference:   2%|▏         | 6/247 [03:07<2:04:59, 31.12s/it]\\rInference:   3%|▎         | 7/247 [03:41<2:07:37, 31.90s/it]\\rInference:   3%|▎         | 8/247 [04:14<2:09:07, 32.42s/it]\\rInference:   4%|▎         | 9/247 [04:47<2:09:29, 32.64s/it]\\rInference:   4%|▍         | 10/247 [05:22<2:10:50, 33.12s/it]\\rInference:   4%|▍         | 11/247 [05:55<2:11:02, 33.31s/it]\\rInference:   5%|▍         | 12/247 [06:29<2:10:31, 33.32s/it]\\rInference:   5%|▌         | 13/247 [07:02<2:10:17, 33.41s/it]\\rInference:   6%|▌         | 14/247 [07:36<2:10:30, 33.61s/it]\\rInference:   6%|▌   \\n\\n... [截断: 输出过长，省略 11454 字符] ...\\n\\n6, 31.14s/it]\\rInference:  80%|████████  | 198/247 [1:42:51<26:23, 32.31s/it]\\rInference:  81%|████████  | 199/247 [1:43:06<21:40, 27.10s/it]\\rInference:  81%|████████  | 200/247 [1:43:41<23:09, 29.56s/it]\\rInference:  81%|████████▏ | 201/247 [1:44:18<24:18, 31.71s/it]\\rInference:  82%|████████▏ | 202/247 [1:44:52<24:29, 32.65s/it]\\rInference:  82%|████████▏ | 203/247 [1:45:28<24:30, 33.42s/it]\\rInference:  83%|████████▎ | 204/247 [1:46:03<24:18, 33.92s/it]\\rInference:  83%|████████▎ | 205/247 [1:46:37<23:53, 34.14s/it]\\rInference:  83%|████████▎ | 206/247 [1:47:11<23:16, 34.05s/it]\\rInference:  84%|████████▍ | 207/247 [1:47:46<22:56, 34.41s/it]\\rInference:  84%|████████▍ | 208/247 [1:48:20<22:13, 34.20s/it]\\rInference:  85%|████████▍ | 209/247 [1:48:55<21:42, 34.28s/it]\\rInference:  85%|████████▌ | 210/247 [1:49:29<21:08, 34.28s/it]\\rInference:  85%|████████▌ | 211/247 [1:50:03<20:27, 34.09s/it]\\rInference:  86%|████████▌ | 212/247 [1:50:37<19:59, 34.26s/it]\\rInference:  86%|████████▌ | 213/247 [1:50:49<15:36, 27.54s/it]\\rInference:  87%|████████▋ | 214/247 [1:51:23<16:10, 29.42s/it]\\rInference:  87%|████████▋ | 215/247 [1:51:56<16:20, 30.65s/it]\\rInference:  87%|████████▋ | 216/247 [1:52:30<16:20, 31.62s/it]\\rInference:  88%|████████▊ | 217/247 [1:53:04<16:03, 32.13s/it]\\rInference:  88%|████████▊ | 218/247 [1:53:38<15:47, 32.67s/it]\\rInference:  89%|████████▊ | 219/247 [1:54:11<15:18, 32.81s/it]\\rInference:  89%|████████▉ | 220/247 [1:54:44<14:49, 32.95s/it]\\rInference:  89%|████████▉ | 221/247 [1:55:17<14:19, 33.07s/it]\\rInference:  90%|████████▉ | 222/247 [1:55:50<13:45, 33.03s/it]\\rInference:  90%|█████████ | 223/247 [1:56:24<13:15, 33.15s/it]\\rInference:  91%|█████████ | 224/247 [1:56:56<12:39, 33.04s/it]\\rInference:  91%|█████████ | 225/247 [1:57:30<12:06, 33.04s/it]\\rInference:  91%|█████████▏| 226/247 [1:58:03<11:36, 33.19s/it]\\rInference:  92%|█████████▏| 227/247 [1:58:36<11:04, 33.20s/it]\\rInference:  92%|█████████▏| 228/247 [1:59:09<10:29, 33.16s/it]\\rInference:  93%|█████████▎| 229/247 [1:59:43<09:57, 33.19s/it]\\rInference:  93%|█████████▎| 230/247 [2:00:16<09:23, 33.17s/it]\\rInference:  94%|█████████▎| 231/247 [2:00:49<08:52, 33.27s/it]\\rInference:  94%|█████████▍| 232/247 [2:01:23<08:21, 33.44s/it]\\rInference:  94%|█████████▍| 233/247 [2:01:57<07:48, 33.49s/it]\\rInference:  95%|█████████▍| 234/247 [2:02:30<07:15, 33.52s/it]\\rInference:  95%|█████████▌| 235/247 [2:03:04<06:42, 33.55s/it]\\rInference:  96%|█████████▌| 236/247 [2:03:37<06:07, 33.40s/it]\\rInference:  96%|█████████▌| 237/247 [2:04:11<05:35, 33.56s/it]\\rInference:  96%|█████████▋| 238/247 [2:04:44<05:00, 33.43s/it]\\rInference:  97%|█████████▋| 239/247 [2:05:17<04:27, 33.40s/it]\\rInference:  97%|█████████▋| 240/247 [2:05:51<03:53, 33.35s/it]\\rInference:  98%|█████████▊| 241/247 [2:06:24<03:20, 33.34s/it]\\rInference:  98%|█████████▊| 242/247 [2:06:57<02:46, 33.25s/it]\\rInference:  98%|█████████▊| 243/247 [2:07:30<02:13, 33.26s/it]\\rInference:  99%|█████████▉| 244/247 [2:08:04<01:40, 33.51s/it]\\rInference:  99%|█████████▉| 245/247 [2:08:38<01:07, 33.55s/it]\\rInference: 100%|█████████▉| 246/247 [2:09:11<00:33, 33.37s/it]\\rInference: 100%|██████████| 247/247 [2:09:15<00:00, 24.45s/it]\\rInference: 100%|██████████| 247/247 [2:09:15<00:00, 31.40s/it]\\n2026-05-21 02:22:36,289 INFO Inference done. 378/985 truncated, 0 errors.\\n2026-05-21 02:22:36,289 INFO Inference: 7755.0s (7.87 s/doc)\\n2026-05-21 02:22:36,837 INFO Loaded 37785 training triples (34610 unique facts) for Ign-F1\\n2026-05-21 02:22:37,003 INFO Metrics → /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_r2/metrics.json\\n2026-05-21 02:22:37,121 INFO Predictions �� /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_r2/predictions.json\\n\\n==================================================\\n  F1:          0.3579\\n  Ign-F1:      0.3391\\n  Evi-F1(DREEAM): 0.0000\\n  Evi-F1(TP):     0.0000\\n  EDCR:        0.0000\\n  Format OK:   835/985 (84.8%)\\n  Truncated:   378/985\\n  Predictions: 14538\\n==================================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T18:25:59.973Z_
+
+<details><summary>↩ Tool result · `toolu_01Ez6FKncoooghWm1wJ3XxPp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 6620\\ndrwxr-xr-x   2 root root      62 May 21 02:22 .\\ndrwxr-xr-x 120 root root    8192 May 21 01:41 ..\\n-rw-r--r--   1 root root    1382 May 21 02:22 metrics.json\\n-rw-r--r--   1 root root 6759035 May 21 02:22 predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "uuid": "fadb6fb4-e38d-472b-a59c-21958dc71b4d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 6620\\\\ndrwxr-xr-x   2 root root      62 May 21 02:22 .\\\\ndrwxr-xr-x 120 root root    8192 May 21 01:41 ..\\\\n-rw-r--r--   1 root root    1382 May 21 02:22 metrics.json\\\\n-rw-r--r--   1 root root 6759035 May 21 02:22 predictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 6620\\ndrwxr-xr-x   2 root root      62 May 21 02:22 .\\ndrwxr-xr-x 120 root root    8192 May 21 01:41 ..\\n-rw-r--r--   1 root root    1382 May 21 02:22 metrics.json\\n-rw-r--r--   1 root root 6759035 May 21 02:22 predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01WHwnKEt6DVjukaLCkH1p96`</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": {
+    "name": "llama_sft_s43_train_eval_r3"
+  },
+  "fields": [
+    "name",
+    "status",
+    "metrics",
+    "conclusion"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "uuid": "6d7978f8-1871-4e84-89f9-7b608a00f0a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018uSiZdPQsGNuNmSg8zfzvd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 24561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 821
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01FAs1L7SqoTedW7KtwwijcZ`</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": {
+    "name": "eval_llama_sft_s42_no_evidence_std_r2"
+  },
+  "fields": [
+    "name",
+    "status",
+    "metrics",
+    "conclusion"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "uuid": "0dbdb12c-4325-404b-ad79-ea691cddf6a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018uSiZdPQsGNuNmSg8zfzvd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 24561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 821
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T18:26:00.979Z_
+
+<details><summary>↩ Tool result · `toolu_01WHwnKEt6DVjukaLCkH1p96`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9882}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "uuid": "6215bcd6-e048-4c72-b17b-8a57cb0025b9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9882}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9882}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T18:26:01.795Z_
+
+<details><summary>↩ Tool result · `toolu_01FAs1L7SqoTedW7KtwwijcZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8024}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "uuid": "dfdbe762-2703-4edf-8df3-069a78b48709",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8024}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8024}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The log shows the eval completed successfully (EXIT_CODE=0). Let me read the metrics.json file and also search the registry for comparison data with different name patterns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "uuid": "5681ed46-9620-4bb9-86c2-5de8d12b7d9a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U4Gjv45E1TVLdC7aV22Dg9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5396,
+      "cache_read_input_tokens": 25382,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5396
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+进程正常完成（EXIT_CODE=0）。读取 metrics.json 并搜索对比数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "uuid": "b7d22e26-465c-4be7-b2ab-97791377f113",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U4Gjv45E1TVLdC7aV22Dg9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5396,
+      "cache_read_input_tokens": 25382,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5396
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Uv7DsQYSUmWPx58aDGu6Nf`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_r2/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "uuid": "a9b03041-359a-484e-9432-995e87d10f85",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U4Gjv45E1TVLdC7aV22Dg9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5396,
+      "cache_read_input_tokens": 25382,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5396
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T18:26:08.380Z_
+
+<details><summary>↩ Tool result · `toolu_01Uv7DsQYSUmWPx58aDGu6Nf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4602743271221532,\\n  \\\"recall\\\": 0.2927331083861411,\\n  \\\"f1\\\": 0.3578650837567282,\\n  \\\"ign_precision\\\": 0.4273672379881989,\\n  \\\"ign_recall\\\": 0.2811200443581924,\\n  \\\"ign_f1\\\": 0.33914933942806175,\\n  \\\"tp\\\": 3557,\\n  \\\"pred_count\\\": 7728,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.0,\\n  \\\"evi_recall\\\": 0.0,\\n  \\\"evi_f1\\\": 0.0,\\n  \\\"n_evaluated\\\": 0,\\n  \\\"edcr\\\": 0.0,\\n  \\\"n_distractor_citations\\\": 0,\\n  \\\"n_total_citations\\\": 0,\\n  \\\"evi_joint_precision\\\": 0.0,\\n  \\\"evi_joint_recall\\\": 0.0,\\n  \\\"evi_f1_joint\\\": 0.0,\\n  \\\"evi_tp\\\": 0,\\n  \\\"evi_pred_total\\\": 0,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.8345177664974619,\\n  \\\"field_compliance_rate\\\": 0.0,\\n  \\\"evidence_format_rate\\\": 0.0,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 822,\\n  \\\"n_field_complete\\\": 0,\\n  \\\"n_evidence_valid\\\": 0,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 14538,\\n  \\\"n_truncated\\\": 378,\\n  \\\"n_format_ok\\\": 835,\\n  \\\"format_ok_rate\\\": 0.8477157360406091,\\n  \\\"inference_time_seconds\\\": 7755.0,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/sft_output_llama_3_1_8b_s43\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\",\\n    \\\"sft_adapter\\\": null,\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_r2\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 43,\\n    \\\"no_evidence\\\": true,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "uuid": "11ac028c-c006-410d-9645-a9fe7563a63e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.4602743271221532,\\\\n  \\\\\\\"recall\\\\\\\": 0.2927331083861411,\\\\n  \\\\\\\"f1\\\\\\\": 0.3578650837567282,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.4273672379881989,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.2811200443581924,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.33914933942806175,\\\\n  \\\\\\\"tp\\\\\\\": 3557,\\\\n  \\\\\\\"pred_count\\\\\\\": 7728,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.0,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 0,\\\\n  \\\\\\\"edcr\\\\\\\": 0.0,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 0,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 0,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_tp\\\\\\\": 0,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 0,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.8345177664974619,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 822,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 0,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 0,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 14538,\\\\n  \\\\\\\"n_truncated\\\\\\\": 378,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 835,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.8477157360406091,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 7755.0,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_llama_3_1_8b_s43\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": null,\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_r2\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 43,\\\\n    \\\\\\\"no_evidence\\\\\\\": true,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4602743271221532,\\n  \\\"recall\\\": 0.2927331083861411,\\n  \\\"f1\\\": 0.3578650837567282,\\n  \\\"ign_precision\\\": 0.4273672379881989,\\n  \\\"ign_recall\\\": 0.2811200443581924,\\n  \\\"ign_f1\\\": 0.33914933942806175,\\n  \\\"tp\\\": 3557,\\n  \\\"pred_count\\\": 7728,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.0,\\n  \\\"evi_recall\\\": 0.0,\\n  \\\"evi_f1\\\": 0.0,\\n  \\\"n_evaluated\\\": 0,\\n  \\\"edcr\\\": 0.0,\\n  \\\"n_distractor_citations\\\": 0,\\n  \\\"n_total_citations\\\": 0,\\n  \\\"evi_joint_precision\\\": 0.0,\\n  \\\"evi_joint_recall\\\": 0.0,\\n  \\\"evi_f1_joint\\\": 0.0,\\n  \\\"evi_tp\\\": 0,\\n  \\\"evi_pred_total\\\": 0,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.8345177664974619,\\n  \\\"field_compliance_rate\\\": 0.0,\\n  \\\"evidence_format_rate\\\": 0.0,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 822,\\n  \\\"n_field_complete\\\": 0,\\n  \\\"n_evidence_valid\\\": 0,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 14538,\\n  \\\"n_truncated\\\": 378,\\n  \\\"n_format_ok\\\": 835,\\n  \\\"format_ok_rate\\\": 0.8477157360406091,\\n  \\\"inference_time_seconds\\\": 7755.0,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/sft_output_llama_3_1_8b_s43\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\",\\n    \\\"sft_adapter\\\": null,\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_r2\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 43,\\n    \\\"no_evidence\\\": true,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01K9aMvLQ3CU2pB5F3kYcK7a`</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": {
+    "status": "DONE"
+  },
+  "fields": [
+    "name",
+    "metrics",
+    "conclusion"
+  ],
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "uuid": "b074de5e-c405-405a-a9c0-c8ab4bc0d151",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U4Gjv45E1TVLdC7aV22Dg9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5396,
+      "cache_read_input_tokens": 25382,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5396
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T18:26:09.629Z_
+
+<details><summary>↩ Tool result · `toolu_01K9aMvLQ3CU2pB5F3kYcK7a`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_llama_sft_s44_no_evidence\": {\"metrics\": {\"ign_f1\": 0.3326, \"f1\": 0.3348, \"format_compliance\": 0.945, \"format_ok\": 931, \"n_documents\": 985, \"n_truncated\": 411}, \"conclusion\": \"success\"}, \"eval_llama_rsft_s44_no_evidence\": {\"conclusion\": \"success\", \"metrics\": {\"ign_f1\": 0.555, \"f1\": 0.5674, \"evi_f1\": 0.001, \"evi_f1_joint\": 0.0001, \"edcr\": 0.6818, \"format_compliance\": 0.999, \"n_truncated\": 178, \"n_predictions\": 18089, \"inference_time_s\": 6555.2, \"n_documents\": 985, \"n_format_ok\": 984}}, \"eval_llama_sft_s43_no_evidence\": {\"conclusion\": \"failed\"}, \"migration_bjb2_to_westd\": {\"conclusion\": \"success\"}, \"d112_rsft_s44_ced_score\": {\"conclusion\": \"success\", \"metrics\": {\"total_scored\": 24216, \"selected_count\": 3014, \"selection_rate\": 0.124, \"mean_f1\": 0.676, \"mean_ced\": 0.676}}, \"d112_rsft_s44_generate\": {\"conclusion\": \"success\"}, \"plan017_14b_rsft_generate_r3\": {\"conclusion\": \"killed\"}, \"eval_llama_sft_s42_no_evidence_std_r2\": {\"metrics\": {\"ign_f1\": 0.5219, \"f1\": 0.5311, \"ign_precision\": 0.542, \"ign_recall\": 0.5031, \"evi_f1_joint\": 0.0005, \"evi_f1_tp\": 0.0102, \"edcr\": 0.58, \"format_ok_rate\": 0.8873, \"n_truncated\": 219, \"n_predictions\": 16292, \"inference_time_seconds\": 6927.2}, \"conclusion\": \"success\"}, \"llama_sft_s44_train_eval_r3\": {\"metrics\": {\"ign_f1\": 0.4802, \"rel_f1\": 0.4902, \"evi_f1_joint\": 0.3913, \"evi_f1_tp\": 0.8502, \"edcr\": 0.6579, \"format_ok\": \"985/985\", \"n_truncated\": 240, \"n_predictions\": 14990}, \"conclusion\": \"success\"}, \"d102_8b_rsft_k1_s43\": {\"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.3862, \"mean_token_accuracy\": 0.8735, \"epochs\": 3, \"global_steps\": 1134, \"runtime_seconds\": 2894.88, \"data_samples\": 3018, \"ign_f1\": 0.5471, \"rel_f1\": 0.5651, \"evi_f1\": 0.818, \"edcr\": 0.6094, \"num_preds\": 16226, \"truncated\": \"231/985\", \"format_ok\": \"985/985\"}}, \"d102_8b_rsft_k1_s42\": {\"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.3877, \"mean_token_accuracy\": 0.8579, \"epochs\": 3, \"global_steps\": 1134, \"runtime_seconds\": 2915.82, \"entropy\": 0.5847, \"data_samples\": 3018}}, \"llama_sft_s43_train_eval_r3\": {\"conclusion\": \"success\", \"metrics\": {\"ign_f1\": 0.5142, \"evi_f1_joint\": 0.422, \"evi_f1_tp\": 0.8245, \"edcr\": 0.5866, \"re_p_ign\": 0.4917, \"re_r_ign\": 0.5389, \"train_loss_final\": 0.521}}, \"plan017_14b_rsft_generate_r2\": {\"conclusion\": \"failed\"}, \"eval_llama_sft_s42_no_evidence_std\": {\"conclusion\": \"failed\"}, \"llama_sft_s44_train_eval_r2\": {\"conclusion\": \"failed\"}, \"llama_sft_s43_train_eval_r2\": {\"conclusion\": \"failed\"}, \"plan017_14b_rsft_generate\": {\"conclusion\": \"failed\"}, \"llama_sft_s44_train_eval\": {\"conclusion\": \"failed\"}, \"llama_sft_s43_train_eval\": {\"conclusion\": \"failed\"}, \"eval_llama_rsft_s43_no_evidence\": {\"metrics\": {\"ign_f1\": 0.5546, \"f1\": 0.567, \"evi_f1\": 0, \"evi_f1_tp\": 0, \"evi_f1_joint\": 0, \"edcr\": 0, \"format_compliance\": 0.998, \"n_truncated\": 183, \"n_predictions\": 18008, \"inference_time_seconds\": 7798, \"n_documents\": 985, \"n_format_ok\": 983}, \"conclusion\": \"negative\"}, \"llama_rsft_s44_pipeline\": {\"conclusion\": \"success\", \"metrics\": {\"ign_f1\": 0.5587, \"f1\": 0.5706, \"evi_f1_joint\": 0.4609, \"evi_f1_tp\": 0.8328, \"edcr\": 0.5829, \"ign_precision\": 0.5574, \"ign_recall\": 0.5601, \"format_ok_rate\": 1, \"n_truncated\": 166, \"n_predictions\": 14685}}, \"plan010_nli_large_eval_r2\": {\"conclusion\": \"success\", \"metrics\": {\"f1\": 0.4636, \"ign_f1\": 0.4533, \"evi_f1_joint\": 0.3606, \"evi_f1_tp\": 0.8194, \"edcr\": 0.653, \"format_compliance\": 1, \"n_truncated\": 180, \"n_predictions\": 14870, \"inference_time_s\": 10064}}, \"eval_llama_rsft_s42_no_evidence\": {\"metrics\": {\"ign_f1\": 0.5526, \"f1\": 0.5666, \"evi_f1\": 0.0003, \"evi_f1_joint\": 0.0002, \"edcr\": 0.3333, \"format_compliance\": 0.998, \"n_truncated\": 190, \"n_predictions\": 18280, \"inference_time_s\": 8230}, \"conclusion\": \"negative\"}, \"plan010_nli_large_eval\": {\"conclusion\": \"failed\"}, \"plan010_nli_large_ablation\": {\"conclusion\": \"success\"}, \"eval_llama_rsft_k1_s43\": {\"conclusion\": \"success\", \"metrics\": {\"ign_f1\": 0.5662, \"f1\": 0.578, \"evi_f1_joint\": 0.4644, \"evi_f1_tp\": 0.8287, \"edcr\": 0.5783, \"format_compliance\": 1, \"n_truncated\": 173, \"n_documents\": 985, \"n_predictions\": 14967, \"inference_time_s\": 8212.4}}, \"plan_021_deep_error_analysis\": {\"conclusion\": \"success\"}, \"plan_020_mechanistic_analysis\": {\"conclusion\": \"success\"}, \"plan019_1_7b_rsft_no_evidence_eval_2048\": {\"conclusion\": \"negative\", \"metrics\": {\"ign_f1\": 0.4344, \"f1\": 0.4544, \"ign_precision\": 0.4331, \"ign_recall\": 0.4357, \"precision\": 0.462, \"recall\": 0.447, \"evi_f1\": 0, \"edcr\": 0, \"format_ok_rate\": 0.9726, \"n_predictions\": 46318, \"n_truncated\": 568, \"n_documents\": 985, \"truncation_rate\": 0.5766, \"no_evidence\": true, \"max_new_tokens\": 2048, \"evidence_tax_pp\": -7.75, \"inference_time_s\": 19023}}, \"seed_llama_rsft_k1_s43\": {\"conclusion\": \"success\"}}, \"count\": 30, \"total\": 279, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7432}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "uuid": "85e85a98-3f7f-4538-85ce-7239844c2614",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_llama_sft_s44_no_evidence\\\": {\\\"metrics\\\": {\\\"ign_f1\\\": 0.3326, \\\"f1\\\": 0.3348, \\\"format_compliance\\\": 0.945, \\\"format_ok\\\": 931, \\\"n_documents\\\": 985, \\\"n_truncated\\\": 411}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_llama_rsft_s44_no_evidence\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.555, \\\"f1\\\": 0.5674, \\\"evi_f1\\\": 0.001, \\\"evi_f1_joint\\\": 0.0001, \\\"edcr\\\": 0.6818, \\\"format_compliance\\\": 0.999, \\\"n_truncated\\\": 178, \\\"n_predictions\\\": 18089, \\\"inference_time_s\\\": 6555.2, \\\"n_documents\\\": 985, \\\"n_format_ok\\\": 984}}, \\\"eval_llama_sft_s43_no_evidence\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"migration_bjb2_to_westd\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"d112_rsft_s44_ced_score\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_scored\\\": 24216, \\\"selected_count\\\": 3014, \\\"selection_rate\\\": 0.124, \\\"mean_f1\\\": 0.676, \\\"mean_ced\\\": 0.676}}, \\\"d112_rsft_s44_generate\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"plan017_14b_rsft_generate_r3\\\": {\\\"conclusion\\\": \\\"killed\\\"}, \\\"eval_llama_sft_s42_no_evidence_std_r2\\\": {\\\"metrics\\\": {\\\"ign_f1\\\": 0.5219, \\\"f1\\\": 0.5311, \\\"ign_precision\\\": 0.542, \\\"ign_recall\\\": 0.5031, \\\"evi_f1_joint\\\": 0.0005, \\\"evi_f1_tp\\\": 0.0102, \\\"edcr\\\": 0.58, \\\"format_ok_rate\\\": 0.8873, \\\"n_truncated\\\": 219, \\\"n_predictions\\\": 16292, \\\"inference_time_seconds\\\": 6927.2}, \\\"conclusion\\\": \\\"success\\\"}, \\\"llama_sft_s44_train_eval_r3\\\": {\\\"metrics\\\": {\\\"ign_f1\\\": 0.4802, \\\"rel_f1\\\": 0.4902, \\\"evi_f1_joint\\\": 0.3913, \\\"evi_f1_tp\\\": 0.8502, \\\"edcr\\\": 0.6579, \\\"format_ok\\\": \\\"985/985\\\", \\\"n_truncated\\\": 240, \\\"n_predictions\\\": 14990}, \\\"conclusion\\\": \\\"success\\\"}, \\\"d102_8b_rsft_k1_s43\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.3862, \\\"mean_token_accuracy\\\": 0.8735, \\\"epochs\\\": 3, \\\"global_steps\\\": 1134, \\\"runtime_seconds\\\": 2894.88, \\\"data_samples\\\": 3018, \\\"ign_f1\\\": 0.5471, \\\"rel_f1\\\": 0.5651, \\\"evi_f1\\\": 0.818, \\\"edcr\\\": 0.6094, \\\"num_preds\\\": 16226, \\\"truncated\\\": \\\"231/985\\\", \\\"format_ok\\\": \\\"985/985\\\"}}, \\\"d102_8b_rsft_k1_s42\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.3877, \\\"mean_token_accuracy\\\": 0.8579, \\\"epochs\\\": 3, \\\"global_steps\\\": 1134, \\\"runtime_seconds\\\": 2915.82, \\\"entropy\\\": 0.5847, \\\"data_samples\\\": 3018}}, \\\"llama_sft_s43_train_eval_r3\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.5142, \\\"evi_f1_joint\\\": 0.422, \\\"evi_f1_tp\\\": 0.8245, \\\"edcr\\\": 0.5866, \\\"re_p_ign\\\": 0.4917, \\\"re_r_ign\\\": 0.5389, \\\"train_loss_final\\\": 0.521}}, \\\"plan017_14b_rsft_generate_r2\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_llama_sft_s42_no_evidence_std\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"llama_sft_s44_train_eval_r2\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"llama_sft_s43_train_eval_r2\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"plan017_14b_rsft_generate\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"llama_sft_s44_train_eval\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"llama_sft_s43_train_eval\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_llama_rsft_s43_no_evidence\\\": {\\\"metrics\\\": {\\\"ign_f1\\\": 0.5546, \\\"f1\\\": 0.567, \\\"evi_f1\\\": 0, \\\"evi_f1_tp\\\": 0, \\\"evi_f1_joint\\\": 0, \\\"edcr\\\": 0, \\\"format_compliance\\\": 0.998, \\\"n_truncated\\\": 183, \\\"n_predictions\\\": 18008, \\\"inference_time_seconds\\\": 7798, \\\"n_documents\\\": 985, \\\"n_format_ok\\\": 983}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"llama_rsft_s44_pipeline\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.5587, \\\"f1\\\": 0.5706, \\\"evi_f1_joint\\\": 0.4609, \\\"evi_f1_tp\\\": 0.8328, \\\"edcr\\\": 0.5829, \\\"ign_precision\\\": 0.5574, \\\"ign_recall\\\": 0.5601, \\\"format_ok_rate\\\": 1, \\\"n_truncated\\\": 166, \\\"n_predictions\\\": 14685}}, \\\"plan010_nli_large_eval_r2\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"f1\\\": 0.4636, \\\"ign_f1\\\": 0.4533, \\\"evi_f1_joint\\\": 0.3606, \\\"evi_f1_tp\\\": 0.8194, \\\"edcr\\\": 0.653, \\\"format_compliance\\\": 1, \\\"n_truncated\\\": 180, \\\"n_predictions\\\": 14870, \\\"inference_time_s\\\": 10064}}, \\\"eval_llama_rsft_s42_no_evidence\\\": {\\\"metrics\\\": {\\\"ign_f1\\\": 0.5526, \\\"f1\\\": 0.5666, \\\"evi_f1\\\": 0.0003, \\\"evi_f1_joint\\\": 0.0002, \\\"edcr\\\": 0.3333, \\\"format_compliance\\\": 0.998, \\\"n_truncated\\\": 190, \\\"n_predictions\\\": 18280, \\\"inference_time_s\\\": 8230}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan010_nli_large_eval\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"plan010_nli_large_ablation\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"eval_llama_rsft_k1_s43\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.5662, \\\"f1\\\": 0.578, \\\"evi_f1_joint\\\": 0.4644, \\\"evi_f1_tp\\\": 0.8287, \\\"edcr\\\": 0.5783, \\\"format_compliance\\\": 1, \\\"n_truncated\\\": 173, \\\"n_documents\\\": 985, \\\"n_predictions\\\": 14967, \\\"inference_time_s\\\": 8212.4}}, \\\"plan_021_deep_error_analysis\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"plan_020_mechanistic_analysis\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"plan019_1_7b_rsft_no_evidence_eval_2048\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.4344, \\\"f1\\\": 0.4544, \\\"ign_precision\\\": 0.4331, \\\"ign_recall\\\": 0.4357, \\\"precision\\\": 0.462, \\\"recall\\\": 0.447, \\\"evi_f1\\\": 0, \\\"edcr\\\": 0, \\\"format_ok_rate\\\": 0.9726, \\\"n_predictions\\\": 46318, \\\"n_truncated\\\": 568, \\\"n_documents\\\": 985, \\\"truncation_rate\\\": 0.5766, \\\"no_evidence\\\": true, \\\"max_new_tokens\\\": 2048, \\\"evidence_tax_pp\\\": -7.75, \\\"inference_time_s\\\": 19023}}, \\\"seed_llama_rsft_k1_s43\\\": {\\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 30, \\\"total\\\": 279, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7432}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_llama_sft_s44_no_evidence\": {\"metrics\": {\"ign_f1\": 0.3326, \"f1\": 0.3348, \"format_compliance\": 0.945, \"format_ok\": 931, \"n_documents\": 985, \"n_truncated\": 411}, \"conclusion\": \"success\"}, \"eval_llama_rsft_s44_no_evidence\": {\"conclusion\": \"success\", \"metrics\": {\"ign_f1\": 0.555, \"f1\": 0.5674, \"evi_f1\": 0.001, \"evi_f1_joint\": 0.0001, \"edcr\": 0.6818, \"format_compliance\": 0.999, \"n_truncated\": 178, \"n_predictions\": 18089, \"inference_time_s\": 6555.2, \"n_documents\": 985, \"n_format_ok\": 984}}, \"eval_llama_sft_s43_no_evidence\": {\"conclusion\": \"failed\"}, \"migration_bjb2_to_westd\": {\"conclusion\": \"success\"}, \"d112_rsft_s44_ced_score\": {\"conclusion\": \"success\", \"metrics\": {\"total_scored\": 24216, \"selected_count\": 3014, \"selection_rate\": 0.124, \"mean_f1\": 0.676, \"mean_ced\": 0.676}}, \"d112_rsft_s44_generate\": {\"conclusion\": \"success\"}, \"plan017_14b_rsft_generate_r3\": {\"conclusion\": \"killed\"}, \"eval_llama_sft_s42_no_evidence_std_r2\": {\"metrics\": {\"ign_f1\": 0.5219, \"f1\": 0.5311, \"ign_precision\": 0.542, \"ign_recall\": 0.5031, \"evi_f1_joint\": 0.0005, \"evi_f1_tp\": 0.0102, \"edcr\": 0.58, \"format_ok_rate\": 0.8873, \"n_truncated\": 219, \"n_predictions\": 16292, \"inference_time_seconds\": 6927.2}, \"conclusion\": \"success\"}, \"llama_sft_s44_train_eval_r3\": {\"metrics\": {\"ign_f1\": 0.4802, \"rel_f1\": 0.4902, \"evi_f1_joint\": 0.3913, \"evi_f1_tp\": 0.8502, \"edcr\": 0.6579, \"format_ok\": \"985/985\", \"n_truncated\": 240, \"n_predictions\": 14990}, \"conclusion\": \"success\"}, \"d102_8b_rsft_k1_s43\": {\"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.3862, \"mean_token_accuracy\": 0.8735, \"epochs\": 3, \"global_steps\": 1134, \"runtime_seconds\": 2894.88, \"data_samples\": 3018, \"ign_f1\": 0.5471, \"rel_f1\": 0.5651, \"evi_f1\": 0.818, \"edcr\": 0.6094, \"num_preds\": 16226, \"truncated\": \"231/985\", \"format_ok\": \"985/985\"}}, \"d102_8b_rsft_k1_s42\": {\"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.3877, \"mean_token_accuracy\": 0.8579, \"epochs\": 3, \"global_steps\": 1134, \"runtime_seconds\": 2915.82, \"entropy\": 0.5847, \"data_samples\": 3018}}, \"llama_sft_s43_train_eval_r3\": {\"conclusion\": \"success\", \"metrics\": {\"ign_f1\": 0.5142, \"evi_f1_joint\": 0.422, \"evi_f1_tp\": 0.8245, \"edcr\": 0.5866, \"re_p_ign\": 0.4917, \"re_r_ign\": 0.5389, \"train_loss_final\": 0.521}}, \"plan017_14b_rsft_generate_r2\": {\"conclusion\": \"failed\"}, \"eval_llama_sft_s42_no_evidence_std\": {\"conclusion\": \"failed\"}, \"llama_sft_s44_train_eval_r2\": {\"conclusion\": \"failed\"}, \"llama_sft_s43_train_eval_r2\": {\"conclusion\": \"failed\"}, \"plan017_14b_rsft_generate\": {\"conclusion\": \"failed\"}, \"llama_sft_s44_train_eval\": {\"conclusion\": \"failed\"}, \"llama_sft_s43_train_eval\": {\"conclusion\": \"failed\"}, \"eval_llama_rsft_s43_no_evidence\": {\"metrics\": {\"ign_f1\": 0.5546, \"f1\": 0.567, \"evi_f1\": 0, \"evi_f1_tp\": 0, \"evi_f1_joint\": 0, \"edcr\": 0, \"format_compliance\": 0.998, \"n_truncated\": 183, \"n_predictions\": 18008, \"inference_time_seconds\": 7798, \"n_documents\": 985, \"n_format_ok\": 983}, \"conclusion\": \"negative\"}, \"llama_rsft_s44_pipeline\": {\"conclusion\": \"success\", \"metrics\": {\"ign_f1\": 0.5587, \"f1\": 0.5706, \"evi_f1_joint\": 0.4609, \"evi_f1_tp\": 0.8328, \"edcr\": 0.5829, \"ign_precision\": 0.5574, \"ign_recall\": 0.5601, \"format_ok_rate\": 1, \"n_truncated\": 166, \"n_predictions\": 14685}}, \"plan010_nli_large_eval_r2\": {\"conclusion\": \"success\", \"metrics\": {\"f1\": 0.4636, \"ign_f1\": 0.4533, \"evi_f1_joint\": 0.3606, \"evi_f1_tp\": 0.8194, \"edcr\": 0.653, \"format_compliance\": 1, \"n_truncated\": 180, \"n_predictions\": 14870, \"inference_time_s\": 10064}}, \"eval_llama_rsft_s42_no_evidence\": {\"metrics\": {\"ign_f1\": 0.5526, \"f1\": 0.5666, \"evi_f1\": 0.0003, \"evi_f1_joint\": 0.0002, \"edcr\": 0.3333, \"format_compliance\": 0.998, \"n_truncated\": 190, \"n_predictions\": 18280, \"inference_time_s\": 8230}, \"conclusion\": \"negative\"}, \"plan010_nli_large_eval\": {\"conclusion\": \"failed\"}, \"plan010_nli_large_ablation\": {\"conclusion\": \"success\"}, \"eval_llama_rsft_k1_s43\": {\"conclusion\": \"success\", \"metrics\": {\"ign_f1\": 0.5662, \"f1\": 0.578, \"evi_f1_joint\": 0.4644, \"evi_f1_tp\": 0.8287, \"edcr\": 0.5783, \"format_compliance\": 1, \"n_truncated\": 173, \"n_documents\": 985, \"n_predictions\": 14967, \"inference_time_s\": 8212.4}}, \"plan_021_deep_error_analysis\": {\"conclusion\": \"success\"}, \"plan_020_mechanistic_analysis\": {\"conclusion\": \"success\"}, \"plan019_1_7b_rsft_no_evidence_eval_2048\": {\"conclusion\": \"negative\", \"metrics\": {\"ign_f1\": 0.4344, \"f1\": 0.4544, \"ign_precision\": 0.4331, \"ign_recall\": 0.4357, \"precision\": 0.462, \"recall\": 0.447, \"evi_f1\": 0, \"edcr\": 0, \"format_ok_rate\": 0.9726, \"n_predictions\": 46318, \"n_truncated\": 568, \"n_documents\": 985, \"truncation_rate\": 0.5766, \"no_evidence\": true, \"max_new_tokens\": 2048, \"evidence_tax_pp\": -7.75, \"inference_time_s\": 19023}}, \"seed_llama_rsft_k1_s43\": {\"conclusion\": \"success\"}}, \"count\": 30, \"total\": 279, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7432}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data. Let me compile the results.
+
+## eval_llama_sft_s43_no_evidence_r2 Results
+
+From metrics.json:
+- **ign_f1**: 0.3391
+- **ign_precision**: 0.4274
+- **ign_recall**: 0.2811
+- **f1**: 0.3579
+- **precision**: 0.4603
+- **recall**: 0.2927
+- **evi_f1**: 0.0 (expected for no-evidence)
+
+
+- **evi_f1_joint**: 0.0 (expected for no-evidence)
+- **edcr**: 0.0 (expected for no-evidence)
+
+The formatting looks solid at 84.8% with about 38% of predictions truncated. The model ran for roughly 2 hours and 9 minutes across 985 documents, generating over 14,000 predictions. Now I'm looking at the comparison metrics across different experiment configurations.
+
+The s43 no-evidence run achieved an ign_f1 score of 0.3391, which sits between the s42 baseline at 0.5219 and the anomalous s44 at 0.3326. The format quality here is lower than s42's 88.7% but better than s44's 94.5%, and the truncation rate of 38.4% falls between s42's 22.2% and s44's 41.7%.
+
+What's striking is the performance gap between s43's with-evidence (0.5142) and no-evidence (0.3391) variants—a drop of 0.1751 or 34%—which suggests something systematic is degrading the model's ability to handle cases without evidence. This pattern mirrors s44's behavior, pointing to a potential issue introduced in the s43/s44 training pipeline rather than a one-off anomaly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "uuid": "cfb33fdd-8760-4284-87bc-f55f500f8770",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019d8ZKRTcmfRAFpMdDuH2tN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3907,
+      "cache_read_input_tokens": 30778,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3907
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+全部数据已收集。汇总如下：
+
+## eval_llama_sft_s43_no_evidence_r2 结果
+
+| Metric | Value |
+|--------|-------|
+| **ign_f1** | **0.3391** |
+| ign_precision | 0.4274 |
+| ign_recall | 0.2811 |
+| f1 | 0.3579 |
+| precision | 0.4603 |
+| recall | 0.2927 |
+| evi_f1 / evi_f1_joint | 0.0 (no-evidence 模式，符合预期) |
+| edcr | 0.0 |
+| format_ok | 835/985 (84.8%) |
+| truncated | 378/985 (38.4%) |
+| n_predictions | 14,538 |
+| n_documents | 985 |
+| inference_time | 7,755s (~2h09m) |
+| EXIT_CODE | 0 |
+| no_evidence 参数 | true (已确认) |
+
+## 跨 seed/setting 对比
+
+| Experiment | ign_f1 | format_ok | truncated | 备注 |
+|---|---|---|---|---|
+| s42 SFT **with-evidence** (r3) | — | — | — | registry 未找到独立条目 |
+| s43 SFT **with-evidence** (r3) | **0.5142** | — | — | |
+| s44 SFT **with-evidence** (r3) | **0.4802** | 985/985 | 240 (24.4%) | |
+| s42 SFT **no-evidence** (std_r2) | **0.5219** | 88.7% | 219 (22.2%) | |
+| **s43 SFT no-evidence (r2, 本次)** | **0.3391** | 84.8% | 378 (38.4%) | |
+| s44 SFT no-evidence | **0.3326** | 94.5% | 411 (41.7%) | 已知异常低 |
+
+## 关键发现
+
+1. **s43 no-evidence ign_f1=0.3391，与 s44 的 0.3326 同样异常低**，远低于 s42 的 0.5219（差距 -0.1828）。
+2. **s43 evidence→no-evidence 降幅 = -0.1751（-34%）**，而 s42 的 no-evidence 反而比 s43/s44 的 with-evidence 还高。
+3. **截断率 38.4% 偏高**（s42 仅 22.2%），但低于 s44 的 41.7%。截断与低 ign_f1 高度相关——s42 截断低→ign_f1 高，s43/s44 截断高→ign_f1 低。
+4. **format_ok 84.8% 是三个 seed 中最低的**（s42: 88.7%, s44: 94.5%），说明 s43 模型在 no-evidence 格式上表现最差。
+5. recall 极低（0.2811）是 ign_f1 低的主因——模型漏掉了大量关系，可能是因为截断导致后半段预测丢失。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "uuid": "e283f764-9580-4f67-926d-a1344ee7da80",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019d8ZKRTcmfRAFpMdDuH2tN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3907,
+      "cache_read_input_tokens": 30778,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3907
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 23_
+
+全部数据已收集。汇总如下：
+
+## eval_llama_sft_s43_no_evidence_r2 结果
+
+| Metric | Value |
+|--------|-------|
+| **ign_f1** | **0.3391** |
+| ign_precision | 0.4274 |
+| ign_recall | 0.2811 |
+| f1 | 0.3579 |
+| precision | 0.4603 |
+| recall | 0.2927 |
+| evi_f1 / evi_f1_joint | 0.0 (no-evidence 模式，符合预期) |
+| edcr | 0.0 |
+| format_ok | 835/985 (84.8%) |
+| truncated | 378/985 (38.4%) |
+| n_predictions | 14,538 |
+| n_documents | 985 |
+| inference_time | 7,755s (~2h09m) |
+| EXIT_CODE | 0 |
+| no_evidence 参数 | true (已确认) |
+
+## 跨 seed/setting 对比
+
+| Experiment | ign_f1 | format_ok | truncated | 备注 |
+|---|---|---|---|---|
+| s42 SFT **with-evidence** (r3) | — | — | — | registry 未找到独立条目 |
+| s43 SFT **with-evidence** (r3) | **0.5142** | — | — | |
+| s44 SFT **with-evidence** (r3) | **0.4802** | 985/985 | 240 (24.4%) | |
+| s42 SFT **no-evidence** (std_r2) | **0.5219** | 88.7% | 219 (22.2%) | |
+| **s43 SFT no-evidence (r2, 本次)** | **0.3391** | 84.8% | 378 (38.4%) | |
+| s44 SFT no-evidence | **0.3326** | 94.5% | 411 (41.7%) | 已知异常低 |
+
+## 关键发现
+
+1. **s43 no-evidence ign_f1=0.3391，与 s44 的 0.3326 同样异常低**，远低于 s42 的 0.5219（差距 -0.1828）。
+2. **s43 evidence→no-evidence 降幅 = -0.1751（-34%）**，而 s42 的 no-evidence 反而比 s43/s44 的 with-evidence 还高。
+3. **截断率 38.4% 偏高**（s42 仅 22.2%），但低于 s44 的 41.7%。截断与低 ign_f1 高度相关——s42 截断低→ign_f1 高，s43/s44 截断高→ign_f1 低。
+4. **format_ok 84.8% 是三个 seed 中最低的**（s42: 88.7%, s44: 94.5%），说明 s43 模型在 no-evidence 格式上表现最差。
+5. recall 极低（0.2811）是 ign_f1 低的主因——模型漏掉了大量关系，可能是因为截断导致后半段预测丢失。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 48415,
+  "duration_api_ms": 47831,
+  "num_turns": 8,
+  "stop_reason": "end_turn",
+  "session_id": "14e0a875-101c-4b76-a80a-ed209a545e92",
+  "total_cost_usd": 0.256759,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 22844,
+    "cache_read_input_tokens": 92562,
+    "output_tokens": 2623,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 22844,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1657,
+        "cache_read_input_tokens": 30778,
+        "cache_creation_input_tokens": 3907,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3907
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1963,
+      "outputTokens": 25,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002088,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 2623,
+      "cacheReadInputTokens": 92562,
+      "cacheCreationInputTokens": 22844,
+      "webSearchRequests": 0,
+      "costUSD": 0.254671,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "77429ec7-4b8d-4123-8c8d-357a39536ee4"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,2580 @@
+# analysis test eval 14b rsft s43
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 53
+- **Recorded user turns:** 0
+- **Tool calls:** 20
+- **Original source:** `logs/workers/worker_analysis_test_eval_14b_rsft_s43_20260523T165514.log`
+- **Structured JSON:** [`2c1904187170d35b49e5.json`](../../sessions/2c/2c1904187170d35b49e5.json)
+
+## Before a recorded user message
+
+53 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "c039d4a9-19ee-4aaf-9471-8f722bdb1e1e",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779562800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a45c6559-764d-482b-a3d8-468918ceb0ae",
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the logs and results from the server for both experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "d5b23846-78a8-4020-8300-585ae536add4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sjdygis9NQv4iALXETrXVZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13553,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13553
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+读取两个实验的日志和结果目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "06af772a-eb65-48ab-b2ff-a7784f061c91",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sjdygis9NQv4iALXETrXVZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13553,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13553
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CMmvcWZohmzETyBhQdhiJP`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "637df6de-762c-4f9f-96bc-70d8d747009b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sjdygis9NQv4iALXETrXVZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13553,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13553
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-23T16:55:24.337Z_
+
+<details><summary>↩ Tool result · `toolu_01CMmvcWZohmzETyBhQdhiJP`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "3e0077c8-420a-4300-aa33-bd845d1b30b3",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NYuLn7XNBJ4QHeX3hCyFce`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -50 ~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "791976db-49fa-498a-863d-209aab028752",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VhK91ATLMQzzihDZQZ2X4G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1578,
+      "cache_read_input_tokens": 25394,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1578
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-23T16:55:30.104Z_
+
+<details><summary>↩ Tool result · `toolu_01NYuLn7XNBJ4QHeX3hCyFce`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-23 23:01:45,965 INFO Detected adapter at /root/autodl-tmp/rsft_output_14b_s43, base: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n2026-05-23 23:01:45,965 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n2026-05-23 23:01:46,436 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/443 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/443 [00:00<01:14,  5.91it/s]\\rLoading weights:   0%|          | 2/443 [00:00<01:21,  5.40it/s]\\rLoading weights:   3%|▎         | 15/443 [00:00<00:10, 42.00it/s]\\rLoading weights:   6%|▌         | 27/443 [00:00<00:06, 61.83it/s]\\rLoading weights:   8%|▊         | 37/443 [00:00<00:06, 66.76it/s]\\rLoading weights:  12%|█▏        | 53/443 [00:00<00:05, 66.48it/s]\\rLoading weights:  19%|█▊        | 83/443 [00:01<00:03, 117.22it/s]\\rLoading weights:  23%|██▎       | 100/443 [00:01<00:02, 128.57it/s]\\rLoading weights:  26%|█���▌       | 116/443 [00:01<00:03, 103.38it/s]\\rLoading weights:  31%|███       | 138/443 [00:01<00:02, 123.93it/s]\\rLoading weights:  35%|███▍      | 153/443 [00:01<00:02, 128.32it/s]\\rLoading weights:  38%|███▊      | 168/443 [00:01<00:02, 131.66it/s]\\rLoading weights:  41%|████▏     | 183/443 [00:01<00:02, 116.48it/s]\\rLoading weights:  44%|████▍     | 197/443 [00:02<00:02, 120.98it/s]\\rLoading weights:  47%|████▋     | 210/443 [00:02<00:01, 122.43it/s]\\rLoading weights:  50%|█████     | 223/443 [00:02<00:01, 116.00it/s]\\rLoading weights:  53%|█████▎    | 236/443 [00:02<00:01, 112.64it/s]\\rLoading weights:  56%|█████▌    | 248/443 [00:02<00:01, 108.39it/s]\\rLoading weights:  59%|█████▊    | 260/443 [00:02<00:01, 107.22it/s]\\rLoading weights:  63%|██████▎   | 279/443 [00:02<00:01, 121.21it/s]\\rLoading weights:  66%|██████▌   | 292/443 [00:02<00:01, 109.74it/s]\\rLoading weights:  69%|██████▉   | 307/443 [00:02<00:01, 117.75it/s]\\rLoading weights:  72%|███████▏  | 320/443 [00:03<00:01, 99.01it/s] \\rLoading weights:  76%|███████▌  | 336/443 [00:03<00:00, 109.16it/s]\\rLoading weights:  79%|███████▊  | 348/443 [00:03<00:00, 108.76it/s]\\rLoading weights:  81%|████████▏ | 360/443 [00:03<00:00, 110.18it/s]\\rLoading weights:  84%|████████▍ | 372/443 [00:03<00:00, 106.68it/s]\\rLoading weights:  86%|████████▋ | 383/443 [00:03<00:00, 104.97it/s]\\rLoading weights:  89%|████████▉ | 395/443 [00:03<00:00, 107.01it/s]\\rLoading weights:  92%|█████████▏| 406/443 [00:03<00:00, 101.23it/s]\\rLoading weights:  95%|█████████▍| 419/443 [00:04<00:00, 107.00it/s]\\rLoading weights:  97%|█████████▋| 430/443 [00:04<00:00, 84.49it/s] \\rLoading weights: 100%|██████████| 443/443 [00:04<00:00, 102.77it/s]\\n2026-05-23 23:01:51,743 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_14b_s43\\n2026-05-23 23:01:54,139 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_14b_s43\\n2026-05-23 23:01:57,199 INFO Prepared 500 test documents\\n\\rInference:   0%|          | 0/32 [00:00<?, ?it/s]\\rInference:   3%|▎         | 1/32 [03:28<1:47:32, 208.14s/it]\\rInference:   6%|▋         | 2/32 [06:58<1:44:36, 209.22s/it]\\rInference:   9%|▉         | 3/32 [10:30<1:41:54, 210.83s/it]\\rInference:  12%|█▎        | 4/32 [14:07<1:39:27, 213.13s/it]\\rInference:  16%|█▌        | 5/32 [17:30<1:34:19, 209.63s/it]\\rInference:  19%|█▉        | 6/32 [21:02<1:31:09, 210.37s/it]\\rInference:  22%|██▏       | 7/32 [24:23<1:26:20, 207.22s/it]\\rInference:  25%|██▌       | 8/32 [27:49<1:22:41, 206.73s/it]\\rInference:  28%|██▊       | 9/32 [31:14<1:19:06, 206.38s/it]\\rInference:  31%|███▏      | 10/32 [34:39<1:15:29, 205.90s/it]\\rInference:  34%|███▍      | 11/32 [38:02<1:11:42, 204.89s/it]\\rInference:  38%|███▊      | 12/32 [41:28<1:08:24, 205.22s/it]\\rInference:  41%|████      | 13/32 [44:56<1:05:15, 206.09s/it]\\rInference:  44%|████▍     | 14/32 [48:29<1:02:29, 208.30s/it]\\rInference:  47%|████▋     | 15/32 [51:58<59:05, 208.55s/it]  \\rInference:  50%|█████     | 16/32 [55:27<55:36, 208.50s/it]\\rInference:  53%|█████▎    | 17/32 [58:55<52:06, 208.45s/it]\\rInference:  56%|█████▋    | 18/32 [1:02:27<48:54, 209.59s/it]\\rInference:  59%|█████▉    | 19/32 [1:06:12<46:25, 214.27s/it]\\rInference:  62%|██████▎   | 20/32 [1:09:34<42:04, 210.41s/it]\\rInference:  66%|██████▌   | 21/32 [1:13:12<39:00, 212.78s/it]\\rInference:  69%|██████▉   | 22/32 [1:16:45<35:26, 212.66s/it]\\rInference:  72%|███████▏  | 23/32 [1:20:08<31:28, 209.80s/it]\\rInference:  75%|███████▌  | 24/32 [1:23:46<28:17, 212.21s/it]\\rInference:  78%|███████▊  | 25/32 [1:27:14<24:38, 211.15s/it]\\rInference:  81%|████████▏ | 26/32 [1:30:44<21:03, 210.66s/it]\\rInference:  84%|████████▍ | 27/32 [1:34:09<17:25, 209.04s/it]\\rInference:  88%|████████▊ | 28/32 [1:37:36<13:53, 208.37s/it]\\rInference:  91%|█████████ | 29/32 [1:41:00<10:21, 207.25s/it]\\rInference:  94%|█████████▍| 30/32 [1:44:26<06:53, 206.64s/it]\\rInference:  97%|█████████▋| 31/32 [1:47:49<03:25, 205.77s/it]\\rInference: 100%|██████████| 32/32 [1:49:43<00:00, 178.05s/it]\\rInference: 100%|██████████| 32/32 [1:49:43<00:00, 205.73s/it]\\n2026-05-24 00:51:40,437 INFO Inference done. 271/500 truncated, 0 errors.\\n2026-05-24 00:51:40,437 INFO Inference: 6583.2s (13.17 s/doc)\\n2026-05-24 00:51:40,549 INFO Predictions -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/predictions.json\\n2026-05-24 00:51:40,562 WARNING train_annotated.json not found, Ign-F1 = F1\\n2026-05-24 00:51:41,043 INFO CodaLab submission -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/codalab_submission.json\\n\\n==================================================\\n  F1:          0.3767\\n  Ign-F1:      0.3767\\n  Evi-F1(DREEAM): 0.2468\\n  Evi-F1(TP):     0.5836\\n  EDCR:        0.8340\\n  Documents:   500\\n  Predictions: 22861\\n  Format OK:   498/500\\n  Truncated:   271/500\\n  CodaLab:     13323 converted, 371 skipped (rel), 652 skipped (entity)\\n  Output:      /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/codalab_submission.json\\n==================================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "72cf40b8-77cb-4592-9976-064054d3aeee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 23:01:45,965 INFO Detected adapter at /root/autodl-tmp/rsft_output_14b_s43, base: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n2026-05-23 23:01:45,965 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n2026-05-23 23:01:46,436 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/443 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/443 [00:00<01:14,  5.91it/s]\\\\rLoading weights:   0%|          | 2/443 [00:00<01:21,  5.40it/s]\\\\rLoading weights:   3%|▎         | 15/443 [00:00<00:10, 42.00it/s]\\\\rLoading weights:   6%|▌         | 27/443 [00:00<00:06, 61.83it/s]\\\\rLoading weights:   8%|▊         | 37/443 [00:00<00:06, 66.76it/s]\\\\rLoading weights:  12%|█▏        | 53/443 [00:00<00:05, 66.48it/s]\\\\rLoading weights:  19%|█▊        | 83/443 [00:01<00:03, 117.22it/s]\\\\rLoading weights:  23%|██▎       | 100/443 [00:01<00:02, 128.57it/s]\\\\rLoading weights:  26%|█���▌       | 116/443 [00:01<00:03, 103.38it/s]\\\\rLoading weights:  31%|███       | 138/443 [00:01<00:02, 123.93it/s]\\\\rLoading weights:  35%|███▍      | 153/443 [00:01<00:02, 128.32it/s]\\\\rLoading weights:  38%|███▊      | 168/443 [00:01<00:02, 131.66it/s]\\\\rLoading weights:  41%|████▏     | 183/443 [00:01<00:02, 116.48it/s]\\\\rLoading weights:  44%|████▍     | 197/443 [00:02<00:02, 120.98it/s]\\\\rLoading weights:  47%|████▋     | 210/443 [00:02<00:01, 122.43it/s]\\\\rLoading weights:  50%|█████     | 223/443 [00:02<00:01, 116.00it/s]\\\\rLoading weights:  53%|█████▎    | 236/443 [00:02<00:01, 112.64it/s]\\\\rLoading weights:  56%|█████▌    | 248/443 [00:02<00:01, 108.39it/s]\\\\rLoading weights:  59%|█████▊    | 260/443 [00:02<00:01, 107.22it/s]\\\\rLoading weights:  63%|██████▎   | 279/443 [00:02<00:01, 121.21it/s]\\\\rLoading weights:  66%|██████▌   | 292/443 [00:02<00:01, 109.74it/s]\\\\rLoading weights:  69%|██████▉   | 307/443 [00:02<00:01, 117.75it/s]\\\\rLoading weights:  72%|███████▏  | 320/443 [00:03<00:01, 99.01it/s] \\\\rLoading weights:  76%|███████▌  | 336/443 [00:03<00:00, 109.16it/s]\\\\rLoading weights:  79%|███████▊  | 348/443 [00:03<00:00, 108.76it/s]\\\\rLoading weights:  81%|████████▏ | 360/443 [00:03<00:00, 110.18it/s]\\\\rLoading weights:  84%|████████▍ | 372/443 [00:03<00:00, 106.68it/s]\\\\rLoading weights:  86%|████████▋ | 383/443 [00:03<00:00, 104.97it/s]\\\\rLoading weights:  89%|████████▉ | 395/443 [00:03<00:00, 107.01it/s]\\\\rLoading weights:  92%|█████████▏| 406/443 [00:03<00:00, 101.23it/s]\\\\rLoading weights:  95%|█████████▍| 419/443 [00:04<00:00, 107.00it/s]\\\\rLoading weights:  97%|█████████▋| 430/443 [00:04<00:00, 84.49it/s] \\\\rLoading weights: 100%|██████████| 443/443 [00:04<00:00, 102.77it/s]\\\\n2026-05-23 23:01:51,743 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_14b_s43\\\\n2026-05-23 23:01:54,139 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_14b_s43\\\\n2026-05-23 23:01:57,199 INFO Prepared 500 test documents\\\\n\\\\rInference:   0%|          | 0/32 [00:00<?, ?it/s]\\\\rInference:   3%|▎         | 1/32 [03:28<1:47:32, 208.14s/it]\\\\rInference:   6%|▋         | 2/32 [06:58<1:44:36, 209.22s/it]\\\\rInference:   9%|▉         | 3/32 [10:30<1:41:54, 210.83s/it]\\\\rInference:  12%|█▎        | 4/32 [14:07<1:39:27, 213.13s/it]\\\\rInference:  16%|█▌        | 5/32 [17:30<1:34:19, 209.63s/it]\\\\rInference:  19%|█▉        | 6/32 [21:02<1:31:09, 210.37s/it]\\\\rInference:  22%|██▏       | 7/32 [24:23<1:26:20, 207.22s/it]\\\\rInference:  25%|██▌       | 8/32 [27:49<1:22:41, 206.73s/it]\\\\rInference:  28%|██▊       | 9/32 [31:14<1:19:06, 206.38s/it]\\\\rInference:  31%|███▏      | 10/32 [34:39<1:15:29, 205.90s/it]\\\\rInference:  34%|███▍      | 11/32 [38:02<1:11:42, 204.89s/it]\\\\rInference:  38%|███▊      | 12/32 [41:28<1:08:24, 205.22s/it]\\\\rInference:  41%|████      | 13/32 [44:56<1:05:15, 206.09s/it]\\\\rInference:  44%|████▍     | 14/32 [48:29<1:02:29, 208.30s/it]\\\\rInference:  47%|████▋     | 15/32 [51:58<59:05, 208.55s/it]  \\\\rInference:  50%|█████     | 16/32 [55:27<55:36, 208.50s/it]\\\\rInference:  53%|█████▎    | 17/32 [58:55<52:06, 208.45s/it]\\\\rInference:  56%|█████▋    | 18/32 [1:02:27<48:54, 209.59s/it]\\\\rInference:  59%|█████▉    | 19/32 [1:06:12<46:25, 214.27s/it]\\\\rInference:  62%|██████▎   | 20/32 [1:09:34<42:04, 210.41s/it]\\\\rInference:  66%|██████▌   | 21/32 [1:13:12<39:00, 212.78s/it]\\\\rInference:  69%|██████▉   | 22/32 [1:16:45<35:26, 212.66s/it]\\\\rInference:  72%|███████▏  | 23/32 [1:20:08<31:28, 209.80s/it]\\\\rInference:  75%|███████▌  | 24/32 [1:23:46<28:17, 212.21s/it]\\\\rInference:  78%|███████▊  | 25/32 [1:27:14<24:38, 211.15s/it]\\\\rInference:  81%|████████▏ | 26/32 [1:30:44<21:03, 210.66s/it]\\\\rInference:  84%|████████▍ | 27/32 [1:34:09<17:25, 209.04s/it]\\\\rInference:  88%|████████▊ | 28/32 [1:37:36<13:53, 208.37s/it]\\\\rInference:  91%|█████████ | 29/32 [1:41:00<10:21, 207.25s/it]\\\\rInference:  94%|█████████▍| 30/32 [1:44:26<06:53, 206.64s/it]\\\\rInference:  97%|█████████▋| 31/32 [1:47:49<03:25, 205.77s/it]\\\\rInference: 100%|██████████| 32/32 [1:49:43<00:00, 178.05s/it]\\\\rInference: 100%|██████████| 32/32 [1:49:43<00:00, 205.73s/it]\\\\n2026-05-24 00:51:40,437 INFO Inference done. 271/500 truncated, 0 errors.\\\\n2026-05-24 00:51:40,437 INFO Inference: 6583.2s (13.17 s/doc)\\\\n2026-05-24 00:51:40,549 INFO Predictions -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/predictions.json\\\\n2026-05-24 00:51:40,562 WARNING train_annotated.json not found, Ign-F1 = F1\\\\n2026-05-24 00:51:41,043 INFO CodaLab submission -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/codalab_submission.json\\\\n\\\\n==================================================\\\\n  F1:          0.3767\\\\n  Ign-F1:      0.3767\\\\n  Evi-F1(DREEAM): 0.2468\\\\n  Evi-F1(TP):     0.5836\\\\n  EDCR:        0.8340\\\\n  Documents:   500\\\\n  Predictions: 22861\\\\n  Format OK:   498/500\\\\n  Truncated:   271/500\\\\n  CodaLab:     13323 converted, 371 skipped (rel), 652 skipped (entity)\\\\n  Output:      /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/codalab_submission.json\\\\n==================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-23 23:01:45,965 INFO Detected adapter at /root/autodl-tmp/rsft_output_14b_s43, base: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n2026-05-23 23:01:45,965 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n2026-05-23 23:01:46,436 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/443 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/443 [00:00<01:14,  5.91it/s]\\rLoading weights:   0%|          | 2/443 [00:00<01:21,  5.40it/s]\\rLoading weights:   3%|▎         | 15/443 [00:00<00:10, 42.00it/s]\\rLoading weights:   6%|▌         | 27/443 [00:00<00:06, 61.83it/s]\\rLoading weights:   8%|▊         | 37/443 [00:00<00:06, 66.76it/s]\\rLoading weights:  12%|█▏        | 53/443 [00:00<00:05, 66.48it/s]\\rLoading weights:  19%|█▊        | 83/443 [00:01<00:03, 117.22it/s]\\rLoading weights:  23%|██▎       | 100/443 [00:01<00:02, 128.57it/s]\\rLoading weights:  26%|█���▌       | 116/443 [00:01<00:03, 103.38it/s]\\rLoading weights:  31%|███       | 138/443 [00:01<00:02, 123.93it/s]\\rLoading weights:  35%|███▍      | 153/443 [00:01<00:02, 128.32it/s]\\rLoading weights:  38%|███▊      | 168/443 [00:01<00:02, 131.66it/s]\\rLoading weights:  41%|████▏     | 183/443 [00:01<00:02, 116.48it/s]\\rLoading weights:  44%|████▍     | 197/443 [00:02<00:02, 120.98it/s]\\rLoading weights:  47%|████▋     | 210/443 [00:02<00:01, 122.43it/s]\\rLoading weights:  50%|█████     | 223/443 [00:02<00:01, 116.00it/s]\\rLoading weights:  53%|█████▎    | 236/443 [00:02<00:01, 112.64it/s]\\rLoading weights:  56%|█████▌    | 248/443 [00:02<00:01, 108.39it/s]\\rLoading weights:  59%|█████▊    | 260/443 [00:02<00:01, 107.22it/s]\\rLoading weights:  63%|██████▎   | 279/443 [00:02<00:01, 121.21it/s]\\rLoading weights:  66%|██████▌   | 292/443 [00:02<00:01, 109.74it/s]\\rLoading weights:  69%|██████▉   | 307/443 [00:02<00:01, 117.75it/s]\\rLoading weights:  72%|███████▏  | 320/443 [00:03<00:01, 99.01it/s] \\rLoading weights:  76%|███████▌  | 336/443 [00:03<00:00, 109.16it/s]\\rLoading weights:  79%|███████▊  | 348/443 [00:03<00:00, 108.76it/s]\\rLoading weights:  81%|████████▏ | 360/443 [00:03<00:00, 110.18it/s]\\rLoading weights:  84%|████████▍ | 372/443 [00:03<00:00, 106.68it/s]\\rLoading weights:  86%|████████▋ | 383/443 [00:03<00:00, 104.97it/s]\\rLoading weights:  89%|████████▉ | 395/443 [00:03<00:00, 107.01it/s]\\rLoading weights:  92%|█████████▏| 406/443 [00:03<00:00, 101.23it/s]\\rLoading weights:  95%|█████████▍| 419/443 [00:04<00:00, 107.00it/s]\\rLoading weights:  97%|█████████▋| 430/443 [00:04<00:00, 84.49it/s] \\rLoading weights: 100%|██████████| 443/443 [00:04<00:00, 102.77it/s]\\n2026-05-23 23:01:51,743 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_14b_s43\\n2026-05-23 23:01:54,139 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_14b_s43\\n2026-05-23 23:01:57,199 INFO Prepared 500 test documents\\n\\rInference:   0%|          | 0/32 [00:00<?, ?it/s]\\rInference:   3%|▎         | 1/32 [03:28<1:47:32, 208.14s/it]\\rInference:   6%|▋         | 2/32 [06:58<1:44:36, 209.22s/it]\\rInference:   9%|▉         | 3/32 [10:30<1:41:54, 210.83s/it]\\rInference:  12%|█▎        | 4/32 [14:07<1:39:27, 213.13s/it]\\rInference:  16%|█▌        | 5/32 [17:30<1:34:19, 209.63s/it]\\rInference:  19%|█▉        | 6/32 [21:02<1:31:09, 210.37s/it]\\rInference:  22%|██▏       | 7/32 [24:23<1:26:20, 207.22s/it]\\rInference:  25%|██▌       | 8/32 [27:49<1:22:41, 206.73s/it]\\rInference:  28%|██▊       | 9/32 [31:14<1:19:06, 206.38s/it]\\rInference:  31%|███▏      | 10/32 [34:39<1:15:29, 205.90s/it]\\rInference:  34%|███▍      | 11/32 [38:02<1:11:42, 204.89s/it]\\rInference:  38%|███▊      | 12/32 [41:28<1:08:24, 205.22s/it]\\rInference:  41%|████      | 13/32 [44:56<1:05:15, 206.09s/it]\\rInference:  44%|████▍     | 14/32 [48:29<1:02:29, 208.30s/it]\\rInference:  47%|████▋     | 15/32 [51:58<59:05, 208.55s/it]  \\rInference:  50%|█████     | 16/32 [55:27<55:36, 208.50s/it]\\rInference:  53%|█████▎    | 17/32 [58:55<52:06, 208.45s/it]\\rInference:  56%|█████▋    | 18/32 [1:02:27<48:54, 209.59s/it]\\rInference:  59%|█████▉    | 19/32 [1:06:12<46:25, 214.27s/it]\\rInference:  62%|██████▎   | 20/32 [1:09:34<42:04, 210.41s/it]\\rInference:  66%|██████▌   | 21/32 [1:13:12<39:00, 212.78s/it]\\rInference:  69%|██████▉   | 22/32 [1:16:45<35:26, 212.66s/it]\\rInference:  72%|███████▏  | 23/32 [1:20:08<31:28, 209.80s/it]\\rInference:  75%|███████▌  | 24/32 [1:23:46<28:17, 212.21s/it]\\rInference:  78%|███████▊  | 25/32 [1:27:14<24:38, 211.15s/it]\\rInference:  81%|████████▏ | 26/32 [1:30:44<21:03, 210.66s/it]\\rInference:  84%|████████▍ | 27/32 [1:34:09<17:25, 209.04s/it]\\rInference:  88%|████████▊ | 28/32 [1:37:36<13:53, 208.37s/it]\\rInference:  91%|█████████ | 29/32 [1:41:00<10:21, 207.25s/it]\\rInference:  94%|█████████▍| 30/32 [1:44:26<06:53, 206.64s/it]\\rInference:  97%|█████████▋| 31/32 [1:47:49<03:25, 205.77s/it]\\rInference: 100%|██████████| 32/32 [1:49:43<00:00, 178.05s/it]\\rInference: 100%|██████████| 32/32 [1:49:43<00:00, 205.73s/it]\\n2026-05-24 00:51:40,437 INFO Inference done. 271/500 truncated, 0 errors.\\n2026-05-24 00:51:40,437 INFO Inference: 6583.2s (13.17 s/doc)\\n2026-05-24 00:51:40,549 INFO Predictions -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/predictions.json\\n2026-05-24 00:51:40,562 WARNING train_annotated.json not found, Ign-F1 = F1\\n2026-05-24 00:51:41,043 INFO CodaLab submission -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/codalab_submission.json\\n\\n==================================================\\n  F1:          0.3767\\n  Ign-F1:      0.3767\\n  Evi-F1(DREEAM): 0.2468\\n  Evi-F1(TP):     0.5836\\n  EDCR:        0.8340\\n  Documents:   500\\n  Predictions: 22861\\n  Format OK:   498/500\\n  Truncated:   271/500\\n  CodaLab:     13323 converted, 371 skipped (rel), 652 skipped (entity)\\n  Output:      /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/codalab_submission.json\\n==================================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GTpdWdHRFkghCRVH5oaGrt`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -50 ~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "87453c59-586b-407a-af28-43529411e80d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VhK91ATLMQzzihDZQZ2X4G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1578,
+      "cache_read_input_tokens": 25394,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1578
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T16:55:30.642Z_
+
+<details><summary>↩ Tool result · `toolu_01GTpdWdHRFkghCRVH5oaGrt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-23 23:01:49,187 INFO Detected adapter at /root/autodl-tmp/rsft_output_14b_s43, base: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n2026-05-23 23:01:49,188 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n2026-05-23 23:01:49,586 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/443 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/443 [00:00<01:37,  4.54it/s]\\rLoading weights:   0%|          | 2/443 [00:00<01:45,  4.17it/s]\\rLoading weights:   3%|▎         | 12/443 [00:00<00:15, 28.43it/s]\\rLoading weights:   5%|▍         | 21/443 [00:00<00:09, 44.24it/s]\\rLoading weights:   6%|▋         | 28/443 [00:00<00:08, 50.81it/s]\\rLoading weights:   9%|▉         | 39/443 [00:00<00:06, 65.02it/s]\\rLoading weights:  11%|█▏        | 50/443 [00:01<00:05, 74.67it/s]\\rLoading weights:  14%|█▎        | 60/443 [00:01<00:04, 79.48it/s]\\rLoading weights:  16%|█▋        | 72/443 [00:01<00:04, 88.89it/s]\\rLoading weights:  19%|█▊        | 83/443 [00:01<00:03, 92.45it/s]\\rLoading weights:  21%|██        | 93/443 [00:01<00:03, 92.73it/s]\\rLoading weights:  24%|██▎       | 105/443 [00:01<00:03, 96.57it/s]\\rLoading weights:  26%|██▌       | 115/443 [00:01<00:03, 93.72it/s]\\rLoading weights:  29%|██▊       | 127/443 [00:01<00:03, 96.73it/s]\\rLoading weights:  31%|███       | 137/443 [00:01<00:03, 94.84it/s]\\rLoading weights:  34%|███▎      | 149/443 [00:02<00:02, 98.93it/s]\\rLoading weights:  36%|███▌      | 160/443 [00:02<00:02, 98.39it/s]\\rLoading weights:  39%|███▊      | 171/443 [00:02<00:02, 98.48it/s]\\rLoading weights:  41%|████      | 182/443 [00:02<00:02, 98.51it/s]\\rLoading weights:  44%|████▎     | 193/443 [00:02<00:02, 97.82it/s]\\rLoading weights:  46%|████▌     | 203/443 [00:02<00:02, 95.08it/s]\\rLoading weights:  49%|████▊     | 215/443 [00:02<00:02, 97.11it/s]\\rLoading weights:  51%|█████     | 226/443 [00:02<00:02, 96.87it/s]\\rLoading weights:  53%|█████▎    | 237/443 [00:02<00:02, 97.68it/s]\\rLoading weights:  56%|█████▌    | 248/443 [00:03<00:01, 98.75it/s]\\rLoading weights:  58%|█████▊    | 259/443 [00:03<00:01, 98.94it/s]\\rLoading weights:  61%|██████    | 270/443 [00:03<00:01, 99.05it/s]\\rLoading weights:  63%|██████▎   | 281/443 [00:03<00:01, 98.90it/s]\\rLoading weights:  66%|██████▌   | 292/443 [00:03<00:01, 98.81it/s]\\rLoading weights:  68%|██████▊   | 303/443 [00:03<00:01, 99.42it/s]\\rLoading weights:  71%|███████   | 314/443 [00:03<00:01, 99.03it/s]\\rLoading weights:  73%|███████▎  | 325/443 [00:03<00:01, 99.29it/s]\\rLoading weights:  76%|███████▌  | 336/443 [00:03<00:01, 99.64it/s]\\rLoading weights:  78%|███████▊  | 347/443 [00:04<00:00, 99.73it/s]\\rLoading weights:  81%|████████  | 358/443 [00:04<00:00, 102.38it/s]\\rLoading weights:  83%|████████▎ | 369/443 [00:04<00:00, 99.11it/s] \\rLoading weights:  86%|████████▌ | 381/443 [00:04<00:00, 104.91it/s]\\rLoading weights:  88%|████████▊ | 392/443 [00:04<00:00, 103.32it/s]\\rLoading weights:  91%|█████████ | 403/443 [00:04<00:00, 101.81it/s]\\rLoading weights:  93%|█████████▎| 414/443 [00:04<00:00, 100.67it/s]\\rLoading weights:  96%|█████████▌| 425/443 [00:04<00:00, 101.01it/s]\\rLoading weights:  98%|█████████▊| 436/443 [00:04<00:00, 101.46it/s]\\rLoading weights: 100%|██████████| 443/443 [00:04<00:00, 90.09it/s] \\n2026-05-23 23:01:55,680 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_14b_s43\\n2026-05-23 23:01:59,259 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_14b_s43\\n2026-05-23 23:02:01,583 INFO Prepared 500 test documents\\n\\rInference:   0%|          | 0/32 [00:00<?, ?it/s]\\rInference:   3%|▎         | 1/32 [03:27<1:46:58, 207.05s/it]\\rInference:   6%|▋         | 2/32 [06:56<1:44:08, 208.27s/it]\\rInference:   9%|▉         | 3/32 [10:28<1:41:28, 209.94s/it]\\rInference:  12%|█▎        | 4/32 [14:03<1:39:02, 212.24s/it]\\rInference:  16%|█▌        | 5/32 [17:26<1:33:55, 208.72s/it]\\rInference:  19%|█▉        | 6/32 [20:57<1:30:45, 209.45s/it]\\rInference:  22%|██▏       | 7/32 [24:16<1:25:57, 206.29s/it]\\rInference:  25%|██▌       | 8/32 [27:41<1:22:19, 205.80s/it]\\rInference:  28%|██▊       | 9/32 [31:06<1:18:45, 205.44s/it]\\rInference:  31%|███▏      | 10/32 [34:30<1:15:09, 204.96s/it]\\rInference:  34%|███▍      | 11/32 [37:51<1:11:22, 203.92s/it]\\rInference:  38%|███▊      | 12/32 [41:16<1:08:05, 204.25s/it]\\rInference:  41%|████      | 13/32 [44:44<1:04:57, 205.14s/it]\\rInference:  44%|████▍     | 14/32 [48:16<1:02:12, 207.35s/it]\\rInference:  47%|████▋     | 15/32 [51:44<58:49, 207.61s/it]  \\rInference:  50%|█████     | 16/32 [55:12<55:21, 207.58s/it]\\rInference:  53%|█████▎    | 17/32 [58:39<51:52, 207.51s/it]\\rInference:  56%|█████▋    | 18/32 [1:02:11<48:41, 208.69s/it]\\rInference:  59%|█████▉    | 19/32 [1:05:55<46:13, 213.37s/it]\\rInference:  62%|██████▎   | 20/32 [1:09:15<41:53, 209.49s/it]\\rInference:  66%|██████▌   | 21/32 [1:12:53<38:50, 211.86s/it]\\rInference:  69%|██████▉   | 22/32 [1:16:24<35:17, 211.73s/it]\\rInference:  72%|███████▏  | 23/32 [1:19:46<31:19, 208.88s/it]\\rInference:  75%|███████▌  | 24/32 [1:23:23<28:09, 211.25s/it]\\rInference:  78%|███████▊  | 25/32 [1:26:51<24:31, 210.20s/it]\\rInference:  81%|████████▏ | 26/32 [1:30:19<20:58, 209.73s/it]\\rInference:  84%|████████▍ | 27/32 [1:33:44<17:20, 208.17s/it]\\rInference:  88%|████████��� | 28/32 [1:37:10<13:50, 207.52s/it]\\rInference:  91%|█████████ | 29/32 [1:40:34<10:19, 206.43s/it]\\rInference:  94%|█████████▍| 30/32 [1:43:58<06:51, 205.79s/it]\\rInference:  97%|█████████▋| 31/32 [1:47:21<03:24, 204.92s/it]\\rInference: 100%|██████████| 32/32 [1:49:14<00:00, 177.37s/it]\\rInference: 100%|██████████| 32/32 [1:49:14<00:00, 204.83s/it]\\n2026-05-24 00:51:16,217 INFO Inference done. 292/500 truncated, 0 errors.\\n2026-05-24 00:51:16,217 INFO Inference: 6554.6s (13.11 s/doc)\\n2026-05-24 00:51:16,338 INFO Predictions -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/predictions.json\\n2026-05-24 00:51:16,351 WARNING train_annotated.json not found, Ign-F1 = F1\\n2026-05-24 00:51:16,796 INFO CodaLab submission -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/codalab_submission.json\\n\\n==================================================\\n  F1:          0.3775\\n  Ign-F1:      0.3775\\n  Evi-F1(DREEAM): 0.0000\\n  Evi-F1(TP):     0.0000\\n  EDCR:        0.0000\\n  Documents:   500\\n  Predictions: 31216\\n  Format OK:   499/500\\n  Truncated:   292/500\\n  CodaLab:     14066 converted, 405 skipped (rel), 831 skipped (entity)\\n  Output:      /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/codalab_submission.json\\n==================================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "291de4f8-39d0-48f2-89a5-82d462b2283a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 23:01:49,187 INFO Detected adapter at /root/autodl-tmp/rsft_output_14b_s43, base: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n2026-05-23 23:01:49,188 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n2026-05-23 23:01:49,586 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-14B\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/443 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/443 [00:00<01:37,  4.54it/s]\\\\rLoading weights:   0%|          | 2/443 [00:00<01:45,  4.17it/s]\\\\rLoading weights:   3%|▎         | 12/443 [00:00<00:15, 28.43it/s]\\\\rLoading weights:   5%|▍         | 21/443 [00:00<00:09, 44.24it/s]\\\\rLoading weights:   6%|▋         | 28/443 [00:00<00:08, 50.81it/s]\\\\rLoading weights:   9%|▉         | 39/443 [00:00<00:06, 65.02it/s]\\\\rLoading weights:  11%|█▏        | 50/443 [00:01<00:05, 74.67it/s]\\\\rLoading weights:  14%|█▎        | 60/443 [00:01<00:04, 79.48it/s]\\\\rLoading weights:  16%|█▋        | 72/443 [00:01<00:04, 88.89it/s]\\\\rLoading weights:  19%|█▊        | 83/443 [00:01<00:03, 92.45it/s]\\\\rLoading weights:  21%|██        | 93/443 [00:01<00:03, 92.73it/s]\\\\rLoading weights:  24%|██▎       | 105/443 [00:01<00:03, 96.57it/s]\\\\rLoading weights:  26%|██▌       | 115/443 [00:01<00:03, 93.72it/s]\\\\rLoading weights:  29%|██▊       | 127/443 [00:01<00:03, 96.73it/s]\\\\rLoading weights:  31%|███       | 137/443 [00:01<00:03, 94.84it/s]\\\\rLoading weights:  34%|███▎      | 149/443 [00:02<00:02, 98.93it/s]\\\\rLoading weights:  36%|███▌      | 160/443 [00:02<00:02, 98.39it/s]\\\\rLoading weights:  39%|███▊      | 171/443 [00:02<00:02, 98.48it/s]\\\\rLoading weights:  41%|████      | 182/443 [00:02<00:02, 98.51it/s]\\\\rLoading weights:  44%|████▎     | 193/443 [00:02<00:02, 97.82it/s]\\\\rLoading weights:  46%|████▌     | 203/443 [00:02<00:02, 95.08it/s]\\\\rLoading weights:  49%|████▊     | 215/443 [00:02<00:02, 97.11it/s]\\\\rLoading weights:  51%|█████     | 226/443 [00:02<00:02, 96.87it/s]\\\\rLoading weights:  53%|█████▎    | 237/443 [00:02<00:02, 97.68it/s]\\\\rLoading weights:  56%|█████▌    | 248/443 [00:03<00:01, 98.75it/s]\\\\rLoading weights:  58%|█████▊    | 259/443 [00:03<00:01, 98.94it/s]\\\\rLoading weights:  61%|██████    | 270/443 [00:03<00:01, 99.05it/s]\\\\rLoading weights:  63%|██████▎   | 281/443 [00:03<00:01, 98.90it/s]\\\\rLoading weights:  66%|██████▌   | 292/443 [00:03<00:01, 98.81it/s]\\\\rLoading weights:  68%|██████▊   | 303/443 [00:03<00:01, 99.42it/s]\\\\rLoading weights:  71%|███████   | 314/443 [00:03<00:01, 99.03it/s]\\\\rLoading weights:  73%|███████▎  | 325/443 [00:03<00:01, 99.29it/s]\\\\rLoading weights:  76%|███████▌  | 336/443 [00:03<00:01, 99.64it/s]\\\\rLoading weights:  78%|███████▊  | 347/443 [00:04<00:00, 99.73it/s]\\\\rLoading weights:  81%|████████  | 358/443 [00:04<00:00, 102.38it/s]\\\\rLoading weights:  83%|████████▎ | 369/443 [00:04<00:00, 99.11it/s] \\\\rLoading weights:  86%|████████▌ | 381/443 [00:04<00:00, 104.91it/s]\\\\rLoading weights:  88%|████████▊ | 392/443 [00:04<00:00, 103.32it/s]\\\\rLoading weights:  91%|█████████ | 403/443 [00:04<00:00, 101.81it/s]\\\\rLoading weights:  93%|█████████▎| 414/443 [00:04<00:00, 100.67it/s]\\\\rLoading weights:  96%|█████████▌| 425/443 [00:04<00:00, 101.01it/s]\\\\rLoading weights:  98%|█████████▊| 436/443 [00:04<00:00, 101.46it/s]\\\\rLoading weights: 100%|██████████| 443/443 [00:04<00:00, 90.09it/s] \\\\n2026-05-23 23:01:55,680 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_14b_s43\\\\n2026-05-23 23:01:59,259 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_14b_s43\\\\n2026-05-23 23:02:01,583 INFO Prepared 500 test documents\\\\n\\\\rInference:   0%|          | 0/32 [00:00<?, ?it/s]\\\\rInference:   3%|▎         | 1/32 [03:27<1:46:58, 207.05s/it]\\\\rInference:   6%|▋         | 2/32 [06:56<1:44:08, 208.27s/it]\\\\rInference:   9%|▉         | 3/32 [10:28<1:41:28, 209.94s/it]\\\\rInference:  12%|█▎        | 4/32 [14:03<1:39:02, 212.24s/it]\\\\rInference:  16%|█▌        | 5/32 [17:26<1:33:55, 208.72s/it]\\\\rInference:  19%|█▉        | 6/32 [20:57<1:30:45, 209.45s/it]\\\\rInference:  22%|██▏       | 7/32 [24:16<1:25:57, 206.29s/it]\\\\rInference:  25%|██▌       | 8/32 [27:41<1:22:19, 205.80s/it]\\\\rInference:  28%|██▊       | 9/32 [31:06<1:18:45, 205.44s/it]\\\\rInference:  31%|███▏      | 10/32 [34:30<1:15:09, 204.96s/it]\\\\rInference:  34%|███▍      | 11/32 [37:51<1:11:22, 203.92s/it]\\\\rInference:  38%|███▊      | 12/32 [41:16<1:08:05, 204.25s/it]\\\\rInference:  41%|████      | 13/32 [44:44<1:04:57, 205.14s/it]\\\\rInference:  44%|████▍     | 14/32 [48:16<1:02:12, 207.35s/it]\\\\rInference:  47%|████▋     | 15/32 [51:44<58:49, 207.61s/it]  \\\\rInference:  50%|█████     | 16/32 [55:12<55:21, 207.58s/it]\\\\rInference:  53%|█████▎    | 17/32 [58:39<51:52, 207.51s/it]\\\\rInference:  56%|█████▋    | 18/32 [1:02:11<48:41, 208.69s/it]\\\\rInference:  59%|█████▉    | 19/32 [1:05:55<46:13, 213.37s/it]\\\\rInference:  62%|██████▎   | 20/32 [1:09:15<41:53, 209.49s/it]\\\\rInference:  66%|██████▌   | 21/32 [1:12:53<38:50, 211.86s/it]\\\\rInference:  69%|██████▉   | 22/32 [1:16:24<35:17, 211.73s/it]\\\\rInference:  72%|███████▏  | 23/32 [1:19:46<31:19, 208.88s/it]\\\\rInference:  75%|███████▌  | 24/32 [1:23:23<28:09, 211.25s/it]\\\\rInference:  78%|███████▊  | 25/32 [1:26:51<24:31, 210.20s/it]\\\\rInference:  81%|████████▏ | 26/32 [1:30:19<20:58, 209.73s/it]\\\\rInference:  84%|████████▍ | 27/32 [1:33:44<17:20, 208.17s/it]\\\\rInference:  88%|████████��� | 28/32 [1:37:10<13:50, 207.52s/it]\\\\rInference:  91%|█████████ | 29/32 [1:40:34<10:19, 206.43s/it]\\\\rInference:  94%|█████████▍| 30/32 [1:43:58<06:51, 205.79s/it]\\\\rInference:  97%|█████████▋| 31/32 [1:47:21<03:24, 204.92s/it]\\\\rInference: 100%|██████████| 32/32 [1:49:14<00:00, 177.37s/it]\\\\rInference: 100%|██████████| 32/32 [1:49:14<00:00, 204.83s/it]\\\\n2026-05-24 00:51:16,217 INFO Inference done. 292/500 truncated, 0 errors.\\\\n2026-05-24 00:51:16,217 INFO Inference: 6554.6s (13.11 s/doc)\\\\n2026-05-24 00:51:16,338 INFO Predictions -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/predictions.json\\\\n2026-05-24 00:51:16,351 WARNING train_annotated.json not found, Ign-F1 = F1\\\\n2026-05-24 00:51:16,796 INFO CodaLab submission -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/codalab_submission.json\\\\n\\\\n==================================================\\\\n  F1:          0.3775\\\\n  Ign-F1:      0.3775\\\\n  Evi-F1(DREEAM): 0.0000\\\\n  Evi-F1(TP):     0.0000\\\\n  EDCR:        0.0000\\\\n  Documents:   500\\\\n  Predictions: 31216\\\\n  Format OK:   499/500\\\\n  Truncated:   292/500\\\\n  CodaLab:     14066 converted, 405 skipped (rel), 831 skipped (entity)\\\\n  Output:      /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/codalab_submission.json\\\\n==================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-23 23:01:49,187 INFO Detected adapter at /root/autodl-tmp/rsft_output_14b_s43, base: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n2026-05-23 23:01:49,188 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n2026-05-23 23:01:49,586 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/443 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/443 [00:00<01:37,  4.54it/s]\\rLoading weights:   0%|          | 2/443 [00:00<01:45,  4.17it/s]\\rLoading weights:   3%|▎         | 12/443 [00:00<00:15, 28.43it/s]\\rLoading weights:   5%|▍         | 21/443 [00:00<00:09, 44.24it/s]\\rLoading weights:   6%|▋         | 28/443 [00:00<00:08, 50.81it/s]\\rLoading weights:   9%|▉         | 39/443 [00:00<00:06, 65.02it/s]\\rLoading weights:  11%|█▏        | 50/443 [00:01<00:05, 74.67it/s]\\rLoading weights:  14%|█▎        | 60/443 [00:01<00:04, 79.48it/s]\\rLoading weights:  16%|█▋        | 72/443 [00:01<00:04, 88.89it/s]\\rLoading weights:  19%|█▊        | 83/443 [00:01<00:03, 92.45it/s]\\rLoading weights:  21%|██        | 93/443 [00:01<00:03, 92.73it/s]\\rLoading weights:  24%|██▎       | 105/443 [00:01<00:03, 96.57it/s]\\rLoading weights:  26%|██▌       | 115/443 [00:01<00:03, 93.72it/s]\\rLoading weights:  29%|██▊       | 127/443 [00:01<00:03, 96.73it/s]\\rLoading weights:  31%|███       | 137/443 [00:01<00:03, 94.84it/s]\\rLoading weights:  34%|███▎      | 149/443 [00:02<00:02, 98.93it/s]\\rLoading weights:  36%|███▌      | 160/443 [00:02<00:02, 98.39it/s]\\rLoading weights:  39%|███▊      | 171/443 [00:02<00:02, 98.48it/s]\\rLoading weights:  41%|████      | 182/443 [00:02<00:02, 98.51it/s]\\rLoading weights:  44%|████▎     | 193/443 [00:02<00:02, 97.82it/s]\\rLoading weights:  46%|████▌     | 203/443 [00:02<00:02, 95.08it/s]\\rLoading weights:  49%|████▊     | 215/443 [00:02<00:02, 97.11it/s]\\rLoading weights:  51%|█████     | 226/443 [00:02<00:02, 96.87it/s]\\rLoading weights:  53%|█████▎    | 237/443 [00:02<00:02, 97.68it/s]\\rLoading weights:  56%|█████▌    | 248/443 [00:03<00:01, 98.75it/s]\\rLoading weights:  58%|█████▊    | 259/443 [00:03<00:01, 98.94it/s]\\rLoading weights:  61%|██████    | 270/443 [00:03<00:01, 99.05it/s]\\rLoading weights:  63%|██████▎   | 281/443 [00:03<00:01, 98.90it/s]\\rLoading weights:  66%|██████▌   | 292/443 [00:03<00:01, 98.81it/s]\\rLoading weights:  68%|██████▊   | 303/443 [00:03<00:01, 99.42it/s]\\rLoading weights:  71%|███████   | 314/443 [00:03<00:01, 99.03it/s]\\rLoading weights:  73%|███████▎  | 325/443 [00:03<00:01, 99.29it/s]\\rLoading weights:  76%|███████▌  | 336/443 [00:03<00:01, 99.64it/s]\\rLoading weights:  78%|███████▊  | 347/443 [00:04<00:00, 99.73it/s]\\rLoading weights:  81%|████████  | 358/443 [00:04<00:00, 102.38it/s]\\rLoading weights:  83%|████████▎ | 369/443 [00:04<00:00, 99.11it/s] \\rLoading weights:  86%|████████▌ | 381/443 [00:04<00:00, 104.91it/s]\\rLoading weights:  88%|████████▊ | 392/443 [00:04<00:00, 103.32it/s]\\rLoading weights:  91%|█████████ | 403/443 [00:04<00:00, 101.81it/s]\\rLoading weights:  93%|█████████▎| 414/443 [00:04<00:00, 100.67it/s]\\rLoading weights:  96%|█████████▌| 425/443 [00:04<00:00, 101.01it/s]\\rLoading weights:  98%|█████████▊| 436/443 [00:04<00:00, 101.46it/s]\\rLoading weights: 100%|██████████| 443/443 [00:04<00:00, 90.09it/s] \\n2026-05-23 23:01:55,680 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_14b_s43\\n2026-05-23 23:01:59,259 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_14b_s43\\n2026-05-23 23:02:01,583 INFO Prepared 500 test documents\\n\\rInference:   0%|          | 0/32 [00:00<?, ?it/s]\\rInference:   3%|▎         | 1/32 [03:27<1:46:58, 207.05s/it]\\rInference:   6%|▋         | 2/32 [06:56<1:44:08, 208.27s/it]\\rInference:   9%|▉         | 3/32 [10:28<1:41:28, 209.94s/it]\\rInference:  12%|█▎        | 4/32 [14:03<1:39:02, 212.24s/it]\\rInference:  16%|█▌        | 5/32 [17:26<1:33:55, 208.72s/it]\\rInference:  19%|█▉        | 6/32 [20:57<1:30:45, 209.45s/it]\\rInference:  22%|██▏       | 7/32 [24:16<1:25:57, 206.29s/it]\\rInference:  25%|██▌       | 8/32 [27:41<1:22:19, 205.80s/it]\\rInference:  28%|██▊       | 9/32 [31:06<1:18:45, 205.44s/it]\\rInference:  31%|███▏      | 10/32 [34:30<1:15:09, 204.96s/it]\\rInference:  34%|███▍      | 11/32 [37:51<1:11:22, 203.92s/it]\\rInference:  38%|███▊      | 12/32 [41:16<1:08:05, 204.25s/it]\\rInference:  41%|████      | 13/32 [44:44<1:04:57, 205.14s/it]\\rInference:  44%|████▍     | 14/32 [48:16<1:02:12, 207.35s/it]\\rInference:  47%|████▋     | 15/32 [51:44<58:49, 207.61s/it]  \\rInference:  50%|█████     | 16/32 [55:12<55:21, 207.58s/it]\\rInference:  53%|█████▎    | 17/32 [58:39<51:52, 207.51s/it]\\rInference:  56%|█████▋    | 18/32 [1:02:11<48:41, 208.69s/it]\\rInference:  59%|█████▉    | 19/32 [1:05:55<46:13, 213.37s/it]\\rInference:  62%|██████▎   | 20/32 [1:09:15<41:53, 209.49s/it]\\rInference:  66%|██████▌   | 21/32 [1:12:53<38:50, 211.86s/it]\\rInference:  69%|██████▉   | 22/32 [1:16:24<35:17, 211.73s/it]\\rInference:  72%|███████▏  | 23/32 [1:19:46<31:19, 208.88s/it]\\rInference:  75%|███████▌  | 24/32 [1:23:23<28:09, 211.25s/it]\\rInference:  78%|███████▊  | 25/32 [1:26:51<24:31, 210.20s/it]\\rInference:  81%|████████▏ | 26/32 [1:30:19<20:58, 209.73s/it]\\rInference:  84%|████████▍ | 27/32 [1:33:44<17:20, 208.17s/it]\\rInference:  88%|████████��� | 28/32 [1:37:10<13:50, 207.52s/it]\\rInference:  91%|█████████ | 29/32 [1:40:34<10:19, 206.43s/it]\\rInference:  94%|█████████▍| 30/32 [1:43:58<06:51, 205.79s/it]\\rInference:  97%|█████████▋| 31/32 [1:47:21<03:24, 204.92s/it]\\rInference: 100%|██████████| 32/32 [1:49:14<00:00, 177.37s/it]\\rInference: 100%|██████████| 32/32 [1:49:14<00:00, 204.83s/it]\\n2026-05-24 00:51:16,217 INFO Inference done. 292/500 truncated, 0 errors.\\n2026-05-24 00:51:16,217 INFO Inference: 6554.6s (13.11 s/doc)\\n2026-05-24 00:51:16,338 INFO Predictions -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/predictions.json\\n2026-05-24 00:51:16,351 WARNING train_annotated.json not found, Ign-F1 = F1\\n2026-05-24 00:51:16,796 INFO CodaLab submission -> /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/codalab_submission.json\\n\\n==================================================\\n  F1:          0.3775\\n  Ign-F1:      0.3775\\n  Evi-F1(DREEAM): 0.0000\\n  Evi-F1(TP):     0.0000\\n  EDCR:        0.0000\\n  Documents:   500\\n  Predictions: 31216\\n  Format OK:   499/500\\n  Truncated:   292/500\\n  CodaLab:     14066 converted, 405 skipped (rel), 831 skipped (entity)\\n  Output:      /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/codalab_submission.json\\n==================================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Xrnd5Yi8tDDuM5JaWA1yp1`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "b521bf8f-34ea-45dc-9c8e-9c2cc998e39b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VhK91ATLMQzzihDZQZ2X4G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1578,
+      "cache_read_input_tokens": 25394,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1578
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T16:55:32.014Z_
+
+<details><summary>↩ Tool result · `toolu_01Xrnd5Yi8tDDuM5JaWA1yp1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 7308\\ndrwxr-xr-x   2 root root     102 May 24 00:51 .\\ndrwxr-xr-x 184 root root   12288 May 23 23:01 ..\\n-rw-r--r--   1 root root  688265 May 24 00:51 codalab_submission.json\\n-rw-r--r--   1 root root 6769727 May 24 00:51 predictions.json\\n-rw-r--r--   1 root root    1703 May 24 00:51 test_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "ed467b33-5692-4f24-bc31-2448ff6acc1c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 7308\\\\ndrwxr-xr-x   2 root root     102 May 24 00:51 .\\\\ndrwxr-xr-x 184 root root   12288 May 23 23:01 ..\\\\n-rw-r--r--   1 root root  688265 May 24 00:51 codalab_submission.json\\\\n-rw-r--r--   1 root root 6769727 May 24 00:51 predictions.json\\\\n-rw-r--r--   1 root root    1703 May 24 00:51 test_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 7308\\ndrwxr-xr-x   2 root root     102 May 24 00:51 .\\ndrwxr-xr-x 184 root root   12288 May 23 23:01 ..\\n-rw-r--r--   1 root root  688265 May 24 00:51 codalab_submission.json\\n-rw-r--r--   1 root root 6769727 May 24 00:51 predictions.json\\n-rw-r--r--   1 root root    1703 May 24 00:51 test_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PL5xwD1wSEnhWQWjFUJMHf`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "5563face-701c-42d0-a9f1-fb3d1a75098c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VhK91ATLMQzzihDZQZ2X4G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1578,
+      "cache_read_input_tokens": 25394,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1578
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-23T16:55:32.555Z_
+
+<details><summary>↩ Tool result · `toolu_01PL5xwD1wSEnhWQWjFUJMHf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8084\\ndrwxr-xr-x   2 root root     102 May 24 00:51 .\\ndrwxr-xr-x 184 root root   12288 May 23 23:01 ..\\n-rw-r--r--   1 root root  678459 May 24 00:51 codalab_submission.json\\n-rw-r--r--   1 root root 7577191 May 24 00:51 predictions.json\\n-rw-r--r--   1 root root    1567 May 24 00:51 test_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "359e035c-7ac0-4f3b-90bb-04b1d9b4b778",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8084\\\\ndrwxr-xr-x   2 root root     102 May 24 00:51 .\\\\ndrwxr-xr-x 184 root root   12288 May 23 23:01 ..\\\\n-rw-r--r--   1 root root  678459 May 24 00:51 codalab_submission.json\\\\n-rw-r--r--   1 root root 7577191 May 24 00:51 predictions.json\\\\n-rw-r--r--   1 root root    1567 May 24 00:51 test_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 8084\\ndrwxr-xr-x   2 root root     102 May 24 00:51 .\\ndrwxr-xr-x 184 root root   12288 May 23 23:01 ..\\n-rw-r--r--   1 root root  678459 May 24 00:51 codalab_submission.json\\n-rw-r--r--   1 root root 7577191 May 24 00:51 predictions.json\\n-rw-r--r--   1 root root    1567 May 24 00:51 test_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+两个实验都成功完成，CodaLab 文件已生成。读取 test_summary.json 获取完整 metrics。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "ea36f50b-93ce-4401-b2b5-7141c2c79813",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0141qp1BrQagBEoHnYF4T6Fw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8082,
+      "cache_read_input_tokens": 26972,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8082
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0164BpkUhwmJv9ah6Wxvtyws`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/test_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "a6deea7a-1916-4a88-92c3-5e0c34c14ab6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0141qp1BrQagBEoHnYF4T6Fw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8082,
+      "cache_read_input_tokens": 26972,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8082
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T16:55:37.228Z_
+
+<details><summary>↩ Tool result · `toolu_0164BpkUhwmJv9ah6Wxvtyws`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_documents\\\": 500,\\n  \\\"n_predictions\\\": 22861,\\n  \\\"n_truncated\\\": 271,\\n  \\\"n_format_ok\\\": 498,\\n  \\\"format_ok_rate\\\": 0.996,\\n  \\\"inference_time_seconds\\\": 6583.2,\\n  \\\"codalab_stats\\\": {\\n    \\\"converted\\\": 13323,\\n    \\\"skipped_rel\\\": 371,\\n    \\\"skipped_entity\\\": 652\\n  },\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_14b_s43\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_14b_s43\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 2048,\\n    \\\"seed\\\": 43,\\n    \\\"split\\\": \\\"test_revised\\\",\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"metrics\\\": {\\n    \\\"precision\\\": 0.4251757373722734,\\n    \\\"recall\\\": 0.3381556195965418,\\n    \\\"f1\\\": 0.37670551221548043,\\n    \\\"ign_precision\\\": 0.4251757373722734,\\n    \\\"ign_recall\\\": 0.3381556195965418,\\n    \\\"ign_f1\\\": 0.37670551221548043,\\n    \\\"tp\\\": 5867,\\n    \\\"pred_count\\\": 13799,\\n    \\\"gold_count\\\": 17350,\\n    \\\"evi_precision\\\": 0.44330312185297077,\\n    \\\"evi_recall\\\": 0.8538730117677487,\\n    \\\"evi_f1\\\": 0.5836132225561251,\\n    \\\"n_evaluated\\\": 22507,\\n    \\\"edcr\\\": 0.8339745040356038,\\n    \\\"n_distractor_citations\\\": 33168,\\n    \\\"n_total_citations\\\": 39771,\\n    \\\"evi_joint_precision\\\": 0.1875953018751288,\\n    \\\"evi_joint_recall\\\": 0.36072588953165863,\\n    \\\"evi_f1_joint\\\": 0.24682789285326975,\\n    \\\"evi_tp\\\": 4552,\\n    \\\"evi_pred_total\\\": 24265,\\n    \\\"evi_gold_total\\\": 12619,\\n    \\\"format_compliance_rate\\\": 0.996,\\n    \\\"field_compliance_rate\\\": 0.996,\\n    \\\"evidence_format_rate\\\": 0.982,\\n    \\\"n_total\\\": 500,\\n    \\\"n_parseable\\\": 498,\\n    \\\"n_field_complete\\\": 498,\\n    \\\"n_evidence_valid\\\": 491\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "f7f62e2c-59e8-484e-bb32-0782ac66da51",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_documents\\\\\\\": 500,\\\\n  \\\\\\\"n_predictions\\\\\\\": 22861,\\\\n  \\\\\\\"n_truncated\\\\\\\": 271,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 498,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.996,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 6583.2,\\\\n  \\\\\\\"codalab_stats\\\\\\\": {\\\\n    \\\\\\\"converted\\\\\\\": 13323,\\\\n    \\\\\\\"skipped_rel\\\\\\\": 371,\\\\n    \\\\\\\"skipped_entity\\\\\\\": 652\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_14b_s43\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_14b_s43\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/re-docred-repo/data\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 2048,\\\\n    \\\\\\\"seed\\\\\\\": 43,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"test_revised\\\\\\\",\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.4251757373722734,\\\\n    \\\\\\\"recall\\\\\\\": 0.3381556195965418,\\\\n    \\\\\\\"f1\\\\\\\": 0.37670551221548043,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.4251757373722734,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.3381556195965418,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.37670551221548043,\\\\n    \\\\\\\"tp\\\\\\\": 5867,\\\\n    \\\\\\\"pred_count\\\\\\\": 13799,\\\\n    \\\\\\\"gold_count\\\\\\\": 17350,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.44330312185297077,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.8538730117677487,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.5836132225561251,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 22507,\\\\n    \\\\\\\"edcr\\\\\\\": 0.8339745040356038,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 33168,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 39771,\\\\n    \\\\\\\"evi_joint_precision\\\\\\\": 0.1875953018751288,\\\\n    \\\\\\\"evi_joint_recall\\\\\\\": 0.36072588953165863,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.24682789285326975,\\\\n    \\\\\\\"evi_tp\\\\\\\": 4552,\\\\n    \\\\\\\"evi_pred_total\\\\\\\": 24265,\\\\n    \\\\\\\"evi_gold_total\\\\\\\": 12619,\\\\n    \\\\\\\"format_compliance_rate\\\\\\\": 0.996,\\\\n    \\\\\\\"field_compliance_rate\\\\\\\": 0.996,\\\\n    \\\\\\\"evidence_format_rate\\\\\\\": 0.982,\\\\n    \\\\\\\"n_total\\\\\\\": 500,\\\\n    \\\\\\\"n_parseable\\\\\\\": 498,\\\\n    \\\\\\\"n_field_complete\\\\\\\": 498,\\\\n    \\\\\\\"n_evidence_valid\\\\\\\": 491\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_documents\\\": 500,\\n  \\\"n_predictions\\\": 22861,\\n  \\\"n_truncated\\\": 271,\\n  \\\"n_format_ok\\\": 498,\\n  \\\"format_ok_rate\\\": 0.996,\\n  \\\"inference_time_seconds\\\": 6583.2,\\n  \\\"codalab_stats\\\": {\\n    \\\"converted\\\": 13323,\\n    \\\"skipped_rel\\\": 371,\\n    \\\"skipped_entity\\\": 652\\n  },\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_14b_s43\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_14b_s43\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 2048,\\n    \\\"seed\\\": 43,\\n    \\\"split\\\": \\\"test_revised\\\",\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"metrics\\\": {\\n    \\\"precision\\\": 0.4251757373722734,\\n    \\\"recall\\\": 0.3381556195965418,\\n    \\\"f1\\\": 0.37670551221548043,\\n    \\\"ign_precision\\\": 0.4251757373722734,\\n    \\\"ign_recall\\\": 0.3381556195965418,\\n    \\\"ign_f1\\\": 0.37670551221548043,\\n    \\\"tp\\\": 5867,\\n    \\\"pred_count\\\": 13799,\\n    \\\"gold_count\\\": 17350,\\n    \\\"evi_precision\\\": 0.44330312185297077,\\n    \\\"evi_recall\\\": 0.8538730117677487,\\n    \\\"evi_f1\\\": 0.5836132225561251,\\n    \\\"n_evaluated\\\": 22507,\\n    \\\"edcr\\\": 0.8339745040356038,\\n    \\\"n_distractor_citations\\\": 33168,\\n    \\\"n_total_citations\\\": 39771,\\n    \\\"evi_joint_precision\\\": 0.1875953018751288,\\n    \\\"evi_joint_recall\\\": 0.36072588953165863,\\n    \\\"evi_f1_joint\\\": 0.24682789285326975,\\n    \\\"evi_tp\\\": 4552,\\n    \\\"evi_pred_total\\\": 24265,\\n    \\\"evi_gold_total\\\": 12619,\\n    \\\"format_compliance_rate\\\": 0.996,\\n    \\\"field_compliance_rate\\\": 0.996,\\n    \\\"evidence_format_rate\\\": 0.982,\\n    \\\"n_total\\\": 500,\\n    \\\"n_parseable\\\": 498,\\n    \\\"n_field_complete\\\": 498,\\n    \\\"n_evidence_valid\\\": 491\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H8QpLor9hAYfydcgdabWqk`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/test_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "ecd54e8a-2961-4a38-ada2-39f6c7876ec3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0141qp1BrQagBEoHnYF4T6Fw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8082,
+      "cache_read_input_tokens": 26972,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8082
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T16:55:37.762Z_
+
+<details><summary>↩ Tool result · `toolu_01H8QpLor9hAYfydcgdabWqk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_documents\\\": 500,\\n  \\\"n_predictions\\\": 31216,\\n  \\\"n_truncated\\\": 292,\\n  \\\"n_format_ok\\\": 499,\\n  \\\"format_ok_rate\\\": 0.998,\\n  \\\"inference_time_seconds\\\": 6554.6,\\n  \\\"codalab_stats\\\": {\\n    \\\"converted\\\": 14066,\\n    \\\"skipped_rel\\\": 405,\\n    \\\"skipped_entity\\\": 831\\n  },\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_14b_s43\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_14b_s43\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 2048,\\n    \\\"seed\\\": 43,\\n    \\\"split\\\": \\\"test_revised\\\",\\n    \\\"no_evidence\\\": true,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"metrics\\\": {\\n    \\\"precision\\\": 0.4138310304530144,\\n    \\\"recall\\\": 0.34697406340057635,\\n    \\\"f1\\\": 0.37746496535724366,\\n    \\\"ign_precision\\\": 0.4138310304530144,\\n    \\\"ign_recall\\\": 0.34697406340057635,\\n    \\\"ign_f1\\\": 0.37746496535724366,\\n    \\\"tp\\\": 6020,\\n    \\\"pred_count\\\": 14547,\\n    \\\"gold_count\\\": 17350,\\n    \\\"evi_precision\\\": 0.0,\\n    \\\"evi_recall\\\": 0.0,\\n    \\\"evi_f1\\\": 0.0,\\n    \\\"n_evaluated\\\": 0,\\n    \\\"edcr\\\": 0.0,\\n    \\\"n_distractor_citations\\\": 0,\\n    \\\"n_total_citations\\\": 0,\\n    \\\"evi_joint_precision\\\": 0.0,\\n    \\\"evi_joint_recall\\\": 0.0,\\n    \\\"evi_f1_joint\\\": 0.0,\\n    \\\"evi_tp\\\": 0,\\n    \\\"evi_pred_total\\\": 0,\\n    \\\"evi_gold_total\\\": 12619,\\n    \\\"format_compliance_rate\\\": 0.998,\\n    \\\"field_compliance_rate\\\": 0.0,\\n    \\\"evidence_format_rate\\\": 0.0,\\n    \\\"n_total\\\": 500,\\n    \\\"n_parseable\\\": 499,\\n    \\\"n_field_complete\\\": 0,\\n    \\\"n_evidence_valid\\\": 0\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "12be4540-dda0-4225-be15-6908bdd78420",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_documents\\\\\\\": 500,\\\\n  \\\\\\\"n_predictions\\\\\\\": 31216,\\\\n  \\\\\\\"n_truncated\\\\\\\": 292,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 499,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.998,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 6554.6,\\\\n  \\\\\\\"codalab_stats\\\\\\\": {\\\\n    \\\\\\\"converted\\\\\\\": 14066,\\\\n    \\\\\\\"skipped_rel\\\\\\\": 405,\\\\n    \\\\\\\"skipped_entity\\\\\\\": 831\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_14b_s43\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_14b_s43\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/re-docred-repo/data\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 2048,\\\\n    \\\\\\\"seed\\\\\\\": 43,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"test_revised\\\\\\\",\\\\n    \\\\\\\"no_evidence\\\\\\\": true,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.4138310304530144,\\\\n    \\\\\\\"recall\\\\\\\": 0.34697406340057635,\\\\n    \\\\\\\"f1\\\\\\\": 0.37746496535724366,\\\\n    \\\\\\\"ign_precision\\\\\\\": 0.4138310304530144,\\\\n    \\\\\\\"ign_recall\\\\\\\": 0.34697406340057635,\\\\n    \\\\\\\"ign_f1\\\\\\\": 0.37746496535724366,\\\\n    \\\\\\\"tp\\\\\\\": 6020,\\\\n    \\\\\\\"pred_count\\\\\\\": 14547,\\\\n    \\\\\\\"gold_count\\\\\\\": 17350,\\\\n    \\\\\\\"evi_precision\\\\\\\": 0.0,\\\\n    \\\\\\\"evi_recall\\\\\\\": 0.0,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.0,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 0,\\\\n    \\\\\\\"edcr\\\\\\\": 0.0,\\\\n    \\\\\\\"n_distractor_citations\\\\\\\": 0,\\\\n    \\\\\\\"n_total_citations\\\\\\\": 0,\\\\n    \\\\\\\"evi_joint_precision\\\\\\\": 0.0,\\\\n    \\\\\\\"evi_joint_recall\\\\\\\": 0.0,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.0,\\\\n    \\\\\\\"evi_tp\\\\\\\": 0,\\\\n    \\\\\\\"evi_pred_total\\\\\\\": 0,\\\\n    \\\\\\\"evi_gold_total\\\\\\\": 12619,\\\\n    \\\\\\\"format_compliance_rate\\\\\\\": 0.998,\\\\n    \\\\\\\"field_compliance_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"evidence_format_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"n_total\\\\\\\": 500,\\\\n    \\\\\\\"n_parseable\\\\\\\": 499,\\\\n    \\\\\\\"n_field_complete\\\\\\\": 0,\\\\n    \\\\\\\"n_evidence_valid\\\\\\\": 0\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_documents\\\": 500,\\n  \\\"n_predictions\\\": 31216,\\n  \\\"n_truncated\\\": 292,\\n  \\\"n_format_ok\\\": 499,\\n  \\\"format_ok_rate\\\": 0.998,\\n  \\\"inference_time_seconds\\\": 6554.6,\\n  \\\"codalab_stats\\\": {\\n    \\\"converted\\\": 14066,\\n    \\\"skipped_rel\\\": 405,\\n    \\\"skipped_entity\\\": 831\\n  },\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_14b_s43\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_14b_s43\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 2048,\\n    \\\"seed\\\": 43,\\n    \\\"split\\\": \\\"test_revised\\\",\\n    \\\"no_evidence\\\": true,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"metrics\\\": {\\n    \\\"precision\\\": 0.4138310304530144,\\n    \\\"recall\\\": 0.34697406340057635,\\n    \\\"f1\\\": 0.37746496535724366,\\n    \\\"ign_precision\\\": 0.4138310304530144,\\n    \\\"ign_recall\\\": 0.34697406340057635,\\n    \\\"ign_f1\\\": 0.37746496535724366,\\n    \\\"tp\\\": 6020,\\n    \\\"pred_count\\\": 14547,\\n    \\\"gold_count\\\": 17350,\\n    \\\"evi_precision\\\": 0.0,\\n    \\\"evi_recall\\\": 0.0,\\n    \\\"evi_f1\\\": 0.0,\\n    \\\"n_evaluated\\\": 0,\\n    \\\"edcr\\\": 0.0,\\n    \\\"n_distractor_citations\\\": 0,\\n    \\\"n_total_citations\\\": 0,\\n    \\\"evi_joint_precision\\\": 0.0,\\n    \\\"evi_joint_recall\\\": 0.0,\\n    \\\"evi_f1_joint\\\": 0.0,\\n    \\\"evi_tp\\\": 0,\\n    \\\"evi_pred_total\\\": 0,\\n    \\\"evi_gold_total\\\": 12619,\\n    \\\"format_compliance_rate\\\": 0.998,\\n    \\\"field_compliance_rate\\\": 0.0,\\n    \\\"evidence_format_rate\\\": 0.0,\\n    \\\"n_total\\\": 500,\\n    \\\"n_parseable\\\": 499,\\n    \\\"n_field_complete\\\": 0,\\n    \\\"n_evidence_valid\\\": 0\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have all the metrics. Let me summarize:
+
+**with_evi (test_eval_14b_rsft_s43_with_evi):**
+- ign_f1: 0.3767
+- f1: 0.3767
+- precision: 0.4252
+- recall: 0.3382
+- evi_f1 (DREEAM/joint): 0.2468
+- evi_f1_tp: 0.5836
+- edcr: 0.8340
+- n_docs: 500
+- truncated: 271/500
+
+
+- format_ok: 498/500
+- inference_time: 6583.2s
+- predictions: 22861
+
+**no_evi (test_eval_14b_rsft_s43_no_evi):**
+- ign_f1: 0.3775
+- f1: 0.3775
+- precision: 0.4138
+- recall: 0.3470
+- n_docs: 500
+- truncated: 292/500
+- format_ok: 499/500
+- inference_time: 6554.6s
+- predictions: 31
+
+The with_evi model shows better evidence-based metrics with an edcr of 0.8340 and generates significantly more predictions (22861 vs 31), though it has slightly lower recall. The no_evi baseline performs similarly on the core F1 metrics but produces far fewer predictions and lacks evidence grounding entirely.
+
+Looking at the evidence tax between these two configurations, the difference in ignore-format F1 is minimal—the no_evi version edges out with_evi by just 0.076 percentage points, suggesting the evidence requirement has almost no cost to overall performance.
+
+Comparing this to s42, which shows a much larger evidence tax of 0.77pp, I'm calculating the mean and standard deviation across both seeds to get a sense of the typical penalty: the average evidence tax is around 0.425pp with a standard deviation of about 0.487pp. Now I'm calculating the standard deviations for both the with-evidence and no-evidence conditions across these two seeds, then I'll update the registry and prepare the analysis report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "28038a64-c2fd-4519-b0a4-f448e45ba3f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012xEQbnvT2R2MKoffM1f2W1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2577,
+      "cache_read_input_tokens": 35054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2577
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+完整 metrics 已获取。现在更新 registry。
+
+**with_evi**: ign_f1=0.3767, **no_evi**: ign_f1=0.3775, **s43 evidence tax = +0.08pp** (远小于 s42 的 +0.77pp)。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "26d7b77a-5cb9-4120-b1cc-44a22427fe3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012xEQbnvT2R2MKoffM1f2W1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2577,
+      "cache_read_input_tokens": 35054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2577
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01KgkbVvkgVE7U2CcdwrKerW`</summary>
+
+```json
+{
+  "exp_id": "test_eval_14b_rsft_s43_with_evi",
+  "field": "metrics",
+  "value": {
+    "ign_f1": 0.3767,
+    "f1": 0.3767,
+    "precision": 0.4252,
+    "recall": 0.3382,
+    "evi_f1": 0.2468,
+    "evi_f1_tp": 0.5836,
+    "edcr": 0.834,
+    "n_docs": 500,
+    "n_predictions": 22861,
+    "format_ok": 498,
+    "truncated": 271,
+    "inference_time_s": 6583.2,
+    "codalab_converted": 13323,
+    "codalab_skipped_rel": 371,
+    "codalab_skipped_entity": 652
+  },
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "1400c5b3-b5f0-4e90-8839-ce13fa69a5c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012xEQbnvT2R2MKoffM1f2W1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2577,
+      "cache_read_input_tokens": 35054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2577
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_016xBCRbbYNYYbqqvp3ppjQN`</summary>
+
+```json
+{
+  "exp_id": "test_eval_14b_rsft_s43_with_evi",
+  "field": "log_path",
+  "value": "~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "721f676e-cf31-4f55-9a6c-ca3f95a4a09c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012xEQbnvT2R2MKoffM1f2W1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2577,
+      "cache_read_input_tokens": 35054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2577
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-23T16:56:08.709Z_
+
+<details><summary>↩ Tool result · `toolu_01KgkbVvkgVE7U2CcdwrKerW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"test_eval_14b_rsft_s43_with_evi\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:01:43.424Z\", \"updated_at\": \"2026-05-23T16:56:07.991Z\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"261715\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\", \"submitted_at\": \"2026-05-23T15:01:42.508Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-14B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b_s43\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\"}, \"hypothesis\": \"14B RSFT s43 with-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). s42 test ign_f1=0.3849. 2-seed reproducibility for 14B test.\", \"parent\": \"plan017_14b_rsft_s43_train\", \"reproduce\": {\"finished_at\": \"2026-05-23T16:53:09.148Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T16:53:16.818227+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3767, \"f1\": 0.3767, \"precision\": 0.4252, \"recall\": 0.3382, \"evi_f1\": 0.2468, \"evi_f1_tp\": 0.5836, \"edcr\": 0.834, \"n_docs\": 500, \"n_predictions\": 22861, \"format_ok\": 498, \"truncated\": 271, \"inference_time_s\": 6583.2, \"codalab_converted\": 13323, \"codalab_skipped_rel\": 371, \"codalab_skipped_entity\": 652}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7185}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "c643733b-f5fd-49cc-a429-e4d9574643ab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_14b_rsft_s43_with_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T15:01:43.424Z\\\", \\\"updated_at\\\": \\\"2026-05-23T16:56:07.991Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"261715\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T15:01:42.508Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-14B\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_14b_s43\\\", \\\"eval_data\\\": \\\"Re-DocRED test_revised (500 docs)\\\"}, \\\"hypothesis\\\": \\\"14B RSFT s43 with-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). s42 test ign_f1=0.3849. 2-seed reproducibility for 14B test.\\\", \\\"parent\\\": \\\"plan017_14b_rsft_s43_train\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T16:53:09.148Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T16:53:16.818227+00:00\\\"}]}, \\\"metrics\\\": {\\\"ign_f1\\\": 0.3767, \\\"f1\\\": 0.3767, \\\"precision\\\": 0.4252, \\\"recall\\\": 0.3382, \\\"evi_f1\\\": 0.2468, \\\"evi_f1_tp\\\": 0.5836, \\\"edcr\\\": 0.834, \\\"n_docs\\\": 500, \\\"n_predictions\\\": 22861, \\\"format_ok\\\": 498, \\\"truncated\\\": 271, \\\"inference_time_s\\\": 6583.2, \\\"codalab_converted\\\": 13323, \\\"codalab_skipped_rel\\\": 371, \\\"codalab_skipped_entity\\\": 652}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7185}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"test_eval_14b_rsft_s43_with_evi\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:01:43.424Z\", \"updated_at\": \"2026-05-23T16:56:07.991Z\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"261715\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\", \"submitted_at\": \"2026-05-23T15:01:42.508Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-14B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b_s43\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\"}, \"hypothesis\": \"14B RSFT s43 with-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). s42 test ign_f1=0.3849. 2-seed reproducibility for 14B test.\", \"parent\": \"plan017_14b_rsft_s43_train\", \"reproduce\": {\"finished_at\": \"2026-05-23T16:53:09.148Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T16:53:16.818227+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3767, \"f1\": 0.3767, \"precision\": 0.4252, \"recall\": 0.3382, \"evi_f1\": 0.2468, \"evi_f1_tp\": 0.5836, \"edcr\": 0.834, \"n_docs\": 500, \"n_predictions\": 22861, \"format_ok\": 498, \"truncated\": 271, \"inference_time_s\": 6583.2, \"codalab_converted\": 13323, \"codalab_skipped_rel\": 371, \"codalab_skipped_entity\": 652}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7185}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01U4LRhVvRwsTG8rFvwH5MPo`</summary>
+
+```json
+{
+  "exp_id": "test_eval_14b_rsft_s43_with_evi",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "62d40150-3b9a-48f3-b12e-a272c70d3858",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012xEQbnvT2R2MKoffM1f2W1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2577,
+      "cache_read_input_tokens": 35054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2577
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-23T16:56:10.370Z_
+
+<details><summary>↩ Tool result · `toolu_016xBCRbbYNYYbqqvp3ppjQN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"test_eval_14b_rsft_s43_with_evi\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:01:43.424Z\", \"updated_at\": \"2026-05-23T16:56:09.678Z\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"261715\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\", \"submitted_at\": \"2026-05-23T15:01:42.508Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-14B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b_s43\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\"}, \"hypothesis\": \"14B RSFT s43 with-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). s42 test ign_f1=0.3849. 2-seed reproducibility for 14B test.\", \"parent\": \"plan017_14b_rsft_s43_train\", \"reproduce\": {\"finished_at\": \"2026-05-23T16:53:09.148Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T16:53:16.818227+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3767, \"f1\": 0.3767, \"precision\": 0.4252, \"recall\": 0.3382, \"evi_f1\": 0.2468, \"evi_f1_tp\": 0.5836, \"edcr\": 0.834, \"n_docs\": 500, \"n_predictions\": 22861, \"format_ok\": 498, \"truncated\": 271, \"inference_time_s\": 6583.2, \"codalab_converted\": 13323, \"codalab_skipped_rel\": 371, \"codalab_skipped_entity\": 652}, \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6506}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "7f47b970-583d-44c8-9395-0952ad3b6471",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_14b_rsft_s43_with_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T15:01:43.424Z\\\", \\\"updated_at\\\": \\\"2026-05-23T16:56:09.678Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"261715\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T15:01:42.508Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-14B\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_14b_s43\\\", \\\"eval_data\\\": \\\"Re-DocRED test_revised (500 docs)\\\"}, \\\"hypothesis\\\": \\\"14B RSFT s43 with-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). s42 test ign_f1=0.3849. 2-seed reproducibility for 14B test.\\\", \\\"parent\\\": \\\"plan017_14b_rsft_s43_train\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T16:53:09.148Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T16:53:16.818227+00:00\\\"}]}, \\\"metrics\\\": {\\\"ign_f1\\\": 0.3767, \\\"f1\\\": 0.3767, \\\"precision\\\": 0.4252, \\\"recall\\\": 0.3382, \\\"evi_f1\\\": 0.2468, \\\"evi_f1_tp\\\": 0.5836, \\\"edcr\\\": 0.834, \\\"n_docs\\\": 500, \\\"n_predictions\\\": 22861, \\\"format_ok\\\": 498, \\\"truncated\\\": 271, \\\"inference_time_s\\\": 6583.2, \\\"codalab_converted\\\": 13323, \\\"codalab_skipped_rel\\\": 371, \\\"codalab_skipped_entity\\\": 652}, \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6506}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"test_eval_14b_rsft_s43_with_evi\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:01:43.424Z\", \"updated_at\": \"2026-05-23T16:56:09.678Z\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"261715\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\", \"submitted_at\": \"2026-05-23T15:01:42.508Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-14B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b_s43\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\"}, \"hypothesis\": \"14B RSFT s43 with-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). s42 test ign_f1=0.3849. 2-seed reproducibility for 14B test.\", \"parent\": \"plan017_14b_rsft_s43_train\", \"reproduce\": {\"finished_at\": \"2026-05-23T16:53:09.148Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T16:53:16.818227+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3767, \"f1\": 0.3767, \"precision\": 0.4252, \"recall\": 0.3382, \"evi_f1\": 0.2468, \"evi_f1_tp\": 0.5836, \"edcr\": 0.834, \"n_docs\": 500, \"n_predictions\": 22861, \"format_ok\": 498, \"truncated\": 271, \"inference_time_s\": 6583.2, \"codalab_converted\": 13323, \"codalab_skipped_rel\": 371, \"codalab_skipped_entity\": 652}, \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6506}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_015qkxmb2erfNKsGPXW89ACU`</summary>
+
+```json
+{
+  "exp_id": "test_eval_14b_rsft_s43_with_evi",
+  "field": "conclusion",
+  "value": "success",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "b46cf6ca-caba-40b0-a069-1e8579f74926",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012xEQbnvT2R2MKoffM1f2W1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2577,
+      "cache_read_input_tokens": 35054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2577
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Jh7oPTyCJ6f7amtF7dVNit`</summary>
+
+```json
+{
+  "exp_id": "test_eval_14b_rsft_s43_with_evi",
+  "field": "status",
+  "value": "DONE",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "5abe7c8d-36b3-4c65-98ff-af4bf68ad8a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012xEQbnvT2R2MKoffM1f2W1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2577,
+      "cache_read_input_tokens": 35054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2577
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T16:56:12.268Z_
+
+<details><summary>↩ Tool result · `toolu_01U4LRhVvRwsTG8rFvwH5MPo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"test_eval_14b_rsft_s43_with_evi\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:01:43.424Z\", \"updated_at\": \"2026-05-23T16:56:11.405Z\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"261715\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\", \"submitted_at\": \"2026-05-23T15:01:42.508Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-14B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b_s43\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\"}, \"hypothesis\": \"14B RSFT s43 with-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). s42 test ign_f1=0.3849. 2-seed reproducibility for 14B test.\", \"parent\": \"plan017_14b_rsft_s43_train\", \"reproduce\": {\"finished_at\": \"2026-05-23T16:53:09.148Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T16:53:16.818227+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3767, \"f1\": 0.3767, \"precision\": 0.4252, \"recall\": 0.3382, \"evi_f1\": 0.2468, \"evi_f1_tp\": 0.5836, \"edcr\": 0.834, \"n_docs\": 500, \"n_predictions\": 22861, \"format_ok\": 498, \"truncated\": 271, \"inference_time_s\": 6583.2, \"codalab_converted\": 13323, \"codalab_skipped_rel\": 371, \"codalab_skipped_entity\": 652}, \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8878}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "458b5401-72bf-4f72-9d71-c28e7a250986",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_14b_rsft_s43_with_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T15:01:43.424Z\\\", \\\"updated_at\\\": \\\"2026-05-23T16:56:11.405Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"261715\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T15:01:42.508Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-14B\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_14b_s43\\\", \\\"eval_data\\\": \\\"Re-DocRED test_revised (500 docs)\\\"}, \\\"hypothesis\\\": \\\"14B RSFT s43 with-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). s42 test ign_f1=0.3849. 2-seed reproducibility for 14B test.\\\", \\\"parent\\\": \\\"plan017_14b_rsft_s43_train\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T16:53:09.148Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T16:53:16.818227+00:00\\\"}]}, \\\"metrics\\\": {\\\"ign_f1\\\": 0.3767, \\\"f1\\\": 0.3767, \\\"precision\\\": 0.4252, \\\"recall\\\": 0.3382, \\\"evi_f1\\\": 0.2468, \\\"evi_f1_tp\\\": 0.5836, \\\"edcr\\\": 0.834, \\\"n_docs\\\": 500, \\\"n_predictions\\\": 22861, \\\"format_ok\\\": 498, \\\"truncated\\\": 271, \\\"inference_time_s\\\": 6583.2, \\\"codalab_converted\\\": 13323, \\\"codalab_skipped_rel\\\": 371, \\\"codalab_skipped_entity\\\": 652}, \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8878}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"test_eval_14b_rsft_s43_with_evi\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:01:43.424Z\", \"updated_at\": \"2026-05-23T16:56:11.405Z\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"261715\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\", \"submitted_at\": \"2026-05-23T15:01:42.508Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-14B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b_s43\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\"}, \"hypothesis\": \"14B RSFT s43 with-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). s42 test ign_f1=0.3849. 2-seed reproducibility for 14B test.\", \"parent\": \"plan017_14b_rsft_s43_train\", \"reproduce\": {\"finished_at\": \"2026-05-23T16:53:09.148Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T16:53:16.818227+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3767, \"f1\": 0.3767, \"precision\": 0.4252, \"recall\": 0.3382, \"evi_f1\": 0.2468, \"evi_f1_tp\": 0.5836, \"edcr\": 0.834, \"n_docs\": 500, \"n_predictions\": 22861, \"format_ok\": 498, \"truncated\": 271, \"inference_time_s\": 6583.2, \"codalab_converted\": 13323, \"codalab_skipped_rel\": 371, \"codalab_skipped_entity\": 652}, \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8878}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-23T16:56:13.897Z_
+
+<details><summary>↩ Tool result · `toolu_015qkxmb2erfNKsGPXW89ACU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"test_eval_14b_rsft_s43_with_evi\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:01:43.424Z\", \"updated_at\": \"2026-05-23T16:56:13.225Z\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"261715\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\", \"submitted_at\": \"2026-05-23T15:01:42.508Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-14B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b_s43\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\"}, \"hypothesis\": \"14B RSFT s43 with-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). s42 test ign_f1=0.3849. 2-seed reproducibility for 14B test.\", \"parent\": \"plan017_14b_rsft_s43_train\", \"reproduce\": {\"finished_at\": \"2026-05-23T16:53:09.148Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T16:53:16.818227+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3767, \"f1\": 0.3767, \"precision\": 0.4252, \"recall\": 0.3382, \"evi_f1\": 0.2468, \"evi_f1_tp\": 0.5836, \"edcr\": 0.834, \"n_docs\": 500, \"n_predictions\": 22861, \"format_ok\": 498, \"truncated\": 271, \"inference_time_s\": 6583.2, \"codalab_converted\": 13323, \"codalab_skipped_rel\": 371, \"codalab_skipped_entity\": 652}, \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.616}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "3be6b805-b78a-4910-8359-3572d1ed5ec1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_14b_rsft_s43_with_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T15:01:43.424Z\\\", \\\"updated_at\\\": \\\"2026-05-23T16:56:13.225Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"261715\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T15:01:42.508Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-14B\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_14b_s43\\\", \\\"eval_data\\\": \\\"Re-DocRED test_revised (500 docs)\\\"}, \\\"hypothesis\\\": \\\"14B RSFT s43 with-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). s42 test ign_f1=0.3849. 2-seed reproducibility for 14B test.\\\", \\\"parent\\\": \\\"plan017_14b_rsft_s43_train\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T16:53:09.148Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T16:53:16.818227+00:00\\\"}]}, \\\"metrics\\\": {\\\"ign_f1\\\": 0.3767, \\\"f1\\\": 0.3767, \\\"precision\\\": 0.4252, \\\"recall\\\": 0.3382, \\\"evi_f1\\\": 0.2468, \\\"evi_f1_tp\\\": 0.5836, \\\"edcr\\\": 0.834, \\\"n_docs\\\": 500, \\\"n_predictions\\\": 22861, \\\"format_ok\\\": 498, \\\"truncated\\\": 271, \\\"inference_time_s\\\": 6583.2, \\\"codalab_converted\\\": 13323, \\\"codalab_skipped_rel\\\": 371, \\\"codalab_skipped_entity\\\": 652}, \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.616}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"test_eval_14b_rsft_s43_with_evi\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:01:43.424Z\", \"updated_at\": \"2026-05-23T16:56:13.225Z\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"261715\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\", \"submitted_at\": \"2026-05-23T15:01:42.508Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-14B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b_s43\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\"}, \"hypothesis\": \"14B RSFT s43 with-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). s42 test ign_f1=0.3849. 2-seed reproducibility for 14B test.\", \"parent\": \"plan017_14b_rsft_s43_train\", \"reproduce\": {\"finished_at\": \"2026-05-23T16:53:09.148Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T16:53:16.818227+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3767, \"f1\": 0.3767, \"precision\": 0.4252, \"recall\": 0.3382, \"evi_f1\": 0.2468, \"evi_f1_tp\": 0.5836, \"edcr\": 0.834, \"n_docs\": 500, \"n_predictions\": 22861, \"format_ok\": 498, \"truncated\": 271, \"inference_time_s\": 6583.2, \"codalab_converted\": 13323, \"codalab_skipped_rel\": 371, \"codalab_skipped_entity\": 652}, \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.616}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T16:56:17.742Z_
+
+<details><summary>↩ Tool result · `toolu_01Jh7oPTyCJ6f7amtF7dVNit`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"test_eval_14b_rsft_s43_with_evi\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:01:43.424Z\", \"updated_at\": \"2026-05-23T16:56:14.861Z\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"261715\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\", \"submitted_at\": \"2026-05-23T15:01:42.508Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-14B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b_s43\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\", \"wall_clock_seconds\": 6872.4, \"gpu_hours\": 1.91}, \"hypothesis\": \"14B RSFT s43 with-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). s42 test ign_f1=0.3849. 2-seed reproducibility for 14B test.\", \"parent\": \"plan017_14b_rsft_s43_train\", \"reproduce\": {\"finished_at\": \"2026-05-23T16:53:09.148Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T16:53:16.818227+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3767, \"f1\": 0.3767, \"precision\": 0.4252, \"recall\": 0.3382, \"evi_f1\": 0.2468, \"evi_f1_tp\": 0.5836, \"edcr\": 0.834, \"n_docs\": 500, \"n_predictions\": 22861, \"format_ok\": 498, \"truncated\": 271, \"inference_time_s\": 6583.2, \"codalab_converted\": 13323, \"codalab_skipped_rel\": 371, \"codalab_skipped_entity\": 652}, \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T16:56:14.862Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.8306}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "15794bf5-adef-404a-92c9-4e40c2ceb4f6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_14b_rsft_s43_with_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T15:01:43.424Z\\\", \\\"updated_at\\\": \\\"2026-05-23T16:56:14.861Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"261715\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T15:01:42.508Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-14B\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_14b_s43\\\", \\\"eval_data\\\": \\\"Re-DocRED test_revised (500 docs)\\\", \\\"wall_clock_seconds\\\": 6872.4, \\\"gpu_hours\\\": 1.91}, \\\"hypothesis\\\": \\\"14B RSFT s43 with-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). s42 test ign_f1=0.3849. 2-seed reproducibility for 14B test.\\\", \\\"parent\\\": \\\"plan017_14b_rsft_s43_train\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T16:53:09.148Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T16:53:16.818227+00:00\\\"}]}, \\\"metrics\\\": {\\\"ign_f1\\\": 0.3767, \\\"f1\\\": 0.3767, \\\"precision\\\": 0.4252, \\\"recall\\\": 0.3382, \\\"evi_f1\\\": 0.2468, \\\"evi_f1_tp\\\": 0.5836, \\\"edcr\\\": 0.834, \\\"n_docs\\\": 500, \\\"n_predictions\\\": 22861, \\\"format_ok\\\": 498, \\\"truncated\\\": 271, \\\"inference_time_s\\\": 6583.2, \\\"codalab_converted\\\": 13323, \\\"codalab_skipped_rel\\\": 371, \\\"codalab_skipped_entity\\\": 652}, \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-23T16:56:14.862Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.8306}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"test_eval_14b_rsft_s43_with_evi\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:01:43.424Z\", \"updated_at\": \"2026-05-23T16:56:14.861Z\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"261715\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\", \"submitted_at\": \"2026-05-23T15:01:42.508Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-14B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b_s43\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\", \"wall_clock_seconds\": 6872.4, \"gpu_hours\": 1.91}, \"hypothesis\": \"14B RSFT s43 with-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). s42 test ign_f1=0.3849. 2-seed reproducibility for 14B test.\", \"parent\": \"plan017_14b_rsft_s43_train\", \"reproduce\": {\"finished_at\": \"2026-05-23T16:53:09.148Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T16:53:16.818227+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3767, \"f1\": 0.3767, \"precision\": 0.4252, \"recall\": 0.3382, \"evi_f1\": 0.2468, \"evi_f1_tp\": 0.5836, \"edcr\": 0.834, \"n_docs\": 500, \"n_predictions\": 22861, \"format_ok\": 498, \"truncated\": 271, \"inference_time_s\": 6583.2, \"codalab_converted\": 13323, \"codalab_skipped_rel\": 371, \"codalab_skipped_entity\": 652}, \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T16:56:14.862Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.8306}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+with_evi registry 更新完成。现在更新 no_evi。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "293ebd8c-dda2-4670-9b90-c4d078bdd61e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VM9uphuzQaA5vhX3VC6qqW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7330,
+      "cache_read_input_tokens": 37631,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7330
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01GeTmZCcE75w4DKaKXnG5TT`</summary>
+
+```json
+{
+  "exp_id": "test_eval_14b_rsft_s43_no_evi",
+  "field": "metrics",
+  "value": {
+    "ign_f1": 0.3775,
+    "f1": 0.3775,
+    "precision": 0.4138,
+    "recall": 0.347,
+    "evi_f1": 0,
+    "evi_f1_tp": 0,
+    "edcr": 0,
+    "n_docs": 500,
+    "n_predictions": 31216,
+    "format_ok": 499,
+    "truncated": 292,
+    "inference_time_s": 6554.6,
+    "codalab_converted": 14066,
+    "codalab_skipped_rel": 405,
+    "codalab_skipped_entity": 831,
+    "evidence_tax_pp": 0.08
+  },
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "70ece363-097d-4b2f-a6be-01276a417624",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VM9uphuzQaA5vhX3VC6qqW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7330,
+      "cache_read_input_tokens": 37631,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7330
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Npn497Hui6227SHB1GuyHn`</summary>
+
+```json
+{
+  "exp_id": "test_eval_14b_rsft_s43_no_evi",
+  "field": "log_path",
+  "value": "~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "2bd7de82-b3ba-470d-86f6-ea7dd35488bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VM9uphuzQaA5vhX3VC6qqW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7330,
+      "cache_read_input_tokens": 37631,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7330
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-23T16:56:26.664Z_
+
+<details><summary>↩ Tool result · `toolu_01GeTmZCcE75w4DKaKXnG5TT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"test_eval_14b_rsft_s43_no_evi\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:01:46.714Z\", \"updated_at\": \"2026-05-23T16:56:25.908Z\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"261858\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\", \"submitted_at\": \"2026-05-23T15:01:45.795Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-14B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b_s43\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\"}, \"hypothesis\": \"14B RSFT s43 no-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). 配对 with-evi 计算 14B s43 test evidence tax. s42 test tax=+0.77pp.\", \"parent\": \"test_eval_14b_rsft_s43_with_evi\", \"reproduce\": {\"finished_at\": \"2026-05-23T16:53:27.251Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T16:53:41.511537+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3775, \"f1\": 0.3775, \"precision\": 0.4138, \"recall\": 0.347, \"evi_f1\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"n_docs\": 500, \"n_predictions\": 31216, \"format_ok\": 499, \"truncated\": 292, \"inference_time_s\": 6554.6, \"codalab_converted\": 14066, \"codalab_skipped_rel\": 405, \"codalab_skipped_entity\": 831, \"evidence_tax_pp\": 0.08}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7532}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "117f6382-0795-4225-85b0-eb1a3bd69d9f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_14b_rsft_s43_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T15:01:46.714Z\\\", \\\"updated_at\\\": \\\"2026-05-23T16:56:25.908Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"261858\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T15:01:45.795Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-14B\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_14b_s43\\\", \\\"eval_data\\\": \\\"Re-DocRED test_revised (500 docs)\\\"}, \\\"hypothesis\\\": \\\"14B RSFT s43 no-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). 配对 with-evi 计算 14B s43 test evidence tax. s42 test tax=+0.77pp.\\\", \\\"parent\\\": \\\"test_eval_14b_rsft_s43_with_evi\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T16:53:27.251Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T16:53:41.511537+00:00\\\"}]}, \\\"metrics\\\": {\\\"ign_f1\\\": 0.3775, \\\"f1\\\": 0.3775, \\\"precision\\\": 0.4138, \\\"recall\\\": 0.347, \\\"evi_f1\\\": 0, \\\"evi_f1_tp\\\": 0, \\\"edcr\\\": 0, \\\"n_docs\\\": 500, \\\"n_predictions\\\": 31216, \\\"format_ok\\\": 499, \\\"truncated\\\": 292, \\\"inference_time_s\\\": 6554.6, \\\"codalab_converted\\\": 14066, \\\"codalab_skipped_rel\\\": 405, \\\"codalab_skipped_entity\\\": 831, \\\"evidence_tax_pp\\\": 0.08}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7532}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"test_eval_14b_rsft_s43_no_evi\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:01:46.714Z\", \"updated_at\": \"2026-05-23T16:56:25.908Z\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"261858\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\", \"submitted_at\": \"2026-05-23T15:01:45.795Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-14B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b_s43\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\"}, \"hypothesis\": \"14B RSFT s43 no-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). 配对 with-evi 计算 14B s43 test evidence tax. s42 test tax=+0.77pp.\", \"parent\": \"test_eval_14b_rsft_s43_with_evi\", \"reproduce\": {\"finished_at\": \"2026-05-23T16:53:27.251Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T16:53:41.511537+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3775, \"f1\": 0.3775, \"precision\": 0.4138, \"recall\": 0.347, \"evi_f1\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"n_docs\": 500, \"n_predictions\": 31216, \"format_ok\": 499, \"truncated\": 292, \"inference_time_s\": 6554.6, \"codalab_converted\": 14066, \"codalab_skipped_rel\": 405, \"codalab_skipped_entity\": 831, \"evidence_tax_pp\": 0.08}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7532}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01JEmmdrxmpcP6Ciaf1XY7sC`</summary>
+
+```json
+{
+  "exp_id": "test_eval_14b_rsft_s43_no_evi",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "123330aa-0a9d-4ab7-aa87-0bac6edb705f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VM9uphuzQaA5vhX3VC6qqW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7330,
+      "cache_read_input_tokens": 37631,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7330
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01CMbkKFggTBqRMdXhD24v5S`</summary>
+
+```json
+{
+  "exp_id": "test_eval_14b_rsft_s43_no_evi",
+  "field": "conclusion",
+  "value": "success",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "de5394df-e479-42a0-836e-863390ae539d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VM9uphuzQaA5vhX3VC6qqW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7330,
+      "cache_read_input_tokens": 37631,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7330
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-23T16:56:28.808Z_
+
+<details><summary>↩ Tool result · `toolu_01Npn497Hui6227SHB1GuyHn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"test_eval_14b_rsft_s43_no_evi\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:01:46.714Z\", \"updated_at\": \"2026-05-23T16:56:27.713Z\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"261858\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\", \"submitted_at\": \"2026-05-23T15:01:45.795Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-14B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b_s43\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\"}, \"hypothesis\": \"14B RSFT s43 no-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). 配对 with-evi 计算 14B s43 test evidence tax. s42 test tax=+0.77pp.\", \"parent\": \"test_eval_14b_rsft_s43_with_evi\", \"reproduce\": {\"finished_at\": \"2026-05-23T16:53:27.251Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T16:53:41.511537+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3775, \"f1\": 0.3775, \"precision\": 0.4138, \"recall\": 0.347, \"evi_f1\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"n_docs\": 500, \"n_predictions\": 31216, \"format_ok\": 499, \"truncated\": 292, \"inference_time_s\": 6554.6, \"codalab_converted\": 14066, \"codalab_skipped_rel\": 405, \"codalab_skipped_entity\": 831, \"evidence_tax_pp\": 0.08}, \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1311}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "b7c66930-dfca-4210-8e9f-d8d2580d8dfc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_14b_rsft_s43_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T15:01:46.714Z\\\", \\\"updated_at\\\": \\\"2026-05-23T16:56:27.713Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"261858\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T15:01:45.795Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-14B\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_14b_s43\\\", \\\"eval_data\\\": \\\"Re-DocRED test_revised (500 docs)\\\"}, \\\"hypothesis\\\": \\\"14B RSFT s43 no-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). 配对 with-evi 计算 14B s43 test evidence tax. s42 test tax=+0.77pp.\\\", \\\"parent\\\": \\\"test_eval_14b_rsft_s43_with_evi\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T16:53:27.251Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T16:53:41.511537+00:00\\\"}]}, \\\"metrics\\\": {\\\"ign_f1\\\": 0.3775, \\\"f1\\\": 0.3775, \\\"precision\\\": 0.4138, \\\"recall\\\": 0.347, \\\"evi_f1\\\": 0, \\\"evi_f1_tp\\\": 0, \\\"edcr\\\": 0, \\\"n_docs\\\": 500, \\\"n_predictions\\\": 31216, \\\"format_ok\\\": 499, \\\"truncated\\\": 292, \\\"inference_time_s\\\": 6554.6, \\\"codalab_converted\\\": 14066, \\\"codalab_skipped_rel\\\": 405, \\\"codalab_skipped_entity\\\": 831, \\\"evidence_tax_pp\\\": 0.08}, \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1311}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"test_eval_14b_rsft_s43_no_evi\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:01:46.714Z\", \"updated_at\": \"2026-05-23T16:56:27.713Z\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"261858\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\", \"submitted_at\": \"2026-05-23T15:01:45.795Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-14B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b_s43\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\"}, \"hypothesis\": \"14B RSFT s43 no-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). 配对 with-evi 计算 14B s43 test evidence tax. s42 test tax=+0.77pp.\", \"parent\": \"test_eval_14b_rsft_s43_with_evi\", \"reproduce\": {\"finished_at\": \"2026-05-23T16:53:27.251Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T16:53:41.511537+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3775, \"f1\": 0.3775, \"precision\": 0.4138, \"recall\": 0.347, \"evi_f1\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"n_docs\": 500, \"n_predictions\": 31216, \"format_ok\": 499, \"truncated\": 292, \"inference_time_s\": 6554.6, \"codalab_converted\": 14066, \"codalab_skipped_rel\": 405, \"codalab_skipped_entity\": 831, \"evidence_tax_pp\": 0.08}, \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1311}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_0185xGQp5QvzTBNLV68yCm7z`</summary>
+
+```json
+{
+  "exp_id": "test_eval_14b_rsft_s43_no_evi",
+  "field": "status",
+  "value": "DONE",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "bb2d45a9-a053-4a7c-9d46-a287d5333f84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VM9uphuzQaA5vhX3VC6qqW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7330,
+      "cache_read_input_tokens": 37631,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7330
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-23T16:56:30.492Z_
+
+<details><summary>↩ Tool result · `toolu_01JEmmdrxmpcP6Ciaf1XY7sC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"test_eval_14b_rsft_s43_no_evi\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:01:46.714Z\", \"updated_at\": \"2026-05-23T16:56:29.807Z\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"261858\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\", \"submitted_at\": \"2026-05-23T15:01:45.795Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-14B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b_s43\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\"}, \"hypothesis\": \"14B RSFT s43 no-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). 配对 with-evi 计算 14B s43 test evidence tax. s42 test tax=+0.77pp.\", \"parent\": \"test_eval_14b_rsft_s43_with_evi\", \"reproduce\": {\"finished_at\": \"2026-05-23T16:53:27.251Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T16:53:41.511537+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3775, \"f1\": 0.3775, \"precision\": 0.4138, \"recall\": 0.347, \"evi_f1\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"n_docs\": 500, \"n_predictions\": 31216, \"format_ok\": 499, \"truncated\": 292, \"inference_time_s\": 6554.6, \"codalab_converted\": 14066, \"codalab_skipped_rel\": 405, \"codalab_skipped_entity\": 831, \"evidence_tax_pp\": 0.08}, \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.672}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "369f9e86-8336-4f9c-ac54-bb739198fdd7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_14b_rsft_s43_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T15:01:46.714Z\\\", \\\"updated_at\\\": \\\"2026-05-23T16:56:29.807Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"261858\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T15:01:45.795Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-14B\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_14b_s43\\\", \\\"eval_data\\\": \\\"Re-DocRED test_revised (500 docs)\\\"}, \\\"hypothesis\\\": \\\"14B RSFT s43 no-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). 配对 with-evi 计算 14B s43 test evidence tax. s42 test tax=+0.77pp.\\\", \\\"parent\\\": \\\"test_eval_14b_rsft_s43_with_evi\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T16:53:27.251Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T16:53:41.511537+00:00\\\"}]}, \\\"metrics\\\": {\\\"ign_f1\\\": 0.3775, \\\"f1\\\": 0.3775, \\\"precision\\\": 0.4138, \\\"recall\\\": 0.347, \\\"evi_f1\\\": 0, \\\"evi_f1_tp\\\": 0, \\\"edcr\\\": 0, \\\"n_docs\\\": 500, \\\"n_predictions\\\": 31216, \\\"format_ok\\\": 499, \\\"truncated\\\": 292, \\\"inference_time_s\\\": 6554.6, \\\"codalab_converted\\\": 14066, \\\"codalab_skipped_rel\\\": 405, \\\"codalab_skipped_entity\\\": 831, \\\"evidence_tax_pp\\\": 0.08}, \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.672}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"test_eval_14b_rsft_s43_no_evi\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:01:46.714Z\", \"updated_at\": \"2026-05-23T16:56:29.807Z\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"261858\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\", \"submitted_at\": \"2026-05-23T15:01:45.795Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-14B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b_s43\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\"}, \"hypothesis\": \"14B RSFT s43 no-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). 配对 with-evi 计算 14B s43 test evidence tax. s42 test tax=+0.77pp.\", \"parent\": \"test_eval_14b_rsft_s43_with_evi\", \"reproduce\": {\"finished_at\": \"2026-05-23T16:53:27.251Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T16:53:41.511537+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3775, \"f1\": 0.3775, \"precision\": 0.4138, \"recall\": 0.347, \"evi_f1\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"n_docs\": 500, \"n_predictions\": 31216, \"format_ok\": 499, \"truncated\": 292, \"inference_time_s\": 6554.6, \"codalab_converted\": 14066, \"codalab_skipped_rel\": 405, \"codalab_skipped_entity\": 831, \"evidence_tax_pp\": 0.08}, \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.672}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-23T16:56:32.323Z_
+
+<details><summary>↩ Tool result · `toolu_01CMbkKFggTBqRMdXhD24v5S`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"test_eval_14b_rsft_s43_no_evi\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:01:46.714Z\", \"updated_at\": \"2026-05-23T16:56:31.548Z\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"261858\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\", \"submitted_at\": \"2026-05-23T15:01:45.795Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-14B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b_s43\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\"}, \"hypothesis\": \"14B RSFT s43 no-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). 配对 with-evi 计算 14B s43 test evidence tax. s42 test tax=+0.77pp.\", \"parent\": \"test_eval_14b_rsft_s43_with_evi\", \"reproduce\": {\"finished_at\": \"2026-05-23T16:53:27.251Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T16:53:41.511537+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3775, \"f1\": 0.3775, \"precision\": 0.4138, \"recall\": 0.347, \"evi_f1\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"n_docs\": 500, \"n_predictions\": 31216, \"format_ok\": 499, \"truncated\": 292, \"inference_time_s\": 6554.6, \"codalab_converted\": 14066, \"codalab_skipped_rel\": 405, \"codalab_skipped_entity\": 831, \"evidence_tax_pp\": 0.08}, \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8121}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "8743698a-7ff5-4404-b868-dcee761b3a17",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_14b_rsft_s43_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T15:01:46.714Z\\\", \\\"updated_at\\\": \\\"2026-05-23T16:56:31.548Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"261858\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T15:01:45.795Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-14B\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_14b_s43\\\", \\\"eval_data\\\": \\\"Re-DocRED test_revised (500 docs)\\\"}, \\\"hypothesis\\\": \\\"14B RSFT s43 no-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). 配对 with-evi 计算 14B s43 test evidence tax. s42 test tax=+0.77pp.\\\", \\\"parent\\\": \\\"test_eval_14b_rsft_s43_with_evi\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T16:53:27.251Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T16:53:41.511537+00:00\\\"}]}, \\\"metrics\\\": {\\\"ign_f1\\\": 0.3775, \\\"f1\\\": 0.3775, \\\"precision\\\": 0.4138, \\\"recall\\\": 0.347, \\\"evi_f1\\\": 0, \\\"evi_f1_tp\\\": 0, \\\"edcr\\\": 0, \\\"n_docs\\\": 500, \\\"n_predictions\\\": 31216, \\\"format_ok\\\": 499, \\\"truncated\\\": 292, \\\"inference_time_s\\\": 6554.6, \\\"codalab_converted\\\": 14066, \\\"codalab_skipped_rel\\\": 405, \\\"codalab_skipped_entity\\\": 831, \\\"evidence_tax_pp\\\": 0.08}, \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8121}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"test_eval_14b_rsft_s43_no_evi\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:01:46.714Z\", \"updated_at\": \"2026-05-23T16:56:31.548Z\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"261858\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\", \"submitted_at\": \"2026-05-23T15:01:45.795Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-14B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b_s43\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\"}, \"hypothesis\": \"14B RSFT s43 no-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). 配对 with-evi 计算 14B s43 test evidence tax. s42 test tax=+0.77pp.\", \"parent\": \"test_eval_14b_rsft_s43_with_evi\", \"reproduce\": {\"finished_at\": \"2026-05-23T16:53:27.251Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T16:53:41.511537+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3775, \"f1\": 0.3775, \"precision\": 0.4138, \"recall\": 0.347, \"evi_f1\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"n_docs\": 500, \"n_predictions\": 31216, \"format_ok\": 499, \"truncated\": 292, \"inference_time_s\": 6554.6, \"codalab_converted\": 14066, \"codalab_skipped_rel\": 405, \"codalab_skipped_entity\": 831, \"evidence_tax_pp\": 0.08}, \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8121}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-23T16:56:37.299Z_
+
+<details><summary>↩ Tool result · `toolu_0185xGQp5QvzTBNLV68yCm7z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"test_eval_14b_rsft_s43_no_evi\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:01:46.714Z\", \"updated_at\": \"2026-05-23T16:56:34.424Z\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"261858\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\", \"submitted_at\": \"2026-05-23T15:01:45.795Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-14B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b_s43\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\", \"wall_clock_seconds\": 6888.6, \"gpu_hours\": 1.91}, \"hypothesis\": \"14B RSFT s43 no-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). 配对 with-evi 计算 14B s43 test evidence tax. s42 test tax=+0.77pp.\", \"parent\": \"test_eval_14b_rsft_s43_with_evi\", \"reproduce\": {\"finished_at\": \"2026-05-23T16:53:27.251Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T16:53:41.511537+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3775, \"f1\": 0.3775, \"precision\": 0.4138, \"recall\": 0.347, \"evi_f1\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"n_docs\": 500, \"n_predictions\": 31216, \"format_ok\": 499, \"truncated\": 292, \"inference_time_s\": 6554.6, \"codalab_converted\": 14066, \"codalab_skipped_rel\": 405, \"codalab_skipped_entity\": 831, \"evidence_tax_pp\": 0.08}, \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T16:56:34.424Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.9476}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "bd7f3411-c628-4310-9a75-5f1018cad334",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"test_eval_14b_rsft_s43_no_evi\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T15:01:46.714Z\\\", \\\"updated_at\\\": \\\"2026-05-23T16:56:34.424Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"261858\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T15:01:45.795Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-14B\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_14b_s43\\\", \\\"eval_data\\\": \\\"Re-DocRED test_revised (500 docs)\\\", \\\"wall_clock_seconds\\\": 6888.6, \\\"gpu_hours\\\": 1.91}, \\\"hypothesis\\\": \\\"14B RSFT s43 no-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). 配对 with-evi 计算 14B s43 test evidence tax. s42 test tax=+0.77pp.\\\", \\\"parent\\\": \\\"test_eval_14b_rsft_s43_with_evi\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T16:53:27.251Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T16:53:41.511537+00:00\\\"}]}, \\\"metrics\\\": {\\\"ign_f1\\\": 0.3775, \\\"f1\\\": 0.3775, \\\"precision\\\": 0.4138, \\\"recall\\\": 0.347, \\\"evi_f1\\\": 0, \\\"evi_f1_tp\\\": 0, \\\"edcr\\\": 0, \\\"n_docs\\\": 500, \\\"n_predictions\\\": 31216, \\\"format_ok\\\": 499, \\\"truncated\\\": 292, \\\"inference_time_s\\\": 6554.6, \\\"codalab_converted\\\": 14066, \\\"codalab_skipped_rel\\\": 405, \\\"codalab_skipped_entity\\\": 831, \\\"evidence_tax_pp\\\": 0.08}, \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-23T16:56:34.424Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.9476}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"test_eval_14b_rsft_s43_no_evi\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:01:46.714Z\", \"updated_at\": \"2026-05-23T16:56:34.424Z\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --no_evidence --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"261858\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\", \"submitted_at\": \"2026-05-23T15:01:45.795Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-14B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b_s43\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\", \"wall_clock_seconds\": 6888.6, \"gpu_hours\": 1.91}, \"hypothesis\": \"14B RSFT s43 no-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). 配对 with-evi 计算 14B s43 test evidence tax. s42 test tax=+0.77pp.\", \"parent\": \"test_eval_14b_rsft_s43_with_evi\", \"reproduce\": {\"finished_at\": \"2026-05-23T16:53:27.251Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T16:53:41.511537+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3775, \"f1\": 0.3775, \"precision\": 0.4138, \"recall\": 0.347, \"evi_f1\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"n_docs\": 500, \"n_predictions\": 31216, \"format_ok\": 499, \"truncated\": 292, \"inference_time_s\": 6554.6, \"codalab_converted\": 14066, \"codalab_skipped_rel\": 405, \"codalab_skipped_entity\": 831, \"evidence_tax_pp\": 0.08}, \"log_path\": \"~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T16:56:34.424Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.9476}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both experiments are now DONE in registry. Now I need to write the analysis report. Let me compute the key numbers:
+
+**s43 results:**
+- with_evi: ign_f1=0.3767, precision=0.4252, recall=0.3382, evi_f1=0.2468, evi_f1_tp=0.5836, edcr=0.834
+- no_evi: ign_f1=0.3775, precision=0.4138, recall=0.347
+
+**s43 evidence tax:**
+- tax = (0.3775 - 0.3767) * 100 = +0.08pp
+
+
+- s42 shows a larger tax at +0.77pp, so there's meaningful variation between seeds
+
+Now I'm calculating the 14B 2-seed mean and standard deviation across both experiments to get a clearer picture of the overall effect. Generating comparison table...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "e5399e48-044f-4df5-bf38-680b52d88971",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013zrAkT24sSwPFTr3UKQ57j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5977,
+      "cache_read_input_tokens": 44961,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5977
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+Registry 全部更新完成。现在写分析报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "504b466a-6428-4803-b9b9-29692de83ebf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013zrAkT24sSwPFTr3UKQ57j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5977,
+      "cache_read_input_tokens": 44961,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5977
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Kd3r5espTiUX7H2tJuEBJ1`</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43/report",
+  "description": "Create report output directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "f44f3c06-d68f-4582-b36b-931dcb62cb38",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013zrAkT24sSwPFTr3UKQ57j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5977,
+      "cache_read_input_tokens": 44961,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5977
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-23T16:56:56.534Z_
+
+<details><summary>↩ Tool result · `toolu_01Kd3r5espTiUX7H2tJuEBJ1`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "cc5fc5f1-e307-4f34-bf94-e9235771d360",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": true
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01Dtr2JzPfTPcKvJjLfHDZQa`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43/report/analysis.md",
+  "content": "# 14B RSFT s43 Test Eval Analysis\n\n## 1. Experiment Results\n\n### test_eval_14b_rsft_s43_with_evi\n\n| Metric | Value |\n|--------|-------|\n| Ign-F1 | 0.3767 |\n| F1 | 0.3767 |\n| Precision | 0.4252 |\n| Recall | 0.3382 |\n| Evi-F1 (DREEAM) | 0.2468 |\n| Evi-F1 (TP) | 0.5836 |\n| EDCR | 0.8340 |\n| Documents | 500 |\n| Predictions | 22861 |\n| Format OK | 498/500 |\n| Truncated | 271/500 (54.2%) |\n| Inference Time | 6583.2s (13.17 s/doc) |\n| CodaLab Converted | 13323 |\n\n### test_eval_14b_rsft_s43_no_evi\n\n| Metric | Value |\n|--------|-------|\n| Ign-F1 | 0.3775 |\n| F1 | 0.3775 |\n| Precision | 0.4138 |\n| Recall | 0.3470 |\n| Documents | 500 |\n| Predictions | 31216 |\n| Format OK | 499/500 |\n| Truncated | 292/500 (58.4%) |\n| Inference Time | 6554.6s (13.11 s/doc) |\n| CodaLab Converted | 14066 |\n\n## 2. Evidence Tax (s43)\n\n- with-evi Ign-F1: 0.3767\n- no-evi Ign-F1: 0.3775\n- **Evidence tax: +0.08pp** (no-evi marginally better)\n\ns43 evidence tax 接近零，远小于 s42 的 +0.77pp。\n\n## 3. 14B 2-Seed Reproducibility (s42 vs s43)\n\n### with-evi Ign-F1\n\n| Seed | Ign-F1 |\n|------|--------|\n| s42 | 0.3849 |\n| s43 | 0.3767 |\n| **Mean** | **0.3808** |\n| **Std** | **0.0058** |\n\ns43 比 s42 低 0.82pp，seed 间方差偏大。\n\n### no-evi Ign-F1\n\n| Seed | Ign-F1 |\n|------|--------|\n| s42 | 0.3926 |\n| s43 | 0.3775 |\n| **Mean** | **0.3851** |\n| **Std** | **0.0107** |\n\nno-evi seed 间差异更大（1.51pp），s43 显著低于 s42。\n\n### Evidence Tax\n\n| Seed | Tax (pp) |\n|------|----------|\n| s42 | +0.77 |\n| s43 | +0.08 |\n| **Mean** | **+0.42** |\n| **Std** | **0.49** |\n\n14B evidence tax = **+0.42 +/- 0.49pp (n=2)**，正方向但置信区间跨零。\n\n## 4. Full-Scale Evidence Tax Summary (Test Set)\n\n| Scale | Tax Mean (pp) | Tax Std | n | Direction | Individual Seeds |\n|-------|--------------|---------|---|-----------|-----------------|\n| 4B (Qwen3) | +1.65 | 0.29 | 3 | positive (no-evi better) | — |\n| 8B (Qwen3) | -0.91 | 0.74 | 3 | negative (with-evi better) | — |\n| **14B (Qwen3)** | **+0.42** | **0.49** | **2** | **ambiguous** | s42=+0.77, s43=+0.08 |\n| LLaMA-8B | -1.46 | 0.40 | 2 | negative (with-evi better) | — |\n\n## 5. Key Observations\n\n1. **14B evidence tax 不显著**：+0.42pp mean，但 std=0.49pp，置信区间 [-0.07, +0.91] 跨零。2 个 seed 结果差异大（+0.77 vs +0.08），无法确定方向。\n\n2. **14B seed 方差偏大**：with-evi std=0.58pp, no-evi std=1.07pp，均高于同 scale 的预期。s43 整体表现低于 s42（with-evi 低 0.82pp，no-evi 低 1.51pp）。\n\n3. **Scale 趋势**：4B 有明确正 tax（evidence 是负担），8B 和 LLaMA 有明确负 tax（evidence 有帮助），14B 处于中间位置。这与\"更大模型更能利用 evidence\"的假设部分一致——从 4B 到 8B tax 从正变负——但 14B 又回弹到接近零，可能表明 14B 的 evidence 利用能力不如 8B。\n\n4. **CodaLab 文件已生成**：两个实验均已生成 `codalab_submission.json`，可提交官方评测。\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "8dd3f654-7908-4d35-9c3f-9b863f9ef83a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xf6xa6p5tdRvU2vE2sHADe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 942,
+      "cache_read_input_tokens": 50938,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 942
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-23T16:57:23.671Z_
+
+<details><summary>↩ Tool result · `toolu_01Dtr2JzPfTPcKvJjLfHDZQa`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43/report/analysis.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "d4d22973-6851-46b4-863b-ec6d63c47626",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43/report/analysis.md",
+    "content": "# 14B RSFT s43 Test Eval Analysis\n\n## 1. Experiment Results\n\n### test_eval_14b_rsft_s43_with_evi\n\n| Metric | Value |\n|--------|-------|\n| Ign-F1 | 0.3767 |\n| F1 | 0.3767 |\n| Precision | 0.4252 |\n| Recall | 0.3382 |\n| Evi-F1 (DREEAM) | 0.2468 |\n| Evi-F1 (TP) | 0.5836 |\n| EDCR | 0.8340 |\n| Documents | 500 |\n| Predictions | 22861 |\n| Format OK | 498/500 |\n| Truncated | 271/500 (54.2%) |\n| Inference Time | 6583.2s (13.17 s/doc) |\n| CodaLab Converted | 13323 |\n\n### test_eval_14b_rsft_s43_no_evi\n\n| Metric | Value |\n|--------|-------|\n| Ign-F1 | 0.3775 |\n| F1 | 0.3775 |\n| Precision | 0.4138 |\n| Recall | 0.3470 |\n| Documents | 500 |\n| Predictions | 31216 |\n| Format OK | 499/500 |\n| Truncated | 292/500 (58.4%) |\n| Inference Time | 6554.6s (13.11 s/doc) |\n| CodaLab Converted | 14066 |\n\n## 2. Evidence Tax (s43)\n\n- with-evi Ign-F1: 0.3767\n- no-evi Ign-F1: 0.3775\n- **Evidence tax: +0.08pp** (no-evi marginally better)\n\ns43 evidence tax 接近零，远小于 s42 的 +0.77pp。\n\n## 3. 14B 2-Seed Reproducibility (s42 vs s43)\n\n### with-evi Ign-F1\n\n| Seed | Ign-F1 |\n|------|--------|\n| s42 | 0.3849 |\n| s43 | 0.3767 |\n| **Mean** | **0.3808** |\n| **Std** | **0.0058** |\n\ns43 比 s42 低 0.82pp，seed 间方差偏大。\n\n### no-evi Ign-F1\n\n| Seed | Ign-F1 |\n|------|--------|\n| s42 | 0.3926 |\n| s43 | 0.3775 |\n| **Mean** | **0.3851** |\n| **Std** | **0.0107** |\n\nno-evi seed 间差异更大（1.51pp），s43 显著低于 s42。\n\n### Evidence Tax\n\n| Seed | Tax (pp) |\n|------|----------|\n| s42 | +0.77 |\n| s43 | +0.08 |\n| **Mean** | **+0.42** |\n| **Std** | **0.49** |\n\n14B evidence tax = **+0.42 +/- 0.49pp (n=2)**，正方向但置信区间跨零。\n\n## 4. Full-Scale Evidence Tax Summary (Test Set)\n\n| Scale | Tax Mean (pp) | Tax Std | n | Direction | Individual Seeds |\n|-------|--------------|---------|---|-----------|-----------------|\n| 4B (Qwen3) | +1.65 | 0.29 | 3 | positive (no-evi better) | — |\n| 8B (Qwen3) | -0.91 | 0.74 | 3 | negative (with-evi better) | — |\n| **14B (Qwen3)** | **+0.42** | **0.49** | **2** | **ambiguous** | s42=+0.77, s43=+0.08 |\n| LLaMA-8B | -1.46 | 0.40 | 2 | negative (with-evi better) | — |\n\n## 5. Key Observations\n\n1. **14B evidence tax 不显著**：+0.42pp mean，但 std=0.49pp，置信区间 [-0.07, +0.91] 跨零。2 个 seed 结果差异大（+0.77 vs +0.08），无法确定方向。\n\n2. **14B seed 方差偏大**：with-evi std=0.58pp, no-evi std=1.07pp，均高于同 scale 的预期。s43 整体表现低于 s42（with-evi 低 0.82pp，no-evi 低 1.51pp）。\n\n3. **Scale 趋势**：4B 有明确正 tax（evidence 是负担），8B 和 LLaMA 有明确负 tax（evidence 有帮助），14B 处于中间位置。这与\"更大模型更能利用 evidence\"的假设部分一致——从 4B 到 8B tax 从正变负——但 14B 又回弹到接近零，可能表明 14B 的 evidence 利用能力不如 8B。\n\n4. **CodaLab 文件已生成**：两个实验均已生成 `codalab_submission.json`，可提交官方评测。\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_016C4pNXewELpyqrZo9oXnFY`</summary>
+
+```json
+{
+  "name": "14B RSFT s43 Test Eval Analysis",
+  "type": "report",
+  "description": "14B RSFT s43 test eval results: with-evi ign_f1=0.3767, no-evi ign_f1=0.3775, evidence tax=+0.08pp. 2-seed (s42/s43) mean tax=+0.42±0.49pp, ambiguous direction.",
+  "project": "faith-evidence-ie",
+  "exp_id": "test_eval_14b_rsft_s43_no_evi",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43/report/analysis.md",
+  "tags": [
+    "14B",
+    "evidence-tax",
+    "test-eval",
+    "s43",
+    "reproducibility"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "d20dd065-622d-4313-b0a0-0282d3088916",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0144sM91cezrrCJsKn8DeL4A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1617,
+      "cache_read_input_tokens": 51880,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1617
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-23T16:57:29.880Z_
+
+<details><summary>↩ Tool result · `toolu_016C4pNXewELpyqrZo9oXnFY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260523_4e213d\", \"name\": \"14B RSFT s43 Test Eval Analysis\", \"type\": \"report\", \"description\": \"14B RSFT s43 test eval results: with-evi ign_f1=0.3767, no-evi ign_f1=0.3775, evidence tax=+0.08pp. 2-seed (s42/s43) mean tax=+0.42±0.49pp, ambiguous direction.\", \"path\": \"projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43_no_evi/report/analysis.md\", \"url\": null, \"project\": \"faith-evidence-ie\", \"exp_id\": \"test_eval_14b_rsft_s43_no_evi\", \"skill\": \"\", \"created_at\": \"2026-05-23T16:57:29.497873+00:00\", \"tags\": [\"14B\", \"evidence-tax\", \"test-eval\", \"s43\", \"reproducibility\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "0d9647db-645f-4953-aaa9-ee1a4ed2537c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260523_4e213d\\\", \\\"name\\\": \\\"14B RSFT s43 Test Eval Analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"14B RSFT s43 test eval results: with-evi ign_f1=0.3767, no-evi ign_f1=0.3775, evidence tax=+0.08pp. 2-seed (s42/s43) mean tax=+0.42±0.49pp, ambiguous direction.\\\", \\\"path\\\": \\\"projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43_no_evi/report/analysis.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"exp_id\\\": \\\"test_eval_14b_rsft_s43_no_evi\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-23T16:57:29.497873+00:00\\\", \\\"tags\\\": [\\\"14B\\\", \\\"evidence-tax\\\", \\\"test-eval\\\", \\\"s43\\\", \\\"reproducibility\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260523_4e213d\", \"name\": \"14B RSFT s43 Test Eval Analysis\", \"type\": \"report\", \"description\": \"14B RSFT s43 test eval results: with-evi ign_f1=0.3767, no-evi ign_f1=0.3775, evidence tax=+0.08pp. 2-seed (s42/s43) mean tax=+0.42±0.49pp, ambiguous direction.\", \"path\": \"projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43_no_evi/report/analysis.md\", \"url\": null, \"project\": \"faith-evidence-ie\", \"exp_id\": \"test_eval_14b_rsft_s43_no_evi\", \"skill\": \"\", \"created_at\": \"2026-05-23T16:57:29.497873+00:00\", \"tags\": [\"14B\", \"evidence-tax\", \"test-eval\", \"s43\", \"reproducibility\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+全部完成。汇总：
+
+**s43 Test Results:**
+| | Ign-F1 | Precision | Recall |
+|---|---|---|---|
+| with-evi | 0.3767 | 0.4252 | 0.3382 |
+| no-evi | 0.3775 | 0.4138 | 0.3470 |
+| **Evidence tax** | **+0.08pp** | | |
+
+**14B 2-Seed Reproducibility:**
+- with-evi: 0.3808 ± 0.0058 (s42=0.3849, s43=0.3767)
+- no-evi: 0.3851 ± 0.0107 (s42=0.3926, s43=0.3775)
+- evidence tax: **+0.42 ± 0.49pp** (n=2)，置信区间跨零，方向不确定
+
+**Full-Scale Evidence Tax:**
+| Scale | Tax (pp) | Direction |
+|---|---|---|
+| 4B | +1.65±0.29 | positive (evidence hurts) |
+| 8B | -0.91±0.74 | negative (evidence helps) |
+| **14B** | **+0.42±0.49** | **ambiguous** |
+| LLaMA-8B | -1.46±0.40 | negative (evidence helps) |
+
+s43 整体 ign_f1 低于 s42（with-evi 低 0.82pp，no-evi 低 1.51pp），seed 方差偏大。CodaLab 提交文件已生成。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "uuid": "ded85673-7f21-4273-af95-62f0b98e4b2c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GxZcubqbTrWQLvPZaL15Xg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 813,
+      "cache_read_input_tokens": 53497,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 813
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 53_
+
+全部完成。汇总：
+
+**s43 Test Results:**
+| | Ign-F1 | Precision | Recall |
+|---|---|---|---|
+| with-evi | 0.3767 | 0.4252 | 0.3382 |
+| no-evi | 0.3775 | 0.4138 | 0.3470 |
+| **Evidence tax** | **+0.08pp** | | |
+
+**14B 2-Seed Reproducibility:**
+- with-evi: 0.3808 ± 0.0058 (s42=0.3849, s43=0.3767)
+- no-evi: 0.3851 ± 0.0107 (s42=0.3926, s43=0.3775)
+- evidence tax: **+0.42 ± 0.49pp** (n=2)，置信区间跨零，方向不确定
+
+**Full-Scale Evidence Tax:**
+| Scale | Tax (pp) | Direction |
+|---|---|---|
+| 4B | +1.65±0.29 | positive (evidence hurts) |
+| 8B | -0.91±0.74 | negative (evidence helps) |
+| **14B** | **+0.42±0.49** | **ambiguous** |
+| LLaMA-8B | -1.46±0.40 | negative (evidence helps) |
+
+s43 整体 ign_f1 低于 s42（with-evi 低 0.82pp，no-evi 低 1.51pp），seed 方差偏大。CodaLab 提交文件已生成。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 139076,
+  "duration_api_ms": 124438,
+  "num_turns": 21,
+  "stop_reason": "end_turn",
+  "session_id": "1e91251b-c2ae-4a1d-ba59-8fdebb94e48a",
+  "total_cost_usd": 0.61873325,
+  "usage": {
+    "input_tokens": 13,
+    "cache_creation_input_tokens": 42469,
+    "cache_read_input_tokens": 338168,
+    "output_tokens": 7252,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 42469,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 426,
+        "cache_read_input_tokens": 53497,
+        "cache_creation_input_tokens": 813,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 813
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2743,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002853,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 13,
+      "outputTokens": 7252,
+      "cacheReadInputTokens": 338168,
+      "cacheCreationInputTokens": 42469,
+      "webSearchRequests": 0,
+      "costUSD": 0.61588025,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "3d645391-29c4-4e4d-8037-656262ed6fb1"
+}
+```
+
+</details>
+
+---

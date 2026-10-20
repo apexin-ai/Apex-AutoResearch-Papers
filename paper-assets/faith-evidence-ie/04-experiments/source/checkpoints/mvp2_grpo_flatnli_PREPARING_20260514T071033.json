@@ -1,0 +1,20 @@
+{
+  "exp_id": "mvp2_grpo_flatnli",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:10:33.848Z",
+    "updated_at": "2026-05-14T07:10:33.849Z",
+    "spec": {
+      "hypothesis": "Flat-NLI reward (no contrastive component) improves Evi-F1 over extraction-only but less than CED",
+      "model_name": "Qwen3-4B",
+      "server": "gpu-5090-4x-1",
+      "parent": "mvp2_sft_warmup"
+    }
+  },
+  "timestamp": "2026-05-14T07:10:33.862496+00:00",
+  "trigger": "update_registry"
+}

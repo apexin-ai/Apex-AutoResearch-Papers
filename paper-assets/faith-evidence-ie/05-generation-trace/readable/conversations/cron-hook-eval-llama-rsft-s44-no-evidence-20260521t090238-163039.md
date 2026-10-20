@@ -1,0 +1,2007 @@
+# cron hook eval llama rsft s44 no evidence 20260521T090238 163039
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 62
+- **Recorded user turns:** 3
+- **Tool calls:** 28
+- **Original source:** `logs/chats/archive/cron_hook_eval_llama_rsft_s44_no_evidence_20260521T090238_163039.jsonl`
+- **Structured JSON:** [`9b9708fbd5180e30d8f4.json`](../../sessions/9b/9b9708fbd5180e30d8f4.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+58 recorded events
+
+### User
+
+_source line 1 · 2026-05-20T16:41:43.238876+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: eval_llama_rsft_s44_no_evidence
+- project: faith-evidence-ie
+- server: rtx5090-4x
+- log_path: ~/runs/faith-evidence-ie/eval_llama_rsft_s44_no_evidence.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-20T16:41:57.126162+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__get_worker_status",
+  "max_results": "11"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__get_worker_status",
+    "max_results": "11"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-20T16:41:57.177016+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-20T16:42:01.243785+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-20T16:42:01.244225+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-20T16:42:01.646664+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T16:42:02.199187+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-20T16:42:02.402390+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-20T16:42:02.564358+00:00_
+
+Error: result (490,204 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-f937d698/befd9fc7-2467-4322-9f30-690866f134e3/tool-results/mcp-agent-ml-research-read_registry-1779295322515.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-f937d698/befd9fc7-2467-4322-9f30-690866f134e3/tool-results/mcp-agent-ml-research-read_registry-1779295322515.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1320
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T16:42:14.663337+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 4, \"results\": [{\"exp_id\": \"migration_bjb2_to_westd\", \"success\": true, \"actions\": [\"Job still running (pid=6660)\"]}, {\"exp_id\": \"eval_llama_sft_s44_no_evidence\", \"success\": true, \"actions\": [\"Job still running (pid=29983)\"]}, {\"exp_id\": \"plan017_14b_rsft_generate_r4\", \"success\": true, \"actions\": [\"Job still running (pid=33608)\"]}, {\"exp_id\": \"eval_llama_sft_s43_no_evidence_r2\", \"success\": true, \"actions\": [\"Job still running (pid=36398)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 13419
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T16:42:14.664223+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-20T16:41:42Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 257 个实验 — ANALYZING 1, DONE 253, RUNNING 3\\n**DONE 分布**: failed 56, killed 33, negative 18, success 146\\n\\n### GPU 占用\\n- **分配**: 4 张 — rtx5090-4x:cuda:0, rtx5090-4x:cuda:1, rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\n- **实际运行**: 3 张 — rtx5090-4x:cuda:2(eval_llama_sft_s44_no_evidence), rtx5090-4x:cuda:0(plan017_14b_rsft_generate_r4), rtx5090-4x:cuda:1(eval_llama_sft_s43_no_evidence_r2)\\n- **空闲（分配了没跑）**: rtx5090-4x:cuda:3\\n\\n### 💾 磁盘余量\\n- **rtx5090-4x**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/usr/bin/nvidia-smi`: 814G/879G 可用（已用 3%）\\n- **bjb2-12179**:\\n  - `/autodl-pub`: 8.6T/14T 可用（已用 39%）\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `eval_llama_sft_s44_no_evidence` | rtx5090-4x | cuda:2 | 29983 | `—` |\\n| `plan017_14b_rsft_generate_r4` | rtx5090-4x | cuda:0 | 33608 | `~/runs/faith-evidence-ie/plan017_14b_rsft_generate_r4.log` |\\n| `eval_llama_sft_s43_no_evidence_r2` | rtx5090-4x | cuda:1 | 36398 | `…uns/faith-evidence-ie/eval_llama_sft_s43_no_evidence_r2.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `eval_llama_sft_s43_no_evidence` [failed] — 2026-05-20T16:11:53 — EXIT_CODE=124 (timeout — exceeded timeout_hours)\\n- `migration_bjb2_to_westd` [success] — 2026-05-20T16:00:08\\n- `d112_rsft_s44_ced_score` [success] — 2026-05-20T15:56:23 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `d112_rsft_s44_generate` [success] — 2026-05-20T15:56:21\\n- `plan017_14b_rsft_generate_r3` [killed] — 2026-05-20T15:34:39 — EXIT_CODE=143 (SIGTERM — graceful kill)\\n\\n### 🔴 最近失败原因 (top 3)\\n- `eval_llama_s
+…[truncated 6514 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 13017
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T16:42:14.664806+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\", \"content\": \"# faith-evidence-ie — Research Dashboard\\n\\n> 最后更新: 2026-05-20 07:31 UTC | 更新原因: 服务器迁移: westd-37389 (4×RTX PRO 6000 96GB), 数据完好从 bjb2 迁移中\\n\\n## 核心方向\\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。3 贡献：(1) RSFT+NLI 有效性 (2) Decoupling spectrum (3) Scale-dependent evidence tax + variance compression。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: 🚀 Research + 审稿并行（Round 1 = 3.0 Findings，目标 4.0 Main）\\n- **服务器迁移中**: bjb2-12179 → westd-37389 (4× RTX PRO 6000, 96GB VRAM/卡, 350GB disk)\\n- **数据状况**: bjb2 上全部完好（adapters + 14B gen 62% + eval results），迁移中\\n- **D130**: LLaMA 全系列 ign_f1 审计完成，论文数据正确\\n\\n| Scale | SFT ign_f1 (seeds) | RSFT ign_f1 (seeds) | Δ | Variance compression |\\n|-------|---------------------|----------------------|---|---------------------|\\n| 1.7B | 0.4464 (3) | 0.5119 (3) | +6.55pp | **31×** (2.79→0.09pp) |\\n| 4B | 0.4358 (3) | 0.4482 (3, A) / 0.5152 (1, B) | +1.24/+4.18pp | **7.5×** (3.80→0.51pp) |\\n| 8B | 0.5019 (3) | 0.5433 (3) | +4.14pp | **7.4×** (3.72→0.50pp) |\\n| 14B | 0.5507 (1) | 🔄 gen 62% done, resume pending | — | — |\\n| LLaMA-8B | 0.5384 (1) | 0.5654 (3) ±0.64pp | +2.70pp | TBD (需 SFT 3-seed) |\\n\\n## 投稿目标\\n- **EMNLP 2026 Main** (ARR July cycle, **~56 天**)\\n\\n## 服务器迁移计划\\n1. 🔄 rsync bjb2 → westd-37389 (~207G, ~30-60min)\\n2. 🔄 ML 依赖安装（并行）\\n3. 📋 rsft_generate 脚本加 resume 机制（M019）\\n4. 📋 迁移完成后 4 GPU 并行恢复实验\\n\\n## 迁移后实验计划（96GB/卡，14B 单卡可跑）\\n| GPU | 实验 | 预计时长 |\\n|-----|------|---------|\\n| cuda:0 | 14B RSFT gen resume (1155 docs remaining) | ~4-5h |\\n| cuda:1 | LLaMA SFT s43 retrain + eval | ~3h |\\n| cuda:2 | LLaMA SFT s44 retrain + eval | ~3h |\\n| cuda:3 | eval_llama_sft_s42_no_evidence_std (~30min) → 其他 | ~30min+ |\\n\\n## 近期任务\\n- [x] D129-D130: LLaMA metrics 审计 + 修正\\n- [x] 新服务器注册 + SSH 配置\\n- [ ] 数据迁移 bjb2 → westd-37389\\n- [ ] ML 依赖安装\\n- [ ] rsft_generate 脚本加 res
+…[truncated 1702 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 12465
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T16:42:14.765499+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 12363
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-20T16:42:25.707431+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'exp_id': 'eval_llama_rsft_s44_no_evidence'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'exp_id': 'eval_llama_rsft_s44_no_evidence'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T16:42:26.611579+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.745}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 904
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-20T16:42:26.612014+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'exp_id': 'eval_llama_rsft_s42_no_evidence'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'exp_id': 'eval_llama_rsft_s42_no_evidence'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T16:42:27.114373+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'exp_id': 'eval_llama_rsft_s43_no_evidence'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'exp_id': 'eval_llama_rsft_s43_no_evidence'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T16:42:27.616337+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7345}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1004
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T16:42:27.768397+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'exp_id': 'llama_rsft_s44'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'exp_id': 'llama_rsft_s44'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T16:42:28.120399+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7547}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1006
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T16:42:28.872636+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7383}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1104
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-20T16:42:39.373080+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-f937d698/befd9fc7-2467-4322-9f30-690866f134e3/tool-results/mcp-agent-ml-research-read_registry-1779295322515.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Find the target experiment and related ones\ntargets = ['eval_llama_rsft_s44_no_evidence', 'eval_llama_rsft_s42_no_evidence', 'eval_llama_rsft_s43_no_evidence', 'llama_rsft_s44', 'llama_rsft_s43', 'llama_rsft_s42']\nfor t in targets:\n    if t in exps:\n        print(f'=== {t} ===')\n        print(json.dumps(exps[t], indent=2, ensure_ascii=False))\n        print()\n    else:\n        print(f'=== {t} === NOT FOUND')\n        print()\n\"\n",
+  "description": "Extract target experiments from registry dump"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-f937d698/befd9fc7-2467-4322-9f30-690866f134e3/tool-results/mcp-agent-ml-research-read_registry-1779295322515.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Find the target experiment and related ones\ntargets = ['eval_llama_rsft_s44_no_evidence', 'eval_llama_rsft_s42_no_evidence', 'eval_llama_rsft_s43_no_evidence', 'llama_rsft_s44', 'llama_rsft_s43', 'llama_rsft_s42']\nfor t in targets:\n    if t in exps:\n        print(f'=== {t} ===')\n        print(json.dumps(exps[t], indent=2, ensure_ascii=False))\n        print()\n    else:\n        print(f'=== {t} === NOT FOUND')\n        print()\n\"\n",
+    "description": "Extract target experiments from registry dump"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T16:42:39.625803+00:00_
+
+=== eval_llama_rsft_s44_no_evidence ===
+{
+  "status": "ANALYZING",
+  "retry_count": 0,
+  "created_at": "2026-05-20T14:49:46.158Z",
+  "updated_at": "2026-05-20T16:41:36.848Z",
+  "hypothesis": "LLaMA RSFT s44 no-evidence eval。补齐 LLaMA RSFT 3-seed evidence tax：s42 tax=-1.88pp (ign_f1=0.5526), s43 tax=-1.16pp (ign_f1=0.5546)。s44 with-evidence ign_f1=0.5587。完成后可计算跨家族 RSFT evidence tax mean±std。",
+  "parent": "llama_rsft_s44_pipeline",
+  "server": "rtx5090-4x",
+  "gpu": "cuda:3",
+  "account": "root",
+  "reproduce": {
+    "server": "rtx5090-4x",
+    "gpu": "cuda:3",
+    "started_at": "2026-05-20T14:50:48.919Z",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_rsft_s44_no_evidence\"",
+    "finished_at": "2026-05-20T16:41:34.356Z",
+    "training_hours": 1.85
+  },
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path rsft_output_llama_3_1_8b_k1_s44 --no_evidence",
+    "server": "rtx5090-4x",
+    "data_path": "/root/autodl-tmp/data/docred",
+    "data_count": 985,
+    "model_name": "meta-llama/Meta-Llama-3.1-8B",
+    "seed": 42,
+    "checkpoint_source": "/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44",
+    "eval_data": "/root/autodl-tmp/data/docred/dev.json"
+  },
+  "pid": "30188",
+  "log_path": "~/runs/faith-evidence-ie/eval_llama_rsft_s44_no_evidence.log",
+  "extra": {
+    "hook_events": [
+      {
+        "event": "on_complete",
+        "action": "agent",
+        "ts": "2026-05-20T16:41:42.398150+00:00"
+      }
+    ]
+  }
+}
+
+=== eval_llama_rsft
+…[truncated 3838 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "Bash",
+  "elapsed_ms": 252
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-20T16:43:12.291949+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-f937d698/befd9fc7-2467-4322-9f30-690866f134e3/tool-results/mcp-agent-ml-research-read_registry-1779295322515.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Find all llama_rsft related experiments\nfor eid, exp in exps.items():\n    if 'llama_rsft' in eid.lower() or 'llama_rsft' in str(exp.get('hypothesis','')).lower():\n        status = exp.get('status','?')\n        conclusion = exp.get('conclusion','')\n        metrics = exp.get('metrics',{})\n        ign_f1 = metrics.get('ign_f1','—')\n        hypothesis = str(exp.get('hypothesis',''))[:120]\n        print(f'{eid:45s} | {status:10s} | {conclusion:10s} | ign_f1={ign_f1} | {hypothesis}')\n\" 2>&1 | head -40\n",
+  "description": "Find all LLaMA RSFT experiments in registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-f937d698/befd9fc7-2467-4322-9f30-690866f134e3/tool-results/mcp-agent-ml-research-read_registry-1779295322515.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Find all llama_rsft related experiments\nfor eid, exp in exps.items():\n    if 'llama_rsft' in eid.lower() or 'llama_rsft' in str(exp.get('hypothesis','')).lower():\n        status = exp.get('status','?')\n        conclusion = exp.get('conclusion','')\n        metrics = exp.get('metrics',{})\n        ign_f1 = metrics.get('ign_f1','—')\n        hypothesis = str(exp.get('hypothesis',''))[:120]\n        print(f'{eid:45s} | {status:10s} | {conclusion:10s} | ign_f1={ign_f1} | {hypothesis}')\n\" 2>&1 | head -40\n",
+    "description": "Find all LLaMA RSFT experiments in registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T16:43:12.444704+00:00_
+
+eval_llama_rsft_s44_no_evidence               | ANALYZING  |            | ign_f1=— | LLaMA RSFT s44 no-evidence eval。补齐 LLaMA RSFT 3-seed evidence tax：s42 tax=-1.88pp (ign_f1=0.5526), s43 tax=-1.16pp (ign_
+eval_llama_rsft_s43_no_evidence               | DONE       | negative   | ign_f1=0.5546 | LLaMA-3.1-8B RSFT s43 no-evidence eval: 测量 LLaMA RSFT s43 的 evidence tax。With-evidence ign_f1=0.5662。对比 s42 evidence tax
+llama_rsft_s44_pipeline                       | DONE       | success    | ign_f1=0.5587 | LLaMA-3.1-8B RSFT s44 full pipeline: 补齐第 3 个 seed，计算 LLaMA RSFT 3-seed mean 和 variance compression。s42 ign_f1=0.5839, s4
+eval_llama_rsft_s42_no_evidence               | DONE       | negative   | ign_f1=0.5526 | Removing evidence output from LLaMA-3.1-8B RSFT model will improve ign_f1 by freeing generation capacity for relation ex
+eval_llama_rsft_k1_s43                        | DONE       | success    | ign_f1=0.5662 | LLaMA-3.1-8B RSFT k=1 s43 eval: 验证 LLaMA RSFT seed robustness。Baseline: s42 ign_f1=0.5839, SFT ign_f1=0.5514。
+seed_llama_rsft_k1_s43                        | DONE       | success    | ign_f1=— | 
+seed_llama_rsft_k1_s43_eval                   | DONE       | success    | ign_f1=— | LLaMA-8B RSFT k=1 seed43 eval: paired with s42 (rel_f1=0.5839) for seed robustness. If s43 gives similar results (±1.5pp
+d102_llama_rsft_k1_s43_eval                   | DONE       | killed     | ign_f1=— | LLaMA-8B RSFT k=1 seed43 eval: paired with s42 (rel_f1=0.5839) for seed robustness. If s43 gives similar results (±1.5pp
+d102_llama_rsft_k1_s42                        | DONE       | success    | ign_f1=— | D102 方法论修正：LLaMA-8B RSFT 从 k=3 改为 k=1（与论文声明和 4B canonical 一致）。k=1 筛选更严格（2952 samples vs 8829），跨架构验证 k=1 RSFT 效果。
+plan_006_llama_rsft_r3_eval                   | DONE       | success    | ign_f1=0.5563 | Evaluate LLaMA-3.1-8B RSFT r3 (checkpoint-3312, final) on DocRED dev. Cross-architecture validation: if CED-RSFT works o
+plan_006_llama_rsft_seed43_eval_r2            | DONE  
+…[truncated 1929 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "Bash",
+  "elapsed_ms": 152
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-20T16:43:42.315847+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "analysis:eval_llama_rsft_s44_no_evidence",
+  "project": "faith-evidence-ie",
+  "task_prompt": "## 任务\n读取 eval_llama_rsft_s44_no_evidence 的评估结果，提取所有指标。\n\n## 步骤\n1. SSH 到 rtx5090-4x，读取日志文件：\n   ```\n   cat ~/runs/faith-evidence-ie/eval_llama_rsft_s44_no_evidence.log\n   ```\n   如果日志文件不存在或为空，检查 `/root/autodl-tmp/eval_results/eval_llama_rsft_s44_no_evidence/` 目录下的所有文件（特别是 metrics.json 或 eval_results.json）。\n\n2. 提取以下指标（这是一个 no-evidence DocRED eval，使用 freige.eval.inference）：\n   - ign_f1（最重要）\n   - f1\n   - evi_f1（应为 ~0 因为 no_evidence）\n   - evi_f1_joint\n   - edcr\n   - format_compliance\n   - n_truncated\n   - n_predictions\n   - inference_time（秒）\n   - n_documents\n   - n_format_ok\n\n3. 如果日志中有 \"format-OK subset\" 相关的指标（fair comparison 子集），也一并提取。这对 evidence tax 计算很重要（D134 决策：evidence tax 必须用 format-OK 子集）。\n\n4. 查看输出目录 `/root/autodl-tmp/eval_results/eval_llama_rsft_s44_no_evidence/` 是否有 predictions JSON 或其他结果文件。\n\n## 产出\n在 Worker 完成消息中汇报所有提取到的指标数值。格式：\n```\nign_f1=X.XXXX\nf1=X.XXXX\n...\n```\n\n## 上下文\n这是 LLaMA-3.1-8B RSFT s44 的 no-evidence 评估。with-evidence ign_f1=0.5587。\n对照：\n- s42: with=0.5714, no=0.5526, evidence tax=+1.88pp (benefit)\n- s43: with=0.5662, no=0.5546, evidence tax=+1.16pp (benefit)\n完成后可计算 LLaMA RSFT 3-seed evidence tax mean±std。\n",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:eval_llama_rsft_s44_no_evidence",
+    "project": "faith-evidence-ie",
+    "task_prompt": "## 任务\n读取 eval_llama_rsft_s44_no_evidence 的评估结果，提取所有指标。\n\n## 步骤\n1. SSH 到 rtx5090-4x，读取日志文件：\n   ```\n   cat ~/runs/faith-evidence-ie/eval_llama_rsft_s44_no_evidence.log\n   ```\n   如果日志文件不存在或为空，检查 `/root/autodl-tmp/eval_results/eval_llama_rsft_s44_no_evidence/` 目录下的所有文件（特别是 metrics.json 或 eval_results.json）。\n\n2. 提取以下指标（这是一个 no-evidence DocRED eval，使用 freige.eval.inference）：\n   - ign_f1（最重要）\n   - f1\n   - evi_f1（应为 ~0 因为 no_evidence）\n   - evi_f1_joint\n   - edcr\n   - format_compliance\n   - n_truncated\n   - n_predictions\n   - inference_time（秒）\n   - n_documents\n   - n_format_ok\n\n3. 如果日志中有 \"format-OK subset\" 相关的指标（fair comparison 子集），也一并提取。这对 evidence tax 计算很重要（D134 决策：evidence tax 必须用 format-OK 子集）。\n\n4. 查看输出目录 `/root/autodl-tmp/eval_results/eval_llama_rsft_s44_no_evidence/` 是否有 predictions JSON 或其他结果文件。\n\n## 产出\n在 Worker 完成消息中汇报所有提取到的指标数值。格式：\n```\nign_f1=X.XXXX\nf1=X.XXXX\n...\n```\n\n## 上下文\n这是 LLaMA-3.1-8B RSFT s44 的 no-evidence 评估。with-evidence ign_f1=0.5587。\n对照：\n- s42: with=0.5714, no=0.5526, evidence tax=+1.88pp (benefit)\n- s43: with=0.5662, no=0.5546, evidence tax=+1.16pp (benefit)\n完成后可计算 LLaMA RSFT 3-seed evidence tax mean±std。\n",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T16:43:42.972427+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T16:43:45.441382+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342 started. Use get_worker_status('worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3125
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T16:43:45.441892+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_f937d698.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "Read",
+  "elapsed_ms": 2469
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-20T16:43:48.708418+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T16:43:48.759108+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-20T16:43:51.548930+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-20T16:43:51.699822+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "Glob",
+  "elapsed_ms": 150
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-20T16:43:54.774380+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T16:43:54.825486+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-20T16:44:18.838792+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__get_project_resource_usage",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__get_project_resource_usage",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-20T16:44:18.889507+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-20T16:44:22.005166+00:00_
+
+called mcp__agent-ml-research__read_experiment_plan_with_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status</summary>
+
+```json
+{
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "tool_args": {
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T16:44:22.059184+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T16:44:26.568332+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": 2, \"description\": \"CED vs flat-NLI RSFT ablation: 用 flat-NLI scoring（非 contrastive）筛选 RSFT 训练数据，对比 CED scoring。验证 CED 的对比性 margin 是否优于朴素 NLI。步骤: (1) rsft_score_filter.py 用 flat-NLI 模式重新打分已有 candidates, (2) RSFT 训练, (3) 全量 dev eval。\", \"priority\": \"P0\", \"gpu_budget_hours\": 20, \"deps\": [], \"registry_id\": \"eval_flat_nli_seed45\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.455052, \"ign_f1\": 0.446181, \"evi_f1\": 0.815399, \"edcr\": 0.652133, \"evi_f1_joint\": 0.355612}}, {\"id\": \"plan_002\", \"claim\": 1, \"description\": \"Test set evaluation: 用 RSFT best config（r2b 或 s44）在 DocRED test set 上评估。提交 CodaLab 获得官方 F1/Ign-F1，同时本地计算 Evi-F1 和 EDCR。\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_001\"], \"registry_id\": \"plan_002_test_rsft_s44\", \"status\": \"DONE\", \"conclusion\": \"success\"}, {\"id\": \"plan_003\", \"claim\": 4, \"description\": \"EDCR pipeline 验证 + cross-method diagnostic table: 在所有 evidence-producing 方法（SFT, RSFT-CED, RSFT-flatNLI, CED-reranker）上计算 EDCR，验证 EDCR 作为独立评估指标的诊断能力。\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_001\"], \"registry_id\": \"plan_003_edcr_diagnostic\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"methods_evaluated\": 15, \"edcr_vs_rel_f1_spearman\": -0.9648, \"edcr_vs_rel_f1_pvalue\": 0.0001, \"edcr_vs_evi_f1_spearman\": 0.0022, \"edcr_vs_evi_f1_pvalue\": 0.9941, \"edcr_range\": \"0.63-0.99\", \"unique_diagnostic_value\": \"identifies pathological models (GRPO QLoRA) with high evi_f1 but catastrophically low rel_f1\"}}, {\"id\": \"plan_004\", \"claim\": 1, \"description\": \"DREEAM baseline reproduction: 在 DocRED dev set 上复现 DREEAM (RoBERTa-large) 的 Evi-F1，确认 57.34 数字可复现，作为 Claim 1 的直接对比基线。\", \"priority\": \"P0\", \"gpu_budget_hours\": 8, \"deps\": [], \"registry_id\": \"plan_004_dreeam_baseline\", \"status\": \"DONE\", 
+…[truncated 16127 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "elapsed_ms": 4563
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-20T16:44:30.128810+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"rtx5090-4x\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"rtx5090-4x\", \"gpu_id\": \"cuda:1\"}, {\"server\": \"rtx5090-4x\", \"gpu_id\": \"cuda:2\"}, {\"server\": \"rtx5090-4x\", \"gpu_id\": \"cuda:3\"}], \"actually_running_gpus\": [{\"server\": \"rtx5090-4x\", \"gpu_id\": \"cuda:2\", \"exp_id\": \"eval_llama_sft_s44_no_evidence\"}, {\"server\": \"rtx5090-4x\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"plan017_14b_rsft_generate_r4\"}, {\"server\": \"rtx5090-4x\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"eval_llama_sft_s43_no_evidence_r2\"}], \"allocated_but_idle\": [{\"server\": \"rtx5090-4x\", \"gpu_id\": \"cuda:3\", \"idle_min\": null, \"util_pct\": null}], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [{\"exp_id\": \"eval_llama_sft_s44_no_evidence\", \"gpus\": [\"cuda:2\"], \"util_avg\": null}, {\"exp_id\": \"plan017_14b_rsft_generate_r4\", \"gpus\": [\"cuda:0\"], \"util_avg\": null}, {\"exp_id\": \"eval_llama_sft_s43_no_evidence_r2\", \"gpus\": [\"cuda:1\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 4 张, 实际跑 3 张 ⚠️ | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 8069
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-20T16:44:59.675448+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-f937d698/befd9fc7-2467-4322-9f30-690866f134e3/tool-results/mcp-agent-ml-research-read_registry-1779295322515.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Find D112 no-evidence related experiments\nfor eid, exp in exps.items():\n    if 'd112' in eid.lower() and 'no_evidence' in eid.lower():\n        status = exp.get('status','?')\n        conclusion = exp.get('conclusion','')\n        metrics = exp.get('metrics',{})\n        ign_f1 = metrics.get('ign_f1','—')\n        print(f'{eid:45s} | {status:10s} | {conclusion:10s} | ign_f1={ign_f1}')\n        print(f'  hypothesis: {str(exp.get(\\\"hypothesis\\\",\\\"\\\"))[:150]}')\n        print()\n\n# Also check LLaMA SFT no-evidence evals (all variants)\nprint('--- LLaMA SFT no-evidence ---')\nfor eid, exp in exps.items():\n    if 'llama_sft' in eid.lower() and 'no_evidence' in eid.lower():\n        status = exp.get('status','?')\n        conclusion = exp.get('conclusion','')\n        metrics = exp.get('metrics',{})\n        ign_f1 = metrics.get('ign_f1','—')\n        print(f'{eid:45s} | {status:10s} | {conclusion:10s} | ign_f1={ign_f1}')\n\n# Check LLaMA SFT with-evidence evals\nprint()\nprint('--- LLaMA SFT with-evidence ---')\nfor eid, exp in exps.items():\n    if 'llama_sft' in eid.lower() and 'train_eval' in eid.lower():\n        status = exp.get('status','?')\n        conclusion = exp.get('conclusion','')\n        metrics = exp.get('metrics',{})\n        ign_f1 = metrics.get('ign_f1','—')\n        print(f'{eid:45s} | {status:10s} | {conclusion:10s} | ign_f1={ign_f1}')\n\" 2>&1\n",
+  "description": "Check D112 and LLaMA SFT experiment statuses"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-f937d698/befd9fc7-2467-4322-9f30-690866f134e3/tool-results/mcp-agent-ml-research-read_registry-1779295322515.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Find D112 no-evidence related experiments\nfor eid, exp in exps.items():\n    if 'd112' in eid.lower() and 'no_evidence' in eid.lower():\n        status = exp.get('status','?')\n        conclusion = exp.get('conclusion','')\n        metrics = exp.get('metrics',{})\n        ign_f1 = metrics.get('ign_f1','—')\n        print(f'{eid:45s} | {status:10s} | {conclusion:10s} | ign_f1={ign_f1}')\n        print(f'  hypothesis: {str(exp.get(\\\"hypothesis\\\",\\\"\\\"))[:150]}')\n        print()\n\n# Also check LLaMA SFT no-evidence evals (all variants)\nprint('--- LLaMA SFT no-evidence ---')\nfor eid, exp in exps.items():\n    if 'llama_sft' in eid.lower() and 'no_evidence' in eid.lower():\n        status = exp.get('status','?')\n        conclusion = exp.get('conclusion','')\n        metrics = exp.get('metrics',{})\n        ign_f1 = metrics.get('ign_f1','—')\n        print(f'{eid:45s} | {status:10s} | {conclusion:10s} | ign_f1={ign_f1}')\n\n# Check LLaMA SFT with-evidence evals\nprint()\nprint('--- LLaMA SFT with-evidence ---')\nfor eid, exp in exps.items():\n    if 'llama_sft' in eid.lower() and 'train_eval' in eid.lower():\n        status = exp.get('status','?')\n        conclusion = exp.get('conclusion','')\n        metrics = exp.get('metrics',{})\n        ign_f1 = metrics.get('ign_f1','—')\n        print(f'{eid:45s} | {status:10s} | {conclusion:10s} | ign_f1={ign_f1}')\n\" 2>&1\n",
+    "description": "Check D112 and LLaMA SFT experiment statuses"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-20T16:44:59.878523+00:00_
+
+d112_rsft_no_evidence_eval_r3                 | DONE       | success    | ign_f1=0.5246
+  hypothesis: 4B RSFT no-evidence eval r3 (D112 bf16 SFT s44 base): 移除 evidence 输出后测量 4B RSFT 的 evidence tax。对比 with-evidence 的 D112 RSFT ign_f1。r1/r2 因脚本路径错误失败 (EX
+
+d112_rsft_no_evidence_eval_r2                 | DONE       | failed     | ign_f1=—
+  hypothesis: 4B RSFT no-evidence eval (D112 bf16 SFT s44 base): 移除 evidence 输出后测量 4B RSFT 的 evidence tax。对比 with-evidence 的 canonical 4B RSFT ign_f1，验证 evidence 生成
+
+d112_rsft_no_evidence_eval                    | DONE       | failed     | ign_f1=—
+  hypothesis: 4B RSFT no-evidence eval (D112 bf16 SFT s44 base): 移除 evidence 输出后测量 4B RSFT 的 evidence tax。对比 with-evidence 的 canonical 4B RSFT ign_f1，验证 evidence 生成
+
+--- LLaMA SFT no-evidence ---
+eval_llama_sft_s43_no_evidence_r2             | RUNNING    |            | ign_f1=—
+eval_llama_sft_s43_no_evidence                | DONE       | failed     | ign_f1=—
+eval_llama_sft_s44_no_evidence                | RUNNING    |            | ign_f1=—
+eval_llama_sft_s42_no_evidence_std_r2         | DONE       | success    | ign_f1=0.5219
+eval_llama_sft_s42_no_evidence_std            | DONE       | failed     | ign_f1=—
+
+--- LLaMA SFT with-evidence ---
+llama_sft_s44_train_eval_r3                   | DONE       | success    | ign_f1=0.4802
+llama_sft_s43_train_eval_r3                   | DONE       | success    | ign_f1=0.5142
+llama_sft_s44_train_eval_r2                   | DONE       | failed     | ign_f1=—
+llama_sft_s43_train_eval_r2                   | DONE       | failed     | ign_f1=—
+llama_sft_s44_train_eval                      | DONE       | failed     | ign_f1=—
+llama_sft_s43_train_eval                      | DONE       | failed     | ign_f1=—
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "Bash",
+  "elapsed_ms": 203
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-20T16:45:23.992599+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "memory.md",
+  "max_chars": "8000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "memory.md",
+    "max_chars": "8000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-20T16:45:23.993341+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"content\": \"# faith-evidence-ie Memory\\n\\n## 服务器架构（2026-05-20 更新）\\n\\n- **主服务器 westd-37389**: 4× RTX PRO 6000 Blackwell, 98GB VRAM/卡, 350GB 数据盘 (46% used, 190GB free)\\n  - SSH: `rtx5090-4x` (connect.westd.seetacloud.com:37389)\\n  - 环境: conda base, Python 3.12, PyTorch 2.8.0+cu128, transformers 5.8.1, flash-attn 2.8.3\\n- **数据源 bjb2-12179**: 全部 208G 数据完好，rsync 迁移仍在后台运行\\n  - SSH: `bjb2-12179` (connect.bjb2.seetacloud.com:12179)\\n- **废弃 bjb1-49673**: AutoDL 重启导致数据清空，已关停\\n\\n## GPU 分配教训（2026-05-20）\\n\\nLLaMA SFT 脚本里有 `export CUDA_VISIBLE_DEVICES=${GPU:-${CUDA_VISIBLE_DEVICES:-0}}`，会覆盖 submit_training_job 注入的 CUDA_VISIBLE_DEVICES。**必须通过 `GPU=X` 环境变量传物理 GPU 编号**，不能依赖框架注入。\\n\\n## LLaMA 完整统计（2026-05-20 更新）\\n\\n### SFT 3-seed\\n| Seed | ign_f1 | rel_f1 | edcr |\\n|------|--------|--------|------|\\n| s42 | 0.5384 | 0.5514 | — |\\n| s43 | 0.5142 | 0.5308 | 0.5866 |\\n| s44 | 0.4802 | 0.4902 | 0.6579 |\\n| **Mean** | **0.5109** | — | — |\\n| **Std** | **0.0238** | — | — |\\n\\ns44 异常低（较 s42 低 5.8pp），拉大了 SFT 方差。这恰好强化了 RSFT variance compression 的价值。\\n\\n### RSFT 3-seed (k=1)\\n| Seed | ign_f1 | rel_f1 | edcr |\\n|------|--------|--------|------|\\n| s42 | 0.5714 | 0.5839 | 0.5799 |\\n| s43 | 0.5662 | 0.5780 | 0.5783 |\\n| s44 | 0.5587 | 0.5706 | 0.5829 |\\n| **Mean** | **0.5654** | — | — |\\n| **Std** | **0.0052** | — | — |\\n\\n### 跨方法对比\\n- **SFT→RSFT Δ**: +5.45pp\\n- **方差压缩**: 4.58× (0.0238→0.0052)\\n- RSFT 在最弱 SFT seed (s44) 上仍显著提升：0.4802→0.5587 (+7.85pp)\\n\\n### Evidence Tax (LLaMA)\\n\\n**RSFT (已完成 2/3 seed)**：\\n- s42: no-evi 0.5526, with-evi 0.5714, tax=-1.88pp (evidence helps)\\n- s43: no-evi 0.5546, with-evi 0.5662, tax=-1.16pp (evidence helps)\\n- s44: 🔄 running\\n- mean (2-seed): -1.52pp\\n\\n**SFT (已完成 1/3 seed)**：\\n- s42: no-evi 0.5219, with-evi 0.5384, **raw tax=-1.65pp（不公平比较，见下方方法论问题）**\\n- s43/s44: 🔄 runni
+…[truncated 1285 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-20T16:45:56.741415+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-20T16:45:56.892457+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_eval_llama_rsft_s44_no_evidence_20260520T164342\", \"status\": \"done\", \"task_type\": \"analysis:eval_llama_rsft_s44_no_evidence\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-20T16:43:43.098163+00:00\", \"ended_at\": \"2026-05-20T16:44:19.060796+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"没有 format-OK subset 文件。全部指标如下：\\n\\n```\\nign_f1=0.5550\\nf1=0.5674\\nevi_f1=0.0010 (TP-only)\\nevi_f1_joint=0.0001\\nedcr=0.6818\\nformat_compliance=0.9990 (984/985)\\nn_truncated=178\\nn_predictions=18089\\ninference_time=6555.2s\\nn_documents=985\\nn_format_ok=984\\n```\\n\\n补充：\\n- `no_evidence=true` 已确认传入\\n- evi_f1 ≈ 0 符合预期（no-evidence 模型几乎不输出 evidence）\\n- format-OK subset 指标不存在，eval 脚本未生成该子集（984/985 几乎全量，差异可忽略）\\n\\n**Evidence tax 计算（LLaMA RSFT 3-seed）：**\\n\\n| seed | with-evi ign_f1 | no-evi ign_f1 | tax (pp) |\\n|------|----------------|---------------|----------|\\n| s42 | 0.5714 | 0.5526 | +1.88 |\\n| s43 | 0.5662 | 0.5546 | +1.16 |\\n| s44 | 0.5587 | 0.5550 | +0.37 |\\n\\n**Mean evidence tax = +1.14 pp, std = 0.76 pp**\\n\\n3 个 seed 均为正 tax（with-evidence > no-evidence），表明 evidence 训练对关系抽取性能有一致的正向贡献。\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-20T16:46:24.118123+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_llama_rsft_s44_no_evidence",
+  "field": "metrics",
+  "value": "{'ign_f1': 0.555, 'f1': 0.5674, 'evi_f1': 0.001, 'evi_f1_joint': 0.0001, 'edcr': 0.6818, 'format_compliance': 0.999, 'n_truncated': 178, 'n_predictions': 18089, 'inference_time_s': 6555.2, 'n_documents': 985, 'n_format_ok': 984}",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_llama_rsft_s44_no_evidence",
+    "field": "metrics",
+    "value": "{'ign_f1': 0.555, 'f1': 0.5674, 'evi_f1': 0.001, 'evi_f1_joint': 0.0001, 'edcr': 0.6818, 'format_compliance': 0.999, 'n_truncated': 178, 'n_predictions': 18089, 'inference_time_s': 6555.2, 'n_documents': 985, 'n_format_ok': 984}",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-20T16:46:25.575449+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_llama_rsft_s44_no_evidence\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T14:49:46.158Z\", \"updated_at\": \"2026-05-20T16:46:24.996Z\", \"hypothesis\": \"LLaMA RSFT s44 no-evidence eval。补齐 LLaMA RSFT 3-seed evidence tax：s42 tax=-1.88pp (ign_f1=0.5526), s43 tax=-1.16pp (ign_f1=0.5546)。s44 with-evidence ign_f1=0.5587。完成后可计算跨家族 RSFT evidence tax mean±std。\", \"parent\": \"llama_rsft_s44_pipeline\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-20T14:50:48.919Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_rsft_s44_no_evidence\\\"\", \"finished_at\": \"2026-05-20T16:41:34.356Z\", \"training_hours\": 1.85}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path rsft_output_llama_3_1_8b_k1_s44 --no_evidence\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"meta-llama/Meta-Llama-3.1-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/eval_llama_rsft_s44_no_evidence\", \"log_path\": \"~/runs/faith-evidence-ie/eval_llama_rsft_s44_no_evidence.log\", \"metrics\": {\"ign_f1\": 0.555, \"f1\": 0.5674, \"e
+…[truncated 749 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1457
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-20T16:46:34.166277+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_llama_rsft_s44_no_evidence",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/eval_results/eval_llama_rsft_s44_no_evidence",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_llama_rsft_s44_no_evidence",
+    "field": "checkpoint_path",
+    "value": "/root/autodl-tmp/eval_results/eval_llama_rsft_s44_no_evidence",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-20T16:46:35.421170+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_llama_rsft_s44_no_evidence\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T14:49:46.158Z\", \"updated_at\": \"2026-05-20T16:46:34.903Z\", \"hypothesis\": \"LLaMA RSFT s44 no-evidence eval。补齐 LLaMA RSFT 3-seed evidence tax：s42 tax=-1.88pp (ign_f1=0.5526), s43 tax=-1.16pp (ign_f1=0.5546)。s44 with-evidence ign_f1=0.5587。完成后可计算跨家族 RSFT evidence tax mean±std。\", \"parent\": \"llama_rsft_s44_pipeline\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-20T14:50:48.919Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_rsft_s44_no_evidence\\\"\", \"finished_at\": \"2026-05-20T16:41:34.356Z\", \"training_hours\": 1.85}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path rsft_output_llama_3_1_8b_k1_s44 --no_evidence\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"meta-llama/Meta-Llama-3.1-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s44\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/eval_llama_rsft_s44_no_evidence\", \"log_path\": \"~/runs/faith-evidence-ie/eval_llama_rsft_s44_no_evidence.log\", \"metrics\": {\"ign_f1\": 0.555, \"f1\": 0.5674, \"e
+…[truncated 837 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1254
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-20T16:46:46.999815+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-f937d698/befd9fc7-2467-4322-9f30-690866f134e3/tool-results/mcp-agent-ml-research-read_registry-1779295322515.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Find no-evidence evals for all Qwen scales\ntargets = ['no_evidence', 'no_evi']\nfor eid, exp in exps.items():\n    if any(t in eid.lower() for t in targets) and 'llama' not in eid.lower():\n        status = exp.get('status','?')\n        conclusion = exp.get('conclusion','')\n        metrics = exp.get('metrics',{})\n        ign_f1 = metrics.get('ign_f1','—')\n        if status == 'DONE' and conclusion in ('success', 'negative') and ign_f1 != '—':\n            hypothesis = str(exp.get('hypothesis',''))[:120]\n            print(f'{eid:50s} | {conclusion:10s} | ign_f1={ign_f1}')\n            print(f'  {hypothesis}')\n            print()\n\" 2>&1\n",
+  "description": "Find Qwen no-evidence eval results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-f937d698/befd9fc7-2467-4322-9f30-690866f134e3/tool-results/mcp-agent-ml-research-read_registry-1779295322515.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Find no-evidence evals for all Qwen scales\ntargets = ['no_evidence', 'no_evi']\nfor eid, exp in exps.items():\n    if any(t in eid.lower() for t in targets) and 'llama' not in eid.lower():\n        status = exp.get('status','?')\n        conclusion = exp.get('conclusion','')\n        metrics = exp.get('metrics',{})\n        ign_f1 = metrics.get('ign_f1','—')\n        if status == 'DONE' and conclusion in ('success', 'negative') and ign_f1 != '—':\n            hypothesis = str(exp.get('hypothesis',''))[:120]\n            print(f'{eid:50s} | {conclusion:10s} | ign_f1={ign_f1}')\n            print(f'  {hypothesis}')\n            print()\n\" 2>&1\n",
+    "description": "Find Qwen no-evidence eval results"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-20T16:46:47.100944+00:00_
+
+plan019_1_7b_rsft_no_evidence_eval_2048            | negative   | ign_f1=0.4344
+  排除截断混淆后验证 1.7B RSFT negative evidence tax (-7.7pp) 是真实效应还是截断 artifact。原实验 max_new_tokens=1024 截断率 59.2% (583/985)，改用 204
+
+d112_rsft_no_evidence_eval_r3                      | success    | ign_f1=0.5246
+  4B RSFT no-evidence eval r3 (D112 bf16 SFT s44 base): 移除 evidence 输出后测量 4B RSFT 的 evidence tax。对比 with-evidence 的 D112 R
+
+plan019_8b_rsft_no_evidence_eval_r2                | success    | ign_f1=0.5336
+  8B RSFT no-evidence eval r2: 移除 evidence 输出后测量 8B RSFT 的 evidence tax。8B RSFT with-evidence mean ign_f1=0.5414 (s42=0.53
+
+plan017_14b_sft_no_evidence_eval_r2                | success    | ign_f1=0.551
+  14B SFT no-evidence eval (bf16, --no-quantize). 修正 r1 的 D076 违规。测量 14B SFT 在不提供 evidence 时的 ign_f1，用于计算 evidence tax (Cl
+
+plan_006_qwen3_1_7b_no_evidence_eval_v3            | success    | ign_f1=0.3982
+  1.7B model capacity is insufficient to jointly optimize RE and evidence generation: no-evidence SFT should outperform ev
+
+plan_014_no_evidence_eval_d076                     | success    | ign_f1=0.4721
+  4B no-evidence SFT eval under D076 unified protocol (batch_size=4, max_new_tokens=1024, seed=42, no-quantize). Required 
+
+eval_plan_014_no_evidence_r2                       | success    | ign_f1=0.4721
+  Retry of eval_plan_014_no_evidence with corrected command: --model_path 传底座 Qwen3-4B, --sft_adapter 传 SFT no-evidence ad
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "Bash",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-20T16:47:11.321884+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-20T16:47:11.372630+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"content\": \"# faith-evidence-ie Memory\\n\\n## 服务器架构（2026-05-20 更新）\\n\\n- **主服务器 westd-37389**: 4× RTX PRO 6000 Blackwell, 98GB VRAM/卡, 350GB 数据盘 (46% used, 190GB free)\\n  - SSH: `rtx5090-4x` (connect.westd.seetacloud.com:37389)\\n  - 环境: conda base, Python 3.12, PyTorch 2.8.0+cu128, transformers 5.8.1, flash-attn 2.8.3\\n- **数据源 bjb2-12179**: 全部 208G 数据完好，rsync 迁移主体完成，SFT adapter 补传中\\n  - SSH: `bjb2-12179` (connect.bjb2.seetacloud.com:12179)\\n- **废弃 bjb1-49673**: AutoDL 重启导致数据清空，已关停\\n\\n## GPU 分配教训（2026-05-20）\\n\\nLLaMA SFT 脚本里有 `export CUDA_VISIBLE_DEVICES=${GPU:-${CUDA_VISIBLE_DEVICES:-0}}`，会覆盖 submit_training_job 注入的 CUDA_VISIBLE_DEVICES。**必须通过 `GPU=X` 环境变量传物理 GPU 编号**，不能依赖框架注入。\\n\\n## submit_training_job timeout 教训（2026-05-20）\\n\\nLLaMA 8B no-evidence eval 需要 ~2h+。默认 timeout=7200s (2h) 不够，导致 eval_llama_sft_s43_no_evidence 在 244/247 batch (99%) 时被 kill (EXIT_CODE=124)。**所有 LLaMA eval 的 timeout 至少设 14400s (4h)**。\\n\\n## LLaMA 完整统计（2026-05-20 更新）\\n\\n### SFT 3-seed\\n| Seed | ign_f1 | rel_f1 | edcr |\\n|------|--------|--------|------|\\n| s42 | 0.5384 | 0.5514 | — |\\n| s43 | 0.5142 | 0.5308 | 0.5866 |\\n| s44 | 0.4802 | 0.4902 | 0.6579 |\\n| **Mean** | **0.5109** | — | — |\\n| **Std** | **0.0238** | — | — |\\n\\ns44 异常低（较 s42 低 5.8pp），拉大了 SFT 方差。这恰好强化了 RSFT variance compression 的价值。\\n\\n### RSFT 3-seed (k=1)\\n| Seed | ign_f1 | rel_f1 | edcr |\\n|------|--------|--------|------|\\n| s42 | 0.5714 | 0.5839 | 0.5799 |\\n| s43 | 0.5662 | 0.5780 | 0.5783 |\\n| s44 | 0.5587 | 0.5706 | 0.5829 |\\n| **Mean** | **0.5654** | — | — |\\n| **Std** | **0.0052** | — | — |\\n\\n### 跨方法对比\\n- **SFT→RSFT Δ**: +5.45pp\\n- **方差压缩**: 4.58× (0.0238→0.0052)\\n- RSFT 在最弱 SFT seed (s44) 上仍显著提升：0.4802→0.5587 (+7.85pp)\\n\\n### Evidence Tax (LLaMA) — D134 决策：用 fair comparison 报告\\n\\n**RSFT 3-seed（完整）**：\\n- s42: no-evi 0.5526, with-ev
+…[truncated 1607 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-20T16:48:11.242480+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 4/4 分配, 实际跑 3/4 | cuda:3 空闲 | Worker 0 (GPU 0 / CPU 0)\n\n## eval_llama_rsft_s44_no_evidence 完成 ✅\n\nLLaMA RSFT s44 no-evidence eval 正常完成，补齐了 LLaMA RSFT 3-seed evidence tax。\n\n**结果**: ign_f1=0.5550, format_compliance=99.9% (984/985)\n\n### LLaMA RSFT 3-seed Evidence Tax（完整）\n\n| Seed | With-evi | No-evi | Tax (pp) |\n|------|----------|--------|----------|\n| s42 | 0.5714 | 0.5526 | -1.88 |\n| s43 | 0.5662 | 0.5546 | -1.16 |\n| s44 | 0.5587 | 0.5550 | -0.37 |\n| **Mean** | **0.5654** | **0.5541** | **-1.14 ± 0.76** |\n\n3 个 seed 一致负向 tax（evidence 有帮助），但 s44 效应最弱 (-0.37pp)。RSFT format compliance 极高 (99.9%)，无需 fair comparison 修正。\n\n### 对比分析\n- **SFT vs RSFT 方向相反**: SFT fair comparison s42 evidence tax = +1.35pp（evidence 有害），RSFT = -1.14pp（evidence 有益）\n- 假说: CED 过滤提升了训练数据中 evidence 质量，使 RSFT 模型学会生成有用 evidence 而非噪声\n- 跨家族一致: Qwen-8B RSFT tax = +0.78pp (evidence helps)，LLaMA-8B RSFT tax = -1.14pp (evidence helps)，方向一致\n\n### 当前运行状态\n- cuda:0: 14B RSFT gen r4（继续中）\n- cuda:1: eval_llama_sft_s43_no_evidence_r2（~2h）\n- cuda:2: eval_llama_sft_s44_no_evidence（~2h）\n- **cuda:3: 空闲**，无 P0 GPU 实验可铺。14B RSFT train 阻塞于 gen 完成\n\n### 建议\nLLaMA SFT no-evidence eval (s43/s44) 完成后即可算 LLaMA SFT 3-seed evidence tax（需 fair comparison 分析）。14B gen 完成后走 CED→train→eval pipeline。cuda:3 当前无 P0 实验可跑——是否有新实验方向需要铺？",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 4/4 分配, 实际跑 3/4 | cuda:3 空闲 | Worker 0 (GPU 0 / CPU 0)\n\n## eval_llama_rsft_s44_no_evidence 完成 ✅\n\nLLaMA RSFT s44 no-evidence eval 正常完成，补齐了 LLaMA RSFT 3-seed evidence tax。\n\n**结果**: ign_f1=0.5550, format_compliance=99.9% (984/985)\n\n### LLaMA RSFT 3-seed Evidence Tax（完整）\n\n| Seed | With-evi | No-evi | Tax (pp) |\n|------|----------|--------|----------|\n| s42 | 0.5714 | 0.5526 | -1.88 |\n| s43 | 0.5662 | 0.5546 | -1.16 |\n| s44 | 0.5587 | 0.5550 | -0.37 |\n| **Mean** | **0.5654** | **0.5541** | **-1.14 ± 0.76** |\n\n3 个 seed 一致负向 tax（evidence 有帮助），但 s44 效应最弱 (-0.37pp)。RSFT format compliance 极高 (99.9%)，无需 fair comparison 修正。\n\n### 对比分析\n- **SFT vs RSFT 方向相反**: SFT fair comparison s42 evidence tax = +1.35pp（evidence 有害），RSFT = -1.14pp（evidence 有益）\n- 假说: CED 过滤提升了训练数据中 evidence 质量，使 RSFT 模型学会生成有用 evidence 而非噪声\n- 跨家族一致: Qwen-8B RSFT tax = +0.78pp (evidence helps)，LLaMA-8B RSFT tax = -1.14pp (evidence helps)，方向一致\n\n### 当前运行状态\n- cuda:0: 14B RSFT gen r4（继续中）\n- cuda:1: eval_llama_sft_s43_no_evidence_r2（~2h）\n- cuda:2: eval_llama_sft_s44_no_evidence（~2h）\n- **cuda:3: 空闲**，无 P0 GPU 实验可铺。14B RSFT train 阻塞于 gen 完成\n\n### 建议\nLLaMA SFT no-evidence eval (s43/s44) 完成后即可算 LLaMA SFT 3-seed evidence tax（需 fair comparison 分析）。14B gen 完成后走 CED→train→eval pipeline。cuda:3 当前无 P0 实验可跑——是否有新实验方向需要铺？",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-20T16:48:12.397313+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 1154
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-20T16:48:28.424204+00:00_
+
+完成 on-experiment-done 流程：
+
+- **Registry**: 已更新 eval_llama_rsft_s44_no_evidence → DONE/success, ign_f1=0.5550
+- **Memory**: LLaMA RSFT 3-seed evidence tax 已完整记录（mean=-1.14pp ± 0.76pp）
+- **Director**: 已汇报结果、对比分析、资源状态
+- **cuda:3 空闲**: 无 P0 实验可铺，已向 Director 询问方向
+- 仍在运行: cuda:0 (14B gen), cuda:1 (SFT s43 no-evi), cuda:2 (SFT s44 no-evi)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 59 · 2026-05-20T16:48:28.431644+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: eval_llama_rsft_s44_no_evidence
+- project: faith-evidence-ie
+- server: rtx5090-4x
+- log_path: ~/runs/faith-evidence-ie/eval_llama_rsft_s44_no_evidence.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-20T16:48:39.625736+00:00_
+
+这是 eval_llama_rsft_s44_no_evidence 的重复回调。该实验已在上一轮处理完毕：
+
+- Registry 已更新为 DONE/success，ign_f1=0.5550
+- Memory.md 已包含 LLaMA RSFT 3-seed evidence tax (mean=-1.14pp ± 0.76pp)
+- 已向 Director 汇报
+
+无需重复处理。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence"
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+2 recorded events
+
+### User
+
+_source line 61 · 2026-05-21T09:01:52.517160+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-21T09:02:38.160108+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单: rtx5090-4x cuda:0/1/2/3，白名单外的 GPU 必须 push back Director
+- LLaMA SFT 脚本用 `GPU=X` 传物理 GPU 编号，不能依赖框架注入的 CUDA_VISIBLE_DEVICES
+- LLaMA eval timeout 至少 14400s (4h)，默认 7200s 不够（eval_llama_sft_s43_no_evidence 在 99% 时被 kill 过）
+- RSFT inference 是 nested LoRA：必须传 `--sft_adapter` 参数，先 merge SFT 再加载 RSFT adapter
+- Evidence tax 论文报告用 fair comparison（format-OK 子集），不修 parser（D134 决策）
+
+### 2. 🖥️ 基础设施快照
+- **主服务器**: rtx5090-4x (connect.westd.seetacloud.com:37389), 4× RTX PRO 6000 Blackwell, 98GB/卡
+- **工作目录**: `/root/autodl-tmp/freige`
+- **Python**: `/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）
+- **模型路径**: `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`, `/root/autodl-tmp/models/Qwen/Qwen3-*`
+- **SFT adapters**: `/root/autodl-tmp/sft_output_llama_3_1_8b`, RSFT: `/root/autodl-tmp/rsft_output_llama_3_1_8b_k1_s4{2,3,4}`
+- **数据**: `/root/autodl-tmp/data/docred`
+- **Eval 结果**: `/root/autodl-tmp/eval_results/`
+- **磁盘**: 814G/879G 可用 (3%)，充裕
+- **活跃进程**: plan017_14b_rsft_generate_r4 (PID 33608, cuda:0), eval_llama_sft_s43_no_evidence_r2 (PID 36398, cuda:1), eval_llama_sft_s44_no_evidence (PID 29983, cuda:2)
+- **cron 监控**: 上述 3 个 + migration_bjb2_to_westd (PID 6660)
+
+### 3. 📊 当前状态
+刚完成 eval_llama_rsft_s44_no_evidence 分析并推进到 DONE (ign_f1=0.5550, conclusion=success)。LLaMA RSFT 3-seed evidence tax 已完整: mean=-1.14pp ± 0.76pp（evidence 一致有益）。已向 Director 汇报，cuda:3 空闲中。
+
+**RUNNING:**
+- `plan017_14b_rsft_generate_r4` (cuda:0): 14B RSFT 候选生成，从 doc 2553/3027 继续
+- `eval_llama_sft_s43_no_evidence_r2` (cuda:1): LLaMA SFT s43 no-evidence eval，~2h
+- `eval_llama_sft_s44_no_evidence` (cuda:2): LLaMA SFT s44 no-evidence eval，~2h
+
+**等待**: 无 Worker 回调待处理。3 个 cron 会在实验完成时触发回调。Director 尚未回复 cuda:3 空闲问题。
+
+### 4. 📋 待办
+- eval_llama_sft_s43_no_evidence_r2 完成 → 提取 metrics + fair comparison 分析（SFT format compliance 低 ~88.7%，必须用 format-OK 子集）
+- eval_llama_sft_s44_no_evidence 完成 → 同上 → 两个都完成后计算 LLaMA SFT 3-seed evidence tax mean±std
+- plan017_14b_rsft_generate_r4 完成 → CED scoring (CPU) → 14B RSFT train (需 GPU) → eval → no-evidence eval
+- LLaMA SFT 3-seed evidence tax 完成 → 更新 ROADMAP 表格 LLaMA 行的 variance compression
+- cuda:3 空闲 → 等 Director 指示或 14B gen 完成后铺 CED scoring
+
+### 5. 🎯 战略上下文
+- **论文 3 贡献**: (1) RSFT+NLI 有效性 (2) Decoupling spectrum (3) Scale-dependent evidence tax + variance compression
+- **投稿**: EMNLP 2026 Main, ARR July, ~56 天
+- **关键发现**: SFT evidence tax 方向与 RSFT 相反（SFT: evidence 有害 +1.35pp fair; RSFT: evidence 有益 -1.14pp）。假说: CED 过滤使 evidence 从负担变为资产
+- **易错点**: (1) SFT no-evi eval format compliance 低，必须做 fair comparison，不能直接用全集 tax (2) memory.md 中 evidence tax 符号: 负值=evidence helps (3) 14B RSFT 是串行 pipeline (gen→CED→train→eval)，不能跳步 (4) D130 已修正 LLaMA 指标: ign_f1 是正确的（非 rel_f1=0.5839 那是 s42 RSFT 的 rel_f1）
+- **决策链**: D134(fair comparison) → D133(LLaMA 升 co-primary) → D132(LLaMA SFT 3-seed) → D131(统一叙事主线) → D130(LLaMA 审计修正) → D129(RSFT ign_f1 修正)
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_llama_rsft_s44_no_evidence"
+}
+```
+
+</details>
+
+---

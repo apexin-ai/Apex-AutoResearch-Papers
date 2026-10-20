@@ -1,0 +1,2518 @@
+# prep 14b scripts
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 85
+- **Recorded user turns:** 0
+- **Tool calls:** 42
+- **Original source:** `logs/chats/worker_prep_14b_scripts_20260518T124600.jsonl`
+- **Structured JSON:** [`453a11e702c8f42de835.json`](../../sessions/45/453a11e702c8f42de835.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+85 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T12:52:33.374645+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T12:52:33.375053+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T12:52:33.375269+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /root/autodl-tmp/models/Qwen/Qwen3-14B/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls -la /root/autodl-tmp/models/Qwen/Qwen3-14B/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-18T12:52:33.375449+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 28860016\\ndrwxr-xr-x 3 root root       4096 May 18 20:07 .\\ndrwxr-xr-x 5 root root         73 May 18 20:07 ..\\ndrwxr-xr-x 3 root root         33 May 18 19:21 .cache\\n-rw-r--r-- 1 root root       1570 May 18 19:21 .gitattributes\\n-rw-r--r-- 1 root root      11343 May 18 19:21 LICENSE\\n-rw-r--r-- 1 root root      16670 May 18 19:21 README.md\\n-rw-r--r-- 1 root root        728 May 18 19:21 config.json\\n-rw-r--r-- 1 root root        239 May 18 19:21 generation_config.json\\n-rw-r--r-- 1 root root    1671853 May 18 19:21 merges.txt\\n-rw-r--r-- 1 root root 3841788544 May 18 20:03 model-00001-of-00008.safetensors\\n-rw-r--r-- 1 root root 3963750816 May 18 19:49 model-00002-of-00008.safetensors\\n-rw-r--r-- 1 root root 3963750880 May 18 19:43 model-00003-of-00008.safetensors\\n-rw-r--r-- 1 root root 3963750880 May 18 19:45 model-00004-of-00008.safetensors\\n-rw-r--r-- 1 root root 3963750880 May 18 20:02 model-00005-of-00008.safetensors\\n-rw-r--r-- 1 root root 3963750880 May 18 20:07 model-00006-of-00008.safetensors\\n-rw-r--r-- 1 root root 3963750880 May 18 20:04 model-00007-of-00008.safetensors\\n-rw-r--r-- 1 root root 1912371880 May 18 19:34 model-00008-of-00008.safetensors\\n-rw-r--r-- 1 root root      36514 May 18 19:34 model.safetensors.index.json\\n-rw-r--r-- 1 root root   11422654 May 18 19:34 tokenizer.json\\n-rw-r--r-- 1 root root       9732 May 18 19:34 tokenizer_config.json\\n-rw-r--r-- 1 root root    2776833 May 18 19:34 vocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T12:52:33.375594+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "du -sh /root/autodl-tmp/models/Qwen/Qwen3-14B/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "du -sh /root/autodl-tmp/models/Qwen/Qwen3-14B/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T12:52:33.375725+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"28G\\t/root/autodl-tmp/models/Qwen/Qwen3-14B/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T12:52:33.375848+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/freige -name \"*sft*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp/freige -name \"*sft*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-18T12:52:33.375969+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/freige/data/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls /root/autodl-tmp/freige/data/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-18T12:52:33.376118+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/training/sft_trainer.py\\n/root/autodl-tmp/freige/training/rsft_generate.py\\n/root/autodl-tmp/freige/training/rsft_score_filter.py\\n/root/autodl-tmp/freige/training/rsft_trainer.py\\n/root/autodl-tmp/freige/training/rsft_ced_analysis.py\\n/root/autodl-tmp/freige/training/__pycache__/rsft_trainer.cpython-312.pyc\\n/root/autodl-tmp/freige/training/__pycache__/sft_trainer.cpython-312.pyc\\n/root/autodl-tmp/freige/scripts/merge_sft_rsft.py\\n/root/autodl-tmp/freige/scripts/d102_next_batch/random_rsft.sh\\n/root/autodl-tmp/freige/scripts/d102_next_batch/random_rsft_select.py\\n/root/autodl-tmp/freige/scripts/d102_next_batch/sft_seed43.sh\\n/root/autodl-tmp/freige/scripts/d102_next_batch/sft_seed44.sh\\n/root/autodl-tmp/freige/outputs/rsft_scored_1_7b/rsft_scores.jsonl\\n/root/autodl-tmp/freige/outputs/rsft_scored_1_7b/rsft_train.jsonl\\n/root/autodl-tmp/freige/outputs/rsft_scored_1_7b/rsft_report.json\\n/root/autodl-tmp/freige/outputs/rsft_scored_1_7b_k1/rsft_train.jsonl\\n/root/autodl-tmp/freige/outputs/rsft_scored_1_7b_k1/rsft_report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T12:52:33.376273+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\ndocred_processor.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T12:52:33.376437+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/scripts/d102_next_batch/sft_seed43.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/freige/scripts/d102_next_batch/sft_seed43.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T12:52:33.376581+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -e\\nsource /root/miniconda3/bin/activate\\ncd /root/autodl-tmp/freige\\n\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport HF_HUB_OFFLINE=1\\nexport TRANSFORMERS_OFFLINE=1\\nexport CUDA_VISIBLE_DEVICES=0\\n\\npython -m freige.training.sft_trainer \\\\\\n  --model_name /root/autodl-tmp/models/Qwen3-4B \\\\\\n  --data_dir /root/autodl-tmp/data/docred \\\\\\n  --output_dir /root/autodl-tmp/sft_output_seed43 \\\\\\n  --lora_rank 64 \\\\\\n  --lora_alpha 128 \\\\\\n  --lora_dropout 0.05 \\\\\\n  --max_length 4096 \\\\\\n  --per_device_batch_size 1 \\\\\\n  --gradient_accumulation_steps 64 \\\\\\n  --num_epochs 3 \\\\\\n  --learning_rate 2e-4 \\\\\\n  --warmup_ratio 0.05 \\\\\\n  --bf16 \\\\\\n  --seed 43 \\\\\\n  --wandb_project freige-sft \\\\\\n  --wandb_run_name sft-4b-seed43\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T12:52:33.376866+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/scripts/d102_next_batch/random_rsft.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/freige/scripts/d102_next_batch/random_rsft.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T12:52:33.377086+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -e\\nsource /root/miniconda3/bin/activate\\ncd /root/autodl-tmp/freige\\n\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport HF_HUB_OFFLINE=1\\nexport TRANSFORMERS_OFFLINE=1\\nexport CUDA_VISIBLE_DEVICES=3\\n\\nRANDOM_DATA=/root/autodl-tmp/rsft_random_k1/rsft_train.jsonl\\nmkdir -p /root/autodl-tmp/rsft_random_k1\\n\\necho \\\"=== Step 1: Random selection ===\\\"\\npython /root/autodl-tmp/freige/scripts/d102_next_batch/random_rsft_select.py \\\\\\n  /root/autodl-tmp/rsft_generations/generations.jsonl \\\\\\n  \\\"$RANDOM_DATA\\\"\\n\\necho \\\"=== Step 2: RSFT training ===\\\"\\npython -m freige.training.rsft_trainer \\\\\\n  --base_model /root/autodl-tmp/models/Qwen3-4B \\\\\\n  --sft_adapter /root/autodl-tmp/sft_output \\\\\\n  --rsft_data_path \\\"$RANDOM_DATA\\\" \\\\\\n  --output_dir /root/autodl-tmp/rsft_output_random_k1 \\\\\\n  --learning_rate 2e-5 \\\\\\n  --num_epochs 3 \\\\\\n  --per_device_batch_size 4 \\\\\\n  --gradient_accumulation_steps 4 \\\\\\n  --warmup_steps 100 \\\\\\n  --save_steps 50 \\\\\\n  --save_total_limit 2 \\\\\\n  --max_length 2048 \\\\\\n  --seed 42 \\\\\\n  --bf16 \\\\\\n  --lora_rank 64 \\\\\\n  --lora_alpha 128 \\\\\\n  --lora_dropout 0.05 \\\\\\n  --wandb_project freige-rsft \\\\\\n  --wandb_run_name rsft-random-k1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T12:52:33.377250+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/training/sft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/freige/training/sft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T12:52:33.377529+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"SFT 训练脚本: Qwen3-4B + QLoRA 在 DocRED 上微调。\\n\\n支持单卡和多卡（DeepSpeed ZeRO-2/3）训练。\\n默认启用 4-bit QLoRA 量化，适配 RTX 5090 32GB x4。\\n\\n单卡:   python -m freige.training.sft_trainer --output_dir ./sft_output\\n多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\n            -m freige.training.sft_trainer --deepspeed configs/deepspeed_zero2.json\\n不量化: 加 --no_quantize\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom dataclasses import dataclass, field\\nfrom pathlib import Path\\nfrom typing import Optional\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom peft import LoraConfig, TaskType, get_peft_model\\nfrom transformers import (\\n    AutoModelForCausalLM,\\n    AutoTokenizer,\\n    BitsAndBytesConfig,\\n    TrainingArguments,\\n)\\nfrom trl import SFTTrainer, SFTConfig\\n\\nfrom freige.training import LLAMA3_CHAT_TEMPLATE\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\nNO_EVIDENCE_SYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, and tail entity. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\nDEFAULT_MODEL = \\\"/root/autodl-tmp/models/Qwen3-4B\\\"\\n\\n\\ndef build_chat_messages(instruction: str, input_text: str, output_text: str = None, system_prompt: str = None):\\n    \\\"\\\"\\\"构建 Qwen3 chat 
+…[truncated 7199 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T12:52:33.377715+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/training/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/freige/training/rsft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T12:52:33.377992+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"RSFT (Rejection Sampling Fine-Tuning) 训练脚本。\\n\\n从 SFT warmup checkpoint 继续训练，使用经 CED 打分筛选的高质量生成数据。\\n流程: base model → merge SFT adapter → 新 QLoRA → 在 RSFT 数据上训练。\\n\\n输入: JSONL，每行 {\\\"doc_id\\\": ..., \\\"input\\\": ..., \\\"output\\\": ..., \\\"ced_score\\\": ..., ...}\\n输出: QLoRA adapter checkpoint\\n依赖: transformers, trl, peft, bitsandbytes, datasets\\n\\n单卡:   python -m freige.training.rsft_trainer --rsft_data_path data.jsonl --output_dir ./rsft_output\\n多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\n            -m freige.training.rsft_trainer --rsft_data_path data.jsonl --output_dir ./rsft_output\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom peft import LoraConfig, PeftModel, TaskType, get_peft_model\\nfrom torch.utils.data import WeightedRandomSampler\\nfrom transformers import (\\n    AutoModelForCausalLM,\\n    AutoTokenizer,\\n    BitsAndBytesConfig,\\n    TrainerCallback,\\n)\\nfrom trl import SFTConfig, SFTTrainer\\n\\nfrom freige.training import LLAMA3_CHAT_TEMPLATE\\nfrom freige.training.sft_trainer import SYSTEM_PROMPT\\n\\n\\ndef _apply_chat_template(tokenizer, messages, **kwargs):\\n    tmpl = getattr(tokenizer, 'chat_template', None) or ''\\n    if 'enable_thinking' not in tmpl:\\n        kwargs.pop('enable_thinking', None)\\n    return tokenizer.apply_chat_template(messages, **kwargs)\\n\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nDEFAULT_BASE_MODEL = \\\"/root/autodl-tmp/models/Qwen3-4B\\\"\\nDEFAULT_SFT_ADAPTER = \\\"/root/autodl-tmp/sft_output\\\"\\n\\n\\ndef load_rsft_data(data_path: str, tokenizer, max_length: int = 2048):\\n    \\\"\\\"\\\"加载 CED 筛选后的 RSFT 数据，格式化为 chat template 文本。\\n\\n    每行 JSONL 的 input 字段作为 user message，output 字段作为 assistant response，\\n    
+…[truncated 7094 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T12:52:33.378172+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/freige/outputs -name \"rsft_train.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp/freige/outputs -name \"rsft_train.jsonl\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-18T12:52:33.378328+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/freige/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls /root/autodl-tmp/freige/scripts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T12:52:33.378466+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/outputs/rsft_scored_1_7b/rsft_train.jsonl\\n/root/autodl-tmp/freige/outputs/rsft_scored_1_7b_k1/rsft_train.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T12:52:33.378599+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"compute_edcr_table.sh\\nconvert_redocred.py\\nd102_next_batch\\nedcr_diagnostic.py\\nedcr_diagnostic.sh\\neval_extract_reward_steps.sh\\neval_plan_011_steps.sh\\neval_test_set.sh\\nevidence_tax_analysis.py\\nfair_eval.py\\nmerge_sft_rsft.py\\nplot_forgetting_dynamics.py\\nplot_forgetting_v6.py\\nseed_expansion\\nstat_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T12:52:33.378759+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/freige -name \"*.yaml\" -path \"*/configs/*\" -o -name \"*.json\" -path \"*/configs/*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp/freige -name \"*.yaml\" -path \"*/configs/*\" -o -name \"*.json\" -path \"*/configs/*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T12:52:33.378975+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/configs/deepspeed_zero2.json\\n/root/autodl-tmp/freige/configs/deepspeed_zero3.json\\n/root/autodl-tmp/freige/configs/accelerate_4gpu.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T12:52:33.379138+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/freige -name \"deepspeed*\" -o -name \"accelerate*\" -o -name \"ds_config*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp/freige -name \"deepspeed*\" -o -name \"accelerate*\" -o -name \"ds_config*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T12:52:33.379286+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/configs/deepspeed_zero2.json\\n/root/autodl-tmp/freige/configs/deepspeed_zero3.json\\n/root/autodl-tmp/freige/configs/accelerate_4gpu.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T12:52:33.379410+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/freige/configs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls /root/autodl-tmp/freige/configs/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T12:52:33.379533+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"accelerate_4gpu.yaml\\ndeepspeed_zero2.json\\ndeepspeed_zero3.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T12:52:33.379676+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/configs/deepspeed_zero2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/freige/configs/deepspeed_zero2.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T12:52:33.379818+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"bf16\\\": {\\\"enabled\\\": true},\\n  \\\"zero_optimization\\\": {\\n    \\\"stage\\\": 2,\\n    \\\"offload_optimizer\\\": {\\\"device\\\": \\\"cpu\\\", \\\"pin_memory\\\": true},\\n    \\\"allgather_partitions\\\": true,\\n    \\\"allgather_bucket_size\\\": 2e8,\\n    \\\"overlap_comm\\\": true,\\n    \\\"reduce_scatter\\\": true,\\n    \\\"reduce_bucket_size\\\": 2e8,\\n    \\\"contiguous_gradients\\\": true\\n  },\\n  \\\"gradient_accumulation_steps\\\": \\\"auto\\\",\\n  \\\"gradient_clipping\\\": \\\"auto\\\",\\n  \\\"train_batch_size\\\": \\\"auto\\\",\\n  \\\"train_micro_batch_size_per_gpu\\\": \\\"auto\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.29}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T12:52:33.379942+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/configs/accelerate_4gpu.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/freige/configs/accelerate_4gpu.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T12:52:33.380063+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"compute_environment: LOCAL_MACHINE\\ndistributed_type: DEEPSPEED\\ndeepspeed_config:\\n  deepspeed_config_file: /root/autodl-tmp/freige/configs/deepspeed_zero2.json\\n  zero3_init_flag: false\\nmachine_rank: 0\\nmain_training_function: main\\nnum_machines: 1\\nnum_processes: 4\\nuse_cpu: false\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.29}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T12:52:33.380179+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/configs/deepspeed_zero3.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/freige/configs/deepspeed_zero3.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T12:52:33.380341+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"bf16\\\": {\\\"enabled\\\": true},\\n  \\\"zero_optimization\\\": {\\n    \\\"stage\\\": 3,\\n    \\\"offload_optimizer\\\": {\\\"device\\\": \\\"cpu\\\", \\\"pin_memory\\\": true},\\n    \\\"offload_param\\\": {\\\"device\\\": \\\"cpu\\\", \\\"pin_memory\\\": true},\\n    \\\"overlap_comm\\\": true,\\n    \\\"contiguous_gradients\\\": true,\\n    \\\"sub_group_size\\\": 1e9,\\n    \\\"reduce_bucket_size\\\": \\\"auto\\\",\\n    \\\"stage3_prefetch_bucket_size\\\": \\\"auto\\\",\\n    \\\"stage3_param_persistence_threshold\\\": \\\"auto\\\",\\n    \\\"stage3_max_live_parameters\\\": 1e9,\\n    \\\"stage3_max_reuse_distance\\\": 1e9,\\n    \\\"stage3_gather_16bit_weights_on_model_save\\\": true\\n  },\\n  \\\"gradient_accumulation_steps\\\": \\\"auto\\\",\\n  \\\"gradient_clipping\\\": \\\"auto\\\",\\n  \\\"train_batch_size\\\": \\\"auto\\\",\\n  \\\"train_micro_batch_size_per_gpu\\\": \\\"auto\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-18T12:52:33.380584+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"add_argument\" /root/autodl-tmp/freige/training/sft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"add_argument\" /root/autodl-tmp/freige/training/sft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T12:52:33.380876+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"111:    parser.add_argument(\\\"--model_name\\\", type=str, default=DEFAULT_MODEL)\\n112:    parser.add_argument(\\\"--data_dir\\\", type=str, default=None,\\n114:    parser.add_argument(\\\"--output_dir\\\", type=str, default=\\\"./sft_output\\\")\\n115:    parser.add_argument(\\\"--lora_rank\\\", type=int, default=64)\\n116:    parser.add_argument(\\\"--lora_alpha\\\", type=int, default=128)\\n117:    parser.add_argument(\\\"--lora_dropout\\\", type=float, default=0.05)\\n118:    parser.add_argument(\\\"--max_length\\\", type=int, default=4096)\\n119:    parser.add_argument(\\\"--quantize\\\", action=argparse.BooleanOptionalAction, default=True,\\n121:    parser.add_argument(\\\"--deepspeed\\\", type=str, default=None,\\n123:    parser.add_argument(\\\"--per_device_batch_size\\\", type=int, default=1)\\n124:    parser.add_argument(\\\"--gradient_accumulation_steps\\\", type=int, default=16)\\n125:    parser.add_argument(\\\"--num_epochs\\\", type=int, default=3)\\n126:    parser.add_argument(\\\"--learning_rate\\\", type=float, default=2e-4)\\n127:    parser.add_argument(\\\"--warmup_ratio\\\", type=float, default=0.05)\\n128:    parser.add_argument(\\\"--bf16\\\", action=\\\"store_true\\\", default=True)\\n129:    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n130:    parser.add_argument(\\\"--wandb_project\\\", type=str, default=\\\"freige-sft\\\")\\n131:    parser.add_argument(\\\"--wandb_run_name\\\", type=str, default=None)\\n132:    parser.add_argument(\\\"--no_evidence\\\", action=\\\"store_true\\\", default=False)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-18T12:52:33.381155+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"add_argument\" /root/autodl-tmp/freige/training/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"add_argument\" /root/autodl-tmp/freige/training/rsft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-18T12:52:33.381374+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"257:    parser.add_argument(\\\"--base_model\\\", type=str, default=DEFAULT_BASE_MODEL)\\n258:    parser.add_argument(\\\"--sft_adapter\\\", type=str, default=DEFAULT_SFT_ADAPTER,\\n260:    parser.add_argument(\\\"--rsft_data_path\\\", type=str, required=True,\\n262:    parser.add_argument(\\\"--output_dir\\\", type=str, required=True)\\n263:    parser.add_argument(\\\"--learning_rate\\\", type=float, default=2e-5)\\n264:    parser.add_argument(\\\"--num_epochs\\\", type=int, default=3)\\n265:    parser.add_argument(\\\"--per_device_batch_size\\\", type=int, default=4)\\n266:    parser.add_argument(\\\"--gradient_accumulation_steps\\\", type=int, default=4)\\n267:    parser.add_argument(\\\"--warmup_steps\\\", type=int, default=100)\\n268:    parser.add_argument(\\\"--save_steps\\\", type=int, default=50)\\n269:    parser.add_argument(\\\"--save_total_limit\\\", type=int, default=5)\\n270:    parser.add_argument(\\\"--max_length\\\", type=int, default=2048)\\n271:    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n272:    parser.add_argument(\\\"--wandb_project\\\", type=str, default=\\\"freige-rsft\\\")\\n273:    parser.add_argument(\\\"--wandb_run_name\\\", type=str, default=None)\\n274:    parser.add_argument(\\\"--weighted_sampling\\\", action=\\\"store_true\\\",\\n276:    parser.add_argument(\\\"--quantize\\\", action=\\\"store_true\\\",\\n278:    parser.add_argument(\\\"--lora_rank\\\", type=int, default=64)\\n279:    parser.add_argument(\\\"--lora_alpha\\\", type=int, default=128)\\n280:    parser.add_argument(\\\"--lora_dropout\\\", type=float, default=0.05)\\n281:    parser.add_argument(\\\"--bf16\\\", action=\\\"store_true\\\", default=True)\\n282:    parser.add_argument(\\\"--deepspeed\\\", type=str, default=None,\\n284:    parser.add_argument(\\\"--eval_data_dir\\\", type=str, default=None,\\n286:    parser.add_argument(\\\"--eval_max_docs\\\", type=int, default=50,\\n288:    parser.add_
+…[truncated 326 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-18T12:52:33.381648+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "head -160 /root/autodl-tmp/freige/training/sft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "head -160 /root/autodl-tmp/freige/training/sft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-18T12:52:33.381901+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"SFT 训练脚本: Qwen3-4B + QLoRA 在 DocRED 上微调。\\n\\n支持单卡和多卡（DeepSpeed ZeRO-2/3）训练。\\n默认启用 4-bit QLoRA 量化，适配 RTX 5090 32GB x4。\\n\\n单卡:   python -m freige.training.sft_trainer --output_dir ./sft_output\\n多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\n            -m freige.training.sft_trainer --deepspeed configs/deepspeed_zero2.json\\n不量化: 加 --no_quantize\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom dataclasses import dataclass, field\\nfrom pathlib import Path\\nfrom typing import Optional\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom peft import LoraConfig, TaskType, get_peft_model\\nfrom transformers import (\\n    AutoModelForCausalLM,\\n    AutoTokenizer,\\n    BitsAndBytesConfig,\\n    TrainingArguments,\\n)\\nfrom trl import SFTTrainer, SFTConfig\\n\\nfrom freige.training import LLAMA3_CHAT_TEMPLATE\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\nNO_EVIDENCE_SYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, and tail entity. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\nDEFAULT_MODEL = \\\"/root/autodl-tmp/models/Qwen3-4B\\\"\\n\\n\\ndef build_chat_messages(instruction: str, input_text: str, output_text: str = None, system_prompt: str = None):\\n    \\\"\\\"\\\"构建 Qwen3 chat 
+…[truncated 5171 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-18T12:52:33.382067+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "head -320 /root/autodl-tmp/freige/training/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "head -320 /root/autodl-tmp/freige/training/rsft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-18T12:52:33.382347+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"RSFT (Rejection Sampling Fine-Tuning) 训练脚本。\\n\\n从 SFT warmup checkpoint 继续训练，使用经 CED 打分筛选的高质量生成数据。\\n流程: base model → merge SFT adapter → 新 QLoRA → 在 RSFT 数据上训练。\\n\\n输入: JSONL，每行 {\\\"doc_id\\\": ..., \\\"input\\\": ..., \\\"output\\\": ..., \\\"ced_score\\\": ..., ...}\\n输出: QLoRA adapter checkpoint\\n依赖: transformers, trl, peft, bitsandbytes, datasets\\n\\n单卡:   python -m freige.training.rsft_trainer --rsft_data_path data.jsonl --output_dir ./rsft_output\\n多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\n            -m freige.training.rsft_trainer --rsft_data_path data.jsonl --output_dir ./rsft_output\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom peft import LoraConfig, PeftModel, TaskType, get_peft_model\\nfrom torch.utils.data import WeightedRandomSampler\\nfrom transformers import (\\n    AutoModelForCausalLM,\\n    AutoTokenizer,\\n    BitsAndBytesConfig,\\n    TrainerCallback,\\n)\\nfrom trl import SFTConfig, SFTTrainer\\n\\nfrom freige.training import LLAMA3_CHAT_TEMPLATE\\nfrom freige.training.sft_trainer import SYSTEM_PROMPT\\n\\n\\ndef _apply_chat_template(tokenizer, messages, **kwargs):\\n    tmpl = getattr(tokenizer, 'chat_template', None) or ''\\n    if 'enable_thinking' not in tmpl:\\n        kwargs.pop('enable_thinking', None)\\n    return tokenizer.apply_chat_template(messages, **kwargs)\\n\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nDEFAULT_BASE_MODEL = \\\"/root/autodl-tmp/models/Qwen3-4B\\\"\\nDEFAULT_SFT_ADAPTER = \\\"/root/autodl-tmp/sft_output\\\"\\n\\n\\ndef load_rsft_data(data_path: str, tokenizer, max_length: int = 2048):\\n    \\\"\\\"\\\"加载 CED 筛选后的 RSFT 数据，格式化为 chat template 文本。\\n\\n    每行 JSONL 的 input 字段作为 user message，output 字段作为 assistant response，\\n    
+…[truncated 7144 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-18T12:52:33.382626+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "sed -n '133,175p' /root/autodl-tmp/freige/training/sft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "sed -n '133,175p' /root/autodl-tmp/freige/training/sft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T12:52:33.382851+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-18T12:52:33.383002+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "sed -n '293,340p' /root/autodl-tmp/freige/training/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "sed -n '293,340p' /root/autodl-tmp/freige/training/rsft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T12:52:33.383126+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-18T12:52:33.383262+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -n +133 /root/autodl-tmp/freige/training/sft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -n +133 /root/autodl-tmp/freige/training/sft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-18T12:52:33.383453+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    args = parser.parse_args()\\n\\n    if args.wandb_project and \\\"WANDB_API_KEY\\\" in os.environ:\\n        os.environ[\\\"WANDB_PROJECT\\\"] = args.wandb_project\\n        if args.wandb_run_name:\\n            os.environ[\\\"WANDB_NAME\\\"] = args.wandb_run_name\\n\\n    logger.info(\\\"Loading tokenizer: %s\\\", args.model_name)\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        args.model_name,\\n        trust_remote_code=True,\\n        padding_side=\\\"right\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n    if not getattr(tokenizer, \\\"chat_template\\\", None):\\n        tokenizer.chat_template = LLAMA3_CHAT_TEMPLATE\\n\\n    logger.info(\\\"Preparing dataset...\\\")\\n    include_evidence = not args.no_evidence\\n    if args.no_evidence:\\n        logger.info(\\\"NO-EVIDENCE mode: training without evidence fields\\\")\\n    train_dataset = prepare_dataset(\\n        data_dir=args.data_dir,\\n        split=\\\"train\\\",\\n        tokenizer=tokenizer,\\n        max_length=args.max_length,\\n        include_evidence=include_evidence,\\n    )\\n    eval_dataset = prepare_dataset(\\n        data_dir=args.data_dir,\\n        split=\\\"dev\\\",\\n        tokenizer=tokenizer,\\n        max_length=args.max_length,\\n        include_evidence=include_evidence,\\n    )\\n\\n    logger.info(\\\"Loading model: %s\\\", args.model_name)\\n    local_rank = int(os.environ.get(\\\"LOCAL_RANK\\\", 0))\\n    model_kwargs = dict(\\n        trust_remote_code=True,\\n        attn_implementation=\\\"sdpa\\\",\\n        device_map={\\\"\\\": local_rank},\\n    )\\n    if args.quantize:\\n        logger.info(\\\"Using 4-bit QLoRA quantization\\\")\\n        model_kwargs[\\\"quantization_config\\\"] = BitsAndBytesConfig(\\n            load_in_4bit=True,\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\n            bnb_4bit_quant_type=\\\"nf4\\\",\\n      
+…[truncated 2472 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-18T12:52:33.383628+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -n +293 /root/autodl-tmp/freige/training/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -n +293 /root/autodl-tmp/freige/training/rsft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-18T12:52:33.383831+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    args = parser.parse_args()\\n\\n    # W&B\\n    if args.wandb_project and \\\"WANDB_API_KEY\\\" in os.environ:\\n        os.environ[\\\"WANDB_PROJECT\\\"] = args.wandb_project\\n        if args.wandb_run_name:\\n            os.environ[\\\"WANDB_NAME\\\"] = args.wandb_run_name\\n\\n    # Tokenizer\\n    logger.info(\\\"Loading tokenizer: %s\\\", args.base_model)\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        args.base_model, trust_remote_code=True, padding_side=\\\"right\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n    if not getattr(tokenizer, \\\"chat_template\\\", None):\\n        tokenizer.chat_template = LLAMA3_CHAT_TEMPLATE\\n\\n    # Data\\n    logger.info(\\\"Loading RSFT data: %s\\\", args.rsft_data_path)\\n    train_dataset, ced_scores = load_rsft_data(\\n        args.rsft_data_path, tokenizer, args.max_length,\\n    )\\n\\n    # Model: base -> merge SFT adapter -> new LoRA\\n    logger.info(\\\"Loading base model: %s\\\", args.base_model)\\n    local_rank = int(os.environ.get(\\\"LOCAL_RANK\\\", 0))\\n    model_kwargs = dict(\\n        trust_remote_code=True,\\n        attn_implementation=\\\"sdpa\\\",\\n        device_map={\\\"\\\": local_rank},\\n    )\\n    if args.quantize:\\n        logger.info(\\\"Using 4-bit QLoRA quantization\\\")\\n        model_kwargs[\\\"quantization_config\\\"] = BitsAndBytesConfig(\\n            load_in_4bit=True,\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\n            bnb_4bit_quant_type=\\\"nf4\\\",\\n            bnb_4bit_use_double_quant=True,\\n        )\\n    else:\\n        model_kwargs[\\\"torch_dtype\\\"] = torch.bfloat16 if args.bf16 else torch.float16\\n\\n    model = AutoModelForCausalLM.from_pretrained(args.base_model, **model_kwargs)\\n\\n    if args.sft_adapter:\\n        logger.info(\\\"Merging SFT adapter: %s\\\", args.sft_adapter)\\n        model = PeftModel.from_pretra
+…[truncated 3491 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-18T12:52:33.384028+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat > /root/autodl-tmp/freige/configs/accelerate_2gpu_zero3.yaml << 'EOF'\ncompute_environment: LOCAL_MACHINE\ndistributed_type: DEEPSPEED\ndeepspeed_config:\n  deepspeed_config_file: /root/autodl-tmp/freige/configs/deepspeed_zero3.json\n  zero3_init_flag: true\nmachine_rank: 0\nmain_training_function: main\nnum_machines: 1\nnum_processes: 2\nuse_cpu: false\nEOF\necho \"accelerate config created\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat > /root/autodl-tmp/freige/configs/accelerate_2gpu_zero3.yaml << 'EOF'\ncompute_environment: LOCAL_MACHINE\ndistributed_type: DEEPSPEED\ndeepspeed_config:\n  deepspeed_config_file: /root/autodl-tmp/freige/configs/deepspeed_zero3.json\n  zero3_init_flag: true\nmachine_rank: 0\nmain_training_function: main\nnum_machines: 1\nnum_processes: 2\nuse_cpu: false\nEOF\necho \"accelerate config created\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-18T12:52:33.384168+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"accelerate config created\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-18T12:52:33.384372+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat > /root/autodl-tmp/freige/scripts/sft_14b.sh << 'SCRIPT'\n#!/bin/bash\nset -e\nsource /root/miniconda3/bin/activate\ncd /root/autodl-tmp/freige\n\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_HUB_OFFLINE=1\nexport TRANSFORMERS_OFFLINE=1\nexport CUDA_VISIBLE_DEVICES=2,3\n\naccelerate launch \\\n  --config_file configs/accelerate_2gpu_zero3.yaml \\\n  -m freige.training.sft_trainer \\\n  --model_name /root/autodl-tmp/models/Qwen/Qwen3-14B \\\n  --data_dir /root/autodl-tmp/data/docred \\\n  --output_dir /root/autodl-tmp/sft_output_14b \\\n  --deepspeed configs/deepspeed_zero3.json \\\n  --no-quantize \\\n  --lora_rank 64 \\\n  --lora_alpha 128 \\\n  --lora_dropout 0.05 \\\n  --max_length 4096 \\\n  --per_device_batch_size 1 \\\n  --gradient_accumulation_steps 32 \\\n  --num_epochs 3 \\\n  --learning_rate 2e-4 \\\n  --warmup_ratio 0.05 \\\n  --bf16 \\\n  --seed 42 \\\n  --wandb_project freige-sft \\\n  --wandb_run_name sft-14b-seed42\nSCRIPT\nchmod +x /root/autodl-tmp/freige/scripts/sft_14b.sh\necho \"sft_14b.sh created\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat > /root/autodl-tmp/freige/scripts/sft_14b.sh << 'SCRIPT'\n#!/bin/bash\nset -e\nsource /root/miniconda3/bin/activate\ncd /root/autodl-tmp/freige\n\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_HUB_OFFLINE=1\nexport TRANSFORMERS_OFFLINE=1\nexport CUDA_VISIBLE_DEVICES=2,3\n\naccelerate launch \\\n  --config_file configs/accelerate_2gpu_zero3.yaml \\\n  -m freige.training.sft_trainer \\\n  --model_name /root/autodl-tmp/models/Qwen/Qwen3-14B \\\n  --data_dir /root/autodl-tmp/data/docred \\\n  --output_dir /root/autodl-tmp/sft_output_14b \\\n  --deepspeed configs/deepspeed_zero3.json \\\n  --no-quantize \\\n  --lora_rank 64 \\\n  --lora_alpha 128 \\\n  --lora_dropout 0.05 \\\n  --max_length 4096 \\\n  --per_device_batch_size 1 \\\n  --gradient_accumulation_steps 32 \\\n  --num_epochs 3 \\\n  --learning_rate 2e-4 \\\n  --warmup_ratio 0.05 \\\n  --bf16 \\\n  --seed 42 \\\n  --wandb_project freige-sft \\\n  --wandb_run_name sft-14b-seed42\nSCRIPT\nchmod +x /root/autodl-tmp/freige/scripts/sft_14b.sh\necho \"sft_14b.sh created\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-18T12:52:33.384572+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"sft_14b.sh created\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-18T12:52:33.384767+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat > /root/autodl-tmp/freige/scripts/rsft_14b.sh << 'SCRIPT'\n#!/bin/bash\nset -e\nsource /root/miniconda3/bin/activate\ncd /root/autodl-tmp/freige\n\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_HUB_OFFLINE=1\nexport TRANSFORMERS_OFFLINE=1\nexport CUDA_VISIBLE_DEVICES=2,3\n\n# 14B RSFT 需要预合并的 SFT 模型（ZeRO-3 不支持运行时 adapter merge）\n# 先运行: python scripts/merge_sft_adapter_14b.py\nMERGED_MODEL=/root/autodl-tmp/models/Qwen3-14B-sft-merged\n\n# RSFT 数据路径（CED k=1 筛选后）— 需要先完成 14B 生成+CED 打分\nRSFT_DATA=/root/autodl-tmp/freige/outputs/rsft_scored_14b_k1/rsft_train.jsonl\n\naccelerate launch \\\n  --config_file configs/accelerate_2gpu_zero3.yaml \\\n  -m freige.training.rsft_trainer \\\n  --base_model \"$MERGED_MODEL\" \\\n  --sft_adapter \"\" \\\n  --rsft_data_path \"$RSFT_DATA\" \\\n  --output_dir /root/autodl-tmp/rsft_output_14b \\\n  --deepspeed configs/deepspeed_zero3.json \\\n  --lora_rank 64 \\\n  --lora_alpha 128 \\\n  --lora_dropout 0.05 \\\n  --learning_rate 2e-5 \\\n  --num_epochs 3 \\\n  --per_device_batch_size 1 \\\n  --gradient_accumulation_steps 8 \\\n  --warmup_steps 100 \\\n  --save_steps 50 \\\n  --save_total_limit 2 \\\n  --max_length 2048 \\\n  --seed 42 \\\n  --bf16 \\\n  --wandb_project freige-rsft \\\n  --wandb_run_name rsft-14b-ced-k1\nSCRIPT\nchmod +x /root/autodl-tmp/freige/scripts/rsft_14b.sh\necho \"rsft_14b.sh created\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat > /root/autodl-tmp/freige/scripts/rsft_14b.sh << 'SCRIPT'\n#!/bin/bash\nset -e\nsource /root/miniconda3/bin/activate\ncd /root/autodl-tmp/freige\n\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_HUB_OFFLINE=1\nexport TRANSFORMERS_OFFLINE=1\nexport CUDA_VISIBLE_DEVICES=2,3\n\n# 14B RSFT 需要预合并的 SFT 模型（ZeRO-3 不支持运行时 adapter merge）\n# 先运行: python scripts/merge_sft_adapter_14b.py\nMERGED_MODEL=/root/autodl-tmp/models/Qwen3-14B-sft-merged\n\n# RSFT 数据路径（CED k=1 筛选后）— 需要先完成 14B 生成+CED 打分\nRSFT_DATA=/root/autodl-tmp/freige/outputs/rsft_scored_14b_k1/rsft_train.jsonl\n\naccelerate launch \\\n  --config_file configs/accelerate_2gpu_zero3.yaml \\\n  -m freige.training.rsft_trainer \\\n  --base_model \"$MERGED_MODEL\" \\\n  --sft_adapter \"\" \\\n  --rsft_data_path \"$RSFT_DATA\" \\\n  --output_dir /root/autodl-tmp/rsft_output_14b \\\n  --deepspeed configs/deepspeed_zero3.json \\\n  --lora_rank 64 \\\n  --lora_alpha 128 \\\n  --lora_dropout 0.05 \\\n  --learning_rate 2e-5 \\\n  --num_epochs 3 \\\n  --per_device_batch_size 1 \\\n  --gradient_accumulation_steps 8 \\\n  --warmup_steps 100 \\\n  --save_steps 50 \\\n  --save_total_limit 2 \\\n  --max_length 2048 \\\n  --seed 42 \\\n  --bf16 \\\n  --wandb_project freige-rsft \\\n  --wandb_run_name rsft-14b-ced-k1\nSCRIPT\nchmod +x /root/autodl-tmp/freige/scripts/rsft_14b.sh\necho \"rsft_14b.sh created\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-18T12:52:33.385108+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"rsft_14b.sh created\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-18T12:52:33.385283+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat > /root/autodl-tmp/freige/scripts/merge_sft_adapter_14b.py << 'PYEOF'\n\"\"\"Merge 14B SFT adapter into base model for RSFT training.\n\nZeRO-3 parameter partitioning is incompatible with runtime adapter merge,\nso we pre-merge and save the full model to disk.\n\nUsage: python scripts/merge_sft_adapter_14b.py\n\"\"\"\nimport torch\nfrom peft import PeftModel\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nBASE_MODEL = \"/root/autodl-tmp/models/Qwen/Qwen3-14B\"\nSFT_ADAPTER = \"/root/autodl-tmp/sft_output_14b\"\nOUTPUT_DIR = \"/root/autodl-tmp/models/Qwen3-14B-sft-merged\"\n\nprint(f\"Loading base model: {BASE_MODEL}\")\nmodel = AutoModelForCausalLM.from_pretrained(\n    BASE_MODEL, torch_dtype=torch.bfloat16, device_map=\"cpu\",\n    trust_remote_code=True,\n)\n\nprint(f\"Loading and merging SFT adapter: {SFT_ADAPTER}\")\nmodel = PeftModel.from_pretrained(model, SFT_ADAPTER)\nmodel = model.merge_and_unload()\n\nprint(f\"Saving merged model to: {OUTPUT_DIR}\")\nmodel.save_pretrained(OUTPUT_DIR)\n\ntokenizer = AutoTokenizer.from_pretrained(BASE_MODEL, trust_remote_code=True)\ntokenizer.save_pretrained(OUTPUT_DIR)\n\nprint(\"Done.\")\nPYEOF\necho \"merge_sft_adapter_14b.py created\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat > /root/autodl-tmp/freige/scripts/merge_sft_adapter_14b.py << 'PYEOF'\n\"\"\"Merge 14B SFT adapter into base model for RSFT training.\n\nZeRO-3 parameter partitioning is incompatible with runtime adapter merge,\nso we pre-merge and save the full model to disk.\n\nUsage: python scripts/merge_sft_adapter_14b.py\n\"\"\"\nimport torch\nfrom peft import PeftModel\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nBASE_MODEL = \"/root/autodl-tmp/models/Qwen/Qwen3-14B\"\nSFT_ADAPTER = \"/root/autodl-tmp/sft_output_14b\"\nOUTPUT_DIR = \"/root/autodl-tmp/models/Qwen3-14B-sft-merged\"\n\nprint(f\"Loading base model: {BASE_MODEL}\")\nmodel = AutoModelForCausalLM.from_pretrained(\n    BASE_MODEL, torch_dtype=torch.bfloat16, device_map=\"cpu\",\n    trust_remote_code=True,\n)\n\nprint(f\"Loading and merging SFT adapter: {SFT_ADAPTER}\")\nmodel = PeftModel.from_pretrained(model, SFT_ADAPTER)\nmodel = model.merge_and_unload()\n\nprint(f\"Saving merged model to: {OUTPUT_DIR}\")\nmodel.save_pretrained(OUTPUT_DIR)\n\ntokenizer = AutoTokenizer.from_pretrained(BASE_MODEL, trust_remote_code=True)\ntokenizer.save_pretrained(OUTPUT_DIR)\n\nprint(\"Done.\")\nPYEOF\necho \"merge_sft_adapter_14b.py created\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-18T12:52:33.385439+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"merge_sft_adapter_14b.py created\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-18T12:52:33.385588+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "python3 -c \"\nimport re\n\n# Patch sft_trainer.py\nwith open('/root/autodl-tmp/freige/training/sft_trainer.py', 'r') as f:\n    content = f.read()\n\n# 1. Add HfDeepSpeedConfig init after args parsing\nold_block1 = '''    args = parser.parse_args()\n\n    if args.wandb_project and \\\"WANDB_API_KEY\\\" in os.environ:'''\nnew_block1 = '''    args = parser.parse_args()\n\n    # ZeRO-3: initialize HfDeepSpeedConfig before model loading\n    _ds_config_obj = None\n    if args.deepspeed:\n        from transformers.integrations import HfDeepSpeedConfig\n        _ds_config_obj = HfDeepSpeedConfig(args.deepspeed)\n\n    if args.wandb_project and \\\"WANDB_API_KEY\\\" in os.environ:'''\n\ncontent = content.replace(old_block1, new_block1, 1)\n\n# 2. Make device_map conditional on deepspeed\nold_block2 = '''    local_rank = int(os.environ.get(\\\"LOCAL_RANK\\\", 0))\n    model_kwargs = dict(\n        trust_remote_code=True,\n        attn_implementation=\\\"sdpa\\\",\n        device_map={\\\"\\\": local_rank},\n    )'''\nnew_block2 = '''    local_rank = int(os.environ.get(\\\"LOCAL_RANK\\\", 0))\n    model_kwargs = dict(\n        trust_remote_code=True,\n        attn_implementation=\\\"sdpa\\\",\n    )\n    if not args.deepspeed:\n        model_kwargs[\\\"device_map\\\"] = {\\\"\\\": local_rank}'''\n\ncontent = content.replace(old_block2, new_block2, 1)\n\nwith open('/root/autodl-tmp/freige/training/sft_trainer.py', 'w') as f:\n    f.write(content)\n\nprint('sft_trainer.py patched')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "python3 -c \"\nimport re\n\n# Patch sft_trainer.py\nwith open('/root/autodl-tmp/freige/training/sft_trainer.py', 'r') as f:\n    content = f.read()\n\n# 1. Add HfDeepSpeedConfig init after args parsing\nold_block1 = '''    args = parser.parse_args()\n\n    if args.wandb_project and \\\"WANDB_API_KEY\\\" in os.environ:'''\nnew_block1 = '''    args = parser.parse_args()\n\n    # ZeRO-3: initialize HfDeepSpeedConfig before model loading\n    _ds_config_obj = None\n    if args.deepspeed:\n        from transformers.integrations import HfDeepSpeedConfig\n        _ds_config_obj = HfDeepSpeedConfig(args.deepspeed)\n\n    if args.wandb_project and \\\"WANDB_API_KEY\\\" in os.environ:'''\n\ncontent = content.replace(old_block1, new_block1, 1)\n\n# 2. Make device_map conditional on deepspeed\nold_block2 = '''    local_rank = int(os.environ.get(\\\"LOCAL_RANK\\\", 0))\n    model_kwargs = dict(\n        trust_remote_code=True,\n        attn_implementation=\\\"sdpa\\\",\n        device_map={\\\"\\\": local_rank},\n    )'''\nnew_block2 = '''    local_rank = int(os.environ.get(\\\"LOCAL_RANK\\\", 0))\n    model_kwargs = dict(\n        trust_remote_code=True,\n        attn_implementation=\\\"sdpa\\\",\n    )\n    if not args.deepspeed:\n        model_kwargs[\\\"device_map\\\"] = {\\\"\\\": local_rank}'''\n\ncontent = content.replace(old_block2, new_block2, 1)\n\nwith open('/root/autodl-tmp/freige/training/sft_trainer.py', 'w') as f:\n    f.write(content)\n\nprint('sft_trainer.py patched')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-18T12:52:33.385770+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport re\\\\n\\\\n# Patch sft_trainer.py\\\\nwith open(\\\\'/root/autodl-tmp/freige/training/sft_trainer.py\\\\', \\\\'r\\\\') as f:\\\\n    content = f.read()\\\\n\\\\n# 1. Add HfDeepSpeedConfig init after args parsing\\\\nold_block1 = \\\\'\\\\'\\\\'    args = parser.parse_args()\\\\n\\\\n    if args.wandb_project and \\\\\\\\\\\"WANDB_API_KEY\\\\\\\\\\\" in os.environ:\\\\'\\\\'\\\\'\\\\nnew_block1 = \\\\'\\\\'\\\\'    args = parser.parse_args()\\\\n\\\\n    # ZeRO-3: initialize HfDeepSpeedConfig before model loading\\\\n    _ds_config_obj = None\\\\n    if args.deepspeed:\\\\n        from transformers.integrations import HfDeepSpeedConfig\\\\n        _ds_config_obj = HfDeepSpeedConfig(args.deepspeed)\\\\n\\\\n    if args.wandb_project and \\\\\\\\\\\"WANDB_API_KEY\\\\\\\\\\\" in os.environ:\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(old_block1, new_block1, 1)\\\\n\\\\n# 2. Make device_map conditional on deepspeed\\\\nold_block2 = \\\\'\\\\'\\\\'    local_rank = int(os.environ.get(\\\\\\\\\\\"LOCAL_RANK\\\\\\\\\\\", 0))\\\\n    model_kwargs = dict(\\\\n        trust_remote_code=True,\\\\n        attn_implementation=\\\\\\\\\\\"sdpa\\\\\\\\\\\",\\\\n        device_map={\\\\\\\\\\\"\\\\\\\\\\\": local_rank},\\\\n    )\\\\'\\\\'\\\\'\\\\nnew_block2 = \\\\'\\\\'\\\\'    local_rank = int(os.environ.get(\\\\\\\\\\\"LOCAL_RANK\\\\\\\\\\\", 0))\\\\n    model_kwargs = dict(\\\\n        trust_remote_code=True,\\\\n        attn_implementation=\\\\\\\\\\\"sdpa\\\\\\\\\\\",\\\\n    )\\\\n    if not args.deepspeed:\\\\n        model_kwargs[\\\\\\\\\\\"device_map\\\\\\\\\\\"] = {\\\\\\\\\\\"\\\\\\\\\\\": local_rank}\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(old_block2, new_block2, 1)\\\\n\\\\nwith open(\\\\'/root/autodl-tmp/freige/training/sft_trainer.py\\\\', \\\\'w\\\\') as f:\\\\n    f.write(content)\\\\n\\\\nprint(\\\\'sft_traine
+…[truncated 180 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-18T12:52:33.385930+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "python3 -c \"\n# Patch rsft_trainer.py\nwith open('/root/autodl-tmp/freige/training/rsft_trainer.py', 'r') as f:\n    content = f.read()\n\n# 1. Add HfDeepSpeedConfig init after args parsing\nold_block1 = '''    args = parser.parse_args()\n\n    # W&B'''\nnew_block1 = '''    args = parser.parse_args()\n\n    # ZeRO-3: initialize HfDeepSpeedConfig before model loading\n    _ds_config_obj = None\n    if args.deepspeed:\n        from transformers.integrations import HfDeepSpeedConfig\n        _ds_config_obj = HfDeepSpeedConfig(args.deepspeed)\n\n    # W&B'''\n\ncontent = content.replace(old_block1, new_block1, 1)\n\n# 2. Make device_map conditional on deepspeed\nold_block2 = '''    local_rank = int(os.environ.get(\\\"LOCAL_RANK\\\", 0))\n    model_kwargs = dict(\n        trust_remote_code=True,\n        attn_implementation=\\\"sdpa\\\",\n        device_map={\\\"\\\": local_rank},\n    )'''\nnew_block2 = '''    local_rank = int(os.environ.get(\\\"LOCAL_RANK\\\", 0))\n    model_kwargs = dict(\n        trust_remote_code=True,\n        attn_implementation=\\\"sdpa\\\",\n    )\n    if not args.deepspeed:\n        model_kwargs[\\\"device_map\\\"] = {\\\"\\\": local_rank}'''\n\ncontent = content.replace(old_block2, new_block2, 1)\n\nwith open('/root/autodl-tmp/freige/training/rsft_trainer.py', 'w') as f:\n    f.write(content)\n\nprint('rsft_trainer.py patched')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "python3 -c \"\n# Patch rsft_trainer.py\nwith open('/root/autodl-tmp/freige/training/rsft_trainer.py', 'r') as f:\n    content = f.read()\n\n# 1. Add HfDeepSpeedConfig init after args parsing\nold_block1 = '''    args = parser.parse_args()\n\n    # W&B'''\nnew_block1 = '''    args = parser.parse_args()\n\n    # ZeRO-3: initialize HfDeepSpeedConfig before model loading\n    _ds_config_obj = None\n    if args.deepspeed:\n        from transformers.integrations import HfDeepSpeedConfig\n        _ds_config_obj = HfDeepSpeedConfig(args.deepspeed)\n\n    # W&B'''\n\ncontent = content.replace(old_block1, new_block1, 1)\n\n# 2. Make device_map conditional on deepspeed\nold_block2 = '''    local_rank = int(os.environ.get(\\\"LOCAL_RANK\\\", 0))\n    model_kwargs = dict(\n        trust_remote_code=True,\n        attn_implementation=\\\"sdpa\\\",\n        device_map={\\\"\\\": local_rank},\n    )'''\nnew_block2 = '''    local_rank = int(os.environ.get(\\\"LOCAL_RANK\\\", 0))\n    model_kwargs = dict(\n        trust_remote_code=True,\n        attn_implementation=\\\"sdpa\\\",\n    )\n    if not args.deepspeed:\n        model_kwargs[\\\"device_map\\\"] = {\\\"\\\": local_rank}'''\n\ncontent = content.replace(old_block2, new_block2, 1)\n\nwith open('/root/autodl-tmp/freige/training/rsft_trainer.py', 'w') as f:\n    f.write(content)\n\nprint('rsft_trainer.py patched')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-18T12:52:33.386129+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\n# Patch rsft_trainer.py\\\\nwith open(\\\\'/root/autodl-tmp/freige/training/rsft_trainer.py\\\\', \\\\'r\\\\') as f:\\\\n    content = f.read()\\\\n\\\\n# 1. Add HfDeepSpeedConfig init after args parsing\\\\nold_block1 = \\\\'\\\\'\\\\'    args = parser.parse_args()\\\\n\\\\n    # W&B\\\\'\\\\'\\\\'\\\\nnew_block1 = \\\\'\\\\'\\\\'    args = parser.parse_args()\\\\n\\\\n    # ZeRO-3: initialize HfDeepSpeedConfig before model loading\\\\n    _ds_config_obj = None\\\\n    if args.deepspeed:\\\\n        from transformers.integrations import HfDeepSpeedConfig\\\\n        _ds_config_obj = HfDeepSpeedConfig(args.deepspeed)\\\\n\\\\n    # W&B\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(old_block1, new_block1, 1)\\\\n\\\\n# 2. Make device_map conditional on deepspeed\\\\nold_block2 = \\\\'\\\\'\\\\'    local_rank = int(os.environ.get(\\\\\\\\\\\"LOCAL_RANK\\\\\\\\\\\", 0))\\\\n    model_kwargs = dict(\\\\n        trust_remote_code=True,\\\\n        attn_implementation=\\\\\\\\\\\"sdpa\\\\\\\\\\\",\\\\n        device_map={\\\\\\\\\\\"\\\\\\\\\\\": local_rank},\\\\n    )\\\\'\\\\'\\\\'\\\\nnew_block2 = \\\\'\\\\'\\\\'    local_rank = int(os.environ.get(\\\\\\\\\\\"LOCAL_RANK\\\\\\\\\\\", 0))\\\\n    model_kwargs = dict(\\\\n        trust_remote_code=True,\\\\n        attn_implementation=\\\\\\\\\\\"sdpa\\\\\\\\\\\",\\\\n    )\\\\n    if not args.deepspeed:\\\\n        model_kwargs[\\\\\\\\\\\"device_map\\\\\\\\\\\"] = {\\\\\\\\\\\"\\\\\\\\\\\": local_rank}\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(old_block2, new_block2, 1)\\\\n\\\\nwith open(\\\\'/root/autodl-tmp/freige/training/rsft_trainer.py\\\\', \\\\'w\\\\') as f:\\\\n    f.write(content)\\\\n\\\\nprint(\\\\'rsft_trainer.py patched\\\\')\\\\n\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_
+…[truncated 19 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-18T12:52:33.386348+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat > /tmp/patch_trainers.py << 'PYEOF'\nimport sys\n\ndef patch_sft():\n    path = '/root/autodl-tmp/freige/training/sft_trainer.py'\n    with open(path, 'r') as f:\n        content = f.read()\n\n    old1 = '    args = parser.parse_args()\\n\\n    if args.wandb_project and \"WANDB_API_KEY\" in os.environ:'\n    new1 = '''    args = parser.parse_args()\n\n    # ZeRO-3: initialize HfDeepSpeedConfig before model loading\n    _ds_config_obj = None\n    if args.deepspeed:\n        from transformers.integrations import HfDeepSpeedConfig\n        _ds_config_obj = HfDeepSpeedConfig(args.deepspeed)\n\n    if args.wandb_project and \"WANDB_API_KEY\" in os.environ:'''\n\n    if old1 not in content:\n        print(\"WARNING: sft_trainer.py block1 not found (already patched?)\")\n    else:\n        content = content.replace(old1, new1, 1)\n\n    old2 = '    local_rank = int(os.environ.get(\"LOCAL_RANK\", 0))\\n    model_kwargs = dict(\\n        trust_remote_code=True,\\n        attn_implementation=\"sdpa\",\\n        device_map={\"\": local_rank},\\n    )'\n    new2 = '    local_rank = int(os.environ.get(\"LOCAL_RANK\", 0))\\n    model_kwargs = dict(\\n        trust_remote_code=True,\\n        attn_implementation=\"sdpa\",\\n    )\\n    if not args.deepspeed:\\n        model_kwargs[\"device_map\"] = {\"\": local_rank}'\n\n    if old2 not in content:\n        print(\"WARNING: sft_trainer.py block2 not found (already patched?)\")\n    else:\n        content = content.replace(old2, new2, 1)\n\n    with open(path, 'w') as f:\n        f.write(content)\n    print(\"sft_trainer.py patched OK\")\n\ndef patch_rsft():\n    path = '/root/autodl-tmp/freige/training/rsft_trainer.py'\n    with open(path, 'r') as f:\n        content = f.read()\n\n    old1 = '    args = parser.parse_args()\\n\\n    # W&B'\n    new1 = '''    args = parser.parse_args()\n\n    # ZeRO-3: initialize HfDeepSpeedConfig before model loading\n    _ds_config_obj = None\n    if args.deepspeed:\n        from transformers.integrations import HfDeepSpeedConfig\n        _ds_config_obj = HfDeepSpeedConfig(args.deepspeed)\n\n    # W&B'''\n\n    if old1 not in content:\n        print(\"WARNING: rsft_trainer.py block1 not found (already patched?)\")\n    else:\n        content = content.replace(old1, new1, 1)\n\n    old2 = '    local_rank = int(os.environ.get(\"LOCAL_RANK\", 0))\\n    model_kwargs = dict(\\n        trust_remote_code=True,\\n        attn_implementation=\"sdpa\",\\n        device_map={\"\": local_rank},\\n    )'\n    new2 = '    local_rank = int(os.environ.get(\"LOCAL_RANK\", 0))\\n    model_kwargs = dict(\\n        trust_remote_code=True,\\n        attn_implementation=\"sdpa\",\\n    )\\n    if not args.deepspeed:\\n        model_kwargs[\"device_map\"] = {\"\": local_rank}'\n\n    if old2 not in content:\n        print(\"WARNING: rsft_trainer.py block2 not found (already patched?)\")\n    else:\n        content = content.replace(old2, new2, 1)\n\n    with open(path, 'w') as f:\n        f.write(content)\n    print(\"rsft_trainer.py patched OK\")\n\npatch_sft()\npatch_rsft()\nPYEOF\nsource /root/miniconda3/bin/activate && python /tmp/patch_trainers.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat > /tmp/patch_trainers.py << 'PYEOF'\nimport sys\n\ndef patch_sft():\n    path = '/root/autodl-tmp/freige/training/sft_trainer.py'\n    with open(path, 'r') as f:\n        content = f.read()\n\n    old1 = '    args = parser.parse_args()\\n\\n    if args.wandb_project and \"WANDB_API_KEY\" in os.environ:'\n    new1 = '''    args = parser.parse_args()\n\n    # ZeRO-3: initialize HfDeepSpeedConfig before model loading\n    _ds_config_obj = None\n    if args.deepspeed:\n        from transformers.integrations import HfDeepSpeedConfig\n        _ds_config_obj = HfDeepSpeedConfig(args.deepspeed)\n\n    if args.wandb_project and \"WANDB_API_KEY\" in os.environ:'''\n\n    if old1 not in content:\n        print(\"WARNING: sft_trainer.py block1 not found (already patched?)\")\n    else:\n        content = content.replace(old1, new1, 1)\n\n    old2 = '    local_rank = int(os.environ.get(\"LOCAL_RANK\", 0))\\n    model_kwargs = dict(\\n        trust_remote_code=True,\\n        attn_implementation=\"sdpa\",\\n        device_map={\"\": local_rank},\\n    )'\n    new2 = '    local_rank = int(os.environ.get(\"LOCAL_RANK\", 0))\\n    model_kwargs = dict(\\n        trust_remote_code=True,\\n        attn_implementation=\"sdpa\",\\n    )\\n    if not args.deepspeed:\\n        model_kwargs[\"device_map\"] = {\"\": local_rank}'\n\n    if old2 not in content:\n        print(\"WARNING: sft_trainer.py block2 not found (already patched?)\")\n    else:\n        content = content.replace(old2, new2, 1)\n\n    with open(path, 'w') as f:\n        f.write(content)\n    print(\"sft_trainer.py patched OK\")\n\ndef patch_rsft():\n    path = '/root/autodl-tmp/freige/training/rsft_trainer.py'\n    with open(path, 'r') as f:\n        content = f.read()\n\n    old1 = '    args = parser.parse_args()\\n\\n    # W&B'\n    new1 = '''    args = parser.parse_args()\n\n    # ZeRO-3: initialize HfDeepSpeedConfig before model loading\n    _ds_config_obj = None\n    if args.deepspeed:\n        from transformers.integrations import HfDeepSpeedConfig\n        _ds_config_obj = HfDeepSpeedConfig(args.deepspeed)\n\n    # W&B'''\n\n    if old1 not in content:\n        print(\"WARNING: rsft_trainer.py block1 not found (already patched?)\")\n    else:\n        content = content.replace(old1, new1, 1)\n\n    old2 = '    local_rank = int(os.environ.get(\"LOCAL_RANK\", 0))\\n    model_kwargs = dict(\\n        trust_remote_code=True,\\n        attn_implementation=\"sdpa\",\\n        device_map={\"\": local_rank},\\n    )'\n    new2 = '    local_rank = int(os.environ.get(\"LOCAL_RANK\", 0))\\n    model_kwargs = dict(\\n        trust_remote_code=True,\\n        attn_implementation=\"sdpa\",\\n    )\\n    if not args.deepspeed:\\n        model_kwargs[\"device_map\"] = {\"\": local_rank}'\n\n    if old2 not in content:\n        print(\"WARNING: rsft_trainer.py block2 not found (already patched?)\")\n    else:\n        content = content.replace(old2, new2, 1)\n\n    with open(path, 'w') as f:\n        f.write(content)\n    print(\"rsft_trainer.py patched OK\")\n\npatch_sft()\npatch_rsft()\nPYEOF\nsource /root/miniconda3/bin/activate && python /tmp/patch_trainers.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-18T12:52:33.386519+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"sft_trainer.py patched OK\\nrsft_trainer.py patched OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-18T12:52:33.386661+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n -A2 \"ds_config_obj\\|device_map\\|HfDeepSpeedConfig\" /root/autodl-tmp/freige/training/sft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n -A2 \"ds_config_obj\\|device_map\\|HfDeepSpeedConfig\" /root/autodl-tmp/freige/training/sft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-18T12:52:33.386787+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-18T12:52:33.386906+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n -A2 \"ds_config_obj\\|device_map\\|HfDeepSpeedConfig\" /root/autodl-tmp/freige/training/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n -A2 \"ds_config_obj\\|device_map\\|HfDeepSpeedConfig\" /root/autodl-tmp/freige/training/rsft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-18T12:52:33.387026+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-18T12:52:33.387169+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/scripts/sft_14b.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/freige/scripts/sft_14b.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-18T12:52:33.387341+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -e\\nsource /root/miniconda3/bin/activate\\ncd /root/autodl-tmp/freige\\n\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport HF_HUB_OFFLINE=1\\nexport TRANSFORMERS_OFFLINE=1\\nexport CUDA_VISIBLE_DEVICES=2,3\\n\\naccelerate launch \\\\\\n  --config_file configs/accelerate_2gpu_zero3.yaml \\\\\\n  -m freige.training.sft_trainer \\\\\\n  --model_name /root/autodl-tmp/models/Qwen/Qwen3-14B \\\\\\n  --data_dir /root/autodl-tmp/data/docred \\\\\\n  --output_dir /root/autodl-tmp/sft_output_14b \\\\\\n  --deepspeed configs/deepspeed_zero3.json \\\\\\n  --no-quantize \\\\\\n  --lora_rank 64 \\\\\\n  --lora_alpha 128 \\\\\\n  --lora_dropout 0.05 \\\\\\n  --max_length 4096 \\\\\\n  --per_device_batch_size 1 \\\\\\n  --gradient_accumulation_steps 32 \\\\\\n  --num_epochs 3 \\\\\\n  --learning_rate 2e-4 \\\\\\n  --warmup_ratio 0.05 \\\\\\n  --bf16 \\\\\\n  --seed 42 \\\\\\n  --wandb_project freige-sft \\\\\\n  --wandb_run_name sft-14b-seed42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-18T12:52:33.387472+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"ds_config_obj\" /root/autodl-tmp/freige/training/sft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"ds_config_obj\" /root/autodl-tmp/freige/training/sft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-18T12:52:33.387592+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"136:    _ds_config_obj = None\\n139:        _ds_config_obj = HfDeepSpeedConfig(args.deepspeed)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-18T12:52:33.387708+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"device_map\" /root/autodl-tmp/freige/training/sft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"device_map\" /root/autodl-tmp/freige/training/sft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-18T12:52:33.387826+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"183:        model_kwargs[\\\"device_map\\\"] = {\\\"\\\": local_rank}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-18T12:52:33.388074+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"ds_config_obj\" /root/autodl-tmp/freige/training/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"ds_config_obj\" /root/autodl-tmp/freige/training/rsft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-18T12:52:33.388583+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"296:    _ds_config_obj = None\\n299:        _ds_config_obj = HfDeepSpeedConfig(args.deepspeed)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-18T12:52:33.388943+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"device_map\" /root/autodl-tmp/freige/training/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"device_map\" /root/autodl-tmp/freige/training/rsft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-18T12:52:33.389110+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"331:        model_kwargs[\\\"device_map\\\"] = {\\\"\\\": local_rank}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-18T12:52:33.389947+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-18T12:52:33.390295+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 11811 MiB, 32607 MiB\\n1, 27803 MiB, 32607 MiB\\n2, 16609 MiB, 32607 MiB\\n3, 18257 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-18T12:52:33.390496+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/freige && python -c \"import py_compile; py_compile.compile('training/sft_trainer.py', doraise=True); print('sft_trainer.py syntax OK')\" && python -c \"import py_compile; py_compile.compile('training/rsft_trainer.py', doraise=True); print('rsft_trainer.py syntax OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/freige && python -c \"import py_compile; py_compile.compile('training/sft_trainer.py', doraise=True); print('sft_trainer.py syntax OK')\" && python -c \"import py_compile; py_compile.compile('training/rsft_trainer.py', doraise=True); print('rsft_trainer.py syntax OK')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-18T12:52:33.390673+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"sft_trainer.py syntax OK\\nrsft_trainer.py syntax OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-18T12:52:33.390812+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/freige && bash -n scripts/sft_14b.sh && echo \"sft_14b.sh syntax OK\" && bash -n scripts/rsft_14b.sh && echo \"rsft_14b.sh syntax OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "source /root/miniconda3/bin/activate && cd /root/autodl-tmp/freige && bash -n scripts/sft_14b.sh && echo \"sft_14b.sh syntax OK\" && bash -n scripts/rsft_14b.sh && echo \"rsft_14b.sh syntax OK\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-18T12:52:33.390944+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"sft_14b.sh syntax OK\\nrsft_14b.sh syntax OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_14b_scripts_20260518T124600",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85 · 2026-05-18T12:52:33.391135+00:00_
+
+全部语法验证通过。总结：
+
+## 产出
+
+### 14B 模型下载状态
+**完整** — `/root/autodl-tmp/models/Qwen/Qwen3-14B/`，28GB，8 个 shard 文件齐全。
+
+### 创建的文件
+
+| 文件 | 说明 |
+|------|------|
+| `configs/accelerate_2gpu_zero3.yaml` | 2-GPU DeepSpeed ZeRO-3 accelerate 配置 |
+| `scripts/sft_14b.sh` | 14B SFT 训练脚本（cuda:2,3） |
+| `scripts/rsft_14b.sh` | 14B RSFT 训练脚本模板（cuda:2,3） |
+| `scripts/merge_sft_adapter_14b.py` | SFT adapter 合并脚本（RSFT 前置步骤） |
+
+### 代码补丁（向后兼容）
+- `training/sft_trainer.py` — 添加 `HfDeepSpeedConfig` 提前初始化（L136-139），`device_map` 改为仅在非 DeepSpeed 模式设置（L183）
+- `training/rsft_trainer.py` — 同上（L296-299, L331）
+
+### 关键参数对比（4B → 14B）
+
+| 参数 | 4B (单卡) | 14B (2卡 ZeRO-3) |
+|------|-----------|-------------------|
+| quantize | QLoRA 4-bit | bf16 LoRA (`--no-quantize`) |
+| GPU | CUDA_VISIBLE_DEVICES=0 | CUDA_VISIBLE_DEVICES=2,3 |
+| per_device_batch | 1 | 1 |
+| grad_accum | 64 | 32 |
+| effective batch | 64 | 2×1×32=64 |
+| DeepSpeed | 无 | ZeRO-3 (param+optimizer+grad 分片) |
+
+### Dry-run 状态
+所有 GPU 都在使用中，无法执行 dry-run。等 Wave 1 释放 cuda:2+3 后可直接运行 `bash scripts/sft_14b.sh`。
+
+### RSFT 14B 依赖链
+SFT 14B 训练完成 → `python scripts/merge_sft_adapter_14b.py` 合并 adapter → 14B 生成 + CED 打分 → RSFT 数据就绪 → `bash scripts/rsft_14b.sh`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_prep_14b_scripts_20260518T124600"
+}
+```
+
+</details>
+
+---

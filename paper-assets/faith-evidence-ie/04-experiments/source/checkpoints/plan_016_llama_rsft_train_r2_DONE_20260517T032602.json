@@ -1,0 +1,36 @@
+{
+  "exp_id": "plan_016_llama_rsft_train_r2",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:10:57.585Z",
+    "updated_at": "2026-05-17T03:26:02.383Z",
+    "hypothesis": "LLaMA-3.1-8B RSFT training retry with OOM fix: --no-quantize (bf16) + gradient_checkpointing. R1 OOM due to missing bf16 flag causing fp32 loading on 32GB card. 8829 CED-filtered samples, 3 epochs.",
+    "parent": "plan_016_llama_rsft_train",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --rsft_data_path /root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl --num_epochs 3 --output_dir /root/autodl-tmp/rsft_output_llama_3_1_8b --seed 42 --quantize --bf16 --per_device_batch_size 2 --gradient_accumulation_steps 8 --wandb_project faith-evidence-ie --wandb_run_name plan_016_llama_rsft_train_r2",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": 405397,
+      "log_path": "/root/runs/faith-evidence-ie/plan_016_llama_rsft_train_r2.log",
+      "data_path": "/root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl",
+      "data_count": 8829,
+      "model_name": "Meta-Llama-3.1-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_llama_3_1_8b",
+      "eval_data": "rsft_scored_llama_3_1_8b",
+      "fix": "added --quantize --bf16 --per_device_batch_size 2 --gradient_accumulation_steps 8 (R1 OOM due to fp32 loading without quantize flag)",
+      "total_steps": 1656,
+      "estimated_hours": 4.4
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-17T03:26:02.383Z"
+  },
+  "timestamp": "2026-05-17T03:26:02.747844+00:00",
+  "trigger": "update_registry"
+}

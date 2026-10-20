@@ -1,0 +1,2392 @@
+# ops eval plan 014 sft no evidence
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 81
+- **Recorded user turns:** 0
+- **Tool calls:** 40
+- **Original source:** `logs/chats/worker_ops_eval_plan_014_sft_no_evidence_20260515T171645.jsonl`
+- **Structured JSON:** [`0368e1278e9351f63b28.json`](../../sessions/03/0368e1278e9351f63b28.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+81 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T17:20:58.364464+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": "7"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact",
+    "max_results": "7"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T17:20:58.364899+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T17:20:58.365098+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"format\\|evidence\\|parse\\|valid\" /root/autodl-tmp/freige/eval/inference.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"format\\|evidence\\|parse\\|valid\" /root/autodl-tmp/freige/eval/inference.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T17:20:58.365259+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T17:20:58.365397+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"format\\|evidence\\|parse\\|valid\" /root/autodl-tmp/freige/eval/evaluator.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"format\\|evidence\\|parse\\|valid\" /root/autodl-tmp/freige/eval/evaluator.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T17:20:58.365525+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T17:20:58.365644+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -rn \"no_evidence\\|no-evidence\\|without_evidence\" /root/autodl-tmp/freige/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -rn \"no_evidence\\|no-evidence\\|without_evidence\" /root/autodl-tmp/freige/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T17:20:58.365762+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T17:20:58.365876+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "head -2 /root/autodl-tmp/data/docred/train_no_evidence.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "head -2 /root/autodl-tmp/data/docred/train_no_evidence.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T17:20:58.365995+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/autodl-tmp/data/docred/train_no_evidence.jsonl' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T17:20:58.366153+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"format\" /root/autodl-tmp/freige/eval/inference.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"format\" /root/autodl-tmp/freige/eval/inference.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T17:20:58.366322+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"8:  - metrics.json: F1, Ign-F1, Evi-F1, EDCR, format_compliance_rate, n_truncated 等\\n9:  - predictions.json: 每个文档的详细预测 (doc_id, raw_output, parsed_triples, gold_triples, truncated, format_ok)\\n28:logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\n32:    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n118:        sft_sample = processor.format_sft_sample(doc_samples)\\n155:        List[dict]: {doc_id, raw_output, parsed_triples, truncated, format_ok}\\n191:                    \\\"format_ok\\\": False,\\n212:            parsed, format_ok = parse_model_output(generated_text)\\n218:                \\\"format_ok\\\": format_ok,\\n320:    n_format_ok = sum(1 for r in raw_results if r[\\\"format_ok\\\"])\\n325:    metrics[\\\"n_format_ok\\\"] = n_format_ok\\n326:    metrics[\\\"format_ok_rate\\\"] = n_format_ok / n_total if n_total else 0.0\\n352:            \\\"format_ok\\\": r[\\\"format_ok\\\"],\\n366:    print(f\\\"  Format OK:   {n_format_ok}/{n_total} ({metrics['format_ok_rate']:.1%})\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T17:20:58.366475+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"evidence\" /root/autodl-tmp/freige/eval/inference.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"evidence\" /root/autodl-tmp/freige/eval/inference.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T17:20:58.366604+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"34:    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n313:                \\\"evidence\\\": triple.get(\\\"evidence\\\", []),\\n343:             \\\"evidence\\\": g.get(\\\"evidence\\\", [])}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T17:20:58.366725+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"format\" /root/autodl-tmp/freige/eval/evaluator.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"format\" /root/autodl-tmp/freige/eval/evaluator.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T17:20:58.366847+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"232:    def compute_format_compliance(self, raw_outputs: list[dict]) -> dict:\\n272:            \\\"format_compliance_rate\\\": n_parseable / n_total if n_total else 0.0,\\n274:            \\\"evidence_format_rate\\\": n_evidence_valid / n_total if n_total else 0.0,\\n328:            result.update(self.compute_format_compliance(raw_outputs))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T17:20:58.366971+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"evidence\" /root/autodl-tmp/freige/eval/evaluator.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"evidence\" /root/autodl-tmp/freige/eval/evaluator.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T17:20:58.367115+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"5:  - Evi-F1: 对正确预测的三元组，计算 evidence 句子级 F1\\n6:  - EDCR: Evidence Distractor Citation Rate，预测 evidence 中非 gold 的比例\\n113:            gold_map.setdefault(key, set()).update(g.get(\\\"evidence\\\", []))\\n125:            pred_evi = set(p.get(\\\"evidence\\\", []))\\n156:        与 compute_evi_f1 的区别：FP triple 的 evidence 计入 precision 分母，\\n157:        FN triple 的 evidence 计入 recall 分母，而非仅在 TP triple 上计算。\\n162:            gold_map.setdefault(key, set()).update(g.get(\\\"evidence\\\", []))\\n167:            pred_map.setdefault(key, set()).update(p.get(\\\"evidence\\\", []))\\n204:            gold_map.setdefault(key, set()).update(g.get(\\\"evidence\\\", []))\\n211:            pred_evi = set(p.get(\\\"evidence\\\", []))\\n234:        required_fields = {\\\"head\\\", \\\"relation\\\", \\\"tail\\\", \\\"evidence\\\"}\\n238:        n_evidence_valid = 0\\n254:            all_evidence_ok = True\\n258:                    all_evidence_ok = False\\n260:                evi = t.get(\\\"evidence\\\")\\n264:                    all_evidence_ok = False\\n268:            if all_fields_ok and all_evidence_ok:\\n269:                n_evidence_valid += 1\\n274:            \\\"evidence_format_rate\\\": n_evidence_valid / n_total if n_total else 0.0,\\n278:            \\\"n_evidence_valid\\\": n_evidence_valid,\\n377:        evidence = _get_field(t, \\\"evidence\\\", \\\"sentence_ids\\\") or []\\n382:            \\\"evidence\\\": evidence,\\n426:                \\\"evidence\\\": label.get(\\\"evidence\\\", []),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T17:20:58.367269+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -rn \"no_evidence\" /root/autodl-tmp/freige/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -rn \"no_evidence\" /root/autodl-tmp/freige/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T17:20:58.367407+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/training/sft_trainer.py:121:    parser.add_argument(\\\"--no_evidence\\\", action=\\\"store_true\\\", default=False)\\n/root/autodl-tmp/freige/training/sft_trainer.py:139:    include_evidence = not args.no_evidence\\n/root/autodl-tmp/freige/training/sft_trainer.py:140:    if args.no_evidence:\\n/root/autodl-tmp/freige/training/rsft_score_filter.py:144:            triple_details.append({\\\"reward\\\": 0.0, \\\"reason\\\": \\\"no_evidence\\\"})\\n\", \"stderr\": \"grep: /root/autodl-tmp/freige/training/__pycache__/sft_trainer.cpython-312.pyc: binary file matches\\ngrep: /root/autodl-tmp/freige/training/__pycache__/rsft_score_filter.cpython-312.pyc: binary file matches\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T17:20:58.367534+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/data/docred/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls /root/autodl-tmp/data/docred/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T17:20:58.367655+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"dev.json\\ntest.json\\ntrain_annotated.json\\ntrain_distant.json\\ntrain_nli_cache.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T17:20:58.367812+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat -n /root/autodl-tmp/freige/eval/evaluator.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat -n /root/autodl-tmp/freige/eval/evaluator.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T17:20:58.368074+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\"\\\"\\\"DocRED 关系抽取评测模块。\\n     2\\t\\n     3\\t指标:\\n     4\\t  - F1 / Ign-F1: 关系三元组级别 micro-F1，Ign-F1 排除训练集中出现的三元组\\n     5\\t  - Evi-F1: 对正确预测的三元组，计算 evidence 句子级 F1\\n     6\\t  - EDCR: Evidence Distractor Citation Rate，预测 evidence 中非 gold 的比例\\n     7\\t\\n     8\\t输入: 预测列表 + gold 标注列表（每个元素为文档级标注）\\n     9\\t输出: 指标字典\\n    10\\t\\\"\\\"\\\"\\n    11\\t\\n    12\\timport json\\n    13\\timport logging\\n    14\\tfrom collections import defaultdict\\n    15\\tfrom typing import Optional\\n    16\\t\\n    17\\tlogger = logging.getLogger(__name__)\\n    18\\t\\n    19\\t\\n    20\\tdef _triple_key(doc_id: str, head: str, tail: str, relation: str) -> tuple:\\n    21\\t    return (doc_id, head.lower().strip(), tail.lower().strip(), relation.lower().strip())\\n    22\\t\\n    23\\t\\n    24\\tclass DocREDEvaluator:\\n    25\\t    \\\"\\\"\\\"DocRED 评测器。\\n    26\\t\\n    27\\t    Args:\\n    28\\t        train_triples: 训练集中的三元组集合，用于计算 Ign-F1。\\n    29\\t                       每个元素为 (doc_title, head_name, tail_name, relation)。\\n    30\\t                       为 None 时 Ign-F1 = F1。\\n    31\\t    \\\"\\\"\\\"\\n    32\\t\\n    33\\t    def __init__(self, train_triples: Optional[set[tuple]] = None):\\n    34\\t        self.train_triples = train_triples or set()\\n    35\\t\\n    36\\t    @classmethod\\n    37\\t    def from_train_file(cls, train_path: str) -> \\\"DocREDEvaluator\\\":\\n    38\\t        \\\"\\\"\\\"从训练集 JSON 文件构建 evaluator，自动提取训练集三元组。\\\"\\\"\\\"\\n    39\\t        from freige.data.docred_processor import DOCRED_REL_INFO\\n    40\\t\\n    41\\t        with open(train_path) as f:\\n    42\\t            train_data = json.load(f)\\n    43\\t\\n    44\\t        train_triples = set()\\n    45\\t        for doc in train_data:\\n    46\\t            doc_id = doc.get(\\\"title\\\", \\\"\\\")\\n    47\\t            vertex_set = doc[\\\"vertexSet\\\"]\\n    48\\t            for label in doc.get(\
+…[truncated 7558 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T17:20:58.368250+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat -n /root/autodl-tmp/freige/eval/inference.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat -n /root/autodl-tmp/freige/eval/inference.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T17:20:58.368539+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\"\\\"\\\"推理+评测完整流程: 加载 Qwen3-4B + LoRA adapter → 批量推理 → 解析输出 → 计算 F1/Evi-F1/EDCR。\\n     2\\t\\n     3\\t输入:\\n     4\\t  - base model (Qwen3-4B) + 可选 LoRA adapter (SFT/GRPO checkpoint)\\n     5\\t  - DocRED JSON 数据目录 (含 dev.json, train_annotated.json)\\n     6\\t\\n     7\\t输出 (保存到 --output_dir):\\n     8\\t  - metrics.json: F1, Ign-F1, Evi-F1, EDCR, format_compliance_rate, n_truncated 等\\n     9\\t  - predictions.json: 每个文档的详细预测 (doc_id, raw_output, parsed_triples, gold_triples, truncated, format_ok)\\n    10\\t\\n    11\\t依赖: transformers, peft, bitsandbytes, torch, tqdm\\n    12\\t\\\"\\\"\\\"\\n    13\\t\\n    14\\timport argparse\\n    15\\timport json\\n    16\\timport logging\\n    17\\timport time\\n    18\\tfrom pathlib import Path\\n    19\\t\\n    20\\timport torch\\n    21\\tfrom peft import PeftModel\\n    22\\tfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\n    23\\tfrom tqdm import tqdm\\n    24\\t\\n    25\\tfrom freige.data.docred_processor import DocREDProcessor, SPLIT_FILENAMES\\n    26\\tfrom freige.eval.evaluator import DocREDEvaluator, gold_from_docred, parse_model_output\\n    27\\t\\n    28\\tlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\n    29\\tlogger = logging.getLogger(__name__)\\n    30\\t\\n    31\\tSYSTEM_PROMPT = (\\n    32\\t    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    33\\t    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    34\\t    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    35\\t    \\\"Output as a JSON list.\\\"\\n    36\\t)\\n    37\\t\\n    38\\t\\n    39\\t# ---------------------------------------------------------------------------\\n    40\\t# A. 模型加载\\n    41\\t# --------------------------------------------------
+…[truncated 7461 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T17:20:58.368726+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat -n /root/autodl-tmp/freige/training/sft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat -n /root/autodl-tmp/freige/training/sft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T17:20:58.368993+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\"\\\"\\\"SFT 训练脚本: Qwen3-4B + QLoRA 在 DocRED 上微调。\\n     2\\t\\n     3\\t支持单卡和多卡（DeepSpeed ZeRO-2/3）训练。\\n     4\\t默认启用 4-bit QLoRA 量化，适配 RTX 5090 32GB x4。\\n     5\\t\\n     6\\t单卡:   python -m freige.training.sft_trainer --output_dir ./sft_output\\n     7\\t多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\n     8\\t            -m freige.training.sft_trainer --deepspeed configs/deepspeed_zero2.json\\n     9\\t不量化: 加 --no_quantize\\n    10\\t\\\"\\\"\\\"\\n    11\\t\\n    12\\timport argparse\\n    13\\timport json\\n    14\\timport logging\\n    15\\timport os\\n    16\\tfrom dataclasses import dataclass, field\\n    17\\tfrom pathlib import Path\\n    18\\tfrom typing import Optional\\n    19\\t\\n    20\\timport torch\\n    21\\tfrom datasets import Dataset\\n    22\\tfrom peft import LoraConfig, TaskType, get_peft_model\\n    23\\tfrom transformers import (\\n    24\\t    AutoModelForCausalLM,\\n    25\\t    AutoTokenizer,\\n    26\\t    BitsAndBytesConfig,\\n    27\\t    TrainingArguments,\\n    28\\t)\\n    29\\tfrom trl import SFTTrainer, SFTConfig\\n    30\\t\\n    31\\tlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\n    32\\tlogger = logging.getLogger(__name__)\\n    33\\t\\n    34\\tSYSTEM_PROMPT = (\\n    35\\t    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    36\\t    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    37\\t    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    38\\t    \\\"Output as a JSON list.\\\"\\n    39\\t)\\n    40\\t\\n    41\\tNO_EVIDENCE_SYSTEM_PROMPT = (\\n    42\\t    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    43\\t    \\\"and a list of entities, extract all relation triples. For each triple,
+…[truncated 7402 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T17:20:58.369207+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat -n /root/autodl-tmp/freige/eval/inference.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat -n /root/autodl-tmp/freige/eval/inference.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T17:20:58.369495+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\"\\\"\\\"推理+评测完整流程: 加载 Qwen3-4B + LoRA adapter → 批量推理 → 解析输出 → 计算 F1/Evi-F1/EDCR。\\n     2\\t\\n     3\\t输入:\\n     4\\t  - base model (Qwen3-4B) + 可选 LoRA adapter (SFT/GRPO checkpoint)\\n     5\\t  - DocRED JSON 数据目录 (含 dev.json, train_annotated.json)\\n     6\\t\\n     7\\t输出 (保存到 --output_dir):\\n     8\\t  - metrics.json: F1, Ign-F1, Evi-F1, EDCR, format_compliance_rate, n_truncated 等\\n     9\\t  - predictions.json: 每个文档的详细预测 (doc_id, raw_output, parsed_triples, gold_triples, truncated, format_ok)\\n    10\\t\\n    11\\t依赖: transformers, peft, bitsandbytes, torch, tqdm\\n    12\\t\\\"\\\"\\\"\\n    13\\t\\n    14\\timport argparse\\n    15\\timport json\\n    16\\timport logging\\n    17\\timport time\\n    18\\tfrom pathlib import Path\\n    19\\t\\n    20\\timport torch\\n    21\\tfrom peft import PeftModel\\n    22\\tfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\n    23\\tfrom tqdm import tqdm\\n    24\\t\\n    25\\tfrom freige.data.docred_processor import DocREDProcessor, SPLIT_FILENAMES\\n    26\\tfrom freige.eval.evaluator import DocREDEvaluator, gold_from_docred, parse_model_output\\n    27\\t\\n    28\\tlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\n    29\\tlogger = logging.getLogger(__name__)\\n    30\\t\\n    31\\tSYSTEM_PROMPT = (\\n    32\\t    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    33\\t    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    34\\t    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    35\\t    \\\"Output as a JSON list.\\\"\\n    36\\t)\\n    37\\t\\n    38\\t\\n    39\\t# ---------------------------------------------------------------------------\\n    40\\t# A. 模型加载\\n    41\\t# --------------------------------------------------
+…[truncated 7461 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T17:20:58.369718+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/sft_no_evidence_output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls /root/autodl-tmp/sft_no_evidence_output/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T17:20:58.369870+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\nadapter_config.json\\nadapter_model.safetensors\\nadded_tokens.json\\nchat_template.jinja\\ncheckpoint-190\\ncheckpoint-570\\nmerges.txt\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\ntraining_args.bin\\nvocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T17:20:58.369996+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"format_sft_sample\" /root/autodl-tmp/freige/data/docred_processor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"format_sft_sample\" /root/autodl-tmp/freige/data/docred_processor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T17:20:58.370128+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"228:    def format_sft_sample(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T17:20:58.370314+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "head -160 /root/autodl-tmp/freige/eval/inference.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "head -160 /root/autodl-tmp/freige/eval/inference.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T17:20:58.370541+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"推理+评测完整流程: 加载 Qwen3-4B + LoRA adapter → 批量推理 → 解析输出 → 计算 F1/Evi-F1/EDCR。\\n\\n输入:\\n  - base model (Qwen3-4B) + 可选 LoRA adapter (SFT/GRPO checkpoint)\\n  - DocRED JSON 数据目录 (含 dev.json, train_annotated.json)\\n\\n输出 (保存到 --output_dir):\\n  - metrics.json: F1, Ign-F1, Evi-F1, EDCR, format_compliance_rate, n_truncated 等\\n  - predictions.json: 每个文档的详细预测 (doc_id, raw_output, parsed_triples, gold_triples, truncated, format_ok)\\n\\n依赖: transformers, peft, bitsandbytes, torch, tqdm\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport time\\nfrom pathlib import Path\\n\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\nfrom tqdm import tqdm\\n\\nfrom freige.data.docred_processor import DocREDProcessor, SPLIT_FILENAMES\\nfrom freige.eval.evaluator import DocREDEvaluator, gold_from_docred, parse_model_output\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\n\\n# ---------------------------------------------------------------------------\\n# A. 模型加载\\n# ---------------------------------------------------------------------------\\n\\ndef load_model_and_tokenizer(model_path, adapter_path=None, sft_adapter_path=None, quantize=True):\\n    \\\"\\\"\\\"加载 Qwen3-4B + 可选 LoRA adapter (4-bit QLoRA)。\\n\\n    Args:\\n        model_path: base model 路径\\n        adapter_path: LoRA adapter 路径（SFT 或 GRPO checkpoint），None 则不加载\\n    Returns:\\n        (model, tokenizer)\\n    \\
+…[truncated 4189 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T17:20:58.370702+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -n +220 /root/autodl-tmp/freige/data/docred_processor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -n +220 /root/autodl-tmp/freige/data/docred_processor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T17:20:58.370929+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    def group_by_document(\\n        self, samples: list[RelationSample]\\n    ) -> dict[str, list[RelationSample]]:\\n        groups: dict[str, list[RelationSample]] = {}\\n        for s in samples:\\n            groups.setdefault(s.doc_id, []).append(s)\\n        return groups\\n\\n    def format_sft_sample(\\n        self, doc_samples: list[RelationSample], include_evidence: bool = True\\n    ) -> dict[str, str]:\\n        if not doc_samples:\\n            return {\\\"instruction\\\": \\\"\\\", \\\"input\\\": \\\"\\\", \\\"output\\\": \\\"\\\"}\\n\\n        ref = doc_samples[0]\\n        numbered_sents = \\\"\\\\n\\\".join(\\n            f\\\"[{i}] {s}\\\" for i, s in enumerate(ref.sents)\\n        )\\n\\n        entity_list = set()\\n        for s in doc_samples:\\n            entity_list.add(f\\\"{s.head.name} ({s.head.mentions[0].entity_type})\\\")\\n            entity_list.add(f\\\"{s.tail.name} ({s.tail.mentions[0].entity_type})\\\")\\n        entity_str = \\\", \\\".join(sorted(entity_list))\\n\\n        if include_evidence:\\n            instruction = (\\n                \\\"Extract all relation triples from the document. \\\"\\n                \\\"For each triple, provide the head entity, relation, tail entity, \\\"\\n                \\\"and the sentence IDs that serve as evidence. \\\"\\n                \\\"Output as a JSON list.\\\"\\n            )\\n        else:\\n            instruction = (\\n                \\\"Extract all relation triples from the document. \\\"\\n                \\\"For each triple, provide the head entity, relation, and tail entity. \\\"\\n                \\\"Output as a JSON list.\\\"\\n            )\\n\\n        input_text = (\\n            f\\\"Document:\\\\n{numbered_sents}\\\\n\\\\n\\\"\\n            f\\\"Entities: {entity_str}\\\"\\n        )\\n\\n        triples = []\\n        for s in doc_samples:\\n            triple = {\\n                \\\"head\\\": s.head.name,\
+…[truncated 3324 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T17:20:58.371156+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "bash -c 'cat > /tmp/patch_inference.py << '\"'\"'PYEOF'\"'\"'\nimport re\n\npath = \"/root/autodl-tmp/freige/eval/inference.py\"\nwith open(path) as f:\n    code = f.read()\n\n# 1. Add NO_EVIDENCE_SYSTEM_PROMPT after SYSTEM_PROMPT block\nold_after_sys = '\\n\\n# ---------------------------------------------------------------------------\\n# A. 模型加载'\nnew_after_sys = \"\"\"\n\nNO_EVIDENCE_SYSTEM_PROMPT = (\n    \"You are an information extraction model. Given a document with numbered sentences \"\n    \"and a list of entities, extract all relation triples. For each triple, provide the \"\n    \"head entity, relation type, and tail entity. \"\n    \"Output as a JSON list.\"\n)\n\n\n# ---------------------------------------------------------------------------\n# A. 模型加载\"\"\"\ncode = code.replace(old_after_sys, new_after_sys, 1)\n\n# 2. Modify build_prompt to accept system_prompt parameter\nold_build = \"\"\"def build_prompt(tokenizer, instruction, input_text):\n    \\\"\\\"\\\"构建与训练一致的 Qwen3 chat prompt（enable_thinking=False）。\\\"\\\"\\\"\n    messages = [\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\"\"\"\nnew_build = \"\"\"def build_prompt(tokenizer, instruction, input_text, system_prompt=SYSTEM_PROMPT):\n    \\\"\\\"\\\"构建与训练一致的 Qwen3 chat prompt（enable_thinking=False）。\\\"\\\"\\\"\n    messages = [\n        {\"role\": \"system\", \"content\": system_prompt},\"\"\"\ncode = code.replace(old_build, new_build, 1)\n\n# 3. Modify prepare_eval_data to accept include_evidence and system_prompt\nold_prep = \"\"\"def prepare_eval_data(data_dir, split, tokenizer):\n    \\\"\\\"\\\"加载 DocRED 数据，构建 eval prompts、gold 标注和 per-doc gold map。\\\"\\\"\\\"\n    processor = DocREDProcessor(data_dir=data_dir)\n    samples = processor.process(split)\n    groups = processor.group_by_document(samples)\n\n    eval_items = []\n    for doc_id, doc_samples in groups.items():\n        sft_sample = processor.format_sft_sample(doc_samples)\n        prompt = build_prompt(\n            tokenizer, sft_sample[\"instruction\"], sft_sample[\"input\"]\n        )\"\"\"\nnew_prep = \"\"\"def prepare_eval_data(data_dir, split, tokenizer, include_evidence=True, system_prompt=SYSTEM_PROMPT):\n    \\\"\\\"\\\"加载 DocRED 数据，构建 eval prompts、gold 标注和 per-doc gold map。\\\"\\\"\\\"\n    processor = DocREDProcessor(data_dir=data_dir)\n    samples = processor.process(split)\n    groups = processor.group_by_document(samples)\n\n    eval_items = []\n    for doc_id, doc_samples in groups.items():\n        sft_sample = processor.format_sft_sample(doc_samples, include_evidence=include_evidence)\n        prompt = build_prompt(\n            tokenizer, sft_sample[\"instruction\"], sft_sample[\"input\"], system_prompt=system_prompt\n        )\"\"\"\ncode = code.replace(old_prep, new_prep, 1)\n\n# 4. In main(), add --no_evidence argument and wire it up\n# Add arg after --seed line\nold_seed_arg = '    parser.add_argument(\"--seed\", type=int, default=42)'\nnew_seed_arg = \"\"\"    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--no_evidence\", action=\"store_true\", default=False,\n                        help=\"Use no-evidence prompt (for SFT-without-evidence ablation)\")\"\"\"\ncode = code.replace(old_seed_arg, new_seed_arg, 1)\n\n# Modify the prepare_eval_data call in main()\nold_eval_call = \"\"\"    eval_items, gold, gold_by_doc = prepare_eval_data(\n        args.data_path, args.split, tokenizer\n    )\"\"\"\nnew_eval_call = \"\"\"    _sys_prompt = NO_EVIDENCE_SYSTEM_PROMPT if args.no_evidence else SYSTEM_PROMPT\n    _include_evi = not args.no_evidence\n    eval_items, gold, gold_by_doc = prepare_eval_data(\n        args.data_path, args.split, tokenizer,\n        include_evidence=_include_evi, system_prompt=_sys_prompt,\n    )\"\"\"\ncode = code.replace(old_eval_call, new_eval_call, 1)\n\nwith open(path, \"w\") as f:\n    f.write(code)\n\nprint(\"DONE\")\nPYEOF\npython3 /tmp/patch_inference.py'",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "bash -c 'cat > /tmp/patch_inference.py << '\"'\"'PYEOF'\"'\"'\nimport re\n\npath = \"/root/autodl-tmp/freige/eval/inference.py\"\nwith open(path) as f:\n    code = f.read()\n\n# 1. Add NO_EVIDENCE_SYSTEM_PROMPT after SYSTEM_PROMPT block\nold_after_sys = '\\n\\n# ---------------------------------------------------------------------------\\n# A. 模型加载'\nnew_after_sys = \"\"\"\n\nNO_EVIDENCE_SYSTEM_PROMPT = (\n    \"You are an information extraction model. Given a document with numbered sentences \"\n    \"and a list of entities, extract all relation triples. For each triple, provide the \"\n    \"head entity, relation type, and tail entity. \"\n    \"Output as a JSON list.\"\n)\n\n\n# ---------------------------------------------------------------------------\n# A. 模型加载\"\"\"\ncode = code.replace(old_after_sys, new_after_sys, 1)\n\n# 2. Modify build_prompt to accept system_prompt parameter\nold_build = \"\"\"def build_prompt(tokenizer, instruction, input_text):\n    \\\"\\\"\\\"构建与训练一致的 Qwen3 chat prompt（enable_thinking=False）。\\\"\\\"\\\"\n    messages = [\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\"\"\"\nnew_build = \"\"\"def build_prompt(tokenizer, instruction, input_text, system_prompt=SYSTEM_PROMPT):\n    \\\"\\\"\\\"构建与训练一致的 Qwen3 chat prompt（enable_thinking=False）。\\\"\\\"\\\"\n    messages = [\n        {\"role\": \"system\", \"content\": system_prompt},\"\"\"\ncode = code.replace(old_build, new_build, 1)\n\n# 3. Modify prepare_eval_data to accept include_evidence and system_prompt\nold_prep = \"\"\"def prepare_eval_data(data_dir, split, tokenizer):\n    \\\"\\\"\\\"加载 DocRED 数据，构建 eval prompts、gold 标注和 per-doc gold map。\\\"\\\"\\\"\n    processor = DocREDProcessor(data_dir=data_dir)\n    samples = processor.process(split)\n    groups = processor.group_by_document(samples)\n\n    eval_items = []\n    for doc_id, doc_samples in groups.items():\n        sft_sample = processor.format_sft_sample(doc_samples)\n        prompt = build_prompt(\n            tokenizer, sft_sample[\"instruction\"], sft_sample[\"input\"]\n        )\"\"\"\nnew_prep = \"\"\"def prepare_eval_data(data_dir, split, tokenizer, include_evidence=True, system_prompt=SYSTEM_PROMPT):\n    \\\"\\\"\\\"加载 DocRED 数据，构建 eval prompts、gold 标注和 per-doc gold map。\\\"\\\"\\\"\n    processor = DocREDProcessor(data_dir=data_dir)\n    samples = processor.process(split)\n    groups = processor.group_by_document(samples)\n\n    eval_items = []\n    for doc_id, doc_samples in groups.items():\n        sft_sample = processor.format_sft_sample(doc_samples, include_evidence=include_evidence)\n        prompt = build_prompt(\n            tokenizer, sft_sample[\"instruction\"], sft_sample[\"input\"], system_prompt=system_prompt\n        )\"\"\"\ncode = code.replace(old_prep, new_prep, 1)\n\n# 4. In main(), add --no_evidence argument and wire it up\n# Add arg after --seed line\nold_seed_arg = '    parser.add_argument(\"--seed\", type=int, default=42)'\nnew_seed_arg = \"\"\"    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--no_evidence\", action=\"store_true\", default=False,\n                        help=\"Use no-evidence prompt (for SFT-without-evidence ablation)\")\"\"\"\ncode = code.replace(old_seed_arg, new_seed_arg, 1)\n\n# Modify the prepare_eval_data call in main()\nold_eval_call = \"\"\"    eval_items, gold, gold_by_doc = prepare_eval_data(\n        args.data_path, args.split, tokenizer\n    )\"\"\"\nnew_eval_call = \"\"\"    _sys_prompt = NO_EVIDENCE_SYSTEM_PROMPT if args.no_evidence else SYSTEM_PROMPT\n    _include_evi = not args.no_evidence\n    eval_items, gold, gold_by_doc = prepare_eval_data(\n        args.data_path, args.split, tokenizer,\n        include_evidence=_include_evi, system_prompt=_sys_prompt,\n    )\"\"\"\ncode = code.replace(old_eval_call, new_eval_call, 1)\n\nwith open(path, \"w\") as f:\n    f.write(code)\n\nprint(\"DONE\")\nPYEOF\npython3 /tmp/patch_inference.py'",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T17:20:58.371444+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'bash -c \\\\'cat > /tmp/patch_inference.py << \\\\'\\\"\\\\'\\\"\\\\'PYEOF\\\\'\\\"\\\\'\\\"\\\\'\\\\nimport re\\\\n\\\\npath = \\\"/root/autodl-tmp/freige/eval/inference.py\\\"\\\\nwith open(path) as f:\\\\n    code = f.read()\\\\n\\\\n# 1. Add NO_EVIDENCE_SYSTEM_PROMPT after SYSTEM_PROMPT block\\\\nold_after_sys = \\\\'\\\\\\\\n\\\\\\\\n# ---------------------------------------------------------------------------\\\\\\\\n# A. 模型加载\\\\'\\\\nnew_after_sys = \\\"\\\"\\\"\\\\n\\\\nNO_EVIDENCE_SYSTEM_PROMPT = (\\\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\\\n    \\\"head entity, relation type, and tail entity. \\\"\\\\n    \\\"Output as a JSON list.\\\"\\\\n)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# A. 模型加载\\\"\\\"\\\"\\\\ncode = code.replace(old_after_sys, new_after_sys, 1)\\\\n\\\\n# 2. Modify build_prompt to accept system_prompt parameter\\\\nold_build = \\\"\\\"\\\"def build_prompt(tokenizer, instruction, input_text):\\\\n    \\\\\\\\\\\"\\\\\\\\\\\"\\\\\\\\\\\"构建与训练一致的 Qwen3 chat prompt（enable_thinking=False）。\\\\\\\\\\\"\\\\\\\\\\\"\\\\\\\\\\\"\\\\n    messages = [\\\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\\"\\\"\\\"\\\\nnew_build = \\\"\\\"\\\"def build_prompt(tokenizer, instruction, input_text, system_prompt=SYSTEM_PROMPT):\\\\n    \\\\\\\\\\\"\\\\\\\\\\\"\\\\\\\\\\\"构建与训练一致的 Qwen3 chat prompt（enable_thinking=False）。\\\\\\\\\\\"\\\\\\\\\\\"\\\\\\\\\\\"\\\\n    messages = [\\\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": system_prompt},\\\"\\\"\\\"\\\\ncode = code.replace(old_build, new_build, 1)\\\\n\\\\n# 3. Modify prepare_eval_data to accept include_evidence and system_prompt\\\\nold_prep = \\\"\
+…[truncated 3050 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T17:20:58.371656+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat > /tmp/patch_inference.py << 'ENDOFPATCH'\nimport re\n\npath = \"/root/autodl-tmp/freige/eval/inference.py\"\nwith open(path) as f:\n    code = f.read()\n\n# 1. Add NO_EVIDENCE_SYSTEM_PROMPT after SYSTEM_PROMPT block\nmarker = '\\n\\n# ---------------------------------------------------------------------------\\n# A.'\ninsert_text = '''\n\nNO_EVIDENCE_SYSTEM_PROMPT = (\n    \"You are an information extraction model. Given a document with numbered sentences \"\n    \"and a list of entities, extract all relation triples. For each triple, provide the \"\n    \"head entity, relation type, and tail entity. \"\n    \"Output as a JSON list.\"\n)\n\n'''\ncode = code.replace(marker, insert_text + '\\n# ---------------------------------------------------------------------------\\n# A.', 1)\n\n# 2. build_prompt: add system_prompt parameter\ncode = code.replace(\n    'def build_prompt(tokenizer, instruction, input_text):',\n    'def build_prompt(tokenizer, instruction, input_text, system_prompt=SYSTEM_PROMPT):'\n)\ncode = code.replace(\n    '        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},',\n    '        {\"role\": \"system\", \"content\": system_prompt},'\n)\n\n# 3. prepare_eval_data: add include_evidence and system_prompt\ncode = code.replace(\n    'def prepare_eval_data(data_dir, split, tokenizer):',\n    'def prepare_eval_data(data_dir, split, tokenizer, include_evidence=True, system_prompt=SYSTEM_PROMPT):'\n)\ncode = code.replace(\n    '        sft_sample = processor.format_sft_sample(doc_samples)',\n    '        sft_sample = processor.format_sft_sample(doc_samples, include_evidence=include_evidence)'\n)\ncode = code.replace(\n    '            tokenizer, sft_sample[\"instruction\"], sft_sample[\"input\"]',\n    '            tokenizer, sft_sample[\"instruction\"], sft_sample[\"input\"], system_prompt=system_prompt'\n)\n\n# 4. Add --no_evidence arg\ncode = code.replace(\n    '    parser.add_argument(\"--seed\", type=int, default=42)',\n    '    parser.add_argument(\"--seed\", type=int, default=42)\\n'\n    '    parser.add_argument(\"--no_evidence\", action=\"store_true\", default=False,\\n'\n    '                        help=\"Use no-evidence prompt (for SFT-without-evidence ablation)\")'\n)\n\n# 5. Modify prepare_eval_data call in main()\ncode = code.replace(\n    '    eval_items, gold, gold_by_doc = prepare_eval_data(\\n'\n    '        args.data_path, args.split, tokenizer\\n'\n    '    )',\n    '    _sys_prompt = NO_EVIDENCE_SYSTEM_PROMPT if args.no_evidence else SYSTEM_PROMPT\\n'\n    '    _include_evi = not args.no_evidence\\n'\n    '    eval_items, gold, gold_by_doc = prepare_eval_data(\\n'\n    '        args.data_path, args.split, tokenizer,\\n'\n    '        include_evidence=_include_evi, system_prompt=_sys_prompt,\\n'\n    '    )'\n)\n\nwith open(path, \"w\") as f:\n    f.write(code)\n\nprint(\"PATCH APPLIED SUCCESSFULLY\")\nENDOFPATCH",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat > /tmp/patch_inference.py << 'ENDOFPATCH'\nimport re\n\npath = \"/root/autodl-tmp/freige/eval/inference.py\"\nwith open(path) as f:\n    code = f.read()\n\n# 1. Add NO_EVIDENCE_SYSTEM_PROMPT after SYSTEM_PROMPT block\nmarker = '\\n\\n# ---------------------------------------------------------------------------\\n# A.'\ninsert_text = '''\n\nNO_EVIDENCE_SYSTEM_PROMPT = (\n    \"You are an information extraction model. Given a document with numbered sentences \"\n    \"and a list of entities, extract all relation triples. For each triple, provide the \"\n    \"head entity, relation type, and tail entity. \"\n    \"Output as a JSON list.\"\n)\n\n'''\ncode = code.replace(marker, insert_text + '\\n# ---------------------------------------------------------------------------\\n# A.', 1)\n\n# 2. build_prompt: add system_prompt parameter\ncode = code.replace(\n    'def build_prompt(tokenizer, instruction, input_text):',\n    'def build_prompt(tokenizer, instruction, input_text, system_prompt=SYSTEM_PROMPT):'\n)\ncode = code.replace(\n    '        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},',\n    '        {\"role\": \"system\", \"content\": system_prompt},'\n)\n\n# 3. prepare_eval_data: add include_evidence and system_prompt\ncode = code.replace(\n    'def prepare_eval_data(data_dir, split, tokenizer):',\n    'def prepare_eval_data(data_dir, split, tokenizer, include_evidence=True, system_prompt=SYSTEM_PROMPT):'\n)\ncode = code.replace(\n    '        sft_sample = processor.format_sft_sample(doc_samples)',\n    '        sft_sample = processor.format_sft_sample(doc_samples, include_evidence=include_evidence)'\n)\ncode = code.replace(\n    '            tokenizer, sft_sample[\"instruction\"], sft_sample[\"input\"]',\n    '            tokenizer, sft_sample[\"instruction\"], sft_sample[\"input\"], system_prompt=system_prompt'\n)\n\n# 4. Add --no_evidence arg\ncode = code.replace(\n    '    parser.add_argument(\"--seed\", type=int, default=42)',\n    '    parser.add_argument(\"--seed\", type=int, default=42)\\n'\n    '    parser.add_argument(\"--no_evidence\", action=\"store_true\", default=False,\\n'\n    '                        help=\"Use no-evidence prompt (for SFT-without-evidence ablation)\")'\n)\n\n# 5. Modify prepare_eval_data call in main()\ncode = code.replace(\n    '    eval_items, gold, gold_by_doc = prepare_eval_data(\\n'\n    '        args.data_path, args.split, tokenizer\\n'\n    '    )',\n    '    _sys_prompt = NO_EVIDENCE_SYSTEM_PROMPT if args.no_evidence else SYSTEM_PROMPT\\n'\n    '    _include_evi = not args.no_evidence\\n'\n    '    eval_items, gold, gold_by_doc = prepare_eval_data(\\n'\n    '        args.data_path, args.split, tokenizer,\\n'\n    '        include_evidence=_include_evi, system_prompt=_sys_prompt,\\n'\n    '    )'\n)\n\nwith open(path, \"w\") as f:\n    f.write(code)\n\nprint(\"PATCH APPLIED SUCCESSFULLY\")\nENDOFPATCH",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T17:20:58.371819+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T17:20:58.371945+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "python3 /tmp/patch_inference.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "python3 /tmp/patch_inference.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T17:20:58.372069+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 /tmp/patch_inference.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T17:20:58.372189+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/patch_inference.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/patch_inference.py\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T17:20:58.372340+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PATCH APPLIED SUCCESSFULLY\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T17:20:58.372478+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"NO_EVIDENCE\\|no_evidence\\|system_prompt\\|include_evidence\" /root/autodl-tmp/freige/eval/inference.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"NO_EVIDENCE\\|no_evidence\\|system_prompt\\|include_evidence\" /root/autodl-tmp/freige/eval/inference.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T17:20:58.372599+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T17:20:58.372738+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"no_evidence\" /root/autodl-tmp/freige/eval/inference.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"no_evidence\" /root/autodl-tmp/freige/eval/inference.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T17:20:58.372892+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"273:    parser.add_argument(\\\"--no_evidence\\\", action=\\\"store_true\\\", default=False,\\n301:    _sys_prompt = NO_EVIDENCE_SYSTEM_PROMPT if args.no_evidence else SYSTEM_PROMPT\\n302:    _include_evi = not args.no_evidence\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T17:20:58.373013+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"NO_EVIDENCE\" /root/autodl-tmp/freige/eval/inference.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"NO_EVIDENCE\" /root/autodl-tmp/freige/eval/inference.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T17:20:58.373130+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"39:NO_EVIDENCE_SYSTEM_PROMPT = (\\n301:    _sys_prompt = NO_EVIDENCE_SYSTEM_PROMPT if args.no_evidence else SYSTEM_PROMPT\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T17:20:58.373299+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"system_prompt\" /root/autodl-tmp/freige/eval/inference.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"system_prompt\" /root/autodl-tmp/freige/eval/inference.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T17:20:58.373441+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"104:def build_prompt(tokenizer, instruction, input_text, system_prompt=SYSTEM_PROMPT):\\n107:        {\\\"role\\\": \\\"system\\\", \\\"content\\\": system_prompt},\\n118:def prepare_eval_data(data_dir, split, tokenizer, include_evidence=True, system_prompt=SYSTEM_PROMPT):\\n128:            tokenizer, sft_sample[\\\"instruction\\\"], sft_sample[\\\"input\\\"], system_prompt=system_prompt\\n305:        include_evidence=_include_evi, system_prompt=_sys_prompt,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T17:20:58.373570+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"include_evidence\" /root/autodl-tmp/freige/eval/inference.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"include_evidence\" /root/autodl-tmp/freige/eval/inference.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T17:20:58.373691+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"118:def prepare_eval_data(data_dir, split, tokenizer, include_evidence=True, system_prompt=SYSTEM_PROMPT):\\n126:        sft_sample = processor.format_sft_sample(doc_samples, include_evidence=include_evidence)\\n305:        include_evidence=_include_evi, system_prompt=_sys_prompt,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-15T17:20:58.373846+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "head -285 /root/autodl-tmp/freige/eval/inference.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "head -285 /root/autodl-tmp/freige/eval/inference.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T17:20:58.374082+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"推理+评测完整流程: 加载 Qwen3-4B + LoRA adapter → 批量推理 → 解析输出 → 计算 F1/Evi-F1/EDCR。\\n\\n输入:\\n  - base model (Qwen3-4B) + 可选 LoRA adapter (SFT/GRPO checkpoint)\\n  - DocRED JSON 数据目录 (含 dev.json, train_annotated.json)\\n\\n输出 (保存到 --output_dir):\\n  - metrics.json: F1, Ign-F1, Evi-F1, EDCR, format_compliance_rate, n_truncated 等\\n  - predictions.json: 每个文档的详细预测 (doc_id, raw_output, parsed_triples, gold_triples, truncated, format_ok)\\n\\n依赖: transformers, peft, bitsandbytes, torch, tqdm\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport time\\nfrom pathlib import Path\\n\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\nfrom tqdm import tqdm\\n\\nfrom freige.data.docred_processor import DocREDProcessor, SPLIT_FILENAMES\\nfrom freige.eval.evaluator import DocREDEvaluator, gold_from_docred, parse_model_output\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\n\\nNO_EVIDENCE_SYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, and tail entity. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\n\\n# ---------------------------------------------------------------------------\\n# A. 模型加载\\n# ---------------------------------------------------------------------------\\n\\ndef 
+…[truncated 7113 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-15T17:20:58.374279+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -n +285 /root/autodl-tmp/freige/eval/inference.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -n +285 /root/autodl-tmp/freige/eval/inference.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T17:20:58.374487+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n    # 自动检测 model_path 是 adapter 还是完整模型\\n    adapter_config = Path(args.model_path) / \\\"adapter_config.json\\\"\\n    if adapter_config.exists():\\n        base_model_path = args.base_model\\n        adapter_path = args.model_path\\n        logger.info(\\\"Detected adapter at %s, base: %s\\\", adapter_path, base_model_path)\\n    else:\\n        base_model_path = args.model_path\\n        adapter_path = None\\n        logger.info(\\\"Full model: %s (no adapter)\\\", base_model_path)\\n\\n    model, tokenizer = load_model_and_tokenizer(\\n        base_model_path, adapter_path, sft_adapter_path=args.sft_adapter,\\n        quantize=args.quantize,\\n    )\\n    _sys_prompt = NO_EVIDENCE_SYSTEM_PROMPT if args.no_evidence else SYSTEM_PROMPT\\n    _include_evi = not args.no_evidence\\n    eval_items, gold, gold_by_doc = prepare_eval_data(\\n        args.data_path, args.split, tokenizer,\\n        include_evidence=_include_evi, system_prompt=_sys_prompt,\\n    )\\n\\n    t0 = time.time()\\n    raw_results = run_inference(\\n        model, tokenizer, eval_items, args.batch_size, args.max_new_tokens\\n    )\\n    elapsed = time.time() - t0\\n    logger.info(\\\"Inference: %.1fs (%.2f s/doc)\\\", elapsed, elapsed / max(len(eval_items), 1))\\n\\n    # 展平为 evaluator 格式\\n    all_predictions = []\\n    raw_outputs_for_eval = []\\n    for r in raw_results:\\n        doc_id = r[\\\"doc_id\\\"]\\n        for triple in r[\\\"parsed_triples\\\"]:\\n            all_predictions.append({\\n                \\\"doc_id\\\": doc_id,\\n                \\\"head\\\": triple[\\\"head\\\"],\\n                \\\"tail\\\": triple[\\\"tail\\\"],\\n                \\\"relation\\\": triple[\\\"relation\\\"],\\n                \\\"evidence\\\": triple.get(\\\"evidence\\\", []),\\n            })\\n        raw_outputs_for_eval.append({\\\"doc_id\\\": doc_id, \\\"raw_text\\\": r[\\\"raw_output\\\"]})\\n\\n    metrics = evaluate(all_predictions,
+…[truncated 2591 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-15T17:20:58.374670+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T17:20:58.374802+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA GeForce RTX 5090, 16925 MiB, 32607 MiB, 83 %\\n1, NVIDIA GeForce RTX 5090, 12953 MiB, 32607 MiB, 68 %\\n2, NVIDIA GeForce RTX 5090, 22697 MiB, 32607 MiB, 0 %\\n3, NVIDIA GeForce RTX 5090, 16925 MiB, 32607 MiB, 63 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-15T17:20:58.374958+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T17:20:58.375088+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"228513, GPU-7717ada7-a310-5d90-cecf-d3e06c550631, 16916 MiB, python\\n229668, GPU-19de3485-e88c-b58f-0249-5007defcb207, 12944 MiB, python\\n221967, GPU-5e7d7885-fdf1-b3bc-7704-7e963b3aeb27, 22688 MiB, python\\n228925, GPU-80915638-bf23-e98d-aa94-e7a54c03b634, 16916 MiB, /root/miniconda3/bin/python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-15T17:20:58.375208+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'status': 'RUNNING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'status': 'RUNNING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T17:20:58.375382+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_plan_001_flat_nli\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T16:57:09.693Z\", \"updated_at\": \"2026-05-15T16:57:57.001Z\", \"hypothesis\": \"Dev eval of flat-NLI RSFT (plan_001). 对比 CED RSFT (3-seed mean rel_f1=0.4596). flat-NLI ≈ CED → CED contrastive margin 无增益; CED >> flat-NLI → margin 关键。\", \"parent\": \"plan_001_rsft_flat_nli\"}, \"eval_grpo_g8_bf16\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T14:41:07.474Z\", \"updated_at\": \"2026-05-15T16:53:20.541Z\", \"hypothesis\": \"Eval GRPO G=8 bf16 checkpoints 80/90/100 on full dev set (985 docs). 验证 catastrophic forgetting 是否在 bf16 LoRA 下复现。rel_f1>0.30 → forgetting 不复现 (QLoRA-specific); rel_f1<0.05 → 复现 (C2 加强)。对比: SFT rel_f1=0.4057, QLoRA GRPO rel_f1=0.2167 (catastrophic).\", \"metrics\": {\"ckpt80_rel_f1\": 0.4456, \"ckpt80_ign_f1\": 0.4456, \"ckpt80_evi_f1\": 0.8034, \"ckpt80_edcr\": 0.6409, \"ckpt80_format_ok\": \"984/985\", \"ckpt80_truncated\": 50, \"ckpt90_status\": \"in_progress\", \"ckpt100_status\": \"pending\"}}, \"plan_012_dpo_ced\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T15:54:03.324Z\", \"updated_at\": \"2026-05-15T16:31:39.671Z\", \"hypothesis\": \"DPO+CED preference learning: 用 CED 构造 preference pairs (CED top-1 = chosen, CED bottom-1 = rejected)，DPO 训练。验证 offline preference optimization 能否替代 online GRPO 避免 catastrophic forgetting，同时利用 CED 信号。对比 RSFT (rel_f1=0.46) 和 SFT baseline (rel_f1=0.4057)。\"}}, \"count\": 3, \"total\": 3, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2472}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-15T17:20:58.375572+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_plan_014_sft_no_evidence",
+  "field": "status",
+  "value": "PREPARING",
+  "project": "faith-evidence-ie",
+  "spec": "{'hypothesis': 'Dev eval of SFT-without-evidence (plan_014). 如 rel_f1 >> SFT 0.4057 → evidence generation 是 extraction 负担。如 rel_f1 ≈ SFT → evidence 不影响抽取。只算 rel_f1，不算 evi_f1。', 'parent': 'plan_014_sft_no_evidence'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_plan_014_sft_no_evidence",
+    "field": "status",
+    "value": "PREPARING",
+    "project": "faith-evidence-ie",
+    "spec": "{'hypothesis': 'Dev eval of SFT-without-evidence (plan_014). 如 rel_f1 >> SFT 0.4057 → evidence generation 是 extraction 负担。如 rel_f1 ≈ SFT → evidence 不影响抽取。只算 rel_f1，不算 evi_f1。', 'parent': 'plan_014_sft_no_evidence'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-15T17:20:58.375725+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_plan_014_sft_no_evidence\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:20:25.574Z\", \"updated_at\": \"2026-05-15T17:20:25.574Z\", \"spec\": {\"hypothesis\": \"Dev eval of SFT-without-evidence (plan_014). 如 rel_f1 >> SFT 0.4057 → evidence generation 是 extraction 负担。如 rel_f1 ≈ SFT → evidence 不影响抽取。只算 rel_f1，不算 evi_f1。\", \"parent\": \"plan_014_sft_no_evidence\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7889}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-15T17:20:58.375853+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_plan_014_sft_no_evidence",
+  "field": "status",
+  "value": "PENDING",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_plan_014_sft_no_evidence",
+    "field": "status",
+    "value": "PENDING",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-15T17:20:58.375987+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_plan_014_sft_no_evidence\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:20:25.574Z\", \"updated_at\": \"2026-05-15T17:20:28.767Z\", \"spec\": {\"hypothesis\": \"Dev eval of SFT-without-evidence (plan_014). 如 rel_f1 >> SFT 0.4057 → evidence generation 是 extraction 负担。如 rel_f1 ≈ SFT → evidence 不影响抽取。只算 rel_f1，不算 evi_f1。\", \"parent\": \"plan_014_sft_no_evidence\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.764}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-15T17:20:58.376112+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_plan_014_sft_no_evidence",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_plan_014_sft_no_evidence",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-15T17:20:58.376257+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_plan_014_sft_no_evidence\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:20:25.574Z\", \"updated_at\": \"2026-05-15T17:20:31.833Z\", \"spec\": {\"hypothesis\": \"Dev eval of SFT-without-evidence (plan_014). 如 rel_f1 >> SFT 0.4057 → evidence generation 是 extraction 负担。如 rel_f1 ≈ SFT → evidence 不影响抽取。只算 rel_f1，不算 evi_f1。\", \"parent\": \"plan_014_sft_no_evidence\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7424}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-15T17:20:58.376395+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_plan_014_sft_no_evidence",
+  "field": "status",
+  "value": "ALLOCATED",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_plan_014_sft_no_evidence",
+    "field": "status",
+    "value": "ALLOCATED",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-15T17:20:58.376531+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_plan_014_sft_no_evidence\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:20:25.574Z\", \"updated_at\": \"2026-05-15T17:20:34.754Z\", \"spec\": {\"hypothesis\": \"Dev eval of SFT-without-evidence (plan_014). 如 rel_f1 >> SFT 0.4057 → evidence generation 是 extraction 负担。如 rel_f1 ≈ SFT → evidence 不影响抽取。只算 rel_f1，不算 evi_f1。\", \"parent\": \"plan_014_sft_no_evidence\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8096}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-15T17:20:58.376673+00:00_
+
+called mcp__agent-ml-research__submit_training_job
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "gpu_ids": "['cuda:1']",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_no_evidence_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/sft_no_evidence --no-quantize --no_evidence\"",
+  "exp_id": "eval_plan_014_sft_no_evidence",
+  "project": "faith-evidence-ie",
+  "timeout_hours": "2",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "gpu_ids": "['cuda:1']",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_no_evidence_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/sft_no_evidence --no-quantize --no_evidence\"",
+    "exp_id": "eval_plan_014_sft_no_evidence",
+    "project": "faith-evidence-ie",
+    "timeout_hours": "2",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-15T17:20:58.376856+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"pid\": \"230804\", \"log_file\": \"~/runs/faith-evidence-ie/eval_plan_014_sft_no_evidence.log\", \"gpu_ids\": [\"cuda:1\"], \"server\": \"rtx5090-4x\", \"account\": \"root\", \"cuda_visible_devices\": \"1\", \"backend\": \"tmux\", \"tmux_session\": \"eval_plan_014_sft_no_evidence\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-15T17:20:58.377004+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_plan_014_sft_no_evidence",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "faith-evidence-ie",
+  "spec": "{'command': 'python -m freige.eval.inference --model_path /root/autodl-tmp/sft_no_evidence_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/sft_no_evidence --no-quantize --no_evidence', 'server': 'rtx5090-4x', 'gpu': ['cuda:1'], 'data_path': '/root/autodl-tmp/data/docred', 'data_count': 985, 'model_name': 'Qwen3-4B (SFT-no-evidence)', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/sft_no_evidence_output', 'eval_data': 'docred dev (985 docs)', 'log_path': '~/runs/faith-evidence-ie/eval_plan_014_sft_no_evidence.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_plan_014_sft_no_evidence",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "faith-evidence-ie",
+    "spec": "{'command': 'python -m freige.eval.inference --model_path /root/autodl-tmp/sft_no_evidence_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/sft_no_evidence --no-quantize --no_evidence', 'server': 'rtx5090-4x', 'gpu': ['cuda:1'], 'data_path': '/root/autodl-tmp/data/docred', 'data_count': 985, 'model_name': 'Qwen3-4B (SFT-no-evidence)', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/sft_no_evidence_output', 'eval_data': 'docred dev (985 docs)', 'log_path': '~/runs/faith-evidence-ie/eval_plan_014_sft_no_evidence.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-15T17:20:58.377142+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -20 /root/runs/faith-evidence-ie/eval_plan_014_sft_no_evidence.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -20 /root/runs/faith-evidence-ie/eval_plan_014_sft_no_evidence.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-15T17:20:58.377322+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_plan_014_sft_no_evidence\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:20:25.574Z\", \"updated_at\": \"2026-05-15T17:20:51.675Z\", \"spec\": {\"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/sft_no_evidence_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/sft_no_evidence --no-quantize --no_evidence\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"230804\", \"log_path\": \"~/runs/faith-evidence-ie/eval_plan_014_sft_no_evidence.log\", \"submitted_at\": \"2026-05-15T17:20:44.247Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B (SFT-no-evidence)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_no_evidence_output\", \"eval_data\": \"docred dev (985 docs)\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9482}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-15T17:20:58.377485+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 01:20:49,153 INFO Detected adapter at /root/autodl-tmp/sft_no_evidence_output, base: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-16 01:20:49,153 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-16 01:20:49,583 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-16 01:20:49,887 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.17it/s]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.15it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.71it/s]\\n2026-05-16 01:20:51,682 INFO Loading LoRA adapter: /root/autodl-tmp/sft_no_evidence_output\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81 · 2026-05-15T17:20:58.377656+00:00_
+
+启动成功。模型已检测到 adapter 并在加载中：
+- Base model: Qwen3-4B (bf16, no quantize)
+- LoRA adapter: sft_no_evidence_output
+- `--no_evidence` flag 已生效（使用 NO_EVIDENCE_SYSTEM_PROMPT + include_evidence=False）
+
+关键修改：给 inference.py 添加了 `--no_evidence` 参数，确保 system prompt 和 instruction 与训练时一致（不提 evidence）。rel_f1 计算不受影响，evi_f1 预期为 0（无 evidence 输出）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ops_eval_plan_014_sft_no_evidence_20260515T171645"
+}
+```
+
+</details>
+
+---

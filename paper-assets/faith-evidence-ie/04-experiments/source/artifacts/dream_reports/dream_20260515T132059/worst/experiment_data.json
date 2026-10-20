@@ -1,0 +1,976 @@
+[
+  {
+    "name": "CED vs flat-NLI RSFT ablation",
+    "description": "用 flat-NLI scoring（p_pos 阈值，无 contrastive margin）筛选 RSFT 训练数据， 与 CED scoring 做 head-to-head 对比。复用已有 candidates，仅替换打分函数。\n",
+    "results": {
+      "flatnli_rsft_best_rel_f1": 0.456,
+      "flatnli_rsft_best_evi_f1": 0.812,
+      "flatnli_rsft_best_edcr": 0.658,
+      "flatnli_rsft_selected_samples": 2920,
+      "ced_rsft_best_rel_f1": 0.4655,
+      "ced_rsft_best_evi_f1": 0.8087,
+      "ced_rsft_best_edcr": 0.635,
+      "ced_vs_flatnli_rel_f1_gap_pp": 0.95,
+      "ced_vs_flatnli_evi_f1_gap_pp": -0.33,
+      "ced_vs_flatnli_edcr_gap_pp": -2.3,
+      "paired_bootstrap_p_rel_f1": 0.11,
+      "paired_bootstrap_p_evi_f1": 0.42,
+      "paired_bootstrap_p_edcr": 0.15,
+      "candidate_overlap_jaccard": 0.76
+    },
+    "tables": [
+      {
+        "name": "Table: CED vs flat-NLI RSFT Head-to-Head (Dev Set)",
+        "rows": [
+          {
+            "config": "SFT baseline",
+            "rel_f1": 0.4057,
+            "evi_f1": 0.7979,
+            "edcr": 0.7118
+          },
+          {
+            "config": "RSFT flat-NLI (best)",
+            "rel_f1": 0.456,
+            "evi_f1": 0.812,
+            "edcr": 0.658
+          },
+          {
+            "config": "RSFT CED r1 (s42)",
+            "rel_f1": 0.4449,
+            "evi_f1": 0.8187,
+            "edcr": 0.6565
+          },
+          {
+            "config": "RSFT CED (s44)",
+            "rel_f1": 0.4655,
+            "evi_f1": 0.8087,
+            "edcr": 0.635
+          },
+          {
+            "config": "Δ (CED best − flat-NLI best)",
+            "rel_f1": "+0.95pp",
+            "evi_f1": "−0.33pp",
+            "edcr": "−2.3pp"
+          },
+          {
+            "config": "p-value (paired bootstrap)",
+            "rel_f1": "0.11",
+            "evi_f1": "0.42",
+            "edcr": "0.15"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "CED 与 flat-NLI 无统计显著差异（三个指标均 p>0.10）。RSFT 的收益主要来自 rejection sampling 本身 （过滤低质量候选的 floor effect），而非 CED 特有的对比信号。在 reframed narrative 下， 这转化为正面发现：\"RSFT 对 scoring function 选择鲁棒，practitioners 可用任意 NLI scorer\"—— 降低了方法的 entry barrier，但也意味着 CED 不再是独立 contribution。\n\n\n在 worst 档下，flat-NLI 的 p_pos 阈值筛选与 CED margin 筛选高度重叠（Jaccard ~0.76）。 根本原因：DocRED 中 entity-sharing distractor 的 NLI 分数分布与 gold evidence 有足够间距 （MVP-1 mean_margin=0.48），单纯高 p_pos 阈值已能过滤大部分 distractor，CED 的 contrastive margin 仅在 hard negative（p_neg > 0.6）上有边际优势，这类样本占比 <15%。\nEvi-F1 差异 -0.33pp（CED 反而略低），因 CED margin 过滤偏严格导致训练数据少 ~200 samples， reduced diversity 的负面效应抵消了质量优势。EDCR 差 -2.3pp 方向正确但 p=0.15 不显著。 Rel_f1 差 +0.95pp CED 略优，但 p=0.11 不显著——可能来自随机种子噪声而非 scoring 差异。\n结论：Claim 2 统计上不成立。CED 降级为 \"one of several viable scoring functions\"。\n"
+  },
+  {
+    "name": "Test set evaluation",
+    "description": "用 RSFT best config (s44) 在 DocRED test set 上评估。提交 CodaLab 获取官方 F1/Ign-F1， 本地计算 conditional Evi-F1、DREEAM-aligned joint Evi-F1 和 EDCR。\n",
+    "results": {
+      "rsft_test_rel_f1": 0.408,
+      "rsft_test_ign_f1": 0.401,
+      "rsft_test_evi_f1_conditional": 0.77,
+      "rsft_test_evi_f1_joint": 0.265,
+      "rsft_test_edcr": 0.69,
+      "rsft_test_precision": 0.415,
+      "rsft_test_recall": 0.402,
+      "sft_test_rel_f1": 0.393,
+      "sft_test_evi_f1_conditional": 0.758,
+      "sft_test_evi_f1_joint": 0.248,
+      "sft_test_edcr": 0.732,
+      "rsft_over_sft_test_rel_f1_delta_pp": 1.5,
+      "rsft_over_sft_test_evi_f1_joint_delta_pp": 1.7,
+      "rsft_over_sft_bootstrap_p": 0.08,
+      "dev_to_test_rsft_rel_f1_drop_pp": 5.75,
+      "dev_to_test_sft_rel_f1_drop_pp": 1.27,
+      "flatnli_rsft_test_rel_f1": 0.405,
+      "flatnli_rsft_test_evi_f1_joint": 0.258
+    },
+    "tables": [
+      {
+        "name": "Table: Dev vs Test Set Performance",
+        "rows": [
+          {
+            "split": "Dev (RSFT s44)",
+            "rel_f1": 0.4655,
+            "evi_f1_cond": 0.8087,
+            "evi_f1_joint": 0.338,
+            "edcr": 0.635
+          },
+          {
+            "split": "Test (RSFT s44)",
+            "rel_f1": 0.408,
+            "evi_f1_cond": 0.77,
+            "evi_f1_joint": 0.265,
+            "edcr": 0.69
+          },
+          {
+            "split": "Δ (test − dev)",
+            "rel_f1": "−5.75pp",
+            "evi_f1_cond": "−3.87pp",
+            "evi_f1_joint": "−7.3pp",
+            "edcr": "+5.5pp"
+          }
+        ]
+      },
+      {
+        "name": "Table: Test Set SFT vs RSFT vs flat-NLI RSFT",
+        "rows": [
+          {
+            "method": "SFT baseline",
+            "rel_f1": 0.393,
+            "evi_f1_joint": 0.248,
+            "edcr": 0.732
+          },
+          {
+            "method": "RSFT flat-NLI",
+            "rel_f1": 0.405,
+            "evi_f1_joint": 0.258,
+            "edcr": 0.702
+          },
+          {
+            "method": "RSFT+CED (s44)",
+            "rel_f1": 0.408,
+            "evi_f1_joint": 0.265,
+            "edcr": 0.69
+          },
+          {
+            "method": "DREEAM (paper, test)",
+            "rel_f1": 0.63,
+            "evi_f1_joint": 0.5734,
+            "edcr": "N/A"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Test set 上 RSFT 仍优于 SFT 但 margin 大幅缩窄且边界不显著。Publishability 必要条件 （RSFT > SFT）勉强满足但不稳固。Joint Evi-F1 0.265 远低于 DREEAM 57.34—— 但这是评估协议差异而非方法劣势（DREEAM 的 rel_f1 0.63 vs 我们 0.408 是 extraction gap）。 论文必须用单独一节解释两种 Evi-F1 协议的差异，并坦诚 joint 指标的局限。 在 reframed narrative 下，dev→test 衰减本身变成 analysis contribution： \"生成式 evidence 方法对标注分布偏移更敏感\" 是有价值的发现。\n\n\nDev→test 严重衰减是 worst 档核心假设。RSFT dev→test 下降 5.75pp（0.4655→0.408）， 而 SFT 仅下降 1.27pp（0.4057→0.393）。RSFT 对分布偏移更敏感的原因： (1) RSFT 训练数据生成和 CED 打分均在 train split 上进行，候选筛选隐式适应了 train/dev 的共享标注风格； (2) test set annotator 更保守（relation 密度更低），RSFT 的 recall-oriented training signal 在 test set 上产生更多 false positive； (3) test set 的 entity 分布更密集，distractor 句子更多，EDCR 从 0.635 恶化至 0.690。\nRSFT 仍优于 SFT（+1.5pp rel_f1），但 p=0.08 边界不显著，reviewer 可合理主张 \"dev set 增幅存在过拟合成分\"。\nJoint Evi-F1（DREEAM 协议）极低（0.265 vs conditional 0.770）——这是因为 joint 协议 要求 relation 也正确才计 evidence 分数，rel_f1 ~0.41 直接拉低上限。 与 DREEAM test set 57.34 的对比需极其谨慎：评估协议完全不同 （生成式句子索引 vs encoder attention-based extraction）。\n"
+  },
+  {
+    "name": "EDCR pipeline 验证 + cross-method diagnostic table",
+    "description": "在所有 evidence-producing 方法上计算 EDCR，验证 EDCR 作为独立诊断指标的 cross-method 区分能力。\n",
+    "results": {
+      "sft_edcr": 0.7118,
+      "rsft_ced_best_edcr": 0.635,
+      "rsft_flatnli_edcr": 0.658,
+      "reranker_edcr": 0.668,
+      "grpo_ced_kl001_ckpt90_edcr": 0.8584,
+      "grpo_lr5e6_ckpt100_edcr": 0.9876,
+      "dpo_ced_edcr": 0.652,
+      "grpo_g8_best_edcr": 0.742,
+      "edcr_evi_f1_cond_pearson_r": -0.38,
+      "edcr_rel_f1_pearson_r": -0.22,
+      "edcr_range_across_methods": "[0.635, 0.988]"
+    },
+    "tables": [
+      {
+        "name": "Table: Cross-Method EDCR Diagnostic",
+        "rows": [
+          {
+            "method": "GRPO+CED lr=5e-6 (ckpt-100)",
+            "rel_f1": 0.014,
+            "evi_f1": 0.85,
+            "edcr": 0.988,
+            "note": "extreme decoupling"
+          },
+          {
+            "method": "GRPO+CED kl=0.01 (ckpt-90)",
+            "rel_f1": 0.211,
+            "evi_f1": 0.567,
+            "edcr": 0.858,
+            "note": "partial forgetting"
+          },
+          {
+            "method": "GRPO G=8 (best ckpt)",
+            "rel_f1": 0.235,
+            "evi_f1": 0.605,
+            "edcr": 0.742,
+            "note": "partial recovery"
+          },
+          {
+            "method": "SFT baseline",
+            "rel_f1": 0.406,
+            "evi_f1": 0.798,
+            "edcr": 0.712,
+            "note": ""
+          },
+          {
+            "method": "CED-as-reranker",
+            "rel_f1": 0.413,
+            "evi_f1": 0.802,
+            "edcr": 0.668,
+            "note": "inference-time only"
+          },
+          {
+            "method": "RSFT flat-NLI",
+            "rel_f1": 0.456,
+            "evi_f1": 0.812,
+            "edcr": 0.658,
+            "note": ""
+          },
+          {
+            "method": "DPO+CED",
+            "rel_f1": 0.385,
+            "evi_f1": 0.805,
+            "edcr": 0.652,
+            "note": "offline, avoids forgetting"
+          },
+          {
+            "method": "RSFT+CED (s44)",
+            "rel_f1": 0.466,
+            "evi_f1": 0.809,
+            "edcr": 0.635,
+            "note": "best EDCR"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "EDCR 作为诊断工具在极端案例上有价值（GRPO decoupling 的标志性信号），但在正常工作区间 （RSFT/DPO/SFT）的区分力有限（range 仅 0.635-0.712）。\"CED 改善 EDCR\" 的方法论故事很弱 （vs flat-NLI 仅 2.3pp 不显著）。Reframe: EDCR 的 contribution 在于指标设计本身 + GRPO failure 的诊断案例，而非 CED 方法的独特效果。\n\n\nEDCR 的 cross-method 诊断能力在 worst 档下被部分削弱。CED RSFT 与 flat-NLI RSFT 的 EDCR 差异 仅 2.3pp（方向正确但不显著），说明 CED 对 distractor filtering 的额外价值有限。 EDCR 与 conditional Evi-F1 的负相关仅 r=-0.38（弱到中等），部分高 EDCR 样本的 Evi-F1 也不高—— 两个指标有重叠但非互补。EDCR 与 rel_f1 的相关更弱（r=-0.22），说明 distractor citation 与 extraction 质量只有弱关联。\n但 EDCR 在极端案例上仍有诊断价值：GRPO lr=5e-6 的 EDCR=0.988 标记出 \"模型学会了引用证据但完全丧失抽取能力\" 的模式，而 Evi-F1=0.85 完全无法捕捉这个问题。EDCR 的 contribution 在于指标设计本身（揭示 Evi-F1 盲区）， 而非 CED 对 EDCR 的改善。\n"
+  },
+  {
+    "name": "DREEAM baseline reproduction",
+    "description": "在 DocRED dev set 上复现 DREEAM (RoBERTa-large) 的 Evi-F1，确认报告数字可复现，建立可比基线。\n",
+    "results": {
+      "dreeam_dev_rel_f1_reproduced": 0.632,
+      "dreeam_dev_evi_f1_reproduced": 0.608,
+      "dreeam_paper_test_evi_f1": 0.5734,
+      "dreeam_paper_test_rel_f1": 0.63,
+      "dreeam_dev_to_test_evi_f1_drop": 0.0346,
+      "sais_dev_evi_f1_reproduced": 0.578,
+      "sais_dev_rel_f1_reproduced": 0.615,
+      "our_rsft_dev_evi_f1_joint": 0.338,
+      "our_rsft_dev_evi_f1_joint_vs_dreeam_gap": -0.27
+    },
+    "tables": [
+      {
+        "name": "Table: DREEAM/SAIS Reproduction vs Our Method",
+        "rows": [
+          {
+            "method": "SAIS (reproduced, dev)",
+            "rel_f1": 0.615,
+            "evi_f1_joint": 0.578,
+            "evi_f1_cond": "N/A (attention-based)"
+          },
+          {
+            "method": "DREEAM (reproduced, dev)",
+            "rel_f1": 0.632,
+            "evi_f1_joint": 0.608,
+            "evi_f1_cond": "N/A (attention-based)"
+          },
+          {
+            "method": "RSFT+CED (dev)",
+            "rel_f1": 0.466,
+            "evi_f1_joint": 0.338,
+            "evi_f1_cond": 0.809
+          },
+          {
+            "method": "DREEAM (paper, test)",
+            "rel_f1": 0.63,
+            "evi_f1_joint": 0.5734,
+            "evi_f1_cond": "N/A"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "DREEAM 复现成功但暴露了评估可比性难题。在 worst 档下，论文必须放弃 \"超越 DREEAM\" 的叙事， 转为 \"LLM generative evidence 的优劣分析\"——conditional evidence 质量极高（0.809）， 但受限于 extraction 能力（rel_f1 0.466 vs encoder 0.632）。 这在 reframed narrative 下反而是有趣的 finding： \"LLM 可以生成极好的 evidence 但 extraction 能力落后于 encoder，两能力并非耦合\"。\n\n\nDREEAM 论文报告的 57.34 是 test set Evi-F1（joint 协议）。Dev set 复现值约 60.8， 高于 test 3.46pp（encoder 方法也有 dev→test 衰减）。\n关键问题：我们的 joint Evi-F1（DREEAM 协议）在 dev set 约 0.338——远低于 DREEAM 的 0.608。 原因并非 evidence 质量差，而是 rel_f1 gap：我们 0.466 vs DREEAM 0.632， joint 协议下 extraction 错误直接拉低 evidence 分数。 Conditional Evi-F1 我们 0.809 远超 DREEAM 0.608，但两个协议不可直接对比。\n这产生叙事困境：用 conditional 对比则我们远超（+20pp），用 joint 对比则我们远逊（-27pp）。 论文必须同时报告两种协议并诚实解释差异来源。在 worst 档下，reviewer 很可能攻击 \"你们 cherry-pick 了有利的评估协议\"。\n"
+  },
+  {
+    "name": "CED-as-reranker",
+    "description": "推理时用 CED 对 SFT 生成的 N=8 候选重排选最佳，无需额外训练。\n",
+    "results": {
+      "reranker_rel_f1": 0.413,
+      "reranker_evi_f1": 0.802,
+      "reranker_edcr": 0.668,
+      "reranker_evi_f1_joint": 0.288,
+      "sft_baseline_rel_f1": 0.4057,
+      "sft_baseline_evi_f1": 0.7979,
+      "sft_baseline_edcr": 0.7118,
+      "reranker_over_sft_rel_f1_pp": 0.73,
+      "reranker_over_sft_evi_f1_pp": 0.41,
+      "reranker_over_sft_edcr_pp": -4.38,
+      "reranker_inference_time_multiplier": 8.5
+    },
+    "tables": [
+      {
+        "name": "Table: CED-as-Reranker vs SFT vs RSFT (Dev Set)",
+        "rows": [
+          {
+            "method": "SFT baseline",
+            "rel_f1": 0.4057,
+            "evi_f1": 0.7979,
+            "edcr": 0.7118,
+            "extra_train": "No",
+            "inference_cost": "1x"
+          },
+          {
+            "method": "CED-as-reranker (N=8)",
+            "rel_f1": 0.413,
+            "evi_f1": 0.802,
+            "edcr": 0.668,
+            "extra_train": "No",
+            "inference_cost": "8.5x"
+          },
+          {
+            "method": "RSFT+CED (s44)",
+            "rel_f1": 0.4655,
+            "evi_f1": 0.8087,
+            "edcr": 0.635,
+            "extra_train": "Yes",
+            "inference_cost": "1x"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Reranker 效果有限，印证 SFT 候选池本身的 distractor bias 是 bottleneck。 RSFT 通过改变模型权重从根源减少 distractor 引用，reranker 只能在已有候选中做选择。 在 worst 档 reframe 下，reranker 降级为 ablation，但仍有方法论价值： 证明 CED 的价值在于 training data curation 而非 inference-time selection。\n\n\nReranker 效果有限（rel_f1 +0.73pp，EDCR -4.38pp vs SFT）且远不及 RSFT。 根本原因：CED 重排只能在 SFT 已生成的 8 个候选中选择，而 SFT 候选的 evidence 分布 本身偏向 distractor——SFT 的 systematic bias 使 8 个候选中 \"低 EDCR\" 的候选稀少 （最优候选 EDCR 仍 ~0.55-0.60，远高于 gold evidence 的理论 EDCR=0）。\nRel_f1 的微小提升来自 CED 兼顾 evidence 和 extraction 的联合打分偶尔选到了 更好的抽取结果，但效果不稳定。推理时间 8.5x（每候选需 NLI 推理） 使 reranker 在实际部署中不可行。\n在 worst 档下，reranker 降级为 ablation table 中的一行数据： 证明 training-free CED application 不够，必须通过 RSFT 改变模型权重。\n"
+  },
+  {
+    "name": "Model size ablation (1.7B / 8B)",
+    "description": "Qwen3-1.7B 和 Qwen3-8B 上复现 RSFT+CED pipeline，验证方法对模型规模的泛化性。\n",
+    "results": {
+      "qwen3_1_7b_sft_rel_f1": 0.312,
+      "qwen3_1_7b_sft_evi_f1": 0.735,
+      "qwen3_1_7b_rsft_rel_f1": 0.338,
+      "qwen3_1_7b_rsft_evi_f1": 0.752,
+      "qwen3_1_7b_rsft_edcr": 0.705,
+      "qwen3_1_7b_rsft_gain_rel_f1_pp": 2.6,
+      "qwen3_8b_sft_rel_f1": 0.458,
+      "qwen3_8b_sft_evi_f1": 0.82,
+      "qwen3_8b_rsft_rel_f1": 0.475,
+      "qwen3_8b_rsft_evi_f1": 0.828,
+      "qwen3_8b_rsft_edcr": 0.648,
+      "qwen3_8b_rsft_gain_rel_f1_pp": 1.7,
+      "qwen3_4b_rsft_gain_rel_f1_pp": 5.98,
+      "rsft_gain_nonmonotonic": true
+    },
+    "tables": [
+      {
+        "name": "Table: Model Size Ablation (Dev Set)",
+        "rows": [
+          {
+            "model": "Qwen3-1.7B SFT",
+            "rel_f1": 0.312,
+            "evi_f1": 0.735,
+            "edcr": 0.72
+          },
+          {
+            "model": "Qwen3-1.7B RSFT",
+            "rel_f1": 0.338,
+            "evi_f1": 0.752,
+            "edcr": 0.705,
+            "delta_rel_f1": "+2.6pp"
+          },
+          {
+            "model": "Qwen3-4B SFT",
+            "rel_f1": 0.406,
+            "evi_f1": 0.798,
+            "edcr": 0.712
+          },
+          {
+            "model": "Qwen3-4B RSFT",
+            "rel_f1": 0.466,
+            "evi_f1": 0.809,
+            "edcr": 0.635,
+            "delta_rel_f1": "+5.98pp"
+          },
+          {
+            "model": "Qwen3-8B SFT",
+            "rel_f1": 0.458,
+            "evi_f1": 0.82,
+            "edcr": 0.665
+          },
+          {
+            "model": "Qwen3-8B RSFT",
+            "rel_f1": 0.475,
+            "evi_f1": 0.828,
+            "edcr": 0.648,
+            "delta_rel_f1": "+1.7pp"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "RSFT 收益对模型规模不鲁棒，4B sweet spot 可能是超参匹配巧合。 在 reframed narrative 下，这转化为 analysis contribution： \"RSFT 的最优超参与模型规模耦合，practitioners 需 per-scale tuning\"—— 但也意味着方法缺乏 out-of-the-box 泛化性，削弱 systematic study 的实用价值。\n\n\nRSFT 收益对模型规模不鲁棒，呈倒 U 型：1.7B gain +2.6pp, 4B gain +5.98pp, 8B gain +1.7pp。\n1.7B 收益小的原因：小模型生成候选质量上限低，8 个候选中高质量候选极少， CED 筛选后训练数据量骤降（~1200 samples vs 4B 的 2718），数据不足以有效微调。 且小模型的 LoRA 容量有限（相对模型参数比例更大），更容易过拟合少量 RSFT 数据。\n8B 收益小的原因：强模型 SFT baseline 已较好（0.458），候选质量整体较高， CED 筛选的增量价值边际递减。同时 8B + QLoRA 的有效参数更新比例更小， LoRA rank=64 在 8B 上的相对容量不足（4B 上 rank=64 ≈ 1.6% params，8B ≈ 0.8%）。\n4B 是 sweet spot 可能是 LoRA rank/lr 超参恰好匹配而非方法论优势。 Reviewer 会指出 \"方法效果高度依赖模型规模和超参配置\"。\n"
+  },
+  {
+    "name": "Re-DocRED extension",
+    "description": "在 Re-DocRED（修正 false negative 标注）上评估 RSFT+CED，验证更干净标注下的表现。\n",
+    "results": {
+      "redocred_sft_rel_f1": 0.525,
+      "redocred_sft_evi_f1": 0.81,
+      "redocred_rsft_rel_f1": 0.548,
+      "redocred_rsft_evi_f1": 0.818,
+      "redocred_rsft_edcr": 0.592,
+      "redocred_rsft_gain_rel_f1_pp": 2.3,
+      "redocred_rsft_gain_evi_f1_pp": 0.8,
+      "docred_rsft_gain_rel_f1_pp": 5.98
+    },
+    "tables": [
+      {
+        "name": "Table: DocRED vs Re-DocRED",
+        "rows": [
+          {
+            "dataset": "DocRED SFT",
+            "rel_f1": 0.406,
+            "evi_f1": 0.798,
+            "edcr": 0.712
+          },
+          {
+            "dataset": "DocRED RSFT",
+            "rel_f1": 0.466,
+            "evi_f1": 0.809,
+            "edcr": 0.635,
+            "delta": "+5.98pp"
+          },
+          {
+            "dataset": "Re-DocRED SFT",
+            "rel_f1": 0.525,
+            "evi_f1": 0.81,
+            "edcr": 0.635
+          },
+          {
+            "dataset": "Re-DocRED RSFT",
+            "rel_f1": 0.548,
+            "evi_f1": 0.818,
+            "edcr": 0.592,
+            "delta": "+2.3pp"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Re-DocRED 上 RSFT 收益缩小是 worst 档的预期结果。在 reframed narrative 下， 这变成双刃剑：一方面 reviewer 质疑方法在 clean data 上的价值， 另一方面可论证 \"RSFT 在 noisy annotation 下更有价值\"。 需与 model size ablation 一起，诚实讨论 RSFT 的 applicability conditions。\n\n\nRe-DocRED 的标注更完整（大量 false negative 被修正），SFT baseline 显著更强 （rel_f1 0.525 vs DocRED 0.406）。RSFT 增量收益缩小至 +2.3pp（vs DocRED +5.98pp）。\n原因：(1) 更完整的 gold triples 减少了 SFT 的低悬果实空间——SFT 在 Re-DocRED 上已学到 更多正确 pattern，RSFT 能额外发现的增量更少；(2) 更完整的 gold evidence 标注 使之前被标为 distractor 的句子回归 gold，CED 的 false distractor 问题缓解， 但同时 CED 的额外筛选价值也降低（distractor 本身变少了）； (3) EDCR 0.592 低于 DocRED 0.635，因更完整标注降低了 distractor 比例。\n对 worst 档叙事的影响：RSFT 在 noisy annotation (DocRED) 下价值更大， 在 clean annotation (Re-DocRED) 下边际递减——可论证 RSFT 是一种 annotation noise robustness 机制。\n"
+  },
+  {
+    "name": "top_k ablation (k=1 vs k=3)",
+    "description": "CED scoring 筛选 top_k=3（~8000 samples）vs top_k=1（~2718 samples）， 验证 CED 过滤严格度对 RSFT 质量的影响。\n",
+    "results": {
+      "topk1_samples": 2718,
+      "topk3_samples": 8154,
+      "topk1_mean_ced": 0.668,
+      "topk3_mean_ced": 0.512,
+      "topk1_rsft_rel_f1": 0.4655,
+      "topk1_rsft_evi_f1": 0.8087,
+      "topk1_rsft_edcr": 0.635,
+      "topk3_rsft_rel_f1": 0.458,
+      "topk3_rsft_evi_f1": 0.805,
+      "topk3_rsft_edcr": 0.672,
+      "topk3_vs_topk1_rel_f1_gap_pp": -0.75,
+      "topk3_vs_topk1_evi_f1_gap_pp": -0.37,
+      "topk3_vs_topk1_edcr_gap_pp": 3.7
+    },
+    "tables": [
+      {
+        "name": "Table: top_k Ablation",
+        "rows": [
+          {
+            "config": "top_k=1 (2718 samples, mean CED 0.668)",
+            "rel_f1": 0.4655,
+            "evi_f1": 0.8087,
+            "edcr": 0.635
+          },
+          {
+            "config": "top_k=3 (8154 samples, mean CED 0.512)",
+            "rel_f1": 0.458,
+            "evi_f1": 0.805,
+            "edcr": 0.672
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "top_k 对 RSFT 影响有限，与 plan_001 结论一致——rejection sampling 本身（而非 scoring 精度） 是关键。在 reframed narrative 下纳入 practical guideline section。\n\n\nTop_k=3 用 3x 数据量（8154 vs 2718）换来轻微退化（rel_f1 -0.75pp, evi_f1 -0.37pp, EDCR +3.7pp）。 退化幅度很小，说明 CED 分数在 top1→top3 区间的质量差异有限（mean CED 从 0.668 降至 0.512， 但 floor 仍在可接受范围）。\n这进一步支持 worst 档核心论点：CED scoring 的精细程度不是关键因素。 Top_k=3 的更多数据带来的 diversity 和 CED score 下降带来的 noise 大致抵消。 Reviewer 可用此结果论证 \"随便什么 NLI 打分函数做 threshold filtering 都行\"。\n在 reframed narrative 下，top_k ablation 可纳入 practical guideline： \"top_k=1 质量最优但数据量受限，top_k=3 是合理 tradeoff\"。\n"
+  },
+  {
+    "name": "GRPO G=8 实验",
+    "description": "用 G=8 + CED reward + kl_coef=0.01 重跑 GRPO，验证 G=4 的 catastrophic forgetting 是否因 advantage estimation noise 导致。用 gradient accumulation 适配显存。\n",
+    "results": {
+      "grpo_g8_best_rel_f1": 0.235,
+      "grpo_g8_best_evi_f1": 0.605,
+      "grpo_g8_best_edcr": 0.742,
+      "grpo_g8_best_reward": 1.52,
+      "grpo_g8_best_rel_f1_step": 80,
+      "grpo_g8_forgetting_onset_step": 20,
+      "grpo_g8_final_rel_f1": 0.198,
+      "grpo_g8_final_evi_f1": 0.635,
+      "grpo_g8_frac_zero_std_final": 0.08,
+      "grpo_g4_best_rel_f1": 0.217,
+      "grpo_g4_best_evi_f1": 0.575,
+      "g8_vs_g4_rel_f1_improvement_pp": 1.8,
+      "g8_vs_g4_evi_f1_improvement_pp": 3.0,
+      "g8_still_catastrophic_vs_sft": true,
+      "g8_partial_recovery": true,
+      "trajectory_step_20": {
+        "rel_f1": 0.085,
+        "evi_f1": 0.52,
+        "reward": 0.95
+      },
+      "trajectory_step_40": {
+        "rel_f1": 0.168,
+        "evi_f1": 0.55,
+        "reward": 1.15
+      },
+      "trajectory_step_60": {
+        "rel_f1": 0.225,
+        "evi_f1": 0.58,
+        "reward": 1.35
+      },
+      "trajectory_step_80": {
+        "rel_f1": 0.235,
+        "evi_f1": 0.605,
+        "reward": 1.52
+      },
+      "trajectory_step_100": {
+        "rel_f1": 0.198,
+        "evi_f1": 0.635,
+        "reward": 1.48
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: GRPO G=4 vs G=8 Comparison",
+        "rows": [
+          {
+            "config": "GRPO G=4 (kl=0.01, best ckpt)",
+            "rel_f1": 0.217,
+            "evi_f1": 0.575,
+            "edcr": 0.858,
+            "best_reward": 1.37
+          },
+          {
+            "config": "GRPO G=8 (kl=0.01, best ckpt)",
+            "rel_f1": 0.235,
+            "evi_f1": 0.605,
+            "edcr": 0.742,
+            "best_reward": 1.52
+          },
+          {
+            "config": "SFT baseline",
+            "rel_f1": 0.406,
+            "evi_f1": 0.798,
+            "edcr": 0.712
+          },
+          {
+            "config": "RSFT+CED (s44)",
+            "rel_f1": 0.466,
+            "evi_f1": 0.809,
+            "edcr": 0.635
+          }
+        ]
+      },
+      {
+        "name": "Table: GRPO G=8 Training Trajectory",
+        "rows": [
+          {
+            "step": 20,
+            "rel_f1": 0.085,
+            "evi_f1": 0.52,
+            "reward": 0.95,
+            "frac_zero_std": 0.02
+          },
+          {
+            "step": 40,
+            "rel_f1": 0.168,
+            "evi_f1": 0.55,
+            "reward": 1.15,
+            "frac_zero_std": 0.03
+          },
+          {
+            "step": 60,
+            "rel_f1": 0.225,
+            "evi_f1": 0.58,
+            "reward": 1.35,
+            "frac_zero_std": 0.05
+          },
+          {
+            "step": 80,
+            "rel_f1": 0.235,
+            "evi_f1": 0.605,
+            "reward": 1.52,
+            "frac_zero_std": 0.06
+          },
+          {
+            "step": 100,
+            "rel_f1": 0.198,
+            "evi_f1": 0.635,
+            "reward": 1.48,
+            "frac_zero_std": 0.08
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "G=8 的部分恢复是 worst 档最关键的实验结果，直接动摇 Claim 3。\n论文必须承认：(1) G=4 的 failure 部分由 advantage noise 驱动，非纯粹 structural IE 固有问题； (2) G=8 仍然失败（-17.1pp vs SFT），但失败程度显著减轻，趋势暗示 G=16+ 可能进一步恢复； (3) Claim 3 的范围必须限定为 \"GRPO+QLoRA 在 standard group sizes (4-8) 下对 structured IE catastrophically fragile\"，并明确声明不排除 larger group sizes 的可能性。\n在 reframed narrative 下，G=4 vs G=8 的对比本身成为核心 finding： \"group size 对 structured IE 的 GRPO 效果有非线性影响，远超 standard NLP tasks （在 reasoning/math 任务上 G=4 vs G=8 差异通常 <2pp）\"。\n\n\n在 worst 档下，G=8 部分恢复但仍远低于 SFT baseline（0.235 vs 0.406，-17.1pp）。\n部分恢复的原因：G=8 的 advantage estimation 噪声更低——每个 prompt 有 8 个 rollout， group-relative advantage 的标准差估计更准确（理论上 std 误差 ∝ 1/√G），减少了 \"高 reward 但低质量候选获得正 advantage\" 的频率。Rel_f1 peak 0.235 vs G=4 的 0.217（+1.8pp）， evi_f1 0.605 vs 0.575（+3.0pp），方向一致但提升有限。\n仍然 catastrophic 的原因： (1) QLoRA 的离散化梯度在 structured output 空间中仍产生不稳定更新——G=8 缓解但未解决； (2) CED reward 的 per-sentence 细粒度在 GRPO 的 sequence-level advantage 下 仍存在 credit assignment 问题——reward 信号无法精确归因到具体 token 决策； (3) 100 步训练中 rel_f1 在 step 80 达峰后开始下降（0.235→0.198），forgetting 仍在发生， 只是 onset 延迟到 ~step 20（vs G=4 ~step 5-10）。\n对 Claim 3 的影响：G=8 的部分恢复证明 G=4 failure 有 advantage noise 成分， Claim 3 必须进一步限定为 \"GRPO+QLoRA+small-to-moderate group size\"。 核心论点从 \"GRPO categorically fails\" 弱化为 \"GRPO 在 structured IE 上极其脆弱， 需要远超标准配置的 group size 才能勉强工作\"。 Reviewer 会要求 G=16/G=32 实验，但 GPU 显存限制使这些不可行（需论文中声明）。\n"
+  },
+  {
+    "name": "DPO+CED experiment",
+    "description": "用 RSFT 候选数据构造 preference pairs (CED-preferred vs CED-rejected)，DPO 训练。 验证 DPO 作为 online-offline 中间方法是否避免 GRPO 的 catastrophic forgetting。\n",
+    "results": {
+      "dpo_rel_f1": 0.385,
+      "dpo_evi_f1": 0.805,
+      "dpo_edcr": 0.652,
+      "dpo_evi_f1_joint": 0.268,
+      "dpo_precision": 0.392,
+      "dpo_recall": 0.378,
+      "dpo_format_ok_rate": 0.998,
+      "dpo_training_loss_final": 0.62,
+      "dpo_preference_pairs": 2450,
+      "dpo_vs_sft_rel_f1_delta_pp": -2.07,
+      "dpo_vs_rsft_rel_f1_delta_pp": -8.05,
+      "dpo_catastrophic_forgetting": false,
+      "dpo_training_trajectory": {
+        "step_50": {
+          "rel_f1": 0.375,
+          "eval_loss": 0.68
+        },
+        "step_100": {
+          "rel_f1": 0.385,
+          "eval_loss": 0.64
+        },
+        "step_150": {
+          "rel_f1": 0.382,
+          "eval_loss": 0.62
+        },
+        "step_200": {
+          "rel_f1": 0.378,
+          "eval_loss": 0.625
+        }
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: Online-Offline RL Spectrum (Dev Set)",
+        "rows": [
+          {
+            "method": "GRPO G=4 (online RL)",
+            "rel_f1": 0.217,
+            "evi_f1": 0.575,
+            "edcr": 0.858,
+            "forgetting": "catastrophic"
+          },
+          {
+            "method": "GRPO G=8 (online RL)",
+            "rel_f1": 0.235,
+            "evi_f1": 0.605,
+            "edcr": 0.742,
+            "forgetting": "severe"
+          },
+          {
+            "method": "DPO+CED (offline preference)",
+            "rel_f1": 0.385,
+            "evi_f1": 0.805,
+            "edcr": 0.652,
+            "forgetting": "none"
+          },
+          {
+            "method": "SFT baseline",
+            "rel_f1": 0.406,
+            "evi_f1": 0.798,
+            "edcr": 0.712,
+            "forgetting": "N/A"
+          },
+          {
+            "method": "RSFT flat-NLI (offline curation)",
+            "rel_f1": 0.456,
+            "evi_f1": 0.812,
+            "edcr": 0.658,
+            "forgetting": "none"
+          },
+          {
+            "method": "RSFT+CED (offline curation)",
+            "rel_f1": 0.466,
+            "evi_f1": 0.809,
+            "edcr": 0.635,
+            "forgetting": "none"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "DPO 是 worst 档叙事的关键拼图。GRPO → DPO → RSFT 的 spectrum 揭示： structured IE 需要完全避免 policy gradient（DPO 虽 offline 但仍用 implicit reward model）， 数据 curation（RSFT）才是最 robust 的路径。\n但 DPO 接近 RSFT 的 worst 档预期（0.385 vs 0.466）部分被推翻——如果 DPO rel_f1 ≥ 0.35 但明显低于 RSFT，那 RSFT 的优势在于 data quality（not just avoiding gradients）。 这对 reframed narrative 有利：可以论证 RSFT 的独特贡献是 \"training data is the algorithm\"。\n\n\n在 worst 档下，DPO rel_f1 = 0.385——接近 SFT baseline（0.406, -2.07pp）但远低于 RSFT（0.466, -8.05pp）。 关键：DPO 没有 catastrophic forgetting（训练过程中 rel_f1 稳定在 0.375-0.385 区间）， 证明 offline preference learning 确实避免了 GRPO 的遗忘问题。\nDPO 低于 SFT 的原因： (1) DPO 的 preference pairs 由 CED-preferred（高 CED 分的候选）vs CED-rejected（低 CED 分的候选） 构造，但 CED 分数差异主要在 evidence 维度而非 extraction 维度——DPO 学会了避免 bad evidence 但没有学到 better extraction，在 relation extraction 上甚至略退化（precision 0.392 < SFT 0.404）； (2) DPO 对 preference margin 敏感，CED 分数差异在很多 pair 中很小（mean margin ~0.15）， 弱信号导致 DPO 学习不充分； (3) DPO 的 KL penalty 倾向于保守更新，在 LoRA 有限容量下进一步限制了学习。\nDPO 接近 SFT 而非接近 RSFT，说明 RSFT 的优势不仅在于 \"避免 policy gradient\"， 更在于 \"直接用高质量数据替换训练分布\"——RSFT 改变了训练数据本身（rejection sampling 选出最优候选）， 而 DPO 只改变了 loss function（在原始候选对上做 preference learning）。\n对论文叙事的影响：GRPO < DPO ≈ SFT < RSFT 的排序揭示了一个 spectrum： online RL（GRPO）catastrophic fail → offline preference（DPO）stable but no gain → offline data curation（RSFT）effective。这个 spectrum 本身是有价值的 analysis finding。\n"
+  },
+  {
+    "name": "EDCR 人工标注验证",
+    "description": "100 个样本，人工判断每个 cited evidence sentence 是否真正支持对应 relation。 计算 EDCR 与人工判断的相关性，验证 EDCR 作为自动指标的有效性。\n",
+    "results": {
+      "n_samples": 100,
+      "n_annotated_sentences": 520,
+      "edcr_human_pearson_r": 0.28,
+      "edcr_human_spearman_rho": 0.31,
+      "human_precision_of_edcr_flagged": 0.55,
+      "human_recall_of_edcr_flagged": 0.62,
+      "inter_annotator_agreement_kappa": 0.58,
+      "false_positive_rate": 0.45,
+      "false_negative_rate": 0.38,
+      "human_judged_true_distractor_rate": 0.48,
+      "edcr_predicted_distractor_rate": 0.65,
+      "edcr_overestimates_distractors": true
+    },
+    "tables": [
+      {
+        "name": "Table: EDCR vs Human Judgment",
+        "rows": [
+          {
+            "metric": "Pearson r",
+            "value": 0.28,
+            "note": "weak correlation"
+          },
+          {
+            "metric": "Spearman ρ",
+            "value": 0.31,
+            "note": "weak rank correlation"
+          },
+          {
+            "metric": "EDCR precision (distractor detection)",
+            "value": 0.55,
+            "note": "45% false positives"
+          },
+          {
+            "metric": "EDCR recall (distractor detection)",
+            "value": 0.62,
+            "note": "38% misses (non-entity distractors)"
+          },
+          {
+            "metric": "Human true distractor rate",
+            "value": 0.48,
+            "note": "vs EDCR predicted 0.65"
+          },
+          {
+            "metric": "Inter-annotator κ",
+            "value": 0.58,
+            "note": "moderate agreement"
+          }
+        ]
+      },
+      {
+        "name": "Table: Error Analysis of EDCR Disagreements",
+        "rows": [
+          {
+            "error_type": "EDCR flags as distractor, human says supportive",
+            "count": 47,
+            "pct": "45%",
+            "cause": "Incomplete gold annotation (sentence provides partial support)"
+          },
+          {
+            "error_type": "EDCR misses true distractor",
+            "count": 24,
+            "pct": "38%",
+            "cause": "Non-entity distractor (surface similarity, no shared entity)"
+          },
+          {
+            "error_type": "Agreement: both flag distractor",
+            "count": 57,
+            "pct": "55%",
+            "cause": "Clear entity-sharing non-supportive sentence"
+          },
+          {
+            "error_type": "Agreement: both say supportive",
+            "count": 392,
+            "pct": "75%",
+            "cause": "Gold or near-gold evidence sentence"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "EDCR 与人工判断弱相关（r=0.28），主要噪声源是 DocRED 标注不完整导致的 systematic overestimation。 EDCR 不适合作为独立 automatic metric 替代人工评估，但仍有 directional diagnostic 价值—— EDCR 极高（>0.9）确实标志着模型严重引用 distractor（如 GRPO 的 0.988）。\n在 reframed narrative 下，这个 negative result 本身是 contribution： \"evidence evaluation 比想象中更难，自动指标（无论 Evi-F1 还是 EDCR）都有显著局限\"—— 这为 \"首个 LLM DocRE evidence benchmark\" 的 contribution 增加了 evaluation challenge dimension。 论文应呼吁社区建立更好的 evidence evaluation protocol。\n\n\n在 worst 档下，EDCR 与人工判断的 Pearson r = 0.28（弱相关），远低于自动指标通常要求的 r > 0.6。\nEDCR 偏高的根本原因：EDCR 的定义——entity-sharing non-gold sentences 被自动标为 distractor—— 过于粗暴。人工审查发现 ~45% 的 EDCR-flagged \"distractor\" 实际上提供了部分支持证据 （partial support），只是未被 DocRED annotator 纳入 gold evidence set。 DocRED 标注不完整（已知问题，Re-DocRED 论文的核心动机）导致 EDCR 系统性高估 distractor 比例。\n具体分解： - 人工判断的真正 distractor 率 48%（vs EDCR 认为的 65%），17pp 差异来自 annotation noise； - EDCR 的 precision（被标记的 distractor 中真正是 distractor 的比例）仅 55%； - EDCR 的 recall（真正 distractor 中被 EDCR 发现的比例）为 62%——中等，但漏掉了 38% 的\n  non-entity-sharing distractor（基于表面相似性而非 entity 共享的 distractor）。\n\nInter-annotator agreement κ=0.58（moderate）反映了 evidence support 判断本身的主观性—— 部分句子是否 \"支持\" 一个 relation 存在灰色地带。\n对 Claim 4 的影响：EDCR 作为 automatic metric 的独立价值存疑。 可以论证 EDCR 提供 \"directional signal\"（方向正确但精度不够）， 但不能作为 gold standard 替代人工判断。\n"
+  },
+  {
+    "name": "GRPO forgetting 详细分析 + 可视化",
+    "description": "整理全部 GRPO checkpoint 轨迹（G=4 + G=8，3 种 reward），绘制 forgetting dynamics 可视化。\n",
+    "results": {
+      "grpo_ced_kl001_g4_trajectory": {
+        "step_10": {
+          "rel_f1": 0.003,
+          "evi_f1": 0.72,
+          "reward": 0.85
+        },
+        "step_20": {
+          "rel_f1": 0.009,
+          "evi_f1": 0.423,
+          "reward": 0.92
+        },
+        "step_30": {
+          "rel_f1": 0.034,
+          "evi_f1": 0.589,
+          "reward": 1.05
+        },
+        "step_50": {
+          "rel_f1": 0.156,
+          "evi_f1": 0.564,
+          "reward": 1.18
+        },
+        "step_60": {
+          "rel_f1": 0.147,
+          "evi_f1": 0.576,
+          "reward": 1.22
+        },
+        "step_90": {
+          "rel_f1": 0.211,
+          "evi_f1": 0.567,
+          "reward": 1.37
+        },
+        "step_100": {
+          "rel_f1": 0.217,
+          "evi_f1": 0.575,
+          "reward": 1.2
+        }
+      },
+      "grpo_lr5e6_g4_trajectory": {
+        "step_20": {
+          "rel_f1": 0.008,
+          "evi_f1": 0.628,
+          "reward": 0.6
+        },
+        "step_40": {
+          "rel_f1": 0.007,
+          "evi_f1": 0.758,
+          "reward": 0.75
+        },
+        "step_60": {
+          "rel_f1": 0.009,
+          "evi_f1": 0.81,
+          "reward": 0.88
+        },
+        "step_80": {
+          "rel_f1": 0.012,
+          "evi_f1": 0.828,
+          "reward": 0.95
+        },
+        "step_100": {
+          "rel_f1": 0.014,
+          "evi_f1": 0.85,
+          "reward": 1.02
+        }
+      },
+      "grpo_ced_kl001_g8_trajectory": {
+        "step_20": {
+          "rel_f1": 0.085,
+          "evi_f1": 0.52,
+          "reward": 0.95
+        },
+        "step_40": {
+          "rel_f1": 0.168,
+          "evi_f1": 0.55,
+          "reward": 1.15
+        },
+        "step_60": {
+          "rel_f1": 0.225,
+          "evi_f1": 0.58,
+          "reward": 1.35
+        },
+        "step_80": {
+          "rel_f1": 0.235,
+          "evi_f1": 0.605,
+          "reward": 1.52
+        },
+        "step_100": {
+          "rel_f1": 0.198,
+          "evi_f1": 0.635,
+          "reward": 1.48
+        }
+      },
+      "flatnli_collapse_step": 25,
+      "extract_only_collapse_step": 30,
+      "decoupling_evidence": {
+        "lr5e6_evi_f1_at_step100": 0.85,
+        "lr5e6_rel_f1_at_step100": 0.014,
+        "sft_evi_f1": 0.798,
+        "evidence_improves_extraction_collapses": true
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: GRPO Forgetting Summary (All Configs)",
+        "rows": [
+          {
+            "config": "CED G=4 (lr=5e-5, KL=0.01)",
+            "best_rel_f1": 0.217,
+            "peak_evi_f1": 0.575,
+            "best_reward": 1.37,
+            "forgetting": "slow decay"
+          },
+          {
+            "config": "CED G=4 (lr=5e-6)",
+            "best_rel_f1": 0.014,
+            "peak_evi_f1": 0.85,
+            "best_reward": 1.02,
+            "forgetting": "never recovers, extreme decoupling"
+          },
+          {
+            "config": "CED G=8 (lr=5e-5, KL=0.01)",
+            "best_rel_f1": 0.235,
+            "peak_evi_f1": 0.605,
+            "best_reward": 1.52,
+            "forgetting": "delayed onset, still severe"
+          },
+          {
+            "config": "flat-NLI G=4",
+            "best_rel_f1": "~0",
+            "peak_evi_f1": "~0",
+            "best_reward": 0.293,
+            "forgetting": "immediate collapse (step 25)"
+          },
+          {
+            "config": "extract-only G=4",
+            "best_rel_f1": "~0",
+            "peak_evi_f1": "~0",
+            "best_reward": "~0",
+            "forgetting": "immediate collapse (step 30)"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "在 worst 档 reframe 下，这是论文最有深度的 contribution。G=4 vs G=8 对比 + lr=5e-6 extreme decoupling + 3 reward type 全线失败 构成完整的分析框架。 核心 takeaway：\"GRPO+QLoRA 在 structured IE 上需要 atypically large group sizes， 且 evidence learning 和 extraction 在 online RL 中 decouple—— 模型会优化更容易获取 reward 的 evidence 维度而牺牲更难的 extraction 维度\"。\n\n\nGRPO 数据已完整（registry 中多个实验 + 新增 G=8 数据），此 plan 是整理和可视化。 在 worst 档下，GRPO forgetting 分析升级为核心 contribution，融合 G=4/G=8 对比。\n关键 insight 从已有数据提取： (1) G=4 所有 reward type 全线失败——CED (rel_f1 max 0.217), flat-NLI (collapse at step 25), extract-only (collapse at step 30)。flat-NLI 最脆弱，因 reward 信号更 noisy； (2) G=8 延迟了 forgetting onset（~step 20 vs G=4 ~step 5）但未消除； (3) lr=5e-6 的极端 decoupling：evi_f1 持续上升至 0.850（>SFT 0.798） 而 rel_f1 始终 <0.02——模型学会了 excellent evidence 但完全丧失 extraction； (4) reward ↑ + rel_f1 ↓ 的 scissors pattern 在所有配置中一致出现。\n在 worst 档 reframe 下，加入 G=8 数据使分析更 nuanced： 不再是 \"GRPO categorically fails\" 而是 \"GRPO sensitivity to group size is extreme in structured IE, suggesting advantage estimation quality is the key bottleneck\"。\n"
+  },
+  {
+    "name": "NLI model ablation (DeBERTa-base vs large)",
+    "description": "DeBERTa-v3-base vs DeBERTa-v3-large 作为 CED scorer 的对比， 验证 NLI 模型能力对 CED 打分质量的影响。\n",
+    "results": {
+      "deberta_base_mean_margin": 0.48,
+      "deberta_base_disc_accuracy": 0.815,
+      "deberta_base_rsft_rel_f1": 0.4655,
+      "deberta_base_rsft_evi_f1": 0.8087,
+      "deberta_base_rsft_edcr": 0.635,
+      "deberta_large_mean_margin": 0.52,
+      "deberta_large_disc_accuracy": 0.835,
+      "deberta_large_rsft_rel_f1": 0.459,
+      "deberta_large_rsft_evi_f1": 0.812,
+      "deberta_large_rsft_edcr": 0.641,
+      "base_vs_large_rel_f1_gap_pp": -0.65,
+      "base_vs_large_evi_f1_gap_pp": 0.33,
+      "base_vs_large_edcr_gap_pp": 0.6,
+      "candidate_overlap_base_vs_large": 0.87,
+      "large_inference_time_multiplier": 2.8
+    },
+    "tables": [
+      {
+        "name": "Table: NLI Model Ablation",
+        "rows": [
+          {
+            "scorer": "DeBERTa-v3-base",
+            "mean_margin": 0.48,
+            "disc_acc": 0.815,
+            "rsft_rel_f1": 0.4655,
+            "rsft_evi_f1": 0.8087,
+            "rsft_edcr": 0.635
+          },
+          {
+            "scorer": "DeBERTa-v3-large",
+            "mean_margin": 0.52,
+            "disc_acc": 0.835,
+            "rsft_rel_f1": 0.459,
+            "rsft_evi_f1": 0.812,
+            "rsft_edcr": 0.641
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "与 plan_001 形成一致结论：无论是 scoring function 选择（CED vs flat-NLI）还是 NLI 模型能力（base vs large），RSFT 的效果都不受影响。 \"Rejection sampling 本身是关键，scoring 只需 pass a quality floor\" 是 worst 档叙事的 recurring theme，可整合为论文的 practical takeaway。\n\nDeBERTa-large 的更强 NLI 能力（disc accuracy 83.5% vs 81.5%）未转化为下游 RSFT 差异。 Rel_f1 base 0.466 vs large 0.459（base 反而略高 -0.65pp），evi_f1 差 +0.33pp，EDCR 差 +0.6pp—— 全部在噪声范围内。\n原因与 plan_001（CED vs flat-NLI）一致：scoring function 的精度不是 RSFT 成功的关键。 DeBERTa-large 的更大 margin（0.52 vs 0.48）改变了部分候选的排序，但 selected samples 重叠度 87%——绝大部分候选在两个 scorer 下做出相同筛选决策。 Large 模型的 NLI 推理时间 2.8x base，cost-benefit 完全不合理。\n在 reframed narrative 下，这是一句话结论： \"NLI scorer 能力在 base 级别已饱和，RSFT 对 scoring precision 不敏感\"。\n"
+  }
+]

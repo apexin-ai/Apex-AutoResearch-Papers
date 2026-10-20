@@ -1,0 +1,1514 @@
+# cron hook plan019 8b rsft s44
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 46
+- **Recorded user turns:** 1
+- **Tool calls:** 22
+- **Original source:** `logs/chats/cron_hook_plan019_8b_rsft_s44.jsonl`
+- **Structured JSON:** [`954abc6e831c411f9c2f.json`](../../sessions/95/954abc6e831c411f9c2f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+46 recorded events
+
+### User
+
+_source line 1 · 2026-05-18T23:37:42.341518+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: plan019_8b_rsft_s44
+- project: faith-evidence-ie
+- server: rtx5090-4x
+- log_path: ~/runs/faith-evidence-ie/plan019_8b_rsft_s44.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-18T23:37:55.415412+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers",
+  "max_results": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers",
+    "max_results": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-18T23:37:55.516567+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "ToolSearch",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T23:37:58.227340+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T23:37:58.679370+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-18T23:37:59.282356+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T23:37:59.786764+00:00_
+
+Error: result (133,492 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-a51b9e8a/c13c9678-267f-4c6c-ad49-3b27da997924/tool-results/mcp-agent-ml-research-read_registry-1779147479353.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-a51b9e8a/c13c9678-267f-4c6c-ad49-3b27da997924/tool-results/mcp-agent-ml-research-read_registry-1779147479353.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1559
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-18T23:37:59.787305+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T23:37:59.787574+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T23:38:06.743725+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"plan019_8b_sft_s44_eval\", \"success\": true, \"actions\": [\"Process gone, no sentinel, no W&B — escalating to agent (miss 4/5)\"]}, {\"exp_id\": \"d111_4b_sft_s42_reeval\", \"success\": true, \"actions\": [\"Job still running (pid=579965)\"]}, {\"exp_id\": \"d112_rsft_s44_generate\", \"success\": true, \"actions\": [\"Job still running (pid=584466)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 8064
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T23:38:06.744601+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-18T23:37:40Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 201 个实验 — DONE 198, RUNNING 3\\n**DONE 分布**: failed 43, killed 28, negative 15, success 112\\n\\n### GPU 占用\\n- **分配**: 4 张 — rtx5090-4x:cuda:0, rtx5090-4x:cuda:1, rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\n- **实际运行**: 2 张 — rtx5090-4x:cuda:2(plan019_8b_sft_s44_eval), rtx5090-4x:cuda:0(d111_4b_sft_s42_reeval)\\n- **空闲（分配了没跑）**: rtx5090-4x:cuda:1\\n\\n### 💾 磁盘余量\\n- **rtx5090-4x**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\n  - `/usr/bin/nvidia-smi`: 431G/879G 可用（已用 49%）\\n- **bjb2-12179**: ❌ 连接失败\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `plan019_8b_sft_s44_eval` | rtx5090-4x | cuda:2 | 577861 | `—` |\\n| `d111_4b_sft_s42_reeval` | rtx5090-4x | cuda:0 | 579965 | `~/runs/faith-evidence-ie/d111_4b_sft_s42_reeval.log` |\\n| `d112_rsft_s44_generate` | rtx5090-4x | ? | 584466 | `/root/runs/faith-evidence-ie/d112_rsft_s44_generate.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `plan019_8b_rsft_s44` [failed] — 2026-05-18T23:37:37 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `grpo_bf16_g4_ckpt200_eval` [success] — 2026-05-18T23:16:39\\n- `random_rsft_k1_baseline` [success] — 2026-05-18T22:23:06\\n- `plan019_1_7b_sft_s44` [success] — 2026-05-18T22:23:04\\n- `wave1_sft_4b_s44_eval_r2` [success] — 2026-05-18T22:20:06\\n\\n### 🔴 最近失败原因 (top 3)\\n- `plan019_8b_rsft_s44`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-18\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| d112_rsft_s44_generate |
+…[truncated 5549 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 7462
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T23:38:06.795645+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\", \"content\": \"# faith-evidence-ie — Research Dashboard\\n\\n> 最后更新: 2026-05-18 12:26 UTC | 更新原因: D102 完成 + Wave 1 启动 + ROADMAP 状态全面刷新\\n\\n## 核心方向\\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。3 贡献：RSFT+NLI 有效性 / Decoupling spectrum / Scale-dependent evidence tax。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: 🚀 进攻性扩展（D104）+ Wave 1 待启动\\n- **审稿**: Round 1 Overall 3.0 (Findings)。目标：修复 + 扩展 → 4.0 (Main)\\n- **D102**: ✅ 全部完成。k=1 numbers 已写入 paper_framing.md + Paper Agent patch 完成（13 处）\\n- **claim 升级**: 1.7B RSFT k=1 (51.22) surpasses 8B SFT (50.51)。⚠️ 8B k=1 (53.76) < k=3 (54.33) by -0.57pp（within seed variance），framing 为 \\\"methodological correction yields comparable results\\\"\\n- **Wave 1**: ✅ cuda:0 SFT s43 / cuda:1 SFT s44 / cuda:2 GRPO bf16 G=4 全部 RUNNING\\n- **cuda:3**: LLaMA s43 RSFT 训练完成（success），eval 启动中 → 之后接 Random RSFT baseline\\n\\n## 投稿目标\\n- **EMNLP 2026 Main** (ARR July cycle, ~July 15-25, **~58 天**)\\n\\n## 实验路线（3 层优先级）\\n\\n### Tier 1 — Main 必要条件（Week 1-2）\\n| 实验 | Plan ID | GPU-h | 状态 |\\n|------|---------|-------|------|\\n| D102 k=1 方法论修正 | D102 | ~10h | ✅ 完成 |\\n| SFT 4B s43 + s44 | plan_w3_sft_seeds | ~8h | 🟡 启动中 (cuda:0/1) |\\n| GRPO bf16 G=4 clean control | plan_015 | ~8h | 🟡 启动中 (cuda:2) |\\n| Random k=1 RSFT baseline | plan_w18_random | ~4h | 🟡 启动中 (cuda:3) |\\n| Scaling seeds 3+ per scale | plan_019 | ~25h | 脚本准备中 |\\n| Wave 2: DPO re-eval + NLI ablation | plan_010 等 | ~12h | pending |\\n| Wave 3: Test predictions + CodaLab | plan_002 | ~10h | pending |\\n\\n### Tier 2 — 大幅加分（Week 2-4）\\n| 实验 | Plan ID | GPU-h | 状态 |\\n|------|---------|-------|------|\\n| Qwen3-14B 全 pipeline（第 4 尺度档位） | plan_017 | ~50h | 模型下载 + 脚本准备中 |\\n| Evidence tax 机制分析 | plan_020 | ~10h | 分析框架准备中 |\\n| Deep error analysis | plan_021 | ~5h | pending |\\n\\n### Tier 3 — 锦上添花（Week 3-6）\\n| 实验 | Plan ID | GPU-h | 状态 |\\n|---
+…[truncated 3147 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 7008
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-18T23:38:06.897374+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 7109
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-18T23:38:20.142116+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'exp_id': 'plan019_8b_rsft_s44'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'exp_id': 'plan019_8b_rsft_s44'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T23:38:20.602005+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'exp_id': 'plan019_8b_sft_s44_eval'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'exp_id': 'plan019_8b_sft_s44_eval'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T23:38:21.163501+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8139}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1021
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T23:38:21.163953+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-18T23:38:21.565747+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-18T23:38:22.420645+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4067}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1818
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T23:38:22.421128+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_a51b9e8a.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Read",
+  "elapsed_ms": 1257
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T23:38:22.421407+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_a51b9e8a.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Read",
+  "elapsed_ms": 855
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-18T23:38:27.865451+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml | python3 -c \"\nimport sys, yaml\ndata = yaml.safe_load(sys.stdin)\nfor exp in data.get('experiments', []):\n    if exp.get('exp_id') in ('plan019_8b_rsft_s44', 'plan019_8b_sft_s44_eval'):\n        import json\n        print(json.dumps(exp, indent=2, default=str))\n        print('---')\n\"",
+  "description": "Extract specific experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml | python3 -c \"\nimport sys, yaml\ndata = yaml.safe_load(sys.stdin)\nfor exp in data.get('experiments', []):\n    if exp.get('exp_id') in ('plan019_8b_rsft_s44', 'plan019_8b_sft_s44_eval'):\n        import json\n        print(json.dumps(exp, indent=2, default=str))\n        print('---')\n\"",
+    "description": "Extract specific experiments from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T23:38:28.374573+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*on-experiment-failed*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*on-experiment-failed*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T23:38:28.977423+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 5, in &lt;module>
+    if exp.get('exp_id') in ('plan019_8b_rsft_s44', 'plan019_8b_sft_s44_eval'):
+       ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Bash",
+  "elapsed_ms": 1111
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-18T23:38:28.977963+00:00_
+
+&lt;tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.agent-ml-research-idea…) errored&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Glob",
+  "elapsed_ms": 603
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-18T23:38:33.418440+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport yaml, json\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml') as f:\n    data = yaml.safe_load(f)\nexps = data.get('experiments', {})\nfor eid in ('plan019_8b_rsft_s44', 'plan019_8b_sft_s44_eval'):\n    if eid in exps:\n        print(json.dumps(exps[eid], indent=2, default=str))\n        print('---')\n    else:\n        print(f'{eid}: NOT FOUND')\n\"",
+  "description": "Extract experiments from registry as dict"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport yaml, json\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml') as f:\n    data = yaml.safe_load(f)\nexps = data.get('experiments', {})\nfor eid in ('plan019_8b_rsft_s44', 'plan019_8b_sft_s44_eval'):\n    if eid in exps:\n        print(json.dumps(exps[eid], indent=2, default=str))\n        print('---')\n    else:\n        print(f'{eid}: NOT FOUND')\n\"",
+    "description": "Extract experiments from registry as dict"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T23:38:33.771134+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T23:38:34.172545+00:00_
+
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-18T22:24:55.221Z",
+  "updated_at": "2026-05-18T23:37:37.339Z",
+  "hypothesis": "8B RSFT seed44 (Option A: seed expansion). Reuses s42 SFT adapter + s42 CED k=1 scored data, only changes RSFT training seed to 44. Tests if RSFT gain is robust across seeds at 8B scale. Expected: ign_f1 similar to canonical 8B RSFT s42.",
+  "spec": {
+    "command": "bash scripts/seed_expansion/train_8b_s44.sh",
+    "server": "rtx5090-4x",
+    "gpu_ids": [
+      "cuda:1"
+    ],
+    "data_path": "/root/autodl-tmp/rsft_scored_qwen3_8b_k1/rsft_train.jsonl",
+    "data_count": 3018,
+    "model_name": "Qwen3-8B",
+    "seed": 44,
+    "checkpoint_source": "/root/autodl-tmp/sft_output_qwen3_8b_bf16",
+    "pid": 581524
+  },
+  "reproduce": {
+    "finished_at": "2026-05-18T23:37:34.178Z"
+  },
+  "failure_reason": "process dead 5\u00d7 with no sentinel/W&B \u2014 auto-resolved as failed",
+  "conclusion": "failed",
+  "completed_at": "2026-05-18T23:37:37.339Z",
+  "extra": {
+    "hook_events": [
+      {
+        "event": "on_failed",
+        "action": "agent",
+        "ts": "2026-05-18T23:37:41.546556+00:00"
+      }
+    ]
+  }
+}
+---
+{
+  "status": "RUNNING",
+  "retry_count": 0,
+  "created_at": "2026-05-18T21:36:26.622Z",
+  "updated_at": "2026-05-18T22:24:06.279Z",
+  "hypothesis": "8B SFT s44 eval (D076 protocol): measure SFT baseline for seed44 at 8B scale. Paired with canonical s42 (ign_f1=0.5051) for 2-seed mean\u00b1std.",
+  "parent": "plan019_8b_sft_s44",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_s44 --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan019_8b_sft_s44_eval",
+    "server": "rtx5090-4x",
+    "gpu": [
+      "cuda:2"
+    ],
+    "pid": "577861",
+    "data_path": "/root/autodl-tmp/
+…[truncated 190 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Bash",
+  "elapsed_ms": 754
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-18T23:38:34.223446+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Glob",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-18T23:38:45.735441+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-18T23:38:45.786195+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_a51b9e8a.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-18T23:38:49.007827+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-18T23:38:49.109117+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Glob",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-18T23:38:49.711891+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-18T23:38:49.812962+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Glob",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-18T23:38:52.376769+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*.skill.md",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/*.skill.md",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-18T23:38:52.529142+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/academic-writer.skill.md
+/home/ubuntu/agent-ml-research/skills/global/code-survey.skill.md
+/home/ubuntu/agent-ml-research/skills/global/accelerate-distributed.skill.md
+/home/ubuntu/agent-ml-research/skills/global/dataset-discovery.skill.md
+/home/ubuntu/agent-ml-research/skills/global/director-reviewer-synthesis.skill.md
+/home/ubuntu/agent-ml-research/skills/global/data-snapshot.skill.md
+/home/ubuntu/agent-ml-research/skills/global/check-training-status.skill.md
+/home/ubuntu/agent-ml-research/skills/global/check-key.skill.md
+/home/ubuntu/agent-ml-research/skills/global/distill-session.skill.md
+/home/ubuntu/agent-ml-research/skills/global/elastic-gpu.skill.md
+/home/ubuntu/agent-ml-research/skills/global/hf-hub.skill.md
+/home/ubuntu/agent-ml-research/skills/global/first-project-entry.skill.md
+/home/ubuntu/agent-ml-research/skills/global/experiment-analysis.skill.md
+/home/ubuntu/agent-ml-research/skills/global/idea-generation.skill.md
+/home/ubuntu/agent-ml-research/skills/global/idea-proposal.skill.md
+/home/ubuntu/agent-ml-research/skills/global/manager-cloud-rental.skill.md
+/home/ubuntu/agent-ml-research/skills/global/lm-eval-harness.skill.md
+/home/ubuntu/agent-ml-research/skills/global/manager-claude-pool.skill.md
+/home/ubuntu/agent-ml-research/skills/global/paper-image-extractor.skill.md
+/home/ubuntu/agent-ml-research/skills/global/novelty-check.skill.md
+/home/ubuntu/agent-ml-research/skills/global/narrative-animation.skill.md
+/home/ubuntu/agent-ml-research/skills/global/mvp-validation.skill.md
+/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md
+/home/ubuntu/agent-ml-research/skills/global/on-datagen-done.skill.md
+/home/ubuntu/agent-ml-research/skills/global/negative-framing-review.skill.md
+/home/ubuntu/agent-ml-research/skills/global/on-experiment-pending.skill.md
+/home/ubuntu/agent-ml-research/skills/global/on-worker-done.skill.md
+/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md
+/h
+…[truncated 3862 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Glob",
+  "elapsed_ms": 152
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-18T23:38:55.239993+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-18T23:38:55.341142+00:00_
+
+1	---
+2	name: on-experiment-failed
+3	description: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。
+4	scope: global
+5	tags:
+6	- workflow
+7	- diagnosis
+8	- cron-hook
+9	tools:
+10	- read_registry
+11	- tail_training_logs
+12	- update_registry
+13	- append_idea
+14	- feishu_send_result_card
+15	- spawn_worker
+16	- check_job_status
+17	version: 4
+18	heavy: true
+19	roles:
+20	- agent
+21	---
+22	
+23	# 实验失败诊断工作流
+24	
+25	## 触发方式
+26	由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。
+27	
+28	## 步骤
+29	
+30	### Step 0: 读取项目上下文（诊断前必须执行）
+31	先读文档，再看日志——否则诊断方向可能完全错误：
+32	
+33	- `read_project_file("memory.md")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案
+34	- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构
+35	
+36	读完后检查：
+37	- memory.md 里有没有"此类实验曾失败，原因是 X"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程
+38	- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）
+39	
+40	### Step 1: 了解失败背景
+41	- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path
+42	
+43	### Step 2: 浅层日志诊断
+44	有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)
+45	- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback
+46	- 没找到 → 增加行数再查
+47	
+48	### Step 2.5: 深查（满足以下任一条件时 spawn_worker）
+49	- 运行时长 < 5 分钟（初始化阶段崩溃）
+50	- tail 日志中未见明确 Traceback 或错误行
+51	- 同类实验连续失败 ≥ 2 次
+52	
+53	```python
+54	spawn_worker(
+55	    task_type="diagnose:{exp_id}",
+56	    task_prompt="""SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。
+57	
+58	项目路径：{project_path}（绝对路径）
+59	日志路径：{log_path}（可能为空）
+60	
+61	执行步骤（按顺序，有结论就停）：
+62	
+63	1. 如果有日志路径：
+64	   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）
+65	   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）
+66	   - 日志文件不存在：说明任务启动即失败，跳到步骤 2
+67	
+68	2. 日志无错误或无日志时，检查基础设施：
+69	   - 入口文件是否存在
+70	   - 激活环境并验证 import
+71	   - 检查 configs/ 目录
+72	
+73	3. 检查磁盘/内存（OOM 类）
+74	
+75	最后输出一行 JSON：
+76	{"root_cause":"<引用具体报错行>","error_type":"infrastructure|hyperparameter|resource|data","fix_steps":["步骤1","步骤2"],"can_auto_fix":true}""",
+77	    tool_groups=["ssh"],
+78	)
+79	```
+80	
+81	Worker 返回后，以其结论作为 Step 3 的诊断依据。
+82	
+83	### 
+…[truncated 1766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Read",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-18T23:38:55.341630+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-18T23:38:55.392260+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-18T23:39:06.884066+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-18T23:39:06.934959+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"content\": \"# D112 Pipeline Plan: RSFT from SFT s44\\n\\n## 概述\\n验证 RSFT 在最强 SFT seed（s44, ign_f1=0.4734）上的效果。之前所有 4B RSFT 都基于 SFT s42（最弱 seed, ign_f1≈0.40）。\\n\\n## 脚本位置\\n`/root/autodl-tmp/scripts/d112/` 下 4 个脚本\\n\\n## Pipeline 步骤\\n\\n### Step 1: 候选生成\\n**脚本**: `step1_generate_candidates.sh`\\n**命令**:\\n```bash\\n# 4-GPU 并行（推荐，总计约 3-4h）\\nGPU=0 SHARD=0 bash step1_generate_candidates.sh &\\nGPU=1 SHARD=1 bash step1_generate_candidates.sh &\\nGPU=2 SHARD=2 bash step1_generate_candidates.sh &\\nGPU=3 SHARD=3 bash step1_generate_candidates.sh &\\nwait\\n\\n# 或单 GPU（约 12-16h）\\nGPU=0 bash step1_generate_candidates.sh\\n```\\n**参数**: N=8, temperature=0.7, top_p=0.95, batch_size=1, max_new_tokens=1024, seed=42\\n**输入**: base=Qwen3-4B, adapter=sft_output_seed44, data=DocRED train_annotated (3053 docs)\\n**输出**: `/root/autodl-tmp/rsft_generations_4b_sft_s44/`\\n**预估时间**: 4-GPU 并行 ~3-4h, 单 GPU ~12-16h\\n**GPU**: 每个 shard 1 GPU（4 GPU 最优）\\n\\n### Step 2: CED 打分 + k=1 筛选\\n**脚本**: `step2_ced_score.sh`\\n**命令**:\\n```bash\\nGPU=0 bash step2_ced_score.sh\\n```\\n**参数**: CED scoring (format_w=0.2, f1_w=0.4, ced_w=0.4), selection_strategy=top_k, k=1, tau=0.5\\n**NLI 模型**: cross-encoder/nli-deberta-v3-base（HF cache 已有）\\n**输入**: step1 输出目录（自动合并 shard）\\n**输出**: `/root/autodl-tmp/rsft_scored_4b_sft_s44/`\\n**预估时间**: ~30-60 min\\n**GPU**: 1 GPU（NLI 模型很小）\\n**预期产出**: ~2700-2800 条训练样本（k=1, 每 doc 最多 1 条）\\n\\n### Step 3: RSFT 训练\\n**脚本**: `step3_k1_filter_and_train.sh`\\n**命令**:\\n```bash\\nGPU=0 bash step3_k1_filter_and_train.sh\\n```\\n**参数**: lr=2e-5, epochs=3, batch_size=4, grad_accum=4 (eff_batch=16), warmup=100, LoRA r=64 alpha=128, QLoRA 4-bit, max_length=2048\\n**输入**: step2 的 rsft_train.jsonl, SFT s44 adapter（merge 后重新 LoRA）\\n**输出**: `/root/autodl-tmp/rsft_output_4b_sft_s44/`\\n**预估时间**: ~1.5-2h（~2700 samples, 3 epochs, QLoRA）\\n**
+…[truncated 1963 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-18T23:39:33.596572+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "diagnose:plan019_8b_rsft_s44",
+  "project": "faith-evidence-ie",
+  "task_prompt": "SSH 到服务器 rtx5090-4x，诊断两个失败/异常实验。\n\n## 实验 1: plan019_8b_rsft_s44 (已 failed)\n- 命令: `bash scripts/seed_expansion/train_8b_s44.sh`\n- GPU: cuda:1\n- PID: 581524 (已死)\n- 日志路径: ~/runs/faith-evidence-ie/plan019_8b_rsft_s44.log\n- Hypothesis: 8B RSFT seed44 seed expansion. Reuses s42 SFT adapter + s42 CED k=1 scored data, only changes RSFT training seed to 44.\n- 数据: /root/autodl-tmp/rsft_scored_qwen3_8b_k1/rsft_train.jsonl (3018 条)\n- 模型: Qwen3-8B\n- checkpoint_source: /root/autodl-tmp/sft_output_qwen3_8b_bf16\n- 失败描述: process dead 5× with no sentinel/W&B — auto-resolved as failed\n\n## 实验 2: plan019_8b_sft_s44_eval (进程消失，即将 fail)\n- 命令: CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_s44 --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan019_8b_sft_s44_eval\n- GPU: cuda:2\n- PID: 577861 (已死)\n- 日志: 无特定 log_path\n\n## 诊断步骤（按顺序，有结论就停）：\n\n### 实验 1:\n1. 读日志 `~/runs/faith-evidence-ie/plan019_8b_rsft_s44.log` 最后 100 行，找 Traceback / Error / CUDA OOM\n2. 如果没有明确错误，再看开头 100 行（初始化阶段崩溃）\n3. 检查训练脚本 `scripts/seed_expansion/train_8b_s44.sh` 是否存在，内容是什么\n4. 检查数据文件是否存在: /root/autodl-tmp/rsft_scored_qwen3_8b_k1/rsft_train.jsonl\n5. 检查 checkpoint_source 是否存在: /root/autodl-tmp/sft_output_qwen3_8b_bf16\n\n### 实验 2:\n1. 检查输出目录 /root/autodl-tmp/eval_results/plan019_8b_sft_s44_eval 是否有产出文件（可能其实跑完了但没写 sentinel）\n2. 检查 SFT adapter 路径 /root/autodl-tmp/sft_output_qwen3_8b_s44 是否存在\n3. 看 tmux/screen 里是否有残留日志\n4. 检查 dmesg 或 nvidia-smi 是否有 GPU 错误\n\n### 通用检查:\n1. nvidia-smi 查 GPU 状态\n2. df -h 查磁盘空间\n3. 检查 /root/runs/faith-evidence-ie/ 下有哪些 log 文件\n\n最后输出 JSON（每个实验一个）：\n```json\n{\"exp_id\": \"plan019_8b_rsft_s44\", \"root_cause\": \"<引用具体报错行>\", \"error_type\": \"infrastructure|hyperparameter|resource|data\", \"fix_steps\": [\"步骤1\",\"步骤2\"], \"can_auto_fix\": true/false}\n{\"exp_id\": \"plan019_8b_sft_s44_eval\", \"root_cause\": \"<引用具体报错行或状态描述>\", \"error_type\": \"infrastructure|hyperparameter|resource|data\", \"actually_succeeded\": true/false, \"fix_steps\": [\"步骤1\",\"步骤2\"], \"can_auto_fix\": true/false}\n```",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "diagnose:plan019_8b_rsft_s44",
+    "project": "faith-evidence-ie",
+    "task_prompt": "SSH 到服务器 rtx5090-4x，诊断两个失败/异常实验。\n\n## 实验 1: plan019_8b_rsft_s44 (已 failed)\n- 命令: `bash scripts/seed_expansion/train_8b_s44.sh`\n- GPU: cuda:1\n- PID: 581524 (已死)\n- 日志路径: ~/runs/faith-evidence-ie/plan019_8b_rsft_s44.log\n- Hypothesis: 8B RSFT seed44 seed expansion. Reuses s42 SFT adapter + s42 CED k=1 scored data, only changes RSFT training seed to 44.\n- 数据: /root/autodl-tmp/rsft_scored_qwen3_8b_k1/rsft_train.jsonl (3018 条)\n- 模型: Qwen3-8B\n- checkpoint_source: /root/autodl-tmp/sft_output_qwen3_8b_bf16\n- 失败描述: process dead 5× with no sentinel/W&B — auto-resolved as failed\n\n## 实验 2: plan019_8b_sft_s44_eval (进程消失，即将 fail)\n- 命令: CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_s44 --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan019_8b_sft_s44_eval\n- GPU: cuda:2\n- PID: 577861 (已死)\n- 日志: 无特定 log_path\n\n## 诊断步骤（按顺序，有结论就停）：\n\n### 实验 1:\n1. 读日志 `~/runs/faith-evidence-ie/plan019_8b_rsft_s44.log` 最后 100 行，找 Traceback / Error / CUDA OOM\n2. 如果没有明确错误，再看开头 100 行（初始化阶段崩溃）\n3. 检查训练脚本 `scripts/seed_expansion/train_8b_s44.sh` 是否存在，内容是什么\n4. 检查数据文件是否存在: /root/autodl-tmp/rsft_scored_qwen3_8b_k1/rsft_train.jsonl\n5. 检查 checkpoint_source 是否存在: /root/autodl-tmp/sft_output_qwen3_8b_bf16\n\n### 实验 2:\n1. 检查输出目录 /root/autodl-tmp/eval_results/plan019_8b_sft_s44_eval 是否有产出文件（可能其实跑完了但没写 sentinel）\n2. 检查 SFT adapter 路径 /root/autodl-tmp/sft_output_qwen3_8b_s44 是否存在\n3. 看 tmux/screen 里是否有残留日志\n4. 检查 dmesg 或 nvidia-smi 是否有 GPU 错误\n\n### 通用检查:\n1. nvidia-smi 查 GPU 状态\n2. df -h 查磁盘空间\n3. 检查 /root/runs/faith-evidence-ie/ 下有哪些 log 文件\n\n最后输出 JSON（每个实验一个）：\n```json\n{\"exp_id\": \"plan019_8b_rsft_s44\", \"root_cause\": \"<引用具体报错行>\", \"error_type\": \"infrastructure|hyperparameter|resource|data\", \"fix_steps\": [\"步骤1\",\"步骤2\"], \"can_auto_fix\": true/false}\n{\"exp_id\": \"plan019_8b_sft_s44_eval\", \"root_cause\": \"<引用具体报错行或状态描述>\", \"error_type\": \"infrastructure|hyperparameter|resource|data\", \"actually_succeeded\": true/false, \"fix_steps\": [\"步骤1\",\"步骤2\"], \"can_auto_fix\": true/false}\n```",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-18T23:39:36.763359+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_plan019_8b_rsft_s44_20260518T233934\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_diagnose_plan019_8b_rsft_s44_20260518T233934.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnose_plan019_8b_rsft_s44_20260518T233934 started. Use get_worker_status('worker_diagnose_plan019_8b_rsft_s44_20260518T233934') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan019_8b_rsft_s44",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3166
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-18T23:39:40.727473+00:00_
+
+诊断 Worker 已派发 (`worker_diagnose_plan019_8b_rsft_s44_20260518T233934`)，正在 SSH 到 rtx5090-4x 读日志并检查两个实验的失败原因。等 Worker 回调后更新 registry 并汇报 Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:plan019_8b_rsft_s44"
+}
+```
+
+</details>
+
+---

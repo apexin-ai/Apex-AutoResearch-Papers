@@ -1,0 +1,19 @@
+\section{Related Work}
+\label{sec:related_work}
+
+\subsection{Document-Level Relation Extraction}
+\label{sec:rw_docre}
+
+Encoder-based DocRE methods treat relation identification as classification over entity pair representations, with ATLOP \citep{zhou2021atlop} introducing adaptive thresholding and graph-based methods such as GAIN \citep{zeng2020gain} modeling inter-sentence reasoning. A parallel thread adds sentence-level evidence: SAIS \citep{xiao2022sais} introduced evidence supervision as an auxiliary signal, DREEAM \citep{ma2023dreeam} extended this with dynamic memory-based retrieval, and EIDER \citep{xie2022eider} fuses evidence into the relation classifier. In all three, evidence is binary sentence classification that regularizes the encoder without increasing output length.
+
+Recent LLM-based methods recast DocRE as generation: AutoRE \citep{autore2024} uses QLoRA with relation-head-facts decomposition, \citet{xu2024lmrc} frame extraction as reading comprehension, RelPrior \citep{wang2025relprior} leverages relation priors, and \citet{xu2025docksrag} combine retrieval with structured knowledge. These methods match or surpass encoder baselines but produce bare triplets without evidence. At 8B, our RSFT model (54.33 Ign-F1) substantially outperforms both AutoRE (45.22\footnote{AutoRE and RelPrior DocRED dev Ign-F1 from the LLaMA3-8B reproductions by \citet{wang2025relprior}; the original AutoRE paper reports only F1.}) and RelPrior (47.70), while being the only method providing sentence-level evidence. The critical distinction is computational: in encoder methods, evidence retrieval is classification at negligible cost; in LLM-based DocRE, evidence requires generating additional tokens, imposing costs that depend on model capacity and optimization strategy.
+
+\subsection{Reinforcement Learning for Structured Generation}
+\label{sec:rw_rl}
+
+GRPO \citep{shao2024deepseekmath} replaces the value network of Proximal Policy Optimization (PPO) \citep{schulman2017ppo} with group-relative advantages; DeepSeek-R1 \citep{deepseek2025r1} demonstrates its effectiveness at scale. Subsequent work addresses failure modes such as entropy collapse \citep{yu2025dapo} and length bias \citep{liu2025drgrpo}; applications to structured IE include R1-RE \citep{dai2025r1re} and REAR \citep{wang2025rear}. DPO \citep{rafailov2023direct} reformulates reinforcement learning from human feedback (RLHF) \citep{ouyang2022instructgpt} as implicit reward maximization. Our decoupling spectrum differs from catastrophic forgetting in RL alignment \citep{jin2025rl_panacea}: extraction and evidence compete \emph{within} a single task, resembling negative transfer in multi-task learning \citep{ruder2017overview}, amplified by the constrained parameter space of Quantized LoRA (QLoRA) \citep{dettmers2023qlora} and capacity-dependent scaling dynamics \citep{gao2023scaling}.
+
+\subsection{Evidence Faithfulness and Rejection Sampling}
+\label{sec:rw_faithfulness}
+
+Natural Language Inference (NLI)-based faithfulness evaluation \citep{laban2022summac,zhang2024infuse} and reward-based evidence grounding \citep{li2025srvf,tamo2026evidencerl} have addressed rationale quality in generation tasks. Our CED scoring targets evidence-relation entailment rather than free-form rationales. STaR \citep{zelikman2022star} introduced iterative self-improvement through rejection sampling; subsequent scaling analyses \citep{gulcehre2023rest,yuan2023rft} and theoretical connections to PPO \citep{tang2025rsftppo} have established the foundations of sample-and-select methods. RSFT extends this principle to structured IE, preserving extraction-evidence coupling through discrete selection rather than gradient pressure.

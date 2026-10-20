@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp2_rsft_generate",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T00:09:41.289Z",
+    "updated_at": "2026-05-15T00:09:45.219Z",
+    "hypothesis": "RSFT generation phase: SFT model generates N=8 candidate outputs per training sample at T=0.7. CED scoring + filtering后作为 RSFT 训练数据。D031 pivot 方向。",
+    "parent": "mvp2_sft_warmup"
+  },
+  "timestamp": "2026-05-15T00:09:45.390365+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,39 @@
+{
+  "exp_id": "d112_rsft_s44_generate",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:19:06.977Z",
+    "updated_at": "2026-05-20T14:36:52.587Z",
+    "hypothesis": "D112 step1: 用 SFT s44 adapter (ign_f1=0.4734, 最强 seed) 生成 N=8 RSFT 候选。验证 RSFT pipeline 从强 SFT base 出发是否能进一步提升，决定 Claim 1 表述强度。",
+    "parent": "wave1_sft_4b_s44_eval_r2",
+    "spec": {
+      "command": "python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output_seed44 --data_path /root/autodl-tmp/data/docred --split train_annotated --output_dir /root/autodl-tmp/rsft_generations_4b_sft_s44 --num_generations 8 --temperature 0.7 --top_p 0.95 --batch_size 1 --max_new_tokens 1024 --seed 42",
+      "server": "rtx5090-4x",
+      "gpu_ids": [
+        "cuda:3"
+      ],
+      "data_path": "/root/autodl-tmp/data/docred/train_annotated.json",
+      "data_count": 3027,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "pid": 584466,
+      "tmux_session": "d112_rsft_s44_generate",
+      "log_path": "/root/runs/faith-evidence-ie/d112_rsft_s44_generate.log",
+      "checkpoint_source": "/root/autodl-tmp/sft_output_seed44",
+      "eval_data": "/root/autodl-tmp/data/docred/train_annotated.json",
+      "sft_adapter": "/root/autodl-tmp/sft_output_seed44",
+      "output_dir": "/root/autodl-tmp/rsft_generations_4b_sft_s44",
+      "num_generations": 8,
+      "temperature": 0.7,
+      "top_p": 0.95
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T00:09:15.715Z"
+  },
+  "timestamp": "2026-05-20T14:36:53.113405+00:00",
+  "trigger": "update_registry"
+}

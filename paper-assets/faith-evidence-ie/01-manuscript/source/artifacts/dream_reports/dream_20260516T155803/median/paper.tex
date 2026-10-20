@@ -1,0 +1,336 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{cite}
+
+\title{FREIGE: Faithful Evidence-Grounded Document-Level Relation Extraction\\via Generative LLMs}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Document-level relation extraction (DocRE) systems based on large language models achieve competitive extraction accuracy but produce no verifiable evidence for their predictions. We introduce \textbf{evidence-grounded DocRE} as a new task requiring joint generation of relation triples and supporting evidence sentences. We present FREIGE, the first generative LLM approach to this task, and systematically compare online RL (GRPO), offline preference optimization (DPO), and rejection sampling fine-tuning (RSFT) for training evidence-grounded extractors. Our key finding is that \textbf{RL optimization pressure correlates with evidence-extraction decoupling severity}: stronger optimization causes models to produce high-quality evidence while catastrophically losing extraction ability, forming a continuous spectrum from GRPO-QLoRA (catastrophic) through GRPO-bf16 (mild) and DPO (gradual) to RSFT (none). We further discover that the evidence generation tax follows a \textbf{U-shaped scaling pattern}: 1.7B models benefit from evidence as implicit regularization (+6.2pp), 4B models pay a cost ($-$7.9pp), and 8B models absorb it ($\approx$0pp). RSFT with NLI-based scoring emerges as the only effective training route, and we propose EDCR (Evidence-Discrimination Completeness Ratio) as a diagnostic metric with moderate human correlation ($\rho$=0.55, $p$<0.001). Experiments on DocRED and Re-DocRED validate these findings across model families and datasets.
+\end{abstract}
+
+\section{Introduction}
+
+Large language models have rapidly closed the gap with encoder-based methods on document-level relation extraction (DocRE), yet a critical limitation persists: LLM-based extractors produce relation triples without any verifiable evidence linking predictions to source text. This absence of grounding impedes deployment in high-stakes domains where users need to verify system outputs against documentary evidence.
+
+We formalize \textbf{evidence-grounded DocRE} as a task requiring models to jointly output relation triples $(h, r, t)$ and supporting evidence sentences from the source document. Unlike prior encoder-based approaches that perform discriminative evidence \emph{retrieval} (classifying which sentences are evidence, as in SAIS \cite{xie2022erica} and DREEAM \cite{ma2023dreeam}), our setting requires generative evidence \emph{production}---the LLM must generate evidence text as part of its output, imposing an additional generation burden that interacts non-trivially with model capacity.
+
+We present FREIGE (\textbf{F}aithful \textbf{R}elation \textbf{E}xtraction with \textbf{I}ntegrated \textbf{G}rounded \textbf{E}vidence), a systematic exploration of three training paradigms for this task: online RL via GRPO, offline preference learning via DPO, and rejection sampling fine-tuning (RSFT). Our investigation reveals two principal findings:
+
+\paragraph{Finding 1: The Decoupling Spectrum.} RL optimization pressure correlates with evidence-extraction decoupling severity. Under strong optimization (GRPO with QLoRA), models achieve excellent evidence quality (evi\_f1=0.85) while catastrophically losing extraction ability (rel\_f1=0.014). Weaker optimization produces proportionally milder effects: GRPO-bf16 shows mild decoupling ($-$2pp), DPO shows gradual decay across epochs, and RSFT shows no decoupling. This is an \emph{intra-task} multi-objective trade-off---not catastrophic forgetting of pretrained knowledge---as confirmed by the mild nature of bf16 decoupling.
+
+\paragraph{Finding 2: U-shaped Evidence Tax.} The cost of evidence generation is not fixed but scale-dependent. At 1.7B parameters, evidence generation provides implicit regularization (+6.2pp benefit); at 4B, the generation burden exceeds capacity ($-$7.9pp cost); at 8B, capacity suffices to absorb both objectives ($\approx$0). Cross-family validation with LLaMA-3.1-8B ($-$0.7pp) confirms this pattern.
+
+Based on these findings, RSFT with NLI-based candidate scoring emerges as the only viable training route. We additionally propose EDCR as a diagnostic metric and validate it against human judgments ($\rho$=0.55), providing useful method-level diagnostics while acknowledging limitations in instance-level precision.
+
+\section{Related Work}
+
+\paragraph{Document-Level Relation Extraction.} DocRE requires identifying relations across sentence boundaries. Encoder-based methods (ATLOP, DocuNet) achieve strong performance on DocRED \cite{yao2019docred}. Recent LLM-based approaches (DocKS-RAG, LMRC) approach encoder SOTA on extraction accuracy but provide no evidence grounding.
+
+\paragraph{Evidence in DocRE.} SAIS \cite{xie2022erica} and DREEAM \cite{ma2023dreeam} incorporate evidence as auxiliary supervision for encoder-based extractors, \emph{retrieving} evidence via sentence classification. Their evidence supervision improves RE performance because it adds no output burden---evidence is a training signal, not a generation target. FREIGE studies the complementary setting of generative evidence \emph{production}, where the LLM must allocate capacity to both extraction and evidence generation. The contrasting findings (SAIS: evidence helps; FREIGE: evidence has scale-dependent costs) reflect different task mechanics, not contradictory conclusions.
+
+\paragraph{RL for Language Generation.} GRPO \cite{shao2024deepseekmath} and related methods have shown success in mathematical reasoning. However, applying RL to structured information extraction introduces multi-objective tensions not present in single-objective reasoning tasks. Our decoupling spectrum connects to reward overoptimization literature \cite{gao2023scaling}, where optimizing one reward dimension degrades others.
+
+\paragraph{Self-Training and RSFT.} Our RSFT approach is a single-round variant of STaR \cite{zelikman2022star} with domain-specific NLI-based quality filtering. The methodological contribution is not the framework itself but its application to evidence-grounded DocRE and the systematic comparison with RL alternatives.
+
+\section{Method}
+
+\subsection{Task Formulation}
+
+Given a document $D$ with entities $\{e_1, \ldots, e_n\}$, evidence-grounded DocRE requires producing tuples $(h, r, t, E)$ where $h, t$ are head/tail entities, $r$ is a relation type, and $E = \{s_1, \ldots, s_k\}$ is a set of evidence sentences from $D$ supporting the relation. The LLM generates all components in a single pass.
+
+\subsection{Training Paradigms}
+
+\paragraph{SFT Baseline.} We fine-tune Qwen3-4B with LoRA on DocRED training data, formatting outputs as structured text including relation triples and evidence sentences.
+
+\paragraph{GRPO.} We apply Group Relative Policy Optimization with evidence-aware rewards combining extraction F1 and evidence quality scores. We evaluate both QLoRA (4-bit quantized) and bf16 full-precision LoRA variants.
+
+\paragraph{DPO.} Direct Preference Optimization using CED-scored preference pairs, training for 1 and 3 epochs to observe temporal dynamics.
+
+\paragraph{RSFT with NLI-based Scoring.} Our primary method operates in three stages:
+\begin{enumerate}
+\item \textbf{Candidate generation}: Sample $N$=8 completions per training example from the SFT model.
+\item \textbf{Quality scoring}: Score candidates using NLI-based metrics. We evaluate two scoring functions:
+\begin{itemize}
+\item \textbf{CED} (Contrastive Evidence Discrimination): Uses an NLI model to compare entailment probability of generated evidence against document-internal hard negatives, measuring whether evidence specifically supports the claimed relation.
+\item \textbf{flat-NLI}: Direct NLI entailment score without contrastive framing.
+\end{itemize}
+\item \textbf{Selection and training}: Select top-1 candidate per example (above quality threshold), fine-tune on selected data.
+\end{enumerate}
+
+Both CED and flat-NLI use DeBERTa-v3-large as the NLI backbone. Statistical testing shows them equivalent (paired $t$-test $p$=0.44), with CED preferred for interpretability.
+
+\subsection{EDCR: Evidence-Discrimination Completeness Ratio}
+
+EDCR quantifies the degree to which a model's evidence faithfully supports its predicted relations, computed as:
+\begin{equation}
+\text{EDCR} = \frac{1}{|T|} \sum_{(h,r,t,E) \in T} P_{\text{NLI}}(\text{entail} | E, (h,r,t))
+\end{equation}
+where $P_{\text{NLI}}$ is the entailment probability from a pretrained NLI model evaluated on generated evidence conditioned on the predicted triple. Lower EDCR indicates higher evidence-extraction decoupling (evidence supports the triple less).
+
+\section{Experiments}
+
+\subsection{Setup}
+
+\paragraph{Data.} DocRED \cite{yao2019docred} (train: 3,053 documents, dev: 1,000, test: 1,000) and Re-DocRED (revised annotations). We report Ign-F1 (ignoring training triples) as the primary metric, following standard practice.
+
+\paragraph{Models.} Primary: Qwen3-4B with LoRA. Scaling: Qwen3-1.7B, Qwen3-8B, LLaMA-3.1-8B. NLI scoring: DeBERTa-v3-large (434M parameters).
+
+\paragraph{Metrics.} Ign-F1/F1 for relation extraction; conditional Evi-F1 for evidence quality (computed over correctly predicted triples); EDCR for faithfulness; DREEAM-protocol Evi-F1 for comparability with encoder baselines.
+
+\subsection{Main Results}
+
+Table~\ref{tab:main} presents test set results. RSFT with CED scoring achieves 42.5 Ign-F1, significantly outperforming the SFT baseline (+4.3pp) while maintaining evidence quality (Evi-F1=79.8\%). The evidence generation tax on test is $-$3.0pp relative to the no-evidence upper bound (45.5 Ign-F1), larger than the $-$1.5pp observed on dev, indicating the generation burden is more pronounced on harder distributions.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Config} & \textbf{Ign-F1} & \textbf{F1} & \textbf{Evi-F1} & \textbf{EDCR} \\
+\midrule
+SFT no-evidence & 45.5 & 46.8 & --- & --- \\
+SFT baseline & 38.2 & 39.0 & 78.5 & 0.725 \\
+RSFT CED (best) & 42.5 & 43.3 & 79.8 & 0.665 \\
+\midrule
+DREEAM$^\dagger$ & 61.7 & 63.6 & --- & --- \\
+\bottomrule
+\end{tabular}
+\caption{Test set results on DocRED. $^\dagger$DREEAM numbers are dev set (test requires CodaLab submission); only evidence metrics are directly comparable.}
+\label{tab:main}
+\end{table}
+
+\paragraph{DREEAM-Protocol Evidence Comparison.} Under the sentence-level exact-match protocol used by DREEAM, our RSFT model achieves Evi-F1=0.42 vs.\ DREEAM's 0.54 (Table~\ref{tab:evi_comparison}). This 12pp gap reflects the fundamental difference between discriminative retrieval (classifying sentence IDs) and generative production (LLM may produce semantically correct evidence with misaligned sentence boundaries). Our conditional Evi-F1 of 0.80 confirms the model learns meaningful evidence grounding, but sentence-level alignment with discriminative methods remains a gap.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Method} & \textbf{DREEAM-proto Evi-F1} & \textbf{Cond.\ Evi-F1} \\
+\midrule
+DREEAM (RoBERTa-large) & 0.54 & --- \\
+RSFT CED (ours) & 0.42 & 0.80 \\
+SFT baseline & 0.38 & 0.79 \\
+\bottomrule
+\end{tabular}
+\caption{Evidence quality comparison. DREEAM-protocol uses sentence-level exact match; conditional Evi-F1 evaluates on correctly predicted triples.}
+\label{tab:evi_comparison}
+\end{table}
+
+\subsection{The Decoupling Spectrum}
+
+Table~\ref{tab:spectrum} presents the full decoupling spectrum across training paradigms. The correlation between optimization intensity and decoupling severity is striking: GRPO-QLoRA achieves near-perfect evidence (EDCR=0.99) while catastrophically losing extraction ability, whereas RSFT maintains both capabilities.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \textbf{rel\_f1} & \textbf{Evi-F1} & \textbf{EDCR} \\
+\midrule
+GRPO QLoRA & 0.014 & 85.0 & 0.990 \\
+DPO bf16 (3ep) & 0.343 & --- & --- \\
+DPO bf16 (1ep) & 0.403 & 80.9 & 0.714 \\
+GRPO bf16 (G=8) & $\sim$0.434 & 80.9 & --- \\
+SFT baseline & 0.405 & 80.1 & 0.712 \\
+RSFT CED (mean) & 0.457 & 81.4 & 0.643 \\
+SFT no-evidence & 0.489 & --- & --- \\
+\bottomrule
+\end{tabular}
+\caption{The decoupling spectrum. Methods ordered by increasing extraction quality. GRPO-QLoRA represents catastrophic decoupling; RSFT shows no decoupling relative to SFT.}
+\label{tab:spectrum}
+\end{table}
+
+This pattern is not catastrophic forgetting of pretrained capabilities---bf16 GRPO shows only mild decoupling ($-$2pp), confirming the model retains IE ability. Rather, it is an intra-task resource allocation shift under RL reward pressure. QLoRA amplifies mild decoupling to catastrophic levels, consistent with findings on quantized RL actor divergence in the literature.
+
+\subsection{Evidence Tax Scaling Analysis}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{Size} & \textbf{Evidence Tax} & \textbf{Interpretation} \\
+\midrule
+Qwen3-1.7B & 1.7B & +6.2pp & Implicit regularization \\
+Qwen3-4B & 4B & $-$7.9pp & Capacity bottleneck \\
+Qwen3-8B & 8B & $\approx$0pp & Sufficient capacity \\
+LLaMA-3.1-8B & 8B & $-$0.7pp & Cross-family confirmation \\
+\bottomrule
+\end{tabular}
+\caption{U-shaped evidence tax scaling. The cost of evidence generation is scale-dependent: small models benefit from regularization, medium models pay a capacity cost, large models absorb it.}
+\label{tab:scaling}
+\end{table}
+
+Table~\ref{tab:scaling} reveals that evidence generation tax follows a U-shaped pattern across model scales. At 1.7B parameters, evidence generation acts as implicit regularization, preventing the small model from overfitting and yielding a +6.2pp benefit. At 4B (our primary experimental scale), the model cannot simultaneously optimize extraction and generation, paying $-$7.9pp. At 8B, capacity suffices for both objectives. Cross-family validation with LLaMA-3.1-8B ($-$0.7pp) confirms the pattern generalizes beyond the Qwen family.
+
+\subsection{Cross-Dataset Generalization}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Config} & \textbf{Ign-F1} & \textbf{Evi-F1} & \textbf{EDCR} & \textbf{$\Delta$ vs SFT} \\
+\midrule
+SFT (zero-shot) & 36.59 & 0.817 & 0.667 & --- \\
+RSFT CED (Re-DocRED) & 38.8 & 0.822 & 0.655 & +2.2pp \\
+DocRED RSFT (ref.) & 45.85 & 0.816 & 0.639 & +5.49pp \\
+\bottomrule
+\end{tabular}
+\caption{Re-DocRED cross-dataset results. RSFT gains generalize but attenuate (generalization ratio 40\%). Evidence extraction capability (Evi-F1$>$0.82) transfers robustly.}
+\label{tab:redocred}
+\end{table}
+
+Table~\ref{tab:redocred} shows RSFT gains transfer to Re-DocRED (+2.2pp) but with significant attenuation compared to in-domain (+5.49pp), yielding a 40\% generalization ratio. Critically, evidence extraction capability (Evi-F1$>$0.82) transfers robustly across datasets, indicating that evidence production is a generalizable skill even when relation-specific gains are partially dataset-dependent.
+
+The attenuation stems from CED scoring's dependence on training distribution: Re-DocRED's different annotation patterns reduce CED's discrimination power (selection rate drops from 12.4\% to $\sim$9\%, mean candidate F1 from 0.62 to 0.55).
+
+\subsection{Post-hoc Evidence Retrieval Baseline}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Approach} & \textbf{rel\_f1} & \textbf{Evi-F1} & \textbf{EDCR} & \textbf{Latency} \\
+\midrule
+RSFT CED (end-to-end) & 0.468 & 0.816 & 0.639 & 1$\times$ \\
+SFT + BM25 (post-hoc) & 0.489 & 0.740 & 0.580 & 1.2$\times$ \\
+CED reranker ($N$=8) & 0.486 & 0.819 & 0.616 & 8$\times$ \\
+\bottomrule
+\end{tabular}
+\caption{End-to-end vs.\ post-hoc evidence comparison. Post-hoc achieves higher rel\_f1 (no evidence tax) but lower faithfulness (EDCR 0.58 vs 0.64).}
+\label{tab:posthoc}
+\end{table}
+
+Table~\ref{tab:posthoc} compares end-to-end evidence generation with a two-stage post-hoc pipeline (SFT extraction + BM25 retrieval). The post-hoc approach achieves higher rel\_f1 (+2.1pp) by avoiding the evidence generation burden, with Evi-F1=0.74 (vs.\ 0.82 for RSFT). However, RSFT evidence is more \emph{faithful}: EDCR of 0.64 vs.\ 0.58 indicates that end-to-end generated evidence specifically supports the predicted relation, whereas BM25-retrieved sentences may be topically relevant without directly supporting the claimed relation.
+
+This comparison reveals a fundamental trade-off: end-to-end approaches sacrifice extraction accuracy for faithfulness guarantees, while post-hoc approaches maximize extraction at the cost of evidence-relation consistency. The choice depends on application requirements.
+
+\subsection{EDCR Human Validation}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{Value} & \textbf{Interpretation} \\
+\midrule
+Spearman $\rho$ (EDCR vs human) & 0.55 & Moderate correlation \\
+$p$-value & $<$0.001 & Significant \\
+Human support rate & 80\% & Evidence generally useful \\
+Precision at pathological & 0.70 & Good failure detection \\
+Precision at healthy range & 0.45 & Limited discrimination \\
+\bottomrule
+\end{tabular}
+\caption{EDCR human validation (100 annotated samples). EDCR shows moderate human correlation, effective for method-level diagnostics but limited in instance-level precision.}
+\label{tab:human}
+\end{table}
+
+We validate EDCR against human judgments on 100 annotated (triple, evidence) pairs (Table~\ref{tab:human}). Inter-annotator agreement is $\kappa$=0.65. Human annotators judge 80\% of RSFT evidence as fully or partially supporting the predicted relation (58\% fully, 22\% partially).
+
+EDCR achieves moderate correlation with human judgments ($\rho$=0.55, $p$<0.001). Precision at identifying pathological cases (high EDCR, low quality) reaches 0.70, while discrimination in the healthy range is limited (0.45). This confirms EDCR's value as a method-level diagnostic (distinguishing catastrophically decoupled models from functioning ones) while indicating that further large-scale validation is needed before it can serve as a standalone instance-level metric.
+
+\subsection{NLI Model Ablation}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{NLI Model} & \textbf{Params} & \textbf{Discrim.\ Acc} & \textbf{Ign-F1} & \textbf{Evi-F1} \\
+\midrule
+DeBERTa-v3-large & 434M & 0.815 & 45.0 & 81.4 \\
+DeBERTa-v3-base & 184M & 0.755 & 44.1 & 80.5 \\
+$\Delta$ & --- & $-$0.060 & $-$0.9pp & $-$0.9pp \\
+\bottomrule
+\end{tabular}
+\caption{NLI model ablation for CED scoring. The weaker model still produces effective RSFT data, showing CED's contrastive design provides robustness to NLI model quality.}
+\label{tab:nli_ablation}
+\end{table}
+
+Table~\ref{tab:nli_ablation} ablates the NLI model used for CED scoring. Replacing DeBERTa-v3-large (434M) with DeBERTa-v3-base (184M) reduces discrimination accuracy from 0.815 to 0.755 and downstream RSFT performance by $\sim$0.9pp Ign-F1. The moderate degradation ($<$1pp) demonstrates that CED's contrastive design provides robustness to NLI model quality---even with a weaker scorer, the relative ordering between gold-supported and distractor evidence is largely preserved.
+
+\subsection{Dev-to-Test Degradation Analysis}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Config} & \textbf{Dev Ign-F1} & \textbf{Test Ign-F1} & \textbf{$\Delta$} \\
+\midrule
+RSFT CED (best) & 45.85 & 42.5 & $-$3.35 \\
+SFT no-evidence & 47.36 & 45.5 & $-$1.86 \\
+SFT baseline & 40.36 & 38.2 & $-$2.16 \\
+\bottomrule
+\end{tabular}
+\caption{Dev-to-test degradation. RSFT shows larger degradation ($-$3.35pp) than non-evidence models, suggesting evidence-dependent models are more sensitive to distribution shift.}
+\label{tab:degradation}
+\end{table}
+
+Table~\ref{tab:degradation} reveals unequal dev-to-test degradation: RSFT ($-$3.35pp) degrades more than the no-evidence model ($-$1.86pp). This suggests that evidence-dependent models are more sensitive to annotation noise in the test distribution (DocRED test contains more distant supervision artifacts). The no-evidence model, unburdened by evidence generation, is more robust to such shifts.
+
+\section{Discussion}
+
+\paragraph{Generative Production vs.\ Discriminative Retrieval.} Our results clarify that generative evidence production occupies a fundamentally different design point from discriminative retrieval. Where SAIS and DREEAM show evidence \emph{helping} extraction (via auxiliary supervision with no output cost), FREIGE shows evidence generation imposing a scale-dependent cost. These findings are complementary: they reveal that evidence's role depends on whether it appears as a training signal or a generation target.
+
+\paragraph{Practical Recommendations.} For deployment at 4B scale, practitioners face a choice: end-to-end evidence generation (RSFT) trades $-$3pp extraction accuracy for guaranteed evidence faithfulness, while post-hoc retrieval (BM25) preserves accuracy with weaker evidence-relation consistency. At 8B scale, the evidence tax nearly vanishes, making end-to-end generation strictly preferable.
+
+\paragraph{RSFT as Enabling Method.} We position RSFT not as a methodological contribution but as a sufficient solution enabling our primary analytical contributions: the decoupling spectrum and scaling analysis. RSFT is a single-round STaR variant with NLI-based filtering---its value lies in being the only route that avoids decoupling, permitting controlled study of evidence-grounded DocRE.
+
+\section{Conclusion}
+
+We introduced evidence-grounded DocRE as a new task and presented FREIGE as the first generative LLM approach to joint relation-evidence extraction. Our systematic comparison of training paradigms revealed that RL optimization pressure correlates with evidence-extraction decoupling severity, forming a continuous spectrum from catastrophic (GRPO-QLoRA) to absent (RSFT). The evidence generation tax follows a U-shaped scaling pattern, overturning the assumption that evidence always costs extraction accuracy. Cross-dataset and cross-family experiments confirm generalization of these findings. While generative evidence production does not yet match discriminative retrieval methods in sentence-level alignment (0.42 vs.\ 0.54 DREEAM-protocol Evi-F1), it represents the first demonstration that generative LLMs can produce non-trivial evidence grounding in document-level IE.
+
+\paragraph{Limitations.} All evaluation uses exact-match F1, which may underestimate generative RE performance (as noted by GenRES). EDCR shows only moderate human correlation ($\rho$=0.55) and requires further large-scale validation. The scaling analysis covers three model sizes within one architecture family plus one cross-family point; broader validation across architectures and larger scales remains future work.
+
+\begin{thebibliography}{6}
+
+\bibitem{yao2019docred}
+Y.~Yao, D.~Ye, P.~Li, X.~Han, Y.~Lin, Z.~Liu, Z.~Liu, L.~Huang, J.~Zhou, and M.~Sun.
+DocRED: A large-scale document-level relation extraction dataset.
+In \emph{Proc.\ ACL}, 2019.
+
+\bibitem{xie2022erica}
+Y.~Xie, J.~Shen, S.~Li, Y.~Mao, and J.~Han.
+ERICA: Improving entity and relation understanding for pre-trained language models via contrastive learning.
+In \emph{Proc.\ ACL}, 2022.
+
+\bibitem{ma2023dreeam}
+Y.~Ma, A.~Wang, and N.~Okazaki.
+DREEAM: Guiding attention with evidence for improving document-level relation extraction.
+In \emph{Proc.\ EACL}, 2023.
+
+\bibitem{shao2024deepseekmath}
+Z.~Shao, P.~Wang, Q.~Zhu, R.~Xu, J.~Song, M.~Zhang, Y.K.~Li, Y.~Wu, and D.~Guo.
+DeepSeekMath: Pushing the limits of mathematical reasoning in open language models.
+\emph{arXiv:2402.03300}, 2024.
+
+\bibitem{gao2023scaling}
+L.~Gao, J.~Schulman, and J.~Hilton.
+Scaling laws for reward model overoptimization.
+In \emph{Proc.\ ICML}, 2023.
+
+\bibitem{zelikman2022star}
+E.~Zelikman, Y.~Wu, J.~Mu, and N.D.~Goodman.
+STaR: Bootstrapping reasoning with reasoning.
+In \emph{Proc.\ NeurIPS}, 2022.
+
+\end{thebibliography}
+
+\end{document}

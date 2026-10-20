@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_llama_sft_s44_no_evidence_2048",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:07:08.517Z",
+    "updated_at": "2026-05-20T17:07:14.303Z",
+    "hypothesis": "Truncation 诊断：s44 SFT no-evi 截断率 41.7% (411/985) 远高于 s42 (22.2%)，导致 ign_f1=0.3326 异常低。用 max_new_tokens=2048（原 1024）重跑，验证低 ign_f1 是截断伪影还是真实 evidence dependency。如果 2048 版 ign_f1 恢复到 ~0.47-0.52 → 截断 artifact，论文用 2048 数据。",
+    "parent": "eval_llama_sft_s44_no_evidence"
+  },
+  "timestamp": "2026-05-20T17:07:14.892637+00:00",
+  "trigger": "update_registry"
+}

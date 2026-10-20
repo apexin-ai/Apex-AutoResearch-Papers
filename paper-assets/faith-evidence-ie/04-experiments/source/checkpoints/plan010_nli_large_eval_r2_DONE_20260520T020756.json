@@ -1,0 +1,47 @@
+{
+  "exp_id": "plan010_nli_large_eval_r2",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T23:22:48.558Z",
+    "updated_at": "2026-05-20T02:07:56.252Z",
+    "hypothesis": "NLI v3-large ablation eval r2: 评估用 DeBERTa-v3-large CED scorer 训练的 RSFT 模型。r1 因 cron 监控旧 PID 误标 failed，实际推理进程 (PID 733763) 正常运行。Baseline: v3-base CED s42 ign_f1=0.4517。",
+    "parent": "plan010_nli_large_ablation",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_nli_large --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/plan010_nli_large_ablation --batch_size 4 --max_new_tokens 1024 --no-quantize --seed 42",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + v3-large CED RSFT",
+      "seed": 42,
+      "gpu_ids": [
+        "cuda:1"
+      ],
+      "pid": "733763",
+      "checkpoint_path": "/root/autodl-tmp/eval_results/plan010_nli_large_ablation",
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_nli_large",
+      "eval_data": "docred-dev",
+      "log_path": "~/runs/faith-evidence-ie/plan010_nli_large_eval.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "f1": 0.4636,
+      "ign_f1": 0.4533,
+      "evi_f1_joint": 0.3606,
+      "evi_f1_tp": 0.8194,
+      "edcr": 0.653,
+      "format_compliance": 1,
+      "n_truncated": 180,
+      "n_predictions": 14870,
+      "inference_time_s": 10064
+    },
+    "checkpoint_path": "/root/autodl-tmp/eval_results/plan010_nli_large_ablation",
+    "log_path": "~/runs/faith-evidence-ie/plan010_nli_large_eval.log",
+    "completed_at": "2026-05-20T02:07:56.252Z"
+  },
+  "timestamp": "2026-05-20T02:07:56.762726+00:00",
+  "trigger": "update_registry"
+}

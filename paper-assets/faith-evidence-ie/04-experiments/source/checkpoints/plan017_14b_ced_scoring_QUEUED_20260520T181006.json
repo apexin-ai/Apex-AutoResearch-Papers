@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan017_14b_ced_scoring",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:09:55.652Z",
+    "updated_at": "2026-05-20T18:10:05.645Z",
+    "hypothesis": "14B RSFT CED scoring: 用 NLI-DeBERTa 对 24216 条 14B generation candidates 打分，top_k=1 筛选最优候选。预期产出 ~3000+ 训练样本。与 4B CED scoring (selected avg f1=0.676, 3014 docs) 对比。",
+    "parent": "plan017_14b_rsft_generate_r4"
+  },
+  "timestamp": "2026-05-20T18:10:06.198452+00:00",
+  "trigger": "update_registry"
+}

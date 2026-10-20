@@ -1,0 +1,26 @@
+{
+  "exp_id": "llama_rsft_s44_pipeline",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T01:07:05.770Z",
+    "updated_at": "2026-05-20T01:07:26.625Z",
+    "hypothesis": "LLaMA-3.1-8B RSFT s44 full pipeline: 补齐第 3 个 seed，计算 LLaMA RSFT 3-seed mean 和 variance compression。s42 ign_f1=0.5839, s43 ign_f1=0.5662。Method A: 复用 s42 CED-scored data (2952 samples)，只变 RSFT training seed=44。",
+    "parent": "seed_llama_rsft_k1_s43",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 bash /root/autodl-tmp/freige/scripts/seed_expansion/llama_rsft_s44_pipeline.sh",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/rsft_scored_llama_3_1_8b_k1/rsft_train.jsonl",
+      "data_count": 2952,
+      "model_name": "meta-llama/Meta-Llama-3.1-8B",
+      "seed": 44,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_llama_3_1_8b",
+      "eval_data": "/root/autodl-tmp/data/docred"
+    }
+  },
+  "timestamp": "2026-05-20T01:07:27.530803+00:00",
+  "trigger": "update_registry"
+}

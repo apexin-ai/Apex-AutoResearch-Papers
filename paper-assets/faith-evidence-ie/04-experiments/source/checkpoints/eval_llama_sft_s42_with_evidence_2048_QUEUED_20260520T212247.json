@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_llama_sft_s42_with_evidence_2048",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:22:31.956Z",
+    "updated_at": "2026-05-20T21:22:47.152Z",
+    "hypothesis": "方法论 control: LLaMA SFT s42 with-evidence eval at max_new_tokens=2048. 原 1024 版 ign_f1=0.5384. 预期 delta<1pp, 证明 with-evi 对 token budget 不敏感, 从而验证 no-evi@2048 vs with-evi@1024 的 tax 计算方法论合理。",
+    "parent": "llama_sft_s42"
+  },
+  "timestamp": "2026-05-20T21:22:47.749408+00:00",
+  "trigger": "update_registry"
+}

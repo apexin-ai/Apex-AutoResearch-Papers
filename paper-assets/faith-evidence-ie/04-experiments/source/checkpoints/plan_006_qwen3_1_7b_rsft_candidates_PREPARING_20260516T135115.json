@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan_006_qwen3_1_7b_rsft_candidates",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T13:51:15.410Z",
+    "updated_at": "2026-05-16T13:51:15.410Z"
+  },
+  "timestamp": "2026-05-16T13:51:15.918357+00:00",
+  "trigger": "update_registry"
+}

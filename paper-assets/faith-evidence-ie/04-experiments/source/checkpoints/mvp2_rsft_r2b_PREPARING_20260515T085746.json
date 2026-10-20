@@ -1,0 +1,14 @@
+{
+  "exp_id": "mvp2_rsft_r2b",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T08:57:46.813Z",
+    "updated_at": "2026-05-15T08:57:46.813Z"
+  },
+  "timestamp": "2026-05-15T08:57:46.972924+00:00",
+  "trigger": "update_registry"
+}

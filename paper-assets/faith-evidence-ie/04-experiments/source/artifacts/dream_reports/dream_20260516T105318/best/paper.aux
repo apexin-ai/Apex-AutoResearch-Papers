@@ -1,0 +1,61 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{tan2022dreeam}
+\citation{xu2022sais}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Method}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Task Formulation: Evidence-Grounded DocRE}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Contrastive Evidence Discrimination (CED)}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}RSFT with CED Scoring}{3}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Evidence-Decoupling Calibration Ratio (EDCR)}{3}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}CED Reranker}{3}{subsection.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experiments}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Setup}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Base Model.}{3}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dataset.}{3}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{3}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training.}{3}{section*.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces DocRED test set results. RSFT CED improves over SFT baseline by +4.8pp Ign-F1. CED reranker achieves the best trade-off: only 0.2pp below no-evidence Ign-F1 while providing Evi-F1=81.2. Evidence tax = 7.1pp (no-evidence minus SFT baseline).}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:test}{{1}{4}{DocRED test set results. RSFT CED improves over SFT baseline by +4.8pp Ign-F1. CED reranker achieves the best trade-off: only 0.2pp below no-evidence Ign-F1 while providing Evi-F1=81.2. Evidence tax = 7.1pp (no-evidence minus SFT baseline)}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-family decoupling spectrum. GRPO QLoRA produces catastrophic decoupling in both Qwen3 (rel\_F1=1.38) and LLaMA (rel\_F1=1.5), confirming decoupling is architecture-independent. RSFT shows no decoupling in either family.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:decoupling}{{2}{4}{Cross-family decoupling spectrum. GRPO QLoRA produces catastrophic decoupling in both Qwen3 (rel\_F1=1.38) and LLaMA (rel\_F1=1.5), confirming decoupling is architecture-independent. RSFT shows no decoupling in either family}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Main Results: DocRED Test Set}{4}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Decoupling Spectrum: Cross-Family Validation}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-scale ablation on DocRED dev. All Ign-F1 values shown. Tax = SFT $-$ No-evi. $\Delta $ = RSFT $-$ SFT. $^*$Qwen3-4B shows 5-seed mean; others are single seed (s42). RSFT consistently improves across all scales (+3.3 to +5.1pp).}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:scale}{{3}{5}{Cross-scale ablation on DocRED dev. All Ign-F1 values shown. Tax = SFT $-$ No-evi. $\Delta $ = RSFT $-$ SFT. $^*$Qwen3-4B shows 5-seed mean; others are single seed (s42). RSFT consistently improves across all scales (+3.3 to +5.1pp)}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Re-DocRED results. Evi-F1 computed on the 43\% subset with evidence annotations. RSFT CED improves +3.5pp over SFT, with evidence tax=5.8pp.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:redocred}{{4}{5}{Re-DocRED results. Evi-F1 computed on the 43\% subset with evidence annotations. RSFT CED improves +3.5pp over SFT, with evidence tax=5.8pp}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Cross-Scale Ablation}{5}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Cross-Dataset Evaluation: Re-DocRED}{5}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}EDCR Human Validation}{5}{subsection.3.6}\protected@file@percent }
+\citation{zhou2021atlop}
+\citation{tan2022dreeam}
+\citation{xu2022sais}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-dataset consistency. All key findings transfer from DocRED to Re-DocRED with consistent direction and magnitude.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:consistency}{{5}{6}{Cross-dataset consistency. All key findings transfer from DocRED to Re-DocRED with consistent direction and magnitude}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces EDCR human validation. Two annotators independently judge whether cited evidence supports the extracted relation on 100 stratified samples (50 from RSFT, 50 from SFT).}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:human}{{6}{6}{EDCR human validation. Two annotators independently judge whether cited evidence supports the extracted relation on 100 stratified samples (50 from RSFT, 50 from SFT)}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}NLI Model Ablation}{6}{subsection.3.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Analysis and Discussion}{6}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Decoupling as Intra-Task Trade-off.}{6}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evidence Tax Interpretation.}{6}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical Recommendation.}{6}{section*.7}\protected@file@percent }
+\citation{zelikman2022star}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Error analysis of EDCR-human disagreements.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:errors}{{7}{7}{Error analysis of EDCR-human disagreements}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces NLI model ablation for CED scoring. Upgrading from base to large contributes 1.1pp Ign-F1. Even with the smaller NLI model, CED RSFT outperforms SFT baseline by +3.9pp, confirming that CED's contrastive methodology is the primary contributor.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:nli}{{8}{7}{NLI model ablation for CED scoring. Upgrading from base to large contributes 1.1pp Ign-F1. Even with the smaller NLI model, CED RSFT outperforms SFT baseline by +3.9pp, confirming that CED's contrastive methodology is the primary contributor}{table.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Related Work}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Document-Level Relation Extraction.}{7}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Generative Document-Level IE.}{7}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RL for Information Extraction.}{7}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-Training and Rejection Sampling.}{7}{section*.11}\protected@file@percent }
+\bibcite{tan2022dreeam}{1}
+\bibcite{xu2022sais}{2}
+\bibcite{zhou2021atlop}{3}
+\bibcite{zelikman2022star}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.12}\protected@file@percent }
+\gdef \@abspage@last{8}

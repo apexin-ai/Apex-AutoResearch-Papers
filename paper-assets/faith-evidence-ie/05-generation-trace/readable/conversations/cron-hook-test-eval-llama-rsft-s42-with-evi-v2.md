@@ -1,0 +1,1980 @@
+# cron hook test eval llama rsft s42 with evi v2
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 64
+- **Recorded user turns:** 1
+- **Tool calls:** 31
+- **Original source:** `logs/chats/cron_hook_test_eval_llama_rsft_s42_with_evi_v2.jsonl`
+- **Structured JSON:** [`18c9402e227f13f53c69.json`](../../sessions/18/18c9402e227f13f53c69.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+64 recorded events
+
+### User
+
+_source line 1 · 2026-05-23T10:34:35.262015+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: test_eval_llama_rsft_s42_with_evi_v2
+- project: faith-evidence-ie
+- server: rtx5090-4x
+- log_path: ~/runs/faith-evidence-ie/test_eval_llama_rsft_s42_with_evi_v2.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-23T10:34:46.562378+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-23T10:34:46.714373+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-23T10:34:49.976260+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-23T10:34:50.527920+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-23T10:34:51.130698+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T10:34:51.231486+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T10:34:51.437201+00:00_
+
+Error: result (209,631 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-a6b6ec19/137b6086-42d4-42c4-a3d9-623e70f9d705/tool-results/mcp-agent-ml-research-read_registry-1779532491227.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-a6b6ec19/137b6086-42d4-42c4-a3d9-623e70f9d705/tool-results/mcp-agent-ml-research-read_registry-1779532491227.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-a6b6ec19/137b6086-42d4-42c4-a3d9-623e70f9d705/tool-results/mcp-agent-ml-research-read_registry-1779532491227.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1460
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-23T10:35:00.774629+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"plan017_14b_rsft_s43_generate\", \"success\": true, \"actions\": [\"Job still running (pid=194682)\"]}, {\"exp_id\": \"test_eval_4b_rsft_s44_with_evi\", \"success\": true, \"actions\": [\"Job still running (pid=241448)\"]}, {\"exp_id\": \"dpo_rebuilt_3ep_eval\", \"success\": true, \"actions\": [\"Job still running (pid=242306)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 10246
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T10:35:00.775572+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-23T10:34:32Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 329 个实验 — ANALYZING 1, DONE 325, RUNNING 3\\n**DONE 分布**: failed 61, killed 35, negative 19, success 210\\n\\n### GPU 占用\\n- **分配**: 4 张 — rtx5090-4x:cuda:0, rtx5090-4x:cuda:1, rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\n- **实际运行**: 3 张 — rtx5090-4x:cuda:1(plan017_14b_rsft_s43_generate), rtx5090-4x:cuda:3(test_eval_4b_rsft_s44_with_evi), rtx5090-4x:cuda:2(dpo_rebuilt_3ep_eval)\\n- **空闲（分配了没跑）**: rtx5090-4x:cuda:0\\n\\n### 💾 磁盘余量\\n- **rtx5090-4x**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/usr/bin/nvidia-smi`: 815G/879G 可用（已用 3%）\\n- **bjb2-12179**:\\n  - `/autodl-pub`: 9.1T/14T 可用（已用 36%）\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `plan017_14b_rsft_s43_generate` | rtx5090-4x | cuda:1 | 194682 | `~/runs/faith-evidence-ie/plan017_14b_rsft_s43_generate.log` |\\n| `test_eval_4b_rsft_s44_with_evi` | rtx5090-4x | cuda:3 | 241448 | `~/runs/faith-evidence-ie/test_eval_4b_rsft_s44_with_evi.log` |\\n| `dpo_rebuilt_3ep_eval` | rtx5090-4x | cuda:2 | 242306 | `~/runs/faith-evidence-ie/dpo_rebuilt_3ep_eval.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `test_eval_llama_rsft_s42_with_evi_v2` [failed] — 2026-05-23T10:34:27 — EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\\n- `test_eval_8b_rsft_s43_no_evi` [success] — 2026-05-23T10:27:55\\n- `test_eval_llama_rsft_s43_no_evi` [success] — 2026-05-23T10:23:18\\n- `dpo_rebuilt_3ep` [success] — 2026-05-23T09:42:16\\n- `rsft_ced_s44_train_v2` [success] — 2026-05-23T09:32:55\\n\\n### 🔴 最近失败原因 (top 3)\\n- `test_eval_llama_rsft_s42_with_evi_v2`: EXIT_CODE=127 (command
+…[truncated 6969 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 9644
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T10:35:00.776190+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\", \"content\": \"# faith-evidence-ie — Research Dashboard\\n\\n> 最后更新: 2026-05-23 07:55 UTC | 更新原因: DPO 1ep eval + 1.7B s43 + 8B s44 结果更新\\n\\n> 投稿目标: **EMNLP 2026 Main** (ARR July cycle, ~54 天)\\n\\n## 核心方向\\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。3 贡献：(1) RSFT+NLI 有效性 (2) Decoupling spectrum (GRPO catastrophic > DPO gradual > RSFT none) (3) Evidence tax landscape + variance compression。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: 🔧 Round 2 审稿修复尾声——DPO rebuild + multi-seed cascade\\n- **Round 2 评分**: 3.0 (Findings)。升级路径: 3.0→3.5→4.0\\n- **Paper Agent**: ✅ P0-P9 全部完成 + R2-W10 LLM baseline 填表 + AutoRE 来源标注\\n- **关键结果**:\\n  - DPO rebuilt 1ep: ign_f1=32.2% (matched@2048), EDCR=0.8123 — WARNING 需审慎处理 (vs 原始 38.9%)\\n  - 8B 3-seed with-evi: 0.3360 ± 0.0035 (极稳定)\\n  - 8B 2-seed tax: s42=-0.34pp, s43=-1.74pp (方向一致)\\n  - 4B 2-seed tax: s42=+1.51pp, s43=+1.99pp (方向一致, ±0.24pp)\\n  - 1.7B s43 with-evi: 0.2870 (s42=0.2933, diff=-0.63pp)\\n\\n## 剩余修复项\\n- [ ] **W17 DPO**：DPO 3ep 训练中 cuda:2 → eval → Table 2 统一 matched@2048 protocol\\n- [ ] **Multi-seed cascade**：8B s44 no-evi (cuda:0) + 1.7B s43 no-evi (cuda:3)\\n- [ ] **14B pipeline**：generation ~62% (cuda:1) → CED → RSFT train → eval\\n- [ ] **DPO 叙事调整**：32.2% 对 decoupling spectrum claim 的影响 (Reviewer 分析中)\\n- [ ] **Final compilation + visual review**\\n- [ ] **Round 3 review** (recommended_review_mode=\\\"continue\\\")\\n\\n## 并行工作流\\n| 通道 | 当前任务 | ETA |\\n|------|---------|-----|\\n| cuda:0 | 8B s44 no-evi test eval | ~2h |\\n| cuda:1 | 14B s43 generation (~62%) | ~6h |\\n| cuda:2 | DPO 3ep 训练 | ~3-6h |\\n| cuda:3 | 1.7B s43 no-evi test eval | ~5h |\\n\\n## Multi-seed Evidence Tax 汇总\\n| Scale | s42 tax | s43 tax | 方向一致 |\\n|-------|---------|---------|---------|\\n| 1.7B | -5.43pp | (pending no-evi) | — |\\n| 4B | +1.51pp | +1.99pp | ✓ positive |\\n| 8B | -0.34pp | -1.74pp
+…[truncated 1512 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 9544
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-23T10:35:09.416417+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'exp_id': 'test_eval_llama_rsft_s42_with_evi_v2'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'exp_id': 'test_eval_llama_rsft_s42_with_evi_v2'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T10:35:10.321581+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9233}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 905
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-23T10:35:25.031005+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-a6b6ec19/137b6086-42d4-42c4-a3d9-623e70f9d705/tool-results/mcp-agent-ml-research-read_registry-1779532491227.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\nexp = experiments.get('test_eval_llama_rsft_s42_with_evi_v2')\nif exp:\n    print(json.dumps(exp, indent=2))\nelse:\n    print('NOT FOUND')\n\"",
+  "description": "Extract failed experiment details from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-a6b6ec19/137b6086-42d4-42c4-a3d9-623e70f9d705/tool-results/mcp-agent-ml-research-read_registry-1779532491227.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\nexp = experiments.get('test_eval_llama_rsft_s42_with_evi_v2')\nif exp:\n    print(json.dumps(exp, indent=2))\nelse:\n    print('NOT FOUND')\n\"",
+    "description": "Extract failed experiment details from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-23T10:35:25.283546+00:00_
+
+{
+  "status": "DONE",
+  "created_at": "2026-05-23T10:32:07.492Z",
+  "updated_at": "2026-05-23T10:34:27.578Z",
+  "hypothesis": "LLaMA RSFT s42 with-evi test eval \u91cd\u8dd1\uff08\u5f53\u524d\u7248\u672c eval \u4ee3\u7801\uff09\u3002\u539f s42 eval field_compliance=176/500 vs s43=497/500\uff0c\u65e7\u4ee3\u7801\u7248\u672c confound\u3002\u7528\u4e0e s43 \u5b8c\u5168\u4e00\u81f4\u7684\u53c2\u6570\u6d88\u9664\u8de8 seed \u5bf9\u6bd4\u6c61\u67d3\u3002\u6570\u636e\u8d28\u91cf\u4fee\u590d\u3002",
+  "parent": "test_eval_llama_rsft_s42",
+  "conclusion": "failed"
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "Bash",
+  "elapsed_ms": 252
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-23T10:35:31.556413+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-23T10:35:31.607301+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_a6b6ec19.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-23T10:35:34.116548+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*experiment-failed*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*experiment-failed*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-23T10:35:34.116947+00:00_
+
+&lt;tool_use_error>Directory does not exist: /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_a6b6ec19.&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-23T10:35:36.887850+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-23T10:35:36.940501+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "Glob",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-23T10:35:40.604301+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-23T10:35:40.755428+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "Glob",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-23T10:35:42.913593+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-23T10:35:42.964748+00:00_
+
+1	---
+2	name: on-experiment-failed
+3	description: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。
+4	scope: global
+5	tags:
+6	- workflow
+7	- diagnosis
+8	- cron-hook
+9	tools:
+10	- read_registry
+11	- tail_training_logs
+12	- update_registry
+13	- append_idea
+14	- feishu_send_result_card
+15	- spawn_worker
+16	- check_job_status
+17	version: 4
+18	heavy: true
+19	roles:
+20	- agent
+21	---
+22	
+23	# 实验失败诊断工作流
+24	
+25	## 触发方式
+26	由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。
+27	
+28	## 步骤
+29	
+30	### Step 0: 读取项目上下文（诊断前必须执行）
+31	先读文档，再看日志——否则诊断方向可能完全错误：
+32	
+33	- `read_project_file("memory.md")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案
+34	- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构
+35	
+36	读完后检查：
+37	- memory.md 里有没有"此类实验曾失败，原因是 X"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程
+38	- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）
+39	
+40	### Step 1: 了解失败背景
+41	- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path
+42	
+43	### Step 2: 浅层日志诊断
+44	有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)
+45	- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback
+46	- 没找到 → 增加行数再查
+47	
+48	### Step 2.5: 深查（满足以下任一条件时 spawn_worker）
+49	- 运行时长 < 5 分钟（初始化阶段崩溃）
+50	- tail 日志中未见明确 Traceback 或错误行
+51	- 同类实验连续失败 ≥ 2 次
+52	
+53	```python
+54	spawn_worker(
+55	    task_type="diagnose:{exp_id}",
+56	    task_prompt="""SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。
+57	
+58	项目路径：{project_path}（绝对路径）
+59	日志路径：{log_path}（可能为空）
+60	
+61	执行步骤（按顺序，有结论就停）：
+62	
+63	1. 如果有日志路径：
+64	   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）
+65	   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）
+66	   - 日志文件不存在：说明任务启动即失败，跳到步骤 2
+67	
+68	2. 日志无错误或无日志时，检查基础设施：
+69	   - 入口文件是否存在
+70	   - 激活环境并验证 import
+71	   - 检查 configs/ 目录
+72	
+73	3. 检查磁盘/内存（OOM 类）
+74	
+75	最后输出一行 JSON：
+76	{"root_cause":"<引用具体报错行>","error_type":"infrastructure|hyperparameter|resource|data","fix_steps":["步骤1","步骤2"],"can_auto_fix":true}""",
+77	    tool_groups=["ssh"],
+78	)
+79	```
+80	
+81	Worker 返回后，以其结论作为 Step 3 的诊断依据。
+82	
+83	### 
+…[truncated 1766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-23T10:35:52.303904+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-23T10:35:52.354640+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"content\": \"## 全 scale evidence tax 汇总 (test_revised, 500 docs, RSFT CED k=1)\\n\\n### 1.7B (Qwen3) — 2 seeds\\n| Seed | with-evi | no-evi | Tax (pp) |\\n|------|----------|--------|----------|\\n| s42  | 0.2933   | 0.2390 | −5.43    |\\n| s43  | 0.2870   | 0.2410 | −4.60    |\\n| **mean** | **0.2902** | **0.2400** | **−5.02 ± 0.59** |\\n\\n### 4B (Qwen3) — 2 seeds (s44 训练中，即将补齐)\\n| Seed | with-evi | no-evi | Tax (pp) |\\n|------|----------|--------|----------|\\n| s42  | 0.2503   | 0.2654 | +1.51    |\\n| s43  | 0.2503   | 0.2702 | +1.99    |\\n| **mean** | **0.2503** | **0.2678** | **+1.75 ± 0.34** |\\n\\n### 8B (Qwen3) — 3 seeds ✅\\n| Seed | with-evi | no-evi | Tax (pp) |\\n|------|----------|--------|----------|\\n| s42  | 0.3353   | 0.3319 | −0.34    |\\n| s43  | 0.3398   | 0.3224 | −1.74    |\\n| s44  | 0.3329   | 0.3264 | −0.65    |\\n| **mean** | **0.3360** | **0.3269** | **−0.91 ± 0.74** |\\n\\n### LLaMA 8B — 2 seeds\\n| Seed | with-evi | no-evi | Tax (pp) |\\n|------|----------|--------|----------|\\n| s42  | 0.3599   | 0.3334 | −2.65    |\\n| s43  | 0.3488   | 0.3371 | −1.17    |\\n| **mean** | **0.3544** | **0.3353** | **−1.91 ± 1.05** |\\n\\n### 趋势\\n- 1.7B/8B/LLaMA 8B: evidence tax 为负（evidence 帮助），1.7B 最显著\\n- 4B: evidence tax 为正（evidence 反伤），可能因 4B 容量不足无法利用长 evidence\\n- 4B s44 训练已完成 (rsft_output_ced_s44)，eval 进行中\\n\\n## DPO rebuilt eval (matched@2048, dev)\\n- 1ep: **ign_f1 = 0.3223** (原始报告 38.9%，可能 @1024 protocol)\\n- 3ep: 训练完成 (loss=0.30, accuracy=0.87)，过拟合迹象，eval 进行中\\n- DPO 劣于 SFT baseline (ign_f1≈39.7%) 和 RSFT CED (ign_f1=44.67%)\\n\\n## LLM baseline numbers (2026-05-23 调研)\\n- AutoRE (dev, ign_f1): 52.14 (第三方复现)\\n- RelPrior (dev, ign_f1): 55.50 (当前 LLM SOTA)\\n- GLiDRE 不是 LLM 方法 (encoder-based)，不列入 LLM baseline\\n\", \"total_chars\": 1666, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-23T10:35:53.961813+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__feishu_send_result_card,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__feishu_send_result_card,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-23T10:35:54.013448+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-23T10:36:00.992769+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "log_path": "~/runs/faith-evidence-ie/test_eval_llama_rsft_s42_with_evi_v2.log",
+  "n": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "log_path": "~/runs/faith-evidence-ie/test_eval_llama_rsft_s42_with_evi_v2.log",
+    "n": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-23T10:36:01.446491+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"bash: line 1: python: command not found\", \"EXIT_CODE=127\"], \"line_count\": 2, \"log_path\": \"~/runs/faith-evidence-ie/test_eval_llama_rsft_s42_with_evi_v2.log\", \"anomalies\": []}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-23T10:36:22.315866+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-a6b6ec19/137b6086-42d4-42c4-a3d9-623e70f9d705/tool-results/mcp-agent-ml-research-read_registry-1779532491227.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Check recent successful LLaMA eval experiments for their spec/command\nfor eid in ['test_eval_llama_rsft_s43_no_evi', 'test_eval_llama_rsft_s42_with_evi_v2', 'test_eval_llama_rsft_s42']:\n    exp = experiments.get(eid)\n    if exp:\n        print(f'=== {eid} ===')\n        print(f'  status: {exp.get(\\\"status\\\")}')\n        print(f'  conclusion: {exp.get(\\\"conclusion\\\")}')\n        spec = exp.get('spec', {})\n        if spec:\n            print(f'  command: {spec.get(\\\"command\\\", \\\"N/A\\\")}')\n            print(f'  server: {spec.get(\\\"server\\\", \\\"N/A\\\")}')\n            print(f'  gpu: {spec.get(\\\"gpu\\\", \\\"N/A\\\")}')\n            print(f'  checkpoint_source: {spec.get(\\\"checkpoint_source\\\", \\\"N/A\\\")}')\n            print(f'  eval_data: {spec.get(\\\"eval_data\\\", \\\"N/A\\\")}')\n        else:\n            print('  spec: NONE')\n        print()\n\"",
+  "description": "Check command format of related LLaMA eval experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-a6b6ec19/137b6086-42d4-42c4-a3d9-623e70f9d705/tool-results/mcp-agent-ml-research-read_registry-1779532491227.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Check recent successful LLaMA eval experiments for their spec/command\nfor eid in ['test_eval_llama_rsft_s43_no_evi', 'test_eval_llama_rsft_s42_with_evi_v2', 'test_eval_llama_rsft_s42']:\n    exp = experiments.get(eid)\n    if exp:\n        print(f'=== {eid} ===')\n        print(f'  status: {exp.get(\\\"status\\\")}')\n        print(f'  conclusion: {exp.get(\\\"conclusion\\\")}')\n        spec = exp.get('spec', {})\n        if spec:\n            print(f'  command: {spec.get(\\\"command\\\", \\\"N/A\\\")}')\n            print(f'  server: {spec.get(\\\"server\\\", \\\"N/A\\\")}')\n            print(f'  gpu: {spec.get(\\\"gpu\\\", \\\"N/A\\\")}')\n            print(f'  checkpoint_source: {spec.get(\\\"checkpoint_source\\\", \\\"N/A\\\")}')\n            print(f'  eval_data: {spec.get(\\\"eval_data\\\", \\\"N/A\\\")}')\n        else:\n            print('  spec: NONE')\n        print()\n\"",
+    "description": "Check command format of related LLaMA eval experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-23T10:36:22.416755+00:00_
+
+=== test_eval_llama_rsft_s43_no_evi ===
+  status: DONE
+  conclusion: success
+  spec: NONE
+
+=== test_eval_llama_rsft_s42_with_evi_v2 ===
+  status: DONE
+  conclusion: failed
+  spec: NONE
+
+=== test_eval_llama_rsft_s42 ===
+  status: DONE
+  conclusion: success
+  spec: NONE
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-23T10:36:33.223825+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-a6b6ec19/137b6086-42d4-42c4-a3d9-623e70f9d705/tool-results/mcp-agent-ml-research-read_registry-1779532491227.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Find recent successful test_eval experiments WITH spec that has command\nfor eid, exp in sorted(experiments.items(), key=lambda x: x[1].get('updated_at',''), reverse=True):\n    if exp.get('conclusion') == 'success' and 'test_eval' in eid:\n        spec = exp.get('spec', {})\n        if spec and spec.get('command'):\n            print(f'=== {eid} ===')\n            print(f'  command: {spec[\\\"command\\\"]}')\n            print(f'  server: {spec.get(\\\"server\\\", \\\"N/A\\\")}')\n            print(f'  gpu: {spec.get(\\\"gpu\\\", \\\"N/A\\\")}')\n            print()\n            break\n\n# Also check experiments with 'llama' and 'rsft' that have commands\nfor eid, exp in sorted(experiments.items(), key=lambda x: x[1].get('updated_at',''), reverse=True):\n    if 'llama' in eid and 'rsft' in eid and exp.get('conclusion') == 'success':\n        spec = exp.get('spec', {})\n        if spec and spec.get('command'):\n            print(f'=== {eid} (llama rsft success) ===')\n            print(f'  command: {spec[\\\"command\\\"]}')\n            print()\n            break\n\n# Also look at test_eval_llama_rsft_s43_with_evi (the s43 version that succeeded)\nfor eid in ['test_eval_llama_rsft_s43_with_evi', 'test_eval_llama_rsft_s43_no_evi']:\n    exp = experiments.get(eid)\n    if exp:\n        spec = exp.get('spec', {})\n        print(f'=== {eid} ===')\n        print(f'  conclusion: {exp.get(\\\"conclusion\\\")}')\n        if spec and spec.get('command'):\n            print(f'  command: {spec[\\\"command\\\"]}')\n        else:\n            print(f'  spec keys: {list(spec.keys()) if spec else \\\"NONE\\\"}')\n        print()\n\"",
+  "description": "Find successful eval experiment with recorded command"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-a6b6ec19/137b6086-42d4-42c4-a3d9-623e70f9d705/tool-results/mcp-agent-ml-research-read_registry-1779532491227.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Find recent successful test_eval experiments WITH spec that has command\nfor eid, exp in sorted(experiments.items(), key=lambda x: x[1].get('updated_at',''), reverse=True):\n    if exp.get('conclusion') == 'success' and 'test_eval' in eid:\n        spec = exp.get('spec', {})\n        if spec and spec.get('command'):\n            print(f'=== {eid} ===')\n            print(f'  command: {spec[\\\"command\\\"]}')\n            print(f'  server: {spec.get(\\\"server\\\", \\\"N/A\\\")}')\n            print(f'  gpu: {spec.get(\\\"gpu\\\", \\\"N/A\\\")}')\n            print()\n            break\n\n# Also check experiments with 'llama' and 'rsft' that have commands\nfor eid, exp in sorted(experiments.items(), key=lambda x: x[1].get('updated_at',''), reverse=True):\n    if 'llama' in eid and 'rsft' in eid and exp.get('conclusion') == 'success':\n        spec = exp.get('spec', {})\n        if spec and spec.get('command'):\n            print(f'=== {eid} (llama rsft success) ===')\n            print(f'  command: {spec[\\\"command\\\"]}')\n            print()\n            break\n\n# Also look at test_eval_llama_rsft_s43_with_evi (the s43 version that succeeded)\nfor eid in ['test_eval_llama_rsft_s43_with_evi', 'test_eval_llama_rsft_s43_no_evi']:\n    exp = experiments.get(eid)\n    if exp:\n        spec = exp.get('spec', {})\n        print(f'=== {eid} ===')\n        print(f'  conclusion: {exp.get(\\\"conclusion\\\")}')\n        if spec and spec.get('command'):\n            print(f'  command: {spec[\\\"command\\\"]}')\n        else:\n            print(f'  spec keys: {list(spec.keys()) if spec else \\\"NONE\\\"}')\n        print()\n\"",
+    "description": "Find successful eval experiment with recorded command"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-23T10:36:33.324664+00:00_
+
+=== test_eval_llama_rsft_s43_with_evi ===
+  conclusion: success
+  spec keys: NONE
+
+=== test_eval_llama_rsft_s43_no_evi ===
+  conclusion: success
+  spec keys: NONE
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-23T10:36:41.052763+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-a6b6ec19/137b6086-42d4-42c4-a3d9-623e70f9d705/tool-results/mcp-agent-ml-research-read_registry-1779532491227.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Find ANY recent experiment with a command in spec\nfound = 0\nfor eid, exp in sorted(experiments.items(), key=lambda x: x[1].get('updated_at',''), reverse=True):\n    spec = exp.get('spec', {})\n    if spec and spec.get('command'):\n        print(f'=== {eid} ===')\n        print(f'  command: {spec[\\\"command\\\"][:300]}')\n        print(f'  server: {spec.get(\\\"server\\\", \\\"N/A\\\")}')\n        print()\n        found += 1\n        if found >= 3:\n            break\n\"",
+  "description": "Find any recent experiment with command in spec"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-a6b6ec19/137b6086-42d4-42c4-a3d9-623e70f9d705/tool-results/mcp-agent-ml-research-read_registry-1779532491227.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Find ANY recent experiment with a command in spec\nfound = 0\nfor eid, exp in sorted(experiments.items(), key=lambda x: x[1].get('updated_at',''), reverse=True):\n    spec = exp.get('spec', {})\n    if spec and spec.get('command'):\n        print(f'=== {eid} ===')\n        print(f'  command: {spec[\\\"command\\\"][:300]}')\n        print(f'  server: {spec.get(\\\"server\\\", \\\"N/A\\\")}')\n        print()\n        found += 1\n        if found >= 3:\n            break\n\"",
+    "description": "Find any recent experiment with command in spec"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-23T10:36:41.153626+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-23T10:36:50.237387+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__check_job_status,mcp__agent-ml-research__get_worker_status",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__check_job_status,mcp__agent-ml-research__get_worker_status",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-23T10:36:50.288035+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-23T10:37:15.462294+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "test_eval_llama_rsft_s42_with_evi_v2",
+  "field": "notes",
+  "value": "失败原因: bash: line 1: python: command not found (EXIT_CODE=127)。提交命令未激活 conda 环境。| 已有成果: 无（启动即失败）| 建议: 重提交，命令前加 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "test_eval_llama_rsft_s42_with_evi_v2",
+    "field": "notes",
+    "value": "失败原因: bash: line 1: python: command not found (EXIT_CODE=127)。提交命令未激活 conda 环境。| 已有成果: 无（启动即失败）| 建议: 重提交，命令前加 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-23T10:37:17.220585+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"test_eval_llama_rsft_s42_with_evi_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T10:32:07.492Z\", \"updated_at\": \"2026-05-23T10:37:16.340Z\", \"hypothesis\": \"LLaMA RSFT s42 with-evi test eval 重跑（当前版本 eval 代码）。原 s42 eval field_compliance=176/500 vs s43=497/500，旧代码版本 confound。用与 s43 完全一致的参数消除跨 seed 对比污染。数据质量修复。\", \"parent\": \"test_eval_llama_rsft_s42\", \"spec\": {\"command\": \"python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_k1 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --batch_size 16 --seed 42 --output_dir /root/autodl-tmp/eval_results/test_eval_llama_rsft_s42_with_evi_v2\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/faith-evidence-ie/test_eval_llama_rsft_s42_with_evi_v2.log\", \"submitted_at\": \"2026-05-23T10:33:02.091Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"LLaMA-3.1-8B + SFT + RSFT-k1-s42 (with-evi, v2)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_llama_3_1_8b_k1\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\", \"wall_clock_seconds\": 85.5, \"gpu_hours\": 0.02}, \"reproduce\": {\"finished_at\": \"2026-05-23T10:34:20.575Z\"}, \"failure_reason\": \"EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-23T10:34:27.578Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-23T10:34:34.338746+00:00\"}]}, \"notes\": \"失败原因: bash: line 1: python: command not found (EXIT_C
+…[truncated 195 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1758
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-23T10:37:17.371775+00:00_
+
+called mcp__agent-ml-research__feishu_send_result_card
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__feishu_send_result_card</summary>
+
+```json
+{
+  "exp_id": "test_eval_llama_rsft_s42_with_evi_v2",
+  "conclusion": "failed",
+  "key_metrics": "{}",
+  "baseline_comparison": "EXIT_CODE=127: python command not found。提交命令未激活 conda 环境，启动即失败，无产出。将自动重提交修复。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__feishu_send_result_card",
+  "tool_args": {
+    "exp_id": "test_eval_llama_rsft_s42_with_evi_v2",
+    "conclusion": "failed",
+    "key_metrics": "{}",
+    "baseline_comparison": "EXIT_CODE=127: python command not found。提交命令未激活 conda 环境，启动即失败，无产出。将自动重提交修复。"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-23T10:37:20.333174+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6e2c78cccca4c3aaa11e498aaf5\", \"chat_id\": \"oc_84537e1e2f9ef71a90742c2db859c6f2\", \"msg_type\": \"interactive\", \"next_required_steps\": \"飞书卡片已发出。请立即完成剩余步骤（不可跳过）： (1) 如有跨实验价值的教训/约定 → save_project_file(file='memory.md', ...) 追加一行； (2) move_idea — 将实验从 IN_PROGRESS 移到对应区块。\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__feishu_send_result_card",
+  "elapsed_ms": 2961
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-23T10:37:36.841572+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__submit_on_allocated",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__submit_on_allocated",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-23T10:37:36.892150+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-23T10:38:10.000916+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "test_eval_llama_rsft_s42_with_evi_v3",
+  "field": "hypothesis",
+  "value": "LLaMA RSFT s42 with-evi test eval 重跑（当前版本 eval 代码）。原 s42 eval field_compliance=176/500 vs s43=497/500，旧代码版本 confound。用与 s43 完全一致的参数消除跨 seed 对比污染。数据质量修复。v2 因未激活 conda 环境 EXIT_CODE=127 失败，本次修复。",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "test_eval_llama_rsft_s42_with_evi_v3",
+    "field": "hypothesis",
+    "value": "LLaMA RSFT s42 with-evi test eval 重跑（当前版本 eval 代码）。原 s42 eval field_compliance=176/500 vs s43=497/500，旧代码版本 confound。用与 s43 完全一致的参数消除跨 seed 对比污染。数据质量修复。v2 因未激活 conda 环境 EXIT_CODE=127 失败，本次修复。",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-23T10:38:10.854192+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "test_eval_llama_rsft_s42_with_evi_v3",
+  "field": "parent",
+  "value": "test_eval_llama_rsft_s42_with_evi_v2",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "test_eval_llama_rsft_s42_with_evi_v3",
+    "field": "parent",
+    "value": "test_eval_llama_rsft_s42_with_evi_v2",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-23T10:38:11.659220+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"test_eval_llama_rsft_s42_with_evi_v3\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T10:38:10.925Z\", \"updated_at\": \"2026-05-23T10:38:10.925Z\", \"hypothesis\": \"LLaMA RSFT s42 with-evi test eval 重跑（当前版本 eval 代码）。原 s42 eval field_compliance=176/500 vs s43=497/500，旧代码版本 confound。用与 s43 完全一致的参数消除跨 seed 对比污染。数据质量修复。v2 因未激活 conda 环境 EXIT_CODE=127 失败，本次修复。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6194}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1658
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-23T10:38:13.317287+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"test_eval_llama_rsft_s42_with_evi_v3\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T10:38:10.925Z\", \"updated_at\": \"2026-05-23T10:38:12.634Z\", \"hypothesis\": \"LLaMA RSFT s42 with-evi test eval 重跑（当前版本 eval 代码）。原 s42 eval field_compliance=176/500 vs s43=497/500，旧代码版本 confound。用与 s43 完全一致的参数消除跨 seed 对比污染。数据质量修复。v2 因未激活 conda 环境 EXIT_CODE=127 失败，本次修复。\", \"parent\": \"test_eval_llama_rsft_s42_with_evi_v2\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6166}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 2463
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-23T10:38:22.409810+00:00_
+
+called mcp__agent-ml-research__submit_training_job
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "gpu_ids": "['cuda:0']",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_k1 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --batch_size 16 --seed 42 --output_dir /root/autodl-tmp/eval_results/test_eval_llama_rsft_s42_with_evi_v3\"",
+  "exp_id": "test_eval_llama_rsft_s42_with_evi_v3",
+  "project": "faith-evidence-ie",
+  "timeout_hours": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "gpu_ids": "['cuda:0']",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_k1 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --batch_size 16 --seed 42 --output_dir /root/autodl-tmp/eval_results/test_eval_llama_rsft_s42_with_evi_v3\"",
+    "exp_id": "test_eval_llama_rsft_s42_with_evi_v3",
+    "project": "faith-evidence-ie",
+    "timeout_hours": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-23T10:38:25.574606+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"pid\": \"245386\", \"log_file\": \"~/runs/faith-evidence-ie/test_eval_llama_rsft_s42_with_evi_v3.log\", \"gpu_ids\": [\"cuda:0\"], \"server\": \"rtx5090-4x\", \"account\": \"root\", \"cuda_visible_devices\": \"0\", \"backend\": \"tmux\", \"tmux_session\": \"test_eval_llama_rsft_s42_with_evi_v3\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.15}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "elapsed_ms": 3164
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-23T10:38:36.543286+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "test_eval_llama_rsft_s42_with_evi_v3",
+  "field": "spec",
+  "value": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_k1 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --batch_size 16 --seed 42 --output_dir /root/autodl-tmp/eval_results/test_eval_llama_rsft_s42_with_evi_v3\"', 'server': 'rtx5090-4x', 'data_path': '/root/autodl-tmp/data/re-docred-repo/data', 'data_count': 500, 'model_name': 'LLaMA-3.1-8B + SFT + RSFT-k1-s42 (with-evi, v3)', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/rsft_output_llama_3_1_8b_k1', 'eval_data': 'Re-DocRED test_revised (500 docs)'}",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "test_eval_llama_rsft_s42_with_evi_v3",
+    "field": "spec",
+    "value": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_k1 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --batch_size 16 --seed 42 --output_dir /root/autodl-tmp/eval_results/test_eval_llama_rsft_s42_with_evi_v3\"', 'server': 'rtx5090-4x', 'data_path': '/root/autodl-tmp/data/re-docred-repo/data', 'data_count': 500, 'model_name': 'LLaMA-3.1-8B + SFT + RSFT-k1-s42 (with-evi, v3)', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/rsft_output_llama_3_1_8b_k1', 'eval_data': 'Re-DocRED test_revised (500 docs)'}",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-23T10:38:37.346701+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "log_path": "~/runs/faith-evidence-ie/test_eval_llama_rsft_s42_with_evi_v3.log",
+  "n": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "log_path": "~/runs/faith-evidence-ie/test_eval_llama_rsft_s42_with_evi_v3.log",
+    "n": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-23T10:38:38.289342+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"test_eval_llama_rsft_s42_with_evi_v3\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T10:38:10.925Z\", \"updated_at\": \"2026-05-23T10:38:37.514Z\", \"hypothesis\": \"LLaMA RSFT s42 with-evi test eval 重跑（当前版本 eval 代码）。原 s42 eval field_compliance=176/500 vs s43=497/500，旧代码版本 confound。用与 s43 完全一致的参数消除跨 seed 对比污染。数据质量修复。v2 因未激活 conda 环境 EXIT_CODE=127 失败，本次修复。\", \"parent\": \"test_eval_llama_rsft_s42_with_evi_v2\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_k1 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --batch_size 16 --seed 42 --output_dir /root/autodl-tmp/eval_results/test_eval_llama_rsft_s42_with_evi_v3\\\"\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"LLaMA-3.1-8B + SFT + RSFT-k1-s42 (with-evi, v3)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_llama_3_1_8b_k1\", \"eval_data\": \"Re-DocRED test_revised (500 docs)\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7633}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1746
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-23T10:38:38.741496+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"2026-05-23 18:38:27,522 INFO Detected adapter at /root/autodl-tmp/rsft_output_llama_3_1_8b_k1, base: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\", \"2026-05-23 18:38:27,522 INFO Loading tokenizer: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\", \"2026-05-23 18:38:28,229 INFO Loading model: /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\", \"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\", \"\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/291 [00:00<00:33,  8.65it/s]\\rLoading weights:   1%|          | 2/291 [00:00<00:37,  7.74it/s]\\rLoading weights:   5%|▌         | 15/291 [00:00<00:05, 52.81it/s]\\rLoading weights:  11%|█         | 32/291 [00:00<00:02, 88.29it/s]\\rLoading weights:  17%|█▋        | 49/291 [00:00<00:02, 109.06it/s]\\rLoading weights:  21%|██        | 61/291 [00:00<00:02, 111.60it/s]\\rLoading weights:  26%|██▋       | 77/291 [00:00<00:01, 120.74it/s]\\rLoading weights:  31%|███▏      | 91/291 [00:00<00:01, 125.97it/s]\\rLoading weights:  36%|███▌      | 105/291 [00:01<00:01, 124.12it/s]\\rLoading weights:  42%|████▏     | 122/291 [00:01<00:01, 132.78it/s]\\rLoading weights:  47%|████▋     | 137/291 [00:01<00:01, 112.77it/s]\\rLoading weights:  56%|█████▌    | 163/291 [00:01<00:00, 148.82it/s]\\rLoading weights:  62%|██████▏   | 180/291 [00:01<00:00, 130.01it/s]\\rLoading weights:  70%|██████▉   | 203/291 [00:01<00:00, 151.81it/s]\\rLoading weights:  76%|███████▌  | 220/291 [00:01<00:00, 153.62it/s]\\rLoading weights:  81%|████████▏ | 237/291 [00:01<00:00, 154.53it/s]\\rLoading weights:  87%|████████▋ | 254/291 [00:02<00:00, 151.53it/s]\\rLoading weights:  93%|█████████▎| 270/291 [00:02<00:00, 133.87it/s]\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 127.32it/s]\", \"2026-05-23 18:38:31,257 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_llama_3_1_8b\", \"2026-05-23 18:38:32,
+…[truncated 385 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 1394
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-23T10:38:50.791900+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+  "limit": "30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+    "limit": "30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-23T10:38:50.842758+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-23T10:39:02.488811+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 4/4 | Worker 0 (GPU 0 / CPU 0) | 磁盘: rtx5090-4x 815GB 可用 (3%)\n\n**test_eval_llama_rsft_s42_with_evi_v2 失败 → 已自修复重提交 v3**\n\n失败原因：`bash: line 1: python: command not found` (EXIT_CODE=127)。submit_training_job 的 tmux 用 sh 执行，`python` 不在 sh PATH 中，需 `bash -c` 包裹 conda 激活命令。\n\n修复：创建 test_eval_llama_rsft_s42_with_evi_v3，命令加 `bash -c \"source conda && python ...\"` 包裹，已在 cuda:0 上启动（PID=245386），模型加载完成，正在推理 0/32 batches。\n\n当前 GPU 满载：\n- cuda:0: test_eval_llama_rsft_s42_with_evi_v3（LLaMA RSFT s42 with-evi test eval）\n- cuda:1: plan017_14b_rsft_s43_generate（14B generation ~62%）\n- cuda:2: dpo_rebuilt_3ep_eval（DPO 3ep eval）\n- cuda:3: test_eval_4b_rsft_s44_with_evi（4B s44 with-evi test eval）",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 4/4 | Worker 0 (GPU 0 / CPU 0) | 磁盘: rtx5090-4x 815GB 可用 (3%)\n\n**test_eval_llama_rsft_s42_with_evi_v2 失败 → 已自修复重提交 v3**\n\n失败原因：`bash: line 1: python: command not found` (EXIT_CODE=127)。submit_training_job 的 tmux 用 sh 执行，`python` 不在 sh PATH 中，需 `bash -c` 包裹 conda 激活命令。\n\n修复：创建 test_eval_llama_rsft_s42_with_evi_v3，命令加 `bash -c \"source conda && python ...\"` 包裹，已在 cuda:0 上启动（PID=245386），模型加载完成，正在推理 0/32 batches。\n\n当前 GPU 满载：\n- cuda:0: test_eval_llama_rsft_s42_with_evi_v3（LLaMA RSFT s42 with-evi test eval）\n- cuda:1: plan017_14b_rsft_s43_generate（14B generation ~62%）\n- cuda:2: dpo_rebuilt_3ep_eval（DPO 3ep eval）\n- cuda:3: test_eval_4b_rsft_s44_with_evi（4B s44 with-evi test eval）",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-23T10:39:03.693729+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 1204
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-23T10:39:12.815558+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-23T10:39:12.866163+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-23T10:39:37.624092+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "memory.md",
+  "content": "## 全 scale evidence tax 汇总 (test_revised, 500 docs, RSFT CED k=1)\n\n### 1.7B (Qwen3) — 2 seeds\n| Seed | with-evi | no-evi | Tax (pp) |\n|------|----------|--------|----------|\n| s42  | 0.2933   | 0.2390 | −5.43    |\n| s43  | 0.2870   | 0.2410 | −4.60    |\n| **mean** | **0.2902** | **0.2400** | **−5.02 ± 0.59** |\n\n### 4B (Qwen3) — 2 seeds (s44 训练中，即将补齐)\n| Seed | with-evi | no-evi | Tax (pp) |\n|------|----------|--------|----------|\n| s42  | 0.2503   | 0.2654 | +1.51    |\n| s43  | 0.2503   | 0.2702 | +1.99    |\n| **mean** | **0.2503** | **0.2678** | **+1.75 ± 0.34** |\n\n### 8B (Qwen3) — 3 seeds ✅\n| Seed | with-evi | no-evi | Tax (pp) |\n|------|----------|--------|----------|\n| s42  | 0.3353   | 0.3319 | −0.34    |\n| s43  | 0.3398   | 0.3224 | −1.74    |\n| s44  | 0.3329   | 0.3264 | −0.65    |\n| **mean** | **0.3360** | **0.3269** | **−0.91 ± 0.74** |\n\n### LLaMA 8B — 2 seeds\n| Seed | with-evi | no-evi | Tax (pp) |\n|------|----------|--------|----------|\n| s42  | 0.3599   | 0.3334 | −2.65    |\n| s43  | 0.3488   | 0.3371 | −1.17    |\n| **mean** | **0.3544** | **0.3353** | **−1.91 ± 1.05** |\n\n### 趋势\n- 1.7B/8B/LLaMA 8B: evidence tax 为负（evidence 帮助），1.7B 最显著\n- 4B: evidence tax 为正（evidence 反伤），可能因 4B 容量不足无法利用长 evidence\n- 4B s44 训练已完成 (rsft_output_ced_s44)，eval 进行中\n\n## DPO rebuilt eval (matched@2048, dev)\n- 1ep: **ign_f1 = 0.3223** (原始报告 38.9%，可能 @1024 protocol)\n- 3ep: 训练完成 (loss=0.30, accuracy=0.87)，过拟合迹象，eval 进行中\n- DPO 劣于 SFT baseline (ign_f1≈39.7%) 和 RSFT CED (ign_f1=44.67%)\n\n## LLM baseline numbers (2026-05-23 调研)\n- AutoRE (dev, ign_f1): 52.14 (第三方复现)\n- RelPrior (dev, ign_f1): 55.50 (当前 LLM SOTA)\n- GLiDRE 不是 LLM 方法 (encoder-based)，不列入 LLM baseline\n\n## 失败模式记录\n- [失败模式] infrastructure：submit_training_job 的 tmux 用 sh 而非 bash 执行命令，`python` / `source` 等 bash 内置命令会报 command not found (EXIT_CODE=127) → 修复方案：命令必须用 `bash -c \"...\"` 包裹，或使用 Python 绝对路径 `/root/miniconda3/bin/python`\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "memory.md",
+    "content": "## 全 scale evidence tax 汇总 (test_revised, 500 docs, RSFT CED k=1)\n\n### 1.7B (Qwen3) — 2 seeds\n| Seed | with-evi | no-evi | Tax (pp) |\n|------|----------|--------|----------|\n| s42  | 0.2933   | 0.2390 | −5.43    |\n| s43  | 0.2870   | 0.2410 | −4.60    |\n| **mean** | **0.2902** | **0.2400** | **−5.02 ± 0.59** |\n\n### 4B (Qwen3) — 2 seeds (s44 训练中，即将补齐)\n| Seed | with-evi | no-evi | Tax (pp) |\n|------|----------|--------|----------|\n| s42  | 0.2503   | 0.2654 | +1.51    |\n| s43  | 0.2503   | 0.2702 | +1.99    |\n| **mean** | **0.2503** | **0.2678** | **+1.75 ± 0.34** |\n\n### 8B (Qwen3) — 3 seeds ✅\n| Seed | with-evi | no-evi | Tax (pp) |\n|------|----------|--------|----------|\n| s42  | 0.3353   | 0.3319 | −0.34    |\n| s43  | 0.3398   | 0.3224 | −1.74    |\n| s44  | 0.3329   | 0.3264 | −0.65    |\n| **mean** | **0.3360** | **0.3269** | **−0.91 ± 0.74** |\n\n### LLaMA 8B — 2 seeds\n| Seed | with-evi | no-evi | Tax (pp) |\n|------|----------|--------|----------|\n| s42  | 0.3599   | 0.3334 | −2.65    |\n| s43  | 0.3488   | 0.3371 | −1.17    |\n| **mean** | **0.3544** | **0.3353** | **−1.91 ± 1.05** |\n\n### 趋势\n- 1.7B/8B/LLaMA 8B: evidence tax 为负（evidence 帮助），1.7B 最显著\n- 4B: evidence tax 为正（evidence 反伤），可能因 4B 容量不足无法利用长 evidence\n- 4B s44 训练已完成 (rsft_output_ced_s44)，eval 进行中\n\n## DPO rebuilt eval (matched@2048, dev)\n- 1ep: **ign_f1 = 0.3223** (原始报告 38.9%，可能 @1024 protocol)\n- 3ep: 训练完成 (loss=0.30, accuracy=0.87)，过拟合迹象，eval 进行中\n- DPO 劣于 SFT baseline (ign_f1≈39.7%) 和 RSFT CED (ign_f1=44.67%)\n\n## LLM baseline numbers (2026-05-23 调研)\n- AutoRE (dev, ign_f1): 52.14 (第三方复现)\n- RelPrior (dev, ign_f1): 55.50 (当前 LLM SOTA)\n- GLiDRE 不是 LLM 方法 (encoder-based)，不列入 LLM baseline\n\n## 失败模式记录\n- [失败模式] infrastructure：submit_training_job 的 tmux 用 sh 而非 bash 执行命令，`python` / `source` 等 bash 内置命令会报 command not found (EXIT_CODE=127) → 修复方案：命令必须用 `bash -c \"...\"` 包裹，或使用 Python 绝对路径 `/root/miniconda3/bin/python`\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-23T10:39:37.624988+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64 · 2026-05-23T10:39:45.041399+00:00_
+
+诊断和修复完成。
+
+**总结**：
+- `test_eval_llama_rsft_s42_with_evi_v2` 失败原因：tmux 用 `sh` 执行命令，`python` 不在 PATH 中（EXIT_CODE=127）
+- 已创建 `test_eval_llama_rsft_s42_with_evi_v3`，命令用 `bash -c` 包裹 conda 激活，在 cuda:0 上启动成功，正在推理
+- Registry、memory.md 已更新，飞书结果卡片已发送，Director 已汇报
+- 4 张 GPU 全部满载运行
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:test_eval_llama_rsft_s42_with_evi_v2"
+}
+```
+
+</details>
+
+---

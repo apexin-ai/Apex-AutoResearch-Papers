@@ -1,0 +1,38 @@
+{
+  "exp_id": "lead1_ced_evidence_filter",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:54:50.206Z",
+    "updated_at": "2026-05-17T12:55:54.239Z",
+    "spec": {
+      "command": "python -m eval.ced_evidence_filter --predictions_path /root/autodl-tmp/eval_results/rsft_s43_dev_eval_preds/predictions.json --tau_values 0.3 0.5 0.7 --output_dir /root/autodl-tmp/lead1_ced_filter_results",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "441954",
+      "log_path": "/root/autodl-tmp/lead1_ced_filter_results/summary.json",
+      "submitted_at": "2026-05-17T11:54:49.626Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_source": "rsft_s43_dev_eval_preds",
+      "checkpoint_path": "/root/autodl-tmp/lead1_ced_filter_results/",
+      "model_name": "NLI-filter-on-rsft_s43",
+      "data_path": "/root/autodl-tmp/eval_results/rsft_s43_dev_eval_preds/predictions.json",
+      "data_count": 14976,
+      "seed": 42,
+      "wall_clock_seconds": 3664.6,
+      "gpu_hours": 1.02
+    },
+    "conclusion": "negative",
+    "hypothesis": "Post-hoc NLI-based sentence-level filtering of model-generated evidence will improve evidence precision without significant recall loss, because the NLI model can identify sentences that do not entail the predicted relation and remove them as distractors.",
+    "completed_at": "2026-05-17T12:55:54.239Z"
+  },
+  "timestamp": "2026-05-17T12:55:54.613106+00:00",
+  "trigger": "update_registry"
+}

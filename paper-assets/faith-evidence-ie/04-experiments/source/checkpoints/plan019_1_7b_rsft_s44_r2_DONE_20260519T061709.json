@@ -1,0 +1,28 @@
+{
+  "exp_id": "plan019_1_7b_rsft_s44_r2",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T04:26:18.370Z",
+    "updated_at": "2026-05-19T06:17:08.769Z",
+    "hypothesis": "D114 Method A: 1.7B RSFT k=1 s44 重跑。使用 s42 SFT adapter (sft_output_qwen3_1_7b_bf16) + s42 CED k=1 scored data, RSFT seed=44。验证 1.7B 尺度 RSFT 增益跨 seed 稳健性。",
+    "parent": "plan019_1_7b_rsft_s44",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s44/",
+      "log_path": "/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s44/checkpoint-567/trainer_state.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "train_loss": 0.5538,
+      "final_step": 567,
+      "epoch": 3,
+      "mean_token_accuracy": 0.8706
+    },
+    "completed_at": "2026-05-19T06:17:08.769Z"
+  },
+  "timestamp": "2026-05-19T06:17:09.349528+00:00",
+  "trigger": "update_registry"
+}

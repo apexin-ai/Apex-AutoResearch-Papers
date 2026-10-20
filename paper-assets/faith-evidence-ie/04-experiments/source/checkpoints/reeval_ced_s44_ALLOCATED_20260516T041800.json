@@ -1,0 +1,32 @@
+{
+  "exp_id": "reeval_ced_s44",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:38:00.052Z",
+    "updated_at": "2026-05-16T04:17:59.991Z",
+    "hypothesis": "Re-eval CED RSFT s44 with unified protocol: batch_size=4 + --no-quantize + --sft_adapter + max_new_tokens=1024 + seed=44. 原 eval 用了 batch_size≈16 且 seed=42（错误）。Paired t-test 关键路径。",
+    "parent": "mvp2_rsft_train_r1_s44",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES={GPU} HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s44/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 44 --output_dir /root/autodl-tmp/eval_results/rsft_ced_s44_reeval --no-quantize\"",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT + CED RSFT s44",
+      "seed": 44,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_s44/checkpoint-510",
+      "eval_data": "docred dev (985 docs)",
+      "gpu": [
+        "cuda:0"
+      ],
+      "account": "root"
+    },
+    "notes": "正确 checkpoint: /root/autodl-tmp/rsft_output_s44/checkpoint-510。旧 eval 路径一致但可能用了根目录 adapter 而非 checkpoint-510 子目录。",
+    "gpu": "cuda:3"
+  },
+  "timestamp": "2026-05-16T04:18:00.325019+00:00",
+  "trigger": "update_registry"
+}

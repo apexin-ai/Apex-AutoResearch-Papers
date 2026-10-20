@@ -1,0 +1,2912 @@
+# research trl grpo stability
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 44
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/workers/worker_research_trl-grpo-stability_20260514T102228.log`
+- **Structured JSON:** [`69a8626505490e301212.json`](../../sessions/69/69a8626505490e301212.json)
+
+## Before a recorded user message
+
+44 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "ce9f9fba-317d-44f5-b488-2400f8fb2691",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778768400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "caaa8dcd-94ea-4a85-bcdd-6770cebb514a",
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我来调研 TRL 1.1.0 GRPO 训练稳定性机制。先加载需要的工具。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "8ff6ca56-5c8e-4442-94df-2ad4efceb417",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D62iWepXmkaj2j6Zew5yeG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11481,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11481
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01WH7hVkQX9NWb9Cv9Qk8NqM`</summary>
+
+```json
+{
+  "query": "select:WebSearch,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "3331afd5-03c7-42a7-93e1-053019d11a24",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D62iWepXmkaj2j6Zew5yeG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11481,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11481
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T10:22:41.487Z_
+
+<details><summary>↩ Tool result · `toolu_01WH7hVkQX9NWb9Cv9Qk8NqM`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "70800a3c-abf3-4fb2-ad39-8ec909b61909",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:WebSearch,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me perform multiple web searches in parallel to gather information about TRL 1.1.0 GRPO implementation details.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "4a5136d1-b679-46fd-b663-616535d66706",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ThtJpqGay4itGyAVxn89Ep",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1519,
+      "cache_read_input_tokens": 23322,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1519
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+开始并行搜索 TRL 1.1.0 GRPO 相关信息。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "768bf051-9621-43b2-83b4-6c707ddf2513",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ThtJpqGay4itGyAVxn89Ep",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1519,
+      "cache_read_input_tokens": 23322,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1519
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YaaXKPnJVtab32M863VXMt`</summary>
+
+```json
+{
+  "query": "TRL 1.1.0 GRPOTrainer source code cliprange epsilon beta kl_coef parameters 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "0fb0095d-f9ac-484b-bdd8-2171fb35a533",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ThtJpqGay4itGyAVxn89Ep",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1519,
+      "cache_read_input_tokens": 23322,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1519
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019BRnNzum2Cut7myok4vZ1H`</summary>
+
+```json
+{
+  "query": "TRL GRPOConfig parameters policy constraint clipping KL penalty reference model"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "5e506061-b2cb-427f-9ca3-e6b8c7dda49a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ThtJpqGay4itGyAVxn89Ep",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1519,
+      "cache_read_input_tokens": 23322,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1519
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UwR3tGXz1ZBAap54u9w9tL`</summary>
+
+```json
+{
+  "query": "TRL GRPO mode collapse training instability reward hacking fix"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "1fe80a00-8476-45b0-9e70-fea90f210a74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ThtJpqGay4itGyAVxn89Ep",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1519,
+      "cache_read_input_tokens": 23322,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1519
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015fWLn7HMFMEAzYcMd5hkZc`</summary>
+
+```json
+{
+  "query": "GRPO clip_ratio 0.0 PPO clipping difference policy drift prevention"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "8d2e4256-7137-40fd-8072-8197fbdc087c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ThtJpqGay4itGyAVxn89Ep",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1519,
+      "cache_read_input_tokens": 23322,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1519
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T10:22:53.230Z_
+
+<details><summary>↩ Tool result · `toolu_01YaaXKPnJVtab32M863VXMt`</summary>
+
+```text
+Web search results for query: "TRL 1.1.0 GRPOTrainer source code cliprange epsilon beta kl_coef parameters 2025 2026"
+
+Links: [{"title":"trl/trl/trainer/grpo_config.py at main · huggingface/trl","url":"https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_config.py"},{"title":"trl/trl/trainer/grpo_trainer.py at main · huggingface/trl","url":"https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_trainer.py"},{"title":"Trainer","url":"https://huggingface.co/docs/trl/main/en/trainer"},{"title":"trl/docs/source/grpo_trainer.md at main · huggingface/trl","url":"https://github.com/huggingface/trl/blob/main/docs/source/grpo_trainer.md"},{"title":"The Illustrated GRPO: A Detailed and Pedagogical Explanation of Group Relative Policy Optimization (GRPO) Algorithm | A thorough, pedagogical, and comprehensive guide to the GRPO algorithm for fine-tuning LLMs to enhance their reasoning abilities. Ideal for those seeking an in-depth understanding of the GRPO Algorithm, its logic, the maths behind it, its implementation, and a practical guide to perform GRPO fine-tuning.","url":"https://abderrahmanskiredj.github.io/the-illustrated-grpo/"},{"title":"GRPO Trainer · Hugging Face","url":"https://huggingface.co/docs/trl/main/en/grpo_trainer"},{"title":"PPO Trainer","url":"https://huggingface.co/docs/trl/main/en/ppo_trainer"},{"title":"Training your reasoning models with GRPO: A practical guide for VLMs Post Training with TRL | Towards AI","url":"https://towardsai.net/p/machine-learning/training-your-reasoning-models-with-grpo-a-practical-guide-for-vlms-post-training-with-trl"},{"title":"Logging · Hugging Face","url":"https://huggingface.co/docs/trl/main/en/logging"},{"title":"Question regarding GRPOTrainer's advantage clipping · Issue #3757 · huggingface/trl","url":"https://github.com/huggingface/trl/issues/3757"}]
+
+Based on the web search results, I found information about the TRL GRPOTrainer parameters you're asking about. Here's what I discovered:
+
+## GRPOTrainer Parameters
+
+**epsilon** (`float`, *optional*, defaults to `0.2`) - This is the lower-bound clipping value for the policy ratio.
+
+**epsilon_high** (Upper-bound epsilon value for clipping): If not specified, it defaults to the same value as the lower-bound specified in argument `epsilon`. Paper DAPO recommends `0.28`.
+
+**kl_coef** (KL coefficient): If `0.0` (default), the reference model is not loaded, reducing memory usage and improving training speed. DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning use a value of `0.001`.
+
+**beta** - If you wish to include the KL divergence term, you can set beta in [GRPOConfig] to a non-zero value.
+
+**cliprange** - Enables the upper clipping bound in two-sided GRPO loss when set to a float. If `None` (default), standard GRPO clipping is used.
+
+## Source Code References
+
+The source code for GRPOTrainer is available on GitHub:
+- trl/trainer/grpo_config.py at main · huggingface/trl
+- trl/trainer/grpo_trainer.py at main · huggingface/trl
+
+These files contain the implementation details and parameter definitions for the GRPOTrainer with all the configuration options you're interested in.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "12449300-8cb5-44eb-9d2a-5b434e34e589",
+  "tool_use_result": {
+    "query": "TRL 1.1.0 GRPOTrainer source code cliprange epsilon beta kl_coef parameters 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Y7ivk3TJXbHuyfENvznhcm",
+        "content": [
+          {
+            "title": "trl/trl/trainer/grpo_config.py at main · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_config.py"
+          },
+          {
+            "title": "trl/trl/trainer/grpo_trainer.py at main · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_trainer.py"
+          },
+          {
+            "title": "Trainer",
+            "url": "https://huggingface.co/docs/trl/main/en/trainer"
+          },
+          {
+            "title": "trl/docs/source/grpo_trainer.md at main · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/blob/main/docs/source/grpo_trainer.md"
+          },
+          {
+            "title": "The Illustrated GRPO: A Detailed and Pedagogical Explanation of Group Relative Policy Optimization (GRPO) Algorithm | A thorough, pedagogical, and comprehensive guide to the GRPO algorithm for fine-tuning LLMs to enhance their reasoning abilities. Ideal for those seeking an in-depth understanding of the GRPO Algorithm, its logic, the maths behind it, its implementation, and a practical guide to perform GRPO fine-tuning.",
+            "url": "https://abderrahmanskiredj.github.io/the-illustrated-grpo/"
+          },
+          {
+            "title": "GRPO Trainer · Hugging Face",
+            "url": "https://huggingface.co/docs/trl/main/en/grpo_trainer"
+          },
+          {
+            "title": "PPO Trainer",
+            "url": "https://huggingface.co/docs/trl/main/en/ppo_trainer"
+          },
+          {
+            "title": "Training your reasoning models with GRPO: A practical guide for VLMs Post Training with TRL | Towards AI",
+            "url": "https://towardsai.net/p/machine-learning/training-your-reasoning-models-with-grpo-a-practical-guide-for-vlms-post-training-with-trl"
+          },
+          {
+            "title": "Logging · Hugging Face",
+            "url": "https://huggingface.co/docs/trl/main/en/logging"
+          },
+          {
+            "title": "Question regarding GRPOTrainer's advantage clipping · Issue #3757 · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/issues/3757"
+          }
+        ]
+      },
+      "Based on the web search results, I found information about the TRL GRPOTrainer parameters you're asking about. Here's what I discovered:\n\n## GRPOTrainer Parameters\n\n**epsilon** (`float`, *optional*, defaults to `0.2`) - This is the lower-bound clipping value for the policy ratio.\n\n**epsilon_high** (Upper-bound epsilon value for clipping): If not specified, it defaults to the same value as the lower-bound specified in argument `epsilon`. Paper DAPO recommends `0.28`.\n\n**kl_coef** (KL coefficient): If `0.0` (default), the reference model is not loaded, reducing memory usage and improving training speed. DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning use a value of `0.001`.\n\n**beta** - If you wish to include the KL divergence term, you can set beta in [GRPOConfig] to a non-zero value.\n\n**cliprange** - Enables the upper clipping bound in two-sided GRPO loss when set to a float. If `None` (default), standard GRPO clipping is used.\n\n## Source Code References\n\nThe source code for GRPOTrainer is available on GitHub:\n- trl/trainer/grpo_config.py at main · huggingface/trl\n- trl/trainer/grpo_trainer.py at main · huggingface/trl\n\nThese files contain the implementation details and parameter definitions for the GRPOTrainer with all the configuration options you're interested in."
+    ],
+    "durationSeconds": 7.321462616999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T10:22:53.900Z_
+
+<details><summary>↩ Tool result · `toolu_019BRnNzum2Cut7myok4vZ1H`</summary>
+
+```text
+Web search results for query: "TRL GRPOConfig parameters policy constraint clipping KL penalty reference model"
+
+Links: [{"title":"trl/trl/trainer/grpo_config.py at main · huggingface/trl","url":"https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_config.py"},{"title":"The Illustrated GRPO: A Detailed and Pedagogical Explanation of Group Relative Policy Optimization (GRPO) Algorithm | A thorough, pedagogical, and comprehensive guide to the GRPO algorithm for fine-tuning LLMs to enhance their reasoning abilities. Ideal for those seeking an in-depth understanding of the GRPO Algorithm, its logic, the maths behind it, its implementation, and a practical guide to perform GRPO fine-tuning.","url":"https://abderrahmanskiredj.github.io/the-illustrated-grpo/"},{"title":"Group Relative Policy Optimization (GRPO) | huggingface/trl | DeepWiki","url":"https://deepwiki.com/huggingface/trl/5-group-relative-policy-optimization-(grpo)"},{"title":"GRPO Trainer · Hugging Face","url":"https://huggingface.co/docs/trl/main/en/grpo_trainer"},{"title":"trl/trl/trainer/grpo_trainer.py at main · huggingface/trl","url":"https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_trainer.py"},{"title":"Logging · Hugging Face","url":"https://huggingface.co/docs/trl/main/en/logging"},{"title":"Training with GRPOTrainer - Stephen Diehl","url":"https://www.stephendiehl.com/posts/grpotrainer/"},{"title":"A Practical Guide to Fine-Tuning Language Models w... - Cloudera Community - 411583","url":"https://community.cloudera.com/t5/Community-Articles/A-Practical-Guide-to-Fine-Tuning-Language-Models-with-GRPO/ta-p/411583"},{"title":"Training your reasoning models with GRPO: A practical guide for VLMs Post Training with TRL | Towards AI","url":"https://towardsai.net/p/machine-learning/training-your-reasoning-models-with-grpo-a-practical-guide-for-vlms-post-training-with-trl"},{"title":"From PPO to GRPO to DAPO: Understanding RL for LLMs and Every Training Parameter Explained","url":"https://blog.softmaxdata.com/from-ppo-to-grpo-to-dapo-understanding-rl-for-llms-and-every-training-parameter-explained/"}]
+
+I've found comprehensive information about TRL's GRPOConfig parameters related to policy constraint clipping, KL penalty, and reference model. Here's a summary of the key findings:
+
+## Policy Constraint Clipping
+
+The GRPO loss function uses clipping with epsilon setting the lower bound (epsilon_low), and epsilon_high setting the upper bound for asymmetric clipping used in DAPO. The epsilon parameter defaults to 0.2, and enables the upper clipping bound in two-sided GRPO loss when set to a float, with standard GRPO clipping used if None (default).
+
+Standard GRPO has a single clip range that limits model changes, while DAPO decouples this into separate upper and lower bounds that can be set with epsilon (lower bound) and epsilon_high (upper bound).
+
+## KL Penalty and Reference Model
+
+The KL coefficient defaults to 0.0, meaning the reference model is not loaded, reducing memory usage and improving training speed. When beta > 0.0, a KL divergence term is added to the loss to penalize deviation from the reference policy.
+
+The use_bias_correction_kl parameter is a boolean (defaults to False) that determines whether to use the unbiased KL divergence estimator with importance sampling correction, which corrects the KL divergence estimate by multiplying it with the importance sampling ratio.
+
+## Additional Constraints
+
+The off_policy_mask_threshold parameter enables off-policy sequence masking, which masks out sequences with negative advantages and high KL divergence to stabilize training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "a8af97b4-dcd0-42f7-a96e-9c368efe58da",
+  "tool_use_result": {
+    "query": "TRL GRPOConfig parameters policy constraint clipping KL penalty reference model",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015pB7eSxZCrVPaipUHbHq3n",
+        "content": [
+          {
+            "title": "trl/trl/trainer/grpo_config.py at main · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_config.py"
+          },
+          {
+            "title": "The Illustrated GRPO: A Detailed and Pedagogical Explanation of Group Relative Policy Optimization (GRPO) Algorithm | A thorough, pedagogical, and comprehensive guide to the GRPO algorithm for fine-tuning LLMs to enhance their reasoning abilities. Ideal for those seeking an in-depth understanding of the GRPO Algorithm, its logic, the maths behind it, its implementation, and a practical guide to perform GRPO fine-tuning.",
+            "url": "https://abderrahmanskiredj.github.io/the-illustrated-grpo/"
+          },
+          {
+            "title": "Group Relative Policy Optimization (GRPO) | huggingface/trl | DeepWiki",
+            "url": "https://deepwiki.com/huggingface/trl/5-group-relative-policy-optimization-(grpo)"
+          },
+          {
+            "title": "GRPO Trainer · Hugging Face",
+            "url": "https://huggingface.co/docs/trl/main/en/grpo_trainer"
+          },
+          {
+            "title": "trl/trl/trainer/grpo_trainer.py at main · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_trainer.py"
+          },
+          {
+            "title": "Logging · Hugging Face",
+            "url": "https://huggingface.co/docs/trl/main/en/logging"
+          },
+          {
+            "title": "Training with GRPOTrainer - Stephen Diehl",
+            "url": "https://www.stephendiehl.com/posts/grpotrainer/"
+          },
+          {
+            "title": "A Practical Guide to Fine-Tuning Language Models w... - Cloudera Community - 411583",
+            "url": "https://community.cloudera.com/t5/Community-Articles/A-Practical-Guide-to-Fine-Tuning-Language-Models-with-GRPO/ta-p/411583"
+          },
+          {
+            "title": "Training your reasoning models with GRPO: A practical guide for VLMs Post Training with TRL | Towards AI",
+            "url": "https://towardsai.net/p/machine-learning/training-your-reasoning-models-with-grpo-a-practical-guide-for-vlms-post-training-with-trl"
+          },
+          {
+            "title": "From PPO to GRPO to DAPO: Understanding RL for LLMs and Every Training Parameter Explained",
+            "url": "https://blog.softmaxdata.com/from-ppo-to-grpo-to-dapo-understanding-rl-for-llms-and-every-training-parameter-explained/"
+          }
+        ]
+      },
+      "I've found comprehensive information about TRL's GRPOConfig parameters related to policy constraint clipping, KL penalty, and reference model. Here's a summary of the key findings:\n\n## Policy Constraint Clipping\n\nThe GRPO loss function uses clipping with epsilon setting the lower bound (epsilon_low), and epsilon_high setting the upper bound for asymmetric clipping used in DAPO. The epsilon parameter defaults to 0.2, and enables the upper clipping bound in two-sided GRPO loss when set to a float, with standard GRPO clipping used if None (default).\n\nStandard GRPO has a single clip range that limits model changes, while DAPO decouples this into separate upper and lower bounds that can be set with epsilon (lower bound) and epsilon_high (upper bound).\n\n## KL Penalty and Reference Model\n\nThe KL coefficient defaults to 0.0, meaning the reference model is not loaded, reducing memory usage and improving training speed. When beta > 0.0, a KL divergence term is added to the loss to penalize deviation from the reference policy.\n\nThe use_bias_correction_kl parameter is a boolean (defaults to False) that determines whether to use the unbiased KL divergence estimator with importance sampling correction, which corrects the KL divergence estimate by multiplying it with the importance sampling ratio.\n\n## Additional Constraints\n\nThe off_policy_mask_threshold parameter enables off-policy sequence masking, which masks out sequences with negative advantages and high KL divergence to stabilize training."
+    ],
+    "durationSeconds": 7.545620822000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T10:22:56.101Z_
+
+<details><summary>↩ Tool result · `toolu_015fWLn7HMFMEAzYcMd5hkZc`</summary>
+
+```text
+Web search results for query: "GRPO clip_ratio 0.0 PPO clipping difference policy drift prevention"
+
+Links: [{"title":"Generalized Ratio-Clipping Policy Optimization","url":"https://www.emergentmind.com/topics/generalized-ratio-clipping-policy-optimization-grpo"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=Gradient-Preserving+clipping+Policy+Optimization"},{"title":"Beyond PPO - The New Wave of Policy Optimization Techniques for LLM Post-Training | yadnyesh's blog","url":"https://ydnyshhh.github.io/posts/policy_optimization/"},{"title":"Non-Asymptotic Global Convergence of PPO-Clip","url":"https://arxiv.org/html/2512.16565"},{"title":"2025-07-29 Group Sequence Policy Optimization Chujie Zheng∗ Shixuan Liu","url":"https://arxiv.org/pdf/2507.18071"},{"title":"Adaptive-Boundary-Clipping GRPO: Ensuring Bounded Ratios for Stable and Generalizable Training","url":"https://arxiv.org/html/2601.03895"},{"title":"From GRPO to DAPO and GSPO: What, Why, and How","url":"https://huggingface.co/blog/NormalUhr/grpo-to-dapo-and-gspo"},{"title":"Clipping-Free Policy Optimization for Large Language Models","url":"https://gglab-ku.github.io/assets/pdf/2601.22801v1.pdf"},{"title":"Group Relative Policy Optimization (GRPO) — verl documentation","url":"https://verl.readthedocs.io/en/latest/algo/grpo.html"},{"title":"Proximal Policy Optimization (PPO): Clipping, Stability, and Sample Efficiency in Reinforcement Learning | by Shivang Shrivastav | Medium","url":"https://shivang-ahd.medium.com/proximal-policy-optimization-clipping-stability-and-sample-efficiency-in-reinforcement-learning-7f0fec90da7a"}]
+
+Based on the search results, I can provide you with comprehensive information about GRPO clip_ratio, PPO clipping differences, and policy drift prevention:
+
+## GRPO Clipping Mechanism
+
+GRPO extends the Proximal Policy Optimization (PPO) framework by replacing the value function with group-normalized reward advantages and regularizing policy updates via clipped importance ratios at the token level.
+
+## Clipping and Policy Drift Prevention
+
+GRPO applies hard token-level clipping within specified trust regions, effectively controlling policy drift and mitigating gradient spikes. More specifically, GRPO borrows PPO's most important stability trick: clipping the importance ratio so each update stays proximal to the policy that generated the samples. Without clipping, the optimizer can "overreact" to a high-reward sample by massively increasing its probability in a single step, especially when rewards are noisy.
+
+## GRPO vs PPO Clipping Differences
+
+The importance ratio is clipped into a tight band around 1: clip(r(θ), 1-ε, 1+ε), similar to PPO. However, a key difference is that hard-clipping token-level ratios enforces a per-token trust region: this both bounds the allowed policy drift and guards against variance spikes in the gradient estimate.
+
+An important asymmetry exists in GRPO's clipping: For positive-advantage samples, GRPO's ratio range is roughly [0, 1.x]; for negative-advantage samples, it can be [0.x, ∞), a much wider range.
+
+## Limitations
+
+The binary nature of GRPO's clipping means all gradient signal from "off-band" tokens (where the ratio exceeds the clip band) is discarded, potentially harming sample efficiency—especially when many tokens are only slightly outside the trust region. Additionally, beyond the clipping boundary, gradients vanish entirely.
+
+The standard `clip_ratio` (epsilon) in GRPO implementations typically defaults to 0.2, similar to PPO.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "c36d64ea-1dd5-4b91-802a-2855e25dcbc2",
+  "tool_use_result": {
+    "query": "GRPO clip_ratio 0.0 PPO clipping difference policy drift prevention",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011k8AfpNZdJqxmUqZ5UnPB6",
+        "content": [
+          {
+            "title": "Generalized Ratio-Clipping Policy Optimization",
+            "url": "https://www.emergentmind.com/topics/generalized-ratio-clipping-policy-optimization-grpo"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=Gradient-Preserving+clipping+Policy+Optimization"
+          },
+          {
+            "title": "Beyond PPO - The New Wave of Policy Optimization Techniques for LLM Post-Training | yadnyesh's blog",
+            "url": "https://ydnyshhh.github.io/posts/policy_optimization/"
+          },
+          {
+            "title": "Non-Asymptotic Global Convergence of PPO-Clip",
+            "url": "https://arxiv.org/html/2512.16565"
+          },
+          {
+            "title": "2025-07-29 Group Sequence Policy Optimization Chujie Zheng∗ Shixuan Liu",
+            "url": "https://arxiv.org/pdf/2507.18071"
+          },
+          {
+            "title": "Adaptive-Boundary-Clipping GRPO: Ensuring Bounded Ratios for Stable and Generalizable Training",
+            "url": "https://arxiv.org/html/2601.03895"
+          },
+          {
+            "title": "From GRPO to DAPO and GSPO: What, Why, and How",
+            "url": "https://huggingface.co/blog/NormalUhr/grpo-to-dapo-and-gspo"
+          },
+          {
+            "title": "Clipping-Free Policy Optimization for Large Language Models",
+            "url": "https://gglab-ku.github.io/assets/pdf/2601.22801v1.pdf"
+          },
+          {
+            "title": "Group Relative Policy Optimization (GRPO) — verl documentation",
+            "url": "https://verl.readthedocs.io/en/latest/algo/grpo.html"
+          },
+          {
+            "title": "Proximal Policy Optimization (PPO): Clipping, Stability, and Sample Efficiency in Reinforcement Learning | by Shivang Shrivastav | Medium",
+            "url": "https://shivang-ahd.medium.com/proximal-policy-optimization-clipping-stability-and-sample-efficiency-in-reinforcement-learning-7f0fec90da7a"
+          }
+        ]
+      },
+      "Based on the search results, I can provide you with comprehensive information about GRPO clip_ratio, PPO clipping differences, and policy drift prevention:\n\n## GRPO Clipping Mechanism\n\nGRPO extends the Proximal Policy Optimization (PPO) framework by replacing the value function with group-normalized reward advantages and regularizing policy updates via clipped importance ratios at the token level.\n\n## Clipping and Policy Drift Prevention\n\nGRPO applies hard token-level clipping within specified trust regions, effectively controlling policy drift and mitigating gradient spikes. More specifically, GRPO borrows PPO's most important stability trick: clipping the importance ratio so each update stays proximal to the policy that generated the samples. Without clipping, the optimizer can \"overreact\" to a high-reward sample by massively increasing its probability in a single step, especially when rewards are noisy.\n\n## GRPO vs PPO Clipping Differences\n\nThe importance ratio is clipped into a tight band around 1: clip(r(θ), 1-ε, 1+ε), similar to PPO. However, a key difference is that hard-clipping token-level ratios enforces a per-token trust region: this both bounds the allowed policy drift and guards against variance spikes in the gradient estimate.\n\nAn important asymmetry exists in GRPO's clipping: For positive-advantage samples, GRPO's ratio range is roughly [0, 1.x]; for negative-advantage samples, it can be [0.x, ∞), a much wider range.\n\n## Limitations\n\nThe binary nature of GRPO's clipping means all gradient signal from \"off-band\" tokens (where the ratio exceeds the clip band) is discarded, potentially harming sample efficiency—especially when many tokens are only slightly outside the trust region. Additionally, beyond the clipping boundary, gradients vanish entirely.\n\nThe standard `clip_ratio` (epsilon) in GRPO implementations typically defaults to 0.2, similar to PPO."
+    ],
+    "durationSeconds": 8.726490892999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T10:22:56.361Z_
+
+<details><summary>↩ Tool result · `toolu_01UwR3tGXz1ZBAap54u9w9tL`</summary>
+
+```text
+Web search results for query: "TRL GRPO mode collapse training instability reward hacking fix"
+
+Links: [{"title":"GRPO++: Tricks for Making RL Actually Work","url":"https://cameronrwolfe.substack.com/p/grpo-tricks"},{"title":"hello-agents/docs/chapter11/Chapter11-Agentic-RL.md at main · datawhalechina/hello-agents","url":"https://github.com/datawhalechina/hello-agents/blob/main/docs/chapter11/Chapter11-Agentic-RL.md"},{"title":"MAD GRPO: Treating Dr. GRPO that tried to fix GRPO but brought instability and verbosity bias","url":"https://huggingface.co/blog/telcom/mad-grpo"},{"title":"Training Stability & Debugging – Axolotl","url":"https://docs.axolotl.ai/docs/training_stability.html"},{"title":"Shirin Yamani on X: \"Suffering from reward noise or training instability with GRPO? Then set mask_truncated_completions=True in your GRPO config! GRPO/TRL now supports OverLong Filtering, masking loss from truncated completions. Our Open-R1 experiments show it enables long CoT with stable reward. https://t.co/FjJFvmrLe5\" / X","url":"https://x.com/shirinyamani/status/1910111472262508821"},{"title":"GRPO Training – Axolotl","url":"https://docs.axolotl.ai/docs/grpo.html"},{"title":"trl/trl/trainer/grpo_trainer.py at main · huggingface/trl","url":"https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_trainer.py"},{"title":"GRPO Trainer · Hugging Face","url":"https://huggingface.co/docs/trl/en/grpo_trainer"},{"title":"Train a model to solve coding problems using GRPO and TRL | Modal Docs","url":"https://modal.com/docs/examples/grpo_trl"},{"title":"Beyond PPO - The New Wave of Policy Optimization Techniques for LLM Post-Training | yadnyesh's blog","url":"https://ydnyshhh.github.io/posts/policy_optimization/"}]
+
+Based on the search results, here's comprehensive information about TRL GRPO mode collapse, training instability, reward hacking, and their fixes:
+
+## Key Problems with Vanilla GRPO
+
+When running vanilla GRPO, several issues occur including entropy collapse where the entropy of the model's next token distribution collapses during training, reward noise that is very noisy and doesn't steadily increase, and training instability that may cause divergence.
+
+Reward hacking manifests as steadily increasing mean completion length toward max_completion_length, where the model may be reward-hacking by generating longer outputs.
+
+## Proposed Solutions
+
+### 1. **Clip Higher**
+The "clip higher" approach decouples the lower and upper bound for clipping in the range [1 - ε_low, 1 + ε_high], where ε_low = 0.2 and ε_high = 0.28, and increasing ε_high prevents entropy collapse and improves GRPO performance.
+
+### 2. **Mask Truncated Completions**
+Setting mask_truncated_completions=True in the GRPO config enables OverLong Filtering, masking loss from truncated completions.
+
+### 3. **MAD GRPO (Median Absolute Deviation)**
+A robust alternative is to keep the GRPO structure while replacing standard deviation with MAD (plus epsilon) and retaining per-token normalization, optionally with advantage clipping and KL regularization, which gives stability and robustness without shifting the objective toward longer answers.
+
+### 4. **Hyperparameter Adjustments**
+To address mode collapse, you can increase temperature in generation kwargs (try 0.8–1.0), reduce learning rate, add a KL penalty term (beta parameter in GRPO config), and check that num_generations is sufficient (16+ gives better advantage estimates).
+
+### 5. **Monitoring Metrics**
+Monitor entropy (should be in 0.05-0.5 range; below 0.01 suggests mode collapse) and grad_norm (in 0.001-1.0 range; > 10 is unstable).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "d97743be-9705-4b66-99ad-8d19c6d141bd",
+  "tool_use_result": {
+    "query": "TRL GRPO mode collapse training instability reward hacking fix",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PmEZ3Yk9NpocMefNa1oXzN",
+        "content": [
+          {
+            "title": "GRPO++: Tricks for Making RL Actually Work",
+            "url": "https://cameronrwolfe.substack.com/p/grpo-tricks"
+          },
+          {
+            "title": "hello-agents/docs/chapter11/Chapter11-Agentic-RL.md at main · datawhalechina/hello-agents",
+            "url": "https://github.com/datawhalechina/hello-agents/blob/main/docs/chapter11/Chapter11-Agentic-RL.md"
+          },
+          {
+            "title": "MAD GRPO: Treating Dr. GRPO that tried to fix GRPO but brought instability and verbosity bias",
+            "url": "https://huggingface.co/blog/telcom/mad-grpo"
+          },
+          {
+            "title": "Training Stability & Debugging – Axolotl",
+            "url": "https://docs.axolotl.ai/docs/training_stability.html"
+          },
+          {
+            "title": "Shirin Yamani on X: \"Suffering from reward noise or training instability with GRPO? Then set mask_truncated_completions=True in your GRPO config! GRPO/TRL now supports OverLong Filtering, masking loss from truncated completions. Our Open-R1 experiments show it enables long CoT with stable reward. https://t.co/FjJFvmrLe5\" / X",
+            "url": "https://x.com/shirinyamani/status/1910111472262508821"
+          },
+          {
+            "title": "GRPO Training – Axolotl",
+            "url": "https://docs.axolotl.ai/docs/grpo.html"
+          },
+          {
+            "title": "trl/trl/trainer/grpo_trainer.py at main · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_trainer.py"
+          },
+          {
+            "title": "GRPO Trainer · Hugging Face",
+            "url": "https://huggingface.co/docs/trl/en/grpo_trainer"
+          },
+          {
+            "title": "Train a model to solve coding problems using GRPO and TRL | Modal Docs",
+            "url": "https://modal.com/docs/examples/grpo_trl"
+          },
+          {
+            "title": "Beyond PPO - The New Wave of Policy Optimization Techniques for LLM Post-Training | yadnyesh's blog",
+            "url": "https://ydnyshhh.github.io/posts/policy_optimization/"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about TRL GRPO mode collapse, training instability, reward hacking, and their fixes:\n\n## Key Problems with Vanilla GRPO\n\nWhen running vanilla GRPO, several issues occur including entropy collapse where the entropy of the model's next token distribution collapses during training, reward noise that is very noisy and doesn't steadily increase, and training instability that may cause divergence.\n\nReward hacking manifests as steadily increasing mean completion length toward max_completion_length, where the model may be reward-hacking by generating longer outputs.\n\n## Proposed Solutions\n\n### 1. **Clip Higher**\nThe \"clip higher\" approach decouples the lower and upper bound for clipping in the range [1 - ε_low, 1 + ε_high], where ε_low = 0.2 and ε_high = 0.28, and increasing ε_high prevents entropy collapse and improves GRPO performance.\n\n### 2. **Mask Truncated Completions**\nSetting mask_truncated_completions=True in the GRPO config enables OverLong Filtering, masking loss from truncated completions.\n\n### 3. **MAD GRPO (Median Absolute Deviation)**\nA robust alternative is to keep the GRPO structure while replacing standard deviation with MAD (plus epsilon) and retaining per-token normalization, optionally with advantage clipping and KL regularization, which gives stability and robustness without shifting the objective toward longer answers.\n\n### 4. **Hyperparameter Adjustments**\nTo address mode collapse, you can increase temperature in generation kwargs (try 0.8–1.0), reduce learning rate, add a KL penalty term (beta parameter in GRPO config), and check that num_generations is sufficient (16+ gives better advantage estimates).\n\n### 5. **Monitoring Metrics**\nMonitor entropy (should be in 0.05-0.5 range; below 0.01 suggests mode collapse) and grad_norm (in 0.001-1.0 range; > 10 is unstable)."
+    ],
+    "durationSeconds": 9.574669207
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have a lot of information now. Let me do a few more targeted searches to fill in gaps:
+
+1. The specific GRPOConfig parameters in TRL 1.1.0 (the exact version)
+2. The clip_ratio metric logging - why it might be 0.0
+3. More about the DAPO/GRPO++ tricks
+4. Specific advice for QLoRA + GRPO collapse
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "3bf8d9b2-a912-40ed-8423-bf3035d36502",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FjczFFmsP4Cnkkf9n3t4ca",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1046,
+      "cache_creation_input_tokens": 3535,
+      "cache_read_input_tokens": 24841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3535
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+找到了关键信息。再补充几个针对性搜索。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "52e9a2a1-f8aa-4329-aca0-388a12c1e8d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FjczFFmsP4Cnkkf9n3t4ca",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1046,
+      "cache_creation_input_tokens": 3535,
+      "cache_read_input_tokens": 24841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3535
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015hNGq7pZJyanLkomzw5auf`</summary>
+
+```json
+{
+  "query": "TRL GRPOTrainer clip_ratio metric logged 0.0 meaning epsilon clipping ratio calculation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "204592b5-9dc5-48e5-8b6e-2876de2fde6c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FjczFFmsP4Cnkkf9n3t4ca",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1046,
+      "cache_creation_input_tokens": 3535,
+      "cache_read_input_tokens": 24841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3535
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DAzWw9RKQqagk2Fo9iy4d1`</summary>
+
+```json
+{
+  "query": "TRL GRPO mask_truncated_completions overlong filtering truncation collapse fix"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "bf5eac4c-6eeb-45f7-8a92-0f7a905282c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FjczFFmsP4Cnkkf9n3t4ca",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1046,
+      "cache_creation_input_tokens": 3535,
+      "cache_read_input_tokens": 24841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3535
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KFT5F5hKBTujpr2DCwT8QJ`</summary>
+
+```json
+{
+  "query": "GRPO num_generations advantage estimation variance reduction group size effect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "32bdc887-558c-416b-8dd1-80362ed659f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FjczFFmsP4Cnkkf9n3t4ca",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1046,
+      "cache_creation_input_tokens": 3535,
+      "cache_read_input_tokens": 24841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3535
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T10:23:09.196Z_
+
+<details><summary>↩ Tool result · `toolu_01DAzWw9RKQqagk2Fo9iy4d1`</summary>
+
+```text
+Web search results for query: "TRL GRPO mask_truncated_completions overlong filtering truncation collapse fix"
+
+Links: [{"title":"Release v0.17.0 · huggingface/trl","url":"https://github.com/huggingface/trl/releases/tag/v0.17.0"},{"title":"Paper Index","url":"https://huggingface.co/docs/trl/en/paper_index"},{"title":"trl/trl/trainer/grpo_trainer.py at main · huggingface/trl","url":"https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_trainer.py"},{"title":"Shirin Yamani on X: \"Suffering from reward noise or training instability with GRPO? Then set mask_truncated_completions=True in your GRPO config! GRPO/TRL now supports OverLong Filtering, masking loss from truncated completions. Our Open-R1 experiments show it enables long CoT with stable reward. https://t.co/FjJFvmrLe5\" / X","url":"https://x.com/shirinyamani/status/1910111472262508821"},{"title":"GRPO — swift 3.5.3 documentation","url":"https://swift.readthedocs.io/en/v3.5/Instruction/GRPO.html"},{"title":"GRPO Loss Variants and Clipping | huggingface/trl | DeepWiki","url":"https://deepwiki.com/huggingface/trl/5.2-grpo-loss-variants-and-clipping"},{"title":"trl/docs/source/grpo_trainer.md at main · huggingface/trl","url":"https://github.com/huggingface/trl/blob/main/docs/source/grpo_trainer.md"},{"title":"GRPO++: Tricks for Making RL Actually Work","url":"https://cameronrwolfe.substack.com/p/grpo-tricks"},{"title":"GRPO — swift 3.4.1.post1 documentation","url":"https://swift.readthedocs.io/en/v3.4/Instruction/GRPO.html"},{"title":"From PPO to GRPO to DAPO: Understanding RL for LLMs and Every Training Parameter Explained","url":"https://blog.softmaxdata.com/from-ppo-to-grpo-to-dapo-understanding-rl-for-llms-and-every-training-parameter-explained/"}]
+
+Based on the search results, here's what I found about TRL GRPO `mask_truncated_completions` and overlong filtering:
+
+## Overview
+
+Overlong filtering has been shown to significantly stabilize learning and improve performance, and you can now use it in TRL!
+
+## What is Truncation Masking?
+
+The mask_truncated_completions parameter excludes truncated (clipped) completions from the loss calculation: when enabled, completions that reach max_completion_length without generating an EOS token are excluded from gradient computation, which prevents incorrectly penalizing incomplete responses and improves training stability according to the DAPO paper.
+
+## How to Use It
+
+To use this feature, set mask_truncated_completions=True in your GRPO config. GRPO/TRL now supports OverLong Filtering, masking loss from truncated completions, and experiments show it enables long CoT with stable reward.
+
+## Why It Helps Address Collapse
+
+In GRPO loss, truncated samples are masked—meaning they have no contribution to the policy update—instead of being negatively reinforced, and this overlong filtering strategy improves both performance and training stability. If the model generates a response that hits the maximum length limit and gets cut off, it's an incomplete thought, and training on truncated responses introduces noise—the overlong filtering masks these truncated completions from the loss calculation entirely.
+
+This feature was introduced in TRL v0.17.0 as part of improvements to the GRPO trainer.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "b48feebb-0c27-46ae-bd9d-4098667e503c",
+  "tool_use_result": {
+    "query": "TRL GRPO mask_truncated_completions overlong filtering truncation collapse fix",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JwVrJWjcvLpog1CpGu2F5f",
+        "content": [
+          {
+            "title": "Release v0.17.0 · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/releases/tag/v0.17.0"
+          },
+          {
+            "title": "Paper Index",
+            "url": "https://huggingface.co/docs/trl/en/paper_index"
+          },
+          {
+            "title": "trl/trl/trainer/grpo_trainer.py at main · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_trainer.py"
+          },
+          {
+            "title": "Shirin Yamani on X: \"Suffering from reward noise or training instability with GRPO? Then set mask_truncated_completions=True in your GRPO config! GRPO/TRL now supports OverLong Filtering, masking loss from truncated completions. Our Open-R1 experiments show it enables long CoT with stable reward. https://t.co/FjJFvmrLe5\" / X",
+            "url": "https://x.com/shirinyamani/status/1910111472262508821"
+          },
+          {
+            "title": "GRPO — swift 3.5.3 documentation",
+            "url": "https://swift.readthedocs.io/en/v3.5/Instruction/GRPO.html"
+          },
+          {
+            "title": "GRPO Loss Variants and Clipping | huggingface/trl | DeepWiki",
+            "url": "https://deepwiki.com/huggingface/trl/5.2-grpo-loss-variants-and-clipping"
+          },
+          {
+            "title": "trl/docs/source/grpo_trainer.md at main · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/blob/main/docs/source/grpo_trainer.md"
+          },
+          {
+            "title": "GRPO++: Tricks for Making RL Actually Work",
+            "url": "https://cameronrwolfe.substack.com/p/grpo-tricks"
+          },
+          {
+            "title": "GRPO — swift 3.4.1.post1 documentation",
+            "url": "https://swift.readthedocs.io/en/v3.4/Instruction/GRPO.html"
+          },
+          {
+            "title": "From PPO to GRPO to DAPO: Understanding RL for LLMs and Every Training Parameter Explained",
+            "url": "https://blog.softmaxdata.com/from-ppo-to-grpo-to-dapo-understanding-rl-for-llms-and-every-training-parameter-explained/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about TRL GRPO `mask_truncated_completions` and overlong filtering:\n\n## Overview\n\nOverlong filtering has been shown to significantly stabilize learning and improve performance, and you can now use it in TRL!\n\n## What is Truncation Masking?\n\nThe mask_truncated_completions parameter excludes truncated (clipped) completions from the loss calculation: when enabled, completions that reach max_completion_length without generating an EOS token are excluded from gradient computation, which prevents incorrectly penalizing incomplete responses and improves training stability according to the DAPO paper.\n\n## How to Use It\n\nTo use this feature, set mask_truncated_completions=True in your GRPO config. GRPO/TRL now supports OverLong Filtering, masking loss from truncated completions, and experiments show it enables long CoT with stable reward.\n\n## Why It Helps Address Collapse\n\nIn GRPO loss, truncated samples are masked—meaning they have no contribution to the policy update—instead of being negatively reinforced, and this overlong filtering strategy improves both performance and training stability. If the model generates a response that hits the maximum length limit and gets cut off, it's an incomplete thought, and training on truncated responses introduces noise—the overlong filtering masks these truncated completions from the loss calculation entirely.\n\nThis feature was introduced in TRL v0.17.0 as part of improvements to the GRPO trainer."
+    ],
+    "durationSeconds": 6.341538897000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T10:23:10.654Z_
+
+<details><summary>↩ Tool result · `toolu_015hNGq7pZJyanLkomzw5auf`</summary>
+
+```text
+Web search results for query: "TRL GRPOTrainer clip_ratio metric logged 0.0 meaning epsilon clipping ratio calculation"
+
+Links: [{"title":"trl/trl/trainer/grpo_trainer.py at main · huggingface/trl","url":"https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_trainer.py"},{"title":"GRPO Trainer · Hugging Face","url":"https://huggingface.co/docs/trl/main/en/grpo_trainer"},{"title":"Logging · Hugging Face","url":"https://huggingface.co/docs/trl/main/en/logging"},{"title":"trl/trl/trainer/grpo_config.py at main · huggingface/trl","url":"https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_config.py"},{"title":"trl/docs/source/grpo_trainer.md at main · huggingface/trl","url":"https://github.com/huggingface/trl/blob/main/docs/source/grpo_trainer.md"},{"title":"Question regarding GRPOTrainer's advantage clipping · Issue #3757 · huggingface/trl","url":"https://github.com/huggingface/trl/issues/3757"},{"title":"GRPO Trainer","url":"https://huggingface.co/docs/trl/v0.22.1/en/grpo_trainer"},{"title":"GRPO Loss Variants and Clipping | huggingface/trl | DeepWiki","url":"https://deepwiki.com/huggingface/trl/5.2-grpo-loss-variants-and-clipping"},{"title":"GRPO — swift 3.5.3 documentation","url":"https://swift.readthedocs.io/en/v3.5/Instruction/GRPO.html"},{"title":"Training your reasoning models with GRPO: A practical guide for VLMs Post Training with TRL | Towards AI","url":"https://towardsai.net/p/machine-learning/training-your-reasoning-models-with-grpo-a-practical-guide-for-vlms-post-training-with-trl"}]
+
+Based on the search results, I can provide you with information about the TRL GRPOTrainer's clip_ratio metric and epsilon clipping:
+
+## Understanding the clip_ratio Metric
+
+The `clip_ratio/high_mean` metric represents the mean fraction of instances where the probability ratio r_t(θ) was clipped at the upper bound 1 + epsilon_high (occurs when advantage is positive and ratio is above the bound).
+
+The `clip_ratio/region_mean` represents the mean fraction of instances where the probability ratio was clipped at either the lower or upper bound.
+
+## How Epsilon Clipping Works
+
+The clipping mechanism works by constraining the policy ratio. The clip(⋅, 1 - ε, 1 + ε) function ensures that updates do not deviate excessively from the reference policy by bounding the policy ratio between 1 - ε and 1 + ε.
+
+The ratio between the current policy and the old policy is clipped as: clip(r_{i,t}(θ), 1 - ε_low, 1 + ε_high) where r_{i,t}(θ) is the importance sampling ratio.
+
+## When clip_ratio Logs 0.0
+
+A clip_ratio of 0.0 means that **no clipping occurred** during that batch or training step. The default num_iterations in GRPOTrainer is set to 1, and as a result, coef_1 and coef_2 are always 1, which means no clipping will occur. When the importance sampling ratio stays very close to 1.0 (meaning the new and old policies are nearly identical), the clipping bounds don't actually constrain the ratio, resulting in zero clipping instances.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "58b70cba-0607-462b-a025-5df85fe06aa8",
+  "tool_use_result": {
+    "query": "TRL GRPOTrainer clip_ratio metric logged 0.0 meaning epsilon clipping ratio calculation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WNzWgEpSTsW5dPnpYY4zNR",
+        "content": [
+          {
+            "title": "trl/trl/trainer/grpo_trainer.py at main · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_trainer.py"
+          },
+          {
+            "title": "GRPO Trainer · Hugging Face",
+            "url": "https://huggingface.co/docs/trl/main/en/grpo_trainer"
+          },
+          {
+            "title": "Logging · Hugging Face",
+            "url": "https://huggingface.co/docs/trl/main/en/logging"
+          },
+          {
+            "title": "trl/trl/trainer/grpo_config.py at main · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_config.py"
+          },
+          {
+            "title": "trl/docs/source/grpo_trainer.md at main · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/blob/main/docs/source/grpo_trainer.md"
+          },
+          {
+            "title": "Question regarding GRPOTrainer's advantage clipping · Issue #3757 · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/issues/3757"
+          },
+          {
+            "title": "GRPO Trainer",
+            "url": "https://huggingface.co/docs/trl/v0.22.1/en/grpo_trainer"
+          },
+          {
+            "title": "GRPO Loss Variants and Clipping | huggingface/trl | DeepWiki",
+            "url": "https://deepwiki.com/huggingface/trl/5.2-grpo-loss-variants-and-clipping"
+          },
+          {
+            "title": "GRPO — swift 3.5.3 documentation",
+            "url": "https://swift.readthedocs.io/en/v3.5/Instruction/GRPO.html"
+          },
+          {
+            "title": "Training your reasoning models with GRPO: A practical guide for VLMs Post Training with TRL | Towards AI",
+            "url": "https://towardsai.net/p/machine-learning/training-your-reasoning-models-with-grpo-a-practical-guide-for-vlms-post-training-with-trl"
+          }
+        ]
+      },
+      "Based on the search results, I can provide you with information about the TRL GRPOTrainer's clip_ratio metric and epsilon clipping:\n\n## Understanding the clip_ratio Metric\n\nThe `clip_ratio/high_mean` metric represents the mean fraction of instances where the probability ratio r_t(θ) was clipped at the upper bound 1 + epsilon_high (occurs when advantage is positive and ratio is above the bound).\n\nThe `clip_ratio/region_mean` represents the mean fraction of instances where the probability ratio was clipped at either the lower or upper bound.\n\n## How Epsilon Clipping Works\n\nThe clipping mechanism works by constraining the policy ratio. The clip(⋅, 1 - ε, 1 + ε) function ensures that updates do not deviate excessively from the reference policy by bounding the policy ratio between 1 - ε and 1 + ε.\n\nThe ratio between the current policy and the old policy is clipped as: clip(r_{i,t}(θ), 1 - ε_low, 1 + ε_high) where r_{i,t}(θ) is the importance sampling ratio.\n\n## When clip_ratio Logs 0.0\n\nA clip_ratio of 0.0 means that **no clipping occurred** during that batch or training step. The default num_iterations in GRPOTrainer is set to 1, and as a result, coef_1 and coef_2 are always 1, which means no clipping will occur. When the importance sampling ratio stays very close to 1.0 (meaning the new and old policies are nearly identical), the clipping bounds don't actually constrain the ratio, resulting in zero clipping instances."
+    ],
+    "durationSeconds": 8.278836358999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T10:23:11.239Z_
+
+<details><summary>↩ Tool result · `toolu_01KFT5F5hKBTujpr2DCwT8QJ`</summary>
+
+```text
+Web search results for query: "GRPO num_generations advantage estimation variance reduction group size effect"
+
+Links: [{"title":"Kalman Filter Enhanced GRPO for Reinforcement Learning-Based Language Model Reasoning","url":"https://arxiv.org/html/2505.07527v2"},{"title":"Kernelized Advantage Estimation: From Nonparametric Statistics to LLM Reasoning","url":"https://arxiv.org/html/2604.28005"},{"title":"Why Tree-Style Branching Matters for Thought Advantage Estimation in GRPO","url":"https://arxiv.org/html/2509.24494"},{"title":"Blockwise Advantage Estimation for Multi-Objective RL with Verifiable Rewards","url":"https://arxiv.org/html/2602.10231"},{"title":"Kalman Filter Enhanced Group Relative Policy Optimization for Language Model Reasoning","url":"https://arxiv.org/html/2505.07527"},{"title":"Why it works: why GRPO can remove the value function? Because of one-step MDP nature. - Huaze Tang","url":"https://huazetang.github.io/posts/2025/why_it_works/grpo_advantage/"},{"title":"EBPO: Empirical Bayes Shrinkage for Stabilizing Group-Relative Policy Optimization","url":"https://arxiv.org/html/2602.05165"},{"title":"Reinforcement Learning | RLHF Book by Nathan Lambert","url":"https://rlhfbook.com/c/06-policy-gradients"},{"title":"The Mathematics of Group Relative Policy Optimization : A Multi-Agent Reinforcement Learning Approach by Miquel Noguer I Alonso :: SSRN","url":"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5080865"},{"title":"Your Language Model is Its Own Critic: Reinforcement Learning with Value Estimation from Actor’s Internal States","url":"https://arxiv.org/html/2605.07579"}]
+
+Based on the search results, here's what I found about GRPO (Group Relative Policy Optimization), num_generations, advantage estimation, variance reduction, and group size effects:
+
+## Key Findings on GRPO and Advantage Estimation:
+
+### Core Mechanism
+GRPO samples multiple responses from the policy given the same input prompt, and a shared baseline is computed as the average return across all sampled responses, with the advantage calculated by subtracting the group sample mean.
+
+### Variance Reduction Properties
+Multiple reasoning trajectories are sampled per prompt, leading to multiple rewards which are averaged to approximate the value function for variance reduction. However, GRPO requires generating a sufficiently large number of reasoning trajectories per prompt to accurately approximate the value function, which can be computationally expensive in practice.
+
+### Group Size Effects
+Regarding the number of generations (group size), research shows important tradeoffs:
+
+Increasing the number of answers per thought induces a monotonic decrease in variance, asymptotically decreasing it to zero, whereas increasing the number of sampled thoughts leaves a strictly positive variance floor, making accurate advantage estimation impossible through scaling thought sampling alone.
+
+Larger groups typically provide more samples per outcome class, reducing variance of the subgroup mean but increasing sampling cost, and increasing group size from 32 to 64 yields slightly improved calibration while causing a reduction in accuracy and other metrics.
+
+### Limitations with Small Groups
+GRPO faces inherent limitations regarding the stability of its advantage estimator because the baseline is derived solely from the local group mean, making it susceptible to high variance when the group size is small.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "c61b3dd6-e005-4d08-915d-7ee910b29649",
+  "tool_use_result": {
+    "query": "GRPO num_generations advantage estimation variance reduction group size effect",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Y2ea5E5YrMbDWQBZKohpz5",
+        "content": [
+          {
+            "title": "Kalman Filter Enhanced GRPO for Reinforcement Learning-Based Language Model Reasoning",
+            "url": "https://arxiv.org/html/2505.07527v2"
+          },
+          {
+            "title": "Kernelized Advantage Estimation: From Nonparametric Statistics to LLM Reasoning",
+            "url": "https://arxiv.org/html/2604.28005"
+          },
+          {
+            "title": "Why Tree-Style Branching Matters for Thought Advantage Estimation in GRPO",
+            "url": "https://arxiv.org/html/2509.24494"
+          },
+          {
+            "title": "Blockwise Advantage Estimation for Multi-Objective RL with Verifiable Rewards",
+            "url": "https://arxiv.org/html/2602.10231"
+          },
+          {
+            "title": "Kalman Filter Enhanced Group Relative Policy Optimization for Language Model Reasoning",
+            "url": "https://arxiv.org/html/2505.07527"
+          },
+          {
+            "title": "Why it works: why GRPO can remove the value function? Because of one-step MDP nature. - Huaze Tang",
+            "url": "https://huazetang.github.io/posts/2025/why_it_works/grpo_advantage/"
+          },
+          {
+            "title": "EBPO: Empirical Bayes Shrinkage for Stabilizing Group-Relative Policy Optimization",
+            "url": "https://arxiv.org/html/2602.05165"
+          },
+          {
+            "title": "Reinforcement Learning | RLHF Book by Nathan Lambert",
+            "url": "https://rlhfbook.com/c/06-policy-gradients"
+          },
+          {
+            "title": "The Mathematics of Group Relative Policy Optimization : A Multi-Agent Reinforcement Learning Approach by Miquel Noguer I Alonso :: SSRN",
+            "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5080865"
+          },
+          {
+            "title": "Your Language Model is Its Own Critic: Reinforcement Learning with Value Estimation from Actor’s Internal States",
+            "url": "https://arxiv.org/html/2605.07579"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about GRPO (Group Relative Policy Optimization), num_generations, advantage estimation, variance reduction, and group size effects:\n\n## Key Findings on GRPO and Advantage Estimation:\n\n### Core Mechanism\nGRPO samples multiple responses from the policy given the same input prompt, and a shared baseline is computed as the average return across all sampled responses, with the advantage calculated by subtracting the group sample mean.\n\n### Variance Reduction Properties\nMultiple reasoning trajectories are sampled per prompt, leading to multiple rewards which are averaged to approximate the value function for variance reduction. However, GRPO requires generating a sufficiently large number of reasoning trajectories per prompt to accurately approximate the value function, which can be computationally expensive in practice.\n\n### Group Size Effects\nRegarding the number of generations (group size), research shows important tradeoffs:\n\nIncreasing the number of answers per thought induces a monotonic decrease in variance, asymptotically decreasing it to zero, whereas increasing the number of sampled thoughts leaves a strictly positive variance floor, making accurate advantage estimation impossible through scaling thought sampling alone.\n\nLarger groups typically provide more samples per outcome class, reducing variance of the subgroup mean but increasing sampling cost, and increasing group size from 32 to 64 yields slightly improved calibration while causing a reduction in accuracy and other metrics.\n\n### Limitations with Small Groups\nGRPO faces inherent limitations regarding the stability of its advantage estimator because the baseline is derived solely from the local group mean, making it susceptible to high variance when the group size is small."
+    ],
+    "durationSeconds": 7.898999391000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a very comprehensive picture. Let me do one more search specifically about the `num_iterations` parameter which is key - when num_iterations=1, there's no off-policy update, so clipping never triggers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "1fd5db4b-b458-4c87-9cf9-842cc629fbb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0165tV97EPx2arHsZ6ryNBkM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4372,
+      "cache_read_input_tokens": 28376,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4372
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+关键发现：`num_iterations=1` 时 clip_ratio 恒为 0。再确认几个细节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "5ec2846d-4444-4d27-87c6-919a07b942e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0165tV97EPx2arHsZ6ryNBkM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4372,
+      "cache_read_input_tokens": 28376,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4372
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MPitXTVavtCamg8KJHBHuW`</summary>
+
+```json
+{
+  "query": "TRL GRPO num_iterations mu_iterations importance sampling ratio clipping off-policy update"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "94d1be64-a84c-4fbd-8efe-6989fee9d5ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0165tV97EPx2arHsZ6ryNBkM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4372,
+      "cache_read_input_tokens": 28376,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4372
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018xHAJwxXbWRokNhD7iBKEk`</summary>
+
+```json
+{
+  "query": "GRPO DAPO epsilon_high asymmetric clipping entropy collapse prevention TRL config"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "8b690a19-5328-40aa-95cb-3cb651eaffb0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0165tV97EPx2arHsZ6ryNBkM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4372,
+      "cache_read_input_tokens": 28376,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4372
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RHQ86RsTB5K39TXpYW7nzA`</summary>
+
+```json
+{
+  "query": "TRL GRPOConfig max_grad_norm temperature generation_kwargs learning_rate schedule collapse QLoRA"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "b9c0ec36-7963-4c11-b45c-2f2d352e9ca0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0165tV97EPx2arHsZ6ryNBkM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4372,
+      "cache_read_input_tokens": 28376,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4372
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T10:23:23.519Z_
+
+<details><summary>↩ Tool result · `toolu_01MPitXTVavtCamg8KJHBHuW`</summary>
+
+```text
+Web search results for query: "TRL GRPO num_iterations mu_iterations importance sampling ratio clipping off-policy update"
+
+Links: [{"title":"GRPO Loss Variants and Clipping | huggingface/trl | DeepWiki","url":"https://deepwiki.com/huggingface/trl/5.2-grpo-loss-variants-and-clipping"},{"title":"Group Relative Policy Optimization (GRPO) | huggingface/trl | DeepWiki","url":"https://deepwiki.com/huggingface/trl/5-group-relative-policy-optimization-(grpo)"},{"title":"GRPO — swift 3.5.3 documentation","url":"https://swift.readthedocs.io/en/v3.5/Instruction/GRPO.html"},{"title":"GRPO Trainer · Hugging Face","url":"https://huggingface.co/docs/trl/en/grpo_trainer"},{"title":"The Illustrated GRPO: A Detailed and Pedagogical Explanation of Group Relative Policy Optimization (GRPO) Algorithm | A thorough, pedagogical, and comprehensive guide to the GRPO algorithm for fine-tuning LLMs to enhance their reasoning abilities. Ideal for those seeking an in-depth understanding of the GRPO Algorithm, its logic, the maths behind it, its implementation, and a practical guide to perform GRPO fine-tuning.","url":"https://abderrahmanskiredj.github.io/the-illustrated-grpo/"},{"title":"Generalized Ratio-Clipping Policy Optimization","url":"https://www.emergentmind.com/topics/generalized-ratio-clipping-policy-optimization-grpo"},{"title":"Paper Index","url":"https://huggingface.co/docs/trl/main/en/paper_index"},{"title":"trl/docs/source/grpo_trainer.md at main · huggingface/trl","url":"https://github.com/huggingface/trl/blob/main/docs/source/grpo_trainer.md"},{"title":"Paper Index · Hugging Face","url":"https://huggingface.co/docs/trl/paper_index"},{"title":"GRPO — swift 3.8.3 documentation","url":"https://swift.readthedocs.io/en/v3.8/Instruction/GRPO/GetStarted/GRPO.html"}]
+
+Based on the search results, here's comprehensive information about TRL GRPO's key parameters related to your query:
+
+## Key Parameters and Concepts
+
+**num_iterations and mu_iterations:**
+num_iterations is the number of iterations per batch (denoted as μ in the algorithm), with a default value of 1. This parameter controls how many gradient updates are applied to each generated batch. When num_iterations > 1, the clipped surrogate objective prevents policy drift.
+
+**Importance Sampling Ratio and Clipping:**
+The core clipping mechanism in GRPO constrains the importance sampling ratio to prevent excessive policy updates. The ratio between the current policy and the old policy is calculated as the probability of a token under the current policy divided by the probability under the old policy.
+
+The epsilon parameter (default: 0.2) controls the lower clipping bound. The clipping operation ensures that updates do not deviate excessively from the reference policy by bounding the policy ratio between 1 - epsilon and 1 + epsilon.
+
+**Off-Policy Updates:**
+By default GRPO is on-policy: each batch is generated and immediately trained on once. Two mechanisms enable off-policy / multi-step training: num_iterations (μ in the paper, default 1) controls how many gradient updates are applied to each generated batch. This method only has an effect when training goes slightly off-policy—for example, when steps_per_generation > gradient_accumulation_steps or num_iterations > 1.
+
+**Importance Sampling Level:**
+The importance_sampling_level determines how the policy ratio is computed, allowing practitioners to choose between different granularities for computing these ratios.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "2d71b3ef-f695-4b66-a104-d2bf43a4e3ea",
+  "tool_use_result": {
+    "query": "TRL GRPO num_iterations mu_iterations importance sampling ratio clipping off-policy update",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011jWXYE75bHZJcQtuqbhkco",
+        "content": [
+          {
+            "title": "GRPO Loss Variants and Clipping | huggingface/trl | DeepWiki",
+            "url": "https://deepwiki.com/huggingface/trl/5.2-grpo-loss-variants-and-clipping"
+          },
+          {
+            "title": "Group Relative Policy Optimization (GRPO) | huggingface/trl | DeepWiki",
+            "url": "https://deepwiki.com/huggingface/trl/5-group-relative-policy-optimization-(grpo)"
+          },
+          {
+            "title": "GRPO — swift 3.5.3 documentation",
+            "url": "https://swift.readthedocs.io/en/v3.5/Instruction/GRPO.html"
+          },
+          {
+            "title": "GRPO Trainer · Hugging Face",
+            "url": "https://huggingface.co/docs/trl/en/grpo_trainer"
+          },
+          {
+            "title": "The Illustrated GRPO: A Detailed and Pedagogical Explanation of Group Relative Policy Optimization (GRPO) Algorithm | A thorough, pedagogical, and comprehensive guide to the GRPO algorithm for fine-tuning LLMs to enhance their reasoning abilities. Ideal for those seeking an in-depth understanding of the GRPO Algorithm, its logic, the maths behind it, its implementation, and a practical guide to perform GRPO fine-tuning.",
+            "url": "https://abderrahmanskiredj.github.io/the-illustrated-grpo/"
+          },
+          {
+            "title": "Generalized Ratio-Clipping Policy Optimization",
+            "url": "https://www.emergentmind.com/topics/generalized-ratio-clipping-policy-optimization-grpo"
+          },
+          {
+            "title": "Paper Index",
+            "url": "https://huggingface.co/docs/trl/main/en/paper_index"
+          },
+          {
+            "title": "trl/docs/source/grpo_trainer.md at main · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/blob/main/docs/source/grpo_trainer.md"
+          },
+          {
+            "title": "Paper Index · Hugging Face",
+            "url": "https://huggingface.co/docs/trl/paper_index"
+          },
+          {
+            "title": "GRPO — swift 3.8.3 documentation",
+            "url": "https://swift.readthedocs.io/en/v3.8/Instruction/GRPO/GetStarted/GRPO.html"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about TRL GRPO's key parameters related to your query:\n\n## Key Parameters and Concepts\n\n**num_iterations and mu_iterations:**\nnum_iterations is the number of iterations per batch (denoted as μ in the algorithm), with a default value of 1. This parameter controls how many gradient updates are applied to each generated batch. When num_iterations > 1, the clipped surrogate objective prevents policy drift.\n\n**Importance Sampling Ratio and Clipping:**\nThe core clipping mechanism in GRPO constrains the importance sampling ratio to prevent excessive policy updates. The ratio between the current policy and the old policy is calculated as the probability of a token under the current policy divided by the probability under the old policy.\n\nThe epsilon parameter (default: 0.2) controls the lower clipping bound. The clipping operation ensures that updates do not deviate excessively from the reference policy by bounding the policy ratio between 1 - epsilon and 1 + epsilon.\n\n**Off-Policy Updates:**\nBy default GRPO is on-policy: each batch is generated and immediately trained on once. Two mechanisms enable off-policy / multi-step training: num_iterations (μ in the paper, default 1) controls how many gradient updates are applied to each generated batch. This method only has an effect when training goes slightly off-policy—for example, when steps_per_generation > gradient_accumulation_steps or num_iterations > 1.\n\n**Importance Sampling Level:**\nThe importance_sampling_level determines how the policy ratio is computed, allowing practitioners to choose between different granularities for computing these ratios."
+    ],
+    "durationSeconds": 7.517837868000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T10:23:25.624Z_
+
+<details><summary>↩ Tool result · `toolu_018xHAJwxXbWRokNhD7iBKEk`</summary>
+
+```text
+Web search results for query: "GRPO DAPO epsilon_high asymmetric clipping entropy collapse prevention TRL config"
+
+Links: [{"title":"GRPO Loss Variants and Clipping | huggingface/trl | DeepWiki","url":"https://deepwiki.com/huggingface/trl/5.2-grpo-loss-variants-and-clipping"},{"title":"From PPO to GRPO to DAPO: Understanding RL for LLMs and Every Training Parameter Explained","url":"https://softmaxdata.com/blog/from-ppo-to-grpo-to-dapo-understanding-rl-for-llms-and-every-training-parameter-explained/"},{"title":"Group Relative Policy Optimization (GRPO) | huggingface/trl | DeepWiki","url":"https://deepwiki.com/huggingface/trl/5-group-relative-policy-optimization-(grpo)"},{"title":"CE-GPPO: Coordinating Entropy via Gradient-Preserving Clipping Policy Optimization in Reinforcement Learning","url":"https://arxiv.org/html/2509.20712"},{"title":"DAPO (Decoupled Clip and Dynamic sAmpling Policy Optimization): GRPO on steroids | by Syed Hasan | Medium","url":"https://medium.com/@syed_hasan/dapo-decoupled-clip-and-dynamic-sampling-policy-optimization-grpo-on-steroids-9c571a0536f3"},{"title":"CE-GPPO: Controlling Entropy via Gradient-Preserving Clipping Policy Optimization in Reinforcement Learning","url":"https://arxiv.org/html/2509.20712v1"},{"title":"DAPO: An Open-Source LLM Reinforcement Learning System at Scale 1ByteDance Seed","url":"https://arxiv.org/pdf/2503.14476"},{"title":"The Evolution of Policy Optimization: Understanding GRPO, DAPO, and Dr. GRPO’s Theoretical Foundations | by Jennifer Wei | Medium","url":"https://medium.com/@jenwei0312/the-evolution-of-policy-optimization-understanding-grpo-dapo-and-dr-3e758c54b2c6"},{"title":"The Mathematics of DAPO, PPO, and GRPO Algorithms by Miquel Noguer I Alonso, Rodolfo Pereira Franklin :: SSRN","url":"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5205449"},{"title":"GRPO++: Tricks for Making RL Actually Work","url":"https://cameronrwolfe.substack.com/p/grpo-tricks"}]
+
+I found comprehensive information about GRPO, DAPO, epsilon_high asymmetric clipping, and entropy collapse prevention in TRL configuration. Here's a summary of the key findings:
+
+## Overview
+
+The Decoupled Clip and Dynamic Sampling Policy Optimization (DAPO) algorithm is an evolution of GRPO that addresses several critical training issues.
+
+## Epsilon_High and Asymmetric Clipping
+
+The epsilon_high parameter enables asymmetric clipping bounds, providing independent control over the upper clipping threshold. In TRL's implementation, you can set different values for epsilon (lower bound) and epsilon_high (upper bound) to get this behavior.
+
+The Clip-Higher mechanism in DAPO uses a bigger clipping range, like ε_high = 0.28 instead of the usual 0.2 in GRPO. The idea is to let the model explore more by allowing bigger changes in how it picks answers.
+
+## Entropy Collapse Prevention
+
+Native GRPO suffers from entropy collapse, an issue effectively mitigated by both DAPO and CE-GPPO, leading to significant improvements. DAPO addresses this by adjusting Clip Higher.
+
+DAPO introduces asymmetric clipping ranges (𝜖_low) and (𝜖_high) to address entropy collapse. With traditional symmetric clipping (𝜖 = 0.2), high-probability tokens can easily be reinforced, but low-probability "exploration tokens" struggle to increase significantly. By using a higher upper bound, DAPO enables better exploration while maintaining training stability.
+
+## DAPO Configuration in TRL
+
+When enabled, completions that reach max_completion_length without generating an EOS token are excluded from gradient computation. This prevents incorrectly penalizing incomplete responses and improves training stability according to the DAPO paper.
+
+DAPO addresses length bias by normalizing over the total number of active tokens in the global accumulated batch... This is the default loss type in TRL as it provides a good balance between mitigating length bias and maintaining stable training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "0bc98396-da46-4958-8fd1-80aff7d22ea6",
+  "tool_use_result": {
+    "query": "GRPO DAPO epsilon_high asymmetric clipping entropy collapse prevention TRL config",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015vHsiv2Sop7F7E94GTLpFk",
+        "content": [
+          {
+            "title": "GRPO Loss Variants and Clipping | huggingface/trl | DeepWiki",
+            "url": "https://deepwiki.com/huggingface/trl/5.2-grpo-loss-variants-and-clipping"
+          },
+          {
+            "title": "From PPO to GRPO to DAPO: Understanding RL for LLMs and Every Training Parameter Explained",
+            "url": "https://softmaxdata.com/blog/from-ppo-to-grpo-to-dapo-understanding-rl-for-llms-and-every-training-parameter-explained/"
+          },
+          {
+            "title": "Group Relative Policy Optimization (GRPO) | huggingface/trl | DeepWiki",
+            "url": "https://deepwiki.com/huggingface/trl/5-group-relative-policy-optimization-(grpo)"
+          },
+          {
+            "title": "CE-GPPO: Coordinating Entropy via Gradient-Preserving Clipping Policy Optimization in Reinforcement Learning",
+            "url": "https://arxiv.org/html/2509.20712"
+          },
+          {
+            "title": "DAPO (Decoupled Clip and Dynamic sAmpling Policy Optimization): GRPO on steroids | by Syed Hasan | Medium",
+            "url": "https://medium.com/@syed_hasan/dapo-decoupled-clip-and-dynamic-sampling-policy-optimization-grpo-on-steroids-9c571a0536f3"
+          },
+          {
+            "title": "CE-GPPO: Controlling Entropy via Gradient-Preserving Clipping Policy Optimization in Reinforcement Learning",
+            "url": "https://arxiv.org/html/2509.20712v1"
+          },
+          {
+            "title": "DAPO: An Open-Source LLM Reinforcement Learning System at Scale 1ByteDance Seed",
+            "url": "https://arxiv.org/pdf/2503.14476"
+          },
+          {
+            "title": "The Evolution of Policy Optimization: Understanding GRPO, DAPO, and Dr. GRPO’s Theoretical Foundations | by Jennifer Wei | Medium",
+            "url": "https://medium.com/@jenwei0312/the-evolution-of-policy-optimization-understanding-grpo-dapo-and-dr-3e758c54b2c6"
+          },
+          {
+            "title": "The Mathematics of DAPO, PPO, and GRPO Algorithms by Miquel Noguer I Alonso, Rodolfo Pereira Franklin :: SSRN",
+            "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5205449"
+          },
+          {
+            "title": "GRPO++: Tricks for Making RL Actually Work",
+            "url": "https://cameronrwolfe.substack.com/p/grpo-tricks"
+          }
+        ]
+      },
+      "I found comprehensive information about GRPO, DAPO, epsilon_high asymmetric clipping, and entropy collapse prevention in TRL configuration. Here's a summary of the key findings:\n\n## Overview\n\nThe Decoupled Clip and Dynamic Sampling Policy Optimization (DAPO) algorithm is an evolution of GRPO that addresses several critical training issues.\n\n## Epsilon_High and Asymmetric Clipping\n\nThe epsilon_high parameter enables asymmetric clipping bounds, providing independent control over the upper clipping threshold. In TRL's implementation, you can set different values for epsilon (lower bound) and epsilon_high (upper bound) to get this behavior.\n\nThe Clip-Higher mechanism in DAPO uses a bigger clipping range, like ε_high = 0.28 instead of the usual 0.2 in GRPO. The idea is to let the model explore more by allowing bigger changes in how it picks answers.\n\n## Entropy Collapse Prevention\n\nNative GRPO suffers from entropy collapse, an issue effectively mitigated by both DAPO and CE-GPPO, leading to significant improvements. DAPO addresses this by adjusting Clip Higher.\n\nDAPO introduces asymmetric clipping ranges (𝜖_low) and (𝜖_high) to address entropy collapse. With traditional symmetric clipping (𝜖 = 0.2), high-probability tokens can easily be reinforced, but low-probability \"exploration tokens\" struggle to increase significantly. By using a higher upper bound, DAPO enables better exploration while maintaining training stability.\n\n## DAPO Configuration in TRL\n\nWhen enabled, completions that reach max_completion_length without generating an EOS token are excluded from gradient computation. This prevents incorrectly penalizing incomplete responses and improves training stability according to the DAPO paper.\n\nDAPO addresses length bias by normalizing over the total number of active tokens in the global accumulated batch... This is the default loss type in TRL as it provides a good balance between mitigating length bias and maintaining stable training."
+    ],
+    "durationSeconds": 8.734551844000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T10:23:27.689Z_
+
+<details><summary>↩ Tool result · `toolu_01RHQ86RsTB5K39TXpYW7nzA`</summary>
+
+```text
+Web search results for query: "TRL GRPOConfig max_grad_norm temperature generation_kwargs learning_rate schedule collapse QLoRA"
+
+Links: [{"title":"Training for Reasoning with GRPO — part II (a step by step explanation) | by Luca Massaron | Medium","url":"https://medium.com/@lucamassaron/training-for-reasoning-with-grpo-part-ii-a-step-by-step-explanation-f80c219e2059"},{"title":"trl/trl/trainer/grpo_trainer.py at main · huggingface/trl","url":"https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_trainer.py"},{"title":"Trainer","url":"https://huggingface.co/docs/trl/main/en/trainer"},{"title":"trl/trl/trainer/grpo_config.py at main · huggingface/trl","url":"https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_config.py"},{"title":"add generation_kwargs to `GRPOTrainer`, so people have more control when training · Issue #3562 · huggingface/trl","url":"https://github.com/huggingface/trl/issues/3562"},{"title":"Trainer · Hugging Face","url":"https://huggingface.co/docs/trl/v0.4.1/trainer"},{"title":"Training with GRPOTrainer - Stephen Diehl","url":"https://www.stephendiehl.com/posts/grpotrainer/"},{"title":"GRPO Trainer · Hugging Face","url":"https://huggingface.co/docs/trl/main/en/grpo_trainer"},{"title":"Implementing GRPO in TRL · Hugging Face","url":"https://huggingface.co/learn/llm-course/en/chapter12/4"},{"title":"Implementing GRPO in TRL","url":"https://huggingface.co/docs/course/en/chapter12/4"}]
+
+Now let me search for information about QLoRA and collapse issues:
+
+Links: [{"title":"LoRA fine-tuning Hyperparameters Guide | Unsloth Documentation","url":"https://unsloth.ai/docs/get-started/fine-tuning-llms-guide/lora-hyperparameters-guide"},{"title":"GRPO + QLora + DS3 fails while merging model with adapters · Issue #2738 · axolotl-ai-cloud/axolotl","url":"https://github.com/axolotl-ai-cloud/axolotl/issues/2738"},{"title":"Fine-tuning LLMs Guide | Unsloth Documentation","url":"https://unsloth.ai/docs/get-started/fine-tuning-llms-guide"},{"title":"LLM Fine-tuning: Techniques for Adapting Language Models","url":"https://www.dailydoseofds.com/llmops-crash-course-part-12/"},{"title":"How to use qlora 4bit w/ GRPO and VLLM (fast_inference = True) · Issue #1930 · unslothai/unsloth","url":"https://github.com/unslothai/unsloth/issues/1930"},{"title":"This is what I understood from the blog post (please correct me if I am wrong): ... | Hacker News","url":"https://news.ycombinator.com/item?id=43125199"},{"title":"How much memory needed for qlora for grpo use vllm？The cuda memory suddenly increases at first step and caused oom · Issue #3044 · huggingface/trl","url":"https://github.com/huggingface/trl/issues/3044"},{"title":"GitHub - artidoro/qlora: QLoRA: Efficient Finetuning of Quantized LLMs · GitHub","url":"https://github.com/artidoro/qlora"},{"title":"What Is QLoRA Training? The Complete Beginner Guide for 2026","url":"https://www.upgrad.com/blog/what-is-qlora-training/"},{"title":"Unsloth integration: QLoRA + GRPO fine-tuning on AMD consumer GPUs · Issue #667 · amd/gaia","url":"https://github.com/amd/gaia/issues/667"}]
+
+Based on my search results, I found comprehensive information about the TRL GRPOConfig parameters and their usage. Here's what I discovered:
+
+## GRPOConfig Parameters Overview
+
+A practical GRPOConfig setup includes parameters like `learning_rate=1e-5`, `temperature=0.5`, `max_grad_norm=0.1`, with scheduler type set to "cosine", and optimizer set to "adamw_8bit".
+
+### Key Parameters:
+
+**Learning Rate and Scheduling:**
+For Reinforcement Learning (DPO, GRPO etc.), a learning rate of 5e-6 is recommended, though specific implementations may vary. The learning rate configuration with cosine scheduling and AdamW 8-bit optimizer are critical elements in GRPO training setup.
+
+**Temperature and Generation:**
+Generation parameters like num_generations=4 and temperature=0.5 balance exploration and exploitation during the reinforcement learning process. Temperature is set to 0.5 in practical setups.
+
+**Gradient Norm:**
+max_grad_norm is a parameter for maximum gradient norm for gradient clipping, with default value None. In practice, max_grad_norm=0.1 is used.
+
+**Generation Kwargs:**
+The GRPOTrainer accepts generation_kwargs parameter to give users more control over generation hyperparameters.
+
+### QLoRA with GRPO:
+
+QLoRA uses 4-bit precision, reducing VRAM usage by over 75%, while LoRA (16-bit) is slightly more accurate and faster. However, using bnb_4bit_compute_type='fp16' can lead to instabilities - for 7B LLaMA, only 80% of finetuning runs complete without error.
+
+There appear to be some stability concerns when combining QLoRA with GRPO, particularly regarding memory allocation and precision handling during training, though both techniques can work together with careful configuration.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "a272e388-8aff-414a-a1e5-492f50c39cc5",
+  "tool_use_result": {
+    "query": "TRL GRPOConfig max_grad_norm temperature generation_kwargs learning_rate schedule collapse QLoRA",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CkUktzgQAmUwLQZ9pQcuCx",
+        "content": [
+          {
+            "title": "Training for Reasoning with GRPO — part II (a step by step explanation) | by Luca Massaron | Medium",
+            "url": "https://medium.com/@lucamassaron/training-for-reasoning-with-grpo-part-ii-a-step-by-step-explanation-f80c219e2059"
+          },
+          {
+            "title": "trl/trl/trainer/grpo_trainer.py at main · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_trainer.py"
+          },
+          {
+            "title": "Trainer",
+            "url": "https://huggingface.co/docs/trl/main/en/trainer"
+          },
+          {
+            "title": "trl/trl/trainer/grpo_config.py at main · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_config.py"
+          },
+          {
+            "title": "add generation_kwargs to `GRPOTrainer`, so people have more control when training · Issue #3562 · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/issues/3562"
+          },
+          {
+            "title": "Trainer · Hugging Face",
+            "url": "https://huggingface.co/docs/trl/v0.4.1/trainer"
+          },
+          {
+            "title": "Training with GRPOTrainer - Stephen Diehl",
+            "url": "https://www.stephendiehl.com/posts/grpotrainer/"
+          },
+          {
+            "title": "GRPO Trainer · Hugging Face",
+            "url": "https://huggingface.co/docs/trl/main/en/grpo_trainer"
+          },
+          {
+            "title": "Implementing GRPO in TRL · Hugging Face",
+            "url": "https://huggingface.co/learn/llm-course/en/chapter12/4"
+          },
+          {
+            "title": "Implementing GRPO in TRL",
+            "url": "https://huggingface.co/docs/course/en/chapter12/4"
+          }
+        ]
+      },
+      "Now let me search for information about QLoRA and collapse issues:",
+      {
+        "tool_use_id": "srvtoolu_01K28yQUaFVgfVJCgKhfT4KD",
+        "content": [
+          {
+            "title": "LoRA fine-tuning Hyperparameters Guide | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/get-started/fine-tuning-llms-guide/lora-hyperparameters-guide"
+          },
+          {
+            "title": "GRPO + QLora + DS3 fails while merging model with adapters · Issue #2738 · axolotl-ai-cloud/axolotl",
+            "url": "https://github.com/axolotl-ai-cloud/axolotl/issues/2738"
+          },
+          {
+            "title": "Fine-tuning LLMs Guide | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/get-started/fine-tuning-llms-guide"
+          },
+          {
+            "title": "LLM Fine-tuning: Techniques for Adapting Language Models",
+            "url": "https://www.dailydoseofds.com/llmops-crash-course-part-12/"
+          },
+          {
+            "title": "How to use qlora 4bit w/ GRPO and VLLM (fast_inference = True) · Issue #1930 · unslothai/unsloth",
+            "url": "https://github.com/unslothai/unsloth/issues/1930"
+          },
+          {
+            "title": "This is what I understood from the blog post (please correct me if I am wrong): ... | Hacker News",
+            "url": "https://news.ycombinator.com/item?id=43125199"
+          },
+          {
+            "title": "How much memory needed for qlora for grpo use vllm？The cuda memory suddenly increases at first step and caused oom · Issue #3044 · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/issues/3044"
+          },
+          {
+            "title": "GitHub - artidoro/qlora: QLoRA: Efficient Finetuning of Quantized LLMs · GitHub",
+            "url": "https://github.com/artidoro/qlora"
+          },
+          {
+            "title": "What Is QLoRA Training? The Complete Beginner Guide for 2026",
+            "url": "https://www.upgrad.com/blog/what-is-qlora-training/"
+          },
+          {
+            "title": "Unsloth integration: QLoRA + GRPO fine-tuning on AMD consumer GPUs · Issue #667 · amd/gaia",
+            "url": "https://github.com/amd/gaia/issues/667"
+          }
+        ]
+      },
+      "Based on my search results, I found comprehensive information about the TRL GRPOConfig parameters and their usage. Here's what I discovered:\n\n## GRPOConfig Parameters Overview\n\nA practical GRPOConfig setup includes parameters like `learning_rate=1e-5`, `temperature=0.5`, `max_grad_norm=0.1`, with scheduler type set to \"cosine\", and optimizer set to \"adamw_8bit\".\n\n### Key Parameters:\n\n**Learning Rate and Scheduling:**\nFor Reinforcement Learning (DPO, GRPO etc.), a learning rate of 5e-6 is recommended, though specific implementations may vary. The learning rate configuration with cosine scheduling and AdamW 8-bit optimizer are critical elements in GRPO training setup.\n\n**Temperature and Generation:**\nGeneration parameters like num_generations=4 and temperature=0.5 balance exploration and exploitation during the reinforcement learning process. Temperature is set to 0.5 in practical setups.\n\n**Gradient Norm:**\nmax_grad_norm is a parameter for maximum gradient norm for gradient clipping, with default value None. In practice, max_grad_norm=0.1 is used.\n\n**Generation Kwargs:**\nThe GRPOTrainer accepts generation_kwargs parameter to give users more control over generation hyperparameters.\n\n### QLoRA with GRPO:\n\nQLoRA uses 4-bit precision, reducing VRAM usage by over 75%, while LoRA (16-bit) is slightly more accurate and faster. However, using bnb_4bit_compute_type='fp16' can lead to instabilities - for 7B LLaMA, only 80% of finetuning runs complete without error.\n\nThere appear to be some stability concerns when combining QLoRA with GRPO, particularly regarding memory allocation and precision handling during training, though both techniques can work together with careful configuration."
+    ],
+    "durationSeconds": 10.268749854000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to write a comprehensive report. Let me also do one more search for the specific issue about `num_iterations` being 1 and why that means clip_ratio is always 0.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "9710c5af-9c7a-47a3-922f-4051e3d1d34b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013gyCYJrSjPQ5rz5KVUwcdG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4020,
+      "cache_read_input_tokens": 32748,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4020
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+信息已经足够全面。现在来写报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "ded7074a-438e-4fd4-b824-78b56c22067c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013gyCYJrSjPQ5rz5KVUwcdG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4020,
+      "cache_read_input_tokens": 32748,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4020
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01J7FJdmFaJSdbsSBvWaNDju`</summary>
+
+```json
+{
+  "query": "TRL GRPOTrainer num_iterations default 1 on-policy no clipping triggered github issue explanation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "f00f3ffc-0f8b-46d8-aa8a-0527612870c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013gyCYJrSjPQ5rz5KVUwcdG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4020,
+      "cache_read_input_tokens": 32748,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4020
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T10:23:39.300Z_
+
+<details><summary>↩ Tool result · `toolu_01J7FJdmFaJSdbsSBvWaNDju`</summary>
+
+```text
+Web search results for query: "TRL GRPOTrainer num_iterations default 1 on-policy no clipping triggered github issue explanation"
+
+Links: [{"title":"Question regarding GRPOTrainer's advantage clipping · Issue #3757 · huggingface/trl","url":"https://github.com/huggingface/trl/issues/3757"},{"title":"trl/trl/trainer/grpo_trainer.py at main · huggingface/trl","url":"https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_trainer.py"},{"title":"trl/docs/source/grpo_trainer.md at main · huggingface/trl","url":"https://github.com/huggingface/trl/blob/main/docs/source/grpo_trainer.md"},{"title":"What are the reasons `num_iterations` (μ) defaulted to 1 in GRPO trainer? · huggingface/trl · Discussion #3548","url":"https://github.com/huggingface/trl/discussions/3548"},{"title":"trl/trl/trainer/grpo_config.py at main · huggingface/trl","url":"https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_config.py"},{"title":"GRPO Trainer · Hugging Face","url":"https://huggingface.co/docs/trl/v0.21.0/grpo_trainer"},{"title":"GRPO Trainer","url":"https://huggingface.co/docs/trl/v0.22.1/en/grpo_trainer"},{"title":"What is the point of steps_per_gen in GRPO Trainer · Issue #3662 · huggingface/trl","url":"https://github.com/huggingface/trl/issues/3662"},{"title":"Critical issue in GRPO with iterable datasets · Issue #3213 · huggingface/trl","url":"https://github.com/huggingface/trl/issues/3213"},{"title":"Releases · huggingface/trl","url":"https://github.com/huggingface/trl/releases"}]
+
+Based on the search results, I found detailed information about the GitHub issue regarding GRPOTrainer's num_iterations default and the no-clipping behavior:
+
+## Overview
+
+The default `num_iterations` in GRPOTrainer is set to 1, which causes `coef_1` and `coef_2` to always be 1 in the GRPO trainer code, meaning no clipping will occur.
+
+## The Issue Explanation
+
+When `num_iterations` is set to 1 (the default), the question arises whether π_old should be the last policy model or current policy model, and the current implementation sets π_old to the current model. This is the root of the problem.
+
+When `num_iterations = 1`, generations and model updates are on-policy with `per_token_logps = old_per_token_logps`. Since the current policy's log probabilities equal the old policy's log probabilities in the on-policy case, the ratio `coef_1 = exp(per_token_logps - old_per_token_logps)` becomes 1, and thus the clipping range `[1 - epsilon, 1 + epsilon]` has no effect.
+
+## Design Rationale
+
+μ=1 is the default in the DeepSeek Math paper and in the current implementation. However, it does make sense to increase `num_iterations` (e.g., to 2–4) to better leverage GRPO's compute efficiency by reusing generated data.
+
+This is the expected behavior for an on-policy trainer when `num_iterations = 1`, not a bug, but it's worth noting if users expect clipping to be active by default.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "cb664c59-3ff1-4b09-9011-9f8de98b213a",
+  "tool_use_result": {
+    "query": "TRL GRPOTrainer num_iterations default 1 on-policy no clipping triggered github issue explanation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XReHpaSQxHjARQCdihb5aT",
+        "content": [
+          {
+            "title": "Question regarding GRPOTrainer's advantage clipping · Issue #3757 · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/issues/3757"
+          },
+          {
+            "title": "trl/trl/trainer/grpo_trainer.py at main · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_trainer.py"
+          },
+          {
+            "title": "trl/docs/source/grpo_trainer.md at main · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/blob/main/docs/source/grpo_trainer.md"
+          },
+          {
+            "title": "What are the reasons `num_iterations` (μ) defaulted to 1 in GRPO trainer? · huggingface/trl · Discussion #3548",
+            "url": "https://github.com/huggingface/trl/discussions/3548"
+          },
+          {
+            "title": "trl/trl/trainer/grpo_config.py at main · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_config.py"
+          },
+          {
+            "title": "GRPO Trainer · Hugging Face",
+            "url": "https://huggingface.co/docs/trl/v0.21.0/grpo_trainer"
+          },
+          {
+            "title": "GRPO Trainer",
+            "url": "https://huggingface.co/docs/trl/v0.22.1/en/grpo_trainer"
+          },
+          {
+            "title": "What is the point of steps_per_gen in GRPO Trainer · Issue #3662 · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/issues/3662"
+          },
+          {
+            "title": "Critical issue in GRPO with iterable datasets · Issue #3213 · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/issues/3213"
+          },
+          {
+            "title": "Releases · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/releases"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about the GitHub issue regarding GRPOTrainer's num_iterations default and the no-clipping behavior:\n\n## Overview\n\nThe default `num_iterations` in GRPOTrainer is set to 1, which causes `coef_1` and `coef_2` to always be 1 in the GRPO trainer code, meaning no clipping will occur.\n\n## The Issue Explanation\n\nWhen `num_iterations` is set to 1 (the default), the question arises whether π_old should be the last policy model or current policy model, and the current implementation sets π_old to the current model. This is the root of the problem.\n\nWhen `num_iterations = 1`, generations and model updates are on-policy with `per_token_logps = old_per_token_logps`. Since the current policy's log probabilities equal the old policy's log probabilities in the on-policy case, the ratio `coef_1 = exp(per_token_logps - old_per_token_logps)` becomes 1, and thus the clipping range `[1 - epsilon, 1 + epsilon]` has no effect.\n\n## Design Rationale\n\nμ=1 is the default in the DeepSeek Math paper and in the current implementation. However, it does make sense to increase `num_iterations` (e.g., to 2–4) to better leverage GRPO's compute efficiency by reusing generated data.\n\nThis is the expected behavior for an on-policy trainer when `num_iterations = 1`, not a bug, but it's worth noting if users expect clipping to be active by default."
+    ],
+    "durationSeconds": 6.993604399000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information needed. Let me write the comprehensive report.
+
+Key findings:
+1. **clip_ratio=0 is expected behavior** when num_iterations=1 (default). This is by design - when on-policy, the importance sampling ratio is always 1.0, so clipping never triggers.
+2. **GRPO does have clipping**, but it only activates when num_iterations > 1 (off-policy updates).
+3. **When num_iterations=1, there's NO mechanism to prevent policy drift** besides:
+   - KL penalty (beta/kl_coef parameter, defaults to 0.0 - also disabled by default!)
+   - Learning rate and gradient norm constraints
+
+So the collapse is likely due to: no KL penalty + no clipping + aggressive learning rate + truncation noise. The most impactful fixes are masking truncated completions, adding a KL penalty (beta around 0.001-0.04), enabling multiple iterations for clipping, using asymmetric clipping with epsilon_high=0.28, and increasing the number of generations.
+
+Beyond those, I should also consider better advantage estimates, reducing the learning rate to slow policy updates, adding gradient norm clipping to prevent spikes, and tuning temperature to avoid entropy collapse.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "b3b2570f-b6e3-4758-b50b-781f34c0f9af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D1P6t8fispYTzagt71QD3B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1114,
+      "cache_read_input_tokens": 36768,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1114
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+所有调研信息已收集完毕，现在写报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "f19b260c-f311-4f59-a3fa-984cb6dbc8b6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D1P6t8fispYTzagt71QD3B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1114,
+      "cache_read_input_tokens": 36768,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1114
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — Write · `toolu_011fX1SzjECitddCxTEcE7DH`</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/trl_grpo_stability_research.md",
+  "content": "# TRL 1.1.0 GRPO 训练稳定性调研报告\n\n## 1. clip_ratio=0.0 的根因：设计如此，非 bug\n\n**结论：当 `num_iterations=1`（默认值）时，clip_ratio 恒为 0.0，这是预期行为。**\n\n原理：\n- GRPOTrainer 默认 `num_iterations=1`，即纯 on-policy 训练\n- On-policy 下 `per_token_logps == old_per_token_logps`，importance sampling ratio = exp(logp - old_logp) = 1.0\n- ratio=1.0 永远在 [1-ε, 1+ε] 范围内，clipping 永远不触发\n- 只有 `num_iterations > 1` 时，模型在同一批数据上多次更新，ratio 才会偏离 1.0，clipping 才生效\n\n参考：[GitHub Discussion #3548](https://github.com/huggingface/trl/discussions/3548)、[Issue #3757](https://github.com/huggingface/trl/issues/3757)\n\n## 2. TRL GRPO 的策略约束参数全景\n\n| 参数 | 默认值 | 作用 | 备注 |\n|------|--------|------|------|\n| `epsilon` | 0.2 | clipping 下界 (1-ε) | 仅 num_iterations>1 时生效 |\n| `epsilon_high` | None (=epsilon) | clipping 上界 (1+ε_high) | DAPO 推荐 0.28 |\n| `num_iterations` | 1 | 每批数据的梯度更新次数 (μ) | =1 时无 clipping |\n| `beta` / `kl_coef` | 0.0 | KL 散度惩罚系数 | =0 时不加载 ref model |\n| `max_grad_norm` | None | 梯度裁剪 | 建议设 0.1-1.0 |\n| `mask_truncated_completions` | False | 屏蔽被截断的 completion | DAPO overlong filtering |\n| `use_bias_correction_kl` | False | 无偏 KL 估计（importance sampling 修正） | 启用 beta 时建议开启 |\n| `off_policy_mask_threshold` | None | 离策略序列掩码阈值 | 过滤 KL 过高的序列 |\n| `loss_type` | \"grpo\" | 损失函数变体 | 可选 \"bnpo\", \"dr_grpo\" 等 |\n\n**关键发现：默认配置下（num_iterations=1, beta=0.0），TRL GRPO 没有任何显式的 policy drift 约束机制。** 唯一的约束来自学习率和梯度裁剪。\n\n## 3. Collapse 诊断\n\n结合你的症状分析：\n\n| 症状 | 诊断 |\n|------|------|\n| step 35 达峰后退化 | 典型 policy drift — 无约束的策略更新越过最优区域 |\n| clip_ratio=0.0 | 正常（num_iterations=1），但说明**无 clipping 保护** |\n| truncation 40% | 截断 completion 参与 loss 计算，引入大量噪声梯度 |\n| f1 从 0.098 降到 0.012 | 模型输出退化为固定模式（mode collapse / entropy collapse） |\n| total_reward 从 1.79 降到 1.1 | reward hacking 或 entropy 崩塌 |\n\n**根因排序**：\n1. **无 policy drift 约束**（num_iterations=1 + beta=0.0）→ 策略可以一步跳很远\n2. **截断噪声**（40% truncation 的 completion 贡献了错误梯度）\n3. **可能的学习率过高**（在无约束情况下放大了 drift）\n\n## 4. 修复方案清单（按优先级排序）\n\n### P0：mask_truncated_completions=True\n```python\nGRPOConfig(mask_truncated_completions=True)\n```\n- **原理**：40% 截断率意味着大量不完整 completion 参与 loss。截断的 completion 没有 EOS token，reward 信号不完整，会引导模型走向错误方向。DAPO 论文证明 overlong filtering 显著稳定训练。\n- **风险**：低。可能减少有效训练样本量，但 40% 截断率下收益远大于代价。\n- **预期效果**：消除截断噪声，是最直接的单一改进。\n\n### P0：启用 KL 惩罚 beta=0.001~0.04\n```python\nGRPOConfig(beta=0.04)  # 保守起步，DeepSeek-R1 用 0.001\n```\n- **原理**：beta>0 会加载 reference model 并在 loss 中加入 KL(π_θ || π_ref) 惩罚项，直接阻止策略偏离初始模型太远。这是 GRPO 在 num_iterations=1 时唯一的显式 drift 约束。\n- **风险**：增加显存（需加载 ref model）。beta 过大会限制学习能力。QLoRA + ZeRO-2 下 ref model 显存开销需评估。\n- **建议值**：0.01~0.04 起步，观察 KL divergence 指标。DeepSeek-R1 用 0.001 但他们 num_generations 很大。\n\n### P1：增大 num_iterations=2\n```python\nGRPOConfig(num_iterations=2, epsilon=0.2)\n```\n- **原理**：num_iterations>1 时 clipping 机制激活，每次更新受 [1-ε, 1+ε] 约束，防止单步过大更新。相当于在同一批数据上做 2 次更新，第 2 次有 clipping 保护。\n- **风险**：轻微增加训练时间。数值过大（>4）可能导致 off-policy 问题。\n- **配合**：设为 2 后 clip_ratio 应不再为 0.0，可用此指标监控策略偏移程度。\n\n### P1：DAPO 风格非对称 clipping\n```python\nGRPOConfig(\n    num_iterations=2,\n    epsilon=0.2,        # 下界\n    epsilon_high=0.28,  # 上界（DAPO 推荐）\n)\n```\n- **原理**：对称 clipping 会压制低概率 token 的探索（它们难以突破上界），导致 entropy collapse。非对称上界 0.28 > 下界 0.2 允许模型更自由地探索新 token，缓解 mode collapse。\n- **风险**：低。DAPO 论文已验证有效性。\n- **前提**：需 num_iterations>1 才有意义。\n\n### P1：降低学习率 + 余弦调度\n```python\nGRPOConfig(\n    learning_rate=5e-6,      # 从当前值下调（如果当前是 1e-5+）\n    lr_scheduler_type=\"cosine\",\n    warmup_ratio=0.1,\n)\n```\n- **原理**：在无 clipping / 无 KL 约束时，学习率是唯一的隐式约束。降低学习率减缓策略更新速度，延迟或避免越过最优区域。\n- **风险**：训练变慢，可能需要更多 step 收敛。\n- **建议**：QLoRA + GRPO 建议 5e-6 ~ 1e-5。\n\n### P2：增加 num_generations\n```python\nGRPOConfig(num_generations=8)  # 从 4 增加到 8 或 16\n```\n- **原理**：GRPO 的 advantage 估计基于 group 内 reward 的均值和标准差。group 越小，advantage 估计方差越大，梯度越嘈杂。num_generations=4 时方差显著高于 16。\n- **风险**：线性增加生成时间和显存。4x RTX5090 应能支撑 8-16。\n- **权衡**：生成开销 vs 训练稳定性。如果生成瓶颈严重，优先用其他方法。\n\n### P2：max_grad_norm 梯度裁剪\n```python\nGRPOConfig(max_grad_norm=0.1)\n```\n- **原理**：限制梯度范数防止单步过大更新。作为额外安全网。\n- **风险**：设太小会减慢收敛。0.1 是实践中常用的保守值。\n\n### P3：提高采样温度\n```python\nGRPOConfig(temperature=0.9)  # 默认通常 1.0\n```\n- **原理**：低温度导致生成多样性不足，advantage 估计退化（group 内 reward 方差趋零），加速 entropy collapse。\n- **风险**：温度过高会降低 completion 质量。\n- **建议**：0.8~1.0 范围。\n\n## 5. 推荐实验方案\n\n### 第一轮：最小改动验证\n```python\ngrpo_config = GRPOConfig(\n    mask_truncated_completions=True,  # P0: 消除截断噪声\n    beta=0.04,                         # P0: KL 约束\n    max_grad_norm=0.1,                 # P2: 梯度安全网\n    # 其他参数保持不变\n)\n```\n这三个改动风险最低、实现最简单，且直接针对两个根因（无约束 + 截断噪声）。\n\n### 第二轮：如果仍不稳定\n```python\ngrpo_config = GRPOConfig(\n    mask_truncated_completions=True,\n    beta=0.01,                         # 降低 KL 权重（有 clipping 兜底）\n    num_iterations=2,                  # 启用 clipping\n    epsilon=0.2,\n    epsilon_high=0.28,                 # DAPO 非对称\n    max_grad_norm=0.1,\n    learning_rate=5e-6,\n    lr_scheduler_type=\"cosine\",\n    warmup_ratio=0.1,\n)\n```\n\n### 监控指标\n- `clip_ratio`：num_iterations>1 后应非零；持续接近 1.0 说明 clipping 过于激进\n- `kl`：启用 beta 后观察，正常范围 0.01~0.5；>1.0 说明策略偏移严重\n- `entropy`：0.05~0.5 正常；<0.01 说明 mode collapse\n- `grad_norm`：0.001~1.0 正常；>10 不稳定\n- `truncation_rate`：mask_truncated 后此指标应稳定或下降\n\n## 6. 参考来源\n\n- [TRL GRPOConfig 源码](https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_config.py)\n- [TRL GRPOTrainer 源码](https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_trainer.py)\n- [TRL GRPO Trainer 文档](https://huggingface.co/docs/trl/main/en/grpo_trainer)\n- [num_iterations 默认值讨论](https://github.com/huggingface/trl/discussions/3548)\n- [advantage clipping Issue #3757](https://github.com/huggingface/trl/issues/3757)\n- [GRPO++ Tricks for Making RL Work](https://cameronrwolfe.substack.com/p/grpo-tricks)\n- [MAD GRPO: 修复 GRPO 不稳定性](https://huggingface.co/blog/telcom/mad-grpo)\n- [DAPO 论文](https://arxiv.org/pdf/2503.14476)\n- [From GRPO to DAPO and GSPO](https://huggingface.co/blog/NormalUhr/grpo-to-dapo-and-gspo)\n- [GRPO Loss Variants (DeepWiki)](https://deepwiki.com/huggingface/trl/5.2-grpo-loss-variants-and-clipping)\n- [The Illustrated GRPO](https://abderrahmanskiredj.github.io/the-illustrated-grpo/)\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "96e1b22d-7b0e-433d-8896-e221040dea1f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D1P6t8fispYTzagt71QD3B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1114,
+      "cache_read_input_tokens": 36768,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1114
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T10:24:55.408Z_
+
+<details><summary>↩ Tool result · `toolu_011fX1SzjECitddCxTEcE7DH`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/trl_grpo_stability_research.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "8e6b6fef-9801-49fb-8f5a-1afd80b4bd78",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/trl_grpo_stability_research.md",
+    "content": "# TRL 1.1.0 GRPO 训练稳定性调研报告\n\n## 1. clip_ratio=0.0 的根因：设计如此，非 bug\n\n**结论：当 `num_iterations=1`（默认值）时，clip_ratio 恒为 0.0，这是预期行为。**\n\n原理：\n- GRPOTrainer 默认 `num_iterations=1`，即纯 on-policy 训练\n- On-policy 下 `per_token_logps == old_per_token_logps`，importance sampling ratio = exp(logp - old_logp) = 1.0\n- ratio=1.0 永远在 [1-ε, 1+ε] 范围内，clipping 永远不触发\n- 只有 `num_iterations > 1` 时，模型在同一批数据上多次更新，ratio 才会偏离 1.0，clipping 才生效\n\n参考：[GitHub Discussion #3548](https://github.com/huggingface/trl/discussions/3548)、[Issue #3757](https://github.com/huggingface/trl/issues/3757)\n\n## 2. TRL GRPO 的策略约束参数全景\n\n| 参数 | 默认值 | 作用 | 备注 |\n|------|--------|------|------|\n| `epsilon` | 0.2 | clipping 下界 (1-ε) | 仅 num_iterations>1 时生效 |\n| `epsilon_high` | None (=epsilon) | clipping 上界 (1+ε_high) | DAPO 推荐 0.28 |\n| `num_iterations` | 1 | 每批数据的梯度更新次数 (μ) | =1 时无 clipping |\n| `beta` / `kl_coef` | 0.0 | KL 散度惩罚系数 | =0 时不加载 ref model |\n| `max_grad_norm` | None | 梯度裁剪 | 建议设 0.1-1.0 |\n| `mask_truncated_completions` | False | 屏蔽被截断的 completion | DAPO overlong filtering |\n| `use_bias_correction_kl` | False | 无偏 KL 估计（importance sampling 修正） | 启用 beta 时建议开启 |\n| `off_policy_mask_threshold` | None | 离策略序列掩码阈值 | 过滤 KL 过高的序列 |\n| `loss_type` | \"grpo\" | 损失函数变体 | 可选 \"bnpo\", \"dr_grpo\" 等 |\n\n**关键发现：默认配置下（num_iterations=1, beta=0.0），TRL GRPO 没有任何显式的 policy drift 约束机制。** 唯一的约束来自学习率和梯度裁剪。\n\n## 3. Collapse 诊断\n\n结合你的症状分析：\n\n| 症状 | 诊断 |\n|------|------|\n| step 35 达峰后退化 | 典型 policy drift — 无约束的策略更新越过最优区域 |\n| clip_ratio=0.0 | 正常（num_iterations=1），但说明**无 clipping 保护** |\n| truncation 40% | 截断 completion 参与 loss 计算，引入大量噪声梯度 |\n| f1 从 0.098 降到 0.012 | 模型输出退化为固定模式（mode collapse / entropy collapse） |\n| total_reward 从 1.79 降到 1.1 | reward hacking 或 entropy 崩塌 |\n\n**根因排序**：\n1. **无 policy drift 约束**（num_iterations=1 + beta=0.0）→ 策略可以一步跳很远\n2. **截断噪声**（40% truncation 的 completion 贡献了错误梯度）\n3. **可能的学习率过高**（在无约束情况下放大了 drift）\n\n## 4. 修复方案清单（按优先级排序）\n\n### P0：mask_truncated_completions=True\n```python\nGRPOConfig(mask_truncated_completions=True)\n```\n- **原理**：40% 截断率意味着大量不完整 completion 参与 loss。截断的 completion 没有 EOS token，reward 信号不完整，会引导模型走向错误方向。DAPO 论文证明 overlong filtering 显著稳定训练。\n- **风险**：低。可能减少有效训练样本量，但 40% 截断率下收益远大于代价。\n- **预期效果**：消除截断噪声，是最直接的单一改进。\n\n### P0：启用 KL 惩罚 beta=0.001~0.04\n```python\nGRPOConfig(beta=0.04)  # 保守起步，DeepSeek-R1 用 0.001\n```\n- **原理**：beta>0 会加载 reference model 并在 loss 中加入 KL(π_θ || π_ref) 惩罚项，直接阻止策略偏离初始模型太远。这是 GRPO 在 num_iterations=1 时唯一的显式 drift 约束。\n- **风险**：增加显存（需加载 ref model）。beta 过大会限制学习能力。QLoRA + ZeRO-2 下 ref model 显存开销需评估。\n- **建议值**：0.01~0.04 起步，观察 KL divergence 指标。DeepSeek-R1 用 0.001 但他们 num_generations 很大。\n\n### P1：增大 num_iterations=2\n```python\nGRPOConfig(num_iterations=2, epsilon=0.2)\n```\n- **原理**：num_iterations>1 时 clipping 机制激活，每次更新受 [1-ε, 1+ε] 约束，防止单步过大更新。相当于在同一批数据上做 2 次更新，第 2 次有 clipping 保护。\n- **风险**：轻微增加训练时间。数值过大（>4）可能导致 off-policy 问题。\n- **配合**：设为 2 后 clip_ratio 应不再为 0.0，可用此指标监控策略偏移程度。\n\n### P1：DAPO 风格非对称 clipping\n```python\nGRPOConfig(\n    num_iterations=2,\n    epsilon=0.2,        # 下界\n    epsilon_high=0.28,  # 上界（DAPO 推荐）\n)\n```\n- **原理**：对称 clipping 会压制低概率 token 的探索（它们难以突破上界），导致 entropy collapse。非对称上界 0.28 > 下界 0.2 允许模型更自由地探索新 token，缓解 mode collapse。\n- **风险**：低。DAPO 论文已验证有效性。\n- **前提**：需 num_iterations>1 才有意义。\n\n### P1：降低学习率 + 余弦调度\n```python\nGRPOConfig(\n    learning_rate=5e-6,      # 从当前值下调（如果当前是 1e-5+）\n    lr_scheduler_type=\"cosine\",\n    warmup_ratio=0.1,\n)\n```\n- **原理**：在无 clipping / 无 KL 约束时，学习率是唯一的隐式约束。降低学习率减缓策略更新速度，延迟或避免越过最优区域。\n- **风险**：训练变慢，可能需要更多 step 收敛。\n- **建议**：QLoRA + GRPO 建议 5e-6 ~ 1e-5。\n\n### P2：增加 num_generations\n```python\nGRPOConfig(num_generations=8)  # 从 4 增加到 8 或 16\n```\n- **原理**：GRPO 的 advantage 估计基于 group 内 reward 的均值和标准差。group 越小，advantage 估计方差越大，梯度越嘈杂。num_generations=4 时方差显著高于 16。\n- **风险**：线性增加生成时间和显存。4x RTX5090 应能支撑 8-16。\n- **权衡**：生成开销 vs 训练稳定性。如果生成瓶颈严重，优先用其他方法。\n\n### P2：max_grad_norm 梯度裁剪\n```python\nGRPOConfig(max_grad_norm=0.1)\n```\n- **原理**：限制梯度范数防止单步过大更新。作为额外安全网。\n- **风险**：设太小会减慢收敛。0.1 是实践中常用的保守值。\n\n### P3：提高采样温度\n```python\nGRPOConfig(temperature=0.9)  # 默认通常 1.0\n```\n- **原理**：低温度导致生成多样性不足，advantage 估计退化（group 内 reward 方差趋零），加速 entropy collapse。\n- **风险**：温度过高会降低 completion 质量。\n- **建议**：0.8~1.0 范围。\n\n## 5. 推荐实验方案\n\n### 第一轮：最小改动验证\n```python\ngrpo_config = GRPOConfig(\n    mask_truncated_completions=True,  # P0: 消除截断噪声\n    beta=0.04,                         # P0: KL 约束\n    max_grad_norm=0.1,                 # P2: 梯度安全网\n    # 其他参数保持不变\n)\n```\n这三个改动风险最低、实现最简单，且直接针对两个根因（无约束 + 截断噪声）。\n\n### 第二轮：如果仍不稳定\n```python\ngrpo_config = GRPOConfig(\n    mask_truncated_completions=True,\n    beta=0.01,                         # 降低 KL 权重（有 clipping 兜底）\n    num_iterations=2,                  # 启用 clipping\n    epsilon=0.2,\n    epsilon_high=0.28,                 # DAPO 非对称\n    max_grad_norm=0.1,\n    learning_rate=5e-6,\n    lr_scheduler_type=\"cosine\",\n    warmup_ratio=0.1,\n)\n```\n\n### 监控指标\n- `clip_ratio`：num_iterations>1 后应非零；持续接近 1.0 说明 clipping 过于激进\n- `kl`：启用 beta 后观察，正常范围 0.01~0.5；>1.0 说明策略偏移严重\n- `entropy`：0.05~0.5 正常；<0.01 说明 mode collapse\n- `grad_norm`：0.001~1.0 正常；>10 不稳定\n- `truncation_rate`：mask_truncated 后此指标应稳定或下降\n\n## 6. 参考来源\n\n- [TRL GRPOConfig 源码](https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_config.py)\n- [TRL GRPOTrainer 源码](https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_trainer.py)\n- [TRL GRPO Trainer 文档](https://huggingface.co/docs/trl/main/en/grpo_trainer)\n- [num_iterations 默认值讨论](https://github.com/huggingface/trl/discussions/3548)\n- [advantage clipping Issue #3757](https://github.com/huggingface/trl/issues/3757)\n- [GRPO++ Tricks for Making RL Work](https://cameronrwolfe.substack.com/p/grpo-tricks)\n- [MAD GRPO: 修复 GRPO 不稳定性](https://huggingface.co/blog/telcom/mad-grpo)\n- [DAPO 论文](https://arxiv.org/pdf/2503.14476)\n- [From GRPO to DAPO and GSPO](https://huggingface.co/blog/NormalUhr/grpo-to-dapo-and-gspo)\n- [GRPO Loss Variants (DeepWiki)](https://deepwiki.com/huggingface/trl/5.2-grpo-loss-variants-and-clipping)\n- [The Illustrated GRPO](https://abderrahmanskiredj.github.io/the-illustrated-grpo/)\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01RsjfnxjJRvoZsCneK4QxwV`</summary>
+
+```json
+{
+  "name": "TRL GRPO 训练稳定性调研报告",
+  "type": "report",
+  "description": "TRL 1.1.0 GRPOTrainer 训练不稳定/mode collapse 的根因分析和修复方案。涵盖 clip_ratio=0 的原因、GRPOConfig 策略约束参数全景、按优先级排序的修复方案（mask_truncated_completions、beta KL惩罚、num_iterations clipping、DAPO非对称clipping等）。",
+  "project": "faith-evidence-ie",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/trl_grpo_stability_research.md",
+  "tags": [
+    "GRPO",
+    "TRL",
+    "training-stability",
+    "mode-collapse",
+    "DAPO"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "372f11f7-c068-4f39-b058-b39806cb103a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01McBzz91oLmxGYA4YxvrcRn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4110,
+      "cache_read_input_tokens": 37882,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4110
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T10:25:01.383Z_
+
+<details><summary>↩ Tool result · `toolu_01RsjfnxjJRvoZsCneK4QxwV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_8d3729\", \"name\": \"TRL GRPO 训练稳定性调研报告\", \"type\": \"report\", \"description\": \"TRL 1.1.0 GRPOTrainer 训练不稳定/mode collapse 的根因分析和修复方案。涵盖 clip_ratio=0 的原因、GRPOConfig 策略约束参数全景、按优先级排序的修复方案（mask_truncated_completions、beta KL惩罚、num_iterations clipping、DAPO非对称clipping等）。\", \"path\": \"projects/faith-evidence-ie/artifacts/_project/report/trl_grpo_stability_research.md\", \"url\": null, \"project\": \"faith-evidence-ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T10:25:01.369415+00:00\", \"tags\": [\"GRPO\", \"TRL\", \"training-stability\", \"mode-collapse\", \"DAPO\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "7e916ec9-0f78-412c-9dc6-e393deb8c46c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_8d3729\\\", \\\"name\\\": \\\"TRL GRPO 训练稳定性调研报告\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"TRL 1.1.0 GRPOTrainer 训练不稳定/mode collapse 的根因分析和修复方案。涵盖 clip_ratio=0 的原因、GRPOConfig 策略约束参数全景、按优先级排序的修复方案（mask_truncated_completions、beta KL惩罚、num_iterations clipping、DAPO非对称clipping等）。\\\", \\\"path\\\": \\\"projects/faith-evidence-ie/artifacts/_project/report/trl_grpo_stability_research.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T10:25:01.369415+00:00\\\", \\\"tags\\\": [\\\"GRPO\\\", \\\"TRL\\\", \\\"training-stability\\\", \\\"mode-collapse\\\", \\\"DAPO\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_8d3729\", \"name\": \"TRL GRPO 训练稳定性调研报告\", \"type\": \"report\", \"description\": \"TRL 1.1.0 GRPOTrainer 训练不稳定/mode collapse 的根因分析和修复方案。涵盖 clip_ratio=0 的原因、GRPOConfig 策略约束参数全景、按优先级排序的修复方案（mask_truncated_completions、beta KL惩罚、num_iterations clipping、DAPO非对称clipping等）。\", \"path\": \"projects/faith-evidence-ie/artifacts/_project/report/trl_grpo_stability_research.md\", \"url\": null, \"project\": \"faith-evidence-ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T10:25:01.369415+00:00\", \"tags\": [\"GRPO\", \"TRL\", \"training-stability\", \"mode-collapse\", \"DAPO\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+报告已完成并注册。核心结论：
+
+**clip_ratio=0.0 是正常行为** — `num_iterations=1`（默认值）下是纯 on-policy，ratio 恒为 1.0，clipping 永远不触发。同时 `beta=0.0`（默认）意味着也没有 KL 惩罚。**你的 GRPO 训练目前没有任何显式 policy drift 约束。**
+
+**推荐第一轮修复**（最小改动）：
+1. `mask_truncated_completions=True` — 40% 截断率是最大噪声源
+2. `beta=0.04` — 启用 KL 惩罚，直接约束策略偏移
+3. `max_grad_norm=0.1` — 梯度安全网
+
+如果仍不稳定，第二轮加 `num_iterations=2` + `epsilon_high=0.28`（DAPO 非对称 clipping）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "uuid": "52ba67da-ae2a-4535-a408-46a90638b005",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RSh4tsfGnPJUc2gzBSvZm6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 721,
+      "cache_read_input_tokens": 41992,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 721
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 44_
+
+报告已完成并注册。核心结论：
+
+**clip_ratio=0.0 是正常行为** — `num_iterations=1`（默认值）下是纯 on-policy，ratio 恒为 1.0，clipping 永远不触发。同时 `beta=0.0`（默认）意味着也没有 KL 惩罚。**你的 GRPO 训练目前没有任何显式 policy drift 约束。**
+
+**推荐第一轮修复**（最小改动）：
+1. `mask_truncated_completions=True` — 40% 截断率是最大噪声源
+2. `beta=0.04` — 启用 KL 惩罚，直接约束策略偏移
+3. `max_grad_norm=0.1` — 梯度安全网
+
+如果仍不稳定，第二轮加 `num_iterations=2` + `epsilon_high=0.28`（DAPO 非对称 clipping）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 150500,
+  "duration_api_ms": 206764,
+  "num_turns": 15,
+  "stop_reason": "end_turn",
+  "session_id": "08623add-124f-44d0-b82b-a4cb5030dcbe",
+  "total_cost_usd": 0.8603830000000001,
+  "usage": {
+    "input_tokens": 1057,
+    "cache_creation_input_tokens": 30872,
+    "cache_read_input_tokens": 237770,
+    "output_tokens": 5860,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 30872,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 277,
+        "cache_read_input_tokens": 41992,
+        "cache_creation_input_tokens": 721,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 721
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 244173,
+      "outputTokens": 6518,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 12,
+      "costUSD": 0.39676300000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 1057,
+      "outputTokens": 5860,
+      "cacheReadInputTokens": 237770,
+      "cacheCreationInputTokens": 30872,
+      "webSearchRequests": 0,
+      "costUSD": 0.46362000000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "9724a959-a293-4855-ab61-e51b19a1aee3"
+}
+```
+
+</details>
+
+---

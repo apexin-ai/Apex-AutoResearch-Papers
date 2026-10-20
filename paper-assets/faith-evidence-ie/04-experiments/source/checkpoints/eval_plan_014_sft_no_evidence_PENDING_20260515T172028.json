@@ -1,0 +1,18 @@
+{
+  "exp_id": "eval_plan_014_sft_no_evidence",
+  "project": "faith-evidence-ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:20:25.574Z",
+    "updated_at": "2026-05-15T17:20:28.767Z",
+    "spec": {
+      "hypothesis": "Dev eval of SFT-without-evidence (plan_014). 如 rel_f1 >> SFT 0.4057 → evidence generation 是 extraction 负担。如 rel_f1 ≈ SFT → evidence 不影响抽取。只算 rel_f1，不算 evi_f1。",
+      "parent": "plan_014_sft_no_evidence"
+    }
+  },
+  "timestamp": "2026-05-15T17:20:28.974126+00:00",
+  "trigger": "update_registry"
+}

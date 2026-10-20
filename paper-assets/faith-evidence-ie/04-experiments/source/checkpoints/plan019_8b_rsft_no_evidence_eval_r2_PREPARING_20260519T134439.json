@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan019_8b_rsft_no_evidence_eval_r2",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:44:38.870Z",
+    "updated_at": "2026-05-19T13:44:38.870Z"
+  },
+  "timestamp": "2026-05-19T13:44:39.391888+00:00",
+  "trigger": "update_registry"
+}

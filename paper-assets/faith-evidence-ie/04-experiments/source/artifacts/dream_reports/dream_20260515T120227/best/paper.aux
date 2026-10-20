@@ -1,0 +1,69 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Document-Level Relation Extraction.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Faithfulness and Evidence in IE.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RL for Language Models.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Rejection Sampling Fine-Tuning.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}SFT Baseline}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Contrastive Evidence Discrimination (CED{})}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:ced}{{3.3}{3}{Contrastive Evidence Discrimination (\ced {})}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Positive score.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Negative score.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CED margin.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Rejection Sampling Fine-Tuning (RSFT{})}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:rsft}{{3.4}{3}{Rejection Sampling Fine-Tuning (\rsft {})}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Entity-sharing Distractor Citation Rate (EDCR{})}{3}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:edcr}{{3.5}{3}{Entity-sharing Distractor Citation Rate (\edcr {})}{subsection.3.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces DocRED test set results. $\dagger $: encoder-based methods; Evi-F1 comparison requires noting the protocol difference (attention-based vs.\ generative evidence).}}{4}{table.caption.13}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:test}{{1}{4}{DocRED test set results. $\dagger $: encoder-based methods; Evi-F1 comparison requires noting the protocol difference (attention-based vs.\ generative evidence)}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Why Online RL Fails: GRPO Analysis}{4}{subsection.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{NLI Model.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Results on DocRED Test Set}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces CED vs.\ flat-NLI RSFT ablation on DocRED dev set. All CED configurations outperform flat-NLI.}}{5}{table.caption.14}\protected@file@percent }
+\newlabel{tab:ced_vs_flatnli}{{2}{5}{CED vs.\ flat-NLI RSFT ablation on DocRED dev set. All CED configurations outperform flat-NLI}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces EDCR diagnostic across all methods (dev set). EDCR and Evi-F1 capture different dimensions (Pearson $r = -0.42$).}}{5}{table.caption.15}\protected@file@percent }
+\newlabel{tab:edcr_diag}{{3}{5}{EDCR diagnostic across all methods (dev set). EDCR and Evi-F1 capture different dimensions (Pearson $r = -0.42$)}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}CED vs.\ Flat-NLI Ablation}{5}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}EDCR Diagnostic Across Methods}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}DREEAM Baseline Reproduction}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces DREEAM reproduction on DocRED dev set.}}{6}{table.caption.16}\protected@file@percent }
+\newlabel{tab:dreeam_repro}{{4}{6}{DREEAM reproduction on DocRED dev set}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces CED reranker vs.\ baselines (dev set). The reranker achieves the best EDCR without any additional training.}}{6}{table.caption.17}\protected@file@percent }
+\newlabel{tab:reranker}{{5}{6}{CED reranker vs.\ baselines (dev set). The reranker achieves the best EDCR without any additional training}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}CED as Inference-Time Reranker}{6}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}GRPO Catastrophic Forgetting}{6}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Model Size Ablation}{6}{subsection.5.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces GRPO trajectory (CED reward, lr=$5\times 10^{-6}$). Reward rises while rel-F1 stays near zero---classic reward overoptimization.}}{7}{table.caption.18}\protected@file@percent }
+\newlabel{tab:grpo}{{6}{7}{GRPO trajectory (CED reward, lr=$5\times 10^{-6}$). Reward rises while rel-F1 stays near zero---classic reward overoptimization}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Model size ablation on DocRED dev set. RSFT+CED improves consistently across scales.}}{7}{table.caption.19}\protected@file@percent }
+\newlabel{tab:model_size}{{7}{7}{Model size ablation on DocRED dev set. RSFT+CED improves consistently across scales}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Re-DocRED Extension}{7}{subsection.5.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Top-$k$ Ablation}{7}{subsection.5.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}NLI Model Ablation}{7}{subsection.5.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation Protocol Differences.}{7}{section*.23}\protected@file@percent }
+\bibstyle{acl_natbib}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces DocRED vs.\ Re-DocRED comparison (dev set).}}{8}{table.caption.20}\protected@file@percent }
+\newlabel{tab:redocred}{{8}{8}{DocRED vs.\ Re-DocRED comparison (dev set)}{table.caption.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Top-$k$ ablation for CED-scored RSFT (dev set).}}{8}{table.caption.21}\protected@file@percent }
+\newlabel{tab:topk}{{9}{8}{Top-$k$ ablation for CED-scored RSFT (dev set)}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {paragraph}{EDCR Limitations.}{8}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why RSFT Over Online RL.}{8}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Remaining Challenges.}{8}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces NLI model ablation for CED scoring. DeBERTa-base is sufficient.}}{9}{table.caption.22}\protected@file@percent }
+\newlabel{tab:nli_ablation}{{10}{9}{NLI model ablation for CED scoring. DeBERTa-base is sufficient}{table.caption.22}{}}
+\gdef \@abspage@last{9}

@@ -1,0 +1,25 @@
+{
+  "exp_id": "test_eval_4b_rsft_s44_no_evi_v2",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T10:52:49.895Z",
+    "updated_at": "2026-05-23T10:53:57.022Z",
+    "hypothesis": "4B RSFT CED k=1 s44 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 s44 with-evi ign_f1=0.2525 计算 evidence tax。s42 tax=+1.51pp, s43 tax=+1.99pp。3-seed mean±std 完善 4B evidence tax。v1 因 conda 未激活 EXIT_CODE=127 失败，本次修复。",
+    "parent": "test_eval_4b_rsft_s44_no_evi",
+    "spec": {
+      "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+      "data_count": 500,
+      "model_name": "Qwen3-4B + SFT + RSFT-CED-s44 (no-evi)",
+      "seed": 44,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_ced_s44",
+      "eval_data": "Re-DocRED test_revised (500 docs)"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-23T10:53:58.339475+00:00",
+  "trigger": "update_registry"
+}

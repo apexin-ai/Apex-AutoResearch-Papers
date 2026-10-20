@@ -1,0 +1,16 @@
+{
+  "exp_id": "d158_14b_rsft_s44_ced_score",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T03:58:08.969Z",
+    "updated_at": "2026-05-25T03:58:12.398Z",
+    "hypothesis": "14B seed=44 CED/NLI scoring + k=1 selection. 对生成样本进行 CED 评分并筛选 top-1。预期保留 ~3017 样本（与 s43 的 3017 一致）。",
+    "parent": "d158_14b_rsft_s44_generate"
+  },
+  "timestamp": "2026-05-25T03:58:13.087942+00:00",
+  "trigger": "update_registry"
+}

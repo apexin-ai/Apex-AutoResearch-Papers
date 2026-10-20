@@ -1,0 +1,1914 @@
+# cron hook reeval flat nli s43 20260516T031840 124297
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 61
+- **Recorded user turns:** 2
+- **Tool calls:** 29
+- **Original source:** `logs/chats/archive/cron_hook_reeval_flat_nli_s43_20260516T031840_124297.jsonl`
+- **Structured JSON:** [`7076bb6bcf7f8dfc2444.json`](../../sessions/70/7076bb6bcf7f8dfc2444.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+35 recorded events
+
+### User
+
+_source line 1 · 2026-05-15T23:56:45.398935+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: reeval_flat_nli_s43
+- project: faith-evidence-ie
+- server: rtx5090-4x
+- log_path: ~/runs/faith-evidence-ie/reeval_flat_nli_s43.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T23:56:58.005653+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T23:56:58.006148+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T23:57:00.921494+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T23:57:01.373329+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T23:57:01.777793+00:00_
+
+Error: result (209,467 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-535cdbd1/5e79af9d-885e-404b-87f7-d509e0578486/tool-results/mcp-agent-ml-research-read_registry-1778889421634.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-535cdbd1/5e79af9d-885e-404b-87f7-d509e0578486/tool-results/mcp-agent-ml-research-read_registry-1778889421634.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 856
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T23:57:01.778433+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T23:57:01.778715+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T23:57:07.734888+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"eval_flat_nli_s44\", \"success\": true, \"actions\": [\"Job still running (pid=270462)\"]}, {\"exp_id\": \"reeval_rsft_topk3\", \"success\": true, \"actions\": [\"Job still running (pid=268485)\"]}, {\"exp_id\": \"eval_flat_nli_seed45\", \"success\": true, \"actions\": [\"Job still running (pid=272164)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 6361
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T23:57:07.735736+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-15T23:56:43Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 92 个实验 — ANALYZING 1, DONE 87, QUEUED 1, RUNNING 3\\n**DONE 分布**: failed 15, killed 20, negative 12, success 40\\n\\n### GPU 占用\\n- **分配**: 4 张 — rtx5090-4x:cuda:0, rtx5090-4x:cuda:1, rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\n- **实际运行**: 3 张 — rtx5090-4x:cuda:2(reeval_rsft_topk3), rtx5090-4x:cuda:3(eval_flat_nli_seed45), rtx5090-4x:cuda:0(eval_flat_nli_s44)\\n- **空闲（分配了没跑）**: rtx5090-4x:cuda:1\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `reeval_rsft_topk3` | rtx5090-4x | cuda:2 | 268485 | `~/runs/faith-evidence-ie/reeval_rsft_topk3.log` |\\n| `eval_flat_nli_seed45` | rtx5090-4x | cuda:3 | 272164 | `~/runs/faith-evidence-ie/eval_flat_nli_seed45.log` |\\n| `eval_flat_nli_s44` | rtx5090-4x | cuda:0 | 270462 | `~/runs/faith-evidence-ie/eval_flat_nli_s44.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `plan_003_edcr_diagnostic` [success] — 2026-05-15T23:52:05\\n- `eval_flat_nli_seed44` [killed] — 2026-05-15T23:48:28\\n- `eval_plan_012_dpo_1ep_fixed_r2` [negative] — 2026-05-15T23:44:56\\n- `plan_001_flat_nli_seed44` [success] — 2026-05-15T23:25:30\\n- `plan_009_dynamics_figure` [success] — 2026-05-15T23:19:12\\n\\n### 🔴 最近失败原因 (top 3)\\n- `eval_flat_nli_seed44`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| eval_flat_nli_seed45 | Full dev eval of flat-NLI RSFT seed=45 checkpoint WITH --sft_adapter。seed45 中间 eval rel_f1=0.4876（待全量确认）。对比 CED RSFT mean (0.4596)。三 seed 全量 eval 出齐后汇报 flat-NLI vs CED RSFT 完整 seed-level 对比
+…[truncated 3821 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 5957
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T23:57:07.786706+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\", \"content\": \"# faith-evidence-ie — Research Dashboard\\n\\n> 最后更新: 2026-05-15 23:13 UTC | 更新原因: Session #12 启动：seed45 训练完成，cuda:2 分配 reeval_rsft_topk3，创建 eval_flat_nli_seed44/45 + plan_003_edcr_diagnostic\\n\\n## 核心方向\\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。核心发现：(1) Evidence generation 代价 ~8pp rel_f1（faithfulness 的真实成本）；(2) QLoRA GRPO 导致 evidence-extraction decoupling（QLoRA-specific，bf16 下不复现）；(3) CED reranker 恢复 97% 的 evidence 代价且保留高质量 evidence。论文定位：\\\"task definition + cost of faithfulness + decoupling finding + EDCR metric\\\"。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research + 审稿同步进行\\n- **C1 证据增强**: no-evidence SFT rel_f1=0.4893 vs evidence-SFT 0.4106（~8pp evidence tax）；CED reranker 0.4864 恢复 97%（D060）\\n- **C2 decoupling**: QLoRA GRPO catastrophic forgetting (rel_f1=0.2167) vs bf16 GRPO 正常 (rel_f1=0.4549) — decoupling 是 QLoRA-specific（D054/D065/D066）\\n- **C3 已降级**: CED vs flat-NLI 统计不可区分（D056），CED 不再作为独立贡献\\n- **plan_009** forgetting dynamics figure ✅ 已生成（bf16 vs QLoRA 对比，3-panel）\\n- **plan_014** no-evidence ablation ✅ rel_f1=0.4893\\n- **plan_011** bf16 GRPO G=8 ✅ 确认无 task decoupling（D065）\\n- **SFT no-quant** ✅ 排除量化 confound（差 <1pp）\\n\\n## 投稿目标\\n- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25)\\n\\n## 近期任务\\n- [x] plan_014 SFT-no-evidence eval — rel_f1=0.4893, C1 ablation 完成\\n- [x] plan_009 forgetting dynamics figure — 3-panel 已生成\\n- [x] plan_011 bf16 GRPO G=8 eval — 无 decoupling（D065）\\n- [x] SFT no-quant baseline — 排除量化 confound\\n- [ ] **reeval_flat_nli_s43** (cuda:1 运行中) — D064 bug fix 后重跑，对比 s42 (0.4539) 和 CED mean (0.4596)\\n- [ ] **eval_plan_012_dpo_1ep** (cuda:3 运行中) — DPO 1ep eval，决定 DPO 在论文中的定位\\n- [ ] **plan_001_flat_nli_seed44** (cuda:0 训练中) — flat-NLI s44 RSFT 训练\\n- [x] **plan_001_flat_nli_seed45** (ANALYZING) — flat-NLI s45 RSFT 训练完成 (1.69h), Worker 分析中\\n- [ ] **reev
+…[truncated 3654 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 6007
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T23:57:12.710846+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'exp_id': 'reeval_flat_nli_s43'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'exp_id': 'reeval_flat_nli_s43'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T23:57:14.919153+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.354}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 2208
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T23:57:14.969928+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_experiment_plan_with_status",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_experiment_plan_with_status",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T23:57:14.970474+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T23:57:24.238409+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-535cdbd1/5e79af9d-885e-404b-87f7-d509e0578486/tool-results/mcp-agent-ml-research-read_registry-1778889421634.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Search for reeval_flat_nli_s43\nfor k, v in exps.items():\n    if 'reeval_flat_nli_s43' in k or 'flat_nli_s43' in k:\n        print(f'=== {k} ===')\n        print(json.dumps(v, indent=2, default=str))\n\" 2>&1 | head -100",
+  "description": "Search registry for reeval_flat_nli_s43 experiment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-535cdbd1/5e79af9d-885e-404b-87f7-d509e0578486/tool-results/mcp-agent-ml-research-read_registry-1778889421634.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Search for reeval_flat_nli_s43\nfor k, v in exps.items():\n    if 'reeval_flat_nli_s43' in k or 'flat_nli_s43' in k:\n        print(f'=== {k} ===')\n        print(json.dumps(v, indent=2, default=str))\n\" 2>&1 | head -100",
+    "description": "Search registry for reeval_flat_nli_s43 experiment"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T23:57:24.692479+00:00_
+
+=== reeval_flat_nli_s43 ===
+{
+  "status": "ANALYZING",
+  "retry_count": 0,
+  "created_at": "2026-05-15T22:00:33.691Z",
+  "updated_at": "2026-05-15T23:56:42.324Z",
+  "hypothesis": "Re-eval flat-NLI RSFT seed=43 WITH --sft_adapter (D064 bug fix). \u539f eval_plan_001_flat_nli_s43 \u56e0\u7f3a --sft_adapter \u5bfc\u81f4 rel_f1=0.0022 \u65e0\u6548\u3002\u5bf9\u6bd4 flat-NLI s42 (rel_f1=0.4539) \u548c CED RSFT mean (0.4596)\u3002",
+  "parent": "plan_001_flat_nli_seed43",
+  "spec": {
+    "command": "Re-eval flat-NLI RSFT seed=43 with --sft_adapter (D064 fix)",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:1",
+    "pid": 266178,
+    "log_path": "~/runs/faith-evidence-ie/reeval_flat_nli_s43.log",
+    "submitted_at": "2026-05-15T22:57:10.223Z",
+    "submitted_via": "submit_training_job",
+    "backend": "tmux",
+    "account": "root",
+    "data_path": "/root/autodl-tmp/data/docred",
+    "data_count": 0,
+    "model_name": "Qwen3-4B + SFT + flat-NLI RSFT s43",
+    "seed": 43,
+    "checkpoint_source": "plan_001_flat_nli_s43",
+    "eval_data": "docred_dev"
+  },
+  "reproduce": {
+    "finished_at": "2026-05-15T23:56:41.649Z"
+  },
+  "extra": {
+    "hook_events": [
+      {
+        "event": "on_complete",
+        "action": "agent",
+        "ts": "2026-05-15T23:56:45.572465+00:00"
+      }
+    ]
+  }
+}
+=== eval_plan_001_flat_nli_s43 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-15T20:29:54.486Z",
+  "updated_at": "2026-05-15T21:35:00.000Z",
+  "conclusion": "failed",
+  "completed_at": "2026-05-15T21:34:00.000Z",
+  "metrics": {
+    "rel_f1": 0.0022,
+    "ign_f1": 0.0022,
+    "evi_f1": 0.8533,
+    "edcr": 0.9982,
+    "num_preds": 17285,
+    "format_ok": "981/985",
+    "truncated": "251/985",
+    "tp": 32,
+    "note": "INVALID \u2014 missing --sft_adapter, same bug as DPO 1ep eval"
+  },
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 
+…[truncated 1132 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "Bash",
+  "elapsed_ms": 454
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T23:57:50.218779+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T23:57:50.823059+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_535cdbd1.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "Read",
+  "elapsed_ms": 604
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T23:57:50.923832+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'status': 'QUEUED'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'status': 'QUEUED'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T23:57:51.326292+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_plan_014_no_evidence\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:17:32.011Z\", \"updated_at\": \"2026-05-15T23:52:15.540Z\", \"hypothesis\": \"Dev set eval of SFT-no-evidence model (plan_014). 核心目标：对比标准 SFT rel_f1=0.4057 vs 不输出 evidence 的 SFT rel_f1（隔离 evidence generation 代价）。只评估 rel_f1，不评估 evi_f1（输出无 evidence）。plan_id=plan_014, claim=1。\", \"parent\": \"plan_014_sft_no_evidence\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_no_evidence_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/sft_no_evidence_noquant --no-quantize --no_evidence\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT no-evidence (standalone LoRA)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_no_evidence_output\", \"eval_data\": \"docred dev (985 docs)\", \"notes\": \"Standalone LoRA adapter, NO --sft_adapter. Uses --no_evidence flag for prompt template. Only rel_f1 meaningful (evi_f1=0 by design). Re-eval without quantization to match --no-quantize baseline.\"}, \"conclusion\": \"killed\"}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3638}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T23:57:58.785684+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'status': 'PREPARING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'status': 'PREPARING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T23:57:58.786149+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T23:57:59.190107+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3597}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 404
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T23:57:59.190507+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "Glob",
+  "elapsed_ms": 404
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T23:58:07.177209+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__submit_on_allocated,mcp__agent-ml-research__get_baseline_metrics",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__submit_on_allocated,mcp__agent-ml-research__get_baseline_metrics",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T23:58:07.229206+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "ToolSearch",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T23:58:10.008636+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T23:58:10.127523+00:00_
+
+called mcp__agent-ml-research__get_baseline_metrics
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_baseline_metrics</summary>
+
+```json
+{
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__get_baseline_metrics",
+  "tool_args": {
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T23:58:10.299637+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_analysis_edcr_tex_fix_and_per_relation_20260515T235434\", \"task_type\": \"analysis:edcr_tex_fix_and_per_relation\", \"project\": \"faith-evidence-ie\", \"status\": \"running\", \"started_at\": \"2026-05-15T23:54:34.429254+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_debug_evi_joint_f1_missing_20260515T235451\", \"task_type\": \"debug:evi_joint_f1_missing\", \"project\": \"faith-evidence-ie\", \"status\": \"running\", \"started_at\": \"2026-05-15T23:54:51.621608+00:00\", \"ended_at\": null}], \"count\": 2}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 291
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T23:58:11.964455+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"baseline\": null, \"experiment\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5999}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__get_baseline_metrics",
+  "elapsed_ms": 1836
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T23:58:47.965508+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "analysis:reeval_flat_nli_s43",
+  "project": "faith-evidence-ie",
+  "task_prompt": "## 任务：分析 reeval_flat_nli_s43 实验结果\n\n实验 `reeval_flat_nli_s43` 已完成（进程正常退出），需要提取指标并更新 registry。\n\n### 背景\n- 这是 flat-NLI RSFT seed=43 的 re-evaluation，修复了 D064 bug（之前缺 --sft_adapter 导致 rel_f1=0.0022 无效）\n- 服务器: rtx5090-4x, GPU: cuda:1\n- 日志: ~/runs/faith-evidence-ie/reeval_flat_nli_s43.log\n- Parent: plan_001_flat_nli_seed43\n\n### 对比基准\n- flat-NLI s42: rel_f1=0.4539\n- CED RSFT mean (s42+s44): rel_f1≈0.4596\n- SFT baseline: rel_f1=0.4057\n\n### 步骤\n\n1. SSH（ssh_read_only）到 rtx5090-4x 读取日志尾部（最后 100 行），提取指标：\n   - rel_f1, ign_f1, evi_f1, edcr（如果有）\n   - num_preds, format_ok, truncated, tp 等\n   - 运行时长\n\n2. 也检查 eval 输出目录（可能在 /root/autodl-tmp/eval_results/ 下有 reeval_flat_nli_s43 或类似目录）\n\n3. 用 `update_registry` 更新实验：\n   - field=\"metrics\", value={rel_f1: X, evi_f1: X, ign_f1: X, ...}\n   - field=\"conclusion\", value=\"success\" 或 \"negative\"\n     - 判断标准：如果 rel_f1 与 s42 (0.4539) 在合理范围内（±2pp），视为 success（验证了 seed 稳定性）\n     - 如果显著低于预期则为 negative\n   - field=\"status\", value=\"DONE\"\n   - 确保 spec 中有 checkpoint_path 和 log_path\n\n4. 输出简洁结论：reeval_flat_nli_s43 的 rel_f1 是多少，与 s42 和 CED mean 的对比。\n\n### 注意\n- 用 ssh_read_only 读日志和结果，不要 ssh_execute\n- 必须用 update_registry 写入所有指标和结论\n- project = \"faith-evidence-ie\"",
+  "tool_groups": "['ssh', 'registry']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:reeval_flat_nli_s43",
+    "project": "faith-evidence-ie",
+    "task_prompt": "## 任务：分析 reeval_flat_nli_s43 实验结果\n\n实验 `reeval_flat_nli_s43` 已完成（进程正常退出），需要提取指标并更新 registry。\n\n### 背景\n- 这是 flat-NLI RSFT seed=43 的 re-evaluation，修复了 D064 bug（之前缺 --sft_adapter 导致 rel_f1=0.0022 无效）\n- 服务器: rtx5090-4x, GPU: cuda:1\n- 日志: ~/runs/faith-evidence-ie/reeval_flat_nli_s43.log\n- Parent: plan_001_flat_nli_seed43\n\n### 对比基准\n- flat-NLI s42: rel_f1=0.4539\n- CED RSFT mean (s42+s44): rel_f1≈0.4596\n- SFT baseline: rel_f1=0.4057\n\n### 步骤\n\n1. SSH（ssh_read_only）到 rtx5090-4x 读取日志尾部（最后 100 行），提取指标：\n   - rel_f1, ign_f1, evi_f1, edcr（如果有）\n   - num_preds, format_ok, truncated, tp 等\n   - 运行时长\n\n2. 也检查 eval 输出目录（可能在 /root/autodl-tmp/eval_results/ 下有 reeval_flat_nli_s43 或类似目录）\n\n3. 用 `update_registry` 更新实验：\n   - field=\"metrics\", value={rel_f1: X, evi_f1: X, ign_f1: X, ...}\n   - field=\"conclusion\", value=\"success\" 或 \"negative\"\n     - 判断标准：如果 rel_f1 与 s42 (0.4539) 在合理范围内（±2pp），视为 success（验证了 seed 稳定性）\n     - 如果显著低于预期则为 negative\n   - field=\"status\", value=\"DONE\"\n   - 确保 spec 中有 checkpoint_path 和 log_path\n\n4. 输出简洁结论：reeval_flat_nli_s43 的 rel_f1 是多少，与 s42 和 CED mean 的对比。\n\n### 注意\n- 用 ssh_read_only 读日志和结果，不要 ssh_execute\n- 必须用 update_registry 写入所有指标和结论\n- project = \"faith-evidence-ie\"",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T23:58:52.778310+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_reeval_flat_nli_s43_20260515T235848\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_analysis_reeval_flat_nli_s43_20260515T235848.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_reeval_flat_nli_s43_20260515T235848 started. Use get_worker_status('worker_analysis_reeval_flat_nli_s43_20260515T235848') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 4812
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T23:58:52.828989+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_plan_014_no_evidence",
+  "field": "spec",
+  "value": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_no_evidence_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/sft_no_evidence_noquant --no-quantize --no_evidence\"', 'server': 'rtx5090-4x', 'gpu': 'cuda:1', 'data_path': '/root/autodl-tmp/data/docred', 'data_count': 985, 'model_name': 'Qwen3-4B + SFT no-evidence (standalone LoRA)', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/sft_no_evidence_output', 'eval_data': 'docred dev (985 docs)', 'notes': 'Standalone LoRA adapter, NO --sft_adapter. Uses --no_evidence flag for prompt template. Only rel_f1 meaningful (evi_f1=0 by design). Re-eval without quantization to match --no-quantize baseline.'}",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_plan_014_no_evidence",
+    "field": "spec",
+    "value": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_no_evidence_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/sft_no_evidence_noquant --no-quantize --no_evidence\"', 'server': 'rtx5090-4x', 'gpu': 'cuda:1', 'data_path': '/root/autodl-tmp/data/docred', 'data_count': 985, 'model_name': 'Qwen3-4B + SFT no-evidence (standalone LoRA)', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/sft_no_evidence_output', 'eval_data': 'docred dev (985 docs)', 'notes': 'Standalone LoRA adapter, NO --sft_adapter. Uses --no_evidence flag for prompt template. Only rel_f1 meaningful (evi_f1=0 by design). Re-eval without quantization to match --no-quantize baseline.'}",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-16T00:16:46.985994+00:00_
+
+Worker 池 = 2（CPU），cuda:1 空闲。派 Worker 分析 reeval_flat_nli_s43，同时把 QUEUED 的 eval_plan_014_no_evidence 分配到 cuda:1。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:reeval_flat_nli_s43"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+26 recorded events
+
+### User
+
+_source line 36 · 2026-05-16T03:17:06.408747+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T03:17:16.281030+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__read_experiment_plan_with_status",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__read_experiment_plan_with_status",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T03:17:16.331920+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-16T03:17:19.451413+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-16T03:17:19.451872+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-16T03:17:20.056633+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "report.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "report.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-16T03:17:20.459876+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-16T03:17:20.967731+00:00_
+
+Error: result (237,574 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-535cdbd1/7dc50abd-6831-48bf-b639-1e237b713c54/tool-results/mcp-agent-ml-research-read_registry-1778901440682.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-535cdbd1/7dc50abd-6831-48bf-b639-1e237b713c54/tool-results/mcp-agent-ml-research-read_registry-1778901440682.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1516
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-16T03:17:21.271790+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "limit": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "limit": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-16T03:17:21.322438+00:00_
+
+called mcp__agent-ml-research__read_experiment_plan_with_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status</summary>
+
+```json
+{
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "tool_args": {
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T03:17:33.260594+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 4, \"results\": [{\"exp_id\": \"eval_rsft_ced_s45\", \"success\": true, \"actions\": [\"Job still running (pid=283838)\"]}, {\"exp_id\": \"eval_rsft_ced_s43\", \"success\": true, \"actions\": [\"Job still running (pid=286587)\"]}, {\"exp_id\": \"eval_plan_014_no_evidence_r2\", \"success\": true, \"actions\": [\"Job still running (pid=288109)\"]}, {\"exp_id\": \"reeval_flat_nli_s43_r2\", \"success\": true, \"actions\": [\"Job still running (pid=291003)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 13808
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-16T03:17:33.272290+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\", \"content\": \"# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| reeval_flat_nli_s43_r2 | Re-eval flat-NLI RSFT s43 with unified protocol: batch_size=4 + --no-quantize + --sft_adapter + --max_new_tokens 1024. 原 reeval_flat_nli_s43 用了 batch_size=16 导致协议不一致。C3 paired t-test 关键路径。 | — | — | — |\\n| eval_plan_014_no_evidence_r2 | Retry of eval_plan_014_no_evidence with corrected command: --model_path 传底座 Qwen3-4B, --sft_adapter 传 SFT no-evidence adapter。修复 adapter 检测逻辑冲突。plan_id=plan_014, claim=1。 | — | — | — |\\n| eval_rsft_ced_s43 | Full dev eval of CED RSFT seed=43 with --sft_adapter + --no-quantize. Paired t-test 关键路径：CED 第 4 个 seed。对比 flat-NLI RSFT seeds。plan_id=plan_mvp2_rsft, claim=3。 | — | — | — |\\n\\n## 待处理\\n- reeval_ced_s44: Re-eval CED RSFT s44 with unified protocol: batch_size=4 + --no-quantize + --sft_adapter + max_new_tokens=1024 + seed=44. 原 eval 用了 batch_size≈16 且 seed=42（错误）。Paired t-test 关键路径。（准备中）\\n- reeval_ced_s42: Re-eval CED RSFT s42 with unified protocol: batch_size=4 + --no-quantize + --sft_adapter + max_new_tokens=1024. 原 mvp2_eval_rsft_r2b_maxtok1536_r2 用了 batch_size=8 + max_new_tokens=1536。Paired t-test 关键路径。（准备中）\\n- reeval_flat_nli_s42: Re-eval flat-NLI RSFT s42 with unified protocol: batch_size=4 + --no-quantize + --sft_adapter + max_new_tokens=1024. 原 eval_plan_001_flat_nli 用了 batch_size=16。Paired t-test 关键路径。（准备中）\\n- seed_comparison_prep（准备中）\\n\\n## 近期结论\\n- **eval_flat_nli_seed45** (success): Full dev eval of flat-NLI RSFT seed=45 checkpoint WITH --sft_adapter。seed45 中间 eval rel_f1=0.4876（待全量确认）。对比 CED RSFT mean (0.4596)。三 seed 全量 eval 出齐后汇报 flat-NLI vs CED RSFT 完整 seed-level 对比。 ← 基于 plan_001_flat_nli_seed45\\n- **eval_flat_nli_s44** (success): Full dev eval of flat-NLI RSFT seed=44 wi
+…[truncated 2994 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 13215
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T03:17:33.360455+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\", \"content\": \"# faith-evidence-ie — Research Dashboard\\n\\n> 最后更新: 2026-05-15 23:13 UTC | 更新原因: Session #12 启动：seed45 训练完成，cuda:2 分配 reeval_rsft_topk3，创建 eval_flat_nli_seed44/45 + plan_003_edcr_diagnostic\\n\\n## 核心方向\\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。核心发现：(1) Evidence generation 代价 ~8pp rel_f1（faithfulness 的真实成本）；(2) QLoRA GRPO 导致 evidence-extraction decoupling（QLoRA-specific，bf16 下不复现）；(3) CED reranker 恢复 97% 的 evidence 代价且保留高质量 evidence。论文定位：\\\"task definition + cost of faithfulness + decoupling finding + EDCR metric\\\"。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research + 审稿同步进行\\n- **C1 证据增强**: no-evidence SFT rel_f1=0.4893 vs evidence-SFT 0.4106（~8pp evidence tax）；CED reranker 0.4864 恢复 97%（D060）\\n- **C2 decoupling**: QLoRA GRPO catastrophic forgetting (rel_f1=0.2167) vs bf16 GRPO 正常 (rel_f1=0.4549) — decoupling 是 QLoRA-specific（D054/D065/D066）\\n- **C3 已降级**: CED vs flat-NLI 统计不可区分（D056），CED 不再作为独立贡献\\n- **plan_009** forgetting dynamics figure ✅ 已生成（bf16 vs QLoRA 对比，3-panel）\\n- **plan_014** no-evidence ablation ✅ rel_f1=0.4893\\n- **plan_011** bf16 GRPO G=8 ✅ 确认无 task decoupling（D065）\\n- **SFT no-quant** ✅ 排除量化 confound（差 <1pp）\\n\\n## 投稿目标\\n- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25)\\n\\n## 近期任务\\n- [x] plan_014 SFT-no-evidence eval — rel_f1=0.4893, C1 ablation 完成\\n- [x] plan_009 forgetting dynamics figure — 3-panel 已生成\\n- [x] plan_011 bf16 GRPO G=8 eval — 无 decoupling（D065）\\n- [x] SFT no-quant baseline — 排除量化 confound\\n- [ ] **reeval_flat_nli_s43** (cuda:1 运行中) — D064 bug fix 后重跑，对比 s42 (0.4539) 和 CED mean (0.4596)\\n- [ ] **eval_plan_012_dpo_1ep** (cuda:3 运行中) — DPO 1ep eval，决定 DPO 在论文中的定位\\n- [ ] **plan_001_flat_nli_seed44** (cuda:0 训练中) — flat-NLI s44 RSFT 训练\\n- [x] **plan_001_flat_nli_seed45** (ANALYZING) — flat-NLI s45 RSFT 训练完成 (1.69h), Worker 分析中\\n- [ ] **reev
+…[truncated 3656 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 12900
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T03:17:33.789984+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_research_literature-scan_20260516T012004\", \"task_type\": \"research:literature-scan\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-16T01:20:04.896119+00:00\", \"ended_at\": \"2026-05-16T01:40:51.001783+00:00\"}, {\"worker_id\": \"worker_ops_gpu-status-and-ced-s45-diagnosis_20260516T012459\", \"task_type\": \"ops:gpu-status-and-ced-s45-diagnosis\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-16T01:24:59.505645+00:00\", \"ended_at\": \"2026-05-16T01:26:18.944086+00:00\"}, {\"worker_id\": \"worker_diagnose_eval_plan_014_no_evidence_20260516T013029\", \"task_type\": \"diagnose:eval_plan_014_no_evidence\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-16T01:30:29.518137+00:00\", \"ended_at\": \"2026-05-16T01:31:18.887058+00:00\"}, {\"worker_id\": \"worker_ops_diagnose-plan014-and-monitor-s43_20260516T013110\", \"task_type\": \"ops:diagnose-plan014-and-monitor-s43\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-16T01:31:10.298195+00:00\", \"ended_at\": \"2026-05-16T01:33:28.932340+00:00\"}, {\"worker_id\": \"worker_monitor_running_experiments_eta_20260516T015218\", \"task_type\": \"monitor:running_experiments_eta\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-16T01:52:18.682613+00:00\", \"ended_at\": \"2026-05-16T01:53:22.453185+00:00\"}, {\"worker_id\": \"worker_analysis_rsft_ced_s43_train_r3_20260516T021246\", \"task_type\": \"analysis:rsft_ced_s43_train_r3\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-16T02:12:46.875597+00:00\", \"ended_at\": \"2026-05-16T02:13:43.821513+00:00\"}, {\"worker_id\": \"worker_research_literature-related-work_20260516T021630\", \"task_type\": \"research:literature-related-work\", \"project\": \"faith-evidence-ie\", \"status\"
+…[truncated 3942 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 12518
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-16T03:17:34.507159+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": 2, \"description\": \"CED vs flat-NLI RSFT ablation: 用 flat-NLI scoring（非 contrastive）筛选 RSFT 训练数据，对比 CED scoring。验证 CED 的对比性 margin 是否优于朴素 NLI。步骤: (1) rsft_score_filter.py 用 flat-NLI 模式重新打分已有 candidates, (2) RSFT 训练, (3) 全量 dev eval。\", \"priority\": \"P0\", \"gpu_budget_hours\": 20, \"deps\": [], \"registry_id\": \"eval_flat_nli_seed45\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4551, \"rel_p\": 0.4632, \"rel_r\": 0.4472, \"ign_f1\": 0.4551, \"evi_f1\": 0.8154, \"evi_p\": 0.8108, \"evi_r\": 0.8201, \"evi_f1_joint\": 0.3556, \"edcr\": 0.6521, \"n_predictions\": 15650, \"tp\": 5434, \"format_ok_rate\": 1, \"n_truncated\": 206, \"n_documents\": 985, \"inference_time_seconds\": 11867.6}}, {\"id\": \"plan_002\", \"claim\": 1, \"description\": \"Test set evaluation: 用 RSFT best config（r2b 或 s44）在 DocRED test set 上评估。提交 CodaLab 获得官方 F1/Ign-F1，同时本地计算 Evi-F1 和 EDCR。\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_003\", \"claim\": 4, \"description\": \"EDCR pipeline 验证 + cross-method diagnostic table: 在所有 evidence-producing 方法（SFT, RSFT-CED, RSFT-flatNLI, CED-reranker）上计算 EDCR，验证 EDCR 作为独立评估指标的诊断能力。\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_001\"], \"registry_id\": \"plan_003_edcr_diagnostic\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"methods_evaluated\": 15, \"edcr_vs_rel_f1_spearman\": -0.9648, \"edcr_vs_rel_f1_pvalue\": 0.0001, \"edcr_vs_evi_f1_spearman\": 0.0022, \"edcr_vs_evi_f1_pvalue\": 0.9941, \"edcr_range\": \"0.63-0.99\", \"unique_diagnostic_value\": \"identifies pathological models (GRPO QLoRA) with high evi_f1 but catastrophically low rel_f1\"}}, {\"id\": \"plan_004\", \"claim\": 1, \"description\": \"DREEAM baseline reproduction: 在 DocRED dev set 上复现 DREEAM (RoBERTa-large) 的 Evi-F1，确认 57.
+…[truncated 8152 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "elapsed_ms": 13184
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-16T03:17:40.060625+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-16T03:17:40.515773+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"reeval_flat_nli_s43_r2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T02:32:45.507Z\", \"updated_at\": \"2026-05-16T03:05:12.814Z\", \"hypothesis\": \"Re-eval flat-NLI RSFT s43 with unified protocol: batch_size=4 + --no-quantize + --sft_adapter + --max_new_tokens 1024. 原 reeval_flat_nli_s43 用了 batch_size=16 导致协议不一致。C3 paired t-test 关键路径。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_flat_nli_s43/checkpoint-507 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --output_dir /root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval_r2 --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"291003\", \"log_path\": \"~/runs/faith-evidence-ie/reeval_flat_nli_s43_r2.log\", \"submitted_at\": \"2026-05-16T03:05:10.815Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": \"291003\", \"log_path\": \"~/runs/faith-evidence-ie/reeval_flat_nli_s43_r2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_flat_nli_s43/checkpoint-507 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_s
+…[truncated 6812 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 455
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-16T03:17:40.516136+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'status': 'PREPARING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'status': 'PREPARING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-16T03:17:41.068977+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"reeval_flat_nli_s42\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T02:38:03.120Z\", \"updated_at\": \"2026-05-16T03:17:26.765Z\", \"hypothesis\": \"Re-eval flat-NLI RSFT s42 with unified protocol: batch_size=4 + --no-quantize + --sft_adapter + max_new_tokens=1024. 原 eval_plan_001_flat_nli 用了 batch_size=16。Paired t-test 关键路径。\", \"parent\": \"plan_001_rsft_flat_nli\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES={GPU} HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_flat_nli/checkpoint-507 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/rsft_flat_nli_s42_reeval --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + flat-NLI RSFT s42\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_flat_nli/checkpoint-507\", \"eval_data\": \"docred dev (985 docs)\"}}, \"reeval_ced_s44\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T02:38:00.052Z\", \"updated_at\": \"2026-05-16T03:17:23.826Z\", \"hypothesis\": \"Re-eval CED RSFT s44 with unified protocol: batch_size=4 + --no-quantize + --sft_adapter + max_new_tokens=1024 + seed=44. 原 eval 用了 batch_size≈16 且 seed=42（错误）。Paired t-test 关键路径。\", \"parent\": \"mvp2_rsft_train_r1_s44\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES={GPU} HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=
+…[truncated 3799 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 552
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-16T03:17:41.522553+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-16T03:17:41.974744+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"content\": \"# Re-eval Checkpoint 验证报告（D076 统一协议）\\n\\n验证日期：2026-05-16\\n\\n## 验证结果\\n\\n### 1. reeval_ced_s44\\n- **Parent**: mvp2_rsft_train_r1_s44\\n- **确认路径**: `/root/autodl-tmp/rsft_output_s44/checkpoint-510` ✅\\n- **注意**: `rsft_output_ced_s44` 不存在，s44 的 CED RSFT checkpoint 在 `rsft_output_s44`\\n- **adapter_model.safetensors**: 存在\\n\\n### 2. reeval_ced_s42\\n- **Parent**: 原始 CED RSFT（seed=42, lora_alpha=128, 510步）\\n- **确认路径**: `/root/autodl-tmp/rsft_output/checkpoint-510` ✅\\n- **排除**: `rsft_output_r2b` 是 lora_alpha=32/160步的版本，不是目标\\n- **adapter_model.safetensors**: 存在\\n\\n### 3. reeval_flat_nli_s42\\n- **Parent**: plan_001_rsft_flat_nli\\n- **确认路径**: `/root/autodl-tmp/rsft_output_flat_nli/checkpoint-507` ✅\\n- **注意**: flat-NLI 训练全系列（s42/s43/s44/s45）最终 checkpoint 均为 **507**（非 510）\\n- **adapter_model.safetensors**: 存在\\n\\n## 提交命令（修正版 — 与当前 RUNNING 实验协议一致）\\n\\n> ⚠️ 使用 `freige.eval.inference`（非 `freige.evaluation.evaluate`）。RSFT eval 需要 `--model_path` 指向 RSFT checkpoint + `--base_model` 指向 Qwen3-4B + `--sft_adapter` 指向 SFT adapter。提交前 `nvidia-smi` 确认目标 GPU 显存 < 2GB。\\n\\n### reeval_ced_s44\\n```bash\\nbash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES={GPU} HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s44/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 44 --output_dir /root/autodl-tmp/eval_results/reeval_ced_s44 --no-quantize\\\"\\n```\\n\\n### reeval_ced_s42\\n```bash\\nbash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-
+…[truncated 1970 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-16T03:17:41.975311+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__load_project_config",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__load_project_config",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T03:17:42.026426+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "ToolSearch",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-16T03:17:44.488009+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "faith-evidence-ie",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "faith-evidence-ie",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-16T03:17:44.538770+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"faith-evidence-ie\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_ids\": [0, 1, 2, 3], \"project_path\": \"/root/autodl-tmp/freige\", \"servers\": [\"rtx5090-4x\", {\"account\": \"root\", \"server\": \"bjb2-12179\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reeval_flat_nli_s43",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-16T03:18:40.122449+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单 `gpu_ids: [0, 1, 2, 3]`，全在 rtx5090-4x 上，不得用其他服务器的 GPU（bjb2-12179 是备用，未分配 GPU）
+- 所有命令 cwd 必须是 `/root/autodl-tmp`，**不是** `/root/autodl-tmp/freige`（s43 训练曾因 cd 错误路径崩溃）
+- Eval 命令必须用 `freige.eval.inference` + `--model_path` + `--base_model` + `--sft_adapter`，**不要**用旧的 `freige.evaluation.evaluate` + `--rsft_adapter`
+- flat-NLI RSFT checkpoint 是 **507** 步，CED RSFT checkpoint 是 **510** 步，不要搞混
+- D076 统一协议：所有 seed eval 必须用 batch_size=4 + --no-quantize + --sft_adapter + max_new_tokens=1024，否则 paired t-test 无效
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: rtx5090-4x（4× RTX 5090 32GB），账号 root
+- **工作目录**: `/root/autodl-tmp`，代码 `/root/autodl-tmp/freige`
+- **Python**: `/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- **模型**: `/root/autodl-tmp/models/Qwen3-4B`
+- **SFT adapter**: `/root/autodl-tmp/sft_output`
+- **数据**: `/root/autodl-tmp/data/docred`（dev 985 docs）
+- **HF cache**: `/root/autodl-tmp/.hf_cache`（离线模式 HF_HUB_OFFLINE=1）
+- **Checkpoint 路径**:
+  - CED s42: `/root/autodl-tmp/rsft_output/checkpoint-510`
+  - CED s43: `/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510`
+  - CED s44: `/root/autodl-tmp/rsft_output_s44/checkpoint-510`（注意不是 rsft_output_ced_s44）
+  - CED s45: `/root/autodl-tmp/rsft_output_ced_s45/checkpoint-510`
+  - flat-NLI s42: `/root/autodl-tmp/rsft_output_flat_nli/checkpoint-507`
+  - flat-NLI s43: `/root/autodl-tmp/rsft_output_flat_nli_s43/checkpoint-507`
+  - flat-NLI s44: `/root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507`
+  - flat-NLI s45: `/root/autodl-tmp/rsft_output_flat_nli_s45/checkpoint-507`
+  - SFT no-evidence: `/root/autodl-tmp/sft_no_evidence_output`
+- **活跃进程**（4 个 eval 占满 4 GPU）:
+  - cuda:0 — eval_plan_014_no_evidence_r2, PID 288109, tmux=eval_plan_014_no_evidence_r2
+  - cuda:1 — eval_rsft_ced_s43, PID 286587, tmux=eval_rsft_ced_s43
+  - cuda:2 — eval_rsft_ced_s45, PID 283838, tmux=eval_rsft_ced_s45（最早提交，~28%，ETA ~04:18 UTC）
+  - cuda:3 — reeval_flat_nli_s43_r2, PID 291003, tmux=reeval_flat_nli_s43_r2
+- **Cron**: 4 个活跃 cron 监控上述 4 个实验
+
+### 3. 📊 当前状态
+刚完成 D076 统一协议审计：发现旧 eval 的 batch_size/max_new_tokens/seed 不一致，创建了 6 个 reeval 实验。其中 reeval_flat_nli_s43_r2 已提交运行（替代了用 batch_size=16 的旧版本），其余 3 个 reeval（ced_s42, ced_s44, flat_nli_s42）在 PREPARING 等 GPU 释放。
+
+有 1 个 running Worker（worker_infra_fix_reeval_checkpoint_paths）正在验证/修正 PREPARING 实验的 checkpoint 路径。
+
+**Registry 摘要**:
+- RUNNING (4): eval_rsft_ced_s45 (cuda:2), eval_rsft_ced_s43 (cuda:1), eval_plan_014_no_evidence_r2 (cuda:0), reeval_flat_nli_s43_r2 (cuda:3)
+- PREPARING (4): reeval_ced_s42, reeval_ced_s44, reeval_flat_nli_s42, seed_comparison_prep
+- 历史: 50 success / 17 negative / 22 failed / 共 122
+
+### 4. 📋 待办（条件触发式）
+- eval_rsft_ced_s45 完成（cron 回调）→ 提取 metrics → 更新 registry → cuda:2 释放后立即提交 reeval_ced_s42 或 reeval_ced_s44
+- eval_rsft_ced_s43 完成 → 提取 metrics → CED 4-seed 齐全 → 可跑初步 paired t-test（flat-NLI 侧还差 reeval）
+- eval_plan_014_no_evidence_r2 完成 → 提取 rel_f1 → 更新 C1 evidence tax 数据（no-evidence SFT 在统一协议下的指标）→ cuda:0 释放后提交 reeval_flat_nli_s42 或 reeval_ced_s42
+- reeval_flat_nli_s43_r2 完成 → 提取 metrics → 替代旧 s43 数据 → cuda:3 释放后提交 reeval_ced_s44
+- **所有 reeval 完成（8 seed × 统一协议）→ 跑 seed_comparison.py → paired t-test → 向 Director 汇报 C3 统计显著性结论**
+- 如 CED vs flat-NLI 差异仍不显著 → C3 维持降级（D056），论文不 claim CED > flat-NLI
+- Worker worker_infra_fix_reeval_checkpoint_paths 回调 → 确认 PREPARING 实验 spec 正确 → 标记可提交
+
+### 5. 🎯 战略上下文
+- **核心论文定位**（EMNLP 2026 Main，ARR July ~7/15-25）: "task definition + cost of faithfulness + decoupling finding + EDCR metric"
+- **C1**: Evidence generation ~8pp rel_f1 代价（no-evidence SFT 0.4893 vs evidence-SFT 0.4106），CED reranker 恢复 97%（0.4864）
+- **C2**: QLoRA GRPO catastrophic forgetting 是 QLoRA-specific（bf16 下不复现），D054/D065/D066 已确认
+- **C3 已降级**: CED ≈ flat-NLI 统计不可区分（D056）。当前 reeval 是为了在统一协议下再确认一次
+- **C4**: EDCR 从跨方法诊断指标降级为 per-relation-type 分析工具（D070/D072/D073）
+- **最易判断错的事**: (1) checkpoint 路径命名不一致（s44 在 rsft_output_s44 不是 rsft_output_ced_s44）；(2) 旧 eval 结果不能直接和新 reeval 混用（协议不同）；(3) flat-NLI 是 507 步不是 510 步
+- **DPO 结论**: 3ep 过拟合 rel_f1=0.3429，1ep 中性（D067/D068/D069 修正叙事为"DPO 中性"非"DPO 失败"）
+- **下一大步**: 统一协议 reeval 全部完成 → paired t-test → paper writing sprint
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:reeval_flat_nli_s43"
+}
+```
+
+</details>
+
+---

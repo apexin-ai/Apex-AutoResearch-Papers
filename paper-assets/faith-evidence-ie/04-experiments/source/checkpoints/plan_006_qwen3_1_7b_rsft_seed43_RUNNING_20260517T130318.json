@@ -1,0 +1,30 @@
+{
+  "exp_id": "plan_006_qwen3_1_7b_rsft_seed43",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:01:14.254Z",
+    "updated_at": "2026-05-17T13:03:18.582Z",
+    "hypothesis": "Validate 1.7B RSFT robustness across seeds. Seed 42 gave rel_f1=0.5219; if seed 43 gives similar result (±1pp), the scaling study claim is robust.",
+    "parent": "plan_006_qwen3_1_7b_rsft_eval_r2",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --rsft_data_path /root/autodl-tmp/freige/outputs/rsft_scored_1_7b/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_qwen3_1_7b_seed43 --num_epochs 3 --seed 43 --bf16 --wandb_run_name plan_006_qwen3_1_7b_rsft_seed43",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:2",
+      "pid": 449282,
+      "data_path": "/root/autodl-tmp/freige/outputs/rsft_scored_1_7b/rsft_train.jsonl",
+      "data_count": 9042,
+      "model_name": "Qwen/Qwen3-1.7B",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_qwen3_1_7b_bf16",
+      "eval_data": "N/A - training experiment (seed variance replication)",
+      "log_path": "/root/runs/faith-evidence-ie/plan_006_qwen3_1_7b_rsft_seed43.log",
+      "checkpoint_path": "/root/autodl-tmp/rsft_output_qwen3_1_7b_seed43"
+    }
+  },
+  "timestamp": "2026-05-17T13:03:18.975711+00:00",
+  "trigger": "update_registry"
+}

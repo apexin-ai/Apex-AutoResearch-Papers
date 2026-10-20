@@ -1,0 +1,52 @@
+{
+  "exp_id": "plan019_1_7b_rsft_no_evidence_eval",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:42:59.170Z",
+    "updated_at": "2026-05-19T14:46:51.282Z",
+    "spec": {
+      "command": "bash -c \"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\"",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:3",
+      "pid": 679713,
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 998,
+      "model_name": "Qwen3-1.7B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_qwen3_1_7b_k1",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json"
+    },
+    "hypothesis": "Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance",
+    "reproduce": {
+      "finished_at": "2026-05-19T14:44:13.014Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T14:44:20.090580+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ign_f1": 0.4352,
+      "f1": 0.4552,
+      "evi_f1_dreeam": 0,
+      "evi_f1_tp": 0,
+      "edcr": 0,
+      "format_ok_rate": 0.971,
+      "truncated_rate": 0.592,
+      "predictions": 25221
+    },
+    "checkpoint_path": "/root/autodl-tmp/rsft_output_qwen3_1_7b_k1",
+    "log_path": "~/runs/faith-evidence-ie/plan019_1_7b_rsft_no_evidence_eval.log",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-19T14:46:51.776124+00:00",
+  "trigger": "update_registry"
+}

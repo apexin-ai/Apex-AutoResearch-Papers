@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_llama_sft_s43_no_evidence",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:07:52.460Z",
+    "updated_at": "2026-05-20T14:08:09.611Z",
+    "hypothesis": "LLaMA SFT s43 标准化 no-evidence eval。用 s43 SFT adapter + --no_evidence flag 推理，测量 per-seed evidence tax，与 s42 no-evidence eval 配对。",
+    "parent": "llama_sft_s43_train_eval_r3"
+  },
+  "timestamp": "2026-05-20T14:08:10.159635+00:00",
+  "trigger": "update_registry"
+}

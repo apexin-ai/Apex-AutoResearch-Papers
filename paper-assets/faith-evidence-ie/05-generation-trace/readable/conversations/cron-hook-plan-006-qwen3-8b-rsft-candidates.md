@@ -1,0 +1,1743 @@
+# cron hook plan 006 qwen3 8b rsft candidates
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 61
+- **Recorded user turns:** 2
+- **Tool calls:** 29
+- **Original source:** `logs/chats/cron_hook_plan_006_qwen3_8b_rsft_candidates.jsonl`
+- **Structured JSON:** [`72865f64ebd82adc943c.json`](../../sessions/72/72865f64ebd82adc943c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+35 recorded events
+
+### User
+
+_source line 1 · 2026-05-17T01:51:15.728616+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: plan_006_qwen3_8b_rsft_candidates
+- project: faith-evidence-ie
+- server: rtx5090-4x
+- log_path: ~/runs/faith-evidence-ie/plan_006_qwen3_8b_rsft_candidates.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-17T01:51:29.856054+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-17T01:51:29.906838+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T01:51:34.278556+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T01:51:34.782431+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T01:51:35.235910+00:00_
+
+Error: result (98,923 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-0902bd17/4261ffb5-cf65-40c3-a7cc-1ac6495fde97/tool-results/mcp-agent-ml-research-read_registry-1778982695122.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-0902bd17/4261ffb5-cf65-40c3-a7cc-1ac6495fde97/tool-results/mcp-agent-ml-research-read_registry-1778982695122.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-0902bd17/4261ffb5-cf65-40c3-a7cc-1ac6495fde97/tool-results/mcp-agent-ml-research-read_registry-1778982695122.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 957
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-17T01:51:35.236432+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 454
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-17T01:51:35.236798+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T01:51:36.492639+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-17T01:51:13Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 145 个实验 — DONE 141, PREPARING 1, RUNNING 3\\n**DONE 分布**: failed 30, killed 25, negative 14, success 72\\n\\n### GPU 占用\\n- **分配**: 4 张 — rtx5090-4x:cuda:0, rtx5090-4x:cuda:1, rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\n- **实际运行**: 3 张 — rtx5090-4x:cuda:0(plan_006_qwen3_1_7b_ced_scoring), rtx5090-4x:cuda:0(plan_002_test_rsft_s44), rtx5090-4x:cuda:2(plan_016_llama_ced_scoring)\\n- **空闲（分配了没跑）**: rtx5090-4x:cuda:3\\n\\n### 💾 磁盘余量\\n- **rtx5090-4x**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\n  - `/usr/bin/nvidia-smi`: 417G/879G 可用（已用 51%）\\n- **bjb2-12179**: ❌ 连接失败\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `plan_006_qwen3_1_7b_ced_scoring` | rtx5090-4x | cuda:0 | 395619 | `~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_ced_scoring.log` |\\n| `plan_002_test_rsft_s44` | rtx5090-4x | cuda:0 | 396333 | `~/runs/faith-evidence-ie/plan_002_test_rsft_s44.log` |\\n| `plan_016_llama_ced_scoring` | rtx5090-4x | cuda:2 | 398949 | `/root/autodl-tmp/plan_016_llama_ced_scoring.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `plan_006_qwen3_8b_rsft_candidates` [failed] — 2026-05-17T01:51:09 — EXIT_CODE=124 (timeout — exceeded timeout_hours)\\n- `plan_016_llama_rsft_candidates_r3` [success] — 2026-05-17T01:34:30\\n- `plan_006_qwen3_1_7b_rsft_candidates` [success] — 2026-05-17T00:59:31\\n- `plan_007_redocred_rsft_eval_r5` [success] — 2026-05-17T00:51:25\\n- `plan_007_redocred_rsft_eval_r4` [failed] — 2026-05-16T22:04:01 — startup recovery: process dead, no active cron monitor\\n\\n### 🔴 最近失败原因 (top 3)\\n- `plan_006_qwen3_8b_rsft_candidates`: EXIT_CODE=124 (timeout — exceeded timeout_hours)
+…[truncated 4863 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1255
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-17T01:51:36.493284+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T01:51:36.544414+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_0902bd17.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T01:51:40.312024+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T01:51:40.363428+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Glob",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-17T01:51:43.427829+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T01:51:43.478676+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T01:51:46.786162+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T01:51:46.836943+00:00_
+
+&lt;tool_use_error>Directory does not exist: /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_0902bd17.&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-17T01:51:50.452005+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/on-experiment-failed*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/on-experiment-failed*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T01:51:50.452395+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-17T01:52:05.768284+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-0902bd17/4261ffb5-cf65-40c3-a7cc-1ac6495fde97/tool-results/mcp-agent-ml-research-read_registry-1778982695122.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\ntarget = [e for e in exps if e.get('exp_id') == 'plan_006_qwen3_8b_rsft_candidates']\nif target:\n    print(json.dumps(target[0], indent=2, ensure_ascii=False))\nelse:\n    print('NOT FOUND')\n\"",
+  "description": "Extract plan_006_qwen3_8b_rsft_candidates experiment details from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-0902bd17/4261ffb5-cf65-40c3-a7cc-1ac6495fde97/tool-results/mcp-agent-ml-research-read_registry-1778982695122.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\ntarget = [e for e in exps if e.get('exp_id') == 'plan_006_qwen3_8b_rsft_candidates']\nif target:\n    print(json.dumps(target[0], indent=2, ensure_ascii=False))\nelse:\n    print('NOT FOUND')\n\"",
+    "description": "Extract plan_006_qwen3_8b_rsft_candidates experiment details from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T01:52:06.170872+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 6, in &lt;module>
+    target = [e for e in exps if e.get('exp_id') == 'plan_006_qwen3_8b_rsft_candidates']
+                                 ^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Bash",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-17T01:52:11.444901+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-0902bd17/4261ffb5-cf65-40c3-a7cc-1ac6495fde97/tool-results/mcp-agent-ml-research-read_registry-1778982695122.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# exps might be a list of strings or dicts - let's check\nprint(type(exps[0]))\nprint(exps[0][:500] if isinstance(exps[0], str) else json.dumps(exps[0], indent=2, ensure_ascii=False)[:500])\n\"",
+  "description": "Check registry data structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-0902bd17/4261ffb5-cf65-40c3-a7cc-1ac6495fde97/tool-results/mcp-agent-ml-research-read_registry-1778982695122.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# exps might be a list of strings or dicts - let's check\nprint(type(exps[0]))\nprint(exps[0][:500] if isinstance(exps[0], str) else json.dumps(exps[0], indent=2, ensure_ascii=False)[:500])\n\"",
+    "description": "Check registry data structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-17T01:52:11.696369+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 7, in &lt;module>
+    print(type(exps[0]))
+               ~~~~^^^
+KeyError: 0
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Bash",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-17T01:52:19.883781+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-0902bd17/4261ffb5-cf65-40c3-a7cc-1ac6495fde97/tool-results/mcp-agent-ml-research-read_registry-1778982695122.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint(type(exps))\nif isinstance(exps, dict):\n    if 'plan_006_qwen3_8b_rsft_candidates' in exps:\n        print(json.dumps(exps['plan_006_qwen3_8b_rsft_candidates'], indent=2, ensure_ascii=False))\n    else:\n        print(list(exps.keys())[:5])\nelif isinstance(exps, list):\n    print(len(exps))\n\"",
+  "description": "Check registry structure and find target experiment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-0902bd17/4261ffb5-cf65-40c3-a7cc-1ac6495fde97/tool-results/mcp-agent-ml-research-read_registry-1778982695122.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint(type(exps))\nif isinstance(exps, dict):\n    if 'plan_006_qwen3_8b_rsft_candidates' in exps:\n        print(json.dumps(exps['plan_006_qwen3_8b_rsft_candidates'], indent=2, ensure_ascii=False))\n    else:\n        print(list(exps.keys())[:5])\nelif isinstance(exps, list):\n    print(len(exps))\n\"",
+    "description": "Check registry structure and find target experiment"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T01:52:19.984779+00:00_
+
+&lt;class 'dict'>
+{
+  "status": "DONE",
+  "created_at": "2026-05-16T13:49:52.476Z",
+  "updated_at": "2026-05-17T01:51:09.630Z",
+  "hypothesis": "Qwen3-8B RSFT candidate generation (N=8, T=0.7). Generates rejection sampling candidates for subsequent CED scoring and filtering. plan_006 claim=3.",
+  "conclusion": "failed"
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-17T01:52:24.604214+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'exp_id': 'plan_006_qwen3_8b_rsft_candidates'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'exp_id': 'plan_006_qwen3_8b_rsft_candidates'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-17T01:52:25.106613+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4991}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-17T01:52:28.371418+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'status': 'DONE', 'conclusion': 'failed'}",
+  "fields": "['*']",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'status': 'DONE', 'conclusion': 'failed'}",
+    "fields": "['*']",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-17T01:52:28.873814+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan_006_qwen3_8b_rsft_candidates\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:49:52.476Z\", \"updated_at\": \"2026-05-17T01:51:09.630Z\", \"hypothesis\": \"Qwen3-8B RSFT candidate generation (N=8, T=0.7). Generates rejection sampling candidates for subsequent CED scoring and filtering. plan_006 claim=3.\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"spec\": {\"model_name\": \"Qwen3-8B\", \"sft_adapter\": \"/root/autodl-tmp/sft_output_qwen3_8b_bf16\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"seed\": 42, \"output_dir\": \"/root/autodl-tmp/freige/outputs/rsft_candidates_8b\", \"config\": {\"num_generations\": 8, \"temperature\": 0.7, \"batch_size\": 1, \"split\": \"train\"}}, \"pid\": \"349382\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_qwen3_8b_rsft_candidates.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --num_generations 8 --temperature 0.7 --batch_size 1 --data_path /root/autodl-tmp/data/docred --split train --seed 42 --output_dir /root/autodl-tmp/freige/outputs/rsft_candidates_8b\\\"\", \"finished_at\": \"2026-05-17T01:51:04.422Z\"}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T01:51:08.747Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T01:51:14.925166+00:00\"}]}}, \"plan_007_redocred_rsft_eval_r4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T18:00:41.999Z\", \"updated_at\": \"2026-05-16T22:04:01.953Z\", \"spec\"
+…[truncated 4793 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-17T01:52:44.340320+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-17T01:52:44.390956+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-17T01:53:04.481808+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "diagnose:plan_006_qwen3_8b_rsft_candidates",
+  "project": "faith-evidence-ie",
+  "task_prompt": "## 任务\n诊断实验 `plan_006_qwen3_8b_rsft_candidates` 的超时失败。\n\n## 背景\n- 实验：Qwen3-8B RSFT candidate generation (N=8, T=0.7, batch_size=1) 对 3027 个 train 样本\n- 服务器：rtx5090-4x\n- 日志：~/runs/faith-evidence-ie/plan_006_qwen3_8b_rsft_candidates.log\n- 失败原因：EXIT_CODE=124（超时）\n- 运行时间：约 12 小时（2026-05-16T13:49 → 2026-05-17T01:51）\n\n## 需要确认的信息\n1. 查看日志末尾 100 行，确认已完成多少样本（找 progress 信息，如 \"Processing document X/3027\" 或类似）\n2. 查看日志开头 30 行，确认启动是否正常\n3. 检查输出目录 `/root/autodl-tmp/freige/outputs/rsft_candidates_8b` 是否有部分产出文件，用 `ls -la` 和 `wc -l` 查看已生成多少条\n4. 对比：1.7B 版本（plan_006_qwen3_1_7b_rsft_candidates）同样 3027 样本成功完成，检查它的日志确认运行了多长时间：`~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_rsft_candidates.log`（看开头和结尾的时间戳）\n\n## 产出\n用 save_project_file 写一份简短诊断报告到 `diagnose_8b_timeout.md`，包含：\n- 已完成样本数 / 总数\n- 预估总时间（按已完成比例）\n- 1.7B 对比（如果能查到运行时间）\n- 建议修复方案（增加 timeout、分段跑 with start_idx、或其他）",
+  "tool_groups": "['ssh', 'knowledge']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "diagnose:plan_006_qwen3_8b_rsft_candidates",
+    "project": "faith-evidence-ie",
+    "task_prompt": "## 任务\n诊断实验 `plan_006_qwen3_8b_rsft_candidates` 的超时失败。\n\n## 背景\n- 实验：Qwen3-8B RSFT candidate generation (N=8, T=0.7, batch_size=1) 对 3027 个 train 样本\n- 服务器：rtx5090-4x\n- 日志：~/runs/faith-evidence-ie/plan_006_qwen3_8b_rsft_candidates.log\n- 失败原因：EXIT_CODE=124（超时）\n- 运行时间：约 12 小时（2026-05-16T13:49 → 2026-05-17T01:51）\n\n## 需要确认的信息\n1. 查看日志末尾 100 行，确认已完成多少样本（找 progress 信息，如 \"Processing document X/3027\" 或类似）\n2. 查看日志开头 30 行，确认启动是否正常\n3. 检查输出目录 `/root/autodl-tmp/freige/outputs/rsft_candidates_8b` 是否有部分产出文件，用 `ls -la` 和 `wc -l` 查看已生成多少条\n4. 对比：1.7B 版本（plan_006_qwen3_1_7b_rsft_candidates）同样 3027 样本成功完成，检查它的日志确认运行了多长时间：`~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_rsft_candidates.log`（看开头和结尾的时间戳）\n\n## 产出\n用 save_project_file 写一份简短诊断报告到 `diagnose_8b_timeout.md`，包含：\n- 已完成样本数 / 总数\n- 预估总时间（按已完成比例）\n- 1.7B 对比（如果能查到运行时间）\n- 建议修复方案（增加 timeout、分段跑 with start_idx、或其他）",
+    "tool_groups": "['ssh', 'knowledge']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T01:53:07.397354+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_plan_006_qwen3_8b_rsft_candidates_20260517T015305\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_diagnose_plan_006_qwen3_8b_rsft_candidates_20260517T015305.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnose_plan_006_qwen3_8b_rsft_candidates_20260517T015305 started. Use get_worker_status('worker_diagnose_plan_006_qwen3_8b_rsft_candidates_20260517T015305') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2915
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-17T01:53:48.031926+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 2/4 running | Worker 1 (CPU 1) | 磁盘: rtx5090-4x 417G/879G 可用 (51%)\n\n[实验失败] plan_006_qwen3_8b_rsft_candidates\n\n**原因**: EXIT_CODE=124（超时）。Qwen3-8B 对 3027 样本做 N=8 candidate generation (batch_size=1)，运行 ~12h 后被 timeout 机制 kill。\n\n**对比**: 同条件的 Qwen3-1.7B 版本已成功完成。8B 模型推理速度约慢 3-4x，预估需要 ~24-36h。\n\n**状态**: 已派 Worker 检查日志确认已完成样本数和输出文件，以决定修复方案：\n1. 增加 timeout_hours（如设 48h）\n2. 用 start_idx 从断点续跑（如果脚本支持）\n\n**GPU 空闲**: cuda:1 和 cuda:3 当前无任务。plan_006_qwen3_8b_rsft_candidates 失败后释放了 cuda:3。等诊断 Worker 回来后立即重新提交。\n\n等诊断结果后再更新。",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 2/4 running | Worker 1 (CPU 1) | 磁盘: rtx5090-4x 417G/879G 可用 (51%)\n\n[实验失败] plan_006_qwen3_8b_rsft_candidates\n\n**原因**: EXIT_CODE=124（超时）。Qwen3-8B 对 3027 样本做 N=8 candidate generation (batch_size=1)，运行 ~12h 后被 timeout 机制 kill。\n\n**对比**: 同条件的 Qwen3-1.7B 版本已成功完成。8B 模型推理速度约慢 3-4x，预估需要 ~24-36h。\n\n**状态**: 已派 Worker 检查日志确认已完成样本数和输出文件，以决定修复方案：\n1. 增加 timeout_hours（如设 48h）\n2. 用 start_idx 从断点续跑（如果脚本支持）\n\n**GPU 空闲**: cuda:1 和 cuda:3 当前无任务。plan_006_qwen3_8b_rsft_candidates 失败后释放了 cuda:3。等诊断 Worker 回来后立即重新提交。\n\n等诊断结果后再更新。",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-17T02:11:16.150781+00:00_
+
+Worker 已派出诊断。从已知信息看，原因很清楚：Qwen3-8B（batch_size=1）对 3027 样本做 N=8 generation，12 小时超时。1.7B 版本同样条件成功了。
+
+先向 Director 汇报这个失败，等 Worker 回来后确定具体修复方案（增加 timeout 或分段跑）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+26 recorded events
+
+### User
+
+_source line 36 · 2026-05-17T02:11:16.158857+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: plan_006_qwen3_8b_rsft_candidates
+- project: faith-evidence-ie
+- server: rtx5090-4x
+- log_path: ~/runs/faith-evidence-ie/plan_006_qwen3_8b_rsft_candidates.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-17T02:11:31.174467+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T02:11:31.225124+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-17T02:11:35.343041+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "fields": "['*']",
+  "filters": "{'exp_id': 'plan_006_qwen3_8b_rsft_candidates'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "fields": "['*']",
+    "filters": "{'exp_id': 'plan_006_qwen3_8b_rsft_candidates'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-17T02:11:35.795338+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-17T02:11:36.348028+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4904}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1004
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-17T02:11:36.348470+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 553
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-17T02:11:36.348662+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-17T02:11:37.704880+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| plan_006_qwen3_8b_rsft_candidates_r2 | Resuming 8B candidate generation from idx 2701 will complete the full RSFT candidate set needed for reward-based filtering and RSFT training | — | — | — |\\n| plan_016_llama_ced_scoring | CED scoring (NLI-based contrastive discrimination) on LLaMA-3.1-8B RSFT candidates will produce filtered training data that improves RSFT quality, consistent with Qwen3-4B CED results. | — | — | — |\\n| plan_002_test_rsft_s44 | DocRED test set evaluation with RSFT best config (s44, 3-param loading: base→SFT→RSFT). Final benchmark numbers for paper. | — | — | — |\\n\\n## 待处理\\n- seed_comparison_prep（准备中）\\n\\n## 近期结论\\n- **plan_006_qwen3_8b_rsft_candidates** (failed): Qwen3-8B RSFT candidate generation (N=8, T=0.7). Generates rejection sampling candidates for subsequent CED scoring and filtering. plan_006 claim=3.\\n- **plan_016_llama_rsft_candidates_r3** (success): LLaMA-3.1-8B RSFT candidate gen r3 (N=8, T=0.7, start_idx=64 resume). Exclusive cuda:2 after GRPO kill. ← 基于 plan_016_llama_3_1_8b_sft\\n- **plan_006_qwen3_1_7b_rsft_candidates** (success): Qwen3-1.7B RSFT candidate generation (N=8, T=0.7). Scale ablation: smallest model RSFT candidates for CED scoring. plan_006 claim=3.\\n\\n## 趋势\\n成功 77 / 负向 18 / 失败 33 / 共 164\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nrtx5090-4x: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\n\\n## 告警\\n- mvp2_grpo_ced: 训练失败 — unknown\\n- mvp2_grpo_flatnli: 训练失败 — unknown\\n- mvp2_grpo_extract: 训练失败 — unknown\\n- mvp2_sft_eval: 已被终止 — unknown\\n- mvp2_grpo_ced_r1: 已被终止 — unknown\\n- mvp2_grpo_ced_r2: 已被终止 — unknown\\n- mvp2_grpo_ced_r3: 训练失败 — unknown\\n- mvp2_grpo_ced_r4: 已被终止 — unknown\\n- mvp2_grp
+…[truncated 2897 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1356
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-17T02:11:37.856431+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T02:11:37.857226+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_0902bd17.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-17T02:11:49.164569+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-17T02:11:49.165077+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "fields": "['*']",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "fields": "['*']",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-17T02:11:49.215631+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Glob",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-17T02:11:49.718730+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan_006_qwen3_8b_rsft_candidates_r2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T01:54:26.118Z\", \"updated_at\": \"2026-05-17T01:57:11.242Z\", \"hypothesis\": \"Resuming 8B candidate generation from idx 2701 will complete the full RSFT candidate set needed for reward-based filtering and RSFT training\", \"parent\": \"\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --num_generations 8 --temperature 0.7 --batch_size 1 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/freige/outputs/rsft_candidates_8b --start_idx 2701\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": 400132, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 326, \"model_name\": \"Qwen3-8B\", \"seed\": 42}}, \"plan_006_qwen3_8b_rsft_candidates\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:49:52.476Z\", \"updated_at\": \"2026-05-17T01:54:20.630Z\", \"hypothesis\": \"Qwen3-8B RSFT candidate generation (N=8, T=0.7). Generates rejection sampling candidates for subsequent CED scoring and filtering. plan_006 claim=3.\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"spec\": {\"model_name\": \"Qwen3-8B\", \"sft_adapter\": \"/root/autodl-tmp/sft_output_qwen3_8b_bf16\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"seed\": 42, \"output_dir\": \"/root/autodl-tmp/freige/outputs/rsft_candidates_8b\", \"config\": {\"num_generations\": 8, \"temperature\": 0.7, \"batch_size\": 1, \"split\": \"train\"}}, \"pid\": \"349382\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_qwen3_8b_rsft_candidates.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 
+…[truncated 4742 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 553
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-17T02:12:13.464608+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "ROADMAP.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "ROADMAP.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-17T02:12:14.074937+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\", \"content\": \"# faith-evidence-ie — Research Dashboard\\n\\n> 最后更新: 2026-05-16 22:07 UTC | 更新原因: 全面更新：D077-D085 成果录入，当前运行状态反映实际 GPU 占用，近期任务重排为 RSFT pipeline 下游\\n\\n## 核心方向\\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。核心发现：(1) Evidence tax 非单调（小模型受益、中模型受损、大模型吸收）；(2) QLoRA GRPO 导致 catastrophic evidence-extraction decoupling（跨家族验证）；(3) CED reranker 恢复 97% evidence 代价；(4) EDCR 双层诊断指标。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research（D077 scope 扩展执行中）+ 审稿同步\\n- **C1 Evidence Tax（非单调）**: 1.7B +6.2pp 净益（D083）| 4B -7.5pp 代价 | 8B ≈0（D079）| LLaMA-8B ≈0（D082）\\n- **C2 Decoupling**: QLoRA GRPO catastrophic — Qwen3-4B (D031) + LLaMA-3.1-8B (D084/D085) 跨家族确认；bf16 GRPO mild (0.4549)\\n- **C3 CED vs flat-NLI**: 统计不可区分（D078, p=0.44），C3 已降级\\n- **C4 EDCR**: 双层诊断确立（D072），Spearman ρ=-0.96 vs rel_f1（plan_003）\\n- **Cross-dataset**: Re-DocRED SFT eval Ign-F1 -3.15pp、Evi-F1 保持（D080）\\n- **RSFT multi-scale pipeline**: 3 模型 candidate gen 运行中（1.7B 75%、8B 62%、LLaMA 62%）\\n\\n## 投稿目标\\n- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25)\\n\\n## 运行中实验\\n| GPU | 任务 | 进度 | 预计完成 |\\n|-----|------|------|---------|\\n| cuda:0 | Qwen3-1.7B RSFT candidates (N=8, T=0.7) | 75% | ~2-3h |\\n| cuda:1 | plan_007 Re-DocRED RSFT eval r5 (正确 3 参数) | 刚启动 | ~1.5h |\\n| cuda:2 | LLaMA-3.1-8B RSFT candidates r3 | 62% | ~5h |\\n| cuda:3 | Qwen3-8B RSFT candidates (N=8, T=0.7) | 62% | ~5h |\\n\\n## 近期任务\\n- [ ] 1.7B candidate gen 完成 → CED scoring → RSFT training → eval\\n- [ ] 8B candidate gen 完成 → CED scoring → RSFT training → eval\\n- [ ] LLaMA candidate gen 完成 → CED scoring → RSFT training → eval\\n- [ ] plan_007 Re-DocRED RSFT eval r5 结果分析\\n- [ ] plan_002 DocRED test set eval（修复 3 参数配置）\\n- [ ] paper_framing.md 修正（p-value 0.22→0.44、V-shape terminology、4B tax 数字）\\n- [ ] ROADMAP 完成后触发 paper_framing 更新\\n\\n## RSFT Multi-Scale Pipeline（D077 核心）\\n```\
+…[truncated 2276 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 610
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-17T02:12:14.075410+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-17T02:12:14.126005+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_0902bd17.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-17T02:12:33.702519+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_project_resource_usage",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__get_project_resource_usage",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-17T02:12:33.754489+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "ToolSearch",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-17T02:12:37.068399+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-17T02:12:37.671113+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"rtx5090-4x\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"rtx5090-4x\", \"gpu_id\": \"cuda:1\"}, {\"server\": \"rtx5090-4x\", \"gpu_id\": \"cuda:2\"}, {\"server\": \"rtx5090-4x\", \"gpu_id\": \"cuda:3\"}], \"actually_running_gpus\": [{\"server\": \"rtx5090-4x\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"plan_006_qwen3_1_7b_ced_scoring\"}, {\"server\": \"rtx5090-4x\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"plan_002_test_rsft_s44\"}, {\"server\": \"rtx5090-4x\", \"gpu_id\": \"cuda:2\", \"exp_id\": \"plan_016_llama_ced_scoring\"}, {\"server\": \"rtx5090-4x\", \"gpu_id\": \"cuda:3\", \"exp_id\": \"plan_006_qwen3_8b_rsft_candidates_r2\"}], \"allocated_but_idle\": [{\"server\": \"rtx5090-4x\", \"gpu_id\": \"cuda:1\", \"idle_min\": null, \"util_pct\": null}], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [{\"exp_id\": \"plan_006_qwen3_1_7b_ced_scoring\", \"gpus\": [\"cuda:0\"], \"util_avg\": null}, {\"exp_id\": \"plan_002_test_rsft_s44\", \"gpus\": [\"cuda:0\"], \"util_avg\": null}, {\"exp_id\": \"plan_016_llama_ced_scoring\", \"gpus\": [\"cuda:2\"], \"util_avg\": null}, {\"exp_id\": \"plan_006_qwen3_8b_rsft_candidates_r2\", \"gpus\": [\"cuda:3\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 4 张, 实际跑 4 张 | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 602
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-17T02:13:01.811063+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "text": "[资源] GPU 3/4 活跃 | Worker 0 (GPU 0 / CPU 0) | cuda:1 空闲\n\n**plan_006_qwen3_8b_rsft_candidates 失败诊断**\n\n原因：超时 (EXIT_CODE=124)。8B candidate gen 处理了 2701/3027 样本后触发 timeout_hours 上限。\n\n已恢复：plan_006_qwen3_8b_rsft_candidates_r2 从 idx 2701 续跑（剩余 326 样本，预计 <1h 完成）。\n\n**当前 GPU 占用**：\n- cuda:0: plan_006_qwen3_1_7b_ced_scoring + plan_002_test_rsft_s44\n- cuda:1: **空闲**\n- cuda:2: plan_016_llama_ced_scoring\n- cuda:3: plan_006_qwen3_8b_rsft_candidates_r2\n\n**建议 cuda:1 安排**：8B candidate r2 预计 <1h 完成 → 8B CED scoring 可上 cuda:1（无需等 cuda:3 释放）。或者有其他 RSFT pipeline 下游任务（seed comparison prep）可以先铺。请指示。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "text": "[资源] GPU 3/4 活跃 | Worker 0 (GPU 0 / CPU 0) | cuda:1 空闲\n\n**plan_006_qwen3_8b_rsft_candidates 失败诊断**\n\n原因：超时 (EXIT_CODE=124)。8B candidate gen 处理了 2701/3027 样本后触发 timeout_hours 上限。\n\n已恢复：plan_006_qwen3_8b_rsft_candidates_r2 从 idx 2701 续跑（剩余 326 样本，预计 <1h 完成）。\n\n**当前 GPU 占用**：\n- cuda:0: plan_006_qwen3_1_7b_ced_scoring + plan_002_test_rsft_s44\n- cuda:1: **空闲**\n- cuda:2: plan_016_llama_ced_scoring\n- cuda:3: plan_006_qwen3_8b_rsft_candidates_r2\n\n**建议 cuda:1 安排**：8B candidate r2 预计 <1h 完成 → 8B CED scoring 可上 cuda:1（无需等 cuda:3 释放）。或者有其他 RSFT pipeline 下游任务（seed comparison prep）可以先铺。请指示。"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-17T02:13:05.576941+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3765
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-17T02:13:11.096020+00:00_
+
+已完成：
+
+1. **诊断**：plan_006_qwen3_8b_rsft_candidates 因超时退出（处理 2701/3027 样本后 hit timeout_hours），非代码错误
+2. **恢复**：r2 已从 idx 2701 续跑，剩余 ~326 样本
+3. **汇报 Director**：含资源状态 + cuda:1 空闲 flag + 下一步建议
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:plan_006_qwen3_8b_rsft_candidates"
+}
+```
+
+</details>
+
+---

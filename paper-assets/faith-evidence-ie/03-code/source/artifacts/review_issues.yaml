@@ -1,0 +1,624 @@
+- id: "W1"
+  summary: "GRPO QLoRA vs bf16 confounded variables — quantization, lr, group size not isolated"
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 4
+  mentions:
+    - {round: 1, reviewers: "R1,R2", note: "Cannot support causal attribution of decoupling to QLoRA"}
+    - {round: 2, reviewers: "R1,R2", note: "R2-W4 MAJOR: collapse analysis lacks mechanism depth, no reward hacking connection, no KL ablation. bf16 G=4/G=8 both avoid catastrophe → precision is key factor."}
+    - {round: 3, reviewers: "R1,R2", note: "Table 3 shows QLoRA G=4 vs bf16 G=8 — two variables changed simultaneously. §4.3 attribution unsupported. Need bf16 G=4 or QLoRA G=8 control. Both AGREE Must-Fix."}
+    - {round: 4, reviewers: "R1,R2", note: "bf16 G=4 added (Rel-F1 28.73) — partially helps but reveals group size causes 16.76pp drop (45.49→28.73). lr confound 10× (5e-6 vs 5e-5) described as 'residual' is understated. 'attributable to quantization precision' still too strong. Downgrade to Should-Fix given partial progress."}
+  action_items:
+    - {round: 1, action: "Rerun plan_015 GRPO bf16 G=4 to isolate quantization effect", assigned_to: "Agent", status: "done"}
+    - {round: 1, action: "Downgrade causal claim to observational", assigned_to: "Paper Agent", status: "done"}
+    - {round: 2, action: "Deepen GRPO mechanism analysis with reward hacking lit + mechanistic chain", assigned_to: "Paper Agent", status: "done"}
+    - {round: 3, action: "Run GRPO bf16 G=4 experiment", assigned_to: "Agent", status: "done"}
+    - {round: 4, action: "Weaken attribution language: 'is attributable to' → 'is primarily consistent with'. Acknowledge lr 10× difference explicitly.", assigned_to: "Paper Agent", status: "open"}
+  resolution: ""
+  resolution_round: null
+
+- id: "W2"
+  summary: "All results dev-set only, no test set"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  mentions:
+    - {round: 1, reviewers: "R1,R2", note: "No CodaLab test results"}
+    - {round: 2, reviewers: "R1,R2", note: "Test set results now exist (Table 9). Method ranking preserved (ρ=1.0)."}
+  action_items:
+    - {round: 1, action: "Add test set evaluation for all scales", assigned_to: "Agent+User", status: "done"}
+  resolution: "Test set results added in Table 9 (Appendix I). All 5 scales evaluated. Method ranking preserved (ρ=1.0)."
+  resolution_round: 2
+
+- id: "W3"
+  summary: "Variance compression claim statistically underpowered + cherry-picking in abstract"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 4
+  mentions:
+    - {round: 1, reviewers: "R1,R2", note: "SFT single seed, +4.92pp lacks stats"}
+    - {round: 2, reviewers: "R1,R2", note: "n=3 per config, σ 95% CI overlapping. Both recommend ≥5 seeds or downgrade."}
+    - {round: 3, reviewers: "R1,R2", note: "Only 1.7B χ² CI non-overlapping; other 3 scales overlap. Sign test p=0.0625. 4B Cohen's d=0.46 small. Abstract cherry-picks. Both AGREE Must-Fix."}
+    - {round: 4, reviewers: "R1,R2", note: "Contribution 3 downgraded to observation ✓. Caveats added ✓. But §4.4 still devotes ~250 words + precise compression ratios (32.6×, 7.5×, 6.5×) + '36× more predictable' to variance — disproportionate for acknowledged weak evidence. Compress to 2-3 sentences, move ratios to appendix."}
+  action_items:
+    - {round: 1, action: "Run SFT seed43+seed44, compute bootstrap CI", assigned_to: "Agent", status: "done"}
+    - {round: 2, action: "Downgrade Abstract/Contributions to 'consistently reduces'. Three-layer evidence in appendix.", assigned_to: "Paper Agent + Agent", status: "done"}
+    - {round: 3, action: "Remove variance as standalone abstract contribution. Downgrade to observation in §4.2 with explicit caveats.", assigned_to: "Paper Agent", status: "done"}
+    - {round: 4, action: "Compress §4.4 variance discussion to 2-3 sentences. Move precise compression ratios to appendix. Remove '36× more predictable' phrasing.", assigned_to: "Paper Agent", status: "open"}
+  resolution: ""
+  resolution_round: null
+
+- id: "W4"
+  summary: "Scaling claim based on limited data points"
+  category: framing
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 2
+  mentions:
+    - {round: 1, reviewers: "R1,R2", note: "3 points insufficient, 1.7B repetition artifact"}
+    - {round: 2, reviewers: "R2", note: "4 Qwen + 1 LLaMA still limited for general scaling claim."}
+    - {round: 3, note: "Not directly re-raised in Round 3."}
+    - {round: 4, note: "Not raised. Paper now uses 'scale-dependent' rather than 'non-monotonic'. 5 models across 2 families."}
+  action_items:
+    - {round: 1, action: "Replace 'non-monotonic' with 'scale-dependent', add LLaMA", assigned_to: "Paper Agent + Agent", status: "done"}
+  resolution: ""
+  resolution_round: null
+
+- id: "W5"
+  summary: "EDCR shared-component mechanical negative correlation with Rel-F1"
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 4
+  mentions:
+    - {round: 1, reviewers: "R2,R1", note: "ρ=-0.965 partially predetermined"}
+    - {round: 2, reviewers: "R1,R2", note: "TP in numerator and denominator. n=7 too small. Request partial correlation, permutation test."}
+    - {round: 3, reviewers: "R1,R2", note: "DIVERGENCE. R1 wants per-relation precision partial correlation. R2 considers per-relation n=76 sufficient. Director: WARNING."}
+    - {round: 4, reviewers: "R1", note: "R1 confirms EDCR is purely annotation-based (Eq. 2), does NOT use NLI. R2 confused EDCR with CED. No circular dependency exists. Per-relation validation (n=76) + partial correlation + permutation test are solid."}
+  action_items:
+    - {round: 1, action: "Deduplicate to n=7, per-relation n=76", assigned_to: "Agent", status: "done"}
+    - {round: 1, action: "Downgrade EDCR to diagnostic tool + caveat", assigned_to: "Paper Agent", status: "done"}
+    - {round: 2, action: "Compute partial correlation + permutation test + similar-TP pairs", assigned_to: "Agent", status: "done"}
+    - {round: 2, action: "Add partial correlation + permutation test to appendix", assigned_to: "Paper Agent", status: "done"}
+    - {round: 3, action: "Add per-relation precision partial correlation as additional robustness check", assigned_to: "Agent", status: "in_progress"}
+  resolution: ""
+  resolution_round: null
+
+- id: "W5-EDCR-INFLATION"
+  summary: "EDCR ρ inflated by non-independent data points and GRPO QLoRA outlier"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 3
+  mentions:
+    - {round: 1, reviewers: "Research Reviewer", note: "n=7 ρ=-0.89, n=6 (no QLoRA) ρ=-0.83 p=0.042"}
+    - {round: 2, reviewers: "R1,R2", note: "Re-raised: n=6 borderline significant."}
+    - {round: 3, note: "Subsumed into W5 discussion."}
+    - {round: 4, note: "Not raised. Per-relation validation (n=76) provides robust independent evidence."}
+  action_items:
+    - {round: 1, action: "Deduplicated analysis complete", assigned_to: "Agent", status: "done"}
+    - {round: 2, action: "Report n=6 sans-QLoRA + partial ρ + permutation in paper", assigned_to: "Paper Agent", status: "done"}
+  resolution: ""
+  resolution_round: null
+
+- id: "W6"
+  summary: "CED ≈ flat-NLI (0.02pp), contrastive formulation adds no measurable value"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 4
+  mentions:
+    - {round: 1, reviewers: "R2,R1", note: "Contrastive adds complexity without improvement"}
+    - {round: 2, reviewers: "R1,R2", note: "0.02pp within noise. CED cannot be method contribution."}
+    - {round: 3, reviewers: "R2", note: "CED's unique contribution is interpretability, not data selection quality."}
+    - {round: 4, reviewers: "R1,R2", note: "Both agree: §3.4 effort-vs-payoff most imbalanced part. But correctly positioned as scoring variant. No contribution language."}
+  action_items:
+    - {round: 1, action: "Remove CED as independent contribution", assigned_to: "Paper Agent", status: "done"}
+    - {round: 2, action: "Position as scoring variant, no contribution language", assigned_to: "Paper Agent", status: "done"}
+  resolution: "CED correctly positioned as scoring variant with no contribution language. 0.02pp difference honestly reported."
+  resolution_round: 4
+
+- id: "W7"
+  summary: "Training data quantity contradiction (9042 vs 2718)"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - {round: 1, reviewers: "R2,R1", note: "k=3 vs k=1 root cause"}
+  action_items:
+    - {round: 1, action: "D102 k=1 retraining + update section 3.3", assigned_to: "Paper Agent", status: "done"}
+  resolution: "Paper now consistently reports k=1 with ~3000 training samples."
+  resolution_round: 2
+
+- id: "W8"
+  summary: "EDCR ρ based on n=6, not significant without outlier"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 3
+  mentions:
+    - {round: 1, reviewers: "R1,R2", note: "n=7 ρ=-0.89 p=0.007, per-relation n=76 ρ=-0.79"}
+    - {round: 2, reviewers: "R1", note: "n=7 still small, GRPO QLoRA outlier dominance."}
+    - {round: 3, note: "Subsumed into W5 discussion."}
+    - {round: 4, note: "Not raised. Per-relation validation (n=76) provides robust independent evidence."}
+  action_items:
+    - {round: 1, action: "Deduplicated analysis complete", assigned_to: "Agent", status: "done"}
+    - {round: 2, action: "Report n=6 remove-outlier + partial correlation + permutation in paper", assigned_to: "Paper Agent", status: "done"}
+  resolution: ""
+  resolution_round: null
+
+- id: "W9"
+  summary: "'matches' 50.50 vs 50.51 statistically meaningless"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - {round: 1, reviewers: "R1,R2", note: "Single seed, 0.01pp < any reasonable variance"}
+  action_items:
+    - {round: 1, action: "Change 'matches' to 'approaches'", assigned_to: "Paper Agent", status: "done"}
+  resolution: "Changed to 'approaches' throughout."
+  resolution_round: 2
+
+- id: "W10"
+  summary: "Encoder baseline comparison selective in metrics presentation"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 4
+  mentions:
+    - {round: 1, reviewers: "R2,R1", note: "DREEAM 54.01% buried in text"}
+    - {round: 2, reviewers: "R1,R2", note: "Table 12 emphasizes TP-only Evi-F1, downplays 16-18pp Ign-F1 gap."}
+    - {round: 3, note: "Not raised in Round 3."}
+    - {round: 4, note: "Not raised. Appendix H now explicitly discusses Ign-F1 gap."}
+  action_items:
+    - {round: 1, action: "Add encoder baseline comparison table", assigned_to: "Paper Agent", status: "done"}
+    - {round: 2, action: "Balance discussion: acknowledge Ign-F1 gap", assigned_to: "Paper Agent", status: "done"}
+  resolution: "Encoder comparison balanced with explicit Ign-F1 gap discussion in Appendix H."
+  resolution_round: 4
+
+- id: "W11"
+  summary: "GRPO/DPO hyperparameter exploration insufficient — DPO β=0.1, GRPO G=8, RSFT k=1 all single point"
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 4
+  mentions:
+    - {round: 1, reviewers: "R1,R2", note: "GRPO only KL=0.01, DPO only beta=0.1"}
+    - {round: 2, reviewers: "R2", note: "No KL ablation, no reward normalization test."}
+    - {round: 3, reviewers: "R1,R2", note: "Both strongly agree. DPO β=0.1 → -11pp drop suspicious. Spectrum built on single β."}
+    - {round: 4, reviewers: "R1,R2", note: "4th round recurring. R1 cross-response adds: RSFT k=1 is most aggressive filter — k=3/k=5 may show different extraction-evidence balance. Cannot distinguish 'method inherent property' from 'specific hyperparameter behavior' without sweeps."}
+  action_items:
+    - {round: 1, action: "Acknowledge in Limitations", assigned_to: "Paper Agent", status: "done"}
+    - {round: 2, action: "Add explicit KL caveat to Limitations", assigned_to: "Paper Agent", status: "done"}
+    - {round: 3, action: "Run DPO β=0.01 experiment", assigned_to: "Agent", status: "in_progress"}
+    - {round: 4, action: "Complete β∈{0.01,0.05} sweep OR limit all DPO conclusions to 'under β=0.1'. Also consider RSFT k>1 ablation.", assigned_to: "Agent + Paper Agent", status: "open"}
+  resolution: ""
+  resolution_round: null
+
+- id: "W12"
+  summary: "Metric format inconsistency"
+  category: format
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - {round: 1, reviewers: "R2,R1", note: "Percentage vs decimal mixed"}
+  action_items:
+    - {round: 1, action: "Unify to percentage format", assigned_to: "Paper Agent", status: "done"}
+  resolution: "Unified to percentage format."
+  resolution_round: 2
+
+- id: "W13"
+  summary: "Missing references (LMRC, SummaC, RelPrior, Rationale Verification)"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  mentions:
+    - {round: 1, reviewers: "R2,R1", note: "15 'and others', author mismatches"}
+    - {round: 2, reviewers: "R2,R1", note: "Missing LMRC, SummaC, RelPrior, Rationale Verification."}
+    - {round: 3, note: "Not raised. Missing references confirmed added."}
+  action_items:
+    - {round: 1, action: "Fix bib errors", assigned_to: "Paper Agent", status: "done"}
+    - {round: 2, action: "Add LMRC, SummaC, RelPrior, Rationale Verification, QuRL", assigned_to: "Paper Agent", status: "done"}
+  resolution: "All missing references added. DeepSeek-R1 and ReST also added in Round 3-4."
+  resolution_round: 3
+
+- id: "W14"
+  summary: "1.7B implicit regularization speculation without evidence"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - {round: 1, reviewers: "R2,R1", note: "Fair evaluation subset undefined"}
+  action_items:
+    - {round: 1, action: "Define fair subset + mechanistic breakdown", assigned_to: "Agent", status: "done"}
+  resolution: "Fair subset defined in Appendix D. Mechanistic breakdown added."
+  resolution_round: 2
+
+- id: "W15"
+  summary: "Multi-seed coverage uneven"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 4
+  mentions:
+    - {round: 1, reviewers: "R2,R1", note: "Table 3: 3/4 rows single seed"}
+    - {round: 2, note: "1.7B/4B/8B/LLaMA now 3-seed. 14B still single seed."}
+    - {round: 3, reviewers: "R1,R2", note: "SFT no-evidence baseline only s42 for 1.7B/8B. 1.7B s42 is strongest seed (+3.22pp above mean)."}
+    - {round: 4, note: "Not raised as major. Paper acknowledges 1.7B s42 as strongest seed in Appendix F."}
+  action_items:
+    - {round: 1, action: "Add seeds for 8B/1.7B/LLaMA", assigned_to: "Agent", status: "done"}
+    - {round: 3, action: "Add caveat in §4.4: 1.7B/8B no-evidence SFT is single seed (s42)", assigned_to: "Paper Agent", status: "done"}
+  resolution: ""
+  resolution_round: null
+
+- id: "W16"
+  summary: "Missing multi-task learning / task interference references"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - {round: 1, reviewers: "R2,R1", note: "Core finding is negative transfer, needs MTL literature"}
+  action_items:
+    - {round: 1, action: "Add MTL references to Related Work", assigned_to: "Paper Agent", status: "done"}
+  resolution: "MTL references added. Not re-raised."
+  resolution_round: 2
+
+- id: "W17"
+  summary: "DPO 3-epoch uses different evaluation protocol — checkpoint lost"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  mentions:
+    - {round: 1, reviewers: "R2,R1", note: "DPO 3ep different protocol, pollutes spectrum"}
+    - {round: 2, reviewers: "R1,R2", note: "Footnote 1 insufficient. Checkpoint confirmed lost."}
+  action_items:
+    - {round: 1, action: "Remove internal numbering", assigned_to: "Paper Agent", status: "done"}
+    - {round: 2, action: "DPO rebuild: retrain 1ep+3ep under unified protocol", assigned_to: "Agent", status: "done"}
+    - {round: 2, action: "Update paper with new DPO numbers, remove footnote", assigned_to: "Paper Agent", status: "done"}
+  resolution: "DPO rebuilt from scratch, both epochs under matched@2048 protocol."
+  resolution_round: 3
+
+- id: "W18"
+  summary: "Missing random selection baseline for RSFT"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - {round: 1, reviewers: "R1", note: "Need random-k=1 to prove selection value"}
+  action_items:
+    - {round: 1, action: "Run random k=1 RSFT baseline", assigned_to: "Agent", status: "done"}
+  resolution: "Random k=1 baseline added: 41.14 vs CED RSFT 44.66."
+  resolution_round: 2
+
+- id: "FMT-CHECKLIST"
+  summary: "Responsible NLP Checklist"
+  category: format
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - {round: 1, reviewers: "R1,R2", note: "ARR mandatory"}
+  action_items:
+    - {round: 1, action: "Checklist via OpenReview form", assigned_to: "Paper Agent", status: "done"}
+  resolution: "Submitted via OpenReview form."
+  resolution_round: 2
+
+- id: "FMT-APPENDIX-RELCOUNT"
+  summary: "Appendix figure relation type count inconsistency"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - {round: 1, reviewers: "R1,R2", note: "93 vs 76 vs 96 conflicting"}
+  action_items:
+    - {round: 1, action: "Clarify caption", assigned_to: "Paper Agent", status: "done"}
+  resolution: "Caption clarified."
+  resolution_round: 2
+
+- id: "R2-W1-NOVELTY"
+  summary: "Method novelty insufficient — contributions are empirical observations"
+  category: framing
+  severity: warning
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 4
+  mentions:
+    - {round: 2, reviewers: "R2", note: "CRITICAL: all 3 contributions empirical. R1 downgrades to MAJOR."}
+    - {round: 3, note: "Implicitly addressed by empirical study framing."}
+    - {round: 4, reviewers: "R1,R2", note: "R1 agrees RSFT = STaR + CED = engineering contribution. Paper positioned as empirical study ✓. But 'introduce EDCR' and Contribution 3 'RSFT improves extraction without decoupling' still read as method contributions. Need 'empirical finding: discrete selection avoids decoupling'."}
+  action_items:
+    - {round: 2, action: "Reposition as empirical study, remove method-innovation language", assigned_to: "Paper Agent", status: "done"}
+    - {round: 4, action: "Replace 'introduce' with 'use'/'employ' for EDCR; reframe Contribution 3 as empirical finding", assigned_to: "Paper Agent", status: "open"}
+  resolution: ""
+  resolution_round: null
+
+- id: "R2-W5-NLI-SENSITIVITY"
+  summary: "CED sensitivity to NLI model family not analyzed"
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 4
+  mentions:
+    - {round: 2, reviewers: "R2,R1", note: "Only DeBERTa v3 tested."}
+    - {round: 3, reviewers: "R1", note: "Template sensitivity. R2 notes 0.02pp impact limited."}
+    - {round: 4, reviewers: "R1", note: "R1 cross-response agrees CED (not EDCR) cross-backbone validation is necessary. DeBERTa-v3-base vs v3-large shows +1.10pp within seed noise — promising but same family."}
+  action_items:
+    - {round: 2, action: "Added to Limitations", assigned_to: "Paper Agent", status: "done"}
+  resolution: ""
+  resolution_round: null
+
+- id: "R1-W5-VARIANCE-SOURCE"
+  summary: "SFT vs RSFT variance measures different sources of randomness"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 4
+  mentions:
+    - {round: 2, reviewers: "R1,R2", note: "SFT = full training randomness; RSFT = fixed-base. Comparison unfair."}
+    - {round: 3, reviewers: "R2", note: "Confirms RSFT naturally compresses upstream variance."}
+    - {round: 4, reviewers: "R1,R2", note: "R2 partially rebutted R1: practical value argument. R1 maintains methodological concern. Paper has caveat ✓ but precise ratios and 'predictable' language undermine it. Director: WARNING."}
+  action_items:
+    - {round: 2, action: "Downgraded to 'consistently reduces' + acknowledged asymmetry", assigned_to: "Paper Agent", status: "done"}
+    - {round: 3, action: "Full downgrade of variance to observation.", assigned_to: "Paper Agent", status: "done"}
+    - {round: 4, action: "Compress variance text, remove '36× more predictable', move precise ratios to appendix", assigned_to: "Paper Agent", status: "open"}
+  resolution: ""
+  resolution_round: null
+
+- id: "R2-W6-LIMITATIONS"
+  summary: "Limitations section omissions"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - {round: 2, reviewers: "R2,R1", note: "DocRED annotations, compute cost, task generalization."}
+  action_items:
+    - {round: 2, action: "Added 4 points to Limitations", assigned_to: "Paper Agent", status: "done"}
+  resolution: "All points addressed in Limitations section."
+  resolution_round: 3
+
+- id: "R2-W10-LLM-BASELINE"
+  summary: "Missing direct numerical comparison with LLM-based RE methods"
+  category: experiment
+  severity: info
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - {round: 2, reviewers: "R1,R2", note: "AutoRE/GLiDRE numbers missing."}
+  action_items:
+    - {round: 2, action: "Added inline comparison in Related Work", assigned_to: "Paper Agent", status: "done"}
+  resolution: "Inline numerical comparison added."
+  resolution_round: 3
+
+- id: "VISUAL-MAIN-FIGURES"
+  summary: "Main text figures insufficient"
+  category: format
+  severity: warning
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - {round: 2, reviewers: "Visual Agent", note: "Pages 1-5 no visual anchor."}
+  action_items:
+    - {round: 2, action: "Added fig_overview, fig_spectrum, fig_evidence_tax.", assigned_to: "Paper Agent + Director", status: "done"}
+  resolution: "Main text now has 5 figures well-distributed across pages."
+  resolution_round: 4
+
+- id: "VISUAL-COLORBLIND"
+  summary: "Figure colorblind accessibility issues"
+  category: format
+  severity: info
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 4
+  mentions:
+    - {round: 2, reviewers: "Visual Agent", note: "Figure 4 red-green. Fixed with Okabe-Ito."}
+    - {round: 3, reviewers: "R1,R2", note: "Figure 10 (p18) still uses red/green/blue."}
+    - {round: 4, note: "Not raised as major. Appendix figure, minor impact."}
+  action_items:
+    - {round: 2, action: "Figure 4 changed to Okabe-Ito", assigned_to: "Agent", status: "done"}
+    - {round: 3, action: "Figure 10 change to Okabe-Ito or add hatching", assigned_to: "Paper Agent", status: "in_progress"}
+  resolution: ""
+  resolution_round: null
+
+- id: "R1-W9-4B-CHECKPOINT"
+  summary: "4B retrained checkpoint dev gap 0.35pp may affect evidence tax"
+  category: experiment
+  severity: info
+  status: open
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - {round: 2, reviewers: "R1", note: "Original 4B unavailable, retrained 43.88 vs 44.23."}
+    - {round: 3, note: "Not raised."}
+    - {round: 4, note: "Not raised. Minor gap within seed noise."}
+  action_items: []
+  resolution: ""
+  resolution_round: null
+
+- id: "R3-W1-IMPLICIT-REG"
+  summary: "Implicit regularization hypothesis indistinguishable from output constraint effect"
+  category: framing
+  severity: warning
+  status: in_progress
+  first_raised_round: 3
+  last_seen_round: 4
+  mentions:
+    - {round: 3, reviewers: "R1,R2", note: "Both AGREE. More parsimonious: output budget constraint."}
+    - {round: 4, reviewers: "R1,R2", note: "NOT renamed. §4.4 and Appendix E still use 'implicit regularization hypothesis'. R1 cross-response: evidence tax at 1.7B is primarily truncation-mediated — the 'regularization' is just format constraint, not a learning effect."}
+  action_items:
+    - {round: 3, action: "Rename 'implicit regularization' to 'structural output constraint'.", assigned_to: "Paper Agent", status: "in_progress"}
+    - {round: 4, action: "Replace all 'implicit regularization' with 'structural output constraint'. Add dual-mechanism discussion with matched@2048 counter-evidence.", assigned_to: "Paper Agent", status: "open"}
+  resolution: ""
+  resolution_round: null
+
+- id: "R3-W2-14B-REVERSAL"
+  summary: "14B test-set reversal: SFT outperforms RSFT, explanation insufficient"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 3
+  last_seen_round: 4
+  mentions:
+    - {round: 3, reviewers: "R1,R2", note: "Both AGREE. Need precision/recall decomposition."}
+    - {round: 4, reviewers: "R1,R2", note: "No precision/recall decomposition provided. R1 cross-response: 14B high cross-seed variance + 1 SFT seed → evidence tax at larger scale may be unstable, needs more seeds."}
+  action_items:
+    - {round: 3, action: "Extract precision/recall from 14B test-set predictions", assigned_to: "Agent", status: "in_progress"}
+    - {round: 4, action: "Provide precision/recall decomposition OR acknowledge single-SFT-seed limitation", assigned_to: "Agent + Paper Agent", status: "open"}
+  resolution: ""
+  resolution_round: null
+
+- id: "R3-W3-RSFT-TRADEOFF"
+  summary: "RSFT 'cannot exploit trade-off' claim purely structural, lacks empirical test"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 3
+  last_seen_round: 4
+  mentions:
+    - {round: 3, reviewers: "R1,R2", note: "Both AGREE. Need single-objective RSFT or downgrade to hypothesis."}
+    - {round: 4, reviewers: "R1,R2", note: "Still no experiment. R1 adds: RSFT k>1 ablation also needed to understand discrete selection mechanism."}
+  action_items:
+    - {round: 3, action: "Run single-objective RSFT", assigned_to: "Agent", status: "in_progress"}
+    - {round: 4, action: "Complete single-objective RSFT OR downgrade 'cannot exploit' to hypothesis", assigned_to: "Agent + Paper Agent", status: "open"}
+  resolution: ""
+  resolution_round: null
+
+- id: "R3-FMT-PAGELIMIT"
+  summary: "Main text exceeds 8-page limit (desk reject risk)"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 4
+  mentions:
+    - {round: 3, reviewers: "R1,R2", note: "Both AGREE. §4.7 + §5 overflow to p9."}
+    - {round: 4, note: "RESOLVED. Conclusion compressed to 2 sentences. Main text fits 8 pages."}
+  action_items:
+    - {round: 3, action: "Compress §4.7 + §5.", assigned_to: "Paper Agent", status: "done"}
+  resolution: "Main text now fits within 8 pages."
+  resolution_round: 4
+
+- id: "R3-M1-SPECTRUM-SCALE"
+  summary: "Decoupling spectrum validated only at 4B scale"
+  category: experiment
+  severity: info
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 4
+  mentions:
+    - {round: 3, reviewers: "R1,R2", note: "Should appear in Limitations."}
+    - {round: 4, note: "RESOLVED. Limitations now states spectrum is 4B only."}
+  action_items:
+    - {round: 3, action: "Add to Limitations", assigned_to: "Paper Agent", status: "done"}
+  resolution: "Added to Limitations section."
+  resolution_round: 4
+
+- id: "R3-M2-TAX-CONVENTION"
+  summary: "Evidence tax sign convention inconsistent across sections"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 4
+  mentions:
+    - {round: 3, reviewers: "R1,R2", note: "Inconsistent across tables/figures."}
+    - {round: 4, note: "RESOLVED. Convention consistent throughout."}
+  action_items:
+    - {round: 3, action: "Unify sign convention.", assigned_to: "Paper Agent", status: "done"}
+  resolution: "Sign convention unified throughout."
+  resolution_round: 4
+
+- id: "R4-EDCR-CONSISTENCY"
+  summary: "EDCR ρ numerical inconsistency across sections (Round 3 W-SF5)"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 4
+  mentions:
+    - {round: 3, reviewers: "R1,R2", note: "§3.5 ρ=-0.89 vs §4.7 ρ=-0.96 vs Appendix ρ=-0.9643."}
+    - {round: 4, note: "RESOLVED. All now consistently ρ=-0.96 / -0.9643."}
+  action_items:
+    - {round: 3, action: "Unify EDCR ρ values", assigned_to: "Paper Agent", status: "done"}
+  resolution: "All EDCR ρ values now consistent."
+  resolution_round: 4
+
+- id: "R4-TAX-TRUNCATION"
+  summary: "Evidence tax at 1.7B is primarily truncation-mediated, not inherent evidence cost"
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 4
+  last_seen_round: 4
+  mentions:
+    - {round: 4, reviewers: "R1,R2", note: "R1 calls this 'the most incisive observation'. Appendix E matched@2048: 1.7B tax reverses to -5.63pp (beneficial). Appendix K: truncation FN is #1 RSFT improvement mechanism (-22% at 1.7B). Abstract/Contribution 1 'scale-dependent evidence tax' at 1.7B is truncation artifact, not inherent evidence cost. Paper buries this in appendix. R1 recommends distinguishing 'truncation-induced tax' from 'information-interference tax' and promoting matched@2048 findings to main text."}
+  action_items:
+    - {round: 4, action: "Distinguish truncation-induced vs information-interference components of evidence tax in §4.4. Promote matched@2048 key finding to main text (currently Appendix E/F). Revise Contribution 1 framing.", assigned_to: "Paper Agent", status: "open"}
+  resolution: ""
+  resolution_round: null
+
+- id: "R4-MISSING-REFS"
+  summary: "Missing references: PCGrad, Rashkin et al. 2023 Attribution"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 4
+  last_seen_round: 4
+  mentions:
+    - {round: 4, reviewers: "R1,R2", note: "PCGrad (Yu et al. 2020): gradient surgery for multi-task conflict, directly relevant to §4.3 gradient pressure discussion. Rashkin et al. 2023: Attribution in NLG, conceptual correspondence to evidence citation. R1 agrees on both. R1 rebuts Maynez et al. 2020 (too distant from DocRE)."}
+  action_items:
+    - {round: 4, action: "Add PCGrad (Yu et al. 2020) to §2.2 and Rashkin et al. 2023 to §2.3", assigned_to: "Paper Agent", status: "open"}
+  resolution: ""
+  resolution_round: null
+
+- id: "R4-SECTION44-DENSITY"
+  summary: "§4.4 information density too high — tax definition, CI, variance, cross-arch all in 1.5 pages"
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 4
+  last_seen_round: 4
+  mentions:
+    - {round: 4, reviewers: "R1,R2", note: "R1 agrees with R2: §4.4 packs too many layers (tax definition, scale-dependency, CI analysis, cross-seed variance, cross-architecture, inference-time tax). CI-crosses-zero caveat easily drowned. R1 suggests splitting into §4.4 Evidence Tax (with CI) and §4.5 Cross-Scale/Cross-Architecture."}
+  action_items:
+    - {round: 4, action: "Split §4.4 into two subsections or compress variance portion to reduce density", assigned_to: "Paper Agent", status: "open"}
+  resolution: ""
+  resolution_round: null

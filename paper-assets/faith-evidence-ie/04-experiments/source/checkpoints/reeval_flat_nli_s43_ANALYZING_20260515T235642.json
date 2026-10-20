@@ -1,0 +1,36 @@
+{
+  "exp_id": "reeval_flat_nli_s43",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:00:33.691Z",
+    "updated_at": "2026-05-15T23:56:42.324Z",
+    "hypothesis": "Re-eval flat-NLI RSFT seed=43 WITH --sft_adapter (D064 bug fix). 原 eval_plan_001_flat_nli_s43 因缺 --sft_adapter 导致 rel_f1=0.0022 无效。对比 flat-NLI s42 (rel_f1=0.4539) 和 CED RSFT mean (0.4596)。",
+    "parent": "plan_001_flat_nli_seed43",
+    "spec": {
+      "command": "Re-eval flat-NLI RSFT seed=43 with --sft_adapter (D064 fix)",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:1",
+      "pid": 266178,
+      "log_path": "~/runs/faith-evidence-ie/reeval_flat_nli_s43.log",
+      "submitted_at": "2026-05-15T22:57:10.223Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 0,
+      "model_name": "Qwen3-4B + SFT + flat-NLI RSFT s43",
+      "seed": 43,
+      "checkpoint_source": "plan_001_flat_nli_s43",
+      "eval_data": "docred_dev"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T23:56:41.649Z"
+    }
+  },
+  "timestamp": "2026-05-15T23:56:42.604093+00:00",
+  "trigger": "update_registry"
+}

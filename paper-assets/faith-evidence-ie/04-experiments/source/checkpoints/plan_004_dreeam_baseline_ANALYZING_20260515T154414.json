@@ -1,0 +1,55 @@
+{
+  "exp_id": "plan_004_dreeam_baseline",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:47:01.947Z",
+    "updated_at": "2026-05-15T15:44:13.878Z",
+    "hypothesis": "Phase A: 复现 DREEAM fully-supervised teacher (RoBERTa-large) DocRED dev Evi-F1≈54.15, RE-F1≈63.49。论文报告的57.34是student model在test set的结果，需4阶段self-training pipeline。",
+    "spec": {
+      "command": "cd /root/autodl-tmp/baselines/dreeam && python run.py --do_train --data_dir dataset/docred --transformer_type roberta --model_name_or_path roberta-large --train_file train_annotated.json --dev_file dev.json --save_path checkpoints/teacher_roberta --train_batch_size 4 --test_batch_size 8 --num_train_epochs 30 --num_class 97 --seed 66",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "213006",
+      "log_path": "~/runs/faith-evidence-ie/plan_004_dreeam_baseline.log",
+      "submitted_at": "2026-05-15T14:29:38.364Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "roberta-large",
+      "data_path": "/root/autodl-tmp/baselines/dreeam/dataset/docred",
+      "data_count": 3053,
+      "seed": 66,
+      "checkpoint_path": "/root/autodl-tmp/baselines/dreeam/checkpoints/teacher_roberta/2026-05-15_22:29:42.720935/last.ckpt"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T15:42:51.417Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T15:42:53.896000+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "dev_rel_f1": 63.57,
+      "dev_rel_ign_f1": 61.72,
+      "dev_evi_f1": 54.01,
+      "dev_rel_p": 66.95,
+      "dev_rel_r": 60.51,
+      "dev_evi_p": 60.53,
+      "dev_evi_r": 48.76
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T15:44:14.040631+00:00",
+  "trigger": "update_registry"
+}

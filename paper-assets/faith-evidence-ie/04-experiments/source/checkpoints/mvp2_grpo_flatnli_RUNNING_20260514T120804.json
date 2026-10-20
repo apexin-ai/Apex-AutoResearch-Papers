@@ -1,0 +1,48 @@
+{
+  "exp_id": "mvp2_grpo_flatnli",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:10:33.848Z",
+    "updated_at": "2026-05-14T12:08:04.107Z",
+    "spec": {
+      "command": "python -m freige.training.grpo_trainer --stage 2 --ced_reward_weight 1.0 --format_reward_weight 0.3 --f1_reward_weight 3.0 --num_iterations 1 --kl_coef 0.05 --lr 5e-5",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "47722",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_grpo_flatnli.log",
+      "submitted_at": "2026-05-14T11:48:54.086Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": {
+        "train": 3027,
+        "dev": 985
+      },
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "Flat-NLI reward improves Evi-F1 over extraction-only but less than CED",
+      "parent": "mvp2_sft_warmup",
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "/root/autodl-tmp/data/docred",
+      "hyperparams": {
+        "learning_rate": "5e-5",
+        "kl_coef": 0.05,
+        "num_iterations": 1,
+        "format_reward_weight": 0.3,
+        "f1_reward_weight": 3,
+        "ced_reward_weight": 1
+      }
+    },
+    "hypothesis": "Flat-NLI reward (non-contrastive) improves Evi-F1 over extraction-only but less than CED — validates contrastive component's incremental value",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-14T12:08:04.134033+00:00",
+  "trigger": "update_registry"
+}

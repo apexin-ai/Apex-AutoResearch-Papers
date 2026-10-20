@@ -1,0 +1,14 @@
+{
+  "exp_id": "reeval_ced_s42",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:37:58.498Z",
+    "updated_at": "2026-05-16T02:38:01.642Z"
+  },
+  "timestamp": "2026-05-16T02:38:02.403321+00:00",
+  "trigger": "update_registry"
+}

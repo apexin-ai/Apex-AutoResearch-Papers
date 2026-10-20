@@ -1,0 +1,29 @@
+{
+  "exp_id": "test_eval_14b_sft_s42",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:30:20.254Z",
+    "updated_at": "2026-05-22T00:17:17.090Z",
+    "hypothesis": "Re-DocRED test set eval: Qwen3-14B SFT s42 on test_revised.json (500 docs)。14B RSFT test=0.3849，需要 SFT baseline 配对。14B 是项目最强 scale，SFT test baseline 是 test table 最重要的一行。",
+    "spec": {
+      "command": "python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b/checkpoint-144 --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_14b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+      "data_count": 500,
+      "model_name": "Qwen3-14B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_14b/checkpoint-144",
+      "eval_data": "re-docred test_revised",
+      "pid": 125321,
+      "gpu": "cuda:1",
+      "log_path": "/root/autodl-tmp/eval_results/test_eval_14b_sft_s42/log.txt"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T00:17:17.780064+00:00",
+  "trigger": "update_registry"
+}

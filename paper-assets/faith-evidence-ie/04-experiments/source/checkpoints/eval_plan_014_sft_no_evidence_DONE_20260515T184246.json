@@ -1,0 +1,49 @@
+{
+  "exp_id": "eval_plan_014_sft_no_evidence",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:20:25.574Z",
+    "updated_at": "2026-05-15T18:42:46.665Z",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/eval_results/sft_no_evidence",
+      "log_path": "~/runs/faith-evidence-ie/eval_plan_014_sft_no_evidence.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T18:29:34.790Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T18:29:37.278008+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "rel_f1": 0.4893,
+      "rel_ign_f1": 0.4893,
+      "rel_precision": 0.4884,
+      "rel_recall": 0.4902,
+      "evi_f1": 0,
+      "evi_precision": 0,
+      "evi_recall": 0,
+      "edcr": 0,
+      "format_ok_rate": 0.9919,
+      "n_truncated": 298,
+      "n_predictions": 21064,
+      "n_documents": 985,
+      "n_parseable": 977,
+      "inference_time_seconds": 4103.8
+    },
+    "conclusion": "success",
+    "notes": "No-evidence SFT rel_f1=0.4893 vs baseline with-evidence rel_f1=0.4057 (+0.0836, +20.6%). Evidence generation significantly hurts relation extraction. evi_f1=0 as expected. Format compliance 99.2%. 298/985 truncated. Inference 4103.8s.",
+    "completed_at": "2026-05-15T18:42:46.665Z"
+  },
+  "timestamp": "2026-05-15T18:42:46.872052+00:00",
+  "trigger": "update_registry"
+}

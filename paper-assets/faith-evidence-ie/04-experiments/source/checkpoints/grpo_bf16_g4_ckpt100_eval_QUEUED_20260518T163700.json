@@ -1,0 +1,29 @@
+{
+  "exp_id": "grpo_bf16_g4_ckpt100_eval",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:34:51.597Z",
+    "updated_at": "2026-05-18T16:37:00.122Z",
+    "hypothesis": "GRPO bf16 G=4 checkpoint-100 eval (D106 conditional termination): evaluate mid-training checkpoint to decide whether to continue GRPO training to step 200. If rel_f1 >= RSFT baseline (~52pp), continue. If significantly below, consider early termination.",
+    "parent": "wave1_grpo_bf16_g4",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_bf16_g4/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output/ --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/grpo_bf16_g4_ckpt100_eval\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "558467",
+      "log_path": "~/runs/faith-evidence-ie/grpo_bf16_g4_ckpt100_eval.log",
+      "submitted_at": "2026-05-18T16:35:15.818Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T16:37:00.531337+00:00",
+  "trigger": "update_registry"
+}

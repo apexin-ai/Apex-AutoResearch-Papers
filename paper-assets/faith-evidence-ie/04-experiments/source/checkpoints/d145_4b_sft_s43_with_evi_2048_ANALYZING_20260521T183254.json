@@ -1,0 +1,65 @@
+{
+  "exp_id": "d145_4b_sft_s43_with_evi_2048",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:55:23.978Z",
+    "updated_at": "2026-05-21T18:32:54.035Z",
+    "hypothesis": "4B SFT s43 with-evi@2048: 4B evidence tax 目前仅 s42 (fair_tax=+0.73pp)，但 s42 是最弱 seed (cross-seed std=3.8pp)。补 s43 计算 multi-seed evidence tax，验证 4B evidence tax 方向的可靠性。配对 d145_4b_sft_s43_no_evi_2048。",
+    "spec": {
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT adapter seed43 (with-evi)",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_seed43",
+      "eval_data": "docred-dev",
+      "checkpoint_path": "/root/autodl-tmp/eval_results/d145_4b_sft_s43_with_evi_2048",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output_seed43 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/eval_results/d145_4b_sft_s43_with_evi_2048 --batch_size 4 --max_new_tokens 2048 --no-quantize --seed 43\"",
+      "server": "rtx5090-4x",
+      "gpu_ids": [
+        "cuda:0"
+      ],
+      "pid": 115868,
+      "log_path": "~/runs/faith-evidence-ie/d145_4b_sft_s43_with_evi_2048.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T18:29:34.592Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T18:29:41.823906+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ign_f1": 0.4367,
+      "f1": 0.4431,
+      "precision": 0.4531,
+      "recall": 0.4335,
+      "ign_precision": 0.4333,
+      "ign_recall": 0.4402,
+      "evi_f1": 0.7888,
+      "evi_f1_tp": 0.7888,
+      "evi_f1_joint": 0.3465,
+      "edcr": 0.7234,
+      "format_ok": 983,
+      "truncated": 271,
+      "n_predictions": 25522,
+      "n_documents": 985,
+      "inference_time_s": 9203.1,
+      "fair_tax_pp": -0.2,
+      "fair_subset_size": 982,
+      "fair_with_evi_ign_f1": 0.4375,
+      "fair_no_evi_ign_f1": 0.4355
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T18:32:54.627219+00:00",
+  "trigger": "update_registry"
+}

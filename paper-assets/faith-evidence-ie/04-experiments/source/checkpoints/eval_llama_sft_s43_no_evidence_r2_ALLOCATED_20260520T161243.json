@@ -1,0 +1,23 @@
+{
+  "exp_id": "eval_llama_sft_s43_no_evidence_r2",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:12:20.890Z",
+    "updated_at": "2026-05-20T16:12:43.093Z",
+    "hypothesis": "LLaMA SFT s43 标准化 no-evidence eval（r2: 超时重试，timeout_hours 从 2h 提高到 3h）。用 s43 SFT adapter + --no_evidence flag 推理，测量 per-seed evidence tax。",
+    "parent": "eval_llama_sft_s43_no_evidence",
+    "spec": {
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-20T16:12:43.617984+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,24 @@
+{
+  "exp_id": "plan_011_bf16_g8_step_eval",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:04:51.538Z",
+    "updated_at": "2026-05-15T19:46:27.866Z",
+    "spec": {
+      "hypothesis": "bf16 GRPO G=8 补充 step 30/50/70 eval。当前仅有 step 90/100 两个 eval 点，不足以支撑 'no forgetting' 结论。补中间点展示完整训练动态。",
+      "parent": "plan_011_grpo_g8_bf16_eval",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT merged + GRPO bf16 G=8 (step 30/50/70)",
+      "seed": 42,
+      "eval_data": "docred dev (985 docs)"
+    }
+  },
+  "timestamp": "2026-05-15T19:46:28.082543+00:00",
+  "trigger": "update_registry"
+}

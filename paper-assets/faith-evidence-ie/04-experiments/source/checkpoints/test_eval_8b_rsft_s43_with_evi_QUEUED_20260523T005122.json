@@ -1,0 +1,16 @@
+{
+  "exp_id": "test_eval_8b_rsft_s43_with_evi",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:50:42.882Z",
+    "updated_at": "2026-05-23T00:51:21.930Z",
+    "hypothesis": "8B RSFT k1 s43 with-evidence test eval on Re-DocRED test_revised (500 docs). Multi-seed rebuttal: 对比 s42 test ign_f1=0.3353，量化 seed variance。3-seed mean±std 支撑 variance compression claim。",
+    "parent": "test_eval_8b_rsft_s42"
+  },
+  "timestamp": "2026-05-23T00:51:22.555148+00:00",
+  "trigger": "update_registry"
+}

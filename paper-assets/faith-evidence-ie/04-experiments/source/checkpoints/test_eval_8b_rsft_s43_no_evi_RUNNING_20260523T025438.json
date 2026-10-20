@@ -1,0 +1,29 @@
+{
+  "exp_id": "test_eval_8b_rsft_s43_no_evi",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T02:53:50.925Z",
+    "updated_at": "2026-05-23T02:54:38.261Z",
+    "hypothesis": "8B RSFT k1 s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 with-evi test ign_f1=0.3398 计算 s43 evidence tax。s42 tax=-0.34pp, 验证 multi-seed tax 稳定性。",
+    "parent": "test_eval_8b_rsft_s43_with_evi",
+    "spec": {
+      "command": "python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b_k1_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no_evidence --no-quantize --output_dir /root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_no_evi --batch_size 16 --seed 42",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+      "data_count": 500,
+      "model_name": "Qwen3-8B + SFT + RSFT-k1-s43 (no-evidence)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_qwen3_8b_k1_s43",
+      "eval_data": "test_revised",
+      "pid": 220069,
+      "gpu": "cuda:0",
+      "log_path": "/root/autodl-tmp/eval_results/test_eval_8b_rsft_s43_no_evi.log"
+    }
+  },
+  "timestamp": "2026-05-23T02:54:38.875438+00:00",
+  "trigger": "update_registry"
+}

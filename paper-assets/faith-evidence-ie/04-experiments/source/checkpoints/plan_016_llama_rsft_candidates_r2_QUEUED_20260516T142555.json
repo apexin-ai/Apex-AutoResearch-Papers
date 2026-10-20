@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan_016_llama_rsft_candidates_r2",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T14:25:55.343Z",
+    "updated_at": "2026-05-16T14:25:55.344Z"
+  },
+  "timestamp": "2026-05-16T14:25:55.686109+00:00",
+  "trigger": "update_registry"
+}

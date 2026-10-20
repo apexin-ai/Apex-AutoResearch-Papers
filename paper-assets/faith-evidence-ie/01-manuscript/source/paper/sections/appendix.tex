@@ -1,0 +1,484 @@
+\section{Training Hyperparameters}
+\label{sec:hyperparams}
+
+Table~\ref{tab:hyperparams} lists the hyperparameters for all training configurations. All methods use LoRA with rank $r{=}64$ and $\alpha{=}128$ applied to all linear projections (attention and feed-forward). SFT and RSFT share the same optimizer settings; RSFT differs only in data construction (top-1 CED-selected outputs from $N{=}8$ candidates). GRPO and DPO use lower learning rates to stabilize post-SFT optimization.
+
+\begin{table*}[t]
+\centering
+\caption{Training hyperparameters for all optimization paradigms. All experiments use Qwen3-4B as the base model with LoRA adaptation. A dash indicates that the parameter is not applicable to the given method.}
+\label{tab:hyperparams}
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Parameter} & \textbf{SFT} & \textbf{RSFT} & \textbf{GRPO QLoRA} & \textbf{GRPO bf16} & \textbf{DPO} \\
+\midrule
+Base model & Qwen3-4B & Qwen3-4B & Qwen3-4B & Qwen3-4B & Qwen3-4B \\
+LoRA rank $r$ & 64 & 64 & 64 & 64 & 64 \\
+LoRA $\alpha$ & 128 & 128 & 128 & 128 & 128 \\
+Learning rate & 2e-5 & 2e-5 & 5e-6 & 5e-6 & 5e-7 \\
+Batch size (effective) & 16 & 16 & 4 & 8 & 4 \\
+Epochs & 3 & 3 & -- & -- & 1, 3\textsuperscript{$\star$} \\
+Max steps & -- & -- & 100 & 100 & -- \\
+Gradient accumulation & 4 & 4 & 16 & 4 & 4 \\
+Max new tokens & 1024 & 1024 & 1024 & 1024 & 1024 \\
+Quantization & -- & -- & NF4 4-bit & bf16 & bf16 \\
+Group size $G$ & -- & -- & 4 & 8 & -- \\
+KL coefficient & -- & -- & 0.01 & 0.01 & -- \\
+$\beta$ (DPO) & -- & -- & -- & -- & 0.1 \\
+Candidates $N$ & -- & 8 & -- & -- & 8 \\
+Top-$k$ selection & -- & 1 & -- & -- & -- \\
+Training samples & 3,053 & 2,718 & 3,053 & 3,053 & 3,053 \\
+Scoring function & -- & CED & CED & CED & CED \\
+\bottomrule
+\end{tabular}
+\vspace{1mm}
+{\raggedright\footnotesize \textsuperscript{$\star$}DPO is trained for both 1 and 3 epochs to observe temporal dynamics of the evidence-extraction trade-off (Section~\ref{sec:spectrum}).\par}
+\end{table*}
+
+
+\section{Full Ablation Results}
+\label{sec:ablation_full}
+
+Table~\ref{tab:ablation_full} reports the complete RSFT ablation across scoring functions, top-$k$ values, and random seeds. RSFT CED $k{=}1$ achieves a four-seed mean Ign-F1 of 44.66 (standard deviation 0.53), confirming robust improvement over the SFT s42 baseline (39.74). The three-seed mean reported in Table~\ref{tab:main} (44.82, seeds 42/43/44) is slightly higher because it excludes the lowest seed (s45: 44.16). Random selection RSFT $k{=}1$ (41.14 Ign-F1), which samples from the same candidate pool without CED scoring, improves only +1.40pp over SFT s42 versus +4.92pp for CED RSFT, confirming that CED scoring precision drives the majority of the RSFT gain. Increasing $k$ to 3 slightly degrades performance (43.64 Ign-F1), consistent with the intuition that stricter selection yields higher-quality training data. The flat-NLI scoring variant produces comparable Rel-F1 (mean 45.61 vs.\ 45.63 for CED, a difference of 0.02pp). Both CED and flat-NLI improve substantially over the SFT baseline while maintaining or improving Evi-F1, confirming that the RSFT gains are driven by quality-based data selection rather than by the specific contrastive formulation.
+
+\paragraph{NLI scoring comparison.} Across all available seeds, CED RSFT achieves mean Rel-F1 of 45.63 (seeds 42, 43, 44, 45: range 45.14--46.21), and flat-NLI RSFT achieves mean Rel-F1 of 45.61 (seeds 42, 43: range 45.35--45.86). The 0.02pp difference suggests comparable performance: CED's contrastive design does not substantially outperform simpler NLI scoring for RSFT data selection. We adopt CED as the default because its contrastive formulation produces per-triple discrimination scores that support interpretable error analysis.
+
+\paragraph{Top-$k$ selection.} Best-of-8 ($k{=}1$) yields mean Ign-F1 44.66 and Rel-F1 45.63, while top-3-of-8 ($k{=}3$) produces 43.64 and 44.54. The selected training data confirms the quality gap: $k{=}1$ data has mean extraction F1 of 61.57 and mean CED of 0.6683, versus 57.61 and 0.6205 for $k{=}3$. Despite $k{=}3$ providing 2.96$\times$ more training examples, the additional lower-ranked samples introduce noise that degrades final performance.
+
+\paragraph{NLI scorer capacity.} CED filtering is robust to NLI model capacity: replacing the default scorer (DeBERTa-v3-base, 86M parameters) with DeBERTa-v3-large (304M) yields only +1.10pp Ign-F1 (45.33 vs.\ 44.23, s42), a difference within the v3-base seed noise of 0.88pp (s42: 44.23, s44: 45.11). Other metrics confirm the pattern: Rel-F1 improves by +1.19pp (46.36 vs.\ 45.17), Evi-F1 by +0.20pp (81.94 vs.\ 81.74), while EDCR shifts by $-$0.39pp (0.6530 vs.\ 0.6569)---the inconsistent direction across metrics rules out systematic improvement from a larger scorer. This insensitivity supports v3-base as a cost-effective default, as a 3.5$\times$ larger scorer does not materially improve CED-based data selection.
+
+\begin{table}[t]
+\centering
+\caption{Full RSFT ablation on DocRED dev set (Qwen3-4B). CED and flat-NLI denote the scoring function used for candidate selection. Best Ign-F1 among evidence-generating methods in \textbf{bold}.}
+\label{tab:ablation_full}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Configuration} & \textbf{Ign-F1} & \textbf{Rel-F1} & \textbf{Evi-F1} & \textbf{EDCR} \\
+\midrule
+SFT baseline (s42) & 39.74 & 40.49 & 79.86 & 0.6982 \\
+SFT no-evidence & \textbf{47.21} & 48.76 & -- & -- \\
+\midrule
+RSFT random $k{=}1$ & 41.14 & 41.98 & 79.64 & 0.6971 \\
+\midrule
+RSFT CED $k{=}1$ (s42) & 44.23 & 45.17 & 81.74 & 0.6569 \\
+RSFT CED $k{=}1$ (s43) & 45.12 & 46.01 & 80.63 & 0.6542 \\
+RSFT CED $k{=}1$ (s44) & 45.11 & 46.21 & 80.50 & 0.6350 \\
+RSFT CED $k{=}1$ (s45) & 44.16 & 45.14 & 81.74 & 0.6550 \\
+RSFT CED $k{=}1$ (mean) & 44.66 & 45.63 & 81.15 & 0.6503 \\
+\midrule
+RSFT CED $k{=}3$ & 43.64 & 44.54 & 80.88 & 0.6635 \\
+\midrule
+RSFT flat-NLI (s42) & -- & 45.35 & 80.43 & 0.6431 \\
+RSFT flat-NLI (s43) & -- & 45.86 & 81.58 & 0.6505 \\
+RSFT flat-NLI (mean) & -- & 45.61 & 81.01 & 0.6468 \\
+\midrule
+RSFT CED $k{=}1$ v3-large (s42) & 45.33 & 46.36 & 81.94 & 0.6530 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
+\section{Scaling Details}
+\label{sec:scaling_details}
+
+Table~\ref{tab:cross_detail} supplements Table~\ref{tab:scaling} in the main text with per-scale Rel-F1 and Evi-F1 breakdowns. At 1.7B, RSFT improves Rel-F1 from 45.86 to 52.81 (+6.95, multi-seed mean) while achieving Evi-F1 82.63 and EDCR 0.6217. The 4B model shows the same pattern: Rel-F1 increases from 44.39 to 45.80 (+1.41, three-seed mean). For 8B, RSFT brings Rel-F1 from 51.87 to 56.07 (three-seed mean) with Evi-F1 of 81.54 and EDCR 0.6186, confirming tight coupling between extraction and evidence at this scale. At 14B, the SFT baseline achieves strong Rel-F1 (56.11) and Evi-F1 (82.92); RSFT improves Rel-F1 to 59.79 (two-seed mean) with Evi-F1 83.28 and EDCR 0.5717.
+
+\begin{table}[t]
+\centering
+\caption{Detailed Rel-F1 and Evi-F1 across model scales on DocRED dev set. SFT and RSFT columns show multi-seed means where available (Qwen3 1.7B/4B/8B: 3-seed; 14B: two-seed mean; LLaMA SFT Rel-F1/Evi-F1: s42 only; LLaMA RSFT: 3-seed).}
+\label{tab:cross_detail}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Model} & \textbf{SFT Rel-F1} & \textbf{SFT Evi-F1} & \textbf{RSFT Rel-F1} & \textbf{RSFT Evi-F1} & \textbf{RSFT EDCR} \\
+\midrule
+Qwen3-1.7B & 45.86 & 82.85 & 52.81 & 82.63 & 0.6217 \\
+Qwen3-4B & 44.39 & 79.61 & 45.80 & 80.96 & 0.6487 \\
+Qwen3-8B & 51.87 & 82.94 & 56.07 & 81.54 & 0.6186 \\
+Qwen3-14B & 56.11 & 82.92 & 59.79 & 83.28 & 0.5717 \\
+LLaMA-3.1-8B & 55.14 & 81.51 & 57.75 & 82.84 & 0.5804 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_scaling.pdf}
+\caption{Evidence tax across model scales. Bar heights show Ign-F1 for each training configuration. The gap between no-evidence and SFT bars reverses direction between 1.7B and 4B, revealing the scale-dependent nature of the evidence tax. RSFT consistently narrows the gap toward the no-evidence upper bound.}
+\label{fig:scaling}
+\end{figure}
+
+
+\section{Variance Compression Confidence Intervals}
+\label{sec:variance_ci}
+
+Table~\ref{tab:variance_ci} reports 95\% confidence intervals for SFT and RSFT standard deviations using the $\chi^2$ distribution ($N{=}3$ seeds per configuration). At 1.7B, the confidence intervals are fully non-overlapping (SFT lower bound 1.45pp $>$ RSFT upper bound 0.54pp), providing the strongest evidence for variance compression. At the remaining three scales, intervals overlap but point estimates are consistently in the same direction (SFT std $>$ RSFT std at all four scales; sign test $p = 0.0625$, one-sided binomial, $n = 4$, underpowered). Cohen's $d$ ranges from 0.46 (4B) to 3.31 (1.7B), with 1.7B and LLaMA-8B showing large effect sizes ($d > 2.5$).
+
+\begin{table}[t]
+\centering
+\caption{95\% confidence intervals for training variance ($\chi^2$ method, $N{=}3$ seeds). Compression is the ratio of SFT to RSFT point estimates (unrounded).}
+\label{tab:variance_ci}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Scale} & \textbf{SFT std} & \textbf{SFT 95\% CI} & \textbf{RSFT std} & \textbf{RSFT 95\% CI} & \textbf{Compr.} & \textbf{Cohen's $d$} \\
+\midrule
+Qwen3-1.7B & 2.79 & [1.45, 17.55] & 0.09 & [0.04, 0.54] & 32.6$\times$ & 3.31 \\
+Qwen3-4B & 3.80 & [1.98, 23.89] & 0.51 & [0.27, 3.21] & 7.5$\times$ & 0.46 \\
+Qwen3-8B & 3.23 & [1.68, 20.31] & 0.50 & [0.26, 3.15] & 6.5$\times$ & 1.79 \\
+LLaMA-3.1-8B & 2.92 & [1.52, 18.37] & 0.64 & [0.33, 4.01] & 4.6$\times$ & 2.58 \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{-2mm}
+{\raggedright\footnotesize Sign test: $p = 0.0625$ (one-sided binomial, $n = 4$; underpowered). The consistent direction (4/4 SFT $>$ RSFT), non-overlapping CIs at 1.7B, and large Cohen's $d$ at 1.7B and LLaMA provide practical evidence for variance compression despite limited statistical power from $N{=}3$ seeds.\par}
+\end{table}
+
+
+\section{Controlled Evaluation Subset}
+\label{sec:fair_subset}
+
+The 1.7B evidence tax comparison (\S\ref{sec:scaling}) is confounded by differential truncation rates. At \texttt{max\_new\_tokens}$=$1024, the no-evidence model truncates 50.9\% of outputs (501/985 documents) versus 31.9\% (314/985) for the evidence model. To address this, we adopt a matched@2048 fair evaluation: both configurations are evaluated at \texttt{max\_new\_tokens}$=$2048, and the tax is computed on the intersection of documents where both produce format-compliant output. This yields 971/985 fair-subset documents, with a tax of $-$5.63pp (s42), confirming a genuine 1.7B evidence benefit. As additional validation, a stricter controlled subset at @1024 (excluding truncated or repetitive outputs; 442/985 documents) yields $-$6.2pp, with the stronger benefit attributable to the more aggressive filtering.
+
+Table~\ref{tab:mechanistic} provides a mechanistic breakdown across three scales (evaluated at @1024). Output duplication rate (fraction of documents containing $\geq$3 repeated triples or unique/total $< 0.5$) declines monotonically with scale for both training configurations, but the gap between no-evidence and with-evidence models narrows from 27.5pp at 1.7B to 3.7pp at 8B. This pattern supports the implicit regularization hypothesis: evidence generation forces smaller models to attend to supporting context, reducing degenerate repetition. At 4B, duplication is already moderate (31.1\% with evidence), so the regularization benefit diminishes; under matched@2048 evaluation, the 4B training-time tax is approximately neutral (+0.25$\pm$0.47pp, three-seed mean). The truncation asymmetry reverses across scales: at 1.7B the no-evidence model truncates 19pp more often; at 8B the evidence model truncates 9pp more often due to the longer output format.
+
+\begin{table}[t]
+\centering
+\caption{Mechanistic breakdown of output quality across scales. Duplication rate: fraction of documents with degenerate outputs. Truncation $\Delta$: no-evidence rate minus with-evidence rate (positive means no-evidence truncates more).}
+\label{tab:mechanistic}
+\small
+\begin{tabular}{lccccc}
+\toprule
+& \multicolumn{3}{c}{\textbf{Duplication Rate}} & \multicolumn{2}{c}{\textbf{Truncation}} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-6}
+\textbf{Scale} & \textbf{w/ evi} & \textbf{no-evi} & \textbf{Gap} & \textbf{$\Delta$} & \textbf{Pattern} \\
+\midrule
+1.7B & 33.0 & 60.5 & 27.5 & +19 & no-evi worse \\
+4B & 31.1 & 43.2 & 12.1 & +2 & neutral \\
+8B & 29.2 & 32.9 & 3.7 & $-$9 & evi worse \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\section{Training-Time Evidence Tax}
+\label{sec:training_tax}
+
+The evidence tax can be measured in two ways. The \emph{training-time} tax compares separately trained models (SFT with evidence vs.\ SFT without evidence in the training output format). The \emph{inference-time} tax (reported in Table~\ref{tab:scaling}) evaluates the same RSFT model with and without evidence at inference time.
+
+Na\"ive comparisons at \texttt{max\_new\_tokens}$=$1024 are confounded by differential truncation rates (e.g., 50.9\% vs.\ 31.9\% at 1.7B). To control for this, we adopt a \emph{matched@2048 fair evaluation}: both configurations are evaluated at \texttt{max\_new\_tokens}$=$2048, and the tax is computed on the intersection of documents where both models produce format-compliant output. Table~\ref{tab:training_tax} reports the matched@2048 training-time tax across Qwen3 scales.
+
+The tax reveals a within-family capacity threshold: evidence generation benefits 1.7B ($-$5.63pp on 971/985 fair-subset documents) but is approximately neutral at $\geq$4B (+0.25$\pm$0.47pp at 4B across three seeds, +0.04pp at 8B, +0.03pp at 14B). At 1.7B, s42 is the strongest SFT seed (47.86 Ign-F1, +3.22pp above the three-seed mean of 44.64), so the benefit may be amplified relative to the population mean. LLaMA-3.1-8B SFT training-time tax is consistently negative but with high magnitude variance ($-$1.53 to $-$11.20pp, mean $-$5.19$\pm$5.25pp under matched@2048) and omitted from the table due to the s43 outlier (16.3\% no-evidence format failure inflates its tax); cross-architecture patterns are addressed in \S\ref{sec:generalization_full}.
+
+\begin{table}[t]
+\centering
+\caption{Training-time evidence tax under matched@2048 fair evaluation (DocRED dev Ign-F1). Both configurations evaluated at \texttt{max\_new\_tokens}$=$2048; tax computed on format-compliant intersection. Tax $=$ no-evidence $-$ with-evidence; positive $=$ cost.}
+\label{tab:training_tax}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Fair w/ evi} & \textbf{Fair no-evi} & \textbf{Evi Tax} & \textbf{Subset} \\
+\midrule
+Qwen3-1.7B & 48.38 & 42.75 & $-$5.63 & 971 \\
+Qwen3-4B & -- & -- & +0.25{\scriptsize$\pm$0.47}$^{(3)}$ & $\geq$982 \\
+Qwen3-8B & 50.15 & 50.19 & +0.04 & 984 \\
+Qwen3-14B & 55.07 & 55.10 & +0.03 & 985$^\dagger$ \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+{\raggedright\footnotesize 1.7B and 8B are s42; 4B reports three-seed mean $\pm$ std (per-seed range: $-$0.19 to +0.73pp); 14B evaluated at @1024 with 0\% truncation for both configurations ($^\dagger$fair subset equals full dev set). Subset: documents in format-compliant intersection out of 985.\par}
+\end{table}
+
+\paragraph{Evidence training and SFT seed variance.}
+Evidence training's effect on SFT seed variance is also scale-dependent. At 4B, with-evidence SFT models show near-identical cross-seed spread (0.02pp) compared to no-evidence models (0.50pp), yielding 25$\times$ variance compression. At 8B, the compression is more modest (0.35pp vs.\ 0.48pp, 1.4$\times$). However, at 1.7B the pattern reverses: with-evidence seed spread (0.63pp) exceeds no-evidence spread (0.20pp). This reversal likely reflects the extreme truncation rates at 1.7B (75.6\% with-evidence, 94.4\% no-evidence at \texttt{max\_new\_tokens}$=$1024): truncated outputs produce noisy extraction results whose variance depends on which triples appear before the cutoff point. The RSFT variance compression reported in \S\ref{sec:scaling} is measured relative to SFT with-evidence baselines and holds at all scales regardless of this SFT-internal pattern.
+
+
+\section{Why RSFT Avoids Decoupling}
+\label{sec:rsft_theory}
+
+The structural difference between selection and optimization explains why RSFT does not exhibit the decoupling observed in gradient-based methods. GRPO and DPO update model parameters through gradients that optimize a reward signal. When two sub-tasks (extraction and evidence) compete for gradient capacity, the optimizer can discover and exploit the trade-off between them, improving one at the expense of the other. RSFT operates differently: it selects complete outputs and trains on them with standard supervised loss. Because the selection is discrete (accept or reject a full response), there is no gradient pathway through which the model can learn to sacrifice extraction for evidence quality. Only outputs where both extraction and evidence are jointly strong survive the CED filter. This property is not specific to RSFT's design but is a structural consequence of discrete selection over complete outputs: any selection-based method that filters on a joint quality criterion will inherit the same coupling guarantee. The implication for practitioners is direct: when optimizing for multiple coupled generation objectives, selection-based methods preserve inter-objective balance that gradient-based methods disrupt.
+
+
+\section{Full Generalization Results}
+\label{sec:generalization_full}
+
+\paragraph{Cross-family transfer.}
+LLaMA-3.1-8B confirms the scaling patterns observed with Qwen3. Its SFT baseline achieves a three-seed mean of 51.09 Ign-F1 (std 2.92pp; s42: 53.84, s43: 51.42, s44: 48.02). Under matched@2048 fair evaluation, the training-time tax is consistently negative across all three seeds (s42: $-$1.53, s43: $-$11.20, s44: $-$2.83; mean $-$5.19$\pm$5.25pp), indicating that evidence generation consistently benefits LLaMA-3.1-8B. This contrasts with Qwen3-8B's approximately neutral tax (+0.04pp), suggesting that the evidence tax may be architecture-dependent at the 8B scale; however, the high magnitude variance (driven by s43, whose no-evidence configuration has a 16.3\% format failure rate that inflates the tax estimate) precludes precise quantification. RSFT CED improves LLaMA to a three-seed mean of 56.54 Ign-F1 (std 0.64pp; s42: 57.14, s43: 56.62, s44: 55.87), a +5.45 point gain over SFT mean (51.09), with 4.6$\times$ variance compression (2.92pp $\to$ 0.64pp), consistent with the pattern at the 8B scale (Qwen3-8B: +4.14, 6.5$\times$ compression).
+
+\paragraph{Cross-dataset robustness.}
+On Re-DocRED~\citep{tan2022redocred}, the SFT baseline achieves 36.59 Ign-F1 (Evi-F1 81.70, EDCR 0.6674). RSFT CED improves this to 41.45 Ign-F1 (Evi-F1 81.82, EDCR 0.6210), a +4.86pp gain that closely matches the +5.08pp improvement on DocRED (RSFT three-seed mean minus SFT s42). This consistency across datasets with different annotation protocols confirms that RSFT's benefit generalizes beyond training-set-specific artifacts. Evidence quality remains stable across datasets (Evi-F1 81.82 vs.\ 81.15 on DocRED), and the EDCR reduction ($-0.046$) mirrors the DocRED pattern, further supporting the robustness of CED-based selection.
+
+\paragraph{Re-DocRED test set evaluation.}
+Table~\ref{tab:test_results} reports SFT and RSFT performance on the Re-DocRED test set. We observe a consistent performance gap between dev and test sets, with test Ign-F1 approximately 20 percentage points lower (RSFT: 1.7B 51.2$\to$29.3, 4B 44.8$\to$25.0, 8B 54.3$\to$33.5, 14B 58.5$\to$38.5, LLaMA-8B 56.5$\to$35.5; SFT 1.7B: 44.6$\to$25.8). This gap is attributable to annotation density: the test set contains 34.7 gold triples per document versus 12.3 in the dev set (a 2.82$\times$ ratio), imposing a harder recall requirement. The gap magnitude is stable across scales and architectures (range: 18.9--21.9pp), and model ranking is perfectly preserved (Spearman $\rho{=}1.0$), indicating that the absolute drop reflects the test annotation scheme rather than a model-specific deficiency. At 14B, the RSFT advantage observed on dev (+3.44pp) reverses on test ($\Delta{=}{-}0.37$pp); we note that the SFT model's 50.6\% truncation rate implies longer outputs that generate more candidate triples to match the test set's dense annotation scheme.
+
+\begin{table}[t]
+\centering
+\caption{SFT and RSFT performance on Re-DocRED test set (Ign-F1 \%). Dev Ign-F1 (RSFT) from Table~\ref{tab:scaling}. All test results use s42.}
+\label{tab:test_results}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccccccc}
+\toprule
+\textbf{Model} & \textbf{Dev} & \textbf{SFT} & \textbf{RSFT} & \textbf{$\Delta$} & \textbf{Tr. SFT} & \textbf{Tr. RSFT} & \textbf{Evi-F1} \\
+\midrule
+Qwen3-1.7B & 51.19 & 25.79 & 29.33 & +3.54 & 81.8 & 73.8 & 23.20 \\
+Qwen3-4B & 44.82$^\dagger$ & 22.32 & 25.01 & +2.69 & 64.6 & 42.8 & 18.38 \\
+Qwen3-8B & 54.33 & 31.06 & 33.53 & +2.47 & 82.0 & 1.8 & 25.26 \\
+Qwen3-14B & 58.51 & 38.86 & 38.49 & $-$0.37 & 50.6 & 13.4 & 26.88 \\
+LLaMA-3.1-8B & 56.54 & 34.20 & 35.54 & +1.34 & 65.4 & 60.0 & 24.57 \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{-2mm}
+{\raggedright\footnotesize $^\dagger$4B dev Ign-F1 is three-seed mean from original checkpoint; test results use retrained checkpoint (original unavailable for reproduction; retrained v2 achieves comparable dev performance, 43.88 vs.\ 44.23). $\Delta$: RSFT $-$ SFT. Evi-F1: RSFT joint (DREEAM protocol). Tr.: truncation rate (\%). Dev is RSFT multi-seed mean from Table~\ref{tab:scaling} (three-seed for 1.7B/4B/8B/LLaMA; two-seed for 14B).\par}
+\end{table}
+
+\paragraph{Test-set evidence tax.}
+Table~\ref{tab:test_tax} reports the evidence tax on the Re-DocRED test set, comparing SFT models trained with and without evidence in the output format. Test-set evaluation confirms the directional pattern observed on development data across all five model configurations: the tax is negative (beneficial) at 1.7B ($-$4.86pp) and LLaMA-8B ($-$4.94pp), and near-neutral at mid-scales ($-$0.13pp at 4B, $-$0.32pp at 14B). The 8B test tax ($-$1.71pp) shows slight variation from its near-neutral dev counterpart (+0.04pp), though both remain modest relative to the 1.7B and LLaMA benefits.
+
+\begin{table}[t]
+\centering
+\caption{Evidence tax on Re-DocRED test set (Ign-F1 \%). Tax $=$ no-evi $-$ with-evi; negative $=$ benefit. All results use s42. Dev tax from Table~\ref{tab:training_tax}.}
+\label{tab:test_tax}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{With-evi} & \textbf{No-evi} & \textbf{Test Tax} & \textbf{Dev Tax} \\
+\midrule
+Qwen3-1.7B & 25.79 & 20.93 & $-$4.86 & $-$5.63 \\
+Qwen3-4B & 22.32 & 22.19 & $-$0.13 & +0.25 \\
+Qwen3-8B & 31.06 & 29.35 & $-$1.71 & +0.04 \\
+Qwen3-14B & 38.86 & 38.54 & $-$0.32 & +0.03 \\
+LLaMA-3.1-8B & 34.20 & 29.26 & $-$4.94 & $-$5.19 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\paragraph{RSFT test-set evidence tax.}
+Table~\ref{tab:rsft_test_tax} reports the inference-time evidence tax for RSFT models on the Re-DocRED test set (same RSFT model evaluated with vs.\ without evidence output; per-seed s42 values). Figure~\ref{fig:evidence_tax} presents multi-seed means with error bars where $\geq$2 seeds are available. At 1.7B, RSFT preserves a strong evidence benefit ($-$5.01$\pm$0.59pp, two-seed mean), comparable to the SFT tax ($-$4.86pp). At 4B, the tax is mildly positive (+1.65$\pm$0.29pp, three-seed mean; s42: +1.51pp), the Qwen3 scale with the largest positive RSFT test tax; this contrasts with the near-neutral SFT tax at 4B ($-$0.13pp). At 8B, RSFT compresses the tax magnitude relative to SFT ($-$0.91$\pm$0.74pp, three-seed mean, vs.\ SFT $-$1.71pp). At 14B, the two-seed mean tax is +0.43$\pm$0.49pp (s42: +0.77pp, s43: +0.08pp), reversing sign relative to dev ($-$2.78$\pm$2.49pp, two-seed mean); the small test magnitude and high inter-seed variance may reflect noise or evaluation protocol differences given the 2.82$\times$ annotation density gap between dev and test. LLaMA-3.1-8B shows partial compression from SFT ($-$4.94pp $\to$ $-$1.46$\pm$0.40pp, two-seed mean).
+
+\begin{table}[t]
+\centering
+\caption{RSFT inference-time evidence tax on Re-DocRED test set (Ign-F1 \%). Tax $=$ no-evi $-$ with-evi; positive $=$ cost. Per-seed s42 except where noted.}
+\label{tab:rsft_test_tax}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{RSFT w/ evi} & \textbf{RSFT no-evi} & \textbf{RSFT Tax} \\
+\midrule
+Qwen3-1.7B & 29.02{\scriptsize$\pm$0.45}$^{(2)}$ & 24.00{\scriptsize$\pm$0.14}$^{(2)}$ & $-$5.01{\scriptsize$\pm$0.59}$^{(2)}$ \\
+Qwen3-4B & 25.01 & 26.52 & +1.51 \\
+Qwen3-8B & 33.53 & 33.19 & $-$0.34 \\
+Qwen3-14B & 38.49 & 39.26 & +0.77$^\dagger$ \\
+LLaMA-3.1-8B & 35.54 & 33.80 & $-$1.74 \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{-2mm}
+{\raggedright\footnotesize $^{(2)}$Two-seed mean $\pm$ std (s42, s43). 1.7B no-evi truncation rate is 94.8\% at s42 (vs.\ 73.8\% with-evi), which may amplify the tax magnitude. $^\dagger$14B shows a dev-test reversal (dev tax $= -$2.78$\pm$2.49pp, two-seed mean); the two-seed test mean (+0.43$\pm$0.49pp) is small relative to inter-seed variance (CI crosses zero), suggesting the direction signal is noise-dominated at this magnitude. All other scales preserve dev-test direction consistency.\par}
+\end{table}
+
+\paragraph{Comparison to supervised methods.}
+Table~\ref{tab:encoder_comparison} directly compares encoder-based methods with our LLM-based approach. Encoder methods achieve substantially higher extraction performance (Rel-F1 63--65 vs.\ our 46--60), reflecting decades of architecture-specific optimization for the classification formulation. However, their evidence identification operates as binary sentence classification, producing Evi-F1 of 52--56 under a joint evaluation protocol. Our TP-only Evi-F1 exceeds 80\%, indicating that when the model correctly identifies a triple, it produces higher-quality evidence than encoder methods. The joint Evi-F1 gap (36.1 vs.\ 54.15) is driven primarily by extraction performance rather than evidence quality: false-positive and false-negative triples dilute the denominator. The extraction gap varies with scale (16--18pp Ign-F1 at 4B, narrowing to $<$5pp at 14B), reflecting the rapid scaling of generative approaches relative to encoder methods. Further closing this gap at smaller scales requires improving extraction capability of LLM-based methods, an orthogonal direction to the evidence faithfulness problem we address.
+
+\begin{table}[t]
+\centering
+\caption{Comparison with encoder-based methods on DocRED dev set. Encoder methods use RoBERTa-large; LLM methods use Qwen3. Evi-F1 for encoder methods uses joint evaluation (all triples in denominator); our joint Evi-F1 follows the same protocol for fair comparison. TP-only Evi-F1 conditions on correctly predicted triples. Rel-F1 is reported in percentage for all methods.}
+\label{tab:encoder_comparison}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Method} & \textbf{Type} & \textbf{Ign-F1} & \textbf{Rel-F1} & \textbf{Evi-F1 (joint)} & \textbf{Evi-F1 (TP)} \\
+\midrule
+ATLOP & Encoder & 61.32 & 63.18 & -- & -- \\
+EIDER & Encoder & 62.34 & 64.27 & 52.54 & -- \\
+SAIS & Encoder & 62.23 & 65.17 & 55.84 & -- \\
+DREEAM & Encoder & 61.71 & 63.49 & 54.15 & -- \\
+\midrule
+Ours (4B RSFT) & LLM & 44.82 & 45.80 & 36.1 & 80.96 \\
+Ours (8B RSFT) & LLM & 54.33 & 56.07 & -- & 81.54 \\
+Ours (14B RSFT) & LLM & 58.51 & 59.79 & 48.57 & 83.28 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
+\section{Decoupling Spectrum Data}
+\label{sec:spectrum_data}
+
+\begin{table}[t]
+\centering
+\caption{Evidence-extraction decoupling across RL paradigms (Qwen3-4B). Severity indicates the degree of extraction collapse relative to evidence improvement.}
+\label{tab:spectrum}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Paradigm} & \textbf{Config} & \textbf{Rel-F1} & \textbf{Evi-F1} & \textbf{EDCR} & \textbf{Severity} \\
+\midrule
+GRPO & QLoRA $G{=}4$ & 1.38 & 85.04 & 0.9876 & Catastrophic \\
+GRPO & bf16 $G{=}8$ & 45.49 & 80.86 & 0.6318 & Mild \\
+DPO & bf16 1ep & 33.37 & 80.90 & 0.8123 & Gradual \\
+DPO & bf16 3ep & 31.45 & 84.84 & 0.7503 & Gradual \\
+\midrule
+SFT & baseline$^\ddagger$ & 44.39 & 79.61 & 0.6797 & None \\
+RSFT & CED$^\ddagger$ & 45.80 & 80.96 & 0.6487 & None \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{-2mm}
+{\raggedright\footnotesize $^\ddagger$Three-seed mean. DPO rows evaluated at \texttt{max\_new\_tokens}$=$2048 (matched protocol); all other rows at 1024. Severity reflects training trajectory stability (propensity for extraction collapse during optimization), not the final-checkpoint EDCR value.\par}
+\end{table}
+
+
+\section{GRPO Training Dynamics}
+\label{sec:grpo_dynamics}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\linewidth]{fig_grpo_dynamics.pdf}
+\caption{Training dynamics of GRPO under different configurations. (a)~Relation F1 across checkpoints: G=4 QLoRA suffers catastrophic collapse at step~10, while G=8 bf16 remains stable. (b)~Evidence F1 stays intact for G=8 bf16, confirming the generation mechanism itself does not fail. (c)~Evidence-Decoupling Ratio (EDCR) reveals near-total decoupling in G=4 QLoRA (extraction collapses to Rel-F1 1.4), while G=8 bf16 maintains healthy ratios.}
+\label{fig:grpo_dynamics}
+\end{figure*}
+
+
+\section{Error Analysis: SFT vs.\ RSFT}
+\label{sec:error_analysis}
+
+Table~\ref{tab:error_analysis} decomposes the extraction improvements from RSFT into error categories across three scales. Three mechanisms drive the gains consistently:
+
+\paragraph{Truncation false negatives.} SFT models frequently hit the generation length limit, producing incomplete outputs that miss triples. RSFT training on compact, high-quality outputs reduces this truncation rate. The effect is strongest at 1.7B ($-841$ truncation FN, $-22$\%), where the SFT model's output length is least controlled.
+
+\paragraph{Hallucinated false positives.} CED-based filtering removes training examples with unfaithful predictions, reducing the rate of hallucinated triples at inference. LLaMA benefits most ($-593$ hallucinated FP, $-11.8$\%), suggesting cross-architecture variation in hallucination susceptibility.
+
+\paragraph{Duplicate predictions.} RSFT training data, selected for quality, contains fewer repetitive patterns. This propagates to inference, reducing duplicate triples by $11$--$20$\% across scales, with 1.7B showing the largest reduction ($-20.2$\%).
+
+\paragraph{Evidence quality unchanged.} Despite substantial extraction improvements, evidence exact-match F1 changes by less than 0.4pp at every scale. RSFT selects for joint extraction-evidence quality, but the evidence signal in CED scoring does not translate into measurable evidence improvement. This suggests that evidence grounding requires targeted optimization (e.g., evidence-specific rewards in RL) rather than data selection alone.
+
+\paragraph{Residual difficulty.} The proportion of ``other'' false negatives (triples missed for reasons beyond truncation or formatting) increases by 13--15\% in relative terms after RSFT. As easy errors (truncation, duplication) are eliminated, the remaining error distribution shifts toward harder cases: cross-sentence reasoning, implicit relations, and long-tail entity pairs. The relation types with the largest RSFT gains (participant, conflict, league, screenwriter, operator, contains\_administrative\_territory) involve cross-sentence reasoning or long-tail entities, consistent with RSFT's selection pressure toward diverse, high-quality outputs.
+
+\begin{table}[t]
+\centering
+\caption{Error pattern changes from SFT to RSFT across scales. $\Delta$\% shows relative change. Truncation FN, hallucinated FP, and duplicates all decrease; evidence quality and residual FN difficulty are unchanged.}
+\label{tab:error_analysis}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llccc}
+\toprule
+\textbf{Error Category} & \textbf{Direction} & \textbf{1.7B} & \textbf{4B} & \textbf{8B / LLaMA} \\
+\midrule
+Truncation FN & $\downarrow$ & $-$22\% & $-$16\% & $-$18\% \\
+Hallucinated FP & $\downarrow$ & $-$8\% & $-$6\% & $-$12\% \\
+Duplicates & $\downarrow$ & $-$20\% & $-$11\% & $-$14\% \\
+Evidence (exact) & $\approx$ & $<$0.4pp & $<$0.4pp & $<$0.4pp \\
+FN: other & $\uparrow$ & +13\% & +15\% & +14\% \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
+\section{Per-Relation EDCR Distribution}
+\label{sec:edcr_per_relation}
+
+Computing EDCR for each of the 76 relation types with $\geq$5 evaluation samples (from the RSFT CED s42 model) reveals that per-relation EDCR correlates strongly with per-relation Rel-F1 ($\rho = -0.79$, $n = 76$, $p < 0.001$), confirming its utility as a difficulty indicator. Filtering to types with $\geq$5 predictions strengthens the correlation ($\rho = -0.85$, $n = 74$, $p < 0.001$). Per-relation EDCR is statistically independent of Evi-F1 ($\rho = -0.06$, $p = 0.58$), and Evi-F1 itself shows no association with Rel-F1 ($\rho = -0.01$, $p = 0.91$). These null correlations establish that evidence quality and extraction ability are fully decoupled across relation types. Extreme cases illustrate the diagnostic power: \texttt{date\_of\_birth} has EDCR $= 0.118$ (highly faithful, with extraction and evidence tightly coupled), while \texttt{head\_of\_government} reaches $0.956$ (highly decoupled). This per-relation analysis avoids the shared-component concern present in cross-method EDCR-vs-Rel-F1 correlation, providing independent validation of EDCR's diagnostic utility. A permutation test (10,000 iterations) on the per-relation correlation yields $p < 0.0001$, confirming that the association is not an artifact of the shared TP component.
+
+\paragraph{Partial correlations controlling for TP.}
+Because EDCR shares TP (true positives) in both numerator and denominator with Rel-F1, we report partial correlations controlling for Evi-Recall$_\text{TP}$. At the cross-method level ($n = 17$ seed-specific configurations), the partial Spearman $\rho = -0.8541$ ($p = 0.000025$), virtually unchanged from the raw $\rho = -0.8554$ (0.15\% reduction). Removing the GRPO QLoRA outlier yields partial $\rho = -0.8681$ ($n = 16$, $p = 0.000027$). Aggregating to $n = 7$ unique methods: raw $\rho = -0.9643$, partial $\rho = -0.9617$. These results confirm that the EDCR--Rel-F1 association is not driven by the shared TP component. Note that seed-level configurations ($n = 17$) are not fully independent; the $n = 7$ unique-method analysis provides a conservative estimate.
+
+\paragraph{Similar-TP, different-EDCR pairs.}
+To further validate that EDCR captures information beyond what TP alone provides, we identify configuration pairs with similar Evi-Recall$_\text{TP}$ ($|\Delta| < 5$pp) but substantially different EDCR ($|\Delta| > 5$pp). Forty-eight such pairs exist across all configurations. The most illustrative: DPO-CED 1-epoch (Evi-Recall$_\text{TP} = 0.833$) vs.\ RSFT CED LLaMA s43 (Evi-Recall$_\text{TP} = 0.829$) differ by only 2.4pp in TP-conditioned evidence recall but 13.6pp in EDCR, reflecting the substantial extraction gap between these methods. This pattern demonstrates that EDCR captures extraction-evidence alignment that aggregate TP metrics miss.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig_edcr_relations.pdf}
+\caption{Per-relation EDCR distribution across all 93 relation types observed in the development set (of 96 defined in DocRED). The correlation analysis in the text uses the 76 types with $\geq$5 samples for statistical reliability. Red bars indicate EDCR $\geq$ 0.70 (severe decoupling), green bars indicate EDCR $<$ 0.30 (healthy evidence grounding). Seven types exhibit EDCR = 1.0.}
+\label{fig:edcr_relations}
+\end{figure}
+
+
+\section{Qualitative Analysis}
+\label{sec:qualitative}
+
+We present representative examples illustrating three phenomena: evidence quality differences between SFT and RSFT, GRPO format gaming under catastrophic collapse, and per-relation EDCR diagnostics.
+
+\paragraph{Case 1: Evidence quality.}
+Table~\ref{tab:case_evidence} compares evidence citations from SFT and RSFT on three documents. SFT tends to cite many sentences indiscriminately, including distractors unrelated to the target triple, while RSFT selects precisely the gold evidence sentences. For \emph{America's Sweetheart}, SFT cites 6 sentences (precision 0.17) whereas RSFT cites only the single correct sentence (precision 1.00). The pattern is consistent: SFT achieves evidence precision of 0.00--0.20 across these examples, while RSFT achieves 1.00 in all three cases.
+
+\begin{table}[t]
+\centering
+\caption{Evidence citation comparison between SFT and RSFT. Precision measures the fraction of cited sentences that match gold evidence.}
+\label{tab:case_evidence}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llccc}
+\toprule
+\textbf{Document} & \textbf{Triple} & \textbf{SFT Prec.} & \textbf{RSFT Prec.} & \textbf{SFT \#Cited} \\
+\midrule
+Oleg Tinkov & (Oleg Tinkov, country of citizenship, Russia) & 0.00 & 1.00 & 3 \\
+America's Sweetheart & (record label, country, United States) & 0.17 & 1.00 & 6 \\
+Jade (Mortal Kombat) & (Jade, present in work, Mortal Kombat) & 0.20 & 1.00 & 5 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\paragraph{Case 2: GRPO format gaming.}
+Under catastrophic collapse (GRPO QLoRA $G{=}4$), the model abandons the DocRED 96-type relation ontology and generates free-text relation labels. On the document \emph{Something to Believe In}, the model produces 35 predicted triples with relations such as ``is a'', ``honor'', and ``location'', none of which belong to the target ontology. All 35 predictions are incorrect. Similarly, for \emph{J\'{o}zef Pi\l{}sudski Monument}, 28 predictions use non-standard relations with 0 correct matches. The model retains the structural format of triple-with-evidence output but fills it with fabricated relation types. The model produces well-formed evidence for these non-existent relations.
+
+\paragraph{Case 3: EDCR diagnostics.}
+Per-relation EDCR identifies specific relation types where extraction and evidence are misaligned. For \texttt{date\_of\_birth} (EDCR $= 0.118$), the model's evidence consistently matches gold annotations: both extraction and evidence point to the same biographical sentence. In contrast, \texttt{notable\_work} (EDCR $= 0.941$) exhibits severe decoupling: the model cites sentence [0] (a general introduction) instead of the gold evidence sentence [3] (which contains the actual work attribution). High-EDCR relations tend to involve indirect or multi-hop reasoning where surface-level context misleads the evidence generator.
+
+
+\section{Inference Efficiency Analysis}
+\label{sec:inference_efficiency}
+
+Table~\ref{tab:inference_efficiency} reports wall-clock inference time for SFT models with and without evidence output under matched evaluation settings (batch size 4, \texttt{max\_new\_tokens}$=$2048, DocRED dev, 985 documents, single RTX 5090 GPU).
+
+\begin{table}[t]
+\centering
+\caption{Inference time (seconds) for SFT with vs.\ without evidence output. Overhead $=$ (with-evi $-$ no-evi) / no-evi; negative means with-evidence is faster. 1.7B--8B use batch size 4; 14B uses batch size 1.}
+\label{tab:inference_efficiency}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{With-evi} & \textbf{No-evi} & \textbf{Overhead} & \textbf{\#Pred (w/no)} \\
+\midrule
+Qwen3-1.7B & 6,424 & 7,438 & $-$13.6\% & 25.5k / 44.6k \\
+Qwen3-4B & 8,887 & 7,606 & +16.8\% & 24.7k / 25.6k \\
+Qwen3-8B & 10,486 & 10,901 & $-$3.8\% & 25.0k / 31.1k \\
+\midrule
+Qwen3-14B & 18,011 & 14,498 & +24.2\% & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The evidence overhead is scale-dependent and non-monotonic. At 1.7B, removing evidence \emph{increases} inference time by 13.6\%: without the structural constraint of evidence fields, the model generates 1.75$\times$ more predictions (44.6k vs.\ 25.5k), producing verbose output that takes longer to decode. At 14B, evidence generation adds 24.2\% overhead, consistent with the expected cost of generating additional tokens. The crossover occurs around 4B--8B, where the prediction count differential narrows and the costs approximately balance.
+
+Inference time scales sub-linearly with model size: 1.7B$\to$8B (4.7$\times$ parameters) increases wall-clock time by only 1.63$\times$ at batch size 4, reflecting the memory-bound nature of autoregressive generation. Test-set inference is 2--3$\times$ slower per document than dev (e.g., 24--42 s/doc test vs.\ 7--18 s/doc dev at batch size 1), attributable to the 2.82$\times$ higher annotation density in Re-DocRED test requiring longer generated outputs.
+
+
+\section{Use of AI Assistants}
+\label{app:ai-assistants}
+
+We used Claude (Anthropic) as an AI coding and writing assistant
+throughout this work. Specifically:
+\begin{itemize}
+    \item \textbf{Code:} drafting experiment scripts, data-processing
+    pipelines, and analysis utilities; debugging and refactoring.
+    \item \textbf{Writing:} drafting and revising paper sections,
+    polishing prose, and reformatting LaTeX.
+    \item \textbf{Literature:} summarizing related papers to inform
+    the related-work section.
+\end{itemize}

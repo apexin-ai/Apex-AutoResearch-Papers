@@ -1,0 +1,24 @@
+{
+  "exp_id": "plan_003_edcr_diagnostic",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:12:40.174Z",
+    "updated_at": "2026-05-15T23:45:09.365Z",
+    "hypothesis": "EDCR cross-method diagnostic table: 计算所有 evidence-producing 方法（SFT baseline, RSFT-CED best, RSFT-flatNLI best, CED-reranker）的 EDCR，验证 EDCR 作为独立评估指标的诊断能力。plan_id=plan_003, claim=4。GPU 预算 2h。",
+    "server": "rtx5090-4x",
+    "gpu": null,
+    "account": "root",
+    "spec": {
+      "gpu": null,
+      "server": "rtx5090-4x",
+      "notes": "CPU-only task, GPU allocation removed to free cuda:3"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T23:45:09.698926+00:00",
+  "trigger": "update_registry"
+}

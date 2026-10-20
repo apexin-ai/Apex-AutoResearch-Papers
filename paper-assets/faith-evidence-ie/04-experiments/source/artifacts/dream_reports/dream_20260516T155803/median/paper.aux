@@ -1,0 +1,74 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{xie2022erica}
+\citation{ma2023dreeam}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Finding 1: The Decoupling Spectrum.}{1}{section*.1}\protected@file@percent }
+\citation{yao2019docred}
+\citation{xie2022erica}
+\citation{ma2023dreeam}
+\citation{shao2024deepseekmath}
+\citation{gao2023scaling}
+\citation{zelikman2022star}
+\@writefile{toc}{\contentsline {paragraph}{Finding 2: U-shaped Evidence Tax.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Document-Level Relation Extraction.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evidence in DocRE.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RL for Language Generation.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-Training and RSFT.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Training Paradigms}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SFT Baseline.}{2}{section*.7}\protected@file@percent }
+\citation{yao2019docred}
+\@writefile{toc}{\contentsline {paragraph}{GRPO.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DPO.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RSFT with NLI-based Scoring.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}EDCR: Evidence-Discrimination Completeness Ratio}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{3}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Test set results on DocRED. $^\dagger $DREEAM numbers are dev set (test requires CodaLab submission); only evidence metrics are directly comparable.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{1}{4}{Test set results on DocRED. $^\dagger $DREEAM numbers are dev set (test requires CodaLab submission); only evidence metrics are directly comparable}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Evidence quality comparison. DREEAM-protocol uses sentence-level exact match; conditional Evi-F1 evaluates on correctly predicted triples.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:evi_comparison}{{2}{4}{Evidence quality comparison. DREEAM-protocol uses sentence-level exact match; conditional Evi-F1 evaluates on correctly predicted triples}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{DREEAM-Protocol Evidence Comparison.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}The Decoupling Spectrum}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Evidence Tax Scaling Analysis}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Cross-Dataset Generalization}{4}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces The decoupling spectrum. Methods ordered by increasing extraction quality. GRPO-QLoRA represents catastrophic decoupling; RSFT shows no decoupling relative to SFT.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:spectrum}{{3}{5}{The decoupling spectrum. Methods ordered by increasing extraction quality. GRPO-QLoRA represents catastrophic decoupling; RSFT shows no decoupling relative to SFT}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces U-shaped evidence tax scaling. The cost of evidence generation is scale-dependent: small models benefit from regularization, medium models pay a capacity cost, large models absorb it.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:scaling}{{4}{5}{U-shaped evidence tax scaling. The cost of evidence generation is scale-dependent: small models benefit from regularization, medium models pay a capacity cost, large models absorb it}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Post-hoc Evidence Retrieval Baseline}{5}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}EDCR Human Validation}{5}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}NLI Model Ablation}{5}{subsection.4.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Re-DocRED cross-dataset results. RSFT gains generalize but attenuate (generalization ratio 40\%). Evidence extraction capability (Evi-F1$>$0.82) transfers robustly.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:redocred}{{5}{6}{Re-DocRED cross-dataset results. RSFT gains generalize but attenuate (generalization ratio 40\%). Evidence extraction capability (Evi-F1$>$0.82) transfers robustly}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces End-to-end vs.\ post-hoc evidence comparison. Post-hoc achieves higher rel\_f1 (no evidence tax) but lower faithfulness (EDCR 0.58 vs 0.64).}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:posthoc}{{6}{6}{End-to-end vs.\ post-hoc evidence comparison. Post-hoc achieves higher rel\_f1 (no evidence tax) but lower faithfulness (EDCR 0.58 vs 0.64)}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Dev-to-Test Degradation Analysis}{6}{subsection.4.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Generative Production vs.\ Discriminative Retrieval.}{6}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical Recommendations.}{6}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RSFT as Enabling Method.}{6}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{6}{section.6}\protected@file@percent }
+\bibcite{yao2019docred}{1}
+\bibcite{xie2022erica}{2}
+\bibcite{ma2023dreeam}{3}
+\bibcite{shao2024deepseekmath}{4}
+\bibcite{gao2023scaling}{5}
+\bibcite{zelikman2022star}{6}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces EDCR human validation (100 annotated samples). EDCR shows moderate human correlation, effective for method-level diagnostics but limited in instance-level precision.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:human}{{7}{7}{EDCR human validation (100 annotated samples). EDCR shows moderate human correlation, effective for method-level diagnostics but limited in instance-level precision}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces NLI model ablation for CED scoring. The weaker model still produces effective RSFT data, showing CED's contrastive design provides robustness to NLI model quality.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:nli_ablation}{{8}{7}{NLI model ablation for CED scoring. The weaker model still produces effective RSFT data, showing CED's contrastive design provides robustness to NLI model quality}{table.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.18}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Dev-to-test degradation. RSFT shows larger degradation ($-$3.35pp) than non-evidence models, suggesting evidence-dependent models are more sensitive to distribution shift.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:degradation}{{9}{8}{Dev-to-test degradation. RSFT shows larger degradation ($-$3.35pp) than non-evidence models, suggesting evidence-dependent models are more sensitive to distribution shift}{table.9}{}}
+\gdef \@abspage@last{8}

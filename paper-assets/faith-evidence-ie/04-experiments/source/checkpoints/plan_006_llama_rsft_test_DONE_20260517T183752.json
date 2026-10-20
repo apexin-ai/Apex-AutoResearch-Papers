@@ -1,0 +1,30 @@
+{
+  "exp_id": "plan_006_llama_rsft_test",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:30:42.159Z",
+    "updated_at": "2026-05-17T18:37:51.441Z",
+    "hypothesis": "Generate LLaMA-8B RSFT test set predictions for CodaLab submission. LLaMA-8B RSFT dev rel_f1=0.5674, expect similar performance on test.",
+    "spec": {
+      "command": "python inference.py --model_path /root/autodl-tmp/freige/rsft_output_llama_3_1_8b_r3/checkpoint-3312 --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B --output_dir /root/autodl-tmp/eval_results/plan_006_llama_rsft_test --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize",
+      "server": "rtx5090-4x",
+      "gpu_id": "3",
+      "pid": 460159,
+      "data_path": "DocRED test set",
+      "model_name": "LLaMA-3.1-8B RSFT checkpoint-3312",
+      "seed": 42,
+      "checkpoint_source": "plan_006_llama_rsft_r3_train",
+      "eval_data": "DocRED test",
+      "checkpoint_path": "N/A - test predictions",
+      "log_path": "/root/autodl-tmp/eval_results/plan_006_llama_rsft_test.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-17T18:37:51.441Z"
+  },
+  "timestamp": "2026-05-17T18:37:52.413071+00:00",
+  "trigger": "update_registry"
+}

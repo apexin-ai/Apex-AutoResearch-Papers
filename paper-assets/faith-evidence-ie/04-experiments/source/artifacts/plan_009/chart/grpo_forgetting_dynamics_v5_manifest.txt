@@ -1,0 +1,11 @@
+Remote paths on rtx5090-4x:
+- PDF: /root/autodl-tmp/freige/figures/grpo_forgetting_dynamics.pdf
+- PNG: /root/autodl-tmp/freige/figures/grpo_forgetting_dynamics.png
+- Script: /root/autodl-tmp/freige/scripts/plot_forgetting_dynamics.py
+- Data JSON: /root/autodl-tmp/artifacts/forgetting_dynamics_data.json (label fixed)
+- v4 script (updated): /root/autodl-tmp/artifacts/plan_009_grpo_forgetting/plot_forgetting_v4.py
+
+Changes in v5:
+1. QLoRA KL001 eval data: added 5 early points (step 10/20/30/50/60) showing rel_f1 from 0.003→0.217
+2. JSON label fix: qlora_lr5e6 config kl=0 → kl=0.01
+3. Checkpoint audit: extract (grpo_extract_r3/r4) and flatNLI (grpo_flatnli_r3/r4/r5/r6) checkpoints available

@@ -1,0 +1,44 @@
+{
+  "exp_id": "d102_1_7b_rsft_k1_s42",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T05:40:07.489Z",
+    "updated_at": "2026-05-18T08:49:15.355Z",
+    "hypothesis": "D102 方法论修正：1.7B RSFT 从 k=3 改为 k=1（与论文声明和 4B canonical 一致）。k=1 筛选更严格（3021 samples vs 9042），在最小模型上验证 k=1 RSFT 效果。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --rsft_data_path /root/autodl-tmp/freige/outputs/rsft_scored_1_7b_k1/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_qwen3_1_7b_k1 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --warmup_steps 100 --save_steps 50 --save_total_limit 2 --max_length 2048 --seed 42 --lora_rank 64 --lora_alpha 128 --bf16 --wandb_project freige-rsft --wandb_run_name rsft_qwen3_1_7b_k1_s42_resume --resume_from_checkpoint /root/autodl-tmp/rsft_output_qwen3_1_7b_k1/checkpoint-250\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "517006",
+      "log_path": "~/runs/faith-evidence-ie/d102_1_7b_rsft_k1_s42.log",
+      "submitted_at": "2026-05-18T07:22:37.265Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "Qwen3-1.7B",
+      "seed": 42,
+      "data_path": "/root/autodl-tmp/freige/outputs/rsft_scored_1_7b_k1/rsft_train.jsonl",
+      "data_count": 3021
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T08:46:29.889Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T08:46:34.301357+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-18T08:49:16.166336+00:00",
+  "trigger": "update_registry"
+}

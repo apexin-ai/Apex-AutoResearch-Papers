@@ -1,0 +1,36 @@
+{
+  "exp_id": "dpo_rebuilt_1ep",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T02:34:23.813Z",
+    "updated_at": "2026-05-23T02:35:41.325Z",
+    "hypothesis": "DPO 1-epoch 重建训练。从 RSFT candidate generations + CED scores 重建 DPO pairs (2977 pairs, rank_by=ced_reward, min_margin=0.05)。原始 DPO checkpoint 已丢失，需重建以统一 Table 2 eval protocol (matched@2048)。对比原始 1ep eval: Ign-F1=38.9。",
+    "spec": {
+      "command": "python -m freige.training.dpo_trainer --dpo_data_path /root/autodl-tmp/dpo_data_rebuilt/dpo_pairs.jsonl --output_dir /root/autodl-tmp/dpo_output_rebuilt_1ep --num_epochs 1 --beta 0.1 --loss_type sigmoid --learning_rate 5e-6 --per_device_batch_size 2 --gradient_accumulation_steps 8 --lora_rank 64 --lora_alpha 128 --wandb_project freige-dpo --wandb_run_name dpo_rebuilt_1ep",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/dpo_data_rebuilt/dpo_pairs.jsonl",
+      "data_count": 2977,
+      "model_name": "Qwen3-4B + SFT (merged) + DPO LoRA",
+      "seed": 42,
+      "hyperparams": {
+        "beta": 0.1,
+        "loss_type": "sigmoid",
+        "learning_rate": 5e-06,
+        "lora_rank": 64,
+        "lora_alpha": 128,
+        "per_device_batch_size": 2,
+        "gradient_accumulation_steps": 8,
+        "num_epochs": 1
+      },
+      "pid": 218955,
+      "gpu": "cuda:2",
+      "log_path": "/root/autodl-tmp/dpo_rebuilt_1ep.log"
+    }
+  },
+  "timestamp": "2026-05-23T02:35:42.011125+00:00",
+  "trigger": "update_registry"
+}

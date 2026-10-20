@@ -1,0 +1,44 @@
+{
+  "exp_id": "plan_006_qwen3_8b_rsft_eval",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:00:05.493Z",
+    "updated_at": "2026-05-17T14:59:23.644Z",
+    "hypothesis": "Evaluate Qwen3-8B RSFT (CED-scored data, 9041 samples) on DocRED dev. At 8B scale with near-zero evidence tax, CED-RSFT should achieve highest absolute Ign-F1 in the scaling study.",
+    "parent": "plan_006_qwen3_8b_rsft_train_r2",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b/checkpoint-3393 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_eval",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 1000,
+      "eval_data": "DocRED dev",
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_qwen3_8b/checkpoint-3393",
+      "pid": 442383,
+      "gpu": "cuda:3"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "f1": 0.5606,
+      "ign_f1": 0.5433,
+      "evi_f1": 0.8052,
+      "evi_f1_joint": 0.4413,
+      "edcr": 0.6377,
+      "precision": 0.5553,
+      "recall": 0.566,
+      "format_ok": "985/985",
+      "truncated": "267/985",
+      "predictions": 16831
+    },
+    "checkpoint_path": "/root/autodl-tmp/rsft_output_qwen3_8b/checkpoint-3393",
+    "log_path": "/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_eval.log",
+    "completed_at": "2026-05-17T14:59:23.644Z"
+  },
+  "timestamp": "2026-05-17T14:59:24.121060+00:00",
+  "trigger": "update_registry"
+}

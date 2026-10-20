@@ -1,0 +1,14 @@
+\section*{Limitations}
+
+\paragraph{Data and architecture scope.}
+We evaluate on two datasets (DocRED, Re-DocRED), both derived from Wikipedia; cross-domain evaluation is constrained by the absence of evidence-annotated DocRE datasets beyond Wikipedia, a limitation shared by all prior evidence-aware work (SAIS, DREEAM, EIDER).
+Evidence tax patterns span two model families (Qwen3, LLaMA) with single hyperparameter settings per RL method; other architectures, scales beyond 14B, or alternative KL coefficients may produce different decoupling behaviors. The decoupling spectrum analysis is conducted entirely at 4B scale; whether the same ordering (GRPO catastrophic $\to$ DPO gradual $\to$ RSFT none) holds at other scales remains unverified.
+
+\paragraph{CED scoring sensitivity.}
+CED scoring operates at the document level using an external NLI model (DeBERTa-v3); sensitivity to other NLI model families is unexplored, and sentence-level CED filtering disrupts co-reference chains (Evi-F1 $-$7.7pp).
+
+\paragraph{RSFT mechanistic explanation.}
+Our explanation for why RSFT avoids decoupling (that discrete selection cannot exploit the extraction-evidence trade-off) is structural rather than empirical. We have not isolated whether RSFT's advantage stems primarily from removing low-quality training examples, from implicit data augmentation through candidate diversity, or from both. Disentangling these factors would require controlled experiments with fixed training data quality but varied selection mechanisms.
+
+\section*{Ethical Considerations}
+All experiments use publicly available datasets (DocRED and Re-DocRED) derived from Wikipedia and Wikidata, with no personally identifiable information. We do not collect new annotations or employ crowd workers. Our work focuses on training methodology for relation extraction and does not introduce capabilities with direct misuse potential.

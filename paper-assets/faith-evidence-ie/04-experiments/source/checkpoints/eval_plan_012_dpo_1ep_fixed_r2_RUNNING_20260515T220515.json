@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval_plan_012_dpo_1ep_fixed_r2",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:58:52.440Z",
+    "updated_at": "2026-05-15T22:05:15.632Z",
+    "spec": {
+      "command": "python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_1ep/ --sft_adapter /root/autodl-tmp/sft_output --no-quantize",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "262075",
+      "log_path": "~/runs/faith-evidence-ie/eval_plan_012_dpo_1ep_fixed_r2.log",
+      "submitted_at": "2026-05-15T21:58:52.150Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 0,
+      "model_name": "DPO 1ep + CED",
+      "seed": 42,
+      "checkpoint_source": "dpo_output_1ep",
+      "eval_data": "docred dev"
+    }
+  },
+  "timestamp": "2026-05-15T22:05:15.852139+00:00",
+  "trigger": "update_registry"
+}

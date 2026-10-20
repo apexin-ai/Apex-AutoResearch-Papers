@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan017_14b_rsft_generate_r2",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:30:11.376Z",
+    "updated_at": "2026-05-20T11:30:31.491Z",
+    "hypothesis": "14B RSFT 生成 resume (r2: westd 新服务器)。从 doc 1873 继续生成剩余 1155 docs (进度 62%)。使用修改后的 --resume 参数从 progress.json 恢复。",
+    "parent": "plan017_14b_rsft_generate"
+  },
+  "timestamp": "2026-05-20T11:30:32.119716+00:00",
+  "trigger": "update_registry"
+}

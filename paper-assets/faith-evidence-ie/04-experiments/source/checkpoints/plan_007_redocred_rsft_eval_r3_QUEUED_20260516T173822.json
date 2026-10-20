@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan_007_redocred_rsft_eval_r3",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T17:38:09.825Z",
+    "updated_at": "2026-05-16T17:38:21.391Z"
+  },
+  "timestamp": "2026-05-16T17:38:22.034395+00:00",
+  "trigger": "update_registry"
+}

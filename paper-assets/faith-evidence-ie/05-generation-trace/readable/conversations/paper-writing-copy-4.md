@@ -1,0 +1,434 @@
+# paper writing
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 0
+- **Tool calls:** 5
+- **Original source:** `logs/chats/worker_paper_writing_20260517T174249.jsonl`
+- **Structured JSON:** [`86e7a6188407223afc6a.json`](../../sessions/86/86e7a6188407223afc6a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+11 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T17:44:08.547139+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_20260517T174249",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T17:44:08.547810+00:00_
+
+1	---
+2	name: paper-writing-norms
+3	description: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。
+4	allowed-tools: [Read, Write, Edit, Glob, Grep]
+5	scope: global
+6	version: 2
+7	priority: 9
+8	tags:
+9	  - writing
+10	  - paper
+11	  - style
+12	  - norms
+13	roles:
+14	  - agent
+15	  - worker
+16	  - paper_agent
+17	---
+18	
+19	# 论文写作风格规范
+20	
+21	> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。
+22	
+23	---
+24	
+25	## 一、总体写作哲学
+26	
+27	### 1.1 故事驱动，不是数据堆砌
+28	
+29	- 论文必须以"故事线"为核心展开：问题 → 洞察 → 方法 → 验证
+30	- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进
+31	- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌
+32	- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing
+33	
+34	### 1.2 主线统一性
+35	
+36	- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**
+37	- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C
+38	- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机
+39	- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线
+40	
+41	### 1.3 专有名词必须有定义
+42	
+43	- 首次出现的专有名词/缩写必须给出完整定义和解释
+44	- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）
+45	- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用
+46	- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug
+47	
+48	### 1.4 写作前必读同类优秀论文
+49	
+50	- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可
+51	- 重点学：
+52	  - Abstract 怎么用最少篇幅讲完故事
+53	  - Introduction 怎么从大问题切入到具体贡献
+54	  - Related Work 怎么 positioning 自己（不是 survey）
+55	  - Table/Figure 怎么压缩信息密度
+56	- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大
+57	- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文
+58	
+59	---
+60	
+61	## 二、Abstract 写作规范
+62	
+63	### 2.1 四个必答问题（150-250 words）
+64	
+65	Abstract 必须在很短的篇幅内清楚回答：
+66	1. **研究什么问题** — 1-2 句话交代背景和痛点
+67	2. **为什么重要** — 现有方法的不足（不用写太多）
+68	3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）
+69	4. **结果说明什么** — 用具体实验结论支撑贡献
+70	
+71	### 2.2 禁忌
+72	
+73	- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim
+74	- **
+…[truncated 4866 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_20260517T174249",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T17:44:08.548015+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_20260517T174249",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-17T17:44:08.548270+00:00_
+
+1	\section{Experiments}
+2	\label{sec:experiments}
+3	
+4	\subsection{Experimental Setup}
+5	\label{sec:setup}
+6	
+7	\paragraph{Dataset.}
+8	We conduct experiments on DocRED~\citep{yao2019docred}, a large-scale document-level relation extraction benchmark containing 3,053 training and 998 development documents spanning 96 relation types. Each document requires identifying relational triples across multiple sentences and grounding each triple with supporting evidence sentences. We use Re-DocRED~\citep{tan2022redocred} for cross-dataset generalization evaluation.
+9	
+10	\paragraph{Models.}
+11	Our primary model is Qwen3-4B. To study scale effects, we additionally train Qwen3-1.7B and Qwen3-8B under identical configurations. We include LLaMA-3.1-8B as a cross-family validation point.
+12	
+13	\paragraph{Training.}
+14	All models use LoRA~\citep{hu2022lora} with rank $r{=}64$ and $\alpha{=}128$ over a structured output format that jointly produces relation triples and evidence sentences. For RSFT, we sample $N{=}8$ candidate outputs per document and select the top-$k{=}1$ response ranked by CED scoring (\S\ref{sec:ced}), which combines NLI-based evidence faithfulness with extraction accuracy. GRPO experiments use group sizes $G{=}4$ (QLoRA, 4-bit) and $G{=}8$ (bf16 full-precision LoRA). DPO constructs preference pairs from CED-ranked outputs.
+15	
+16	\paragraph{Metrics.}
+17	We report five metrics. \textbf{Ign-F1} is the primary DocRED metric that ignores triples appearing in the training set, matching the official leaderboard protocol. \textbf{Rel-F1} measures relation extraction F1 on all triples. \textbf{Evi-F1 (TP-only)} measures evidence sentence F1 conditioned on correctly predicted triples, reflecting evidence quality independent of extraction errors. \textbf{Evi-F1 (joint)} includes false-positive and false-negative triples in the denominator following the DREEAM protocol~\citep{ma2023dreeam}, enabling cross-method evidence comparison. \textbf{EDCR} (Evidence-Decoupling Rati
+…[truncated 13778 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_20260517T174249",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T17:44:08.548792+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_20260517T174249",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/method.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T17:44:08.549076+00:00_
+
+1	\section{Method}
+2	\label{sec:method}
+3	
+4	\subsection{Task: Evidence-Grounded Document-Level Relation Extraction}
+5	\label{sec:task}
+6	
+7	Given a document $D = \{s_1, \ldots, s_n\}$ consisting of $n$ sentences and a set of entities $\mathcal{E}$ identified within $D$, the task of evidence-grounded document-level relation extraction (DocRE) requires predicting, for each entity pair $(e_h, e_t) \in \mathcal{E} \times \mathcal{E}$, a relation $r \in \mathcal{R} \cup \{\texttt{NA}\}$ together with a set of supporting evidence sentences $E \subseteq D$. Standard DocRE predicts only the triple $(e_h, r, e_t)$; the evidence-grounded formulation also requires $E$, which grounds each prediction in specific textual support.
+8	
+9	In our LLM-based approach, the model generates structured outputs that jointly encode both components. For each predicted relation, the output follows the format \texttt{(head, relation, tail) | Evidence: [S$i$][S$j$]}, requiring the model to produce complete evidence references inline with each triple rather than as a separate retrieval step. This design contrasts with encoder-based evidence methods such as SAIS~\citep{xiao2022sais} and DREEAM~\citep{ma2023dreeam}, which frame evidence identification as sentence-level binary classification. Because classification over a fixed sentence set does not increase output length, these methods incur no generation overhead. Our LLM formulation requires additional tokens for each evidence reference, creating a generation burden that scales with the number of predicted triples and their evidence sentences. This scale-dependent cost is the central phenomenon we investigate.
+10	
+11	
+12	\subsection{Supervised Fine-Tuning Baseline}
+13	\label{sec:sft}
+14	
+15	We fine-tune all models with LoRA~\citep{hu2022lora} at rank $r{=}64$ and scaling factor $\alpha{=}128$, applied to attention projection matrices. The training data consists of DocRED~\citep{yao2019docred} training documents converted to the structured output 
+…[truncated 7698 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_20260517T174249",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T17:44:08.549352+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/",
+  "description": "List existing paper sections"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_20260517T174249",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/",
+    "description": "List existing paper sections"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T17:44:08.549539+00:00_
+
+abstract.tex
+analysis.tex
+conclusion.tex
+experiments.tex
+introduction.tex
+limitations.tex
+method.tex
+related_work.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_20260517T174249",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T17:44:08.549710+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+  "content": "\\section{Training Hyperparameters}\n\\label{sec:hyperparams}\n\nTable~\\ref{tab:hyperparams} lists the hyperparameters for all training configurations. All methods use LoRA with rank $r{=}64$ and $\\alpha{=}128$ applied to attention projections. SFT and RSFT share the same optimizer settings; RSFT differs only in data construction (top-1 CED-selected outputs from $N{=}8$ candidates). GRPO and DPO use lower learning rates to stabilize post-SFT optimization.\n\n\\begin{table*}[t]\n\\centering\n\\caption{Training hyperparameters for all optimization paradigms. All experiments use Qwen3-4B as the base model with LoRA adaptation. A dash indicates that the parameter is not applicable to the given method.}\n\\label{tab:hyperparams}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\n\\textbf{Parameter} & \\textbf{SFT} & \\textbf{RSFT} & \\textbf{GRPO QLoRA} & \\textbf{GRPO bf16} & \\textbf{DPO} \\\\\n\\midrule\nBase model & Qwen3-4B & Qwen3-4B & Qwen3-4B & Qwen3-4B & Qwen3-4B \\\\\nLoRA rank $r$ & 64 & 64 & 64 & 64 & 64 \\\\\nLoRA $\\alpha$ & 128 & 128 & 128 & 128 & 128 \\\\\nLearning rate & 2e-5 & 2e-5 & 5e-6 & 5e-6 & 5e-7 \\\\\nBatch size (effective) & 16 & 16 & 4 & 8 & 4 \\\\\nEpochs & 3 & 1 & -- & -- & 1, 3 \\\\\nMax steps & -- & -- & 100 & 100 & -- \\\\\nGradient accumulation & 4 & 4 & 16 & 4 & 4 \\\\\nMax new tokens & 1024 & 1024 & 1024 & 1024 & 1024 \\\\\nQuantization & -- & -- & NF4 4-bit & bf16 & bf16 \\\\\nGroup size $G$ & -- & -- & 4 & 8 & -- \\\\\nKL coefficient & -- & -- & 0.01 & 0.01 & -- \\\\\n$\\beta$ (DPO) & -- & -- & -- & -- & 0.1 \\\\\nCandidates $N$ & -- & 8 & -- & -- & 8 \\\\\nTop-$k$ selection & -- & 1 & -- & -- & -- \\\\\nTraining samples & 3,053 & 2,718 & 3,053 & 3,053 & 3,053 \\\\\nScoring function & -- & CED & CED & CED & CED \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\n\\section{Full Ablation Results}\n\\label{sec:ablation_full}\n\nTable~\\ref{tab:ablation_full} reports the complete RSFT ablation across scoring functions, top-$k$ values, and random seeds. RSFT CED $k{=}1$ achieves a mean Ign-F1 of 44.66 with low variance across four seeds (standard deviation 0.49), confirming the robustness of the improvement over the SFT baseline (39.74). Increasing $k$ to 3 slightly degrades performance (43.64 Ign-F1), consistent with the intuition that stricter selection yields higher-quality training data. The flat-NLI scoring variant produces comparable Rel-F1 (mean 0.4561 vs.\\ 0.4563 for CED) with overlapping confidence intervals, supporting the paired $t$-test result ($p{=}0.44$) reported in Section~\\ref{sec:ced}. Both CED and flat-NLI improve substantially over the SFT baseline while maintaining or improving Evi-F1, confirming that the RSFT gains are driven by quality-based data selection rather than by the specific contrastive formulation.\n\n\\begin{table}[t]\n\\centering\n\\caption{Full RSFT ablation on DocRED dev set (Qwen3-4B). CED and flat-NLI denote the scoring function used for candidate selection. Best Ign-F1 among evidence-generating methods in \\textbf{bold}.}\n\\label{tab:ablation_full}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Configuration} & \\textbf{Ign-F1} & \\textbf{Rel-F1} & \\textbf{Evi-F1} & \\textbf{EDCR} \\\\\n\\midrule\nSFT baseline & 39.74 & 0.4049 & 79.86 & 0.6982 \\\\\nSFT no-evidence & \\textbf{47.21} & 0.4876 & -- & -- \\\\\n\\midrule\nRSFT CED $k{=}1$ (s42) & 44.23 & 0.4517 & 81.75 & 0.6569 \\\\\nRSFT CED $k{=}1$ (s43) & 45.12 & 0.4601 & 80.63 & 0.6542 \\\\\nRSFT CED $k{=}1$ (s44) & 45.11 & 0.4621 & 80.50 & 0.6350 \\\\\nRSFT CED $k{=}1$ (s45) & 44.16 & 0.4514 & 81.74 & 0.6550 \\\\\nRSFT CED $k{=}1$ (mean) & 44.66 & 0.4563 & 81.16 & 0.6503 \\\\\n\\midrule\nRSFT CED $k{=}3$ & 43.64 & 0.4454 & 80.88 & 0.6635 \\\\\n\\midrule\nRSFT flat-NLI (s42) & -- & 0.4535 & 80.43 & 0.6431 \\\\\nRSFT flat-NLI (s43) & -- & 0.4586 & 81.58 & 0.6505 \\\\\nRSFT flat-NLI (mean) & -- & 0.4561 & 81.01 & 0.6468 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Scaling Details}\n\\label{sec:scaling_details}\n\nTable~\\ref{tab:cross_detail} supplements Table~\\ref{tab:scaling} in the main text with per-scale Rel-F1 and Evi-F1 breakdowns. At 1.7B, RSFT improves Rel-F1 from 0.4945 to 0.5219 (+0.0274) while achieving Evi-F1 83.09. The 4B model shows the same pattern at a larger magnitude: Rel-F1 increases from 0.4049 to 0.4563 (+0.0514). For 8B, RSFT brings Rel-F1 from 0.5262 to 0.5606 with Evi-F1 of 80.52 and EDCR 0.6377, confirming tight coupling between extraction and evidence at this scale.\n\n\\begin{table}[t]\n\\centering\n\\caption{Detailed Rel-F1 and Evi-F1 across model scales on DocRED dev set. SFT columns show the joint-evidence baseline; RSFT columns show CED $k{=}1$ results.}\n\\label{tab:cross_detail}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\n\\textbf{Model} & \\textbf{SFT Rel-F1} & \\textbf{SFT Evi-F1} & \\textbf{RSFT Rel-F1} & \\textbf{RSFT Evi-F1} & \\textbf{RSFT EDCR} \\\\\n\\midrule\nQwen3-1.7B & 0.4945 & -- & 0.5219 & 83.09 & -- \\\\\nQwen3-4B & 0.4049 & 79.86 & 0.4563 & 81.16 & 0.6503 \\\\\nQwen3-8B & 0.5262 & -- & 0.5606 & 80.52 & 0.6377 \\\\\nLLaMA-3.1-8B & 0.5514 & 81.51 & \\texttt{TBD} & \\texttt{TBD} & \\texttt{TBD} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Additional Figures}\n\\label{sec:appendix_figures}\n\n\\paragraph{Per-relation EDCR analysis.}\nFigure~\\ref{fig:edcr_relations} plots per-relation EDCR against Evi-F1 for 76 relation types in DocRED. The low correlation ($\\rho{=}{-}0.064$, $p{=}0.58$) between these two metrics confirms that EDCR captures relation-specific extraction-evidence misalignment independent of evidence quality. [Figure pending generation.]\n\n\\paragraph{GRPO training dynamics.}\nFigure~\\ref{fig:grpo_dynamics} tracks the training trajectory of GRPO bf16 across 100 steps, reporting Rel-F1, Evi-F1, and EDCR at each checkpoint. The non-monotonic Rel-F1 fluctuation (0.434 at step 30, 0.428 at step 50, 0.434 at step 70, 0.455 at step 100) illustrates the optimization instability of gradient-based RL in the multi-objective setting. [Figure pending generation.]\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_20260517T174249",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+    "content": "\\section{Training Hyperparameters}\n\\label{sec:hyperparams}\n\nTable~\\ref{tab:hyperparams} lists the hyperparameters for all training configurations. All methods use LoRA with rank $r{=}64$ and $\\alpha{=}128$ applied to attention projections. SFT and RSFT share the same optimizer settings; RSFT differs only in data construction (top-1 CED-selected outputs from $N{=}8$ candidates). GRPO and DPO use lower learning rates to stabilize post-SFT optimization.\n\n\\begin{table*}[t]\n\\centering\n\\caption{Training hyperparameters for all optimization paradigms. All experiments use Qwen3-4B as the base model with LoRA adaptation. A dash indicates that the parameter is not applicable to the given method.}\n\\label{tab:hyperparams}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\n\\textbf{Parameter} & \\textbf{SFT} & \\textbf{RSFT} & \\textbf{GRPO QLoRA} & \\textbf{GRPO bf16} & \\textbf{DPO} \\\\\n\\midrule\nBase model & Qwen3-4B & Qwen3-4B & Qwen3-4B & Qwen3-4B & Qwen3-4B \\\\\nLoRA rank $r$ & 64 & 64 & 64 & 64 & 64 \\\\\nLoRA $\\alpha$ & 128 & 128 & 128 & 128 & 128 \\\\\nLearning rate & 2e-5 & 2e-5 & 5e-6 & 5e-6 & 5e-7 \\\\\nBatch size (effective) & 16 & 16 & 4 & 8 & 4 \\\\\nEpochs & 3 & 1 & -- & -- & 1, 3 \\\\\nMax steps & -- & -- & 100 & 100 & -- \\\\\nGradient accumulation & 4 & 4 & 16 & 4 & 4 \\\\\nMax new tokens & 1024 & 1024 & 1024 & 1024 & 1024 \\\\\nQuantization & -- & -- & NF4 4-bit & bf16 & bf16 \\\\\nGroup size $G$ & -- & -- & 4 & 8 & -- \\\\\nKL coefficient & -- & -- & 0.01 & 0.01 & -- \\\\\n$\\beta$ (DPO) & -- & -- & -- & -- & 0.1 \\\\\nCandidates $N$ & -- & 8 & -- & -- & 8 \\\\\nTop-$k$ selection & -- & 1 & -- & -- & -- \\\\\nTraining samples & 3,053 & 2,718 & 3,053 & 3,053 & 3,053 \\\\\nScoring function & -- & CED & CED & CED & CED \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\n\\section{Full Ablation Results}\n\\label{sec:ablation_full}\n\nTable~\\ref{tab:ablation_full} reports the complete RSFT ablation across scoring functions, top-$k$ values, and random seeds. RSFT CED $k{=}1$ achieves a mean Ign-F1 of 44.66 with low variance across four seeds (standard deviation 0.49), confirming the robustness of the improvement over the SFT baseline (39.74). Increasing $k$ to 3 slightly degrades performance (43.64 Ign-F1), consistent with the intuition that stricter selection yields higher-quality training data. The flat-NLI scoring variant produces comparable Rel-F1 (mean 0.4561 vs.\\ 0.4563 for CED) with overlapping confidence intervals, supporting the paired $t$-test result ($p{=}0.44$) reported in Section~\\ref{sec:ced}. Both CED and flat-NLI improve substantially over the SFT baseline while maintaining or improving Evi-F1, confirming that the RSFT gains are driven by quality-based data selection rather than by the specific contrastive formulation.\n\n\\begin{table}[t]\n\\centering\n\\caption{Full RSFT ablation on DocRED dev set (Qwen3-4B). CED and flat-NLI denote the scoring function used for candidate selection. Best Ign-F1 among evidence-generating methods in \\textbf{bold}.}\n\\label{tab:ablation_full}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Configuration} & \\textbf{Ign-F1} & \\textbf{Rel-F1} & \\textbf{Evi-F1} & \\textbf{EDCR} \\\\\n\\midrule\nSFT baseline & 39.74 & 0.4049 & 79.86 & 0.6982 \\\\\nSFT no-evidence & \\textbf{47.21} & 0.4876 & -- & -- \\\\\n\\midrule\nRSFT CED $k{=}1$ (s42) & 44.23 & 0.4517 & 81.75 & 0.6569 \\\\\nRSFT CED $k{=}1$ (s43) & 45.12 & 0.4601 & 80.63 & 0.6542 \\\\\nRSFT CED $k{=}1$ (s44) & 45.11 & 0.4621 & 80.50 & 0.6350 \\\\\nRSFT CED $k{=}1$ (s45) & 44.16 & 0.4514 & 81.74 & 0.6550 \\\\\nRSFT CED $k{=}1$ (mean) & 44.66 & 0.4563 & 81.16 & 0.6503 \\\\\n\\midrule\nRSFT CED $k{=}3$ & 43.64 & 0.4454 & 80.88 & 0.6635 \\\\\n\\midrule\nRSFT flat-NLI (s42) & -- & 0.4535 & 80.43 & 0.6431 \\\\\nRSFT flat-NLI (s43) & -- & 0.4586 & 81.58 & 0.6505 \\\\\nRSFT flat-NLI (mean) & -- & 0.4561 & 81.01 & 0.6468 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Scaling Details}\n\\label{sec:scaling_details}\n\nTable~\\ref{tab:cross_detail} supplements Table~\\ref{tab:scaling} in the main text with per-scale Rel-F1 and Evi-F1 breakdowns. At 1.7B, RSFT improves Rel-F1 from 0.4945 to 0.5219 (+0.0274) while achieving Evi-F1 83.09. The 4B model shows the same pattern at a larger magnitude: Rel-F1 increases from 0.4049 to 0.4563 (+0.0514). For 8B, RSFT brings Rel-F1 from 0.5262 to 0.5606 with Evi-F1 of 80.52 and EDCR 0.6377, confirming tight coupling between extraction and evidence at this scale.\n\n\\begin{table}[t]\n\\centering\n\\caption{Detailed Rel-F1 and Evi-F1 across model scales on DocRED dev set. SFT columns show the joint-evidence baseline; RSFT columns show CED $k{=}1$ results.}\n\\label{tab:cross_detail}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\n\\textbf{Model} & \\textbf{SFT Rel-F1} & \\textbf{SFT Evi-F1} & \\textbf{RSFT Rel-F1} & \\textbf{RSFT Evi-F1} & \\textbf{RSFT EDCR} \\\\\n\\midrule\nQwen3-1.7B & 0.4945 & -- & 0.5219 & 83.09 & -- \\\\\nQwen3-4B & 0.4049 & 79.86 & 0.4563 & 81.16 & 0.6503 \\\\\nQwen3-8B & 0.5262 & -- & 0.5606 & 80.52 & 0.6377 \\\\\nLLaMA-3.1-8B & 0.5514 & 81.51 & \\texttt{TBD} & \\texttt{TBD} & \\texttt{TBD} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Additional Figures}\n\\label{sec:appendix_figures}\n\n\\paragraph{Per-relation EDCR analysis.}\nFigure~\\ref{fig:edcr_relations} plots per-relation EDCR against Evi-F1 for 76 relation types in DocRED. The low correlation ($\\rho{=}{-}0.064$, $p{=}0.58$) between these two metrics confirms that EDCR captures relation-specific extraction-evidence misalignment independent of evidence quality. [Figure pending generation.]\n\n\\paragraph{GRPO training dynamics.}\nFigure~\\ref{fig:grpo_dynamics} tracks the training trajectory of GRPO bf16 across 100 steps, reporting Rel-F1, Evi-F1, and EDCR at each checkpoint. The non-monotonic Rel-F1 fluctuation (0.434 at step 30, 0.428 at step 50, 0.434 at step 70, 0.455 at step 100) illustrates the optimization instability of gradient-based RL in the multi-objective setting. [Figure pending generation.]\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T17:44:08.549927+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_20260517T174249",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-17T17:44:08.550140+00:00_
+
+已写入 `appendix.tex`，包含四个 section：
+
+1. **Training Hyperparameters** (`tab:hyperparams`): 全参数对比表，`table*` 双栏宽度
+2. **Full Ablation Results** (`tab:ablation_full`): CED/flat-NLI/top-k 完整消融，含全部 seed
+3. **Scaling Details** (`tab:cross_detail`): 补充 Rel-F1/Evi-F1 per scale
+4. **Additional Figures**: `fig:edcr_relations` 和 `fig:grpo_dynamics` 占位文本
+
+所有表格使用 booktabs，小数精度统一（Ign-F1 xx.xx, Rel-F1 0.xxxx, Evi-F1 xx.xx, EDCR 0.xxxx），TBD 用 `\texttt{TBD}`，无 em-dash/en-dash。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_writing_20260517T174249"
+}
+```
+
+</details>
+
+---

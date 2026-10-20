@@ -1,0 +1,9 @@
+Server: rtx5090-4x
+Path: /root/autodl-tmp/scripts/edcr_diagnostic.py
+Output JSON: /root/autodl-tmp/eval_results/edcr_diagnostic_v2.json
+Output LaTeX: /root/autodl-tmp/eval_results/edcr_diagnostic_v2.tex
+
+Usage:
+  python edcr_diagnostic.py --summary
+  python edcr_diagnostic.py --add "NewMethod:/path/to/eval"
+  python edcr_diagnostic.py --no-collapsed --latex out.tex

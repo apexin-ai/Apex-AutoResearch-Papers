@@ -1,0 +1,16 @@
+{
+  "exp_id": "d112_rsft_s44_generate",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:19:06.977Z",
+    "updated_at": "2026-05-18T23:19:19.637Z",
+    "hypothesis": "D112 step1: 用 SFT s44 adapter (ign_f1=0.4734, 最强 seed) 生成 N=8 RSFT 候选。验证 RSFT pipeline 从强 SFT base 出发是否能进一步提升，决定 Claim 1 表述强度。",
+    "parent": "wave1_sft_4b_s44_eval_r2"
+  },
+  "timestamp": "2026-05-18T23:19:20.501745+00:00",
+  "trigger": "update_registry"
+}

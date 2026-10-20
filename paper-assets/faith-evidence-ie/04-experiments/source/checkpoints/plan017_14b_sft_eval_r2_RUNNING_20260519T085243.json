@@ -1,0 +1,28 @@
+{
+  "exp_id": "plan017_14b_sft_eval_r2",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T08:51:48.518Z",
+    "updated_at": "2026-05-19T08:52:42.901Z",
+    "hypothesis": "D076 eval for 14B SFT baseline (bf16, --no-quantize). 修正 r1 的 D076 违规（r1 用了 int8 量化）。14B 是第 4 个 scale 档，SFT baseline 用于计算 RSFT 增益和 evidence tax。预期 ign_f1 高于 8B SFT mean (0.4866)。",
+    "parent": "plan017_14b_sft",
+    "spec": {
+      "command": "bash scripts/14b/eval_14b_sft.sh",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:1",
+      "pid": 633106,
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 998,
+      "model_name": "Qwen3-14B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_14b/",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json"
+    }
+  },
+  "timestamp": "2026-05-19T08:52:43.376820+00:00",
+  "trigger": "update_registry"
+}

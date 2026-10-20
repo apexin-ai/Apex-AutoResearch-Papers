@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval_llama_sft_s44_with_evidence_2048",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:46:47.679Z",
+    "updated_at": "2026-05-21T03:52:47.219Z",
+    "hypothesis": "matched@2048 methodology: s44 SFT with-evidence eval at max_new_tokens=2048. 配对 s44 no-evi@2048 (ign_f1=0.4373) 计算 matched evidence tax。s42 control 显示 with-evi@1024→2048 delta=+2.65pp，证明 matched budget 必要。",
+    "parent": "llama_sft_s44_train_eval_r3",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/sft_output_llama_3_1_8b_s44",
+      "log_path": "/tmp/eval_llama_sft_s44_with_evidence_2048.log"
+    },
+    "metrics": {
+      "ign_f1": 0.4655,
+      "f1": 0.4798,
+      "evi_f1_joint": 0.3719,
+      "evi_f1": 0.8393,
+      "edcr": 0.7122,
+      "format_ok": "985/985",
+      "truncated": "177/985",
+      "predictions": 21530,
+      "inference_time_s": 11062
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T03:52:47.219Z"
+  },
+  "timestamp": "2026-05-21T03:52:47.889004+00:00",
+  "trigger": "update_registry"
+}

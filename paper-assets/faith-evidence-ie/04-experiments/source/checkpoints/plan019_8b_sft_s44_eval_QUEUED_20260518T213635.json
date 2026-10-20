@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan019_8b_sft_s44_eval",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:36:26.622Z",
+    "updated_at": "2026-05-18T21:36:34.500Z",
+    "hypothesis": "8B SFT s44 eval (D076 protocol): measure SFT baseline for seed44 at 8B scale. Paired with canonical s42 (ign_f1=0.5051) for 2-seed mean±std.",
+    "parent": "plan019_8b_sft_s44"
+  },
+  "timestamp": "2026-05-18T21:36:35.341288+00:00",
+  "trigger": "update_registry"
+}

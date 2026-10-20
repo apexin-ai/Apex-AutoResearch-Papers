@@ -1,0 +1,15 @@
+{
+  "exp_id": "d111_4b_sft_s42_reeval",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:06:04.423Z",
+    "updated_at": "2026-05-18T22:06:08.967Z",
+    "hypothesis": "D111: 4B SFT s42 D076 re-eval with standardized protocol. Prior evals gave inconsistent results (0.4106/0.4036/0.3974). Re-eval with identical D076 protocol as s43 (0.4365) and s44 for fair 3-seed comparison."
+  },
+  "timestamp": "2026-05-18T22:06:09.402197+00:00",
+  "trigger": "update_registry"
+}

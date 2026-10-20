@@ -1,0 +1,40 @@
+{
+  "exp_id": "plan_011_grpo_g8_bf16_eval",
+  "project": "faith-evidence-ie",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:43:48.481Z",
+    "updated_at": "2026-05-15T15:55:26.432Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-100 --sft_adapter /root/autodl-tmp/sft_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100 --no-quantize\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "216356",
+      "log_path": "~/runs/faith-evidence-ie/plan_011_grpo_g8_bf16_eval.log",
+      "submitted_at": "2026-05-15T14:47:35.396Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T15:51:35.239Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T15:51:38.162514+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T15:55:26.631326+00:00",
+  "trigger": "update_registry"
+}

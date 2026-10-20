@@ -1,0 +1,34 @@
+{
+  "exp_id": "plan_016_llama_ced_scoring",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T01:38:57.773Z",
+    "updated_at": "2026-05-17T03:05:35.479Z",
+    "hypothesis": "CED scoring (NLI-based contrastive discrimination) on LLaMA-3.1-8B RSFT candidates will produce filtered training data that improves RSFT quality, consistent with Qwen3-4B CED results.",
+    "parent": "plan_016_llama_rsft_candidates_r3",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_candidates_llama_3_1_8b --output_path /root/autodl-tmp/rsft_scored_llama_3_1_8b --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --scoring_mode ced --tau 0.5 --selection_strategy top_k --top_k 3\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "398949",
+      "data_path": "/root/autodl-tmp/rsft_candidates_llama_3_1_8b",
+      "data_count": 23704,
+      "model_name": "cross-encoder/nli-deberta-v3-base",
+      "seed": 42,
+      "log_path": "/root/autodl-tmp/plan_016_llama_ced_scoring.log",
+      "checkpoint_path": "/root/autodl-tmp/rsft_scored_llama_3_1_8b",
+      "checkpoint_source": "/root/autodl-tmp/rsft_candidates_llama_3_1_8b",
+      "eval_data": "docred_train_candidates_llama_8b"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-17T03:05:35.479Z"
+  },
+  "timestamp": "2026-05-17T03:05:36.413985+00:00",
+  "trigger": "update_registry"
+}

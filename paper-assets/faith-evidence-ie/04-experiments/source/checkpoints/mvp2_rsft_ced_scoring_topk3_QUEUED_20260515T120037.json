@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp2_rsft_ced_scoring_topk3",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:35:23.225Z",
+    "updated_at": "2026-05-15T12:00:37.360Z",
+    "hypothesis": "CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Answers: does CED filtering strictness affect RSFT training quality?"
+  },
+  "timestamp": "2026-05-15T12:00:37.528508+00:00",
+  "trigger": "update_registry"
+}

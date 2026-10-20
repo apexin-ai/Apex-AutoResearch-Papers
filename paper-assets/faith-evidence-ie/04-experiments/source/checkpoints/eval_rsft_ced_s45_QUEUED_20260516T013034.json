@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_rsft_ced_s45",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:30:34.036Z",
+    "updated_at": "2026-05-16T01:30:34.036Z"
+  },
+  "timestamp": "2026-05-16T01:30:34.503885+00:00",
+  "trigger": "update_registry"
+}

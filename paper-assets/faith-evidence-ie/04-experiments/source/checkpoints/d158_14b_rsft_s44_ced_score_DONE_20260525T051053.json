@@ -1,0 +1,68 @@
+{
+  "exp_id": "d158_14b_rsft_s44_ced_score",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-25T03:58:08.969Z",
+    "updated_at": "2026-05-25T05:10:52.601Z",
+    "hypothesis": "14B seed=44 CED/NLI scoring + k=1 selection. 对生成样本进行 CED 评分并筛选 top-1。预期保留 ~3017 样本（与 s43 的 3017 一致）。",
+    "parent": "d158_14b_rsft_s44_generate",
+    "spec": {
+      "command": "HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations_14b_s44 --output_path /root/autodl-tmp/rsft_scored_14b_s44 --nli_model_path cross-encoder/nli-deberta-v3-base --selection_strategy top_k --top_k 1 --scoring_mode ced",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": 353669,
+      "log_path": "/tmp/d158_14b_ced_score.log",
+      "submitted_at": "2026-05-25T03:58:24.902Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "gpu_id": "cuda:2",
+      "data_path": "/root/autodl-tmp/rsft_generations_14b_s44",
+      "data_count": 24216,
+      "model_name": "cross-encoder/nli-deberta-v3-base",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/rsft_scored_14b_s44",
+      "checkpoint_source": "/root/autodl-tmp/rsft_generations_14b_s44",
+      "eval_data": "/root/autodl-tmp/rsft_generations_14b_s44/generations.jsonl",
+      "wall_clock_seconds": 4204.5,
+      "gpu_hours": 1.17
+    },
+    "reproduce": {
+      "finished_at": "2026-05-25T05:08:23.614Z"
+    },
+    "failure_reason": "HF_HOME 未设置，transformers 无法找到本地缓存的 cross-encoder/nli-deberta-v3-base 模型，网络不通无法下载。修复：命令加 HF_HOME=/root/autodl-tmp/.hf_cache",
+    "conclusion": "success",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-25T04:01:47.642870+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-25T05:08:36.076714+00:00"
+        }
+      ]
+    },
+    "completed_at": "2026-05-25T05:08:29.392Z",
+    "metrics": {
+      "samples_retained": 3016,
+      "total_scored": 24216,
+      "selection_rate": 0.125,
+      "mean_f1_reward": 0.602,
+      "mean_ced_reward": 0.568,
+      "mean_combined_score": 0.668,
+      "unique_docs": 3027
+    }
+  },
+  "timestamp": "2026-05-25T05:10:53.330993+00:00",
+  "trigger": "update_registry"
+}

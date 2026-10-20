@@ -1,0 +1,16 @@
+{
+  "exp_id": "d158_1_7b_rsft_s44_train",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T22:53:50.713Z",
+    "updated_at": "2026-05-24T22:55:07.382Z",
+    "hypothesis": "1.7B RSFT k=1 CED train seed=44. 使用 3019 样本（与 s42 的 3021 基本一致）。复制 d102_1_7b_rsft_k1_s42 超参。补全 1.7B scale 3-seed 统计鲁棒性。",
+    "parent": "d158_1_7b_rsft_s44_ced_score"
+  },
+  "timestamp": "2026-05-24T22:55:08.782556+00:00",
+  "trigger": "update_registry"
+}

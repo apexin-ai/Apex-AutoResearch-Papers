@@ -1,0 +1,33 @@
+{
+  "exp_id": "test_eval_4b_rsft_s43_no_evi",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:12:14.648Z",
+    "updated_at": "2026-05-23T05:42:53.844Z",
+    "hypothesis": "4B RSFT CED s43 no-evidence test eval on Re-DocRED test_revised (500 docs). 配对 s43 with-evi test ign_f1=0.2503 计算 s43 evidence tax。s42 tax=+1.51pp，验证 multi-seed tax 稳定性。",
+    "parent": "test_eval_4b_rsft_s43_with_evi",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/eval_results/test_eval_4b_rsft_s43_no_evi",
+      "log_path": "~/runs/faith-evidence-ie/test_eval_4b_rsft_s43_no_evi.log"
+    },
+    "metrics": {
+      "ign_f1": 0.2702,
+      "f1": 0.2702,
+      "precision": 0.3583,
+      "recall": 0.2169,
+      "format_ok_rate": 0.992,
+      "n_documents": 500,
+      "n_predictions": 27117,
+      "n_truncated": 241,
+      "inference_time_seconds": 4112.2
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-23T05:42:53.844Z"
+  },
+  "timestamp": "2026-05-23T05:42:54.487404+00:00",
+  "trigger": "update_registry"
+}

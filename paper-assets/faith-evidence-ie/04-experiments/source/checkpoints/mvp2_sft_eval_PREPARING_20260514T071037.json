@@ -1,0 +1,21 @@
+{
+  "exp_id": "mvp2_sft_eval",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:10:37.449Z",
+    "updated_at": "2026-05-14T07:10:37.449Z",
+    "spec": {
+      "hypothesis": "SFT baseline eval on DocRED dev set for F1/Evi-F1/EDCR comparison",
+      "model_name": "Qwen3-4B",
+      "server": "gpu-5090-4x-1",
+      "parent": "mvp2_sft_warmup",
+      "checkpoint_source": "/root/autodl-tmp/sft_output"
+    }
+  },
+  "timestamp": "2026-05-14T07:10:37.464966+00:00",
+  "trigger": "update_registry"
+}

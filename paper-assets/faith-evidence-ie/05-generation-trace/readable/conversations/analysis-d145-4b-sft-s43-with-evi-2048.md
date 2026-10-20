@@ -1,0 +1,955 @@
+# analysis d145 4b sft s43 with evi 2048
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 31
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/chats/worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143.jsonl`
+- **Structured JSON:** [`130a64c43f8db703d39f.json`](../../sessions/13/130a64c43f8db703d39f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+31 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T18:33:11.856825+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T18:33:11.857180+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T18:33:11.857401+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/d145_4b_sft_s43_with_evi_2048/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/d145_4b_sft_s43_with_evi_2048/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T18:33:11.857546+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/freige -name \"*fair*\" -o -name \"*tax*\" -o -name \"*matched*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp/freige -name \"*fair*\" -o -name \"*tax*\" -o -name \"*matched*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-21T18:33:11.857734+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4530752688172043,\\n  \\\"recall\\\": 0.4334622664801251,\\n  \\\"f1\\\": 0.4430518169582773,\\n  \\\"ign_precision\\\": 0.4333151382823872,\\n  \\\"ign_recall\\\": 0.4401626467054801,\\n  \\\"ign_f1\\\": 0.43671205244578926,\\n  \\\"tp\\\": 5267,\\n  \\\"pred_count\\\": 11625,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8001695873374788,\\n  \\\"evi_recall\\\": 0.777800673123154,\\n  \\\"evi_f1\\\": 0.7888265821462158,\\n  \\\"n_evaluated\\\": 25038,\\n  \\\"edcr\\\": 0.7233595544046514,\\n  \\\"n_distractor_citations\\\": 29610,\\n  \\\"n_total_citations\\\": 40934,\\n  \\\"evi_joint_precision\\\": 0.34907002476421306,\\n  \\\"evi_joint_recall\\\": 0.3439592959867089,\\n  \\\"evi_f1_joint\\\": 0.34649581589958156,\\n  \\\"evi_tp\\\": 6625,\\n  \\\"evi_pred_total\\\": 18979,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9979695431472081,\\n  \\\"field_compliance_rate\\\": 0.9979695431472081,\\n  \\\"evidence_format_rate\\\": 0.9928934010152284,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 983,\\n  \\\"n_field_complete\\\": 983,\\n  \\\"n_evidence_valid\\\": 978,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 25522,\\n  \\\"n_truncated\\\": 271,\\n  \\\"n_format_ok\\\": 983,\\n  \\\"format_ok_rate\\\": 0.9979695431472081,\\n  \\\"inference_time_seconds\\\": 9203.1,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_seed43\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/d145_4b_sft_s43_with_evi_2048\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 2048,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 43,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": fals
+…[truncated 115 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T18:33:11.857918+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/freige/scripts/fair_eval.py\\n/root/autodl-tmp/freige/freige/scripts/evidence_tax_analysis.py\\n/root/autodl-tmp/freige/freige/scripts/analysis/results/evidence_tax_report.txt\\n/root/autodl-tmp/freige/freige/scripts/analysis/results/evidence_tax_overview.png\\n/root/autodl-tmp/freige/freige/scripts/analysis/evidence_tax_analysis.py\\n/root/autodl-tmp/freige/freige/scripts/analysis/evidence_tax_plots.py\\n/root/autodl-tmp/freige/scripts/analysis/results/evidence_tax_overview.png\\n/root/autodl-tmp/freige/scripts/analysis/results/evidence_tax_report.txt\\n/root/autodl-tmp/freige/scripts/analysis/results/fair_tax_s42_sft.json\\n/root/autodl-tmp/freige/scripts/analysis/evidence_tax_analysis.py\\n/root/autodl-tmp/freige/scripts/analysis/evidence_tax_plots.py\\n/root/autodl-tmp/freige/scripts/analysis/fair_evidence_tax.py\\n/root/autodl-tmp/freige/scripts/evidence_tax_analysis.py\\n/root/autodl-tmp/freige/scripts/fair_eval.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T18:33:11.858076+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "head -80 /root/autodl-tmp/freige/scripts/fair_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "head -80 /root/autodl-tmp/freige/scripts/fair_eval.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T18:33:11.858274+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import json, re, sys\\nsys.path.insert(0, '/root/autodl-tmp/freige')\\nfrom eval.evaluator import DocREDEvaluator\\n\\nTRAIN_PATH = '/root/autodl-tmp/data/docred/train_annotated.json'\\nNOEVI_PRED = '/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval_v3/predictions.json'\\nWITHEVI_PRED = '/root/autodl-tmp/eval_results/qwen3_1_7b_sft_eval/predictions.json'\\n\\ndef is_repetitive(raw_output, threshold=3):\\n    pattern = r'\\\\{[^{}]+\\\\}'\\n    matches = re.findall(pattern, raw_output)\\n    if len(matches) < threshold:\\n        return False\\n    for i in range(len(matches) - threshold + 1):\\n        if len(set(matches[i:i+threshold])) == 1:\\n            return True\\n    if len(matches) > 5 and len(set(matches)) / len(matches) < 0.5:\\n        return True\\n    return False\\n\\ndef load_and_tag(path):\\n    with open(path) as f:\\n        preds = json.load(f)\\n    for p in preds:\\n        p['repetitive'] = is_repetitive(p['raw_output'])\\n    return preds\\n\\ndef filter_preds_gold(preds, doc_ids):\\n    ids = set(doc_ids)\\n    filtered_preds = []\\n    filtered_gold = []\\n    for p in preds:\\n        if p['doc_id'] not in ids:\\n            continue\\n        for t in p['parsed_triples']:\\n            if isinstance(t, dict):\\n                filtered_preds.append({\\n                    'doc_id': p['doc_id'],\\n                    'head': t.get('head', ''),\\n                    'tail': t.get('tail', ''),\\n                    'relation': t.get('relation', ''),\\n                })\\n        for t in p['gold_triples']:\\n            if isinstance(t, dict):\\n                filtered_gold.append({\\n                    'doc_id': p['doc_id'],\\n                    'head': t.get('head', ''),\\n                    'tail': t.get('tail', ''),\\n                    'relation': t.get('relation', ''),\\n                })\\n    return filtered_preds, filtered_gold\\n\\n# Load evaluator with train tr
+…[truncated 1582 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T18:33:11.858445+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "head -80 /root/autodl-tmp/freige/scripts/analysis/fair_evidence_tax.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "head -80 /root/autodl-tmp/freige/scripts/analysis/fair_evidence_tax.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-21T18:33:11.858575+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/scripts/analysis/results/fair_tax_s42_sft.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/freige/scripts/analysis/results/fair_tax_s42_sft.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T18:33:11.858774+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Fair evidence tax comparison.\\n\\nComputes ign_f1 on the subset of documents where both with-evidence and\\nno-evidence predictions have format_ok=True, giving a fair measurement\\nof the evidence tax uncontaminated by format failures.\\n\\nUsage:\\n    python fair_evidence_tax.py \\\\\\n        --with-evi /path/to/with_evidence/predictions.json \\\\\\n        --no-evi /path/to/no_evidence/predictions.json \\\\\\n        [--train /path/to/train_annotated.json] \\\\\\n        [--json-out /path/to/output.json]\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\n\\ndef _load_train_facts(train_path: str) -> set[tuple]:\\n    sys.path.insert(0, \\\"/root/autodl-tmp/freige\\\")\\n    from freige.data.docred_processor import DOCRED_REL_INFO\\n\\n    with open(train_path) as f:\\n        data = json.load(f)\\n    facts = set()\\n    for doc in data:\\n        vs = doc[\\\"vertexSet\\\"]\\n        for lab in doc.get(\\\"labels\\\", []):\\n            h = vs[lab[\\\"h\\\"]][0][\\\"name\\\"].lower().strip()\\n            t = vs[lab[\\\"t\\\"]][0][\\\"name\\\"].lower().strip()\\n            r = DOCRED_REL_INFO.get(lab[\\\"r\\\"], lab[\\\"r\\\"]).lower().strip()\\n            facts.add((h, t, r))\\n    return facts\\n\\n\\ndef _triple_key(doc_id, head, tail, relation):\\n    return (doc_id, head.lower().strip(), tail.lower().strip(), relation.lower().strip())\\n\\n\\ndef compute_ign_f1(docs: list[dict], train_facts: set[tuple]) -> dict:\\n    \\\"\\\"\\\"Compute ign_f1 over a list of prediction docs.\\\"\\\"\\\"\\n    pred_set = set()\\n    gold_set = set()\\n    for d in docs:\\n        doc_id = d[\\\"doc_id\\\"]\\n        for t in d[\\\"parsed_triples\\\"]:\\n            pred_set.add(_triple_key(doc_id, t[\\\"head\\\"], t[\\\"tail\\\"], t[\\\"relation\\\"]))\\n        for t in d[\\\"gold_triples\\\"]:\\n            gold_set.add(_
+…[truncated 1296 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T18:33:11.858991+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"full_set\\\": {\\n    \\\"n_docs\\\": 985,\\n    \\\"with_evidence\\\": {\\n      \\\"f1\\\": 0.5514148250835847,\\n      \\\"precision\\\": 0.5464242424242425,\\n      \\\"recall\\\": 0.5564974076207719,\\n      \\\"ign_f1\\\": 0.5384131548207386,\\n      \\\"ign_precision\\\": 0.523913613709889,\\n      \\\"ign_recall\\\": 0.5537381018390167,\\n      \\\"tp\\\": 6762,\\n      \\\"pred_count\\\": 12375,\\n      \\\"gold_count\\\": 12151\\n    },\\n    \\\"no_evidence\\\": {\\n      \\\"f1\\\": 0.5310719721678625,\\n      \\\"precision\\\": 0.5630763555883438,\\n      \\\"recall\\\": 0.5025100814747757,\\n      \\\"ign_f1\\\": 0.5218766473379021,\\n      \\\"ign_precision\\\": 0.5420067688632292,\\n      \\\"ign_recall\\\": 0.503188245079013,\\n      \\\"tp\\\": 6106,\\n      \\\"pred_count\\\": 10844,\\n      \\\"gold_count\\\": 12151\\n    },\\n    \\\"raw_tax_pp\\\": -1.6537\\n  },\\n  \\\"fair_subset\\\": {\\n    \\\"n_docs\\\": 873,\\n    \\\"with_evidence\\\": {\\n      \\\"f1\\\": 0.5573264781491003,\\n      \\\"precision\\\": 0.5535747446610957,\\n      \\\"recall\\\": 0.5611294117647059,\\n      \\\"ign_f1\\\": 0.5443415637860083,\\n      \\\"ign_precision\\\": 0.5310649402790324,\\n      \\\"ign_recall\\\": 0.5582990397805213,\\n      \\\"tp\\\": 5962,\\n      \\\"pred_count\\\": 10770,\\n      \\\"gold_count\\\": 10625\\n    },\\n    \\\"no_evidence\\\": {\\n      \\\"f1\\\": 0.5687663063734625,\\n      \\\"precision\\\": 0.563151582249285,\\n      \\\"recall\\\": 0.5744941176470588,\\n      \\\"ign_f1\\\": 0.5577415718823651,\\n      \\\"ign_precision\\\": 0.5420774823224779,\\n      \\\"ign_recall\\\": 0.574337870634167,\\n      \\\"tp\\\": 6104,\\n      \\\"pred_count\\\": 10839,\\n      \\\"gold_count\\\": 10625\\n    },\\n    \\\"fair_tax_pp\\\": 1.34\\n  },\\n  \\\"format_failures\\\": {\\n    \\\"no_evidence\\\": {\\n      \\\"total\\\": 111,\\n      \\\"truncated\\\": 46,\\n      \\
+…[truncated 340 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T18:33:11.859193+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/eval_results/d145_4b_sft_s43_with_evi_2048/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls /root/autodl-tmp/eval_results/d145_4b_sft_s43_with_evi_2048/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T18:33:11.859356+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"metrics.json\\npredictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T18:33:11.859485+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/eval_results/d145_4b_sft_s43_no_evi_2048/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls /root/autodl-tmp/eval_results/d145_4b_sft_s43_no_evi_2048/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T18:33:11.859610+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"metrics.json\\npredictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T18:33:11.859729+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -30 /root/autodl-tmp/freige/scripts/analysis/fair_evidence_tax.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -30 /root/autodl-tmp/freige/scripts/analysis/fair_evidence_tax.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T18:33:11.859884+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    # JSON output\\n    if args.json_out:\\n        result = {\\n            \\\"full_set\\\": {\\n                \\\"n_docs\\\": len(common_doc_ids),\\n                \\\"with_evidence\\\": with_full,\\n                \\\"no_evidence\\\": no_full,\\n                \\\"raw_tax_pp\\\": round(raw_tax, 4),\\n            },\\n            \\\"fair_subset\\\": {\\n                \\\"n_docs\\\": len(fair_ids),\\n                \\\"with_evidence\\\": with_fair,\\n                \\\"no_evidence\\\": no_fair,\\n                \\\"fair_tax_pp\\\": round(fair_tax, 4),\\n            },\\n            \\\"format_failures\\\": {\\n                \\\"no_evidence\\\": {\\\"total\\\": len(no_failures), \\\"truncated\\\": n_trunc, \\\"malformed_json\\\": n_malformed},\\n                \\\"with_evidence\\\": {\\\"total\\\": len(with_failures), \\\"truncated\\\": with_n_trunc, \\\"malformed_json\\\": with_n_malformed},\\n            },\\n            \\\"with_format_ok\\\": len(with_ok),\\n            \\\"no_format_ok\\\": len(no_ok),\\n        }\\n        Path(args.json_out).parent.mkdir(parents=True, exist_ok=True)\\n        with open(args.json_out, \\\"w\\\") as f:\\n            json.dump(result, f, indent=2)\\n        print(f\\\"\\\\nJSON output saved to {args.json_out}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T18:33:11.860052+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T18:33:11.860175+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T18:33:11.860315+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cd /root/autodl-tmp/freige && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/analysis/fair_evidence_tax.py --with-evi /root/autodl-tmp/eval_results/d145_4b_sft_s43_with_evi_2048/predictions.json --no-evi /root/autodl-tmp/eval_results/d145_4b_sft_s43_no_evi_2048/predictions.json --json-out /root/autodl-tmp/eval_results/fair_tax_s43_4b_sft.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cd /root/autodl-tmp/freige && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/analysis/fair_evidence_tax.py --with-evi /root/autodl-tmp/eval_results/d145_4b_sft_s43_with_evi_2048/predictions.json --no-evi /root/autodl-tmp/eval_results/d145_4b_sft_s43_no_evi_2048/predictions.json --json-out /root/autodl-tmp/eval_results/fair_tax_s43_4b_sft.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T18:33:11.860472+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=======================================================\\n  Evidence Tax Fair Comparison\\n=======================================================\\n\\nFull set: 985 docs\\n  With-evidence: ign_f1=0.4367  (format_ok=983/985)\\n  No-evidence:   ign_f1=0.4355  (format_ok=984/985)\\n  Raw tax: -0.12pp\\n\\nFair subset: 982 docs (both format-OK)\\n  With-evidence: ign_f1=0.4375\\n  No-evidence:   ign_f1=0.4355\\n  Fair tax: -0.20pp\\n\\nFormat failures (no-evidence): 1 docs\\n  Truncated:      0\\n  Malformed JSON: 1\\n\\nFormat failures (with-evidence): 2 docs\\n  Truncated:      1\\n  Malformed JSON: 1\\n\\n───────────────────────────────────────────────────────\\nDetailed metrics:\\n\\n  With-evidence:\\n    Full:  P=0.4333  R=0.4402  F1=0.4367  (pred=11625, gold=12151)\\n    Fair:  P=0.4336  R=0.4416  F1=0.4375  (pred=11619, gold=12114)\\n\\n  No-evidence:\\n    Full:  P=0.4205  R=0.4516  F1=0.4355  (pred=12240, gold=12151)\\n    Fair:  P=0.4201  R=0.4520  F1=0.4355  (pred=12223, gold=12114)\\n\\nJSON output saved to /root/autodl-tmp/eval_results/fair_tax_s43_4b_sft.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-21T18:33:11.860648+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/fair_tax_s43_4b_sft.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/fair_tax_s43_4b_sft.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T18:33:11.860828+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"full_set\\\": {\\n    \\\"n_docs\\\": 985,\\n    \\\"with_evidence\\\": {\\n      \\\"f1\\\": 0.4430518169582773,\\n      \\\"precision\\\": 0.4530752688172043,\\n      \\\"recall\\\": 0.4334622664801251,\\n      \\\"ign_f1\\\": 0.43671205244578926,\\n      \\\"ign_precision\\\": 0.4333151382823872,\\n      \\\"ign_recall\\\": 0.4401626467054801,\\n      \\\"tp\\\": 5267,\\n      \\\"pred_count\\\": 11625,\\n      \\\"gold_count\\\": 12151\\n    },\\n    \\\"no_evidence\\\": {\\n      \\\"f1\\\": 0.4428682710835964,\\n      \\\"precision\\\": 0.4412581699346405,\\n      \\\"recall\\\": 0.4444901654184841,\\n      \\\"ign_f1\\\": 0.4355032749632402,\\n      \\\"ign_precision\\\": 0.42049561177077954,\\n      \\\"ign_recall\\\": 0.4516218464097588,\\n      \\\"tp\\\": 5401,\\n      \\\"pred_count\\\": 12240,\\n      \\\"gold_count\\\": 12151\\n    },\\n    \\\"raw_tax_pp\\\": -0.1209\\n  },\\n  \\\"fair_subset\\\": {\\n    \\\"n_docs\\\": 982,\\n    \\\"with_evidence\\\": {\\n      \\\"f1\\\": 0.4438545485189399,\\n      \\\"precision\\\": 0.4533092348739134,\\n      \\\"recall\\\": 0.4347861977876837,\\n      \\\"ign_f1\\\": 0.437514352638589,\\n      \\\"ign_precision\\\": 0.4335517931913344,\\n      \\\"ign_recall\\\": 0.44155001390562715,\\n      \\\"tp\\\": 5267,\\n      \\\"pred_count\\\": 11619,\\n      \\\"gold_count\\\": 12114\\n    },\\n    \\\"no_evidence\\\": {\\n      \\\"f1\\\": 0.44294695319883304,\\n      \\\"precision\\\": 0.4409719381493905,\\n      \\\"recall\\\": 0.4449397391447911,\\n      \\\"ign_f1\\\": 0.4354932344929219,\\n      \\\"ign_precision\\\": 0.42012752024814753,\\n      \\\"ign_recall\\\": 0.4520255863539446,\\n      \\\"tp\\\": 5390,\\n      \\\"pred_count\\\": 12223,\\n      \\\"gold_count\\\": 12114\\n    },\\n    \\\"fair_tax_pp\\\": -0.2021\\n  },\\n  \\\"format_failures\\\": {\\n    \\\"no_evidence\\\": {\\n      \\\"total\\\": 1,\\n      \\\"truncated\\\": 0,\\n
+…[truncated 347 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-21T18:33:11.861006+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "d145_4b_sft_s43_with_evi_2048",
+  "field": "metrics",
+  "value": "{'ign_f1': 0.4367, 'f1': 0.4431, 'precision': 0.4531, 'recall': 0.4335, 'ign_precision': 0.4333, 'ign_recall': 0.4402, 'evi_f1': 0.7888, 'evi_f1_tp': 0.7888, 'evi_f1_joint': 0.3465, 'edcr': 0.7234, 'format_ok': 983, 'truncated': 271, 'n_predictions': 25522, 'n_documents': 985, 'inference_time_s': 9203.1, 'fair_tax_pp': -0.2, 'fair_subset_size': 982, 'fair_with_evi_ign_f1': 0.4375, 'fair_no_evi_ign_f1': 0.4355}",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "d145_4b_sft_s43_with_evi_2048",
+    "field": "metrics",
+    "value": "{'ign_f1': 0.4367, 'f1': 0.4431, 'precision': 0.4531, 'recall': 0.4335, 'ign_precision': 0.4333, 'ign_recall': 0.4402, 'evi_f1': 0.7888, 'evi_f1_tp': 0.7888, 'evi_f1_joint': 0.3465, 'edcr': 0.7234, 'format_ok': 983, 'truncated': 271, 'n_predictions': 25522, 'n_documents': 985, 'inference_time_s': 9203.1, 'fair_tax_pp': -0.2, 'fair_subset_size': 982, 'fair_with_evi_ign_f1': 0.4375, 'fair_no_evi_ign_f1': 0.4355}",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T18:33:11.861209+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"d145_4b_sft_s43_with_evi_2048\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:55:23.978Z\", \"updated_at\": \"2026-05-21T18:32:49.453Z\", \"hypothesis\": \"4B SFT s43 with-evi@2048: 4B evidence tax 目前仅 s42 (fair_tax=+0.73pp)，但 s42 是最弱 seed (cross-seed std=3.8pp)。补 s43 计算 multi-seed evidence tax，验证 4B evidence tax 方向的可靠性。配对 d145_4b_sft_s43_no_evi_2048。\", \"spec\": {\"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT adapter seed43 (with-evi)\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_seed43\", \"eval_data\": \"docred-dev\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/d145_4b_sft_s43_with_evi_2048\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output_seed43 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/eval_results/d145_4b_sft_s43_with_evi_2048 --batch_size 4 --max_new_tokens 2048 --no-quantize --seed 43\\\"\", \"server\": \"rtx5090-4x\", \"gpu_ids\": [\"cuda:0\"], \"pid\": 115868, \"log_path\": \"~/runs/faith-evidence-ie/d145_4b_sft_s43_with_evi_2048.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-21T18:29:34.592Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T18:29:41.823906+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.4367, \"f1\": 0.4431, \"precision\": 0.4531, \"recall\": 0.4335, \"ign_precision\": 0.4333, \"ign_recall\": 0.4402, \"evi_f1\": 0.7888, \"evi_f1_tp\": 0.7888, \"evi_f1_joint\": 0.3465, \"edcr\": 0.7234, \"format_ok\": 983, \"truncated\": 271, \"n_predictions\": 25522, \"n_documents\": 985, \"inference_time_s\": 9203.1, \"fair_tax_pp\": -0.2, \"fair_
+…[truncated 152 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-21T18:33:11.861422+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "d145_4b_sft_s43_with_evi_2048",
+  "field": "conclusion",
+  "value": "success",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "d145_4b_sft_s43_with_evi_2048",
+    "field": "conclusion",
+    "value": "success",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T18:33:11.861614+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"d145_4b_sft_s43_with_evi_2048\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:55:23.978Z\", \"updated_at\": \"2026-05-21T18:32:54.035Z\", \"hypothesis\": \"4B SFT s43 with-evi@2048: 4B evidence tax 目前仅 s42 (fair_tax=+0.73pp)，但 s42 是最弱 seed (cross-seed std=3.8pp)。补 s43 计算 multi-seed evidence tax，验证 4B evidence tax 方向的可靠性。配对 d145_4b_sft_s43_no_evi_2048。\", \"spec\": {\"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT adapter seed43 (with-evi)\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_seed43\", \"eval_data\": \"docred-dev\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/d145_4b_sft_s43_with_evi_2048\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output_seed43 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/eval_results/d145_4b_sft_s43_with_evi_2048 --batch_size 4 --max_new_tokens 2048 --no-quantize --seed 43\\\"\", \"server\": \"rtx5090-4x\", \"gpu_ids\": [\"cuda:0\"], \"pid\": 115868, \"log_path\": \"~/runs/faith-evidence-ie/d145_4b_sft_s43_with_evi_2048.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-21T18:29:34.592Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T18:29:41.823906+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.4367, \"f1\": 0.4431, \"precision\": 0.4531, \"recall\": 0.4335, \"ign_precision\": 0.4333, \"ign_recall\": 0.4402, \"evi_f1\": 0.7888, \"evi_f1_tp\": 0.7888, \"evi_f1_joint\": 0.3465, \"edcr\": 0.7234, \"format_ok\": 983, \"truncated\": 271, \"n_predictions\": 25522, \"n_documents\": 985, \"inference_time_s\": 9203.1, \"fair_tax_pp\": -0.2, \"fair_
+…[truncated 181 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-21T18:33:11.861776+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "d145_4b_sft_s43_with_evi_2048",
+  "field": "status",
+  "value": "DONE",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "d145_4b_sft_s43_with_evi_2048",
+    "field": "status",
+    "value": "DONE",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T18:33:11.861977+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"d145_4b_sft_s43_with_evi_2048\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:55:23.978Z\", \"updated_at\": \"2026-05-21T18:32:58.364Z\", \"hypothesis\": \"4B SFT s43 with-evi@2048: 4B evidence tax 目前仅 s42 (fair_tax=+0.73pp)，但 s42 是最弱 seed (cross-seed std=3.8pp)。补 s43 计算 multi-seed evidence tax，验证 4B evidence tax 方向的可靠性。配对 d145_4b_sft_s43_no_evi_2048。\", \"spec\": {\"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT adapter seed43 (with-evi)\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_seed43\", \"eval_data\": \"docred-dev\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/d145_4b_sft_s43_with_evi_2048\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output_seed43 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/eval_results/d145_4b_sft_s43_with_evi_2048 --batch_size 4 --max_new_tokens 2048 --no-quantize --seed 43\\\"\", \"server\": \"rtx5090-4x\", \"gpu_ids\": [\"cuda:0\"], \"pid\": 115868, \"log_path\": \"~/runs/faith-evidence-ie/d145_4b_sft_s43_with_evi_2048.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-21T18:29:34.592Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T18:29:41.823906+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.4367, \"f1\": 0.4431, \"precision\": 0.4531, \"recall\": 0.4335, \"ign_precision\": 0.4333, \"ign_recall\": 0.4402, \"evi_f1\": 0.7888, \"evi_f1_tp\": 0.7888, \"evi_f1_joint\": 0.3465, \"edcr\": 0.7234, \"format_ok\": 983, \"truncated\": 271, \"n_predictions\": 25522, \"n_documents\": 985, \"inference_time_s\": 9203.1, \"fair_tax_pp\": -0.2, \"fair_subse
+…[truncated 275 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-21T18:33:11.862179+00:00_
+
+Registry 更新完成。
+
+## 结果汇总
+
+### d145_4b_sft_s43_with_evi_2048 Metrics
+
+| 指标 | 值 |
+|------|-----|
+| ign_f1 | **0.4367** |
+| f1 | 0.4431 |
+| precision / recall | 0.4531 / 0.4335 |
+| ign_precision / ign_recall | 0.4333 / 0.4402 |
+| evi_f1 (TP-only) | 0.7888 |
+| evi_f1_joint | 0.3465 |
+| edcr | 0.7234 |
+| format_ok | 983/985 |
+| truncated | 271/985 |
+| inference_time | 9203s |
+
+### s43 Pair Matched Fair Tax
+
+| 条件 | Fair subset ign_f1 |
+|------|-----|
+| with-evidence | 0.4375 |
+| no-evidence | 0.4355 |
+| **fair_tax_pp** | **-0.20pp** |
+| fair subset size | 982/985 docs |
+
+### 与 s42 比较
+
+| Seed | fair_tax_pp |
+|------|-------------|
+| s42 | **+0.73pp** (no-evi 优于 with-evi) |
+| s43 | **-0.20pp** (with-evi 略优于 no-evi) |
+
+s43 的 fair tax 方向与 s42 相反——s42 显示 no-evidence 更好 (+0.73pp)，s43 显示 with-evidence 略好 (-0.20pp)。两个 seed 的 fair tax 绝对值都很小（<1pp），且方向不一致，暗示 4B SFT 的 evidence tax 接近零且不稳定，需要 s44 来确认趋势。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_d145_4b_sft_s43_with_evi_2048_20260521T183143"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,12 @@
+1.7B Qwen SFT → RSFT Per-Relation Analysis
+
+micro-F1: 0.4945 → 0.5290 (+3.45pp)
+89 high-frequency relations: 55 improved, 30 degraded
+
+Top improvements: screenwriter (+0.172), conflict (+0.133), notable work (+0.127)
+Top degradations: founded by (-0.186), participant of (-0.166), cast member (-0.109)
+Average improvement: +0.053, average degradation: -0.047
+
+Server files:
+- /root/autodl-tmp/freige/scripts/analysis/results/per_relation_1_7b.txt
+- /root/autodl-tmp/freige/scripts/analysis/results/per_relation_1_7b.csv

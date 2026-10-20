@@ -1,0 +1,7 @@
+Code framework at artifacts/freige/ with 6 modules:
+- data/docred_processor.py (362 lines): DocRED 数据加载、实体/关系/evidence 解析、hard negative 生成、SFT 格式化
+- rewards/ced_reward.py (332 lines): DeBERTa-v3-base NLI, verbalize_triple (96 relations), CED/flat-NLI reward, batch 计算
+- analysis/ced_signal_validation.py (249 lines): MVP-1 离线验证脚本, margin 统计, 判别准确率, 直方图
+- training/sft_trainer.py (200 lines): Qwen3-4B + LoRA r64 + gradient checkpointing, enable_thinking=False
+- training/grpo_trainer.py (403 lines): TRL GRPOTrainer, 3-stage curriculum, format+F1+CED rewards, num_generations=4
+- eval/evaluator.py (285 lines): F1/Ign-F1/Evi-F1/EDCR, 模型输出解析, gold 格式转换

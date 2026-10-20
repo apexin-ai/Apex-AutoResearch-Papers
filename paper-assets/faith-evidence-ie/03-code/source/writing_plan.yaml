@@ -1,0 +1,571 @@
+meta:
+  venue: emnlp-2026
+  submission_type: long
+  review_system: arr_july
+  deadline: "2026-07-15"
+  template:
+    source: "github.com/acl-org/acl-style-files (official)"
+    local_path: "projects/faith-evidence-ie/docs/paper/acl-style/"
+    documentclass: "\\documentclass[11pt]{article}"
+    options: "\\usepackage[review]{acl}"
+    template_note: "Official ACL style files cloned 2026-05-17. EMNLP uses identical template."
+  page_limits:
+    main_text: 8
+    references: unlimited
+    appendix: unlimited
+  title_candidates:
+    - "Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction"
+    - "The Cost of Faithfulness: Evidence-Extraction Trade-offs in Generative Document Relation Extraction"
+    - "FREIGE: Faithful Evidence-Grounded Document-Level Relation Extraction via Rejection Sampling Fine-Tuning"
+  preferred_title: 1
+  visualization:
+    preferred_tool: matplotlib
+
+# ============================================================
+# PAPER OUTLINE
+# ============================================================
+paper_outline:
+  abstract:
+    word_budget: 220
+    key_message: >
+      Evidence-grounded DocRE 新任务；系统比较 GRPO/DPO/RSFT 三范式；
+      发现 decoupling spectrum（RL pressure 与 decoupling severity 正相关）；
+      evidence tax 是 scale-dependent 的（1.7B +6.2pp benefit, 4B -7.0pp cost, 8B ≈0）；
+      RSFT+NLI scoring 是唯一有效路线；EDCR 双层诊断
+    must_include:
+      - task definition (evidence-grounded DocRE, generative LLM qualifier)
+      - three paradigms compared
+      - decoupling spectrum core finding
+      - scale-dependent evidence tax with concrete numbers
+      - RSFT effectiveness delta vs SFT
+      - EDCR diagnostic mention
+    dependencies: [introduction, experiments, method]
+
+  introduction:
+    word_budget: 1200
+    structure: five_paragraph
+    paragraphs:
+      - topic: "LLM DocRE progress but no evidence"
+        word_budget: 200
+      - topic: "Why verifiable evidence matters for deployment"
+        word_budget: 150
+      - topic: "Encoder retrieval ≠ generative production (SAIS/DREEAM distinction)"
+        word_budget: 200
+      - topic: "Our insight: 3 paradigms → decoupling spectrum + scale-dependent tax + RSFT solution"
+        word_budget: 350
+      - topic: "Contribution list (5 items)"
+        word_budget: 300
+        contributions:
+          - "Evidence-grounded DocRE task formulation for generative LLMs"
+          - "Decoupling spectrum: RL optimization pressure correlates with evidence-extraction decoupling (GRPO catastrophic → DPO gradual → RSFT none)"
+          - "Scale-dependent evidence tax: non-monotonic pattern 1.7B→4B→8B overturns 'evidence always hurts'"
+          - "EDCR dual-layer diagnostic (method-level ρ=-0.965, per-relation independent of evi_f1)"
+          - "85+ experiments, 4 model scales, 2 families, 2 datasets"
+    dependencies: [experiments, method]
+
+  related_work:
+    word_budget: 700
+    structure: three_paragraph_thematic
+    paragraphs:
+      - topic: "Document-level RE (encoder + LLM) and evidence in DocRE"
+        word_budget: 300
+        key_distinction: "SAIS/DREEAM = evidence retrieval (classification, improves RE via supervision); FREIGE = evidence generation (additional output burden, scale-dependent cost). Must explain why SAIS says evidence helps but we find it can hurt."
+      - topic: "RL for LLMs and structured prediction"
+        word_budget: 220
+        key_distinction: "Recent papers argue RL doesn't cause forgetting. Our decoupling is intra-task multi-objective trade-off, not inter-task forgetting. Cite QuRL for QLoRA amplification support."
+      - topic: "Self-training and rejection sampling"
+        word_budget: 180
+        key_message: "RSFT = STaR single-round variant + NLI quality filter. Innovation in application, not framework."
+    dependencies: [introduction]
+
+  method:
+    word_budget: 1300
+    subsections:
+      - title: "Task: Evidence-Grounded DocRE"
+        word_budget: 200
+        key_message: "Formal definition. Joint generation of (e_h, r, e_t) + evidence sentences E."
+      - title: "Supervised Fine-Tuning Baseline"
+        word_budget: 150
+        key_message: "LoRA SFT with structured output. SFT no-evidence ablation = upper bound."
+      - title: "Optimization Paradigms"
+        word_budget: 350
+        sub_items:
+          - "GRPO: online RL with evidence quality reward. QLoRA and bf16 variants."
+          - "DPO: offline preference pairs from evidence quality rankings."
+          - "RSFT: offline RL via rejection sampling + quality scoring. Single-round STaR variant."
+      - title: "Contrastive Evidence Discrimination (CED)"
+        word_budget: 350
+        key_message: "NLI-based scoring with document-internal hard negatives. Positive evidence vs entity-sharing distractors. Used for RSFT scoring. CED ≈ flat-NLI statistically (p=0.44), but CED provides interpretable per-triple diagnostics."
+      - title: "Evidence-Decoupling Ratio (EDCR)"
+        word_budget: 250
+        key_message: "Diagnostic metric. Two levels: method-level (decoupling proxy, ρ=-0.965 with rel_f1) and per-relation (difficulty diagnosis, independent of evi_f1)."
+    dependencies: []
+
+  experiments:
+    word_budget: 2200
+    subsections:
+      - title: "Setup"
+        word_budget: 300
+        must_clarify:
+          - "Evi-F1 two versions: TP-only (conditional) vs joint (DREEAM protocol)"
+          - "All metrics from dev set unless noted; test submission pending"
+      - title: "Main Results"
+        word_budget: 350
+        table: tab_main
+        claims: [C1]
+      - title: "Evidence-Extraction Decoupling Spectrum"
+        word_budget: 400
+        table: tab_spectrum
+        figure: fig_spectrum
+        claims: [C2]
+      - title: "Scale-Dependent Evidence Tax"
+        word_budget: 400
+        table: tab_scaling
+        figure: fig_scaling
+        claims: [C5]
+      - title: "Evidence Strategy Spectrum"
+        word_budget: 350
+        table: tab_evidence_strategy
+        claims: [C1]
+      - title: "Generalization"
+        word_budget: 400
+        claims: [C1, C5]
+        content: "Cross-family (LLaMA-8B) + cross-dataset (Re-DocRED) + DREEAM protocol comparison"
+    dependencies: [method]
+
+  analysis:
+    word_budget: 600
+    paragraphs:
+      - topic: "EDCR dual-layer diagnostic"
+        word_budget: 200
+        claims: [C4]
+      - topic: "Why RSFT avoids decoupling (selection vs optimization)"
+        word_budget: 150
+      - topic: "NLI scoring: CED ≈ flat-NLI (p=0.44), top-k=1 > k=3"
+        word_budget: 150
+        claims: [C3]
+      - topic: "Evaluation caveat (exact match underestimates generative RE)"
+        word_budget: 100
+    dependencies: [experiments]
+
+  conclusion:
+    word_budget: 250
+    dependencies: [introduction, experiments, analysis]
+
+  limitations:
+    word_budget: 200
+    items:
+      - "Dev-set primary evaluation (CodaLab test submission pending)"
+      - "Exact-match F1 underestimates generative RE (GenRES)"
+      - "EDCR human validation limited to 100 samples"
+      - "Single RL algorithm per family (GRPO online, DPO offline)"
+    dependencies: [experiments]
+
+  appendix:
+    sections:
+      - title: "Training Hyperparameters"
+        table: tab_hyperparams
+      - title: "Full Ablation Results"
+        table: tab_ablation_full
+      - title: "Cross-Validation Details"
+        table: tab_cross_detail
+      - title: "DREEAM Protocol Comparison"
+        table: tab_dreeam_protocol
+      - title: "Per-Relation EDCR Analysis"
+        figure: fig_edcr_relations
+      - title: "GRPO Training Dynamics"
+        figure: fig_grpo_dynamics
+
+# ============================================================
+# VISUALIZATION PLAN
+# ============================================================
+visualization_plan:
+  - fig_id: fig_overview
+    type: conceptual
+    tool: matplotlib
+    description: >
+      Two-panel figure. Left: Evidence-grounded DocRE task illustration.
+      Input document with highlighted entities → model → output with relation
+      triples AND supporting evidence sentences (contrasted with standard DocRE
+      that outputs triples only). Right: FREIGE pipeline overview showing
+      SFT → candidate generation (N=8) → CED/NLI scoring → top-k selection →
+      RSFT fine-tuning. Clean minimal design, no decorative elements.
+    placement: "method"
+    aspect_ratio: "2:1"
+    data_source: "conceptual"
+    priority: high
+
+  - fig_id: fig_spectrum
+    type: statistical
+    tool: matplotlib
+    description: >
+      Decoupling spectrum scatter plot. X-axis: Evi-F1 (evidence quality),
+      Y-axis: Rel-F1 (extraction performance). Points for each method/config:
+      SFT baseline (gray circle), RSFT CED best (green star), GRPO QLoRA
+      (red X, bottom-right corner), GRPO bf16 (orange triangle, slight down
+      from SFT), DPO 1ep and 3ep (orange squares, showing drift), SFT
+      no-evidence (blue diamond, top with no evi_f1). Color by paradigm family.
+      Annotate diagonal arrow labeled 'decoupling direction'. Include SFT
+      no-evidence as reference point (high rel_f1, no evidence).
+    placement: "experiments"
+    aspect_ratio: "1:1"
+    data_source: >
+      registry: reeval_sft_baseline_d076, eval_rsft_ced_s43,
+      mvp2_eval_lr5e6_r1_ckpt100, plan_011_grpo_g8_bf16_eval,
+      eval_plan_012_dpo_1ep_fixed_r2, plan_012_dpo_ced,
+      eval_plan_014_no_evidence_r2
+    priority: high
+
+  - fig_id: fig_scaling
+    type: statistical
+    tool: matplotlib
+    description: >
+      Evidence tax bar chart. X-axis: model (Qwen3-1.7B, Qwen3-4B, Qwen3-8B,
+      LLaMA-3.1-8B). Y-axis: Evidence Tax (Δ Ign-F1 between SFT-with-evidence
+      and SFT-no-evidence). Bars colored green (positive=benefit), red
+      (negative=cost), gray (near-zero). Horizontal dashed line at y=0.
+      Annotate each bar with its value. Sub-bars or outlined overlay for RSFT
+      evidence tax (RSFT minus no-evidence) to show RSFT recovery effect.
+    placement: "experiments"
+    aspect_ratio: "4:3"
+    data_source: >
+      registry: plan_006_qwen3_1_7b_sft_eval,
+      plan_006_qwen3_1_7b_no_evidence_eval_v3, reeval_sft_baseline_d076,
+      eval_plan_014_no_evidence_r2, plan_006_qwen3_8b_sft_eval,
+      plan_016_llama_3_1_8b_sft_eval, plan_016_llama_3_1_8b_no_evidence_eval
+    priority: high
+    notes: >
+      paper_framing.md reports 1.7B=+6.2pp from D083 fair subset analysis.
+      Worker must verify exact numbers from registry; if full dev set differs
+      from D083, use fair subset and note in caption.
+
+  - fig_id: fig_edcr_relations
+    type: statistical
+    tool: matplotlib
+    description: >
+      Per-relation EDCR scatter plot (appendix). X-axis: per-relation Evi-F1,
+      Y-axis: per-relation EDCR. 76 relation types as points colored by
+      rel_f1 quartile. Annotate extreme cases (date_of_birth, head_of_government).
+      Shows independence (ρ=-0.064, p=0.58).
+    placement: "appendix"
+    aspect_ratio: "1:1"
+    data_source: "D070 per-relation analysis data"
+    priority: medium
+
+  - fig_id: fig_grpo_dynamics
+    type: statistical
+    tool: matplotlib
+    description: >
+      GRPO training dynamics (appendix). X-axis: training steps (0-100).
+      Two Y-axes: left=Rel-F1, right=Evi-F1. Lines for QLoRA (catastrophic
+      trajectory) and bf16 (mild trajectory). Shows divergence point.
+    placement: "appendix"
+    aspect_ratio: "3:2"
+    data_source: >
+      registry: mvp2_eval_lr5e6_r1_ckpt20 through ckpt100,
+      mvp2_eval_ced_kl001_r4 checkpoints, plan_011 checkpoints
+    priority: medium
+
+# ============================================================
+# TABLE PLAN
+# ============================================================
+table_plan:
+  # --- Main text tables ---
+  - table_id: tab_main
+    type: comparison
+    placement: "experiments §main_results"
+    columns: [Method, Ign-F1, Evi-F1, EDCR, "Δ vs SFT"]
+    rows:
+      - "SFT baseline"
+      - "SFT no-evidence"
+      - "RSFT CED (mean ± std across 4 seeds)"
+      - "CED reranker (inference-time, no training)"
+    data_source:
+      - "reeval_sft_baseline_d076"
+      - "eval_plan_014_no_evidence_r2"
+      - "reeval_ced_s42, reeval_ced_s44, eval_rsft_ced_s43, eval_rsft_ced_s45"
+    notes: >
+      Ign-F1 as primary metric (ignores training triples).
+      Evi-F1 = TP-only conditional. Bold best evidence-grounded.
+
+  - table_id: tab_spectrum
+    type: comparison
+    placement: "experiments §decoupling"
+    columns: [Paradigm, Config, Rel-F1, Evi-F1, EDCR, Severity]
+    rows:
+      - "GRPO + QLoRA (G=4)"
+      - "GRPO + bf16 (G=8, best step)"
+      - "DPO bf16 1ep"
+      - "DPO bf16 3ep"
+      - "SFT baseline"
+      - "RSFT CED (mean)"
+    data_source:
+      - "mvp2_eval_lr5e6_r1_ckpt100"
+      - "plan_011_grpo_g8_bf16_eval"
+      - "eval_plan_012_dpo_1ep_fixed_r2"
+      - "plan_012_dpo_ced"
+      - "reeval_sft_baseline_d076"
+      - "reeval_ced_s42, reeval_ced_s44"
+    notes: >
+      Order by decoupling severity (catastrophic → mild → gradual → none).
+      Severity label column aids readability. GRPO QLoRA rel_f1=0.014 is the
+      anchor for 'catastrophic'.
+
+  - table_id: tab_scaling
+    type: comparison
+    placement: "experiments §scaling"
+    columns: [Model, "SFT (w/ evi)", "No-Evidence", RSFT, "Evi Tax", "RSFT Gain"]
+    rows:
+      - "Qwen3-1.7B"
+      - "Qwen3-4B"
+      - "Qwen3-8B (eval running → TBD placeholder)"
+      - "LLaMA-3.1-8B"
+    data_source:
+      - "plan_006_qwen3_1_7b_sft_eval, plan_006_qwen3_1_7b_no_evidence_eval_v3"
+      - "reeval_sft_baseline_d076, eval_plan_014_no_evidence_r2"
+      - "plan_006_qwen3_8b_sft_eval (no-evi TBD)"
+      - "plan_016_llama_3_1_8b_sft_eval, plan_016_llama_3_1_8b_no_evidence_eval"
+    notes: >
+      Evidence Tax = SFT(evi) - No-Evidence. 8B eval still running; use
+      placeholder or latest available. Cross-family row (LLaMA) confirms
+      8B pattern.
+
+  - table_id: tab_evidence_strategy
+    type: comparison
+    placement: "experiments §evidence_strategy"
+    columns: [Strategy, Method, Rel-F1, "Evi-F1 (joint)", EDCR]
+    rows:
+      - "Joint gen: RSFT CED (best)"
+      - "Joint gen: SFT baseline"
+      - "Post-hoc: BM25 entity k=2"
+      - "Post-hoc filter: CED sentence-level"
+      - "Gen + rerank: CED reranker"
+    data_source:
+      - "eval_rsft_ced_s43 (evi_f1_joint)"
+      - "reeval_sft_baseline_d076 (evi_f1_joint)"
+      - "post_hoc_bm25_baseline"
+      - "lead1_ced_evidence_filter"
+    notes: >
+      Must use evi_f1_joint for fair cross-strategy comparison.
+      Sentence-level CED filter is a negative result (D090).
+      EDCR gap (0.654 vs 0.766) shows faithfulness advantage of joint gen.
+
+  # --- Appendix tables ---
+  - table_id: tab_ablation_full
+    type: ablation
+    placement: appendix
+    columns: [Scoring, Seed, Ign-F1, Rel-F1, Evi-F1, EDCR]
+    rows: "All CED seeds + flat-NLI seeds + top-k=3 + paired t-test"
+    data_source: "all reeval_ced_*, eval_rsft_ced_*, reeval_flat_nli_*, eval_flat_nli_*, reeval_rsft_topk3"
+
+  - table_id: tab_cross_detail
+    type: comparison
+    placement: appendix
+    columns: [Model/Dataset, Config, Ign-F1, Evi-F1, EDCR, "Δ SFT"]
+    rows: "Re-DocRED SFT + RSFT, LLaMA SFT + RSFT + no-evi + GRPO QLoRA"
+    data_source: "plan_007_*, plan_016_*, plan_006_llama_*"
+
+  - table_id: tab_dreeam_protocol
+    type: comparison
+    placement: appendix
+    columns: [Method, Type, "Evi-P (sent)", "Evi-R (sent)", "Evi-F1 (sent)"]
+    rows: "DREEAM (from paper), SAIS (from paper), FREIGE SFT, FREIGE RSFT CED"
+    data_source: "D093 analysis + DREEAM/SAIS paper numbers"
+    notes: "TP-only evi_f1 vs joint clearly labeled. Gap mainly from RE, not evidence."
+
+  - table_id: tab_hyperparams
+    type: reference
+    placement: appendix
+    columns: [Parameter, SFT, RSFT, GRPO, DPO]
+    rows: "lr, epochs, LoRA r/alpha, batch, max_tokens, N, k, G, KL coeff, etc."
+
+# ============================================================
+# LITERATURE STRATEGY
+# ============================================================
+literature_strategy:
+  macro_context: >
+    LLM-based IE is advancing rapidly, but no generative method produces
+    verifiable evidence alongside extracted relations. This paper fills
+    the gap by proposing evidence-grounded DocRE, systematically studying
+    the cost of faithfulness across training paradigms and model scales.
+  citation_budget: 40-50
+  micro_clusters:
+    - cluster_name: docre_methods
+      description: "Document-level RE: encoder-based + LLM-based methods"
+      target_count: 10
+      must_cite:
+        - "DocRED (Yao et al. 2019)"
+        - "Re-DocRED (Tan et al. 2022)"
+        - "ATLOP (Zhou et al. 2021)"
+        - "LMRC (Li et al. 2023)"
+        - "DocKS-RAG (Xu et al. 2024)"
+        - "GenRES"
+      search_queries:
+        - "document-level relation extraction LLM 2024 2025"
+        - "generative relation extraction evaluation"
+
+    - cluster_name: evidence_docre
+      description: "Evidence retrieval/supervision in DocRE"
+      target_count: 6
+      must_cite:
+        - "DREEAM (Ma et al. 2023)"
+        - "SAIS (Xiao et al. 2022)"
+      search_queries:
+        - "evidence retrieval document relation extraction DREEAM SAIS"
+        - "supporting evidence sentence information extraction"
+
+    - cluster_name: rl_alignment
+      description: "RL for LLMs: GRPO, DPO, RL for structured prediction"
+      target_count: 8
+      must_cite:
+        - "GRPO / DeepSeekMath (Shao et al. 2024)"
+        - "DPO (Rafailov et al. 2024)"
+        - "Gao et al. 2023 (reward overoptimization)"
+      search_queries:
+        - "GRPO group relative policy optimization structured"
+        - "DPO direct preference optimization"
+        - "RL for information extraction 2024 2025"
+
+    - cluster_name: self_training_rsft
+      description: "Self-training, rejection sampling, STaR"
+      target_count: 5
+      must_cite:
+        - "STaR (Zelikman et al. 2022)"
+      search_queries:
+        - "STaR self-taught reasoner rejection sampling"
+        - "ReST reinforced self-training language model"
+
+    - cluster_name: quantization_rl
+      description: "Quantization effects on RL, QLoRA artifacts"
+      target_count: 4
+      must_cite:
+        - "QuRL (Ahmadian et al. 2024)"
+        - "QaRL"
+      search_queries:
+        - "QuRL quantized reinforcement learning language model"
+        - "QLoRA artifacts RL fine-tuning stability"
+
+    - cluster_name: rl_forgetting
+      description: "RL and catastrophic forgetting (to position intra-task vs inter-task)"
+      target_count: 4
+      must_cite: []
+      search_queries:
+        - "reinforcement learning catastrophic forgetting language model 2024 2025"
+        - "RL fine-tuning preserves pretrained knowledge"
+        - "alignment tax knowledge retention"
+
+# ============================================================
+# WRITING ORDER
+# ============================================================
+writing_order:
+  - section: experiments
+    rationale: "Grounds narrative in real registry data. All claims must have evidence."
+  - section: method
+    rationale: "Explains how we got the results. References experiment findings."
+  - section: introduction
+    rationale: "Full story is now clear: what we found and why it matters."
+  - section: related_work
+    rationale: "Positioning requires knowing our results and contributions."
+  - section: conclusion
+    rationale: "Summarize established narrative."
+  - section: limitations
+    rationale: "Honest assessment based on complete picture."
+  - section: abstract
+    rationale: "Compress complete story into 220 words. Written last."
+  - section: appendix
+    rationale: "Supporting details that didn't fit in main text."
+
+# ============================================================
+# PAPER FILE STRUCTURE
+# ============================================================
+file_structure:
+  paper_dir: "projects/faith-evidence-ie/docs/paper/"
+  main_tex: "main.tex"
+  sections:
+    - "sections/abstract.tex"
+    - "sections/introduction.tex"
+    - "sections/related_work.tex"
+    - "sections/method.tex"
+    - "sections/experiments.tex"
+    - "sections/analysis.tex"
+    - "sections/conclusion.tex"
+    - "sections/limitations.tex"
+    - "sections/appendix.tex"
+  bib: "references.bib"
+  figures_dir: "projects/faith-evidence-ie/figures/paper/"
+  template_dir: "acl-style/"
+
+# ============================================================
+# CLAIMS REGISTRY MAP (for provenance)
+# ============================================================
+claims_registry_map:
+  C1_rsft_works:
+    claim: "RSFT CED consistently outperforms SFT (+3.8-6.0pp Ign-F1)"
+    evidence:
+      - exp: reeval_ced_s42
+        metric: ign_f1
+        value: 0.4423
+      - exp: reeval_ced_s44
+        metric: ign_f1
+        value: 0.4511
+      - exp: eval_rsft_ced_s43
+        metric: ign_f1
+        value: 0.4512
+      - exp: eval_rsft_ced_s45
+        metric: ign_f1
+        value: 0.4416
+      - exp: reeval_sft_baseline_d076
+        metric: ign_f1
+        value: 0.3974
+
+  C2_decoupling_spectrum:
+    claim: "RL optimization pressure correlates with decoupling severity"
+    evidence:
+      - exp: mvp2_eval_lr5e6_r1_ckpt100
+        metric: rel_f1
+        value: 0.0138
+        label: "GRPO QLoRA catastrophic"
+      - exp: plan_011_grpo_g8_bf16_eval
+        metric: rel_f1
+        value: 0.4549
+        label: "GRPO bf16 mild (-2pp from SFT 0.4549 initial)"
+      - exp: eval_plan_012_dpo_1ep_fixed_r2
+        metric: rel_f1
+        value: 0.4034
+        label: "DPO 1ep gradual"
+      - exp: plan_012_dpo_ced
+        metric: rel_f1
+        value: 0.3429
+        label: "DPO 3ep further decay"
+
+  C3_ced_vs_flat_nli:
+    claim: "CED and flat-NLI statistically indistinguishable (p=0.44)"
+    evidence:
+      - source: "D078 paired t-test"
+      - ced_mean_rel_f1: 0.4569
+      - flat_nli_mean_rel_f1: 0.4561
+      - delta: 0.0008
+
+  C4_edcr_diagnostic:
+    claim: "EDCR provides dual-layer diagnostic value"
+    evidence:
+      - source: "D070 per-relation analysis"
+      - method_level_rho: -0.965
+      - per_relation_rho_edcr_evif1: -0.064
+      - per_relation_p: 0.58
+
+  C5_scaling:
+    claim: "Evidence tax is scale-dependent and non-monotonic"
+    evidence:
+      - model: "Qwen3-1.7B"
+        source: "D079/D083"
+        tax: "+6.2pp benefit"
+      - model: "Qwen3-4B"
+        source: "registry"
+        tax: "-7.5pp cost"
+      - model: "Qwen3-8B"
+        source: "D088 (eval running)"
+        tax: "≈0"
+      - model: "LLaMA-3.1-8B"
+        source: "D082"
+        tax: "-0.7pp near-neutral"

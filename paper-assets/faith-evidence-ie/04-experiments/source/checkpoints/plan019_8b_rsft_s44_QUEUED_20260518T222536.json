@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan019_8b_rsft_s44",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:24:55.221Z",
+    "updated_at": "2026-05-18T22:25:35.998Z",
+    "hypothesis": "8B RSFT seed44 (Option A: seed expansion). Reuses s42 SFT adapter + s42 CED k=1 scored data, only changes RSFT training seed to 44. Tests if RSFT gain is robust across seeds at 8B scale. Expected: ign_f1 similar to canonical 8B RSFT s42."
+  },
+  "timestamp": "2026-05-18T22:25:36.997821+00:00",
+  "trigger": "update_registry"
+}

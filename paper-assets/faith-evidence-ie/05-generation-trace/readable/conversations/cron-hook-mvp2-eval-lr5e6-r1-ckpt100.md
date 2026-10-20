@@ -1,0 +1,1035 @@
+# cron hook mvp2 eval lr5e6 r1 ckpt100
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 34
+- **Recorded user turns:** 1
+- **Tool calls:** 16
+- **Original source:** `logs/chats/cron_hook_mvp2_eval_lr5e6_r1_ckpt100.jsonl`
+- **Structured JSON:** [`7e58e45856c2f3f59593.json`](../../sessions/7e/7e58e45856c2f3f59593.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+34 recorded events
+
+### User
+
+_source line 1 · 2026-05-15T04:24:37.276628+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #7。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单: cuda:0, cuda:1, cuda:2, cuda:3（全在 rtx5090-4x 同一台机器）
+- GRPO+QLoRA 方向已判死（D031），不得再启动任何 GRPO 训练实验
+- lr=5e-6 系列 eval 是收尾性质（收集轨迹数据），不是新方向验证
+- 服务器用 conda 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），**不是 venv**
+- submit_on_allocated 命令必须自带 conda activate，不能假设 shell 已激活
+
+### 2. 🖥️ 基础设施快照
+- 服务器：rtx5090-4x（RTX 5090 32GB × 4，2 个 SSH endpoint 同一台机器）
+- 工作目录：`/root/autodl-tmp`
+- Python：`/root/miniconda3/bin/python`
+- 模型路径：`/root/autodl-tmp/models/Qwen3-4B`（基座），`/root/autodl-tmp/sft_output`（SFT adapter），`/root/autodl-tmp/grpo_ced_lr5e6/`（GRPO checkpoints）
+- 数据：`/root/autodl-tmp/data/docred`
+- Eval 输出：`/root/autodl-tmp/eval_results/`
+- 活跃进程：`mvp2_rsft_generate`（PID 122144, cuda:1）— Rejection Sampling 生成阶段，SFT 模型对训练样本生成 N=8 候选输出
+- Cron 监控：mvp2_rsft_generate 已 reconcile，仍在运行
+
+### 3. 📊 当前状态
+**刚做完**：收到 `mvp2_eval_lr5e6_r1_ckpt100` 完成回调，已派 Worker（`worker_analysis_mvp2_eval_lr5e6_r1_ckpt100_20260515T012129`）SSH 读取 eval 结果并更新 registry。Worker 尚未回调。
+
+**Registry 状态**：
+- RUNNING: `mvp2_rsft_generate`（RSFT 生成阶段，cuda:1，D031 pivot 方向）
+- ANALYZING: `mvp2_eval_lr5e6_r1_ckpt100`（Worker 正在处理）
+- PREPARING: `mvp2_grpo_ced_kl001_r2`, `mvp2_grpo_ced_kl001_r3`, `mvp2_eval_ced_kl001_r4_last`（均为废弃的 GRPO 实验，不会再跑）
+
+**等待中**：
+- Worker 回调：ckpt100 分析 Worker
+- Cron：mvp2_rsft_generate 完成回调
+- 未向 Director 汇报本次 ckpt100 结果（等 Worker 回调后一并汇报）
+
+### 4. 📋 待办
+- ckpt100 Worker 回调到达 → 读 metrics → 预期 negative（轨迹: ckpt20=0.0077→ckpt40=0.0071→ckpt60=0.0093→ckpt80=0.0116，远低于 pass=0.30）→ 更新 report.md → 向 Director 汇报完整 lr5e6 轨迹数据（作为 GRPO 判死的最终证据）→ 不需要 Framing 提案（D031 已判死，这是收尾数据）
+- mvp2_rsft_generate cron 回调 → 这是 **关键节点**：RSFT 生成完成后需要 CED 打分 + 筛选 top-k + 启动 RSFT 训练。派 Worker 检查生成质量（diversity、format compliance）→ 准备 RSFT 训练代码 → 向 Director 提交 RSFT 训练方案审批
+- cuda:0, cuda:2, cuda:3 空闲 → GRPO 训练已 killed，应用于 RSFT 相关任务（如果生成已完成则可并行跑 CED scoring）
+- 3 个 PREPARING 实验（kl001_r2/r3, kl001_r4_last）→ GRPO 方向已死，应标记为 killed 清理 registry
+
+### 5. 🎯 战略上下文
+- **核心结论链**：MVP-1 验证 CED reward 有效 (D025前) → GRPO+QLoRA lr=5e-5 全线 mode collapse/灾难性遗忘 (D024-D027) → lr=5e-6 无 catastrophic forgetting 但完全没学到关系抽取 (D030-D031) → **GRPO+QLoRA 判死，pivot 到离线 RL**
+- **当前方向**：Rejection Sampling FT（优先）+ DPO+CED（并行备选）。RSFT 生成阶段正在跑（mvp2_rsft_generate），这是 pivot 后的第一个实验
+- **SFT baseline**: rel_f1=0.4057，是所有后续方法要超越的目标
+- **易错点**：
+  1. lr5e6 系列 eval 的 rel_f1 极低（0.007-0.012），但 evi_f1 在持续提升（0.628→0.828）——这说明模型学会了生成 evidence 但忘了关系抽取。这个分离现象是重要的分析素材
+  2. kl001_r4 step-100 的 rel_f1=0.2167 比 lr5e6 高很多，但仍低于 SFT baseline 0.4057——两个 lr 都失败但失败模式不同
+  3. mvp2_diversity_probe 已验证 SFT 模型在 T=0.7 下输出多样性足够（success），RSFT 方案可行性前置验证通过
+  4. Contingency: 如果离线 RL 也失败 → 全参微调（排除 QLoRA adapter 是 forgetting 根因）或 CED 作为 reranker（后训练→推理时）
+
+## 可查的历史
+前 58 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T04:24:47.920939+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T04:24:47.971619+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T04:24:50.693125+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T04:24:51.198612+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T04:24:51.250988+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"mvp2_rsft_gen_s3\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T01:39:34.645Z\", \"updated_at\": \"2026-05-15T01:50:52.582Z\", \"hypothesis\": \"RSFT generation shard 3/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1.\", \"parent\": \"mvp2_sft_warmup\"}, \"mvp2_rsft_gen_s2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T01:39:32.299Z\", \"updated_at\": \"2026-05-15T01:50:09.425Z\", \"hypothesis\": \"RSFT generation shard 2/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1.\", \"parent\": \"mvp2_sft_warmup\"}, \"mvp2_rsft_gen_s1\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T01:39:29.894Z\", \"updated_at\": \"2026-05-15T01:50:08.464Z\", \"hypothesis\": \"RSFT generation shard 1/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1.\", \"parent\": \"mvp2_sft_warmup\"}, \"mvp2_rsft_gen_s0\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T01:39:26.572Z\", \"updated_at\": \"2026-05-15T01:50:07.589Z\", \"hypothesis\": \"RSFT generation shard 0/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1.\", \"parent\": \"mvp2_sft_warmup\"}, \"mvp2_rsft_generate\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T00:09:41.289Z\", \"updated_at\": \"2026-05-15T01:32:10.047Z\", \"hypothesis\": \"RSFT generation phase: SFT model generates N=8 candidate outputs per training sample at T=0.7. CED scoring + filtering后作为 RSFT 训练数据。D031 pivot 方向。\", \"parent\": \"mvp2_sft_warmup\", \"conclusion\": \"failed\"}, \"mvp2_diversity_probe\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T00:02:19.966Z\", \"updated_at\": \"2026-05-15T01:31:34.495Z\", \"hypothesis\": \"RSFT viability check: SFT model output diversity at T=0.7/1.0 with N=8 generations. Pass criteria: unique triple-sets >= 5/8.\", \"conclusion\": \"success\", \"
+…[truncated 32904 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 557
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T04:24:51.654674+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T04:24:51.755969+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T04:24:58.081103+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 4, \"results\": [{\"exp_id\": \"mvp2_rsft_gen_s0\", \"success\": true, \"actions\": [\"Job still running (pid=135867)\"]}, {\"exp_id\": \"mvp2_rsft_gen_s1\", \"success\": true, \"actions\": [\"Job still running (pid=136270)\"]}, {\"exp_id\": \"mvp2_rsft_gen_s2\", \"success\": true, \"actions\": [\"Job still running (pid=136649)\"]}, {\"exp_id\": \"mvp2_rsft_gen_s3\", \"success\": true, \"actions\": [\"Job still running (pid=137985)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 6882
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T04:24:58.081714+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| mvp2_rsft_gen_s3 | RSFT generation shard 3/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1. | — | — | — |\\n| mvp2_rsft_gen_s2 | RSFT generation shard 2/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1. | — | — | — |\\n| mvp2_rsft_gen_s1 | RSFT generation shard 1/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1. | — | — | — |\\n\\n## 待处理\\n- mvp2_grpo_ced_kl001_r2: kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary (retry: fix --lr → --learning_rate)（准备中）\\n- mvp2_grpo_ced_kl001_r3: kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary (retry: fix --lr + bash -c wrapping)（准备中）\\n- mvp2_eval_ced_kl001_r4_last（准备中）\\n\\n## 近期结论\\n- **mvp2_rsft_generate** (failed): RSFT generation phase: SFT model generates N=8 candidate outputs per training sample at T=0.7. CED scoring + filtering后作为 RSFT 训练数据。D031 pivot 方向。 ← 基于 mvp2_sft_warmup\\n- **mvp2_diversity_probe** (success): RSFT viability check: SFT model output diversity at T=0.7/1.0 with N=8 generations. Pass criteria: unique triple-sets >= 5/8.\\n- **mvp2_eval_lr5e6_r1_ckpt100** (negative): P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30. ← 基于 mvp2_grpo_ced_lr5e6_r1\\n\\n## 趋势\\n成功 10 / 负向 11 / 失败 11 / 共 48\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nrtx5090-4x: 空闲 cuda:0, cuda:1, cu
+…[truncated 1250 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 6427
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T04:24:58.133382+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\", \"content\": \"# faith-evidence-ie — Research Dashboard\\n\\n> 最后更新: 2026-05-15 01:42 UTC | 更新原因: D036: 撤销 diversity crisis，恢复 4 卡并行 RSFT 生成\\n\\n## 核心方向\\nFREIGE: 用对比证据判别 (CED) 奖励训练 LLM 在文档级关系抽取中同时生成抽取结果和可验证证据。\\n\\n## 当前进展\\n- 阶段: MVP 验证（MVP-1 ✅, MVP-2 运行中 — GRPO 判死，离线 RL pivot 进行中）\\n- **MVP-1**: CED margin 0.4827, accuracy 81.5%, r=0.34 — PASS\\n- **SFT warmup**: 完成（eval loss 0.72, token accuracy 83.5%）\\n- **GRPO+QLoRA 全线 FAIL (D031/D033)**: CED 有效但在线 RL 导致 rel_f1 catastrophic forgetting\\n- **D034/D035 撤销 (D036)**: diversity crisis 为监控 bug（度量代码错误报 1.0/8，实际 7.11/8 median=8.0）\\n- **RSFT 生成**: T=0.7 diversity 充足，4 卡并行分片重启中（已完成 302/3027 docs，断点续传）\\n\\n## GPU 分配（2026-05-15 实况）\\n\\n| GPU | 状态 | 任务 |\\n|-----|------|------|\\n| cuda:0 | 🏃 启动中 | RSFT generate shard 0 |\\n| cuda:1 | 🏃 启动中 | RSFT generate shard 1（续跑已有 302 docs） |\\n| cuda:2 | 🏃 启动中 | RSFT generate shard 2 |\\n| cuda:3 | 🏃 启动中 | RSFT generate shard 3 |\\n\\n## MVP-2: 离线 RL 路线\\n\\n### RSFT 流水线（diversity gate 已通过）\\n1. ✅ 代码准备（含 generation_config 修复 + 分片并行 + diversity 监控修复）\\n2. 🏃 生成候选（4 卡并行，预计 ~3h 完成全量 3027 docs × 8 generations）\\n3. ⬜ CED 打分筛选\\n4. ⬜ RSFT 训练\\n5. ⬜ Eval\\n\\n### 方案 2: DPO + CED（RSFT 完成后考虑）\\n\\n### Contingency（RSFT 训练效果不佳时）\\n1. Prompt-level 多样性: 不同 prompt 模板 / 不同实体子集\\n2. CED 作为 reranker（推理时方案）\\n3. 全参微调（non-QLoRA）\\n\\n## 近期任务\\n- [ ] 4 卡并行 RSFT 生成完成（~3h）\\n- [ ] 合并 4 shard 输出\\n- [ ] CED 打分筛选 top candidates\\n- [ ] RSFT 训练\\n- [ ] Eval: rel_f1 / evidence quality\\n\\n## Post-MVP 流程（MVP-2 通过后）\\n1. complete_mvp() → paper_framing.md → experiment_plan.yaml → dream_simulate\\n\\n## GPU 预算\\n- 硬件: 4× RTX 5090 32GB\\n- GRPO 已消耗: ~60+ GPU-hours\\n- RSFT 生成预估: ~3h（4 卡并行）\\n- RSFT 训练预估: ~4-8h\\n\\n## 评审笔记（Research 阶段处理）\\n1. CED 重框定为 anti-reward-overoptimization mechanism\\n2. EDCR 升格为独立评估贡献\\n3. ~~NLI lexical overlap bias~~ → MVP-1 已验证 (r=0.34)\\n4.
+…[truncated 1632 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 6377
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T04:25:19.714068+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T04:25:19.764869+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T04:25:25.561115+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "mvp2_grpo_ced_kl001_r2",
+  "field": "status",
+  "value": "DONE",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "mvp2_grpo_ced_kl001_r2",
+    "field": "status",
+    "value": "DONE",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T04:25:26.015396+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.2276}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 454
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T04:25:26.520391+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "mvp2_grpo_ced_kl001_r3",
+  "field": "status",
+  "value": "DONE",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "mvp2_grpo_ced_kl001_r3",
+    "field": "status",
+    "value": "DONE",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T04:25:26.925123+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.2519}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 404
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T04:25:27.481789+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "mvp2_eval_ced_kl001_r4_last",
+  "field": "status",
+  "value": "DONE",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "mvp2_eval_ced_kl001_r4_last",
+    "field": "status",
+    "value": "DONE",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T04:25:27.946994+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.2473}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 465
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T04:25:27.999416+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "status": "running",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "status": "running",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T04:25:28.050316+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_ssh_rsft-downstream-precheck_20260515T042359\", \"task_type\": \"ssh:rsft-downstream-precheck\", \"project\": \"faith-evidence-ie\", \"status\": \"running\", \"started_at\": \"2026-05-15T04:23:59.788890+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T04:25:42.194625+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_ssh_rsft-downstream-precheck_20260515T042359",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_ssh_rsft-downstream-precheck_20260515T042359",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T04:25:43.303964+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ssh_rsft-downstream-precheck_20260515T042359\", \"status\": \"running\", \"task_type\": \"ssh:rsft-downstream-precheck\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-15T04:23:59.788890+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"Grep\", \"Grep\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\"], \"last_text\": \"发现两个阻塞项。NLI 模型不存在，且 score_filter 不支持多 shard 输入。让我再确认几个细节。\", \"turn_count\": 12}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 1109
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T04:25:43.304438+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T04:25:43.406562+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_274d1a7c.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "Read",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T04:26:11.622757+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 4/4 全部在跑 | Worker 池 1 (GPU 0 / CPU 1: rsft-downstream-precheck)\n\n## Session #7 初始化汇报\n\n### 1. lr5e6 ckpt100 结果（收尾数据）\n\n完整 lr5e6 轨迹确认 GRPO+QLoRA 判死：\n\n| checkpoint | rel_f1 | evi_f1 | pred_count |\n|-----------|--------|--------|------------|\n| ckpt-20 | 0.0077 | 0.628 | 14440 |\n| ckpt-40 | 0.0071 | 0.758 | 14434 |\n| ckpt-60 | 0.0093 | 0.810 | 14626 |\n| ckpt-80 | 0.0116 | 0.828 | 13828 |\n| **ckpt-100** | **0.0138** | **0.850** | 13300 |\n| SFT baseline | 0.4057 | 0.798 | 12234 |\n\n分析：\n- rel_f1 从 0.007→0.014 有微弱上升但仍远低于 SFT baseline (0.4057)，不具恢复信号\n- evi_f1 单调上升 0.628→0.850，已超过 SFT baseline (0.798)——模型学会了生成 evidence 但忘了关系抽取\n- 这个 rel_f1/evi_f1 分离现象是论文分析素材：GRPO+QLoRA 下 CED reward 有效提升 evidence 质量但以灾难性遗忘关系能力为代价\n\nlr5e6 系列全部收尾完毕，D031/D033 结论不变。\n\n### 2. RSFT 生成进展\n\n4 卡并行分片全部 RUNNING（reconcile 确认 PID 存活）：\n- cuda:0: shard 0 (PID 135867)\n- cuda:1: shard 1 (PID 136270)\n- cuda:2: shard 2 (PID 136649)\n- cuda:3: shard 3 (PID 137985)\n\n预计 ~3h 完成全量 3027 docs × 8 generations。\n\n### 3. 下游预检发现阻塞项\n\nrsft-downstream-precheck Worker（turn 12）发现：\n1. NLI 模型不在服务器上——CED 打分需要 NLI 模型\n2. score_filter 脚本不支持多 shard 输入——需要适配 4 分片合并\n\nWorker 仍在运行，等其完成后我将根据完整诊断派 Worker 修复。\n\n### 4. 下一步\n- 等 RSFT 生成 + 下游预检 Worker 完成\n- 修复阻塞项（NLI 模型下载 + score_filter 适配）\n- 生成完成后启动 CED 打分 → 筛选 → RSFT 训练",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 4/4 全部在跑 | Worker 池 1 (GPU 0 / CPU 1: rsft-downstream-precheck)\n\n## Session #7 初始化汇报\n\n### 1. lr5e6 ckpt100 结果（收尾数据）\n\n完整 lr5e6 轨迹确认 GRPO+QLoRA 判死：\n\n| checkpoint | rel_f1 | evi_f1 | pred_count |\n|-----------|--------|--------|------------|\n| ckpt-20 | 0.0077 | 0.628 | 14440 |\n| ckpt-40 | 0.0071 | 0.758 | 14434 |\n| ckpt-60 | 0.0093 | 0.810 | 14626 |\n| ckpt-80 | 0.0116 | 0.828 | 13828 |\n| **ckpt-100** | **0.0138** | **0.850** | 13300 |\n| SFT baseline | 0.4057 | 0.798 | 12234 |\n\n分析：\n- rel_f1 从 0.007→0.014 有微弱上升但仍远低于 SFT baseline (0.4057)，不具恢复信号\n- evi_f1 单调上升 0.628→0.850，已超过 SFT baseline (0.798)——模型学会了生成 evidence 但忘了关系抽取\n- 这个 rel_f1/evi_f1 分离现象是论文分析素材：GRPO+QLoRA 下 CED reward 有效提升 evidence 质量但以灾难性遗忘关系能力为代价\n\nlr5e6 系列全部收尾完毕，D031/D033 结论不变。\n\n### 2. RSFT 生成进展\n\n4 卡并行分片全部 RUNNING（reconcile 确认 PID 存活）：\n- cuda:0: shard 0 (PID 135867)\n- cuda:1: shard 1 (PID 136270)\n- cuda:2: shard 2 (PID 136649)\n- cuda:3: shard 3 (PID 137985)\n\n预计 ~3h 完成全量 3027 docs × 8 generations。\n\n### 3. 下游预检发现阻塞项\n\nrsft-downstream-precheck Worker（turn 12）发现：\n1. NLI 模型不在服务器上——CED 打分需要 NLI 模型\n2. score_filter 脚本不支持多 shard 输入——需要适配 4 分片合并\n\nWorker 仍在运行，等其完成后我将根据完整诊断派 Worker 修复。\n\n### 4. 下一步\n- 等 RSFT 生成 + 下游预检 Worker 完成\n- 修复阻塞项（NLI 模型下载 + score_filter 适配）\n- 生成完成后启动 CED 打分 → 筛选 → RSFT 训练",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T04:26:16.719622+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 5096
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T04:26:32.984546+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T04:26:33.086589+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"content\": \"# 文献调研：GRPO/RLHF 训练中的\\\"先遗忘后恢复\\\"现象\\n\\n日期：2026-05-14\\n\\n## 背景\\n\\nQwen3-4B + GRPO + QLoRA 4-bit 训练文档级关系抽取，观察到：\\n- Reward 上升但 eval rel_F1 崩塌（ckpt-20: 0.0077 vs SFT baseline 0.406）\\n- lr=5e-5 和 lr=5e-6 下都出现\\n- 存在\\\"先遗忘后缓慢恢复\\\"的 U 型曲线（step-10=0.003 → step-90=0.211），但恢复不足\\n\\n---\\n\\n## 论文 1：Mitigating the Alignment Tax of RLHF\\n\\n- **作者**：Yifei Lin, Yuxin Tan, et al.\\n- **年份/Venue**：2024, EMNLP 2024\\n- **arXiv**：2309.06256\\n\\n### 核心发现\\n- 定义了\\\"alignment tax\\\"：RLHF 对齐后模型遗忘预训练/SFT 阶段习得能力的现象\\n- 发现简单的**模型参数平均**（插值 SFT 和 RLHF 后模型权重）在 alignment-forgetting Pareto 前沿上表现最优\\n- 提出 **Heterogeneous Model Averaging (HMA)**：对不同层使用不同插值比例，最大化对齐收益同时最小化遗忘\\n\\n### 与我们场景的相关性\\n- **直接相关**。我们的 rel_F1 崩塌就是 alignment tax 的典型表现——GRPO 优化 reward 的过程中覆盖了 SFT 学到的抽取能力\\n- HMA 的层级插值思路可直接应用于 QLoRA adapter 权重\\n\\n### 推荐缓解方案\\n- 训练后对 SFT checkpoint 和 GRPO checkpoint 做权重插值（α=0.3~0.7）\\n- 或用 HMA 对不同 LoRA 层设置不同插值系数\\n\\n---\\n\\n## 论文 2：Online Merging Optimizers for Boosting Rewards and Mitigating Tax in Alignment\\n\\n- **作者**：Lu et al. (Qwen 团队)\\n- **年份/Venue**：2024, arXiv 2405.17931\\n- **开源**：github.com/QwenLM/online_merging_optimizers\\n\\n### 核心发现\\n- 在 RLHF 每个优化步骤中实时合并 RL policy 和 SFT 模型参数，持续调节训练方向\\n- 将梯度与 SFT-pretrained 参数差合并，引导梯度朝着\\\"在 SFT 优化方向上最大化 reward\\\"的方向前进\\n- 在 Qwen 和 LLaMA 系列（1.8B-8B）、DPO/KTO 等多种 RLHF 算法上验证有效\\n- 14 个 benchmark 上同时提升对齐 reward 并降低 alignment tax\\n\\n### 与我们场景的相关性\\n- **高度相关**。该方法正是为解决我们观察到的问题设计的——reward 上升但能力退化\\n- 来自 Qwen 团队，与我们使用的 Qwen3-4B 模型同源，兼容性好\\n- 在训练过程中在线缓解，而非事后补救\\n\\n### 推荐缓解方案\\n- 在 GRPO 训练中集成 Online Merging Optimizer，每步将 LoRA 更新方向锚定在 SFT 附近\\n\\n---\\n\\n## 论文 3：Robust Policy Optimization to Prevent Catastrophic Forgetting (FRPO)\\n\\n- **作者**：Sabbaghi, Hassani, Javanmard et al.\\n- **年份/Venue**：2025, arXiv 2602.08813\\n\\n### 核心发现\\n- 指出即使小幅下游更新也会破坏 RLHF 学到的行为（如安全性），暴露 cata
+…[truncated 11125 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T04:26:58.458441+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T04:26:58.560273+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"content\": \"# 文献调研：GRPO/RLHF 训练中的\\\"先遗忘后恢复\\\"现象\\n\\n日期：2026-05-14\\n\\n## 背景\\n\\nQwen3-4B + GRPO + QLoRA 4-bit 训练文档级关系抽取，观察到：\\n- Reward 上升但 eval rel_F1 崩塌（ckpt-20: 0.0077 vs SFT baseline 0.406）\\n- lr=5e-5 和 lr=5e-6 下都出现\\n- 存在\\\"先遗忘后缓慢恢复\\\"的 U 型曲线（step-10=0.003 → step-90=0.211），但恢复不足\\n\\n---\\n\\n## 论文 1：Mitigating the Alignment Tax of RLHF\\n\\n- **作者**：Yifei Lin, Yuxin Tan, et al.\\n- **年份/Venue**：2024, EMNLP 2024\\n- **arXiv**：2309.06256\\n\\n### 核心发现\\n- 定义了\\\"alignment tax\\\"：RLHF 对齐后模型遗忘预训练/SFT 阶段习得能力的现象\\n- 发现简单的**模型参数平均**（插值 SFT 和 RLHF 后模型权重）在 alignment-forgetting Pareto 前沿上表现最优\\n- 提出 **Heterogeneous Model Averaging (HMA)**：对不同层使用不同插值比例，最大化对齐收益同时最小化遗忘\\n\\n### 与我们场景的相关性\\n- **直接相关**。我们的 rel_F1 崩塌就是 alignment tax 的典型表现——GRPO 优化 reward 的过程中覆盖了 SFT 学到的抽取能力\\n- HMA 的层级插值思路可直接应用于 QLoRA adapter 权重\\n\\n### 推荐缓解方案\\n- 训练后对 SFT checkpoint 和 GRPO checkpoint 做权重插值（α=0.3~0.7）\\n- 或用 HMA 对不同 LoRA 层设置不同插值系数\\n\\n---\\n\\n## 论文 2：Online Merging Optimizers for Boosting Rewards and Mitigating Tax in Alignment\\n\\n- **作者**：Lu et al. (Qwen 团队)\\n- **年份/Venue**：2024, arXiv 2405.17931\\n- **开源**：github.com/QwenLM/online_merging_optimizers\\n\\n### 核心发现\\n- 在 RLHF 每个优化步骤中实时合并 RL policy 和 SFT 模型参数，持续调节训练方向\\n- 将梯度与 SFT-pretrained 参数差合并，引导梯度朝着\\\"在 SFT 优化方向上最大化 reward\\\"的方向前进\\n- 在 Qwen 和 LLaMA 系列（1.8B-8B）、DPO/KTO 等多种 RLHF 算法上验证有效\\n- 14 个 benchmark 上同时提升对齐 reward 并降低 alignment tax\\n\\n### 与我们场景的相关性\\n- **高度相关**。该方法正是为解决我们观察到的问题设计的——reward 上升但能力退化\\n- 来自 Qwen 团队，与我们使用的 Qwen3-4B 模型同源，兼容性好\\n- 在训练过程中在线缓解，而非事后补救\\n\\n### 推荐缓解方案\\n- 在 GRPO 训练中集成 Online Merging Optimizer，每步将 LoRA 更新方向锚定在 SFT 附近\\n\\n---\\n\\n## 论文 3：Robust Policy Optimization to Prevent Catastrophic Forgetting (FRPO)\\n\\n- **作者**：Sabbaghi, Hassani, Javanmard et al.\\n- **年份/Venue**：2025, arXiv 2602.08813\\n\\n### 核心发现\\n- 指出即使小幅下游更新也会破坏 RLHF 学到的行为（如安全性），暴露 cata
+…[truncated 12017 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T04:30:09.555387+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+````json
+{
+  "project": "faith-evidence-ie",
+  "file": "memory.md",
+  "content": "# 文献调研：GRPO/RLHF 训练中的\"先遗忘后恢复\"现象\n\n日期：2026-05-14\n\n## 背景\n\nQwen3-4B + GRPO + QLoRA 4-bit 训练文档级关系抽取，观察到：\n- Reward 上升但 eval rel_F1 崩塌（ckpt-20: 0.0077 vs SFT baseline 0.406）\n- lr=5e-5 和 lr=5e-6 下都出现\n- 存在\"先遗忘后缓慢恢复\"的 U 型曲线（step-10=0.003 → step-90=0.211），但恢复不足\n\n---\n\n## 论文 1：Mitigating the Alignment Tax of RLHF\n\n- **作者**：Yifei Lin, Yuxin Tan, et al.\n- **年份/Venue**：2024, EMNLP 2024\n- **arXiv**：2309.06256\n\n### 核心发现\n- 定义了\"alignment tax\"：RLHF 对齐后模型遗忘预训练/SFT 阶段习得能力的现象\n- 发现简单的**模型参数平均**（插值 SFT 和 RLHF 后模型权重）在 alignment-forgetting Pareto 前沿上表现最优\n- 提出 **Heterogeneous Model Averaging (HMA)**：对不同层使用不同插值比例，最大化对齐收益同时最小化遗忘\n\n### 与我们场景的相关性\n- **直接相关**。我们的 rel_F1 崩塌就是 alignment tax 的典型表现——GRPO 优化 reward 的过程中覆盖了 SFT 学到的抽取能力\n- HMA 的层级插值思路可直接应用于 QLoRA adapter 权重\n\n### 推荐缓解方案\n- 训练后对 SFT checkpoint 和 GRPO checkpoint 做权重插值（α=0.3~0.7）\n- 或用 HMA 对不同 LoRA 层设置不同插值系数\n\n---\n\n## 论文 2：Online Merging Optimizers for Boosting Rewards and Mitigating Tax in Alignment\n\n- **作者**：Lu et al. (Qwen 团队)\n- **年份/Venue**：2024, arXiv 2405.17931\n- **开源**：github.com/QwenLM/online_merging_optimizers\n\n### 核心发现\n- 在 RLHF 每个优化步骤中实时合并 RL policy 和 SFT 模型参数，持续调节训练方向\n- 将梯度与 SFT-pretrained 参数差合并，引导梯度朝着\"在 SFT 优化方向上最大化 reward\"的方向前进\n- 在 Qwen 和 LLaMA 系列（1.8B-8B）、DPO/KTO 等多种 RLHF 算法上验证有效\n- 14 个 benchmark 上同时提升对齐 reward 并降低 alignment tax\n\n### 与我们场景的相关性\n- **高度相关**。该方法正是为解决我们观察到的问题设计的——reward 上升但能力退化\n- 来自 Qwen 团队，与我们使用的 Qwen3-4B 模型同源，兼容性好\n- 在训练过程中在线缓解，而非事后补救\n\n### 推荐缓解方案\n- 在 GRPO 训练中集成 Online Merging Optimizer，每步将 LoRA 更新方向锚定在 SFT 附近\n\n---\n\n## 论文 3：Robust Policy Optimization to Prevent Catastrophic Forgetting (FRPO)\n\n- **作者**：Sabbaghi, Hassani, Javanmard et al.\n- **年份/Venue**：2025, arXiv 2602.08813\n\n### 核心发现\n- 指出即使小幅下游更新也会破坏 RLHF 学到的行为（如安全性），暴露 catastrophic forgetting 的脆弱性\n- 提出 FRPO：优化 reward 时不仅考虑当前策略，还考虑 KL 邻域内所有可达策略的表现\n- 等价于 entropic risk objective——强调低 reward 轨迹，抑制高 reward 方差的策略\n- 通过修改 GRPO 实现，**无额外计算开销**\n\n### 与我们场景的相关性\n- **直接可用**。FRPO 本身就是 GRPO 的改进版本，直接替换即可\n- 解决的核心问题是\"GRPO 找到的高 reward 解是脆弱的\"——与我们观察到的 reward↑但 eval↓一致\n- 表明我们的模型可能找到了一个 reward hacking 式的局部最优\n\n### 推荐缓解方案\n- 将 GRPO 替换为 FRPO（修改 advantage 计算，加入 entropic risk 项）\n\n---\n\n## 论文 4：RL-Struct — Lightweight RL Framework for Structured Output\n\n- **作者**：arXiv 2512.00319\n- **年份/Venue**：2025, arXiv\n\n### 核心发现\n- 针对 JSON 等结构化输出 + RL 训练的特殊挑战\n- 提出**分层 reward 函数**：将结构化输出任务分解为 structure integrity → format correctness → content accuracy → validity 的层级约束\n- 使用 GRPO 优化，消除 critic network，降低 38% 峰值 VRAM\n- 4B 模型上 1000 个样本即可达到 80%+ 结构准确率，性能媲美 7B 模型\n\n### 与我们场景的相关性\n- **高度相关**。我们的任务要求模型输出 JSON 格式的关系抽取结果，这正是\"结构化输出 + RL\"的组合\n- 单一 reward 信号（F1）可能让模型在格式和内容之间混淆——分层 reward 可缓解\n- 当前 reward 可能过度奖励格式正确但内容错误的输出（reward hacking 的一种形式）\n\n### 推荐缓解方案\n- 将 reward 分解为：格式合规 reward + 实体正确性 reward + 关系正确性 reward\n- 分层加权，先保证格式，再优化内容\n\n---\n\n## 论文 5：GRPO++ / GRPO Instability with LoRA\n\n- **来源**：多篇论文和实践报告的综合\n  - Cameron Wolfe, \"GRPO++: Tricks for Making RL Actually Work\", 2025\n  - HuggingFace blog, \"Engineering Handbook for GRPO + LoRA with Verl\"\n  - arXiv 2504.20834, \"RL for LLM Reasoning Under Memory Constraints\"\n\n### 核心发现\n- **GRPO + LoRA 组合存在已知的不稳定性**：仅更新少量参数时，GRPO 的 group-relative advantage 估计方差增大\n- Full-token GRPO baseline 在 LoRA fine-tuning 下\"未能提升模型性能\"，表明 GRPO 对参数更新子集很敏感\n- KL 系数默认 β=0.0（TRL 默认），DeepSeek-R1 使用 β=0.001——过小的 KL 惩罚允许策略大幅偏离 SFT\n- 实践建议：\n  - 增大 KL 系数（β=0.01~0.1）\n  - 使用更大的 group size（G=16~64）降低 advantage 估计方差\n  - 降低学习率（LoRA + RL 场景建议 1e-6 量级）\n  - 考虑 Stochastic-GRPO 或 Token-Specific 优化变体\n\n### 与我们场景的相关性\n- **完全匹配**。我们正是 GRPO + QLoRA 4-bit，且 KL 系数仅 0.001\n- 低 KL + 低秩更新 = 策略快速偏离 SFT → 遗忘\n- 这是已知问题，不是偶发现象\n\n### 推荐缓解方案\n- 增大 KL 系数至 0.01~0.05\n- 增大 LoRA rank（r=4 可能太小，建议 r=16~32）\n- 增大 group size 降低 advantage 估计噪声\n\n---\n\n## 综合分析\n\n### \"先崩后恢复\" U 型曲线的最可能解释\n\n我们观察到的现象是 **三个因素叠加** 的结果：\n\n1. **Alignment Tax（核心原因）**：GRPO 梯度覆盖了 SFT 学到的关系抽取能力参数。由于 QLoRA 仅更新极少参数（rank=4），这些参数同时承载 SFT 能力和 RL 优化目标，冲突尤其剧烈。\n\n2. **KL 约束过弱 + LoRA 低秩放大不稳定性**：β=0.001 的 KL 惩罚几乎不约束策略偏离。在 LoRA 低秩空间中，微小的参数变化会导致输出分布剧烈变化，加速遗忘。\n\n3. **Reward Proxy Mismatch**：训练 reward 上升但 eval F1 下降，符合经典的 reward hacking 模式。模型可能学会了生成\"看起来合理\"但实际关系错误的输出——例如格式正确但实体/关系随机配对。\n\n**U 型恢复的解释**：训练初期策略大幅偏离导致崩塌；随着训练继续，模型在新的策略空间中重新\"发现\"部分抽取模式，但由于 LoRA 容量有限且 reward 信号有噪声，恢复不完全。\n\n### 最值得尝试的 2 个缓解方案\n\n**方案 A：增强 KL 正则化 + 扩大 LoRA 容量（低成本，优先尝试）**\n- KL 系数从 0.001 → 0.04\n- LoRA rank 从 r=4 → r=16\n- 学习率降至 1e-6\n- 预期效果：抑制训练初期的剧烈偏离，避免崩塌\n\n**方案 B：分层 Reward 设计（中等成本，针对 reward hacking）**\n- 将单一 reward 分解为：format_reward（JSON 格式合规）+ entity_reward（实体正确）+ relation_reward（关系正确）\n- 加权组合，format 权重最低（仅作 gate），relation 权重最高\n- 预期效果：消除模型通过格式取巧获得高 reward 的捷径\n\n**备选方案 C（如 A/B 不够）：Online Merging Optimizer**\n- 来自 Qwen 团队，在每个训练步骤将 LoRA 更新方向锚定在 SFT 方向\n- 实现复杂度中等，但效果在多个 Qwen 模型上验证过\n\n---\n\n## D031 Pivot: GRPO+QLoRA → RSFT + CED (2026-05-15)\n\n### 决策\nGRPO+QLoRA 方向判死，pivot 到 Rejection Sampling Fine-Tuning (RSFT) + CED scoring。\n\n### 核心证据\n- lr=5e-5 (ced_kl001_r4): best eval rel_f1=0.211 (step-90)，仅 SFT baseline (0.406) 的 52%\n- lr=5e-6 (lr5e6_r1): 完整轨迹 ckpt-20→100 rel_f1 = 0.008/0.007/0.009/0.012/0.014 — 零恢复，完全平坦\n- evi_f1 从 0.628 (ckpt-20) 单调上升到 0.850 (ckpt-100)，超过 SFT baseline (0.798)\n- 但 relation extraction 完全崩塌，训练 reward 与 eval F1 严重脱节\n- 所有 3 种 reward type (CED/extract-only/flat-NLI) 在 GRPO+QLoRA 下均 collapse 或远低于 SFT\n\n### 根因判断\n不是超参问题，是 GRPO+QLoRA 在结构化生成任务上的根本性局限：\n- QLoRA 低秩空间无法同时维持 SFT 能力和 RL 目标\n- 在线 RL 的策略偏移在前 20 步即不可逆地破坏关系抽取能力\n\n### RSFT 方案\n1. SFT 模型对每个训练样本生成 N=8 输出 (temperature=0.7)\n2. CED reward 打分筛选正样本\n3. 在正样本上 SFT fine-tune\n优势：完全避免在线 RL，CED signal 已在 MVP-1 验证有效 (margin=0.48, accuracy=81.5%)\n\n### RSFT 技术约束\n- **--quantize (4-bit) + merge_and_unload 在 RTX 5090 上有 CUBLAS 错误**，RSFT 训练不要用 quantize。bf16 Qwen3-4B 仅 ~8GB，无需量化。\n- 运行目录必须是 `/root/autodl-tmp/`（freige 不是 pip install 的包，cd 到 freige/ 子目录会导致 import 找到内层空包）\n\n### 遗留 GRPO 实验（sunk cost，完成轨迹数据）\n- ~~cuda:0 训练跑完 200 步~~ → 已 killed at step 113\n- ~~cuda:1/2/3 完成剩余 checkpoint eval~~ → 全部完成\n\n---\n\n## lr5e6 完整轨迹 + evi_f1 分离现象 (2026-05-15, D033 最终数据)\n\n### 完整 eval 轨迹\n\n| ckpt | rel_f1 | evi_f1 | pred_count | 判定 |\n|------|--------|--------|------------|------|\n| 20 | 0.0077 | 0.628 | 14440 | FAIL |\n| 40 | 0.0071 | 0.758 | 14434 | FAIL |\n| 60 | 0.0093 | 0.810 | 14626 | FAIL |\n| 80 | 0.0116 | 0.828 | 13828 | FAIL |\n| 100 | 0.0138 | 0.850 | 13300 | FAIL |\n| SFT | 0.4057 | 0.798 | 12234 | baseline |\n\n### 关键观察：rel_f1 / evi_f1 分离\n- **rel_f1 始终平坦** (0.007-0.014)，从未接近 SFT baseline (0.4057)\n- **evi_f1 单调上升** 0.628→0.850，ckpt-100 已超过 SFT baseline +5.2pp\n- 这说明 CED reward 有效教会了 evidence 定位（evi_f1↑），但 GRPO+QLoRA 的策略偏移同时摧毁了关系抽取能力（rel_f1↓）\n- **论文素材**：证明 CED reward signal 本身有效，问题出在 online RL + QLoRA 的训练方式\n\n### ckpt-100 训练拐点判定\n- W&B 显示 step 100 f1_reward 出现拐点 (0.016→0.093, 5.8x)\n- **判定线**：eval F1 > 0.15 = 真实学习, < 0.05 = format hacking\n- **结果**：rel_f1 = 0.0138 < 0.05 → **format hacking confirmed**\n- step-100 的训练拐点是 format reward 贡献的假信号，不是关系抽取学习\n\n---\n\n## 轨迹对比分析 (lr5e6 vs kl001_r4)\n\n日期：2026-05-15\n\n### 关键定量发现\n\n**lr5e6 的 f1_reward 在 80 步内无学习趋势**：0.000-0.042 极窄区间内随机波动，是 batch_size=1 采样噪声而非学习信号。kl001_r4 同期也经历低位波动，但 step 40 出现明确上升拐点——lr5e6 到 step 80 仍未出现。\n\n**lr5e6 正在学 format hacking**：step 200 预测 total_reward ~0.65-0.70，其中 88%+ 来自 format_reward（0.138→0.249 稳步上升）。F1/CED reward 几乎无贡献。kl001_r4 的 format 仅占 25%。\n\n**KL 基线反映学习速率**：lr5e6 典型 KL=0.006-0.012（policy 几乎未变），kl001_r4 KL=0.098-0.181（15-20x 高，符合 10x LR 差距）。lr5e6 的 step 65 KL=10.3 spike 是偶发事件，5 步内恢复。\n\n**最优 LR 在 1e-5 到 2e-5 之间**：5e-5 学得快但遗忘严重（max eval F1=0.211=SFT 52%），5e-6 不遗忘但不学习。\n\n### 决策性结论\n\n- **ckpt-40 eval 已确认**：rel_f1=0.0071 < 0.05，lr=5e-6 判定失败\n- **submit_on_allocated 失败根因**：`cd /root/autodl-tmp/freige` 导致 Python path 找到内层空 freige/freige/ 包。修复：`cd /root/autodl-tmp`。后续 eval 均应用修正后的脚本\n\n---\n\n## RSFT 代码就绪状态验证 (2026-05-14)\n\n### 文件清单\n\n| 文件 | 行数 | 功能 | dry-run |\n|------|------|------|---------|\n| `training/rsft_generate.py` | 296 | Step 1: SFT 模型批量生成 N 个候选输出 | `--help` ✓ |\n| `training/rsft_score_filter.py` | 464 | Step 2: CED 打分 + 筛选高质量样本 | `--help` ✓ |\n| `training/rsft_trainer.py` | 252 | Step 3: 在筛选数据上 SFT 训练 | `--help` ✓ |\n\n### 参数总览\n\n**rsft_generate.py:**\n- `--base_model` (默认: 代码内硬编码)\n- `--sft_adapter` (默认: 代码内硬编码)\n- `--data_path` (DocRED 数据目录)\n- `--split` (默认: train)\n- `--output_dir` (生成结果目录)\n- `--num_generations` (默认: 8)\n- `--temperature` (默认: 0.7)\n- `--batch_size` (默认: 2)\n- `--max_new_tokens` (默认: 1024)\n- `--seed` (默认: 42)\n- `--quantize/--no-quantize` (默认: ~~True~~ → **已修为 False**, 2026-05-15 rsft-format-fix Worker)\n- `--start_idx`, `--end_idx`, `--shard_id` (2026-05-15 rsft-parallel-support Worker 新增)\n\n**rsft_score_filter.py:**\n- `--input_dir` (required, generations.jsonl 所在目录)\n- `--output_path` (required, 输出目录)\n- `--nli_model_path` (默认: cross-encoder/nli-deberta-v3-base)\n- `--nli_device` (默认: auto)\n- `--tau` (默认: 0.5)\n- `--format_threshold` (默认: 0.5)\n- `--f1_threshold` (默认: 0.0)\n- `--ced_threshold` (默认: 0.0)\n- `--selection_strategy` (默认: top_pct, 可选: threshold/top_k/top_pct)\n- `--top_k` (默认: 2)\n- `--top_pct` (默认: 25)\n\n**rsft_trainer.py:**\n- `--base_model` (默认: /root/autodl-tmp/models/Qwen3-4B)\n- `--sft_adapter` (默认: /root/autodl-tmp/sft_output)\n- `--rsft_data_path` (required, JSONL)\n- `--output_dir` (required)\n- `--learning_rate`, `--num_epochs`, `--per_device_batch_size`, `--gradient_accumulation_steps`\n- `--warmup_steps`, `--save_steps`, `--save_total_limit`, `--max_length`, `--seed`\n- `--wandb_project`, `--wandb_run_name`\n- `--weighted_sampling` (store_true, CED score 加权采样)\n- `--quantize` (store_true, 默认 False ← 正确)\n- `--lora_rank` (默认 64), `--lora_alpha` (默认 128), `--lora_dropout` (默认 0.05)\n- `--bf16` (默认 True)\n- `--deepspeed` (可选配置文件)\n\n### 依赖验证\n\n| 依赖项 | 状态 |\n|--------|------|\n| `freige.rewards.ced_reward.CEDRewardModel` | ✓ import 正常 |\n| `freige.rewards.ced_reward.verbalize_triple` | ✓ import 正常 |\n| `freige.eval.evaluator.parse_model_output` | ✓ import 正常 |\n| `freige.data.docred_processor.DocREDProcessor` | ✓ import 正常 |\n| `freige.training.sft_trainer.SYSTEM_PROMPT` | ✓ import 正常 |\n| `/root/autodl-tmp/models/Qwen3-4B` | ✓ 存在 |\n| `/root/autodl-tmp/sft_output` (adapter) | ✓ 存在 (adapter_config.json + adapter_model.safetensors) |\n| NLI 模型 (nli-deberta-v3-base) | ✓ 已下载到 `/root/autodl-tmp/.hf_cache` (2026-05-15 nli-download Worker) |\n\n### ~~发现的问题（需修复）~~ → 已全部解决 (2026-05-15)\n\n**~~CRITICAL 1~~** ✅ rsft_generate.py `--quantize` 默认值已修为 False (rsft-format-fix Worker)\n\n**~~CRITICAL 2~~** ✅ score_filter → trainer 格式兼容性验证通过——当前代码中 score_filter **已经**输出 JSONL (`rsft_train.jsonl`) 且字段名与 trainer 一致 (`input`, `output`, `ced_score`)。memory.md 中原始记录的 JSON array + messages/scores 格式问题**在当前代码版本中不存在**。(rsft-format-fix Worker, 2026-05-15)\n\n**~~MODERATE~~** ✅ NLI 模型已下载到 `/root/autodl-tmp/.hf_cache` (nli-download Worker, 2026-05-15)\n\n### 字段名映射表 (rsft-format-fix Worker 验证, 2026-05-15)\n\n| 字段 | generate 输出 | score_filter 输出 | trainer 期望 |\n|------|-------------|-----------------|------------|\n| 用户输入 | `prompt`（完整 chat template） | `input`（从 prompt 提取 user 内容） | `s[\"input\"]` |\n| 模型输出 | `output` | `output` | `s[\"output\"]` |\n| CED 分数 | — | `ced_score`（取自 `ced_reward`） | `s.get(\"ced_score\", 1.0)` |\n| 文档 ID | `doc_id` | `doc_id` | — |\n\n---\n\n## Qwen3 generation_config 覆盖陷阱 (2026-05-15)\n\nQwen3 模型自带 `generation_config.json` 会静默覆盖代码传参：\n- `model.generation_config.top_k = 20`（限制采样池）\n- `model.generation_config.temperature = 0.6`（覆盖代码传的任何温度值）\n\n**必须在生成前显式覆盖**：\n```python\nmodel.generation_config.temperature = target_temp\nmodel.generation_config.top_k = 0  # 禁用 top_k 限制\nmodel.generation_config.do_sample = True\n```\n\n不覆盖会导致：实际采样温度 ≠ 代码设置温度，diversity 数据不可信。\n\n---\n\n## Diversity 监控计算 bug (2026-05-15)\n\n### 现象\n监控报 mean_diversity=1.0/8，实际独立验证 diversity=7.11/8。\n\n### 根因\n- triple-set 归一化逻辑不一致（大小写、空格、字段缺失未统一处理）\n- diversity 分母用 `args.num_generations`（配置值 8）而非 `len(generations)`（实际生成数），两者不一致时计算错误\n\n### 修复\n- 提取 `diversity_metrics.py` 独立模块：`normalize_triple_key()` + `build_triple_set()` + `compute_doc_diversity()`\n- 分母改用实际生成数\n- 新增端到端 cross-check：生成完成后从 JSONL 文件重新计算 diversity 并与运行时监控值比对\n- 20 个单元测试覆盖归一化、去重、边界情况\n- 修复后真实数据验证：302 docs mean_diversity=7.52/8, median=8.0/8\n\n---\n\n## RSFT 生成进度快照 (2026-05-15 ~14:50 UTC+8)\n\n4 个 shard 并行生成 N=8 候选输出，Qwen3-4B + SFT adapter, temperature=0.7。\n\n### 各 shard 进度\n\n| Shard | PID | GPU | 进度 | 完成率 | 运行时间 | 速率 (docs/min) | 剩余预估 |\n|-------|--------|-----|------|--------|----------|----------------|---------|\n| 0 | 135867 | cuda:0 | 577/682 | 84.6% | 2h35m | 3.7 | ~28 min |\n| 1 | 136270 | cuda:1 | 623/681 | 91.5% | 2h35m | 4.0 | ~14 min |\n| 2 | 136649 | cuda:2 | 621/681 | 91.2% | 2h34m | 4.0 | ~15 min |\n| 3 | 137985 | cuda:3 | 548/657 | 83.4% | 2h26m | 3.75 | ~29 min |\n\n**总计**: ~2369/2701 docs (87.7%), 预计全部完成 ~15:20\n\n### JSONL 输出行数\n\n| Shard | 行数 | 估算 docs (÷8) |\n|-------|------|----------------|\n| 0 | 4,712 | ~589 |\n| 1 | 5,088 | ~636 |\n| 2 | 5,080 | ~635 |\n| 3 | 4,368 | ~546 |\n| **合计** | **19,248** | **~2,406** |\n\n### 质量指标\n\n| Shard | format_ok_rate | truncation_rate | mean_diversity |\n|-------|---------------|-----------------|----------------|\n| 0 | 99.9% | 9.0% | 7.5/8 |\n| 1 | — | 10.1% | 7.4/8 |\n| 2 | 100.0% | 9.2% | 7.8/8 |\n| 3 | 99.6% | 9.2% | 7.5/8 |\n\n### GPU 利用率\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|---------|\n| 0 | 58% | 17,875 / 32,607 MiB |\n| 1 | 65% | 16,103 / 32,607 MiB |\n| 2 | 58% | 19,351 / 32,607 MiB |\n| 3 | 99% | 19,427 / 32,607 MiB |\n\n### 日志路径\n\n- shard 0-2: `/root/autodl-tmp/rsft_generations/shard_{0,1,2}/log.txt`\n- shard 3: `/root/runs/faith-evidence-ie/mvp2_rsft_gen_s3.log`（不同路径，注意）\n- 输出: `/root/autodl-tmp/rsft_generations/shard_{0,1,2,3}/generations.jsonl`\n\n### rsft_trainer.py max_steps 状态\n\n文件位置: `/root/autodl-tmp/freige/training/rsft_trainer.py`（不是 `freige/freige/`）\n- L275: `--max_steps` default=-1（不限制，使用 num_train_epochs 控制）\n- L363: `num_train_epochs=args.num_epochs`\n- L382: `max_steps=args.max_steps`\n- 状态正常，无需修复。"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "memory.md",
+    "content": "# 文献调研：GRPO/RLHF 训练中的\"先遗忘后恢复\"现象\n\n日期：2026-05-14\n\n## 背景\n\nQwen3-4B + GRPO + QLoRA 4-bit 训练文档级关系抽取，观察到：\n- Reward 上升但 eval rel_F1 崩塌（ckpt-20: 0.0077 vs SFT baseline 0.406）\n- lr=5e-5 和 lr=5e-6 下都出现\n- 存在\"先遗忘后缓慢恢复\"的 U 型曲线（step-10=0.003 → step-90=0.211），但恢复不足\n\n---\n\n## 论文 1：Mitigating the Alignment Tax of RLHF\n\n- **作者**：Yifei Lin, Yuxin Tan, et al.\n- **年份/Venue**：2024, EMNLP 2024\n- **arXiv**：2309.06256\n\n### 核心发现\n- 定义了\"alignment tax\"：RLHF 对齐后模型遗忘预训练/SFT 阶段习得能力的现象\n- 发现简单的**模型参数平均**（插值 SFT 和 RLHF 后模型权重）在 alignment-forgetting Pareto 前沿上表现最优\n- 提出 **Heterogeneous Model Averaging (HMA)**：对不同层使用不同插值比例，最大化对齐收益同时最小化遗忘\n\n### 与我们场景的相关性\n- **直接相关**。我们的 rel_F1 崩塌就是 alignment tax 的典型表现——GRPO 优化 reward 的过程中覆盖了 SFT 学到的抽取能力\n- HMA 的层级插值思路可直接应用于 QLoRA adapter 权重\n\n### 推荐缓解方案\n- 训练后对 SFT checkpoint 和 GRPO checkpoint 做权重插值（α=0.3~0.7）\n- 或用 HMA 对不同 LoRA 层设置不同插值系数\n\n---\n\n## 论文 2：Online Merging Optimizers for Boosting Rewards and Mitigating Tax in Alignment\n\n- **作者**：Lu et al. (Qwen 团队)\n- **年份/Venue**：2024, arXiv 2405.17931\n- **开源**：github.com/QwenLM/online_merging_optimizers\n\n### 核心发现\n- 在 RLHF 每个优化步骤中实时合并 RL policy 和 SFT 模型参数，持续调节训练方向\n- 将梯度与 SFT-pretrained 参数差合并，引导梯度朝着\"在 SFT 优化方向上最大化 reward\"的方向前进\n- 在 Qwen 和 LLaMA 系列（1.8B-8B）、DPO/KTO 等多种 RLHF 算法上验证有效\n- 14 个 benchmark 上同时提升对齐 reward 并降低 alignment tax\n\n### 与我们场景的相关性\n- **高度相关**。该方法正是为解决我们观察到的问题设计的——reward 上升但能力退化\n- 来自 Qwen 团队，与我们使用的 Qwen3-4B 模型同源，兼容性好\n- 在训练过程中在线缓解，而非事后补救\n\n### 推荐缓解方案\n- 在 GRPO 训练中集成 Online Merging Optimizer，每步将 LoRA 更新方向锚定在 SFT 附近\n\n---\n\n## 论文 3：Robust Policy Optimization to Prevent Catastrophic Forgetting (FRPO)\n\n- **作者**：Sabbaghi, Hassani, Javanmard et al.\n- **年份/Venue**：2025, arXiv 2602.08813\n\n### 核心发现\n- 指出即使小幅下游更新也会破坏 RLHF 学到的行为（如安全性），暴露 catastrophic forgetting 的脆弱性\n- 提出 FRPO：优化 reward 时不仅考虑当前策略，还考虑 KL 邻域内所有可达策略的表现\n- 等价于 entropic risk objective——强调低 reward 轨迹，抑制高 reward 方差的策略\n- 通过修改 GRPO 实现，**无额外计算开销**\n\n### 与我们场景的相关性\n- **直接可用**。FRPO 本身就是 GRPO 的改进版本，直接替换即可\n- 解决的核心问题是\"GRPO 找到的高 reward 解是脆弱的\"——与我们观察到的 reward↑但 eval↓一致\n- 表明我们的模型可能找到了一个 reward hacking 式的局部最优\n\n### 推荐缓解方案\n- 将 GRPO 替换为 FRPO（修改 advantage 计算，加入 entropic risk 项）\n\n---\n\n## 论文 4：RL-Struct — Lightweight RL Framework for Structured Output\n\n- **作者**：arXiv 2512.00319\n- **年份/Venue**：2025, arXiv\n\n### 核心发现\n- 针对 JSON 等结构化输出 + RL 训练的特殊挑战\n- 提出**分层 reward 函数**：将结构化输出任务分解为 structure integrity → format correctness → content accuracy → validity 的层级约束\n- 使用 GRPO 优化，消除 critic network，降低 38% 峰值 VRAM\n- 4B 模型上 1000 个样本即可达到 80%+ 结构准确率，性能媲美 7B 模型\n\n### 与我们场景的相关性\n- **高度相关**。我们的任务要求模型输出 JSON 格式的关系抽取结果，这正是\"结构化输出 + RL\"的组合\n- 单一 reward 信号（F1）可能让模型在格式和内容之间混淆——分层 reward 可缓解\n- 当前 reward 可能过度奖励格式正确但内容错误的输出（reward hacking 的一种形式）\n\n### 推荐缓解方案\n- 将 reward 分解为：格式合规 reward + 实体正确性 reward + 关系正确性 reward\n- 分层加权，先保证格式，再优化内容\n\n---\n\n## 论文 5：GRPO++ / GRPO Instability with LoRA\n\n- **来源**：多篇论文和实践报告的综合\n  - Cameron Wolfe, \"GRPO++: Tricks for Making RL Actually Work\", 2025\n  - HuggingFace blog, \"Engineering Handbook for GRPO + LoRA with Verl\"\n  - arXiv 2504.20834, \"RL for LLM Reasoning Under Memory Constraints\"\n\n### 核心发现\n- **GRPO + LoRA 组合存在已知的不稳定性**：仅更新少量参数时，GRPO 的 group-relative advantage 估计方差增大\n- Full-token GRPO baseline 在 LoRA fine-tuning 下\"未能提升模型性能\"，表明 GRPO 对参数更新子集很敏感\n- KL 系数默认 β=0.0（TRL 默认），DeepSeek-R1 使用 β=0.001——过小的 KL 惩罚允许策略大幅偏离 SFT\n- 实践建议：\n  - 增大 KL 系数（β=0.01~0.1）\n  - 使用更大的 group size（G=16~64）降低 advantage 估计方差\n  - 降低学习率（LoRA + RL 场景建议 1e-6 量级）\n  - 考虑 Stochastic-GRPO 或 Token-Specific 优化变体\n\n### 与我们场景的相关性\n- **完全匹配**。我们正是 GRPO + QLoRA 4-bit，且 KL 系数仅 0.001\n- 低 KL + 低秩更新 = 策略快速偏离 SFT → 遗忘\n- 这是已知问题，不是偶发现象\n\n### 推荐缓解方案\n- 增大 KL 系数至 0.01~0.05\n- 增大 LoRA rank（r=4 可能太小，建议 r=16~32）\n- 增大 group size 降低 advantage 估计噪声\n\n---\n\n## 综合分析\n\n### \"先崩后恢复\" U 型曲线的最可能解释\n\n我们观察到的现象是 **三个因素叠加** 的结果：\n\n1. **Alignment Tax（核心原因）**：GRPO 梯度覆盖了 SFT 学到的关系抽取能力参数。由于 QLoRA 仅更新极少参数（rank=4），这些参数同时承载 SFT 能力和 RL 优化目标，冲突尤其剧烈。\n\n2. **KL 约束过弱 + LoRA 低秩放大不稳定性**：β=0.001 的 KL 惩罚几乎不约束策略偏离。在 LoRA 低秩空间中，微小的参数变化会导致输出分布剧烈变化，加速遗忘。\n\n3. **Reward Proxy Mismatch**：训练 reward 上升但 eval F1 下降，符合经典的 reward hacking 模式。模型可能学会了生成\"看起来合理\"但实际关系错误的输出——例如格式正确但实体/关系随机配对。\n\n**U 型恢复的解释**：训练初期策略大幅偏离导致崩塌；随着训练继续，模型在新的策略空间中重新\"发现\"部分抽取模式，但由于 LoRA 容量有限且 reward 信号有噪声，恢复不完全。\n\n### 最值得尝试的 2 个缓解方案\n\n**方案 A：增强 KL 正则化 + 扩大 LoRA 容量（低成本，优先尝试）**\n- KL 系数从 0.001 → 0.04\n- LoRA rank 从 r=4 → r=16\n- 学习率降至 1e-6\n- 预期效果：抑制训练初期的剧烈偏离，避免崩塌\n\n**方案 B：分层 Reward 设计（中等成本，针对 reward hacking）**\n- 将单一 reward 分解为：format_reward（JSON 格式合规）+ entity_reward（实体正确）+ relation_reward（关系正确）\n- 加权组合，format 权重最低（仅作 gate），relation 权重最高\n- 预期效果：消除模型通过格式取巧获得高 reward 的捷径\n\n**备选方案 C（如 A/B 不够）：Online Merging Optimizer**\n- 来自 Qwen 团队，在每个训练步骤将 LoRA 更新方向锚定在 SFT 方向\n- 实现复杂度中等，但效果在多个 Qwen 模型上验证过\n\n---\n\n## D031 Pivot: GRPO+QLoRA → RSFT + CED (2026-05-15)\n\n### 决策\nGRPO+QLoRA 方向判死，pivot 到 Rejection Sampling Fine-Tuning (RSFT) + CED scoring。\n\n### 核心证据\n- lr=5e-5 (ced_kl001_r4): best eval rel_f1=0.211 (step-90)，仅 SFT baseline (0.406) 的 52%\n- lr=5e-6 (lr5e6_r1): 完整轨迹 ckpt-20→100 rel_f1 = 0.008/0.007/0.009/0.012/0.014 — 零恢复，完全平坦\n- evi_f1 从 0.628 (ckpt-20) 单调上升到 0.850 (ckpt-100)，超过 SFT baseline (0.798)\n- 但 relation extraction 完全崩塌，训练 reward 与 eval F1 严重脱节\n- 所有 3 种 reward type (CED/extract-only/flat-NLI) 在 GRPO+QLoRA 下均 collapse 或远低于 SFT\n\n### 根因判断\n不是超参问题，是 GRPO+QLoRA 在结构化生成任务上的根本性局限：\n- QLoRA 低秩空间无法同时维持 SFT 能力和 RL 目标\n- 在线 RL 的策略偏移在前 20 步即不可逆地破坏关系抽取能力\n\n### RSFT 方案\n1. SFT 模型对每个训练样本生成 N=8 输出 (temperature=0.7)\n2. CED reward 打分筛选正样本\n3. 在正样本上 SFT fine-tune\n优势：完全避免在线 RL，CED signal 已在 MVP-1 验证有效 (margin=0.48, accuracy=81.5%)\n\n### RSFT 技术约束\n- **--quantize (4-bit) + merge_and_unload 在 RTX 5090 上有 CUBLAS 错误**，RSFT 训练不要用 quantize。bf16 Qwen3-4B 仅 ~8GB，无需量化。\n- 运行目录必须是 `/root/autodl-tmp/`（freige 不是 pip install 的包，cd 到 freige/ 子目录会导致 import 找到内层空包）\n\n### 遗留 GRPO 实验（sunk cost，完成轨迹数据）\n- ~~cuda:0 训练跑完 200 步~~ → 已 killed at step 113\n- ~~cuda:1/2/3 完成剩余 checkpoint eval~~ → 全部完成\n\n---\n\n## lr5e6 完整轨迹 + evi_f1 分离现象 (2026-05-15, D033 最终数据)\n\n### 完整 eval 轨迹\n\n| ckpt | rel_f1 | evi_f1 | pred_count | 判定 |\n|------|--------|--------|------------|------|\n| 20 | 0.0077 | 0.628 | 14440 | FAIL |\n| 40 | 0.0071 | 0.758 | 14434 | FAIL |\n| 60 | 0.0093 | 0.810 | 14626 | FAIL |\n| 80 | 0.0116 | 0.828 | 13828 | FAIL |\n| 100 | 0.0138 | 0.850 | 13300 | FAIL |\n| SFT | 0.4057 | 0.798 | 12234 | baseline |\n\n### 关键观察：rel_f1 / evi_f1 分离\n- **rel_f1 始终平坦** (0.007-0.014)，从未接近 SFT baseline (0.4057)\n- **evi_f1 单调上升** 0.628→0.850，ckpt-100 已超过 SFT baseline +5.2pp\n- 这说明 CED reward 有效教会了 evidence 定位（evi_f1↑），但 GRPO+QLoRA 的策略偏移同时摧毁了关系抽取能力（rel_f1↓）\n- **论文素材**：证明 CED reward signal 本身有效，问题出在 online RL + QLoRA 的训练方式\n\n### ckpt-100 训练拐点判定\n- W&B 显示 step 100 f1_reward 出现拐点 (0.016→0.093, 5.8x)\n- **判定线**：eval F1 > 0.15 = 真实学习, < 0.05 = format hacking\n- **结果**：rel_f1 = 0.0138 < 0.05 → **format hacking confirmed**\n- step-100 的训练拐点是 format reward 贡献的假信号，不是关系抽取学习\n\n---\n\n## 轨迹对比分析 (lr5e6 vs kl001_r4)\n\n日期：2026-05-15\n\n### 关键定量发现\n\n**lr5e6 的 f1_reward 在 80 步内无学习趋势**：0.000-0.042 极窄区间内随机波动，是 batch_size=1 采样噪声而非学习信号。kl001_r4 同期也经历低位波动，但 step 40 出现明确上升拐点——lr5e6 到 step 80 仍未出现。\n\n**lr5e6 正在学 format hacking**：step 200 预测 total_reward ~0.65-0.70，其中 88%+ 来自 format_reward（0.138→0.249 稳步上升）。F1/CED reward 几乎无贡献。kl001_r4 的 format 仅占 25%。\n\n**KL 基线反映学习速率**：lr5e6 典型 KL=0.006-0.012（policy 几乎未变），kl001_r4 KL=0.098-0.181（15-20x 高，符合 10x LR 差距）。lr5e6 的 step 65 KL=10.3 spike 是偶发事件，5 步内恢复。\n\n**最优 LR 在 1e-5 到 2e-5 之间**：5e-5 学得快但遗忘严重（max eval F1=0.211=SFT 52%），5e-6 不遗忘但不学习。\n\n### 决策性结论\n\n- **ckpt-40 eval 已确认**：rel_f1=0.0071 < 0.05，lr=5e-6 判定失败\n- **submit_on_allocated 失败根因**：`cd /root/autodl-tmp/freige` 导致 Python path 找到内层空 freige/freige/ 包。修复：`cd /root/autodl-tmp`。后续 eval 均应用修正后的脚本\n\n---\n\n## RSFT 代码就绪状态验证 (2026-05-14)\n\n### 文件清单\n\n| 文件 | 行数 | 功能 | dry-run |\n|------|------|------|---------|\n| `training/rsft_generate.py` | 296 | Step 1: SFT 模型批量生成 N 个候选输出 | `--help` ✓ |\n| `training/rsft_score_filter.py` | 464 | Step 2: CED 打分 + 筛选高质量样本 | `--help` ✓ |\n| `training/rsft_trainer.py` | 252 | Step 3: 在筛选数据上 SFT 训练 | `--help` ✓ |\n\n### 参数总览\n\n**rsft_generate.py:**\n- `--base_model` (默认: 代码内硬编码)\n- `--sft_adapter` (默认: 代码内硬编码)\n- `--data_path` (DocRED 数据目录)\n- `--split` (默认: train)\n- `--output_dir` (生成结果目录)\n- `--num_generations` (默认: 8)\n- `--temperature` (默认: 0.7)\n- `--batch_size` (默认: 2)\n- `--max_new_tokens` (默认: 1024)\n- `--seed` (默认: 42)\n- `--quantize/--no-quantize` (默认: ~~True~~ → **已修为 False**, 2026-05-15 rsft-format-fix Worker)\n- `--start_idx`, `--end_idx`, `--shard_id` (2026-05-15 rsft-parallel-support Worker 新增)\n\n**rsft_score_filter.py:**\n- `--input_dir` (required, generations.jsonl 所在目录)\n- `--output_path` (required, 输出目录)\n- `--nli_model_path` (默认: cross-encoder/nli-deberta-v3-base)\n- `--nli_device` (默认: auto)\n- `--tau` (默认: 0.5)\n- `--format_threshold` (默认: 0.5)\n- `--f1_threshold` (默认: 0.0)\n- `--ced_threshold` (默认: 0.0)\n- `--selection_strategy` (默认: top_pct, 可选: threshold/top_k/top_pct)\n- `--top_k` (默认: 2)\n- `--top_pct` (默认: 25)\n\n**rsft_trainer.py:**\n- `--base_model` (默认: /root/autodl-tmp/models/Qwen3-4B)\n- `--sft_adapter` (默认: /root/autodl-tmp/sft_output)\n- `--rsft_data_path` (required, JSONL)\n- `--output_dir` (required)\n- `--learning_rate`, `--num_epochs`, `--per_device_batch_size`, `--gradient_accumulation_steps`\n- `--warmup_steps`, `--save_steps`, `--save_total_limit`, `--max_length`, `--seed`\n- `--wandb_project`, `--wandb_run_name`\n- `--weighted_sampling` (store_true, CED score 加权采样)\n- `--quantize` (store_true, 默认 False ← 正确)\n- `--lora_rank` (默认 64), `--lora_alpha` (默认 128), `--lora_dropout` (默认 0.05)\n- `--bf16` (默认 True)\n- `--deepspeed` (可选配置文件)\n\n### 依赖验证\n\n| 依赖项 | 状态 |\n|--------|------|\n| `freige.rewards.ced_reward.CEDRewardModel` | ✓ import 正常 |\n| `freige.rewards.ced_reward.verbalize_triple` | ✓ import 正常 |\n| `freige.eval.evaluator.parse_model_output` | ✓ import 正常 |\n| `freige.data.docred_processor.DocREDProcessor` | ✓ import 正常 |\n| `freige.training.sft_trainer.SYSTEM_PROMPT` | ✓ import 正常 |\n| `/root/autodl-tmp/models/Qwen3-4B` | ✓ 存在 |\n| `/root/autodl-tmp/sft_output` (adapter) | ✓ 存在 (adapter_config.json + adapter_model.safetensors) |\n| NLI 模型 (nli-deberta-v3-base) | ✓ 已下载到 `/root/autodl-tmp/.hf_cache` (2026-05-15 nli-download Worker) |\n\n### ~~发现的问题（需修复）~~ → 已全部解决 (2026-05-15)\n\n**~~CRITICAL 1~~** ✅ rsft_generate.py `--quantize` 默认值已修为 False (rsft-format-fix Worker)\n\n**~~CRITICAL 2~~** ✅ score_filter → trainer 格式兼容性验证通过——当前代码中 score_filter **已经**输出 JSONL (`rsft_train.jsonl`) 且字段名与 trainer 一致 (`input`, `output`, `ced_score`)。memory.md 中原始记录的 JSON array + messages/scores 格式问题**在当前代码版本中不存在**。(rsft-format-fix Worker, 2026-05-15)\n\n**~~MODERATE~~** ✅ NLI 模型已下载到 `/root/autodl-tmp/.hf_cache` (nli-download Worker, 2026-05-15)\n\n### 字段名映射表 (rsft-format-fix Worker 验证, 2026-05-15)\n\n| 字段 | generate 输出 | score_filter 输出 | trainer 期望 |\n|------|-------------|-----------------|------------|\n| 用户输入 | `prompt`（完整 chat template） | `input`（从 prompt 提取 user 内容） | `s[\"input\"]` |\n| 模型输出 | `output` | `output` | `s[\"output\"]` |\n| CED 分数 | — | `ced_score`（取自 `ced_reward`） | `s.get(\"ced_score\", 1.0)` |\n| 文档 ID | `doc_id` | `doc_id` | — |\n\n---\n\n## Qwen3 generation_config 覆盖陷阱 (2026-05-15)\n\nQwen3 模型自带 `generation_config.json` 会静默覆盖代码传参：\n- `model.generation_config.top_k = 20`（限制采样池）\n- `model.generation_config.temperature = 0.6`（覆盖代码传的任何温度值）\n\n**必须在生成前显式覆盖**：\n```python\nmodel.generation_config.temperature = target_temp\nmodel.generation_config.top_k = 0  # 禁用 top_k 限制\nmodel.generation_config.do_sample = True\n```\n\n不覆盖会导致：实际采样温度 ≠ 代码设置温度，diversity 数据不可信。\n\n---\n\n## Diversity 监控计算 bug (2026-05-15)\n\n### 现象\n监控报 mean_diversity=1.0/8，实际独立验证 diversity=7.11/8。\n\n### 根因\n- triple-set 归一化逻辑不一致（大小写、空格、字段缺失未统一处理）\n- diversity 分母用 `args.num_generations`（配置值 8）而非 `len(generations)`（实际生成数），两者不一致时计算错误\n\n### 修复\n- 提取 `diversity_metrics.py` 独立模块：`normalize_triple_key()` + `build_triple_set()` + `compute_doc_diversity()`\n- 分母改用实际生成数\n- 新增端到端 cross-check：生成完成后从 JSONL 文件重新计算 diversity 并与运行时监控值比对\n- 20 个单元测试覆盖归一化、去重、边界情况\n- 修复后真实数据验证：302 docs mean_diversity=7.52/8, median=8.0/8\n\n---\n\n## RSFT 生成进度快照 (2026-05-15 ~14:50 UTC+8)\n\n4 个 shard 并行生成 N=8 候选输出，Qwen3-4B + SFT adapter, temperature=0.7。\n\n### 各 shard 进度\n\n| Shard | PID | GPU | 进度 | 完成率 | 运行时间 | 速率 (docs/min) | 剩余预估 |\n|-------|--------|-----|------|--------|----------|----------------|---------|\n| 0 | 135867 | cuda:0 | 577/682 | 84.6% | 2h35m | 3.7 | ~28 min |\n| 1 | 136270 | cuda:1 | 623/681 | 91.5% | 2h35m | 4.0 | ~14 min |\n| 2 | 136649 | cuda:2 | 621/681 | 91.2% | 2h34m | 4.0 | ~15 min |\n| 3 | 137985 | cuda:3 | 548/657 | 83.4% | 2h26m | 3.75 | ~29 min |\n\n**总计**: ~2369/2701 docs (87.7%), 预计全部完成 ~15:20\n\n### JSONL 输出行数\n\n| Shard | 行数 | 估算 docs (÷8) |\n|-------|------|----------------|\n| 0 | 4,712 | ~589 |\n| 1 | 5,088 | ~636 |\n| 2 | 5,080 | ~635 |\n| 3 | 4,368 | ~546 |\n| **合计** | **19,248** | **~2,406** |\n\n### 质量指标\n\n| Shard | format_ok_rate | truncation_rate | mean_diversity |\n|-------|---------------|-----------------|----------------|\n| 0 | 99.9% | 9.0% | 7.5/8 |\n| 1 | — | 10.1% | 7.4/8 |\n| 2 | 100.0% | 9.2% | 7.8/8 |\n| 3 | 99.6% | 9.2% | 7.5/8 |\n\n### GPU 利用率\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|---------|\n| 0 | 58% | 17,875 / 32,607 MiB |\n| 1 | 65% | 16,103 / 32,607 MiB |\n| 2 | 58% | 19,351 / 32,607 MiB |\n| 3 | 99% | 19,427 / 32,607 MiB |\n\n### 日志路径\n\n- shard 0-2: `/root/autodl-tmp/rsft_generations/shard_{0,1,2}/log.txt`\n- shard 3: `/root/runs/faith-evidence-ie/mvp2_rsft_gen_s3.log`（不同路径，注意）\n- 输出: `/root/autodl-tmp/rsft_generations/shard_{0,1,2,3}/generations.jsonl`\n\n### rsft_trainer.py max_steps 状态\n\n文件位置: `/root/autodl-tmp/freige/training/rsft_trainer.py`（不是 `freige/freige/`）\n- L275: `--max_steps` default=-1（不限制，使用 num_train_epochs 控制）\n- L363: `num_train_epochs=args.num_epochs`\n- L382: `max_steps=args.max_steps`\n- 状态正常，无需修复。"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T04:30:09.606439+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-15T04:30:34.978935+00:00_
+
+Session #7 初始化完成。
+
+**当前状态总结：**
+- 4 个 RSFT 生成分片全部 RUNNING（4/4 GPU 满载），cron 确认 PID 存活
+- ckpt100 分析已完成：rel_f1=0.0138，format hacking confirmed（step-100 拐点是假信号）
+- lr5e6 完整轨迹已记录到 memory.md，evi_f1 分离现象作为论文素材标注
+- 已向 Director 汇报完整 lr5e6 轨迹 + RSFT 进展 + 下游阻塞项
+- rsft-downstream-precheck Worker 在跑（turn 12），发现 NLI 模型缺失 + score_filter 不支持多 shard。等其回调后派 Worker 修复
+
+**等待中：**
+1. rsft-downstream-precheck Worker 回调 → 修复阻塞项
+2. 4 个 RSFT gen shard cron 回调 → 合并 + CED 打分 + RSFT 训练
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:mvp2_eval_lr5e6_r1_ckpt100"
+}
+```
+
+</details>
+
+---

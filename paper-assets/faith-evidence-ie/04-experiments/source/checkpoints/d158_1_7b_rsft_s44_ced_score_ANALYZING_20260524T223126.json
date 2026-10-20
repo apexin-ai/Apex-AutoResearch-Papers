@@ -1,0 +1,45 @@
+{
+  "exp_id": "d158_1_7b_rsft_s44_ced_score",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T18:13:38.408Z",
+    "updated_at": "2026-05-24T22:31:26.014Z",
+    "hypothesis": "1.7B seed=44 CED/NLI scoring + k=1 selection. 对 24216 个生成样本进行 CED 评分并筛选 top-1。预期保留 ~3021 样本（与 s42/s43 一致）。D158 强制检查点：保留数与 3021 差异 >10% 则暂停 A3。",
+    "parent": "d158_1_7b_rsft_s44_generate",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations_1_7b_s44 --output_path /root/autodl-tmp/rsft_scored_1_7b_s44 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 1 --scoring_mode ced",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/rsft_generations_1_7b_s44/generations.jsonl",
+      "data_count": 24216,
+      "model_name": "cross-encoder/nli-deberta-v3-base",
+      "seed": 44,
+      "gpu": "cuda:0",
+      "pid": "325535",
+      "log_path": "~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_ced_score.log",
+      "output_path": "/root/autodl-tmp/rsft_scored_1_7b_s44",
+      "tmux_session": "d158_ced_score",
+      "checkpoint_source": "d158_1_7b_rsft_s44_generate",
+      "eval_data": "N/A"
+    },
+    "metrics": {
+      "selected_records": 3019,
+      "total_scored": 24216,
+      "retention_rate": 0.1247,
+      "unique_docs_selected": 3019,
+      "unique_docs_total": 3027,
+      "selected_combined_score_mean": 0.7512,
+      "selected_f1_mean": 0.6986,
+      "selected_ced_mean": 0.6794,
+      "output_path": "/root/autodl-tmp/rsft_scored_1_7b_s44"
+    },
+    "checkpoint_path": "/root/autodl-tmp/rsft_scored_1_7b_s44",
+    "log_path": "~/runs/faith-evidence-ie/d158_1_7b_rsft_s44_ced_score.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T22:31:26.702461+00:00",
+  "trigger": "update_registry"
+}

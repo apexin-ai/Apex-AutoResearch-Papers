@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp2_eval_lr5e6_r1_ckpt60",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:13:47.936Z",
+    "updated_at": "2026-05-14T22:15:17.107Z",
+    "hypothesis": "P0 ckpt-60 eval: lr=5e-6 GRPO at step 60. 训练轨迹数据点——ckpt-20 catastrophic forgetting (rel_f1=0.0077)，需看后续 checkpoint 是否恢复。Pass criteria: rel_f1 > 0.30.",
+    "parent": "mvp2_grpo_ced_lr5e6_r1"
+  },
+  "timestamp": "2026-05-14T22:15:17.260670+00:00",
+  "trigger": "update_registry"
+}

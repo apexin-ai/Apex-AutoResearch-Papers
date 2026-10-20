@@ -1,0 +1,16 @@
+{
+  "exp_id": "d158_14b_rsft_s44_train",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T05:14:57.540Z",
+    "updated_at": "2026-05-25T05:15:18.773Z",
+    "hypothesis": "14B RSFT k=1 CED train seed=44 (seed-matched pipeline)。使用 sft_output_14b_s44 + 3016 CED-scored samples。补全 14B scale seed-matched 数据。",
+    "parent": "d158_14b_rsft_s44_ced_score"
+  },
+  "timestamp": "2026-05-25T05:15:19.479750+00:00",
+  "trigger": "update_registry"
+}

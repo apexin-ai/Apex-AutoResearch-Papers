@@ -1,0 +1,23 @@
+{
+  "exp_id": "smoke_test_grpo",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:20:00.970Z",
+    "updated_at": "2026-05-14T05:20:00.970Z",
+    "spec": {
+      "hypothesis": "QLoRA + ZeRO-3 + GRPO pipeline runs end-to-end on 3xRTX 5090 with synthetic data, no NaN/zero-grad, loss decreasing",
+      "model_name": "Qwen/Qwen3-4B",
+      "data_path": "synthetic (5 dummy docs)",
+      "data_count": 20,
+      "server": "rtx5090-4x",
+      "command": "accelerate launch --num_processes 3 --mixed_precision bf16 -m freige.training.smoke_test",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T05:20:00.978297+00:00",
+  "trigger": "update_registry"
+}

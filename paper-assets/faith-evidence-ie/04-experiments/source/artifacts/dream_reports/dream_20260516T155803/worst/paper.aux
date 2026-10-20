@@ -1,0 +1,60 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Task Definition and Evaluation Framework}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Evidence-Grounded DocRE}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Metrics}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}EDCR Definition}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methods}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Training Paradigms}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SFT Baseline.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RSFT (Rejection Sampling Fine-Tuning).}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DPO (Direct Preference Optimization).}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GRPO (Group Relative Policy Optimization).}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Post-hoc Evidence Retrieval}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Test Set Evaluation}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:test}{{4.1}{3}{Test Set Evaluation}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces DocRED test set results. Evidence tax = gap between no-evidence and evidence-producing models.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:test}{{1}{3}{DocRED test set results. Evidence tax = gap between no-evidence and evidence-producing models}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Evidence-Extraction Decoupling Spectrum}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Evidence-extraction decoupling spectrum. Higher EDCR indicates greater decoupling.}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:decoupling}{{2}{3}{Evidence-extraction decoupling spectrum. Higher EDCR indicates greater decoupling}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Post-hoc Retrieval vs End-to-End Generation}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:posthoc}{{4.3}{4}{Post-hoc Retrieval vs End-to-End Generation}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces End-to-end evidence generation vs post-hoc BM25 retrieval.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:posthoc}{{3}{4}{End-to-end evidence generation vs post-hoc BM25 retrieval}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Evidence Tax Scaling (U-Shape Pattern)}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Evidence tax across model scales. Tax = Ign-F1(no-evidence) $-$ Ign-F1(with evidence).}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:scaling}{{4}{4}{Evidence tax across model scales. Tax = Ign-F1(no-evidence) $-$ Ign-F1(with evidence)}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces SFT-level evidence tax across scales and model families.}}{4}{table.5}\protected@file@percent }
+\newlabel{tab:utax}{{5}{4}{SFT-level evidence tax across scales and model families}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Cross-Dataset Evaluation (Re-DocRED)}{4}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-dataset transfer to Re-DocRED.}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:redocred}{{6}{5}{Cross-dataset transfer to Re-DocRED}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}DREEAM-Protocol Evidence Evaluation}{5}{subsection.4.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Evidence evaluation under two protocols. Conditional Evi-F1 uses NLI-based soft matching; DREEAM-protocol requires exact sentence index match.}}{5}{table.7}\protected@file@percent }
+\newlabel{tab:dreeam}{{7}{5}{Evidence evaluation under two protocols. Conditional Evi-F1 uses NLI-based soft matching; DREEAM-protocol requires exact sentence index match}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}EDCR Human Validation}{5}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:edcr_human}{{4.7}{5}{EDCR Human Validation}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces EDCR correlation with human judgments of evidence sufficiency ($n=100$).}}{5}{table.8}\protected@file@percent }
+\newlabel{tab:edcr_human}{{8}{5}{EDCR correlation with human judgments of evidence sufficiency ($n=100$)}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}NLI Model Ablation}{6}{subsection.4.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Effect of NLI scorer capacity on RSFT outcomes.}}{6}{table.9}\protected@file@percent }
+\newlabel{tab:nli_ablation}{{9}{6}{Effect of NLI scorer capacity on RSFT outcomes}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Cross-Family Validation (LLaMA-3.1-8B)}{6}{subsection.4.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces LLaMA-3.1-8B cross-family results. RSFT failed due to OOM during candidate generation.}}{6}{table.10}\protected@file@percent }
+\newlabel{tab:llama}{{10}{6}{LLaMA-3.1-8B cross-family results. RSFT failed due to OOM during candidate generation}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The evidence generation paradox.}{6}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RSFT as least harmful, not recommended.}{6}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation infrastructure gap.}{7}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{EDCR: diagnostic, not metric.}{7}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Related Work}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evidence in DocRE.}{7}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RL for NLP.}{7}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{7}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{8}{section.8}\protected@file@percent }
+\gdef \@abspage@last{8}

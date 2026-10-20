@@ -1,0 +1,1565 @@
+# analysis plan019 1 7b rsft no evidence eval
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 31
+- **Recorded user turns:** 0
+- **Tool calls:** 11
+- **Original source:** `logs/workers/worker_analysis_plan019_1_7b_rsft_no_evidence_eval_20260519T144541.log`
+- **Structured JSON:** [`16eb56bb50519fa74082.json`](../../sessions/16/16eb56bb50519fa74082.json)
+
+## Before a recorded user message
+
+31 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__compare_wandb_runs",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__fetch_wandb_metrics",
+    "mcp__agent-ml-research__fetch_wandb_run_history",
+    "mcp__agent-ml-research__get_best_wandb_run",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__list_wandb_runs",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "97c77842-082d-4d70-ac06-16f9108a0144",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779216600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "cc4b8166-d9e7-435c-befa-9f321da89378",
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the log file and the eval script from the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "3cc1fe1b-413c-4af0-8e98-8f6ee5eb84cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NpqBbCu9EbfZ4ffyx9o6Cq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12854,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12854
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01QA87yGxoJ4dqMJxXcP2rWY`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "79ddd69b-052f-4e00-b4f2-b0341b9d4747",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NpqBbCu9EbfZ4ffyx9o6Cq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12854,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12854
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T14:45:51.742Z_
+
+<details><summary>↩ Tool result · `toolu_01QA87yGxoJ4dqMJxXcP2rWY`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "f968423a-fd4e-47f6-8a0a-44d700d70856",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 31
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+读取日志文件和评估脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "aa4546cd-73f9-4a9d-94a8-6123ea584aa9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dbx2ej4k6tiE7Qo5NCTjjw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 24695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1295
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016dVEWa3fdK51pZdTxGuRCf`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/runs/faith-evidence-ie/plan019_1_7b_rsft_no_evidence_eval.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "3b5b89e0-6d10-4397-b7f8-44f22c1eef85",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dbx2ej4k6tiE7Qo5NCTjjw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 24695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1295
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WLxnAYvSAjtasgSYac2Rm5`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "963f74f9-4bf9-4ce6-862e-8b0dd5b3b5a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dbx2ej4k6tiE7Qo5NCTjjw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 24695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1295
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T14:45:57.002Z_
+
+<details><summary>↩ Tool result · `toolu_016dVEWa3fdK51pZdTxGuRCf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-19 19:43:02,964 INFO Detected adapter at /root/autodl-tmp/rsft_output_qwen3_1_7b_k1, base: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\n2026-05-19 19:43:02,965 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\n2026-05-19 19:43:03,334 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-19 19:43:03,560 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.39it/s]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.69it/s]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.36it/s]\\n2026-05-19 19:43:04,438 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_qwen3_1_7b_bf16\\n2026-05-19 19:43:07,393 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_qwen3_1_7b_k1\\n2026-05-19 19:43:08,332 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\n2026-05-19 19:43:08,689 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\n2026-05-19 19:43:08,876 INFO Prepared 985 eval documents, 12275 gold triples\\n\\rInference:   0%|          | 0/247 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n\\rInference:   0%|          | 1/247 [00:40<2:44:04, 40.02s/it]\\rInference:   1%|          | 2/247 [01:19<2:41:53, 39.65s/it]\\rInference:   1%|          | 3/247 [01:59<2:41:22, 39.68s/it]\\rInference:   2%|▏         | 4/247 [02:38<2:39:51, 39.47s/it]\\rInference:   2%|▏         | 5/247 [03:17<2:39:32, 39.55s/it]\\rInference:   2%|▏         | 6/247 [03:57<2:38:46, 39.53s/it]\\rInference:   3%|▎         | 7/247 [04:36<2:37:15, 39.31s/it]\\rInference:   3%|▎         | 8/247 [05:15<2:36:20, 39.25s/it]\\rInference:   4%|▎         | 9/247 [05:32<2:08:21, 32.36s/it]\\rInference:   4%|▍         | 10/247 [06:11<2:15:20, 34.26s/it]\\rInference:   4%|▍         | 11/247 [06:50<2:20:47, 35.80s/it]\\rInference:   5%|▍         | 12/247 [07:29<2:24:11, 36.81s/it]\\rInference:   5%|▌         | 13/247 [08:08<2:26:09, 37.48s/it]\\rInference:   6%|▌         | 14/247 [08:47<2:27:42, 38.04s/it]\\rInference:   6%|▌         | 15/247 [09:26<2:28:02, 38.29s/it]\\rInference:   6%|▋         | 16/247 [10:05<2:27:45, 38.38s/it]\\rInference:   7%|▋         | 17/247 [10:44<2:28:20, 38.70s/it]\\rInference:   7%|▋         | 18/247 [11:23<2:27:31, 38.65s/it]\\rInference:   8%|▊         | 19/247 [12:03<2:28:40, 39.13s/it]\\rInference:   8%|▊         | 20/247 [12:44<2:29:31, 39.52s/it]\\rInference:   9%|▊         | 21/247 [13:24<2:29:43, 39.75s/it]\\rInference:   9%|▉         | 22/247 [14:04<2:30:00, 40.00s/it]\\rInference:   9%|▉         | 23/247 [14:45<2:29:50, 40.13s/it]\\rInference:  10%|▉         | 24/247 [15:25<2:29:11, 40.14s/it]\\rInference:  10%|█         | 25/247 [16:06<2:29:07, 40.31s/it]\\rInference:  11%|█         | 26/247 [16:46<2:28:31, 40.32s/it]\\rInference:  11%|█         | 27/247 [17:26<2:27:10, 40.14s/it]\\rInference:  11%|█▏        | 28/247 [18:05<2:26:01, 40.01s/it]\\rInference:  12%|█▏        | 29/247 [18:44<2:24:07, 39.67s/it]\\rInference:  12%|█▏        | 30/247 [19:24<2:22:59, 39.54s/it]\\rInference:  13%|█▎        | 31/247 [20:02<2:21:33, 39.32s/it]\\rInference:  13%|█▎        | 32/247 [20:41<2:20:14, 39.14s/it]\\rInference:  13%|█▎        | 33/247 [21:21<2:20:02, 39.26s/it]\\rInference:  14%|█▍        | 34/247 [22:04<2:23:54, 40.54s/it]\\rInference:  14%|█▍        | 35/247 [22:52<2:30:51, 42.70s/it]\\rInference:  15%|█▍        | 36/247 [23:39<2:34:57, 44.07s/it]\\rInference:  15%|█▍        | 37/247 [24:27<2:38:14, 45.21s/it]\\rInference:  15%|█▌        | 38/247 [25:15<2:40:01, 45.94s/it]\\rInference:  16%|█▌        | 39/247 [26:03<2:41:27, 46.57s/it]\\rInference:  16%|█▌        | 40/247 [26\\n\\n... [截断: 输出过长，省略 10009 字符] ...\\n\\n[2:26:09<30:34, 36.69s/it]\\rInference:  80%|████████  | 198/247 [2:26:49<30:48, 37.73s/it]\\rInference:  81%|████████  | 199/247 [2:27:29<30:43, 38.41s/it]\\rInference:  81%|████████  | 200/247 [2:28:10<30:34, 39.02s/it]\\rInference:  81%|████████▏ | 201/247 [2:28:50<30:16, 39.48s/it]\\rInference:  82%|████████▏ | 202/247 [2:29:31<29:50, 39.79s/it]\\rInference:  82%|████████▏ | 203/247 [2:30:12<29:26, 40.14s/it]\\rInference:  83%|████████▎ | 204/247 [2:30:54<29:14, 40.80s/it]\\rInference:  83%|████████▎ | 205/247 [2:31:37<28:56, 41.36s/it]\\rInference:  83%|████████▎ | 206/247 [2:32:17<27:56, 40.89s/it]\\rInference:  84%|████████▍ | 207/247 [2:32:56<26:57, 40.43s/it]\\rInference:  84%|████████▍ | 208/247 [2:33:37<26:23, 40.59s/it]\\rInference:  85%|████████▍ | 209/247 [2:34:17<25:39, 40.50s/it]\\rInference:  85%|████████▌ | 210/247 [2:34:58<25:01, 40.58s/it]\\rInference:  85%|████████▌ | 211/247 [2:35:38<24:12, 40.36s/it]\\rInference:  86%|████████▌ | 212/247 [2:36:17<23:15, 39.87s/it]\\rInference:  86%|████████▌ | 213/247 [2:36:58<22:47, 40.23s/it]\\rInference:  87%|████████▋ | 214/247 [2:37:39<22:20, 40.61s/it]\\rInference:  87%|████████▋ | 215/247 [2:38:21<21:52, 41.03s/it]\\rInference:  87%|████████▋ | 216/247 [2:39:03<21:16, 41.17s/it]\\rInference:  88%|████████▊ | 217/247 [2:39:42<20:19, 40.65s/it]\\rInference:  88%|████████▊ | 218/247 [2:40:21<19:26, 40.24s/it]\\rInference:  89%|████████▊ | 219/247 [2:41:02<18:48, 40.30s/it]\\rInference:  89%|████████▉ | 220/247 [2:41:44<18:23, 40.87s/it]\\rInference:  89%|████████▉ | 221/247 [2:42:25<17:45, 40.98s/it]\\rInference:  90%|████████▉ | 222/247 [2:43:07<17:08, 41.15s/it]\\rInference:  90%|█████████ | 223/247 [2:43:48<16:29, 41.25s/it]\\rInference:  91%|█████████ | 224/247 [2:44:32<16:02, 41.85s/it]\\rInference:  91%|█████████ | 225/247 [2:45:15<15:30, 42.29s/it]\\rInference:  91%|█████████▏| 226/247 [2:45:57<14:46, 42.22s/it]\\rInference:  92%|█████████▏| 227/247 [2:46:38<13:56, 41.81s/it]\\rInference:  92%|█████████▏| 228/247 [2:47:17<13:02, 41.16s/it]\\rInference:  93%|█████████▎| 229/247 [2:47:59<12:22, 41.27s/it]\\rInference:  93%|█████████▎| 230/247 [2:48:38<11:29, 40.53s/it]\\rInference:  94%|█████████▎| 231/247 [2:49:18<10:45, 40.32s/it]\\rInference:  94%|█████████▍| 232/247 [2:50:00<10:12, 40.85s/it]\\rInference:  94%|█████████▍| 233/247 [2:50:41<09:35, 41.08s/it]\\rInference:  95%|█████████▍| 234/247 [2:51:22<08:53, 41.01s/it]\\rInference:  95%|█████████▌| 235/247 [2:52:03<08:12, 41.08s/it]\\rInference:  96%|█████████▌| 236/247 [2:52:45<07:32, 41.12s/it]\\rInference:  96%|█████████▌| 237/247 [2:53:26<06:52, 41.20s/it]\\rInference:  96%|█████████▋| 238/247 [2:54:07<06:11, 41.23s/it]\\rInference:  97%|█████████▋| 239/247 [2:54:49<05:31, 41.45s/it]\\rInference:  97%|█████████▋| 240/247 [2:55:31<04:50, 41.51s/it]\\rInference:  98%|█████████▊| 241/247 [2:56:13<04:09, 41.59s/it]\\rInference:  98%|█████████▊| 242/247 [2:56:54<03:27, 41.41s/it]\\rInference:  98%|█████████▊| 243/247 [2:57:35<02:45, 41.47s/it]\\rInference:  99%|█████████▉| 244/247 [2:58:17<02:04, 41.52s/it]\\rInference:  99%|█████████▉| 245/247 [2:58:58<01:22, 41.36s/it]\\rInference: 100%|█████████▉| 246/247 [2:59:40<00:41, 41.48s/it]\\rInference: 100%|██████████| 247/247 [2:59:50<00:00, 32.19s/it]\\rInference: 100%|██████████| 247/247 [2:59:50<00:00, 43.69s/it]\\n2026-05-19 22:42:59,520 INFO Inference done. 583/985 truncated, 0 errors.\\n2026-05-19 22:42:59,521 INFO Inference: 10790.6s (10.95 s/doc)\\n2026-05-19 22:43:00,227 INFO Loaded 37785 training triples (34610 unique facts) for Ign-F1\\n2026-05-19 22:43:00,472 INFO Metrics → /root/autodl-tmp/eval_outputs/eval_1_7b_rsft_no_evidence/metrics.json\\n2026-05-19 22:43:00,670 INFO Predictions → /root/autodl-tmp/eval_outputs/eval_1_7b_rsft_no_evidence/predictions.json\\n\\n==================================================\\n  F1:          0.4552\\n  Ign-F1:      0.4352\\n  Evi-F1(DREEAM): 0.0000\\n  Evi-F1(TP):     0.0000\\n  EDCR:        0.0000\\n  Format OK:   956/985 (97.1%)\\n  Truncated:   583/985\\n  Predictions: 25221\\n==================================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "3b93a6d8-cad1-4760-81e6-9640cc9aa3bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 19:43:02,964 INFO Detected adapter at /root/autodl-tmp/rsft_output_qwen3_1_7b_k1, base: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\n2026-05-19 19:43:02,965 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\n2026-05-19 19:43:03,334 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-19 19:43:03,560 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.39it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.69it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.36it/s]\\\\n2026-05-19 19:43:04,438 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_qwen3_1_7b_bf16\\\\n2026-05-19 19:43:07,393 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_qwen3_1_7b_k1\\\\n2026-05-19 19:43:08,332 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\\\n2026-05-19 19:43:08,689 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\\\n2026-05-19 19:43:08,876 INFO Prepared 985 eval documents, 12275 gold triples\\\\n\\\\rInference:   0%|          | 0/247 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n\\\\rInference:   0%|          | 1/247 [00:40<2:44:04, 40.02s/it]\\\\rInference:   1%|          | 2/247 [01:19<2:41:53, 39.65s/it]\\\\rInference:   1%|          | 3/247 [01:59<2:41:22, 39.68s/it]\\\\rInference:   2%|▏         | 4/247 [02:38<2:39:51, 39.47s/it]\\\\rInference:   2%|▏         | 5/247 [03:17<2:39:32, 39.55s/it]\\\\rInference:   2%|▏         | 6/247 [03:57<2:38:46, 39.53s/it]\\\\rInference:   3%|▎         | 7/247 [04:36<2:37:15, 39.31s/it]\\\\rInference:   3%|▎         | 8/247 [05:15<2:36:20, 39.25s/it]\\\\rInference:   4%|▎         | 9/247 [05:32<2:08:21, 32.36s/it]\\\\rInference:   4%|▍         | 10/247 [06:11<2:15:20, 34.26s/it]\\\\rInference:   4%|▍         | 11/247 [06:50<2:20:47, 35.80s/it]\\\\rInference:   5%|▍         | 12/247 [07:29<2:24:11, 36.81s/it]\\\\rInference:   5%|▌         | 13/247 [08:08<2:26:09, 37.48s/it]\\\\rInference:   6%|▌         | 14/247 [08:47<2:27:42, 38.04s/it]\\\\rInference:   6%|▌         | 15/247 [09:26<2:28:02, 38.29s/it]\\\\rInference:   6%|▋         | 16/247 [10:05<2:27:45, 38.38s/it]\\\\rInference:   7%|▋         | 17/247 [10:44<2:28:20, 38.70s/it]\\\\rInference:   7%|▋         | 18/247 [11:23<2:27:31, 38.65s/it]\\\\rInference:   8%|▊         | 19/247 [12:03<2:28:40, 39.13s/it]\\\\rInference:   8%|▊         | 20/247 [12:44<2:29:31, 39.52s/it]\\\\rInference:   9%|▊         | 21/247 [13:24<2:29:43, 39.75s/it]\\\\rInference:   9%|▉         | 22/247 [14:04<2:30:00, 40.00s/it]\\\\rInference:   9%|▉         | 23/247 [14:45<2:29:50, 40.13s/it]\\\\rInference:  10%|▉         | 24/247 [15:25<2:29:11, 40.14s/it]\\\\rInference:  10%|█         | 25/247 [16:06<2:29:07, 40.31s/it]\\\\rInference:  11%|█         | 26/247 [16:46<2:28:31, 40.32s/it]\\\\rInference:  11%|█         | 27/247 [17:26<2:27:10, 40.14s/it]\\\\rInference:  11%|█▏        | 28/247 [18:05<2:26:01, 40.01s/it]\\\\rInference:  12%|█▏        | 29/247 [18:44<2:24:07, 39.67s/it]\\\\rInference:  12%|█▏        | 30/247 [19:24<2:22:59, 39.54s/it]\\\\rInference:  13%|█▎        | 31/247 [20:02<2:21:33, 39.32s/it]\\\\rInference:  13%|█▎        | 32/247 [20:41<2:20:14, 39.14s/it]\\\\rInference:  13%|█▎        | 33/247 [21:21<2:20:02, 39.26s/it]\\\\rInference:  14%|█▍        | 34/247 [22:04<2:23:54, 40.54s/it]\\\\rInference:  14%|█▍        | 35/247 [22:52<2:30:51, 42.70s/it]\\\\rInference:  15%|█▍        | 36/247 [23:39<2:34:57, 44.07s/it]\\\\rInference:  15%|█▍        | 37/247 [24:27<2:38:14, 45.21s/it]\\\\rInference:  15%|█▌        | 38/247 [25:15<2:40:01, 45.94s/it]\\\\rInference:  16%|█▌        | 39/247 [26:03<2:41:27, 46.57s/it]\\\\rInference:  16%|█▌        | 40/247 [26\\\\n\\\\n... [截断: 输出过长，省略 10009 字符] ...\\\\n\\\\n[2:26:09<30:34, 36.69s/it]\\\\rInference:  80%|████████  | 198/247 [2:26:49<30:48, 37.73s/it]\\\\rInference:  81%|████████  | 199/247 [2:27:29<30:43, 38.41s/it]\\\\rInference:  81%|████████  | 200/247 [2:28:10<30:34, 39.02s/it]\\\\rInference:  81%|████████▏ | 201/247 [2:28:50<30:16, 39.48s/it]\\\\rInference:  82%|████████▏ | 202/247 [2:29:31<29:50, 39.79s/it]\\\\rInference:  82%|████████▏ | 203/247 [2:30:12<29:26, 40.14s/it]\\\\rInference:  83%|████████▎ | 204/247 [2:30:54<29:14, 40.80s/it]\\\\rInference:  83%|████████▎ | 205/247 [2:31:37<28:56, 41.36s/it]\\\\rInference:  83%|████████▎ | 206/247 [2:32:17<27:56, 40.89s/it]\\\\rInference:  84%|████████▍ | 207/247 [2:32:56<26:57, 40.43s/it]\\\\rInference:  84%|████████▍ | 208/247 [2:33:37<26:23, 40.59s/it]\\\\rInference:  85%|████████▍ | 209/247 [2:34:17<25:39, 40.50s/it]\\\\rInference:  85%|████████▌ | 210/247 [2:34:58<25:01, 40.58s/it]\\\\rInference:  85%|████████▌ | 211/247 [2:35:38<24:12, 40.36s/it]\\\\rInference:  86%|████████▌ | 212/247 [2:36:17<23:15, 39.87s/it]\\\\rInference:  86%|████████▌ | 213/247 [2:36:58<22:47, 40.23s/it]\\\\rInference:  87%|████████▋ | 214/247 [2:37:39<22:20, 40.61s/it]\\\\rInference:  87%|████████▋ | 215/247 [2:38:21<21:52, 41.03s/it]\\\\rInference:  87%|████████▋ | 216/247 [2:39:03<21:16, 41.17s/it]\\\\rInference:  88%|████████▊ | 217/247 [2:39:42<20:19, 40.65s/it]\\\\rInference:  88%|████████▊ | 218/247 [2:40:21<19:26, 40.24s/it]\\\\rInference:  89%|████████▊ | 219/247 [2:41:02<18:48, 40.30s/it]\\\\rInference:  89%|████████▉ | 220/247 [2:41:44<18:23, 40.87s/it]\\\\rInference:  89%|████████▉ | 221/247 [2:42:25<17:45, 40.98s/it]\\\\rInference:  90%|████████▉ | 222/247 [2:43:07<17:08, 41.15s/it]\\\\rInference:  90%|█████████ | 223/247 [2:43:48<16:29, 41.25s/it]\\\\rInference:  91%|█████████ | 224/247 [2:44:32<16:02, 41.85s/it]\\\\rInference:  91%|█████████ | 225/247 [2:45:15<15:30, 42.29s/it]\\\\rInference:  91%|█████████▏| 226/247 [2:45:57<14:46, 42.22s/it]\\\\rInference:  92%|█████████▏| 227/247 [2:46:38<13:56, 41.81s/it]\\\\rInference:  92%|█████████▏| 228/247 [2:47:17<13:02, 41.16s/it]\\\\rInference:  93%|█████████▎| 229/247 [2:47:59<12:22, 41.27s/it]\\\\rInference:  93%|█████████▎| 230/247 [2:48:38<11:29, 40.53s/it]\\\\rInference:  94%|█████████▎| 231/247 [2:49:18<10:45, 40.32s/it]\\\\rInference:  94%|█████████▍| 232/247 [2:50:00<10:12, 40.85s/it]\\\\rInference:  94%|█████████▍| 233/247 [2:50:41<09:35, 41.08s/it]\\\\rInference:  95%|█████████▍| 234/247 [2:51:22<08:53, 41.01s/it]\\\\rInference:  95%|█████████▌| 235/247 [2:52:03<08:12, 41.08s/it]\\\\rInference:  96%|█████████▌| 236/247 [2:52:45<07:32, 41.12s/it]\\\\rInference:  96%|█████████▌| 237/247 [2:53:26<06:52, 41.20s/it]\\\\rInference:  96%|█████████▋| 238/247 [2:54:07<06:11, 41.23s/it]\\\\rInference:  97%|█████████▋| 239/247 [2:54:49<05:31, 41.45s/it]\\\\rInference:  97%|█████████▋| 240/247 [2:55:31<04:50, 41.51s/it]\\\\rInference:  98%|█████████▊| 241/247 [2:56:13<04:09, 41.59s/it]\\\\rInference:  98%|█████████▊| 242/247 [2:56:54<03:27, 41.41s/it]\\\\rInference:  98%|█████████▊| 243/247 [2:57:35<02:45, 41.47s/it]\\\\rInference:  99%|█████████▉| 244/247 [2:58:17<02:04, 41.52s/it]\\\\rInference:  99%|█████████▉| 245/247 [2:58:58<01:22, 41.36s/it]\\\\rInference: 100%|█████████▉| 246/247 [2:59:40<00:41, 41.48s/it]\\\\rInference: 100%|██████████| 247/247 [2:59:50<00:00, 32.19s/it]\\\\rInference: 100%|██████████| 247/247 [2:59:50<00:00, 43.69s/it]\\\\n2026-05-19 22:42:59,520 INFO Inference done. 583/985 truncated, 0 errors.\\\\n2026-05-19 22:42:59,521 INFO Inference: 10790.6s (10.95 s/doc)\\\\n2026-05-19 22:43:00,227 INFO Loaded 37785 training triples (34610 unique facts) for Ign-F1\\\\n2026-05-19 22:43:00,472 INFO Metrics → /root/autodl-tmp/eval_outputs/eval_1_7b_rsft_no_evidence/metrics.json\\\\n2026-05-19 22:43:00,670 INFO Predictions → /root/autodl-tmp/eval_outputs/eval_1_7b_rsft_no_evidence/predictions.json\\\\n\\\\n==================================================\\\\n  F1:          0.4552\\\\n  Ign-F1:      0.4352\\\\n  Evi-F1(DREEAM): 0.0000\\\\n  Evi-F1(TP):     0.0000\\\\n  EDCR:        0.0000\\\\n  Format OK:   956/985 (97.1%)\\\\n  Truncated:   583/985\\\\n  Predictions: 25221\\\\n==================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-19 19:43:02,964 INFO Detected adapter at /root/autodl-tmp/rsft_output_qwen3_1_7b_k1, base: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\n2026-05-19 19:43:02,965 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\n2026-05-19 19:43:03,334 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-19 19:43:03,560 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.39it/s]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.69it/s]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.36it/s]\\n2026-05-19 19:43:04,438 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_qwen3_1_7b_bf16\\n2026-05-19 19:43:07,393 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output_qwen3_1_7b_k1\\n2026-05-19 19:43:08,332 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\n2026-05-19 19:43:08,689 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\n2026-05-19 19:43:08,876 INFO Prepared 985 eval documents, 12275 gold triples\\n\\rInference:   0%|          | 0/247 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n\\rInference:   0%|          | 1/247 [00:40<2:44:04, 40.02s/it]\\rInference:   1%|          | 2/247 [01:19<2:41:53, 39.65s/it]\\rInference:   1%|          | 3/247 [01:59<2:41:22, 39.68s/it]\\rInference:   2%|▏         | 4/247 [02:38<2:39:51, 39.47s/it]\\rInference:   2%|▏         | 5/247 [03:17<2:39:32, 39.55s/it]\\rInference:   2%|▏         | 6/247 [03:57<2:38:46, 39.53s/it]\\rInference:   3%|▎         | 7/247 [04:36<2:37:15, 39.31s/it]\\rInference:   3%|▎         | 8/247 [05:15<2:36:20, 39.25s/it]\\rInference:   4%|▎         | 9/247 [05:32<2:08:21, 32.36s/it]\\rInference:   4%|▍         | 10/247 [06:11<2:15:20, 34.26s/it]\\rInference:   4%|▍         | 11/247 [06:50<2:20:47, 35.80s/it]\\rInference:   5%|▍         | 12/247 [07:29<2:24:11, 36.81s/it]\\rInference:   5%|▌         | 13/247 [08:08<2:26:09, 37.48s/it]\\rInference:   6%|▌         | 14/247 [08:47<2:27:42, 38.04s/it]\\rInference:   6%|▌         | 15/247 [09:26<2:28:02, 38.29s/it]\\rInference:   6%|▋         | 16/247 [10:05<2:27:45, 38.38s/it]\\rInference:   7%|▋         | 17/247 [10:44<2:28:20, 38.70s/it]\\rInference:   7%|▋         | 18/247 [11:23<2:27:31, 38.65s/it]\\rInference:   8%|▊         | 19/247 [12:03<2:28:40, 39.13s/it]\\rInference:   8%|▊         | 20/247 [12:44<2:29:31, 39.52s/it]\\rInference:   9%|▊         | 21/247 [13:24<2:29:43, 39.75s/it]\\rInference:   9%|▉         | 22/247 [14:04<2:30:00, 40.00s/it]\\rInference:   9%|▉         | 23/247 [14:45<2:29:50, 40.13s/it]\\rInference:  10%|▉         | 24/247 [15:25<2:29:11, 40.14s/it]\\rInference:  10%|█         | 25/247 [16:06<2:29:07, 40.31s/it]\\rInference:  11%|█         | 26/247 [16:46<2:28:31, 40.32s/it]\\rInference:  11%|█         | 27/247 [17:26<2:27:10, 40.14s/it]\\rInference:  11%|█▏        | 28/247 [18:05<2:26:01, 40.01s/it]\\rInference:  12%|█▏        | 29/247 [18:44<2:24:07, 39.67s/it]\\rInference:  12%|█▏        | 30/247 [19:24<2:22:59, 39.54s/it]\\rInference:  13%|█▎        | 31/247 [20:02<2:21:33, 39.32s/it]\\rInference:  13%|█▎        | 32/247 [20:41<2:20:14, 39.14s/it]\\rInference:  13%|█▎        | 33/247 [21:21<2:20:02, 39.26s/it]\\rInference:  14%|█▍        | 34/247 [22:04<2:23:54, 40.54s/it]\\rInference:  14%|█▍        | 35/247 [22:52<2:30:51, 42.70s/it]\\rInference:  15%|█▍        | 36/247 [23:39<2:34:57, 44.07s/it]\\rInference:  15%|█▍        | 37/247 [24:27<2:38:14, 45.21s/it]\\rInference:  15%|█▌        | 38/247 [25:15<2:40:01, 45.94s/it]\\rInference:  16%|█▌        | 39/247 [26:03<2:41:27, 46.57s/it]\\rInference:  16%|█▌        | 40/247 [26\\n\\n... [截断: 输出过长，省略 10009 字符] ...\\n\\n[2:26:09<30:34, 36.69s/it]\\rInference:  80%|████████  | 198/247 [2:26:49<30:48, 37.73s/it]\\rInference:  81%|████████  | 199/247 [2:27:29<30:43, 38.41s/it]\\rInference:  81%|████████  | 200/247 [2:28:10<30:34, 39.02s/it]\\rInference:  81%|████████▏ | 201/247 [2:28:50<30:16, 39.48s/it]\\rInference:  82%|████████▏ | 202/247 [2:29:31<29:50, 39.79s/it]\\rInference:  82%|████████▏ | 203/247 [2:30:12<29:26, 40.14s/it]\\rInference:  83%|████████▎ | 204/247 [2:30:54<29:14, 40.80s/it]\\rInference:  83%|████████▎ | 205/247 [2:31:37<28:56, 41.36s/it]\\rInference:  83%|████████▎ | 206/247 [2:32:17<27:56, 40.89s/it]\\rInference:  84%|████████▍ | 207/247 [2:32:56<26:57, 40.43s/it]\\rInference:  84%|████████▍ | 208/247 [2:33:37<26:23, 40.59s/it]\\rInference:  85%|████████▍ | 209/247 [2:34:17<25:39, 40.50s/it]\\rInference:  85%|████████▌ | 210/247 [2:34:58<25:01, 40.58s/it]\\rInference:  85%|████████▌ | 211/247 [2:35:38<24:12, 40.36s/it]\\rInference:  86%|████████▌ | 212/247 [2:36:17<23:15, 39.87s/it]\\rInference:  86%|████████▌ | 213/247 [2:36:58<22:47, 40.23s/it]\\rInference:  87%|████████▋ | 214/247 [2:37:39<22:20, 40.61s/it]\\rInference:  87%|████████▋ | 215/247 [2:38:21<21:52, 41.03s/it]\\rInference:  87%|████████▋ | 216/247 [2:39:03<21:16, 41.17s/it]\\rInference:  88%|████████▊ | 217/247 [2:39:42<20:19, 40.65s/it]\\rInference:  88%|████████▊ | 218/247 [2:40:21<19:26, 40.24s/it]\\rInference:  89%|████████▊ | 219/247 [2:41:02<18:48, 40.30s/it]\\rInference:  89%|████████▉ | 220/247 [2:41:44<18:23, 40.87s/it]\\rInference:  89%|████████▉ | 221/247 [2:42:25<17:45, 40.98s/it]\\rInference:  90%|████████▉ | 222/247 [2:43:07<17:08, 41.15s/it]\\rInference:  90%|█████████ | 223/247 [2:43:48<16:29, 41.25s/it]\\rInference:  91%|█████████ | 224/247 [2:44:32<16:02, 41.85s/it]\\rInference:  91%|█████████ | 225/247 [2:45:15<15:30, 42.29s/it]\\rInference:  91%|█████████▏| 226/247 [2:45:57<14:46, 42.22s/it]\\rInference:  92%|█████████▏| 227/247 [2:46:38<13:56, 41.81s/it]\\rInference:  92%|█████████▏| 228/247 [2:47:17<13:02, 41.16s/it]\\rInference:  93%|█████████▎| 229/247 [2:47:59<12:22, 41.27s/it]\\rInference:  93%|█████████▎| 230/247 [2:48:38<11:29, 40.53s/it]\\rInference:  94%|█████████▎| 231/247 [2:49:18<10:45, 40.32s/it]\\rInference:  94%|█████████▍| 232/247 [2:50:00<10:12, 40.85s/it]\\rInference:  94%|█████████▍| 233/247 [2:50:41<09:35, 41.08s/it]\\rInference:  95%|█████████▍| 234/247 [2:51:22<08:53, 41.01s/it]\\rInference:  95%|█████████▌| 235/247 [2:52:03<08:12, 41.08s/it]\\rInference:  96%|█████████▌| 236/247 [2:52:45<07:32, 41.12s/it]\\rInference:  96%|█████████▌| 237/247 [2:53:26<06:52, 41.20s/it]\\rInference:  96%|█████████▋| 238/247 [2:54:07<06:11, 41.23s/it]\\rInference:  97%|█████████▋| 239/247 [2:54:49<05:31, 41.45s/it]\\rInference:  97%|█████████▋| 240/247 [2:55:31<04:50, 41.51s/it]\\rInference:  98%|█████████▊| 241/247 [2:56:13<04:09, 41.59s/it]\\rInference:  98%|█████████▊| 242/247 [2:56:54<03:27, 41.41s/it]\\rInference:  98%|█████████▊| 243/247 [2:57:35<02:45, 41.47s/it]\\rInference:  99%|█████████▉| 244/247 [2:58:17<02:04, 41.52s/it]\\rInference:  99%|█████████▉| 245/247 [2:58:58<01:22, 41.36s/it]\\rInference: 100%|█████████▉| 246/247 [2:59:40<00:41, 41.48s/it]\\rInference: 100%|██████████| 247/247 [2:59:50<00:00, 32.19s/it]\\rInference: 100%|██████████| 247/247 [2:59:50<00:00, 43.69s/it]\\n2026-05-19 22:42:59,520 INFO Inference done. 583/985 truncated, 0 errors.\\n2026-05-19 22:42:59,521 INFO Inference: 10790.6s (10.95 s/doc)\\n2026-05-19 22:43:00,227 INFO Loaded 37785 training triples (34610 unique facts) for Ign-F1\\n2026-05-19 22:43:00,472 INFO Metrics → /root/autodl-tmp/eval_outputs/eval_1_7b_rsft_no_evidence/metrics.json\\n2026-05-19 22:43:00,670 INFO Predictions → /root/autodl-tmp/eval_outputs/eval_1_7b_rsft_no_evidence/predictions.json\\n\\n==================================================\\n  F1:          0.4552\\n  Ign-F1:      0.4352\\n  Evi-F1(DREEAM): 0.0000\\n  Evi-F1(TP):     0.0000\\n  EDCR:        0.0000\\n  Format OK:   956/985 (97.1%)\\n  Truncated:   583/985\\n  Predictions: 25221\\n==================================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T14:45:57.384Z_
+
+<details><summary>↩ Tool result · `toolu_01WLxnAYvSAjtasgSYac2Rm5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# No-evidence eval for 1.7B RSFT s42 (evidence tax measurement)\\n# Model: Qwen3-1.7B + SFT s42 adapter + RSFT s42 adapter, with --no_evidence\\nset -euo pipefail\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\ncd /root/autodl-tmp/freige\\n\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport HF_HUB_OFFLINE=1\\nexport TRANSFORMERS_OFFLINE=1\\n\\npython -m freige.eval.inference \\\\\\n    --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b_k1 \\\\\\n    --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B \\\\\\n    --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 \\\\\\n    --data_path /root/autodl-tmp/data/docred \\\\\\n    --output_dir /root/autodl-tmp/eval_outputs/eval_1_7b_rsft_no_evidence \\\\\\n    --batch_size 4 \\\\\\n    --max_new_tokens 1024 \\\\\\n    --no-quantize \\\\\\n    --no_evidence \\\\\\n    --seed 42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "f65f0fb3-31b4-42f4-8586-05e2f550c0c9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# No-evidence eval for 1.7B RSFT s42 (evidence tax measurement)\\\\n# Model: Qwen3-1.7B + SFT s42 adapter + RSFT s42 adapter, with --no_evidence\\\\nset -euo pipefail\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\ncd /root/autodl-tmp/freige\\\\n\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport HF_HUB_OFFLINE=1\\\\nexport TRANSFORMERS_OFFLINE=1\\\\n\\\\npython -m freige.eval.inference \\\\\\\\\\\\n    --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b_k1 \\\\\\\\\\\\n    --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B \\\\\\\\\\\\n    --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 \\\\\\\\\\\\n    --data_path /root/autodl-tmp/data/docred \\\\\\\\\\\\n    --output_dir /root/autodl-tmp/eval_outputs/eval_1_7b_rsft_no_evidence \\\\\\\\\\\\n    --batch_size 4 \\\\\\\\\\\\n    --max_new_tokens 1024 \\\\\\\\\\\\n    --no-quantize \\\\\\\\\\\\n    --no_evidence \\\\\\\\\\\\n    --seed 42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# No-evidence eval for 1.7B RSFT s42 (evidence tax measurement)\\n# Model: Qwen3-1.7B + SFT s42 adapter + RSFT s42 adapter, with --no_evidence\\nset -euo pipefail\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\ncd /root/autodl-tmp/freige\\n\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport HF_HUB_OFFLINE=1\\nexport TRANSFORMERS_OFFLINE=1\\n\\npython -m freige.eval.inference \\\\\\n    --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b_k1 \\\\\\n    --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B \\\\\\n    --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 \\\\\\n    --data_path /root/autodl-tmp/data/docred \\\\\\n    --output_dir /root/autodl-tmp/eval_outputs/eval_1_7b_rsft_no_evidence \\\\\\n    --batch_size 4 \\\\\\n    --max_new_tokens 1024 \\\\\\n    --no-quantize \\\\\\n    --no_evidence \\\\\\n    --seed 42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01HxLgKGrL4e3TmcbDQWA6dc`</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": {
+    "exp_id": "plan019_1_7b_rsft_no_evidence_eval"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "72f17764-40c7-4720-a2d2-14f279e06f8f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dbx2ej4k6tiE7Qo5NCTjjw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 24695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1295
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T14:45:58.828Z_
+
+<details><summary>↩ Tool result · `toolu_01HxLgKGrL4e3TmcbDQWA6dc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2623}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "4a8f2d3c-4114-4cb4-ba32-cc7c030dfd95",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2623}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2623}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the results:
+
+1. **Log file analysis:**
+   - Model loaded correctly: Qwen3-1.7B base + SFT adapter + RSFT LoRA adapter
+   - 998 documents loaded, 12275 relation samples, 985 eval documents
+   - Inference completed: 247 batches, ~3 hours
+   - 583/985 truncated, 0 errors
+   - Results:
+     - F1: 0.4552
+     - Ign-F1: **0.4352**
+     - Evi-F1(DREEAM): 0.0000
+     - Evi-F1(TP): 0.0000
+     - EDCR: 0.0000
+     - Format OK: 956/985 (97.1%)
+     - Truncated: 583/985
+     - Predictions: 25221
+   - EXIT_CODE=0
+
+2. **Eval script confirms:**
+   - `--no_evidence` flag is passed ✓ (C005 compliant)
+   - Correct model path: `/root/autodl-tmp/rsft_output_qwen3_1_7b_k1`
+   - Base model is Qwen3-1.7B with the SFT adapter from `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16`, running on DocRED data with batch_size=4, max_new_tokens=1024, and seed=42.
+
+3. **No W&B run ID visible** in the log.
+
+4. **Hypothesis evaluation:** The with-evidence ign_f1 was 0.5122 while no-evidence came in at 0.4352, showing a 0.0770 point drop when evidence is removed.
+
+The no-evidence result is actually lower than with-evidence, which contradicts my hypothesis that removing evidence would improve performance. This means the hypothesis is rejected — the evidence generation appears to help the model reason about relations rather than hinder it. Removing evidence causes a 7.7 percentage point performance drop, indicating a negative evidence tax where the model relies on evidence to perform better. -evidence < no-evidence, then there's a tax. But here with-evidence > no-evidence, meaning evidence generation actually helps. So:
+   - Evidence tax = with_evidence - no_evidence = 0.5122 - 0.4352 = +0.0770 (evidence helps by 7.7pp)
+   - Or evidence tax is negative (-7.7pp), meaning no tax — evidence helps
+
+   Actually, re-reading the task: "evidence tax = the cost of generating evidence on RE performance". The hypothesis is that removing evidence should improve RE (because the model doesn't need to waste tokens on evidence). 
+
+   But the result shows the opposite: removing evidence DECREASES performance. This means:
+   - No evidence tax exists for 1.7B RSFT
+   - In fact, evidence generation is beneficial (or at least the training with evidence creates a model that performs worse when evidence is removed at inference)
+
+   This is a negative result — the hypothesis that no-evidence would outperform with-evidence isn't supported. The evidence metrics are zero as expected since no evidence was generated, and truncation is quite high at 59.2%, though that might be because the model still generates lengthy outputs even without the evidence constraint. I need to add this experiment to the registry, so let me check the existing format and update it with all the relevant fields.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "cf1ff250-c83e-4616-b136-a4095f2fbf63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011BDSts5n5BVRP8AyughvyQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5590,
+      "cache_read_input_tokens": 25990,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5590
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+结果出来了。关键指标：
+
+| 指标 | 值 |
+|------|-----|
+| **Ign-F1** | **0.4352** |
+| F1 | 0.4552 |
+| Evi-F1(DREEAM) | 0.0000 |
+| Evi-F1(TP) | 0.0000 |
+| EDCR | 0.0000 |
+| Format OK | 956/985 (97.1%) |
+| Truncated | 583/985 (59.2%) |
+| Predictions | 25221 |
+
+**Hypothesis rejected (negative).** No-evidence ign_f1 = 0.4352 < with-evidence 0.5122. 移除 evidence 不仅没有提升 RE 性能，反而下降了 **7.70pp**。1.7B 模型的 evidence generation 对 RE 有正面作用，不存在 evidence tax —— 恰恰相反，evidence 是有益的。
+
+与 14B SFT evidence tax ≈ 0.03pp 形成鲜明对比：小模型更依赖 evidence chain-of-thought 来辅助关系抽取。
+
+评估脚本确认 `--no_evidence` 参数已正确传入，无 W&B run ID。无错误。
+
+更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "ec53a756-e986-4514-8548-bab0a8f0321f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011BDSts5n5BVRP8AyughvyQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5590,
+      "cache_read_input_tokens": 25990,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5590
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01FSunR5TrpgjXohvmoKZkpk`</summary>
+
+```json
+{
+  "exp_id": "plan019_1_7b_rsft_no_evidence_eval",
+  "field": "hypothesis",
+  "value": "Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "4709dead-0cef-4753-b3c6-a3075f154ea6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011BDSts5n5BVRP8AyughvyQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5590,
+      "cache_read_input_tokens": 25990,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5590
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T14:46:34.108Z_
+
+<details><summary>↩ Tool result · `toolu_01FSunR5TrpgjXohvmoKZkpk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan019_1_7b_rsft_no_evidence_eval\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:42:59.170Z\", \"updated_at\": \"2026-05-19T14:46:33.606Z\", \"spec\": {\"command\": \"bash -c \\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 679713, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 998, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"hypothesis\": \"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\", \"reproduce\": {\"finished_at\": \"2026-05-19T14:44:13.014Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T14:44:20.090580+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2204}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "a1d8411d-05d8-480a-b0a7-02a7640ced6a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan019_1_7b_rsft_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:42:59.170Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:46:33.606Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 679713, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\"}, \\\"hypothesis\\\": \\\"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T14:44:13.014Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T14:44:20.090580+00:00\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2204}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan019_1_7b_rsft_no_evidence_eval\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:42:59.170Z\", \"updated_at\": \"2026-05-19T14:46:33.606Z\", \"spec\": {\"command\": \"bash -c \\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 679713, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 998, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"hypothesis\": \"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\", \"reproduce\": {\"finished_at\": \"2026-05-19T14:44:13.014Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T14:44:20.090580+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2204}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01NUMbASi2rPpovDz4WvHdPL`</summary>
+
+```json
+{
+  "exp_id": "plan019_1_7b_rsft_no_evidence_eval",
+  "field": "metrics",
+  "value": {
+    "ign_f1": 0.4352,
+    "f1": 0.4552,
+    "evi_f1_dreeam": 0,
+    "evi_f1_tp": 0,
+    "edcr": 0,
+    "format_ok_rate": 0.971,
+    "truncated_rate": 0.592,
+    "predictions": 25221
+  },
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "f94f662e-3537-4a15-b8bb-e3b7e3048c60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VPaj6ptaUu51GHwdyRUYMF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2268,
+      "cache_read_input_tokens": 31580,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2268
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01UBqLf5MrG3YsHiyKcasBfe`</summary>
+
+```json
+{
+  "exp_id": "plan019_1_7b_rsft_no_evidence_eval",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/rsft_output_qwen3_1_7b_k1",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "a4134697-69db-4140-ab08-5083ee205667",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VPaj6ptaUu51GHwdyRUYMF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2268,
+      "cache_read_input_tokens": 31580,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2268
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01FudP7RKBbecCo8PnoyRtH5`</summary>
+
+```json
+{
+  "exp_id": "plan019_1_7b_rsft_no_evidence_eval",
+  "field": "log_path",
+  "value": "~/runs/faith-evidence-ie/plan019_1_7b_rsft_no_evidence_eval.log",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "cfbd0e6b-7251-4571-aa36-538926867a20",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VPaj6ptaUu51GHwdyRUYMF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2268,
+      "cache_read_input_tokens": 31580,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2268
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T14:46:43.700Z_
+
+<details><summary>↩ Tool result · `toolu_01NUMbASi2rPpovDz4WvHdPL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan019_1_7b_rsft_no_evidence_eval\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:42:59.170Z\", \"updated_at\": \"2026-05-19T14:46:42.571Z\", \"spec\": {\"command\": \"bash -c \\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 679713, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 998, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"hypothesis\": \"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\", \"reproduce\": {\"finished_at\": \"2026-05-19T14:44:13.014Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T14:44:20.090580+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.4352, \"f1\": 0.4552, \"evi_f1_dreeam\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"format_ok_rate\": 0.971, \"truncated_rate\": 0.592, \"predictions\": 25221}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.2494}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "1242dc17-344b-43ed-a6f7-3ce3e3d19bdb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan019_1_7b_rsft_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:42:59.170Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:46:42.571Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 679713, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\"}, \\\"hypothesis\\\": \\\"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T14:44:13.014Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T14:44:20.090580+00:00\\\"}]}, \\\"metrics\\\": {\\\"ign_f1\\\": 0.4352, \\\"f1\\\": 0.4552, \\\"evi_f1_dreeam\\\": 0, \\\"evi_f1_tp\\\": 0, \\\"edcr\\\": 0, \\\"format_ok_rate\\\": 0.971, \\\"truncated_rate\\\": 0.592, \\\"predictions\\\": 25221}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.2494}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan019_1_7b_rsft_no_evidence_eval\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:42:59.170Z\", \"updated_at\": \"2026-05-19T14:46:42.571Z\", \"spec\": {\"command\": \"bash -c \\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 679713, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 998, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"hypothesis\": \"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\", \"reproduce\": {\"finished_at\": \"2026-05-19T14:44:13.014Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T14:44:20.090580+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.4352, \"f1\": 0.4552, \"evi_f1_dreeam\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"format_ok_rate\": 0.971, \"truncated_rate\": 0.592, \"predictions\": 25221}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.2494}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T14:46:45.756Z_
+
+<details><summary>↩ Tool result · `toolu_01UBqLf5MrG3YsHiyKcasBfe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan019_1_7b_rsft_no_evidence_eval\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:42:59.170Z\", \"updated_at\": \"2026-05-19T14:46:45.019Z\", \"spec\": {\"command\": \"bash -c \\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 679713, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 998, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"hypothesis\": \"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\", \"reproduce\": {\"finished_at\": \"2026-05-19T14:44:13.014Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T14:44:20.090580+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.4352, \"f1\": 0.4552, \"evi_f1_dreeam\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"format_ok_rate\": 0.971, \"truncated_rate\": 0.592, \"predictions\": 25221}, \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.0292}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "7f8c0e9d-e8dc-47c9-b6fd-340908a68806",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan019_1_7b_rsft_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:42:59.170Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:46:45.019Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 679713, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\"}, \\\"hypothesis\\\": \\\"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T14:44:13.014Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T14:44:20.090580+00:00\\\"}]}, \\\"metrics\\\": {\\\"ign_f1\\\": 0.4352, \\\"f1\\\": 0.4552, \\\"evi_f1_dreeam\\\": 0, \\\"evi_f1_tp\\\": 0, \\\"edcr\\\": 0, \\\"format_ok_rate\\\": 0.971, \\\"truncated_rate\\\": 0.592, \\\"predictions\\\": 25221}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0292}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan019_1_7b_rsft_no_evidence_eval\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:42:59.170Z\", \"updated_at\": \"2026-05-19T14:46:45.019Z\", \"spec\": {\"command\": \"bash -c \\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 679713, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 998, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"hypothesis\": \"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\", \"reproduce\": {\"finished_at\": \"2026-05-19T14:44:13.014Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T14:44:20.090580+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.4352, \"f1\": 0.4552, \"evi_f1_dreeam\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"format_ok_rate\": 0.971, \"truncated_rate\": 0.592, \"predictions\": 25221}, \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.0292}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T14:46:47.138Z_
+
+<details><summary>↩ Tool result · `toolu_01FudP7RKBbecCo8PnoyRtH5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan019_1_7b_rsft_no_evidence_eval\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:42:59.170Z\", \"updated_at\": \"2026-05-19T14:46:46.583Z\", \"spec\": {\"command\": \"bash -c \\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 679713, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 998, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"hypothesis\": \"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\", \"reproduce\": {\"finished_at\": \"2026-05-19T14:44:13.014Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T14:44:20.090580+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.4352, \"f1\": 0.4552, \"evi_f1_dreeam\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"format_ok_rate\": 0.971, \"truncated_rate\": 0.592, \"predictions\": 25221}, \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"log_path\": \"~/runs/faith-evidence-ie/plan019_1_7b_rsft_no_evidence_eval.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.368}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "21225d6c-beb2-4f7f-ba9a-31ddffb398ef",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan019_1_7b_rsft_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:42:59.170Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:46:46.583Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 679713, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\"}, \\\"hypothesis\\\": \\\"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T14:44:13.014Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T14:44:20.090580+00:00\\\"}]}, \\\"metrics\\\": {\\\"ign_f1\\\": 0.4352, \\\"f1\\\": 0.4552, \\\"evi_f1_dreeam\\\": 0, \\\"evi_f1_tp\\\": 0, \\\"edcr\\\": 0, \\\"format_ok_rate\\\": 0.971, \\\"truncated_rate\\\": 0.592, \\\"predictions\\\": 25221}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/plan019_1_7b_rsft_no_evidence_eval.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.368}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan019_1_7b_rsft_no_evidence_eval\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:42:59.170Z\", \"updated_at\": \"2026-05-19T14:46:46.583Z\", \"spec\": {\"command\": \"bash -c \\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 679713, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 998, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"hypothesis\": \"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\", \"reproduce\": {\"finished_at\": \"2026-05-19T14:44:13.014Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T14:44:20.090580+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.4352, \"f1\": 0.4552, \"evi_f1_dreeam\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"format_ok_rate\": 0.971, \"truncated_rate\": 0.592, \"predictions\": 25221}, \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"log_path\": \"~/runs/faith-evidence-ie/plan019_1_7b_rsft_no_evidence_eval.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.368}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01HDUzdsCPvt71qiARmXoz2i`</summary>
+
+```json
+{
+  "exp_id": "plan019_1_7b_rsft_no_evidence_eval",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "d0edcc18-92f6-4df6-872f-441244393cd9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015utRpX4NPH8LDMbT4K17cw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2553,
+      "cache_read_input_tokens": 33848,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2553
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T14:46:51.787Z_
+
+<details><summary>↩ Tool result · `toolu_01HDUzdsCPvt71qiARmXoz2i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan019_1_7b_rsft_no_evidence_eval\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:42:59.170Z\", \"updated_at\": \"2026-05-19T14:46:51.282Z\", \"spec\": {\"command\": \"bash -c \\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 679713, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 998, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"hypothesis\": \"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\", \"reproduce\": {\"finished_at\": \"2026-05-19T14:44:13.014Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T14:44:20.090580+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.4352, \"f1\": 0.4552, \"evi_f1_dreeam\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"format_ok_rate\": 0.971, \"truncated_rate\": 0.592, \"predictions\": 25221}, \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"log_path\": \"~/runs/faith-evidence-ie/plan019_1_7b_rsft_no_evidence_eval.log\", \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2472}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "6c24aba8-c461-4fe2-be89-90b747a50eeb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan019_1_7b_rsft_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:42:59.170Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:46:51.282Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 679713, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\"}, \\\"hypothesis\\\": \\\"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T14:44:13.014Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T14:44:20.090580+00:00\\\"}]}, \\\"metrics\\\": {\\\"ign_f1\\\": 0.4352, \\\"f1\\\": 0.4552, \\\"evi_f1_dreeam\\\": 0, \\\"evi_f1_tp\\\": 0, \\\"edcr\\\": 0, \\\"format_ok_rate\\\": 0.971, \\\"truncated_rate\\\": 0.592, \\\"predictions\\\": 25221}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/plan019_1_7b_rsft_no_evidence_eval.log\\\", \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2472}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan019_1_7b_rsft_no_evidence_eval\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:42:59.170Z\", \"updated_at\": \"2026-05-19T14:46:51.282Z\", \"spec\": {\"command\": \"bash -c \\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 679713, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 998, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"hypothesis\": \"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\", \"reproduce\": {\"finished_at\": \"2026-05-19T14:44:13.014Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T14:44:20.090580+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.4352, \"f1\": 0.4552, \"evi_f1_dreeam\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"format_ok_rate\": 0.971, \"truncated_rate\": 0.592, \"predictions\": 25221}, \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"log_path\": \"~/runs/faith-evidence-ie/plan019_1_7b_rsft_no_evidence_eval.log\", \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2472}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01XZeABoqW7JrnudCZe3vvUz`</summary>
+
+```json
+{
+  "exp_id": "plan019_1_7b_rsft_no_evidence_eval",
+  "field": "notes",
+  "value": "Evidence tax measurement for 1.7B RSFT s42. Hypothesis rejected: no-evidence ign_f1=0.4352 < with-evidence ign_f1=0.5122, a DECREASE of 7.70pp. Removing evidence hurts 1.7B RE performance — evidence generation acts as beneficial chain-of-thought. Contrast with 14B SFT where evidence tax ≈ 0.03pp (nearly zero). This suggests smaller models rely more on evidence reasoning to achieve good RE. High truncation rate (59.2%) but 97.1% format compliance. No W&B run.",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "62e527fa-7d22-4a30-acd1-4092f275911d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015utRpX4NPH8LDMbT4K17cw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2553,
+      "cache_read_input_tokens": 33848,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2553
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T14:46:55.994Z_
+
+<details><summary>↩ Tool result · `toolu_01XZeABoqW7JrnudCZe3vvUz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan019_1_7b_rsft_no_evidence_eval\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:42:59.170Z\", \"updated_at\": \"2026-05-19T14:46:55.120Z\", \"spec\": {\"command\": \"bash -c \\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 679713, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 998, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"hypothesis\": \"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\", \"reproduce\": {\"finished_at\": \"2026-05-19T14:44:13.014Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T14:44:20.090580+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.4352, \"f1\": 0.4552, \"evi_f1_dreeam\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"format_ok_rate\": 0.971, \"truncated_rate\": 0.592, \"predictions\": 25221}, \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"log_path\": \"~/runs/faith-evidence-ie/plan019_1_7b_rsft_no_evidence_eval.log\", \"conclusion\": \"negative\", \"notes\": \"Evidence tax measurement for 1.7B RSFT s42. Hypothesis rejected: no-evidence ign_f1=0.4352 < with-evidence ign_f1=0.5122, a DECREASE of 7.70pp. Removing evidence hurts 1.7B RE performance — evidence generation acts as beneficial chain-of-thought. Contrast with 14B SFT where evidence tax ≈ 0.03pp (nearly zero). This suggests smaller models rely more on evidence reasoning to achieve good RE. High truncation rate (59.2%) but 97.1% format compliance. No W&B run.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.0816}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "eb9fc5ae-9edb-45bc-93ee-d60e7ebca53f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan019_1_7b_rsft_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:42:59.170Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:46:55.120Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 679713, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\"}, \\\"hypothesis\\\": \\\"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T14:44:13.014Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T14:44:20.090580+00:00\\\"}]}, \\\"metrics\\\": {\\\"ign_f1\\\": 0.4352, \\\"f1\\\": 0.4552, \\\"evi_f1_dreeam\\\": 0, \\\"evi_f1_tp\\\": 0, \\\"edcr\\\": 0, \\\"format_ok_rate\\\": 0.971, \\\"truncated_rate\\\": 0.592, \\\"predictions\\\": 25221}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/plan019_1_7b_rsft_no_evidence_eval.log\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"Evidence tax measurement for 1.7B RSFT s42. Hypothesis rejected: no-evidence ign_f1=0.4352 < with-evidence ign_f1=0.5122, a DECREASE of 7.70pp. Removing evidence hurts 1.7B RE performance — evidence generation acts as beneficial chain-of-thought. Contrast with 14B SFT where evidence tax ≈ 0.03pp (nearly zero). This suggests smaller models rely more on evidence reasoning to achieve good RE. High truncation rate (59.2%) but 97.1% format compliance. No W&B run.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0816}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan019_1_7b_rsft_no_evidence_eval\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:42:59.170Z\", \"updated_at\": \"2026-05-19T14:46:55.120Z\", \"spec\": {\"command\": \"bash -c \\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 679713, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 998, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"hypothesis\": \"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\", \"reproduce\": {\"finished_at\": \"2026-05-19T14:44:13.014Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T14:44:20.090580+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.4352, \"f1\": 0.4552, \"evi_f1_dreeam\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"format_ok_rate\": 0.971, \"truncated_rate\": 0.592, \"predictions\": 25221}, \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"log_path\": \"~/runs/faith-evidence-ie/plan019_1_7b_rsft_no_evidence_eval.log\", \"conclusion\": \"negative\", \"notes\": \"Evidence tax measurement for 1.7B RSFT s42. Hypothesis rejected: no-evidence ign_f1=0.4352 < with-evidence ign_f1=0.5122, a DECREASE of 7.70pp. Removing evidence hurts 1.7B RE performance — evidence generation acts as beneficial chain-of-thought. Contrast with 14B SFT where evidence tax ≈ 0.03pp (nearly zero). This suggests smaller models rely more on evidence reasoning to achieve good RE. High truncation rate (59.2%) but 97.1% format compliance. No W&B run.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.0816}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01QDzgo7oV6dBS94s9F6PSnv`</summary>
+
+```json
+{
+  "exp_id": "plan019_1_7b_rsft_no_evidence_eval",
+  "field": "status",
+  "value": "DONE",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "57c9124f-aa0c-43a6-a4fc-e4f856972683",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DwfA693Pgr1fNEceyevuv7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1932,
+      "cache_read_input_tokens": 36401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1932
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T14:47:01.555Z_
+
+<details><summary>↩ Tool result · `toolu_01QDzgo7oV6dBS94s9F6PSnv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan019_1_7b_rsft_no_evidence_eval\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:42:59.170Z\", \"updated_at\": \"2026-05-19T14:46:59.950Z\", \"spec\": {\"command\": \"bash -c \\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 679713, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 998, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"hypothesis\": \"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\", \"reproduce\": {\"finished_at\": \"2026-05-19T14:44:13.014Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T14:44:20.090580+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.4352, \"f1\": 0.4552, \"evi_f1_dreeam\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"format_ok_rate\": 0.971, \"truncated_rate\": 0.592, \"predictions\": 25221}, \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"log_path\": \"~/runs/faith-evidence-ie/plan019_1_7b_rsft_no_evidence_eval.log\", \"conclusion\": \"negative\", \"notes\": \"Evidence tax measurement for 1.7B RSFT s42. Hypothesis rejected: no-evidence ign_f1=0.4352 < with-evidence ign_f1=0.5122, a DECREASE of 7.70pp. Removing evidence hurts 1.7B RE performance — evidence generation acts as beneficial chain-of-thought. Contrast with 14B SFT where evidence tax ≈ 0.03pp (nearly zero). This suggests smaller models rely more on evidence reasoning to achieve good RE. High truncation rate (59.2%) but 97.1% format compliance. No W&B run.\", \"completed_at\": \"2026-05-19T14:46:59.950Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.3107}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "543363f5-6e70-40ef-bd84-af95a2999b5d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan019_1_7b_rsft_no_evidence_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:42:59.170Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:46:59.950Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 679713, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\"}, \\\"hypothesis\\\": \\\"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T14:44:13.014Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T14:44:20.090580+00:00\\\"}]}, \\\"metrics\\\": {\\\"ign_f1\\\": 0.4352, \\\"f1\\\": 0.4552, \\\"evi_f1_dreeam\\\": 0, \\\"evi_f1_tp\\\": 0, \\\"edcr\\\": 0, \\\"format_ok_rate\\\": 0.971, \\\"truncated_rate\\\": 0.592, \\\"predictions\\\": 25221}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/plan019_1_7b_rsft_no_evidence_eval.log\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"Evidence tax measurement for 1.7B RSFT s42. Hypothesis rejected: no-evidence ign_f1=0.4352 < with-evidence ign_f1=0.5122, a DECREASE of 7.70pp. Removing evidence hurts 1.7B RE performance — evidence generation acts as beneficial chain-of-thought. Contrast with 14B SFT where evidence tax ≈ 0.03pp (nearly zero). This suggests smaller models rely more on evidence reasoning to achieve good RE. High truncation rate (59.2%) but 97.1% format compliance. No W&B run.\\\", \\\"completed_at\\\": \\\"2026-05-19T14:46:59.950Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.3107}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan019_1_7b_rsft_no_evidence_eval\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:42:59.170Z\", \"updated_at\": \"2026-05-19T14:46:59.950Z\", \"spec\": {\"command\": \"bash -c \\\"bash /root/autodl-tmp/freige/scripts/seed_expansion/eval_1_7b_no_evidence.sh\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 679713, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 998, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"hypothesis\": \"Removing evidence output at inference time should improve RE ign_f1 above 0.5122 (with-evidence baseline) for 1.7B RSFT, indicating an evidence tax where generating evidence hurts relation extraction performance\", \"reproduce\": {\"finished_at\": \"2026-05-19T14:44:13.014Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T14:44:20.090580+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.4352, \"f1\": 0.4552, \"evi_f1_dreeam\": 0, \"evi_f1_tp\": 0, \"edcr\": 0, \"format_ok_rate\": 0.971, \"truncated_rate\": 0.592, \"predictions\": 25221}, \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_k1\", \"log_path\": \"~/runs/faith-evidence-ie/plan019_1_7b_rsft_no_evidence_eval.log\", \"conclusion\": \"negative\", \"notes\": \"Evidence tax measurement for 1.7B RSFT s42. Hypothesis rejected: no-evidence ign_f1=0.4352 < with-evidence ign_f1=0.5122, a DECREASE of 7.70pp. Removing evidence hurts 1.7B RE performance — evidence generation acts as beneficial chain-of-thought. Contrast with 14B SFT where evidence tax ≈ 0.03pp (nearly zero). This suggests smaller models rely more on evidence reasoning to achieve good RE. High truncation rate (59.2%) but 97.1% format compliance. No W&B run.\", \"completed_at\": \"2026-05-19T14:46:59.950Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.3107}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+Registry 已更新为 DONE/negative。
+
+**总结：**
+
+| 条件 | 值 |
+|------|-----|
+| No-evidence ign_f1 | 0.4352 |
+| With-evidence ign_f1 | 0.5122 |
+| **差值** | **-7.70pp** |
+
+Hypothesis rejected。1.7B RSFT 不存在 evidence tax，相反 evidence generation 对 RE 有 +7.70pp 的正面贡献。与 14B SFT 的 ~0.03pp evidence tax 对比，说明小模型更依赖 evidence chain-of-thought 来辅助关系抽取——这为跨尺度 scaling curve 提供了一个重要数据点。
+
+评估脚本确认 `--no_evidence` 正确传入，无错误，无 W&B run。唯一值得注意的是 truncation rate 59.2%，但 format compliance 97.1% 说明模型输出格式基本正确。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "uuid": "6d3d48cd-1b8f-4492-940f-810083c06b25",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0124PB4CZeJwzEDLYnHg9B3J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1008,
+      "cache_read_input_tokens": 38333,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1008
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 31_
+
+Registry 已更新为 DONE/negative。
+
+**总结：**
+
+| 条件 | 值 |
+|------|-----|
+| No-evidence ign_f1 | 0.4352 |
+| With-evidence ign_f1 | 0.5122 |
+| **差值** | **-7.70pp** |
+
+Hypothesis rejected。1.7B RSFT 不存在 evidence tax，相反 evidence generation 对 RE 有 +7.70pp 的正面贡献。与 14B SFT 的 ~0.03pp evidence tax 对比，说明小模型更依赖 evidence chain-of-thought 来辅助关系抽取——这为跨尺度 scaling curve 提供了一个重要数据点。
+
+评估脚本确认 `--no_evidence` 正确传入，无错误，无 W&B run。唯一值得注意的是 truncation rate 59.2%，但 format compliance 97.1% 说明模型输出格式基本正确。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 81377,
+  "duration_api_ms": 72662,
+  "num_turns": 12,
+  "stop_reason": "end_turn",
+  "session_id": "65aaa1ad-07f8-4558-99d8-1579684f0a1f",
+  "total_cost_usd": 0.36595599999999995,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 27500,
+    "cache_read_input_tokens": 202688,
+    "output_tokens": 3622,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 27500,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 280,
+        "cache_read_input_tokens": 38333,
+        "cache_creation_input_tokens": 1008,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1008
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2012,
+      "outputTokens": 25,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002137,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 3622,
+      "cacheReadInputTokens": 202688,
+      "cacheCreationInputTokens": 27500,
+      "webSearchRequests": 0,
+      "costUSD": 0.36381899999999995,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "34e197ec-4627-4fa9-a345-bb59ba96c314"
+}
+```
+
+</details>
+
+---

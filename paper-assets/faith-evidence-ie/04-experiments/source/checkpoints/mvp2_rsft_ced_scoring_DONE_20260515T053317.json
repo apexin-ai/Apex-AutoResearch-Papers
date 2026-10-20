@@ -1,0 +1,42 @@
+{
+  "exp_id": "mvp2_rsft_ced_scoring",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:27:32.788Z",
+    "updated_at": "2026-05-15T05:33:16.769Z",
+    "hypothesis": "CED scoring + filtering on 4 shard RSFT generations. top_k=1, f1_threshold=0.1. 21952 → 2718 selected (12.4%).",
+    "spec": {
+      "command": "python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --selection_strategy top_k --top_k 1 --f1_threshold 0.1",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/rsft_generations/",
+      "data_count": 21952,
+      "model_name": "cross-encoder/nli-deberta-v3-base",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/rsft_filtered/rsft_train.jsonl",
+      "log_path": "/root/autodl-tmp/rsft_filtered/rsft_combined_report.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "input_generations": 21952,
+      "selected_samples": 2718,
+      "unique_docs": 2691,
+      "selection_rate": 0.124,
+      "mean_f1": 0.6157,
+      "mean_ced": 0.6683,
+      "f1_range": [
+        0.1026,
+        1
+      ],
+      "zero_f1_samples": 0,
+      "selection_strategy": "top_k=1",
+      "f1_threshold": 0.1
+    },
+    "completed_at": "2026-05-15T05:33:16.769Z"
+  },
+  "timestamp": "2026-05-15T05:33:17.085911+00:00",
+  "trigger": "update_registry"
+}

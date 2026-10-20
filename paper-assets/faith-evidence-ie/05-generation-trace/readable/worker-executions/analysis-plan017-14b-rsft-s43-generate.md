@@ -1,0 +1,1194 @@
+# analysis plan017 14b rsft s43 generate
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 24
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/workers/worker_analysis_plan017_14b_rsft_s43_generate_20260523T114328.log`
+- **Structured JSON:** [`0180edc0b2739e53b529.json`](../../sessions/01/0180edc0b2739e53b529.json)
+
+## Before a recorded user message
+
+24 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "454d1117-2e43-498a-83a3-bbd5e8f707b7",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779554400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "0ad5be13-7b59-46ed-af58-940b4fccfbba",
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me diagnose the 14B RSFT s43 generation experiment. I'll start by loading the necessary tool schemas and then SSH to check the logs and output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "uuid": "14ac9179-2fa0-44e1-809a-1bab618e2251",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PKFTdcZoGDRLGmmfKwXqqq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12920,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12920
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01FixyfFbS13uJCcaxgM4mvM`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,CronDelete",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "uuid": "1932e5b1-7b85-4a5e-9143-66662e75b1e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PKFTdcZoGDRLGmmfKwXqqq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12920,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12920
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T11:43:41.947Z_
+
+<details><summary>↩ Tool result · `toolu_01FixyfFbS13uJCcaxgM4mvM`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronDelete"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "uuid": "754a9ff6-46d6-44b0-8141-39b170196897",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "CronDelete"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,CronDelete",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BSWofE4kjSQ8wMgBx45AuZ`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -50 ~/runs/faith-evidence-ie/plan017_14b_rsft_s43_generate.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "uuid": "ba7151f0-ad1c-4167-bb49-58d1ad4b7a48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013MsVyHKdoGCkXmKeSehoy3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1084,
+      "cache_read_input_tokens": 24761,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1084
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KB6geTz4jn6urFt9VzraBJ`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /root/autodl-tmp/rsft_generations_14b_s43/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "uuid": "3af3cd0c-2b52-47ea-88f1-d28409efb4cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013MsVyHKdoGCkXmKeSehoy3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1084,
+      "cache_read_input_tokens": 24761,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1084
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-23T11:43:48.798Z_
+
+<details><summary>↩ Tool result · `toolu_01BSWofE4kjSQ8wMgBx45AuZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  ⚠️ WARNING: truncation_rate above 10%, consider max_new_tokens=3072\\n\\n\\rGenerating:  76%|███████▌  | 2301/3027 [13:13:49<3:27:30, 17.15s/it]\\rGenerating:  76%|███████▌  | 2302/3027 [13:13:59<3:02:50, 15.13s/it]\\rGenerating:  76%|███████▌  | 2303/3027 [13:14:18<3:16:20, 16.27s/it]\\rGenerating:  76%|███████▌  | 2304/3027 [13:14:44<3:50:57, 19.17s/it]\\rGenerating:  76%|███████▌  | 2305/3027 [13:15:08<4:06:01, 20.45s/it]\\rGenerating:  76%|███████▌  | 2306/3027 [13:15:09<2:57:29, 14.77s/it]\\rGenerating:  76%|███████▌  | 2307/3027 [13:15:15<2:26:38, 12.22s/it]\\rGenerating:  76%|███████▌  | 2308/3027 [13:15:35<2:54:12, 14.54s/it]\\rGenerating:  76%|███████▋  | 2309/3027 [13:16:08<4:00:12, 20.07s/it]\\rGenerating:  76%|███████▋  | 2310/3027 [13:16:21<3:34:20, 17.94s/it]\\rGenerating:  76%|███████▋  | 2311/3027 [13:16:39<3:32:23, 17.80s/it]\\rGenerating:  76%|███████▋  | 2312/3027 [13:17:12<4:26:29, 22.36s/it]\\rGenerating:  76%|███████▋  | 2313/3027 [13:17:45<5:03:52, 25.54s/it]\\rGenerating:  76%|███████▋  | 2314/3027 [13:18:03<4:36:56, 23.30s/it]\\rGenerating:  76%|███████▋  | 2315/3027 [13:18:26<4:35:32, 23.22s/it]\\rGenerating:  77%|███████▋  | 2316/3027 [13:18:47<4:28:21, 22.65s/it]\\rGenerating:  77%|███████▋  | 2317/3027 [13:19:12<4:36:51, 23.40s/it]\\rGenerating:  77%|███████▋  | 2318/3027 [13:19:45<5:10:41, 26.29s/it]\\rGenerating:  77%|███████▋  | 2319/3027 [13:20:18<5:33:22, 28.25s/it]\\rGenerating:  77%|███████▋  | 2320/3027 [13:20:49<5:42:30, 29.07s/it]\\rGenerating:  77%|███████▋  | 2321/3027 [13:21:22<5:55:04, 30.18s/it]\\rGenerating:  77%|███████▋  | 2322/3027 [13:21:44<5:26:58, 27.83s/it]\\rGenerating:  77%|███████▋  | 2323/3027 [13:22:02<4:50:11, 24.73s/it]\\rGenerating:  77%|███████▋  | 2324/3027 [13:22:05<3:33:08, 18.19s/it]\\rGenerating:  77%|███████▋  | 2325/3027 [13:22:38<4:23:56, 22.56s/it]\\rGenerating:  77%|███████▋  | 2326/3027 [13:23:10<4:56:51, 25.41s/it]\\rGenerating:  77%|███████▋  | 2327/3027 [13:23:28<4:30:16, 23.17s/it]\\rGenerating:  77%|███████▋  | 2328/3027 [13:23:35<3:33:47, 18.35s/it]\\rGenerating:  77%|███████▋  | 2329/3027 [13:23:46<3:09:01, 16.25s/it]\\rGenerating:  77%|███████▋  | 2330/3027 [13:23:54<2:39:07, 13.70s/it]\\rGenerating:  77%|███████▋  | 2331/3027 [13:24:01<2:17:57, 11.89s/it]\\rGenerating:  77%|███████▋  | 2332/3027 [13:24:11<2:10:50, 11.30s/it]\\rGenerating:  77%|███████▋  | 2333/3027 [13:24:44<3:24:58, 17.72s/it]\\rGenerating:  77%|███████▋  | 2334/3027 [13:25:05<3:34:30, 18.57s/it]\\rGenerating:  77%|█████��█▋  | 2335/3027 [13:25:38<4:24:05, 22.90s/it]\\rGenerating:  77%|███████▋  | 2336/3027 [13:26:11<4:58:37, 25.93s/it]\\rGenerating:  77%|███████▋  | 2337/3027 [13:26:24<4:14:36, 22.14s/it]\\rGenerating:  77%|███████▋  | 2338/3027 [13:26:33<3:29:25, 18.24s/it]\\rGenerating:  77%|███████▋  | 2339/3027 [13:26:56<3:46:37, 19.76s/it]\\rGenerating:  77%|███████▋  | 2340/3027 [13:27:29<4:31:42, 23.73s/it]\\rGenerating:  77%|███████▋  | 2341/3027 [13:28:02<5:01:33, 26.38s/it]\\rGenerating:  77%|███████▋  | 2342/3027 [13:28:18<4:24:24, 23.16s/it]\\rGenerating:  77%|███████▋  | 2343/3027 [13:28:50<4:56:45, 26.03s/it]\\rGenerating:  77%|███████▋  | 2344/3027 [13:29:00<4:02:02, 21.26s/it]\\rGenerating:  77%|███████▋  | 2345/3027 [13:29:33<4:41:56, 24.80s/it]\\rGenerating:  78%|███████▊  | 2346/3027 [13:30:07<5:11:15, 27.42s/it]\\rGenerating:  78%|███████▊  | 2347/3027 [13:30:21<4:25:24, 23.42s/it]\\rGenerating:  78%|███████▊  | 2348/3027 [13:30:27<3:25:01, 18.12s/it]\\rGenerating:  78%|███████▊  | 2349/3027 [13:30:46<3:27:44, 18.38s/it]\\rGenerating:  78%|███████▊  | 2350/3027 [13:31:08<3:38:56, 19.40s/it]\\rGenerating:  78%|███████▊  | 2351/3027 [13:31:19<3:10:18, 16.89s/it]\\rGenerating:  78%|███████▊  | 2352/3027 [13:31:52<4:04:03, 21.69s/it]\\rGenerating:  78%|███████▊  | 2353/3027 [13:32:25<4:42:30, 25.15s/it]\\rGenerating:  78%|███████▊  | 2354/3027 [13:32:47<4:33:02, 24.34s/it]\\rGenerating:  78%|███████▊  | 2355/3027 [13:33:20<5:00:39, 26.84s/it]\\rGenerating:  78%|███████▊  | 2356/3027 [13:33:47<5:02:19, 27.03s/it]\\rGenerating:  78%|███████▊  | 2357/3027 [13:34:21<5:22:22, 28.87\\n\\n... [截断: 输出过长，省略 43381 字符] ...\\n\\nrating:  98%|█████████▊| 2976/3027 [17:08:07<14:26, 17.00s/it]\\rGenerating:  98%|█████████▊| 2977/3027 [17:08:23<13:59, 16.80s/it]\\rGenerating:  98%|█████████▊| 2978/3027 [17:08:37<12:58, 15.88s/it]\\rGenerating:  98%|█████████▊| 2979/3027 [17:08:57<13:49, 17.28s/it]\\rGenerating:  98%|█████████▊| 2980/3027 [17:09:16<13:45, 17.57s/it]\\rGenerating:  98%|█████████▊| 2981/3027 [17:09:48<16:57, 22.13s/it]\\rGenerating:  99%|█████████▊| 2982/3027 [17:09:50<12:06, 16.13s/it]\\rGenerating:  99%|█████████▊| 2983/3027 [17:10:24<15:39, 21.35s/it]\\rGenerating:  99%|█████████▊| 2984/3027 [17:10:35<12:58, 18.10s/it]\\rGenerating:  99%|█████████▊| 2985/3027 [17:11:08<15:51, 22.65s/it]\\rGenerating:  99%|█████████▊| 2986/3027 [17:11:19<13:09, 19.25s/it]\\rGenerating:  99%|█████████▊| 2987/3027 [17:11:53<15:40, 23.50s/it]\\rGenerating:  99%|█████████▊| 2988/3027 [17:12:19<15:47, 24.28s/it]\\rGenerating:  99%|█████████▊| 2989/3027 [17:12:21<11:13, 17.72s/it]\\rGenerating:  99%|█████████▉| 2990/3027 [17:12:46<12:21, 20.04s/it]\\rGenerating:  99%|█████████▉| 2991/3027 [17:13:01<11:01, 18.38s/it]\\rGenerating:  99%|█████████▉| 2992/3027 [17:13:13<09:35, 16.44s/it]\\rGenerating:  99%|█████████▉| 2993/3027 [17:13:25<08:35, 15.15s/it]\\rGenerating:  99%|█████████▉| 2994/3027 [17:13:29<06:29, 11.80s/it]\\rGenerating:  99%|█████████▉| 2995/3027 [17:13:34<05:07,  9.62s/it]\\rGenerating:  99%|█████████▉| 2996/3027 [17:14:04<08:16, 16.01s/it]\\rGenerating:  99%|█████████▉| 2997/3027 [17:14:18<07:34, 15.15s/it]\\rGenerating:  99%|█████████▉| 2998/3027 [17:14:44<08:53, 18.41s/it]\\rGenerating:  99%|█████████▉| 2999/3027 [17:14:47<06:28, 13.88s/it]\\rGenerating:  99%|█████████▉| 3000/3027 [17:15:01<06:16, 13.95s/it]\\n[RSFT Monitor] Docs 2902-3001 (100 docs, 800 generations):\\n  format_ok_rate: 99.9%\\n  truncation_rate: 8.4%\\n  mean_diversity: 7.3/8\\n\\n\\rGenerating:  99%|█████████▉| 3001/3027 [17:15:08<05:08, 11.87s/it]\\rGenerating:  99%|█████████▉| 3002/3027 [17:15:41<07:33, 18.13s/it]\\rGenerating:  99%|█████████▉| 3003/3027 [17:16:12<08:51, 22.16s/it]\\rGenerating:  99%|█████████▉| 3004/3027 [17:16:32<08:09, 21.28s/it]\\rGenerating:  99%|█████████▉| 3005/3027 [17:16:56<08:08, 22.22s/it]\\rGenerating:  99%|█████████▉| 3006/3027 [17:17:11<07:01, 20.07s/it]\\rGenerating:  99%|█████████▉| 3007/3027 [17:17:44<07:59, 23.96s/it]\\rGenerating:  99%|█████████▉| 3008/3027 [17:17:55<06:21, 20.09s/it]\\rGenerating:  99%|█████████▉| 3009/3027 [17:18:28<07:12, 24.04s/it]\\rGenerating:  99%|█████████��| 3010/3027 [17:19:01<07:32, 26.64s/it]\\rGenerating:  99%|█████████▉| 3011/3027 [17:19:34<07:37, 28.59s/it]\\rGenerating: 100%|█████████▉| 3012/3027 [17:19:58<06:45, 27.01s/it]\\rGenerating: 100%|█████████▉| 3013/3027 [17:20:30<06:41, 28.71s/it]\\rGenerating: 100%|█████████▉| 3014/3027 [17:20:39<04:53, 22.58s/it]\\rGenerating: 100%|█████████▉| 3015/3027 [17:21:11<05:08, 25.68s/it]\\rGenerating: 100%|█████████▉| 3016/3027 [17:21:35<04:33, 24.91s/it]\\rGenerating: 100%|█████████▉| 3017/3027 [17:21:41<03:13, 19.32s/it]\\rGenerating: 100%|█████████▉| 3018/3027 [17:21:50<02:25, 16.22s/it]\\rGenerating: 100%|█████████▉| 3019/3027 [17:21:57<01:48, 13.53s/it]\\rGenerating: 100%|█████████▉| 3020/3027 [17:22:12<01:37, 13.90s/it]\\rGenerating: 100%|█████████▉| 3021/3027 [17:22:45<01:58, 19.77s/it]\\rGenerating: 100%|█████████▉| 3022/3027 [17:22:48<01:13, 14.75s/it]\\rGenerating: 100%|█████████▉| 3023/3027 [17:23:18<01:17, 19.29s/it]\\rGenerating: 100%|█████████▉| 3024/3027 [17:23:29<00:49, 16.59s/it]\\rGenerating: 100%|█████████▉| 3025/3027 [17:23:55<00:38, 19.50s/it]\\rGenerating: 100%|█████████▉| 3026/3027 [17:24:28<00:23, 23.58s/it]\\rGenerating: 100%|██████████| 3027/3027 [17:24:52<00:00, 23.71s/it]\\rGenerating: 100%|██████████| 3027/3027 [17:24:52<00:00, 20.71s/it]\\n2026-05-23 19:42:42,990 INFO Generation complete. 3027 documents, 24216 total outputs → /root/autodl-tmp/rsft_generations_14b_s43/generations.jsonl\\n2026-05-23 19:42:44,085 INFO Format compliance: 24202/24216 (99.9%)\\n2026-05-23 19:42:46,042 INFO Diversity cross-check (from file): mean=7.38/8, median=8.0/8, n_docs=3027\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "uuid": "40484e58-2953-4ae3-98e5-90a2d0c09d30",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  ⚠️ WARNING: truncation_rate above 10%, consider max_new_tokens=3072\\\\n\\\\n\\\\rGenerating:  76%|███████▌  | 2301/3027 [13:13:49<3:27:30, 17.15s/it]\\\\rGenerating:  76%|███████▌  | 2302/3027 [13:13:59<3:02:50, 15.13s/it]\\\\rGenerating:  76%|███████▌  | 2303/3027 [13:14:18<3:16:20, 16.27s/it]\\\\rGenerating:  76%|███████▌  | 2304/3027 [13:14:44<3:50:57, 19.17s/it]\\\\rGenerating:  76%|███████▌  | 2305/3027 [13:15:08<4:06:01, 20.45s/it]\\\\rGenerating:  76%|███████▌  | 2306/3027 [13:15:09<2:57:29, 14.77s/it]\\\\rGenerating:  76%|███████▌  | 2307/3027 [13:15:15<2:26:38, 12.22s/it]\\\\rGenerating:  76%|███████▌  | 2308/3027 [13:15:35<2:54:12, 14.54s/it]\\\\rGenerating:  76%|███████▋  | 2309/3027 [13:16:08<4:00:12, 20.07s/it]\\\\rGenerating:  76%|███████▋  | 2310/3027 [13:16:21<3:34:20, 17.94s/it]\\\\rGenerating:  76%|███████▋  | 2311/3027 [13:16:39<3:32:23, 17.80s/it]\\\\rGenerating:  76%|███████▋  | 2312/3027 [13:17:12<4:26:29, 22.36s/it]\\\\rGenerating:  76%|███████▋  | 2313/3027 [13:17:45<5:03:52, 25.54s/it]\\\\rGenerating:  76%|███████▋  | 2314/3027 [13:18:03<4:36:56, 23.30s/it]\\\\rGenerating:  76%|███████▋  | 2315/3027 [13:18:26<4:35:32, 23.22s/it]\\\\rGenerating:  77%|███████▋  | 2316/3027 [13:18:47<4:28:21, 22.65s/it]\\\\rGenerating:  77%|███████▋  | 2317/3027 [13:19:12<4:36:51, 23.40s/it]\\\\rGenerating:  77%|███████▋  | 2318/3027 [13:19:45<5:10:41, 26.29s/it]\\\\rGenerating:  77%|███████▋  | 2319/3027 [13:20:18<5:33:22, 28.25s/it]\\\\rGenerating:  77%|███████▋  | 2320/3027 [13:20:49<5:42:30, 29.07s/it]\\\\rGenerating:  77%|███████▋  | 2321/3027 [13:21:22<5:55:04, 30.18s/it]\\\\rGenerating:  77%|███████▋  | 2322/3027 [13:21:44<5:26:58, 27.83s/it]\\\\rGenerating:  77%|███████▋  | 2323/3027 [13:22:02<4:50:11, 24.73s/it]\\\\rGenerating:  77%|███████▋  | 2324/3027 [13:22:05<3:33:08, 18.19s/it]\\\\rGenerating:  77%|███████▋  | 2325/3027 [13:22:38<4:23:56, 22.56s/it]\\\\rGenerating:  77%|███████▋  | 2326/3027 [13:23:10<4:56:51, 25.41s/it]\\\\rGenerating:  77%|███████▋  | 2327/3027 [13:23:28<4:30:16, 23.17s/it]\\\\rGenerating:  77%|███████▋  | 2328/3027 [13:23:35<3:33:47, 18.35s/it]\\\\rGenerating:  77%|███████▋  | 2329/3027 [13:23:46<3:09:01, 16.25s/it]\\\\rGenerating:  77%|███████▋  | 2330/3027 [13:23:54<2:39:07, 13.70s/it]\\\\rGenerating:  77%|███████▋  | 2331/3027 [13:24:01<2:17:57, 11.89s/it]\\\\rGenerating:  77%|███████▋  | 2332/3027 [13:24:11<2:10:50, 11.30s/it]\\\\rGenerating:  77%|███████▋  | 2333/3027 [13:24:44<3:24:58, 17.72s/it]\\\\rGenerating:  77%|███████▋  | 2334/3027 [13:25:05<3:34:30, 18.57s/it]\\\\rGenerating:  77%|█████��█▋  | 2335/3027 [13:25:38<4:24:05, 22.90s/it]\\\\rGenerating:  77%|███████▋  | 2336/3027 [13:26:11<4:58:37, 25.93s/it]\\\\rGenerating:  77%|███████▋  | 2337/3027 [13:26:24<4:14:36, 22.14s/it]\\\\rGenerating:  77%|███████▋  | 2338/3027 [13:26:33<3:29:25, 18.24s/it]\\\\rGenerating:  77%|███████▋  | 2339/3027 [13:26:56<3:46:37, 19.76s/it]\\\\rGenerating:  77%|███████▋  | 2340/3027 [13:27:29<4:31:42, 23.73s/it]\\\\rGenerating:  77%|███████▋  | 2341/3027 [13:28:02<5:01:33, 26.38s/it]\\\\rGenerating:  77%|███████▋  | 2342/3027 [13:28:18<4:24:24, 23.16s/it]\\\\rGenerating:  77%|███████▋  | 2343/3027 [13:28:50<4:56:45, 26.03s/it]\\\\rGenerating:  77%|███████▋  | 2344/3027 [13:29:00<4:02:02, 21.26s/it]\\\\rGenerating:  77%|███████▋  | 2345/3027 [13:29:33<4:41:56, 24.80s/it]\\\\rGenerating:  78%|███████▊  | 2346/3027 [13:30:07<5:11:15, 27.42s/it]\\\\rGenerating:  78%|███████▊  | 2347/3027 [13:30:21<4:25:24, 23.42s/it]\\\\rGenerating:  78%|███████▊  | 2348/3027 [13:30:27<3:25:01, 18.12s/it]\\\\rGenerating:  78%|███████▊  | 2349/3027 [13:30:46<3:27:44, 18.38s/it]\\\\rGenerating:  78%|███████▊  | 2350/3027 [13:31:08<3:38:56, 19.40s/it]\\\\rGenerating:  78%|███████▊  | 2351/3027 [13:31:19<3:10:18, 16.89s/it]\\\\rGenerating:  78%|███████▊  | 2352/3027 [13:31:52<4:04:03, 21.69s/it]\\\\rGenerating:  78%|███████▊  | 2353/3027 [13:32:25<4:42:30, 25.15s/it]\\\\rGenerating:  78%|███████▊  | 2354/3027 [13:32:47<4:33:02, 24.34s/it]\\\\rGenerating:  78%|███████▊  | 2355/3027 [13:33:20<5:00:39, 26.84s/it]\\\\rGenerating:  78%|███████▊  | 2356/3027 [13:33:47<5:02:19, 27.03s/it]\\\\rGenerating:  78%|███████▊  | 2357/3027 [13:34:21<5:22:22, 28.87\\\\n\\\\n... [截断: 输出过长，省略 43381 字符] ...\\\\n\\\\nrating:  98%|█████████▊| 2976/3027 [17:08:07<14:26, 17.00s/it]\\\\rGenerating:  98%|█████████▊| 2977/3027 [17:08:23<13:59, 16.80s/it]\\\\rGenerating:  98%|█████████▊| 2978/3027 [17:08:37<12:58, 15.88s/it]\\\\rGenerating:  98%|█████████▊| 2979/3027 [17:08:57<13:49, 17.28s/it]\\\\rGenerating:  98%|█████████▊| 2980/3027 [17:09:16<13:45, 17.57s/it]\\\\rGenerating:  98%|█████████▊| 2981/3027 [17:09:48<16:57, 22.13s/it]\\\\rGenerating:  99%|█████████▊| 2982/3027 [17:09:50<12:06, 16.13s/it]\\\\rGenerating:  99%|█████████▊| 2983/3027 [17:10:24<15:39, 21.35s/it]\\\\rGenerating:  99%|█████████▊| 2984/3027 [17:10:35<12:58, 18.10s/it]\\\\rGenerating:  99%|█████████▊| 2985/3027 [17:11:08<15:51, 22.65s/it]\\\\rGenerating:  99%|█████████▊| 2986/3027 [17:11:19<13:09, 19.25s/it]\\\\rGenerating:  99%|█████████▊| 2987/3027 [17:11:53<15:40, 23.50s/it]\\\\rGenerating:  99%|█████████▊| 2988/3027 [17:12:19<15:47, 24.28s/it]\\\\rGenerating:  99%|█████████▊| 2989/3027 [17:12:21<11:13, 17.72s/it]\\\\rGenerating:  99%|█████████▉| 2990/3027 [17:12:46<12:21, 20.04s/it]\\\\rGenerating:  99%|█████████▉| 2991/3027 [17:13:01<11:01, 18.38s/it]\\\\rGenerating:  99%|█████████▉| 2992/3027 [17:13:13<09:35, 16.44s/it]\\\\rGenerating:  99%|█████████▉| 2993/3027 [17:13:25<08:35, 15.15s/it]\\\\rGenerating:  99%|█████████▉| 2994/3027 [17:13:29<06:29, 11.80s/it]\\\\rGenerating:  99%|█████████▉| 2995/3027 [17:13:34<05:07,  9.62s/it]\\\\rGenerating:  99%|█████████▉| 2996/3027 [17:14:04<08:16, 16.01s/it]\\\\rGenerating:  99%|█████████▉| 2997/3027 [17:14:18<07:34, 15.15s/it]\\\\rGenerating:  99%|█████████▉| 2998/3027 [17:14:44<08:53, 18.41s/it]\\\\rGenerating:  99%|█████████▉| 2999/3027 [17:14:47<06:28, 13.88s/it]\\\\rGenerating:  99%|█████████▉| 3000/3027 [17:15:01<06:16, 13.95s/it]\\\\n[RSFT Monitor] Docs 2902-3001 (100 docs, 800 generations):\\\\n  format_ok_rate: 99.9%\\\\n  truncation_rate: 8.4%\\\\n  mean_diversity: 7.3/8\\\\n\\\\n\\\\rGenerating:  99%|█████████▉| 3001/3027 [17:15:08<05:08, 11.87s/it]\\\\rGenerating:  99%|█████████▉| 3002/3027 [17:15:41<07:33, 18.13s/it]\\\\rGenerating:  99%|█████████▉| 3003/3027 [17:16:12<08:51, 22.16s/it]\\\\rGenerating:  99%|█████████▉| 3004/3027 [17:16:32<08:09, 21.28s/it]\\\\rGenerating:  99%|█████████▉| 3005/3027 [17:16:56<08:08, 22.22s/it]\\\\rGenerating:  99%|█████████▉| 3006/3027 [17:17:11<07:01, 20.07s/it]\\\\rGenerating:  99%|█████████▉| 3007/3027 [17:17:44<07:59, 23.96s/it]\\\\rGenerating:  99%|█████████▉| 3008/3027 [17:17:55<06:21, 20.09s/it]\\\\rGenerating:  99%|█████████▉| 3009/3027 [17:18:28<07:12, 24.04s/it]\\\\rGenerating:  99%|█████████��| 3010/3027 [17:19:01<07:32, 26.64s/it]\\\\rGenerating:  99%|█████████▉| 3011/3027 [17:19:34<07:37, 28.59s/it]\\\\rGenerating: 100%|█████████▉| 3012/3027 [17:19:58<06:45, 27.01s/it]\\\\rGenerating: 100%|█████████▉| 3013/3027 [17:20:30<06:41, 28.71s/it]\\\\rGenerating: 100%|█████████▉| 3014/3027 [17:20:39<04:53, 22.58s/it]\\\\rGenerating: 100%|█████████▉| 3015/3027 [17:21:11<05:08, 25.68s/it]\\\\rGenerating: 100%|█████████▉| 3016/3027 [17:21:35<04:33, 24.91s/it]\\\\rGenerating: 100%|█████████▉| 3017/3027 [17:21:41<03:13, 19.32s/it]\\\\rGenerating: 100%|█████████▉| 3018/3027 [17:21:50<02:25, 16.22s/it]\\\\rGenerating: 100%|█████████▉| 3019/3027 [17:21:57<01:48, 13.53s/it]\\\\rGenerating: 100%|█████████▉| 3020/3027 [17:22:12<01:37, 13.90s/it]\\\\rGenerating: 100%|█████████▉| 3021/3027 [17:22:45<01:58, 19.77s/it]\\\\rGenerating: 100%|█████████▉| 3022/3027 [17:22:48<01:13, 14.75s/it]\\\\rGenerating: 100%|█████████▉| 3023/3027 [17:23:18<01:17, 19.29s/it]\\\\rGenerating: 100%|█████████▉| 3024/3027 [17:23:29<00:49, 16.59s/it]\\\\rGenerating: 100%|█████████▉| 3025/3027 [17:23:55<00:38, 19.50s/it]\\\\rGenerating: 100%|█████████▉| 3026/3027 [17:24:28<00:23, 23.58s/it]\\\\rGenerating: 100%|██████████| 3027/3027 [17:24:52<00:00, 23.71s/it]\\\\rGenerating: 100%|██████████| 3027/3027 [17:24:52<00:00, 20.71s/it]\\\\n2026-05-23 19:42:42,990 INFO Generation complete. 3027 documents, 24216 total outputs → /root/autodl-tmp/rsft_generations_14b_s43/generations.jsonl\\\\n2026-05-23 19:42:44,085 INFO Format compliance: 24202/24216 (99.9%)\\\\n2026-05-23 19:42:46,042 INFO Diversity cross-check (from file): mean=7.38/8, median=8.0/8, n_docs=3027\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.24}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  ⚠️ WARNING: truncation_rate above 10%, consider max_new_tokens=3072\\n\\n\\rGenerating:  76%|███████▌  | 2301/3027 [13:13:49<3:27:30, 17.15s/it]\\rGenerating:  76%|███████▌  | 2302/3027 [13:13:59<3:02:50, 15.13s/it]\\rGenerating:  76%|███████▌  | 2303/3027 [13:14:18<3:16:20, 16.27s/it]\\rGenerating:  76%|███████▌  | 2304/3027 [13:14:44<3:50:57, 19.17s/it]\\rGenerating:  76%|███████▌  | 2305/3027 [13:15:08<4:06:01, 20.45s/it]\\rGenerating:  76%|███████▌  | 2306/3027 [13:15:09<2:57:29, 14.77s/it]\\rGenerating:  76%|███████▌  | 2307/3027 [13:15:15<2:26:38, 12.22s/it]\\rGenerating:  76%|███████▌  | 2308/3027 [13:15:35<2:54:12, 14.54s/it]\\rGenerating:  76%|███████▋  | 2309/3027 [13:16:08<4:00:12, 20.07s/it]\\rGenerating:  76%|███████▋  | 2310/3027 [13:16:21<3:34:20, 17.94s/it]\\rGenerating:  76%|███████▋  | 2311/3027 [13:16:39<3:32:23, 17.80s/it]\\rGenerating:  76%|███████▋  | 2312/3027 [13:17:12<4:26:29, 22.36s/it]\\rGenerating:  76%|███████▋  | 2313/3027 [13:17:45<5:03:52, 25.54s/it]\\rGenerating:  76%|███████▋  | 2314/3027 [13:18:03<4:36:56, 23.30s/it]\\rGenerating:  76%|███████▋  | 2315/3027 [13:18:26<4:35:32, 23.22s/it]\\rGenerating:  77%|███████▋  | 2316/3027 [13:18:47<4:28:21, 22.65s/it]\\rGenerating:  77%|███████▋  | 2317/3027 [13:19:12<4:36:51, 23.40s/it]\\rGenerating:  77%|███████▋  | 2318/3027 [13:19:45<5:10:41, 26.29s/it]\\rGenerating:  77%|███████▋  | 2319/3027 [13:20:18<5:33:22, 28.25s/it]\\rGenerating:  77%|███████▋  | 2320/3027 [13:20:49<5:42:30, 29.07s/it]\\rGenerating:  77%|███████▋  | 2321/3027 [13:21:22<5:55:04, 30.18s/it]\\rGenerating:  77%|███████▋  | 2322/3027 [13:21:44<5:26:58, 27.83s/it]\\rGenerating:  77%|███████▋  | 2323/3027 [13:22:02<4:50:11, 24.73s/it]\\rGenerating:  77%|███████▋  | 2324/3027 [13:22:05<3:33:08, 18.19s/it]\\rGenerating:  77%|███████▋  | 2325/3027 [13:22:38<4:23:56, 22.56s/it]\\rGenerating:  77%|███████▋  | 2326/3027 [13:23:10<4:56:51, 25.41s/it]\\rGenerating:  77%|███████▋  | 2327/3027 [13:23:28<4:30:16, 23.17s/it]\\rGenerating:  77%|███████▋  | 2328/3027 [13:23:35<3:33:47, 18.35s/it]\\rGenerating:  77%|███████▋  | 2329/3027 [13:23:46<3:09:01, 16.25s/it]\\rGenerating:  77%|███████▋  | 2330/3027 [13:23:54<2:39:07, 13.70s/it]\\rGenerating:  77%|███████▋  | 2331/3027 [13:24:01<2:17:57, 11.89s/it]\\rGenerating:  77%|███████▋  | 2332/3027 [13:24:11<2:10:50, 11.30s/it]\\rGenerating:  77%|███████▋  | 2333/3027 [13:24:44<3:24:58, 17.72s/it]\\rGenerating:  77%|███████▋  | 2334/3027 [13:25:05<3:34:30, 18.57s/it]\\rGenerating:  77%|█████��█▋  | 2335/3027 [13:25:38<4:24:05, 22.90s/it]\\rGenerating:  77%|███████▋  | 2336/3027 [13:26:11<4:58:37, 25.93s/it]\\rGenerating:  77%|███████▋  | 2337/3027 [13:26:24<4:14:36, 22.14s/it]\\rGenerating:  77%|███████▋  | 2338/3027 [13:26:33<3:29:25, 18.24s/it]\\rGenerating:  77%|███████▋  | 2339/3027 [13:26:56<3:46:37, 19.76s/it]\\rGenerating:  77%|███████▋  | 2340/3027 [13:27:29<4:31:42, 23.73s/it]\\rGenerating:  77%|███████▋  | 2341/3027 [13:28:02<5:01:33, 26.38s/it]\\rGenerating:  77%|███████▋  | 2342/3027 [13:28:18<4:24:24, 23.16s/it]\\rGenerating:  77%|███████▋  | 2343/3027 [13:28:50<4:56:45, 26.03s/it]\\rGenerating:  77%|███████▋  | 2344/3027 [13:29:00<4:02:02, 21.26s/it]\\rGenerating:  77%|███████▋  | 2345/3027 [13:29:33<4:41:56, 24.80s/it]\\rGenerating:  78%|███████▊  | 2346/3027 [13:30:07<5:11:15, 27.42s/it]\\rGenerating:  78%|███████▊  | 2347/3027 [13:30:21<4:25:24, 23.42s/it]\\rGenerating:  78%|███████▊  | 2348/3027 [13:30:27<3:25:01, 18.12s/it]\\rGenerating:  78%|███████▊  | 2349/3027 [13:30:46<3:27:44, 18.38s/it]\\rGenerating:  78%|███████▊  | 2350/3027 [13:31:08<3:38:56, 19.40s/it]\\rGenerating:  78%|███████▊  | 2351/3027 [13:31:19<3:10:18, 16.89s/it]\\rGenerating:  78%|███████▊  | 2352/3027 [13:31:52<4:04:03, 21.69s/it]\\rGenerating:  78%|███████▊  | 2353/3027 [13:32:25<4:42:30, 25.15s/it]\\rGenerating:  78%|███████▊  | 2354/3027 [13:32:47<4:33:02, 24.34s/it]\\rGenerating:  78%|███████▊  | 2355/3027 [13:33:20<5:00:39, 26.84s/it]\\rGenerating:  78%|███████▊  | 2356/3027 [13:33:47<5:02:19, 27.03s/it]\\rGenerating:  78%|███████▊  | 2357/3027 [13:34:21<5:22:22, 28.87\\n\\n... [截断: 输出过长，省略 43381 字符] ...\\n\\nrating:  98%|█████████▊| 2976/3027 [17:08:07<14:26, 17.00s/it]\\rGenerating:  98%|█████████▊| 2977/3027 [17:08:23<13:59, 16.80s/it]\\rGenerating:  98%|█████████▊| 2978/3027 [17:08:37<12:58, 15.88s/it]\\rGenerating:  98%|█████████▊| 2979/3027 [17:08:57<13:49, 17.28s/it]\\rGenerating:  98%|█████████▊| 2980/3027 [17:09:16<13:45, 17.57s/it]\\rGenerating:  98%|█████████▊| 2981/3027 [17:09:48<16:57, 22.13s/it]\\rGenerating:  99%|█████████▊| 2982/3027 [17:09:50<12:06, 16.13s/it]\\rGenerating:  99%|█████████▊| 2983/3027 [17:10:24<15:39, 21.35s/it]\\rGenerating:  99%|█████████▊| 2984/3027 [17:10:35<12:58, 18.10s/it]\\rGenerating:  99%|█████████▊| 2985/3027 [17:11:08<15:51, 22.65s/it]\\rGenerating:  99%|█████████▊| 2986/3027 [17:11:19<13:09, 19.25s/it]\\rGenerating:  99%|█████████▊| 2987/3027 [17:11:53<15:40, 23.50s/it]\\rGenerating:  99%|█████████▊| 2988/3027 [17:12:19<15:47, 24.28s/it]\\rGenerating:  99%|█████████▊| 2989/3027 [17:12:21<11:13, 17.72s/it]\\rGenerating:  99%|█████████▉| 2990/3027 [17:12:46<12:21, 20.04s/it]\\rGenerating:  99%|█████████▉| 2991/3027 [17:13:01<11:01, 18.38s/it]\\rGenerating:  99%|█████████▉| 2992/3027 [17:13:13<09:35, 16.44s/it]\\rGenerating:  99%|█████████▉| 2993/3027 [17:13:25<08:35, 15.15s/it]\\rGenerating:  99%|█████████▉| 2994/3027 [17:13:29<06:29, 11.80s/it]\\rGenerating:  99%|█████████▉| 2995/3027 [17:13:34<05:07,  9.62s/it]\\rGenerating:  99%|█████████▉| 2996/3027 [17:14:04<08:16, 16.01s/it]\\rGenerating:  99%|█████████▉| 2997/3027 [17:14:18<07:34, 15.15s/it]\\rGenerating:  99%|█████████▉| 2998/3027 [17:14:44<08:53, 18.41s/it]\\rGenerating:  99%|█████████▉| 2999/3027 [17:14:47<06:28, 13.88s/it]\\rGenerating:  99%|█████████▉| 3000/3027 [17:15:01<06:16, 13.95s/it]\\n[RSFT Monitor] Docs 2902-3001 (100 docs, 800 generations):\\n  format_ok_rate: 99.9%\\n  truncation_rate: 8.4%\\n  mean_diversity: 7.3/8\\n\\n\\rGenerating:  99%|█████████▉| 3001/3027 [17:15:08<05:08, 11.87s/it]\\rGenerating:  99%|█████████▉| 3002/3027 [17:15:41<07:33, 18.13s/it]\\rGenerating:  99%|█████████▉| 3003/3027 [17:16:12<08:51, 22.16s/it]\\rGenerating:  99%|█████████▉| 3004/3027 [17:16:32<08:09, 21.28s/it]\\rGenerating:  99%|█████████▉| 3005/3027 [17:16:56<08:08, 22.22s/it]\\rGenerating:  99%|█████████▉| 3006/3027 [17:17:11<07:01, 20.07s/it]\\rGenerating:  99%|█████████▉| 3007/3027 [17:17:44<07:59, 23.96s/it]\\rGenerating:  99%|█████████▉| 3008/3027 [17:17:55<06:21, 20.09s/it]\\rGenerating:  99%|█████████▉| 3009/3027 [17:18:28<07:12, 24.04s/it]\\rGenerating:  99%|█████████��| 3010/3027 [17:19:01<07:32, 26.64s/it]\\rGenerating:  99%|█████████▉| 3011/3027 [17:19:34<07:37, 28.59s/it]\\rGenerating: 100%|█████████▉| 3012/3027 [17:19:58<06:45, 27.01s/it]\\rGenerating: 100%|█████████▉| 3013/3027 [17:20:30<06:41, 28.71s/it]\\rGenerating: 100%|█████████▉| 3014/3027 [17:20:39<04:53, 22.58s/it]\\rGenerating: 100%|█████████▉| 3015/3027 [17:21:11<05:08, 25.68s/it]\\rGenerating: 100%|█████████▉| 3016/3027 [17:21:35<04:33, 24.91s/it]\\rGenerating: 100%|█████████▉| 3017/3027 [17:21:41<03:13, 19.32s/it]\\rGenerating: 100%|█████████▉| 3018/3027 [17:21:50<02:25, 16.22s/it]\\rGenerating: 100%|█████████▉| 3019/3027 [17:21:57<01:48, 13.53s/it]\\rGenerating: 100%|█████████▉| 3020/3027 [17:22:12<01:37, 13.90s/it]\\rGenerating: 100%|█████████▉| 3021/3027 [17:22:45<01:58, 19.77s/it]\\rGenerating: 100%|█████████▉| 3022/3027 [17:22:48<01:13, 14.75s/it]\\rGenerating: 100%|█████████▉| 3023/3027 [17:23:18<01:17, 19.29s/it]\\rGenerating: 100%|█████████▉| 3024/3027 [17:23:29<00:49, 16.59s/it]\\rGenerating: 100%|█████████▉| 3025/3027 [17:23:55<00:38, 19.50s/it]\\rGenerating: 100%|█████████▉| 3026/3027 [17:24:28<00:23, 23.58s/it]\\rGenerating: 100%|██████████| 3027/3027 [17:24:52<00:00, 23.71s/it]\\rGenerating: 100%|██████████| 3027/3027 [17:24:52<00:00, 20.71s/it]\\n2026-05-23 19:42:42,990 INFO Generation complete. 3027 documents, 24216 total outputs → /root/autodl-tmp/rsft_generations_14b_s43/generations.jsonl\\n2026-05-23 19:42:44,085 INFO Format compliance: 24202/24216 (99.9%)\\n2026-05-23 19:42:46,042 INFO Diversity cross-check (from file): mean=7.38/8, median=8.0/8, n_docs=3027\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T11:43:49.335Z_
+
+<details><summary>↩ Tool result · `toolu_01KB6geTz4jn6urFt9VzraBJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 227180\\ndrwxr-xr-x  2 root root        64 May 23 02:18 .\\ndrwxr-xr-x 91 root root      8192 May 23 16:41 ..\\n-rw-r--r--  1 root root 232542144 May 23 19:42 generations.jsonl\\n-rw-r--r--  1 root root     70840 May 23 19:42 progress.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "uuid": "b3fbca70-f32c-40ee-bd45-2caae0d50f71",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 227180\\\\ndrwxr-xr-x  2 root root        64 May 23 02:18 .\\\\ndrwxr-xr-x 91 root root      8192 May 23 16:41 ..\\\\n-rw-r--r--  1 root root 232542144 May 23 19:42 generations.jsonl\\\\n-rw-r--r--  1 root root     70840 May 23 19:42 progress.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 227180\\ndrwxr-xr-x  2 root root        64 May 23 02:18 .\\ndrwxr-xr-x 91 root root      8192 May 23 16:41 ..\\n-rw-r--r--  1 root root 232542144 May 23 19:42 generations.jsonl\\n-rw-r--r--  1 root root     70840 May 23 19:42 progress.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The generation completed successfully. Let me check the line count of the output file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "uuid": "8012ffca-2760-42a0-a8a3-980ed98c0dab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HGDmZW8eRv3BNNZ464oF9R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5459,
+      "cache_read_input_tokens": 25845,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5459
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BexHX38hEJFX5hb5hpjtoj`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "wc -l /root/autodl-tmp/rsft_generations_14b_s43/generations.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "uuid": "ff999c29-c7fd-4cf5-9fc7-10fc609031eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HGDmZW8eRv3BNNZ464oF9R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5459,
+      "cache_read_input_tokens": 25845,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5459
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T11:43:53.204Z_
+
+<details><summary>↩ Tool result · `toolu_01BexHX38hEJFX5hb5hpjtoj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"24216 /root/autodl-tmp/rsft_generations_14b_s43/generations.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "uuid": "64aa23d8-c846-4018-9f14-9269205d72f4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"24216 /root/autodl-tmp/rsft_generations_14b_s43/generations.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"24216 /root/autodl-tmp/rsft_generations_14b_s43/generations.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+实验成功完成。更新 registry 并删除 cron。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "uuid": "d06fbbdb-e2c2-404a-9f5a-c005a78ec852",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WP352V5W1Y2gdWWNNDVtbw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 262,
+      "cache_read_input_tokens": 31304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 262
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01QdiXQaZy6Df6FBH5mMoA3n`</summary>
+
+```json
+{
+  "exp_id": "plan017_14b_rsft_s43_generate",
+  "field": "conclusion",
+  "value": "success",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "uuid": "8f4bcd8c-84c7-4ad9-815b-3f8701cb6e2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WP352V5W1Y2gdWWNNDVtbw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 262,
+      "cache_read_input_tokens": 31304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 262
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T11:43:59.330Z_
+
+<details><summary>↩ Tool result · `toolu_01QdiXQaZy6Df6FBH5mMoA3n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan017_14b_rsft_s43_generate\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T18:16:30.222Z\", \"updated_at\": \"2026-05-23T11:43:58.642Z\", \"hypothesis\": \"14B RSFT s43 candidate generation: 用 SFT s43 adapter 生成 8 candidates/doc × 3027 docs。2-seed reproducibility pipeline 第 1 步。后续: CED scoring → RSFT train → eval，对比 s42 dev=0.5886/test=0.3849。\", \"parent\": \"plan017_14b_sft_s43\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_generations_14b_s43 --num_generations 8 --max_new_tokens 1024 --seed 43\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"model_name\": \"Qwen3-14B + SFT-s43\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_14b_s43\", \"eval_data\": \"n/a (generation)\", \"pid\": 194682, \"gpu\": \"cuda:1\", \"log_path\": \"~/runs/faith-evidence-ie/plan017_14b_rsft_s43_generate.log\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_generations_14b_s43\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6085}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "uuid": "9de72d2b-346e-4b1e-94e3-552a13364d68",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan017_14b_rsft_s43_generate\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T18:16:30.222Z\\\", \\\"updated_at\\\": \\\"2026-05-23T11:43:58.642Z\\\", \\\"hypothesis\\\": \\\"14B RSFT s43 candidate generation: 用 SFT s43 adapter 生成 8 candidates/doc × 3027 docs。2-seed reproducibility pipeline 第 1 步。后续: CED scoring → RSFT train → eval，对比 s42 dev=0.5886/test=0.3849。\\\", \\\"parent\\\": \\\"plan017_14b_sft_s43\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_generations_14b_s43 --num_generations 8 --max_new_tokens 1024 --seed 43\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 3027, \\\"model_name\\\": \\\"Qwen3-14B + SFT-s43\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_14b_s43\\\", \\\"eval_data\\\": \\\"n/a (generation)\\\", \\\"pid\\\": 194682, \\\"gpu\\\": \\\"cuda:1\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/plan017_14b_rsft_s43_generate.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_generations_14b_s43\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6085}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan017_14b_rsft_s43_generate\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T18:16:30.222Z\", \"updated_at\": \"2026-05-23T11:43:58.642Z\", \"hypothesis\": \"14B RSFT s43 candidate generation: 用 SFT s43 adapter 生成 8 candidates/doc × 3027 docs。2-seed reproducibility pipeline 第 1 步。后续: CED scoring → RSFT train → eval，对比 s42 dev=0.5886/test=0.3849。\", \"parent\": \"plan017_14b_sft_s43\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_generations_14b_s43 --num_generations 8 --max_new_tokens 1024 --seed 43\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"model_name\": \"Qwen3-14B + SFT-s43\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_14b_s43\", \"eval_data\": \"n/a (generation)\", \"pid\": 194682, \"gpu\": \"cuda:1\", \"log_path\": \"~/runs/faith-evidence-ie/plan017_14b_rsft_s43_generate.log\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_generations_14b_s43\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6085}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01B5hDRuugKbYbKvo2w3Hz1B`</summary>
+
+```json
+{
+  "exp_id": "plan017_14b_rsft_s43_generate",
+  "field": "metrics",
+  "value": {
+    "documents": 3027,
+    "total_outputs": 24216,
+    "candidates_per_doc": 8,
+    "format_compliance": "99.9% (24202/24216)",
+    "mean_diversity": "7.38/8",
+    "median_diversity": "8.0/8",
+    "output_file_size_mb": 221.7,
+    "runtime_hours": 17.4,
+    "truncation_rate_last_batch": "8.4%"
+  },
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "uuid": "79ee70de-68ce-4f5e-825d-0a844aa07a70",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WP352V5W1Y2gdWWNNDVtbw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 262,
+      "cache_read_input_tokens": 31304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 262
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T11:44:03.600Z_
+
+<details><summary>↩ Tool result · `toolu_01B5hDRuugKbYbKvo2w3Hz1B`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan017_14b_rsft_s43_generate\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T18:16:30.222Z\", \"updated_at\": \"2026-05-23T11:44:02.963Z\", \"hypothesis\": \"14B RSFT s43 candidate generation: 用 SFT s43 adapter 生成 8 candidates/doc × 3027 docs。2-seed reproducibility pipeline 第 1 步。后续: CED scoring → RSFT train → eval，对比 s42 dev=0.5886/test=0.3849。\", \"parent\": \"plan017_14b_sft_s43\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_generations_14b_s43 --num_generations 8 --max_new_tokens 1024 --seed 43\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"model_name\": \"Qwen3-14B + SFT-s43\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_14b_s43\", \"eval_data\": \"n/a (generation)\", \"pid\": 194682, \"gpu\": \"cuda:1\", \"log_path\": \"~/runs/faith-evidence-ie/plan017_14b_rsft_s43_generate.log\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_generations_14b_s43\"}, \"conclusion\": \"success\", \"metrics\": {\"documents\": 3027, \"total_outputs\": 24216, \"candidates_per_doc\": 8, \"format_compliance\": \"99.9% (24202/24216)\", \"mean_diversity\": \"7.38/8\", \"median_diversity\": \"8.0/8\", \"output_file_size_mb\": 221.7, \"runtime_hours\": 17.4, \"truncation_rate_last_batch\": \"8.4%\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5411}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "uuid": "badb9b3d-9ee6-4796-b1c1-c07a688110f3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan017_14b_rsft_s43_generate\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T18:16:30.222Z\\\", \\\"updated_at\\\": \\\"2026-05-23T11:44:02.963Z\\\", \\\"hypothesis\\\": \\\"14B RSFT s43 candidate generation: 用 SFT s43 adapter 生成 8 candidates/doc × 3027 docs。2-seed reproducibility pipeline 第 1 步。后续: CED scoring → RSFT train → eval，对比 s42 dev=0.5886/test=0.3849。\\\", \\\"parent\\\": \\\"plan017_14b_sft_s43\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_generations_14b_s43 --num_generations 8 --max_new_tokens 1024 --seed 43\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 3027, \\\"model_name\\\": \\\"Qwen3-14B + SFT-s43\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_14b_s43\\\", \\\"eval_data\\\": \\\"n/a (generation)\\\", \\\"pid\\\": 194682, \\\"gpu\\\": \\\"cuda:1\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/plan017_14b_rsft_s43_generate.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_generations_14b_s43\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"documents\\\": 3027, \\\"total_outputs\\\": 24216, \\\"candidates_per_doc\\\": 8, \\\"format_compliance\\\": \\\"99.9% (24202/24216)\\\", \\\"mean_diversity\\\": \\\"7.38/8\\\", \\\"median_diversity\\\": \\\"8.0/8\\\", \\\"output_file_size_mb\\\": 221.7, \\\"runtime_hours\\\": 17.4, \\\"truncation_rate_last_batch\\\": \\\"8.4%\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5411}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan017_14b_rsft_s43_generate\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T18:16:30.222Z\", \"updated_at\": \"2026-05-23T11:44:02.963Z\", \"hypothesis\": \"14B RSFT s43 candidate generation: 用 SFT s43 adapter 生成 8 candidates/doc × 3027 docs。2-seed reproducibility pipeline 第 1 步。后续: CED scoring → RSFT train → eval，对比 s42 dev=0.5886/test=0.3849。\", \"parent\": \"plan017_14b_sft_s43\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_generations_14b_s43 --num_generations 8 --max_new_tokens 1024 --seed 43\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"model_name\": \"Qwen3-14B + SFT-s43\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_14b_s43\", \"eval_data\": \"n/a (generation)\", \"pid\": 194682, \"gpu\": \"cuda:1\", \"log_path\": \"~/runs/faith-evidence-ie/plan017_14b_rsft_s43_generate.log\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_generations_14b_s43\"}, \"conclusion\": \"success\", \"metrics\": {\"documents\": 3027, \"total_outputs\": 24216, \"candidates_per_doc\": 8, \"format_compliance\": \"99.9% (24202/24216)\", \"mean_diversity\": \"7.38/8\", \"median_diversity\": \"8.0/8\", \"output_file_size_mb\": 221.7, \"runtime_hours\": 17.4, \"truncation_rate_last_batch\": \"8.4%\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5411}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_017goNcLT557bXJn9WS7f4iq`</summary>
+
+```json
+{
+  "exp_id": "plan017_14b_rsft_s43_generate",
+  "field": "status",
+  "value": "DONE",
+  "project": "faith-evidence-ie",
+  "spec": {
+    "checkpoint_path": "/root/autodl-tmp/rsft_generations_14b_s43",
+    "log_path": "~/runs/faith-evidence-ie/plan017_14b_rsft_s43_generate.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "uuid": "7cc65181-2da6-4711-b054-73290c655fe4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012yvjKYpap6maWhq1zZTWG4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1753,
+      "cache_read_input_tokens": 31566,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1753
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — CronDelete · `toolu_0134syLWT1y94xk3e9ujkY4b`</summary>
+
+```json
+{
+  "id": "plan017_14b_rsft_s43_generate"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "uuid": "dbae35e9-1813-437d-84a3-5fe4f1c1b78c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012yvjKYpap6maWhq1zZTWG4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1753,
+      "cache_read_input_tokens": 31566,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1753
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-23T11:44:10.333Z_
+
+<details><summary>↩ Tool result · `toolu_017goNcLT557bXJn9WS7f4iq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan017_14b_rsft_s43_generate\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T18:16:30.222Z\", \"updated_at\": \"2026-05-23T11:44:08.508Z\", \"hypothesis\": \"14B RSFT s43 candidate generation: 用 SFT s43 adapter 生成 8 candidates/doc × 3027 docs。2-seed reproducibility pipeline 第 1 步。后续: CED scoring → RSFT train → eval，对比 s42 dev=0.5886/test=0.3849。\", \"parent\": \"plan017_14b_sft_s43\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_generations_14b_s43 --num_generations 8 --max_new_tokens 1024 --seed 43\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"model_name\": \"Qwen3-14B + SFT-s43\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_14b_s43\", \"eval_data\": \"n/a (generation)\", \"pid\": 194682, \"gpu\": \"cuda:1\", \"log_path\": \"~/runs/faith-evidence-ie/plan017_14b_rsft_s43_generate.log\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_generations_14b_s43\"}, \"conclusion\": \"success\", \"metrics\": {\"documents\": 3027, \"total_outputs\": 24216, \"candidates_per_doc\": 8, \"format_compliance\": \"99.9% (24202/24216)\", \"mean_diversity\": \"7.38/8\", \"median_diversity\": \"8.0/8\", \"output_file_size_mb\": 221.7, \"runtime_hours\": 17.4, \"truncation_rate_last_batch\": \"8.4%\"}, \"completed_at\": \"2026-05-23T11:44:08.508Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.1012}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "uuid": "80012d00-153d-45da-939d-7a30dce96485",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan017_14b_rsft_s43_generate\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T18:16:30.222Z\\\", \\\"updated_at\\\": \\\"2026-05-23T11:44:08.508Z\\\", \\\"hypothesis\\\": \\\"14B RSFT s43 candidate generation: 用 SFT s43 adapter 生成 8 candidates/doc × 3027 docs。2-seed reproducibility pipeline 第 1 步。后续: CED scoring → RSFT train → eval，对比 s42 dev=0.5886/test=0.3849。\\\", \\\"parent\\\": \\\"plan017_14b_sft_s43\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_generations_14b_s43 --num_generations 8 --max_new_tokens 1024 --seed 43\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 3027, \\\"model_name\\\": \\\"Qwen3-14B + SFT-s43\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_14b_s43\\\", \\\"eval_data\\\": \\\"n/a (generation)\\\", \\\"pid\\\": 194682, \\\"gpu\\\": \\\"cuda:1\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/plan017_14b_rsft_s43_generate.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_generations_14b_s43\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"documents\\\": 3027, \\\"total_outputs\\\": 24216, \\\"candidates_per_doc\\\": 8, \\\"format_compliance\\\": \\\"99.9% (24202/24216)\\\", \\\"mean_diversity\\\": \\\"7.38/8\\\", \\\"median_diversity\\\": \\\"8.0/8\\\", \\\"output_file_size_mb\\\": 221.7, \\\"runtime_hours\\\": 17.4, \\\"truncation_rate_last_batch\\\": \\\"8.4%\\\"}, \\\"completed_at\\\": \\\"2026-05-23T11:44:08.508Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.1012}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan017_14b_rsft_s43_generate\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T18:16:30.222Z\", \"updated_at\": \"2026-05-23T11:44:08.508Z\", \"hypothesis\": \"14B RSFT s43 candidate generation: 用 SFT s43 adapter 生成 8 candidates/doc × 3027 docs。2-seed reproducibility pipeline 第 1 步。后续: CED scoring → RSFT train → eval，对比 s42 dev=0.5886/test=0.3849。\", \"parent\": \"plan017_14b_sft_s43\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_generations_14b_s43 --num_generations 8 --max_new_tokens 1024 --seed 43\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"model_name\": \"Qwen3-14B + SFT-s43\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_14b_s43\", \"eval_data\": \"n/a (generation)\", \"pid\": 194682, \"gpu\": \"cuda:1\", \"log_path\": \"~/runs/faith-evidence-ie/plan017_14b_rsft_s43_generate.log\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_generations_14b_s43\"}, \"conclusion\": \"success\", \"metrics\": {\"documents\": 3027, \"total_outputs\": 24216, \"candidates_per_doc\": 8, \"format_compliance\": \"99.9% (24202/24216)\", \"mean_diversity\": \"7.38/8\", \"median_diversity\": \"8.0/8\", \"output_file_size_mb\": 221.7, \"runtime_hours\": 17.4, \"truncation_rate_last_batch\": \"8.4%\"}, \"completed_at\": \"2026-05-23T11:44:08.508Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.1012}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T11:44:10.339Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_0134syLWT1y94xk3e9ujkY4b`</summary>
+
+```text
+&lt;tool_use_error>No scheduled job with id 'plan017_14b_rsft_s43_generate'&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "uuid": "03ddbcc2-855d-4b98-999a-a6a9689922fe",
+  "tool_use_result": "Error: No scheduled job with id 'plan017_14b_rsft_s43_generate'"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+Cron 已不存在（可能之前已删除），无影响。
+
+## 汇总
+
+**plan017_14b_rsft_s43_generate — 成功**
+
+| 指标 | 值 |
+|------|-----|
+| 文档数 | 3027 |
+| 总生成数 | 24216 (3027 × 8) |
+| 格式合规率 | 99.9% (24202/24216) |
+| 平均多样性 | 7.38/8，中位数 8.0/8 |
+| 截断率（末批） | 8.4% |
+| 输出文件 | `/root/autodl-tmp/rsft_generations_14b_s43/generations.jsonl` (222MB) |
+| 运行时长 | ~17.4 小时 |
+
+Registry 已更新为 DONE/success。下一步：CED scoring → RSFT train → eval。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "uuid": "c5e0b001-28dd-4b5e-b851-6457d67bb5ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rks3Ewx1GK962xTc5qnvRB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1126,
+      "cache_read_input_tokens": 33319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1126
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 24_
+
+Cron 已不存在（可能之前已删除），无影响。
+
+## 汇总
+
+**plan017_14b_rsft_s43_generate — 成功**
+
+| 指标 | 值 |
+|------|-----|
+| 文档数 | 3027 |
+| 总生成数 | 24216 (3027 × 8) |
+| 格式合规率 | 99.9% (24202/24216) |
+| 平均多样性 | 7.38/8，中位数 8.0/8 |
+| 截断率（末批） | 8.4% |
+| 输出文件 | `/root/autodl-tmp/rsft_generations_14b_s43/generations.jsonl` (222MB) |
+| 运行时长 | ~17.4 小时 |
+
+Registry 已更新为 DONE/success。下一步：CED scoring → RSFT train → eval。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 38392,
+  "duration_api_ms": 33198,
+  "num_turns": 9,
+  "stop_reason": "end_turn",
+  "session_id": "0ca4d065-9b1a-4de6-9cab-6e9c2baad3c9",
+  "total_cost_usd": 0.258567,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 22604,
+    "cache_read_input_tokens": 158636,
+    "output_tokens": 1433,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 22604,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 254,
+        "cache_read_input_tokens": 33319,
+        "cache_creation_input_tokens": 1126,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1126
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1989,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0020989999999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 1433,
+      "cacheReadInputTokens": 158636,
+      "cacheCreationInputTokens": 22604,
+      "webSearchRequests": 0,
+      "costUSD": 0.256468,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "5f3a6133-f374-4613-8e2a-26bacb904c84"
+}
+```
+
+</details>
+
+---

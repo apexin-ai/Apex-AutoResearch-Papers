@@ -1,0 +1,39 @@
+{
+  "exp_id": "lead2_rsft_grpo_ced",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T05:57:53.951Z",
+    "updated_at": "2026-05-17T06:06:36.130Z",
+    "spec": {
+      "command": "merge_sft_rsft.py then grpo_trainer --model_name merged_sft_rsft_ced_s43 --stage 3 --max_steps 50 --lr 1e-6 --G 8 --kl 0.01 --bf16 --ced=1.0 --f1=0.0 --format=0.5 --save_steps 10",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:1",
+      "pid": 418198,
+      "log_path": "~/runs/faith-evidence-ie/lead2_rsft_grpo_ced.log",
+      "submitted_at": "2026-05-17T05:57:53.332Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 3027,
+      "model_name": "Qwen3-4B (merged SFT+RSFT-s43)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/merged_sft_rsft_ced_s43",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json",
+      "checkpoint_path": "N/A",
+      "failure_reason": "docred_processor.py:129 load_dataset('thunlp/docred') failed - server offline",
+      "wall_clock_seconds": 522.8,
+      "gpu_hours": 0.15
+    },
+    "hypothesis": "RSFT→bf16 GRPO two-stage: starting from RSFT best checkpoint (s43, rel_f1=0.46), short-range GRPO (50 steps, lr=1e-6) with CED-only reward should further improve evidence quality (EDCR) while preserving rel_f1, because RSFT provides stable base preventing catastrophic forgetting seen in SFT→GRPO.",
+    "parent": "mvp2_rsft_train_r1_s43",
+    "conclusion": "failed",
+    "completed_at": "2026-05-17T06:06:36.130Z"
+  },
+  "timestamp": "2026-05-17T06:06:36.466545+00:00",
+  "trigger": "update_registry"
+}

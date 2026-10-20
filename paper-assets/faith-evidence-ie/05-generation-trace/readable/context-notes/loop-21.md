@@ -1,0 +1,98 @@
+# agent / loop_21.md
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/agent/loop_21.md`
+- **Structured JSON:** [`0d8dd366c41c3f87eaea.json`](../../sessions/0d/0d8dd366c41c3f87eaea.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 21
+reason: idle_timeout
+updated: '2026-05-23T22:48:35+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：rtx5090-4x cuda:0,1,2,3。无其他服务器分配给本项目
+- bjb2-12179 cuda:0 标记为不可用，不要在上面启动任何任务
+- 14B 模型推理需要整卡 96GB，不能和其他实验共享 GPU
+- RSFT eval 的 seed 参数固定 42（控制 inference sampling），与训练 seed (s42/s43/s44) 是不同概念，不要混淆
+- DPO eval 必须传 3 个路径参数：--base_model + --sft_adapter + --model_path (DPO adapter)，缺一个就静默出错
+- 论文数据必须追溯到 registry exp_id，未经工具确认的数字不能写入论文
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: rtx5090-4x (4× RTX PRO 6000, 96GB/卡)
+- **工作目录**: /root/autodl-tmp/（代码在 /root/autodl-tmp/freige/）
+- **Python**: /root/miniconda3/bin/python（conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）
+- **模型路径**:
+  - Qwen3-1.7B: /root/autodl-tmp/models/Qwen/Qwen3-1.7B
+  - Qwen3-4B: /root/autodl-tmp/models/Qwen3-4B（注意不在 Qwen/ 子目录下）
+  - Qwen3-8B: /root/autodl-tmp/models/Qwen/Qwen3-8B
+  - Qwen3-14B: /root/autodl-tmp/models/Qwen/Qwen3-14B
+- **SFT adapters**: /root/autodl-tmp/sft_output_qwen3_{size}_bf16（8B/1.7B）、/root/autodl-tmp/sft_output（4B）、/root/autodl-tmp/sft_output_14b_s43（14B s43）
+- **RSFT checkpoints**: /root/autodl-tmp/rsft_output_qwen3_{size}_k1_s{seed}
+- **数据**: /root/autodl-tmp/data/docred（dev 985 docs）、/root/autodl-tmp/data/re-docred-repo/data（test_revised 500 docs）
+- **Eval 输出**: /root/autodl-tmp/eval_results/{exp_id}/
+- **W&B**: 项目 faith-evidence-ie
+- **活跃 cron**: plan017_14b_rsft_s43_generate (PID 194682, cuda:1)
+
+### 3. 📊 当前状态
+**我刚做完**: session-start 初始化，读取了 registry + ROADMAP + report.md。收到 `test_eval_8b_rsft_s44_with_evi` 的 cron 完成回调，已 spawn Worker 去读日志提取 ign_f1 指标，但 Worker 尚未回调。
+
+**Registry RUNNING/ANALYZING**:
+| exp_id | GPU | 状态 | 摘要 |
+|--------|-----|------|------|
+| test_eval_8b_rsft_s44_with_evi | cuda:0 | ANALYZING | 8B s44 with-evi test eval，3-seed 最后一个。Worker 已派出读 metrics |
+| test_eval_8b_rsft_s43_no_evi | cuda:0 | RUNNING | 8B s43 no-evi test eval，配对 s43 with-evi=0.3398 算 tax |
+| test_eval_1_7b_rsft_s43_with_evi | cuda:3 | RUNNING | 1.7B s43 with-evi test eval，multi-seed 验证极端 tax |
+| dpo_rebuilt_1ep_eval | cuda:2 | RUNNING | DPO 重建 1ep 的 unified protocol eval |
+| plan017_14b_rsft_s43_generate | cuda:1 | RUNNING | 14B s43 candidate generation (3027 docs × 8) |
+
+**等待中**:
+- Worker `analyze:test_eval_8b_rsft_s44_with_evi` 回调 → 提取 ign_f1 → 更新 registry → 汇报 Director
+- 3 个 RUNNING 实验的 cron 完成回调（test_eval_8b_rsft_s43_no_evi, test_eval_1_7b_rsft_s43_with_evi, dpo_rebuilt_1ep_eval）
+- plan017_14b_rsft_s43_generate 完成后还需 CED scoring → RSFT train → eval 长链
+
+### 4. 📋 待办（条件触发式）
+- **Worker analyze 回调到达** → 读 ign_f1 → `update_registry(status=DONE, conclusion=success/negative)` + 设 metrics + checkpoint_path/log_path → 计算 8B 3-seed mean±std (s42=0.3353, s43=0.3398, s44=?) → 汇报 Director → 刷新 report.md
+- **test_eval_8b_rsft_s43_no_evi 完成** → 提取 ign_f1 → 计算 s43 evidence tax = s43_no_evi - s43_with_evi(0.3398) → 对比 s42 tax(-0.34pp) → 更新 multi-seed tax 表
+- **test_eval_1_7b_rsft_s43_with_evi 完成** → 提取 ign_f1 → 对比 s42=0.2933 → 1.7B multi-seed variance → 随后启动 1.7B s43 no-evi eval
+- **dpo_rebuilt_1ep_eval 完成** → 提取 Ign-F1 → 对比原始 1ep=38.9 和 RSFT CED baseline=44.67 → 更新 Table 2 → 通知 Paper Agent patch
+- **plan017_14b_rsft_s43_generate 完成** → CED scoring → RSFT train s43 → eval → 对比 s42 dev=0.5886/test=0.3849
+- **所有 multi-seed 完成后** → 汇总 3-seed mean±std 表 → Paper Agent 更新论文中 variance compression 相关数据
+- **cuda:0 释放后**（8B s44 eval 已完成）→ 立即启动 multi-seed cascade 下一个：8B s44 no-evi test eval
+
+### 5. 🎯 战略上下文
+- **投稿目标**: EMNLP 2026 Main (ARR July, ~54天)
+- **Round 2 评分 3.0 (Findings)**，升级路径 3.0→3.5→4.0
+- **当前阶段**: Round 2 审稿修复尾声，Paper Agent 9 个 writing patches (P0-P9) 已全部完成
+- **核心剩余**: (1) multi-seed test eval cascade 补全 3-seed mean±std (2) DPO 重建 eval 更新 Table 2 (3) 14B s43 full pipeline (4) LLaMA multi-seed
+- **RSFT test evidence tax 表 (s42)**:
+  - 1.7B: -5.43pp（极端负 tax，multi-seed 验证关键）
+  - 4B: +1.51pp
+  - 8B: -0.34pp
+  - 14B: +0.77pp
+  - LLaMA: -2.65pp
+- **易错点**:
+  - 4B base_model 路径是 `/root/autodl-tmp/models/Qwen3-4B`（没有 Qwen/ 子目录），其他 scale 都有
+  - evidence tax = no_evi - with_evi（正值=no-evi 更好=无 tax，负值=with-evi 更好=有 tax），方向别搞反
+  - DPO eval 的 base_model 是 Qwen3-4B（不是 8B），因为 DPO 是在 4B SFT merged 上训练的
+  - report.md 的 GPU 占用区块是 auto-generated，手动编辑会被覆盖
+  - `test_eval_8b_rsft_s44_with_evi` 虽然收到两次 cron 回调（重复），只需处理一次
+
+
+---

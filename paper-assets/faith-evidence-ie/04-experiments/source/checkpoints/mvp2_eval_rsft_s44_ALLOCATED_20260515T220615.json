@@ -1,0 +1,31 @@
+{
+  "exp_id": "mvp2_eval_rsft_s44",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:35:23.934Z",
+    "updated_at": "2026-05-15T22:06:15.215Z",
+    "hypothesis": "Full dev eval of RSFT seed=44 checkpoint. First MVP-2 judgement data point. Pass: rel_f1 > 0.4057 AND evi_f1 > 0.798 (SFT baseline).",
+    "parent": "mvp2_rsft_train_r1_s44",
+    "conclusion": "killed",
+    "notes": "STALE: s44 全量 eval 已由 mvp2_eval_rsft_r2b_maxtok1536 等系列完成。s44 rel_f1=0.4655 已入库。此条目为残留。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s44 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 44 --output_dir /root/autodl-tmp/eval_results/rsft_s44 --no-quantize\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "261617",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_eval_rsft_s44.log",
+      "submitted_at": "2026-05-15T21:57:22.401Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-15T22:06:15.476835+00:00",
+  "trigger": "update_registry"
+}

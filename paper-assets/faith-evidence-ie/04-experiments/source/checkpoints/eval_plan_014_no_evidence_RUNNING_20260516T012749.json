@@ -1,0 +1,45 @@
+{
+  "exp_id": "eval_plan_014_no_evidence",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:17:32.011Z",
+    "updated_at": "2026-05-16T01:27:48.701Z",
+    "hypothesis": "Dev set eval of SFT-no-evidence model (plan_014). 核心目标：对比标准 SFT rel_f1=0.4057 vs 不输出 evidence 的 SFT rel_f1（隔离 evidence generation 代价）。只评估 rel_f1，不评估 evi_f1（输出无 evidence）。plan_id=plan_014, claim=1。",
+    "parent": "plan_014_sft_no_evidence",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_no_evidence_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/sft_no_evidence_noquant --no-quantize --no_evidence\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "283455",
+      "log_path": "~/runs/faith-evidence-ie/eval_plan_014_no_evidence.log",
+      "submitted_at": "2026-05-16T01:27:16.251Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "failed",
+    "notes": "Director 重新激活。等 eval_flat_nli_s44 或 eval_flat_nli_seed45 任一完成释放 GPU 后立即提交。",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:2",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx5090-4x",
+      "gpu": "cuda:2",
+      "started_at": "2026-05-16T01:27:14.109Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_no_evidence_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/sft_no_evidence_noquant --no-quantize --no_evidence\"",
+      "finished_at": "2026-05-16T01:27:46.702Z",
+      "training_hours": 0.01
+    },
+    "pid": "283455",
+    "log_path": "~/runs/faith-evidence-ie/eval_plan_014_no_evidence.log",
+    "failure_reason": "Traceback → is a LoRA adapter (adapter_config.json found), but --sft_adapter is not set. RSFT/DPO/GRPO adapters are trained on SFT-merged model and MUST be evaluated with --sft_adapter pointing to the SFT adapter directory. Add: --sft_adapter /path/to/sft_output"
+  },
+  "timestamp": "2026-05-16T01:27:49.237776+00:00",
+  "trigger": "update_registry"
+}

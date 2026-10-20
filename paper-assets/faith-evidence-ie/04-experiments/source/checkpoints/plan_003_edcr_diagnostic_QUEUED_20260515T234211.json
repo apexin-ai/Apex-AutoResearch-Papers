@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan_003_edcr_diagnostic",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:12:40.174Z",
+    "updated_at": "2026-05-15T23:42:11.263Z",
+    "hypothesis": "EDCR cross-method diagnostic table: 计算所有 evidence-producing 方法（SFT baseline, RSFT-CED best, RSFT-flatNLI best, CED-reranker）的 EDCR，验证 EDCR 作为独立评估指标的诊断能力。plan_id=plan_003, claim=4。GPU 预算 2h。"
+  },
+  "timestamp": "2026-05-15T23:42:11.503687+00:00",
+  "trigger": "update_registry"
+}

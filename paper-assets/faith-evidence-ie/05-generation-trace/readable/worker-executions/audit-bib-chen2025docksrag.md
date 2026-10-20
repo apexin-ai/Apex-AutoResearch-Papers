@@ -1,0 +1,1791 @@
+# audit bib chen2025docksrag
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 34
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/workers/worker_audit_bib-chen2025docksrag_20260525T002231.log`
+- **Structured JSON:** [`9dad86062234777766f1.json`](../../sessions/9d/9dad86062234777766f1.json)
+
+## Before a recorded user message
+
+34 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "87ccc47a-5d4e-4d3f-816d-32216cde6260",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779682200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "d5d40693-a911-4a4a-91f5-473d7541cc26",
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the bib file to find the "chen2025docksrag" entry, then search the web to verify the first author.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "23ecb3b9-7d66-4f5b-b048-892e277bdf5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SQe5GQREsXgDabSLFg99S2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13912,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13912
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01SsqwSc6bYenuCWoLYJsJVZ`</summary>
+
+```json
+{
+  "pattern": "chen2025docksrag",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/references.bib",
+  "output_mode": "content",
+  "-A": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "e08756e5-4848-4caa-817a-93ece718b30a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SQe5GQREsXgDabSLFg99S2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13912,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13912
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-25T00:22:43.569Z_
+
+<details><summary>↩ Tool result · `toolu_01SsqwSc6bYenuCWoLYJsJVZ`</summary>
+
+```text
+9:@inproceedings{chen2025docksrag,
+10-  title     = {{DocKS-RAG}: Optimizing Document-Level Relation Extraction through {LLM}-Enhanced Hybrid Prompt Tuning},
+11-  author    = {Xu, Xiaolong and Zhou, Yibo and Xiang, Haolong and Li, Xiaoyong and Zhang, Xuyun and Qi, Lianyong and Dou, Wanchun},
+12-  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},
+13-  year      = {2025},
+14-  url       = {https://proceedings.mlr.press/v267/xu25am.html}
+15-}
+16-
+17-@article{dai2025r1re,
+18-  title   = {{R1-RE}: Cross-Domain Relation Extraction with {RLVR}},
+19-  author  = {Dai, Runpeng and Zheng, Tong and Yang, Run and Yu, Kaixian and Zhu, Hongtu},
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "f1b624ce-68be-42ae-95f9-4b937f319b51",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "9:@inproceedings{chen2025docksrag,\n10-  title     = {{DocKS-RAG}: Optimizing Document-Level Relation Extraction through {LLM}-Enhanced Hybrid Prompt Tuning},\n11-  author    = {Xu, Xiaolong and Zhou, Yibo and Xiang, Haolong and Li, Xiaoyong and Zhang, Xuyun and Qi, Lianyong and Dou, Wanchun},\n12-  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},\n13-  year      = {2025},\n14-  url       = {https://proceedings.mlr.press/v267/xu25am.html}\n15-}\n16-\n17-@article{dai2025r1re,\n18-  title   = {{R1-RE}: Cross-Domain Relation Extraction with {RLVR}},\n19-  author  = {Dai, Runpeng and Zheng, Tong and Yang, Run and Yu, Kaixian and Zhu, Hongtu},",
+    "numLines": 11
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01PgDeJtrSRfhGc7eQS1Wh8g`</summary>
+
+```json
+{
+  "pattern": "chen2025docksrag",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "dea8f8b4-4fc9-4777-957f-2119ced73034",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SQe5GQREsXgDabSLFg99S2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13912,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13912
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-25T00:22:44.413Z_
+
+<details><summary>↩ Tool result · `toolu_01PgDeJtrSRfhGc7eQS1Wh8g`</summary>
+
+```text
+docs/paper/sections/related_work.tex:18:AutoRE \citep{autore2024} fine-tunes LLMs with QLoRA using a relation-head-facts decomposition; \citet{xu2024lmrc} frame extraction as multi-choice reading comprehension; RelPrior \citep{wang2025relprior} uses relation priors to guide LLM-based extraction; GLiDRE \citep{zhang2025glidre} presents a generalist lightweight approach; Ru-LLM \citep{wang2025rullm} incorporates logical rule constraints; and \citet{chen2025docksrag} combine retrieval-augmented generation with structured knowledge.
+docs/paper/sections/introduction.tex:4:Recent LLM-based approaches have closed this gap: \citet{autore2024} fine-tune LLMs with structured decomposition, \citet{xu2024lmrc} frame it as multi-choice reading comprehension, and \citet{chen2025docksrag} combine retrieval-augmented generation with structured knowledge.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "c1256abb-c33b-4dc0-a1da-33554cde94f0",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/related_work.tex:18:AutoRE \\citep{autore2024} fine-tunes LLMs with QLoRA using a relation-head-facts decomposition; \\citet{xu2024lmrc} frame extraction as multi-choice reading comprehension; RelPrior \\citep{wang2025relprior} uses relation priors to guide LLM-based extraction; GLiDRE \\citep{zhang2025glidre} presents a generalist lightweight approach; Ru-LLM \\citep{wang2025rullm} incorporates logical rule constraints; and \\citet{chen2025docksrag} combine retrieval-augmented generation with structured knowledge.\ndocs/paper/sections/introduction.tex:4:Recent LLM-based approaches have closed this gap: \\citet{autore2024} fine-tune LLMs with structured decomposition, \\citet{xu2024lmrc} frame it as multi-choice reading comprehension, and \\citet{chen2025docksrag} combine retrieval-augmented generation with structured knowledge.",
+    "numLines": 2
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+bib 条目中 author 字段已经是 `Xu, Xiaolong` 为第一作者，但 key 仍为 `chen2025docksrag`。让我用 WebSearch 确认论文信息。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "9bec5fb6-8794-4d47-b154-5180dddf8202",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016RMAx8RUxsG4TgSiXNp6K6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 25359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 885
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HcgaRgdpGK8262rkQBy5pS`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "647be31d-06db-45de-be9a-e3001f05fa83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016RMAx8RUxsG4TgSiXNp6K6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 25359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 885
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-25T00:22:48.620Z_
+
+<details><summary>↩ Tool result · `toolu_01HcgaRgdpGK8262rkQBy5pS`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "2892dcb9-8568-449c-be72-a0a9fb1710f3",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TiSqqeB5M4aJFzu9sEv4N9`</summary>
+
+```json
+{
+  "query": "DocKS-RAG Optimizing Document-Level Relation Extraction LLM-Enhanced Hybrid Prompt Tuning ICML 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "527e7050-56ac-4ab9-9cc4-af88e110567b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FGVKcba57X6ARMfVdQLGbA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 665,
+      "cache_read_input_tokens": 26244,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 665
+      },
+      "output_tokens": 55,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-25T00:22:58.918Z_
+
+<details><summary>↩ Tool result · `toolu_01TiSqqeB5M4aJFzu9sEv4N9`</summary>
+
+```text
+Web search results for query: "DocKS-RAG Optimizing Document-Level Relation Extraction LLM-Enhanced Hybrid Prompt Tuning ICML 2025"
+
+Links: [{"title":"ICML Poster DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning","url":"https://icml.cc/virtual/2025/poster/45220"},{"title":"DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning | OpenReview","url":"https://openreview.net/forum?id=SVl9tIADWV"},{"title":"DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning","url":"https://proceedings.mlr.press/v267/xu25am.html"},{"title":"DocKS-RAG: Optimizing Document-Level Relation Extraction through","url":"https://openreview.net/pdf/96d59841526745109ad60229721708a19c60aa01.pdf"},{"title":"GitHub - liunian-Jay/Awesome-RAG: 💡 Awesome RAG: A resource of Retrieval-Augmented Generation (RAG) for LLMs, focusing on the development of technology.","url":"https://github.com/liunian-Jay/Awesome-RAG"},{"title":"Zero-Shot Document-Level Biomedical Relation Extraction via Scenario-based Prompt Design in Two-Stage with LLM","url":"https://arxiv.org/pdf/2505.01077"},{"title":"Relation as a Prior: A Novel Paradigm for LLM-based Document-level Relation Extraction","url":"https://arxiv.org/pdf/2511.08143"},{"title":"Semi-automatic Data Enhancement for Document-Level Relation Extraction   with Distant Supervision from Large Language Models","url":"https://arxiv.org/pdf/2311.07314"},{"title":"Biomedical Relation Extraction via Adaptive Document-Relation   Cross-Mapping and Concept Unique Identifier","url":"https://arxiv.org/pdf/2501.05155"}]
+
+I found the research paper on DocKS-RAG! Here's what I found:
+
+## DocKS-RAG: Overview
+
+Document-level relation extraction (RE) aims to extract comprehensive correlations between entities and relations from documents. DocKS-RAG is a novel and effective framework which introduces extra structural knowledge and semantic information to further enhance the performance of document-level RE.
+
+## Key Components
+
+The framework consists of three main components:
+
+1. **Document-level Knowledge Graph**: A Document-level Knowledge Graph is constructed from the observable documentation data to better capture the structural information between entities and relations.
+
+2. **Sentence-level Semantic Retrieval-Augmented Generation**: A Sentence-level Semantic Retrieval-Augmented Generation mechanism is designed to consider the similarity in different sentences by retrieving the relevant contextual semantic information.
+
+3. **Hybrid-Prompt Tuning for LLMs**: A hybrid-prompt tuning method is presented on large language models (LLMs) for specific document-level RE tasks.
+
+## Publication
+
+The paper was published in the Proceedings of the 42nd International Conference on Machine Learning, PMLR 267:69936-69949, 2025. Extensive experiments conducted on two benchmark datasets demonstrate that the proposed framework enhances all the metrics compared with state-of-the-art methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "0654726a-5916-4a66-ba77-1ead3253f0e8",
+  "tool_use_result": {
+    "query": "DocKS-RAG Optimizing Document-Level Relation Extraction LLM-Enhanced Hybrid Prompt Tuning ICML 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014jSnfJ4HpV4JsVphT9Hmz6",
+        "content": [
+          {
+            "title": "ICML Poster DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning",
+            "url": "https://icml.cc/virtual/2025/poster/45220"
+          },
+          {
+            "title": "DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning | OpenReview",
+            "url": "https://openreview.net/forum?id=SVl9tIADWV"
+          },
+          {
+            "title": "DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning",
+            "url": "https://proceedings.mlr.press/v267/xu25am.html"
+          },
+          {
+            "title": "DocKS-RAG: Optimizing Document-Level Relation Extraction through",
+            "url": "https://openreview.net/pdf/96d59841526745109ad60229721708a19c60aa01.pdf"
+          },
+          {
+            "title": "GitHub - liunian-Jay/Awesome-RAG: 💡 Awesome RAG: A resource of Retrieval-Augmented Generation (RAG) for LLMs, focusing on the development of technology.",
+            "url": "https://github.com/liunian-Jay/Awesome-RAG"
+          },
+          {
+            "title": "Zero-Shot Document-Level Biomedical Relation Extraction via Scenario-based Prompt Design in Two-Stage with LLM",
+            "url": "https://arxiv.org/pdf/2505.01077"
+          },
+          {
+            "title": "Relation as a Prior: A Novel Paradigm for LLM-based Document-level Relation Extraction",
+            "url": "https://arxiv.org/pdf/2511.08143"
+          },
+          {
+            "title": "Semi-automatic Data Enhancement for Document-Level Relation Extraction   with Distant Supervision from Large Language Models",
+            "url": "https://arxiv.org/pdf/2311.07314"
+          },
+          {
+            "title": "Biomedical Relation Extraction via Adaptive Document-Relation   Cross-Mapping and Concept Unique Identifier",
+            "url": "https://arxiv.org/pdf/2501.05155"
+          }
+        ]
+      },
+      "I found the research paper on DocKS-RAG! Here's what I found:\n\n## DocKS-RAG: Overview\n\nDocument-level relation extraction (RE) aims to extract comprehensive correlations between entities and relations from documents. DocKS-RAG is a novel and effective framework which introduces extra structural knowledge and semantic information to further enhance the performance of document-level RE.\n\n## Key Components\n\nThe framework consists of three main components:\n\n1. **Document-level Knowledge Graph**: A Document-level Knowledge Graph is constructed from the observable documentation data to better capture the structural information between entities and relations.\n\n2. **Sentence-level Semantic Retrieval-Augmented Generation**: A Sentence-level Semantic Retrieval-Augmented Generation mechanism is designed to consider the similarity in different sentences by retrieving the relevant contextual semantic information.\n\n3. **Hybrid-Prompt Tuning for LLMs**: A hybrid-prompt tuning method is presented on large language models (LLMs) for specific document-level RE tasks.\n\n## Publication\n\nThe paper was published in the Proceedings of the 42nd International Conference on Machine Learning, PMLR 267:69936-69949, 2025. Extensive experiments conducted on two benchmark datasets demonstrate that the proposed framework enhances all the metrics compared with state-of-the-art methods."
+    ],
+    "durationSeconds": 6.770750446000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+MLR proceedings URL 确认是 `proceedings.mlr.press/v267/xu25am.html`，说明第一作者是 **Xu**（PMLR 用第一作者姓做 URL slug）。bib 中 author 字段已经正确写了 `Xu, Xiaolong` 为第一作者，但 key 还是 `chen2025docksrag`，需要修正为 `xu2025docksrag`。
+
+现在修正 bib key 和 tex 文件中的引用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "64e04334-08ff-4b78-ab5e-b91b706e3da7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KH7jUab58b8LRgdnjT4ZCV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 955,
+      "cache_read_input_tokens": 26909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 955
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01BKVsq5Zz4cpQWJRsYpbab9`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/references.bib",
+  "old_string": "@inproceedings{chen2025docksrag,",
+  "new_string": "@inproceedings{xu2025docksrag,"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "05718b4e-53e7-4794-9304-bcd1b62eff14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KH7jUab58b8LRgdnjT4ZCV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 955,
+      "cache_read_input_tokens": 26909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 955
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-25T00:23:07.537Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01BKVsq5Zz4cpQWJRsYpbab9`</summary>
+
+```text
+&lt;tool_use_error>File has not been read yet. Read it first before writing to it.&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "26911df8-24b0-479b-8f97-e56b8599d405",
+  "tool_use_result": "Error: File has not been read yet. Read it first before writing to it."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01LoBEGs8T6MPXVQkay9UyZX`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/related_work.tex",
+  "old_string": "\\citet{chen2025docksrag}",
+  "new_string": "\\citet{xu2025docksrag}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "59255719-c034-4e4e-92c3-6478e2601d71",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KH7jUab58b8LRgdnjT4ZCV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 955,
+      "cache_read_input_tokens": 26909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 955
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-25T00:23:08.055Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01LoBEGs8T6MPXVQkay9UyZX`</summary>
+
+```text
+&lt;tool_use_error>File has not been read yet. Read it first before writing to it.&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "f9c97466-e2a4-4b0e-a761-d38e3317df05",
+  "tool_use_result": "Error: File has not been read yet. Read it first before writing to it."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Y8LeXWmbb3y85DL7doUaC7`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex",
+  "old_string": "\\citet{chen2025docksrag}",
+  "new_string": "\\citet{xu2025docksrag}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "6a49af9e-0563-4e7b-91f1-809bbc58dbf7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KH7jUab58b8LRgdnjT4ZCV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 955,
+      "cache_read_input_tokens": 26909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 955
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-25T00:23:08.337Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01Y8LeXWmbb3y85DL7doUaC7`</summary>
+
+```text
+&lt;tool_use_error>File has not been read yet. Read it first before writing to it.&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "6dd58ef4-e6f9-4d7f-904a-5f67f9f5f374",
+  "tool_use_result": "Error: File has not been read yet. Read it first before writing to it."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01N72Zo4Vrq3jfjiEcjnXSVz`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/references.bib",
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "db788591-6631-4ff5-be32-99ebee47a5de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UWkh1GdtRnaKa4wT9tQdxG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 768,
+      "cache_read_input_tokens": 27864,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 768
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-25T00:23:11.631Z_
+
+<details><summary>↩ Tool result · `toolu_01N72Zo4Vrq3jfjiEcjnXSVz`</summary>
+
+```text
+1	@inproceedings{autore2024,
+2	  title     = {{AutoRE}: Document-Level Relation Extraction with Large Language Models},
+3	  author    = {Xue, Lilong and Zhang, Dan and Dong, Yuxiao and Tang, Jie},
+4	  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics: System Demonstrations},
+5	  year      = {2024},
+6	  url       = {https://arxiv.org/abs/2403.14888}
+7	}
+8	
+9	@inproceedings{chen2025docksrag,
+10	  title     = {{DocKS-RAG}: Optimizing Document-Level Relation Extraction through {LLM}-Enhanced Hybrid Prompt Tuning},
+11	  author    = {Xu, Xiaolong and Zhou, Yibo and Xiang, Haolong and Li, Xiaoyong and Zhang, Xuyun and Qi, Lianyong and Dou, Wanchun},
+12	  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},
+13	  year      = {2025},
+14	  url       = {https://proceedings.mlr.press/v267/xu25am.html}
+15	}
+16	
+17	@article{dai2025r1re,
+18	  title   = {{R1-RE}: Cross-Domain Relation Extraction with {RLVR}},
+19	  author  = {Dai, Runpeng and Zheng, Tong and Yang, Run and Yu, Kaixian and Zhu, Hongtu},
+20	  journal = {arXiv preprint arXiv:2507.04642},
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "6ff5ee6a-ec7e-466d-b69a-fe96fda43144",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/references.bib",
+      "content": "@inproceedings{autore2024,\n  title     = {{AutoRE}: Document-Level Relation Extraction with Large Language Models},\n  author    = {Xue, Lilong and Zhang, Dan and Dong, Yuxiao and Tang, Jie},\n  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics: System Demonstrations},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2403.14888}\n}\n\n@inproceedings{chen2025docksrag,\n  title     = {{DocKS-RAG}: Optimizing Document-Level Relation Extraction through {LLM}-Enhanced Hybrid Prompt Tuning},\n  author    = {Xu, Xiaolong and Zhou, Yibo and Xiang, Haolong and Li, Xiaoyong and Zhang, Xuyun and Qi, Lianyong and Dou, Wanchun},\n  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},\n  year      = {2025},\n  url       = {https://proceedings.mlr.press/v267/xu25am.html}\n}\n\n@article{dai2025r1re,\n  title   = {{R1-RE}: Cross-Domain Relation Extraction with {RLVR}},\n  author  = {Dai, Runpeng and Zheng, Tong and Yang, Run and Yu, Kaixian and Zhu, Hongtu},\n  journal = {arXiv preprint arXiv:2507.04642},",
+      "numLines": 20,
+      "startLine": 1,
+      "totalLines": 420
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — Read · `toolu_011CRAqgjLMrWV9anGbS22df`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/related_work.tex",
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "11cf4869-714f-459e-970a-005a3c6570fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UWkh1GdtRnaKa4wT9tQdxG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 768,
+      "cache_read_input_tokens": 27864,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 768
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-25T00:23:12.308Z_
+
+<details><summary>↩ Tool result · `toolu_011CRAqgjLMrWV9anGbS22df`</summary>
+
+```text
+1	\section{Related Work}
+2	\label{sec:related_work}
+3	
+4	\subsection{Document-Level Relation Extraction}
+5	\label{sec:rw_docre}
+6	
+7	Document-level relation extraction (DocRE) requires reasoning across sentence boundaries to identify relations between entity pairs.
+8	DocRED \citep{yao2019docred} established the first large-scale benchmark for this task, catalyzing a line of encoder-based methods that treat DocRE as classification over entity pair representations.
+9	ATLOP \citep{zhou2021atlop} introduced adaptive thresholding with localized context pooling, and graph-based methods such as GAIN \citep{zeng2020gain} model inter-sentence reasoning through heterogeneous mention-level and entity-level graphs.
+10	
+11	A parallel thread incorporates sentence-level evidence into these architectures.
+12	SAIS \citep{xiao2022sais} introduced evidence supervision as an auxiliary training signal and showed that joint evidence prediction improves extraction through data augmentation and ensemble inference.
+13	DREEAM \citep{ma2023dreeam} extended this approach with dynamic memory-based evidence retrieval that guides attention to supporting sentences.
+14	EIDER \citep{xie2022eider} jointly trains an evidence extractor and fuses evidence representations into the relation classifier.
+15	In all three systems, evidence identification is binary sentence classification over a fixed candidate set, a formulation that adds no output complexity.
+16	
+17	Recent work has recast DocRE for large language models.
+18	AutoRE \citep{autore2024} fine-tunes LLMs with QLoRA using a relation-head-facts decomposition; \citet{xu2024lmrc} frame extraction as multi-choice reading comprehension; RelPrior \citep{wang2025relprior} uses relation priors to guide LLM-based extraction; GLiDRE \citep{zhang2025glidre} presents a generalist lightweight approach; Ru-LLM \citep{wang2025rullm} incorporates logical rule constraints; and \citet{chen2025docksrag} combine retrieval-augmented generation with structured knowledge.
+19	These methods match or surpass encoder baselines but produce bare triplets without evidence. Among LLM-based generative methods at the 8B scale, our RSFT model (54.33 Ign-F1 on DocRED dev) outperforms AutoRE (52.14\footnote{AutoRE Ign-F1 is from the LLaMA3-8B reproduction by \citet{wang2025relprior}; the original paper reports only F1.}) and is slightly below RelPrior ($-$1.17pp), while being the only method that additionally provides sentence-level evidence grounding.
+20	The critical distinction lies in computational nature: in SAIS and DREEAM, evidence retrieval is classification that regularizes the encoder without increasing output length; in LLM-based DocRE, evidence requires additional output tokens per triple, imposing costs that depend on model capacity and optimization strategy.
+21	Whether this cost is inevitable or can be mitigated is the central question of our work.
+22	
+23	\subsection{Reinforcement Learning for Structured Generation}
+24	\label{sec:rw_rl}
+25	
+26	Group Relative Policy Optimization (GRPO) \citep{shao2024deepseekmath} replaces the value network of PPO \citep{schulman2017ppo} by computing advantages within groups; DeepSeek-R1 \citep{deepseek2025r1} demonstrates GRPO's effectiveness at scale for reasoning.
+27	Subsequent work addresses failure modes: DAPO \citep{yu2025dapo} prevents entropy collapse, Dr.\ GRPO \citep{liu2025drgrpo} corrects length bias, $\mu$-GRPO \citep{tian2026mugrpo} improves off-policy efficiency, Tree-GRPO \citep{ji2026treegrpo} extends GRPO to agentic settings, and multi-objective variants \citep{liu2026gdpo,ito2025mogrpo} handle competing reward signals.
+28	Applications to structured IE include R1-RE \citep{dai2025r1re} and REAR \citep{wang2025rear}.
+29	Direct Preference Optimization \citep{rafailov2023direct} reformulates Reinforcement Learning from Human Feedback \citep[RLHF;][]{ouyang2022instructgpt} as implicit reward maximization; KTO \citep{ethayarajh2024kto} further simplifies alignment by learning from binary desirability signals without paired preferences.
+30	Our decoupling spectrum is distinct from catastrophic forgetting in RL alignment \citep{jin2025rl_panacea}, where models lose pre-trained capabilities across tasks; in our setting, extraction and evidence compete \emph{within} a single task, resembling negative transfer in multi-task learning \citep{ruder2017overview,standley2020tasks,yu2020gradient}, amplified by QLoRA's \citep{dettmers2023qlora} constrained parameter space and capacity-dependent scaling dynamics \citep{hoffmann2022chinchilla,gao2023scaling,moskovitz2024constrained,coste2024reward}.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "7c002e6d-e2bc-4340-bf1e-0092f8bcc181",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/related_work.tex",
+      "content": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\subsection{Document-Level Relation Extraction}\n\\label{sec:rw_docre}\n\nDocument-level relation extraction (DocRE) requires reasoning across sentence boundaries to identify relations between entity pairs.\nDocRED \\citep{yao2019docred} established the first large-scale benchmark for this task, catalyzing a line of encoder-based methods that treat DocRE as classification over entity pair representations.\nATLOP \\citep{zhou2021atlop} introduced adaptive thresholding with localized context pooling, and graph-based methods such as GAIN \\citep{zeng2020gain} model inter-sentence reasoning through heterogeneous mention-level and entity-level graphs.\n\nA parallel thread incorporates sentence-level evidence into these architectures.\nSAIS \\citep{xiao2022sais} introduced evidence supervision as an auxiliary training signal and showed that joint evidence prediction improves extraction through data augmentation and ensemble inference.\nDREEAM \\citep{ma2023dreeam} extended this approach with dynamic memory-based evidence retrieval that guides attention to supporting sentences.\nEIDER \\citep{xie2022eider} jointly trains an evidence extractor and fuses evidence representations into the relation classifier.\nIn all three systems, evidence identification is binary sentence classification over a fixed candidate set, a formulation that adds no output complexity.\n\nRecent work has recast DocRE for large language models.\nAutoRE \\citep{autore2024} fine-tunes LLMs with QLoRA using a relation-head-facts decomposition; \\citet{xu2024lmrc} frame extraction as multi-choice reading comprehension; RelPrior \\citep{wang2025relprior} uses relation priors to guide LLM-based extraction; GLiDRE \\citep{zhang2025glidre} presents a generalist lightweight approach; Ru-LLM \\citep{wang2025rullm} incorporates logical rule constraints; and \\citet{chen2025docksrag} combine retrieval-augmented generation with structured knowledge.\nThese methods match or surpass encoder baselines but produce bare triplets without evidence. Among LLM-based generative methods at the 8B scale, our RSFT model (54.33 Ign-F1 on DocRED dev) outperforms AutoRE (52.14\\footnote{AutoRE Ign-F1 is from the LLaMA3-8B reproduction by \\citet{wang2025relprior}; the original paper reports only F1.}) and is slightly below RelPrior ($-$1.17pp), while being the only method that additionally provides sentence-level evidence grounding.\nThe critical distinction lies in computational nature: in SAIS and DREEAM, evidence retrieval is classification that regularizes the encoder without increasing output length; in LLM-based DocRE, evidence requires additional output tokens per triple, imposing costs that depend on model capacity and optimization strategy.\nWhether this cost is inevitable or can be mitigated is the central question of our work.\n\n\\subsection{Reinforcement Learning for Structured Generation}\n\\label{sec:rw_rl}\n\nGroup Relative Policy Optimization (GRPO) \\citep{shao2024deepseekmath} replaces the value network of PPO \\citep{schulman2017ppo} by computing advantages within groups; DeepSeek-R1 \\citep{deepseek2025r1} demonstrates GRPO's effectiveness at scale for reasoning.\nSubsequent work addresses failure modes: DAPO \\citep{yu2025dapo} prevents entropy collapse, Dr.\\ GRPO \\citep{liu2025drgrpo} corrects length bias, $\\mu$-GRPO \\citep{tian2026mugrpo} improves off-policy efficiency, Tree-GRPO \\citep{ji2026treegrpo} extends GRPO to agentic settings, and multi-objective variants \\citep{liu2026gdpo,ito2025mogrpo} handle competing reward signals.\nApplications to structured IE include R1-RE \\citep{dai2025r1re} and REAR \\citep{wang2025rear}.\nDirect Preference Optimization \\citep{rafailov2023direct} reformulates Reinforcement Learning from Human Feedback \\citep[RLHF;][]{ouyang2022instructgpt} as implicit reward maximization; KTO \\citep{ethayarajh2024kto} further simplifies alignment by learning from binary desirability signals without paired preferences.\nOur decoupling spectrum is distinct from catastrophic forgetting in RL alignment \\citep{jin2025rl_panacea}, where models lose pre-trained capabilities across tasks; in our setting, extraction and evidence compete \\emph{within} a single task, resembling negative transfer in multi-task learning \\citep{ruder2017overview,standley2020tasks,yu2020gradient}, amplified by QLoRA's \\citep{dettmers2023qlora} constrained parameter space and capacity-dependent scaling dynamics \\citep{hoffmann2022chinchilla,gao2023scaling,moskovitz2024constrained,coste2024reward}.",
+      "numLines": 30,
+      "startLine": 1,
+      "totalLines": 41
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01FAwhEidXsXEwE4KJ9C39up`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex",
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "6f6f7331-7d49-4641-8981-346072e97524",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UWkh1GdtRnaKa4wT9tQdxG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 768,
+      "cache_read_input_tokens": 27864,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 768
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-25T00:23:12.733Z_
+
+<details><summary>↩ Tool result · `toolu_01FAwhEidXsXEwE4KJ9C39up`</summary>
+
+```text
+1	\section{Introduction}
+2	
+3	Document-level relation extraction (DocRE) requires identifying semantic relations between entity pairs across multiple sentences, a task where encoder-based methods such as \citet{zhou2021atlop} long dominated.
+4	Recent LLM-based approaches have closed this gap: \citet{autore2024} fine-tune LLMs with structured decomposition, \citet{xu2024lmrc} frame it as multi-choice reading comprehension, and \citet{chen2025docksrag} combine retrieval-augmented generation with structured knowledge.
+5	These methods approach or surpass encoder baselines on DocRED \citep{yao2019docred} and Re-DocRED \citep{tan2022redocred} in extraction accuracy, yet every one outputs bare relation triplets $(e_h, r, e_t)$ without indicating \emph{which sentences} support each prediction.
+6	Without evidence, a clinician reviewing a ten-page case report must manually locate the sentences that support each extracted drug interaction---a bottleneck that undermines trust in automated extraction.
+7	
+8	Encoder-based methods have partially addressed this need: \citet{xiao2022sais} introduce sentence-level evidence supervision as an auxiliary signal, and \citet{ma2023dreeam} extend this with dynamic evidence retrieval through memory attention.
+9	Both produce evidence and improve extraction, but encoder methods now trail LLM-based approaches in accuracy.
+10	The community faces a gap: the most accurate extractors provide no evidence, while evidence-capable methods are no longer competitive.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "7f67865a-03cd-40f7-ba1e-8ee4ad99b045",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex",
+      "content": "\\section{Introduction}\n\nDocument-level relation extraction (DocRE) requires identifying semantic relations between entity pairs across multiple sentences, a task where encoder-based methods such as \\citet{zhou2021atlop} long dominated.\nRecent LLM-based approaches have closed this gap: \\citet{autore2024} fine-tune LLMs with structured decomposition, \\citet{xu2024lmrc} frame it as multi-choice reading comprehension, and \\citet{chen2025docksrag} combine retrieval-augmented generation with structured knowledge.\nThese methods approach or surpass encoder baselines on DocRED \\citep{yao2019docred} and Re-DocRED \\citep{tan2022redocred} in extraction accuracy, yet every one outputs bare relation triplets $(e_h, r, e_t)$ without indicating \\emph{which sentences} support each prediction.\nWithout evidence, a clinician reviewing a ten-page case report must manually locate the sentences that support each extracted drug interaction---a bottleneck that undermines trust in automated extraction.\n\nEncoder-based methods have partially addressed this need: \\citet{xiao2022sais} introduce sentence-level evidence supervision as an auxiliary signal, and \\citet{ma2023dreeam} extend this with dynamic evidence retrieval through memory attention.\nBoth produce evidence and improve extraction, but encoder methods now trail LLM-based approaches in accuracy.\nThe community faces a gap: the most accurate extractors provide no evidence, while evidence-capable methods are no longer competitive.",
+      "numLines": 10,
+      "startLine": 1,
+      "totalLines": 28
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01WwBTvnyY6LMjxaEHa3srdK`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/references.bib",
+  "old_string": "@inproceedings{chen2025docksrag,",
+  "new_string": "@inproceedings{xu2025docksrag,"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "2d14b1ef-c3a6-4001-a21d-dd3ed7b7834c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JigVwBtT5MeWtAdZKxA6SH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2564,
+      "cache_read_input_tokens": 28632,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2564
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-25T00:23:16.314Z_
+
+<details><summary>↩ Tool result · `toolu_01WwBTvnyY6LMjxaEHa3srdK`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/references.bib has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "fe7ab71d-c76b-4c9c-b8d0-0b2411c6db60",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/references.bib",
+    "oldString": "@inproceedings{chen2025docksrag,",
+    "newString": "@inproceedings{xu2025docksrag,",
+    "originalFile": "@inproceedings{autore2024,\n  title     = {{AutoRE}: Document-Level Relation Extraction with Large Language Models},\n  author    = {Xue, Lilong and Zhang, Dan and Dong, Yuxiao and Tang, Jie},\n  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics: System Demonstrations},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2403.14888}\n}\n\n@inproceedings{chen2025docksrag,\n  title     = {{DocKS-RAG}: Optimizing Document-Level Relation Extraction through {LLM}-Enhanced Hybrid Prompt Tuning},\n  author    = {Xu, Xiaolong and Zhou, Yibo and Xiang, Haolong and Li, Xiaoyong and Zhang, Xuyun and Qi, Lianyong and Dou, Wanchun},\n  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},\n  year      = {2025},\n  url       = {https://proceedings.mlr.press/v267/xu25am.html}\n}\n\n@article{dai2025r1re,\n  title   = {{R1-RE}: Cross-Domain Relation Extraction with {RLVR}},\n  author  = {Dai, Runpeng and Zheng, Tong and Yang, Run and Yu, Kaixian and Zhu, Hongtu},\n  journal = {arXiv preprint arXiv:2507.04642},\n  year    = {2025},\n  url     = {https://arxiv.org/abs/2507.04642}\n}\n\n@inproceedings{gao2023scaling,\n  title     = {Scaling Laws for Reward Model Overoptimization},\n  author    = {Gao, Leo and Schulman, John and Hilton, Jacob},\n  booktitle = {Proceedings of the 40th International Conference on Machine Learning},\n  year      = {2023},\n  url       = {https://arxiv.org/abs/2210.10760}\n}\n\n@inproceedings{hu2022lora,\n  title     = {{LoRA}: Low-Rank Adaptation of Large Language Models},\n  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},\n  booktitle = {International Conference on Learning Representations},\n  year      = {2022},\n  url       = {https://arxiv.org/abs/2106.09685}\n}\n\n@article{li2026qurl,\n  title   = {{QuRL}: Efficient Reinforcement Learning with Quantized Rollout},\n  author  = {Li, Yuhang and Elangovan, Reena and Dong, Xin and Panda, Priyadarshini and Khailany, Brucek},\n  journal = {arXiv preprint arXiv:2602.13953},\n  year    = {2026},\n  url     = {https://arxiv.org/abs/2602.13953}\n}\n\n@article{laban2022summac,\n  title   = {{SummaC}: Re-Visiting {NLI}-based Models for Inconsistency Detection in Summarization},\n  author  = {Laban, Philippe and Schnabel, Tobias and Bennett, Paul N. and Hearst, Marti A.},\n  journal = {Transactions of the Association for Computational Linguistics},\n  volume  = {10},\n  pages   = {163--177},\n  year    = {2022},\n  url     = {https://aclanthology.org/2022.tacl-1.10/}\n}\n\n@inproceedings{li2025srvf,\n  title     = {Enhancing Relation Extraction via Supervised Rationale Verification and Feedback},\n  author    = {Li, Yongqi and Miao, Xin and Zhou, Shen and Xu, Mayi and Ren, Yuyang and Qian, Tieyun},\n  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2412.07289}\n}\n\n@article{jin2025rl_panacea,\n  title   = {{RL} Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for {LLMs}},\n  author  = {Jin, Hangzhan and Lv, Sicheng and Wu, Sifan and Hamdaqa, Mohammad},\n  journal = {arXiv preprint arXiv:2508.16546},\n  year    = {2025},\n  url     = {https://arxiv.org/abs/2508.16546}\n}\n\n@inproceedings{ma2023dreeam,\n  title     = {{DREEAM}: Guiding Attention with Evidence for Improving Document-Level Relation Extraction},\n  author    = {Ma, Youmi and Wang, An and Okazaki, Naoaki},\n  booktitle = {Findings of the Association for Computational Linguistics: EACL 2023},\n  year      = {2023},\n  url       = {https://arxiv.org/abs/2302.08675}\n}\n\n@inproceedings{moskovitz2024constrained,\n  title     = {Confronting Reward Model Overoptimization with Constrained {RLHF}},\n  author    = {Moskovitz, Ted and Singh, Aaditya K. and Strouse, DJ and Sandholm, Tuomas and Salakhutdinov, Ruslan and Dragan, Anca D. and McAleer, Stephen},\n  booktitle = {International Conference on Learning Representations},\n  year      = {2024},\n  url       = {https://openreview.net/forum?id=gkfUvn0fLU}\n}\n\n@inproceedings{rafailov2023direct,\n  title     = {Direct Preference Optimization: Your Language Model is Secretly a Reward Model},\n  author    = {Rafailov, Rafael and Sharma, Archit and Mitchell, Eric and Ermon, Stefano and Manning, Christopher D. and Finn, Chelsea},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year      = {2023},\n  url       = {https://arxiv.org/abs/2305.18290}\n}\n\n@article{shao2024deepseekmath,\n  title   = {{DeepSeekMath}: Pushing the Limits of Mathematical Reasoning in Open Language Models},\n  author  = {Shao, Zhihong and Wang, Peiyi and Zhu, Qihao and Xu, Runxin and Song, Junxiao and Bi, Xiao and Zhang, Haowei and Zhang, Mingchuan and Li, Y.K. and Wu, Y. and Guo, Daya},\n  journal = {arXiv preprint arXiv:2402.03300},\n  year    = {2024},\n  url     = {https://arxiv.org/abs/2402.03300}\n}\n\n@inproceedings{tan2022redocred,\n  title     = {Revisiting {DocRED}: Addressing the False Negative Problem in Relation Extraction},\n  author    = {Tan, Qingyu and Xu, Lu and Bing, Lidong and Ng, Hwee Tou and Aljunied, Sharifah Mahani},\n  booktitle = {Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing},\n  year      = {2022},\n  url       = {https://aclanthology.org/2022.emnlp-main.580/}\n}\n\n\n@inproceedings{xiao2022sais,\n  title     = {{SAIS}: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction},\n  author    = {Xiao, Yuxin and Zhang, Zecheng and Mao, Yuning and Yang, Carl and Han, Jiawei},\n  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics},\n  year      = {2022},\n  url       = {https://aclanthology.org/2022.naacl-main.171/}\n}\n\n@inproceedings{xie2022eider,\n  title     = {{EIDER}: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion},\n  author    = {Xie, Yiqing and Shen, Jiaming and Li, Sha and Mao, Yuning and Han, Jiawei},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2022},\n  year      = {2022},\n  url       = {https://arxiv.org/abs/2106.08657}\n}\n\n@article{xu2024lmrc,\n  title   = {{LMRC}: {LLM} with Relation Classifier for Document-Level Relation Extraction},\n  author  = {Li, Xingzuo and Chen, Kehai and Long, Yunfei and Zhang, Min},\n  journal = {arXiv preprint arXiv:2408.13889},\n  year    = {2024},\n  url     = {https://arxiv.org/abs/2408.13889}\n}\n\n@inproceedings{yao2019docred,\n  title     = {{DocRED}: A Large-Scale Document-Level Relation Extraction Dataset},\n  author    = {Yao, Yuan and Ye, Deming and Li, Peng and Han, Xu and Lin, Yankai and Liu, Zhenghao and Liu, Zhiyuan and Huang, Lixin and Zhou, Jie and Sun, Maosong},\n  booktitle = {Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics},\n  year      = {2019},\n  url       = {https://aclanthology.org/P19-1074/}\n}\n\n@inproceedings{zelikman2022star,\n  title     = {{STaR}: Bootstrapping Reasoning With Reasoning},\n  author    = {Zelikman, Eric and Wu, Yuhuai and Mu, Jesse and Goodman, Noah D.},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year      = {2022},\n  url       = {https://arxiv.org/abs/2203.14465}\n}\n\n@article{dong2023raft,\n  title   = {{RAFT}: Reward r{A}nked {F}ine{T}uning for Generative Foundation Model Alignment},\n  author  = {Dong, Hanze and Xiong, Wei and Goyal, Deepanshu and Zhang, Yihan and Chow, Winnie and Pan, Rui and Diao, Shizhe and Zhang, Jipeng and Shum, Kashun and Zhang, Tong},\n  journal = {Transactions on Machine Learning Research},\n  year    = {2023},\n  url     = {https://arxiv.org/abs/2304.06767}\n}\n\n@article{ito2025mogrpo,\n  title   = {{MO-GRPO}: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems},\n  author  = {Ichihara, Yuki and Jinnai, Yuu and Morimura, Tetsuro and Sakamoto, Mitsuki and Mitsuhashi, Ryota and Uchibe, Eiji},\n  journal = {arXiv preprint arXiv:2509.22047},\n  year    = {2025},\n  url     = {https://arxiv.org/abs/2509.22047}\n}\n\n@inproceedings{li2025drift,\n  title     = {Drift: Enhancing {LLM} Faithfulness in Rationale Generation via Dual-Reward Probabilistic Inference},\n  author    = {Li, Jiazheng and Yan, Hanqi and He, Yulan},\n  booktitle = {Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics},\n  year      = {2025},\n  url       = {https://aclanthology.org/2025.acl-long.340/}\n}\n\n@article{liu2026gdpo,\n  title   = {{GDPO}: Group Reward-Decoupled Normalization Policy Optimization for Multi-Reward {RL} Optimization},\n  author  = {Liu, Shih-Yang and Dong, Xin and Lu, Ximing and Diao, Shizhe and Belcak, Peter and Liu, Mingjie and Chen, Min-Hung and Yin, Hongxu and Wang, Yu-Chiang Frank and Cheng, Kwang-Ting and Choi, Yejin and Kautz, Jan and Molchanov, Pavlo},\n  journal = {arXiv preprint arXiv:2601.05242},\n  year    = {2026},\n  url     = {https://arxiv.org/abs/2601.05242}\n}\n\n@inproceedings{liu2025drgrpo,\n  title     = {Understanding {R1}-Zero-Like Training: A Critical Perspective},\n  author    = {Liu, Zichen and Chen, Changyu and Li, Wenjun and Qi, Penghui and Pang, Tianyu and Du, Chao and Lee, Wee Sun and Lin, Min},\n  booktitle = {Conference on Language Modeling},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2503.20783}\n}\n\n@article{yu2025dapo,\n  title   = {{DAPO}: An Open-Source {LLM} Reinforcement Learning System at Scale},\n  author  = {Yu, Qiying and Zhang, Zheng and Zhu, Ruofei and Yuan, Yufeng and Zuo, Xiaochen and Yue, Yu and Dai, Weinan and Fan, Tiantian and Liu, Gaohong and Liu, Lingjun and Liu, Xin and Lin, Haibin and Lin, Zhiqi and Ma, Bole and Sheng, Guangming and Tong, Yuxuan and Zhang, Chi and Zhang, Mofan and Zhang, Wang and Zhu, Hang and Zhu, Jinhua and Chen, Jiaze and Chen, Jiangjie and Wang, Chengyi and Yu, Hongli and Song, Yuxuan and Wei, Xiangpeng and Zhou, Hao and Liu, Jingjing and Ma, Wei-Ying and Zhang, Ya-Qin and Yan, Lin and Qiao, Mu and Wu, Yonghui and Wang, Mingxuan},\n  journal = {arXiv preprint arXiv:2503.14476},\n  year    = {2025},\n  url     = {https://arxiv.org/abs/2503.14476}\n}\n\n@inproceedings{zhang2024infuse,\n  title     = {Fine-Grained Natural Language Inference Based Faithfulness Evaluation for Diverse Summarisation Tasks},\n  author    = {Zhang, Huajian and Xu, Yumo and Perez-Beltrachini, Laura},\n  booktitle = {Proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics},\n  year      = {2024},\n  url       = {https://aclanthology.org/2024.eacl-long.102/}\n}\n\n\n@inproceedings{wang2025rear,\n  title     = {{REAR}: Reinforced Reasoning Optimization for Event Argument Extraction with Relation-Aware Support},\n  author    = {Luo, Jianwen and Hong, Yu and Yang, Shuai and Yao, Jianmin},\n  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2025},\n  year      = {2025}\n}\n\n@article{wang2025relprior,\n  title   = {{RelPrior}: Relation as a Prior for {LLM}-based Document-Level Relation Extraction},\n  author  = {Pi, Qiankun and Sun, Yepeng and Lu, Jicang and Fan, Qinlong and Huang, Ningbo and Wang, Shiyu},\n  journal = {arXiv preprint arXiv:2511.08143},\n  year    = {2025},\n  url     = {https://arxiv.org/abs/2511.08143}\n}\n\n@article{zhang2025glidre,\n  title   = {{GLiDRE}: Generalist Lightweight Model for Document-level Relation Extraction},\n  author  = {Armingaud, Robin and Besan\\c{c}on, Romaric},\n  journal = {arXiv preprint arXiv:2508.00757},\n  year    = {2025},\n  url     = {https://arxiv.org/abs/2508.00757}\n}\n\n@inproceedings{tang2025rsftppo,\n  title     = {Rejection Sampling Based Fine Tuning Secretly Performs {PPO}},\n  author    = {Anil, Gautham Govind and Nagaraj, Dheeraj Mysore and Shanmugam, Karthikeyan and Shakkottai, Sanjay},\n  booktitle = {ICML 2025 Workshop on Practical Aspects of Unlearning and Test-time Adaptation (PUT)},\n  year      = {2025},\n  url       = {https://openreview.net/forum?id=yQ2UivKlir}\n}\n\n@article{wang2025rullm,\n  title   = {{Ru-LLM}: Logical Rule-Constrained Large Language Models for Document-Level Relation Extraction},\n  author  = {Zhang, Kunli and Wu, Pengcheng and Yu, Bohan and Li, Yunlong and Kong, Dezhi and Zan, Hongying and Peng, Min and Song, Yu},\n  journal = {NLPCC 2025},\n  year    = {2025}\n}\n\n@inproceedings{zhou2021atlop,\n  title     = {Document-Level Relation Extraction with Adaptive Thresholding and Localized Context Pooling},\n  author    = {Zhou, Wenxuan and Huang, Kevin and Ma, Tengyu and Huang, Jing},\n  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},\n  year      = {2021},\n  url       = {https://arxiv.org/abs/2010.11304}\n}\n\n@article{ruder2017overview,\n  title   = {An Overview of Multi-Task Learning in Deep Neural Networks},\n  author  = {Ruder, Sebastian},\n  journal = {arXiv preprint arXiv:1706.05098},\n  year    = {2017},\n  url     = {https://arxiv.org/abs/1706.05098}\n}\n\n@inproceedings{standley2020tasks,\n  title     = {Which Tasks Should Be Learned Together in Multi-task Learning?},\n  author    = {Standley, Trevor and Zamir, Amir and Chen, Dawn and Guibas, Leonidas and Malik, Jitendra and Savarese, Silvio},\n  booktitle = {Proceedings of the 37th International Conference on Machine Learning},\n  year      = {2020},\n  url       = {https://proceedings.mlr.press/v119/standley20a.html}\n}\n\n@inproceedings{yu2020gradient,\n  title     = {Gradient Surgery for Multi-Task Learning},\n  author    = {Yu, Tianhe and Kumar, Saurabh and Gupta, Abhishek and Levine, Sergey and Hausman, Karol and Finn, Chelsea},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year      = {2020},\n  url       = {https://arxiv.org/abs/2001.06782}\n}\n\n\n@inproceedings{wang2023selfconsistency,\n  title     = {Self-Consistency Improves Chain of Thought Reasoning in Language Models},\n  author    = {Wang, Xuezhi and Wei, Jason and Schuurmans, Dale and Le, Quoc and Chi, Ed and Narang, Sharan and Chowdhery, Aakanksha and Zhou, Denny},\n  booktitle = {The Eleventh International Conference on Learning Representations},\n  year      = {2023},\n  url       = {https://arxiv.org/abs/2203.11171}\n}\n\n@inproceedings{ouyang2022instructgpt,\n  title     = {Training Language Models to Follow Instructions with Human Feedback},\n  author    = {Ouyang, Long and Wu, Jeff and Jiang, Xu and Almeida, Diogo and Wainwright, Carroll L. and Mishkin, Pamela and Zhang, Chong and Agarwal, Sandhini and Slama, Katarina and Ray, Alex and Schulman, John and Hilton, Jacob and Kelton, Fraser and Miller, Luke and Simens, Maddie and Askell, Amanda and Welinder, Peter and Christiano, Paul F. and Leike, Jan and Lowe, Ryan},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year      = {2022},\n  url       = {https://arxiv.org/abs/2203.02155}\n}\n\n@article{schulman2017ppo,\n  title   = {Proximal Policy Optimization Algorithms},\n  author  = {Schulman, John and Wolski, Filip and Dhariwal, Prafulla and Radford, Alec and Klimov, Oleg},\n  journal = {arXiv preprint arXiv:1707.06347},\n  year    = {2017},\n  url     = {https://arxiv.org/abs/1707.06347}\n}\n\n@inproceedings{zeng2020gain,\n  title     = {Double Graph Based Reasoning for Document-level Relation Extraction},\n  author    = {Zeng, Shuang and Xu, Runxin and Chang, Baobao and Li, Lei},\n  booktitle = {Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing},\n  year      = {2020},\n  url       = {https://aclanthology.org/2020.emnlp-main.127/}\n}\n\n@inproceedings{ethayarajh2024kto,\n  title     = {{KTO}: Model Alignment as Prospect Theoretic Optimization},\n  author    = {Ethayarajh, Kawin and Xu, Winnie and Muennighoff, Niklas and Jurafsky, Dan and Kiela, Douwe},\n  booktitle = {Proceedings of the 41st International Conference on Machine Learning},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2402.01306}\n}\n\n@inproceedings{coste2024reward,\n  title     = {Reward Model Ensembles Help Mitigate Overoptimization},\n  author    = {Coste, Thomas and Anwar, Usman and Kirk, Robert and Krueger, David},\n  booktitle = {International Conference on Learning Representations},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2310.02743}\n}\n\n@inproceedings{he2023debertav3,\n  title     = {{DeBERTaV3}: Improving {DeBERTa} using {ELECTRA}-Style Pre-Training with Gradient-Disentangled Embedding Sharing},\n  author    = {He, Pengcheng and Gao, Jianfeng and Chen, Weizhu},\n  booktitle = {International Conference on Learning Representations},\n  year      = {2023},\n  url       = {https://arxiv.org/abs/2111.09543}\n}\n\n@inproceedings{dettmers2023qlora,\n  title     = {{QLoRA}: Efficient Finetuning of Quantized {LLMs}},\n  author    = {Dettmers, Tim and Pagnoni, Artidoro and Holtzman, Ari and Zettlemoyer, Luke},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year      = {2023},\n  url       = {https://arxiv.org/abs/2305.14314}\n}\n\n@inproceedings{hoffmann2022chinchilla,\n  title     = {Training Compute-Optimal Large Language Models},\n  author    = {Hoffmann, Jordan and Borgeaud, Sebastian and Mensch, Arthur and Buchatskaya, Elena and Cai, Trevor and Rutherford, Eliza and de Las Casas, Diego and Hendricks, Lisa Anne and Welbl, Johannes and Clark, Aidan and Hennigan, Tom and Noland, Eric and Millican, Katie and van den Driessche, George and Damoc, Bogdan and Guy, Aurelia and Osindero, Simon and Simonyan, Karen and Elsen, Erich and Rae, Jack W. and Vinyals, Oriol and Sifre, Laurent},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year      = {2022},\n  url       = {https://arxiv.org/abs/2203.15556}\n}\n\n@article{yuan2023rft,\n  title   = {Scaling Relationship on Learning Mathematical Reasoning with Large Language Models},\n  author  = {Yuan, Zheng and Yuan, Hongyi and Li, Chengpeng and Dong, Guanting and Lu, Keming and Tan, Chuanqi and Zhou, Chang and Zhou, Jingren},\n  journal = {arXiv preprint arXiv:2308.01825},\n  year    = {2023},\n  url     = {https://arxiv.org/abs/2308.01825}\n}\n\n@article{tamo2026evidencerl,\n  title   = {{EvidenceRL}: Reinforcing Evidence Consistency for Trustworthy Language Models},\n  author  = {Tamo, J. Ben and Lu, Yuxing and Marteau, Benoit L. and Nnamdi, Micky C. and Wang, May D.},\n  journal = {arXiv preprint arXiv:2603.19532},\n  year    = {2026},\n  url     = {https://arxiv.org/abs/2603.19532}\n}\n\n@article{liu2026rift,\n  title   = {{RIFT}: Repurposing Negative Samples via Reward-Informed Fine-Tuning},\n  author  = {Liu, Zehua and Liu, Shuqi and Zhong, Tao and Yuan, Mingxuan},\n  journal = {arXiv preprint arXiv:2601.09253},\n  year    = {2026},\n  url     = {https://arxiv.org/abs/2601.09253}\n}\n\n@article{deng2026trajfusion,\n  title   = {Beyond Rejection Sampling: Trajectory Fusion for Scaling Mathematical Reasoning},\n  author  = {Deng, Jie and Tong, Hanshuang and Li, Jun and Liang, Shining and Wu, Ning and Li, Hongzhi and Xie, Yutao},\n  journal = {arXiv preprint arXiv:2602.04391},\n  year    = {2026},\n  url     = {https://arxiv.org/abs/2602.04391}\n}\n\n@article{tian2026mugrpo,\n  title   = {How Off-Policy Can {GRPO} Be? {$\\mu$-GRPO} for Efficient {LLM} Reinforcement Learning},\n  author  = {Tian, Minghao and Xie, Yunfei and Wei, Chen},\n  journal = {arXiv preprint arXiv:2605.17570},\n  year    = {2026},\n  url     = {https://arxiv.org/abs/2605.17570}\n}\n\n@inproceedings{ji2026treegrpo,\n  title     = {Tree Search for {LLM} Agent Reinforcement Learning},\n  author    = {Ji, Yuxiang and Ma, Ziyu and Wang, Yong and Chen, Guanhua and Chu, Xiangxiang and Wu, Liaoni},\n  booktitle = {International Conference on Learning Representations},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2509.21240}\n}\n\n@article{deepseek2025r1,\n  title   = {{DeepSeek-R1}: Incentivizing Reasoning Capability in {LLMs} via Reinforcement Learning},\n  author  = {{DeepSeek-AI}},\n  journal = {arXiv preprint arXiv:2501.12948},\n  year    = {2025},\n  url     = {https://arxiv.org/abs/2501.12948}\n}\n\n@inproceedings{gulcehre2023rest,\n  title     = {Reinforced Self-Training ({ReST}) for Language Modeling},\n  author    = {Gulcehre, Caglar and Paine, Tom Le and Srinivasan, Srivatsan and Konyushkova, Ksenia and Weerts, Lotte and Sharma, Abhishek and Siddhant, Aditya and Ahern, Alex and Wang, Miaosen and Gu, Chenjie and Macherey, Wolfgang and Dyer, Chris and Grangier, David and Firat, Orhan},\n  booktitle = {arXiv preprint arXiv:2308.08998},\n  year      = {2023},\n  url       = {https://arxiv.org/abs/2308.08998}\n}\n\n",
+    "structuredPatch": [
+      {
+        "oldStart": 6,
+        "oldLines": 7,
+        "newStart": 6,
+        "newLines": 7,
+        "lines": [
+          "   url       = {https://arxiv.org/abs/2403.14888}",
+          " }",
+          " ",
+          "-@inproceedings{chen2025docksrag,",
+          "+@inproceedings{xu2025docksrag,",
+          "   title     = {{DocKS-RAG}: Optimizing Document-Level Relation Extraction through {LLM}-Enhanced Hybrid Prompt Tuning},",
+          "   author    = {Xu, Xiaolong and Zhou, Yibo and Xiang, Haolong and Li, Xiaoyong and Zhang, Xuyun and Qi, Lianyong and Dou, Wanchun},",
+          "   booktitle = {Proceedings of the 42nd International Conference on Machine Learning},"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Ku2UszhLLjEF6SMpRxGoZs`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/related_work.tex",
+  "old_string": "\\citet{chen2025docksrag}",
+  "new_string": "\\citet{xu2025docksrag}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "e075446f-47c3-46c0-a11b-abffbcffa487",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JigVwBtT5MeWtAdZKxA6SH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2564,
+      "cache_read_input_tokens": 28632,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2564
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-25T00:23:17.268Z_
+
+<details><summary>↩ Tool result · `toolu_01Ku2UszhLLjEF6SMpRxGoZs`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/related_work.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "100457de-6cf1-4f3f-8cea-d0d791ccf179",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/related_work.tex",
+    "oldString": "\\citet{chen2025docksrag}",
+    "newString": "\\citet{xu2025docksrag}",
+    "originalFile": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\subsection{Document-Level Relation Extraction}\n\\label{sec:rw_docre}\n\nDocument-level relation extraction (DocRE) requires reasoning across sentence boundaries to identify relations between entity pairs.\nDocRED \\citep{yao2019docred} established the first large-scale benchmark for this task, catalyzing a line of encoder-based methods that treat DocRE as classification over entity pair representations.\nATLOP \\citep{zhou2021atlop} introduced adaptive thresholding with localized context pooling, and graph-based methods such as GAIN \\citep{zeng2020gain} model inter-sentence reasoning through heterogeneous mention-level and entity-level graphs.\n\nA parallel thread incorporates sentence-level evidence into these architectures.\nSAIS \\citep{xiao2022sais} introduced evidence supervision as an auxiliary training signal and showed that joint evidence prediction improves extraction through data augmentation and ensemble inference.\nDREEAM \\citep{ma2023dreeam} extended this approach with dynamic memory-based evidence retrieval that guides attention to supporting sentences.\nEIDER \\citep{xie2022eider} jointly trains an evidence extractor and fuses evidence representations into the relation classifier.\nIn all three systems, evidence identification is binary sentence classification over a fixed candidate set, a formulation that adds no output complexity.\n\nRecent work has recast DocRE for large language models.\nAutoRE \\citep{autore2024} fine-tunes LLMs with QLoRA using a relation-head-facts decomposition; \\citet{xu2024lmrc} frame extraction as multi-choice reading comprehension; RelPrior \\citep{wang2025relprior} uses relation priors to guide LLM-based extraction; GLiDRE \\citep{zhang2025glidre} presents a generalist lightweight approach; Ru-LLM \\citep{wang2025rullm} incorporates logical rule constraints; and \\citet{chen2025docksrag} combine retrieval-augmented generation with structured knowledge.\nThese methods match or surpass encoder baselines but produce bare triplets without evidence. Among LLM-based generative methods at the 8B scale, our RSFT model (54.33 Ign-F1 on DocRED dev) outperforms AutoRE (52.14\\footnote{AutoRE Ign-F1 is from the LLaMA3-8B reproduction by \\citet{wang2025relprior}; the original paper reports only F1.}) and is slightly below RelPrior ($-$1.17pp), while being the only method that additionally provides sentence-level evidence grounding.\nThe critical distinction lies in computational nature: in SAIS and DREEAM, evidence retrieval is classification that regularizes the encoder without increasing output length; in LLM-based DocRE, evidence requires additional output tokens per triple, imposing costs that depend on model capacity and optimization strategy.\nWhether this cost is inevitable or can be mitigated is the central question of our work.\n\n\\subsection{Reinforcement Learning for Structured Generation}\n\\label{sec:rw_rl}\n\nGroup Relative Policy Optimization (GRPO) \\citep{shao2024deepseekmath} replaces the value network of PPO \\citep{schulman2017ppo} by computing advantages within groups; DeepSeek-R1 \\citep{deepseek2025r1} demonstrates GRPO's effectiveness at scale for reasoning.\nSubsequent work addresses failure modes: DAPO \\citep{yu2025dapo} prevents entropy collapse, Dr.\\ GRPO \\citep{liu2025drgrpo} corrects length bias, $\\mu$-GRPO \\citep{tian2026mugrpo} improves off-policy efficiency, Tree-GRPO \\citep{ji2026treegrpo} extends GRPO to agentic settings, and multi-objective variants \\citep{liu2026gdpo,ito2025mogrpo} handle competing reward signals.\nApplications to structured IE include R1-RE \\citep{dai2025r1re} and REAR \\citep{wang2025rear}.\nDirect Preference Optimization \\citep{rafailov2023direct} reformulates Reinforcement Learning from Human Feedback \\citep[RLHF;][]{ouyang2022instructgpt} as implicit reward maximization; KTO \\citep{ethayarajh2024kto} further simplifies alignment by learning from binary desirability signals without paired preferences.\nOur decoupling spectrum is distinct from catastrophic forgetting in RL alignment \\citep{jin2025rl_panacea}, where models lose pre-trained capabilities across tasks; in our setting, extraction and evidence compete \\emph{within} a single task, resembling negative transfer in multi-task learning \\citep{ruder2017overview,standley2020tasks,yu2020gradient}, amplified by QLoRA's \\citep{dettmers2023qlora} constrained parameter space and capacity-dependent scaling dynamics \\citep{hoffmann2022chinchilla,gao2023scaling,moskovitz2024constrained,coste2024reward}.\n\n\\subsection{Evidence Faithfulness and Rejection Sampling}\n\\label{sec:rw_faithfulness}\n\nEvidence faithfulness evaluation has received increasing attention: \\citet{laban2022summac} re-visit NLI-based models for summarization inconsistency detection, \\citet{li2025drift} propose dual-reward inference for faithful rationale generation, \\citet{li2025srvf} use supervised rationale verification with contrastive feedback for relation extraction, \\citet{zhang2024infuse} introduce fine-grained NLI-based faithfulness metrics for summarization, and EvidenceRL \\citep{tamo2026evidencerl} reinforces evidence consistency through GRPO-based optimization with grounding rewards.\nOur CED scoring builds on similar NLI-based principles but targets evidence-relation entailment rather than free-form rationales.\n\n\\citet{zelikman2022star} introduced STaR for iterative self-improvement; ReST \\citep{gulcehre2023rest} applies rejection sampling with learned reward models for language model training; \\citet{yuan2023rft} demonstrate the scaling properties of rejection sampling fine-tuning; \\citet{dong2023raft} generalize with reward-model-based sample filtering; and recent analysis shows rejection sampling implicitly performs PPO-like optimization \\citep{tang2025rsftppo}. Extensions include RIFT \\citep{liu2026rift}, which repurposes rejected samples, and TrajFusion \\citep{deng2026trajfusion}, which fuses trajectories beyond simple selection.\nRSFT avoids intra-task competition by operating on discrete outputs rather than gradients, extending the sample-and-select principle \\citep{wang2023selfconsistency} to structured IE with joint quality scoring.\nBecause RSFT selects complete outputs rather than differentiating through a reward signal, it cannot exploit the extraction-evidence trade-off that gradient methods discover, inherently preserving joint quality.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 15,
+        "oldLines": 7,
+        "newStart": 15,
+        "newLines": 7,
+        "lines": [
+          " In all three systems, evidence identification is binary sentence classification over a fixed candidate set, a formulation that adds no output complexity.",
+          " ",
+          " Recent work has recast DocRE for large language models.",
+          "-AutoRE \\citep{autore2024} fine-tunes LLMs with QLoRA using a relation-head-facts decomposition; \\citet{xu2024lmrc} frame extraction as multi-choice reading comprehension; RelPrior \\citep{wang2025relprior} uses relation priors to guide LLM-based extraction; GLiDRE \\citep{zhang2025glidre} presents a generalist lightweight approach; Ru-LLM \\citep{wang2025rullm} incorporates logical rule constraints; and \\citet{chen2025docksrag} combine retrieval-augmented generation with structured knowledge.",
+          "+AutoRE \\citep{autore2024} fine-tunes LLMs with QLoRA using a relation-head-facts decomposition; \\citet{xu2024lmrc} frame extraction as multi-choice reading comprehension; RelPrior \\citep{wang2025relprior} uses relation priors to guide LLM-based extraction; GLiDRE \\citep{zhang2025glidre} presents a generalist lightweight approach; Ru-LLM \\citep{wang2025rullm} incorporates logical rule constraints; and \\citet{xu2025docksrag} combine retrieval-augmented generation with structured knowledge.",
+          " These methods match or surpass encoder baselines but produce bare triplets without evidence. Among LLM-based generative methods at the 8B scale, our RSFT model (54.33 Ign-F1 on DocRED dev) outperforms AutoRE (52.14\\footnote{AutoRE Ign-F1 is from the LLaMA3-8B reproduction by \\citet{wang2025relprior}; the original paper reports only F1.}) and is slightly below RelPrior ($-$1.17pp), while being the only method that additionally provides sentence-level evidence grounding.",
+          " The critical distinction lies in computational nature: in SAIS and DREEAM, evidence retrieval is classification that regularizes the encoder without increasing output length; in LLM-based DocRE, evidence requires additional output tokens per triple, imposing costs that depend on model capacity and optimization strategy.",
+          " Whether this cost is inevitable or can be mitigated is the central question of our work."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01CW4zq6K655V6RuT3fN7yeG`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex",
+  "old_string": "\\citet{chen2025docksrag}",
+  "new_string": "\\citet{xu2025docksrag}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "c8398968-e76a-4de7-833d-dd5de7057dfd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JigVwBtT5MeWtAdZKxA6SH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2564,
+      "cache_read_input_tokens": 28632,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2564
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-25T00:23:18.066Z_
+
+<details><summary>↩ Tool result · `toolu_01CW4zq6K655V6RuT3fN7yeG`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "f63dc649-95c8-43b1-b446-a6fa3421f2b3",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex",
+    "oldString": "\\citet{chen2025docksrag}",
+    "newString": "\\citet{xu2025docksrag}",
+    "originalFile": "\\section{Introduction}\n\nDocument-level relation extraction (DocRE) requires identifying semantic relations between entity pairs across multiple sentences, a task where encoder-based methods such as \\citet{zhou2021atlop} long dominated.\nRecent LLM-based approaches have closed this gap: \\citet{autore2024} fine-tune LLMs with structured decomposition, \\citet{xu2024lmrc} frame it as multi-choice reading comprehension, and \\citet{chen2025docksrag} combine retrieval-augmented generation with structured knowledge.\nThese methods approach or surpass encoder baselines on DocRED \\citep{yao2019docred} and Re-DocRED \\citep{tan2022redocred} in extraction accuracy, yet every one outputs bare relation triplets $(e_h, r, e_t)$ without indicating \\emph{which sentences} support each prediction.\nWithout evidence, a clinician reviewing a ten-page case report must manually locate the sentences that support each extracted drug interaction---a bottleneck that undermines trust in automated extraction.\n\nEncoder-based methods have partially addressed this need: \\citet{xiao2022sais} introduce sentence-level evidence supervision as an auxiliary signal, and \\citet{ma2023dreeam} extend this with dynamic evidence retrieval through memory attention.\nBoth produce evidence and improve extraction, but encoder methods now trail LLM-based approaches in accuracy.\nThe community faces a gap: the most accurate extractors provide no evidence, while evidence-capable methods are no longer competitive.\n\nThis gap reflects a structural difference.\nIn encoder methods, evidence retrieval is classification that regularizes the encoder at negligible cost; in LLM-based DocRE, evidence requires the model to \\emph{generate} additional output tokens per triple, increasing output length and decoding complexity.\nThe na\\\"{i}ve expectation is that this generation cost always harms extraction accuracy.\nOur experiments show this expectation is wrong.\nThe evidence tax---Ign-F1(no-evidence) minus Ign-F1(with-evidence), so positive values indicate cost and negative values indicate benefit---is not a fixed penalty but a landscape shaped by model capacity, optimization paradigm, and training data quality.\nWithin the Qwen3 family, evidence generation \\emph{benefits} extraction at 1.7B ($-$5.63pp Ign-F1, partly through halving output duplication) but is approximately neutral at $\\geq$4B (+0.25$\\pm$0.47pp at 4B).\nGradient-based optimization amplifies this competition---GRPO collapses extraction under constrained precision, DPO progressively trades extraction for evidence---while discrete sample selection (RSFT) avoids the trade-off entirely by filtering outputs rather than pushing gradients. To quantify this decoupling, we define the Evidence-Decoupling Ratio (EDCR), a diagnostic metric that measures the fraction of cited evidence not supported by gold annotations.\n\nWe study evidence-grounded DocRE as a structured generation task and compare three post-training paradigms---Group Relative Policy Optimization (GRPO) \\citep{shao2024deepseekmath}, Direct Preference Optimization (DPO) \\citep{rafailov2023direct}, and Rejection Sampling Fine-Tuning (RSFT), building on Self-Taught Reasoner (STaR) \\citep{zelikman2022star}---across three fully evaluated scales (1.7B, 4B, 8B) with 14B validation, two model families, and two datasets. Our contributions:\n\\begin{enumerate}\n    \\item \\textbf{Evidence generation is not uniformly harmful.} We observe a scale-dependent evidence tax with a within-family capacity threshold: beneficial at 1.7B ($-$5.63pp) but approximately neutral at $\\geq$4B (+0.25$\\pm$0.47pp at 4B), challenging the assumption that evidence always costs extraction accuracy.\n\n    \\item \\textbf{Gradient pressure causes evidence-extraction decoupling.} We characterize a decoupling spectrum (GRPO catastrophic $\\rightarrow$ DPO gradual $\\rightarrow$ RSFT none) and introduce the Evidence-Decoupling Ratio (EDCR) as a diagnostic, validated at per-relation level ($\\rho{=}{-}0.79$, $n{=}76$, $p{<}0.001$).\n\n    \\item \\textbf{RSFT improves extraction without decoupling.} NLI-based sample selection improves mean Ign-F1 across tested scales (+1.2 to +6.6pp) while maintaining evidence quality. We observe lower cross-seed variance under RSFT at all tested configurations, though this partly reflects shared SFT initialization and is limited by $n{=}3$ seeds (\\S\\ref{sec:scaling}). Our 1.7B RSFT model (51.19 Ign-F1) approaches 8B SFT performance (50.19) at 4.7$\\times$ fewer parameters.\n\\end{enumerate}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 7,
+        "newStart": 1,
+        "newLines": 7,
+        "lines": [
+          " \\section{Introduction}",
+          " ",
+          " Document-level relation extraction (DocRE) requires identifying semantic relations between entity pairs across multiple sentences, a task where encoder-based methods such as \\citet{zhou2021atlop} long dominated.",
+          "-Recent LLM-based approaches have closed this gap: \\citet{autore2024} fine-tune LLMs with structured decomposition, \\citet{xu2024lmrc} frame it as multi-choice reading comprehension, and \\citet{chen2025docksrag} combine retrieval-augmented generation with structured knowledge.",
+          "+Recent LLM-based approaches have closed this gap: \\citet{autore2024} fine-tune LLMs with structured decomposition, \\citet{xu2024lmrc} frame it as multi-choice reading comprehension, and \\citet{xu2025docksrag} combine retrieval-augmented generation with structured knowledge.",
+          " These methods approach or surpass encoder baselines on DocRED \\citep{yao2019docred} and Re-DocRED \\citep{tan2022redocred} in extraction accuracy, yet every one outputs bare relation triplets $(e_h, r, e_t)$ without indicating \\emph{which sentences} support each prediction.",
+          " Without evidence, a clinician reviewing a ten-page case report must manually locate the sentences that support each extracted drug interaction---a bottleneck that undermines trust in automated extraction.",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+已修正完毕。结论：
+
+**当前 bib 状态**：key 为 `chen2025docksrag`，但 author 字段已经是 `Xu, Xiaolong` 为第一作者——key 与作者不一致。
+
+**WebSearch 验证**：ICML 2025 proceedings 页面 `proceedings.mlr.press/v267/xu25am.html` 确认第一作者为 **Xu, Xiaolong**，不是 Chen。审稿人判断正确。
+
+**已完成修正**：
+1. `references.bib`：key `chen2025docksrag` → `xu2025docksrag`
+2. `sections/related_work.tex`：`\citet{chen2025docksrag}` → `\citet{xu2025docksrag}`
+3. `sections/introduction.tex`：`\citet{chen2025docksrag}` → `\citet{xu2025docksrag}`
+
+Sources:
+- [ICML 2025 Proceedings](https://proceedings.mlr.press/v267/xu25am.html)
+- [OpenReview](https://openreview.net/forum?id=SVl9tIADWV)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "uuid": "d598dbad-0bc1-4957-93f3-3b269b7b8b12",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ARhacgPF8wnQfnkmxqegQA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 677,
+      "cache_read_input_tokens": 31196,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 677
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 34_
+
+已修正完毕。结论：
+
+**当前 bib 状态**：key 为 `chen2025docksrag`，但 author 字段已经是 `Xu, Xiaolong` 为第一作者——key 与作者不一致。
+
+**WebSearch 验证**：ICML 2025 proceedings 页面 `proceedings.mlr.press/v267/xu25am.html` 确认第一作者为 **Xu, Xiaolong**，不是 Chen。审稿人判断正确。
+
+**已完成修正**：
+1. `references.bib`：key `chen2025docksrag` → `xu2025docksrag`
+2. `sections/related_work.tex`：`\citet{chen2025docksrag}` → `\citet{xu2025docksrag}`
+3. `sections/introduction.tex`：`\citet{chen2025docksrag}` → `\citet{xu2025docksrag}`
+
+Sources:
+- [ICML 2025 Proceedings](https://proceedings.mlr.press/v267/xu25am.html)
+- [OpenReview](https://openreview.net/forum?id=SVl9tIADWV)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 46233,
+  "duration_api_ms": 47610,
+  "num_turns": 14,
+  "stop_reason": "end_turn",
+  "session_id": "47a55b8e-838b-431a-b1f6-78d5e053cb23",
+  "total_cost_usd": 0.293476,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 20426,
+    "cache_read_input_tokens": 177651,
+    "output_tokens": 2090,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 20426,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 320,
+        "cache_read_input_tokens": 31196,
+        "cache_creation_input_tokens": 677,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 677
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 12203,
+      "outputTokens": 496,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 1,
+      "costUSD": 0.024683000000000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 2090,
+      "cacheReadInputTokens": 177651,
+      "cacheCreationInputTokens": 20426,
+      "webSearchRequests": 0,
+      "costUSD": 0.268793,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "da86166d-0155-4004-971e-bc34647d43bf"
+}
+```
+
+</details>
+
+---

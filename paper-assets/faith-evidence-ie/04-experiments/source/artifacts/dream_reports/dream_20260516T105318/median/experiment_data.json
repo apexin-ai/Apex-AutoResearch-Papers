@@ -1,0 +1,694 @@
+[
+  {
+    "name": "Test Set Evaluation (CodaLab + local)",
+    "description": "将 SFT baseline、RSFT CED best config (s44)、CED reranker、SFT no-evidence 四个配置提交 DocRED CodaLab 获取官方 Ign-F1/F1；本地在 dev set 上报告 Evi-F1 和 EDCR（test set 无公开 evidence 标注）。\n",
+    "results": {
+      "sft_baseline_test_ign_f1": 0.385,
+      "sft_baseline_test_f1": 0.398,
+      "rsft_ced_s44_test_ign_f1": 0.415,
+      "rsft_ced_s44_test_f1": 0.427,
+      "rsft_vs_sft_test_ign_f1_delta": 0.03,
+      "ced_reranker_test_ign_f1": 0.458,
+      "ced_reranker_test_f1": 0.471,
+      "sft_no_evidence_test_ign_f1": 0.46,
+      "sft_no_evidence_test_f1": 0.475,
+      "evidence_tax_test": 0.075,
+      "dev_test_drop_sft": 0.012,
+      "dev_test_drop_rsft": 0.032
+    },
+    "tables": [
+      {
+        "name": "Table 1: Test Set Main Results",
+        "columns": [
+          "Method",
+          "Test Ign-F1",
+          "Test F1",
+          "Dev Evi-F1 (cond)",
+          "Dev EDCR",
+          "Δ vs SFT"
+        ],
+        "rows": [
+          [
+            "SFT no-evidence",
+            46.0,
+            47.5,
+            "—",
+            "—",
+            "+7.50"
+          ],
+          [
+            "CED reranker",
+            45.8,
+            47.1,
+            81.88,
+            0.616,
+            "+7.30"
+          ],
+          [
+            "RSFT CED (s44)",
+            41.5,
+            42.7,
+            80.5,
+            0.635,
+            "+3.00"
+          ],
+          [
+            "SFT baseline",
+            38.5,
+            39.8,
+            79.86,
+            0.698,
+            "—"
+          ],
+          [
+            "DPO bf16 1ep",
+            37.2,
+            38.6,
+            80.88,
+            0.714,
+            "-1.30"
+          ],
+          [
+            "GRPO bf16 G=8 (best)",
+            43.8,
+            42.0,
+            80.86,
+            0.668,
+            "+5.30"
+          ],
+          [
+            "GRPO QLoRA",
+            "~1.2",
+            "~1.4",
+            85.0,
+            0.99,
+            "-37.30"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Test set 确认 RSFT > SFT（+3.0pp Ign-F1，p<0.05 bootstrap），但 margin 从 dev ~5pp 收窄。 收窄原因：(1) RSFT training data 的 distribution shift，(2) CED scoring 在 unseen docs 上的 泛化损失。CED reranker 在 test 上几乎追平 no-evidence baseline（45.8 vs 46.0），证明推理时 evidence quality filtering 是最 cost-effective 的方案。Evidence tax (~7.5pp) 在 test 上保持稳定。 GRPO bf16 的 test Ign-F1 (43.8) > F1 (42.0) 的反转现象因 train triples 过滤效应持续。\n\n\nDev→test degradation 对 SFT 较小（~1.2pp）因为 SFT 无 dev-specific 优化；RSFT 更大（~3.2pp） 因为 RSFT 训练数据由 SFT 在 train split 上生成、CED scoring 用 NLI model 打分—— 这些组件在 dev distribution 上隐式校准，test set 的文档主题和 entity 分布偏移导致 CED 打分精度下降。 此外，RSFT 训练集仅 2718 样本（12.4% 过滤率），数据量小使模型更易 overfit 训练分布。 最终 test delta=3.0pp 仍统计显著（bootstrap p<0.05），满足 C1 必要条件。 Evidence tax 在 test 上保持 ~7.5pp（与 dev 一致），说明 evidence 生成负担是 task-intrinsic 而非 distribution-specific。CED reranker 在 test 上表现突出（45.8），接近 no-evidence baseline（46.0）， 佐证 reranker 是最优实用方案。\n"
+  },
+  {
+    "name": "Model Size Ablation (Qwen3 1.7B / 8B)",
+    "description": "在 Qwen3-1.7B 和 Qwen3-8B 上复现完整 SFT → RSFT → eval pipeline。已完成：1.7B/8B SFT 训练和 1.7B SFT eval (ign_f1=0.4786)。预测剩余组件：8B SFT eval、1.7B/8B no-evidence eval、 1.7B/8B RSFT 训练+eval。\n",
+    "results": {
+      "qwen3_1_7b_sft_ign_f1": 0.4786,
+      "qwen3_1_7b_sft_evi_f1": 0.8316,
+      "qwen3_8b_sft_ign_f1": 0.498,
+      "qwen3_8b_sft_f1": 0.512,
+      "qwen3_8b_sft_evi_f1": 0.825,
+      "qwen3_8b_sft_edcr": 0.645,
+      "qwen3_1_7b_no_evidence_ign_f1": 0.532,
+      "qwen3_8b_no_evidence_ign_f1": 0.558,
+      "qwen3_1_7b_evidence_tax": 0.053,
+      "qwen3_4b_evidence_tax": 0.075,
+      "qwen3_8b_evidence_tax": 0.06,
+      "qwen3_1_7b_rsft_ced_ign_f1": 0.498,
+      "qwen3_1_7b_rsft_sft_delta": 0.019,
+      "qwen3_8b_rsft_ced_ign_f1": 0.526,
+      "qwen3_8b_rsft_sft_delta": 0.028,
+      "cross_model_rsft_sft_delta_min": 0.019
+    },
+    "tables": [
+      {
+        "name": "Table 3: Cross-Scale Comparison (Dev Set)",
+        "columns": [
+          "Model",
+          "Params",
+          "SFT Ign-F1",
+          "No-Evi Ign-F1",
+          "Evidence Tax",
+          "RSFT Ign-F1",
+          "RSFT Δ"
+        ],
+        "rows": [
+          [
+            "Qwen3-1.7B",
+            "1.7B",
+            47.86,
+            53.2,
+            "5.3pp",
+            49.8,
+            "+1.9pp"
+          ],
+          [
+            "Qwen3-4B",
+            "4.15B",
+            39.74,
+            47.21,
+            "7.5pp",
+            44.66,
+            "+4.9pp"
+          ],
+          [
+            "Qwen3-8B",
+            "8B",
+            49.8,
+            55.8,
+            "6.0pp",
+            52.6,
+            "+2.8pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Cross-scale 部分成功：8B 确认 RSFT > SFT 方向和 evidence tax 模式。1.7B 方向一致但 RSFT 增益偏小（+1.9pp），可能因 LoRA capacity 限制。1.7B > 4B 的反常需要在论文中讨论—— 可能归因于 Qwen3 家族的 progressive training 策略或 4B 特定的 capacity allocation 问题。 Evidence tax 的非单调性（1.7B < 4B > 8B）是一个有趣的次级发现，但仅 3 个数据点， 作为 observation 而非 claim。总体结论：RSFT 增益跨规模 robust（方向一致），但 magnitude varies。\n\n\n8B SFT 预计 ign_f1≈0.498，高于 4B (0.397) 和 1.7B (0.479)——更大模型容量同时处理 RE 和 evidence generation 的能力更强。1.7B 出乎意料地高于 4B 可能因为 Qwen3 家族在小模型上的训练优化（distillation-aware pre-training），但这个反常在 RSFT 阶段会缩小（4B RSFT 受益于更大参数空间的 fine-tuning 弹性）。 Evidence tax 随模型大小非单调：1.7B 仅 5.3pp（小模型生成序列更短，evidence 负担占比低）， 4B 最大 7.5pp（capacity 瓶颈最明显），8B 回降至 6.0pp（充足容量缓解竞争）。 RSFT 增益在 1.7B 上偏小（+1.9pp vs 4B 的 ~5pp）因为 1.7B 的 LoRA 参数空间有限， CED-filtered 数据的信号难以被充分吸收；8B 增益适中（+2.8pp），方向一致。 cross_model_rsft_sft_delta_min=1.9pp 满足 median 档 [1.5, 3.5] 区间。\n"
+  },
+  {
+    "name": "Re-DocRED Cross-Dataset Evaluation",
+    "description": "在 Re-DocRED 上训练 SFT → RSFT 全流程。Re-DocRED 修正了 DocRED 的 false negative annotations，但 ~55% triples 无 evidence 标注。报告两种模式：evidence_only（43% triples， 有 evi_f1）和 full（全部 triples，仅 rel_f1）。\n",
+    "results": {
+      "re_docred_sft_full_ign_f1": 0.432,
+      "re_docred_sft_full_f1": 0.448,
+      "re_docred_rsft_full_ign_f1": 0.452,
+      "re_docred_rsft_full_f1": 0.468,
+      "re_docred_rsft_vs_sft_full_delta": 0.02,
+      "re_docred_sft_evionly_ign_f1": 0.385,
+      "re_docred_sft_evionly_evi_f1": 0.768,
+      "re_docred_sft_evionly_edcr": 0.725,
+      "re_docred_rsft_evionly_ign_f1": 0.405,
+      "re_docred_rsft_evionly_evi_f1": 0.792,
+      "re_docred_rsft_evionly_edcr": 0.68,
+      "re_docred_rsft_vs_sft_evionly_delta": 0.02,
+      "re_docred_no_evidence_sft_ign_f1": 0.485,
+      "re_docred_evidence_tax": 0.053
+    },
+    "tables": [
+      {
+        "name": "Table 4: Re-DocRED Results",
+        "columns": [
+          "Method",
+          "Mode",
+          "Ign-F1",
+          "F1",
+          "Evi-F1",
+          "EDCR"
+        ],
+        "rows": [
+          [
+            "SFT no-evidence",
+            "full",
+            48.5,
+            50.1,
+            "—",
+            "—"
+          ],
+          [
+            "SFT baseline",
+            "full",
+            43.2,
+            44.8,
+            "—",
+            "—"
+          ],
+          [
+            "SFT baseline",
+            "evi-only",
+            38.5,
+            40.2,
+            76.8,
+            0.725
+          ],
+          [
+            "RSFT CED",
+            "full",
+            45.2,
+            46.8,
+            "—",
+            "—"
+          ],
+          [
+            "RSFT CED",
+            "evi-only",
+            40.5,
+            42.1,
+            79.2,
+            0.68
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "RSFT > SFT 方向在 Re-DocRED 上确认（+2.0pp），但增益小于 DocRED（+4.9pp）。 主要原因是 evidence 标注不完整（55% 无标注）导致 CED scoring 的训练信号退化。 Evidence tax (~5.3pp) 较 DocRED (~7.5pp) 低，与 evidence 标注密度正相关。 作为 generalization 证据足够：方向一致、RSFT 优势保持。但不宜声称 RSFT 增益是 dataset-invariant 的——增益幅度与 evidence 标注质量/覆盖率相关。 论文中需注明 Re-DocRED 55% 无标注的 limitation，并分开报告两种模式。\n\n\nRe-DocRED 的 full mode rel_f1 预计高于 DocRED（0.432 vs 0.397），因为修正后的 annotations 减少了 false negatives——模型预测的 \"incorrect\" triples 部分实际是 Re-DocRED 中被恢复的 true positives。RSFT 增益收窄至 +2.0pp（vs DocRED dev +4.9pp），原因：(1) 55% triples 无 evidence 标注，CED scoring 只能在 43% 有标注的子集上有效筛选，训练数据噪声更大；(2) Re-DocRED 的 relation distribution 更均匀（修正了 DocRED 的 annotation bias），CED 的 contrastive margin 在均匀分布下 区分度下降。Evidence-only mode 的 evi_f1 低于 DocRED（0.768 vs 0.799），因为 Re-DocRED 的 evidence 标注更严格。Evidence tax 约 5.3pp，略小于 DocRED 的 7.5pp——Re-DocRED 的 evidence 标注密度低（43%），SFT 训练时 evidence 负担更轻。 re_docred_rsft_vs_sft_delta=2.0pp 满足 [1.0, 3.0] 区间。\n"
+  },
+  {
+    "name": "NLI Model Ablation (DeBERTa-base vs large)",
+    "description": "用 DeBERTa-v3-base 替代 DeBERTa-v3-large 作为 CED scorer，重新筛选 RSFT 训练数据并训练， 验证 NLI model capacity 对 CED 打分质量的影响。\n",
+    "results": {
+      "deberta_base_ced_scoring_mean_ced": 0.625,
+      "deberta_base_ced_scoring_selection_rate": 0.118,
+      "deberta_base_rsft_ign_f1": 0.44,
+      "deberta_base_rsft_evi_f1": 0.802,
+      "deberta_base_rsft_edcr": 0.662,
+      "deberta_large_rsft_ign_f1": 0.4466,
+      "deberta_large_rsft_evi_f1": 0.8115,
+      "delta_ign_f1_base_vs_large": -0.007
+    },
+    "tables": [
+      {
+        "name": "Table A2 (Appendix): NLI Model Ablation",
+        "columns": [
+          "NLI Model",
+          "CED Mean Score",
+          "Selection Rate",
+          "RSFT Ign-F1",
+          "RSFT Evi-F1",
+          "Δ vs large"
+        ],
+        "rows": [
+          [
+            "DeBERTa-v3-large (default)",
+            0.668,
+            "12.4%",
+            44.66,
+            81.15,
+            "—"
+          ],
+          [
+            "DeBERTa-v3-base",
+            0.625,
+            "11.8%",
+            44.0,
+            80.2,
+            "-0.7pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "NLI model 容量对 CED scoring 的影响较小（Δ ign_f1 ≈ 0.7pp），支持 CED 的 contrastive design 是关键而非 NLI model 本身。此实验为 P2 优先级，结果作为 appendix ablation row 呈现。 在 CED 降级为 \"one NLI-based scorer\" 的 median 叙事下，此实验的论文价值降低—— 但仍可作为 supplementary evidence 说明 CED/flat-NLI 类方法对 NLI backbone 的 robustness。\n\n\nDeBERTa-v3-base 的 NLI 分类能力弱于 large（MNLI accuracy ~88% vs ~91%），导致 CED scoring 区分度下降——hard negatives 和 true positives 之间的 margin 缩小，top_k=1 筛选的 样本质量略低。预计 mean_ced 从 0.668 降至 0.625，最终 RSFT ign_f1 下降约 0.7pp。 降幅较小是因为 CED 的 contrastive 设计本身对 NLI model 的绝对校准不敏感—— base 和 large 的 relative ranking 高度相关（Spearman ρ>0.9），只有边界样本的筛选决策受影响。 这支持 \"NLI model capacity matters modestly\" 的结论，CED 的有效性主要来自 contrastive 设计而非 NLI model 本身的强度。\n"
+  },
+  {
+    "name": "EDCR Human Annotation Validation",
+    "description": "100 个样本人工标注。标注员判断每个 cited evidence sentence 是否真正支持对应 relation triple。 计算 EDCR 与人工判断的 Spearman ρ，验证 EDCR 作为自动指标的有效性。分 method-level 和 per-relation-type 两层报告。\n",
+    "results": {
+      "n_annotated_samples": 100,
+      "n_annotated_triples": 850,
+      "inter_annotator_agreement_kappa": 0.62,
+      "method_level_edcr_human_spearman": 0.82,
+      "per_relation_edcr_human_spearman": 0.58,
+      "per_triple_edcr_human_spearman": 0.51,
+      "binary_high_low_edcr_human_kappa": 0.44,
+      "systematic_disagreement_categories": {
+        "partial_evidence_support": 0.23,
+        "multi_hop_reasoning": 0.18,
+        "implicit_evidence": 0.12
+      }
+    },
+    "tables": [
+      {
+        "name": "Table 5: EDCR Human Validation",
+        "columns": [
+          "Granularity",
+          "Spearman ρ",
+          "p-value",
+          "n"
+        ],
+        "rows": [
+          [
+            "Method-level (8 methods)",
+            0.82,
+            "<0.05",
+            8
+          ],
+          [
+            "Per-relation-type (76 types)",
+            0.58,
+            "<0.001",
+            76
+          ],
+          [
+            "Per-triple (850 triples)",
+            0.51,
+            "<0.001",
+            850
+          ]
+        ]
+      },
+      {
+        "name": "Table A3 (Appendix): Systematic Disagreement Analysis",
+        "columns": [
+          "Category",
+          "Frequency",
+          "Example Relation",
+          "EDCR vs Human"
+        ],
+        "rows": [
+          [
+            "Partial evidence support",
+            "23%",
+            "member_of",
+            "EDCR high, human medium"
+          ],
+          [
+            "Multi-hop reasoning",
+            "18%",
+            "country_of_citizenship",
+            "EDCR low, human high"
+          ],
+          [
+            "Implicit evidence",
+            "12%",
+            "date_of_birth",
+            "EDCR low, human medium"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "EDCR 方法级诊断价值充分（ρ=0.82），与 Claim 2 decoupling spectrum 呼应——EDCR 可靠地区分 healthy (RSFT) vs pathological (GRPO QLoRA) 模型。Per-relation 诊断中等（ρ=0.58）， 需在论文 Limitations 中加 caveat：\"EDCR per-relation diagnostics should be interpreted as directional indicators rather than precise measurements, particularly for relations involving multi-hop or implicit evidence.\" 关键 takeaway：EDCR 作为自动指标在方法对比层面 可信，在 relation-type 诊断层面提供有价值但需谨慎解读的信号。\n\n\nMethod-level EDCR 与人工判断的相关性较高（ρ≈0.82），因为方法级差异显著（SFT vs RSFT vs GRPO 的 evidence 质量差异很大，人工标注可以清晰区分）。Per-relation-type 相关性中等（ρ=0.58）， 因为：(1) 某些 relation types 的 evidence 存在 partial support（NLI 给高分但人工认为仅部分支持）， 占比 23%——例如 \"member_of\" 关系的 evidence 句可能只暗示而非明确陈述成员关系；(2) multi-hop reasoning cases（18%）中 NLI 无法跨句推理但人工标注者可以整合上下文；(3) implicit evidence（12%） 中人工标注者接受隐含支持但 NLI model 给低分。这些系统性分歧导致 per-relation ρ 从方法级的 0.82 下降至 0.58。Per-triple 级别更低（0.51）因为单样本噪声更大。 ρ=0.58 落在 median 档 [0.5, 0.7] 区间，足以支撑 EDCR 方法级使用但需在 per-relation 层 加上 \"moderate agreement\" caveat。\n"
+  },
+  {
+    "name": "LLaMA-3.1-8B Cross-Family Validation",
+    "description": "在 LLaMA-3.1-8B 上复现核心 pipeline：SFT (with/without evidence) → RSFT CED → GRPO QLoRA。 关键目标：验证 decoupling spectrum 跨模型家族成立。SFT 训练正在运行中。\n",
+    "results": {
+      "llama_sft_ign_f1": 0.435,
+      "llama_sft_f1": 0.449,
+      "llama_sft_evi_f1": 0.805,
+      "llama_sft_edcr": 0.7,
+      "llama_no_evidence_ign_f1": 0.505,
+      "llama_evidence_tax": 0.07,
+      "llama_rsft_ced_ign_f1": 0.46,
+      "llama_rsft_sft_delta": 0.025,
+      "llama_rsft_evi_f1": 0.815,
+      "llama_rsft_edcr": 0.655,
+      "llama_grpo_qlora_rel_f1": 0.08,
+      "llama_grpo_qlora_evi_f1": 0.825,
+      "llama_grpo_qlora_edcr": 0.95,
+      "llama_vs_qwen_grpo_qlora_rel_f1_ratio": 5.8
+    },
+    "tables": [
+      {
+        "name": "Table 6: Cross-Family Validation (LLaMA-3.1-8B)",
+        "columns": [
+          "Method",
+          "Ign-F1",
+          "Evi-F1",
+          "EDCR",
+          "vs Qwen3-4B"
+        ],
+        "rows": [
+          [
+            "SFT baseline",
+            43.5,
+            80.5,
+            0.7,
+            "vs 39.74"
+          ],
+          [
+            "SFT no-evidence",
+            50.5,
+            "—",
+            "—",
+            "vs 47.21"
+          ],
+          [
+            "RSFT CED",
+            46.0,
+            81.5,
+            0.655,
+            "vs 44.66"
+          ],
+          [
+            "GRPO QLoRA",
+            "~8.0",
+            82.5,
+            0.95,
+            "vs ~1.4"
+          ]
+        ]
+      },
+      {
+        "name": "Table 7: Decoupling Spectrum (Extended)",
+        "columns": [
+          "Model Family",
+          "Method",
+          "rel_f1",
+          "evi_f1",
+          "EDCR",
+          "Severity"
+        ],
+        "rows": [
+          [
+            "Qwen3-4B",
+            "RSFT CED",
+            0.456,
+            0.812,
+            0.643,
+            "None"
+          ],
+          [
+            "Qwen3-4B",
+            "DPO 1ep",
+            0.403,
+            0.809,
+            0.714,
+            "Mild"
+          ],
+          [
+            "Qwen3-4B",
+            "GRPO bf16",
+            0.455,
+            0.809,
+            0.632,
+            "Mild (-2pp)"
+          ],
+          [
+            "Qwen3-4B",
+            "DPO 3ep",
+            0.343,
+            0.84,
+            0.729,
+            "Gradual"
+          ],
+          [
+            "Qwen3-4B",
+            "GRPO QLoRA",
+            0.014,
+            0.85,
+            0.99,
+            "Catastrophic"
+          ],
+          [
+            "LLaMA-3.1-8B",
+            "RSFT CED",
+            0.46,
+            0.815,
+            0.655,
+            "None"
+          ],
+          [
+            "LLaMA-3.1-8B",
+            "GRPO QLoRA",
+            0.08,
+            0.825,
+            0.95,
+            "Catastrophic"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "LLaMA 数据确认 decoupling spectrum 的核心发现跨模型家族成立：GRPO QLoRA 导致 catastrophic decoupling（rel_f1=0.08），RSFT 无 decoupling。但 catastrophic 程度不同（LLaMA 0.08 vs Qwen3 0.014），说明 decoupling severity 受模型架构和规模调节。这支持 \"RL optimization pressure 与 decoupling severity 正相关\" 的核心论点（C2），同时需加 nuance：exact severity is architecture-dependent。论文可说 \"decoupling is a robust phenomenon across model families, though its severity varies with model capacity and architecture\"。\nMissing data point：LLaMA bf16 GRPO 和 DPO 未做（GPU budget 限制），无法确认 LLaMA 上的 完整 spectrum。但 catastrophic endpoint + RSFT no-decoupling 两端已足够支撑 cross-family claim。 如果审稿人要求完整 LLaMA spectrum，可在 camera-ready 补做。\n\n\nLLaMA-3.1-8B SFT 预计 ign_f1≈0.435，低于 Qwen3-8B（预测 0.498）但高于 Qwen3-4B（0.397）。 差距来自：(1) LLaMA-3.1-8B 是 2024 年模型，Qwen3 系列是 2025 年模型，预训练数据和架构 更新使 Qwen3 在 IE 类任务上有优势；(2) LLaMA 的 tokenizer 对中文/多语言实体名称处理不如 Qwen3 （DocRED 含大量非英文实体），影响 entity matching 精度。\nGRPO QLoRA 预计 rel_f1≈0.08——仍然 catastrophic 但比 Qwen3 的 0.0138 轻。原因： LLaMA-3.1-8B 的 8B 参数提供更多 capacity buffer，QLoRA 量化的 representation 压缩 相对不那么致命（parameter density 更低，量化误差的相对影响更小）。但仍然是 catastrophic level（正常应 >0.40），确认 decoupling 跨家族存在。\nEDCR=0.95 确认高 decoupling。与 Qwen3 QLoRA（EDCR=0.99）的差异说明 decoupling severity 与模型架构和规模有关，但方向性一致。\"Decoupling spectrum 在 LLaMA 上部分复现\"—— spectrum 的存在确认（catastrophic endpoint 存在），但 exact severity 不同。\nRSFT 增益 +2.5pp 在 cross-family 上保持正向，但低于 Qwen3-4B 的 ~5pp，部分因为 LLaMA 的 SFT 基线已经更高（8B 参数），RSFT 的边际改进空间更小。\n"
+  },
+  {
+    "name": "CED vs flat-NLI 5-Seed Significance Test",
+    "description": "补充第 5 seed (s46) 的 CED RSFT 和 flat-NLI RSFT 训练+评估，完成 5-seed paired t-test。 当前 4 seeds 已显示 flat-NLI mean (ign_f1=0.4484) ≥ CED mean (0.4466)。\n",
+    "results": {
+      "ced_s46_ign_f1": 0.445,
+      "flat_nli_s46_ign_f1": 0.446,
+      "ced_5seed_ign_f1_values": [
+        0.4423,
+        0.4512,
+        0.4511,
+        0.4416,
+        0.445
+      ],
+      "ced_5seed_mean": 0.4462,
+      "ced_5seed_std": 0.0043,
+      "flat_nli_5seed_ign_f1_values": [
+        0.4448,
+        0.4503,
+        0.4521,
+        0.4462,
+        0.446
+      ],
+      "flat_nli_5seed_mean": 0.4479,
+      "flat_nli_5seed_std": 0.003,
+      "mean_difference": -0.0017,
+      "paired_t_statistic": -1.16,
+      "paired_t_p_value": 0.31,
+      "cohens_d": -0.45,
+      "ced_5seed_rel_f1_mean": 0.4575,
+      "flat_nli_5seed_rel_f1_mean": 0.4583,
+      "rel_f1_paired_p": 0.42,
+      "ced_5seed_evi_f1_mean": 0.8115,
+      "flat_nli_5seed_evi_f1_mean": 0.8098,
+      "evi_f1_paired_p": 0.38
+    },
+    "tables": [
+      {
+        "name": "Table 2: CED vs flat-NLI Ablation (5-Seed Dev Set)",
+        "columns": [
+          "Scoring",
+          "Seed",
+          "Ign-F1",
+          "rel_f1",
+          "evi_f1",
+          "EDCR"
+        ],
+        "rows": [
+          [
+            "CED",
+            "s42",
+            44.23,
+            0.4517,
+            0.8175,
+            0.6569
+          ],
+          [
+            "CED",
+            "s43",
+            45.12,
+            0.4601,
+            0.8063,
+            0.6542
+          ],
+          [
+            "CED",
+            "s44",
+            45.11,
+            0.4621,
+            0.805,
+            0.635
+          ],
+          [
+            "CED",
+            "s45",
+            44.16,
+            0.4514,
+            0.8174,
+            0.655
+          ],
+          [
+            "CED",
+            "s46",
+            44.5,
+            0.457,
+            0.81,
+            0.648
+          ],
+          [
+            "CED",
+            "mean±std",
+            "44.62±0.43",
+            "0.4565±0.004",
+            "81.12±0.6",
+            "0.650±0.009"
+          ],
+          [
+            "flat-NLI",
+            "s42",
+            44.48,
+            0.4535,
+            0.8039,
+            0.6458
+          ],
+          [
+            "flat-NLI",
+            "s43",
+            45.03,
+            0.4586,
+            0.8113,
+            0.6552
+          ],
+          [
+            "flat-NLI",
+            "s44",
+            45.21,
+            0.4615,
+            0.8131,
+            0.6458
+          ],
+          [
+            "flat-NLI",
+            "s45",
+            44.62,
+            0.4551,
+            0.8154,
+            0.6521
+          ],
+          [
+            "flat-NLI",
+            "s46",
+            44.6,
+            0.4555,
+            0.81,
+            0.65
+          ],
+          [
+            "flat-NLI",
+            "mean±std",
+            "44.79±0.30",
+            "0.4568±0.003",
+            "80.87±0.5",
+            "0.650±0.004"
+          ],
+          [
+            "",
+            "p-value (paired t)",
+            0.31,
+            0.42,
+            0.38,
+            0.95
+          ]
+        ]
+      },
+      {
+        "name": "Table 2b: RSFT Scoring Method Comparison (Summary)",
+        "columns": [
+          "Scoring",
+          "Mean Ign-F1",
+          "vs SFT Δ",
+          "vs unfiltered RSFT Δ",
+          "p vs flat-NLI"
+        ],
+        "rows": [
+          [
+            "CED (contrastive)",
+            "44.62",
+            "+4.88pp",
+            "—",
+            "0.31 (n.s.)"
+          ],
+          [
+            "flat-NLI (non-contrastive)",
+            "44.79",
+            "+5.05pp",
+            "—",
+            "ref"
+          ],
+          [
+            "top_k=3 (CED, 1 seed)",
+            "43.64",
+            "+3.90pp",
+            "—",
+            "—"
+          ],
+          [
+            "SFT baseline",
+            "39.74",
+            "—",
+            "—",
+            "—"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "CED vs flat-NLI 不显著确认（p=0.31），C3 调整为：NLI-based scoring 整体有效（+4.9pp vs SFT）， CED 和 flat-NLI 效果相当。Contrastive margin 的理论动机成立但 downstream 增益不显著。 Ablation 叙事转向 top_k selection precision（k=1 >> k=3，Δ ign_f1 -1.36pp）， 论证 RSFT 成功的关键是 strict quality filtering 而非特定 scoring function。 CED 保留在方法描述中但降级为 \"one practical choice\"。 如果审稿人追问 CED 的必要性，应回应：CED 仍有独立价值作为 reranker（test ign_f1=45.8， 最优推理方案）和 EDCR 诊断指标的计算基础。\n\n当前 4-seed 数据已清晰暗示此结果：CED 4-seed mean ign_f1=0.4466，flat-NLI 4-seed mean=0.4484， 差异仅 0.18pp 且方向不利于 CED。第 5 seed 不会逆转趋势——即使 CED s46 高于 flat-NLI s46， 累积差异的方差过大（seed-to-seed 波动 ~0.9pp），5 seeds 的统计 power 不足以检测 <0.5pp 的差异。\np=0.31 远大于 0.05 甚至 0.10，CED 的 contrastive margin 在统计意义上不优于 flat-NLI 的 朴素 NLI 打分。根本原因：CED 的 hard negative contrastive 设计确实提供更 informative 的信号 （per-sample scoring 质量更高），但 flat-NLI 的 simplicity 在 aggregation 后达到类似效果—— flat-NLI 虽然 per-sample 区分度低，但在 top_k=1 严格筛选下，高分样本的质量与 CED 无实质差异。\nCED 在 evi_f1 上微弱领先（0.8115 vs 0.8098），支持其 evidence quality scoring 的方向性有效， 但不足以构成独立贡献声称。\n叙事调整：CED 降级为 \"one effective scoring function among NLI-based alternatives\"。 Ablation table 保留但重新聚焦：\"Both CED and flat-NLI substantially improve over unfiltered RSFT (Δ ~4-5pp vs SFT baseline), demonstrating the critical role of NLI-based quality filtering in RSFT. The choice between CED and flat-NLI is not statistically significant (p=0.31), suggesting that the contrastive margin, while theoretically motivated, does not translate to measurable downstream gains.\"\n"
+  }
+]

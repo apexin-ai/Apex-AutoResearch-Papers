@@ -1,0 +1,953 @@
+paper:
+  title: 'FREIGE: Evidence-Grounded Document-Level Relation Extraction via Structured
+    Post-Training'
+  version: 10
+  generated_at: '2026-05-20T09:10:00.000000+00:00'
+claims:
+- id: C001
+  location:
+    section: experiments
+    paragraph: 1
+    sentence: 0
+  text: RSFT CED three-seed mean 44.82 Ign-F1 (+1.24 over SFT mean 43.58)
+  type: quantitative
+  evidence:
+  - exp_id: reeval_ced_s42
+  - exp_id: eval_rsft_ced_s43
+  - exp_id: reeval_ced_s44
+  - exp_id: reeval_sft_baseline_d076
+  - exp_id: wave1_sft_4b_s43_eval_r2
+  - exp_id: wave1_sft_4b_s44_eval_r2
+  decisions: []
+  deprecated: false
+- id: C003
+  location:
+    section: experiments
+    paragraph: 4
+    sentence: 1
+  text: 'Evidence tax non-monotonic: 1.7B -8.04pp, 4B +7.47pp, 8B +0.28pp, 14B +0.03pp,
+    LLaMA +0.68pp'
+  type: quantitative
+  evidence:
+  - exp_id: plan_006_qwen3_1_7b_sft_eval
+  - exp_id: plan_006_qwen3_1_7b_no_evidence_eval_v3
+  - exp_id: reeval_sft_baseline_d076
+  - exp_id: eval_plan_014_no_evidence_r2
+  - exp_id: plan_006_qwen3_8b_sft_eval
+  - exp_id: plan_006_qwen3_8b_no_evidence_eval_v2
+  - exp_id: plan017_14b_sft_eval_r2
+  - exp_id: plan017_14b_sft_no_evidence_eval_r2
+  - exp_id: plan_016_llama_3_1_8b_sft_eval
+  - exp_id: plan_016_llama_3_1_8b_no_evidence_eval
+  decisions: []
+  deprecated: false
+- id: C006
+  location:
+    section: experiments
+    paragraph: 2
+    sentence: 1
+  text: 'GRPO QLoRA catastrophic decoupling: Rel-F1=1.38, Evi-F1=85.04, EDCR=0.9876'
+  type: quantitative
+  evidence:
+  - exp_id: mvp2_eval_lr5e6_r1_ckpt100
+  decisions: []
+  deprecated: false
+- id: C010
+  location:
+    section: experiments
+    paragraph: 2
+    sentence: 4
+  text: 'DPO gradual decay: 1ep Rel-F1=40.34 to 3ep Rel-F1=34.29'
+  type: quantitative
+  evidence:
+  - exp_id: eval_plan_012_dpo_1ep_fixed_r2
+  - exp_id: plan_012_dpo_ced
+  decisions: []
+  deprecated: false
+- id: C015
+  location:
+    section: experiments
+    paragraph: 5
+    sentence: 0
+  text: Joint generation RSFT Evi-F1(joint)=36.1 vs BM25 34.7, CED reranker Rel-F1
+    48.64
+  type: quantitative
+  evidence:
+  - exp_id: mvp2_ced_reranker_poc
+  - exp_id: eval_rsft_ced_s43
+  - exp_id: eval_plan_014_no_evidence_r2
+  decisions: []
+  deprecated: false
+- id: C016
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: CED vs flat-NLI statistically indistinguishable (paired t-test p=0.44)
+  type: quantitative
+  evidence:
+  - exp_id: reeval_ced_s42
+  - exp_id: eval_rsft_ced_s43
+  - exp_id: reeval_ced_s44
+  - exp_id: reeval_flat_nli_s42
+  - exp_id: reeval_flat_nli_s43_r2
+  - exp_id: eval_flat_nli_s44
+  decisions: []
+  deprecated: false
+- id: C018
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: EDCR method-level Spearman rho=-0.89 (n=7, p=0.007)
+  type: quantitative
+  evidence:
+  - exp_id: plan_003_edcr_diagnostic
+  decisions: []
+  deprecated: false
+- id: C021
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: EDCR per-relation rho=-0.79 (n=76, p<0.0001), independent of Evi-F1 (rho=-0.06,
+    p=0.58)
+  type: quantitative
+  evidence:
+  - exp_id: plan_021_deep_error_analysis
+  - exp_id: plan_003_edcr_diagnostic
+  decisions: []
+  deprecated: false
+- id: C025
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: RSFT selects 9042 from 24216 candidates (37.3%)
+  type: quantitative
+  evidence:
+  - exp_id: mvp2_rsft_train_r1
+  decisions: []
+  deprecated: false
+- id: C026
+  location:
+    section: introduction
+    paragraph: 3
+    sentence: 0
+  text: 1.7B RSFT (51.19 Ign-F1) approaches 8B SFT (50.19)
+  type: quantitative
+  evidence:
+  - exp_id: plan_006_qwen3_1_7b_rsft_eval_r2
+  - exp_id: plan019_1_7b_rsft_s43_r2_eval
+  - exp_id: plan019_1_7b_rsft_s44_r2_eval
+  - exp_id: plan_006_qwen3_8b_sft_eval
+  - exp_id: plan019_8b_sft_s43_eval
+  - exp_id: plan019_8b_sft_s44_eval
+  decisions: []
+  deprecated: false
+- id: C028
+  location:
+    section: introduction
+    paragraph: 3
+    sentence: 0
+  text: RSFT +1.2 to +6.6pp Ign-F1 over SFT at all scales
+  type: quantitative
+  evidence:
+  - exp_id: reeval_ced_s42
+  - exp_id: eval_rsft_ced_s43
+  - exp_id: reeval_ced_s44
+  - exp_id: reeval_sft_baseline_d076
+  - exp_id: wave1_sft_4b_s43_eval_r2
+  - exp_id: wave1_sft_4b_s44_eval_r2
+  - exp_id: plan_006_qwen3_1_7b_rsft_eval_r2
+  - exp_id: plan019_1_7b_rsft_s43_r2_eval
+  - exp_id: plan019_1_7b_rsft_s44_r2_eval
+  - exp_id: plan_006_qwen3_8b_rsft_eval
+  - exp_id: d102_8b_rsft_k1_s43
+  - exp_id: plan019_8b_rsft_s44_eval
+  decisions: []
+  deprecated: false
+- id: C031
+  location:
+    section: introduction
+    paragraph: 2
+    sentence: 0
+  text: 'Scale-dependent evidence tax: -6.2pp at 1.7B (controlled), +7.5pp at 4B,
+    near zero at >=8B'
+  type: quantitative
+  evidence:
+  - exp_id: plan_006_qwen3_1_7b_sft_eval
+  - exp_id: plan_006_qwen3_1_7b_no_evidence_eval_v3
+  - exp_id: reeval_sft_baseline_d076
+  - exp_id: eval_plan_014_no_evidence_r2
+  - exp_id: plan_006_qwen3_8b_sft_eval
+  - exp_id: plan017_14b_sft_eval_r2
+  - exp_id: plan017_14b_sft_no_evidence_eval_r2
+  - exp_id: plan_020_mechanistic_analysis
+  decisions: []
+  deprecated: false
+- id: C035
+  location:
+    section: introduction
+    paragraph: 2
+    sentence: 0
+  text: EDCR rho=-0.89 (n=7); per-relation rho=-0.79 (n=76)
+  type: quantitative
+  evidence:
+  - exp_id: plan_003_edcr_diagnostic
+  - exp_id: plan_021_deep_error_analysis
+  decisions: []
+  deprecated: false
+- id: C040
+  location:
+    section: introduction
+    paragraph: 1
+    sentence: 0
+  text: 85+ experiments, 4 scales (1.7B-14B), 2 families, 2 datasets
+  type: descriptive
+  evidence:
+  - exp_id: plan_007_redocred_rsft_eval_r5
+  - exp_id: plan_016_llama_3_1_8b_sft_eval
+  - exp_id: plan017_14b_sft_eval_r2
+  - exp_id: plan_006_qwen3_1_7b_sft_eval
+  decisions: []
+  deprecated: false
+- id: C041
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Encoder evidence is binary classification that adds no output complexity
+  type: qualitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C043
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: LLM evidence generation competes with extraction for model capacity
+  type: qualitative
+  evidence:
+  - exp_id: plan_020_mechanistic_analysis
+  decisions: []
+  deprecated: false
+- id: C046
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Decoupling is intra-task multi-objective trade-off, not cross-task forgetting
+  type: qualitative
+  evidence:
+  - exp_id: plan_003_edcr_diagnostic
+  decisions: []
+  deprecated: false
+- id: C050
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: RSFT discrete selection preserves joint quality by not exploiting extraction-evidence
+    trade-off
+  type: qualitative
+  evidence:
+  - exp_id: reeval_ced_s42
+  - exp_id: eval_rsft_ced_s43
+  - exp_id: reeval_ced_s44
+  decisions: []
+  deprecated: false
+- id: C051
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: EDCR cross-method Spearman rho=-0.89 (n=7, p=0.007); without outlier rho=-0.83
+    (n=6, p=0.042)
+  type: quantitative
+  evidence:
+  - exp_id: plan_003_edcr_diagnostic
+  decisions: []
+  deprecated: false
+- id: C053
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 1
+  text: Per-relation EDCR rho=-0.79 (n=76, p<0.0001), independent of Evi-F1 (rho=-0.06,
+    p=0.58)
+  type: quantitative
+  evidence:
+  - exp_id: plan_021_deep_error_analysis
+  - exp_id: plan_003_edcr_diagnostic
+  decisions: []
+  deprecated: false
+- id: C056
+  location:
+    section: analysis
+    paragraph: 2
+    sentence: 0
+  text: CED vs flat-NLI comparable (Rel-F1 45.63 vs 45.61); k=1 outperforms k=3 by
+    1.02 Ign-F1
+  type: quantitative
+  evidence:
+  - exp_id: reeval_ced_s42
+  - exp_id: eval_rsft_ced_s43
+  - exp_id: reeval_ced_s44
+  - exp_id: reeval_flat_nli_s42
+  - exp_id: reeval_flat_nli_s43_r2
+  - exp_id: eval_flat_nli_s44
+  - exp_id: reeval_rsft_topk3
+  decisions: []
+  deprecated: false
+- id: C060
+  location:
+    section: analysis
+    paragraph: 2
+    sentence: 1
+  text: top-k=1 outperforms k=3 by 1.02 Ign-F1 despite 2.96x fewer examples
+  type: quantitative
+  evidence:
+  - exp_id: reeval_rsft_topk3
+  - exp_id: reeval_ced_s42
+  decisions: []
+  deprecated: false
+- id: C065
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 3
+  text: RSFT avoids decoupling because discrete output selection prevents trading
+    extraction for evidence
+  type: qualitative
+  evidence:
+  - exp_id: reeval_ced_s42
+  - exp_id: eval_rsft_ced_s43
+  - exp_id: reeval_ced_s44
+  decisions: []
+  deprecated: false
+- id: C066
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 85+ configurations, 4 scales, 2 families, 2 datasets, 3 paradigms
+  type: descriptive
+  evidence:
+  - exp_id: plan_007_redocred_rsft_eval_r5
+  - exp_id: plan_016_llama_3_1_8b_sft_eval
+  - exp_id: plan017_14b_sft_eval_r2
+  decisions: []
+  deprecated: false
+- id: C068
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 1
+  text: RSFT +1.2 to +6.6pp Ign-F1 at all scales; variance compression 7-31x
+  type: quantitative
+  evidence:
+  - exp_id: reeval_ced_s42
+  - exp_id: eval_rsft_ced_s43
+  - exp_id: reeval_ced_s44
+  - exp_id: plan_006_qwen3_1_7b_rsft_eval_r2
+  - exp_id: plan019_1_7b_rsft_s43_r2_eval
+  - exp_id: plan019_1_7b_rsft_s44_r2_eval
+  - exp_id: plan_006_qwen3_8b_rsft_eval
+  - exp_id: d102_8b_rsft_k1_s43
+  - exp_id: plan019_8b_rsft_s44_eval
+  decisions: []
+  deprecated: false
+- id: C071
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 2
+  text: 1.7B RSFT (51.19 Ign-F1) approaches 8B SFT (50.19)
+  type: quantitative
+  evidence:
+  - exp_id: plan_006_qwen3_1_7b_rsft_eval_r2
+  - exp_id: plan019_1_7b_rsft_s43_r2_eval
+  - exp_id: plan019_1_7b_rsft_s44_r2_eval
+  - exp_id: plan_006_qwen3_8b_sft_eval
+  - exp_id: plan019_8b_sft_s43_eval
+  - exp_id: plan019_8b_sft_s44_eval
+  decisions: []
+  deprecated: false
+- id: C072
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: Dev-set evaluation, test set pending
+  type: qualitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C074
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 1
+  text: Exact-match F1 underestimates generative RE
+  type: qualitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C077
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 2
+  text: EDCR human validation limited
+  type: qualitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C081
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 3
+  text: Single RL algorithm per family tested
+  type: qualitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C082
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 85+ configurations, 4 scales (1.7B-14B), 2 model families, 2 datasets
+  type: descriptive
+  evidence:
+  - exp_id: plan_007_redocred_rsft_eval_r5
+  - exp_id: plan_016_llama_3_1_8b_sft_eval
+  - exp_id: plan017_14b_sft_eval_r2
+  - exp_id: plan_006_qwen3_1_7b_sft_eval
+  decisions: []
+  deprecated: false
+- id: C084
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 1
+  text: RSFT +1.2 to +6.6pp Ign-F1 at all scales; variance compression 7-31x
+  type: quantitative
+  evidence:
+  - exp_id: reeval_ced_s42
+  - exp_id: eval_rsft_ced_s43
+  - exp_id: reeval_ced_s44
+  - exp_id: plan_006_qwen3_1_7b_rsft_eval_r2
+  - exp_id: plan019_1_7b_rsft_s43_r2_eval
+  - exp_id: plan019_1_7b_rsft_s44_r2_eval
+  - exp_id: plan_006_qwen3_8b_rsft_eval
+  - exp_id: d102_8b_rsft_k1_s43
+  - exp_id: plan019_8b_rsft_s44_eval
+  decisions: []
+  deprecated: false
+- id: C087
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 2
+  text: 1.7B RSFT (51.19 Ign-F1) approaches 8B SFT (50.19)
+  type: quantitative
+  evidence:
+  - exp_id: plan_006_qwen3_1_7b_rsft_eval_r2
+  - exp_id: plan019_1_7b_rsft_s43_r2_eval
+  - exp_id: plan019_1_7b_rsft_s44_r2_eval
+  - exp_id: plan_006_qwen3_8b_sft_eval
+  - exp_id: plan019_8b_sft_s43_eval
+  - exp_id: plan019_8b_sft_s44_eval
+  decisions: []
+  deprecated: false
+- id: C091
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 3
+  text: 'Scale-dependent evidence tax: -6.2pp at 1.7B (controlled), +7.5pp at 4B,
+    near zero at >=8B'
+  type: quantitative
+  evidence:
+  - exp_id: plan_006_qwen3_1_7b_sft_eval
+  - exp_id: plan_006_qwen3_1_7b_no_evidence_eval_v3
+  - exp_id: reeval_sft_baseline_d076
+  - exp_id: eval_plan_014_no_evidence_r2
+  - exp_id: plan_006_qwen3_8b_sft_eval
+  - exp_id: plan017_14b_sft_eval_r2
+  - exp_id: plan017_14b_sft_no_evidence_eval_r2
+  - exp_id: plan_020_mechanistic_analysis
+  decisions: []
+  deprecated: false
+- id: C092
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: Appendix hyperparameters, ablation tables, and per-seed breakdowns
+  type: descriptive
+  evidence:
+  - exp_id: reeval_sft_baseline_d076
+  - exp_id: wave1_sft_4b_s43_eval_r2
+  - exp_id: wave1_sft_4b_s44_eval_r2
+  - exp_id: reeval_ced_s42
+  - exp_id: eval_rsft_ced_s43
+  - exp_id: reeval_ced_s44
+  - exp_id: eval_flat_nli_seed45
+  - exp_id: random_rsft_k1_eval
+  - exp_id: reeval_rsft_topk3
+  - exp_id: plan010_nli_large_eval_r2
+  - exp_id: d112_rsft_s44_eval_bf16
+  decisions: []
+  deprecated: false
+- id: C100
+  location:
+    section: experiments
+    paragraph: 1
+    sentence: 1
+  text: 'SFT three-seed mean 43.58 Ign-F1, std 3.80pp (seeds: 39.74, 43.65, 47.34)'
+  type: quantitative
+  evidence:
+  - exp_id: reeval_sft_baseline_d076
+  - exp_id: wave1_sft_4b_s43_eval_r2
+  - exp_id: wave1_sft_4b_s44_eval_r2
+  decisions: []
+  deprecated: false
+- id: C101
+  location:
+    section: experiments
+    paragraph: 1
+    sentence: 2
+  text: No-evidence SFT s42 reaches 47.21 Ign-F1
+  type: quantitative
+  evidence:
+  - exp_id: eval_plan_014_no_evidence_r2
+  decisions: []
+  deprecated: false
+- id: C102
+  location:
+    section: experiments
+    paragraph: 2
+    sentence: 2
+  text: 'GRPO bf16 G=8 best checkpoint: Rel-F1 45.49, Evi-F1 80.86, EDCR 0.6318'
+  type: quantitative
+  evidence:
+  - exp_id: plan_011_grpo_g8_bf16_eval
+  decisions: []
+  deprecated: false
+- id: C103
+  location:
+    section: experiments
+    paragraph: 4
+    sentence: 2
+  text: 'RSFT variance compression: 31x at 1.7B (0.09/2.79), 7.5x at 4B (0.51/3.80),
+    7.4x at 8B (0.50/3.72)'
+  type: quantitative
+  evidence:
+  - exp_id: plan_006_qwen3_1_7b_rsft_eval_r2
+  - exp_id: plan019_1_7b_rsft_s43_r2_eval
+  - exp_id: plan019_1_7b_rsft_s44_r2_eval
+  - exp_id: plan_006_qwen3_1_7b_sft_eval
+  - exp_id: plan019_1_7b_sft_s43_eval
+  - exp_id: plan019_1_7b_sft_s44_eval
+  - exp_id: reeval_ced_s42
+  - exp_id: eval_rsft_ced_s43
+  - exp_id: reeval_ced_s44
+  - exp_id: reeval_sft_baseline_d076
+  - exp_id: wave1_sft_4b_s43_eval_r2
+  - exp_id: wave1_sft_4b_s44_eval_r2
+  - exp_id: plan_006_qwen3_8b_rsft_eval
+  - exp_id: d102_8b_rsft_k1_s43
+  - exp_id: plan019_8b_rsft_s44_eval
+  - exp_id: plan_006_qwen3_8b_sft_eval
+  - exp_id: plan019_8b_sft_s43_eval
+  - exp_id: plan019_8b_sft_s44_eval
+  decisions: []
+  deprecated: false
+- id: C104
+  location:
+    section: experiments
+    paragraph: 4
+    sentence: 3
+  text: 'RSFT from independent SFT base s44: 51.52 Ign-F1 at 4B (+4.18pp)'
+  type: quantitative
+  evidence:
+  - exp_id: d112_rsft_s44_eval_bf16
+  - exp_id: wave1_sft_4b_s44_eval_r2
+  decisions: []
+  deprecated: false
+- id: C105
+  location:
+    section: experiments
+    paragraph: 4
+    sentence: 4
+  text: LLaMA-3.1-8B RSFT mean 56.54, std 0.64pp (n=3); RSFT evidence benefit -1.88pp
+  type: quantitative
+  evidence:
+  - exp_id: plan_006_llama_rsft_r3_eval
+  - exp_id: eval_llama_rsft_k1_s43
+  - exp_id: llama_rsft_s44_pipeline
+  - exp_id: plan_016_llama_3_1_8b_sft_eval
+  - exp_id: plan_016_llama_3_1_8b_no_evidence_eval
+  decisions: []
+  deprecated: false
+- id: C106
+  location:
+    section: experiments
+    paragraph: 4
+    sentence: 5
+  text: 'RSFT reverses LLaMA evidence tax: SFT +0.68pp cost to RSFT -1.52pp benefit'
+  type: quantitative
+  evidence:
+  - exp_id: plan_016_llama_3_1_8b_sft_eval
+  - exp_id: plan_016_llama_3_1_8b_no_evidence_eval
+  - exp_id: eval_llama_rsft_s42_no_evidence
+  - exp_id: eval_llama_rsft_s43_no_evidence
+  - exp_id: plan_006_llama_rsft_r3_eval
+  - exp_id: eval_llama_rsft_k1_s43
+  decisions: []
+  deprecated: false
+- id: C107
+  location:
+    section: experiments
+    paragraph: 5
+    sentence: 1
+  text: Re-DocRED RSFT 41.45 Ign-F1 (+4.86pp over SFT 36.59)
+  type: quantitative
+  evidence:
+  - exp_id: plan_007_redocred_rsft_eval_r5
+  - exp_id: plan_007_redocred_4b_sft_eval_r2
+  decisions: []
+  deprecated: false
+- id: C108
+  location:
+    section: experiments
+    paragraph: 5
+    sentence: 2
+  text: DREEAM supervised Evi-F1 54.01%; our joint Evi-F1 36.1 (DREEAM protocol)
+  type: quantitative
+  evidence:
+  - exp_id: plan_004_dreeam_baseline
+  decisions: []
+  deprecated: false
+- id: C109
+  location:
+    section: experiments
+    paragraph: 1
+    sentence: 3
+  text: RSFT std 0.51pp vs SFT std 3.80pp at 4B
+  type: quantitative
+  evidence:
+  - exp_id: reeval_ced_s42
+  - exp_id: eval_rsft_ced_s43
+  - exp_id: reeval_ced_s44
+  - exp_id: reeval_sft_baseline_d076
+  - exp_id: wave1_sft_4b_s43_eval_r2
+  - exp_id: wave1_sft_4b_s44_eval_r2
+  decisions: []
+  deprecated: false
+- id: C110
+  location:
+    section: analysis
+    paragraph: 1
+    sentence: 0
+  text: CED sentence-level filtering reduces Evi-F1 by 7.7pp (Recall -20pp)
+  type: quantitative
+  evidence:
+  - exp_id: plan_020_mechanistic_analysis
+  decisions: []
+  deprecated: false
+- id: C111
+  location:
+    section: analysis
+    paragraph: 2
+    sentence: 1
+  text: 'NLI scorer capacity: v3-large adds +1.10pp Ign-F1, within seed noise 0.88pp'
+  type: quantitative
+  evidence:
+  - exp_id: plan010_nli_large_eval_r2
+  - exp_id: reeval_ced_s42
+  decisions: []
+  deprecated: false
+- id: C112
+  location:
+    section: analysis
+    paragraph: 3
+    sentence: 0
+  text: RSFT reduces truncation FN -16 to -22%, hallucinated FP -6 to -12%, duplicates
+    -11 to -20%
+  type: quantitative
+  evidence:
+  - exp_id: plan_020_mechanistic_analysis
+  - exp_id: plan_021_deep_error_analysis
+  decisions: []
+  deprecated: false
+- id: C113
+  location:
+    section: analysis
+    paragraph: 3
+    sentence: 1
+  text: 1024 to 1536 tokens improves EDCR by only 1.3pp (0.661 to 0.674)
+  type: quantitative
+  evidence:
+  - exp_id: mvp2_eval_rsft_r2b_maxtok1536_r2
+  - exp_id: mvp2_eval_rsft_r2b
+  decisions: []
+  deprecated: false
+- id: C114
+  location:
+    section: experiments
+    paragraph: 4
+    sentence: 6
+  text: 'RSFT tax at 1.7B: -7.75pp; at 4B: +0.94pp (8x reduction from SFT +7.47);
+    at 8B: -0.78pp'
+  type: quantitative
+  evidence:
+  - exp_id: plan019_1_7b_rsft_no_evidence_eval_2048
+  - exp_id: plan_006_qwen3_1_7b_rsft_eval_r2
+  - exp_id: d112_rsft_s44_eval_bf16
+  - exp_id: d112_rsft_no_evidence_eval_r3
+  - exp_id: plan_006_qwen3_8b_rsft_eval
+  - exp_id: plan019_8b_rsft_no_evidence_eval_r2
+  decisions: []
+  deprecated: false
+- id: C115
+  location:
+    section: experiments
+    paragraph: 5
+    sentence: 3
+  text: LLaMA-3.1-8B evidence tax +0.68pp; RSFT CED +2.70 Ign-F1 gain (three-seed
+    mean)
+  type: quantitative
+  evidence:
+  - exp_id: plan_016_llama_3_1_8b_sft_eval
+  - exp_id: plan_016_llama_3_1_8b_no_evidence_eval
+  - exp_id: plan_006_llama_rsft_r3_eval
+  - exp_id: eval_llama_rsft_k1_s43
+  - exp_id: llama_rsft_s44_pipeline
+  decisions: []
+  deprecated: false
+- id: C116
+  location:
+    section: experiments
+    paragraph: 3
+    sentence: 0
+  text: 'GRPO bf16 G=4 ckpt200: Rel-F1 45.13, EDCR 0.6489'
+  type: quantitative
+  evidence:
+  - exp_id: grpo_bf16_g4_ckpt200_eval
+  decisions: []
+  deprecated: false
+- id: C117
+  location:
+    section: experiments
+    paragraph: 2
+    sentence: 5
+  text: LLaMA QLoRA GRPO shows same catastrophic decoupling as Qwen (format gaming,
+    zero IE ability)
+  type: quantitative
+  evidence:
+  - exp_id: plan_016_llama_grpo_qlora
+  decisions: []
+  deprecated: false
+- id: C118
+  location:
+    section: analysis
+    paragraph: 4
+    sentence: 0
+  text: 'Random RSFT k=1: Ign-F1 41.14 vs CED RSFT 44.23 (s42)'
+  type: quantitative
+  evidence:
+  - exp_id: random_rsft_k1_eval
+  - exp_id: reeval_ced_s42
+  decisions: []
+  deprecated: false
+tables:
+- id: T001
+  label: tab:main
+  section: experiments
+  description: Main results on DocRED dev (Qwen3-4B)
+  cells:
+  - row: SFT baseline
+    col: Ign-F1
+    value: 43.58±3.80
+    evidence:
+    - exp_id: reeval_sft_baseline_d076
+    - exp_id: wave1_sft_4b_s43_eval_r2
+    - exp_id: wave1_sft_4b_s44_eval_r2
+  - row: SFT no-evidence
+    col: Ign-F1
+    value: '47.21'
+    evidence:
+    - exp_id: eval_plan_014_no_evidence_r2
+  - row: RSFT CED
+    col: Ign-F1
+    value: 44.82±0.51
+    evidence:
+    - exp_id: reeval_ced_s42
+    - exp_id: eval_rsft_ced_s43
+    - exp_id: reeval_ced_s44
+- id: T002
+  label: tab:spectrum
+  section: experiments
+  description: Evidence-extraction decoupling across RL paradigms (Qwen3-4B)
+  cells:
+  - row: GRPO QLoRA G=4
+    col: Rel-F1
+    value: '1.38'
+    evidence:
+    - exp_id: mvp2_eval_lr5e6_r1_ckpt100
+  - row: GRPO bf16 G=8
+    col: Rel-F1
+    value: '45.49'
+    evidence:
+    - exp_id: plan_011_grpo_g8_bf16_eval
+  - row: DPO bf16 1ep
+    col: Rel-F1
+    value: '40.34'
+    evidence:
+    - exp_id: eval_plan_012_dpo_1ep_fixed_r2
+  - row: DPO bf16 3ep
+    col: Rel-F1
+    value: '34.29'
+    evidence:
+    - exp_id: plan_012_dpo_ced
+  - row: SFT baseline
+    col: Rel-F1
+    value: '44.39'
+    evidence:
+    - exp_id: reeval_sft_baseline_d076
+    - exp_id: wave1_sft_4b_s43_eval_r2
+    - exp_id: wave1_sft_4b_s44_eval_r2
+  - row: RSFT CED
+    col: Rel-F1
+    value: '45.80'
+    evidence:
+    - exp_id: reeval_ced_s42
+    - exp_id: eval_rsft_ced_s43
+    - exp_id: reeval_ced_s44
+- id: T003
+  label: tab:scaling
+  section: experiments
+  description: Scale-dependent evidence tax and RSFT gain
+  cells:
+  - row: Qwen3-1.7B
+    col: SFT w/ evi
+    value: 44.64±2.79
+    evidence:
+    - exp_id: plan_006_qwen3_1_7b_sft_eval
+    - exp_id: plan019_1_7b_sft_s43_eval
+    - exp_id: plan019_1_7b_sft_s44_eval
+  - row: Qwen3-1.7B
+    col: No-evi
+    value: '39.82'
+    evidence:
+    - exp_id: plan_006_qwen3_1_7b_no_evidence_eval_v3
+  - row: Qwen3-1.7B
+    col: RSFT
+    value: 51.19±0.09
+    evidence:
+    - exp_id: plan_006_qwen3_1_7b_rsft_eval_r2
+    - exp_id: plan019_1_7b_rsft_s43_r2_eval
+    - exp_id: plan019_1_7b_rsft_s44_r2_eval
+  - row: Qwen3-4B
+    col: SFT w/ evi
+    value: 43.58±3.80
+    evidence:
+    - exp_id: reeval_sft_baseline_d076
+    - exp_id: wave1_sft_4b_s43_eval_r2
+    - exp_id: wave1_sft_4b_s44_eval_r2
+  - row: Qwen3-4B
+    col: No-evi
+    value: '47.21'
+    evidence:
+    - exp_id: eval_plan_014_no_evidence_r2
+  - row: Qwen3-4B
+    col: RSFT
+    value: 44.82±0.51
+    evidence:
+    - exp_id: reeval_ced_s42
+    - exp_id: eval_rsft_ced_s43
+    - exp_id: reeval_ced_s44
+  - row: Qwen3-8B
+    col: SFT w/ evi
+    value: 50.19±3.72
+    evidence:
+    - exp_id: plan_006_qwen3_8b_sft_eval
+    - exp_id: plan019_8b_sft_s43_eval
+    - exp_id: plan019_8b_sft_s44_eval
+  - row: Qwen3-8B
+    col: No-evi
+    value: '50.79'
+    evidence:
+    - exp_id: plan_006_qwen3_8b_no_evidence_eval_v2
+  - row: Qwen3-8B
+    col: RSFT
+    value: 54.14±0.50
+    evidence:
+    - exp_id: plan_006_qwen3_8b_rsft_eval
+    - exp_id: d102_8b_rsft_k1_s43
+    - exp_id: plan019_8b_rsft_s44_eval
+  - row: Qwen3-14B
+    col: SFT w/ evi
+    value: '55.07'
+    evidence:
+    - exp_id: plan017_14b_sft_eval_r2
+  - row: Qwen3-14B
+    col: No-evi
+    value: '55.10'
+    evidence:
+    - exp_id: plan017_14b_sft_no_evidence_eval_r2
+  - row: LLaMA-3.1-8B
+    col: SFT w/ evi
+    value: '53.84'
+    evidence:
+    - exp_id: plan_016_llama_3_1_8b_sft_eval
+  - row: LLaMA-3.1-8B
+    col: No-evi
+    value: '54.52'
+    evidence:
+    - exp_id: plan_016_llama_3_1_8b_no_evidence_eval
+  - row: LLaMA-3.1-8B
+    col: RSFT
+    value: 56.54±0.64
+    evidence:
+    - exp_id: plan_006_llama_rsft_r3_eval
+    - exp_id: eval_llama_rsft_k1_s43
+    - exp_id: llama_rsft_s44_pipeline
+figures:
+- id: F001
+  label: fig:spectrum
+  section: appendix
+  description: GRPO training dynamics visualization
+  evidence:
+  - exp_id: plan_009_dynamics_figure
+  - exp_id: mvp2_eval_lr5e6_r1_ckpt100
+  - exp_id: plan_011_bf16_g8_step_eval
+- id: F002
+  label: fig:scaling
+  section: appendix
+  description: Scale-dependent evidence tax visualization
+  evidence:
+  - exp_id: plan_006_qwen3_1_7b_sft_eval
+  - exp_id: plan_006_qwen3_1_7b_no_evidence_eval_v3
+  - exp_id: reeval_sft_baseline_d076
+  - exp_id: eval_plan_014_no_evidence_r2
+  - exp_id: plan_006_qwen3_8b_sft_eval
+  - exp_id: plan017_14b_sft_eval_r2
+  - exp_id: plan017_14b_sft_no_evidence_eval_r2
+_completeness:
+  coverage: 49/56
+  claims: 54
+  tables: 3
+  figures: 2
+  tier_counts:
+    tier1: 0
+    tier2: 49
+    tier3: 7
+    tierX: 0
+  last_checked: '2026-05-20T09:12:08.371382+00:00'

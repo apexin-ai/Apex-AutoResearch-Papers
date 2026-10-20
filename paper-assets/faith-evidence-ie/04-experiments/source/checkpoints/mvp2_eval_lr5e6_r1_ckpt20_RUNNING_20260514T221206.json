@@ -1,0 +1,33 @@
+{
+  "exp_id": "mvp2_eval_lr5e6_r1_ckpt20",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:44:21.167Z",
+    "updated_at": "2026-05-14T22:12:06.025Z",
+    "spec": {
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "account": "root",
+      "command": "bash /root/autodl-tmp/scripts/eval_lr5e6_ckpt20.sh",
+      "pid": "96500",
+      "data_path": "/root/autodl-tmp/data/docred/dev.json",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT + GRPO lr5e6 ckpt-20",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-20",
+      "eval_data": "/root/autodl-tmp/data/docred/dev.json",
+      "log_path": "/tmp/eval_lr5e6_ckpt20.log"
+    },
+    "hypothesis": "P0 ckpt-20 early eval: lr=5e-6 GRPO at step 20. Pass criteria: rel_f1 > 0.30 (no catastrophic forgetting). Key MVP gate for P0.",
+    "parent": "mvp2_grpo_ced_lr5e6_r1",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-14T22:12:06.182302+00:00",
+  "trigger": "update_registry"
+}

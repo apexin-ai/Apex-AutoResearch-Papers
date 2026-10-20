@@ -1,0 +1,1677 @@
+# analysis edcr partial correlation
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 55
+- **Recorded user turns:** 0
+- **Tool calls:** 27
+- **Original source:** `logs/chats/worker_analysis_edcr-partial-correlation_20260523T012127.jsonl`
+- **Structured JSON:** [`64933a77883ff96a5291.json`](../../sessions/64/64933a77883ff96a5291.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+55 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T01:28:41.117420+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T01:28:41.117842+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T01:28:41.118019+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'DONE'}",
+  "fields": "['*']",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'DONE'}",
+    "fields": "['*']",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-23T01:28:41.118567+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"test_eval_1_7b_sft_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T02:32:43.175Z\", \"updated_at\": \"2026-05-22T02:33:17.578Z\", \"spec\": {\"command\": \"python run_eval.py --split test_revised --seed 42\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\", \"eval_data\": \"re-docred test_revised\"}, \"hypothesis\": \"Qwen3-1.7B SFT model (s42) evaluated on Re-DocRED test set should achieve ign_f1 comparable to dev performance (~0.4464 mean), with expected degradation on unseen test data.\", \"checkpoint_path\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\", \"log_path\": \"/tmp/test_eval_1_7b_sft_s42.log\", \"conclusion\": \"success\", \"metrics\": {\"f1\": 0.2579, \"ign_f1\": 0.2579, \"precision\": 0.3977, \"recall\": 0.1908, \"ign_precision\": 0.3977, \"ign_recall\": 0.1908, \"evi_f1_tp\": 0.5918, \"evi_f1_joint\": 0.1975, \"evi_precision\": 0.4712, \"evi_recall\": 0.7955, \"edcr\": 0.8504, \"n_predictions\": 26863, \"tp\": 3310, \"pred_count\": 8323, \"gold_count\": 17350, \"format_compliance\": 1, \"field_compliance\": 1, \"evidence_format_rate\": 0.98, \"truncated\": 409, \"n_documents\": 500, \"codalab_converted\": 8020, \"codalab_skipped_rel\": 40, \"codalab_skipped_entity\": 1093}, \"completed_at\": \"2026-05-22T02:33:17.578Z\"}, \"d102_8b_rsft_k1_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T08:27:15.556Z\", \"updated_at\": \"2026-05-21T09:10:04.243Z\", \"hypothesis\": \"Qwen3-8B k=1 RSFT with seed 43 provides seed robustness validation for D102 8B results. Parent: d102_8b_rsft_k1_s42.\", \"spec\": {\"command\": \"python -m freige.training.rsft_trainer ... + eval.inference\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/rsft_scored_qwen3
+…[truncated 19334 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-23T01:28:41.118824+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{}",
+  "fields": "['*']",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{}",
+    "fields": "['*']",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T01:28:41.119458+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"test_eval_1_7b_sft_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T02:32:43.175Z\", \"updated_at\": \"2026-05-22T02:33:17.578Z\", \"spec\": {\"command\": \"python run_eval.py --split test_revised --seed 42\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/re-docred-repo/data\", \"data_count\": 500, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\", \"eval_data\": \"re-docred test_revised\"}, \"hypothesis\": \"Qwen3-1.7B SFT model (s42) evaluated on Re-DocRED test set should achieve ign_f1 comparable to dev performance (~0.4464 mean), with expected degradation on unseen test data.\", \"checkpoint_path\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\", \"log_path\": \"/tmp/test_eval_1_7b_sft_s42.log\", \"conclusion\": \"success\", \"metrics\": {\"f1\": 0.2579, \"ign_f1\": 0.2579, \"precision\": 0.3977, \"recall\": 0.1908, \"ign_precision\": 0.3977, \"ign_recall\": 0.1908, \"evi_f1_tp\": 0.5918, \"evi_f1_joint\": 0.1975, \"evi_precision\": 0.4712, \"evi_recall\": 0.7955, \"edcr\": 0.8504, \"n_predictions\": 26863, \"tp\": 3310, \"pred_count\": 8323, \"gold_count\": 17350, \"format_compliance\": 1, \"field_compliance\": 1, \"evidence_format_rate\": 0.98, \"truncated\": 409, \"n_documents\": 500, \"codalab_converted\": 8020, \"codalab_skipped_rel\": 40, \"codalab_skipped_entity\": 1093}, \"completed_at\": \"2026-05-22T02:33:17.578Z\"}, \"test_eval_llama_rsft_s42\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-21T10:33:57.025Z\", \"updated_at\": \"2026-05-21T10:33:57.194Z\", \"hypothesis\": \"Re-DocRED test set eval: LLaMA RSFT s42 (dev ign_f1=0.5654 3-seed mean)。用 test_revised.json (500 docs) 验证 LLaMA RSFT 在 test set 上的泛化性能。配合 14B RSFT test eval 提供多模型 test 数据点。\"}, \"test_eval_14b_rsft_s42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T1
+…[truncated 32367 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T01:28:41.119735+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/eval_results -name \"*.json\" -path \"*per_relation*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp/eval_results -name \"*.json\" -path \"*per_relation*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T01:28:41.119916+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-23T01:28:41.120051+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls /root/autodl-tmp/eval_results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T01:28:41.120263+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3seed_summary.json\\n8b_sft_s43\\nbf16_g8_step30\\nbf16_g8_step50\\nced_reranker_dryrun\\nced_reranker_poc\\nced_reranker_poc_dryrun\\ncross_method_table.json\\nd076_paired_ttest_report.json\\nd076_paired_ttest_results.json\\nd076_paired_ttest_results.md\\nd076_seed_summary.json\\nd102_1_7b_k1_s42\\nd102_1_7b_k1_s42.log\\nd102_8b_k1_s42\\nd102_8b_k1_s43\\nd102_llama_k1_s42\\nd102_llama_k1_s42.log\\nd102_llama_k1_s43\\nd102_llama_k1_s43.log\\nd111_4b_sft_s42_reeval\\nd112_rsft_bf16\\nd112_rsft_from_sft_s44\\nd140_1_7b_matched_fair_tax_2048.json\\nd140_1_7b_sft_s42_no_evi_2048\\nd140_1_7b_sft_s42_no_evi_2048_fix\\nd140_1_7b_sft_s42_with_evi_2048\\nd140_4b_matched_fair_tax_2048.json\\nd140_4b_sft_s42_no_evi_2048\\nd140_4b_sft_s42_no_evi_2048_fix\\nd140_4b_sft_s42_with_evi_2048\\nd140_8b_matched_fair_tax_2048.json\\nd140_8b_sft_s42_no_evi_2048\\nd140_8b_sft_s42_no_evi_2048_fix\\nd140_8b_sft_s42_with_evi_2048\\nd145_4b_sft_s43_no_evi_2048\\nd145_4b_sft_s43_with_evi_2048\\nd145_4b_sft_s44_fair_tax_2048.json\\nd145_4b_sft_s44_no_evi_2048\\nd145_4b_sft_s44_with_evi_2048\\ndev_eval_4b_rsft_ced_s42_v2\\ndpo_ced_1ep\\ndpo_ced_1ep_fixed\\ndpo_ced_ckpt400\\nedcr_analysis.json\\nedcr_analysis_r2b.md\\nedcr_diagnostic.json\\nedcr_diagnostic.tex\\nedcr_diagnostic_table.csv\\nedcr_diagnostic_table.md\\nedcr_diagnostic_v2.json\\nedcr_diagnostic_v2.tex\\nedcr_per_relation_analysis.json\\nedcr_per_relation_analysis.md\\neval_llama_rsft_k1_s43\\neval_llama_rsft_s42_no_evi_2048\\neval_llama_rsft_s42_no_evidence\\neval_llama_rsft_s42_with_evidence_2048\\neval_llama_rsft_s43_no_evidence\\neval_llama_rsft_s44_no_evidence\\neval_llama_sft_s42_no_evidence_2048\\neval_llama_sft_s42_no_evidence_std\\neval_llama_sft_s42_with_evidence_2048\\neval_llama_sft_s43_no_evidence\\neval_llama_sft_s43_no_evidence_2048\\neval_llama_sft_s43_no_evidence_2048_r2\\neval_llama_sft_s43_no_evidence_r2\\neval_llama_sft_s43_with_evidence_2048\\neval_llama_sft_
+…[truncated 4286 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-23T01:28:41.120472+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/edcr_per_relation_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/edcr_per_relation_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T01:28:41.120847+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"RSFT-CED s44\\\",\\n  \\\"predictions_path\\\": \\\"/root/autodl-tmp/eval_results/rsft_s44/predictions.json\\\",\\n  \\\"per_relation\\\": {\\n    \\\"applies to jurisdiction\\\": {\\n      \\\"n_gold\\\": 83,\\n      \\\"n_pred\\\": 35,\\n      \\\"tp\\\": 15,\\n      \\\"rel_precision\\\": 0.4286,\\n      \\\"rel_recall\\\": 0.1807,\\n      \\\"rel_f1\\\": 0.2542,\\n      \\\"evi_f1\\\": 0.3489,\\n      \\\"edcr_distractor\\\": 0.8684,\\n      \\\"edcr_formula\\\": 0.2713,\\n      \\\"n_distractor_citations\\\": 66,\\n      \\\"n_total_citations\\\": 76\\n    },\\n    \\\"author\\\": {\\n      \\\"n_gold\\\": 91,\\n      \\\"n_pred\\\": 68,\\n      \\\"tp\\\": 41,\\n      \\\"rel_precision\\\": 0.6029,\\n      \\\"rel_recall\\\": 0.4505,\\n      \\\"rel_f1\\\": 0.5157,\\n      \\\"evi_f1\\\": 0.7854,\\n      \\\"edcr_distractor\\\": 0.5794,\\n      \\\"edcr_formula\\\": 0.3434,\\n      \\\"n_distractor_citations\\\": 73,\\n      \\\"n_total_citations\\\": 126\\n    },\\n    \\\"award received\\\": {\\n      \\\"n_gold\\\": 66,\\n      \\\"n_pred\\\": 76,\\n      \\\"tp\\\": 42,\\n      \\\"rel_precision\\\": 0.5526,\\n      \\\"rel_recall\\\": 0.6364,\\n      \\\"rel_f1\\\": 0.5915,\\n      \\\"evi_f1\\\": 0.7341,\\n      \\\"edcr_distractor\\\": 0.6048,\\n      \\\"edcr_formula\\\": 0.1942,\\n      \\\"n_distractor_citations\\\": 75,\\n      \\\"n_total_citations\\\": 124\\n    },\\n    \\\"basin country\\\": {\\n      \\\"n_gold\\\": 32,\\n      \\\"n_pred\\\": 14,\\n      \\\"tp\\\": 8,\\n      \\\"rel_precision\\\": 0.5714,\\n      \\\"rel_recall\\\": 0.25,\\n      \\\"rel_f1\\\": 0.3478,\\n      \\\"evi_f1\\\": 0.8125,\\n      \\\"edcr_distractor\\\": 0.4762,\\n      \\\"edcr_formula\\\": 0.5719,\\n      \\\"n_distractor_citations\\\": 10,\\n      \\\"n_total_citations\\\": 21\\n    },\\n    \\\"capital\\\": {\\n      \\\"n_gold\\\": 27,\\n      \\\"n_pred\\\": 13,\\n      \\\"t
+…[truncated 8713 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-23T01:28:41.121038+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli_s42_reeval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli_s42_reeval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T01:28:41.121209+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4669979945941233,\\n  \\\"recall\\\": 0.44078676652127396,\\n  \\\"f1\\\": 0.4535139712108382,\\n  \\\"ign_precision\\\": 0.4452676421559548,\\n  \\\"ign_recall\\\": 0.4443212272433232,\\n  \\\"ign_f1\\\": 0.44479393126416583,\\n  \\\"tp\\\": 5356,\\n  \\\"pred_count\\\": 11469,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8145294441386901,\\n  \\\"evi_recall\\\": 0.7935656836461126,\\n  \\\"evi_f1\\\": 0.803910917979359,\\n  \\\"n_evaluated\\\": 15355,\\n  \\\"edcr\\\": 0.6458059112121575,\\n  \\\"n_distractor_citations\\\": 16191,\\n  \\\"n_total_citations\\\": 25071,\\n  \\\"evi_joint_precision\\\": 0.3599702460018065,\\n  \\\"evi_joint_recall\\\": 0.351747053631691,\\n  \\\"evi_f1_joint\\\": 0.35581114437266953,\\n  \\\"evi_tp\\\": 6775,\\n  \\\"evi_pred_total\\\": 18821,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.7786802030456853,\\n  \\\"evidence_format_rate\\\": 0.7786802030456853,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 767,\\n  \\\"n_evidence_valid\\\": 767,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15489,\\n  \\\"n_truncated\\\": 205,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 13253.1,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_flat_nli/checkpoint-507\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s42_reeval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stder
+…[truncated 93 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T01:28:41.121379+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/dpo_ced_1ep_fixed/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/dpo_ced_1ep_fixed/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T01:28:41.121559+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.3809419335966067,\\n  \\\"recall\\\": 0.42868899679038763,\\n  \\\"f1\\\": 0.4034075508228461,\\n  \\\"ign_precision\\\": 0.3809419335966067,\\n  \\\"ign_recall\\\": 0.42868899679038763,\\n  \\\"ign_f1\\\": 0.4034075508228461,\\n  \\\"tp\\\": 5209,\\n  \\\"pred_count\\\": 13674,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8045862412761715,\\n  \\\"evi_recall\\\": 0.813135476779335,\\n  \\\"evi_f1\\\": 0.8088382687927107,\\n  \\\"n_evaluated\\\": 19047,\\n  \\\"edcr\\\": 0.7139220109571383,\\n  \\\"n_distractor_citations\\\": 22153,\\n  \\\"n_total_citations\\\": 31030,\\n  \\\"evi_joint_precision\\\": 0.2860924181247196,\\n  \\\"evi_joint_recall\\\": 0.3310835366803385,\\n  \\\"evi_f1_joint\\\": 0.30694808789198813,\\n  \\\"evi_tp\\\": 6377,\\n  \\\"evi_pred_total\\\": 22290,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9989847715736041,\\n  \\\"field_compliance_rate\\\": 0.6588832487309645,\\n  \\\"evidence_format_rate\\\": 0.6588832487309645,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 984,\\n  \\\"n_field_complete\\\": 649,\\n  \\\"n_evidence_valid\\\": 649,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 19107,\\n  \\\"n_truncated\\\": 338,\\n  \\\"n_format_ok\\\": 984,\\n  \\\"format_ok_rate\\\": 0.9989847715736041,\\n  \\\"inference_time_seconds\\\": 5762.1,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/dpo_output_1ep/\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/dpo_ced_1ep_fixed\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"s
+…[truncated 97 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-23T01:28:41.121737+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/eval_results/dpo_ced_ckpt400/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls /root/autodl-tmp/eval_results/dpo_ced_ckpt400/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T01:28:41.121864+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-23T01:28:41.121983+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s42_reeval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s42_reeval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T01:28:41.122147+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.46569355825539727,\\n  \\\"recall\\\": 0.4384824294296766,\\n  \\\"f1\\\": 0.4516785350966429,\\n  \\\"ign_precision\\\": 0.44324825986078886,\\n  \\\"ign_recall\\\": 0.44136401441641254,\\n  \\\"ign_f1\\\": 0.4423041303945175,\\n  \\\"tp\\\": 5328,\\n  \\\"pred_count\\\": 11441,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8112747397054685,\\n  \\\"evi_recall\\\": 0.8237142857142857,\\n  \\\"evi_f1\\\": 0.8174471905864561,\\n  \\\"n_evaluated\\\": 15363,\\n  \\\"edcr\\\": 0.6568537988494346,\\n  \\\"n_distractor_citations\\\": 16556,\\n  \\\"n_total_citations\\\": 25205,\\n  \\\"evi_joint_precision\\\": 0.3545665471419532,\\n  \\\"evi_joint_recall\\\": 0.3490992160323971,\\n  \\\"evi_f1_joint\\\": 0.3518116415958143,\\n  \\\"evi_tp\\\": 6724,\\n  \\\"evi_pred_total\\\": 18964,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.7756345177664975,\\n  \\\"evidence_format_rate\\\": 0.7756345177664975,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 764,\\n  \\\"n_evidence_valid\\\": 764,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15436,\\n  \\\"n_truncated\\\": 214,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 10815.5,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output/checkpoint-510\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_ced_s42_reeval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \
+…[truncated 80 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-23T01:28:41.122369+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s43/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s43/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-23T01:28:41.122512+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s44_reeval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s44_reeval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-23T01:28:41.122685+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.46961515385274705,\\n  \\\"recall\\\": 0.4509093901736483,\\n  \\\"f1\\\": 0.46007221429171213,\\n  \\\"ign_precision\\\": 0.4477204477204477,\\n  \\\"ign_recall\\\": 0.4546714721375104,\\n  \\\"ign_f1\\\": 0.4511691884456671,\\n  \\\"tp\\\": 5479,\\n  \\\"pred_count\\\": 11667,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8024634617152312,\\n  \\\"evi_recall\\\": 0.8101336302895323,\\n  \\\"evi_f1\\\": 0.8062803047794967,\\n  \\\"n_evaluated\\\": 14976,\\n  \\\"edcr\\\": 0.654202645963717,\\n  \\\"n_distractor_citations\\\": 16516,\\n  \\\"n_total_citations\\\": 25246,\\n  \\\"evi_joint_precision\\\": 0.35886225696944757,\\n  \\\"evi_joint_recall\\\": 0.36223456726026687,\\n  \\\"evi_f1_joint\\\": 0.36054052657416735,\\n  \\\"evi_tp\\\": 6977,\\n  \\\"evi_pred_total\\\": 19442,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.8091370558375635,\\n  \\\"evidence_format_rate\\\": 0.8091370558375635,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 797,\\n  \\\"n_evidence_valid\\\": 797,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15051,\\n  \\\"n_truncated\\\": 184,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 10768.2,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_ced_s43\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 43,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\",
+…[truncated 83 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-23T01:28:41.122835+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-23T01:28:41.122997+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.47616136919315405,\\n  \\\"recall\\\": 0.44876964858859353,\\n  \\\"f1\\\": 0.4620599076388595,\\n  \\\"ign_precision\\\": 0.4526423520655006,\\n  \\\"ign_recall\\\": 0.44958876259125774,\\n  \\\"ign_f1\\\": 0.451110389911447,\\n  \\\"tp\\\": 5453,\\n  \\\"pred_count\\\": 11452,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.809657292702776,\\n  \\\"evi_recall\\\": 0.80039331366765,\\n  \\\"evi_f1\\\": 0.804998651442956,\\n  \\\"n_evaluated\\\": 15209,\\n  \\\"edcr\\\": 0.6350370913833864,\\n  \\\"n_distractor_citations\\\": 15580,\\n  \\\"n_total_citations\\\": 24534,\\n  \\\"evi_joint_precision\\\": 0.3745624899036132,\\n  \\\"evi_joint_recall\\\": 0.3611442811899694,\\n  \\\"evi_f1_joint\\\": 0.36773102135758096,\\n  \\\"evi_tp\\\": 6956,\\n  \\\"evi_pred_total\\\": 18571,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.8020304568527918,\\n  \\\"evidence_format_rate\\\": 0.8020304568527918,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 790,\\n  \\\"n_evidence_valid\\\": 790,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15264,\\n  \\\"n_truncated\\\": 190,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 13077.6,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_s44/checkpoint-510\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_ced_s44_reeval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 44,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \
+…[truncated 81 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T01:28:41.123181+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4672749605193894,\\n  \\\"recall\\\": 0.4383178339231339,\\n  \\\"f1\\\": 0.45233343241751245,\\n  \\\"ign_precision\\\": 0.4672749605193894,\\n  \\\"ign_recall\\\": 0.4383178339231339,\\n  \\\"ign_f1\\\": 0.45233343241751245,\\n  \\\"tp\\\": 5326,\\n  \\\"pred_count\\\": 11398,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8149522307763658,\\n  \\\"evi_recall\\\": 0.8166186448554699,\\n  \\\"evi_f1\\\": 0.8157845868152275,\\n  \\\"n_evaluated\\\": 15230,\\n  \\\"edcr\\\": 0.6505449049399411,\\n  \\\"n_distractor_citations\\\": 16356,\\n  \\\"n_total_citations\\\": 25142,\\n  \\\"evi_joint_precision\\\": 0.3554714203081453,\\n  \\\"evi_joint_recall\\\": 0.35096827786719276,\\n  \\\"evi_f1_joint\\\": 0.353205496629918,\\n  \\\"evi_tp\\\": 6760,\\n  \\\"evi_pred_total\\\": 19017,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9989847715736041,\\n  \\\"field_compliance_rate\\\": 0.7796954314720812,\\n  \\\"evidence_format_rate\\\": 0.7796954314720812,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 984,\\n  \\\"n_field_complete\\\": 768,\\n  \\\"n_evidence_valid\\\": 768,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15357,\\n  \\\"n_truncated\\\": 211,\\n  \\\"n_format_ok\\\": 984,\\n  \\\"format_ok_rate\\\": 0.9989847715736041,\\n  \\\"inference_time_seconds\\\": 3515.8,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_flat_nli_s43/checkpoint-507\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 43,\\n    \\\"no_evidence\\\": false,\\n    \\\"quant
+…[truncated 128 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-23T01:28:41.123369+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli_s44_reeval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli_s44_reeval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T01:28:41.123497+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/eval_results/rsft_flat_nli_s44_reeval/metrics.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-23T01:28:41.123617+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/sft_4b_s43_eval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/sft_4b_s43_eval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T01:28:41.123735+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/eval_results/sft_4b_s43_eval/metrics.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-23T01:28:41.123849+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/sft_4b_s44_eval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/sft_4b_s44_eval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T01:28:41.123965+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/eval_results/sft_4b_s44_eval/metrics.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-23T01:28:41.124078+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/qwen3_8b_sft_eval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/qwen3_8b_sft_eval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T01:28:41.124248+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.5225612725206947,\\n  \\\"recall\\\": 0.5299152333141305,\\n  \\\"f1\\\": 0.5262125607812692,\\n  \\\"ign_precision\\\": 0.4938206214689266,\\n  \\\"ign_recall\\\": 0.5169577673043156,\\n  \\\"ign_f1\\\": 0.5051243848480744,\\n  \\\"tp\\\": 6439,\\n  \\\"pred_count\\\": 12322,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.7947735458655836,\\n  \\\"evi_recall\\\": 0.8442689677629437,\\n  \\\"evi_f1\\\": 0.8187739312359373,\\n  \\\"n_evaluated\\\": 16476,\\n  \\\"edcr\\\": 0.6509726055058221,\\n  \\\"n_distractor_citations\\\": 19343,\\n  \\\"n_total_citations\\\": 29714,\\n  \\\"evi_joint_precision\\\": 0.3924250884049879,\\n  \\\"evi_joint_recall\\\": 0.4378796531851929,\\n  \\\"evi_f1_joint\\\": 0.41390817853900336,\\n  \\\"evi_tp\\\": 8434,\\n  \\\"evi_pred_total\\\": 21492,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9989847715736041,\\n  \\\"field_compliance_rate\\\": 0.6812182741116751,\\n  \\\"evidence_format_rate\\\": 0.6812182741116751,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 984,\\n  \\\"n_field_complete\\\": 671,\\n  \\\"n_evidence_valid\\\": 671,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 17401,\\n  \\\"n_truncated\\\": 313,\\n  \\\"n_format_ok\\\": 984,\\n  \\\"format_ok_rate\\\": 0.9989847715736041,\\n  \\\"inference_time_seconds\\\": 7206.2,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-8B\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_qwen3_8b_bf16\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/qwen3_8b_sft_eval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false
+…[truncated 114 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-23T01:28:41.124417+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/sft_baseline_d076_reeval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/sft_baseline_d076_reeval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-23T01:28:41.124578+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.41407190779287806,\\n  \\\"recall\\\": 0.39618138424821003,\\n  \\\"f1\\\": 0.4049291331959457,\\n  \\\"ign_precision\\\": 0.3936015950697843,\\n  \\\"ign_recall\\\": 0.401349228352278,\\n  \\\"ign_f1\\\": 0.3974376572866621,\\n  \\\"tp\\\": 4814,\\n  \\\"pred_count\\\": 11626,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.7941564561734213,\\n  \\\"evi_recall\\\": 0.8030880670987419,\\n  \\\"evi_f1\\\": 0.7985972893564591,\\n  \\\"n_evaluated\\\": 16699,\\n  \\\"edcr\\\": 0.6981983595400981,\\n  \\\"n_distractor_citations\\\": 19493,\\n  \\\"n_total_citations\\\": 27919,\\n  \\\"evi_joint_precision\\\": 0.3127146005227284,\\n  \\\"evi_joint_recall\\\": 0.31680598099787133,\\n  \\\"evi_f1_joint\\\": 0.31474699540929485,\\n  \\\"evi_tp\\\": 6102,\\n  \\\"evi_pred_total\\\": 19513,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9979695431472081,\\n  \\\"field_compliance_rate\\\": 0.7065989847715736,\\n  \\\"evidence_format_rate\\\": 0.7065989847715736,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 983,\\n  \\\"n_field_complete\\\": 696,\\n  \\\"n_evidence_valid\\\": 696,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 16880,\\n  \\\"n_truncated\\\": 288,\\n  \\\"n_format_ok\\\": 983,\\n  \\\"format_ok_rate\\\": 0.9979695431472081,\\n  \\\"inference_time_seconds\\\": 7056.5,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/sft_baseline_d076_reeval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}
+…[truncated 104 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-23T01:28:41.124722+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/llama_3_1_8b_sft_eval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/llama_3_1_8b_sft_eval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-23T01:28:41.124909+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.5464242424242425,\\n  \\\"recall\\\": 0.5564974076207719,\\n  \\\"f1\\\": 0.5514148250835847,\\n  \\\"ign_precision\\\": 0.523913613709889,\\n  \\\"ign_recall\\\": 0.5537381018390167,\\n  \\\"ign_f1\\\": 0.5384131548207386,\\n  \\\"tp\\\": 6762,\\n  \\\"pred_count\\\": 12375,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.7799210545914947,\\n  \\\"evi_recall\\\": 0.8536724545528654,\\n  \\\"evi_f1\\\": 0.8151319374172957,\\n  \\\"n_evaluated\\\": 14848,\\n  \\\"edcr\\\": 0.627953245461328,\\n  \\\"n_distractor_citations\\\": 17675,\\n  \\\"n_total_citations\\\": 28147,\\n  \\\"evi_joint_precision\\\": 0.39707933740191803,\\n  \\\"evi_joint_recall\\\": 0.4729245625876123,\\n  \\\"evi_f1_joint\\\": 0.43169593137603374,\\n  \\\"evi_tp\\\": 9109,\\n  \\\"evi_pred_total\\\": 22940,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9949238578680203,\\n  \\\"field_compliance_rate\\\": 0.7979695431472081,\\n  \\\"evidence_format_rate\\\": 0.7979695431472081,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 980,\\n  \\\"n_field_complete\\\": 786,\\n  \\\"n_evidence_valid\\\": 786,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15325,\\n  \\\"n_truncated\\\": 197,\\n  \\\"n_format_ok\\\": 980,\\n  \\\"format_ok_rate\\\": 0.9949238578680203,\\n  \\\"inference_time_seconds\\\": 7331.3,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_llama_3_1_8b\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/llama_3_1_8b_sft_eval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"qu
+…[truncated 131 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-23T01:28:41.125081+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/qwen3_1_7b_sft_eval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/qwen3_1_7b_sft_eval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-23T01:28:41.125270+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.5085217391304347,\\n  \\\"recall\\\": 0.48127726113077113,\\n  \\\"f1\\\": 0.4945245444167266,\\n  \\\"ign_precision\\\": 0.48301176470588236,\\n  \\\"ign_recall\\\": 0.4742630071157934,\\n  \\\"ign_f1\\\": 0.47859740744194723,\\n  \\\"tp\\\": 5848,\\n  \\\"pred_count\\\": 11500,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8202898550724638,\\n  \\\"evi_recall\\\": 0.8432214529839629,\\n  \\\"evi_f1\\\": 0.8315975973380579,\\n  \\\"n_evaluated\\\": 17063,\\n  \\\"edcr\\\": 0.6704455937253827,\\n  \\\"n_distractor_citations\\\": 19575,\\n  \\\"n_total_citations\\\": 29197,\\n  \\\"evi_joint_precision\\\": 0.39584523500389507,\\n  \\\"evi_joint_recall\\\": 0.39572192513368987,\\n  \\\"evi_f1_joint\\\": 0.3957835704642227,\\n  \\\"evi_tp\\\": 7622,\\n  \\\"evi_pred_total\\\": 19255,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.6812182741116751,\\n  \\\"evidence_format_rate\\\": 0.6812182741116751,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 671,\\n  \\\"n_evidence_valid\\\": 671,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 17184,\\n  \\\"n_truncated\\\": 314,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 6848.7,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/qwen3_1_7b_sft_eval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stde
+…[truncated 94 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-23T01:28:41.125488+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pip install pingouin -q 2>/dev/null && python3 -c \"import pingouin; print('pingouin ok')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pip install pingouin -q 2>/dev/null && python3 -c \"import pingouin; print('pingouin ok')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-23T01:28:41.125628+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pip install pingouin -q 2>/dev/null && python3 -c \\\"import pingouin; print(\\\\'pingouin ok\\\\')\\\"'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-23T01:28:41.125759+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup pip install pingouin -q > /tmp/pip_pingouin.log 2>&1 &",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup pip install pingouin -q > /tmp/pip_pingouin.log 2>&1 &",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-23T01:28:41.125884+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 16.76}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-23T01:28:41.126000+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -5 /tmp/pip_pingouin.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -5 /tmp/pip_pingouin.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-23T01:28:41.126118+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-23T01:28:41.126309+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat > /tmp/edcr_partial_corr.py << 'PYEOF'\nimport json\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\nimport pingouin as pg\nfrom itertools import combinations\n\n# ============================================================\n# Analysis 1: Cross-method partial correlation\n# ============================================================\ndata = [\n    # method, ign_f1, edcr, evi_f1_tp\n    (\"SFT 4B s42\",            0.3974, 0.6982, 0.7986),\n    (\"DPO-CED 1ep 4B\",       0.4034, 0.7139, 0.8088),\n    (\"RSFT CED 4B s42\",      0.4423, 0.6569, 0.8174),\n    (\"GRPO 4B\",              0.4446, 0.6489, 0.8053),\n    (\"RSFT flat-NLI 4B s42\", 0.4448, 0.6458, 0.8039),\n    (\"RSFT CED 4B s43\",      0.4512, 0.6542, 0.8063),\n    (\"RSFT CED 4B s44\",      0.4511, 0.6350, 0.8050),\n    (\"RSFT flat-NLI 4B s43\", 0.4523, 0.6505, 0.8158),\n    (\"SFT 1.7B s42\",         0.4786, 0.6704, 0.8316),\n    (\"SFT 8B s42\",           0.5051, 0.6510, 0.8188),\n    (\"RSFT CED 1.7B s42\",    0.5122, 0.6224, 0.8243),\n    (\"SFT Llama-8B s42\",     0.5384, 0.6280, 0.8151),\n    (\"RSFT CED 8B s42\",      0.5376, 0.6231, 0.8136),\n    (\"RSFT CED 8B s43\",      0.5471, 0.6094, 0.8180),\n    (\"RSFT CED Llama s44\",   0.5587, 0.5829, 0.8328),\n    (\"RSFT CED Llama s43\",   0.5662, 0.5783, 0.8287),\n    (\"RSFT CED Llama s42\",   0.5714, 0.5799, 0.8238),\n]\n\ndf = pd.DataFrame(data, columns=[\"method\", \"ign_f1\", \"edcr\", \"evi_f1_tp\"])\n\nprint(\"=\" * 70)\nprint(\"## Cross-method partial correlation\")\nprint(\"=\" * 70)\nprint()\nprint(\"| Method | ign_f1 | EDCR | evi_f1_tp |\")\nprint(\"|--------|--------|------|-----------|\")\nfor _, row in df.iterrows():\n    print(f\"| {row['method']:<24s} | {row['ign_f1']:.4f} | {row['edcr']:.4f} | {row['evi_f1_tp']:.4f} |\")\n\nn_all = len(df)\n\n# Spearman rho: EDCR vs ign_f1\nrho_raw, p_raw = stats.spearmanr(df[\"edcr\"], df[\"ign_f1\"])\nprint(f\"\\nSpearman rho (n={n_all}): {rho_raw:.4f}, p={p_raw:.6f}\")\n\n# Partial Spearman rho controlling for evi_f1_tp (all n)\npartial_all = pg.partial_corr(data=df, x=\"edcr\", y=\"ign_f1\", covar=\"evi_f1_tp\", method=\"spearman\")\nrho_partial_all = partial_all[\"r\"].values[0]\np_partial_all = partial_all[\"p-val\"].values[0]\nprint(f\"Partial rho controlling evi_f1_tp (n={n_all}): {rho_partial_all:.4f}, p={p_partial_all:.6f}\")\n\n# Without GRPO\ndf_no_grpo = df[df[\"method\"] != \"GRPO 4B\"]\nn_no_grpo = len(df_no_grpo)\nrho_no_grpo, p_no_grpo = stats.spearmanr(df_no_grpo[\"edcr\"], df_no_grpo[\"ign_f1\"])\npartial_no_grpo = pg.partial_corr(data=df_no_grpo, x=\"edcr\", y=\"ign_f1\", covar=\"evi_f1_tp\", method=\"spearman\")\nrho_p_no_grpo = partial_no_grpo[\"r\"].values[0]\np_p_no_grpo = partial_no_grpo[\"p-val\"].values[0]\nprint(f\"Partial rho controlling evi_f1_tp (n={n_no_grpo}, no GRPO): {rho_p_no_grpo:.4f}, p={p_p_no_grpo:.6f}\")\n\n# Also: 7 unique methods (one representative per method, best seed)\ndf_7methods = df[df[\"method\"].isin([\n    \"SFT 4B s42\", \"DPO-CED 1ep 4B\", \"RSFT CED 4B s42\",\n    \"GRPO 4B\", \"RSFT flat-NLI 4B s42\",\n    \"RSFT CED 8B s42\", \"RSFT CED Llama s42\"\n])]\nn_7 = len(df_7methods)\nrho_7, p_7 = stats.spearmanr(df_7methods[\"edcr\"], df_7methods[\"ign_f1\"])\npartial_7 = pg.partial_corr(data=df_7methods, x=\"edcr\", y=\"ign_f1\", covar=\"evi_f1_tp\", method=\"spearman\")\nrho_p_7 = partial_7[\"r\"].values[0]\np_p_7 = partial_7[\"p-val\"].values[0]\nprint(f\"\\n--- 7 unique methods subset ---\")\nprint(f\"Spearman rho (n={n_7}): {rho_7:.4f}, p={p_7:.6f}\")\nprint(f\"Partial rho controlling evi_f1_tp (n={n_7}): {rho_p_7:.4f}, p={p_p_7:.6f}\")\n\n# ============================================================\n# Analysis 2: Per-relation permutation test\n# ============================================================\nprint()\nprint(\"=\" * 70)\nprint(\"## Per-relation permutation test\")\nprint(\"=\" * 70)\n\nwith open(\"/root/autodl-tmp/eval_results/edcr_per_relation_analysis.json\") as f:\n    perrel = json.load(f)\n\nrels = perrel[\"per_relation\"]\nrel_names = []\nedcr_vals = []\nrelf1_vals = []\nfor rname, rdata in rels.items():\n    if rdata[\"tp\"] > 0:  # exclude degenerate cases with no TP\n        rel_names.append(rname)\n        edcr_vals.append(rdata[\"edcr_formula\"])\n        relf1_vals.append(rdata[\"rel_f1\"])\n\nedcr_arr = np.array(edcr_vals)\nrelf1_arr = np.array(relf1_vals)\nn_rels = len(edcr_arr)\n\nrho_obs, _ = stats.spearmanr(edcr_arr, relf1_arr)\nprint(f\"\\nObserved Spearman rho (n={n_rels} relations with TP>0): {rho_obs:.4f}\")\n\n# Permutation test\nnp.random.seed(42)\nn_perms = 10000\nperm_rhos = np.zeros(n_perms)\nfor i in range(n_perms):\n    perm_edcr = np.random.permutation(edcr_arr)\n    perm_rhos[i], _ = stats.spearmanr(perm_edcr, relf1_arr)\n\n# Two-sided p-value\np_perm = np.mean(np.abs(perm_rhos) >= np.abs(rho_obs))\nprint(f\"Permutation p-value ({n_perms} perms): {p_perm:.6f}\")\nprint(f\"95th percentile of |null rho|: {np.percentile(np.abs(perm_rhos), 95):.4f}\")\nprint(f\"Max |null rho|: {np.max(np.abs(perm_rhos)):.4f}\")\n\n# Also report with all relations (including TP=0)\nall_edcr = [rels[r][\"edcr_formula\"] for r in rels]\nall_relf1 = [rels[r][\"rel_f1\"] for r in rels]\nrho_all_rels, p_all_rels = stats.spearmanr(all_edcr, all_relf1)\nprint(f\"\\nWith all {len(all_edcr)} relations (including TP=0): rho={rho_all_rels:.4f}, p={p_all_rels:.6f}\")\n\n# ============================================================\n# Analysis 3: Similar-TP different-EDCR pairs\n# ============================================================\nprint()\nprint(\"=\" * 70)\nprint(\"## Similar-TP different-EDCR pairs\")\nprint(\"=\" * 70)\nprint()\nprint(\"Criteria: |evi_f1_tp_A - evi_f1_tp_B| / max(A,B) < 0.05 AND |EDCR_A - EDCR_B| > 0.05\")\nprint()\n\nfound_pairs = []\nfor (i, row_a), (j, row_b) in combinations(df.iterrows(), 2):\n    tp_diff_rel = abs(row_a[\"evi_f1_tp\"] - row_b[\"evi_f1_tp\"]) / max(row_a[\"evi_f1_tp\"], row_b[\"evi_f1_tp\"])\n    edcr_diff_abs = abs(row_a[\"edcr\"] - row_b[\"edcr\"])\n    if tp_diff_rel < 0.05 and edcr_diff_abs > 0.05:\n        found_pairs.append((row_a, row_b, tp_diff_rel, edcr_diff_abs))\n\nif found_pairs:\n    print(f\"Found {len(found_pairs)} pairs:\")\n    print()\n    print(\"| Method A | Method B | evi_f1_tp_A | evi_f1_tp_B | TP_diff_rel | EDCR_A | EDCR_B | EDCR_diff |\")\n    print(\"|----------|----------|-------------|-------------|-------------|--------|--------|-----------|\")\n    for row_a, row_b, tp_diff, edcr_diff in sorted(found_pairs, key=lambda x: -x[3])[:20]:\n        print(f\"| {row_a['method']:<24s} | {row_b['method']:<24s} | {row_a['evi_f1_tp']:.4f} | {row_b['evi_f1_tp']:.4f} | {tp_diff:.4f} | {row_a['edcr']:.4f} | {row_b['edcr']:.4f} | {edcr_diff:.4f} |\")\nelse:\n    print(\"No pairs found matching criteria.\")\n\n# Relax criteria to find any pairs\nprint()\nprint(\"--- Relaxed criteria: TP_diff_rel < 0.03 AND EDCR_diff > 0.03 ---\")\nrelaxed = []\nfor (i, row_a), (j, row_b) in combinations(df.iterrows(), 2):\n    tp_diff_rel = abs(row_a[\"evi_f1_tp\"] - row_b[\"evi_f1_tp\"]) / max(row_a[\"evi_f1_tp\"], row_b[\"evi_f1_tp\"])\n    edcr_diff_abs = abs(row_a[\"edcr\"] - row_b[\"edcr\"])\n    if tp_diff_rel < 0.03 and edcr_diff_abs > 0.03:\n        relaxed.append((row_a, row_b, tp_diff_rel, edcr_diff_abs))\n\nif relaxed:\n    print(f\"Found {len(relaxed)} pairs:\")\n    print()\n    print(\"| Method A | Method B | evi_f1_tp_A | evi_f1_tp_B | TP_diff_rel | EDCR_A | EDCR_B | EDCR_diff |\")\n    print(\"|----------|----------|-------------|-------------|-------------|--------|--------|-----------|\")\n    for row_a, row_b, tp_diff, edcr_diff in sorted(relaxed, key=lambda x: -x[3])[:20]:\n        print(f\"| {row_a['method']:<24s} | {row_b['method']:<24s} | {row_a['evi_f1_tp']:.4f} | {row_b['evi_f1_tp']:.4f} | {tp_diff:.4f} | {row_a['edcr']:.4f} | {row_b['edcr']:.4f} | {edcr_diff:.4f} |\")\nPYEOF\necho \"Script written\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat > /tmp/edcr_partial_corr.py << 'PYEOF'\nimport json\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\nimport pingouin as pg\nfrom itertools import combinations\n\n# ============================================================\n# Analysis 1: Cross-method partial correlation\n# ============================================================\ndata = [\n    # method, ign_f1, edcr, evi_f1_tp\n    (\"SFT 4B s42\",            0.3974, 0.6982, 0.7986),\n    (\"DPO-CED 1ep 4B\",       0.4034, 0.7139, 0.8088),\n    (\"RSFT CED 4B s42\",      0.4423, 0.6569, 0.8174),\n    (\"GRPO 4B\",              0.4446, 0.6489, 0.8053),\n    (\"RSFT flat-NLI 4B s42\", 0.4448, 0.6458, 0.8039),\n    (\"RSFT CED 4B s43\",      0.4512, 0.6542, 0.8063),\n    (\"RSFT CED 4B s44\",      0.4511, 0.6350, 0.8050),\n    (\"RSFT flat-NLI 4B s43\", 0.4523, 0.6505, 0.8158),\n    (\"SFT 1.7B s42\",         0.4786, 0.6704, 0.8316),\n    (\"SFT 8B s42\",           0.5051, 0.6510, 0.8188),\n    (\"RSFT CED 1.7B s42\",    0.5122, 0.6224, 0.8243),\n    (\"SFT Llama-8B s42\",     0.5384, 0.6280, 0.8151),\n    (\"RSFT CED 8B s42\",      0.5376, 0.6231, 0.8136),\n    (\"RSFT CED 8B s43\",      0.5471, 0.6094, 0.8180),\n    (\"RSFT CED Llama s44\",   0.5587, 0.5829, 0.8328),\n    (\"RSFT CED Llama s43\",   0.5662, 0.5783, 0.8287),\n    (\"RSFT CED Llama s42\",   0.5714, 0.5799, 0.8238),\n]\n\ndf = pd.DataFrame(data, columns=[\"method\", \"ign_f1\", \"edcr\", \"evi_f1_tp\"])\n\nprint(\"=\" * 70)\nprint(\"## Cross-method partial correlation\")\nprint(\"=\" * 70)\nprint()\nprint(\"| Method | ign_f1 | EDCR | evi_f1_tp |\")\nprint(\"|--------|--------|------|-----------|\")\nfor _, row in df.iterrows():\n    print(f\"| {row['method']:<24s} | {row['ign_f1']:.4f} | {row['edcr']:.4f} | {row['evi_f1_tp']:.4f} |\")\n\nn_all = len(df)\n\n# Spearman rho: EDCR vs ign_f1\nrho_raw, p_raw = stats.spearmanr(df[\"edcr\"], df[\"ign_f1\"])\nprint(f\"\\nSpearman rho (n={n_all}): {rho_raw:.4f}, p={p_raw:.6f}\")\n\n# Partial Spearman rho controlling for evi_f1_tp (all n)\npartial_all = pg.partial_corr(data=df, x=\"edcr\", y=\"ign_f1\", covar=\"evi_f1_tp\", method=\"spearman\")\nrho_partial_all = partial_all[\"r\"].values[0]\np_partial_all = partial_all[\"p-val\"].values[0]\nprint(f\"Partial rho controlling evi_f1_tp (n={n_all}): {rho_partial_all:.4f}, p={p_partial_all:.6f}\")\n\n# Without GRPO\ndf_no_grpo = df[df[\"method\"] != \"GRPO 4B\"]\nn_no_grpo = len(df_no_grpo)\nrho_no_grpo, p_no_grpo = stats.spearmanr(df_no_grpo[\"edcr\"], df_no_grpo[\"ign_f1\"])\npartial_no_grpo = pg.partial_corr(data=df_no_grpo, x=\"edcr\", y=\"ign_f1\", covar=\"evi_f1_tp\", method=\"spearman\")\nrho_p_no_grpo = partial_no_grpo[\"r\"].values[0]\np_p_no_grpo = partial_no_grpo[\"p-val\"].values[0]\nprint(f\"Partial rho controlling evi_f1_tp (n={n_no_grpo}, no GRPO): {rho_p_no_grpo:.4f}, p={p_p_no_grpo:.6f}\")\n\n# Also: 7 unique methods (one representative per method, best seed)\ndf_7methods = df[df[\"method\"].isin([\n    \"SFT 4B s42\", \"DPO-CED 1ep 4B\", \"RSFT CED 4B s42\",\n    \"GRPO 4B\", \"RSFT flat-NLI 4B s42\",\n    \"RSFT CED 8B s42\", \"RSFT CED Llama s42\"\n])]\nn_7 = len(df_7methods)\nrho_7, p_7 = stats.spearmanr(df_7methods[\"edcr\"], df_7methods[\"ign_f1\"])\npartial_7 = pg.partial_corr(data=df_7methods, x=\"edcr\", y=\"ign_f1\", covar=\"evi_f1_tp\", method=\"spearman\")\nrho_p_7 = partial_7[\"r\"].values[0]\np_p_7 = partial_7[\"p-val\"].values[0]\nprint(f\"\\n--- 7 unique methods subset ---\")\nprint(f\"Spearman rho (n={n_7}): {rho_7:.4f}, p={p_7:.6f}\")\nprint(f\"Partial rho controlling evi_f1_tp (n={n_7}): {rho_p_7:.4f}, p={p_p_7:.6f}\")\n\n# ============================================================\n# Analysis 2: Per-relation permutation test\n# ============================================================\nprint()\nprint(\"=\" * 70)\nprint(\"## Per-relation permutation test\")\nprint(\"=\" * 70)\n\nwith open(\"/root/autodl-tmp/eval_results/edcr_per_relation_analysis.json\") as f:\n    perrel = json.load(f)\n\nrels = perrel[\"per_relation\"]\nrel_names = []\nedcr_vals = []\nrelf1_vals = []\nfor rname, rdata in rels.items():\n    if rdata[\"tp\"] > 0:  # exclude degenerate cases with no TP\n        rel_names.append(rname)\n        edcr_vals.append(rdata[\"edcr_formula\"])\n        relf1_vals.append(rdata[\"rel_f1\"])\n\nedcr_arr = np.array(edcr_vals)\nrelf1_arr = np.array(relf1_vals)\nn_rels = len(edcr_arr)\n\nrho_obs, _ = stats.spearmanr(edcr_arr, relf1_arr)\nprint(f\"\\nObserved Spearman rho (n={n_rels} relations with TP>0): {rho_obs:.4f}\")\n\n# Permutation test\nnp.random.seed(42)\nn_perms = 10000\nperm_rhos = np.zeros(n_perms)\nfor i in range(n_perms):\n    perm_edcr = np.random.permutation(edcr_arr)\n    perm_rhos[i], _ = stats.spearmanr(perm_edcr, relf1_arr)\n\n# Two-sided p-value\np_perm = np.mean(np.abs(perm_rhos) >= np.abs(rho_obs))\nprint(f\"Permutation p-value ({n_perms} perms): {p_perm:.6f}\")\nprint(f\"95th percentile of |null rho|: {np.percentile(np.abs(perm_rhos), 95):.4f}\")\nprint(f\"Max |null rho|: {np.max(np.abs(perm_rhos)):.4f}\")\n\n# Also report with all relations (including TP=0)\nall_edcr = [rels[r][\"edcr_formula\"] for r in rels]\nall_relf1 = [rels[r][\"rel_f1\"] for r in rels]\nrho_all_rels, p_all_rels = stats.spearmanr(all_edcr, all_relf1)\nprint(f\"\\nWith all {len(all_edcr)} relations (including TP=0): rho={rho_all_rels:.4f}, p={p_all_rels:.6f}\")\n\n# ============================================================\n# Analysis 3: Similar-TP different-EDCR pairs\n# ============================================================\nprint()\nprint(\"=\" * 70)\nprint(\"## Similar-TP different-EDCR pairs\")\nprint(\"=\" * 70)\nprint()\nprint(\"Criteria: |evi_f1_tp_A - evi_f1_tp_B| / max(A,B) < 0.05 AND |EDCR_A - EDCR_B| > 0.05\")\nprint()\n\nfound_pairs = []\nfor (i, row_a), (j, row_b) in combinations(df.iterrows(), 2):\n    tp_diff_rel = abs(row_a[\"evi_f1_tp\"] - row_b[\"evi_f1_tp\"]) / max(row_a[\"evi_f1_tp\"], row_b[\"evi_f1_tp\"])\n    edcr_diff_abs = abs(row_a[\"edcr\"] - row_b[\"edcr\"])\n    if tp_diff_rel < 0.05 and edcr_diff_abs > 0.05:\n        found_pairs.append((row_a, row_b, tp_diff_rel, edcr_diff_abs))\n\nif found_pairs:\n    print(f\"Found {len(found_pairs)} pairs:\")\n    print()\n    print(\"| Method A | Method B | evi_f1_tp_A | evi_f1_tp_B | TP_diff_rel | EDCR_A | EDCR_B | EDCR_diff |\")\n    print(\"|----------|----------|-------------|-------------|-------------|--------|--------|-----------|\")\n    for row_a, row_b, tp_diff, edcr_diff in sorted(found_pairs, key=lambda x: -x[3])[:20]:\n        print(f\"| {row_a['method']:<24s} | {row_b['method']:<24s} | {row_a['evi_f1_tp']:.4f} | {row_b['evi_f1_tp']:.4f} | {tp_diff:.4f} | {row_a['edcr']:.4f} | {row_b['edcr']:.4f} | {edcr_diff:.4f} |\")\nelse:\n    print(\"No pairs found matching criteria.\")\n\n# Relax criteria to find any pairs\nprint()\nprint(\"--- Relaxed criteria: TP_diff_rel < 0.03 AND EDCR_diff > 0.03 ---\")\nrelaxed = []\nfor (i, row_a), (j, row_b) in combinations(df.iterrows(), 2):\n    tp_diff_rel = abs(row_a[\"evi_f1_tp\"] - row_b[\"evi_f1_tp\"]) / max(row_a[\"evi_f1_tp\"], row_b[\"evi_f1_tp\"])\n    edcr_diff_abs = abs(row_a[\"edcr\"] - row_b[\"edcr\"])\n    if tp_diff_rel < 0.03 and edcr_diff_abs > 0.03:\n        relaxed.append((row_a, row_b, tp_diff_rel, edcr_diff_abs))\n\nif relaxed:\n    print(f\"Found {len(relaxed)} pairs:\")\n    print()\n    print(\"| Method A | Method B | evi_f1_tp_A | evi_f1_tp_B | TP_diff_rel | EDCR_A | EDCR_B | EDCR_diff |\")\n    print(\"|----------|----------|-------------|-------------|-------------|--------|--------|-----------|\")\n    for row_a, row_b, tp_diff, edcr_diff in sorted(relaxed, key=lambda x: -x[3])[:20]:\n        print(f\"| {row_a['method']:<24s} | {row_b['method']:<24s} | {row_a['evi_f1_tp']:.4f} | {row_b['evi_f1_tp']:.4f} | {tp_diff:.4f} | {row_a['edcr']:.4f} | {row_b['edcr']:.4f} | {edcr_diff:.4f} |\")\nPYEOF\necho \"Script written\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-23T01:28:41.126513+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-23T01:28:41.126636+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/edcr_partial_corr.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/edcr_partial_corr.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-23T01:28:41.126772+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/edcr_partial_corr.py'\\n\\nExit code: 1\\n\\nStdout:\\n\\n| SFT 8B s42               | 0.5051 | 0.6510 | 0.8188 |\\n| RSFT CED 1.7B s42        | 0.5122 | 0.6224 | 0.8243 |\\n| SFT Llama-8B s42         | 0.5384 | 0.6280 | 0.8151 |\\n| RSFT CED 8B s42          | 0.5376 | 0.6231 | 0.8136 |\\n| RSFT CED 8B s43          | 0.5471 | 0.6094 | 0.8180 |\\n| RSFT CED Llama s44       | 0.5587 | 0.5829 | 0.8328 |\\n| RSFT CED Llama s43       | 0.5662 | 0.5783 | 0.8287 |\\n| RSFT CED Llama s42       | 0.5714 | 0.5799 | 0.8238 |\\n\\nSpearman rho (n=17): -0.8554, p=0.000012\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"/tmp/edcr_partial_corr.py\\\", line 52, in &lt;module>\\n    p_partial_all = partial_all[\\\"p-val\\\"].values[0]\\n                    ~~~~~~~~~~~^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/pandas/core/frame.py\\\", line 4378, in __getitem__\\n    indexer = self.columns.get_loc(key)\\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/pandas/core/indexes/base.py\\\", line 3648, in get_loc\\n    raise KeyError(key) from err\\nKeyError: 'p-val'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.84}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-23T01:28:41.126920+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport pingouin as pg, pandas as pd\ndf = pd.DataFrame({'x': [1,2,3,4,5], 'y': [5,4,3,2,1], 'z': [1,1,2,2,3]})\nr = pg.partial_corr(data=df, x='x', y='y', covar='z', method='spearman')\nprint(r.columns.tolist())\nprint(r)\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport pingouin as pg, pandas as pd\ndf = pd.DataFrame({'x': [1,2,3,4,5], 'y': [5,4,3,2,1], 'z': [1,1,2,2,3]})\nr = pg.partial_corr(data=df, x='x', y='y', covar='z', method='spearman')\nprint(r.columns.tolist())\nprint(r)\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-23T01:28:41.127052+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"['n', 'r', 'CI95', 'p_val']\\n          n    r        CI95  p_val\\nspearman  5  1.0  [1.0, 1.0]    0.0\\n\", \"stderr\": \"&lt;string>:4: UserWarning: The covariance matrix is rank-deficient, likely due to multicollinearity among the covariates. Partial correlation results may be unreliable.\\n/root/miniconda3/lib/python3.12/site-packages/pingouin/effsize.py:158: RuntimeWarning: divide by zero encountered in arctanh\\n  z = np.arctanh(stat)  # R-to-z transform\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-23T01:28:41.127184+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "sed -i 's/\"p-val\"/\"p_val\"/g' /tmp/edcr_partial_corr.py && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/edcr_partial_corr.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "sed -i 's/\"p-val\"/\"p_val\"/g' /tmp/edcr_partial_corr.py && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/edcr_partial_corr.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-23T01:28:41.127375+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\n## Cross-method partial correlation\\n======================================================================\\n\\n| Method | ign_f1 | EDCR | evi_f1_tp |\\n|--------|--------|------|-----------|\\n| SFT 4B s42               | 0.3974 | 0.6982 | 0.7986 |\\n| DPO-CED 1ep 4B           | 0.4034 | 0.7139 | 0.8088 |\\n| RSFT CED 4B s42          | 0.4423 | 0.6569 | 0.8174 |\\n| GRPO 4B                  | 0.4446 | 0.6489 | 0.8053 |\\n| RSFT flat-NLI 4B s42     | 0.4448 | 0.6458 | 0.8039 |\\n| RSFT CED 4B s43          | 0.4512 | 0.6542 | 0.8063 |\\n| RSFT CED 4B s44          | 0.4511 | 0.6350 | 0.8050 |\\n| RSFT flat-NLI 4B s43     | 0.4523 | 0.6505 | 0.8158 |\\n| SFT 1.7B s42             | 0.4786 | 0.6704 | 0.8316 |\\n| SFT 8B s42               | 0.5051 | 0.6510 | 0.8188 |\\n| RSFT CED 1.7B s42        | 0.5122 | 0.6224 | 0.8243 |\\n| SFT Llama-8B s42         | 0.5384 | 0.6280 | 0.8151 |\\n| RSFT CED 8B s42          | 0.5376 | 0.6231 | 0.8136 |\\n| RSFT CED 8B s43          | 0.5471 | 0.6094 | 0.8180 |\\n| RSFT CED Llama s44       | 0.5587 | 0.5829 | 0.8328 |\\n| RSFT CED Llama s43       | 0.5662 | 0.5783 | 0.8287 |\\n| RSFT CED Llama s42       | 0.5714 | 0.5799 | 0.8238 |\\n\\nSpearman rho (n=17): -0.8554, p=0.000012\\nPartial rho controlling evi_f1_tp (n=17): -0.8541, p=0.000025\\nPartial rho controlling evi_f1_tp (n=16, no GRPO): -0.8681, p=0.000027\\n\\n--- 7 unique methods subset ---\\nSpearman rho (n=7): -0.9643, p=0.000454\\nPartial rho controlling evi_f1_tp (n=7): -0.9617, p=0.002176\\n\\n======================================================================\\n## Per-relation permutation test\\n======================================================================\\n\\nObserved Spearman rho (n=76 relations with TP>0): -0.9381\\nPermutation p-value (10000 perms): 0.000000\\n95th percentile of |null rho|: 0.2252\\nMax |null rho|: 0.5142\\n\\nWit
+…[truncated 5431 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-23T01:28:41.127577+00:00_
+
+结果已出。整理如下：
+
+---
+
+## Cross-method partial correlation
+
+| Method | ign_f1 | EDCR | evi_f1_tp |
+|--------|--------|------|-----------|
+| SFT 4B s42 | 0.3974 | 0.6982 | 0.7986 |
+| DPO-CED 1ep 4B | 0.4034 | 0.7139 | 0.8088 |
+| RSFT CED 4B s42 | 0.4423 | 0.6569 | 0.8174 |
+| GRPO 4B | 0.4446 | 0.6489 | 0.8053 |
+| RSFT flat-NLI 4B s42 | 0.4448 | 0.6458 | 0.8039 |
+| RSFT CED 4B s43 | 0.4512 | 0.6542 | 0.8063 |
+| RSFT CED 4B s44 | 0.4511 | 0.6350 | 0.8050 |
+| RSFT flat-NLI 4B s43 | 0.4523 | 0.6505 | 0.8158 |
+| SFT 1.7B s42 | 0.4786 | 0.6704 | 0.8316 |
+| SFT 8B s42 | 0.5051 | 0.6510 | 0.8188 |
+| RSFT CED 1.7B s42 | 0.5122 | 0.6224 | 0.8243 |
+| SFT Llama-8B s42 | 0.5384 | 0.6280 | 0.8151 |
+| RSFT CED 8B s42 | 0.5376 | 0.6231 | 0.8136 |
+| RSFT CED 8B s43 | 0.5471 | 0.6094 | 0.8180 |
+| RSFT CED Llama s44 | 0.5587 | 0.5829 | 0.8328 |
+| RSFT CED Llama s43 | 0.5662 | 0.5783 | 0.8287 |
+| RSFT CED Llama s42 | 0.5714 | 0.5799 | 0.8238 |
+
+**All 17 data points:**
+- Spearman ρ (n=17): **-0.8554**, p=0.000012
+- Partial ρ controlling evi_f1_tp (n=17): **-0.8541**, p=0.000025
+- Partial ρ controlling evi_f1_tp (n=16, no GRPO): **-0.8681**, p=0.000027
+
+**7 unique methods subset (one per method category):**
+- Spearman ρ (n=7): **-0.9643**, p=0.000454
+- Partial ρ controlling evi_f1_tp (n=7): **-0.9617**, p=0.002176
+
+关键发现：控制 evi_f1_tp 后 partial ρ 几乎不变（-0.8554 → -0.8541），说明 EDCR 与 ign_f1 的负相关**不是由 TP 的机械性传导造成的**。evi_f1_tp 在各方法间变化极小（0.80-0.83 的窄区间），不是混淆因素。
+
+## Per-relation permutation test
+
+- Observed Spearman ρ (n=76 relations with TP>0): **-0.9381**
+- Permutation p-value (10000 perms): **p < 0.0001**（0 次 permutation 达到观测值）
+- 95th percentile of |null ρ|: 0.2252, max |null ρ|: 0.5142
+- With all 93 relations (including TP=0): ρ=-0.9660
+
+## Similar-TP different-EDCR pairs
+
+找到 **48 对**满足 |TP_diff_rel| < 5% 且 |EDCR_diff| > 0.05 的方法对。最显著的例子：
+
+| Method A | Method B | evi_f1_tp_A | evi_f1_tp_B | EDCR_A | EDCR_B | EDCR_diff |
+|----------|----------|-------------|-------------|--------|--------|-----------|
+| DPO-CED 1ep 4B | RSFT CED Llama s43 | 0.8088 | 0.8287 | 0.7139 | 0.5783 | 0.1356 |
+| DPO-CED 1ep 4B | RSFT CED Llama s42 | 0.8088 | 0.8238 | 0.7139 | 0.5799 | 0.1340 |
+| SFT 4B s42 | RSFT CED Llama s43 | 0.7986 | 0.8287 | 0.6982 | 0.5783 | 0.1199 |
+| DPO-CED 1ep 4B | RSFT CED 8B s43 | 0.8088 | 0.8180 | 0.7139 | 0.6094 | 0.1045 |
+| SFT 1.7B s42 | RSFT CED Llama s43 | 0.8316 | 0.8287 | 0.6704 | 0.5783 | 0.0921 |
+
+DPO-CED 1ep 与 RSFT CED Llama 的 evi_f1_tp 差异仅 2.4%，但 EDCR 差异达 0.136，证明 EDCR 捕获了 TP 之外的独立证据质量信息。
+
+**注**: DPO 3ep 无有效 eval 数据（ckpt400 目录为空）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_edcr-partial-correlation_20260523T012127"
+}
+```
+
+</details>
+
+---

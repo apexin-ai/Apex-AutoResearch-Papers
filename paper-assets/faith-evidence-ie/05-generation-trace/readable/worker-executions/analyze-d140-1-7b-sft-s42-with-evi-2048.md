@@ -1,0 +1,778 @@
+# analyze d140 1 7b sft s42 with evi 2048
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 13
+- **Recorded user turns:** 0
+- **Tool calls:** 3
+- **Original source:** `logs/workers/worker_analyze_d140_1_7b_sft_s42_with_evi_2048_20260521T062635.log`
+- **Structured JSON:** [`88feaac954352e794f62.json`](../../sessions/88/88feaac954352e794f62.json)
+
+## Before a recorded user message
+
+13 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "e3263bb4-844e-44d3-89a9-59b63b556589",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "0335409b-0f96-4f54-85ca-85c0b135e1a0",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779390000,
+    "rateLimitType": "seven_day",
+    "utilization": 0.79,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "bb01f56b-2f4f-4669-bcc5-5118b0c538e4",
+  "session_id": "e3263bb4-844e-44d3-89a9-59b63b556589"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me fetch the experiment results from the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3263bb4-844e-44d3-89a9-59b63b556589",
+  "uuid": "826475d2-016b-4126-8b80-ed8317881899",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wunt5eC1FcwRAKbKCDJHfA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12676,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12676
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0154zvnRNsSUFjoudXjUige8`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3263bb4-844e-44d3-89a9-59b63b556589",
+  "uuid": "ba13128f-e27d-4d1d-8919-ffd4f0b8b706",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wunt5eC1FcwRAKbKCDJHfA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12676,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12676
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T06:26:56.903Z_
+
+<details><summary>↩ Tool result · `toolu_0154zvnRNsSUFjoudXjUige8`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3263bb4-844e-44d3-89a9-59b63b556589",
+  "uuid": "bfca0132-69ef-4808-9855-5c201cb03af1",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 24
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LC5MKzjwe5oj2e7daWTjGy`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/d140_1_7b_sft_s42_with_evi_2048/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3263bb4-844e-44d3-89a9-59b63b556589",
+  "uuid": "ec87a86d-3535-456f-9bb9-3c2dc820c4d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GAdz6jcJi3gyPPt5cCgmeq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 450,
+      "cache_read_input_tokens": 24517,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 450
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GT95pjHYsg5obZExmRgmtd`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -30 /root/runs/faith-evidence-ie/d140_1_7b_sft_s42_with_evi_2048.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3263bb4-844e-44d3-89a9-59b63b556589",
+  "uuid": "8957357b-8f09-4d2c-b85d-5b33ef6c1c35",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GAdz6jcJi3gyPPt5cCgmeq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 450,
+      "cache_read_input_tokens": 24517,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 450
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T06:27:01.321Z_
+
+<details><summary>↩ Tool result · `toolu_01LC5MKzjwe5oj2e7daWTjGy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.5005466319064839,\\n  \\\"recall\\\": 0.48983622747099004,\\n  \\\"f1\\\": 0.4951335163463938,\\n  \\\"ign_precision\\\": 0.47590143141873525,\\n  \\\"ign_recall\\\": 0.4854449681175492,\\n  \\\"ign_f1\\\": 0.48062582917791297,\\n  \\\"tp\\\": 5952,\\n  \\\"pred_count\\\": 11891,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.7831670822942643,\\n  \\\"evi_recall\\\": 0.8187980706557163,\\n  \\\"evi_f1\\\": 0.8005863233700847,\\n  \\\"n_evaluated\\\": 25419,\\n  \\\"edcr\\\": 0.7174666006927264,\\n  \\\"n_distractor_citations\\\": 31900,\\n  \\\"n_total_citations\\\": 44462,\\n  \\\"evi_joint_precision\\\": 0.3839373645853851,\\n  \\\"evi_joint_recall\\\": 0.40480764238616895,\\n  \\\"evi_f1_joint\\\": 0.3940963885870252,\\n  \\\"evi_tp\\\": 7797,\\n  \\\"evi_pred_total\\\": 20308,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.7289340101522843,\\n  \\\"evidence_format_rate\\\": 0.7289340101522843,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 718,\\n  \\\"n_evidence_valid\\\": 718,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 25534,\\n  \\\"n_truncated\\\": 267,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 6424.3,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/d140_1_7b_sft_s42_with_evi_2048\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 2048,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3263bb4-844e-44d3-89a9-59b63b556589",
+  "uuid": "acdc3ecd-79d4-4e04-920e-c5bb59c1b084",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.5005466319064839,\\\\n  \\\\\\\"recall\\\\\\\": 0.48983622747099004,\\\\n  \\\\\\\"f1\\\\\\\": 0.4951335163463938,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.47590143141873525,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.4854449681175492,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.48062582917791297,\\\\n  \\\\\\\"tp\\\\\\\": 5952,\\\\n  \\\\\\\"pred_count\\\\\\\": 11891,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.7831670822942643,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8187980706557163,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8005863233700847,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 25419,\\\\n  \\\\\\\"edcr\\\\\\\": 0.7174666006927264,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 31900,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 44462,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.3839373645853851,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.40480764238616895,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.3940963885870252,\\\\n  \\\\\\\"evi_tp\\\\\\\": 7797,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 20308,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.7289340101522843,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.7289340101522843,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 718,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 718,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 25534,\\\\n  \\\\\\\"n_truncated\\\\\\\": 267,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 6424.3,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/d140_1_7b_sft_s42_with_evi_2048\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 2048,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.5005466319064839,\\n  \\\"recall\\\": 0.48983622747099004,\\n  \\\"f1\\\": 0.4951335163463938,\\n  \\\"ign_precision\\\": 0.47590143141873525,\\n  \\\"ign_recall\\\": 0.4854449681175492,\\n  \\\"ign_f1\\\": 0.48062582917791297,\\n  \\\"tp\\\": 5952,\\n  \\\"pred_count\\\": 11891,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.7831670822942643,\\n  \\\"evi_recall\\\": 0.8187980706557163,\\n  \\\"evi_f1\\\": 0.8005863233700847,\\n  \\\"n_evaluated\\\": 25419,\\n  \\\"edcr\\\": 0.7174666006927264,\\n  \\\"n_distractor_citations\\\": 31900,\\n  \\\"n_total_citations\\\": 44462,\\n  \\\"evi_joint_precision\\\": 0.3839373645853851,\\n  \\\"evi_joint_recall\\\": 0.40480764238616895,\\n  \\\"evi_f1_joint\\\": 0.3940963885870252,\\n  \\\"evi_tp\\\": 7797,\\n  \\\"evi_pred_total\\\": 20308,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.7289340101522843,\\n  \\\"evidence_format_rate\\\": 0.7289340101522843,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 718,\\n  \\\"n_evidence_valid\\\": 718,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 25534,\\n  \\\"n_truncated\\\": 267,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 6424.3,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/d140_1_7b_sft_s42_with_evi_2048\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 2048,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T06:27:01.925Z_
+
+<details><summary>↩ Tool result · `toolu_01GT95pjHYsg5obZExmRgmtd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-21 12:35:30,770 INFO Full model: /root/autodl-tmp/models/Qwen/Qwen3-1.7B (no adapter)\\n2026-05-21 12:35:30,771 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\n2026-05-21 12:35:31,195 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/311 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/311 [00:00<02:34,  2.01it/s]\\rLoading weights:   1%|          | 2/311 [00:01<02:35,  1.98it/s]\\rLoading weights:   5%|▍         | 15/311 [00:01<00:14, 19.93it/s]\\rLoading weights:   9%|▊         | 27/311 [00:01<00:08, 33.69it/s]\\rLoading weights:  13%|█▎        | 41/311 [00:01<00:05, 52.21it/s]\\rLoading weights:  18%|█▊        | 55/311 [00:01<00:03, 68.95it/s]\\rLoading weights:  22%|██▏       | 68/311 [00:01<00:02, 82.00it/s]\\rLoading weights:  26%|██▌       | 81/311 [00:01<00:02, 82.06it/s]\\rLoading weights:  32%|███▏      | 99/311 [00:01<00:02, 102.96it/s]\\rLoading weights:  36%|███▋      | 113/311 [00:01<00:01, 110.36it/s]\\rLoading weights:  41%|████      | 126/311 [00:02<00:01, 108.60it/s]\\rLoading weights:  44%|████▍     | 138/311 [00:02<00:01, 107.08it/s]\\rLoading weights:  48%|████▊     | 150/311 [00:02<00:01, 109.29it/s]\\rLoading weights:  52%|█████▏    | 162/311 [00:02<00:01, 108.68it/s]\\rLoading weights:  56%|█████▋    | 175/311 [00:02<00:01, 114.10it/s]\\rLoading weights:  60%|██████    | 187/311 [00:02<00:01, 115.34it/s]\\rLoading weights:  64%|██████▍   | 199/311 [00:02<00:00, 113.14it/s]\\rLoading weights:  69%|██████▉   | 214/311 [00:02<00:00, 123.06it/s]\\rLoading weights:  73%|███████▎  | 227/311 [00:02<00:00, 120.39it/s]\\rLoading weights:  77%|███████▋  | 240/311 [00:03<00:00, 122.17it/s]\\rLoading weights:  81%|████████▏ | 253/311 [00:03<00:00, 116.53it/s]\\rLoading weights:  86%|████████▋ | 269/311 [00:03<00:00, 125.90it/s]\\rLoading weights:  91%|█████████ | 282/311 [00:03<00:00, 116.08it/s]\\rLoading weights:  95%|█████████▍| 294/311 [00:03<00:00, 116.70it/s]\\rLoading weights: 100%|██████████| 311/311 [00:03<00:00, 86.26it/s] \\n2026-05-21 12:35:35,230 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_qwen3_1_7b_bf16\\n2026-05-21 12:35:36,486 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\n2026-05-21 12:35:36,697 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\n2026-05-21 12:35:36,860 INFO Prepared 985 eval documents, 12275 gold triples\\n\\rInference:   0%|          | 0/247 [00:00<?, ?it/s]\\rInference:   0%|          | 1/247 [00:32<2:13:22, 32.53s/it]\\rInference:   1%|          | 2/247 [01:04<2:11:22, 32.17s/it]\\rInference:   1%|          | 3/247 [01:11<1:23:41, 20.58s/it]\\rInference:   2%|▏         | 4/247 [01:43<1:41:23, 25.03s/it]\\rInference:   2%|▏         | 5/247 [02:14<1:50:41, 27.44s/it]\\rInference:   2%|▏         | 6/247 [02:46<1:56:15, 28.94s/it]\\rInference:   3%|▎         | 7/247 [03:08<1:46:22, 26.59s/it]\\rInference:   3%|▎         | 8/247 [03:40<1:52:27, 28.23s/it]\\rInference:   4%|▎         | 9/247 [03:46<1:25:08, 21.46s/it]\\rInference:   4%|▍         | 10/247 [03:56<1:10:46, 17.92s/it]\\rInference:   4%|▍         | 11/247 [04:28<1:27:42, 22.30s/it]\\rInference:   5%|▍         | 12/247 [04:37<1:10:36, 18.03s/it]\\rInference:   5%|▌         | 13/247 [05:10<1:27:58, 22.56s/it]\\rInference:   6%|▌         | 14/247 [05:18<1:10:51, 18.25s/it]\\rInference:   6%|▌         | 15/247 [05:50<1:26:49, 22.45s/it]\\rInference:   6%|▋         | 16/247 [06:04<1:16:18, 19.82s/it]\\rInference:   7%|▋         | 17/247 [06:35<1:29:26, 23.33s/it]\\rInference:   7%|▋         | 18/247 [07:08<1:39:14, 26.00s/it]\\rInference:   8%|▊         | 19/247 [07:39<1:45:07, 27.67s/it]\\rInference:   8%|▊         | 20/247 [08:11<1:48:56, 28.80s/it]\\rInference:   9%|▊         | 21/247 [08:42<1:51:33, 29.62s/it]\\rInference:   9%|▉         | 22/247 [08:56<1:32:57, 24.79s/it]\\rInference:   9%|▉         | 23/247 [09:27<1:40:25, 26.90s/it]\\rInference:  10%|▉         | 24/247 [09:59<1:45:16, 28.33s/it]\\rInfere\\n\\n... [截断: 输出过长，省略 10753 字符] ...\\n\\n8:36, 22.33s/it]\\rInference:  80%|████████  | 198/247 [1:24:32<17:02, 20.87s/it]\\rInference:  81%|████████  | 199/247 [1:25:03<19:14, 24.05s/it]\\rInference:  81%|████████  | 200/247 [1:25:35<20:35, 26.30s/it]\\rInference:  81%|████████▏ | 201/247 [1:26:07<21:23, 27.91s/it]\\rInference:  82%|████████▏ | 202/247 [1:26:39<21:52, 29.16s/it]\\rInference:  82%|████████▏ | 203/247 [1:27:10<21:58, 29.96s/it]\\rInference:  83%|████████▎ | 204/247 [1:27:42<21:51, 30.50s/it]\\rInference:  83%|████████▎ | 205/247 [1:28:14<21:33, 30.80s/it]\\rInference:  83%|████████▎ | 206/247 [1:28:33<18:41, 27.34s/it]\\rInference:  84%|████████▍ | 207/247 [1:29:03<18:46, 28.16s/it]\\rInference:  84%|████████▍ | 208/247 [1:29:13<14:45, 22.71s/it]\\rInference:  85%|████████▍ | 209/247 [1:29:45<16:07, 25.47s/it]\\rInference:  85%|████████▌ | 210/247 [1:30:17<16:50, 27.32s/it]\\rInference:  85%|████████▌ | 211/247 [1:30:48<17:07, 28.53s/it]\\rInference:  86%|████████▌ | 212/247 [1:31:19<17:08, 29.38s/it]\\rInference:  86%|███████��▌ | 213/247 [1:31:30<13:24, 23.66s/it]\\rInference:  87%|████████▋ | 214/247 [1:32:01<14:17, 26.00s/it]\\rInference:  87%|████████▋ | 215/247 [1:32:33<14:44, 27.65s/it]\\rInference:  87%|████████▋ | 216/247 [1:33:04<14:51, 28.76s/it]\\rInference:  88%|████████▊ | 217/247 [1:33:17<11:58, 23.95s/it]\\rInference:  88%|████████▊ | 218/247 [1:33:48<12:41, 26.26s/it]\\rInference:  89%|████████▊ | 219/247 [1:33:59<10:04, 21.59s/it]\\rInference:  89%|████████▉ | 220/247 [1:34:31<11:05, 24.64s/it]\\rInference:  89%|████████▉ | 221/247 [1:34:46<09:26, 21.80s/it]\\rInference:  90%|████████▉ | 222/247 [1:35:17<10:16, 24.68s/it]\\rInference:  90%|█████████ | 223/247 [1:35:49<10:41, 26.75s/it]\\rInference:  91%|█████████ | 224/247 [1:36:20<10:47, 28.13s/it]\\rInference:  91%|█████████ | 225/247 [1:36:52<10:39, 29.09s/it]\\rInference:  91%|█████████▏| 226/247 [1:37:23<10:26, 29.84s/it]\\rInference:  92%|█████████▏| 227/247 [1:37:55<10:06, 30.32s/it]\\rInference:  92%|█████████▏| 228/247 [1:38:26<09:42, 30.65s/it]\\rInference:  93%|█████████▎| 229/247 [1:38:58<09:16, 30.91s/it]\\rInference:  93%|█████████▎| 230/247 [1:39:29<08:47, 31.05s/it]\\rInference:  94%|█████████▎| 231/247 [1:40:01<08:21, 31.34s/it]\\rInference:  94%|█████████▍| 232/247 [1:40:33<07:53, 31.54s/it]\\rInference:  94%|█████████▍| 233/247 [1:41:05<07:22, 31.64s/it]\\rInference:  95%|█████████▍| 234/247 [1:41:36<06:50, 31.60s/it]\\rInference:  95%|█████████▌| 235/247 [1:42:08<06:19, 31.59s/it]\\rInference:  96%|█████████▌| 236/247 [1:42:15<04:26, 24.19s/it]\\rInference:  96%|█████████▌| 237/247 [1:42:47<04:24, 26.47s/it]\\rInference:  96%|█████████▋| 238/247 [1:43:18<04:11, 27.91s/it]\\rInference:  97%|█████████▋| 239/247 [1:43:35<03:17, 24.74s/it]\\rInference:  97%|█████████▋| 240/247 [1:44:07<03:06, 26.71s/it]\\rInference:  98%|█████████▊| 241/247 [1:44:38<02:48, 28.11s/it]\\rInference:  98%|█████████▊| 242/247 [1:45:09<02:25, 29.07s/it]\\rInference:  98%|█████████▊| 243/247 [1:45:41<01:58, 29.74s/it]\\rInference:  99%|█████████▉| 244/247 [1:45:58<01:18, 26.02s/it]\\rInference:  99%|█████████▉| 245/247 [1:46:29<00:55, 27.61s/it]\\rInference: 100%|█████████▉| 246/247 [1:47:00<00:28, 28.67s/it]\\rInference: 100%|██████████| 247/247 [1:47:04<00:00, 21.10s/it]\\rInference: 100%|██████████| 247/247 [1:47:04<00:00, 26.01s/it]\\n2026-05-21 14:22:41,135 INFO Inference done. 267/985 truncated, 0 errors.\\n2026-05-21 14:22:41,136 INFO Inference: 6424.3s (6.52 s/doc)\\n2026-05-21 14:22:41,631 INFO Loaded 37785 training triples (34610 unique facts) for Ign-F1\\n2026-05-21 14:22:41,855 INFO Metrics → /root/autodl-tmp/eval_results/d140_1_7b_sft_s42_with_evi_2048/metrics.json\\n2026-05-21 14:22:42,032 INFO Predictions → /root/autodl-tmp/eval_results/d140_1_7b_sft_s42_with_evi_2048/predictions.json\\n\\n==================================================\\n  F1:          0.4951\\n  Ign-F1:      0.4806\\n  Evi-F1(DREEAM): 0.3941\\n  Evi-F1(TP):     0.8006\\n  EDCR:        0.7175\\n  Format OK:   985/985 (100.0%)\\n  Truncated:   267/985\\n  Predictions: 25534\\n==================================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3263bb4-844e-44d3-89a9-59b63b556589",
+  "uuid": "6770674f-23c4-4728-aa33-e1eeb5c91577",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-21 12:35:30,770 INFO Full model: /root/autodl-tmp/models/Qwen/Qwen3-1.7B (no adapter)\\\\n2026-05-21 12:35:30,771 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\n2026-05-21 12:35:31,195 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/311 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/311 [00:00<02:34,  2.01it/s]\\\\rLoading weights:   1%|          | 2/311 [00:01<02:35,  1.98it/s]\\\\rLoading weights:   5%|▍         | 15/311 [00:01<00:14, 19.93it/s]\\\\rLoading weights:   9%|▊         | 27/311 [00:01<00:08, 33.69it/s]\\\\rLoading weights:  13%|█▎        | 41/311 [00:01<00:05, 52.21it/s]\\\\rLoading weights:  18%|█▊        | 55/311 [00:01<00:03, 68.95it/s]\\\\rLoading weights:  22%|██▏       | 68/311 [00:01<00:02, 82.00it/s]\\\\rLoading weights:  26%|██▌       | 81/311 [00:01<00:02, 82.06it/s]\\\\rLoading weights:  32%|███▏      | 99/311 [00:01<00:02, 102.96it/s]\\\\rLoading weights:  36%|███▋      | 113/311 [00:01<00:01, 110.36it/s]\\\\rLoading weights:  41%|████      | 126/311 [00:02<00:01, 108.60it/s]\\\\rLoading weights:  44%|████▍     | 138/311 [00:02<00:01, 107.08it/s]\\\\rLoading weights:  48%|████▊     | 150/311 [00:02<00:01, 109.29it/s]\\\\rLoading weights:  52%|█████▏    | 162/311 [00:02<00:01, 108.68it/s]\\\\rLoading weights:  56%|█████▋    | 175/311 [00:02<00:01, 114.10it/s]\\\\rLoading weights:  60%|██████    | 187/311 [00:02<00:01, 115.34it/s]\\\\rLoading weights:  64%|██████▍   | 199/311 [00:02<00:00, 113.14it/s]\\\\rLoading weights:  69%|██████▉   | 214/311 [00:02<00:00, 123.06it/s]\\\\rLoading weights:  73%|███████▎  | 227/311 [00:02<00:00, 120.39it/s]\\\\rLoading weights:  77%|███████▋  | 240/311 [00:03<00:00, 122.17it/s]\\\\rLoading weights:  81%|████████▏ | 253/311 [00:03<00:00, 116.53it/s]\\\\rLoading weights:  86%|████████▋ | 269/311 [00:03<00:00, 125.90it/s]\\\\rLoading weights:  91%|█████████ | 282/311 [00:03<00:00, 116.08it/s]\\\\rLoading weights:  95%|█████████▍| 294/311 [00:03<00:00, 116.70it/s]\\\\rLoading weights: 100%|██████████| 311/311 [00:03<00:00, 86.26it/s] \\\\n2026-05-21 12:35:35,230 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_qwen3_1_7b_bf16\\\\n2026-05-21 12:35:36,486 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\\\n2026-05-21 12:35:36,697 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\\\n2026-05-21 12:35:36,860 INFO Prepared 985 eval documents, 12275 gold triples\\\\n\\\\rInference:   0%|          | 0/247 [00:00<?, ?it/s]\\\\rInference:   0%|          | 1/247 [00:32<2:13:22, 32.53s/it]\\\\rInference:   1%|          | 2/247 [01:04<2:11:22, 32.17s/it]\\\\rInference:   1%|          | 3/247 [01:11<1:23:41, 20.58s/it]\\\\rInference:   2%|▏         | 4/247 [01:43<1:41:23, 25.03s/it]\\\\rInference:   2%|▏         | 5/247 [02:14<1:50:41, 27.44s/it]\\\\rInference:   2%|▏         | 6/247 [02:46<1:56:15, 28.94s/it]\\\\rInference:   3%|▎         | 7/247 [03:08<1:46:22, 26.59s/it]\\\\rInference:   3%|▎         | 8/247 [03:40<1:52:27, 28.23s/it]\\\\rInference:   4%|▎         | 9/247 [03:46<1:25:08, 21.46s/it]\\\\rInference:   4%|▍         | 10/247 [03:56<1:10:46, 17.92s/it]\\\\rInference:   4%|▍         | 11/247 [04:28<1:27:42, 22.30s/it]\\\\rInference:   5%|▍         | 12/247 [04:37<1:10:36, 18.03s/it]\\\\rInference:   5%|▌         | 13/247 [05:10<1:27:58, 22.56s/it]\\\\rInference:   6%|▌         | 14/247 [05:18<1:10:51, 18.25s/it]\\\\rInference:   6%|▌         | 15/247 [05:50<1:26:49, 22.45s/it]\\\\rInference:   6%|▋         | 16/247 [06:04<1:16:18, 19.82s/it]\\\\rInference:   7%|▋         | 17/247 [06:35<1:29:26, 23.33s/it]\\\\rInference:   7%|▋         | 18/247 [07:08<1:39:14, 26.00s/it]\\\\rInference:   8%|▊         | 19/247 [07:39<1:45:07, 27.67s/it]\\\\rInference:   8%|▊         | 20/247 [08:11<1:48:56, 28.80s/it]\\\\rInference:   9%|▊         | 21/247 [08:42<1:51:33, 29.62s/it]\\\\rInference:   9%|▉         | 22/247 [08:56<1:32:57, 24.79s/it]\\\\rInference:   9%|▉         | 23/247 [09:27<1:40:25, 26.90s/it]\\\\rInference:  10%|▉         | 24/247 [09:59<1:45:16, 28.33s/it]\\\\rInfere\\\\n\\\\n... [截断: 输出过长，省略 10753 字符] ...\\\\n\\\\n8:36, 22.33s/it]\\\\rInference:  80%|████████  | 198/247 [1:24:32<17:02, 20.87s/it]\\\\rInference:  81%|████████  | 199/247 [1:25:03<19:14, 24.05s/it]\\\\rInference:  81%|████████  | 200/247 [1:25:35<20:35, 26.30s/it]\\\\rInference:  81%|████████▏ | 201/247 [1:26:07<21:23, 27.91s/it]\\\\rInference:  82%|████████▏ | 202/247 [1:26:39<21:52, 29.16s/it]\\\\rInference:  82%|████████▏ | 203/247 [1:27:10<21:58, 29.96s/it]\\\\rInference:  83%|████████▎ | 204/247 [1:27:42<21:51, 30.50s/it]\\\\rInference:  83%|████████▎ | 205/247 [1:28:14<21:33, 30.80s/it]\\\\rInference:  83%|████████▎ | 206/247 [1:28:33<18:41, 27.34s/it]\\\\rInference:  84%|████████▍ | 207/247 [1:29:03<18:46, 28.16s/it]\\\\rInference:  84%|████████▍ | 208/247 [1:29:13<14:45, 22.71s/it]\\\\rInference:  85%|████████▍ | 209/247 [1:29:45<16:07, 25.47s/it]\\\\rInference:  85%|████████▌ | 210/247 [1:30:17<16:50, 27.32s/it]\\\\rInference:  85%|████████▌ | 211/247 [1:30:48<17:07, 28.53s/it]\\\\rInference:  86%|████████▌ | 212/247 [1:31:19<17:08, 29.38s/it]\\\\rInference:  86%|███████��▌ | 213/247 [1:31:30<13:24, 23.66s/it]\\\\rInference:  87%|████████▋ | 214/247 [1:32:01<14:17, 26.00s/it]\\\\rInference:  87%|████████▋ | 215/247 [1:32:33<14:44, 27.65s/it]\\\\rInference:  87%|████████▋ | 216/247 [1:33:04<14:51, 28.76s/it]\\\\rInference:  88%|████████▊ | 217/247 [1:33:17<11:58, 23.95s/it]\\\\rInference:  88%|████████▊ | 218/247 [1:33:48<12:41, 26.26s/it]\\\\rInference:  89%|████████▊ | 219/247 [1:33:59<10:04, 21.59s/it]\\\\rInference:  89%|████████▉ | 220/247 [1:34:31<11:05, 24.64s/it]\\\\rInference:  89%|████████▉ | 221/247 [1:34:46<09:26, 21.80s/it]\\\\rInference:  90%|████████▉ | 222/247 [1:35:17<10:16, 24.68s/it]\\\\rInference:  90%|█████████ | 223/247 [1:35:49<10:41, 26.75s/it]\\\\rInference:  91%|█████████ | 224/247 [1:36:20<10:47, 28.13s/it]\\\\rInference:  91%|█████████ | 225/247 [1:36:52<10:39, 29.09s/it]\\\\rInference:  91%|█████████▏| 226/247 [1:37:23<10:26, 29.84s/it]\\\\rInference:  92%|█████████▏| 227/247 [1:37:55<10:06, 30.32s/it]\\\\rInference:  92%|█████████▏| 228/247 [1:38:26<09:42, 30.65s/it]\\\\rInference:  93%|█████████▎| 229/247 [1:38:58<09:16, 30.91s/it]\\\\rInference:  93%|█████████▎| 230/247 [1:39:29<08:47, 31.05s/it]\\\\rInference:  94%|█████████▎| 231/247 [1:40:01<08:21, 31.34s/it]\\\\rInference:  94%|█████████▍| 232/247 [1:40:33<07:53, 31.54s/it]\\\\rInference:  94%|█████████▍| 233/247 [1:41:05<07:22, 31.64s/it]\\\\rInference:  95%|█████████▍| 234/247 [1:41:36<06:50, 31.60s/it]\\\\rInference:  95%|█████████▌| 235/247 [1:42:08<06:19, 31.59s/it]\\\\rInference:  96%|█████████▌| 236/247 [1:42:15<04:26, 24.19s/it]\\\\rInference:  96%|█████████▌| 237/247 [1:42:47<04:24, 26.47s/it]\\\\rInference:  96%|█████████▋| 238/247 [1:43:18<04:11, 27.91s/it]\\\\rInference:  97%|█████████▋| 239/247 [1:43:35<03:17, 24.74s/it]\\\\rInference:  97%|█████████▋| 240/247 [1:44:07<03:06, 26.71s/it]\\\\rInference:  98%|█████████▊| 241/247 [1:44:38<02:48, 28.11s/it]\\\\rInference:  98%|█████████▊| 242/247 [1:45:09<02:25, 29.07s/it]\\\\rInference:  98%|█████████▊| 243/247 [1:45:41<01:58, 29.74s/it]\\\\rInference:  99%|█████████▉| 244/247 [1:45:58<01:18, 26.02s/it]\\\\rInference:  99%|█████████▉| 245/247 [1:46:29<00:55, 27.61s/it]\\\\rInference: 100%|█████████▉| 246/247 [1:47:00<00:28, 28.67s/it]\\\\rInference: 100%|██████████| 247/247 [1:47:04<00:00, 21.10s/it]\\\\rInference: 100%|██████████| 247/247 [1:47:04<00:00, 26.01s/it]\\\\n2026-05-21 14:22:41,135 INFO Inference done. 267/985 truncated, 0 errors.\\\\n2026-05-21 14:22:41,136 INFO Inference: 6424.3s (6.52 s/doc)\\\\n2026-05-21 14:22:41,631 INFO Loaded 37785 training triples (34610 unique facts) for Ign-F1\\\\n2026-05-21 14:22:41,855 INFO Metrics → /root/autodl-tmp/eval_results/d140_1_7b_sft_s42_with_evi_2048/metrics.json\\\\n2026-05-21 14:22:42,032 INFO Predictions → /root/autodl-tmp/eval_results/d140_1_7b_sft_s42_with_evi_2048/predictions.json\\\\n\\\\n==================================================\\\\n  F1:          0.4951\\\\n  Ign-F1:      0.4806\\\\n  Evi-F1(DREEAM): 0.3941\\\\n  Evi-F1(TP):     0.8006\\\\n  EDCR:        0.7175\\\\n  Format OK:   985/985 (100.0%)\\\\n  Truncated:   267/985\\\\n  Predictions: 25534\\\\n==================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-21 12:35:30,770 INFO Full model: /root/autodl-tmp/models/Qwen/Qwen3-1.7B (no adapter)\\n2026-05-21 12:35:30,771 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\n2026-05-21 12:35:31,195 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-1.7B\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/311 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/311 [00:00<02:34,  2.01it/s]\\rLoading weights:   1%|          | 2/311 [00:01<02:35,  1.98it/s]\\rLoading weights:   5%|▍         | 15/311 [00:01<00:14, 19.93it/s]\\rLoading weights:   9%|▊         | 27/311 [00:01<00:08, 33.69it/s]\\rLoading weights:  13%|█▎        | 41/311 [00:01<00:05, 52.21it/s]\\rLoading weights:  18%|█▊        | 55/311 [00:01<00:03, 68.95it/s]\\rLoading weights:  22%|██▏       | 68/311 [00:01<00:02, 82.00it/s]\\rLoading weights:  26%|██▌       | 81/311 [00:01<00:02, 82.06it/s]\\rLoading weights:  32%|███▏      | 99/311 [00:01<00:02, 102.96it/s]\\rLoading weights:  36%|███▋      | 113/311 [00:01<00:01, 110.36it/s]\\rLoading weights:  41%|████      | 126/311 [00:02<00:01, 108.60it/s]\\rLoading weights:  44%|████▍     | 138/311 [00:02<00:01, 107.08it/s]\\rLoading weights:  48%|████▊     | 150/311 [00:02<00:01, 109.29it/s]\\rLoading weights:  52%|█████▏    | 162/311 [00:02<00:01, 108.68it/s]\\rLoading weights:  56%|█████▋    | 175/311 [00:02<00:01, 114.10it/s]\\rLoading weights:  60%|██████    | 187/311 [00:02<00:01, 115.34it/s]\\rLoading weights:  64%|██████▍   | 199/311 [00:02<00:00, 113.14it/s]\\rLoading weights:  69%|██████▉   | 214/311 [00:02<00:00, 123.06it/s]\\rLoading weights:  73%|███████▎  | 227/311 [00:02<00:00, 120.39it/s]\\rLoading weights:  77%|███████▋  | 240/311 [00:03<00:00, 122.17it/s]\\rLoading weights:  81%|████████▏ | 253/311 [00:03<00:00, 116.53it/s]\\rLoading weights:  86%|████████▋ | 269/311 [00:03<00:00, 125.90it/s]\\rLoading weights:  91%|█████████ | 282/311 [00:03<00:00, 116.08it/s]\\rLoading weights:  95%|█████████▍| 294/311 [00:03<00:00, 116.70it/s]\\rLoading weights: 100%|██████████| 311/311 [00:03<00:00, 86.26it/s] \\n2026-05-21 12:35:35,230 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output_qwen3_1_7b_bf16\\n2026-05-21 12:35:36,486 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\n2026-05-21 12:35:36,697 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\n2026-05-21 12:35:36,860 INFO Prepared 985 eval documents, 12275 gold triples\\n\\rInference:   0%|          | 0/247 [00:00<?, ?it/s]\\rInference:   0%|          | 1/247 [00:32<2:13:22, 32.53s/it]\\rInference:   1%|          | 2/247 [01:04<2:11:22, 32.17s/it]\\rInference:   1%|          | 3/247 [01:11<1:23:41, 20.58s/it]\\rInference:   2%|▏         | 4/247 [01:43<1:41:23, 25.03s/it]\\rInference:   2%|▏         | 5/247 [02:14<1:50:41, 27.44s/it]\\rInference:   2%|▏         | 6/247 [02:46<1:56:15, 28.94s/it]\\rInference:   3%|▎         | 7/247 [03:08<1:46:22, 26.59s/it]\\rInference:   3%|▎         | 8/247 [03:40<1:52:27, 28.23s/it]\\rInference:   4%|▎         | 9/247 [03:46<1:25:08, 21.46s/it]\\rInference:   4%|▍         | 10/247 [03:56<1:10:46, 17.92s/it]\\rInference:   4%|▍         | 11/247 [04:28<1:27:42, 22.30s/it]\\rInference:   5%|▍         | 12/247 [04:37<1:10:36, 18.03s/it]\\rInference:   5%|▌         | 13/247 [05:10<1:27:58, 22.56s/it]\\rInference:   6%|▌         | 14/247 [05:18<1:10:51, 18.25s/it]\\rInference:   6%|▌         | 15/247 [05:50<1:26:49, 22.45s/it]\\rInference:   6%|▋         | 16/247 [06:04<1:16:18, 19.82s/it]\\rInference:   7%|▋         | 17/247 [06:35<1:29:26, 23.33s/it]\\rInference:   7%|▋         | 18/247 [07:08<1:39:14, 26.00s/it]\\rInference:   8%|▊         | 19/247 [07:39<1:45:07, 27.67s/it]\\rInference:   8%|▊         | 20/247 [08:11<1:48:56, 28.80s/it]\\rInference:   9%|▊         | 21/247 [08:42<1:51:33, 29.62s/it]\\rInference:   9%|▉         | 22/247 [08:56<1:32:57, 24.79s/it]\\rInference:   9%|▉         | 23/247 [09:27<1:40:25, 26.90s/it]\\rInference:  10%|▉         | 24/247 [09:59<1:45:16, 28.33s/it]\\rInfere\\n\\n... [截断: 输出过长，省略 10753 字符] ...\\n\\n8:36, 22.33s/it]\\rInference:  80%|████████  | 198/247 [1:24:32<17:02, 20.87s/it]\\rInference:  81%|████████  | 199/247 [1:25:03<19:14, 24.05s/it]\\rInference:  81%|████████  | 200/247 [1:25:35<20:35, 26.30s/it]\\rInference:  81%|████████▏ | 201/247 [1:26:07<21:23, 27.91s/it]\\rInference:  82%|████████▏ | 202/247 [1:26:39<21:52, 29.16s/it]\\rInference:  82%|████████▏ | 203/247 [1:27:10<21:58, 29.96s/it]\\rInference:  83%|████████▎ | 204/247 [1:27:42<21:51, 30.50s/it]\\rInference:  83%|████████▎ | 205/247 [1:28:14<21:33, 30.80s/it]\\rInference:  83%|████████▎ | 206/247 [1:28:33<18:41, 27.34s/it]\\rInference:  84%|████████▍ | 207/247 [1:29:03<18:46, 28.16s/it]\\rInference:  84%|████████▍ | 208/247 [1:29:13<14:45, 22.71s/it]\\rInference:  85%|████████▍ | 209/247 [1:29:45<16:07, 25.47s/it]\\rInference:  85%|████████▌ | 210/247 [1:30:17<16:50, 27.32s/it]\\rInference:  85%|████████▌ | 211/247 [1:30:48<17:07, 28.53s/it]\\rInference:  86%|████████▌ | 212/247 [1:31:19<17:08, 29.38s/it]\\rInference:  86%|███████��▌ | 213/247 [1:31:30<13:24, 23.66s/it]\\rInference:  87%|████████▋ | 214/247 [1:32:01<14:17, 26.00s/it]\\rInference:  87%|████████▋ | 215/247 [1:32:33<14:44, 27.65s/it]\\rInference:  87%|████████▋ | 216/247 [1:33:04<14:51, 28.76s/it]\\rInference:  88%|████████▊ | 217/247 [1:33:17<11:58, 23.95s/it]\\rInference:  88%|████████▊ | 218/247 [1:33:48<12:41, 26.26s/it]\\rInference:  89%|████████▊ | 219/247 [1:33:59<10:04, 21.59s/it]\\rInference:  89%|████████▉ | 220/247 [1:34:31<11:05, 24.64s/it]\\rInference:  89%|████████▉ | 221/247 [1:34:46<09:26, 21.80s/it]\\rInference:  90%|████████▉ | 222/247 [1:35:17<10:16, 24.68s/it]\\rInference:  90%|█████████ | 223/247 [1:35:49<10:41, 26.75s/it]\\rInference:  91%|█████████ | 224/247 [1:36:20<10:47, 28.13s/it]\\rInference:  91%|█████████ | 225/247 [1:36:52<10:39, 29.09s/it]\\rInference:  91%|█████████▏| 226/247 [1:37:23<10:26, 29.84s/it]\\rInference:  92%|█████████▏| 227/247 [1:37:55<10:06, 30.32s/it]\\rInference:  92%|█████████▏| 228/247 [1:38:26<09:42, 30.65s/it]\\rInference:  93%|█████████▎| 229/247 [1:38:58<09:16, 30.91s/it]\\rInference:  93%|█████████▎| 230/247 [1:39:29<08:47, 31.05s/it]\\rInference:  94%|█████████▎| 231/247 [1:40:01<08:21, 31.34s/it]\\rInference:  94%|█████████▍| 232/247 [1:40:33<07:53, 31.54s/it]\\rInference:  94%|█████████▍| 233/247 [1:41:05<07:22, 31.64s/it]\\rInference:  95%|█████████▍| 234/247 [1:41:36<06:50, 31.60s/it]\\rInference:  95%|█████████▌| 235/247 [1:42:08<06:19, 31.59s/it]\\rInference:  96%|█████████▌| 236/247 [1:42:15<04:26, 24.19s/it]\\rInference:  96%|█████████▌| 237/247 [1:42:47<04:24, 26.47s/it]\\rInference:  96%|█████████▋| 238/247 [1:43:18<04:11, 27.91s/it]\\rInference:  97%|█████████▋| 239/247 [1:43:35<03:17, 24.74s/it]\\rInference:  97%|█████████▋| 240/247 [1:44:07<03:06, 26.71s/it]\\rInference:  98%|█████████▊| 241/247 [1:44:38<02:48, 28.11s/it]\\rInference:  98%|█████████▊| 242/247 [1:45:09<02:25, 29.07s/it]\\rInference:  98%|█████████▊| 243/247 [1:45:41<01:58, 29.74s/it]\\rInference:  99%|█████████▉| 244/247 [1:45:58<01:18, 26.02s/it]\\rInference:  99%|█████████▉| 245/247 [1:46:29<00:55, 27.61s/it]\\rInference: 100%|█████████▉| 246/247 [1:47:00<00:28, 28.67s/it]\\rInference: 100%|██████████| 247/247 [1:47:04<00:00, 21.10s/it]\\rInference: 100%|██████████| 247/247 [1:47:04<00:00, 26.01s/it]\\n2026-05-21 14:22:41,135 INFO Inference done. 267/985 truncated, 0 errors.\\n2026-05-21 14:22:41,136 INFO Inference: 6424.3s (6.52 s/doc)\\n2026-05-21 14:22:41,631 INFO Loaded 37785 training triples (34610 unique facts) for Ign-F1\\n2026-05-21 14:22:41,855 INFO Metrics → /root/autodl-tmp/eval_results/d140_1_7b_sft_s42_with_evi_2048/metrics.json\\n2026-05-21 14:22:42,032 INFO Predictions → /root/autodl-tmp/eval_results/d140_1_7b_sft_s42_with_evi_2048/predictions.json\\n\\n==================================================\\n  F1:          0.4951\\n  Ign-F1:      0.4806\\n  Evi-F1(DREEAM): 0.3941\\n  Evi-F1(TP):     0.8006\\n  EDCR:        0.7175\\n  Format OK:   985/985 (100.0%)\\n  Truncated:   267/985\\n  Predictions: 25534\\n==================================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me compile the analysis. Here are the key metrics:
+
+**with-evi@2048 results:**
+- ign_f1 = 0.4806
+- f1 = 0.4951
+- ign_precision = 0.4759
+- ign_recall = 0.4854
+- precision = 0.5005
+- recall = 0.4897
+- evi_f1 (TP) = 0.8006
+- evi_f1_joint (DREEAM) = 0.3941
+- edcr = 0.7175
+
+
+- format_ok = 985/985 (100%)
+- truncated = 267/985 (27.1%)
+- n_predictions = 25534
+- inference_time = 6424.3s
+
+Comparing the 2048 context window to the 1024 version, I'm seeing a modest improvement in ign_f1 of about 0.96 percentage points, with the truncation rate dropping from 31.9% to 27.1% as expected with the larger context window.
+
+Looking at the evidence tax calculations, I'm computing how much the evidence actually helps by comparing models with and without it. At 2048 tokens, evidence provides an 8.81 percentage point boost, which is slightly better than the 7.28 percentage point improvement at 1024 tokens, suggesting the larger context window allows the model to make better use of the evidence.
+
+The truncation patterns reveal something important: the with-evidence model is actually benefiting from the extra tokens—its truncation rate drops from 31.9% to 27.1% and its F1 score improves by 0.96 points. Meanwhile, the no-evidence model shows almost no improvement with more tokens, with truncation staying flat around 50% and F1 actually declining slightly. This suggests the evidence-augmented approach is fundamentally more efficient at using additional context.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3263bb4-844e-44d3-89a9-59b63b556589",
+  "uuid": "c6335e24-bf39-492a-aacf-a88881c28d21",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0134XcxJkn3RBkJxtT71qUXQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6035,
+      "cache_read_input_tokens": 24967,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6035
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+实验正常完成。汇总分析如下：
+
+---
+
+## D140: 1.7B SFT s42 with-evi @2048 结果分析
+
+### with-evi@2048 全量 Metrics
+
+| Metric | Value |
+|--------|-------|
+| **ign_f1** | **0.4806** |
+| f1 | 0.4951 |
+| ign_precision | 0.4759 |
+| ign_recall | 0.4854 |
+| precision | 0.5005 |
+| recall | 0.4897 |
+| evi_f1 (TP) | 0.8006 |
+| evi_f1_joint (DREEAM) | 0.3941 |
+| edcr | 0.7175 |
+| format_ok | 985/985 (100%) |
+| **truncated** | **267/985 (27.1%)** |
+| n_predictions | 25,534 |
+
+### 与 @1024 对比
+
+| | with-evi@1024 | with-evi@2048 | Delta |
+|--|---------------|---------------|-------|
+| ign_f1 | 0.4710 | 0.4806 | **+0.96pp** |
+| truncated | 314/985 (31.9%) | 267/985 (27.1%) | **-4.8pp** |
+
+with-evi 从更大 token budget 中获益：截断率下降 4.8pp，ign_f1 提升近 1pp。
+
+### Matched Evidence Tax @2048
+
+| | no-evi | with-evi | Tax (no-evi − with-evi) |
+|--|--------|----------|-------------------------|
+| @1024 | 0.3982 | 0.4710 | **-7.28pp** |
+| @2048 | 0.3925 | 0.4806 | **-8.81pp** |
+
+Tax 为负 = evidence 有帮助。@2048 下 evidence benefit 从 7.28pp **扩大到 8.81pp**（+1.53pp）。
+
+### 截断不对称性分析
+
+| | with-evi truncated | no-evi truncated | 差距 |
+|--|-------------------|-----------------|------|
+| @1024 | 31.9% | 50.9% | 19.0pp |
+| @2048 | 27.1% | 50.6% | **23.5pp** |
+
+关键发现：@2048 时 with-evi 截断从 31.9%→27.1%（下降 4.8pp），而 no-evi 几乎不变（50.9%→50.6%）。这解释了 evidence tax 为何扩大——with-evi 能利用额外 token budget，no-evi 不能（其截断是模型生成能力瓶颈，不是 budget 限制）。
+
+### 结论
+
+**Positive result。** 1.7B with-evi@2048 ign_f1=0.4806 显著优于 no-evi@2048 ign_f1=0.3925，evidence tax = -8.81pp。在 matched@2048 条件下，evidence benefit 比 @1024 更大，因为 with-evi 模型实际利用了更多 token budget 而 no-evi 模型没有。这进一步证实了 1.7B 模型中 evidence 的正面作用不是截断差异的 artifact。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3263bb4-844e-44d3-89a9-59b63b556589",
+  "uuid": "b4284dfa-ac21-4111-a786-9b155211041f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0134XcxJkn3RBkJxtT71qUXQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6035,
+      "cache_read_input_tokens": 24967,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6035
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 13_
+
+实验正常完成。汇总分析如下：
+
+---
+
+## D140: 1.7B SFT s42 with-evi @2048 结果分析
+
+### with-evi@2048 全量 Metrics
+
+| Metric | Value |
+|--------|-------|
+| **ign_f1** | **0.4806** |
+| f1 | 0.4951 |
+| ign_precision | 0.4759 |
+| ign_recall | 0.4854 |
+| precision | 0.5005 |
+| recall | 0.4897 |
+| evi_f1 (TP) | 0.8006 |
+| evi_f1_joint (DREEAM) | 0.3941 |
+| edcr | 0.7175 |
+| format_ok | 985/985 (100%) |
+| **truncated** | **267/985 (27.1%)** |
+| n_predictions | 25,534 |
+
+### 与 @1024 对比
+
+| | with-evi@1024 | with-evi@2048 | Delta |
+|--|---------------|---------------|-------|
+| ign_f1 | 0.4710 | 0.4806 | **+0.96pp** |
+| truncated | 314/985 (31.9%) | 267/985 (27.1%) | **-4.8pp** |
+
+with-evi 从更大 token budget 中获益：截断率下降 4.8pp，ign_f1 提升近 1pp。
+
+### Matched Evidence Tax @2048
+
+| | no-evi | with-evi | Tax (no-evi − with-evi) |
+|--|--------|----------|-------------------------|
+| @1024 | 0.3982 | 0.4710 | **-7.28pp** |
+| @2048 | 0.3925 | 0.4806 | **-8.81pp** |
+
+Tax 为负 = evidence 有帮助。@2048 下 evidence benefit 从 7.28pp **扩大到 8.81pp**（+1.53pp）。
+
+### 截断不对称性分析
+
+| | with-evi truncated | no-evi truncated | 差距 |
+|--|-------------------|-----------------|------|
+| @1024 | 31.9% | 50.9% | 19.0pp |
+| @2048 | 27.1% | 50.6% | **23.5pp** |
+
+关键发现：@2048 时 with-evi 截断从 31.9%→27.1%（下降 4.8pp），而 no-evi 几乎不变（50.9%→50.6%）。这解释了 evidence tax 为何扩大——with-evi 能利用额外 token budget，no-evi 不能（其截断是模型生成能力瓶颈，不是 budget 限制）。
+
+### 结论
+
+**Positive result。** 1.7B with-evi@2048 ign_f1=0.4806 显著优于 no-evi@2048 ign_f1=0.3925，evidence tax = -8.81pp。在 matched@2048 条件下，evidence benefit 比 @1024 更大，因为 with-evi 模型实际利用了更多 token budget 而 no-evi 模型没有。这进一步证实了 1.7B 模型中 evidence 的正面作用不是截断差异的 artifact。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 52177,
+  "duration_api_ms": 52290,
+  "num_turns": 4,
+  "stop_reason": "end_turn",
+  "session_id": "e3263bb4-844e-44d3-89a9-59b63b556589",
+  "total_cost_usd": 0.20772875000000002,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 19161,
+    "cache_read_input_tokens": 61325,
+    "output_tokens": 2203,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 19161,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1824,
+        "cache_read_input_tokens": 24967,
+        "cache_creation_input_tokens": 6035,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 6035
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2065,
+      "outputTokens": 28,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002205,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 6,
+      "outputTokens": 2203,
+      "cacheReadInputTokens": 61325,
+      "cacheCreationInputTokens": 19161,
+      "webSearchRequests": 0,
+      "costUSD": 0.20552375,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "c8ee1459-7c32-47cb-80e8-964935917a14"
+}
+```
+
+</details>
+
+---

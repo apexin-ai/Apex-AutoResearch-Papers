@@ -1,0 +1,2374 @@
+# ssh rsft gen progress check
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 81
+- **Recorded user turns:** 0
+- **Tool calls:** 40
+- **Original source:** `logs/chats/worker_ssh_rsft-gen-progress-check_20260515T041544.jsonl`
+- **Structured JSON:** [`442ee0b45afd666dc4ce.json`](../../sessions/44/442ee0b45afd666dc4ce.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+81 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T04:22:33.356435+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T04:22:33.357297+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T04:22:33.357614+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "for i in 0 1 2 3; do f=\"/root/autodl-tmp/rsft_generations_shard_${i}.jsonl\"; if [ -f \"$f\" ]; then echo \"shard_${i}: $(wc -l < $f) docs completed\"; else echo \"shard_${i}: file not found\"; fi; done",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "for i in 0 1 2 3; do f=\"/root/autodl-tmp/rsft_generations_shard_${i}.jsonl\"; if [ -f \"$f\" ]; then echo \"shard_${i}: $(wc -l < $f) docs completed\"; else echo \"shard_${i}: file not found\"; fi; done",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T04:22:33.357831+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T04:22:33.358017+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "for pid in 135867 136270 136649 137985; do if ps -p $pid -o pid=,etime=,pcpu=,rss= 2>/dev/null; then echo \"  (running)\"; else echo \"PID $pid: NOT RUNNING\"; fi; done",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "for pid in 135867 136270 136649 137985; do if ps -p $pid -o pid=,etime=,pcpu=,rss= 2>/dev/null; then echo \"  (running)\"; else echo \"PID $pid: NOT RUNNING\"; fi; done",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T04:22:33.358225+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T04:22:33.358525+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T04:22:33.358698+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 58 %, 17875 MiB, 32607 MiB\\n1, 65 %, 16103 MiB, 32607 MiB\\n2, 58 %, 19351 MiB, 32607 MiB\\n3, 99 %, 19427 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T04:22:33.358861+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "for i in 0 1 2 3; do echo \"=== shard_${i} ===\"; log=\"/root/autodl-tmp/rsft_gen_shard_${i}.log\"; if [ -f \"$log\" ]; then tail -5 \"$log\"; else echo \"no log file\"; fi; done",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "for i in 0 1 2 3; do echo \"=== shard_${i} ===\"; log=\"/root/autodl-tmp/rsft_gen_shard_${i}.log\"; if [ -f \"$log\" ]; then tail -5 \"$log\"; else echo \"no log file\"; fi; done",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T04:22:33.359046+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T04:22:33.359266+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"max_steps\\|num_train_epochs\" /root/autodl-tmp/freige/freige/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"max_steps\\|num_train_epochs\" /root/autodl-tmp/freige/freige/rsft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T04:22:33.359585+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T04:22:33.359778+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "wc -l /root/autodl-tmp/rsft_generations_shard_0.jsonl /root/autodl-tmp/rsft_generations_shard_1.jsonl /root/autodl-tmp/rsft_generations_shard_2.jsonl /root/autodl-tmp/rsft_generations_shard_3.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "wc -l /root/autodl-tmp/rsft_generations_shard_0.jsonl /root/autodl-tmp/rsft_generations_shard_1.jsonl /root/autodl-tmp/rsft_generations_shard_2.jsonl /root/autodl-tmp/rsft_generations_shard_3.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T04:22:33.359916+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"0 total\\n\", \"stderr\": \"wc: /root/autodl-tmp/rsft_generations_shard_0.jsonl: No such file or directory\\nwc: /root/autodl-tmp/rsft_generations_shard_1.jsonl: No such file or directory\\nwc: /root/autodl-tmp/rsft_generations_shard_2.jsonl: No such file or directory\\nwc: /root/autodl-tmp/rsft_generations_shard_3.jsonl: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T04:22:33.360039+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ps -p 135867,136270,136649,137985 -o pid=,etime=,pcpu=,rss=",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ps -p 135867,136270,136649,137985 -o pid=,etime=,pcpu=,rss=",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T04:22:33.360161+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"135867    02:35:29  100 2362252\\n136270    02:34:54  100 2345504\\n136649    02:34:23  100 2355620\\n137985    02:26:18  100 2340732\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T04:22:33.360348+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -5 /root/autodl-tmp/rsft_gen_shard_0.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -5 /root/autodl-tmp/rsft_gen_shard_0.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T04:22:33.360498+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/autodl-tmp/rsft_gen_shard_0.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T04:22:33.360632+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -5 /root/autodl-tmp/rsft_gen_shard_1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -5 /root/autodl-tmp/rsft_gen_shard_1.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T04:22:33.360780+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/autodl-tmp/rsft_gen_shard_1.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T04:22:33.360900+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -5 /root/autodl-tmp/rsft_gen_shard_2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -5 /root/autodl-tmp/rsft_gen_shard_2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T04:22:33.361017+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/autodl-tmp/rsft_gen_shard_2.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T04:22:33.361129+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -5 /root/autodl-tmp/rsft_gen_shard_3.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -5 /root/autodl-tmp/rsft_gen_shard_3.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T04:22:33.361270+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/autodl-tmp/rsft_gen_shard_3.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T04:22:33.361447+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"max_steps\\|num_train_epochs\" /root/autodl-tmp/freige/freige/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -n \"max_steps\\|num_train_epochs\" /root/autodl-tmp/freige/freige/rsft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T04:22:33.361575+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T04:22:33.361738+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp -name \"*rsft*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp -name \"*rsft*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T04:22:33.361870+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/training/__pycache__/rsft_generate.cpython-312.pyc\\n/root/autodl-tmp/freige/training/__pycache__/rsft_score_filter.cpython-312.pyc\\n/root/autodl-tmp/freige/training/__pycache__/rsft_trainer.cpython-312.pyc\\n/root/autodl-tmp/freige/training/rsft_generate.py\\n/root/autodl-tmp/freige/training/rsft_score_filter.py\\n/root/autodl-tmp/freige/training/rsft_trainer.py\\n/root/autodl-tmp/freige/training/rsft_ced_analysis.py\\n/root/autodl-tmp/freige/training/rsft_trainer_patch.py\\n/root/autodl-tmp/scripts/rsft_gen_shard0.sh\\n/root/autodl-tmp/scripts/rsft_gen_shard1.sh\\n/root/autodl-tmp/scripts/rsft_gen_shard2.sh\\n/root/autodl-tmp/scripts/rsft_gen_shard3.sh\\n/root/autodl-tmp/rsft_diversity_diag.py\\n/root/autodl-tmp/rsft_diversity_diag_results.json\\n/root/autodl-tmp/rsft_scored_partial/rsft_scores.jsonl\\n/root/autodl-tmp/rsft_scored_partial/rsft_train.jsonl\\n/root/autodl-tmp/rsft_scored_partial/rsft_report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T04:22:33.362000+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp -name \"*shard*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp -name \"*shard*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T04:22:33.362117+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp -name \"*generation*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp -name \"*generation*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T04:22:33.362252+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /proc/135867/fd/1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls -la /proc/135867/fd/1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T04:22:33.362424+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/training/__pycache__/merge_shards.cpython-312.pyc\\n/root/autodl-tmp/freige/training/merge_shards.py\\n/root/autodl-tmp/scripts/rsft_gen_shard0.sh\\n/root/autodl-tmp/scripts/rsft_gen_shard1.sh\\n/root/autodl-tmp/scripts/rsft_gen_shard2.sh\\n/root/autodl-tmp/scripts/rsft_gen_shard3.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T04:22:33.362552+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/models/Qwen3-4B/generation_config.json\\n/root/autodl-tmp/rsft_generations/generations.jsonl\\n/root/autodl-tmp/rsft_generations/shard_0/generations.jsonl\\n/root/autodl-tmp/rsft_generations/shard_1/generations.jsonl\\n/root/autodl-tmp/rsft_generations/shard_2/generations.jsonl\\n/root/autodl-tmp/rsft_generations/shard_3/generations.jsonl\\n/root/autodl-tmp/rsft_generations/shard_3/generations.jsonl.bak_setA\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T04:22:33.362670+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -rn \"max_steps\" /root/autodl-tmp/freige/freige/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -rn \"max_steps\" /root/autodl-tmp/freige/freige/rsft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T04:22:33.363278+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"l-wx------ 1 root root 64 May 15 12:16 /proc/135867/fd/1 -> /root/autodl-tmp/rsft_generations/shard_0/log.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T04:22:33.364900+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/autodl-tmp/freige/freige/rsft_trainer.py: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T04:22:33.365435+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -rn \"num_train_epochs\" /root/autodl-tmp/freige/freige/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -rn \"num_train_epochs\" /root/autodl-tmp/freige/freige/rsft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T04:22:33.365601+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/autodl-tmp/freige/freige/rsft_trainer.py: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T04:22:33.365769+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "wc -l /root/autodl-tmp/rsft_generations/shard_0/generations.jsonl /root/autodl-tmp/rsft_generations/shard_1/generations.jsonl /root/autodl-tmp/rsft_generations/shard_2/generations.jsonl /root/autodl-tmp/rsft_generations/shard_3/generations.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "wc -l /root/autodl-tmp/rsft_generations/shard_0/generations.jsonl /root/autodl-tmp/rsft_generations/shard_1/generations.jsonl /root/autodl-tmp/rsft_generations/shard_2/generations.jsonl /root/autodl-tmp/rsft_generations/shard_3/generations.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T04:22:33.365908+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     4712 /root/autodl-tmp/rsft_generations/shard_0/generations.jsonl\\n     5088 /root/autodl-tmp/rsft_generations/shard_1/generations.jsonl\\n     5080 /root/autodl-tmp/rsft_generations/shard_2/generations.jsonl\\n     4368 /root/autodl-tmp/rsft_generations/shard_3/generations.jsonl\\n    19248 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T04:22:33.366033+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -5 /root/autodl-tmp/rsft_generations/shard_0/log.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -5 /root/autodl-tmp/rsft_generations/shard_0/log.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T04:22:33.366214+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  format_ok_rate: 99.9%\\n  truncation_rate: 9.0%\\n  mean_diversity: 7.5/8\\n\\n\\rGenerating:  73%|███████▎  | 501/682 [2:13:34<40:09, 13.31s/it]\\rGenerating:  74%|███████▎  | 502/682 [2:13:59<50:27, 16.82s/it]\\rGenerating:  74%|███████▍  | 503/682 [2:14:23<57:07, 19.15s/it]\\rGenerating:  74%|███████▍  | 504/682 [2:14:36<51:12, 17.26s/it]\\rGenerating:  74%|███████▍  | 505/682 [2:14:57<53:44, 18.22s/it]\\rGenerating:  74%|███████▍  | 506/682 [2:15:13<51:24, 17.53s/it]\\rGenerating:  74%|███████▍  | 507/682 [2:15:21<43:22, 14.87s/it]\\rGenerating:  74%|███████▍  | 508/682 [2:15:36<43:19, 14.94s/it]\\rGenerating:  75%|███████▍  | 509/682 [2:16:00<51:02, 17.70s/it]\\rGenerating:  75%|███████▍  | 510/682 [2:16:02<37:13, 12.99s/it]\\rGenerating:  75%|███████▍  | 511/682 [2:16:20<40:53, 14.35s/it]\\rGenerating:  75%|███████▌  | 512/682 [2:16:44<49:05, 17.32s/it]\\rGenerating:  75%|███████▌  | 513/682 [2:17:00<47:33, 16.89s/it]\\rGenerating:  75%|███████▌  | 514/682 [2:17:24<53:25, 19.08s/it]\\rGenerating:  76%|███████▌  | 515/682 [2:17:41<51:18, 18.43s/it]\\rGenerating:  76%|███████▌  | 516/682 [2:17:45<39:09, 14.16s/it]\\rGenerating:  76%|███████▌  | 517/682 [2:18:10<47:48, 17.38s/it]\\rGenerating:  76%|███████▌  | 518/682 [2:18:16<37:39, 13.77s/it]\\rGenerating:  76%|███████▌  | 519/682 [2:18:26<34:44, 12.79s/it]\\rGenerating:  76%|███████▌  | 520/682 [2:18:35<31:43, 11.75s/it]\\rGenerating:  76%|███████▋  | 521/682 [2:18:41<26:41,  9.94s/it]\\rGenerating:  77%|███████▋  | 522/682 [2:18:51<26:11,  9.82s/it]\\rGenerating:  77%|███████▋  | 523/682 [2:19:06<30:17, 11.43s/it]\\rGenerating:  77%|███████▋  | 524/682 [2:19:27<38:06, 14.47s/it]\\rGenerating:  77%|███████▋  | 525/682 [2:19:48<42:54, 16.40s/it]\\rGenerating:  77%|███████▋  | 526/682 [2:19:58<36:57, 14.21s/it]\\rGenerating:  77%|███████▋  | 527/682 [2:20:06<32:20, 12.52s/it]\\rGenerating:  77%|███████▋  | 528/682 [2:20:15<29:35, 11.53s/it]\\rGenerating: 
+…[truncated 3337 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T04:22:33.366418+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -5 /root/autodl-tmp/rsft_generations/shard_1/log.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -5 /root/autodl-tmp/rsft_generations/shard_1/log.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T04:22:33.366589+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  truncation_rate: 10.1%\\n  mean_diversity: 7.4/8\\n  ⚠️ WARNING: truncation_rate above 10%, consider max_new_tokens=3072\\n\\n\\rGenerating:  88%|████████▊ | 601/681 [2:26:44<21:16, 15.95s/it]\\rGenerating:  88%|████████▊ | 602/681 [2:26:53<18:09, 13.79s/it]\\rGenerating:  89%|████████▊ | 603/681 [2:27:07<18:04, 13.91s/it]\\rGenerating:  89%|████████▊ | 604/681 [2:27:14<15:20, 11.96s/it]\\rGenerating:  89%|████████▉ | 605/681 [2:27:38<19:44, 15.58s/it]\\rGenerating:  89%|████████▉ | 606/681 [2:27:58<20:57, 16.77s/it]\\rGenerating:  89%|████████▉ | 607/681 [2:28:38<29:24, 23.84s/it]\\rGenerating:  89%|████████▉ | 608/681 [2:29:17<34:33, 28.41s/it]\\rGenerating:  89%|████████▉ | 609/681 [2:30:16<44:59, 37.49s/it]\\rGenerating:  90%|████████▉ | 610/681 [2:31:15<52:01, 43.96s/it]\\rGenerating:  90%|████████▉ | 611/681 [2:31:59<51:18, 43.98s/it]\\rGenerating:  90%|████████▉ | 612/681 [2:32:26<44:45, 38.92s/it]\\rGenerating:  90%|█████████ | 613/681 [2:32:40<35:46, 31.57s/it]\\rGenerating:  90%|█████████ | 614/681 [2:32:58<30:43, 27.52s/it]\\rGenerating:  90%|█████████ | 615/681 [2:33:02<22:29, 20.45s/it]\\rGenerating:  90%|█████████ | 616/681 [2:33:19<20:59, 19.38s/it]\\rGenerating:  91%|█████████ | 617/681 [2:33:27<16:46, 15.72s/it]\\rGenerating:  91%|█████████ | 618/681 [2:33:28<12:05, 11.51s/it]\\rGenerating:  91%|█████████ | 619/681 [2:33:44<13:18, 12.88s/it]\\rGenerating:  91%|█████████ | 620/681 [2:34:08<16:25, 16.15s/it]\\rGenerating:  91%|█████████ | 621/681 [2:34:19<14:32, 14.54s/it]\\rGenerating:  91%|█████████▏| 622/681 [2:34:42<16:53, 17.18s/it]\\rGenerating:  91%|█████████▏| 623/681 [2:34:57<15:51, 16.40s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T04:22:33.366749+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -5 /root/autodl-tmp/rsft_generations/shard_2/log.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -5 /root/autodl-tmp/rsft_generations/shard_2/log.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T04:22:33.366899+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  format_ok_rate: 100.0%\\n  truncation_rate: 9.2%\\n  mean_diversity: 7.8/8\\n\\n\\rGenerating:  88%|████████▊ | 601/681 [2:26:09<22:46, 17.08s/it]\\rGenerating:  88%|████████▊ | 602/681 [2:26:33<25:05, 19.06s/it]\\rGenerating:  89%|████████▊ | 603/681 [2:26:57<26:35, 20.45s/it]\\rGenerating:  89%|████████▊ | 604/681 [2:27:21<27:56, 21.77s/it]\\rGenerating:  89%|████████▉ | 605/681 [2:27:52<31:04, 24.53s/it]\\rGenerating:  89%|████████▉ | 606/681 [2:28:53<44:04, 35.26s/it]\\rGenerating:  89%|████████▉ | 607/681 [2:29:08<36:11, 29.35s/it]\\rGenerating:  89%|████████▉ | 608/681 [2:30:12<48:14, 39.66s/it]\\rGenerating:  89%|████████▉ | 609/681 [2:31:00<50:24, 42.01s/it]\\rGenerating:  90%|████████▉ | 610/681 [2:31:28<45:00, 38.03s/it]\\rGenerating:  90%|████████▉ | 611/681 [2:32:01<42:20, 36.30s/it]\\rGenerating:  90%|████████▉ | 612/681 [2:32:25<37:39, 32.74s/it]\\rGenerating:  90%|█████████ | 613/681 [2:32:38<30:22, 26.80s/it]\\rGenerating:  90%|█████████ | 614/681 [2:32:59<27:52, 24.96s/it]\\rGenerating:  90%|█████████ | 615/681 [2:33:07<22:09, 20.14s/it]\\rGenerating:  90%|█████████ | 616/681 [2:33:17<18:22, 16.96s/it]\\rGenerating:  91%|█████████ | 617/681 [2:33:39<19:41, 18.47s/it]\\rGenerating:  91%|█████████ | 618/681 [2:33:49<16:52, 16.07s/it]\\rGenerating:  91%|█████████ | 619/681 [2:34:08<17:23, 16.84s/it]\\rGenerating:  91%|█████████ | 620/681 [2:34:32<19:22, 19.05s/it]\\rGenerating:  91%|█████████ | 621/681 [2:34:41<15:50, 15.85s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T04:22:33.367043+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -5 /root/autodl-tmp/rsft_generations/shard_3/log.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -5 /root/autodl-tmp/rsft_generations/shard_3/log.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T04:22:33.367258+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 09:42:31,584 INFO Prepared 3027 documents for generation\\n2026-05-15 09:42:31,608 INFO Slice: [2346:3027] -> 681 documents\\n2026-05-15 09:42:31,608 INFO Resuming: 9 documents already completed\\n2026-05-15 09:42:31,608 INFO Total: 681, completed: 9, pending: 681\\n\\rGenerating:   0%|          | 0/681 [00:00<?, ?it/s]\\rGenerating:   0%|          | 1/681 [00:14<2:49:22, 14.94s/it]\\rGenerating:   0%|          | 2/681 [00:29<2:45:48, 14.65s/it]\\rGenerating:   0%|          | 3/681 [00:49<3:12:03, 17.00s/it]\\rGenerating:   1%|          | 4/681 [01:08<3:23:13, 18.01s/it]\\rGenerating:   1%|          | 5/681 [01:21<3:03:19, 16.27s/it]\\rGenerating:   1%|          | 6/681 [01:48<3:41:21, 19.68s/it]\\rGenerating:   1%|          | 7/681 [02:12<3:56:51, 21.09s/it]\\rGenerating:   1%|          | 8/681 [02:35<4:06:08, 21.94s/it]\\rGenerating:   1%|▏         | 9/681 [02:48<3:32:44, 18.99s/it]\\rGenerating:   1%|▏         | 10/681 [03:12<3:49:51, 20.55s/it]\\rGenerating:   2%|▏         | 11/681 [03:36<4:00:22, 21.53s/it]\\rGenerating:   2%|▏         | 12/681 [04:00<4:08:34, 22.29s/it]\\rGenerating:   2%|▏         | 13/681 [04:23<4:10:43, 22.52s/it]\\rGenerating:   2%|▏         | 14/681 [04:42<4:00:31, 21.64s/it]\\rGenerating:   2%|▏         | 15/681 [05:07<4:09:37, 22.49s/it]\\rGenerating:   2%|▏         | 16/681 [05:26<3:56:55, 21.38s/it]\\rGenerating:   2%|▏         | 17/681 [05:49<4:04:11, 22.07s/it]\\rGenerating:   3%|▎         | 18/681 [05:57<3:15:43, 17.71s/it]\\rGenerating:   3%|▎         | 19/681 [06:10<3:01:21, 16.44s/it]\\rGenerating:   3%|▎         | 20/681 [06:25<2:54:43, 15.86s/it]\\rGenerating:   3%|▎         | 21/681 [06:38<2:46:18, 15.12s/it]\\rGenerating:   3%|▎         | 22/681 [06:57<2:58:23, 16.24s/it]\\rGenerating:   3%|▎         | 23/681 [07:14<3:01:20, 16.54s/it]\\rGenerating:   4%|▎         | 24/681 [07:27<2:46:51, 15.24s/it]\\rGenerating:   4%|▎         | 25/681 [07:38<2:33:10, 14.01s
+…[truncated 173 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T04:22:33.367428+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/scripts/rsft_gen_shard0.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/scripts/rsft_gen_shard0.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T04:22:33.367574+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nsource /root/miniconda3/etc/profile.d/conda.sh\\nconda activate base\\nexport CUDA_VISIBLE_DEVICES=0\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\ncd /root/autodl-tmp\\n\\npython -m freige.training.rsft_generate \\\\\\n  --base_model /root/autodl-tmp/models/Qwen3-4B \\\\\\n  --sft_adapter /root/autodl-tmp/sft_output \\\\\\n  --data_path /root/autodl-tmp/data/docred \\\\\\n  --split train_annotated \\\\\\n  --output_dir /root/autodl-tmp/rsft_data \\\\\\n  --num_generations 8 \\\\\\n  --temperature 0.7 \\\\\\n  --batch_size 1 \\\\\\n  --max_new_tokens 1024 \\\\\\n  --seed 42 \\\\\\n  --shard_id 0 \\\\\\n  --num_shards 4\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T04:22:33.367826+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -rn \"max_steps\" /root/autodl-tmp/freige/training/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -rn \"max_steps\" /root/autodl-tmp/freige/training/rsft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T04:22:33.368016+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"275:    parser.add_argument(\\\"--max_steps\\\", type=int, default=-1,\\n382:        max_steps=args.max_steps,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T04:22:33.368406+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -rn \"num_train_epochs\" /root/autodl-tmp/freige/training/rsft_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "grep -rn \"num_train_epochs\" /root/autodl-tmp/freige/training/rsft_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T04:22:33.368577+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"363:        num_train_epochs=args.num_epochs,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T04:22:33.368935+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /proc/137985/fd/1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls -la /proc/137985/fd/1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T04:22:33.369105+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"l-wx------ 1 root root 64 May 15 12:18 /proc/137985/fd/1 -> /root/runs/faith-evidence-ie/mvp2_rsft_gen_s3.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-15T04:22:33.369470+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /proc/137985/fd/2",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls -la /proc/137985/fd/2",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T04:22:33.369610+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"l-wx------ 1 root root 64 May 15 12:18 /proc/137985/fd/2 -> /root/runs/faith-evidence-ie/mvp2_rsft_gen_s3.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-15T04:22:33.369957+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "wc -c /root/autodl-tmp/rsft_generations/shard_3/log.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "wc -c /root/autodl-tmp/rsft_generations/shard_3/log.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T04:22:33.370227+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3053 /root/autodl-tmp/rsft_generations/shard_3/log.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-15T04:22:33.370529+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -1 /root/autodl-tmp/rsft_generations/shard_3/log.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -1 /root/autodl-tmp/rsft_generations/shard_3/log.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T04:22:33.370815+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rGenerating:   0%|          | 0/681 [00:00<?, ?it/s]\\rGenerating:   0%|          | 1/681 [00:14<2:49:22, 14.94s/it]\\rGenerating:   0%|          | 2/681 [00:29<2:45:48, 14.65s/it]\\rGenerating:   0%|          | 3/681 [00:49<3:12:03, 17.00s/it]\\rGenerating:   1%|          | 4/681 [01:08<3:23:13, 18.01s/it]\\rGenerating:   1%|          | 5/681 [01:21<3:03:19, 16.27s/it]\\rGenerating:   1%|          | 6/681 [01:48<3:41:21, 19.68s/it]\\rGenerating:   1%|          | 7/681 [02:12<3:56:51, 21.09s/it]\\rGenerating:   1%|          | 8/681 [02:35<4:06:08, 21.94s/it]\\rGenerating:   1%|▏         | 9/681 [02:48<3:32:44, 18.99s/it]\\rGenerating:   1%|▏         | 10/681 [03:12<3:49:51, 20.55s/it]\\rGenerating:   2%|▏         | 11/681 [03:36<4:00:22, 21.53s/it]\\rGenerating:   2%|▏         | 12/681 [04:00<4:08:34, 22.29s/it]\\rGenerating:   2%|▏         | 13/681 [04:23<4:10:43, 22.52s/it]\\rGenerating:   2%|▏         | 14/681 [04:42<4:00:31, 21.64s/it]\\rGenerating:   2%|▏         | 15/681 [05:07<4:09:37, 22.49s/it]\\rGenerating:   2%|▏         | 16/681 [05:26<3:56:55, 21.38s/it]\\rGenerating:   2%|▏         | 17/681 [05:49<4:04:11, 22.07s/it]\\rGenerating:   3%|▎         | 18/681 [05:57<3:15:43, 17.71s/it]\\rGenerating:   3%|▎         | 19/681 [06:10<3:01:21, 16.44s/it]\\rGenerating:   3%|▎         | 20/681 [06:25<2:54:43, 15.86s/it]\\rGenerating:   3%|▎         | 21/681 [06:38<2:46:18, 15.12s/it]\\rGenerating:   3%|▎         | 22/681 [06:57<2:58:23, 16.24s/it]\\rGenerating:   3%|▎         | 23/681 [07:14<3:01:20, 16.54s/it]\\rGenerating:   4%|▎         | 24/681 [07:27<2:46:51, 15.24s/it]\\rGenerating:   4%|▎         | 25/681 [07:38<2:33:10, 14.01s/it]\\rGenerating:   4%|▍         | 26/681 [08:02<3:05:35, 17.00s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-15T04:22:33.370998+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "head -10 /root/autodl-tmp/rsft_generations/shard_3/log.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "head -10 /root/autodl-tmp/rsft_generations/shard_3/log.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T04:22:33.371144+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 09:42:24,413 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-15 09:42:24,733 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-15 09:42:24,996 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.16it/s]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.17it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.72it/s]\\n2026-05-15 09:42:26,769 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output\\n2026-05-15 09:42:30,466 INFO Loaded 3053 documents from /root/autodl-tmp/data/docred/train_annotated.json\\n2026-05-15 09:42:30,994 INFO Processed 38180 relation samples from 3053 documents (17312 samples without hard negatives)\\n2026-05-15 09:42:31,584 INFO Prepared 3027 documents for generation\\n2026-05-15 09:42:31,608 INFO Slice: [2346:3027] -> 681 documents\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-15T04:22:33.372270+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /proc/135867/fd/1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls -la /proc/135867/fd/1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T04:22:33.372502+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"l-wx------ 1 root root 64 May 15 12:16 /proc/135867/fd/1 -> /root/autodl-tmp/rsft_generations/shard_0/log.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-15T04:22:33.372662+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /proc/136270/fd/1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls -la /proc/136270/fd/1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-15T04:22:33.372984+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"l-wx------ 1 root root 64 May 15 12:18 /proc/136270/fd/1 -> /root/autodl-tmp/rsft_generations/shard_1/log.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-15T04:22:33.373133+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /proc/136649/fd/1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls -la /proc/136649/fd/1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-15T04:22:33.373295+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"l-wx------ 1 root root 64 May 15 12:18 /proc/136649/fd/1 -> /root/autodl-tmp/rsft_generations/shard_2/log.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-15T04:22:33.373432+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -5 /root/runs/faith-evidence-ie/mvp2_rsft_gen_s3.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -5 /root/runs/faith-evidence-ie/mvp2_rsft_gen_s3.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-15T04:22:33.374098+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  format_ok_rate: 99.6%\\n  truncation_rate: 9.2%\\n  mean_diversity: 7.5/8\\n\\n\\rGenerating:  76%|███████▋  | 501/657 [2:12:21<43:34, 16.76s/it]\\rGenerating:  76%|███████▋  | 502/657 [2:12:35<41:37, 16.11s/it]\\rGenerating:  77%|███████▋  | 503/657 [2:13:02<49:10, 19.16s/it]\\rGenerating:  77%|███████▋  | 504/657 [2:13:28<54:02, 21.19s/it]\\rGenerating:  77%|███████▋  | 505/657 [2:13:39<46:07, 18.21s/it]\\rGenerating:  77%|███████▋  | 506/657 [2:14:04<51:19, 20.39s/it]\\rGenerating:  77%|███████▋  | 507/657 [2:14:16<44:31, 17.81s/it]\\rGenerating:  77%|███████▋  | 508/657 [2:14:42<50:15, 20.24s/it]\\rGenerating:  77%|███████▋  | 509/657 [2:14:57<45:47, 18.56s/it]\\rGenerating:  78%|███████▊  | 510/657 [2:15:22<50:42, 20.70s/it]\\rGenerating:  78%|███████▊  | 511/657 [2:15:28<39:22, 16.18s/it]\\rGenerating:  78%|███████▊  | 512/657 [2:15:51<44:11, 18.29s/it]\\rGenerating:  78%|███████▊  | 513/657 [2:16:17<49:19, 20.55s/it]\\rGenerating:  78%|███████▊  | 514/657 [2:16:23<38:44, 16.26s/it]\\rGenerating:  78%|███████▊  | 515/657 [2:16:49<45:03, 19.04s/it]\\rGenerating:  79%|███████▊  | 516/657 [2:16:50<32:24, 13.79s/it]\\rGenerating:  79%|███████▊  | 517/657 [2:17:16<40:18, 17.27s/it]\\rGenerating:  79%|███████▉  | 518/657 [2:17:40<44:50, 19.36s/it]\\rGenerating:  79%|███████▉  | 519/657 [2:17:52<39:41, 17.26s/it]\\rGenerating:  79%|███████▉  | 520/657 [2:18:03<35:01, 15.34s/it]\\rGenerating:  79%|███████▉  | 521/657 [2:18:28<41:16, 18.21s/it]\\rGenerating:  79%|███████▉  | 522/657 [2:18:37<34:47, 15.46s/it]\\rGenerating:  80%|███████▉  | 523/657 [2:19:01<40:26, 18.11s/it]\\rGenerating:  80%|███████▉  | 524/657 [2:19:35<50:43, 22.88s/it]\\rGenerating:  80%|███████▉  | 525/657 [2:19:55<48:05, 21.86s/it]\\rGenerating:  80%|████████  | 526/657 [2:20:25<53:02, 24.29s/it]\\rGenerating:  80%|████████  | 527/657 [2:21:00<59:28, 27.45s/it]\\rGenerating:  80%|████████  | 528/657 [2:21:26<58:04, 27.01s/it]\\rGenerating: 
+…[truncated 1417 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-15T04:22:33.374391+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-15T04:22:33.374532+00:00_
+
+Error executing tool read_project_file: 1 validation error for read_project_fileArguments
+project
+  Field required [type=missing, input_value={'file': 'memory.md'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-15T04:22:33.374745+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-15T04:22:33.374901+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-15T04:22:33.375094+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-15T04:22:33.375400+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"content\": \"# 文献调研：GRPO/RLHF 训练中的\\\"先遗忘后恢复\\\"现象\\n\\n日期：2026-05-14\\n\\n## 背景\\n\\nQwen3-4B + GRPO + QLoRA 4-bit 训练文档级关系抽取，观察到：\\n- Reward 上升但 eval rel_F1 崩塌（ckpt-20: 0.0077 vs SFT baseline 0.406）\\n- lr=5e-5 和 lr=5e-6 下都出现\\n- 存在\\\"先遗忘后缓慢恢复\\\"的 U 型曲线（step-10=0.003 → step-90=0.211），但恢复不足\\n\\n---\\n\\n## 论文 1：Mitigating the Alignment Tax of RLHF\\n\\n- **作者**：Yifei Lin, Yuxin Tan, et al.\\n- **年份/Venue**：2024, EMNLP 2024\\n- **arXiv**：2309.06256\\n\\n### 核心发现\\n- 定义了\\\"alignment tax\\\"：RLHF 对齐后模型遗忘预训练/SFT 阶段习得能力的现象\\n- 发现简单的**模型参数平均**（插值 SFT 和 RLHF 后模型权重）在 alignment-forgetting Pareto 前沿上表现最优\\n- 提出 **Heterogeneous Model Averaging (HMA)**：对不同层使用不同插值比例，最大化对齐收益同时最小化遗忘\\n\\n### 与我们场景的相关性\\n- **直接相关**。我们的 rel_F1 崩塌就是 alignment tax 的典型表现——GRPO 优化 reward 的过程中覆盖了 SFT 学到的抽取能力\\n- HMA 的层级插值思路可直接应用于 QLoRA adapter 权重\\n\\n### 推荐缓解方案\\n- 训练后对 SFT checkpoint 和 GRPO checkpoint 做权重插值（α=0.3~0.7）\\n- 或用 HMA 对不同 LoRA 层设置不同插值系数\\n\\n---\\n\\n## 论文 2：Online Merging Optimizers for Boosting Rewards and Mitigating Tax in Alignment\\n\\n- **作者**：Lu et al. (Qwen 团队)\\n- **年份/Venue**：2024, arXiv 2405.17931\\n- **开源**：github.com/QwenLM/online_merging_optimizers\\n\\n### 核心发现\\n- 在 RLHF 每个优化步骤中实时合并 RL policy 和 SFT 模型参数，持续调节训练方向\\n- 将梯度与 SFT-pretrained 参数差合并，引导梯度朝着\\\"在 SFT 优化方向上最大化 reward\\\"的方向前进\\n- 在 Qwen 和 LLaMA 系列（1.8B-8B）、DPO/KTO 等多种 RLHF 算法上验证有效\\n- 14 个 benchmark 上同时提升对齐 reward 并降低 alignment tax\\n\\n### 与我们场景的相关性\\n- **高度相关**。该方法正是为解决我们观察到的问题设计的——reward 上升但能力退化\\n- 来自 Qwen 团队，与我们使用的 Qwen3-4B 模型同源，兼容性好\\n- 在训练过程中在线缓解，而非事后补救\\n\\n### 推荐缓解方案\\n- 在 GRPO 训练中集成 Online Merging Optimizer，每步将 LoRA 更新方向锚定在 SFT 附近\\n\\n---\\n\\n## 论文 3：Robust Policy Optimization to Prevent Catastrophic Forgetting (FRPO)\\n\\n- **作者**：Sabbaghi, Hassani, Javanmard et al.\\n- **年份/Venue**：2025, arXiv 2602.08813\\n\\n### 核心发现\\n- 指出即使小幅下游更新也会破坏 RLHF 学到的行为（如安全性），暴露 cata
+…[truncated 10071 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-15T04:22:33.375676+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+````json
+{
+  "project": "faith-evidence-ie",
+  "file": "memory.md",
+  "content": "# 文献调研：GRPO/RLHF 训练中的\"先遗忘后恢复\"现象\n\n日期：2026-05-14\n\n## 背景\n\nQwen3-4B + GRPO + QLoRA 4-bit 训练文档级关系抽取，观察到：\n- Reward 上升但 eval rel_F1 崩塌（ckpt-20: 0.0077 vs SFT baseline 0.406）\n- lr=5e-5 和 lr=5e-6 下都出现\n- 存在\"先遗忘后缓慢恢复\"的 U 型曲线（step-10=0.003 → step-90=0.211），但恢复不足\n\n---\n\n## 论文 1：Mitigating the Alignment Tax of RLHF\n\n- **作者**：Yifei Lin, Yuxin Tan, et al.\n- **年份/Venue**：2024, EMNLP 2024\n- **arXiv**：2309.06256\n\n### 核心发现\n- 定义了\"alignment tax\"：RLHF 对齐后模型遗忘预训练/SFT 阶段习得能力的现象\n- 发现简单的**模型参数平均**（插值 SFT 和 RLHF 后模型权重）在 alignment-forgetting Pareto 前沿上表现最优\n- 提出 **Heterogeneous Model Averaging (HMA)**：对不同层使用不同插值比例，最大化对齐收益同时最小化遗忘\n\n### 与我们场景的相关性\n- **直接相关**。我们的 rel_F1 崩塌就是 alignment tax 的典型表现——GRPO 优化 reward 的过程中覆盖了 SFT 学到的抽取能力\n- HMA 的层级插值思路可直接应用于 QLoRA adapter 权重\n\n### 推荐缓解方案\n- 训练后对 SFT checkpoint 和 GRPO checkpoint 做权重插值（α=0.3~0.7）\n- 或用 HMA 对不同 LoRA 层设置不同插值系数\n\n---\n\n## 论文 2：Online Merging Optimizers for Boosting Rewards and Mitigating Tax in Alignment\n\n- **作者**：Lu et al. (Qwen 团队)\n- **年份/Venue**：2024, arXiv 2405.17931\n- **开源**：github.com/QwenLM/online_merging_optimizers\n\n### 核心发现\n- 在 RLHF 每个优化步骤中实时合并 RL policy 和 SFT 模型参数，持续调节训练方向\n- 将梯度与 SFT-pretrained 参数差合并，引导梯度朝着\"在 SFT 优化方向上最大化 reward\"的方向前进\n- 在 Qwen 和 LLaMA 系列（1.8B-8B）、DPO/KTO 等多种 RLHF 算法上验证有效\n- 14 个 benchmark 上同时提升对齐 reward 并降低 alignment tax\n\n### 与我们场景的相关性\n- **高度相关**。该方法正是为解决我们观察到的问题设计的——reward 上升但能力退化\n- 来自 Qwen 团队，与我们使用的 Qwen3-4B 模型同源，兼容性好\n- 在训练过程中在线缓解，而非事后补救\n\n### 推荐缓解方案\n- 在 GRPO 训练中集成 Online Merging Optimizer，每步将 LoRA 更新方向锚定在 SFT 附近\n\n---\n\n## 论文 3：Robust Policy Optimization to Prevent Catastrophic Forgetting (FRPO)\n\n- **作者**：Sabbaghi, Hassani, Javanmard et al.\n- **年份/Venue**：2025, arXiv 2602.08813\n\n### 核心发现\n- 指出即使小幅下游更新也会破坏 RLHF 学到的行为（如安全性），暴露 catastrophic forgetting 的脆弱性\n- 提出 FRPO：优化 reward 时不仅考虑当前策略，还考虑 KL 邻域内所有可达策略的表现\n- 等价于 entropic risk objective——强调低 reward 轨迹，抑制高 reward 方差的策略\n- 通过修改 GRPO 实现，**无额外计算开销**\n\n### 与我们场景的相关性\n- **直接可用**。FRPO 本身就是 GRPO 的改进版本，直接替换即可\n- 解决的核心问题是\"GRPO 找到的高 reward 解是脆弱的\"——与我们观察到的 reward↑但 eval↓一致\n- 表明我们的模型可能找到了一个 reward hacking 式的局部最优\n\n### 推荐缓解方案\n- 将 GRPO 替换为 FRPO（修改 advantage 计算，加入 entropic risk 项）\n\n---\n\n## 论文 4：RL-Struct — Lightweight RL Framework for Structured Output\n\n- **作者**：arXiv 2512.00319\n- **年份/Venue**：2025, arXiv\n\n### 核心发现\n- 针对 JSON 等结构化输出 + RL 训练的特殊挑战\n- 提出**分层 reward 函数**：将结构化输出任务分解为 structure integrity → format correctness → content accuracy → validity 的层级约束\n- 使用 GRPO 优化，消除 critic network，降低 38% 峰值 VRAM\n- 4B 模型上 1000 个样本即可达到 80%+ 结构准确率，性能媲美 7B 模型\n\n### 与我们场景的相关性\n- **高度相关**。我们的任务要求模型输出 JSON 格式的关系抽取结果，这正是\"结构化输出 + RL\"的组合\n- 单一 reward 信号（F1）可能让模型在格式和内容之间混淆——分层 reward 可缓解\n- 当前 reward 可能过度奖励格式正确但内容错误的输出（reward hacking 的一种形式）\n\n### 推荐缓解方案\n- 将 reward 分解为：格式合规 reward + 实体正确性 reward + 关系正确性 reward\n- 分层加权，先保证格式，再优化内容\n\n---\n\n## 论文 5：GRPO++ / GRPO Instability with LoRA\n\n- **来源**：多篇论文和实践报告的综合\n  - Cameron Wolfe, \"GRPO++: Tricks for Making RL Actually Work\", 2025\n  - HuggingFace blog, \"Engineering Handbook for GRPO + LoRA with Verl\"\n  - arXiv 2504.20834, \"RL for LLM Reasoning Under Memory Constraints\"\n\n### 核心发现\n- **GRPO + LoRA 组合存在已知的不稳定性**：仅更新少量参数时，GRPO 的 group-relative advantage 估计方差增大\n- Full-token GRPO baseline 在 LoRA fine-tuning 下\"未能提升模型性能\"，表明 GRPO 对参数更新子集很敏感\n- KL 系数默认 β=0.0（TRL 默认），DeepSeek-R1 使用 β=0.001——过小的 KL 惩罚允许策略大幅偏离 SFT\n- 实践建议：\n  - 增大 KL 系数（β=0.01~0.1）\n  - 使用更大的 group size（G=16~64）降低 advantage 估计方差\n  - 降低学习率（LoRA + RL 场景建议 1e-6 量级）\n  - 考虑 Stochastic-GRPO 或 Token-Specific 优化变体\n\n### 与我们场景的相关性\n- **完全匹配**。我们正是 GRPO + QLoRA 4-bit，且 KL 系数仅 0.001\n- 低 KL + 低秩更新 = 策略快速偏离 SFT → 遗忘\n- 这是已知问题，不是偶发现象\n\n### 推荐缓解方案\n- 增大 KL 系数至 0.01~0.05\n- 增大 LoRA rank（r=4 可能太小，建议 r=16~32）\n- 增大 group size 降低 advantage 估计噪声\n\n---\n\n## 综合分析\n\n### \"先崩后恢复\" U 型曲线的最可能解释\n\n我们观察到的现象是 **三个因素叠加** 的结果：\n\n1. **Alignment Tax（核心原因）**：GRPO 梯度覆盖了 SFT 学到的关系抽取能力参数。由于 QLoRA 仅更新极少参数（rank=4），这些参数同时承载 SFT 能力和 RL 优化目标，冲突尤其剧烈。\n\n2. **KL 约束过弱 + LoRA 低秩放大不稳定性**：β=0.001 的 KL 惩罚几乎不约束策略偏离。在 LoRA 低秩空间中，微小的参数变化会导致输出分布剧烈变化，加速遗忘。\n\n3. **Reward Proxy Mismatch**：训练 reward 上升但 eval F1 下降，符合经典的 reward hacking 模式。模型可能学会了生成\"看起来合理\"但实际关系错误的输出——例如格式正确但实体/关系随机配对。\n\n**U 型恢复的解释**：训练初期策略大幅偏离导致崩塌；随着训练继续，模型在新的策略空间中重新\"发现\"部分抽取模式，但由于 LoRA 容量有限且 reward 信号有噪声，恢复不完全。\n\n### 最值得尝试的 2 个缓解方案\n\n**方案 A：增强 KL 正则化 + 扩大 LoRA 容量（低成本，优先尝试）**\n- KL 系数从 0.001 → 0.04\n- LoRA rank 从 r=4 → r=16\n- 学习率降至 1e-6\n- 预期效果：抑制训练初期的剧烈偏离，避免崩塌\n\n**方案 B：分层 Reward 设计（中等成本，针对 reward hacking）**\n- 将单一 reward 分解为：format_reward（JSON 格式合规）+ entity_reward（实体正确）+ relation_reward（关系正确）\n- 加权组合，format 权重最低（仅作 gate），relation 权重最高\n- 预期效果：消除模型通过格式取巧获得高 reward 的捷径\n\n**备选方案 C（如 A/B 不够）：Online Merging Optimizer**\n- 来自 Qwen 团队，在每个训练步骤将 LoRA 更新方向锚定在 SFT 方向\n- 实现复杂度中等，但效果在多个 Qwen 模型上验证过\n\n---\n\n## D031 Pivot: GRPO+QLoRA → RSFT + CED (2026-05-15)\n\n### 决策\nGRPO+QLoRA 方向判死，pivot 到 Rejection Sampling Fine-Tuning (RSFT) + CED scoring。\n\n### 核心证据\n- lr=5e-5 (ced_kl001_r4): best eval rel_f1=0.211 (step-90)，仅 SFT baseline (0.406) 的 52%\n- lr=5e-6 (lr5e6_r1): ckpt-20 rel_f1=0.0077, ckpt-40 rel_f1=0.0071 — 零恢复，完全平坦\n- evi_f1 从 0.628 (ckpt-20) 上升到 0.758 (ckpt-40) — CED reward 确实在学证据抽取\n- 但 relation extraction 完全崩塌，训练 reward 与 eval F1 严重脱节\n- 所有 3 种 reward type (CED/extract-only/flat-NLI) 在 GRPO+QLoRA 下均 collapse 或远低于 SFT\n\n### 根因判断\n不是超参问题，是 GRPO+QLoRA 在结构化生成任务上的根本性局限：\n- QLoRA 低秩空间无法同时维持 SFT 能力和 RL 目标\n- 在线 RL 的策略偏移在前 20 步即不可逆地破坏关系抽取能力\n\n### RSFT 方案\n1. SFT 模型对每个训练样本生成 N=8 输出 (temperature=0.7)\n2. CED reward 打分筛选正样本\n3. 在正样本上 SFT fine-tune\n优势：完全避免在线 RL，CED signal 已在 MVP-1 验证有效 (margin=0.48, accuracy=81.5%)\n\n### RSFT 技术约束\n- **--quantize (4-bit) + merge_and_unload 在 RTX 5090 上有 CUBLAS 错误**，RSFT 训练不要用 quantize。bf16 Qwen3-4B 仅 ~8GB，无需量化。\n- 运行目录必须是 `/root/autodl-tmp/`（freige 不是 pip install 的包，cd 到 freige/ 子目录会导致 import 找到内层空包）\n\n### 遗留 GRPO 实验（sunk cost，完成轨迹数据）\n- cuda:0 训练跑完 200 步\n- cuda:1/2/3 完成剩余 checkpoint eval (ckpt-60/80) + SFT baseline\n\n---\n\n## 轨迹对比分析 (lr5e6 vs kl001_r4)\n\n日期：2026-05-15\n\n### 关键定量发现\n\n**lr5e6 的 f1_reward 在 80 步内无学习趋势**：0.000-0.042 极窄区间内随机波动，是 batch_size=1 采样噪声而非学习信号。kl001_r4 同期也经历低位波动，但 step 40 出现明确上升拐点——lr5e6 到 step 80 仍未出现。\n\n**lr5e6 正在学 format hacking**：step 200 预测 total_reward ~0.65-0.70，其中 88%+ 来自 format_reward（0.138→0.249 稳步上升）。F1/CED reward 几乎无贡献。kl001_r4 的 format 仅占 25%。\n\n**KL 基线反映学习速率**：lr5e6 典型 KL=0.006-0.012（policy 几乎未变），kl001_r4 KL=0.098-0.181（15-20x 高，符合 10x LR 差距）。lr5e6 的 step 65 KL=10.3 spike 是偶发事件，5 步内恢复。\n\n**最优 LR 在 1e-5 到 2e-5 之间**：5e-5 学得快但遗忘严重（max eval F1=0.211=SFT 52%），5e-6 不遗忘但不学习。\n\n### 决策性结论\n\n- **ckpt-40 eval 已确认**：rel_f1=0.0071 < 0.05，lr=5e-6 判定失败\n- **submit_on_allocated 失败根因**：`cd /root/autodl-tmp/freige` 导致 Python path 找到内层空 freige/freige/ 包。修复：`cd /root/autodl-tmp`。后续 eval 均应用修正后的脚本\n\n### step-100 训练拐点 (W&B 分析)\n- f1_reward 在 step 100 出现拐点 (0.016→0.093, 5.8x)\n- f1 + ced 同步上升，可能是真实学习信号而非 format hacking\n- 但训练 reward 与 eval F1 的脱节已在 ckpt-20/40 证实\n- ckpt-100 eval 是验证拐点真伪的决定性实验（判定线：eval F1 > 0.15 = 真，< 0.05 = hacking）\n\n---\n\n## RSFT 代码就绪状态验证 (2026-05-14)\n\n### 文件清单\n\n| 文件 | 行数 | 功能 | dry-run |\n|------|------|------|---------|\n| `training/rsft_generate.py` | 296 | Step 1: SFT 模型批量生成 N 个候选输出 | `--help` ✓ |\n| `training/rsft_score_filter.py` | 464 | Step 2: CED 打分 + 筛选高质量样本 | `--help` ✓ |\n| `training/rsft_trainer.py` | 252 | Step 3: 在筛选数据上 SFT 训练 | `--help` ✓ |\n\n### 参数总览\n\n**rsft_generate.py:**\n- `--base_model` (默认: 代码内硬编码)\n- `--sft_adapter` (默认: 代码内硬编码)\n- `--data_path` (DocRED 数据目录)\n- `--split` (默认: train)\n- `--output_dir` (生成结果目录)\n- `--num_generations` (默认: 8)\n- `--temperature` (默认: 0.7)\n- `--batch_size` (默认: 2)\n- `--max_new_tokens` (默认: 1024)\n- `--seed` (默认: 42)\n- `--quantize/--no-quantize` (默认: ~~True~~ → **已修为 False**, 2026-05-15 rsft-format-fix Worker)\n- `--start_idx`, `--end_idx`, `--shard_id` (2026-05-15 rsft-parallel-support Worker 新增)\n\n**rsft_score_filter.py:**\n- `--input_dir` (required, generations.jsonl 所在目录)\n- `--output_path` (required, 输出目录)\n- `--nli_model_path` (默认: cross-encoder/nli-deberta-v3-base)\n- `--nli_device` (默认: auto)\n- `--tau` (默认: 0.5)\n- `--format_threshold` (默认: 0.5)\n- `--f1_threshold` (默认: 0.0)\n- `--ced_threshold` (默认: 0.0)\n- `--selection_strategy` (默认: top_pct, 可选: threshold/top_k/top_pct)\n- `--top_k` (默认: 2)\n- `--top_pct` (默认: 25)\n\n**rsft_trainer.py:**\n- `--base_model` (默认: /root/autodl-tmp/models/Qwen3-4B)\n- `--sft_adapter` (默认: /root/autodl-tmp/sft_output)\n- `--rsft_data_path` (required, JSONL)\n- `--output_dir` (required)\n- `--learning_rate`, `--num_epochs`, `--per_device_batch_size`, `--gradient_accumulation_steps`\n- `--warmup_steps`, `--save_steps`, `--save_total_limit`, `--max_length`, `--seed`\n- `--wandb_project`, `--wandb_run_name`\n- `--weighted_sampling` (store_true, CED score 加权采样)\n- `--quantize` (store_true, 默认 False ← 正确)\n- `--lora_rank` (默认 64), `--lora_alpha` (默认 128), `--lora_dropout` (默认 0.05)\n- `--bf16` (默认 True)\n- `--deepspeed` (可选配置文件)\n\n### 依赖验证\n\n| 依赖项 | 状态 |\n|--------|------|\n| `freige.rewards.ced_reward.CEDRewardModel` | ✓ import 正常 |\n| `freige.rewards.ced_reward.verbalize_triple` | ✓ import 正常 |\n| `freige.eval.evaluator.parse_model_output` | ✓ import 正常 |\n| `freige.data.docred_processor.DocREDProcessor` | ✓ import 正常 |\n| `freige.training.sft_trainer.SYSTEM_PROMPT` | ✓ import 正常 |\n| `/root/autodl-tmp/models/Qwen3-4B` | ✓ 存在 |\n| `/root/autodl-tmp/sft_output` (adapter) | ✓ 存在 (adapter_config.json + adapter_model.safetensors) |\n| NLI 模型 (nli-deberta-v3-base) | ✓ 已下载到 `/root/autodl-tmp/.hf_cache` (2026-05-15 nli-download Worker) |\n\n### ~~发现的问题（需修复）~~ → 已全部解决 (2026-05-15)\n\n**~~CRITICAL 1~~** ✅ rsft_generate.py `--quantize` 默认值已修为 False (rsft-format-fix Worker)\n\n**~~CRITICAL 2~~** ✅ score_filter → trainer 格式兼容性验证通过——当前代码中 score_filter **已经**输出 JSONL (`rsft_train.jsonl`) 且字段名与 trainer 一致 (`input`, `output`, `ced_score`)。memory.md 中原始记录的 JSON array + messages/scores 格式问题**在当前代码版本中不存在**。(rsft-format-fix Worker, 2026-05-15)\n\n**~~MODERATE~~** ✅ NLI 模型已下载到 `/root/autodl-tmp/.hf_cache` (nli-download Worker, 2026-05-15)\n\n### 字段名映射表 (rsft-format-fix Worker 验证, 2026-05-15)\n\n| 字段 | generate 输出 | score_filter 输出 | trainer 期望 |\n|------|-------------|-----------------|------------|\n| 用户输入 | `prompt`（完整 chat template） | `input`（从 prompt 提取 user 内容） | `s[\"input\"]` |\n| 模型输出 | `output` | `output` | `s[\"output\"]` |\n| CED 分数 | — | `ced_score`（取自 `ced_reward`） | `s.get(\"ced_score\", 1.0)` |\n| 文档 ID | `doc_id` | `doc_id` | — |\n\n---\n\n## Qwen3 generation_config 覆盖陷阱 (2026-05-15)\n\nQwen3 模型自带 `generation_config.json` 会静默覆盖代码传参：\n- `model.generation_config.top_k = 20`（限制采样池）\n- `model.generation_config.temperature = 0.6`（覆盖代码传的任何温度值）\n\n**必须在生成前显式覆盖**：\n```python\nmodel.generation_config.temperature = target_temp\nmodel.generation_config.top_k = 0  # 禁用 top_k 限制\nmodel.generation_config.do_sample = True\n```\n\n不覆盖会导致：实际采样温度 ≠ 代码设置温度，diversity 数据不可信。\n\n---\n\n## Diversity 监控计算 bug (2026-05-15)\n\n### 现象\n监控报 mean_diversity=1.0/8，实际独立验证 diversity=7.11/8。\n\n### 根因\n- triple-set 归一化逻辑不一致（大小写、空格、字段缺失未统一处理）\n- diversity 分母用 `args.num_generations`（配置值 8）而非 `len(generations)`（实际生成数），两者不一致时计算错误\n\n### 修复\n- 提取 `diversity_metrics.py` 独立模块：`normalize_triple_key()` + `build_triple_set()` + `compute_doc_diversity()`\n- 分母改用实际生成数\n- 新增端到端 cross-check：生成完成后从 JSONL 文件重新计算 diversity 并与运行时监控值比对\n- 20 个单元测试覆盖归一化、去重、边界情况\n- 修复后真实数据验证：302 docs mean_diversity=7.52/8, median=8.0/8\n\n---\n\n## RSFT 生成进度快照 (2026-05-15 ~14:50 UTC+8)\n\n4 个 shard 并行生成 N=8 候选输出，Qwen3-4B + SFT adapter, temperature=0.7。\n\n### 各 shard 进度\n\n| Shard | PID | GPU | 进度 | 完成率 | 运行时间 | 速率 (docs/min) | 剩余预估 |\n|-------|--------|-----|------|--------|----------|----------------|---------|\n| 0 | 135867 | cuda:0 | 577/682 | 84.6% | 2h35m | 3.7 | ~28 min |\n| 1 | 136270 | cuda:1 | 623/681 | 91.5% | 2h35m | 4.0 | ~14 min |\n| 2 | 136649 | cuda:2 | 621/681 | 91.2% | 2h34m | 4.0 | ~15 min |\n| 3 | 137985 | cuda:3 | 548/657 | 83.4% | 2h26m | 3.75 | ~29 min |\n\n**总计**: ~2369/2701 docs (87.7%), 预计全部完成 ~15:20\n\n### JSONL 输出行数\n\n| Shard | 行数 | 估算 docs (÷8) |\n|-------|------|----------------|\n| 0 | 4,712 | ~589 |\n| 1 | 5,088 | ~636 |\n| 2 | 5,080 | ~635 |\n| 3 | 4,368 | ~546 |\n| **合计** | **19,248** | **~2,406** |\n\n### 质量指标\n\n| Shard | format_ok_rate | truncation_rate | mean_diversity |\n|-------|---------------|-----------------|----------------|\n| 0 | 99.9% | 9.0% | 7.5/8 |\n| 1 | — | 10.1% ⚠️ | 7.4/8 |\n| 2 | 100.0% | 9.2% | 7.8/8 |\n| 3 | 99.6% | 9.2% | 7.5/8 |\n\n⚠️ Shard 1 truncation_rate=10.1% 超过 10% 阈值，日志建议 max_new_tokens=3072。当前 max_new_tokens=1024。\n\n### GPU 利用率\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|---------|\n| 0 | 58% | 17,875 / 32,607 MiB |\n| 1 | 65% | 16,103 / 32,607 MiB |\n| 2 | 58% | 19,351 / 32,607 MiB |\n| 3 | 99% | 19,427 / 32,607 MiB |\n\n### 日志路径\n\n- shard 0-2: `/root/autodl-tmp/rsft_generations/shard_{0,1,2}/log.txt`\n- shard 3: `/root/runs/faith-evidence-ie/mvp2_rsft_gen_s3.log`（不同路径，注意）\n- 输出: `/root/autodl-tmp/rsft_generations/shard_{0,1,2,3}/generations.jsonl`\n\n### rsft_trainer.py max_steps 状态\n\n文件位置: `/root/autodl-tmp/freige/training/rsft_trainer.py`（不是 `freige/freige/`）\n- L275: `--max_steps` default=-1（不限制，使用 num_train_epochs 控制）\n- L363: `num_train_epochs=args.num_epochs`\n- L382: `max_steps=args.max_steps`\n- 状态正常，无需修复。\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "memory.md",
+    "content": "# 文献调研：GRPO/RLHF 训练中的\"先遗忘后恢复\"现象\n\n日期：2026-05-14\n\n## 背景\n\nQwen3-4B + GRPO + QLoRA 4-bit 训练文档级关系抽取，观察到：\n- Reward 上升但 eval rel_F1 崩塌（ckpt-20: 0.0077 vs SFT baseline 0.406）\n- lr=5e-5 和 lr=5e-6 下都出现\n- 存在\"先遗忘后缓慢恢复\"的 U 型曲线（step-10=0.003 → step-90=0.211），但恢复不足\n\n---\n\n## 论文 1：Mitigating the Alignment Tax of RLHF\n\n- **作者**：Yifei Lin, Yuxin Tan, et al.\n- **年份/Venue**：2024, EMNLP 2024\n- **arXiv**：2309.06256\n\n### 核心发现\n- 定义了\"alignment tax\"：RLHF 对齐后模型遗忘预训练/SFT 阶段习得能力的现象\n- 发现简单的**模型参数平均**（插值 SFT 和 RLHF 后模型权重）在 alignment-forgetting Pareto 前沿上表现最优\n- 提出 **Heterogeneous Model Averaging (HMA)**：对不同层使用不同插值比例，最大化对齐收益同时最小化遗忘\n\n### 与我们场景的相关性\n- **直接相关**。我们的 rel_F1 崩塌就是 alignment tax 的典型表现——GRPO 优化 reward 的过程中覆盖了 SFT 学到的抽取能力\n- HMA 的层级插值思路可直接应用于 QLoRA adapter 权重\n\n### 推荐缓解方案\n- 训练后对 SFT checkpoint 和 GRPO checkpoint 做权重插值（α=0.3~0.7）\n- 或用 HMA 对不同 LoRA 层设置不同插值系数\n\n---\n\n## 论文 2：Online Merging Optimizers for Boosting Rewards and Mitigating Tax in Alignment\n\n- **作者**：Lu et al. (Qwen 团队)\n- **年份/Venue**：2024, arXiv 2405.17931\n- **开源**：github.com/QwenLM/online_merging_optimizers\n\n### 核心发现\n- 在 RLHF 每个优化步骤中实时合并 RL policy 和 SFT 模型参数，持续调节训练方向\n- 将梯度与 SFT-pretrained 参数差合并，引导梯度朝着\"在 SFT 优化方向上最大化 reward\"的方向前进\n- 在 Qwen 和 LLaMA 系列（1.8B-8B）、DPO/KTO 等多种 RLHF 算法上验证有效\n- 14 个 benchmark 上同时提升对齐 reward 并降低 alignment tax\n\n### 与我们场景的相关性\n- **高度相关**。该方法正是为解决我们观察到的问题设计的——reward 上升但能力退化\n- 来自 Qwen 团队，与我们使用的 Qwen3-4B 模型同源，兼容性好\n- 在训练过程中在线缓解，而非事后补救\n\n### 推荐缓解方案\n- 在 GRPO 训练中集成 Online Merging Optimizer，每步将 LoRA 更新方向锚定在 SFT 附近\n\n---\n\n## 论文 3：Robust Policy Optimization to Prevent Catastrophic Forgetting (FRPO)\n\n- **作者**：Sabbaghi, Hassani, Javanmard et al.\n- **年份/Venue**：2025, arXiv 2602.08813\n\n### 核心发现\n- 指出即使小幅下游更新也会破坏 RLHF 学到的行为（如安全性），暴露 catastrophic forgetting 的脆弱性\n- 提出 FRPO：优化 reward 时不仅考虑当前策略，还考虑 KL 邻域内所有可达策略的表现\n- 等价于 entropic risk objective——强调低 reward 轨迹，抑制高 reward 方差的策略\n- 通过修改 GRPO 实现，**无额外计算开销**\n\n### 与我们场景的相关性\n- **直接可用**。FRPO 本身就是 GRPO 的改进版本，直接替换即可\n- 解决的核心问题是\"GRPO 找到的高 reward 解是脆弱的\"——与我们观察到的 reward↑但 eval↓一致\n- 表明我们的模型可能找到了一个 reward hacking 式的局部最优\n\n### 推荐缓解方案\n- 将 GRPO 替换为 FRPO（修改 advantage 计算，加入 entropic risk 项）\n\n---\n\n## 论文 4：RL-Struct — Lightweight RL Framework for Structured Output\n\n- **作者**：arXiv 2512.00319\n- **年份/Venue**：2025, arXiv\n\n### 核心发现\n- 针对 JSON 等结构化输出 + RL 训练的特殊挑战\n- 提出**分层 reward 函数**：将结构化输出任务分解为 structure integrity → format correctness → content accuracy → validity 的层级约束\n- 使用 GRPO 优化，消除 critic network，降低 38% 峰值 VRAM\n- 4B 模型上 1000 个样本即可达到 80%+ 结构准确率，性能媲美 7B 模型\n\n### 与我们场景的相关性\n- **高度相关**。我们的任务要求模型输出 JSON 格式的关系抽取结果，这正是\"结构化输出 + RL\"的组合\n- 单一 reward 信号（F1）可能让模型在格式和内容之间混淆——分层 reward 可缓解\n- 当前 reward 可能过度奖励格式正确但内容错误的输出（reward hacking 的一种形式）\n\n### 推荐缓解方案\n- 将 reward 分解为：格式合规 reward + 实体正确性 reward + 关系正确性 reward\n- 分层加权，先保证格式，再优化内容\n\n---\n\n## 论文 5：GRPO++ / GRPO Instability with LoRA\n\n- **来源**：多篇论文和实践报告的综合\n  - Cameron Wolfe, \"GRPO++: Tricks for Making RL Actually Work\", 2025\n  - HuggingFace blog, \"Engineering Handbook for GRPO + LoRA with Verl\"\n  - arXiv 2504.20834, \"RL for LLM Reasoning Under Memory Constraints\"\n\n### 核心发现\n- **GRPO + LoRA 组合存在已知的不稳定性**：仅更新少量参数时，GRPO 的 group-relative advantage 估计方差增大\n- Full-token GRPO baseline 在 LoRA fine-tuning 下\"未能提升模型性能\"，表明 GRPO 对参数更新子集很敏感\n- KL 系数默认 β=0.0（TRL 默认），DeepSeek-R1 使用 β=0.001——过小的 KL 惩罚允许策略大幅偏离 SFT\n- 实践建议：\n  - 增大 KL 系数（β=0.01~0.1）\n  - 使用更大的 group size（G=16~64）降低 advantage 估计方差\n  - 降低学习率（LoRA + RL 场景建议 1e-6 量级）\n  - 考虑 Stochastic-GRPO 或 Token-Specific 优化变体\n\n### 与我们场景的相关性\n- **完全匹配**。我们正是 GRPO + QLoRA 4-bit，且 KL 系数仅 0.001\n- 低 KL + 低秩更新 = 策略快速偏离 SFT → 遗忘\n- 这是已知问题，不是偶发现象\n\n### 推荐缓解方案\n- 增大 KL 系数至 0.01~0.05\n- 增大 LoRA rank（r=4 可能太小，建议 r=16~32）\n- 增大 group size 降低 advantage 估计噪声\n\n---\n\n## 综合分析\n\n### \"先崩后恢复\" U 型曲线的最可能解释\n\n我们观察到的现象是 **三个因素叠加** 的结果：\n\n1. **Alignment Tax（核心原因）**：GRPO 梯度覆盖了 SFT 学到的关系抽取能力参数。由于 QLoRA 仅更新极少参数（rank=4），这些参数同时承载 SFT 能力和 RL 优化目标，冲突尤其剧烈。\n\n2. **KL 约束过弱 + LoRA 低秩放大不稳定性**：β=0.001 的 KL 惩罚几乎不约束策略偏离。在 LoRA 低秩空间中，微小的参数变化会导致输出分布剧烈变化，加速遗忘。\n\n3. **Reward Proxy Mismatch**：训练 reward 上升但 eval F1 下降，符合经典的 reward hacking 模式。模型可能学会了生成\"看起来合理\"但实际关系错误的输出——例如格式正确但实体/关系随机配对。\n\n**U 型恢复的解释**：训练初期策略大幅偏离导致崩塌；随着训练继续，模型在新的策略空间中重新\"发现\"部分抽取模式，但由于 LoRA 容量有限且 reward 信号有噪声，恢复不完全。\n\n### 最值得尝试的 2 个缓解方案\n\n**方案 A：增强 KL 正则化 + 扩大 LoRA 容量（低成本，优先尝试）**\n- KL 系数从 0.001 → 0.04\n- LoRA rank 从 r=4 → r=16\n- 学习率降至 1e-6\n- 预期效果：抑制训练初期的剧烈偏离，避免崩塌\n\n**方案 B：分层 Reward 设计（中等成本，针对 reward hacking）**\n- 将单一 reward 分解为：format_reward（JSON 格式合规）+ entity_reward（实体正确）+ relation_reward（关系正确）\n- 加权组合，format 权重最低（仅作 gate），relation 权重最高\n- 预期效果：消除模型通过格式取巧获得高 reward 的捷径\n\n**备选方案 C（如 A/B 不够）：Online Merging Optimizer**\n- 来自 Qwen 团队，在每个训练步骤将 LoRA 更新方向锚定在 SFT 方向\n- 实现复杂度中等，但效果在多个 Qwen 模型上验证过\n\n---\n\n## D031 Pivot: GRPO+QLoRA → RSFT + CED (2026-05-15)\n\n### 决策\nGRPO+QLoRA 方向判死，pivot 到 Rejection Sampling Fine-Tuning (RSFT) + CED scoring。\n\n### 核心证据\n- lr=5e-5 (ced_kl001_r4): best eval rel_f1=0.211 (step-90)，仅 SFT baseline (0.406) 的 52%\n- lr=5e-6 (lr5e6_r1): ckpt-20 rel_f1=0.0077, ckpt-40 rel_f1=0.0071 — 零恢复，完全平坦\n- evi_f1 从 0.628 (ckpt-20) 上升到 0.758 (ckpt-40) — CED reward 确实在学证据抽取\n- 但 relation extraction 完全崩塌，训练 reward 与 eval F1 严重脱节\n- 所有 3 种 reward type (CED/extract-only/flat-NLI) 在 GRPO+QLoRA 下均 collapse 或远低于 SFT\n\n### 根因判断\n不是超参问题，是 GRPO+QLoRA 在结构化生成任务上的根本性局限：\n- QLoRA 低秩空间无法同时维持 SFT 能力和 RL 目标\n- 在线 RL 的策略偏移在前 20 步即不可逆地破坏关系抽取能力\n\n### RSFT 方案\n1. SFT 模型对每个训练样本生成 N=8 输出 (temperature=0.7)\n2. CED reward 打分筛选正样本\n3. 在正样本上 SFT fine-tune\n优势：完全避免在线 RL，CED signal 已在 MVP-1 验证有效 (margin=0.48, accuracy=81.5%)\n\n### RSFT 技术约束\n- **--quantize (4-bit) + merge_and_unload 在 RTX 5090 上有 CUBLAS 错误**，RSFT 训练不要用 quantize。bf16 Qwen3-4B 仅 ~8GB，无需量化。\n- 运行目录必须是 `/root/autodl-tmp/`（freige 不是 pip install 的包，cd 到 freige/ 子目录会导致 import 找到内层空包）\n\n### 遗留 GRPO 实验（sunk cost，完成轨迹数据）\n- cuda:0 训练跑完 200 步\n- cuda:1/2/3 完成剩余 checkpoint eval (ckpt-60/80) + SFT baseline\n\n---\n\n## 轨迹对比分析 (lr5e6 vs kl001_r4)\n\n日期：2026-05-15\n\n### 关键定量发现\n\n**lr5e6 的 f1_reward 在 80 步内无学习趋势**：0.000-0.042 极窄区间内随机波动，是 batch_size=1 采样噪声而非学习信号。kl001_r4 同期也经历低位波动，但 step 40 出现明确上升拐点——lr5e6 到 step 80 仍未出现。\n\n**lr5e6 正在学 format hacking**：step 200 预测 total_reward ~0.65-0.70，其中 88%+ 来自 format_reward（0.138→0.249 稳步上升）。F1/CED reward 几乎无贡献。kl001_r4 的 format 仅占 25%。\n\n**KL 基线反映学习速率**：lr5e6 典型 KL=0.006-0.012（policy 几乎未变），kl001_r4 KL=0.098-0.181（15-20x 高，符合 10x LR 差距）。lr5e6 的 step 65 KL=10.3 spike 是偶发事件，5 步内恢复。\n\n**最优 LR 在 1e-5 到 2e-5 之间**：5e-5 学得快但遗忘严重（max eval F1=0.211=SFT 52%），5e-6 不遗忘但不学习。\n\n### 决策性结论\n\n- **ckpt-40 eval 已确认**：rel_f1=0.0071 < 0.05，lr=5e-6 判定失败\n- **submit_on_allocated 失败根因**：`cd /root/autodl-tmp/freige` 导致 Python path 找到内层空 freige/freige/ 包。修复：`cd /root/autodl-tmp`。后续 eval 均应用修正后的脚本\n\n### step-100 训练拐点 (W&B 分析)\n- f1_reward 在 step 100 出现拐点 (0.016→0.093, 5.8x)\n- f1 + ced 同步上升，可能是真实学习信号而非 format hacking\n- 但训练 reward 与 eval F1 的脱节已在 ckpt-20/40 证实\n- ckpt-100 eval 是验证拐点真伪的决定性实验（判定线：eval F1 > 0.15 = 真，< 0.05 = hacking）\n\n---\n\n## RSFT 代码就绪状态验证 (2026-05-14)\n\n### 文件清单\n\n| 文件 | 行数 | 功能 | dry-run |\n|------|------|------|---------|\n| `training/rsft_generate.py` | 296 | Step 1: SFT 模型批量生成 N 个候选输出 | `--help` ✓ |\n| `training/rsft_score_filter.py` | 464 | Step 2: CED 打分 + 筛选高质量样本 | `--help` ✓ |\n| `training/rsft_trainer.py` | 252 | Step 3: 在筛选数据上 SFT 训练 | `--help` ✓ |\n\n### 参数总览\n\n**rsft_generate.py:**\n- `--base_model` (默认: 代码内硬编码)\n- `--sft_adapter` (默认: 代码内硬编码)\n- `--data_path` (DocRED 数据目录)\n- `--split` (默认: train)\n- `--output_dir` (生成结果目录)\n- `--num_generations` (默认: 8)\n- `--temperature` (默认: 0.7)\n- `--batch_size` (默认: 2)\n- `--max_new_tokens` (默认: 1024)\n- `--seed` (默认: 42)\n- `--quantize/--no-quantize` (默认: ~~True~~ → **已修为 False**, 2026-05-15 rsft-format-fix Worker)\n- `--start_idx`, `--end_idx`, `--shard_id` (2026-05-15 rsft-parallel-support Worker 新增)\n\n**rsft_score_filter.py:**\n- `--input_dir` (required, generations.jsonl 所在目录)\n- `--output_path` (required, 输出目录)\n- `--nli_model_path` (默认: cross-encoder/nli-deberta-v3-base)\n- `--nli_device` (默认: auto)\n- `--tau` (默认: 0.5)\n- `--format_threshold` (默认: 0.5)\n- `--f1_threshold` (默认: 0.0)\n- `--ced_threshold` (默认: 0.0)\n- `--selection_strategy` (默认: top_pct, 可选: threshold/top_k/top_pct)\n- `--top_k` (默认: 2)\n- `--top_pct` (默认: 25)\n\n**rsft_trainer.py:**\n- `--base_model` (默认: /root/autodl-tmp/models/Qwen3-4B)\n- `--sft_adapter` (默认: /root/autodl-tmp/sft_output)\n- `--rsft_data_path` (required, JSONL)\n- `--output_dir` (required)\n- `--learning_rate`, `--num_epochs`, `--per_device_batch_size`, `--gradient_accumulation_steps`\n- `--warmup_steps`, `--save_steps`, `--save_total_limit`, `--max_length`, `--seed`\n- `--wandb_project`, `--wandb_run_name`\n- `--weighted_sampling` (store_true, CED score 加权采样)\n- `--quantize` (store_true, 默认 False ← 正确)\n- `--lora_rank` (默认 64), `--lora_alpha` (默认 128), `--lora_dropout` (默认 0.05)\n- `--bf16` (默认 True)\n- `--deepspeed` (可选配置文件)\n\n### 依赖验证\n\n| 依赖项 | 状态 |\n|--------|------|\n| `freige.rewards.ced_reward.CEDRewardModel` | ✓ import 正常 |\n| `freige.rewards.ced_reward.verbalize_triple` | ✓ import 正常 |\n| `freige.eval.evaluator.parse_model_output` | ✓ import 正常 |\n| `freige.data.docred_processor.DocREDProcessor` | ✓ import 正常 |\n| `freige.training.sft_trainer.SYSTEM_PROMPT` | ✓ import 正常 |\n| `/root/autodl-tmp/models/Qwen3-4B` | ✓ 存在 |\n| `/root/autodl-tmp/sft_output` (adapter) | ✓ 存在 (adapter_config.json + adapter_model.safetensors) |\n| NLI 模型 (nli-deberta-v3-base) | ✓ 已下载到 `/root/autodl-tmp/.hf_cache` (2026-05-15 nli-download Worker) |\n\n### ~~发现的问题（需修复）~~ → 已全部解决 (2026-05-15)\n\n**~~CRITICAL 1~~** ✅ rsft_generate.py `--quantize` 默认值已修为 False (rsft-format-fix Worker)\n\n**~~CRITICAL 2~~** ✅ score_filter → trainer 格式兼容性验证通过——当前代码中 score_filter **已经**输出 JSONL (`rsft_train.jsonl`) 且字段名与 trainer 一致 (`input`, `output`, `ced_score`)。memory.md 中原始记录的 JSON array + messages/scores 格式问题**在当前代码版本中不存在**。(rsft-format-fix Worker, 2026-05-15)\n\n**~~MODERATE~~** ✅ NLI 模型已下载到 `/root/autodl-tmp/.hf_cache` (nli-download Worker, 2026-05-15)\n\n### 字段名映射表 (rsft-format-fix Worker 验证, 2026-05-15)\n\n| 字段 | generate 输出 | score_filter 输出 | trainer 期望 |\n|------|-------------|-----------------|------------|\n| 用户输入 | `prompt`（完整 chat template） | `input`（从 prompt 提取 user 内容） | `s[\"input\"]` |\n| 模型输出 | `output` | `output` | `s[\"output\"]` |\n| CED 分数 | — | `ced_score`（取自 `ced_reward`） | `s.get(\"ced_score\", 1.0)` |\n| 文档 ID | `doc_id` | `doc_id` | — |\n\n---\n\n## Qwen3 generation_config 覆盖陷阱 (2026-05-15)\n\nQwen3 模型自带 `generation_config.json` 会静默覆盖代码传参：\n- `model.generation_config.top_k = 20`（限制采样池）\n- `model.generation_config.temperature = 0.6`（覆盖代码传的任何温度值）\n\n**必须在生成前显式覆盖**：\n```python\nmodel.generation_config.temperature = target_temp\nmodel.generation_config.top_k = 0  # 禁用 top_k 限制\nmodel.generation_config.do_sample = True\n```\n\n不覆盖会导致：实际采样温度 ≠ 代码设置温度，diversity 数据不可信。\n\n---\n\n## Diversity 监控计算 bug (2026-05-15)\n\n### 现象\n监控报 mean_diversity=1.0/8，实际独立验证 diversity=7.11/8。\n\n### 根因\n- triple-set 归一化逻辑不一致（大小写、空格、字段缺失未统一处理）\n- diversity 分母用 `args.num_generations`（配置值 8）而非 `len(generations)`（实际生成数），两者不一致时计算错误\n\n### 修复\n- 提取 `diversity_metrics.py` 独立模块：`normalize_triple_key()` + `build_triple_set()` + `compute_doc_diversity()`\n- 分母改用实际生成数\n- 新增端到端 cross-check：生成完成后从 JSONL 文件重新计算 diversity 并与运行时监控值比对\n- 20 个单元测试覆盖归一化、去重、边界情况\n- 修复后真实数据验证：302 docs mean_diversity=7.52/8, median=8.0/8\n\n---\n\n## RSFT 生成进度快照 (2026-05-15 ~14:50 UTC+8)\n\n4 个 shard 并行生成 N=8 候选输出，Qwen3-4B + SFT adapter, temperature=0.7。\n\n### 各 shard 进度\n\n| Shard | PID | GPU | 进度 | 完成率 | 运行时间 | 速率 (docs/min) | 剩余预估 |\n|-------|--------|-----|------|--------|----------|----------------|---------|\n| 0 | 135867 | cuda:0 | 577/682 | 84.6% | 2h35m | 3.7 | ~28 min |\n| 1 | 136270 | cuda:1 | 623/681 | 91.5% | 2h35m | 4.0 | ~14 min |\n| 2 | 136649 | cuda:2 | 621/681 | 91.2% | 2h34m | 4.0 | ~15 min |\n| 3 | 137985 | cuda:3 | 548/657 | 83.4% | 2h26m | 3.75 | ~29 min |\n\n**总计**: ~2369/2701 docs (87.7%), 预计全部完成 ~15:20\n\n### JSONL 输出行数\n\n| Shard | 行数 | 估算 docs (÷8) |\n|-------|------|----------------|\n| 0 | 4,712 | ~589 |\n| 1 | 5,088 | ~636 |\n| 2 | 5,080 | ~635 |\n| 3 | 4,368 | ~546 |\n| **合计** | **19,248** | **~2,406** |\n\n### 质量指标\n\n| Shard | format_ok_rate | truncation_rate | mean_diversity |\n|-------|---------------|-----------------|----------------|\n| 0 | 99.9% | 9.0% | 7.5/8 |\n| 1 | — | 10.1% ⚠️ | 7.4/8 |\n| 2 | 100.0% | 9.2% | 7.8/8 |\n| 3 | 99.6% | 9.2% | 7.5/8 |\n\n⚠️ Shard 1 truncation_rate=10.1% 超过 10% 阈值，日志建议 max_new_tokens=3072。当前 max_new_tokens=1024。\n\n### GPU 利用率\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|---------|\n| 0 | 58% | 17,875 / 32,607 MiB |\n| 1 | 65% | 16,103 / 32,607 MiB |\n| 2 | 58% | 19,351 / 32,607 MiB |\n| 3 | 99% | 19,427 / 32,607 MiB |\n\n### 日志路径\n\n- shard 0-2: `/root/autodl-tmp/rsft_generations/shard_{0,1,2}/log.txt`\n- shard 3: `/root/runs/faith-evidence-ie/mvp2_rsft_gen_s3.log`（不同路径，注意）\n- 输出: `/root/autodl-tmp/rsft_generations/shard_{0,1,2,3}/generations.jsonl`\n\n### rsft_trainer.py max_steps 状态\n\n文件位置: `/root/autodl-tmp/freige/training/rsft_trainer.py`（不是 `freige/freige/`）\n- L275: `--max_steps` default=-1（不限制，使用 num_train_epochs 控制）\n- L363: `num_train_epochs=args.num_epochs`\n- L382: `max_steps=args.max_steps`\n- 状态正常，无需修复。\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-15T04:22:33.375995+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81 · 2026-05-15T04:22:33.376487+00:00_
+
+## RSFT 生成进度 (2026-05-15 ~14:50)
+
+| Shard | 进度 | 完成率 | 速率 | 剩余 |
+|-------|------|--------|------|------|
+| 0 | 577/682 | 84.6% | 3.7 docs/min | ~28 min |
+| 1 | 623/681 | 91.5% | 4.0 docs/min | ~14 min |
+| 2 | 621/681 | 91.2% | 4.0 docs/min | ~15 min |
+| 3 | 548/657 | 83.4% | 3.75 docs/min | ~29 min |
+
+**总体 87.7%，预计 ~15:20 全部完成。**
+
+质量指标正常：format_ok 99.6-100%，diversity 7.4-7.8/8。Shard 1 truncation_rate=10.1% 略超阈值（日志建议 max_new_tokens=3072，当前 1024）。
+
+GPU 3 利用率 99%（其余 58-65%）。4 个进程均正常运行。
+
+rsft_trainer.py 的 max_steps 默认 -1（使用 num_train_epochs 控制），无需修复。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ssh_rsft-gen-progress-check_20260515T041544"
+}
+```
+
+</details>
+
+---

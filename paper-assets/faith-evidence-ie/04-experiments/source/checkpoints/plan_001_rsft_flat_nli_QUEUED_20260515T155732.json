@@ -1,0 +1,21 @@
+{
+  "exp_id": "plan_001_rsft_flat_nli",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:40:01.021Z",
+    "updated_at": "2026-05-15T15:57:32.221Z",
+    "hypothesis": "flat-NLI RSFT ablation: 用 flat-NLI scoring（p_pos 概率，无 contrastive margin）筛选的 2691 样本做 RSFT。对比 CED scoring RSFT（2718 样本）。验证 CED 的对比性 margin 是否是关键因素。如 flat-NLI RSFT ≈ CED RSFT → CED 无增益；如 CED RSFT 显著优于 → contrastive margin 关键。",
+    "parent": "plan_001_flat_nli_scoring",
+    "spec": {
+      "gpu": [
+        "cuda:0"
+      ]
+    }
+  },
+  "timestamp": "2026-05-15T15:57:32.385694+00:00",
+  "trigger": "update_registry"
+}

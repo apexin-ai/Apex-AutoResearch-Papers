@@ -1,0 +1,35 @@
+{
+  "exp_id": "mvp2_rsft_gen_s0",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:39:26.572Z",
+    "updated_at": "2026-05-15T05:01:10.532Z",
+    "spec": {
+      "pid": "135867"
+    },
+    "hypothesis": "RSFT generation shard 0/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1.",
+    "parent": "mvp2_sft_warmup",
+    "reproduce": {
+      "finished_at": "2026-05-15T04:54:30.317Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "success",
+    "completed_at": "2026-05-15T04:54:31.450Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T04:54:36.643913+00:00"
+        }
+      ]
+    },
+    "notes": "[2026-05-15 05:00] EXIT_CODE=143 (SIGTERM) at ~84.6% progress. Generation partially complete. urgent-shard-status worker is CED-scoring the partial output (21,728 NLI records on GPU 0). Partial shard covers ~640/757 docs — combined 4-shard coverage ~96%. Decision: proceed with partial shard 0 output rather than restart."
+  },
+  "timestamp": "2026-05-15T05:01:10.692573+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,17 @@
+{
+  "exp_id": "d112_rsft_s44_train_bf16",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:19:27.034Z",
+    "updated_at": "2026-05-19T11:21:42.263Z",
+    "hypothesis": "D112 step 3 bf16 重跑：RSFT training on SFT s44 base using CED k=1 scored data，使用 bf16 LoRA（非 QLoRA）与其他所有 RSFT 实验一致。修正原 d112_rsft_s44_train 的 QLoRA confound（--quantize 导致 adapter 适应 4-bit 量化误差，bf16 eval 下 ign_f1=0.2181 灾难性崩溃）。",
+    "parent": "d112_rsft_s44_train",
+    "spec": {}
+  },
+  "timestamp": "2026-05-19T11:21:42.757787+00:00",
+  "trigger": "update_registry"
+}

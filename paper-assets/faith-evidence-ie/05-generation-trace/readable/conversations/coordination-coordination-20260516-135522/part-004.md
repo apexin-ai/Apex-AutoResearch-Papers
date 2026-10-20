@@ -1,0 +1,4929 @@
+# Project coordination (archived snapshot) — Part 4 of 4
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+[← Part 3](part-003.md) · [Transcript overview](../coordination-coordination-20260516-135522.md) · [Structured JSON](../../../sessions/57/57b5d531cb9bb0437900.json)
+
+## Round 213
+
+### Tool call
+
+_source line 2001 · 2026-05-16T12:41:15.538595+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "research:rsft_candidate_gen_compat",
+  "project": "faith-evidence-ie",
+  "task_prompt": "## 任务：验证 RSFT candidate generation 脚本兼容性\n\n服务器：rtx5090-4x\n**全部用 ssh_read_only，不要启动任何进程或修改文件。**\n\n### 步骤\n\n1. **找到 RSFT candidate gen 脚本**：\n```bash\nfind /root/autodl-tmp/freige -name \"*rsft*generate*\" -o -name \"*candidate*\" -o -name \"*rsft*gen*\" 2>/dev/null\nls /root/autodl-tmp/freige/training/rsft_generate.py 2>/dev/null\n```\n\n2. **阅读脚本 CLI 参数**：\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.rsft_generate --help 2>&1 | head -80\"\n```\n\n3. **检查脚本中的 template/tokenizer 处理**：\n```bash\nhead -100 /root/autodl-tmp/freige/training/rsft_generate.py\ngrep -n \"apply_chat_template\\|chat_template\\|LLAMA\\|template\" /root/autodl-tmp/freige/training/rsft_generate.py\n```\n确认是否已有 `_apply_chat_template` 兼容函数（之前已修复 7 个文件）。\n\n4. **列出所有 SFT adapter 目录**：\n```bash\necho \"=== All sft_output dirs ===\" && ls -la /root/autodl-tmp/ | grep sft_output\necho \"=== Check specific adapters ===\"\nls /root/autodl-tmp/sft_output_qwen3_1_7b/adapter_config.json 2>/dev/null && echo \"1.7B with-evidence: EXISTS\"\nls /root/autodl-tmp/sft_output_qwen3_8b/adapter_config.json 2>/dev/null && echo \"8B with-evidence (qwen3_8b): EXISTS\"\nls /root/autodl-tmp/sft_output_qwen3_8b_bf16/adapter_config.json 2>/dev/null && echo \"8B with-evidence (bf16): EXISTS\"\nls /root/autodl-tmp/sft_output_llama_3_1_8b/adapter_config.json 2>/dev/null && echo \"LLaMA with-evidence: EXISTS\"\nls /root/autodl-tmp/sft_output/adapter_config.json 2>/dev/null && echo \"4B with-evidence (original): EXISTS\"\n```\n\n5. **检查 rsft_generate.py 是否支持 --model_path 和 --sft_adapter 参数**（和 inference.py 一样的接口？）：\n```bash\ngrep -n \"add_argument\\|argparse\" /root/autodl-tmp/freige/training/rsft_generate.py | head -30\n```\n\n6. **确认 N=8 candidates 相关配置**：\n```bash\ngrep -n \"num_return\\|n_candidates\\|num_samples\\|N=\" /root/autodl-tmp/freige/training/rsft_generate.py\n```\n\n### 汇报\n- rsft_generate.py 的 CLI 接口（参数列表）\n- 是否已有 _apply_chat_template 兼容（支持 LLaMA）\n- 各 adapter 目录存在性\n- 是否需要额外适配才能支持 1.7B / 8B / LLaMA\n",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "research:rsft_candidate_gen_compat",
+    "project": "faith-evidence-ie",
+    "task_prompt": "## 任务：验证 RSFT candidate generation 脚本兼容性\n\n服务器：rtx5090-4x\n**全部用 ssh_read_only，不要启动任何进程或修改文件。**\n\n### 步骤\n\n1. **找到 RSFT candidate gen 脚本**：\n```bash\nfind /root/autodl-tmp/freige -name \"*rsft*generate*\" -o -name \"*candidate*\" -o -name \"*rsft*gen*\" 2>/dev/null\nls /root/autodl-tmp/freige/training/rsft_generate.py 2>/dev/null\n```\n\n2. **阅读脚本 CLI 参数**：\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.rsft_generate --help 2>&1 | head -80\"\n```\n\n3. **检查脚本中的 template/tokenizer 处理**：\n```bash\nhead -100 /root/autodl-tmp/freige/training/rsft_generate.py\ngrep -n \"apply_chat_template\\|chat_template\\|LLAMA\\|template\" /root/autodl-tmp/freige/training/rsft_generate.py\n```\n确认是否已有 `_apply_chat_template` 兼容函数（之前已修复 7 个文件）。\n\n4. **列出所有 SFT adapter 目录**：\n```bash\necho \"=== All sft_output dirs ===\" && ls -la /root/autodl-tmp/ | grep sft_output\necho \"=== Check specific adapters ===\"\nls /root/autodl-tmp/sft_output_qwen3_1_7b/adapter_config.json 2>/dev/null && echo \"1.7B with-evidence: EXISTS\"\nls /root/autodl-tmp/sft_output_qwen3_8b/adapter_config.json 2>/dev/null && echo \"8B with-evidence (qwen3_8b): EXISTS\"\nls /root/autodl-tmp/sft_output_qwen3_8b_bf16/adapter_config.json 2>/dev/null && echo \"8B with-evidence (bf16): EXISTS\"\nls /root/autodl-tmp/sft_output_llama_3_1_8b/adapter_config.json 2>/dev/null && echo \"LLaMA with-evidence: EXISTS\"\nls /root/autodl-tmp/sft_output/adapter_config.json 2>/dev/null && echo \"4B with-evidence (original): EXISTS\"\n```\n\n5. **检查 rsft_generate.py 是否支持 --model_path 和 --sft_adapter 参数**（和 inference.py 一样的接口？）：\n```bash\ngrep -n \"add_argument\\|argparse\" /root/autodl-tmp/freige/training/rsft_generate.py | head -30\n```\n\n6. **确认 N=8 candidates 相关配置**：\n```bash\ngrep -n \"num_return\\|n_candidates\\|num_samples\\|N=\" /root/autodl-tmp/freige/training/rsft_generate.py\n```\n\n### 汇报\n- rsft_generate.py 的 CLI 接口（参数列表）\n- 是否已有 _apply_chat_template 兼容（支持 LLaMA）\n- 各 adapter 目录存在性\n- 是否需要额外适配才能支持 1.7B / 8B / LLaMA\n",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2002 · 2026-05-16T12:41:27.985442+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_rsft_candidate_gen_compat_20260516T124116\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_research_rsft_candidate_gen_compat_20260516T124116.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_rsft_candidate_gen_compat_20260516T124116 started. Use get_worker_status('worker_research_rsft_candidate_gen_compat_20260516T124116') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 12446
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2003 · 2026-05-16T12:41:28.437964+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "research:llama_grpo_qlora_compat",
+  "project": "faith-evidence-ie",
+  "task_prompt": "## 任务：验证 LLaMA GRPO QLoRA 配置可行性\n\n服务器：rtx5090-4x\n**全部用 ssh_read_only，不要启动任何进程或修改文件。**\n\n### 步骤\n\n1. **找到 GRPO 训练脚本**：\n```bash\nls /root/autodl-tmp/freige/training/grpo_trainer.py 2>/dev/null\n```\n\n2. **检查 GRPO 脚本的 template/tokenizer 处理**：\n```bash\ngrep -n \"apply_chat_template\\|chat_template\\|LLAMA\\|template\\|_apply_chat\" /root/autodl-tmp/freige/training/grpo_trainer.py\nhead -50 /root/autodl-tmp/freige/training/grpo_trainer.py\n```\n确认是否已有 `_apply_chat_template` 兼容函数。\n\n3. **检查 GRPO CLI 参数**：\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer --help 2>&1 | head -80\"\n```\n\n4. **检查 GRPO 中的模型加载逻辑**（QLoRA 4-bit 配置）：\n```bash\ngrep -n \"BitsAndBytes\\|quantization\\|bnb\\|4bit\\|load_in_4bit\\|QuantizationConfig\" /root/autodl-tmp/freige/training/grpo_trainer.py\ngrep -n \"model_name\\|model_path\\|from_pretrained\" /root/autodl-tmp/freige/training/grpo_trainer.py | head -20\n```\n\n5. **估算 LLaMA-3.1-8B GRPO QLoRA 显存需求**：\n   - LLaMA-3.1-8B 4-bit ≈ 5GB\n   - LoRA adapters (r=64) ≈ 0.5GB\n   - Gradients + optimizer states ≈ 4-6GB\n   - G=4 generations × 1024 tokens each ≈ 8-12GB KV cache\n   - 总计估算：~20-24GB → RTX 5090 32GB 应该能 fit\n\n6. **查看之前 4B GRPO 的配置作为参考**：\n```bash\ngrep -n \"group_size\\|G=\\|num_generations\\|kl_coef\\|reward\" /root/autodl-tmp/freige/training/grpo_trainer.py | head -20\n```\n\n7. **检查 LLaMA base model 路径**：\n```bash\nls /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B/config.json 2>/dev/null && echo \"LLaMA base EXISTS\"\n```\n\n### 汇报\n- GRPO 脚本是否已有 _apply_chat_template（支持 LLaMA）\n- QLoRA 4-bit 配置是否已存在\n- 显存估算是否能 fit 32GB（G=4, 8B model）\n- 需要哪些适配（如有）\n",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "research:llama_grpo_qlora_compat",
+    "project": "faith-evidence-ie",
+    "task_prompt": "## 任务：验证 LLaMA GRPO QLoRA 配置可行性\n\n服务器：rtx5090-4x\n**全部用 ssh_read_only，不要启动任何进程或修改文件。**\n\n### 步骤\n\n1. **找到 GRPO 训练脚本**：\n```bash\nls /root/autodl-tmp/freige/training/grpo_trainer.py 2>/dev/null\n```\n\n2. **检查 GRPO 脚本的 template/tokenizer 处理**：\n```bash\ngrep -n \"apply_chat_template\\|chat_template\\|LLAMA\\|template\\|_apply_chat\" /root/autodl-tmp/freige/training/grpo_trainer.py\nhead -50 /root/autodl-tmp/freige/training/grpo_trainer.py\n```\n确认是否已有 `_apply_chat_template` 兼容函数。\n\n3. **检查 GRPO CLI 参数**：\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer --help 2>&1 | head -80\"\n```\n\n4. **检查 GRPO 中的模型加载逻辑**（QLoRA 4-bit 配置）：\n```bash\ngrep -n \"BitsAndBytes\\|quantization\\|bnb\\|4bit\\|load_in_4bit\\|QuantizationConfig\" /root/autodl-tmp/freige/training/grpo_trainer.py\ngrep -n \"model_name\\|model_path\\|from_pretrained\" /root/autodl-tmp/freige/training/grpo_trainer.py | head -20\n```\n\n5. **估算 LLaMA-3.1-8B GRPO QLoRA 显存需求**：\n   - LLaMA-3.1-8B 4-bit ≈ 5GB\n   - LoRA adapters (r=64) ≈ 0.5GB\n   - Gradients + optimizer states ≈ 4-6GB\n   - G=4 generations × 1024 tokens each ≈ 8-12GB KV cache\n   - 总计估算：~20-24GB → RTX 5090 32GB 应该能 fit\n\n6. **查看之前 4B GRPO 的配置作为参考**：\n```bash\ngrep -n \"group_size\\|G=\\|num_generations\\|kl_coef\\|reward\" /root/autodl-tmp/freige/training/grpo_trainer.py | head -20\n```\n\n7. **检查 LLaMA base model 路径**：\n```bash\nls /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B/config.json 2>/dev/null && echo \"LLaMA base EXISTS\"\n```\n\n### 汇报\n- GRPO 脚本是否已有 _apply_chat_template（支持 LLaMA）\n- QLoRA 4-bit 配置是否已存在\n- 显存估算是否能 fit 32GB（G=4, 8B model）\n- 需要哪些适配（如有）\n",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2004 · 2026-05-16T12:41:41.024970+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_llama_grpo_qlora_compat_20260516T124128\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_research_llama_grpo_qlora_compat_20260516T124128.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_llama_grpo_qlora_compat_20260516T124128 started. Use get_worker_status('worker_research_llama_grpo_qlora_compat_20260516T124128') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 12587
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2005 · 2026-05-16T12:41:41.477681+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "research:ced_scoring_compat",
+  "project": "faith-evidence-ie",
+  "task_prompt": "## 任务：确认 CED scoring pipeline 兼容性\n\n服务器：rtx5090-4x\n**全部用 ssh_read_only，不要启动任何进程或修改文件。**\n\n### 背景\nCED (Contextual Evidence Discriminator) 是一个 NLI-based scoring pipeline，用于对 RSFT candidates 做 reranking。需要确认它是否与生成模型无关（即不管 candidates 来自 Qwen3 还是 LLaMA，CED scoring 都能工作）。\n\n### 步骤\n\n1. **找到 CED scoring 相关脚本**：\n```bash\nfind /root/autodl-tmp/freige -name \"*ced*\" -o -name \"*score*\" -o -name \"*rerank*\" -o -name \"*nli*\" 2>/dev/null\nls /root/autodl-tmp/freige/training/rsft_trainer.py 2>/dev/null\n```\n\n2. **检查 CED scoring 的输入格式**：\n```bash\ngrep -n \"ced\\|CED\\|nli\\|NLI\\|score\\|rerank\" /root/autodl-tmp/freige/training/rsft_trainer.py | head -30\n```\n\n3. **查看 CED 是否使用外部 NLI 模型**：\n```bash\ngrep -rn \"nli\\|deberta\\|roberta\\|entail\" /root/autodl-tmp/freige/ --include=\"*.py\" | grep -v __pycache__ | head -20\n```\n\n4. **确认 CED scoring 是否独立于生成模型**：\n```bash\n# 检查 scoring 函数的输入参数——是否只接收文本/prediction，不需要生成模型\ngrep -A 20 \"def.*score\\|def.*ced\\|def.*rerank\" /root/autodl-tmp/freige/training/rsft_trainer.py | head -40\n```\n\n5. **检查 CED 相关的 NLI 模型路径**：\n```bash\ngrep -rn \"model.*nli\\|nli.*model\\|deberta\\|cross-encoder\" /root/autodl-tmp/freige/ --include=\"*.py\" | grep -v __pycache__ | head -20\nls /root/autodl-tmp/models/ | grep -i \"nli\\|deberta\\|cross\"\n```\n\n6. **检查 rsft_trainer.py 中 CED vs flat-NLI 的选择逻辑**：\n```bash\ngrep -n \"ced\\|flat_nli\\|scoring_method\\|reward_type\" /root/autodl-tmp/freige/training/rsft_trainer.py | head -20\n```\n\n### 汇报\n- CED scoring 是否与生成模型无关（输入是文本 predictions，不是 model weights）\n- CED 使用什么 NLI 模型（路径/名称）\n- CED scoring 脚本的完整用法\n- 对 LLaMA/8B/1.7B 生成的 candidates 是否需要任何适配\n",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "research:ced_scoring_compat",
+    "project": "faith-evidence-ie",
+    "task_prompt": "## 任务：确认 CED scoring pipeline 兼容性\n\n服务器：rtx5090-4x\n**全部用 ssh_read_only，不要启动任何进程或修改文件。**\n\n### 背景\nCED (Contextual Evidence Discriminator) 是一个 NLI-based scoring pipeline，用于对 RSFT candidates 做 reranking。需要确认它是否与生成模型无关（即不管 candidates 来自 Qwen3 还是 LLaMA，CED scoring 都能工作）。\n\n### 步骤\n\n1. **找到 CED scoring 相关脚本**：\n```bash\nfind /root/autodl-tmp/freige -name \"*ced*\" -o -name \"*score*\" -o -name \"*rerank*\" -o -name \"*nli*\" 2>/dev/null\nls /root/autodl-tmp/freige/training/rsft_trainer.py 2>/dev/null\n```\n\n2. **检查 CED scoring 的输入格式**：\n```bash\ngrep -n \"ced\\|CED\\|nli\\|NLI\\|score\\|rerank\" /root/autodl-tmp/freige/training/rsft_trainer.py | head -30\n```\n\n3. **查看 CED 是否使用外部 NLI 模型**：\n```bash\ngrep -rn \"nli\\|deberta\\|roberta\\|entail\" /root/autodl-tmp/freige/ --include=\"*.py\" | grep -v __pycache__ | head -20\n```\n\n4. **确认 CED scoring 是否独立于生成模型**：\n```bash\n# 检查 scoring 函数的输入参数——是否只接收文本/prediction，不需要生成模型\ngrep -A 20 \"def.*score\\|def.*ced\\|def.*rerank\" /root/autodl-tmp/freige/training/rsft_trainer.py | head -40\n```\n\n5. **检查 CED 相关的 NLI 模型路径**：\n```bash\ngrep -rn \"model.*nli\\|nli.*model\\|deberta\\|cross-encoder\" /root/autodl-tmp/freige/ --include=\"*.py\" | grep -v __pycache__ | head -20\nls /root/autodl-tmp/models/ | grep -i \"nli\\|deberta\\|cross\"\n```\n\n6. **检查 rsft_trainer.py 中 CED vs flat-NLI 的选择逻辑**：\n```bash\ngrep -n \"ced\\|flat_nli\\|scoring_method\\|reward_type\" /root/autodl-tmp/freige/training/rsft_trainer.py | head -20\n```\n\n### 汇报\n- CED scoring 是否与生成模型无关（输入是文本 predictions，不是 model weights）\n- CED 使用什么 NLI 模型（路径/名称）\n- CED scoring 脚本的完整用法\n- 对 LLaMA/8B/1.7B 生成的 candidates 是否需要任何适配\n",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2006 · 2026-05-16T12:41:44.665269+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_ced_scoring_compat_20260516T124141\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_research_ced_scoring_compat_20260516T124141.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_ced_scoring_compat_20260516T124141 started. Use get_worker_status('worker_research_ced_scoring_compat_20260516T124141') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3187
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 2007 · 2026-05-16T12:41:48.771963+00:00_
+
+3 个准备任务 Worker 已并行派出。等待回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b"
+}
+```
+
+</details>
+
+---
+
+
+## Round 214
+
+## Round 214
+
+4 recorded events
+
+
+### User
+
+_source line 2008 · 2026-05-16T12:42:42.840885+00:00_
+
+[WORKER DONE] Worker worker_research_llama_grpo_qlora_compat_20260516T124128 已完成（status=done）。用 `get_worker_status('worker_research_llama_grpo_qlora_compat_20260516T124128')` 读取结果，然后处理。
+
+- worker_id: worker_research_llama_grpo_qlora_compat_20260516T124128
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "source": "worker:done"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2009 · 2026-05-16T12:42:51.909602+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_research_llama_grpo_qlora_compat_20260516T124128"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_research_llama_grpo_qlora_compat_20260516T124128"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2010 · 2026-05-16T12:42:52.053633+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_llama_grpo_qlora_compat_20260516T124128\", \"status\": \"done\", \"task_type\": \"research:llama_grpo_qlora_compat\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-16T12:41:28.725713+00:00\", \"ended_at\": \"2026-05-16T12:42:40.834986+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"信息已足够。汇报如下：\\n\\n---\\n\\n## 验证结果\\n\\n### 1. `_apply_chat_template` — 已兼容 LLaMA\\n\\n```python\\ndef _apply_chat_template(tokenizer, messages, **kwargs):\\n    tmpl = getattr(tokenizer, 'chat_template', None) or ''\\n    if 'enable_thinking' not in tmpl:\\n        kwargs.pop('enable_thinking', None)\\n    return tokenizer.apply_chat_template(messages, **kwargs)\\n```\\n\\n该函数只处理 Qwen3 的 `enable_thinking` 参数兼容问题。LLaMA tokenizer 自带 `chat_template`，`apply_chat_template` 直接可用，**无需适配**。\\n\\n### 2. QLoRA 4-bit 配置 — 已存在且完整\\n\\n- 默认启用（`--quantize` 默认 True，`--no_quantize` 禁用）\\n- BitsAndBytesConfig: `load_in_4bit=True`, `nf4`, `double_quant`, `bf16 compute`\\n- `device_map = {\\\"\\\": local_rank}` — 单卡绑定，符合 C002/C003 约束\\n\\n### 3. LoRA 配置 — target modules 兼容 LLaMA\\n\\n```python\\ntarget_modules=[\\\"q_proj\\\", \\\"k_proj\\\", \\\"v_proj\\\", \\\"o_proj\\\", \\\"gate_proj\\\", \\\"up_proj\\\", \\\"down_proj\\\"]\\n```\\n\\n这些 module 名在 LLaMA-3.1 架构中完全一致，**无需修改**。默认 `lora_rank=64`。\\n\\n### 4. 显存估算 — 32GB 可 fit\\n\\n| 组件 | 估算 |\\n|------|------|\\n| LLaMA-3.1-8B 4-bit weights | ~5 GB |\\n| LoRA adapters (r=64, 7 modules) | ~0.5 GB |\\n| Optimizer states (AdamW on LoRA params) | ~1 GB |\\n| G=4 generations × 1024 tokens KV cache | ~8-10 GB |\\n| Activations + gradients (batch=1) | ~4-6 GB |\\n| **总计** | **~19-23 GB** |\\n\\nRTX 5090 32GB 有 ~9-13GB 余量，**可行**。但如果 `max_length=4096` 的长 prompt 导致 KV cache 增大，余量会缩小到 ~5GB。建议保持 `per_device_batch_size=1`。\\n\\n### 5. LLaMA base model — 已存在\\n\\n`/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B/config.json` ✓\\n\\n### 
+…[truncated 543 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 144
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 2011 · 2026-05-16T12:42:59.353027+00:00_
+
+LLaMA GRPO QLoRA 结果已收到——零适配，直接可跑，32GB 有 9-13GB 余量。等待另外两个 Worker 回调后统一汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b"
+}
+```
+
+</details>
+
+---
+
+
+## Round 215
+
+## Round 215
+
+4 recorded events
+
+
+### User
+
+_source line 2012 · 2026-05-16T12:43:14.135703+00:00_
+
+[WORKER DONE] Worker worker_research_rsft_candidate_gen_compat_20260516T124116 已完成（status=done）。用 `get_worker_status('worker_research_rsft_candidate_gen_compat_20260516T124116')` 读取结果，然后处理。
+
+- worker_id: worker_research_rsft_candidate_gen_compat_20260516T124116
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "source": "worker:done"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2013 · 2026-05-16T12:43:22.314431+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_research_rsft_candidate_gen_compat_20260516T124116"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_research_rsft_candidate_gen_compat_20260516T124116"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2014 · 2026-05-16T12:43:22.415568+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_rsft_candidate_gen_compat_20260516T124116\", \"status\": \"done\", \"task_type\": \"research:rsft_candidate_gen_compat\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-16T12:41:16.703579+00:00\", \"ended_at\": \"2026-05-16T12:43:10.969221+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"全部信息已收集。汇报如下：\\n\\n---\\n\\n## rsft_generate.py 兼容性验证结果\\n\\n### CLI 参数\\n\\n| 参数 | 默认值 | 说明 |\\n|------|--------|------|\\n| `--base_model` | `/root/autodl-tmp/models/Qwen3-4B` | base model 路径 |\\n| `--sft_adapter` | `/root/autodl-tmp/sft_output` | SFT adapter 路径 |\\n| `--data_path` | None | DocRED 数据目录 |\\n| `--split` | `train` | 数据集 split |\\n| `--output_dir` | `/root/autodl-tmp/rsft_generations` | 输出目录 |\\n| `--num_generations` | 8 | N=8 candidates |\\n| `--temperature` | 0.7 | |\\n| `--top_p` | 0.95 | |\\n| `--batch_size` | 1 | |\\n| `--max_new_tokens` | 1024 | |\\n| `--seed` | 42 | |\\n| `--quantize` | store_true | 4bit QLoRA 量化 |\\n| `--start_idx` / `--end_idx` | 0 / -1 | 数据范围 |\\n| `--shard_id` / `--num_shards` | 0 / 1 | 多卡分片 |\\n| `--repetition_penalty` | 1.0 | |\\n\\n### _apply_chat_template 兼容性：✅ 已就绪\\n\\n- L43-47: `_apply_chat_template()` 已实现，正确处理 `enable_thinking` 参数兼容\\n- L39: 已导入 `LLAMA3_CHAT_TEMPLATE`\\n- L69-70: tokenizer 无 chat_template 时 fallback 到 `LLAMA3_CHAT_TEMPLATE`（LLaMA 兼容）\\n\\n### Adapter 目录存在性：✅ 全部存在\\n\\n**With-evidence:**\\n- `sft_output/` — Qwen3-4B ✅\\n- `sft_output_qwen3_1_7b_bf16/` — Qwen3-1.7B ✅\\n- `sft_output_qwen3_8b_bf16/` — Qwen3-8B ✅\\n- `sft_output_llama_3_1_8b/` — LLaMA-3.1-8B ✅\\n\\n**No-evidence:**\\n- `sft_no_evidence_output/` — Qwen3-4B ✅\\n- `sft_output_qwen3_1_7b_no_evidence/` — Qwen3-1.7B ✅\\n- `sft_output_qwen3_8b_no_evidence/` — Qwen3-8B ✅\\n- `sft_output_llama_3_1_8b_no_evidence/` — LLaMA-3.1-8B ✅\\n\\n**Base models:**\\n- `/root/autodl-tmp/models/Qwen3-4B` ✅\\n- `/root/autodl-tmp/models/Qwen/Qwen3-1.
+…[truncated 635 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 2015 · 2026-05-16T12:43:28.981152+00:00_
+
+两个 Worker 已完成（GRPO + RSFT gen），等待 CED scoring Worker 回调后统一汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b"
+}
+```
+
+</details>
+
+---
+
+
+## Round 216
+
+## Round 216
+
+6 recorded events
+
+
+### User
+
+_source line 2016 · 2026-05-16T12:43:29.600964+00:00_
+
+[WORKER DONE] Worker worker_research_ced_scoring_compat_20260516T124141 已完成（status=done）。用 `get_worker_status('worker_research_ced_scoring_compat_20260516T124141')` 读取结果，然后处理。
+
+- worker_id: worker_research_ced_scoring_compat_20260516T124141
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "source": "worker:done"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2017 · 2026-05-16T12:43:36.572025+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_research_ced_scoring_compat_20260516T124141"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_research_ced_scoring_compat_20260516T124141"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2018 · 2026-05-16T12:43:36.724525+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_ced_scoring_compat_20260516T124141\", \"status\": \"done\", \"task_type\": \"research:ced_scoring_compat\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-16T12:41:41.846283+00:00\", \"ended_at\": \"2026-05-16T12:43:12.455200+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"已收集到所有必要信息。汇报如下：\\n\\n---\\n\\n## CED Scoring Pipeline 兼容性确认\\n\\n### 1. CED scoring 与生成模型无关\\n\\n**是的，完全无关。** CED scoring pipeline 的输入是纯文本：\\n- `claim`: 由 (head, relation, tail) 通过 verbalization template 生成的自然语言句子\\n- `cited_evidence_sents`: 模型输出中引用的文档句子（文本列表）\\n- `hard_negative_sents`: 文档中未被引用的其他句子\\n\\n不需要生成模型的 weights、tokenizer 或任何模型特定信息。只要 candidates 能被 parse 成 `[{\\\"head\\\": ..., \\\"relation\\\": ..., \\\"tail\\\": ..., \\\"evidence\\\": [...]}]` 格式，CED 就能打分。\\n\\n### 2. CED 使用的 NLI 模型\\n\\n- **默认模型**: `cross-encoder/nli-deberta-v3-base`（HuggingFace hub ID，定义在 `rewards/ced_reward.py:22`）\\n- **ced_reranker.py 示例中用**: `/root/autodl-tmp/models/deberta-v3-large-zeroshot-v2.0`\\n- **rsft_score_filter.py 示例中用**: `/root/autodl-tmp/models/nli-deberta-v3-base`\\n- 实际磁盘上 `/root/autodl-tmp/models/` 目录下目前**没有** deberta 模型（只有 Meta-Llama-3.1-8B、Qwen3-4B 等），HF cache 里也没有。使用前需要下载。\\n\\n### 3. CED scoring 完整流程\\n\\n```\\nrsft_generate.py (生成 N 个 candidates per doc)\\n    → generations.jsonl\\n        → rsft_score_filter.py (CED 打分 + 筛选)\\n            → rsft_train.jsonl (高质量样本)\\n                → rsft_trainer.py (SFT 训练，支持 CED score 加权采样)\\n```\\n\\n关键脚本用法：\\n```bash\\n# Step 1: 打分筛选\\npython -m freige.training.rsft_score_filter \\\\\\n    --input_dir /root/autodl-tmp/rsft_generations \\\\\\n    --output_path /root/autodl-tmp/rsft_filtered \\\\\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\\\\n    --scoring_mode ced  # 或 flat_nli\\n    --selection_strategy top_pct --top_pct 25\\n\\n# Step 2: 独立 reranking 评估\\npython -m freige.eval.ced_reranker \\\\\\n    --base
+…[truncated 475 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 152
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2019 · 2026-05-16T12:44:04.468430+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 4/4 | 实际跑 4/4 | Worker 池 0 (GPU 4 / CPU 0)\n\n**GPU 满载期间准备工作——三项验证完成：**\n\n## Task 1: RSFT Candidate Gen 兼容性 ✅（1 个问题需修复）\n\n**CLI**: `rsft_generate.py --base_model &lt;path> --sft_adapter &lt;path> --num_generations 8 --temperature 0.7 --batch_size 1`\n\n**LLaMA 兼容**: ✅ `_apply_chat_template` + `LLAMA3_CHAT_TEMPLATE` fallback 均已就绪\n\n**All adapter 路径确认存在:**\n| 模型 | With-evidence | No-evidence |\n|------|--------------|-------------|\n| 4B | `sft_output/` | `sft_no_evidence_output/` |\n| 1.7B | `sft_output_qwen3_1_7b_bf16/` | `sft_output_qwen3_1_7b_no_evidence/` |\n| 8B | `sft_output_qwen3_8b_bf16/` | `sft_output_qwen3_8b_no_evidence/` |\n| LLaMA | `sft_output_llama_3_1_8b/` | `sft_output_llama_3_1_8b_no_evidence/` |\n\n**❌ 需修复**: `rsft_generate.py` 缺 `--no_evidence` 参数——只有 with-evidence system prompt，无法为 no-evidence adapter 生成 candidates。需添加 no-evidence prompt 切换逻辑（参照 sft_trainer.py 的实现）。\n\n## Task 2: LLaMA GRPO QLoRA ✅ 零适配\n\n- `_apply_chat_template`: ✅ 已兼容\n- QLoRA 4-bit: ✅ BitsAndBytes config 已存在\n- LoRA target modules (`q/k/v/o/gate/up/down_proj`): ✅ 与 LLaMA-3.1 一致\n- **显存估算**: ~19-23GB (8B 4-bit + LoRA r=64 + G=4) → **32GB 可 fit**，余量 ~9-13GB\n- LLaMA base model: ✅ `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B/`\n- 直接可用命令模板已就绪\n\n## Task 3: CED Scoring ✅ 模型无关\n\n- **完全模型无关**: 输入是纯文本 (claim + evidence sentences)，不依赖生成模型\n- NLI 模型: `cross-encoder/nli-deberta-v3-base`\n- **⚠️ NLI 模型未在服务器磁盘上**——需要下载（~400MB），或从 HF cache 加载\n- Pipeline: `rsft_generate` → `rsft_score_filter` (CED/flat-NLI 打分) → `rsft_trainer`\n\n## 阻塞项总结\n\n| # | 问题 | 影响 | 修复工作量 |\n|---|------|------|-----------|\n| 1 | rsft_generate.py 缺 `--no_evidence` | 无法生成 no-evidence RSFT candidates | ~10min 代码修改 |\n| 2 | NLI 模型未下载 | CED scoring 无法运行 | ~5min 下载 |\n\n**以上均不阻塞当前 5 个 running eval。** GPU 释放后若要启动 RSFT pipeline，需先修复 #1 和 #2。是否现在派 Worker 修复？",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 4/4 | 实际跑 4/4 | Worker 池 0 (GPU 4 / CPU 0)\n\n**GPU 满载期间准备工作——三项验证完成：**\n\n## Task 1: RSFT Candidate Gen 兼容性 ✅（1 个问题需修复）\n\n**CLI**: `rsft_generate.py --base_model &lt;path> --sft_adapter &lt;path> --num_generations 8 --temperature 0.7 --batch_size 1`\n\n**LLaMA 兼容**: ✅ `_apply_chat_template` + `LLAMA3_CHAT_TEMPLATE` fallback 均已就绪\n\n**All adapter 路径确认存在:**\n| 模型 | With-evidence | No-evidence |\n|------|--------------|-------------|\n| 4B | `sft_output/` | `sft_no_evidence_output/` |\n| 1.7B | `sft_output_qwen3_1_7b_bf16/` | `sft_output_qwen3_1_7b_no_evidence/` |\n| 8B | `sft_output_qwen3_8b_bf16/` | `sft_output_qwen3_8b_no_evidence/` |\n| LLaMA | `sft_output_llama_3_1_8b/` | `sft_output_llama_3_1_8b_no_evidence/` |\n\n**❌ 需修复**: `rsft_generate.py` 缺 `--no_evidence` 参数——只有 with-evidence system prompt，无法为 no-evidence adapter 生成 candidates。需添加 no-evidence prompt 切换逻辑（参照 sft_trainer.py 的实现）。\n\n## Task 2: LLaMA GRPO QLoRA ✅ 零适配\n\n- `_apply_chat_template`: ✅ 已兼容\n- QLoRA 4-bit: ✅ BitsAndBytes config 已存在\n- LoRA target modules (`q/k/v/o/gate/up/down_proj`): ✅ 与 LLaMA-3.1 一致\n- **显存估算**: ~19-23GB (8B 4-bit + LoRA r=64 + G=4) → **32GB 可 fit**，余量 ~9-13GB\n- LLaMA base model: ✅ `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B/`\n- 直接可用命令模板已就绪\n\n## Task 3: CED Scoring ✅ 模型无关\n\n- **完全模型无关**: 输入是纯文本 (claim + evidence sentences)，不依赖生成模型\n- NLI 模型: `cross-encoder/nli-deberta-v3-base`\n- **⚠️ NLI 模型未在服务器磁盘上**——需要下载（~400MB），或从 HF cache 加载\n- Pipeline: `rsft_generate` → `rsft_score_filter` (CED/flat-NLI 打分) → `rsft_trainer`\n\n## 阻塞项总结\n\n| # | 问题 | 影响 | 修复工作量 |\n|---|------|------|-----------|\n| 1 | rsft_generate.py 缺 `--no_evidence` | 无法生成 no-evidence RSFT candidates | ~10min 代码修改 |\n| 2 | NLI 模型未下载 | CED scoring 无法运行 | ~5min 下载 |\n\n**以上均不阻塞当前 5 个 running eval。** GPU 释放后若要启动 RSFT pipeline，需先修复 #1 和 #2。是否现在派 Worker 修复？",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2020 · 2026-05-16T12:44:08.537423+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 4068
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 2021 · 2026-05-16T12:44:11.233274+00:00_
+
+3 个准备任务全部完成。向 Director 汇报综合结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b"
+}
+```
+
+</details>
+
+---
+
+
+## Round 217
+
+## Round 217
+
+5 recorded events
+
+
+### User
+
+_source line 2022 · 2026-05-16T12:45:05.370516+00:00_
+
+[Director 指令] **两件事：**
+
+**1. 立即下载 NLI 模型（CPU 任务，不需要 GPU）**
+`cross-encoder/nli-deberta-v3-base` 下载到 `/root/autodl-tmp/.hf_cache`。命令：
+```bash
+bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && source /etc/network_turbo && HF_HOME=/root/autodl-tmp/.hf_cache python -c \"from transformers import AutoModelForSequenceClassification, AutoTokenizer; AutoModelForSequenceClassification.from_pretrained('cross-encoder/nli-deberta-v3-base', cache_dir='/root/autodl-tmp/.hf_cache'); AutoTokenizer.from_pretrained('cross-encoder/nli-deberta-v3-base', cache_dir='/root/autodl-tmp/.hf_cache'); print('NLI model downloaded')\""
+```
+用 ssh_execute 执行即可。
+
+**2. GPU 释放后的下一批实验计划（按释放顺序）**
+
+| 释放顺序 | GPU | 预计释放 | 下一个任务 | 优先级 |
+|----------|-----|---------|-----------|--------|
+| 1st | cuda:2 | ~28min | **LLaMA-3.1-8B GRPO QLoRA** (C2 cross-family) | P0 |
+| 2nd | cuda:0 | ~50min | **8B RSFT candidate gen** (N=8, with-evi SFT adapter) | P0 |
+| 3rd | cuda:3 | ~51min | **1.7B RSFT candidate gen** (N=8, with-evi SFT adapter) | P1 |
+| 4th | cuda:1 | ~71-110min | **LLaMA RSFT candidate gen** (N=8) | P1 |
+
+**LLaMA GRPO QLoRA 配置（cuda:2 释放后立即启动）：**
+- base_model: `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B/`
+- sft_adapter: `/root/autodl-tmp/sft_output_llama_3_1_8b/`
+- QLoRA 4-bit, G=4, kl_coef=0, CED reward
+- 参考之前 4B GRPO 命令格式
+- 注册实验 ID: plan_016_llama_grpo_qlora
+
+**RSFT candidate gen 配置：**
+- 8B: base_model Qwen3-8B, adapter `sft_output_qwen3_8b_bf16/`, N=8, temperature 0.7
+- 1.7B: base_model Qwen3-1.7B, adapter `sft_output_qwen3_1_7b_bf16/`, N=8, temperature 0.7
+- LLaMA: base_model LLaMA-3.1-8B, adapter `sft_output_llama_3_1_8b/`, N=8, temperature 0.7
+
+**关键**：
+- 每个 eval 完成时先提取 Ign-F1/Rel-F1/Evi-F1 指标并汇报，再启动下一个任务
+- 提交前 nvidia-smi 确认目标 GPU 显存 < 2GB (C001)
+- CUDA_VISIBLE_DEVICES 显式设置 (C002)
+- bash -c conda activate 包裹 (tmux 约束)
+
+**纠正**：rsft_generate.py 的 `--no_evidence` 问题不是阻塞项——RSFT candidates 始终从 with-evidence SFT 生成，不需要 no-evidence 模式。不用修这个。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "source": "director"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2023 · 2026-05-16T12:45:19.430451+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "ops:download_nli_model",
+  "project": "faith-evidence-ie",
+  "task_prompt": "## 任务：下载 NLI 模型到服务器\n\n服务器：rtx5090-4x\n\n### 执行（ssh_execute）\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && source /etc/network_turbo && HF_HOME=/root/autodl-tmp/.hf_cache python -c \\\"from transformers import AutoModelForSequenceClassification, AutoTokenizer; AutoModelForSequenceClassification.from_pretrained('cross-encoder/nli-deberta-v3-base', cache_dir='/root/autodl-tmp/.hf_cache'); AutoTokenizer.from_pretrained('cross-encoder/nli-deberta-v3-base', cache_dir='/root/autodl-tmp/.hf_cache'); print('NLI model downloaded')\\\"\"\n```\n\n### 验证（ssh_read_only）\n\n下载完成后确认模型文件存在：\n```bash\nfind /root/autodl-tmp/.hf_cache -path \"*nli-deberta*\" -name \"config.json\" 2>/dev/null\n```\n\n### 汇报\n- 下载是否成功\n- 模型缓存路径\n- 下载大小/时间\n",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "ops:download_nli_model",
+    "project": "faith-evidence-ie",
+    "task_prompt": "## 任务：下载 NLI 模型到服务器\n\n服务器：rtx5090-4x\n\n### 执行（ssh_execute）\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && source /etc/network_turbo && HF_HOME=/root/autodl-tmp/.hf_cache python -c \\\"from transformers import AutoModelForSequenceClassification, AutoTokenizer; AutoModelForSequenceClassification.from_pretrained('cross-encoder/nli-deberta-v3-base', cache_dir='/root/autodl-tmp/.hf_cache'); AutoTokenizer.from_pretrained('cross-encoder/nli-deberta-v3-base', cache_dir='/root/autodl-tmp/.hf_cache'); print('NLI model downloaded')\\\"\"\n```\n\n### 验证（ssh_read_only）\n\n下载完成后确认模型文件存在：\n```bash\nfind /root/autodl-tmp/.hf_cache -path \"*nli-deberta*\" -name \"config.json\" 2>/dev/null\n```\n\n### 汇报\n- 下载是否成功\n- 模型缓存路径\n- 下载大小/时间\n",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2024 · 2026-05-16T12:45:26.079794+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_download_nli_model_20260516T124520\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_ops_download_nli_model_20260516T124520.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_download_nli_model_20260516T124520 started. Use get_worker_status('worker_ops_download_nli_model_20260516T124520') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 6649
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2025 · 2026-05-16T12:45:34.686504+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 4/4 | 实际跑 4/4 | Worker 池 1 (GPU 4 / CPU 1)\n\n**已执行：**\n- ✅ NLI 模型下载 Worker 已派出（CPU 任务，不占 GPU）\n- ✅ 收到接力计划，已记录：\n\n**GPU 释放接力计划：**\n| 释放顺序 | GPU | 下一个任务 | 实验 ID |\n|----------|-----|-----------|---------|\n| 1st cuda:2 | 8B no-evi eval v2 完成后 | LLaMA GRPO QLoRA | plan_016_llama_grpo_qlora |\n| 2nd cuda:0 | Re-DocRED eval 完成后 | 8B RSFT candidate gen (N=8) | — |\n| 3rd cuda:3 | LLaMA no-evi eval 完成后 | 1.7B RSFT candidate gen (N=8) | — |\n| 4th cuda:1 | 1.7B v3 + LLaMA with-evi eval 完成后 | LLaMA RSFT candidate gen (N=8) | — |\n\n**纠正已知悉：** rsft_generate.py 的 --no_evidence 不需要修——RSFT candidates 只从 with-evidence SFT 生成。\n\n等待 cron 回调，每个 eval 完成后先提取指标再启动下一个任务。",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 4/4 | 实际跑 4/4 | Worker 池 1 (GPU 4 / CPU 1)\n\n**已执行：**\n- ✅ NLI 模型下载 Worker 已派出（CPU 任务，不占 GPU）\n- ✅ 收到接力计划，已记录：\n\n**GPU 释放接力计划：**\n| 释放顺序 | GPU | 下一个任务 | 实验 ID |\n|----------|-----|-----------|---------|\n| 1st cuda:2 | 8B no-evi eval v2 完成后 | LLaMA GRPO QLoRA | plan_016_llama_grpo_qlora |\n| 2nd cuda:0 | Re-DocRED eval 完成后 | 8B RSFT candidate gen (N=8) | — |\n| 3rd cuda:3 | LLaMA no-evi eval 完成后 | 1.7B RSFT candidate gen (N=8) | — |\n| 4th cuda:1 | 1.7B v3 + LLaMA with-evi eval 完成后 | LLaMA RSFT candidate gen (N=8) | — |\n\n**纠正已知悉：** rsft_generate.py 的 --no_evidence 不需要修——RSFT candidates 只从 with-evidence SFT 生成。\n\n等待 cron 回调，每个 eval 完成后先提取指标再启动下一个任务。",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 2026 · 2026-05-16T13:05:06.311766+00:00_
+
+立即派 Worker 下载 NLI 模型。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b"
+}
+```
+
+</details>
+
+---
+
+
+## Round 218
+
+## Round 218
+
+4 recorded events
+
+
+### User
+
+_source line 2027 · 2026-05-16T13:05:06.780460+00:00_
+
+[WORKER DONE] Worker worker_ops_download_nli_model_20260516T124520 已完成（status=done）。用 `get_worker_status('worker_ops_download_nli_model_20260516T124520')` 读取结果，然后处理。
+
+- worker_id: worker_ops_download_nli_model_20260516T124520
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "source": "worker:done"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2028 · 2026-05-16T13:05:12.756450+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_ops_download_nli_model_20260516T124520"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_ops_download_nli_model_20260516T124520"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2029 · 2026-05-16T13:05:12.857478+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_download_nli_model_20260516T124520\", \"status\": \"done\", \"task_type\": \"ops:download_nli_model\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-16T12:45:20.299176+00:00\", \"ended_at\": \"2026-05-16T12:48:20.100510+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"下载完成。\\n\\n**结果：**\\n- 下载成功\\n- 模型缓存路径：`/root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7/`\\n- 文件列表：`config.json`, `model.safetensors`, `spm.model`, `tokenizer_config.json`\\n- 总大小：706MB\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 2030 · 2026-05-16T13:05:17.419729+00:00_
+
+NLI 模型下载完成（706MB，路径已确认）。CED scoring pipeline 就绪。
+
+等待 eval 完成回调——最先完成的应该是 8B no-evidence eval v2 (cuda:2, ~28min ETA)。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b"
+}
+```
+
+</details>
+
+---
+
+
+## Round 219
+
+## Round 219
+
+3 recorded events
+
+
+### User
+
+_source line 2031 · 2026-05-16T13:05:45.941261+00:00_
+
+[CRON 需要判断] 实验 **plan_006_qwen3_8b_no_evidence_eval_v2** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
+
+请派 Worker SSH 到 rtx5090-4x 检查日志 `None` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('plan_006_qwen3_8b_no_evidence_eval_v2')` 清除监控。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "source": "cron"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2032 · 2026-05-16T13:06:04.001306+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "ops:check_8b_no_evi_eval_v2_completion",
+  "project": "faith-evidence-ie",
+  "task_prompt": "## 任务：检查 8B no-evidence eval v2 完成状态 + 提取指标\n\n服务器：rtx5090-4x\n实验 ID：plan_006_qwen3_8b_no_evidence_eval_v2\nPID：335357（已退出）\nGPU：cuda:2\n\n### 步骤\n\n1. **检查日志和 metrics**（ssh_read_only）：\n```bash\necho \"=== tmux log ===\" && tail -30 ~/runs/faith-evidence-ie/plan_006_qwen3_8b_no_evidence_eval_v2.log 2>/dev/null || echo \"NO tmux log\"\necho \"=== metrics ===\" && cat /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval_v2/metrics.json 2>/dev/null || echo \"NO metrics.json\"\ncat /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval_v2/metrics_v2.json 2>/dev/null || echo \"NO metrics_v2.json\"\necho \"=== output dir ===\" && ls -la /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval_v2/ 2>/dev/null\n```\n\n2. **确认 cuda:2 空闲**：\n```bash\nnvidia-smi --query-gpu=index,memory.used --format=csv,noheader\n```\n\n3. **如果成功（有 metrics）**：\n   - 提取 ign_f1, rel_f1, evi_f1, edcr\n   - update_registry: conclusion=success, status=DONE, spec 中包含 metrics 和 checkpoint_path\n\n4. **如果失败**：\n   - 提取错误信息\n   - update_registry: conclusion=failed, status=DONE\n\n### 汇报\n- Ign-F1, Rel-F1, Evi-F1, EDCR（如有）\n- cuda:2 是否空闲（用于下一个任务：LLaMA GRPO QLoRA）\n",
+  "tool_groups": "['ssh', 'registry']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "ops:check_8b_no_evi_eval_v2_completion",
+    "project": "faith-evidence-ie",
+    "task_prompt": "## 任务：检查 8B no-evidence eval v2 完成状态 + 提取指标\n\n服务器：rtx5090-4x\n实验 ID：plan_006_qwen3_8b_no_evidence_eval_v2\nPID：335357（已退出）\nGPU：cuda:2\n\n### 步骤\n\n1. **检查日志和 metrics**（ssh_read_only）：\n```bash\necho \"=== tmux log ===\" && tail -30 ~/runs/faith-evidence-ie/plan_006_qwen3_8b_no_evidence_eval_v2.log 2>/dev/null || echo \"NO tmux log\"\necho \"=== metrics ===\" && cat /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval_v2/metrics.json 2>/dev/null || echo \"NO metrics.json\"\ncat /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval_v2/metrics_v2.json 2>/dev/null || echo \"NO metrics_v2.json\"\necho \"=== output dir ===\" && ls -la /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval_v2/ 2>/dev/null\n```\n\n2. **确认 cuda:2 空闲**：\n```bash\nnvidia-smi --query-gpu=index,memory.used --format=csv,noheader\n```\n\n3. **如果成功（有 metrics）**：\n   - 提取 ign_f1, rel_f1, evi_f1, edcr\n   - update_registry: conclusion=success, status=DONE, spec 中包含 metrics 和 checkpoint_path\n\n4. **如果失败**：\n   - 提取错误信息\n   - update_registry: conclusion=failed, status=DONE\n\n### 汇报\n- Ign-F1, Rel-F1, Evi-F1, EDCR（如有）\n- cuda:2 是否空闲（用于下一个任务：LLaMA GRPO QLoRA）\n",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+````
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2033 · 2026-05-16T13:06:10.127379+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_8b_no_evi_eval_v2_completion_20260516T130604\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_ops_check_8b_no_evi_eval_v2_completion_20260516T130604.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_check_8b_no_evi_eval_v2_completion_20260516T130604 started. Use get_worker_status('worker_ops_check_8b_no_evi_eval_v2_completion_20260516T130604') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 6126
+}
+```
+
+</details>
+
+---
+
+
+## Round 220
+
+## Round 220
+
+10 recorded events
+
+
+### User
+
+_source line 2034 · 2026-05-16T13:07:18.403073+00:00_
+
+[WORKER DONE] Worker worker_ops_check_8b_no_evi_eval_v2_completion_20260516T130604 已完成（status=done）。用 `get_worker_status('worker_ops_check_8b_no_evi_eval_v2_completion_20260516T130604')` 读取结果，然后处理。
+
+- worker_id: worker_ops_check_8b_no_evi_eval_v2_completion_20260516T130604
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "source": "worker:done"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2035 · 2026-05-16T13:07:25.931832+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_ops_check_8b_no_evi_eval_v2_completion_20260516T130604"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_ops_check_8b_no_evi_eval_v2_completion_20260516T130604"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2036 · 2026-05-16T13:07:26.033028+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_8b_no_evi_eval_v2_completion_20260516T130604\", \"status\": \"done\", \"task_type\": \"ops:check_8b_no_evi_eval_v2_completion\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-16T13:06:04.760356+00:00\", \"ended_at\": \"2026-05-16T13:07:16.721345+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## 结果\\n\\n**plan_006_qwen3_8b_no_evidence_eval_v2** — 成功完成 ✓\\n\\n| 指标 | 值 |\\n|------|-----|\\n| Ign-F1 | **0.5079** |\\n| Rel-F1 | **0.5283** |\\n| Evi-F1 | 0 (no-evidence 模型，符合预期) |\\n| EDCR | 0 (同上) |\\n| Format compliance | 99.49% |\\n| 推理时间 | 6402s (~107min) |\\n| Truncated | 225/985 docs |\\n\\n**cuda:2 空闲**（0 MiB），可用于下一个任务。\\n\\nGPU 状态：\\n- GPU 0: 10319 MiB (占用)\\n- GPU 1: 23292 MiB (占用)\\n- GPU 2: **0 MiB** (空闲) ← 可用\\n- GPU 3: 17883 MiB (占用)\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2037 · 2026-05-16T13:07:54.475312+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'status': 'DONE'}",
+  "fields": "['spec']",
+  "limit": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'status': 'DONE'}",
+    "fields": "['spec']",
+    "limit": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2038 · 2026-05-16T13:07:54.980221+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan_006_qwen3_8b_no_evidence_eval_v2\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval_v2\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": 335357, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 12275, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_8b_no_evidence\", \"eval_data\": \"docred-dev\", \"log_path\": \"/root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval_v2.log\", \"hypothesis\": \"8B no-evidence SFT eval v2 (with --no_evidence flag). Fix v1 prompt mismatch bug. plan_006 claim=1.\", \"plan_id\": \"plan_006\", \"parent\": \"plan_006_qwen3_8b_no_evidence_sft\", \"checkpoint_path\": \"/root/autodl-tmp/sft_output_qwen3_8b_no_evidence\", \"metrics\": {\"ign_f1\": 0.5079, \"rel_f1\": 0.5283, \"evi_f1\": 0, \"edcr\": 0, \"format_compliance_rate\": 0.9949, \"n_total\": 985, \"n_parseable\": 980, \"n_truncated\": 225, \"inference_time_seconds\": 6402.2}}}, \"plan_007_redocred_4b_sft_eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output_qwen3_4b --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_4b_sft_eval\\\"\", \"server\": \
+…[truncated 21160 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 504
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2039 · 2026-05-16T13:08:35.214479+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "ops:submit_llama_grpo_qlora",
+  "project": "faith-evidence-ie",
+  "task_prompt": "## 任务：确认 GRPO 参数并提交 LLaMA GRPO QLoRA 到 cuda:2\n\n服务器：rtx5090-4x\n目标 GPU：cuda:2\n实验 ID：plan_016_llama_grpo_qlora\n\n### 背景\nDirector P0 任务。配置要求：\n- base_model: `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B/`\n- sft_adapter: `/root/autodl-tmp/sft_output_llama_3_1_8b/`（with-evidence SFT 作为起点）\n- QLoRA 4-bit（默认行为，不传 --no_quantize）\n- G=4 (num_generations=4)\n- kl_coef=0\n- CED reward\n- lora_rank=64\n\n### 步骤\n\n1. **确认 cuda:2 空闲**（ssh_read_only）：\n```bash\nnvidia-smi --query-gpu=index,memory.used --format=csv,noheader | sed -n '3p'\n```\n\n2. **获取 grpo_trainer.py 完整参数列表**（ssh_read_only）：\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer --help 2>&1\"\n```\n\n3. **查看之前 4B GRPO 实验的输出目录结构**（了解 reward 配置方式）：\n```bash\nls /root/autodl-tmp/grpo_output*/ 2>/dev/null | head -10\nfind /root/autodl-tmp -maxdepth 1 -name \"grpo*\" -type d 2>/dev/null\n```\n\n4. **根据 --help 输出构建完整命令并提交**。\n\n命令模板（根据实际 --help 调整参数名）：\n```\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache PYTHONUNBUFFERED=1 python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/grpo_output_llama_3_1_8b_qlora --num_generations 4 --lora_rank 64 --per_device_batch_size 1 --gradient_accumulation_steps 16 --max_length 4096 --max_new_tokens 1024 --seed 42 &lt;kl_coef参数> &lt;CED reward参数>\"\n```\n\n**关键约束**：\n- 不传 `--no_quantize`（让默认 QLoRA 4-bit 生效）\n- kl_coef=0\n- CED reward（确认参数名：可能是 --reward_type ced 或类似）\n- CUDA_VISIBLE_DEVICES=2\n- seed=42\n\n5. 提交后用 update_registry 注册：\n- exp_id: plan_016_llama_grpo_qlora\n- status: RUNNING\n- 包含 spec（command, server, gpu, model_name, seed, hypothesis 等）\n- hypothesis: \"LLaMA-3.1-8B GRPO QLoRA (4-bit, G=4, CED reward, kl_coef=0). Cross-family RL decoupling experiment. plan_016 claim=2.\"\n",
+  "tool_groups": "['ssh', 'registry']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "ops:submit_llama_grpo_qlora",
+    "project": "faith-evidence-ie",
+    "task_prompt": "## 任务：确认 GRPO 参数并提交 LLaMA GRPO QLoRA 到 cuda:2\n\n服务器：rtx5090-4x\n目标 GPU：cuda:2\n实验 ID：plan_016_llama_grpo_qlora\n\n### 背景\nDirector P0 任务。配置要求：\n- base_model: `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B/`\n- sft_adapter: `/root/autodl-tmp/sft_output_llama_3_1_8b/`（with-evidence SFT 作为起点）\n- QLoRA 4-bit（默认行为，不传 --no_quantize）\n- G=4 (num_generations=4)\n- kl_coef=0\n- CED reward\n- lora_rank=64\n\n### 步骤\n\n1. **确认 cuda:2 空闲**（ssh_read_only）：\n```bash\nnvidia-smi --query-gpu=index,memory.used --format=csv,noheader | sed -n '3p'\n```\n\n2. **获取 grpo_trainer.py 完整参数列表**（ssh_read_only）：\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer --help 2>&1\"\n```\n\n3. **查看之前 4B GRPO 实验的输出目录结构**（了解 reward 配置方式）：\n```bash\nls /root/autodl-tmp/grpo_output*/ 2>/dev/null | head -10\nfind /root/autodl-tmp -maxdepth 1 -name \"grpo*\" -type d 2>/dev/null\n```\n\n4. **根据 --help 输出构建完整命令并提交**。\n\n命令模板（根据实际 --help 调整参数名）：\n```\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache PYTHONUNBUFFERED=1 python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/grpo_output_llama_3_1_8b_qlora --num_generations 4 --lora_rank 64 --per_device_batch_size 1 --gradient_accumulation_steps 16 --max_length 4096 --max_new_tokens 1024 --seed 42 &lt;kl_coef参数> &lt;CED reward参数>\"\n```\n\n**关键约束**：\n- 不传 `--no_quantize`（让默认 QLoRA 4-bit 生效）\n- kl_coef=0\n- CED reward（确认参数名：可能是 --reward_type ced 或类似）\n- CUDA_VISIBLE_DEVICES=2\n- seed=42\n\n5. 提交后用 update_registry 注册：\n- exp_id: plan_016_llama_grpo_qlora\n- status: RUNNING\n- 包含 spec（command, server, gpu, model_name, seed, hypothesis 等）\n- hypothesis: \"LLaMA-3.1-8B GRPO QLoRA (4-bit, G=4, CED reward, kl_coef=0). Cross-family RL decoupling experiment. plan_016 claim=2.\"\n",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+````
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2040 · 2026-05-16T13:08:41.256113+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_submit_llama_grpo_qlora_20260516T130835\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_ops_submit_llama_grpo_qlora_20260516T130835.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_submit_llama_grpo_qlora_20260516T130835 started. Use get_worker_status('worker_ops_submit_llama_grpo_qlora_20260516T130835') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 6041
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2041 · 2026-05-16T13:09:05.243588+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 4/4 | 实际跑 3/4 (cuda:2 正在提交 GRPO) | Worker 池 1\n\n**🔬 8B No-evidence Eval v2 完成 — 重要发现：**\n\n| 指标 | 8B with-evidence | 8B no-evidence | Δ (evidence tax) |\n|------|-----------------|----------------|------------------|\n| Ign-F1 | 0.5051 | **0.5079** | **-0.28pp (无 tax!)** |\n| Rel-F1 | (未记录) | 0.5283 | — |\n| Evi-F1 | >0 | 0 | expected |\n\n**结论：8B 尺度 evidence tax 消失。** 与 4B 的 +7.7pp evidence tax 形成鲜明对比。这支持一个 scale-dependent story：\n- 4B: evidence generation 显著消耗关系抽取容量 (+7.7pp tax)\n- 8B: 模型容量足够同时处理两个任务 (0pp tax)\n- 1.7B: 待 v3 完成确认（预期 tax 更大）\n\n**已执行：**\n- ✅ Registry 更新: plan_006_qwen3_8b_no_evidence_eval_v2 → DONE/success\n- ✅ NLI 模型下载完成 (706MB, cross-encoder/nli-deberta-v3-base)\n- 🔄 LLaMA GRPO QLoRA (cuda:2) Worker 正在确认参数并提交\n\n**当前 GPU：**\n| GPU | 实验 | 状态 |\n|-----|------|------|\n| cuda:0 | Re-DocRED 4B eval r2 | RUNNING (~35min left) |\n| cuda:1 | 1.7B no-evi v3 + LLaMA with-evi eval | RUNNING |\n| cuda:2 | LLaMA GRPO QLoRA（正在提交） | SUBMITTING |\n| cuda:3 | LLaMA no-evi eval | RUNNING |",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 4/4 | 实际跑 3/4 (cuda:2 正在提交 GRPO) | Worker 池 1\n\n**🔬 8B No-evidence Eval v2 完成 — 重要发现：**\n\n| 指标 | 8B with-evidence | 8B no-evidence | Δ (evidence tax) |\n|------|-----------------|----------------|------------------|\n| Ign-F1 | 0.5051 | **0.5079** | **-0.28pp (无 tax!)** |\n| Rel-F1 | (未记录) | 0.5283 | — |\n| Evi-F1 | >0 | 0 | expected |\n\n**结论：8B 尺度 evidence tax 消失。** 与 4B 的 +7.7pp evidence tax 形成鲜明对比。这支持一个 scale-dependent story：\n- 4B: evidence generation 显著消耗关系抽取容量 (+7.7pp tax)\n- 8B: 模型容量足够同时处理两个任务 (0pp tax)\n- 1.7B: 待 v3 完成确认（预期 tax 更大）\n\n**已执行：**\n- ✅ Registry 更新: plan_006_qwen3_8b_no_evidence_eval_v2 → DONE/success\n- ✅ NLI 模型下载完成 (706MB, cross-encoder/nli-deberta-v3-base)\n- 🔄 LLaMA GRPO QLoRA (cuda:2) Worker 正在确认参数并提交\n\n**当前 GPU：**\n| GPU | 实验 | 状态 |\n|-----|------|------|\n| cuda:0 | Re-DocRED 4B eval r2 | RUNNING (~35min left) |\n| cuda:1 | 1.7B no-evi v3 + LLaMA with-evi eval | RUNNING |\n| cuda:2 | LLaMA GRPO QLoRA（正在提交） | SUBMITTING |\n| cuda:3 | LLaMA no-evi eval | RUNNING |",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2042 · 2026-05-16T13:09:06.499640+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 1256
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 2043 · 2026-05-16T13:09:10.141881+00:00_
+
+同时向 Director 汇报 8B no-evidence eval 结果（重要发现）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b"
+}
+```
+
+</details>
+
+---
+
+
+## Round 221
+
+## Round 221
+
+4 recorded events
+
+
+### User
+
+_source line 2044 · 2026-05-16T13:09:44.765766+00:00_
+
+[Director 指令] **cuda:2 已释放。两件事，并行处理：**
+
+**1. 快速确认 8B eval config 异常（ssh_read_only，1min）**
+Reviewer 发现 8B no-evi eval 的 metrics.json 中 `base_model` 字段显示 Qwen3-4B，但 `model_path` 是 Qwen3-8B。
+- 检查 `inference.py` 代码中 `base_model` 参数的实际作用
+- 如果它只是日志记录/默认值，不影响模型加载逻辑，确认即可
+- 如果它影响 tokenizer 选择或模型加载，这是 critical bug 需要立即处理
+- Ign-F1=0.5079 远高于 4B 水平，几乎确认加载了 8B，但仍需代码确认
+
+**2. cuda:2 启动 LLaMA-3.1-8B GRPO QLoRA（按之前计划，P0）**
+- 确认 #1 后立即在 cuda:2 提交
+- 配置：
+  - base_model: `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B/`
+  - sft_adapter: `/root/autodl-tmp/sft_output_llama_3_1_8b/`
+  - QLoRA 4-bit, LoRA r=64
+  - G=4, kl_coef=0, CED reward
+  - 参考之前 4B GRPO 的训练命令格式
+  - CUDA_VISIBLE_DEVICES=2
+- 注册 ID: `plan_016_llama_grpo_qlora`
+- 提交前 nvidia-smi 确认 cuda:2 < 2GB (C001)
+- 必须 bash -c conda activate 包裹
+
+**8B evidence tax = 0 的战略意义**：这是重要发现。evidence tax 与模型规模反相关（4B ~7.5pp, 8B ≈0）。等 1.7B 数据到位后三点连线可以画 scaling curve。暂时记录，不影响当前执行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "source": "director"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2045 · 2026-05-16T13:10:07.251665+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "ops:check_8b_eval_base_model_field",
+  "project": "faith-evidence-ie",
+  "task_prompt": "## 任务：快速确认 8B eval 中 base_model 字段异常\n\n服务器：rtx5090-4x\n**全部 ssh_read_only，不修改任何文件。**\n\n### 背景\n8B no-evidence eval 的 metrics.json 中 `base_model` 显示 Qwen3-4B，但 `model_path` 是 Qwen3-8B。Ign-F1=0.5079 远高于 4B 水平，几乎确认加载了 8B。但需要代码确认 `base_model` 字段是否影响实际加载。\n\n### 步骤\n\n1. **检查 inference.py 中 base_model 参数的定义和作用**：\n```bash\ngrep -n \"base_model\\|--base_model\" /root/autodl-tmp/freige/eval/inference.py | head -20\n```\n\n2. **检查 base_model 在模型加载逻辑中的实际使用**：\n```bash\ngrep -n -A 5 \"base_model\" /root/autodl-tmp/freige/eval/inference.py | head -50\n```\n关键问题：\n- base_model 是否参与 `from_pretrained()` 调用？\n- 还是只用于日志记录 / metadata 写入？\n- model_path 是否才是实际加载路径？\n\n3. **确认 metrics.json 中记录的 base_model 值来源**：\n```bash\ngrep -n \"base_model\" /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval_v2/metrics.json 2>/dev/null\ncat /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval_v2/metrics.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print('base_model:', d.get('base_model','N/A')); print('model_path:', d.get('model_path','N/A'))\"\n```\n\n4. **检查 model_path vs base_model 在代码中的加载逻辑**：\n```bash\ngrep -n \"from_pretrained\\|AutoModelFor\\|AutoTokenizer\" /root/autodl-tmp/freige/eval/inference.py | head -20\n```\n\n### 汇报\n- base_model 字段是否影响实际模型加载（是/否）\n- 如果不影响（只是 metadata/default），明确说明 Ign-F1=0.5079 确认来自 8B 模型\n- 如果影响加载逻辑，标记为 CRITICAL BUG\n",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "ops:check_8b_eval_base_model_field",
+    "project": "faith-evidence-ie",
+    "task_prompt": "## 任务：快速确认 8B eval 中 base_model 字段异常\n\n服务器：rtx5090-4x\n**全部 ssh_read_only，不修改任何文件。**\n\n### 背景\n8B no-evidence eval 的 metrics.json 中 `base_model` 显示 Qwen3-4B，但 `model_path` 是 Qwen3-8B。Ign-F1=0.5079 远高于 4B 水平，几乎确认加载了 8B。但需要代码确认 `base_model` 字段是否影响实际加载。\n\n### 步骤\n\n1. **检查 inference.py 中 base_model 参数的定义和作用**：\n```bash\ngrep -n \"base_model\\|--base_model\" /root/autodl-tmp/freige/eval/inference.py | head -20\n```\n\n2. **检查 base_model 在模型加载逻辑中的实际使用**：\n```bash\ngrep -n -A 5 \"base_model\" /root/autodl-tmp/freige/eval/inference.py | head -50\n```\n关键问题：\n- base_model 是否参与 `from_pretrained()` 调用？\n- 还是只用于日志记录 / metadata 写入？\n- model_path 是否才是实际加载路径？\n\n3. **确认 metrics.json 中记录的 base_model 值来源**：\n```bash\ngrep -n \"base_model\" /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval_v2/metrics.json 2>/dev/null\ncat /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval_v2/metrics.json 2>/dev/null | python3 -c \"import json,sys; d=json.load(sys.stdin); print('base_model:', d.get('base_model','N/A')); print('model_path:', d.get('model_path','N/A'))\"\n```\n\n4. **检查 model_path vs base_model 在代码中的加载逻辑**：\n```bash\ngrep -n \"from_pretrained\\|AutoModelFor\\|AutoTokenizer\" /root/autodl-tmp/freige/eval/inference.py | head -20\n```\n\n### 汇报\n- base_model 字段是否影响实际模型加载（是/否）\n- 如果不影响（只是 metadata/default），明确说明 Ign-F1=0.5079 确认来自 8B 模型\n- 如果影响加载逻辑，标记为 CRITICAL BUG\n",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2046 · 2026-05-16T13:10:13.438010+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_8b_eval_base_model_field_20260516T131007\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_ops_check_8b_eval_base_model_field_20260516T131007.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_check_8b_eval_base_model_field_20260516T131007 started. Use get_worker_status('worker_ops_check_8b_eval_base_model_field_20260516T131007') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 6186
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 2047 · 2026-05-16T13:10:16.791487+00:00_
+
+Worker 已在处理 GRPO 提交 (#2)。并行派 Worker 检查 8B eval config 异常 (#1)。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b"
+}
+```
+
+</details>
+
+---
+
+
+## Round 222
+
+## Round 222
+
+6 recorded events
+
+
+### User
+
+_source line 2048 · 2026-05-16T13:11:19.325416+00:00_
+
+[WORKER DONE] Worker worker_ops_check_8b_eval_base_model_field_20260516T131007 已完成（status=done）。用 `get_worker_status('worker_ops_check_8b_eval_base_model_field_20260516T131007')` 读取结果，然后处理。
+
+- worker_id: worker_ops_check_8b_eval_base_model_field_20260516T131007
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "source": "worker:done"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2049 · 2026-05-16T13:11:28.417434+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_ops_check_8b_eval_base_model_field_20260516T131007"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_ops_check_8b_eval_base_model_field_20260516T131007"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2050 · 2026-05-16T13:11:28.518481+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_8b_eval_base_model_field_20260516T131007\", \"status\": \"done\", \"task_type\": \"ops:check_8b_eval_base_model_field\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-16T13:10:08.110976+00:00\", \"ended_at\": \"2026-05-16T13:11:17.571514+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"**结论：`base_model` 字段不影响实际模型加载。Ign-F1=0.5079 确认来自 8B 模型。**\\n\\n代码逻辑（`inference.py` 第 407-415 行）：\\n\\n```python\\nadapter_config = Path(args.model_path) / \\\"adapter_config.json\\\"\\nif adapter_config.exists():\\n    base_model_path = args.base_model   # 只有 model_path 是 adapter 时才用 base_model\\nelse:\\n    base_model_path = args.model_path   # 完整模型时直接用 model_path，忽略 base_model\\n```\\n\\n本次 eval 的实际加载路径：\\n1. `model_path` = `/root/autodl-tmp/models/Qwen/Qwen3-8B`（完整模型目录，无 `adapter_config.json`）\\n2. 走 `else` 分支 → `base_model_path = args.model_path` = **Qwen3-8B**\\n3. `AutoModelForCausalLM.from_pretrained(\\\"Qwen3-8B\\\")` → 加载 8B 基座\\n4. 然后合并 SFT adapter `/root/autodl-tmp/sft_output_qwen3_8b_no_evidence`\\n\\nmetrics.json 中的 `base_model: Qwen3-4B` 来源：argparse 的 `--base_model` 默认值（第 382 行硬编码为 Qwen3-4B），因为本次 eval 没有显式传 `--base_model`，所以记录了默认值。但这个值**从未被使用**——它只在 model_path 指向 adapter 时才会被读取。\\n\\n`metrics[\\\"config\\\"] = vars(args)` 把所有 argparse 参数（含未使用的默认值）原样写入 metrics.json，造成了误导。\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2051 · 2026-05-16T13:11:39.419972+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "**8B eval config 异常确认 — 非 bug，数据有效。**\n\n`metrics.json` 中 `base_model: Qwen3-4B` 来源：argparse 默认值（inference.py L382 硬编码），本次 eval 未显式传 `--base_model`。\n\n代码逻辑确认：\n- `model_path = Qwen3-8B`（完整模型目录，无 adapter_config.json）\n- 走 `else` 分支 → 直接用 `model_path` 加载，**忽略 `base_model` 参数**\n- `base_model` 只在 `model_path` 指向 adapter 目录时才生效\n\n**结论**：Ign-F1=0.5079 确认来自 8B 模型，数据有效。metrics.json 记录了未使用的默认值造成误导，但不影响结果。\n\nLLaMA GRPO QLoRA Worker 仍在确认参数+提交中。",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "**8B eval config 异常确认 — 非 bug，数据有效。**\n\n`metrics.json` 中 `base_model: Qwen3-4B` 来源：argparse 默认值（inference.py L382 硬编码），本次 eval 未显式传 `--base_model`。\n\n代码逻辑确认：\n- `model_path = Qwen3-8B`（完整模型目录，无 adapter_config.json）\n- 走 `else` 分支 → 直接用 `model_path` 加载，**忽略 `base_model` 参数**\n- `base_model` 只在 `model_path` 指向 adapter 目录时才生效\n\n**结论**：Ign-F1=0.5079 确认来自 8B 模型，数据有效。metrics.json 记录了未使用的默认值造成误导，但不影响结果。\n\nLLaMA GRPO QLoRA Worker 仍在确认参数+提交中。",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2052 · 2026-05-16T13:11:43.286443+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3866
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 2053 · 2026-05-16T13:11:46.884603+00:00_
+
+确认：`base_model` 字段是 argparse 默认值，**未被实际使用**。8B 模型正确加载，Ign-F1=0.5079 有效。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b"
+}
+```
+
+</details>
+
+---
+
+
+## Round 223
+
+## Round 223
+
+8 recorded events
+
+
+### User
+
+_source line 2054 · 2026-05-16T13:15:20.079646+00:00_
+
+[WORKER DONE] Worker worker_ops_submit_llama_grpo_qlora_20260516T130835 已完成（status=done）。用 `get_worker_status('worker_ops_submit_llama_grpo_qlora_20260516T130835')` 读取结果，然后处理。
+
+- worker_id: worker_ops_submit_llama_grpo_qlora_20260516T130835
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "source": "worker:done"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2055 · 2026-05-16T13:15:27.501431+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_ops_submit_llama_grpo_qlora_20260516T130835"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_ops_submit_llama_grpo_qlora_20260516T130835"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2056 · 2026-05-16T13:15:27.602553+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_submit_llama_grpo_qlora_20260516T130835\", \"status\": \"done\", \"task_type\": \"ops:submit_llama_grpo_qlora\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-16T13:08:35.919030+00:00\", \"ended_at\": \"2026-05-16T13:15:18.437952+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"已完成。总结：\\n\\n**plan_016_llama_grpo_qlora** 已在 cuda:2 上运行（PID 346621）\\n\\n| 参数 | 值 |\\n|------|-----|\\n| base_model | Meta-Llama-3.1-8B |\\n| sft_adapter | sft_output_llama_3_1_8b (with-evidence) |\\n| quantize | 4-bit QLoRA |\\n| stage | 3 (CED reward) |\\n| num_generations | 4 |\\n| lora_rank | 64 |\\n| kl_coef | 0 |\\n| total_steps | 757 |\\n| GPU mem | 8039 MiB |\\n\\n**修复的问题**：\\n1. base LLaMA-3.1-8B 的 tokenizer 没有 `chat_template` → 改为从 SFT adapter 目录加载 tokenizer\\n2. NLI 模型（DeBERTa）网络不通 → 传本地缓存路径 + `TRANSFORMERS_OFFLINE=1`\\n\\n日志：`/root/autodl-tmp/grpo_output_llama_3_1_8b_qlora.log`\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2057 · 2026-05-16T13:15:36.358397+00:00_
+
+called mcp__agent-ml-research__register_cron
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron</summary>
+
+```json
+{
+  "exp_id": "plan_016_llama_grpo_qlora",
+  "server": "rtx5090-4x",
+  "pid": "346621",
+  "project": "faith-evidence-ie",
+  "log_path": "/root/autodl-tmp/grpo_output_llama_3_1_8b_qlora.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__register_cron",
+  "tool_args": {
+    "exp_id": "plan_016_llama_grpo_qlora",
+    "server": "rtx5090-4x",
+    "pid": "346621",
+    "project": "faith-evidence-ie",
+    "log_path": "/root/autodl-tmp/grpo_output_llama_3_1_8b_qlora.log"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2058 · 2026-05-16T13:15:36.560536+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"plan_016_llama_grpo_qlora\", \"server\": \"rtx5090-4x\", \"pid\": \"346621\", \"wandb_run_id\": null, \"log_path\": \"/root/autodl-tmp/grpo_output_llama_3_1_8b_qlora.log\", \"interval_seconds\": 120, \"project\": \"faith-evidence-ie\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-16T13:15:36.418Z\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__register_cron",
+  "elapsed_ms": 202
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2059 · 2026-05-16T13:15:50.901135+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 4/4 | 实际跑 4/4 | Worker 池 0 (GPU 4 / CPU 0)\n\n**✅ LLaMA GRPO QLoRA 已启动 (P0 完成)：**\n\n| 参数 | 值 |\n|------|-----|\n| exp_id | plan_016_llama_grpo_qlora |\n| GPU | cuda:2, PID 346621, 8039 MiB |\n| base_model | Meta-Llama-3.1-8B |\n| sft_adapter | sft_output_llama_3_1_8b (with-evidence) |\n| quantize | **QLoRA 4-bit** |\n| stage | 3 (CED reward) |\n| G | 4, kl_coef=0 |\n| LoRA rank | 64 |\n| total_steps | 757 |\n| cron | ✅ 已注册 |\n\nWorker 修复了两个问题：(1) LLaMA base tokenizer 无 chat_template → 从 SFT adapter 加载; (2) NLI 模型网络不通 → 传本地缓存路径 + TRANSFORMERS_OFFLINE=1。\n\n**当前 GPU 全景：**\n| GPU | 实验 | PID | 类型 | 预计时长 |\n|-----|------|-----|------|---------|\n| cuda:0 | Re-DocRED 4B eval r2 | 342711 | eval | ~20min left |\n| cuda:1 | 1.7B no-evi v3 + LLaMA with-evi eval | 337844+340116 | eval | ~40-80min |\n| cuda:2 | **LLaMA GRPO QLoRA** | 346621 | **training** | ~数小时 (757 steps) |\n| cuda:3 | LLaMA no-evi eval | 339692 | eval | ~20min left |\n\n**接力计划（eval 完成后）：**\n- cuda:0 释放 → 8B RSFT candidate gen (P0)\n- cuda:3 释放 → 1.7B RSFT candidate gen (P1)\n- cuda:1 释放 → LLaMA RSFT candidate gen (P1)",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 4/4 | 实际跑 4/4 | Worker 池 0 (GPU 4 / CPU 0)\n\n**✅ LLaMA GRPO QLoRA 已启动 (P0 完成)：**\n\n| 参数 | 值 |\n|------|-----|\n| exp_id | plan_016_llama_grpo_qlora |\n| GPU | cuda:2, PID 346621, 8039 MiB |\n| base_model | Meta-Llama-3.1-8B |\n| sft_adapter | sft_output_llama_3_1_8b (with-evidence) |\n| quantize | **QLoRA 4-bit** |\n| stage | 3 (CED reward) |\n| G | 4, kl_coef=0 |\n| LoRA rank | 64 |\n| total_steps | 757 |\n| cron | ✅ 已注册 |\n\nWorker 修复了两个问题：(1) LLaMA base tokenizer 无 chat_template → 从 SFT adapter 加载; (2) NLI 模型网络不通 → 传本地缓存路径 + TRANSFORMERS_OFFLINE=1。\n\n**当前 GPU 全景：**\n| GPU | 实验 | PID | 类型 | 预计时长 |\n|-----|------|-----|------|---------|\n| cuda:0 | Re-DocRED 4B eval r2 | 342711 | eval | ~20min left |\n| cuda:1 | 1.7B no-evi v3 + LLaMA with-evi eval | 337844+340116 | eval | ~40-80min |\n| cuda:2 | **LLaMA GRPO QLoRA** | 346621 | **training** | ~数小时 (757 steps) |\n| cuda:3 | LLaMA no-evi eval | 339692 | eval | ~20min left |\n\n**接力计划（eval 完成后）：**\n- cuda:0 释放 → 8B RSFT candidate gen (P0)\n- cuda:3 释放 → 1.7B RSFT candidate gen (P1)\n- cuda:1 释放 → LLaMA RSFT candidate gen (P1)",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2060 · 2026-05-16T13:15:55.071750+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 4170
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 2061 · 2026-05-16T13:15:57.513791+00:00_
+
+LLaMA GRPO QLoRA 已在 cuda:2 运行！PID 346621, 8GB VRAM。注册 cron 并汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b"
+}
+```
+
+</details>
+
+---
+
+
+## Round 224
+
+## Round 224
+
+29 recorded events
+
+
+### User
+
+_source line 2062 · 2026-05-16T13:29:06.020521+00:00_
+
+[Director 指令] **cuda:3 空闲，立即启动 8B RSFT candidate gen (P0)**
+
+LLaMA no-evi eval 已完成（Ign-F1=0.5452），cuda:3 释放。按计划启动：
+
+**Task: Qwen3-8B RSFT candidate generation**
+- GPU: cuda:2 → 不对，用 **cuda:3**（cuda:2 在跑 GRPO）
+- CUDA_VISIBLE_DEVICES=3
+- 命令模板：
+```bash
+bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.rsft.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --num_generations 8 --temperature 0.7 --batch_size 1 --output_dir /root/autodl-tmp/freige/outputs/rsft_candidates_8b --data_dir /root/autodl-tmp/data/docred"
+```
+- 注册实验 ID: `plan_006_qwen3_8b_rsft_candidates`
+- 提交前 nvidia-smi 确认 cuda:3 < 2GB (C001)
+- 预计时长：数小时（N=8 × 3027 samples）
+
+**同时**：确认 LLaMA no-evi eval 结果已注册到 registry（Ign-F1=0.5452, F1=0.5624）。
+
+**当 cuda:0 释放后**（Re-DocRED eval 完成）→ 启动 1.7B RSFT candidate gen，同样的配置但用 Qwen3-1.7B + `sft_output_qwen3_1_7b_bf16`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "source": "director"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2063 · 2026-05-16T13:29:13.997437+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan_016_llama_3_1_8b_no_evidence_eval",
+  "field": "conclusion",
+  "value": "success",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan_016_llama_3_1_8b_no_evidence_eval",
+    "field": "conclusion",
+    "value": "success",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2064 · 2026-05-16T13:29:15.053461+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_016_llama_3_1_8b_no_evidence_eval\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:05:53.861Z\", \"updated_at\": \"2026-05-16T13:29:14.550Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/llama_3_1_8b_no_evidence_eval\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"339687\", \"log_path\": \"~/runs/faith-evidence-ie/plan_016_llama_3_1_8b_no_evidence_eval.log\", \"submitted_at\": \"2026-05-16T12:06:19.840Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": \"339687\", \"log_path\": \"~/runs/faith-evidence-ie/plan_016_llama_3_1_8b_no_evidence_eval.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/llama_3_1_8b_no_evidence_eval\\\"\", \"finished_at\": \"2026-05-16T13:26:57.202Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T13:27:03.265903+00:00\"}]}, \"conclusion\": \"success\"}}, \"error\": null,
+…[truncated 47 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1056
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2065 · 2026-05-16T13:29:20.585446+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan_016_llama_3_1_8b_no_evidence_eval",
+  "field": "status",
+  "value": "DONE",
+  "project": "faith-evidence-ie",
+  "spec": "{'metrics': {'ign_f1': 0.5452, 'rel_f1': 0.5624}, 'checkpoint_path': '/root/autodl-tmp/eval_results/llama_3_1_8b_no_evidence_eval', 'log_path': '~/runs/faith-evidence-ie/plan_016_llama_3_1_8b_no_evidence_eval.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan_016_llama_3_1_8b_no_evidence_eval",
+    "field": "status",
+    "value": "DONE",
+    "project": "faith-evidence-ie",
+    "spec": "{'metrics': {'ign_f1': 0.5452, 'rel_f1': 0.5624}, 'checkpoint_path': '/root/autodl-tmp/eval_results/llama_3_1_8b_no_evidence_eval', 'log_path': '~/runs/faith-evidence-ie/plan_016_llama_3_1_8b_no_evidence_eval.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2066 · 2026-05-16T13:29:21.140205+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition ANALYZING → DONE(success) without metrics. Set metrics first, or use conclusion=negative/failed.\", \"metadata\": {\"elapsed_seconds\": 0.5503}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 554
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2067 · 2026-05-16T13:29:25.321992+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan_016_llama_3_1_8b_no_evidence_eval",
+  "field": "metrics",
+  "value": "{'ign_f1': 0.5452, 'rel_f1': 0.5624, 'evi_f1': 0, 'edcr': 0}",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan_016_llama_3_1_8b_no_evidence_eval",
+    "field": "metrics",
+    "value": "{'ign_f1': 0.5452, 'rel_f1': 0.5624, 'evi_f1': 0, 'edcr': 0}",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2068 · 2026-05-16T13:29:26.178423+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_016_llama_3_1_8b_no_evidence_eval\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:05:53.861Z\", \"updated_at\": \"2026-05-16T13:29:25.794Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/llama_3_1_8b_no_evidence_eval\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"339687\", \"log_path\": \"~/runs/faith-evidence-ie/plan_016_llama_3_1_8b_no_evidence_eval.log\", \"submitted_at\": \"2026-05-16T12:06:19.840Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": \"339687\", \"log_path\": \"~/runs/faith-evidence-ie/plan_016_llama_3_1_8b_no_evidence_eval.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/llama_3_1_8b_no_evidence_eval\\\"\", \"finished_at\": \"2026-05-16T13:26:57.202Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T13:27:03.265903+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"ig
+…[truncated 130 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 856
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2069 · 2026-05-16T13:32:01.974791+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__update_registry",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__update_registry",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2070 · 2026-05-16T13:32:02.025526+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2071 · 2026-05-16T13:32:06.924400+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2072 · 2026-05-16T13:32:06.924888+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2073 · 2026-05-16T13:32:06.975361+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2074 · 2026-05-16T13:32:07.380556+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan_016_llama_grpo_qlora\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:14:37.199Z\", \"updated_at\": \"2026-05-16T13:14:46.238Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 TRANSFORMERS_OFFLINE=1 python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/grpo_output_llama_3_1_8b_qlora --stage 3 --num_generations 4 --lora_rank 64 --per_device_batch_size 1 --gradient_accumulation_steps 16 --max_length 4096 --max_new_tokens 1024 --kl_coef 0 --bf16 --seed 42 --wandb_run_name plan_016_llama_grpo_qlora --nli_model /root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"pid\": 346621, \"model_name\": \"Meta-Llama-3.1-8B\", \"sft_adapter\": \"/root/autodl-tmp/sft_output_llama_3_1_8b\", \"seed\": 42, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_llama_3_1_8b\", \"output_dir\": \"/root/autodl-tmp/grpo_output_llama_3_1_8b_qlora\", \"hypothesis\": \"LLaMA-3.1-8B GRPO QLoRA (4-bit, G=4, CED reward, kl_coef=0). Cross-family RL decoupling experiment. plan_016 claim=2.\", \"config\": {\"stage\": 3, \"num_generations\": 4, \"lora_rank\": 64, \"quantize\": true, \"kl_coef\": 0, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 16, \"max_length\": 4096, \"max_new_tokens\": 1024, \"total_steps\": 757}}}, \"plan_016_llama_3_1_8b_sft_eval\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:06:49.282Z\", \"updated_at\": \"2026-05-16T12:07:12.921Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CU
+…[truncated 2705 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 456
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2075 · 2026-05-16T13:32:13.711483+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"plan_016_llama_3_1_8b_sft_eval\", \"success\": true, \"actions\": [\"Job still running (pid=340111)\"]}, {\"exp_id\": \"plan_006_qwen3_1_7b_no_evidence_eval_v3\", \"success\": true, \"actions\": [\"Job still running (pid=337839)\"]}, {\"exp_id\": \"plan_016_llama_grpo_qlora\", \"success\": true, \"actions\": [\"Job still running (pid=346621)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 6786
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2076 · 2026-05-16T13:32:13.712218+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-16T13:31:57Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 130 个实验 — ANALYZING 2, DONE 124, PREPARING 1, RUNNING 3\\n**DONE 分布**: failed 23, killed 25, negative 13, success 63\\n\\n### GPU 占用\\n- **分配**: 4 张 — rtx5090-4x:cuda:0, rtx5090-4x:cuda:1, rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\n- **实际运行**: 3 张 — rtx5090-4x:cuda:1(plan_006_qwen3_1_7b_no_evidence_eval_v3), rtx5090-4x:cuda:1(plan_016_llama_3_1_8b_sft_eval), rtx5090-4x:cuda:2(plan_016_llama_grpo_qlora)\\n- **空闲（分配了没跑）**: rtx5090-4x:cuda:0, rtx5090-4x:cuda:3\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `plan_006_qwen3_1_7b_no_evidence_eval_v3` | rtx5090-4x | cuda:1 | 337839 | `—` |\\n| `plan_016_llama_3_1_8b_sft_eval` | rtx5090-4x | cuda:1 | 340111 | `~/runs/faith-evidence-ie/plan_016_llama_3_1_8b_sft_eval.log` |\\n| `plan_016_llama_grpo_qlora` | rtx5090-4x | cuda:2 | 346621 | `—` |\\n\\n### 📌 最近完成 (top 5)\\n- `plan_006_qwen3_8b_no_evidence_eval_v2` [success] — 2026-05-16T13:06:41\\n- `plan_007_redocred_4b_sft_eval` [failed] — 2026-05-16T12:34:54 — EXIT_CODE=1 (generic error — check log tail)\\n- `plan_006_qwen3_1_7b_no_evidence_eval_v2r2` [failed] — 2026-05-16T12:28:44 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `plan_002_test_eval_s44_r2` [success] — 2026-05-16T12:06:04\\n- `plan_016_llama_3_1_8b_no_evidence_sft` [success] — 2026-05-16T12:05:08\\n\\n### 🔴 最近失败原因 (top 3)\\n- `plan_007_redocred_4b_sft_eval`: EXIT_CODE=1 (generic error — check log tail)\\n- `plan_006_qwen3_1_7b_no_evidence_eval_v2r2`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n
+…[truncated 3480 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 6736
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2077 · 2026-05-16T13:32:26.250476+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'status': 'ANALYZING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'status': 'ANALYZING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2078 · 2026-05-16T13:32:26.351182+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'exp_id': 'plan_007_redocred_4b_sft_eval_r2'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'exp_id': 'plan_007_redocred_4b_sft_eval_r2'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2079 · 2026-05-16T13:32:26.955141+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan_007_redocred_4b_sft_eval_r2\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:36:01.717Z\", \"updated_at\": \"2026-05-16T13:31:54.910Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_4b_sft_eval\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"342711\", \"log_path\": \"~/runs/faith-evidence-ie/plan_007_redocred_4b_sft_eval_r2.log\", \"submitted_at\": \"2026-05-16T12:36:27.149Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"pid\": \"342711\", \"log_path\": \"~/runs/faith-evidence-ie/plan_007_redocred_4b_sft_eval_r2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_4b_sft_eval\\\"\", \"finished_at\": \"2026-05-16T13:31:53.985Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T13:31:58.248381+00:00\"}]}}, \"plan_016_llama_3_1_8b_no_evidence_eval\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:05:53.861Z\", \"updated_at\": \"2026-05-16T13:29:25.794Z\", \"
+…[truncated 1923 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 704
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2080 · 2026-05-16T13:32:27.557433+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5546}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1206
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2081 · 2026-05-16T13:32:41.684398+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "exp_id": "plan_016_llama_3_1_8b_no_evidence_eval",
+  "field": "status",
+  "value": "DONE"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "exp_id": "plan_016_llama_3_1_8b_no_evidence_eval",
+    "field": "status",
+    "value": "DONE"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2082 · 2026-05-16T13:32:42.638780+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.7929}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 954
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2083 · 2026-05-16T13:32:42.890440+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__submit_on_allocated,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__submit_on_allocated,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2084 · 2026-05-16T13:32:42.993060+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "ToolSearch",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2085 · 2026-05-16T13:32:51.153573+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "exp_id": "plan_016_llama_3_1_8b_no_evidence_eval",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/eval_results/llama_3_1_8b_no_evidence_eval"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "exp_id": "plan_016_llama_3_1_8b_no_evidence_eval",
+    "field": "checkpoint_path",
+    "value": "/root/autodl-tmp/eval_results/llama_3_1_8b_no_evidence_eval"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2086 · 2026-05-16T13:32:59.647014+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_016_llama_3_1_8b_no_evidence_eval\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:05:53.861Z\", \"updated_at\": \"2026-05-16T13:32:51.638Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/llama_3_1_8b_no_evidence_eval\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"339687\", \"log_path\": \"~/runs/faith-evidence-ie/plan_016_llama_3_1_8b_no_evidence_eval.log\", \"submitted_at\": \"2026-05-16T12:06:19.840Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": \"339687\", \"log_path\": \"~/runs/faith-evidence-ie/plan_016_llama_3_1_8b_no_evidence_eval.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/llama_3_1_8b_no_evidence_eval\\\"\", \"finished_at\": \"2026-05-16T13:26:57.202Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T13:27:03.265903+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"ig
+…[truncated 216 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 8493
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2087 · 2026-05-16T13:32:59.698507+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "ops:check_redocred_r2_completion",
+  "project": "faith-evidence-ie",
+  "task_prompt": "## 任务\n检查 Re-DocRED 4B SFT eval r2 的实验结果。\n\n## 背景\n实验 plan_007_redocred_4b_sft_eval_r2 已完成（进程退出），需要收集结果。\n\n服务器: rtx5090-4x\n结果目录: /root/autodl-tmp/eval_results/plan_007_redocred_4b_sft_eval\n日志: ~/runs/faith-evidence-ie/plan_007_redocred_4b_sft_eval_r2.log\n\n## 步骤\n1. SSH 到 rtx5090-4x（ssh_read_only）\n2. 检查日志尾部 `tail -50 ~/runs/faith-evidence-ie/plan_007_redocred_4b_sft_eval_r2.log` 看是否有错误\n3. 检查 metrics.json: `cat /root/autodl-tmp/eval_results/plan_007_redocred_4b_sft_eval/metrics.json`\n4. 如果有 metrics.json，报告 ign_f1, rel_f1, evi_f1, edcr\n5. 如果没有 metrics.json 或有错误，报告错误内容\n\n## 产出\n将结果写入 registry:\n- 如果成功: update_registry(exp_id=\"plan_007_redocred_4b_sft_eval_r2\", field=\"conclusion\", value=\"success\")，然后设 metrics、checkpoint_path、log_path，最后 status=DONE\n- 如果失败: update_registry 设 conclusion=\"failed\"，记录失败原因，然后 status=DONE\n\n注意：转 DONE 前必须先设好 conclusion、metrics、checkpoint_path、log_path。checkpoint_path 设为结果目录。",
+  "tool_groups": "['ssh', 'registry']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "ops:check_redocred_r2_completion",
+    "project": "faith-evidence-ie",
+    "task_prompt": "## 任务\n检查 Re-DocRED 4B SFT eval r2 的实验结果。\n\n## 背景\n实验 plan_007_redocred_4b_sft_eval_r2 已完成（进程退出），需要收集结果。\n\n服务器: rtx5090-4x\n结果目录: /root/autodl-tmp/eval_results/plan_007_redocred_4b_sft_eval\n日志: ~/runs/faith-evidence-ie/plan_007_redocred_4b_sft_eval_r2.log\n\n## 步骤\n1. SSH 到 rtx5090-4x（ssh_read_only）\n2. 检查日志尾部 `tail -50 ~/runs/faith-evidence-ie/plan_007_redocred_4b_sft_eval_r2.log` 看是否有错误\n3. 检查 metrics.json: `cat /root/autodl-tmp/eval_results/plan_007_redocred_4b_sft_eval/metrics.json`\n4. 如果有 metrics.json，报告 ign_f1, rel_f1, evi_f1, edcr\n5. 如果没有 metrics.json 或有错误，报告错误内容\n\n## 产出\n将结果写入 registry:\n- 如果成功: update_registry(exp_id=\"plan_007_redocred_4b_sft_eval_r2\", field=\"conclusion\", value=\"success\")，然后设 metrics、checkpoint_path、log_path，最后 status=DONE\n- 如果失败: update_registry 设 conclusion=\"failed\"，记录失败原因，然后 status=DONE\n\n注意：转 DONE 前必须先设好 conclusion、metrics、checkpoint_path、log_path。checkpoint_path 设为结果目录。",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2088 · 2026-05-16T13:33:03.631458+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "exp_id": "plan_006_qwen3_8b_rsft_candidates",
+  "field": "status",
+  "value": "PREPARING",
+  "spec": "{'hypothesis': 'Generate N=8 RSFT candidates for Qwen3-8B using SFT adapter. Part of multi-scale RSFT pipeline. plan_006 claim=1.', 'plan_id': 'plan_006', 'parent': 'plan_006_qwen3_8b_sft', 'model_name': 'Qwen3-8B', 'seed': 42, 'data_path': '/root/autodl-tmp/data/docred', 'data_count': 3027, 'checkpoint_source': '/root/autodl-tmp/sft_output_qwen3_8b_bf16'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "exp_id": "plan_006_qwen3_8b_rsft_candidates",
+    "field": "status",
+    "value": "PREPARING",
+    "spec": "{'hypothesis': 'Generate N=8 RSFT candidates for Qwen3-8B using SFT adapter. Part of multi-scale RSFT pipeline. plan_006 claim=1.', 'plan_id': 'plan_006', 'parent': 'plan_006_qwen3_8b_sft', 'model_name': 'Qwen3-8B', 'seed': 42, 'data_path': '/root/autodl-tmp/data/docred', 'data_count': 3027, 'checkpoint_source': '/root/autodl-tmp/sft_output_qwen3_8b_bf16'}"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2089 · 2026-05-16T13:33:06.961665+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_redocred_r2_completion_20260516T133300\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_ops_check_redocred_r2_completion_20260516T133300.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_check_redocred_r2_completion_20260516T133300 started. Use get_worker_status('worker_ops_check_redocred_r2_completion_20260516T133300') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 7263
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 2090 · 2026-05-16T13:49:06.262434+00:00_
+
+需要先设 checkpoint_path 才能转 DONE。同时派 Worker 分析 Re-DocRED r2 结果，并准备 8B RSFT 实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b"
+}
+```
+
+</details>
+
+---
+
+
+## Round 225
+
+## Round 225
+
+46 recorded events
+
+
+### User
+
+_source line 2091 · 2026-05-16T13:49:06.757641+00:00_
+
+[WORKER DONE] Worker worker_analyze_plan_016_llama_3_1_8b_no_evidence_eval_20260516T132825 已完成（status=done）。用 `get_worker_status('worker_analyze_plan_016_llama_3_1_8b_no_evidence_eval_20260516T132825')` 读取结果，然后处理。
+
+- worker_id: worker_analyze_plan_016_llama_3_1_8b_no_evidence_eval_20260516T132825
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "source": "worker:done"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2092 · 2026-05-16T13:49:14.765201+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_worker_status",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__get_worker_status",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2093 · 2026-05-16T13:49:14.815942+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2094 · 2026-05-16T13:49:17.832423+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_analyze_plan_016_llama_3_1_8b_no_evidence_eval_20260516T132825"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_analyze_plan_016_llama_3_1_8b_no_evidence_eval_20260516T132825"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2095 · 2026-05-16T13:49:17.883282+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analyze_plan_016_llama_3_1_8b_no_evidence_eval_20260516T132825\", \"status\": \"done\", \"task_type\": \"analyze:plan_016_llama_3_1_8b_no_evidence_eval\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-16T13:28:25.932580+00:00\", \"ended_at\": \"2026-05-16T13:29:01.484064+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## plan_016_llama_3_1_8b_no_evidence_eval 结果\\n\\n### 核心指标\\n\\n| 指标 | 数值 |\\n|------|------|\\n| **rel_f1 (F1)** | **0.5624** |\\n| **Ign-F1** | **0.5452** |\\n| rel_p (Precision) | 0.5370 |\\n| rel_r (Recall) | 0.5903 |\\n| evi_f1 | 0.0000 (预期，no-evidence 模式) |\\n| Format OK | 985/985 (100%) |\\n| Truncated | 182/985 |\\n| Predictions | 18,466 |\\n\\n### 配置确认\\n- `no_evidence: true` ✓ (正确传了参数)\\n- W&B: 无 run ID（未上传 W&B）\\n\\n### 跨模型对比\\n\\n| 模型 | rel_f1 | 备注 |\\n|------|--------|------|\\n| **LLaMA-3.1-8B no-evidence** | **0.5624** | 本次结果 |\\n| Qwen2.5-3B no-evidence | 0.4893 | 基线 |\\n| LLaMA-3.1-8B with-evidence | 待出 | plan_016_llama_3_1_8b_sft_eval |\\n\\n### 分析\\n\\nLLaMA-3.1-8B no-evidence 的 rel_f1=0.5624，大幅超过 Qwen2.5-3B no-evidence (0.4893)，高出 **+7.31pp**。这符合预期——8B 参数模型在纯关系抽取上应强于 3B 模型。\\n\\n等 plan_016_llama_3_1_8b_sft_eval（with-evidence）完成后即可计算 LLaMA 的 evidence tax = rel_f1(with-evidence) - rel_f1(no-evidence)。\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2096 · 2026-05-16T13:49:24.817085+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "exp_id": "plan_016_llama_3_1_8b_no_evidence_eval",
+  "field": "status",
+  "value": "DONE"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "exp_id": "plan_016_llama_3_1_8b_no_evidence_eval",
+    "field": "status",
+    "value": "DONE"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2097 · 2026-05-16T13:49:26.993168+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_016_llama_3_1_8b_no_evidence_eval\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:05:53.861Z\", \"updated_at\": \"2026-05-16T13:49:25.350Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/llama_3_1_8b_no_evidence_eval\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"339687\", \"log_path\": \"~/runs/faith-evidence-ie/plan_016_llama_3_1_8b_no_evidence_eval.log\", \"submitted_at\": \"2026-05-16T12:06:19.840Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 5374.3, \"gpu_hours\": 1.49}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": \"339687\", \"log_path\": \"~/runs/faith-evidence-ie/plan_016_llama_3_1_8b_no_evidence_eval.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/llama_3_1_8b_no_evidence_eval\\\"\", \"finished_at\": \"2026-05-16T13:26:57.202Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T13:27:03.265903+00:00\"}]},
+…[truncated 363 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 2176
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2098 · 2026-05-16T13:49:51.971931+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "exp_id": "plan_006_qwen3_8b_rsft_candidates",
+  "field": "status",
+  "value": "PREPARING"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "exp_id": "plan_006_qwen3_8b_rsft_candidates",
+    "field": "status",
+    "value": "PREPARING"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2099 · 2026-05-16T13:49:53.427705+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_8b_rsft_candidates\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:49:52.476Z\", \"updated_at\": \"2026-05-16T13:49:52.476Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4585}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1455
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2100 · 2026-05-16T13:49:58.850381+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "exp_id": "plan_006_qwen3_8b_rsft_candidates",
+  "field": "hypothesis",
+  "value": "Qwen3-8B RSFT candidate generation (N=8, T=0.7). Generates rejection sampling candidates for subsequent CED scoring and filtering. plan_006 claim=3."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "exp_id": "plan_006_qwen3_8b_rsft_candidates",
+    "field": "hypothesis",
+    "value": "Qwen3-8B RSFT candidate generation (N=8, T=0.7). Generates rejection sampling candidates for subsequent CED scoring and filtering. plan_006 claim=3."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2101 · 2026-05-16T13:49:59.202893+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "exp_id": "plan_006_qwen3_8b_rsft_candidates",
+  "field": "status",
+  "value": "QUEUED"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "exp_id": "plan_006_qwen3_8b_rsft_candidates",
+    "field": "status",
+    "value": "QUEUED"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2102 · 2026-05-16T13:50:00.260440+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_8b_rsft_candidates\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:49:52.476Z\", \"updated_at\": \"2026-05-16T13:49:59.694Z\", \"hypothesis\": \"Qwen3-8B RSFT candidate generation (N=8, T=0.7). Generates rejection sampling candidates for subsequent CED scoring and filtering. plan_006 claim=3.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3818}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1410
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2103 · 2026-05-16T13:50:01.923452+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_8b_rsft_candidates\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:49:52.476Z\", \"updated_at\": \"2026-05-16T13:50:00.946Z\", \"hypothesis\": \"Qwen3-8B RSFT candidate generation (N=8, T=0.7). Generates rejection sampling candidates for subsequent CED scoring and filtering. plan_006 claim=3.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6702}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 2720
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2104 · 2026-05-16T13:50:05.338372+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "exp_id": "plan_006_qwen3_8b_rsft_candidates",
+  "field": "status",
+  "value": "ALLOCATED"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "exp_id": "plan_006_qwen3_8b_rsft_candidates",
+    "field": "status",
+    "value": "ALLOCATED"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2105 · 2026-05-16T13:50:07.105192+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_8b_rsft_candidates\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:49:52.476Z\", \"updated_at\": \"2026-05-16T13:50:05.812Z\", \"hypothesis\": \"Qwen3-8B RSFT candidate generation (N=8, T=0.7). Generates rejection sampling candidates for subsequent CED scoring and filtering. plan_006 claim=3.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7364}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1766
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2106 · 2026-05-16T13:50:10.776038+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "exp_id": "plan_006_qwen3_8b_rsft_candidates",
+  "field": "server",
+  "value": "rtx5090-4x"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "exp_id": "plan_006_qwen3_8b_rsft_candidates",
+    "field": "server",
+    "value": "rtx5090-4x"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2107 · 2026-05-16T13:50:11.179421+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "exp_id": "plan_006_qwen3_8b_rsft_candidates",
+  "field": "gpu",
+  "value": "cuda:3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "exp_id": "plan_006_qwen3_8b_rsft_candidates",
+    "field": "gpu",
+    "value": "cuda:3"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2108 · 2026-05-16T13:50:11.581467+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_8b_rsft_candidates\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:49:52.476Z\", \"updated_at\": \"2026-05-16T13:50:11.193Z\", \"hypothesis\": \"Qwen3-8B RSFT candidate generation (N=8, T=0.7). Generates rejection sampling candidates for subsequent CED scoring and filtering. plan_006 claim=3.\", \"server\": \"rtx5090-4x\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7688}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 805
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2109 · 2026-05-16T13:50:12.334795+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_8b_rsft_candidates\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:49:52.476Z\", \"updated_at\": \"2026-05-16T13:50:11.990Z\", \"hypothesis\": \"Qwen3-8B RSFT candidate generation (N=8, T=0.7). Generates rejection sampling candidates for subsequent CED scoring and filtering. plan_006 claim=3.\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7582}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1155
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2110 · 2026-05-16T13:50:42.473392+00:00_
+
+called mcp__agent-ml-research__submit_on_allocated
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_on_allocated</summary>
+
+```json
+{
+  "exp_id": "plan_006_qwen3_8b_rsft_candidates",
+  "project": "faith-evidence-ie",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --num_generations 8 --temperature 0.7 --batch_size 1 --data_path /root/autodl-tmp/data/docred --split train --seed 42 --output_dir /root/autodl-tmp/freige/outputs/rsft_candidates_8b\"",
+  "timeout_hours": "12"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__submit_on_allocated",
+  "tool_args": {
+    "exp_id": "plan_006_qwen3_8b_rsft_candidates",
+    "project": "faith-evidence-ie",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --num_generations 8 --temperature 0.7 --batch_size 1 --data_path /root/autodl-tmp/data/docred --split train --seed 42 --output_dir /root/autodl-tmp/freige/outputs/rsft_candidates_8b\"",
+    "timeout_hours": "12"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2111 · 2026-05-16T13:50:48.356526+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_8b_rsft_candidates\", \"status\": \"RUNNING\", \"server\": \"rtx5090-4x\", \"gpu_ids\": [\"cuda:3\"], \"pid\": \"349382\", \"log_file\": \"~/runs/faith-evidence-ie/plan_006_qwen3_8b_rsft_candidates.log\", \"account\": \"root\", \"tmux_session\": \"plan_006_qwen3_8b_rsft_candidates\", \"cuda_visible_devices\": \"3\", \"cron_registered\": true, \"code_synced\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.85}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__submit_on_allocated",
+  "elapsed_ms": 5883
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2112 · 2026-05-16T13:51:00.930442+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "exp_id": "plan_006_qwen3_8b_rsft_candidates",
+  "field": "spec",
+  "value": "{'model_name': 'Qwen3-8B', 'sft_adapter': '/root/autodl-tmp/sft_output_qwen3_8b_bf16', 'data_path': '/root/autodl-tmp/data/docred', 'data_count': 3027, 'seed': 42, 'output_dir': '/root/autodl-tmp/freige/outputs/rsft_candidates_8b', 'config': {'num_generations': 8, 'temperature': 0.7, 'batch_size': 1, 'split': 'train'}}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "exp_id": "plan_006_qwen3_8b_rsft_candidates",
+    "field": "spec",
+    "value": "{'model_name': 'Qwen3-8B', 'sft_adapter': '/root/autodl-tmp/sft_output_qwen3_8b_bf16', 'data_path': '/root/autodl-tmp/data/docred', 'data_count': 3027, 'seed': 42, 'output_dir': '/root/autodl-tmp/freige/outputs/rsft_candidates_8b', 'config': {'num_generations': 8, 'temperature': 0.7, 'batch_size': 1, 'split': 'train'}}"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2113 · 2026-05-16T13:51:01.987350+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_8b_rsft_candidates\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:49:52.476Z\", \"updated_at\": \"2026-05-16T13:51:01.461Z\", \"hypothesis\": \"Qwen3-8B RSFT candidate generation (N=8, T=0.7). Generates rejection sampling candidates for subsequent CED scoring and filtering. plan_006 claim=3.\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"spec\": {\"model_name\": \"Qwen3-8B\", \"sft_adapter\": \"/root/autodl-tmp/sft_output_qwen3_8b_bf16\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"seed\": 42, \"output_dir\": \"/root/autodl-tmp/freige/outputs/rsft_candidates_8b\", \"config\": {\"num_generations\": 8, \"temperature\": 0.7, \"batch_size\": 1, \"split\": \"train\"}}, \"pid\": \"349382\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_qwen3_8b_rsft_candidates.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --num_generations 8 --temperature 0.7 --batch_size 1 --data_path /root/autodl-tmp/data/docred --split train --seed 42 --output_dir /root/autodl-tmp/freige/outputs/rsft_candidates_8b\\\"\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9082}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1056
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2114 · 2026-05-16T13:51:02.240605+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_ops_check_redocred_r2_completion_20260516T133300"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_ops_check_redocred_r2_completion_20260516T133300"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2115 · 2026-05-16T13:51:02.291461+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_redocred_r2_completion_20260516T133300\", \"status\": \"done\", \"task_type\": \"ops:check_redocred_r2_completion\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-16T13:33:00.640089+00:00\", \"ended_at\": \"2026-05-16T13:49:56.132889+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"Registry 已更新完毕（conclusion、metrics、checkpoint_path、log_path 均已设置，状态已为 DONE）。\\n\\n**结果总结**：Re-DocRED 4B SFT eval r2 成功完成。Ign-F1=0.3659, Evi-F1=0.8170, EDCR=0.6674。139/493 文档因输出长度截断，format compliance 99.6%。\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2116 · 2026-05-16T13:51:14.885320+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "exp_id": "plan_006_qwen3_1_7b_rsft_candidates",
+  "field": "status",
+  "value": "PREPARING"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "exp_id": "plan_006_qwen3_1_7b_rsft_candidates",
+    "field": "status",
+    "value": "PREPARING"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2117 · 2026-05-16T13:51:17.350908+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_1_7b_rsft_candidates\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:51:15.410Z\", \"updated_at\": \"2026-05-16T13:51:15.410Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.4017}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 2465
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2118 · 2026-05-16T13:51:21.277966+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "exp_id": "plan_006_qwen3_1_7b_rsft_candidates",
+  "field": "hypothesis",
+  "value": "Qwen3-1.7B RSFT candidate generation (N=8, T=0.7). Scale ablation: smallest model RSFT candidates for CED scoring. plan_006 claim=3."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "exp_id": "plan_006_qwen3_1_7b_rsft_candidates",
+    "field": "hypothesis",
+    "value": "Qwen3-1.7B RSFT candidate generation (N=8, T=0.7). Scale ablation: smallest model RSFT candidates for CED scoring. plan_006 claim=3."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2119 · 2026-05-16T13:51:22.133502+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "exp_id": "plan_006_qwen3_1_7b_rsft_candidates",
+  "field": "status",
+  "value": "QUEUED"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "exp_id": "plan_006_qwen3_1_7b_rsft_candidates",
+    "field": "status",
+    "value": "QUEUED"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2120 · 2026-05-16T13:51:22.685432+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_1_7b_rsft_candidates\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:51:15.410Z\", \"updated_at\": \"2026-05-16T13:51:22.140Z\", \"hypothesis\": \"Qwen3-1.7B RSFT candidate generation (N=8, T=0.7). Scale ablation: smallest model RSFT candidates for CED scoring. plan_006 claim=3.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3842}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1407
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2121 · 2026-05-16T13:51:24.292818+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_1_7b_rsft_candidates\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:51:15.410Z\", \"updated_at\": \"2026-05-16T13:51:23.125Z\", \"hypothesis\": \"Qwen3-1.7B RSFT candidate generation (N=8, T=0.7). Scale ablation: smallest model RSFT candidates for CED scoring. plan_006 claim=3.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5799}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 2159
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2122 · 2026-05-16T13:51:26.969015+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "exp_id": "plan_006_qwen3_1_7b_rsft_candidates",
+  "field": "status",
+  "value": "ALLOCATED"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "exp_id": "plan_006_qwen3_1_7b_rsft_candidates",
+    "field": "status",
+    "value": "ALLOCATED"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2123 · 2026-05-16T13:51:28.475884+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_1_7b_rsft_candidates\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:51:15.410Z\", \"updated_at\": \"2026-05-16T13:51:27.460Z\", \"hypothesis\": \"Qwen3-1.7B RSFT candidate generation (N=8, T=0.7). Scale ablation: smallest model RSFT candidates for CED scoring. plan_006 claim=3.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4901}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1506
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2124 · 2026-05-16T13:51:32.042824+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "exp_id": "plan_006_qwen3_1_7b_rsft_candidates",
+  "field": "server",
+  "value": "rtx5090-4x"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "exp_id": "plan_006_qwen3_1_7b_rsft_candidates",
+    "field": "server",
+    "value": "rtx5090-4x"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2125 · 2026-05-16T13:51:32.595584+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "exp_id": "plan_006_qwen3_1_7b_rsft_candidates",
+  "field": "gpu",
+  "value": "cuda:0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "exp_id": "plan_006_qwen3_1_7b_rsft_candidates",
+    "field": "gpu",
+    "value": "cuda:0"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2126 · 2026-05-16T13:51:32.898721+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_1_7b_rsft_candidates\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:51:15.410Z\", \"updated_at\": \"2026-05-16T13:51:32.500Z\", \"hypothesis\": \"Qwen3-1.7B RSFT candidate generation (N=8, T=0.7). Scale ablation: smallest model RSFT candidates for CED scoring. plan_006 claim=3.\", \"server\": \"rtx5090-4x\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8095}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 855
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2127 · 2026-05-16T13:51:33.802581+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_1_7b_rsft_candidates\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:51:15.410Z\", \"updated_at\": \"2026-05-16T13:51:33.364Z\", \"hypothesis\": \"Qwen3-1.7B RSFT candidate generation (N=8, T=0.7). Scale ablation: smallest model RSFT candidates for CED scoring. plan_006 claim=3.\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8855}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1206
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2128 · 2026-05-16T13:51:39.099067+00:00_
+
+called mcp__agent-ml-research__submit_on_allocated
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_on_allocated</summary>
+
+```json
+{
+  "exp_id": "plan_006_qwen3_1_7b_rsft_candidates",
+  "project": "faith-evidence-ie",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --num_generations 8 --temperature 0.7 --batch_size 1 --data_path /root/autodl-tmp/data/docred --split train --seed 42 --output_dir /root/autodl-tmp/freige/outputs/rsft_candidates_1_7b\"",
+  "timeout_hours": "12"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__submit_on_allocated",
+  "tool_args": {
+    "exp_id": "plan_006_qwen3_1_7b_rsft_candidates",
+    "project": "faith-evidence-ie",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --num_generations 8 --temperature 0.7 --batch_size 1 --data_path /root/autodl-tmp/data/docred --split train --seed 42 --output_dir /root/autodl-tmp/freige/outputs/rsft_candidates_1_7b\"",
+    "timeout_hours": "12"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2129 · 2026-05-16T13:51:48.093490+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_1_7b_rsft_candidates\", \"status\": \"RUNNING\", \"server\": \"rtx5090-4x\", \"gpu_ids\": [\"cuda:0\"], \"pid\": \"349794\", \"log_file\": \"~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_rsft_candidates.log\", \"account\": \"root\", \"tmux_session\": \"plan_006_qwen3_1_7b_rsft_candidates\", \"cuda_visible_devices\": \"0\", \"cron_registered\": true, \"code_synced\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.95}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__submit_on_allocated",
+  "elapsed_ms": 8994
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2130 · 2026-05-16T13:51:59.109125+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "exp_id": "plan_006_qwen3_1_7b_rsft_candidates",
+  "field": "spec",
+  "value": "{'model_name': 'Qwen3-1.7B', 'sft_adapter': '/root/autodl-tmp/sft_output_qwen3_1_7b_bf16', 'data_path': '/root/autodl-tmp/data/docred', 'data_count': 3027, 'seed': 42, 'output_dir': '/root/autodl-tmp/freige/outputs/rsft_candidates_1_7b', 'config': {'num_generations': 8, 'temperature': 0.7, 'batch_size': 1, 'split': 'train'}}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "exp_id": "plan_006_qwen3_1_7b_rsft_candidates",
+    "field": "spec",
+    "value": "{'model_name': 'Qwen3-1.7B', 'sft_adapter': '/root/autodl-tmp/sft_output_qwen3_1_7b_bf16', 'data_path': '/root/autodl-tmp/data/docred', 'data_count': 3027, 'seed': 42, 'output_dir': '/root/autodl-tmp/freige/outputs/rsft_candidates_1_7b', 'config': {'num_generations': 8, 'temperature': 0.7, 'batch_size': 1, 'split': 'train'}}"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2131 · 2026-05-16T13:51:59.530408+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+  "limit": "30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+    "limit": "30"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2132 · 2026-05-16T13:52:00.558031+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_1_7b_rsft_candidates\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:51:15.410Z\", \"updated_at\": \"2026-05-16T13:52:00.111Z\", \"hypothesis\": \"Qwen3-1.7B RSFT candidate generation (N=8, T=0.7). Scale ablation: smallest model RSFT candidates for CED scoring. plan_006 claim=3.\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"spec\": {\"model_name\": \"Qwen3-1.7B\", \"sft_adapter\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"seed\": 42, \"output_dir\": \"/root/autodl-tmp/freige/outputs/rsft_candidates_1_7b\", \"config\": {\"num_generations\": 8, \"temperature\": 0.7, \"batch_size\": 1, \"split\": \"train\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4152}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1448
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2133 · 2026-05-16T13:52:00.558551+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "Read",
+  "elapsed_ms": 1028
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2134 · 2026-05-16T13:52:28.378824+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "text": "[资源] GPU 分配 4 / 实际跑 4 | Worker 池 0 (GPU 0 / CPU 0) — 全满载\n\n## Session 恢复汇报\n\n### 新完成实验\n\n**1. plan_016_llama_3_1_8b_no_evidence_eval** → DONE/success\n- Ign-F1=**0.5452**, Rel-F1=0.5624\n- LLaMA-8B no-evidence 对比 Qwen3-8B no-evidence (0.5079): +3.73pp\n- 等 LLaMA with-evidence eval 完成后算 LLaMA evidence tax\n\n**2. plan_007_redocred_4b_sft_eval_r2** → DONE/success\n- Re-DocRED: Ign-F1=**0.3659**, Evi-F1=0.8170, EDCR=0.6674\n- vs DocRED 4B SFT (Ign-F1≈0.48): 跨数据集泛化落差 ~11.4pp\n- 139/493 文档截断，format compliance 99.6%\n\n### 已提交新任务\n\n**3. plan_006_qwen3_8b_rsft_candidates** → RUNNING cuda:3 (PID 349382)\n- Qwen3-8B RSFT candidate gen (N=8, T=0.7, train split)\n- 按 Director 指令提交，修正 module path: `freige.training.rsft_generate`，修正 flag: `--data_path`（非 `--data_dir`）\n\n**4. plan_006_qwen3_1_7b_rsft_candidates** → RUNNING cuda:0 (PID 349794)\n- Qwen3-1.7B RSFT candidate gen，同配置\n- Re-DocRED r2 完成后接力 cuda:0\n\n### 当前 GPU 状态\n| GPU | 实验 | 类型 |\n|-----|------|------|\n| cuda:0 | plan_006_qwen3_1_7b_rsft_candidates | RSFT candidate gen |\n| cuda:1 | plan_006_qwen3_1_7b_no_evidence_eval_v3 + plan_016_llama_3_1_8b_sft_eval | Eval ×2 |\n| cuda:2 | plan_016_llama_grpo_qlora (PID 346621) | GRPO training |\n| cuda:3 | plan_006_qwen3_8b_rsft_candidates | RSFT candidate gen |\n\n### 接力计划\n- cuda:1 释放后 → 提交 LLaMA RSFT candidate gen 或 4B RSFT candidate gen\n- 1.7B no-evi v3 结果出后 → 完成 evidence tax 三点曲线（1.7B/8B/LLaMA-8B）"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "text": "[资源] GPU 分配 4 / 实际跑 4 | Worker 池 0 (GPU 0 / CPU 0) — 全满载\n\n## Session 恢复汇报\n\n### 新完成实验\n\n**1. plan_016_llama_3_1_8b_no_evidence_eval** → DONE/success\n- Ign-F1=**0.5452**, Rel-F1=0.5624\n- LLaMA-8B no-evidence 对比 Qwen3-8B no-evidence (0.5079): +3.73pp\n- 等 LLaMA with-evidence eval 完成后算 LLaMA evidence tax\n\n**2. plan_007_redocred_4b_sft_eval_r2** → DONE/success\n- Re-DocRED: Ign-F1=**0.3659**, Evi-F1=0.8170, EDCR=0.6674\n- vs DocRED 4B SFT (Ign-F1≈0.48): 跨数据集泛化落差 ~11.4pp\n- 139/493 文档截断，format compliance 99.6%\n\n### 已提交新任务\n\n**3. plan_006_qwen3_8b_rsft_candidates** → RUNNING cuda:3 (PID 349382)\n- Qwen3-8B RSFT candidate gen (N=8, T=0.7, train split)\n- 按 Director 指令提交，修正 module path: `freige.training.rsft_generate`，修正 flag: `--data_path`（非 `--data_dir`）\n\n**4. plan_006_qwen3_1_7b_rsft_candidates** → RUNNING cuda:0 (PID 349794)\n- Qwen3-1.7B RSFT candidate gen，同配置\n- Re-DocRED r2 完成后接力 cuda:0\n\n### 当前 GPU 状态\n| GPU | 实验 | 类型 |\n|-----|------|------|\n| cuda:0 | plan_006_qwen3_1_7b_rsft_candidates | RSFT candidate gen |\n| cuda:1 | plan_006_qwen3_1_7b_no_evidence_eval_v3 + plan_016_llama_3_1_8b_sft_eval | Eval ×2 |\n| cuda:2 | plan_016_llama_grpo_qlora (PID 346621) | GRPO training |\n| cuda:3 | plan_006_qwen3_8b_rsft_candidates | RSFT candidate gen |\n\n### 接力计划\n- cuda:1 释放后 → 提交 LLaMA RSFT candidate gen 或 4B RSFT candidate gen\n- 1.7B no-evi v3 结果出后 → 完成 evidence tax 三点曲线（1.7B/8B/LLaMA-8B）"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2135 · 2026-05-16T13:52:32.638067+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 4259
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 2136 · 2026-05-16T13:52:36.324070+00:00_
+
+汇报已发送。当前 4/4 GPU 满载运行：
+- cuda:0: 1.7B RSFT candidate gen
+- cuda:1: 1.7B no-evi eval v3 + LLaMA with-evi eval
+- cuda:2: LLaMA GRPO QLoRA
+- cuda:3: 8B RSFT candidate gen
+
+等待 cron 回调处理后续结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b"
+}
+```
+
+</details>
+
+---
+
+
+## Round 226
+
+## Round 226
+
+14 recorded events
+
+
+### User
+
+_source line 2137 · 2026-05-16T13:52:36.873845+00:00_
+
+[Director 指令] **cuda:0 也已释放（Re-DocRED eval 完成），立即启动 1.7B RSFT candidate gen**
+
+Re-DocRED 4B eval 结果已到位：Ign-F1=0.3659, Evi-F1=0.8170（跨数据集 Evi-F1 反而提升 +1.84pp）。
+
+**Task: Qwen3-1.7B RSFT candidate generation on cuda:0**
+- CUDA_VISIBLE_DEVICES=0
+- base_model: `/root/autodl-tmp/models/Qwen/Qwen3-1.7B`（确认路径存在）
+- sft_adapter: `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16/`
+- num_generations=8, temperature=0.7, batch_size=1
+- output_dir: `/root/autodl-tmp/freige/outputs/rsft_candidates_1_7b`
+- data_dir: `/root/autodl-tmp/data/docred`
+- HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
+- 注册实验 ID: `plan_006_qwen3_1_7b_rsft_candidates`
+- 提交前 nvidia-smi 确认 cuda:0 < 2GB (C001)
+- bash -c conda activate 包裹
+
+**同时**：
+1. 确认 Re-DocRED eval 结果已注册到 registry（plan_007_redocred_4b_sft_eval_r2, Ign-F1=0.3659）
+2. 检查 cuda:1 上 1.7B no-evi v3 和 LLaMA with-evi eval 是否已完成，如完成则提取指标
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "source": "director"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2138 · 2026-05-16T13:52:48.755522+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['status', 'server', 'gpu', 'pid', 'hypothesis']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['status', 'server', 'gpu', 'pid', 'hypothesis']"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2139 · 2026-05-16T13:52:49.259647+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'exp_id': 'plan_007_redocred_4b_sft_eval_r2'}",
+  "fields": "['status', 'conclusion', 'metrics']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'exp_id': 'plan_007_redocred_4b_sft_eval_r2'}",
+    "fields": "['status', 'conclusion', 'metrics']"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2140 · 2026-05-16T13:52:49.410708+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan_006_qwen3_8b_rsft_candidates\": {\"status\": \"RUNNING\", \"hypothesis\": \"Qwen3-8B RSFT candidate generation (N=8, T=0.7). Generates rejection sampling candidates for subsequent CED scoring and filtering. plan_006 claim=3.\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": \"349382\"}, \"plan_016_llama_grpo_qlora\": {\"status\": \"RUNNING\"}, \"plan_016_llama_3_1_8b_sft_eval\": {\"status\": \"RUNNING\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"pid\": \"340111\"}}, \"count\": 3, \"total\": 3, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5656}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 655
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2141 · 2026-05-16T13:52:49.912689+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5232}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 653
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2142 · 2026-05-16T13:53:03.455320+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2143 · 2026-05-16T13:53:09.528367+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 4, \"results\": [{\"exp_id\": \"plan_016_llama_3_1_8b_sft_eval\", \"success\": true, \"actions\": [\"Job still running (pid=340111)\"]}, {\"exp_id\": \"plan_016_llama_grpo_qlora\", \"success\": true, \"actions\": [\"Job still running (pid=346621)\"]}, {\"exp_id\": \"plan_006_qwen3_8b_rsft_candidates\", \"success\": true, \"actions\": [\"Job still running (pid=349382)\"]}, {\"exp_id\": \"plan_006_qwen3_1_7b_rsft_candidates\", \"success\": true, \"actions\": [\"Skipped (created 76s ago < interval 120s)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 6073
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2144 · 2026-05-16T13:53:16.972203+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'status': 'ANALYZING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'status': 'ANALYZING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2145 · 2026-05-16T13:53:18.030660+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan_006_qwen3_1_7b_no_evidence_eval_v3\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T11:45:02.749Z\", \"updated_at\": \"2026-05-16T13:51:49.183Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval_v3\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 12275, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\", \"eval_data\": \"docred-dev\", \"hypothesis\": \"Model size ablation: Qwen3-1.7B no-evidence SFT eval (v3, fix bash-c wrapping). plan_006 claim=1.\", \"plan_id\": \"plan_006\", \"parent\": \"plan_006_qwen3_1_7b_no_evidence_sft\", \"pid\": 337839}, \"reproduce\": {\"finished_at\": \"2026-05-16T13:51:46.819Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T13:51:51.769349+00:00\"}]}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0105}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1058
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2146 · 2026-05-16T13:53:34.812255+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "ops:check_1_7b_no_evi_v3_completion",
+  "project": "faith-evidence-ie",
+  "task_prompt": "## 任务\n检查 Qwen3-1.7B no-evidence eval v3 的实验结果。这是 evidence tax 三点曲线的关键数据点。\n\n## 背景\n实验 plan_006_qwen3_1_7b_no_evidence_eval_v3 已完成（进程退出），需要收集结果。\n\n服务器: rtx5090-4x\n结果目录: /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval_v3\n日志: 无专用日志路径\n\n## 步骤\n1. SSH 到 rtx5090-4x（ssh_read_only）\n2. 检查 metrics.json: `cat /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval_v3/metrics.json`\n3. 如果有 metrics.json，报告 ign_f1, rel_f1, evi_f1, edcr\n4. 如果没有 metrics.json，查看目录内容和可能的日志/错误信息\n5. 对比已有数据计算 evidence tax:\n   - 1.7B with-evidence: Ign-F1=0.4679 (registry 已有)\n   - 1.7B no-evidence: 本次结果\n   - Evidence tax = with_evidence - no_evidence (注意：正数说明 evidence 有正向效果)\n   \n## 产出\n将结果写入 registry:\n- 如果成功: update_registry(exp_id=\"plan_006_qwen3_1_7b_no_evidence_eval_v3\", field=\"conclusion\", value=\"success\")，然后设 metrics（包含 ign_f1, rel_f1, evi_f1, edcr）、checkpoint_path（设为结果目录）、log_path（设为 \"N/A\"）\n- 如果失败: update_registry 设 conclusion=\"failed\"，记录失败原因\n- 最后转 status=DONE\n\n注意：转 DONE 前必须先设好 conclusion、metrics、checkpoint_path、log_path。",
+  "tool_groups": "['ssh', 'registry']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "ops:check_1_7b_no_evi_v3_completion",
+    "project": "faith-evidence-ie",
+    "task_prompt": "## 任务\n检查 Qwen3-1.7B no-evidence eval v3 的实验结果。这是 evidence tax 三点曲线的关键数据点。\n\n## 背景\n实验 plan_006_qwen3_1_7b_no_evidence_eval_v3 已完成（进程退出），需要收集结果。\n\n服务器: rtx5090-4x\n结果目录: /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval_v3\n日志: 无专用日志路径\n\n## 步骤\n1. SSH 到 rtx5090-4x（ssh_read_only）\n2. 检查 metrics.json: `cat /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval_v3/metrics.json`\n3. 如果有 metrics.json，报告 ign_f1, rel_f1, evi_f1, edcr\n4. 如果没有 metrics.json，查看目录内容和可能的日志/错误信息\n5. 对比已有数据计算 evidence tax:\n   - 1.7B with-evidence: Ign-F1=0.4679 (registry 已有)\n   - 1.7B no-evidence: 本次结果\n   - Evidence tax = with_evidence - no_evidence (注意：正数说明 evidence 有正向效果)\n   \n## 产出\n将结果写入 registry:\n- 如果成功: update_registry(exp_id=\"plan_006_qwen3_1_7b_no_evidence_eval_v3\", field=\"conclusion\", value=\"success\")，然后设 metrics（包含 ign_f1, rel_f1, evi_f1, edcr）、checkpoint_path（设为结果目录）、log_path（设为 \"N/A\"）\n- 如果失败: update_registry 设 conclusion=\"failed\"，记录失败原因\n- 最后转 status=DONE\n\n注意：转 DONE 前必须先设好 conclusion、metrics、checkpoint_path、log_path。",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2147 · 2026-05-16T13:53:41.204783+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_1_7b_no_evi_v3_completion_20260516T135335\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_ops_check_1_7b_no_evi_v3_completion_20260516T135335.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_check_1_7b_no_evi_v3_completion_20260516T135335 started. Use get_worker_status('worker_ops_check_1_7b_no_evi_v3_completion_20260516T135335') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 6392
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2148 · 2026-05-16T13:53:56.077088+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "text": "[资源] GPU 分配 4 / 实际跑 4 | Worker 池 1 (GPU 0 / CPU 1)\n\n## 回复 Director 指令\n\n**1. plan_006_qwen3_1_7b_rsft_candidates 已在上一轮提交**\n- PID 349794, cuda:0, RUNNING\n- 您的消息可能在我汇报前发出，该任务已按相同配置提交（N=8, T=0.7, train split）\n- 修正：`freige.training.rsft_generate`（非 `freige.rsft`），`--data_path`（非 `--data_dir`）\n\n**2. Re-DocRED r2 已注册** ✓\n- plan_007_redocred_4b_sft_eval_r2: DONE/success\n- Ign-F1=0.3659, Evi-F1=0.8170, EDCR=0.6674\n\n**3. 1.7B no-evi v3 刚完成！**\n- plan_006_qwen3_1_7b_no_evidence_eval_v3 进入 ANALYZING\n- Worker 正在提取 metrics——这是 evidence tax 三点曲线最后一个数据点\n\n**4. LLaMA with-evi eval 仍在运行**\n- plan_016_llama_3_1_8b_sft_eval (cuda:1, PID 340111)\n\n### 当前 GPU\n| GPU | 实验 | 状态 |\n|-----|------|------|\n| cuda:0 | 1.7B RSFT candidate gen | RUNNING |\n| cuda:1 | LLaMA with-evi eval | RUNNING |\n| cuda:2 | LLaMA GRPO QLoRA | RUNNING |\n| cuda:3 | 8B RSFT candidate gen | RUNNING |\n\n### 接力\n- cuda:1 释放后 → 提交 4B RSFT candidate gen 或 LLaMA RSFT candidate gen"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "text": "[资源] GPU 分配 4 / 实际跑 4 | Worker 池 1 (GPU 0 / CPU 1)\n\n## 回复 Director 指令\n\n**1. plan_006_qwen3_1_7b_rsft_candidates 已在上一轮提交**\n- PID 349794, cuda:0, RUNNING\n- 您的消息可能在我汇报前发出，该任务已按相同配置提交（N=8, T=0.7, train split）\n- 修正：`freige.training.rsft_generate`（非 `freige.rsft`），`--data_path`（非 `--data_dir`）\n\n**2. Re-DocRED r2 已注册** ✓\n- plan_007_redocred_4b_sft_eval_r2: DONE/success\n- Ign-F1=0.3659, Evi-F1=0.8170, EDCR=0.6674\n\n**3. 1.7B no-evi v3 刚完成！**\n- plan_006_qwen3_1_7b_no_evidence_eval_v3 进入 ANALYZING\n- Worker 正在提取 metrics——这是 evidence tax 三点曲线最后一个数据点\n\n**4. LLaMA with-evi eval 仍在运行**\n- plan_016_llama_3_1_8b_sft_eval (cuda:1, PID 340111)\n\n### 当前 GPU\n| GPU | 实验 | 状态 |\n|-----|------|------|\n| cuda:0 | 1.7B RSFT candidate gen | RUNNING |\n| cuda:1 | LLaMA with-evi eval | RUNNING |\n| cuda:2 | LLaMA GRPO QLoRA | RUNNING |\n| cuda:3 | 8B RSFT candidate gen | RUNNING |\n\n### 接力\n- cuda:1 释放后 → 提交 4B RSFT candidate gen 或 LLaMA RSFT candidate gen"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2149 · 2026-05-16T13:53:57.297431+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 1220
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 2150 · 2026-05-16T13:54:00.190410+00:00_
+
+已向 Director 汇报。等待 1.7B no-evi v3 Worker 返回结果和 cuda:1 eval 完成。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b"
+}
+```
+
+</details>
+
+---
+
+
+## Round 227
+
+## Round 227
+
+4 recorded events
+
+
+### User
+
+_source line 2151 · 2026-05-16T13:54:00.646245+00:00_
+
+[WORKER DONE] Worker worker_analysis_plan_007_redocred_4b_sft_eval_r2_20260516T133330 已完成（status=done）。用 `get_worker_status('worker_analysis_plan_007_redocred_4b_sft_eval_r2_20260516T133330')` 读取结果，然后处理。
+
+- worker_id: worker_analysis_plan_007_redocred_4b_sft_eval_r2_20260516T133330
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "source": "worker:done"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2152 · 2026-05-16T13:54:08.342414+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_analysis_plan_007_redocred_4b_sft_eval_r2_20260516T133330"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_analysis_plan_007_redocred_4b_sft_eval_r2_20260516T133330"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2153 · 2026-05-16T13:54:08.443451+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_plan_007_redocred_4b_sft_eval_r2_20260516T133330\", \"status\": \"done\", \"task_type\": \"analysis:plan_007_redocred_4b_sft_eval_r2\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-16T13:33:30.522619+00:00\", \"ended_at\": \"2026-05-16T13:34:52.743898+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"日志仅 28 行，无 W&B logging。完整 metrics 已从 metrics.json 获取。\\n\\n```\\nCONCLUSION: success\\nMETRICS: {\\n  F1: 0.3706,\\n  Ign-F1: 0.3659,\\n  Precision: 0.4316,\\n  Recall: 0.3247,\\n  Evi-F1: 0.8170,\\n  Evi-Precision: 0.8208,\\n  Evi-Recall: 0.8131,\\n  EDCR: 0.6674,\\n  Evi-F1-Joint: 0.2862,\\n  Format-OK: 491/493 (99.6%),\\n  Truncated: 139/493,\\n  Predictions: 8191\\n}\\nWANDB_RUN_ID: N/A (eval 未接入 W&B logging)\\nCHECKPOINT_PATH: base=/root/autodl-tmp/models/Qwen3-4B, adapter=/root/autodl-tmp/sft_output\\nLOG_PATH: ~/runs/faith-evidence-ie/plan_007_redocred_4b_sft_eval_r2.log\\nKEY_FINDINGS:\\n- Re-DocRED F1=0.3706，与 DocRED SFT baseline (0.4106) 相比下降 ~4pp (9.7% 相对下降)，泛化能力合理\\n- Ign-F1=0.3659，排除训练集共现事实后仅微降，说明模型不是靠记忆训练事实\\n- Evidence F1=0.8170，跨数据集 evidence 质量极高，远超预期\\n- EDCR=0.6674，66.7% 的 evidence citations 指向 distractor 句（Re-DocRED 特有的扰动设计），说明模型仍能在噪声环境下定位证据\\n- 139/493 (28.2%) 文档 truncated，Re-DocRED 文档更长，可能略影响 recall (0.3247 < precision 0.4316)\\n- field_compliance_rate=71.6%（353/493 evidence 格式完整），部分文档 evidence 字段格式不完整但不影响 relation extraction\\nCOMPARISON:\\n- DocRED SFT (evidence): rel_F1=0.4106 → Re-DocRED: rel_F1=0.3706 (Δ=-4.0pp, -9.7%)\\n- DocRED SFT (no-evidence): rel_F1=0.4893 → 跨数据集无对应实验\\n- 4pp 下降在跨数据集零样本泛化中属于良好表现，方法具备泛化能力\\n- Evidence F1 从 DocRED 到 Re-DocRED 保持 0.817 高位，evidence grounding 机制跨数据集鲁棒\\n```\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 2154 · 2026-05-16T13:54:17.927687+00:00_
+
+这是一个较早派发的 Re-DocRED 分析 Worker，实验已由另一个 Worker 关闭（DONE/success）。分析确认：Re-DocRED 跨数据集 F1=0.3706（vs DocRED 0.4106, -4.0pp），Evi-F1=0.8170 跨数据集鲁棒。无额外 registry 操作。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b"
+}
+```
+
+</details>
+
+---
+
+
+## Round 228
+
+## Round 228
+
+4 recorded events
+
+
+### User
+
+_source line 2155 · 2026-05-16T13:54:18.497045+00:00_
+
+[WORKER DONE] Worker worker_analysis_plan_007_r2_metrics_20260516T133725 已完成（status=done）。用 `get_worker_status('worker_analysis_plan_007_r2_metrics_20260516T133725')` 读取结果，然后处理。
+
+- worker_id: worker_analysis_plan_007_r2_metrics_20260516T133725
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "source": "worker:done"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2156 · 2026-05-16T13:54:27.044645+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_analysis_plan_007_r2_metrics_20260516T133725"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_analysis_plan_007_r2_metrics_20260516T133725"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2157 · 2026-05-16T13:54:27.145997+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_plan_007_r2_metrics_20260516T133725\", \"status\": \"done\", \"task_type\": \"analysis:plan_007_r2_metrics\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-16T13:37:25.410256+00:00\", \"ended_at\": \"2026-05-16T13:38:18.594846+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"Registry 已更新为 DONE/success。\\n\\n**Re-DocRED cross-dataset 4B SFT eval 结果摘要：**\\n\\n- **Ign-F1: 36.59%** — 相比 DocRED in-domain eval（D080 提到的基线）确实有明显下降，符合 cross-dataset 泛化预期\\n- **Evi-F1: 81.70%** — evidence 质量保持很高，说明模型学到了可泛化的 evidence 定位能力\\n- **EDCR: 66.74%** — 2/3 的 citation 指向非 distractor 句子\\n- **Format compliance: 99.6%** — 几乎无格式错误\\n- **Truncated: 139/493 (28.2%)** — 较高的截断率，Re-DocRED 文档较长，max_new_tokens=1024 可能不够\\n\\n关键观察：Evi-F1 在 cross-dataset 上仍达 81.7%，说明 evidence-grounded 训练的泛化性良好。Ign-F1 下降主要因为 relation recall 低（32.8%），可能与 Re-DocRED 的 relation schema 差异有关。\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 2158 · 2026-05-16T13:54:30.920863+00:00_
+
+Re-DocRED r2 已由之前的 Worker 关闭到 DONE/success，此 Worker 是重复确认，无需额外操作。关键发现一致：Ign-F1=0.3659, Evi-F1=0.8170（evidence grounding 跨数据集鲁棒）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b"
+}
+```
+
+</details>
+
+---
+
+
+## Round 229
+
+## Round 229
+
+2 recorded events
+
+
+### User
+
+_source line 2159 · 2026-05-16T13:54:31.472267+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 2160 · 2026-05-16T13:55:22.644175+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：cuda:0/1/2/3 on rtx5090-4x（4× RTX 5090 32GB）。不允许用白名单外 GPU
+- No-evidence eval 必须同时传 `--no_evidence` 给 inference.py（C005）。上次漏传导致 1.7B/8B 结果全废，Director 标记 CRITICAL
+- 所有 eval 必须含 `--sft_adapter`（C004）。漏传 → rel_f1≈0
+- batch_eval 用 `--no-quantize --batch_size 4`（不是 16，16 会 OOM on 32GB）
+- submit_on_allocated 的 gpu 字段必须是 string（"cuda:0"），不能是 list
+- tmux 跑 /bin/sh，`source` 和 `conda activate` 必须包在 `bash -c "..."` 里
+- RSFT candidate gen 的 module path 是 `freige.training.rsft_generate`（不是 `freige.rsft.rsft_generate`），flag 是 `--data_path`（不是 `--data_dir`）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：rtx5090-4x，工作目录 `/root/autodl-tmp`
+- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- HF cache：`/root/autodl-tmp/.hf_cache`，离线模式：`HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`
+- 模型路径：
+  - Qwen3-4B: `/root/autodl-tmp/models/Qwen3-4B`（注意：不在 Qwen/ 子目录下）
+  - Qwen3-1.7B: `/root/autodl-tmp/models/Qwen/Qwen3-1.7B`
+  - Qwen3-8B: `/root/autodl-tmp/models/Qwen/Qwen3-8B`
+  - LLaMA-3.1-8B: `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B/`
+- SFT adapter 路径（with-evidence / no-evidence）：
+  - 4B: `sft_output` / `sft_output_no_evidence`
+  - 1.7B: `sft_output_qwen3_1_7b_bf16` / `sft_output_qwen3_1_7b_no_evidence`
+  - 8B: `sft_output_qwen3_8b_bf16` / `sft_output_qwen3_8b_no_evidence`
+  - LLaMA: `sft_output_llama_3_1_8b` / `sft_output_llama_3_1_8b_no_evidence`
+  （所有在 `/root/autodl-tmp/` 下）
+- NLI 模型（CED scoring）: `/root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7`
+- 数据：`/root/autodl-tmp/data/docred`（train 3027 docs, dev 985/12275），`/root/autodl-tmp/data/re-docred`
+- 活跃进程：
+  - plan_016_llama_grpo_qlora: PID 346621, cuda:2, tmux=plan_016_llama_grpo_qlora
+  - plan_016_llama_3_1_8b_sft_eval: PID 340111, cuda:1, tmux=plan_016_llama_3_1_8b_sft_eval
+  - plan_006_qwen3_8b_rsft_candidates: PID 349382, cuda:3, tmux=plan_006_qwen3_8b_rsft_candidates
+  - plan_006_qwen3_1_7b_rsft_candidates: PID 349794, cuda:0, tmux=plan_006_qwen3_1_7b_rsft_candidates
+- 4 个 cron 对应上述 4 个实验
+
+### 3. 📊 当前状态
+刚完成：
+- plan_016_llama_3_1_8b_no_evidence_eval → DONE/success（Ign-F1=0.5452, Rel-F1=0.5624）
+- plan_007_redocred_4b_sft_eval_r2 → DONE/success（Ign-F1=0.3659, Evi-F1=0.8170）
+- plan_006_qwen3_1_7b_no_evidence_eval_v3 → ANALYZING（Worker 正在提取 metrics）
+
+4 个 RUNNING：
+- cuda:0: 1.7B RSFT candidate gen（刚提交）
+- cuda:1: LLaMA with-evidence eval（运行中，完成后 cuda:1 释放）
+- cuda:2: LLaMA GRPO QLoRA training（757 total steps，运行中）
+- cuda:3: 8B RSFT candidate gen（刚提交）
+
+等待中：
+- **Worker worker_ops_check_1_7b_no_evi_v3_completion_20260516T135335** 正在提取 1.7B no-evi v3 的 metrics → 这是 evidence tax 三点曲线最后一个点
+- LLaMA with-evi eval 完成 → 可算 LLaMA evidence tax
+- Director 尚未决定 CodaLab test set 提交（文件已生成：`/root/autodl-tmp/eval_results/test_rsft_ced_s44/codalab_submission.json`，25553 entries）
+
+### 4. 📋 待办（条件触发式）
+- 1.7B no-evi v3 Worker 回调 → 读 metrics → 更新 registry DONE → 计算 evidence tax 三点曲线（1.7B: 0.4679 - X, 8B: 0.5051 - 0.5079 ≈ 0, LLaMA-8B: pending）→ 汇报 Director
+- LLaMA with-evi eval cron 回调 → spawn Worker 提取 metrics → 计算 LLaMA evidence tax = with_evi - 0.5452 → cuda:1 释放 → 提交 4B RSFT candidate gen 或 LLaMA RSFT candidate gen
+- LLaMA GRPO QLoRA cron 回调 → spawn Worker 分析 → 如果 success: 提交 GRPO eval on cuda:2
+- 8B/1.7B RSFT candidate gen 完成 → 下一步是 CED scoring（`rsft_score_filter.py`），需要 GPU
+- Director 决定 CodaLab → 按指令提交或跳过
+
+### 5. 🎯 战略上下文
+- **核心 story**: Evidence tax 是 scale-dependent。4B 有 ~7.7pp 的 evidence 代价，8B 几乎为零（0.5079 no-evi vs 0.5051 with-evi）。1.7B v3 结果待出，将完成三点曲线
+- **RSFT phase 启动**: 8B 和 1.7B 的 RSFT candidate gen 已在跑，这是 rejection sampling 训练的前置步骤（生成 N=8 候选 → CED 评分 → top-k 过滤 → RSFT 训练）
+- **Cross-family**: LLaMA GRPO QLoRA 正在训练（CED reward, stage=3），验证方法跨模型家族泛化性
+- **Re-DocRED generalization**: 4B 在 Re-DocRED 上 Ign-F1=0.3659（vs DocRED ~0.48），跨数据集下降 ~11pp 但 Evi-F1=0.8170 保持高位——evidence grounding 机制泛化良好
+- **易错点**：
+  - Qwen3-4B 模型路径是 `/root/autodl-tmp/models/Qwen3-4B`，不是 `models/Qwen/Qwen3-4B`（已踩过坑）
+  - 1.7B with-evidence 的 Ign-F1=0.4679 来自 registry（plan_006_qwen3_1_7b_sft_eval），用于计算 evidence tax
+  - RSFT pipeline 三步：rsft_generate → rsft_score_filter → rsft_trainer，不要跳步
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_14f1701558037f8ed8fe6fdc4e7df95b"
+}
+```
+
+</details>
+
+---

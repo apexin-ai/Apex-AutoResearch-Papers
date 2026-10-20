@@ -1,0 +1,16 @@
+{
+  "exp_id": "test_eval_4b_rsft_s44_no_evi_r2",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T10:51:39.034Z",
+    "updated_at": "2026-05-23T10:51:54.494Z",
+    "hypothesis": "4B RSFT CED k=1 s44 no-evidence test eval on Re-DocRED test_revised (500 docs). r1 因 EXIT_CODE=127 失败（缺 bash -c），本次修复。配对 s44 with-evi ign_f1=0.2525 计算 evidence tax。s42 tax=+1.51pp, s43 tax=+1.99pp。",
+    "parent": "test_eval_4b_rsft_s44_with_evi"
+  },
+  "timestamp": "2026-05-23T10:51:55.201146+00:00",
+  "trigger": "update_registry"
+}

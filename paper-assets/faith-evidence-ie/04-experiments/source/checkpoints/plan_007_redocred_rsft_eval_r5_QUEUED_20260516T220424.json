@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_007_redocred_rsft_eval_r5",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T22:04:18.834Z",
+    "updated_at": "2026-05-16T22:04:24.536Z",
+    "hypothesis": "CED-RSFT gains transfer to Re-DocRED (r5, correct 3-param loading: base→SFT→RSFT)",
+    "parent": "plan_007_redocred_rsft_eval_r4"
+  },
+  "timestamp": "2026-05-16T22:04:24.898591+00:00",
+  "trigger": "update_registry"
+}

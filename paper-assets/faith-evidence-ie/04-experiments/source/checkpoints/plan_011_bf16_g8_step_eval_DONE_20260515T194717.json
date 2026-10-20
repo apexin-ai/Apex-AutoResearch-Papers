@@ -1,0 +1,40 @@
+{
+  "exp_id": "plan_011_bf16_g8_step_eval",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:04:51.538Z",
+    "updated_at": "2026-05-15T19:47:17.272Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/autodl-tmp/freige/scripts/eval_plan_011_steps.sh\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/faith-evidence-ie/plan_011_bf16_g8_step_eval.log",
+      "submitted_at": "2026-05-15T19:46:43.390Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 33.9,
+      "gpu_hours": 0.01
+    },
+    "server": "rtx5090-4x",
+    "gpu": "cuda:0",
+    "pid": "unknown",
+    "log_path": "~/runs/faith-evidence-ie/plan_011_bf16_g8_step_eval.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/autodl-tmp/freige/scripts/eval_plan_011_steps.sh\"",
+      "finished_at": "2026-05-15T19:47:15.392Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T19:47:17.272Z"
+  },
+  "timestamp": "2026-05-15T19:47:17.521361+00:00",
+  "trigger": "update_registry"
+}

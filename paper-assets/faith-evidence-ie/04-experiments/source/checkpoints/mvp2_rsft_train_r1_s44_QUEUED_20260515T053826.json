@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp2_rsft_train_r1_s44",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:36:26.321Z",
+    "updated_at": "2026-05-15T05:38:26.691Z",
+    "hypothesis": "RSFT training seed=44 variance estimate. Same params as r1 (bf16 LoRA r=64/α=128, lr=2e-5, 3 epochs, weighted sampling, CED-filtered 2718 samples). Pass: rel_f1 > 0.4057 AND evi_f1 > 0.798.",
+    "parent": "mvp2_rsft_train_r1"
+  },
+  "timestamp": "2026-05-15T05:38:26.903875+00:00",
+  "trigger": "update_registry"
+}

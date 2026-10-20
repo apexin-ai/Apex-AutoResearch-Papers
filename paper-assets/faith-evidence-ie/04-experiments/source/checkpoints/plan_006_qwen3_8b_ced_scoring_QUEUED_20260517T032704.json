@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan_006_qwen3_8b_ced_scoring",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:27:03.641Z",
+    "updated_at": "2026-05-17T03:27:03.641Z"
+  },
+  "timestamp": "2026-05-17T03:27:04.088800+00:00",
+  "trigger": "update_registry"
+}

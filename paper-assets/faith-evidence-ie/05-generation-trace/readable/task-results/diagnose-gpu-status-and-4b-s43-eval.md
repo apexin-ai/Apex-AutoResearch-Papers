@@ -1,0 +1,54 @@
+# diagnose gpu status and 4b s43 eval
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_diagnose_gpu_status_and_4b_s43_eval_20260518T201302_result.json`
+- **Structured JSON:** [`feb75c4d01c6db91aa8f.json`](../../sessions/fe/feb75c4d01c6db91aa8f.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+## 诊断结果
+
+### 1. 4 卡占用状态
+
+| GPU | PID | 进程 | 显存 | GPU利用率 |
+|-----|-----|------|------|----------|
+| cuda:0 | 567995 | plan019_8b_sft_s44 (8B SFT) | 32036MiB | 87% |
+| cuda:1 | 571197 | wave1_sft_4b_s44_eval_r2 (4B eval) | 10346MiB | 47% |
+| cuda:2 | 568654 | **wave1_sft_4b_s43_eval_r2** (4B eval) | 10404MiB | 90% (共享) |
+| cuda:2 | 569122 | plan019_1_7b_sft_s43_r2 (1.7B SFT) | 20910MiB | 90% (共享) |
+| cuda:3 | 571120 | grpo_bf16_g4_ckpt200_eval (GRPO eval) | 10618MiB | 52% |
+
+**没有空闲 GPU。** 所有 4 卡都有进程在跑，与预期一致。
+
+### 2. wave1_sft_4b_s43_eval_r2 状态
+
+- **PID 568649 (bash wrapper) 和 568654 (python) 均在运行**
+- **cuda:2 上两个进程共存**：eval (10404MiB) + 1.7B训练 (20910MiB) = 31314MiB / 32607MiB (96%)
+- 两个任务都设了 `CUDA_VISIBLE_DEVICES=2`，eval 先启动 (03:29)，训练后启动 (03:31)
+- **推理进度：72/247 batches (29%)**，~38s/it，预计还需 ~110 分钟
+- **输出目录为空**（尚未完成，结果文件在推理结束后才写入）
+- **日志无报错**，推理正常进行中
+
+### 3. 风险提示
+
+cuda:2 显存利用率 96%，两个进程挤在同一张卡上。目前虽然都在跑，但如果训练或 eval 某个 batch 峰值显存上升，可能触发 OOM。eval 速度也可能因为共享 GPU 而比独占慢。
+
+### Registry 更新
+
+eval 仍在运行中，不修改 registry 状态。当前 `wave1_sft_4b_s43_eval_r2` 状态保持 RUNNING。预计约 2 小时后完成，届时再检查结果并更新。
+
+---

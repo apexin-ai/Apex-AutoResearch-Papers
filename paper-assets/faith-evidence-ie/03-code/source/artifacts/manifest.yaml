@@ -1,0 +1,2076 @@
+- id: art_20260514_4c68a2
+  name: freige-codebase
+  type: intermediate
+  description: 'FREIGE 项目代码框架 v1: 6 模块 1831 行。含 DocRED 数据处理、CED 对比奖励、MVP-1 离线验证、SFT/GRPO
+    训练、DocRED 评测（F1/Ign-F1/Evi-F1/EDCR）。路径: artifacts/freige/'
+  path: projects/faith-evidence-ie/artifacts/_project/intermediate/freige_codebase_manifest.txt
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T04:34:46.372162+00:00'
+  tags:
+  - code
+  - framework
+  - mvp
+- id: art_20260514_8d3729
+  name: TRL GRPO 训练稳定性调研报告
+  type: report
+  description: TRL 1.1.0 GRPOTrainer 训练不稳定/mode collapse 的根因分析和修复方案。涵盖 clip_ratio=0
+    的原因、GRPOConfig 策略约束参数全景、按优先级排序的修复方案（mask_truncated_completions、beta KL惩罚、num_iterations
+    clipping、DAPO非对称clipping等）。
+  path: projects/faith-evidence-ie/artifacts/_project/report/trl_grpo_stability_research.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T10:25:01.369415+00:00'
+  tags:
+  - GRPO
+  - TRL
+  - training-stability
+  - mode-collapse
+  - DAPO
+- id: art_20260514_4d7019
+  name: d024_literature_survey
+  type: report
+  description: D024 文献调研：CED reward anti-mode-collapse 效应的文献支撑，覆盖 reward shaping/GRPO
+    stability、mode collapse in LLM RL、contrastive reward 三个方向，含 25+ 篇论文和 paper story
+    建议
+  path: projects/faith-evidence-ie/artifacts/_project/report/d024_literature_survey.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:43:09.822851+00:00'
+  tags:
+  - literature-survey
+  - d024
+  - mode-collapse
+  - CED-reward
+  - GRPO
+- id: art_20260514_e9b3f1
+  name: ced_stabilizer_literature_survey_v2
+  type: report
+  description: 'D024 CED-as-training-stabilizer 深度文献调研 v2: 17 篇论文覆盖 5 个方向（reward diversity、mode
+    collapse prevention、contrastive reward、evidence reward、multi-objective RL）。含 GDPO/DRA-GRPO/Dr.GRPO/DAPO
+    等核心对标，新颖性分析和 3 个 paper positioning 角度。配套 literature_map.yaml。'
+  path: projects/faith-evidence-ie/artifacts/ced_stabilizer_literature_survey.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T19:30:00.000000+00:00'
+  tags:
+  - literature-survey
+  - d024
+  - CED-stabilizer
+  - reward-diversity
+  - mode-collapse
+  - GRPO
+  - contrastive-reward
+- id: art_20260515_cb20ef
+  name: EDCR 证据分布分析 (r2b)
+  type: report
+  description: RSFT r2b 的 EDCR distractor evidence 分析：50样本人工复核发现~84%的distractor citations实际语义相关，真正无关仅~4%，EDCR下降主因是over-citation而非质量退化
+  path: projects/faith-evidence-ie/artifacts/_project/report/edcr_analysis_r2b.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T11:57:00.133012+00:00'
+  tags:
+  - edcr
+  - evidence
+  - analysis
+  - rsft
+- id: art_20260515_b10e04
+  name: analyze_maxtok1536_r2
+  type: report
+  description: 'Truncation diagnosis analysis: max_new_tokens=1536 vs 1024, EDCR +0.013
+    only, negative result confirming distractor citation is inherent RSFT behavior'
+  path: projects/faith-evidence-ie/artifacts/mvp2_eval_rsft_r2b_maxtok1536_r2/report/analyze_maxtok1536_r2.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: mvp2_eval_rsft_r2b_maxtok1536_r2
+  skill: ''
+  created_at: '2026-05-15T15:21:37.132350+00:00'
+  tags:
+  - truncation
+  - edcr
+  - diagnostic
+  - negative
+- id: art_20260515_38a284
+  name: dpo_ced_pairs
+  type: data
+  description: 'DPO preference pairs from CED scoring: 2666 pairs, chosen CED mean=0.721,
+    rejected CED mean=0.286, margin mean=0.435. Path: /root/autodl-tmp/dpo_data/dpo_pairs.jsonl'
+  path: projects/faith-evidence-ie/artifacts/plan_012_dpo_ced/data/dpo_ced_pairs_meta.json
+  url: null
+  project: faith-evidence-ie
+  exp_id: plan_012_dpo_ced
+  skill: ''
+  created_at: '2026-05-15T15:57:25.119835+00:00'
+  tags: []
+- id: art_20260515_dab581
+  name: plan_009_grpo_forgetting_dynamics_pdf
+  type: chart
+  description: 'Plan 009 GRPO forgetting dynamics figure (PDF): 3 GRPO runs vs SFT
+    baseline, showing reward/rel_f1/evi_f1 trajectories and catastrophic forgetting
+    pattern'
+  path: projects/faith-evidence-ie/artifacts/_project/chart/grpo_forgetting_dynamics.pdf
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:02:53.613688+00:00'
+  tags:
+  - plan_009
+  - grpo
+  - forgetting
+  - paper-figure
+- id: art_20260515_ae17a1
+  name: plan_009_grpo_forgetting_dynamics_png
+  type: chart
+  description: 'Plan 009 GRPO forgetting dynamics figure (PNG): 3 GRPO runs vs SFT
+    baseline, showing reward/rel_f1/evi_f1 trajectories and catastrophic forgetting
+    pattern'
+  path: projects/faith-evidence-ie/artifacts/_project/chart/grpo_forgetting_dynamics.png
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:02:55.335299+00:00'
+  tags:
+  - plan_009
+  - grpo
+  - forgetting
+  - paper-figure
+- id: art_20260515_dbf7a3
+  name: plan_009_grpo_forgetting_dynamics_v3
+  type: chart
+  description: 'Updated GRPO forgetting dynamics figure with bf16 GRPO control data.
+    3 panels: (a) training reward, (b) relation F1, (c) evidence F1. bf16 GRPO maintains
+    SFT-level performance (rel_f1=0.455) while QLoRA GRPO collapses to 0.217, confirming
+    catastrophic forgetting is QLoRA-specific.'
+  path: projects/faith-evidence-ie/artifacts/_project/chart/grpo_forgetting_dynamics_dbf7a3.png
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:28:36.373828+00:00'
+  tags:
+  - plan_009
+  - grpo
+  - forgetting
+  - bf16
+  - qlora
+  - figure
+- id: art_20260515_2ab8bf
+  name: plan_009_grpo_forgetting_dynamics_v3_pdf
+  type: chart
+  description: PDF version of updated GRPO forgetting dynamics figure with bf16 GRPO
+    control line.
+  path: projects/faith-evidence-ie/artifacts/_project/chart/grpo_forgetting_dynamics_2ab8bf.pdf
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:28:38.713873+00:00'
+  tags:
+  - plan_009
+  - grpo
+  - forgetting
+  - bf16
+  - figure
+  - pdf
+- id: art_20260515_fe231c
+  name: plan_009_grpo_forgetting_summary_v3
+  type: data
+  description: Updated summary.json for GRPO forgetting analysis with bf16 eval data
+    (ckpt-80/100 metrics, EDCR).
+  path: projects/faith-evidence-ie/artifacts/_project/data/summary.json
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:28:40.792661+00:00'
+  tags:
+  - plan_009
+  - grpo
+  - forgetting
+  - bf16
+  - summary
+- id: art_20260515_8010b4
+  name: GRPO Forgetting Dynamics Figure v4
+  type: chart
+  description: '2x2 paper figure: (a) training reward, (b) rel_f1, (c) evi_f1, (d)
+    EDCR. Shows QLoRA catastrophic forgetting vs bf16 LoRA stability across 4 GRPO
+    runs.'
+  path: projects/faith-evidence-ie/artifacts/plan_009_grpo_forgetting/chart/grpo_forgetting_dynamics_v4.png
+  url: null
+  project: faith-evidence-ie
+  exp_id: plan_009_grpo_forgetting
+  skill: ''
+  created_at: '2026-05-15T16:33:46.209997+00:00'
+  tags:
+  - grpo
+  - forgetting
+  - paper-figure
+  - v4
+- id: art_20260515_1e75dc
+  name: GRPO Forgetting Summary v4
+  type: data
+  description: 'Comprehensive JSON summary of all GRPO forgetting dynamics data: eval
+    metrics at each checkpoint, training reward trajectories, key findings, and data
+    completeness audit.'
+  path: projects/faith-evidence-ie/artifacts/plan_009_grpo_forgetting/data/summary_v4.json
+  url: null
+  project: faith-evidence-ie
+  exp_id: plan_009_grpo_forgetting
+  skill: ''
+  created_at: '2026-05-15T16:33:46.501528+00:00'
+  tags:
+  - grpo
+  - forgetting
+  - data
+  - v4
+- id: art_20260515_c03098
+  name: GRPO Reward Trajectories
+  type: data
+  description: Step-level training reward, KL, and loss data for 4 GRPO runs (qlora_kl001,
+    qlora_lr5e6, bf16_g8, bf16_g4).
+  path: projects/faith-evidence-ie/artifacts/plan_009_grpo_forgetting/data/reward_trajectories.json
+  url: null
+  project: faith-evidence-ie
+  exp_id: plan_009_grpo_forgetting
+  skill: ''
+  created_at: '2026-05-15T16:33:48.827836+00:00'
+  tags:
+  - grpo
+  - reward
+  - timeseries
+  - data
+- id: art_20260515_90f48d
+  name: plan_009_forgetting_data
+  type: data
+  description: GRPO Forgetting Dynamics figure 数据汇总 - 三个实验的 per-checkpoint eval metrics
+    + training reward trajectory
+  path: projects/faith-evidence-ie/artifacts/_project/data/plan_009_forgetting_data.csv
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:50:03.823983+00:00'
+  tags:
+  - plan_009
+  - grpo
+  - forgetting
+  - figure_data
+- id: art_20260515_2e2fe4
+  name: GRPO Forgetting Dynamics Figure v5
+  type: chart
+  description: '2x2 paper figure: (a) training reward, (b) rel_f1, (c) evi_f1, (d)
+    EDCR. Shows QLoRA catastrophic forgetting vs bf16 normal training. QLoRA rel_f1
+    crashes to 0.014-0.217 while bf16 reaches 0.455 (+12.1% vs SFT). Task decoupling
+    visible: QLoRA evi_f1 rises to 0.850 while rel_f1 near-zero.'
+  path: projects/faith-evidence-ie/artifacts/plan_009/chart/grpo_forgetting_dynamics_v5.png
+  url: null
+  project: faith-evidence-ie
+  exp_id: plan_009
+  skill: ''
+  created_at: '2026-05-15T18:05:53.966781+00:00'
+  tags:
+  - paper-figure
+  - forgetting
+  - GRPO
+  - QLoRA
+  - bf16
+  - claim3
+- id: art_20260515_c99dde
+  name: GRPO Forgetting Dynamics PDF v5
+  type: chart
+  description: PDF vector version of forgetting dynamics figure for LaTeX inclusion
+  path: projects/faith-evidence-ie/artifacts/plan_009/chart/grpo_forgetting_dynamics_v5.pdf
+  url: null
+  project: faith-evidence-ie
+  exp_id: plan_009
+  skill: ''
+  created_at: '2026-05-15T18:05:56.313449+00:00'
+  tags:
+  - paper-figure
+  - forgetting
+  - GRPO
+  - pdf
+- id: art_20260515_fad200
+  name: GRPO Forgetting Data CSV v5
+  type: data
+  description: Complete CSV with step-level training reward + checkpoint-level eval
+    metrics for all GRPO runs (QLoRA kl001, QLoRA lr5e-6, bf16 G=8) plus SFT baseline
+  path: projects/faith-evidence-ie/artifacts/plan_009/data/plan_009_forgetting_data_v5.csv
+  url: null
+  project: faith-evidence-ie
+  exp_id: plan_009
+  skill: ''
+  created_at: '2026-05-15T18:05:58.616251+00:00'
+  tags:
+  - data
+  - forgetting
+  - GRPO
+- id: art_20260515_dc177e
+  name: plan_002_test_inference_script
+  type: intermediate
+  description: Test set inference script for DocRED - handles no-label test split,
+    generates predictions + CodaLab submission format
+  path: projects/faith-evidence-ie/artifacts/_project/intermediate/test_inference_info.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:11:05.507817+00:00'
+  tags:
+  - plan_002
+  - test_eval
+  - codalab
+- id: art_20260515_fd5a34
+  name: plan_003_cross_method_table
+  type: data
+  description: EDCR cross-method diagnostic table — 9 methods, rel_f1/evi_f1/EDCR/distractor
+    rate. Script at /root/autodl-tmp/freige/eval/cross_method_table.py, output at
+    /root/autodl-tmp/eval_results/cross_method_table.json
+  path: projects/faith-evidence-ie/artifacts/_project/data/cross_method_table_summary.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:11:31.465012+00:00'
+  tags:
+  - plan_003
+  - edcr
+  - cross_method
+- id: art_20260515_8a855d
+  name: EDCR Cross-Method Diagnostic Table
+  type: report
+  description: Diagnostic table comparing EDCR, rel_f1, evi_f1, prediction count,
+    precision, recall across all evidence-producing methods (SFT, RSFT variants, GRPO,
+    CED reranker, DPO). Includes 3-seed RSFT summary and GRPO checkpoint trajectory.
+  path: projects/faith-evidence-ie/artifacts/_project/report/edcr_diagnostic_table.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:12:20.687560+00:00'
+  tags:
+  - edcr
+  - diagnostic
+  - plan_003
+  - cross-method
+- id: art_20260515_342da6
+  name: EDCR Diagnostic Analysis Report
+  type: report
+  description: Analysis of EDCR paradox (Spearman ρ=−0.905 vs rel_f1), mechanistic
+    explanation via prediction count regimes, EDCR diagnostic value beyond evi_f1,
+    GRPO checkpoint dynamics, and paper-ready claims.
+  path: projects/faith-evidence-ie/artifacts/_project/report/edcr_analysis.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:12:23.146362+00:00'
+  tags:
+  - edcr
+  - analysis
+  - plan_003
+  - paper-ready
+- id: art_20260515_d1de5c
+  name: plan_003_edcr_cross_method_table
+  type: report
+  description: EDCR cross-method diagnostic table with 11 methods, ranking, trend
+    analysis, and Claim 4 implications
+  path: projects/faith-evidence-ie/artifacts/_project/report/plan_003_edcr_cross_method_table.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:25:56.399266+00:00'
+  tags:
+  - edcr
+  - cross-method
+  - diagnostic
+  - plan_003
+  - claim4
+- id: art_20260515_eace0b
+  name: grpo_forgetting_dynamics_figure
+  type: chart
+  description: '3-panel figure showing GRPO training dynamics: (a) training reward,
+    (b) Rel-F1 forgetting, (c) Evi-F1 inverse rise. Compares bf16 vs QLoRA under CED
+    reward. Key finding: QLoRA causes catastrophic forgetting (rel_f1 drops to ~0.01)
+    while evi_f1 paradoxically rises above SFT baseline.'
+  path: projects/faith-evidence-ie/artifacts/_project/chart/grpo_forgetting_dynamics_eace0b.png
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:56:02.251439+00:00'
+  tags:
+  - grpo
+  - forgetting
+  - qlora
+  - bf16
+  - training-dynamics
+  - paper-figure
+- id: art_20260515_319233
+  name: grpo_forgetting_dynamics_pdf
+  type: chart
+  description: 'PDF version of GRPO forgetting dynamics figure for LaTeX inclusion.
+    Server path: /root/autodl-tmp/freige/figures/grpo_forgetting_dynamics.pdf'
+  path: projects/faith-evidence-ie/artifacts/_project/chart/grpo_forgetting_dynamics_319233.pdf
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:56:10.814868+00:00'
+  tags:
+  - grpo
+  - forgetting
+  - paper-figure
+  - pdf
+- id: art_20260515_e25dc9
+  name: grpo_forgetting_dynamics_v5
+  type: chart
+  description: 'GRPO forgetting dynamics figure (v5): 3-panel (reward/rel_f1/evi_f1)
+    with full QLoRA KL001 eval trajectory (7 points: step 10-100). Fixed qlora_lr5e6
+    kl label 0→0.01.'
+  path: projects/faith-evidence-ie/artifacts/plan_009/chart/grpo_forgetting_dynamics_v5_manifest.txt
+  url: null
+  project: faith-evidence-ie
+  exp_id: plan_009
+  skill: ''
+  created_at: '2026-05-15T19:02:37.552875+00:00'
+  tags:
+  - forgetting
+  - grpo
+  - figure
+  - plan_009
+- id: art_20260515_8df0cd
+  name: grpo_forgetting_dynamics_pdf
+  type: chart
+  description: GRPO forgetting dynamics 3-panel figure (training reward, rel-F1, evi-F1)
+    comparing bf16 vs QLoRA CED variants. PDF format.
+  path: projects/faith-evidence-ie/artifacts/_project/chart/grpo_forgetting_dynamics_8df0cd.pdf
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:11:42.623694+00:00'
+  tags:
+  - plan_009
+  - forgetting_dynamics
+  - grpo
+  - figure
+- id: art_20260515_6847e6
+  name: grpo_forgetting_dynamics_png
+  type: chart
+  description: GRPO forgetting dynamics 3-panel figure (training reward, rel-F1, evi-F1)
+    comparing bf16 vs QLoRA CED variants. PNG format.
+  path: projects/faith-evidence-ie/artifacts/_project/chart/grpo_forgetting_dynamics_6847e6.png
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:11:46.802532+00:00'
+  tags:
+  - plan_009
+  - forgetting_dynamics
+  - grpo
+  - figure
+- id: art_20260515_b15af8
+  name: plan_012_dpo_ced_eval_report
+  type: report
+  description: DPO + CED preference learning (plan_012) full dev eval results and
+    baseline comparison
+  path: projects/faith-evidence-ie/artifacts/plan_012_dpo_ced/report/plan_012_dpo_ced_eval_report.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: plan_012_dpo_ced
+  skill: ''
+  created_at: '2026-05-15T19:30:40.202538+00:00'
+  tags:
+  - dpo
+  - ced
+  - eval
+  - plan_012
+- id: art_20260515_8b91f9
+  name: plan_003_edcr_diagnostic_table_v2
+  type: report
+  description: EDCR cross-method diagnostic table with 21 method variants, correlation
+    analysis, distractor source decomposition, and 5 diagnostic patterns (normal improvement,
+    catastrophic forgetting, DPO overfitting, no-evidence ablation, CED-reranker mechanism)
+  path: projects/faith-evidence-ie/artifacts/_project/report/edcr_diagnostic_table_8b91f9.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:55:44.856595+00:00'
+  tags:
+  - plan_003
+  - edcr
+  - diagnostic
+  - cross-method
+  - evaluation
+- id: art_20260515_543f18
+  name: eval_test_set.sh
+  type: intermediate
+  description: Test set inference script - parameterized, uses test_inference.py +
+    CodaLab submission format
+  path: projects/faith-evidence-ie/artifacts/_project/intermediate/eval_test_set_readme.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:58:39.728546+00:00'
+  tags:
+  - plan_002
+  - test_eval
+  - script
+- id: art_20260515_95dd0f
+  name: cross_method_table_v2
+  type: report
+  description: Updated cross-method EDCR diagnostic table with 11 methods (SFT/RSFT/GRPO/CED-reranker/SFT-no-evidence)
+  path: projects/faith-evidence-ie/artifacts/_project/report/cross_method_table_v2.txt
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:58:47.222003+00:00'
+  tags:
+  - plan_003
+  - edcr
+  - diagnostic
+- id: art_20260515_dpo1ep
+  name: plan_012_dpo_ced_1ep 训练指标分析
+  type: report
+  description: DPO+CED 1-epoch 训练指标分析：与 3-epoch 过拟合版本对比，rewards_accuracy 0.82 (vs
+    1.0)，margins 0.86 (vs 9.01)，过拟合已消除，建议跑 eval。
+  path: projects/faith-evidence-ie/artifacts/plan_012_dpo_ced_1ep_analysis.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T20:30:00.000000+00:00'
+  tags:
+  - plan_012
+  - dpo
+  - ced
+  - analysis
+- id: art_20260515_ab131b
+  name: related_work_gap_report
+  type: report
+  description: Dream v2 审稿识别的 7 个 related work 缺口调研报告：R1-RE, RelPrior, Ru-LLM, AutoRE,
+    GLiDRE, InFusE, TRUE
+  path: projects/faith-evidence-ie/artifacts/_project/report/related_work_gap_report.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T21:13:22.163959+00:00'
+  tags:
+  - related-work
+  - literature-review
+  - dream-v2
+  - gap-analysis
+- id: art_20260515_ec71a1
+  name: plan_009_dynamics_data
+  type: data
+  description: GRPO forgetting dynamics data for paper Claim 2 figure. Contains step-level
+    training metrics (reward, f1_reward, frac_zero_std) and eval metrics (rel_f1,
+    evi_f1, edcr) for 6 GRPO runs (3 QLoRA CED, 1 QLoRA extract, 1 QLoRA flat-NLI,
+    1 bf16), plus RSFT/SFT baselines.
+  path: projects/faith-evidence-ie/artifacts/plan_009/data/plan_009_dynamics_data.json
+  url: null
+  project: faith-evidence-ie
+  exp_id: plan_009
+  skill: ''
+  created_at: '2026-05-15T21:16:13.846217+00:00'
+  tags:
+  - forgetting
+  - dynamics
+  - claim2
+  - figure
+  - grpo
+  - qlora
+  - bf16
+- id: art_20260515_127ebc
+  name: plan_003_edcr_diagnostic
+  type: report
+  description: EDCR Cross-Method Diagnostic Table — 11种evidence-producing方法的EDCR/rel_f1/evi_f1对比，含诊断zone分析和GRPO
+    QLoRA forgetting trajectory
+  path: projects/faith-evidence-ie/artifacts/plan_003/report/plan_003_edcr_diagnostic.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: plan_003
+  skill: ''
+  created_at: '2026-05-15T21:40:44.466200+00:00'
+  tags:
+  - edcr
+  - diagnostic
+  - cross-method
+  - plan_003
+- id: art_20260515_6e55d6
+  name: plan_009_forgetting_dynamics_figure
+  type: chart
+  description: '3-panel figure showing GRPO forgetting dynamics: bf16 vs QLoRA across
+    training steps. Panel A: rel_f1, Panel B: evi_f1, Panel C: EDCR. Key finding:
+    QLoRA catastrophic forgetting vs bf16 stability.'
+  path: projects/faith-evidence-ie/artifacts/plan_009/chart/forgetting_dynamics.pdf
+  url: null
+  project: faith-evidence-ie
+  exp_id: plan_009
+  skill: ''
+  created_at: '2026-05-15T23:09:17.752127+00:00'
+  tags:
+  - C2
+  - forgetting
+  - GRPO
+  - dynamics
+  - paper-figure
+- id: art_20260515_c0be3f
+  name: plan_001_flat_nli_seed45_training_analysis
+  type: report
+  description: Training result analysis for flat-NLI RSFT seed45
+  path: projects/faith-evidence-ie/artifacts/plan_001_flat_nli_seed45/report/plan_001_flat_nli_seed45_analysis.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: plan_001_flat_nli_seed45
+  skill: ''
+  created_at: '2026-05-15T23:10:30.886688+00:00'
+  tags:
+  - training
+  - flat-nli
+  - seed45
+  - rsft
+- id: art_20260515_f6a9d2
+  name: grpo_forgetting_dynamics_v6
+  type: chart
+  description: 'GRPO forgetting dynamics 4-panel figure (v6): Training Reward, rel_f1,
+    evi_f1, EDCR trajectories. bf16 G=8 now has 6 eval points (steps 30-100) vs v5''s
+    3 points. Shows QLoRA catastrophic forgetting vs bf16 stability.'
+  path: projects/faith-evidence-ie/artifacts/plan_009_forgetting_figure/chart/grpo_forgetting_dynamics_v6.pdf
+  url: null
+  project: faith-evidence-ie
+  exp_id: plan_009_forgetting_figure
+  skill: ''
+  created_at: '2026-05-15T23:17:54.486685+00:00'
+  tags:
+  - plan_009
+  - forgetting
+  - dynamics
+  - grpo
+  - paper_figure
+  - v6
+- id: art_20260515_b0d87a
+  name: plan_009_forgetting_dynamics_v5
+  type: chart
+  description: 'GRPO forgetting dynamics 3-panel figure (rel_f1/evi_f1/EDCR): QLoRA
+    catastrophic forgetting vs BF16 stable training. Supports Claim 3.'
+  path: projects/faith-evidence-ie/artifacts/plan_009_dynamics_figure/chart/grpo_forgetting_dynamics_v5.pdf
+  url: null
+  project: faith-evidence-ie
+  exp_id: plan_009_dynamics_figure
+  skill: ''
+  created_at: '2026-05-15T23:17:54.931898+00:00'
+  tags:
+  - plan_009
+  - claim_3
+  - forgetting
+  - dynamics
+  - paper_figure
+- id: art_20260515_a152f8
+  name: edcr_diagnostic_script
+  type: data
+  description: EDCR cross-method diagnostic table script for plan_003 Claim 4. On
+    server at /root/autodl-tmp/scripts/edcr_diagnostic.py. Reads eval results in 3
+    formats, supports --add for incremental updates, outputs terminal table + JSON
+    + LaTeX.
+  path: projects/faith-evidence-ie/artifacts/_project/data/edcr_diagnostic_location.txt
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T23:22:57.630217+00:00'
+  tags:
+  - plan_003
+  - edcr
+  - claim4
+- id: art_20260515_e0d7a4
+  name: plan_003_edcr_diagnostic_script
+  type: intermediate
+  description: 'EDCR cross-method diagnostic script: scans eval_results, extracts
+    (rel_f1, evi_f1, EDCR) triplets, generates Markdown+CSV table. Supports --add
+    for incremental updates. 18 methods covered.'
+  path: projects/faith-evidence-ie/artifacts/plan_003_edcr_diagnostic/intermediate/edcr_diagnostic_preview.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: plan_003_edcr_diagnostic
+  skill: ''
+  created_at: '2026-05-15T23:23:47.558466+00:00'
+  tags:
+  - plan_003
+  - claim_4
+  - edcr
+  - diagnostic
+- id: art_20260515_25a2d5
+  name: Related Work Expansion Report
+  type: report
+  description: FREIGE 论文 Related Work 文献扩展调研报告：5 个方向 17 篇新论文（evidence-based DocRE,
+    faithfulness structured output, GRPO for IE, QLoRA gaps, MTL trade-offs）
+  path: projects/faith-evidence-ie/artifacts/_project/report/related_work_expansion_report.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T23:38:36.878748+00:00'
+  tags:
+  - related-work
+  - literature-survey
+  - paper-writing
+- id: art_20260515_713b5d
+  name: seed_comparison_script
+  type: intermediate
+  description: flat-NLI vs CED RSFT seed-level comparison script with watch mode
+  path: projects/faith-evidence-ie/artifacts/_project/intermediate/seed_comparison_readme.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T23:40:34.097300+00:00'
+  tags:
+  - eval
+  - comparison
+  - statistics
+- id: art_20260515_b9319a
+  name: EDCR Cross-Method Diagnostic Table
+  type: report
+  description: 'Cross-method EDCR diagnostic: 14 methods analyzed. Best EDCR among
+    viable methods (rel_f1>0.4): GRPO bf16 ckpt100 (0.6318), RSFT-CED s44 (0.6350).
+    Includes per-relation and per-document breakdowns.'
+  path: projects/faith-evidence-ie/artifacts/plan_003_edcr_diagnostic/report/edcr_diagnostic_summary.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: plan_003_edcr_diagnostic
+  skill: ''
+  created_at: '2026-05-15T23:44:53.624871+00:00'
+  tags:
+  - edcr
+  - diagnostic
+  - cross-method
+  - evidence-quality
+- id: art_20260515_3bd92e
+  name: EDCR Cross-Method Diagnostic Table
+  type: report
+  description: 'Cross-method EDCR diagnostic table (15 methods). Key finding: EDCR
+    vs rel_f1 Spearman=-0.9648 (near-perfect anticorrelation); EDCR vs evi_f1 Spearman=0.002
+    (no correlation). EDCR identifies evidence-dominated pathologies (GRPO QLoRA)
+    but is largely redundant with rel_f1 for ranking functional methods.'
+  path: projects/faith-evidence-ie/artifacts/_project/report/edcr_diagnostic_table_3bd92e.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T23:47:23.360472+00:00'
+  tags:
+  - plan_003
+  - edcr
+  - diagnostic
+  - claim4
+- id: art_20260516_184eab
+  name: metrics_summary_table
+  type: report
+  description: Full experiment metrics comparison table (Markdown) for paper writing
+    - all methods with Rel-F1, Ign-F1, Evi-F1, EDCR
+  path: projects/faith-evidence-ie/artifacts/_project/report/metrics_summary_table.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T00:28:28.303256+00:00'
+  tags:
+  - paper
+  - metrics
+  - comparison
+- id: art_20260516_429804
+  name: metrics_summary_csv
+  type: data
+  description: Experiment metrics in CSV format for programmatic analysis - all methods/seeds/checkpoints
+  path: projects/faith-evidence-ie/artifacts/_project/data/metrics_summary.csv
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T00:28:29.974744+00:00'
+  tags:
+  - paper
+  - metrics
+  - data
+- id: art_20260516_1c856b
+  name: ced_eval_commands
+  type: intermediate
+  description: CED RSFT s43/s45 full dev eval 命令模板，训练完成后替换 checkpoint 路径即可提交
+  path: projects/faith-evidence-ie/artifacts/_project/intermediate/ced_eval_commands.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T00:40:50.834625+00:00'
+  tags:
+  - eval
+  - ced
+  - rsft
+  - s43
+  - s45
+- id: art_20260516_fa8de4
+  name: related-work-draft-v1
+  type: paper
+  description: 'Related Work 初稿 (961词, 4子节: DocRE / Evidence-based IE / RSFT / RL
+    for Structured Gen)，覆盖 ~50 篇引用，全部来自 literature_map.yaml'
+  path: projects/faith-evidence-ie/artifacts/_project/paper/related_work.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T00:47:42.433057+00:00'
+  tags:
+  - paper
+  - related-work
+  - draft-v1
+- id: art_20260516_19360a
+  name: citation_crosscheck_report
+  type: report
+  description: 'Cross-check report: related_work.md citations vs literature_map.yaml
+    entries. 11 issues found: 1 missing from lit map (Q-BLoRA), 6 missing from RW
+    (1 direct-competitor OREO + 5 method-components), 4 role inconsistencies.'
+  path: projects/faith-evidence-ie/artifacts/_project/report/citation_crosscheck_report.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T01:04:52.199947+00:00'
+  tags:
+  - paper
+  - citation
+  - cross-check
+  - related-work
+- id: art_20260516_752e0d
+  name: experiment_summary_table
+  type: report
+  description: 'Comprehensive experiment summary table with all DONE experiments:
+    baselines (SFT, SFT-no-evidence, DREEAM), RSFT variants (CED/flat-NLI/top_k=3),
+    RL methods (GRPO bf16/QLoRA, DPO), inference-time CED reranker. Includes multi-seed
+    mean±std, ranking, checkpoint trajectories, and key findings.'
+  path: projects/faith-evidence-ie/artifacts/_project/report/experiment_summary_table.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T01:06:26.245806+00:00'
+  tags:
+  - metrics
+  - summary
+  - paper-ready
+- id: art_20260516_c3673d
+  name: paper_metrics_table
+  type: report
+  description: FREIGE paper main table - all eval metrics (F1/P/R/Evi-F1/Ign-F1) across
+    SFT/RSFT/DPO/GRPO methods with multi-seed results
+  path: projects/faith-evidence-ie/artifacts/_project/report/paper_metrics_table.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:28:40.509166+00:00'
+  tags:
+  - paper
+  - metrics
+  - main-table
+  - eval
+- id: art_20260516_a1a71e
+  name: paper_evidence_table
+  type: report
+  description: Structured evidence table for EMNLP 2026 paper, organized by 4 claims
+    with supporting experiments, key numbers, and evidence gaps. Compiled from 130
+    registry experiments + paper_framing.md + decisions D067-D076.
+  path: projects/faith-evidence-ie/artifacts/_project/report/paper_evidence_table.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T03:28:48.606791+00:00'
+  tags:
+  - paper
+  - evidence-table
+  - emnlp2026
+  - sprint-prep
+- id: art_20260516_bc261a
+  name: paper_main_tables_draft
+  type: paper
+  description: EMNLP 2026 论文主结果表 draft — Table 1 (Main Results), Table 2 (Decoupling
+    Spectrum), Table 3 (CED vs flat-NLI Seed Comparison), EDCR method-level summary。所有数字来自
+    registry，标注 exp_id 来源和 PENDING 项。
+  path: projects/faith-evidence-ie/artifacts/_project/paper/paper_main_tables_draft.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T03:37:58.478889+00:00'
+  tags:
+  - paper
+  - tables
+  - emnlp2026
+  - draft
+- id: art_20260516_25554d
+  name: reeval_commands
+  type: intermediate
+  description: D076 协议 3 个 reeval 实验的 ready-to-submit 命令 (reeval_ced_s44, reeval_ced_s42,
+    reeval_flat_nli_s42)，路径已验证，GPU 待分配
+  path: projects/faith-evidence-ie/artifacts/_project/intermediate/reeval_commands.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T04:12:21.015970+00:00'
+  tags:
+  - reeval
+  - d076
+  - commands
+- id: art_20260516_c99000
+  name: eval_rsft_ced_s45_results
+  type: report
+  description: CED RSFT seed=45 full dev eval results with cross-seed comparison
+  path: projects/faith-evidence-ie/artifacts/eval_rsft_ced_s45/report/eval_rsft_ced_s45_results.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: eval_rsft_ced_s45
+  skill: ''
+  created_at: '2026-05-16T04:23:35.330646+00:00'
+  tags:
+  - eval
+  - ced
+  - rsft
+  - seed45
+  - paired-ttest
+- id: art_20260516_9f92df
+  name: eval_rsft_ced_s43_results
+  type: report
+  description: CED RSFT seed=43 checkpoint-510 full dev eval results with seed comparison
+  path: projects/faith-evidence-ie/artifacts/eval_rsft_ced_s43/report/eval_rsft_ced_s43_results_9f92df.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: eval_rsft_ced_s43
+  skill: ''
+  created_at: '2026-05-16T05:19:02.161567+00:00'
+  tags:
+  - eval
+  - ced
+  - rsft
+  - seed43
+  - seed-comparison
+- id: art_20260516_ae13ea
+  name: paper_table1_data
+  type: data
+  description: Paper Table 1 complete metrics summary — all methods with Rel-F1, Ign-F1,
+    Evi-F1, EDCR, Evi-F1-Joint. 4 reevals pending.
+  path: projects/faith-evidence-ie/artifacts/_project/data/paper_table1_data.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T05:25:54.159956+00:00'
+  tags:
+  - paper
+  - table1
+  - metrics
+  - emnlp2026
+- id: art_20260516_63642f
+  name: reeval_flat_nli_s43_r2_metrics
+  type: report
+  description: 'Metrics summary for reeval_flat_nli_s43_r2: unified protocol re-eval
+    of flat-NLI s43 with batch_size=4'
+  path: projects/faith-evidence-ie/artifacts/reeval_flat_nli_s43_r2/report/metrics_summary.json
+  url: null
+  project: faith-evidence-ie
+  exp_id: reeval_flat_nli_s43_r2
+  skill: ''
+  created_at: '2026-05-16T06:10:03.472402+00:00'
+  tags:
+  - eval
+  - flat-nli
+  - seed43
+  - unified-protocol
+- id: art_20260516_748dc4
+  name: reeval_ced_s42_metrics
+  type: report
+  description: CED RSFT seed=42 reeval metrics under unified protocol (D076), with
+    cross-seed and old-eval comparison
+  path: projects/faith-evidence-ie/artifacts/reeval_ced_s42/report/reeval_ced_s42_analysis.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: reeval_ced_s42
+  skill: ''
+  created_at: '2026-05-16T07:27:41.029004+00:00'
+  tags:
+  - eval
+  - ced
+  - rsft
+  - seed42
+  - unified-protocol
+  - D076
+- id: art_20260516_8c70d5
+  name: reeval_sft_baseline_d076_metrics
+  type: data
+  description: D076 统一协议 reeval SFT baseline 完整 metrics (batch_size=4, no-quantize,
+    max_new_tokens=1024, seed=42)
+  path: projects/faith-evidence-ie/artifacts/reeval_sft_baseline_d076/data/reeval_sft_baseline_d076_metrics.txt
+  url: null
+  project: faith-evidence-ie
+  exp_id: reeval_sft_baseline_d076
+  skill: ''
+  created_at: '2026-05-16T07:27:41.543863+00:00'
+  tags:
+  - d076
+  - reeval
+  - sft-baseline
+  - unified-protocol
+- id: art_20260516_ee2f95
+  name: reeval_ced_s42_metrics
+  type: data
+  description: CED RSFT seed=42 统一协议 reeval 完整 metrics（checkpoint-510, lora_alpha=128）
+  path: projects/faith-evidence-ie/artifacts/reeval_ced_s42/data/metrics_summary.json
+  url: null
+  project: faith-evidence-ie
+  exp_id: reeval_ced_s42
+  skill: ''
+  created_at: '2026-05-16T07:28:58.427672+00:00'
+  tags:
+  - eval
+  - ced
+  - rsft
+  - seed42
+  - unified-protocol
+- id: art_20260516_36e4c6
+  name: reeval_ced_s44_metrics
+  type: report
+  description: 'Re-evaluation metrics for CED RSFT s44 checkpoint (unified protocol:
+    batch_size=4, no-quantize, sft_adapter, max_new_tokens=1024, seed=44)'
+  path: projects/faith-evidence-ie/artifacts/reeval_ced_s44/report/metrics_summary.json
+  url: null
+  project: faith-evidence-ie
+  exp_id: reeval_ced_s44
+  skill: ''
+  created_at: '2026-05-16T07:58:58.550345+00:00'
+  tags:
+  - eval
+  - ced
+  - s44
+  - reeval
+  - paired-ttest
+- id: art_20260516_a0bf21
+  name: reeval_ced_s42_metrics
+  type: report
+  description: Re-evaluation metrics for CED RSFT s42 (checkpoint-510) under unified
+    protocol (bs=4, no-quantize, sft_adapter, max_new_tokens=1024)
+  path: projects/faith-evidence-ie/artifacts/reeval_ced_s42/report/metrics_summary.json
+  url: null
+  project: faith-evidence-ie
+  exp_id: reeval_ced_s42
+  skill: ''
+  created_at: '2026-05-16T07:59:34.817391+00:00'
+  tags:
+  - reeval
+  - ced
+  - s42
+  - paired-ttest
+- id: art_20260516_4b8f8b
+  name: reeval_flat_nli_s42_metrics_summary
+  type: report
+  description: Unified protocol reeval metrics for flat-NLI s42, with comparison to
+    flat-NLI s43, CED s42, CED s44
+  path: projects/faith-evidence-ie/artifacts/reeval_flat_nli_s42/report/metrics_summary_4b8f8b.json
+  url: null
+  project: faith-evidence-ie
+  exp_id: reeval_flat_nli_s42
+  skill: ''
+  created_at: '2026-05-16T08:02:11.370872+00:00'
+  tags:
+  - reeval
+  - unified-protocol
+  - flat-nli
+  - ced
+  - comparison
+- id: art_20260516_eb6def
+  name: D076 Paired T-test Results
+  type: report
+  description: 'Statistical significance analysis: CED vs flat-NLI vs SFT baseline.
+    Seed-level paired t-test (n=4). Key finding: both RSFT methods significantly beat
+    SFT (p&lt;0.001), but CED vs flat-NLI statistically indistinguishable (p=0.506).'
+  path: projects/faith-evidence-ie/artifacts/_project/report/d076_paired_ttest_results.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T11:38:55.963918+00:00'
+  tags:
+  - d076
+  - statistics
+  - paired-ttest
+  - ced-vs-flat-nli
+- id: art_20260516_67df26
+  name: d076_paired_ttest_report
+  type: report
+  description: 'D076 statistical significance test: CED vs flat-NLI RSFT. Paired t-test
+    (n=4 seeds) + bootstrap CI + power analysis. Conclusion: indistinguishable (p=0.52,
+    d=-0.36). Report at /root/autodl-tmp/eval_results/d076_paired_ttest_report.json'
+  path: projects/faith-evidence-ie/artifacts/_project/report/d076_paired_ttest_report_pointer.txt
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T12:12:14.647730+00:00'
+  tags:
+  - d076
+  - statistics
+  - ttest
+  - ced
+  - flat-nli
+  - d078
+- id: art_20260516_8a59b0
+  name: 1.7B non-truncated subset analysis
+  type: report
+  description: Qwen3-1.7B no-evidence vs with-evidence Ign-F1 comparison on non-truncated
+    document subsets, isolating truncation confound
+  path: projects/faith-evidence-ie/artifacts/_project/report/1_7b_non_truncated_subset_analysis.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T14:27:00.153488+00:00'
+  tags:
+  - 1.7b
+  - evidence-tax
+  - truncation
+  - subset-analysis
+- id: art_20260516_86c79e
+  name: diag_redocred_rsft_r2
+  type: report
+  description: 诊断 plan_007_redocred_rsft_eval_r2 灾难性失败根因：adapter 加载参数错误，RSFT LoRA
+    被误传为 sft_adapter 直接 merge 到 base model，导致模型退化为开放域 IE
+  path: projects/faith-evidence-ie/artifacts/plan_007_redocred_rsft_eval_r2/report/diag_redocred_rsft_r2.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: plan_007_redocred_rsft_eval_r2
+  skill: ''
+  created_at: '2026-05-16T17:48:03.950480+00:00'
+  tags:
+  - diagnosis
+  - bug
+  - eval
+  - rsft
+  - re-docred
+- id: art_20260517_c9070e
+  name: negative_review
+  type: report
+  description: 18个negative实验的系统性复盘：按7个Group分析证伪假设、处理正确性、推导链完整性，提出3条被忽视的改进线索（CED reranking、bf16
+    GRPO+RSFT两阶段、rel_f1-based DPO pairs）
+  path: projects/faith-evidence-ie/artifacts/_project/report/negative_review.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T03:57:41.330947+00:00'
+  tags:
+  - negative-results
+  - retrospective
+  - analysis
+- id: art_20260517_3b4638
+  name: post_hoc_bm25_retrieval_results
+  type: data
+  description: 'Post-hoc BM25 evidence retrieval baseline results: 6 configs vs jointly-trained
+    SFT/RSFT. Best post-hoc (entity_only k=2) evi_f1_joint=0.3473 EDCR=0.7664, vs
+    RSFT 0.3605/0.6542.'
+  path: projects/faith-evidence-ie/artifacts/_project/data/post_hoc_bm25_manifest.txt
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T12:59:39.404105+00:00'
+  tags:
+  - baseline
+  - post-hoc
+  - bm25
+  - evidence-retrieval
+  - D089
+- id: art_20260517_984c0b
+  name: fig_spectrum
+  type: chart
+  description: 'Evidence-Extraction Decoupling Spectrum scatter plot. Shows Evi-F1
+    vs Rel-F1 trade-off across training paradigms (SFT, RSFT, GRPO, DPO). Key finding:
+    RL optimization pressure increases decoupling; RSFT is the only method improving
+    both metrics simultaneously.'
+  path: projects/faith-evidence-ie/artifacts/_project/chart/fig_spectrum.pdf
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T14:09:53.331336+00:00'
+  tags:
+  - paper
+  - figure
+  - spectrum
+  - decoupling
+- id: art_20260517_560c15
+  name: fig_spectrum_v2
+  type: chart
+  description: 'Evidence-Extraction Decoupling Spectrum scatter plot (v2). Corrections:
+    GRPO bf16 training trajectory (4 checkpoints s30/s50/s70/s100), DPO 3ep hollow
+    marker (pre-D076 eval), SFT baseline evi_f1 updated to D076 value 0.8013. Data
+    sources: reeval_sft_baseline_d076, eval_rsft_ced_s43/s42/s44/s45, mvp2_eval_lr5e6_r1_ckpt100,
+    plan_011_grpo_g8_bf16_eval, eval_plan_012_dpo_1ep_fixed_r2, plan_012_dpo_ced.'
+  path: projects/faith-evidence-ie/artifacts/_project/chart/fig_spectrum_560c15.pdf
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-17T14:24:50.200850+00:00'
+  tags:
+  - paper
+  - experiments
+  - decoupling
+  - fig_spectrum
+- id: art_20260517_d17d53
+  name: fig_scaling
+  type: chart
+  description: 'Scale-Dependent Evidence Tax grouped bar chart: Ign-F1 comparison
+    of SFT with/without evidence across Qwen3-1.7B, Qwen3-4B, Qwen3-8B, LLaMA-3.1-8B.
+    Shows non-monotonic evidence tax (+8.0pp benefit at 1.7B, -7.5pp cost at 4B, near-zero
+    at 8B).'
+  path: projects/faith-evidence-ie/artifacts/_project/chart/fig_scaling.pdf
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T14:26:43.128940+00:00'
+  tags:
+  - paper
+  - scaling
+  - evidence-tax
+  - ign-f1
+- id: art_20260517_cb1e70
+  name: fig_scaling
+  type: chart
+  description: 'Scale-Dependent Evidence Tax grouped bar chart. 4 model scales (Qwen3-1.7B/4B/8B,
+    LLaMA-3.1-8B), SFT with-evidence vs no-evidence. Shows non-monotonic pattern:
+    1.7B +8.0pp benefit, 4B -7.5pp cost, 8B ≈0 neutral. Note: 1.7B full dev set delta=+8.0pp
+    vs D083 fair subset=+6.2pp. Data: plan_006_qwen3_1_7b_sft_eval, plan_006_qwen3_1_7b_no_evidence_eval_v3,
+    reeval_sft_baseline_d076, eval_plan_014_no_evidence_r2, plan_006_qwen3_8b_sft_eval,
+    plan_016_llama_3_1_8b_sft_eval, plan_016_llama_3_1_8b_no_evidence_eval.'
+  path: projects/faith-evidence-ie/artifacts/_project/chart/fig_scaling_cb1e70.pdf
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-17T14:42:04.338486+00:00'
+  tags:
+  - paper
+  - experiments
+  - scaling
+  - fig_scaling
+- id: art_20260517_3ec002
+  name: fig_overview
+  type: chart
+  description: Evidence-Grounded DocRE Task + FREIGE Pipeline overview figure (PDF/PNG)
+  path: projects/faith-evidence-ie/artifacts/_project/chart/fig_overview.png
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T14:45:50.471194+00:00'
+  tags:
+  - paper
+  - figure
+  - overview
+  - pipeline
+- id: art_20260517_6790cb
+  name: fig_scaling_v2
+  type: chart
+  description: 'Scale-Dependent Evidence Tax grouped bar chart (v2). All 4 models
+    now have real data. Qwen3-8B no-evidence updated to 50.79 (plan_006_qwen3_8b_no_evidence_eval_v2),
+    evidence tax = -0.3pp. Full pattern: 1.7B +8.0pp, 4B -7.5pp, 8B -0.3pp, LLaMA
+    -0.7pp.'
+  path: projects/faith-evidence-ie/artifacts/_project/chart/fig_scaling_6790cb.pdf
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-17T15:01:48.414294+00:00'
+  tags:
+  - paper
+  - experiments
+  - scaling
+  - fig_scaling
+- id: art_20260517_595687
+  name: fig_overview
+  type: chart
+  description: 'Evidence-Grounded DocRE task overview conceptual figure. Shows: Document
+    with entity highlights → LLM → Standard DocRE (triples only, gray dashed) vs Evidence-Grounded
+    DocRE (triples + evidence, blue solid). Bottom strip: RSFT pipeline (SFT → Sample
+    N → CED/NLI Score → Select Top-1 → Fine-tune).'
+  path: projects/faith-evidence-ie/artifacts/_project/chart/fig_overview.pdf
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-17T15:02:28.021876+00:00'
+  tags:
+  - paper
+  - method
+  - fig_overview
+- id: art_20260517_50267a
+  name: fig_overview_v3
+  type: chart
+  description: 'Evidence-Grounded DocRE task overview + RSFT pipeline. v3: "Select
+    Top-1" → "Select Top-K" to match Method (top_k=3, 9042/24216 samples).'
+  path: projects/faith-evidence-ie/artifacts/_project/chart/fig_overview_50267a.pdf
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-17T15:41:54.124471+00:00'
+  tags:
+  - paper
+  - fig1
+  - overview
+  - conceptual
+- id: art_20260517_2f5e45
+  name: experiments_section_tex
+  type: paper
+  description: Experiments section (Section 5) LaTeX for EMNLP 2026 paper, covering
+    setup, main results, decoupling spectrum, scaling analysis, evidence strategy
+    comparison, and generalization.
+  path: projects/faith-evidence-ie/artifacts/_project/paper/experiments.tex
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T16:08:52.062970+00:00'
+  tags:
+  - paper
+  - experiments
+  - latex
+- id: art_20260517_bac823
+  name: method-section-tex
+  type: paper
+  description: Method section (Section 3) LaTeX for EMNLP 2026 paper. Covers task
+    formulation, SFT baseline, three optimization paradigms (GRPO/DPO/RSFT), CED scoring,
+    and EDCR diagnostic metric. ~1243 words.
+  path: projects/faith-evidence-ie/artifacts/_project/paper/method.tex
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T16:29:47.753824+00:00'
+  tags:
+  - paper
+  - method
+  - latex
+- id: art_20260517_0dbdd7
+  name: introduction.tex
+  type: paper
+  description: Introduction section for EMNLP 2026 paper "Evidence at What Cost? Decoupling
+    and Scaling in LLM-Based Document Relation Extraction"
+  path: projects/faith-evidence-ie/artifacts/_project/paper/introduction.tex
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T16:44:41.685535+00:00'
+  tags:
+  - paper
+  - introduction
+  - emnlp2026
+- id: art_20260517_610a5e
+  name: fig_grpo_dynamics
+  type: chart
+  description: 'GRPO Training Dynamics figure for appendix: 3-panel plot showing (a)
+    Relation F1, (b) Evidence F1, (c) EDCR across training steps. Compares G=4 QLoRA
+    (catastrophic decoupling) vs G=8 bf16 (stable training). G=4 shows Rel F1 collapse
+    from 0.41 to 0.003 at step 10 with EDCR jumping to 0.998, while G=8 maintains
+    stable metrics throughout.'
+  path: projects/faith-evidence-ie/artifacts/_project/chart/fig_grpo_dynamics.pdf
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-17T18:19:59.421325+00:00'
+  tags:
+  - paper
+  - appendix
+  - grpo
+  - training-dynamics
+  - catastrophic-decoupling
+- id: art_20260517_bc35fb
+  name: fig_edcr_relations
+  type: chart
+  description: Per-relation EDCR distribution chart (93 relations, horizontal bar,
+    sorted by EDCR descending, red=high/green=low, threshold at 0.70). Data from RSFT-CED
+    s44 predictions on dev set.
+  path: projects/faith-evidence-ie/artifacts/_project/chart/fig_edcr_relations.pdf
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-17T18:41:40.310912+00:00'
+  tags:
+  - appendix
+  - edcr
+  - per-relation
+  - paper-figure
+- id: art_20260518_524ab3
+  name: D102 RSFT k=1 训练结果汇总
+  type: report
+  description: D102 方法论修正：4个RSFT k=1训练实验全部完成，包含1.7B/LLaMA-8B/Qwen3-8B(x2 seeds)的训练指标和k=1
+    vs k=3对比
+  path: projects/faith-evidence-ie/artifacts/_project/report/memory.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T08:52:40.347947+00:00'
+  tags:
+  - d102
+  - rsft
+  - k1
+  - training
+- id: art_20260518_9c5f1a
+  name: D102 k=1 RSFT Eval Commands
+  type: intermediate
+  description: 4 个 D102 k=1 RSFT 模型在 DocRED dev set 上的 eval 命令，可直接用于 submit_training_job
+  path: projects/faith-evidence-ie/artifacts/_project/intermediate/d102_k1_eval_commands.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T08:53:02.473699+00:00'
+  tags:
+  - d102
+  - eval
+  - rsft
+  - k1
+- id: art_20260518_cc2048
+  name: evidence_tax_mechanistic_analysis
+  type: report
+  description: Mechanistic analysis of evidence tax across 4 model scales (1.7B/4B/8B-Qwen/8B-LLaMA).
+    Covers duplication regularization, truncation asymmetry, fair comparison, precision-recall
+    decomposition, per-relation breakdown, and doc complexity interaction.
+  path: projects/faith-evidence-ie/artifacts/_project/report/evidence_tax_analysis.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T13:19:28.016011+00:00'
+  tags:
+  - plan_020
+  - evidence-tax
+  - analysis
+  - paper
+- id: art_20260518_c36f7f
+  name: 4B Duplication + Truncation + Capacity Valley Analysis
+  type: data
+  description: '4B SFT mechanistic analysis supplement: duplication rate, truncation
+    crossover, doc complexity interaction, capacity valley verification. All models
+    compared.'
+  path: projects/faith-evidence-ie/artifacts/_project/data/4b_supplement_analysis.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T13:43:53.934846+00:00'
+  tags:
+  - mechanistic-analysis
+  - 4B
+  - duplication
+  - truncation
+  - capacity-valley
+- id: art_20260518_070a9c
+  name: deep_error_analysis_framework
+  type: intermediate
+  description: Deep error analysis (plan_021) 数据清点和分析框架：27个eval目录可用，FP/FN/Evidence
+    error分类体系，P0-P2优先级
+  path: projects/faith-evidence-ie/artifacts/_project/intermediate/deep_error_analysis_framework.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T14:08:23.435053+00:00'
+  tags:
+  - plan_021
+  - error_analysis
+  - paper
+- id: art_20260518_7fa2f6
+  name: error_analysis_initial_results
+  type: intermediate
+  description: Error analysis 初步结果（SFT baselines 3尺度）：FP 89% hallucination, FN 以 cross-sentence+truncation
+    为主, evidence exact match 65-70%, duplicates 随尺度显著下降
+  path: projects/faith-evidence-ie/artifacts/_project/intermediate/error_analysis_initial_findings.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T14:46:52.413420+00:00'
+  tags:
+  - plan_021
+  - error_analysis
+  - paper
+- id: art_20260518_cfce4e
+  name: error_analysis_sft_vs_rsft_comparison
+  type: report
+  description: SFT→RSFT error pattern 对比：三大改善机制（truncation FN -16-22%, hallucinated
+    FP -6-12%, duplicates -11-20%），evidence quality 不变，per-relation breakdown
+  path: projects/faith-evidence-ie/artifacts/_project/report/error_analysis_sft_vs_rsft.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T14:51:54.074380+00:00'
+  tags:
+  - plan_021
+  - error_analysis
+  - paper
+  - contribution
+- id: art_20260519_a97536
+  name: comprehensive_results
+  type: report
+  description: 'Comprehensive experiment results table for paper writing: 10 tables
+    covering Scale x Method ign_f1, evidence metrics, seed variance, evidence tax,
+    scoring ablation, GRPO checkpoints, CED reranker, cross-architecture, Re-DocRED
+    transfer, DREEAM baseline. All metrics sourced from registry with exp_id provenance.'
+  path: projects/faith-evidence-ie/artifacts/_project/report/comprehensive_results.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T08:10:52.201473+00:00'
+  tags:
+  - paper
+  - results
+  - comprehensive
+  - tables
+- id: art_20260519_984263
+  name: per_relation_analysis_1_7b_qwen
+  type: report
+  description: '1.7B Qwen SFT→RSFT per-relation F1 breakdown: 89 high-freq relations,
+    55 improved (+0.053 avg), 30 degraded (-0.047 avg). Top gains: screenwriter/conflict/notable
+    work. Top losses: founded by/participant of/cast member.'
+  path: projects/faith-evidence-ie/artifacts/_project/report/per_relation_1_7b_qwen.txt
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T12:51:07.370913+00:00'
+  tags:
+  - per-relation
+  - error-analysis
+  - 1.7B
+  - qwen
+  - claim3
+- id: art_20260519_3084b5
+  name: per_relation_analysis_llama_8b
+  type: report
+  description: 'LLaMA-8B SFT→RSFT per-relation F1 breakdown: 89 high-freq relations,
+    57 improved (+0.052 avg), 26 degraded (-0.061 avg). 25 hallucinated relation types
+    (vs 1.7B''s 6). Top gains: operator/participant of. Top losses: genre/chairperson.'
+  path: projects/faith-evidence-ie/artifacts/_project/report/per_relation_llama_8b.txt
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T12:51:13.490442+00:00'
+  tags:
+  - per-relation
+  - error-analysis
+  - 8B
+  - llama
+  - claim3
+  - hallucination
+- id: art_20260519_6ccf9c
+  name: d112_rsft_no_evidence_eval_r3_analysis
+  type: report
+  description: '4B RSFT no-evidence eval analysis: ign_f1=0.5246, evidence tax=+0.94pp
+    (evidence hurts 4B RE performance)'
+  path: projects/faith-evidence-ie/artifacts/d112/report/d112_rsft_no_evidence_eval_r3_analysis.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: d112
+  skill: ''
+  created_at: '2026-05-19T18:43:31.585969+00:00'
+  tags:
+  - eval
+  - no-evidence
+  - evidence-tax
+  - 4B
+  - rsft
+- id: art_20260521_fc89dc
+  name: d112_rsft_s44_train_prep
+  type: report
+  description: 'D112 RSFT s44 training preparation: data verification, hyperparameters,
+    training command, GPU allocation'
+  path: projects/faith-evidence-ie/artifacts/_project/report/d112_rsft_s44_train_prep.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T06:22:40.623028+00:00'
+  tags:
+  - d112
+  - rsft
+  - training
+  - prep
+- id: art_20260521_fbc08e
+  name: next_batch_plan
+  type: report
+  description: 全尺度截断审计 + matched@2048 配对完成情况 + 下批实验优先级清单 (2026-05-21)
+  path: projects/faith-evidence-ie/artifacts/_project/report/next_batch_plan.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T06:34:10.631566+00:00'
+  tags:
+  - truncation-audit
+  - matched-2048
+  - experiment-plan
+  - evidence-tax
+- id: art_20260521_35227c
+  name: test_eval_8b_rsft_s42_summary
+  type: report
+  description: 'Qwen3-8B RSFT s42 test set eval: F1=0.3353, dev-test gap=-20.2pp,
+    field_compliance=14.8%'
+  path: projects/faith-evidence-ie/artifacts/test_eval_8b_rsft_s42/report/test_eval_8b_rsft_s42_summary.txt
+  url: null
+  project: faith-evidence-ie
+  exp_id: test_eval_8b_rsft_s42
+  skill: ''
+  created_at: '2026-05-21T14:59:57.093883+00:00'
+  tags:
+  - test-eval
+  - 8b
+  - rsft
+  - qwen3
+- id: art_20260521_aaf66e
+  name: test_table_draft
+  type: report
+  description: 'Test set scaling table draft: RSFT test ign_f1 for 5 models (1.7B/4B/8B/14B/LLaMA-8B),
+    SFT columns pending. Includes evi_f1_joint, edcr, Trunc.%.'
+  path: projects/faith-evidence-ie/artifacts/_project/report/test_table_draft.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T21:09:08.677459+00:00'
+  tags:
+  - test-eval
+  - scaling-table
+  - draft
+- id: art_20260521_9487e1
+  name: dev_test_gap_paragraph
+  type: paper
+  description: 论文级英文段落：解释 Re-DocRED dev→test ~20pp gap 的来源（gold density 2.82×）、跨 scale/architecture
+    一致性、ranking 保持
+  path: projects/faith-evidence-ie/artifacts/_project/paper/dev_test_gap_paragraph.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T21:10:07.904153+00:00'
+  tags:
+  - paper
+  - test-set
+  - dev-test-gap
+- id: art_20260521_292a96
+  name: evidence_tax_annotation_notes
+  type: paper
+  description: Evidence tax 标注审查：论文 .tex 中 5 处过期数字需更新（D144 废弃值→matched@2048 fair_tax），matched@2048
+    方法论需补充说明
+  path: projects/faith-evidence-ie/artifacts/_project/paper/evidence_tax_annotation_notes.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T21:12:54.600875+00:00'
+  tags:
+  - paper
+  - evidence-tax
+  - annotation-review
+- id: art_20260521_5a1495
+  name: paper_status_audit
+  type: report
+  description: 论文完整性审计：8 sections 完成，12 表格已填，3 个 CRITICAL gap（CodaLab 未提交、SFT test
+    缺失、4B checkpoint 不可恢复）
+  path: projects/faith-evidence-ie/artifacts/_project/report/paper_status_audit.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T22:59:48.080880+00:00'
+  tags:
+  - paper
+  - audit
+  - status
+- id: art_20260521_1efbad
+  name: test_table_compilation_d147
+  type: report
+  description: Test set results compilation with dev-test gap analysis, gap list,
+    and 4B treatment recommendation. Post-D147.
+  path: projects/faith-evidence-ie/artifacts/_project/report/test_table_compilation_d147.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T23:00:51.906454+00:00'
+  tags:
+  - test-eval
+  - paper-table
+  - gap-analysis
+- id: art_20260522_2b6be9
+  name: Test Set Results Compilation (Re-DocRED)
+  type: report
+  description: Re-DocRED test set main results table (SFT vs RSFT across 5 scales)
+    and evidence tax spot-check table. Compiled from registry on 2026-05-22. Some
+    experiments still RUNNING (1.7B SFT, all no-evi test evals).
+  path: projects/faith-evidence-ie/artifacts/_project/report/test_table_compilation.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T01:45:37.132796+00:00'
+  tags:
+  - test-set
+  - results-table
+  - ign_f1
+  - evidence-tax
+- id: art_20260523_c04c91
+  name: fig_edcr_relations_colorblind
+  type: chart
+  description: Figure 4 (EDCR per-relation heatmap) with colorblind-friendly Okabe-Ito
+    palette. Blue (#0072B2) → Yellow (#F0E442) → Vermillion (#D55E00). Replaces original
+    RdYlGn_r colormap.
+  path: projects/faith-evidence-ie/artifacts/_project/chart/fig_edcr_relations_c04c91.pdf
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T02:23:38.773009+00:00'
+  tags:
+  - paper
+  - figure4
+  - colorblind
+  - P9
+- id: art_20260523_7683e5
+  name: LLaMA 8B RSFT s42 with-evi v3 analysis
+  type: report
+  description: 'Analysis of corrected LLaMA-3.1-8B RSFT s42 with-evidence test eval
+    (v3). Field compliance fixed from 176/500 to 499/500. Corrected evidence tax:
+    -2.20pp (was -2.65pp). Cross-seed and cross-model tax comparison included.'
+  path: projects/faith-evidence-ie/artifacts/test_eval_llama_rsft_s42_with_evi_v3/report/llama_8b_rsft_s42_with_evi_v3_analysis.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: test_eval_llama_rsft_s42_with_evi_v3
+  skill: ''
+  created_at: '2026-05-23T11:52:25.549667+00:00'
+  tags:
+  - eval
+  - llama
+  - rsft
+  - evidence-tax
+  - test
+- id: art_20260523_10f83c
+  name: test_eval_llama_rsft_s42_no_evi_v2 analysis
+  type: report
+  description: 'LLaMA RSFT s42 no-evi v2 (batch_size=16) test eval analysis: evidence
+    tax -1.74pp, corrected from -2.20pp after removing batch_size confound'
+  path: projects/faith-evidence-ie/artifacts/test_eval_llama_rsft_s42_no_evi_v2/report/analysis.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: test_eval_llama_rsft_s42_no_evi_v2
+  skill: ''
+  created_at: '2026-05-23T13:06:47.725225+00:00'
+  tags:
+  - evidence-tax
+  - llama-8b
+  - rsft
+  - s42
+  - no-evidence
+  - batch-size-fix
+- id: art_20260523_f44914
+  name: fig_evidence_tax
+  type: chart
+  description: Evidence Tax Landscape 柱状图（§5.4）：5 个 scale 的 evidence tax，双色分区（蓝=helps,
+    橙=hurts），Okabe-Ito 配色，error bars，single-column 3.5" 宽。
+  path: projects/faith-evidence-ie/artifacts/_project/chart/fig_evidence_tax_location.txt
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T13:20:20.299489+00:00'
+  tags:
+  - paper
+  - evidence-tax
+  - figure
+- id: art_20260523_f383c4
+  name: dpo_rebuilt_3ep_eval_analysis
+  type: report
+  description: 'DPO 3-epoch eval analysis: confirms overfitting (ign_f1 0.3076 vs
+    1ep 0.3223, -4.6%)'
+  path: projects/faith-evidence-ie/artifacts/dpo_rebuilt_3ep_eval/report/analysis_f383c4.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: dpo_rebuilt_3ep_eval
+  skill: ''
+  created_at: '2026-05-23T13:41:14.587837+00:00'
+  tags:
+  - eval
+  - dpo
+  - overfitting
+  - 3ep
+- id: art_20260523_0c5a79
+  name: test_eval_4b_rsft_s44_no_evi_r2 analysis
+  type: report
+  description: 4B RSFT CED s44 no-evidence test eval analysis. ign_f1=0.2671, evidence
+    tax=+1.46pp. 3-seed mean tax=+1.65±0.29pp.
+  path: projects/faith-evidence-ie/artifacts/test_eval_4b_rsft_s44_no_evi_r2/report/analysis_0c5a79.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: test_eval_4b_rsft_s44_no_evi_r2
+  skill: ''
+  created_at: '2026-05-23T13:45:17.329986+00:00'
+  tags:
+  - eval
+  - 4B
+  - no-evidence
+  - evidence-tax
+  - s44
+- id: art_20260523_65a66c
+  name: test_eval_14b_rsft_s43_pair_analysis
+  type: report
+  description: '14B RSFT s43 test eval paired analysis: with_evi vs no_evi evidence
+    tax calculation, cross-seed (s42/s43) comparison'
+  path: projects/faith-evidence-ie/artifacts/_project/report/analysis.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T16:57:20.956110+00:00'
+  tags:
+  - 14b
+  - rsft
+  - s43
+  - evidence-tax
+  - test-eval
+- id: art_20260523_4e213d
+  name: 14B RSFT s43 Test Eval Analysis
+  type: report
+  description: '14B RSFT s43 test eval results: with-evi ign_f1=0.3767, no-evi ign_f1=0.3775,
+    evidence tax=+0.08pp. 2-seed (s42/s43) mean tax=+0.42±0.49pp, ambiguous direction.'
+  path: projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43_no_evi/report/analysis.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: test_eval_14b_rsft_s43_no_evi
+  skill: ''
+  created_at: '2026-05-23T16:57:29.497873+00:00'
+  tags:
+  - 14B
+  - evidence-tax
+  - test-eval
+  - s43
+  - reproducibility
+- id: art_20260523_2a35b6
+  name: anon_repo_diff
+  type: report
+  description: 匿名仓库与服务器代码的文件列表差异报告
+  path: projects/faith-evidence-ie/artifacts/_project/report/anon_repo_diff.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T19:00:50.365720+00:00'
+  tags:
+  - anonymization
+  - repo-audit
+- id: art_20260523_59d398
+  name: final_audit_w3_figures
+  type: report
+  description: 'ARR提交前最终数据审计 - Worker 3: fig_evidence_tax, fig_spectrum数据验证 + appendix全文数字交叉核对'
+  path: projects/faith-evidence-ie/artifacts/_project/report/final_audit_w3_figures.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T19:24:41.744998+00:00'
+  tags:
+  - audit
+  - figures
+  - appendix
+  - arr-submission
+- id: art_20260523_0361d5
+  name: plan017_14b_rsft_s43_no_evi_eval analysis
+  type: report
+  description: '14B RSFT s43 no-evidence dev eval analysis: ign_f1=0.5713, +2.81pp
+    vs s42 no-evidence'
+  path: projects/faith-evidence-ie/artifacts/plan017_14b_rsft_s43_no_evi_eval/report/analysis_0361d5.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: plan017_14b_rsft_s43_no_evi_eval
+  skill: ''
+  created_at: '2026-05-23T20:02:43.270024+00:00'
+  tags:
+  - eval
+  - no-evidence
+  - 14b
+  - s43
+  - dev
+- id: art_20260523_7cd808
+  name: plan017_14b_rsft_s43_eval analysis
+  type: report
+  description: '14B RSFT s43 dev with-evidence eval analysis: metrics, reproducibility
+    vs s42, evidence tax calculation'
+  path: projects/faith-evidence-ie/artifacts/plan017_14b_rsft_s43_eval/report/analysis.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: plan017_14b_rsft_s43_eval
+  skill: ''
+  created_at: '2026-05-23T20:48:26.935100+00:00'
+  tags:
+  - eval
+  - 14b
+  - rsft
+  - s43
+  - dev
+  - with-evidence
+  - evidence-tax
+- id: art_20260523_6ba84b
+  name: efficiency_comparison
+  type: report
+  description: Systematic inference efficiency comparison across model scales (1.7B–14B),
+    paradigms (SFT/RSFT), and evidence modes (with/without evidence). Covers dev and
+    test sets with matched-setting comparisons.
+  path: projects/faith-evidence-ie/artifacts/_project/report/efficiency_comparison.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T22:56:25.056281+00:00'
+  tags:
+  - efficiency
+  - inference_time
+  - evidence_tax
+  - scaling
+- id: art_20260524_4a3d2b
+  name: final_audit_v2_w1_text
+  type: report
+  description: ARR提交前正文数字追溯审计报告：150+个定量声明逐一追溯到registry/table，发现2个0.01pp级rounding问题，3个无法完整验证项，0个错误
+  path: projects/faith-evidence-ie/artifacts/_project/report/final_audit_v2_w1_text.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T04:46:06.854555+00:00'
+  tags:
+  - audit
+  - arr-submission
+  - data-verification
+- id: art_20260524_fe80e9
+  name: final_audit_v2_w3_figures_appendix
+  type: report
+  description: 'ARR提交前最终数据自查 Worker 3: Figure数据源验证、Appendix正文数字、统计量(Cohen''s d/CI/ρ)、LaTeX编译检查。82项全部PASS，4个LOW
+    severity警告。'
+  path: projects/faith-evidence-ie/artifacts/_project/report/final_audit_v2_w3_figures_appendix.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T04:58:31.148780+00:00'
+  tags:
+  - audit
+  - final-check
+  - figures
+  - appendix
+  - statistics
+  - latex
+- id: art_20260524_20be7d
+  name: final_audit_v2_w2_tables
+  type: report
+  description: 'ARR pre-submission audit: all 14 paper tables traced to registry experiment
+    IDs. Covers tab:main, tab:scaling, tab:ablation_full, tab:spectrum, tab:cross_detail,
+    tab:variance_ci, tab:training_tax, tab:mechanistic, tab:test_results, tab:test_tax,
+    tab:rsft_test_tax, tab:encoder_comparison, tab:inference_efficiency, tab:error_analysis.
+    Identifies discrepancies in 1.7B RSFT s42 and LLaMA RSFT s42 seed values.'
+  path: projects/faith-evidence-ie/artifacts/_project/report/final_audit_v2_w2_tables.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T05:21:37.221060+00:00'
+  tags:
+  - audit
+  - ARR
+  - tables
+  - provenance
+  - pre-submission
+- id: art_20260525_3faa7e
+  name: fig_paradigms
+  type: chart
+  description: 'Paper Figure: Post-SFT optimization paradigms flowchart (SFT→GRPO/DPO/RSFT,
+    CED roles, update types). Blue/green/gold color scheme, 300 DPI.'
+  path: projects/faith-evidence-ie/artifacts/_project/chart/fig_paradigms.pdf
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T11:16:54.529576+00:00'
+  tags:
+  - paper
+  - figure
+  - method
+  - paradigms
+- id: art_20260525_72c073
+  name: fig_task_example
+  type: chart
+  description: 'Paper Figure: Evidence-grounded DocRE task example. Document with
+    color-highlighted entities (blue/gold/green) + structured output with relation
+    triples and evidence references. Single-column, 300 DPI.'
+  path: projects/faith-evidence-ie/artifacts/_project/chart/fig_task_example.pdf
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T11:28:09.144029+00:00'
+  tags:
+  - paper
+  - figure
+  - method
+  - task-example
+  - section3.1
+- id: art_20260525_fdbc00
+  name: baseline_verification
+  type: report
+  description: External baseline number verification for paper Table 8 and related_work.tex.
+    ATLOP/EIDER/SAIS/DREEAM all confirmed correct. AutoRE citation has cross-dataset
+    error (52.14 is RE-DocRED not DocRED).
+  path: projects/faith-evidence-ie/artifacts/_project/report/baseline_verification.md
+  url: null
+  project: faith-evidence-ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:22:44.730522+00:00'
+  tags:
+  - paper
+  - verification
+  - baseline

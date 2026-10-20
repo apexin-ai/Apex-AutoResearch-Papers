@@ -1,0 +1,45 @@
+{
+  "exp_id": "plan_001_rsft_flat_nli",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:40:01.021Z",
+    "updated_at": "2026-05-15T16:33:38.875Z",
+    "hypothesis": "flat-NLI RSFT ablation: 用 flat-NLI scoring（p_pos 概率，无 contrastive margin）筛选的 2691 样本做 RSFT。对比 CED scoring RSFT（2718 样本）。验证 CED 的对比性 margin 是否是关键因素。如 flat-NLI RSFT ≈ CED RSFT → CED 无增益；如 CED RSFT 显著优于 → contrastive margin 关键。",
+    "parent": "plan_001_flat_nli_scoring",
+    "spec": {
+      "gpu": [
+        "cuda:0"
+      ],
+      "command": "python rsft_train.py (flat-NLI scoring)",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl",
+      "data_count": 2691,
+      "model_name": "Qwen3-4B + SFT adapter",
+      "seed": null,
+      "pid": "219556",
+      "log_path": "/root/runs/faith-evidence-ie/plan_001_rsft_flat_nli.log",
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "N/A (training, not eval)",
+      "checkpoint_path": "/root/autodl-tmp/rsft_output_flat_nli/"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T16:30:34.306Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T16:30:42.223143+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T16:33:39.120006+00:00",
+  "trigger": "update_registry"
+}

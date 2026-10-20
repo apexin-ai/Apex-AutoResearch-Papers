@@ -1,0 +1,617 @@
+# analysis reeval ced s42
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 19
+- **Recorded user turns:** 0
+- **Tool calls:** 9
+- **Original source:** `logs/chats/worker_analysis_reeval_ced_s42_20260516T072635.jsonl`
+- **Structured JSON:** [`57e0cc58c782543368c8.json`](../../sessions/57/57e0cc58c782543368c8.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+19 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T07:27:54.967069+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_reeval_ced_s42_20260516T072635",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T07:27:54.967484+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_reeval_ced_s42_20260516T072635",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T07:27:54.967678+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -50 /root/runs/faith-evidence-ie/reeval_ced_s42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_reeval_ced_s42_20260516T072635",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -50 /root/runs/faith-evidence-ie/reeval_ced_s42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T07:27:54.967812+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /root/autodl-tmp/eval_results/rsft_ced_s42_reeval/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_reeval_ced_s42_20260516T072635",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls -la /root/autodl-tmp/eval_results/rsft_ced_s42_reeval/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-16T07:27:54.968014+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 12:24:09,877 INFO Detected adapter at /root/autodl-tmp/rsft_output/checkpoint-510, base: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-16 12:24:09,877 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen3-4B\\n2026-05-16 12:24:10,173 INFO Loading model: /root/autodl-tmp/models/Qwen3-4B\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-16 12:24:10,370 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.19it/s]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.29it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.89it/s]\\n2026-05-16 12:24:11,993 INFO Loading & merging SFT adapter: /root/autodl-tmp/sft_output\\n2026-05-16 12:24:15,060 INFO Loading LoRA adapter: /root/autodl-tmp/rsft_output/checkpoint-510\\n2026-05-16 12:24:16,692 INFO Loaded 998 documents from /root/autodl-tmp/data/docred/dev.json\\n2026-05-16 12:24:16,787 INFO Processed 12275 relation samples from 998 documents (5445 samples without hard negatives)\\n2026-05-16 12:24:17,166 INFO Prepared 985 eval documents, 12275 gold triples\\n\\rInference:   0%|          | 0/247 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n\\rInference:   0%|          | 1/247 [00:47<3:14:40, 47.48s/it]\\rInference:   1%|          | 2/247 [01:33<3:11:12, 46.83s/it]\\rInference:   1%|          | 3/247 [02:00<2:33:43, 37.80s/it]\\rInference:   2%|▏         | 4/247 [02:48<2:48:04, 41.50s/it]\\rInference:   2%|▏         | 5/247 [03:20<2:34:05, 38.20s/it]\\rInference:   2%|▏         | 6/247 [03:51<2:23:25, 35.71s/it]\\rInference:  
+…[truncated 6455 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_reeval_ced_s42_20260516T072635",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T07:27:54.968181+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 6688\\ndrwxr-xr-x  2 root root      62 May 16 15:24 .\\ndrwxr-xr-x 52 root root    4096 May 16 14:09 ..\\n-rw-r--r--  1 root root    1505 May 16 15:24 metrics.json\\n-rw-r--r--  1 root root 6838085 May 16 15:24 predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_reeval_ced_s42_20260516T072635",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T07:27:54.968379+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s42_reeval/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_reeval_ced_s42_20260516T072635",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s42_reeval/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T07:27:54.968553+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.46569355825539727,\\n  \\\"recall\\\": 0.4384824294296766,\\n  \\\"f1\\\": 0.4516785350966429,\\n  \\\"ign_precision\\\": 0.44324825986078886,\\n  \\\"ign_recall\\\": 0.44136401441641254,\\n  \\\"ign_f1\\\": 0.4423041303945175,\\n  \\\"tp\\\": 5328,\\n  \\\"pred_count\\\": 11441,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8112747397054685,\\n  \\\"evi_recall\\\": 0.8237142857142857,\\n  \\\"evi_f1\\\": 0.8174471905864561,\\n  \\\"n_evaluated\\\": 15363,\\n  \\\"edcr\\\": 0.6568537988494346,\\n  \\\"n_distractor_citations\\\": 16556,\\n  \\\"n_total_citations\\\": 25205,\\n  \\\"evi_joint_precision\\\": 0.3545665471419532,\\n  \\\"evi_joint_recall\\\": 0.3490992160323971,\\n  \\\"evi_f1_joint\\\": 0.3518116415958143,\\n  \\\"evi_tp\\\": 6724,\\n  \\\"evi_pred_total\\\": 18964,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.7756345177664975,\\n  \\\"evidence_format_rate\\\": 0.7756345177664975,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 764,\\n  \\\"n_evidence_valid\\\": 764,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15436,\\n  \\\"n_truncated\\\": 214,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 10815.5,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output/checkpoint-510\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_ced_s42_reeval\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \
+…[truncated 81 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_reeval_ced_s42_20260516T072635",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T07:27:54.968802+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/eval_results -name \"metrics.json\" -path \"*rsft*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_reeval_ced_s42_20260516T072635",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "find /root/autodl-tmp/eval_results -name \"metrics.json\" -path \"*rsft*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T07:27:54.968971+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/rsft_s44/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r1/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2a/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2b/metrics.json\\n/root/autodl-tmp/eval_results/rsft_s43/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli/metrics.json\\n/root/autodl-tmp/eval_results/test_rsft_s44/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics.json\\n/root/autodl-tmp/eval_results/rsft_topk3_reeval/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s45/metrics.json\\n/root/autodl-tmp/eval_results/rsft_ced_s45/metrics.json\\n/root/autodl-tmp/eval_results/rsft_ced_s43/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval_r2/metrics.json\\n/root/autodl-tmp/eval_results/rsft_ced_s42_reeval/metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_reeval_ced_s42_20260516T072635",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T07:27:54.969143+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_reeval_ced_s42_20260516T072635",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T07:27:54.969332+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4488311263691352,\\n  \\\"recall\\\": 0.4518969632129043,\\n  \\\"f1\\\": 0.4503588271478367,\\n  \\\"ign_precision\\\": 0.4488311263691352,\\n  \\\"ign_recall\\\": 0.4518969632129043,\\n  \\\"ign_f1\\\": 0.4503588271478367,\\n  \\\"tp\\\": 5491,\\n  \\\"pred_count\\\": 12234,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8161612680909718,\\n  \\\"evi_recall\\\": 0.804381049414162,\\n  \\\"evi_f1\\\": 0.8102283417429231,\\n  \\\"n_evaluated\\\": 17160,\\n  \\\"edcr\\\": 0.6740185115094794,\\n  \\\"n_distractor_citations\\\": 19589,\\n  \\\"n_total_citations\\\": 29063,\\n  \\\"format_compliance_rate\\\": 0.9979695431472081,\\n  \\\"field_compliance_rate\\\": 0.8517766497461929,\\n  \\\"evidence_format_rate\\\": 0.8517766497461929,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 983,\\n  \\\"n_field_complete\\\": 839,\\n  \\\"n_evidence_valid\\\": 839,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 17188,\\n  \\\"n_truncated\\\": 146,\\n  \\\"n_format_ok\\\": 983,\\n  \\\"format_ok_rate\\\": 0.9979695431472081,\\n  \\\"inference_time_seconds\\\": 10676.8,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_r2b\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\\\",\\n    \\\"batch_size\\\": 8,\\n    \\\"max_new_tokens\\\": 1536,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"evi_joint_precision\\\": 0.3362230891489669,\\n  \\\"evi_joint_recall\\\": 0.3624422407974664,\\n  \\\"evi_f1_joint\\\": 0.3488406955826504,\\n  \\\"evi_tp\\\": 6981,\\n  \\\"evi_pred_total\\\": 20763,\\n  \\\"evi_gold_total\\\": 19261\\n}\", \"stderr\": \"\", \"return_code\": 0},
+…[truncated 62 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_reeval_ced_s42_20260516T072635",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T07:27:54.969492+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s43/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_reeval_ced_s42_20260516T072635",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s43/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T07:27:54.969618+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s45/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_reeval_ced_s42_20260516T072635",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s45/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T07:27:54.969776+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.46961515385274705,\\n  \\\"recall\\\": 0.4509093901736483,\\n  \\\"f1\\\": 0.46007221429171213,\\n  \\\"ign_precision\\\": 0.4477204477204477,\\n  \\\"ign_recall\\\": 0.4546714721375104,\\n  \\\"ign_f1\\\": 0.4511691884456671,\\n  \\\"tp\\\": 5479,\\n  \\\"pred_count\\\": 11667,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8024634617152312,\\n  \\\"evi_recall\\\": 0.8101336302895323,\\n  \\\"evi_f1\\\": 0.8062803047794967,\\n  \\\"n_evaluated\\\": 14976,\\n  \\\"edcr\\\": 0.654202645963717,\\n  \\\"n_distractor_citations\\\": 16516,\\n  \\\"n_total_citations\\\": 25246,\\n  \\\"evi_joint_precision\\\": 0.35886225696944757,\\n  \\\"evi_joint_recall\\\": 0.36223456726026687,\\n  \\\"evi_f1_joint\\\": 0.36054052657416735,\\n  \\\"evi_tp\\\": 6977,\\n  \\\"evi_pred_total\\\": 19442,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.8091370558375635,\\n  \\\"evidence_format_rate\\\": 0.8091370558375635,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 797,\\n  \\\"n_evidence_valid\\\": 797,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15051,\\n  \\\"n_truncated\\\": 184,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 10768.2,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_ced_s43\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 43,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\",
+…[truncated 82 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_reeval_ced_s42_20260516T072635",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T07:27:54.969956+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.47181834500089753,\\n  \\\"recall\\\": 0.4326392889474117,\\n  \\\"f1\\\": 0.4513802429914567,\\n  \\\"ign_precision\\\": 0.44871672550329167,\\n  \\\"ign_recall\\\": 0.43461787265502266,\\n  \\\"ign_f1\\\": 0.4415547835883955,\\n  \\\"tp\\\": 5257,\\n  \\\"pred_count\\\": 11142,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8209711336264577,\\n  \\\"evi_recall\\\": 0.8138917843267317,\\n  \\\"evi_f1\\\": 0.8174161313347609,\\n  \\\"n_evaluated\\\": 15185,\\n  \\\"edcr\\\": 0.6549909620405704,\\n  \\\"n_distractor_citations\\\": 16306,\\n  \\\"n_total_citations\\\": 24895,\\n  \\\"evi_joint_precision\\\": 0.36463215258855586,\\n  \\\"evi_joint_recall\\\": 0.347385909350501,\\n  \\\"evi_f1_joint\\\": 0.35580016484539095,\\n  \\\"evi_tp\\\": 6691,\\n  \\\"evi_pred_total\\\": 18350,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.7796954314720812,\\n  \\\"evidence_format_rate\\\": 0.7796954314720812,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 768,\\n  \\\"n_evidence_valid\\\": 768,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15307,\\n  \\\"n_truncated\\\": 206,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 10211.6,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_ced_s45/checkpoint-510\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_ced_s45\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 45,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\",
+…[truncated 83 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_reeval_ced_s42_20260516T072635",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T07:27:54.970162+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "reeval_ced_s42_metrics",
+  "type": "report",
+  "description": "CED RSFT seed=42 reeval metrics under unified protocol (D076), with cross-seed and old-eval comparison",
+  "project": "faith-evidence-ie",
+  "exp_id": "reeval_ced_s42",
+  "content_filename": "reeval_ced_s42_analysis.md",
+  "content": "# reeval_ced_s42 结果分析\n\n## 实验配置\n- 模型: Qwen3-4B + SFT adapter + CED RSFT checkpoint-510 (lora_alpha=128, 510步)\n- 协议: batch_size=4, --no-quantize, --sft_adapter, max_new_tokens=1024, seed=42\n- 数据: DocRED dev set (985 docs, 12275 gold triples)\n- 推理时间: 10815.5s (~3h)\n- 服务器: rtx5090-4x\n\n## 关键指标\n\n| 指标 | reeval_ced_s42 |\n|------|---------------|\n| F1 | 0.4517 |\n| Ign-F1 | 0.4423 |\n| Evi-F1 | 0.8174 |\n| EDCR | 0.6569 |\n| Evi-F1-Joint | 0.3518 |\n| Format OK | 985/985 (100%) |\n| Truncated | 214/985 (21.7%) |\n| Predictions | 15,436 |\n\n## 与旧 eval 对比 (rsft_r2b_maxtok1536)\n\n旧 eval 使用了不同 checkpoint (rsft_output_r2b) + batch_size=8 + max_new_tokens=1536。\n\n| 指标 | reeval_ced_s42 | 旧 eval (r2b_1536) | 差异 |\n|------|---------------|-------------------|------|\n| F1 | 0.4517 | 0.4504 | +0.13pp |\n| Ign-F1 | 0.4423 | 0.4504* | -0.81pp |\n| Evi-F1 | 0.8174 | 0.8102 | +0.72pp |\n| EDCR | 0.6569 | 0.6740 | -1.71pp (↑好) |\n| Evi-F1-Joint | 0.3518 | 0.3488 | +0.30pp |\n| Format OK | 100% | 99.8% | +0.2pp |\n| Truncated | 214 | 146 | +68 |\n| Predictions | 15,436 | 17,188 | -1,752 |\n\n*注: 旧 eval 的 Ign-F1 = F1（ign_precision = precision），疑似 Ign 计算有误。\n\n## CED 跨 seed 对比 (统一协议)\n\n| 指标 | s42 | s43 | s45 | Mean | Std |\n|------|-----|-----|-----|------|-----|\n| F1 | 0.4517 | 0.4601 | 0.4514 | 0.4544 | 0.0050 |\n| Ign-F1 | 0.4423 | 0.4512 | 0.4416 | 0.4450 | 0.0054 |\n| Evi-F1 | 0.8174 | 0.8063 | 0.8174 | 0.8137 | 0.0064 |\n| EDCR | 0.6569 | 0.6542 | 0.6550 | 0.6554 | 0.0014 |\n| Evi-F1-Joint | 0.3518 | 0.3605 | 0.3558 | 0.3560 | 0.0044 |\n\n## 日志状态\n- EXIT_CODE=0，无 error/traceback\n- 214/985 truncated (21.7%)，0 errors\n- 格式合规率 100%\n",
+  "tags": "['eval', 'ced', 'rsft', 'seed42', 'unified-protocol', 'D076']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_reeval_ced_s42_20260516T072635",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "reeval_ced_s42_metrics",
+    "type": "report",
+    "description": "CED RSFT seed=42 reeval metrics under unified protocol (D076), with cross-seed and old-eval comparison",
+    "project": "faith-evidence-ie",
+    "exp_id": "reeval_ced_s42",
+    "content_filename": "reeval_ced_s42_analysis.md",
+    "content": "# reeval_ced_s42 结果分析\n\n## 实验配置\n- 模型: Qwen3-4B + SFT adapter + CED RSFT checkpoint-510 (lora_alpha=128, 510步)\n- 协议: batch_size=4, --no-quantize, --sft_adapter, max_new_tokens=1024, seed=42\n- 数据: DocRED dev set (985 docs, 12275 gold triples)\n- 推理时间: 10815.5s (~3h)\n- 服务器: rtx5090-4x\n\n## 关键指标\n\n| 指标 | reeval_ced_s42 |\n|------|---------------|\n| F1 | 0.4517 |\n| Ign-F1 | 0.4423 |\n| Evi-F1 | 0.8174 |\n| EDCR | 0.6569 |\n| Evi-F1-Joint | 0.3518 |\n| Format OK | 985/985 (100%) |\n| Truncated | 214/985 (21.7%) |\n| Predictions | 15,436 |\n\n## 与旧 eval 对比 (rsft_r2b_maxtok1536)\n\n旧 eval 使用了不同 checkpoint (rsft_output_r2b) + batch_size=8 + max_new_tokens=1536。\n\n| 指标 | reeval_ced_s42 | 旧 eval (r2b_1536) | 差异 |\n|------|---------------|-------------------|------|\n| F1 | 0.4517 | 0.4504 | +0.13pp |\n| Ign-F1 | 0.4423 | 0.4504* | -0.81pp |\n| Evi-F1 | 0.8174 | 0.8102 | +0.72pp |\n| EDCR | 0.6569 | 0.6740 | -1.71pp (↑好) |\n| Evi-F1-Joint | 0.3518 | 0.3488 | +0.30pp |\n| Format OK | 100% | 99.8% | +0.2pp |\n| Truncated | 214 | 146 | +68 |\n| Predictions | 15,436 | 17,188 | -1,752 |\n\n*注: 旧 eval 的 Ign-F1 = F1（ign_precision = precision），疑似 Ign 计算有误。\n\n## CED 跨 seed 对比 (统一协议)\n\n| 指标 | s42 | s43 | s45 | Mean | Std |\n|------|-----|-----|-----|------|-----|\n| F1 | 0.4517 | 0.4601 | 0.4514 | 0.4544 | 0.0050 |\n| Ign-F1 | 0.4423 | 0.4512 | 0.4416 | 0.4450 | 0.0054 |\n| Evi-F1 | 0.8174 | 0.8063 | 0.8174 | 0.8137 | 0.0064 |\n| EDCR | 0.6569 | 0.6542 | 0.6550 | 0.6554 | 0.0014 |\n| Evi-F1-Joint | 0.3518 | 0.3605 | 0.3558 | 0.3560 | 0.0044 |\n\n## 日志状态\n- EXIT_CODE=0，无 error/traceback\n- 214/985 truncated (21.7%)，0 errors\n- 格式合规率 100%\n",
+    "tags": "['eval', 'ced', 'rsft', 'seed42', 'unified-protocol', 'D076']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T07:27:54.970388+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_748dc4\", \"name\": \"reeval_ced_s42_metrics\", \"type\": \"report\", \"description\": \"CED RSFT seed=42 reeval metrics under unified protocol (D076), with cross-seed and old-eval comparison\", \"path\": \"projects/faith-evidence-ie/artifacts/reeval_ced_s42/report/reeval_ced_s42_analysis.md\", \"url\": null, \"project\": \"faith-evidence-ie\", \"exp_id\": \"reeval_ced_s42\", \"skill\": \"\", \"created_at\": \"2026-05-16T07:27:41.029004+00:00\", \"tags\": [\"eval\", \"ced\", \"rsft\", \"seed42\", \"unified-protocol\", \"D076\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_reeval_ced_s42_20260516T072635",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-16T07:27:54.970573+00:00_
+
+## reeval_ced_s42 结果
+
+### 关键指标
+
+| 指标 | 值 |
+|------|-----|
+| **F1** | **0.4517** |
+| **Ign-F1** | **0.4423** |
+| **Evi-F1** | **0.8174** |
+| **EDCR** | **0.6569** |
+| Evi-F1-Joint | 0.3518 |
+| Format OK | 985/985 (100%) |
+| Truncated | 214/985 (21.7%) |
+
+### 与旧 eval (rsft_r2b_maxtok1536) 对比
+
+旧 eval 用了不同 checkpoint (`rsft_output_r2b`) + batch_size=8 + max_new_tokens=1536。
+
+| 指标 | 新 reeval | 旧 eval | 差异 |
+|------|-----------|---------|------|
+| F1 | 0.4517 | 0.4504 | +0.13pp |
+| Evi-F1 | 0.8174 | 0.8102 | +0.72pp |
+| EDCR | 0.6569 | 0.6740 | -1.71pp (更优) |
+| Evi-F1-Joint | 0.3518 | 0.3488 | +0.30pp |
+
+旧 eval 的 Ign-F1 = F1（0.4504），疑似 Ign 计算有 bug，不可比。Truncation 从 146→214 增加（因 max_new_tokens 从 1536 降到 1024），但 F1 和 Evi-F1 反而略好。
+
+### CED 跨 seed 对比（统一协议）
+
+| 指标 | s42 | s43 | s45 | Mean±Std |
+|------|-----|-----|-----|----------|
+| F1 | 0.4517 | 0.4601 | 0.4514 | 0.454±0.005 |
+| Ign-F1 | 0.4423 | 0.4512 | 0.4416 | 0.445±0.005 |
+| Evi-F1 | 0.8174 | 0.8063 | 0.8174 | 0.814±0.006 |
+| EDCR | 0.6569 | 0.6542 | 0.6550 | 0.655±0.001 |
+
+s42 与 s45 指标几乎一致，s43 的 F1 略高但 Evi-F1 略低。三个 seed 标准差很小，CED RSFT 训练稳定。
+
+### 日志状态
+无 error/traceback，EXIT_CODE=0，正常完成。
+
+### 结论
+**Success.** reeval_ced_s42 在统一协议下指标正常，与旧 eval 基本持平（略优），与其他 seed 一致性好。已注册 artifact `art_20260516_748dc4`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_reeval_ced_s42_20260516T072635"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,26 @@
+{
+  "exp_id": "reeval_sft_baseline_d076",
+  "project": "faith-evidence-ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:26:37.542Z",
+    "updated_at": "2026-05-16T05:26:37.542Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/sft_baseline_d076_reeval --no-quantize",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "docred dev (985 docs)",
+      "hypothesis": "SFT baseline D076 统一协议 re-eval。原 eval (rel_f1=0.4106) 可能用了不同 batch_size/max_new_tokens。Evidence tax 对比 (no-evidence 0.4876 vs SFT baseline) 需要两边协议一致。",
+      "parent": "mvp2_sft_warmup"
+    }
+  },
+  "timestamp": "2026-05-16T05:26:37.883632+00:00",
+  "trigger": "update_registry"
+}

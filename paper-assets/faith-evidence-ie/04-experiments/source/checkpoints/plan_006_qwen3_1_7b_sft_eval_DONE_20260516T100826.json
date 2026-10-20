@@ -1,0 +1,37 @@
+{
+  "exp_id": "plan_006_qwen3_1_7b_sft_eval",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T08:14:26.923Z",
+    "updated_at": "2026-05-16T10:08:26.496Z",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/eval_results/qwen3_1_7b_sft_eval",
+      "log_path": "~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_sft_eval.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "f1": 0.4945,
+      "ign_f1": 0.4786,
+      "evi_f1": 0.8316,
+      "edcr": 0.6704,
+      "precision": 0.5085,
+      "recall": 0.4813,
+      "ign_precision": 0.483,
+      "ign_recall": 0.4743,
+      "evi_precision": 0.8203,
+      "evi_recall": 0.8432,
+      "evi_f1_joint": 0.3958,
+      "format_compliance_rate": 1,
+      "n_predictions": 17184,
+      "n_truncated": 314,
+      "inference_time_seconds": 6848.7
+    },
+    "completed_at": "2026-05-16T10:08:26.496Z"
+  },
+  "timestamp": "2026-05-16T10:08:26.783447+00:00",
+  "trigger": "update_registry"
+}

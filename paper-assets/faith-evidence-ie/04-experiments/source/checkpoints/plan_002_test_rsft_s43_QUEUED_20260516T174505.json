@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan_002_test_rsft_s43",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T17:45:04.744Z",
+    "updated_at": "2026-05-16T17:45:04.744Z"
+  },
+  "timestamp": "2026-05-16T17:45:05.103819+00:00",
+  "trigger": "update_registry"
+}

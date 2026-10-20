@@ -1,0 +1,32 @@
+{
+  "exp_id": "d158_14b_rsft_s44_test_with_evi",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T09:01:40.917Z",
+    "updated_at": "2026-05-25T10:55:26.026Z",
+    "hypothesis": "14B RSFT k=1 s44 test eval (with-evi) on Re-DocRED test_revised (500 docs)。对比 s42 test ign_f1=0.3849, s43 test ign_f1=0.3767。",
+    "parent": "d158_14b_rsft_s44_train",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES=1 python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s44 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s44 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --output_dir /root/autodl-tmp/eval_results/d158_14b_rsft_s44_test_with_evi --max_new_tokens 2048 --no-quantize --seed 44\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "366690",
+      "log_path": "~/runs/faith-evidence-ie/d158_14b_rsft_s44_test_with_evi.log",
+      "submitted_at": "2026-05-25T09:02:01.294Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/rsft_output_14b_s44",
+    "log_path": "/root/runs/faith-evidence-ie/d158_14b_rsft_s44_test_with_evi.log"
+  },
+  "timestamp": "2026-05-25T10:55:26.748980+00:00",
+  "trigger": "update_registry"
+}

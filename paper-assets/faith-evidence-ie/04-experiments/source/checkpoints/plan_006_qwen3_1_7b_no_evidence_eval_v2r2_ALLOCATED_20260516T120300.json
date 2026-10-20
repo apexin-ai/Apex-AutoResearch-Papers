@@ -1,0 +1,27 @@
+{
+  "exp_id": "plan_006_qwen3_1_7b_no_evidence_eval_v2r2",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:02:28.162Z",
+    "updated_at": "2026-05-16T12:03:00.563Z",
+    "spec": {
+      "server": "rtx5090-4x",
+      "gpu": "cuda:0",
+      "model_name": "Qwen3-1.7B",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 998,
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence",
+      "eval_data": "docred-dev",
+      "parent": "plan_006_qwen3_1_7b_no_evidence_sft",
+      "hypothesis": "1.7B no-evidence eval v2r2 with --no_evidence flag + conda activation fix. Measure true evidence tax at 1.7B scale.",
+      "plan_id": "plan_006"
+    }
+  },
+  "timestamp": "2026-05-16T12:03:00.902095+00:00",
+  "trigger": "update_registry"
+}

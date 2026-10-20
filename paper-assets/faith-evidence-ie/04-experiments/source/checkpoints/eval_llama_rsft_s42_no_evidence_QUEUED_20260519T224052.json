@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_llama_rsft_s42_no_evidence",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:40:19.801Z",
+    "updated_at": "2026-05-19T22:40:51.635Z",
+    "hypothesis": "LLaMA-3.1-8B RSFT s42 no-evidence eval: 测量 LLaMA RSFT 的 evidence tax，跨模型家族验证 evidence tax scaling pattern。With-evidence ign_f1=0.5839，计算 no-evidence 差异。",
+    "parent": "d102_llama_rsft_k1_s42"
+  },
+  "timestamp": "2026-05-19T22:40:52.185078+00:00",
+  "trigger": "update_registry"
+}

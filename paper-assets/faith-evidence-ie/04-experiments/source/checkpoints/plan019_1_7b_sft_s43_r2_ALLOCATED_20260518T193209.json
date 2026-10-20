@@ -1,0 +1,28 @@
+{
+  "exp_id": "plan019_1_7b_sft_s43_r2",
+  "project": "faith-evidence-ie",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:31:33.003Z",
+    "updated_at": "2026-05-18T19:32:09.389Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && bash scripts/seed_expansion/sft_1_7b_s43.sh\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "569109",
+      "log_path": "~/runs/faith-evidence-ie/plan019_1_7b_sft_s43_r2.log",
+      "submitted_at": "2026-05-18T19:31:32.289Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "1.7B SFT seed43 r2: third seed for 1.7B scaling robustness. s42 ign_f1=0.4786, s44 ign_f1=0.4321, variance=4.65pp is extreme. Third seed critical to determine if s44 is outlier or s42 is outlier."
+  },
+  "timestamp": "2026-05-18T19:32:09.815702+00:00",
+  "trigger": "update_registry"
+}

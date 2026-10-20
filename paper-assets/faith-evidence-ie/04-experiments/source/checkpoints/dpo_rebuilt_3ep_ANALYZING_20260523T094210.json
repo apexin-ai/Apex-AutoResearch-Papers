@@ -1,0 +1,57 @@
+{
+  "exp_id": "dpo_rebuilt_3ep",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:51:32.975Z",
+    "updated_at": "2026-05-23T09:42:10.064Z",
+    "spec": {
+      "command": "python -m freige.training.dpo_trainer --dpo_data_path /root/autodl-tmp/dpo_data_rebuilt/dpo_pairs.jsonl --output_dir /root/autodl-tmp/dpo_output_rebuilt_3ep --num_epochs 3 --beta 0.1 --loss_type sigmoid --learning_rate 5e-6 --per_device_batch_size 2 --gradient_accumulation_steps 8 --lora_rank 64 --lora_alpha 128 --wandb_project freige-dpo --wandb_run_name dpo_rebuilt_3ep",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "234741",
+      "log_path": "~/runs/faith-evidence-ie/dpo_rebuilt_3ep.log",
+      "submitted_at": "2026-05-23T07:51:32.027Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/dpo_data_rebuilt/dpo_pairs.jsonl",
+      "data_count": 2977,
+      "model_name": "Qwen3-4B + SFT (merged) + DPO LoRA",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "dpo_pairs (training, not eval)"
+    },
+    "hypothesis": "DPO 3-epoch 训练。从 SFT merged base 出发训练 3 epochs（对比 1ep ign_f1=0.32231）。验证 DPO 是否从更多训练中受益，支撑 decoupling spectrum 的 gradual degradation claim。",
+    "parent": "dpo_rebuilt_1ep",
+    "reproduce": {
+      "finished_at": "2026-05-23T09:36:07.540Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T09:36:15.621545+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "train_loss": 0.4347,
+      "final_loss": 0.3,
+      "final_accuracy": 0.869,
+      "final_margin": 2.404,
+      "train_runtime_s": 6135,
+      "total_steps": 561,
+      "epochs": 3
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T09:42:10.692619+00:00",
+  "trigger": "update_registry"
+}

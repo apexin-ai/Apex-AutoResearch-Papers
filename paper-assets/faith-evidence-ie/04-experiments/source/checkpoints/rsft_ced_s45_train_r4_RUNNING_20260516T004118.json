@@ -1,0 +1,33 @@
+{
+  "exp_id": "rsft_ced_s45_train_r4",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:33:12.797Z",
+    "updated_at": "2026-05-16T00:41:17.651Z",
+    "hypothesis": "CED RSFT seed=45 训练（r4 重试，r3 因 cuda:2 orphan PID 276148 OOM 失败）。补全 paired t-test 所需的第 3 个 CED seed（现有 s42/s44，s43 在 cuda:1 训练中）。训练数据 2718 samples，3 epochs，~2h。plan_id=plan_mvp2_rsft, claim=3。",
+    "parent": "",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_ced_s45 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --seed 45\"",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/rsft_filtered/rsft_train.jsonl",
+      "data_count": 2718,
+      "model_name": "Qwen3-4B + SFT + CED RSFT",
+      "seed": 45,
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "279531",
+      "log_path": "~/runs/faith-evidence-ie/rsft_ced_s45_train_r4.log",
+      "submitted_at": "2026-05-16T00:36:00Z",
+      "submitted_via": "worker_nohup",
+      "backend": "nohup",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-16T00:41:18.066029+00:00",
+  "trigger": "update_registry"
+}

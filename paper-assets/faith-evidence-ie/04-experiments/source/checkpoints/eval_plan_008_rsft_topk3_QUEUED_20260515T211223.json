@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval_plan_008_rsft_topk3",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:09:51.464Z",
+    "updated_at": "2026-05-15T21:12:23.336Z",
+    "hypothesis": "RSFT top_k=3 dev eval: 对比 top_k=1 RSFT (rel_f1≈0.46) 和 SFT baseline (rel_f1≈0.4057)。验证更多候选是否提升证据质量。",
+    "parent": "plan_008_rsft_topk3",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_topk3_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/rsft_topk3 --no-quantize\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "255523",
+      "log_path": "~/runs/faith-evidence-ie/eval_plan_008_rsft_topk3.log",
+      "submitted_at": "2026-05-15T21:10:11.423Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "RSFT top_k=3 dev eval: 对比 top_k=5 RSFT (rel_f1≈0.46) 和 SFT baseline (rel_f1=0.4106)。top_k=3 训练 50-doc subset 显示 F1=0.50 但 Evi-F1 下降到 0.68。",
+      "parent": "plan_008_rsft_topk3",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT + RSFT top_k=3",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_topk3_output",
+      "eval_data": "docred-dev (985 docs)"
+    }
+  },
+  "timestamp": "2026-05-15T21:12:23.911643+00:00",
+  "trigger": "update_registry"
+}

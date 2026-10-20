@@ -1,0 +1,16 @@
+{
+  "exp_id": "llama_sft_s44_train_eval_r3",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:30:06.083Z",
+    "updated_at": "2026-05-20T11:30:26.032Z",
+    "hypothesis": "LLaMA-3.1-8B SFT seed44 训练+评估 (r3: westd 新服务器)。补齐 LLaMA SFT baseline 第 3 seed，与 RSFT 3-seed (mean ign_f1=0.5654±0.0052) 对比计算 variance compression。r2 因 AutoDL 数据丢失失败。",
+    "parent": "llama_sft_s44_train_eval_r2"
+  },
+  "timestamp": "2026-05-20T11:30:26.629312+00:00",
+  "trigger": "update_registry"
+}

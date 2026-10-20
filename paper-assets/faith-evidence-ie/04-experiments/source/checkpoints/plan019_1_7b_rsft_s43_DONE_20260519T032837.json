@@ -1,0 +1,37 @@
+{
+  "exp_id": "plan019_1_7b_rsft_s43",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T02:51:57.316Z",
+    "updated_at": "2026-05-19T03:28:37.538Z",
+    "hypothesis": "1.7B RSFT k=1 s43 (Option A seed expansion): 复用 s42 SFT adapter + s42 CED k=1 scored data，只变 RSFT 训练 seed 为 43。验证 1.7B 尺度 RSFT 增益跨 seed 稳健性。",
+    "parent": "plan019_1_7b_sft_s43_r2",
+    "spec": {
+      "command": "bash /root/autodl-tmp/freige/scripts/seed_expansion/train_1_7b_s43.sh",
+      "server": "rtx5090-4x",
+      "gpu_id": "cuda:2",
+      "pid": 601718,
+      "tmux_session": "plan019_1_7b_rsft_s43",
+      "data_path": "/root/autodl-tmp/freige/outputs/rsft_scored_1_7b_k1/rsft_train.jsonl",
+      "data_count": 3021,
+      "model_name": "Qwen3-1.7B",
+      "seed": 43,
+      "checkpoint_path": "/root/autodl-tmp/rsft_output_qwen3_1_7b_k1_s43",
+      "checkpoint_source": "/root/autodl-tmp/sft_output_qwen3_1_7b_bf16",
+      "eval_data": "N/A (training experiment)",
+      "log_path": "tmux:plan019_1_7b_rsft_s43"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T03:28:34.480Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T03:28:37.538Z"
+  },
+  "timestamp": "2026-05-19T03:28:37.974222+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,30 @@
+{
+  "exp_id": "plan_006_qwen3_8b_ced_scoring",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:27:03.641Z",
+    "updated_at": "2026-05-17T03:50:30.845Z",
+    "hypothesis": "CED scoring on Qwen3-8B RSFT candidates (24216 gens from 3027 docs) will produce high-quality filtered training data. At 8B scale with near-zero evidence tax, CED-filtered RSFT should yield further gains over an already strong SFT baseline.",
+    "parent": "plan_006_qwen3_8b_rsft_candidates_r2",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_8b --output_path /root/autodl-tmp/rsft_scored_qwen3_8b --nli_model_path /root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7 --nli_device cuda:0 --scoring_mode ced --tau 0.5 --selection_strategy top_k --top_k 3",
+      "server": "rtx5090-4x",
+      "gpu_ids": [
+        "cuda:3"
+      ],
+      "data_path": "/root/autodl-tmp/freige/outputs/rsft_candidates_8b",
+      "data_count": 24216,
+      "model_name": "cross-encoder/nli-deberta-v3-base",
+      "seed": 42,
+      "checkpoint_source": "rsft_candidates_8b (Qwen3-8B generations)",
+      "eval_data": "24216 candidates from 3027 docs",
+      "pid": 411027
+    }
+  },
+  "timestamp": "2026-05-17T03:50:31.230858+00:00",
+  "trigger": "update_registry"
+}

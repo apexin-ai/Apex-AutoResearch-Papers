@@ -1,0 +1,61 @@
+{
+  "exp_id": "mvp2_grpo_extract",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:10:35.796Z",
+    "updated_at": "2026-05-14T12:25:32.094Z",
+    "spec": {
+      "command": "python -m freige.training.grpo_trainer --stage 1 --ced_reward_weight 0.0 --format_reward_weight 0.3 --f1_reward_weight 3.0 --num_iterations 1 --kl_coef 0.05 --lr 5e-5",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "47561",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_grpo_extract.log",
+      "submitted_at": "2026-05-14T11:48:50.108Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred/train_annotated.json",
+      "data_count": 3027,
+      "model_name": "Qwen3-4B (QLoRA from SFT warmup)",
+      "seed": 42,
+      "hypothesis": "Extraction-only reward (format+F1, no CED) establishes GRPO baseline",
+      "parent": "mvp2_sft_warmup",
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "/root/autodl-tmp/data/docred",
+      "hyperparams": {
+        "learning_rate": "5e-5",
+        "kl_coef": 0.05,
+        "num_iterations": 1,
+        "format_reward_weight": 0.3,
+        "f1_reward_weight": 3,
+        "ced_reward_weight": 0
+      },
+      "wall_clock_seconds": 1479.2,
+      "gpu_hours": 0.41
+    },
+    "hypothesis": "Extraction-only reward (format+F1, no CED) establishes GRPO baseline — CED r3 should exceed this on Evi-F1",
+    "reproduce": {
+      "finished_at": "2026-05-14T12:03:50.563Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T12:03:51.381207+00:00"
+        }
+      ]
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-14T12:13:29.284Z",
+    "notes": "KL divergence explosion at step 5 due to kl_coef=0.05 + QLoRA 4-bit incompatibility (D008). QLoRA quantization noise makes ref/policy log-prob divergence unreliable, causing KL values to reach 10^8-10^11. Same root cause as r3 and flatnli. Fix: kl_coef=0.0 in r2 retries."
+  },
+  "timestamp": "2026-05-14T12:25:32.125512+00:00",
+  "trigger": "update_registry"
+}

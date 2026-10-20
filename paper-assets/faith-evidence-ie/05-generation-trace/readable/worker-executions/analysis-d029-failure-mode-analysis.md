@@ -1,0 +1,2588 @@
+# analysis d029 failure mode analysis
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 41
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/workers/worker_analysis_d029-failure-mode-analysis_20260514T191625.log`
+- **Structured JSON:** [`91ac86ce2be7adc1ed75.json`](../../sessions/91/91ac86ce2be7adc1ed75.json)
+
+## Before a recorded user message
+
+41 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "04213517-3ae4-4031-a47e-56a19102367d",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778802000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "8a5187ae-1494-4e43-ace5-136c844a4de5",
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to analyze the root cause of reward hacking in their GRPO training experiment (ced_kl001_r4) and propose actionable next experiments. Let me break this down:
+
+1. First, I need to search for community experience on QLoRA GRPO learning rates, reward hacking, catastrophic forgetting
+2. I need to look at the actual code to understand the CED reward calculation
+3. Then synthesize findings into top-3 prioritized experiment proposals
+
+Let me start by:
+1. Web searching for relevant community experience
+2. Reading the project's reward code to understand CED reward design
+
+
+3. Examining the training configuration and reward implementation to see how they interact
+
+I'll pull these together in parallel to identify where the reward hacking is happening.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "f6dfc1fa-2328-4aaf-a6c0-c9f5cdc571a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016JB2pmtpkeezYwMotXr73P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13594,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13594
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先搜索社区经验和项目代码，确认关键假设。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "03f83fbc-1c57-4927-ae24-bf50e2cf9c5c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016JB2pmtpkeezYwMotXr73P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13594,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13594
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_014QcU8xE8nnehzQwq7xSxSV`</summary>
+
+```json
+{
+  "query": "select:WebSearch,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "945fa79f-176c-45be-83ca-22626ba41748",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016JB2pmtpkeezYwMotXr73P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13594,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13594
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T19:16:41.815Z_
+
+<details><summary>↩ Tool result · `toolu_014QcU8xE8nnehzQwq7xSxSV`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "7a2ed738-156a-4421-9d45-4af900eac87a",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:WebSearch,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FNjngF1mu85k6cpdgM65xa`</summary>
+
+```json
+{
+  "query": "QLoRA GRPO learning rate catastrophic forgetting reward hacking 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "ae4772a2-8bc5-43fe-9e9a-bca9dd233b14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0134fHE2nVV3zhukWWeU4WCP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1452,
+      "cache_read_input_tokens": 25041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1452
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01S7At4pXucwj66ehbPAuzPX`</summary>
+
+```json
+{
+  "query": "GRPO training learning rate too high policy collapse TRL huggingface"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "73b304a4-1bae-421f-b876-ebc72e36c8db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0134fHE2nVV3zhukWWeU4WCP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1452,
+      "cache_read_input_tokens": 25041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1452
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QohAuxgeqJyPgZofsrQmhx`</summary>
+
+```json
+{
+  "query": "GRPO KL coefficient reward hacking information extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "0e87afd2-55ab-40f7-b675-8780a521ac78",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0134fHE2nVV3zhukWWeU4WCP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1452,
+      "cache_read_input_tokens": 25041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1452
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q1mzcbAmESP44DYLv5nhYH`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/freige -name \"*.py\" -path \"*/reward*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "96f015fd-be28-4228-aae4-fa0456688d3e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0134fHE2nVV3zhukWWeU4WCP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1452,
+      "cache_read_input_tokens": 25041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1452
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NQDCb2YwusX2wLVyT9gsgv`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/freige -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "7649d4ce-5938-4b65-b98f-8e667006960d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0134fHE2nVV3zhukWWeU4WCP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1452,
+      "cache_read_input_tokens": 25041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1452
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01S1QTHf5hkFkNsuS8DEsdWj`</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "memory.md",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "60b5eadc-a944-4947-80fd-f349f6125554",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0134fHE2nVV3zhukWWeU4WCP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1452,
+      "cache_read_input_tokens": 25041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1452
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T19:16:52.789Z_
+
+<details><summary>↩ Tool result · `toolu_01FNjngF1mu85k6cpdgM65xa`</summary>
+
+```text
+Web search results for query: "QLoRA GRPO learning rate catastrophic forgetting reward hacking 2025 2026"
+
+Links: [{"title":"Sony and University Researchers Train Robots To Learn Without Catastrophic Forgetting","url":"https://charonhub.deeplearning.ai/sony-and-university-researchers-train-robots-to-learn-without-catastrophic-forgetting/"},{"title":"LLM Post-Training Explained: SFT, DPO, and GRPO — ai.rs","url":"https://ai.rs/ai-developer/llm-post-training-explained"},{"title":"RLHF Explained: How Human Feedback Trains AI Models in 2026","url":"https://decodethefuture.org/en/rlhf-explained/"},{"title":"LoRA fine-tuning Hyperparameters Guide | Unsloth Documentation","url":"https://unsloth.ai/docs/get-started/fine-tuning-llms-guide/lora-hyperparameters-guide"},{"title":"Reinforcement Learning (RL) Guide | Unsloth Documentation","url":"https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide"},{"title":"Continual Learning and Catastrophic Forgetting Prevention in AI Agents | Zylos Research","url":"https://zylos.ai/research/2026-04-09-continual-learning-catastrophic-forgetting-ai-agents"},{"title":"GRPO-LEAD: A Difficulty-Aware Reinforcement Learning Approach for Concise Mathematical Reasoning in Language Models","url":"https://arxiv.org/html/2504.09696v2"},{"title":"Continual Learning with RL for LLMs","url":"https://cameronrwolfe.substack.com/p/rl-continual-learning"},{"title":"Overcoming reward signal challenges: Verifiable rewards-based reinforcement learning with GRPO on SageMaker AI | Artificial Intelligence","url":"https://aws.amazon.com/blogs/machine-learning/overcoming-reward-signal-challenges-verifiable-rewards-based-reinforcement-learning-with-grpo-on-sagemaker-ai/"},{"title":"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges","url":"https://arxiv.org/html/2604.13602v1"}]
+
+I've found several relevant sources discussing QLoRA, GRPO, learning rates, catastrophic forgetting, and reward hacking in the context of 2025-2026. Here are the key findings:
+
+## Learning Rate and Catastrophic Forgetting
+
+For supervised fine-tuning, learning rates between 1e-5 to 5e-5 are recommended, where too high a learning rate causes catastrophic forgetting and too low prevents learning. More specifically for RL approaches, for reinforcement learning methods like DPO and GRPO, a learning rate of 5e-6 is recommended.
+
+## QLoRA and GRPO Integration
+
+GRPO was previously only supported for full fine-tuning, but has been made to work with QLoRA and LoRA. QLoRA is used as a technique to reduce training resource requirements and speed up training, with a small trade-off in accuracy.
+
+## Catastrophic Forgetting in Continual Learning
+
+In 2025–2026, catastrophic forgetting has moved from an academic curiosity to a production engineering challenge as agents graduate from session-scoped chatbots to persistent, multi-month services. On-policy reinforcement learning methods such as GRPO limit updates, since they reward actions the model itself generated—so they too limit how much models can forget while learning new things.
+
+## Reward Hacking
+
+A prevalent issue in reinforcement learning-based fine-tuning is reward hacking, where in GRPO with a large fixed budget, the model can exploit this by producing excessive numbers of extra reasoning and verification steps to ensure correctness and reach higher rewards. Recent work on generative reward models trained via GRPO reveals that while "thinking" variants outperform answer-only models on validation tasks, these gains diminish during downstream policy optimization, a gap that underscores that increased reasoning capacity in evaluators does not necessarily translate to improved robustness against overoptimization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "418b2520-4a62-43be-b99d-d224a20b916e",
+  "tool_use_result": {
+    "query": "QLoRA GRPO learning rate catastrophic forgetting reward hacking 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013WQbkmxABydhwJGYhmhDzi",
+        "content": [
+          {
+            "title": "Sony and University Researchers Train Robots To Learn Without Catastrophic Forgetting",
+            "url": "https://charonhub.deeplearning.ai/sony-and-university-researchers-train-robots-to-learn-without-catastrophic-forgetting/"
+          },
+          {
+            "title": "LLM Post-Training Explained: SFT, DPO, and GRPO — ai.rs",
+            "url": "https://ai.rs/ai-developer/llm-post-training-explained"
+          },
+          {
+            "title": "RLHF Explained: How Human Feedback Trains AI Models in 2026",
+            "url": "https://decodethefuture.org/en/rlhf-explained/"
+          },
+          {
+            "title": "LoRA fine-tuning Hyperparameters Guide | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/get-started/fine-tuning-llms-guide/lora-hyperparameters-guide"
+          },
+          {
+            "title": "Reinforcement Learning (RL) Guide | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide"
+          },
+          {
+            "title": "Continual Learning and Catastrophic Forgetting Prevention in AI Agents | Zylos Research",
+            "url": "https://zylos.ai/research/2026-04-09-continual-learning-catastrophic-forgetting-ai-agents"
+          },
+          {
+            "title": "GRPO-LEAD: A Difficulty-Aware Reinforcement Learning Approach for Concise Mathematical Reasoning in Language Models",
+            "url": "https://arxiv.org/html/2504.09696v2"
+          },
+          {
+            "title": "Continual Learning with RL for LLMs",
+            "url": "https://cameronrwolfe.substack.com/p/rl-continual-learning"
+          },
+          {
+            "title": "Overcoming reward signal challenges: Verifiable rewards-based reinforcement learning with GRPO on SageMaker AI | Artificial Intelligence",
+            "url": "https://aws.amazon.com/blogs/machine-learning/overcoming-reward-signal-challenges-verifiable-rewards-based-reinforcement-learning-with-grpo-on-sagemaker-ai/"
+          },
+          {
+            "title": "Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges",
+            "url": "https://arxiv.org/html/2604.13602v1"
+          }
+        ]
+      },
+      "I've found several relevant sources discussing QLoRA, GRPO, learning rates, catastrophic forgetting, and reward hacking in the context of 2025-2026. Here are the key findings:\n\n## Learning Rate and Catastrophic Forgetting\n\nFor supervised fine-tuning, learning rates between 1e-5 to 5e-5 are recommended, where too high a learning rate causes catastrophic forgetting and too low prevents learning. More specifically for RL approaches, for reinforcement learning methods like DPO and GRPO, a learning rate of 5e-6 is recommended.\n\n## QLoRA and GRPO Integration\n\nGRPO was previously only supported for full fine-tuning, but has been made to work with QLoRA and LoRA. QLoRA is used as a technique to reduce training resource requirements and speed up training, with a small trade-off in accuracy.\n\n## Catastrophic Forgetting in Continual Learning\n\nIn 2025–2026, catastrophic forgetting has moved from an academic curiosity to a production engineering challenge as agents graduate from session-scoped chatbots to persistent, multi-month services. On-policy reinforcement learning methods such as GRPO limit updates, since they reward actions the model itself generated—so they too limit how much models can forget while learning new things.\n\n## Reward Hacking\n\nA prevalent issue in reinforcement learning-based fine-tuning is reward hacking, where in GRPO with a large fixed budget, the model can exploit this by producing excessive numbers of extra reasoning and verification steps to ensure correctness and reach higher rewards. Recent work on generative reward models trained via GRPO reveals that while \"thinking\" variants outperform answer-only models on validation tasks, these gains diminish during downstream policy optimization, a gap that underscores that increased reasoning capacity in evaluators does not necessarily translate to improved robustness against overoptimization."
+    ],
+    "durationSeconds": 8.119277596
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T19:16:53.405Z_
+
+<details><summary>↩ Tool result · `toolu_01QohAuxgeqJyPgZofsrQmhx`</summary>
+
+```text
+Web search results for query: "GRPO KL coefficient reward hacking information extraction"
+
+Links: [{"title":"A brief example of reward hacking in GRPO","url":"https://ishanjmukherjee.github.io/reward-hacking-grpo"},{"title":"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems","url":"https://arxiv.org/html/2509.22047v1"},{"title":"Understanding the Math Behind GRPO — DeepSeek-R1-Zero | by Yugen.ai | Yugen.ai Technology Blog | Medium","url":"https://medium.com/yugen-ai-technology-blog/understanding-the-math-behind-grpo-deepseek-r1-zero-9fb15e103a0a"},{"title":"1 Introduction","url":"https://arxiv.org/html/2604.10585"},{"title":"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges","url":"https://arxiv.org/html/2604.13602"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=KL+penalty"},{"title":"GARDO: Reinforcing Diffusion Models without Reward Hacking","url":"https://arxiv.org/pdf/2512.24138"},{"title":"Reward Shaping to Mitigate Reward Hacking in RLHF","url":"https://arxiv.org/html/2502.18770v3"},{"title":"[2509.22047] MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems","url":"https://arxiv.org/abs/2509.22047"},{"title":"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250922047I/abstract"}]
+
+I found comprehensive information about GRPO, KL coefficient, reward hacking, and information extraction. Here's a summary of the key findings:
+
+## GRPO and Reward Hacking
+
+Group Relative Policy Optimization (GRPO) has been shown to be an effective algorithm when an accurate reward model is available, however such a highly reliable reward model is not available in many real-world tasks, and GRPO is vulnerable to reward hacking where it optimizes only one objective at the cost of others.
+
+## KL Coefficient and Its Limitations
+
+KL divergence aggregates token-level probability ratios into a single scalar penalty, treating all distributional deviations indiscriminately, and consequently severe reward model overoptimization routinely occurs even under strict KL constraints. Because a policy can cheaply exploit a low-probability spurious feature, such as adopting a sycophantic tone, with a minimal footprint on the global KL penalty, output-space tracking remains insufficient for detecting emergent misalignment during training.
+
+## Information Extraction for Detecting Reward Hacking
+
+Recent work focuses on internal state inspection. A white-box monitoring framework dynamically intercepts reward hacking by extracting residual stream activations during the autoregressive generation of the CoT itself, projecting these live activations through a pre-trained Sparse Autoencoder to obtain interpretable conceptual features, and applying lightweight linear probes to this reconstructed latent space allows auditors to continuously predict the probability of reward hacking at the token level.
+
+## Multi-Objective GRPO Solutions
+
+MO-GRPO, an extension of GRPO with a simple normalization method to reweight reward functions automatically according to variances, ensures that all reward functions contribute evenly to the loss function while preserving the order of preferences.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "78a9c8e9-74e6-4d78-9c5b-e64e2d9d2d9d",
+  "tool_use_result": {
+    "query": "GRPO KL coefficient reward hacking information extraction",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011peSvvfp165pDEorxB495M",
+        "content": [
+          {
+            "title": "A brief example of reward hacking in GRPO",
+            "url": "https://ishanjmukherjee.github.io/reward-hacking-grpo"
+          },
+          {
+            "title": "MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems",
+            "url": "https://arxiv.org/html/2509.22047v1"
+          },
+          {
+            "title": "Understanding the Math Behind GRPO — DeepSeek-R1-Zero | by Yugen.ai | Yugen.ai Technology Blog | Medium",
+            "url": "https://medium.com/yugen-ai-technology-blog/understanding-the-math-behind-grpo-deepseek-r1-zero-9fb15e103a0a"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2604.10585"
+          },
+          {
+            "title": "Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges",
+            "url": "https://arxiv.org/html/2604.13602"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=KL+penalty"
+          },
+          {
+            "title": "GARDO: Reinforcing Diffusion Models without Reward Hacking",
+            "url": "https://arxiv.org/pdf/2512.24138"
+          },
+          {
+            "title": "Reward Shaping to Mitigate Reward Hacking in RLHF",
+            "url": "https://arxiv.org/html/2502.18770v3"
+          },
+          {
+            "title": "[2509.22047] MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems",
+            "url": "https://arxiv.org/abs/2509.22047"
+          },
+          {
+            "title": "MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250922047I/abstract"
+          }
+        ]
+      },
+      "I found comprehensive information about GRPO, KL coefficient, reward hacking, and information extraction. Here's a summary of the key findings:\n\n## GRPO and Reward Hacking\n\nGroup Relative Policy Optimization (GRPO) has been shown to be an effective algorithm when an accurate reward model is available, however such a highly reliable reward model is not available in many real-world tasks, and GRPO is vulnerable to reward hacking where it optimizes only one objective at the cost of others.\n\n## KL Coefficient and Its Limitations\n\nKL divergence aggregates token-level probability ratios into a single scalar penalty, treating all distributional deviations indiscriminately, and consequently severe reward model overoptimization routinely occurs even under strict KL constraints. Because a policy can cheaply exploit a low-probability spurious feature, such as adopting a sycophantic tone, with a minimal footprint on the global KL penalty, output-space tracking remains insufficient for detecting emergent misalignment during training.\n\n## Information Extraction for Detecting Reward Hacking\n\nRecent work focuses on internal state inspection. A white-box monitoring framework dynamically intercepts reward hacking by extracting residual stream activations during the autoregressive generation of the CoT itself, projecting these live activations through a pre-trained Sparse Autoencoder to obtain interpretable conceptual features, and applying lightweight linear probes to this reconstructed latent space allows auditors to continuously predict the probability of reward hacking at the token level.\n\n## Multi-Objective GRPO Solutions\n\nMO-GRPO, an extension of GRPO with a simple normalization method to reweight reward functions automatically according to variances, ensures that all reward functions contribute evenly to the loss function while preserving the order of preferences."
+    ],
+    "durationSeconds": 7.349216035999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T19:16:56.391Z_
+
+<details><summary>↩ Tool result · `toolu_01S7At4pXucwj66ehbPAuzPX`</summary>
+
+```text
+Web search results for query: "GRPO training learning rate too high policy collapse TRL huggingface"
+
+Links: [{"title":"GRPO Trainer · Hugging Face","url":"https://huggingface.co/docs/trl/main/en/grpo_trainer"},{"title":"trl/trl/trainer/grpo_trainer.py at main · huggingface/trl","url":"https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_trainer.py"},{"title":"trl/docs/source/grpo_trainer.md at main · huggingface/trl","url":"https://github.com/huggingface/trl/blob/main/docs/source/grpo_trainer.md"},{"title":"Implementing GRPO in TRL · Hugging Face","url":"https://huggingface.co/learn/llm-course/chapter12/4"},{"title":"Logging · Hugging Face","url":"https://huggingface.co/docs/trl/main/en/logging"},{"title":"Post training an LLM for reasoning with GRPO in TRL · Hugging Face","url":"https://huggingface.co/learn/cookbook/en/fine_tuning_llm_grpo_trl"},{"title":"GitHub - huggingface/trl: Train transformer language models with reinforcement learning. · GitHub","url":"https://github.com/huggingface/trl"},{"title":"Implementing GRPO in TRL","url":"https://huggingface.co/docs/course/en/chapter12/4"},{"title":"Logging","url":"https://huggingface.co/docs/trl/logging"},{"title":"TRL - Transformers Reinforcement Learning · Hugging Face","url":"https://huggingface.co/docs/trl/index"}]
+
+I found relevant information about GRPO training with TRL and learning rate stability. Here are the key findings:
+
+## Policy Collapse and Learning Rate Issues
+
+Very high clip_ratio values might suggest that the policy is trying to change too drastically (potentially due to large advantages or a learning rate that's too high) or that the epsilon clipping range is too restrictive.
+
+## Monitoring for Stability
+
+The TRL documentation identifies several metrics to monitor for signs of policy collapse or instability:
+
+The mean ratio of the current policy probability to the old policy probability (val/ratio) should float around 1.0. If this ratio is too high (e.g., 2.0 or 1000.0) or too small (e.g., 0.1), it means the updates between consecutive policies are too drastic.
+
+Additionally, if val/ratio is too high, the ratio is going to get clipped, resulting in high policy/clipfrac_avg and high policy/approxkl_avg as well.
+
+## Recommended Learning Rate
+
+In the official HuggingFace GRPO implementation examples, a learning rate of 1e-5 is used for GRPO training configuration, which appears to be a conservative setting designed to prevent drastic policy updates.
+
+If you're experiencing policy collapse with GRPO, reducing the learning rate and monitoring the clip_ratio and val/ratio metrics are key steps to stabilize training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "84e77d69-2e68-49bd-ba7c-677b1f9f357a",
+  "tool_use_result": {
+    "query": "GRPO training learning rate too high policy collapse TRL huggingface",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01K9MgKPmFHtCqVHtZvxhak3",
+        "content": [
+          {
+            "title": "GRPO Trainer · Hugging Face",
+            "url": "https://huggingface.co/docs/trl/main/en/grpo_trainer"
+          },
+          {
+            "title": "trl/trl/trainer/grpo_trainer.py at main · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/blob/main/trl/trainer/grpo_trainer.py"
+          },
+          {
+            "title": "trl/docs/source/grpo_trainer.md at main · huggingface/trl",
+            "url": "https://github.com/huggingface/trl/blob/main/docs/source/grpo_trainer.md"
+          },
+          {
+            "title": "Implementing GRPO in TRL · Hugging Face",
+            "url": "https://huggingface.co/learn/llm-course/chapter12/4"
+          },
+          {
+            "title": "Logging · Hugging Face",
+            "url": "https://huggingface.co/docs/trl/main/en/logging"
+          },
+          {
+            "title": "Post training an LLM for reasoning with GRPO in TRL · Hugging Face",
+            "url": "https://huggingface.co/learn/cookbook/en/fine_tuning_llm_grpo_trl"
+          },
+          {
+            "title": "GitHub - huggingface/trl: Train transformer language models with reinforcement learning. · GitHub",
+            "url": "https://github.com/huggingface/trl"
+          },
+          {
+            "title": "Implementing GRPO in TRL",
+            "url": "https://huggingface.co/docs/course/en/chapter12/4"
+          },
+          {
+            "title": "Logging",
+            "url": "https://huggingface.co/docs/trl/logging"
+          },
+          {
+            "title": "TRL - Transformers Reinforcement Learning · Hugging Face",
+            "url": "https://huggingface.co/docs/trl/index"
+          }
+        ]
+      },
+      "I found relevant information about GRPO training with TRL and learning rate stability. Here are the key findings:\n\n## Policy Collapse and Learning Rate Issues\n\nVery high clip_ratio values might suggest that the policy is trying to change too drastically (potentially due to large advantages or a learning rate that's too high) or that the epsilon clipping range is too restrictive.\n\n## Monitoring for Stability\n\nThe TRL documentation identifies several metrics to monitor for signs of policy collapse or instability:\n\nThe mean ratio of the current policy probability to the old policy probability (val/ratio) should float around 1.0. If this ratio is too high (e.g., 2.0 or 1000.0) or too small (e.g., 0.1), it means the updates between consecutive policies are too drastic.\n\nAdditionally, if val/ratio is too high, the ratio is going to get clipped, resulting in high policy/clipfrac_avg and high policy/approxkl_avg as well.\n\n## Recommended Learning Rate\n\nIn the official HuggingFace GRPO implementation examples, a learning rate of 1e-5 is used for GRPO training configuration, which appears to be a conservative setting designed to prevent drastic policy updates.\n\nIf you're experiencing policy collapse with GRPO, reducing the learning rate and monitoring the clip_ratio and val/ratio metrics are key steps to stabilize training."
+    ],
+    "durationSeconds": 11.274292981999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T19:16:57.444Z_
+
+<details><summary>↩ Tool result · `toolu_01Q1mzcbAmESP44DYLv5nhYH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/freige/rewards/__init__.py\\n/root/autodl-tmp/freige/rewards/__init__.py\\n/root/autodl-tmp/freige/rewards/ced_reward.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "de59ac23-7afd-448c-8ecd-9ea6b93ac0a0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/freige/freige/rewards/__init__.py\\\\n/root/autodl-tmp/freige/rewards/__init__.py\\\\n/root/autodl-tmp/freige/rewards/ced_reward.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/freige/rewards/__init__.py\\n/root/autodl-tmp/freige/rewards/__init__.py\\n/root/autodl-tmp/freige/rewards/ced_reward.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T19:16:57.825Z_
+
+<details><summary>↩ Tool result · `toolu_01NQDCb2YwusX2wLVyT9gsgv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/freige/data/__init__.py\\n/root/autodl-tmp/freige/freige/rewards/__init__.py\\n/root/autodl-tmp/freige/freige/analysis/__init__.py\\n/root/autodl-tmp/freige/freige/training/__init__.py\\n/root/autodl-tmp/freige/freige/eval/__init__.py\\n/root/autodl-tmp/freige/freige/__init__.py\\n/root/autodl-tmp/freige/data/__init__.py\\n/root/autodl-tmp/freige/data/docred_processor.py\\n/root/autodl-tmp/freige/rewards/__init__.py\\n/root/autodl-tmp/freige/rewards/ced_reward.py\\n/root/autodl-tmp/freige/analysis/__init__.py\\n/root/autodl-tmp/freige/analysis/ced_signal_validation.py\\n/root/autodl-tmp/freige/training/__init__.py\\n/root/autodl-tmp/freige/training/sft_trainer.py\\n/root/autodl-tmp/freige/training/grpo_trainer.py\\n/root/autodl-tmp/freige/training/smoke_test.py\\n/root/autodl-tmp/freige/eval/__init__.py\\n/root/autodl-tmp/freige/eval/evaluator.py\\n/root/autodl-tmp/freige/eval/inference.py\\n/root/autodl-tmp/freige/eval/batch_eval.py\\n/root/autodl-tmp/freige/eval/find_best_checkpoint.py\\n/root/autodl-tmp/freige/__init__.py\\n/root/autodl-tmp/freige/tests/__init__.py\\n/root/autodl-tmp/freige/tests/test_ced_gate.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "039823b0-c31a-4928-ac91-7d7507ff9672",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/freige/freige/data/__init__.py\\\\n/root/autodl-tmp/freige/freige/rewards/__init__.py\\\\n/root/autodl-tmp/freige/freige/analysis/__init__.py\\\\n/root/autodl-tmp/freige/freige/training/__init__.py\\\\n/root/autodl-tmp/freige/freige/eval/__init__.py\\\\n/root/autodl-tmp/freige/freige/__init__.py\\\\n/root/autodl-tmp/freige/data/__init__.py\\\\n/root/autodl-tmp/freige/data/docred_processor.py\\\\n/root/autodl-tmp/freige/rewards/__init__.py\\\\n/root/autodl-tmp/freige/rewards/ced_reward.py\\\\n/root/autodl-tmp/freige/analysis/__init__.py\\\\n/root/autodl-tmp/freige/analysis/ced_signal_validation.py\\\\n/root/autodl-tmp/freige/training/__init__.py\\\\n/root/autodl-tmp/freige/training/sft_trainer.py\\\\n/root/autodl-tmp/freige/training/grpo_trainer.py\\\\n/root/autodl-tmp/freige/training/smoke_test.py\\\\n/root/autodl-tmp/freige/eval/__init__.py\\\\n/root/autodl-tmp/freige/eval/evaluator.py\\\\n/root/autodl-tmp/freige/eval/inference.py\\\\n/root/autodl-tmp/freige/eval/batch_eval.py\\\\n/root/autodl-tmp/freige/eval/find_best_checkpoint.py\\\\n/root/autodl-tmp/freige/__init__.py\\\\n/root/autodl-tmp/freige/tests/__init__.py\\\\n/root/autodl-tmp/freige/tests/test_ced_gate.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/freige/data/__init__.py\\n/root/autodl-tmp/freige/freige/rewards/__init__.py\\n/root/autodl-tmp/freige/freige/analysis/__init__.py\\n/root/autodl-tmp/freige/freige/training/__init__.py\\n/root/autodl-tmp/freige/freige/eval/__init__.py\\n/root/autodl-tmp/freige/freige/__init__.py\\n/root/autodl-tmp/freige/data/__init__.py\\n/root/autodl-tmp/freige/data/docred_processor.py\\n/root/autodl-tmp/freige/rewards/__init__.py\\n/root/autodl-tmp/freige/rewards/ced_reward.py\\n/root/autodl-tmp/freige/analysis/__init__.py\\n/root/autodl-tmp/freige/analysis/ced_signal_validation.py\\n/root/autodl-tmp/freige/training/__init__.py\\n/root/autodl-tmp/freige/training/sft_trainer.py\\n/root/autodl-tmp/freige/training/grpo_trainer.py\\n/root/autodl-tmp/freige/training/smoke_test.py\\n/root/autodl-tmp/freige/eval/__init__.py\\n/root/autodl-tmp/freige/eval/evaluator.py\\n/root/autodl-tmp/freige/eval/inference.py\\n/root/autodl-tmp/freige/eval/batch_eval.py\\n/root/autodl-tmp/freige/eval/find_best_checkpoint.py\\n/root/autodl-tmp/freige/__init__.py\\n/root/autodl-tmp/freige/tests/__init__.py\\n/root/autodl-tmp/freige/tests/test_ced_gate.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T19:16:57.839Z_
+
+<details><summary>↩ Tool result · `toolu_01S1QTHf5hkFkNsuS8DEsdWj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"content\": \"# Memory — faith-evidence-ie\\n\\n## 环境与兼容性\\n\\n- **AutoDL HuggingFace 下载不可靠**：大模型（如 Qwen3-4B）从 HF 下载反复 ReadTimeout。解决方案：用 ModelScope (`from modelscope import snapshot_download`) 下载到本地缓存，再用本地路径加载。(2026-05-14)\\n- **vLLM 版本不兼容 TRL**：服务器预装 vLLM 0.18.1，但 TRL 支持范围为 0.11.0-0.17.1。MVP-2 若用 TRL 内部 vLLM rollout 可能有兼容问题，需提前测试。(2026-05-14)\\n- **flash_attn 未安装**：rtx5090-4x 服务器未预装 flash-attn，训练脚本需用 `attn_implementation=\\\"sdpa\\\"` 替代。(2026-05-14)\\n- **Qwen3-4B 本地路径**：已通过 ModelScope 下载到 `/root/autodl-tmp/models/Qwen3-4B`（7.6GB）。后续训练脚本应指向此路径而非 HF model ID。(2026-05-14)\\n- **确认训练配置**：ZeRO-2 + QLoRA (4-bit NF4, rank 64, alpha 128) + SDPA。ZeRO-3 + QLoRA 不兼容（uint8 vs all_gather dtype）。(2026-05-14)\\n- **Smoke test 假阴性**：synthetic data reward variance=0 导致零梯度是数学必然（format reward 对所有 completions 输出相同分数），不是训练 bug。评估 smoke test 时只看兼容性和显存，不看 loss 趋势。(2026-05-14)\\n- **TRL 1.1.0 API 变更（关键）**：服务器 TRL 版本 1.1.0，与旧版有 3 个破坏性变更：(1) `SFTConfig.max_seq_length` → `max_length`；(2) `SFTTrainer(tokenizer=...)` → `SFTTrainer(processing_class=...)`；(3) 多 GPU 需要 accelerate `MULTI_GPU` + `device_map={\\\"\\\": local_rank}`。**grpo_trainer.py 也用了 `tokenizer=`，GRPO 提交前必须改为 `processing_class=`**。(2026-05-14)\\n- **rtx5090-4x 和 gpu-5090-4x-1 是同一台机器**：两个 SSH endpoint 指向同一台 4×RTX 5090 32GB 服务器。(2026-05-14)\\n- **wandb 配置**：entity=`xiaoyucorynne-`，GRPO 项目名=`freige-grpo`（但截至 2026-05-14 项目未成功创建——训练脚本可能未连接 wandb）。API key 存于 `~/.netrc`。MCP 工具 `list_wandb_runs` 有内部 bug（`wandb_project` 参数传递错误），需直接用 `fetch_wandb_run_history` + 已知 run_id。(2026-05-14)\\n\\n## GRPO 训练经验\\n\\n- **Format reward hacking 是 GRPO 的首要风险**：CED r1 mode collapse 根因——模型学会输出短空 JSON 拿 format≈1.0，F1 归零。format reward 占 total 的 60-70% 时会主导优化方向。修复：(1) format reward 降权（×0.3）；(2) 加 save_steps 保留中间 checkpoint。(2026-05-14)\\n- **clip_ratio=0 在 QLoRA GRPO 中可能是正常的**：QLoRA 可训练参数少，单步 policy ratio 变化 < ε=0.2，PPO clip 不触发。TRL GRPO `num_iterations=1` 时 clip 机制天然不生效（只一次迭代，ratio 恒≈1.0）。(2026-05-14)\\n- **save_strategy=\\\"epoch\\\" 对长 epoch 是灾难**：189 steps/epoch 意味着跑几小时没有任何 checkpoint，collapse 时无法 resume。GRPO 训练必须用 save_steps（推荐 20）。(2026-05-14)\\n- **[D008 关键] QLoRA 4-bit + kl_coef 不兼容（根因确认）**：所有 GRPO 实验（r3、extract、flatnli）在 step 5 KL 爆炸至 10^8-10^11，根因不是 grad_accum（之前 D007 误判），而是 QLoRA 4-bit NF4 量化噪声导致 ref model 和 policy model 的 log-prob 计算有系统性偏差，KL divergence 不可靠。解决方案：kl_coef=0.0 完全禁用 KL penalty，KLDivergenceCallback 改为 monitoring-only（只 log 不 early stop）。clip_ratio 和 reward weighting 仍然是有效的约束机制。(2026-05-14)\\n- **num_iterations=2 导致 KL 交替震荡**：r2 使用 num_iterations=2，每个 mini-batch 两次前向传播之间 KL 交替升降。在 QLoRA 场景下这进一步放大不稳定性。建议 QLoRA GRPO 固定 num_iterations=1。(2026-05-14)\\n- **kl_coef=0 + CED reward → mode collapse 的关键机制**：ced_r5 在 step 250+ 彻底 collapse（f1=0, 固定 34-token 输出, CED reward=0.99）。但 extract_r3 (kl_coef=0, ced_reward_weight=0) 训练健康（f1=0.47 at step 505, no collapse）。**说明 mode collapse 的根因不仅是 kl_coef=0，更关键是 CED reward 提供了短输出捷径——无正确 triple 的短输出也能拿高 CED score，模型优化此捷径导致 F1 归零。** Extraction-only reward 无此捷径，kl_coef=0 下仍可正常训练。(2026-05-14, 修正之前 extract_r3 误诊)\\n- **CED reward F1 门控已实装**：grpo_trainer.py L221-234，CEDRewardWrapper.__call__ 中检查 predicted triples 与 gold triples 匹配，无匹配则 CED reward=0。3 个 pytest case 通过。Reviewer warning: 门控只检查\\\"是否有任一匹配 triple\\\"，非匹配 triple 仍获 CED reward。监控 F1↓ + CED↑ divergence。(2026-05-14)\\n- **D020 统一稳定配置**：kl_coef=0.01 + num_generations=8 + save_steps=10 + save_total_limit=20。kl_coef=0.01 是 0.0（collapse）和 0.05（KL explosion at step 5）之间的折中，需 100-step 探测验证。(2026-05-14)\\n- **batch_size=1 GRPO 方差极大，需多 checkpoint eval**：ced_kl001_r4 趋势分析显示 step 50 reward=1.101（最高）但 step 60 跌至 0.521（-53%），单点回落幅度大于均值。原因：effective batch=1 + GRPO 的 on-policy 特性使每步方差极高。**判断训练趋势不能看单个 checkpoint，必须 eval 多个 checkpoint（推荐 best + last + 中间 1-2 个）**。step 40→45 也有类似回调后 step 50 创新高，说明回落是随机波动而非趋势逆转。(2026-05-14)\\n- **D020 kl_coef=0.01 验证成功**：ced_kl001_r4 全程 KL 在 0.01-0.18 区间，稳定在 0.10-0.13，无上升趋势。num_generations=8 在 step 35 左右彻底解除 mode collapse（frac_zero_std → 0.0）。D020 配置对 CED reward 有效。(2026-05-14)\\n- **不能从 kl_coef=0 的 checkpoint 恢复加 KL penalty**：flatnli_r5 从 r3 (kl_coef=0) checkpoint-100 恢复，加 kl_coef=0.01 后立即崩溃——step 100→105 frac_zero_std 从 0.0 跳到 0.9，KL 高位 0.44-0.49 持续不降。根因：kl_coef=0 训练期间 policy 已大幅偏离 reference model，恢复后加 KL penalty 形成对抗震荡。**结论：切换 kl_coef 时必须从 SFT 重新训练，不能 resume。**(2026-05-14)\\n- **[D024 关键] D020 配置只对 CED reward 有效——CED 有 anti-mode-collapse 作用**：在完全相同的 D020 配置下（kl_coef=0.01, num_gen=8, 从 SFT scratch 训练），三种 reward type 的结果截然不同：(1) CED (ced_kl001_r4): ✅ 成功，100 步完成，reward 0.22→1.37（5x），无 collapse；(2) Extraction-only (extract_r4): ❌ step 10 collapse (frac_zero_std=0.8, f1=0)；(3) Flat-NLI (flatnli_r6): ❌ step 25 collapse (frac_zero_std=0.9, f1=0, nli=0)。三者唯一差异是 reward type。**结论：CED reward 通道不仅改善 evidence quality，还通过提供额外学习信号防止 GRPO mode collapse。** 这是论文的重要 finding——CED 兼具 evidence 改善和训练稳定性两重作用。(2026-05-14)\\n- **ced_kl001_r4 true best checkpoint = step 90**（reward=1.370, f1_reward=0.720, ced=0.353），而非 step 50 (1.101)。训练后半程（step 70-100）整体优于前半程，说明 GRPO 在 D020 配置下持续学习到最后。(2026-05-14)\\n\\n## D020 Ablation 训练曲线深度分析 (2026-05-14)\\n\\n### 关键发现\\n\\n1. **分化点在 step 15-20**：ced_kl001_r4 和 extract_r4 在 step 10 都陷入初期 collapse（frac_zero_std=0.7-0.8, f1=0），但 ced_kl001_r4 在 step 20 恢复（frac_zero_std→0.1），extract_r4 持续 collapse（frac_zero_std=0.8）直到 step 30 被 kill。\\n\\n2. **多样性恢复先于 CED reward**：ced_kl001_r4 step 20 时 frac_zero_std=0.1（多样性恢复），但 f1_reward=0.003, ced_reward=0.008（几乎为零）。有意义的 CED reward 要到 step 30 (0.058) 才出现。说明 CED 的初始作用是通过 **reward variance 维持梯度流**，而非通过 reward magnitude 直接驱动。\\n\\n3. **Reward variance 是近端机制**：step 10 时 reward_std: CED=0.070 vs extract=0.039；step 20 时 CED=0.134 vs extract=0.027。CED 通道为 GRPO 提供额外的 reward 维度——不同 generation 的 evidence quality 不同，即使 F1 相同也产生 reward variance → nonzero advantage → 梯度信号 → 学习继续。extract_r4 只有 F1 通道，所有 generation 都错时 reward_std→0→零梯度。\\n\\n4. **CED 的双面性**：有 KL 约束（kl=0.01）时 CED 是 stabilizer（ced_kl001_r4 成功），无 KL（kl=0）时 CED 是 hacking target（ced_r5 学会 34-token 捷径，ced=0.99 但 f1=0）。F1 门控缓解但不完全消除此风险。\\n\\n5. **extract_r4 collapse 时间线**：step 5→10 之间 f1_reward (0.016→0) 和 frac_zero_std (0.2→0.7) 同时崩溃，grad_norm 从 0.297→0.005。旧配置 extract_r3 (kl=0, gen=4) 类似但更慢——step 70 才完全停滞。\\n\\n### CED-as-Stabilizer Evidence Chain\\n\\n| 证据 | 强度 | 说明 |\\n|------|------|------|\\n| D020 A/B 对比: CED on 成功 / off 失败 | **强** | 同配置, 唯一差异=CED, n=1 seed |\\n| reward_std 差异 (0.070 vs 0.039 at step 10) | **中** | 方向一致但 n=1, 噪声可能大 |\\n| 多样性先恢复，CED reward 后至 | **中** | 支持 variance 机制（非 reward magnitude） |\\n| 旧配置参照: kl=0 时 CED 反而导致 hacking | **强** | 证明 stabilization 依赖 KL 约束 |\\n| flatnli_r6 也 collapse（D020配置） | **中** | 排除\\\"只是 extraction-only 太弱\\\"的替代解释 |\\n\\n### 论文 Story 建议\\n\\n**推荐 framing**：CED reward 在 GRPO 训练中扮演 **dual role**——(1) 改善 evidence faithfulness（任务效果），(2) 作为 diversity-maintaining signal 防止 mode collapse（训练稳定性）。第二个作用是意外发现，机制是 CED 提供了与 F1 正交的 reward 维度，增加 reward variance 维持 GRPO 梯度流。\\n\\n**Claim 强度**：足够写入论文作为 empirical finding + 机制假说，但需要 caveats：(1) n=1 seed；(2) stabilization effect 依赖 KL 正则化（kl=0 时 CED 反而有害）；(3) 机制是推测（基于 reward_std 相关性），未做因果干预实验。\\n\\n**可能的后续实验**（如有 GPU 时间）：(1) 多 seed 复现 D020 ablation；(2) 用 random noise reward 替代 CED 测试\\\"任意额外 reward 通道是否就够\\\"；(3) 调 CED weight 看 stabilization 阈值。\\n\\n## 操作经验\\n\\n- **[硬规则] kill 后必须验证子进程终止**：kill_job 只杀 tmux session（父进程），python 子进程可能 reparent 到 init 继续占 GPU 显存。**kill 后必须派 Worker SSH 执行 `ps -p <子进程PID>` + `nvidia-smi -i &lt;GPU>` 验证**。第二次出现僵尸进程（flatnli_r5 PID 73412 占 12920 MiB 与 flatnli_r6 争抢 cuda:3），差点导致 OOM。不能只更新 registry 就算完。(2026-05-14, 升级为硬规则)\\n- **Cron 状态检测不可靠（tmux wrapper vs 训练进程）**：cron 检查 tmux wrapper PID 存活，但 kill_job 杀 wrapper 后训练子进程可能仍在运行。Registry 被误标 failed 但实际训练正常。教训：实验状态检测应以训练进程 PID 为准（ps -p），不依赖 tmux session。(2026-05-14)\\n- **GRPO checkpoint 评估需要 SFT adapter merge**：grpo_trainer.py 先 merge SFT adapter 到 base model，再训练新 LoRA。inference.py 需要 --sft_adapter 参数先 merge SFT 再加载 GRPO delta，否则评估缺失 SFT 贡献。(2026-05-14)\\n- **NLI reward_device 必须指定 cuda**：默认 reward_device=cpu，NLI 推理 ~100s/step（vs cuda ~12-34s/step）。共享 GPU 时 NLI+训练共存导致 ~34s（而非理想 12s），但仍比 CPU 快 3x。(2026-05-14)\\n- **stdout 缓冲导致日志不可见**：Python stdout 重定向到文件时使用 block buffering，短时间运行的实验日志可能为空。修复：启动命令加 `PYTHONUNBUFFERED=1` 或 `python -u`。(2026-05-14)\\n\\n## Eval Baseline\\n\\n- **SFT baseline (sft_eval_r2/r3)**：F1=0.4057, Evi-F1=0.7979, EDCR=0.7118, truncated=37.3%。截断率高是因为 max_new_tokens=1024 不够长文档输出。r3 使用统一 eval 代码 (_repair_truncated_json) 复现，与 r2 所有指标完全一致（0.00pp 差异），确认 eval pipeline 无偏差。(2026-05-14)\\n\", \"total_chars\": 8225, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "89bbfcbd-192f-40c8-b07a-06a000c08b6d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"content\\\": \\\"# Memory — faith-evidence-ie\\\\n\\\\n## 环境与兼容性\\\\n\\\\n- **AutoDL HuggingFace 下载不可靠**：大模型（如 Qwen3-4B）从 HF 下载反复 ReadTimeout。解决方案：用 ModelScope (`from modelscope import snapshot_download`) 下载到本地缓存，再用本地路径加载。(2026-05-14)\\\\n- **vLLM 版本不兼容 TRL**：服务器预装 vLLM 0.18.1，但 TRL 支持范围为 0.11.0-0.17.1。MVP-2 若用 TRL 内部 vLLM rollout 可能有兼容问题，需提前测试。(2026-05-14)\\\\n- **flash_attn 未安装**：rtx5090-4x 服务器未预装 flash-attn，训练脚本需用 `attn_implementation=\\\\\\\"sdpa\\\\\\\"` 替代。(2026-05-14)\\\\n- **Qwen3-4B 本地路径**：已通过 ModelScope 下载到 `/root/autodl-tmp/models/Qwen3-4B`（7.6GB）。后续训练脚本应指向此路径而非 HF model ID。(2026-05-14)\\\\n- **确认训练配置**：ZeRO-2 + QLoRA (4-bit NF4, rank 64, alpha 128) + SDPA。ZeRO-3 + QLoRA 不兼容（uint8 vs all_gather dtype）。(2026-05-14)\\\\n- **Smoke test 假阴性**：synthetic data reward variance=0 导致零梯度是数学必然（format reward 对所有 completions 输出相同分数），不是训练 bug。评估 smoke test 时只看兼容性和显存，不看 loss 趋势。(2026-05-14)\\\\n- **TRL 1.1.0 API 变更（关键）**：服务器 TRL 版本 1.1.0，与旧版有 3 个破坏性变更：(1) `SFTConfig.max_seq_length` → `max_length`；(2) `SFTTrainer(tokenizer=...)` → `SFTTrainer(processing_class=...)`；(3) 多 GPU 需要 accelerate `MULTI_GPU` + `device_map={\\\\\\\"\\\\\\\": local_rank}`。**grpo_trainer.py 也用了 `tokenizer=`，GRPO 提交前必须改为 `processing_class=`**。(2026-05-14)\\\\n- **rtx5090-4x 和 gpu-5090-4x-1 是同一台机器**：两个 SSH endpoint 指向同一台 4×RTX 5090 32GB 服务器。(2026-05-14)\\\\n- **wandb 配置**：entity=`xiaoyucorynne-`，GRPO 项目名=`freige-grpo`（但截至 2026-05-14 项目未成功创建——训练脚本可能未连接 wandb）。API key 存于 `~/.netrc`。MCP 工具 `list_wandb_runs` 有内部 bug（`wandb_project` 参数传递错误），需直接用 `fetch_wandb_run_history` + 已知 run_id。(2026-05-14)\\\\n\\\\n## GRPO 训练经验\\\\n\\\\n- **Format reward hacking 是 GRPO 的首要风险**：CED r1 mode collapse 根因——模型学会输出短空 JSON 拿 format≈1.0，F1 归零。format reward 占 total 的 60-70% 时会主导优化方向。修复：(1) format reward 降权（×0.3）；(2) 加 save_steps 保留中间 checkpoint。(2026-05-14)\\\\n- **clip_ratio=0 在 QLoRA GRPO 中可能是正常的**：QLoRA 可训练参数少，单步 policy ratio 变化 < ε=0.2，PPO clip 不触发。TRL GRPO `num_iterations=1` 时 clip 机制天然不生效（只一次迭代，ratio 恒≈1.0）。(2026-05-14)\\\\n- **save_strategy=\\\\\\\"epoch\\\\\\\" 对长 epoch 是灾难**：189 steps/epoch 意味着跑几小时没有任何 checkpoint，collapse 时无法 resume。GRPO 训练必须用 save_steps（推荐 20）。(2026-05-14)\\\\n- **[D008 关键] QLoRA 4-bit + kl_coef 不兼容（根因确认）**：所有 GRPO 实验（r3、extract、flatnli）在 step 5 KL 爆炸至 10^8-10^11，根因不是 grad_accum（之前 D007 误判），而是 QLoRA 4-bit NF4 量化噪声导致 ref model 和 policy model 的 log-prob 计算有系统性偏差，KL divergence 不可靠。解决方案：kl_coef=0.0 完全禁用 KL penalty，KLDivergenceCallback 改为 monitoring-only（只 log 不 early stop）。clip_ratio 和 reward weighting 仍然是有效的约束机制。(2026-05-14)\\\\n- **num_iterations=2 导致 KL 交替震荡**：r2 使用 num_iterations=2，每个 mini-batch 两次前向传播之间 KL 交替升降。在 QLoRA 场景下这进一步放大不稳定性。建议 QLoRA GRPO 固定 num_iterations=1。(2026-05-14)\\\\n- **kl_coef=0 + CED reward → mode collapse 的关键机制**：ced_r5 在 step 250+ 彻底 collapse（f1=0, 固定 34-token 输出, CED reward=0.99）。但 extract_r3 (kl_coef=0, ced_reward_weight=0) 训练健康（f1=0.47 at step 505, no collapse）。**说明 mode collapse 的根因不仅是 kl_coef=0，更关键是 CED reward 提供了短输出捷径——无正确 triple 的短输出也能拿高 CED score，模型优化此捷径导致 F1 归零。** Extraction-only reward 无此捷径，kl_coef=0 下仍可正常训练。(2026-05-14, 修正之前 extract_r3 误诊)\\\\n- **CED reward F1 门控已实装**：grpo_trainer.py L221-234，CEDRewardWrapper.__call__ 中检查 predicted triples 与 gold triples 匹配，无匹配则 CED reward=0。3 个 pytest case 通过。Reviewer warning: 门控只检查\\\\\\\"是否有任一匹配 triple\\\\\\\"，非匹配 triple 仍获 CED reward。监控 F1↓ + CED↑ divergence。(2026-05-14)\\\\n- **D020 统一稳定配置**：kl_coef=0.01 + num_generations=8 + save_steps=10 + save_total_limit=20。kl_coef=0.01 是 0.0（collapse）和 0.05（KL explosion at step 5）之间的折中，需 100-step 探测验证。(2026-05-14)\\\\n- **batch_size=1 GRPO 方差极大，需多 checkpoint eval**：ced_kl001_r4 趋势分析显示 step 50 reward=1.101（最高）但 step 60 跌至 0.521（-53%），单点回落幅度大于均值。原因：effective batch=1 + GRPO 的 on-policy 特性使每步方差极高。**判断训练趋势不能看单个 checkpoint，必须 eval 多个 checkpoint（推荐 best + last + 中间 1-2 个）**。step 40→45 也有类似回调后 step 50 创新高，说明回落是随机波动而非趋势逆转。(2026-05-14)\\\\n- **D020 kl_coef=0.01 验证成功**：ced_kl001_r4 全程 KL 在 0.01-0.18 区间，稳定在 0.10-0.13，无上升趋势。num_generations=8 在 step 35 左右彻底解除 mode collapse（frac_zero_std → 0.0）。D020 配置对 CED reward 有效。(2026-05-14)\\\\n- **不能从 kl_coef=0 的 checkpoint 恢复加 KL penalty**：flatnli_r5 从 r3 (kl_coef=0) checkpoint-100 恢复，加 kl_coef=0.01 后立即崩溃——step 100→105 frac_zero_std 从 0.0 跳到 0.9，KL 高位 0.44-0.49 持续不降。根因：kl_coef=0 训练期间 policy 已大幅偏离 reference model，恢复后加 KL penalty 形成对抗震荡。**结论：切换 kl_coef 时必须从 SFT 重新训练，不能 resume。**(2026-05-14)\\\\n- **[D024 关键] D020 配置只对 CED reward 有效——CED 有 anti-mode-collapse 作用**：在完全相同的 D020 配置下（kl_coef=0.01, num_gen=8, 从 SFT scratch 训练），三种 reward type 的结果截然不同：(1) CED (ced_kl001_r4): ✅ 成功，100 步完成，reward 0.22→1.37（5x），无 collapse；(2) Extraction-only (extract_r4): ❌ step 10 collapse (frac_zero_std=0.8, f1=0)；(3) Flat-NLI (flatnli_r6): ❌ step 25 collapse (frac_zero_std=0.9, f1=0, nli=0)。三者唯一差异是 reward type。**结论：CED reward 通道不仅改善 evidence quality，还通过提供额外学习信号防止 GRPO mode collapse。** 这是论文的重要 finding——CED 兼具 evidence 改善和训练稳定性两重作用。(2026-05-14)\\\\n- **ced_kl001_r4 true best checkpoint = step 90**（reward=1.370, f1_reward=0.720, ced=0.353），而非 step 50 (1.101)。训练后半程（step 70-100）整体优于前半程，说明 GRPO 在 D020 配置下持续学习到最后。(2026-05-14)\\\\n\\\\n## D020 Ablation 训练曲线深度分析 (2026-05-14)\\\\n\\\\n### 关键发现\\\\n\\\\n1. **分化点在 step 15-20**：ced_kl001_r4 和 extract_r4 在 step 10 都陷入初期 collapse（frac_zero_std=0.7-0.8, f1=0），但 ced_kl001_r4 在 step 20 恢复（frac_zero_std→0.1），extract_r4 持续 collapse（frac_zero_std=0.8）直到 step 30 被 kill。\\\\n\\\\n2. **多样性恢复先于 CED reward**：ced_kl001_r4 step 20 时 frac_zero_std=0.1（多样性恢复），但 f1_reward=0.003, ced_reward=0.008（几乎为零）。有意义的 CED reward 要到 step 30 (0.058) 才出现。说明 CED 的初始作用是通过 **reward variance 维持梯度流**，而非通过 reward magnitude 直接驱动。\\\\n\\\\n3. **Reward variance 是近端机制**：step 10 时 reward_std: CED=0.070 vs extract=0.039；step 20 时 CED=0.134 vs extract=0.027。CED 通道为 GRPO 提供额外的 reward 维度——不同 generation 的 evidence quality 不同，即使 F1 相同也产生 reward variance → nonzero advantage → 梯度信号 → 学习继续。extract_r4 只有 F1 通道，所有 generation 都错时 reward_std→0→零梯度。\\\\n\\\\n4. **CED 的双面性**：有 KL 约束（kl=0.01）时 CED 是 stabilizer（ced_kl001_r4 成功），无 KL（kl=0）时 CED 是 hacking target（ced_r5 学会 34-token 捷径，ced=0.99 但 f1=0）。F1 门控缓解但不完全消除此风险。\\\\n\\\\n5. **extract_r4 collapse 时间线**：step 5→10 之间 f1_reward (0.016→0) 和 frac_zero_std (0.2→0.7) 同时崩溃，grad_norm 从 0.297→0.005。旧配置 extract_r3 (kl=0, gen=4) 类似但更慢——step 70 才完全停滞。\\\\n\\\\n### CED-as-Stabilizer Evidence Chain\\\\n\\\\n| 证据 | 强度 | 说明 |\\\\n|------|------|------|\\\\n| D020 A/B 对比: CED on 成功 / off 失败 | **强** | 同配置, 唯一差异=CED, n=1 seed |\\\\n| reward_std 差异 (0.070 vs 0.039 at step 10) | **中** | 方向一致但 n=1, 噪声可能大 |\\\\n| 多样性先恢复，CED reward 后至 | **中** | 支持 variance 机制（非 reward magnitude） |\\\\n| 旧配置参照: kl=0 时 CED 反而导致 hacking | **强** | 证明 stabilization 依赖 KL 约束 |\\\\n| flatnli_r6 也 collapse（D020配置） | **中** | 排除\\\\\\\"只是 extraction-only 太弱\\\\\\\"的替代解释 |\\\\n\\\\n### 论文 Story 建议\\\\n\\\\n**推荐 framing**：CED reward 在 GRPO 训练中扮演 **dual role**——(1) 改善 evidence faithfulness（任务效果），(2) 作为 diversity-maintaining signal 防止 mode collapse（训练稳定性）。第二个作用是意外发现，机制是 CED 提供了与 F1 正交的 reward 维度，增加 reward variance 维持 GRPO 梯度流。\\\\n\\\\n**Claim 强度**：足够写入论文作为 empirical finding + 机制假说，但需要 caveats：(1) n=1 seed；(2) stabilization effect 依赖 KL 正则化（kl=0 时 CED 反而有害）；(3) 机制是推测（基于 reward_std 相关性），未做因果干预实验。\\\\n\\\\n**可能的后续实验**（如有 GPU 时间）：(1) 多 seed 复现 D020 ablation；(2) 用 random noise reward 替代 CED 测试\\\\\\\"任意额外 reward 通道是否就够\\\\\\\"；(3) 调 CED weight 看 stabilization 阈值。\\\\n\\\\n## 操作经验\\\\n\\\\n- **[硬规则] kill 后必须验证子进程终止**：kill_job 只杀 tmux session（父进程），python 子进程可能 reparent 到 init 继续占 GPU 显存。**kill 后必须派 Worker SSH 执行 `ps -p <子进程PID>` + `nvidia-smi -i &lt;GPU>` 验证**。第二次出现僵尸进程（flatnli_r5 PID 73412 占 12920 MiB 与 flatnli_r6 争抢 cuda:3），差点导致 OOM。不能只更新 registry 就算完。(2026-05-14, 升级为硬规则)\\\\n- **Cron 状态检测不可靠（tmux wrapper vs 训练进程）**：cron 检查 tmux wrapper PID 存活，但 kill_job 杀 wrapper 后训练子进程可能仍在运行。Registry 被误标 failed 但实际训练正常。教训：实验状态检测应以训练进程 PID 为准（ps -p），不依赖 tmux session。(2026-05-14)\\\\n- **GRPO checkpoint 评估需要 SFT adapter merge**：grpo_trainer.py 先 merge SFT adapter 到 base model，再训练新 LoRA。inference.py 需要 --sft_adapter 参数先 merge SFT 再加载 GRPO delta，否则评估缺失 SFT 贡献。(2026-05-14)\\\\n- **NLI reward_device 必须指定 cuda**：默认 reward_device=cpu，NLI 推理 ~100s/step（vs cuda ~12-34s/step）。共享 GPU 时 NLI+训练共存导致 ~34s（而非理想 12s），但仍比 CPU 快 3x。(2026-05-14)\\\\n- **stdout 缓冲导致日志不可见**：Python stdout 重定向到文件时使用 block buffering，短时间运行的实验日志可能为空。修复：启动命令加 `PYTHONUNBUFFERED=1` 或 `python -u`。(2026-05-14)\\\\n\\\\n## Eval Baseline\\\\n\\\\n- **SFT baseline (sft_eval_r2/r3)**：F1=0.4057, Evi-F1=0.7979, EDCR=0.7118, truncated=37.3%。截断率高是因为 max_new_tokens=1024 不够长文档输出。r3 使用统一 eval 代码 (_repair_truncated_json) 复现，与 r2 所有指标完全一致（0.00pp 差异），确认 eval pipeline 无偏差。(2026-05-14)\\\\n\\\", \\\"total_chars\\\": 8225, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"content\": \"# Memory — faith-evidence-ie\\n\\n## 环境与兼容性\\n\\n- **AutoDL HuggingFace 下载不可靠**：大模型（如 Qwen3-4B）从 HF 下载反复 ReadTimeout。解决方案：用 ModelScope (`from modelscope import snapshot_download`) 下载到本地缓存，再用本地路径加载。(2026-05-14)\\n- **vLLM 版本不兼容 TRL**：服务器预装 vLLM 0.18.1，但 TRL 支持范围为 0.11.0-0.17.1。MVP-2 若用 TRL 内部 vLLM rollout 可能有兼容问题，需提前测试。(2026-05-14)\\n- **flash_attn 未安装**：rtx5090-4x 服务器未预装 flash-attn，训练脚本需用 `attn_implementation=\\\"sdpa\\\"` 替代。(2026-05-14)\\n- **Qwen3-4B 本地路径**：已通过 ModelScope 下载到 `/root/autodl-tmp/models/Qwen3-4B`（7.6GB）。后续训练脚本应指向此路径而非 HF model ID。(2026-05-14)\\n- **确认训练配置**：ZeRO-2 + QLoRA (4-bit NF4, rank 64, alpha 128) + SDPA。ZeRO-3 + QLoRA 不兼容（uint8 vs all_gather dtype）。(2026-05-14)\\n- **Smoke test 假阴性**：synthetic data reward variance=0 导致零梯度是数学必然（format reward 对所有 completions 输出相同分数），不是训练 bug。评估 smoke test 时只看兼容性和显存，不看 loss 趋势。(2026-05-14)\\n- **TRL 1.1.0 API 变更（关键）**：服务器 TRL 版本 1.1.0，与旧版有 3 个破坏性变更：(1) `SFTConfig.max_seq_length` → `max_length`；(2) `SFTTrainer(tokenizer=...)` → `SFTTrainer(processing_class=...)`；(3) 多 GPU 需要 accelerate `MULTI_GPU` + `device_map={\\\"\\\": local_rank}`。**grpo_trainer.py 也用了 `tokenizer=`，GRPO 提交前必须改为 `processing_class=`**。(2026-05-14)\\n- **rtx5090-4x 和 gpu-5090-4x-1 是同一台机器**：两个 SSH endpoint 指向同一台 4×RTX 5090 32GB 服务器。(2026-05-14)\\n- **wandb 配置**：entity=`xiaoyucorynne-`，GRPO 项目名=`freige-grpo`（但截至 2026-05-14 项目未成功创建——训练脚本可能未连接 wandb）。API key 存于 `~/.netrc`。MCP 工具 `list_wandb_runs` 有内部 bug（`wandb_project` 参数传递错误），需直接用 `fetch_wandb_run_history` + 已知 run_id。(2026-05-14)\\n\\n## GRPO 训练经验\\n\\n- **Format reward hacking 是 GRPO 的首要风险**：CED r1 mode collapse 根因——模型学会输出短空 JSON 拿 format≈1.0，F1 归零。format reward 占 total 的 60-70% 时会主导优化方向。修复：(1) format reward 降权（×0.3）；(2) 加 save_steps 保留中间 checkpoint。(2026-05-14)\\n- **clip_ratio=0 在 QLoRA GRPO 中可能是正常的**：QLoRA 可训练参数少，单步 policy ratio 变化 < ε=0.2，PPO clip 不触发。TRL GRPO `num_iterations=1` 时 clip 机制天然不生效（只一次迭代，ratio 恒≈1.0）。(2026-05-14)\\n- **save_strategy=\\\"epoch\\\" 对长 epoch 是灾难**：189 steps/epoch 意味着跑几小时没有任何 checkpoint，collapse 时无法 resume。GRPO 训练必须用 save_steps（推荐 20）。(2026-05-14)\\n- **[D008 关键] QLoRA 4-bit + kl_coef 不兼容（根因确认）**：所有 GRPO 实验（r3、extract、flatnli）在 step 5 KL 爆炸至 10^8-10^11，根因不是 grad_accum（之前 D007 误判），而是 QLoRA 4-bit NF4 量化噪声导致 ref model 和 policy model 的 log-prob 计算有系统性偏差，KL divergence 不可靠。解决方案：kl_coef=0.0 完全禁用 KL penalty，KLDivergenceCallback 改为 monitoring-only（只 log 不 early stop）。clip_ratio 和 reward weighting 仍然是有效的约束机制。(2026-05-14)\\n- **num_iterations=2 导致 KL 交替震荡**：r2 使用 num_iterations=2，每个 mini-batch 两次前向传播之间 KL 交替升降。在 QLoRA 场景下这进一步放大不稳定性。建议 QLoRA GRPO 固定 num_iterations=1。(2026-05-14)\\n- **kl_coef=0 + CED reward → mode collapse 的关键机制**：ced_r5 在 step 250+ 彻底 collapse（f1=0, 固定 34-token 输出, CED reward=0.99）。但 extract_r3 (kl_coef=0, ced_reward_weight=0) 训练健康（f1=0.47 at step 505, no collapse）。**说明 mode collapse 的根因不仅是 kl_coef=0，更关键是 CED reward 提供了短输出捷径——无正确 triple 的短输出也能拿高 CED score，模型优化此捷径导致 F1 归零。** Extraction-only reward 无此捷径，kl_coef=0 下仍可正常训练。(2026-05-14, 修正之前 extract_r3 误诊)\\n- **CED reward F1 门控已实装**：grpo_trainer.py L221-234，CEDRewardWrapper.__call__ 中检查 predicted triples 与 gold triples 匹配，无匹配则 CED reward=0。3 个 pytest case 通过。Reviewer warning: 门控只检查\\\"是否有任一匹配 triple\\\"，非匹配 triple 仍获 CED reward。监控 F1↓ + CED↑ divergence。(2026-05-14)\\n- **D020 统一稳定配置**：kl_coef=0.01 + num_generations=8 + save_steps=10 + save_total_limit=20。kl_coef=0.01 是 0.0（collapse）和 0.05（KL explosion at step 5）之间的折中，需 100-step 探测验证。(2026-05-14)\\n- **batch_size=1 GRPO 方差极大，需多 checkpoint eval**：ced_kl001_r4 趋势分析显示 step 50 reward=1.101（最高）但 step 60 跌至 0.521（-53%），单点回落幅度大于均值。原因：effective batch=1 + GRPO 的 on-policy 特性使每步方差极高。**判断训练趋势不能看单个 checkpoint，必须 eval 多个 checkpoint（推荐 best + last + 中间 1-2 个）**。step 40→45 也有类似回调后 step 50 创新高，说明回落是随机波动而非趋势逆转。(2026-05-14)\\n- **D020 kl_coef=0.01 验证成功**：ced_kl001_r4 全程 KL 在 0.01-0.18 区间，稳定在 0.10-0.13，无上升趋势。num_generations=8 在 step 35 左右彻底解除 mode collapse（frac_zero_std → 0.0）。D020 配置对 CED reward 有效。(2026-05-14)\\n- **不能从 kl_coef=0 的 checkpoint 恢复加 KL penalty**：flatnli_r5 从 r3 (kl_coef=0) checkpoint-100 恢复，加 kl_coef=0.01 后立即崩溃——step 100→105 frac_zero_std 从 0.0 跳到 0.9，KL 高位 0.44-0.49 持续不降。根因：kl_coef=0 训练期间 policy 已大幅偏离 reference model，恢复后加 KL penalty 形成对抗震荡。**结论：切换 kl_coef 时必须从 SFT 重新训练，不能 resume。**(2026-05-14)\\n- **[D024 关键] D020 配置只对 CED reward 有效——CED 有 anti-mode-collapse 作用**：在完全相同的 D020 配置下（kl_coef=0.01, num_gen=8, 从 SFT scratch 训练），三种 reward type 的结果截然不同：(1) CED (ced_kl001_r4): ✅ 成功，100 步完成，reward 0.22→1.37（5x），无 collapse；(2) Extraction-only (extract_r4): ❌ step 10 collapse (frac_zero_std=0.8, f1=0)；(3) Flat-NLI (flatnli_r6): ❌ step 25 collapse (frac_zero_std=0.9, f1=0, nli=0)。三者唯一差异是 reward type。**结论：CED reward 通道不仅改善 evidence quality，还通过提供额外学习信号防止 GRPO mode collapse。** 这是论文的重要 finding——CED 兼具 evidence 改善和训练稳定性两重作用。(2026-05-14)\\n- **ced_kl001_r4 true best checkpoint = step 90**（reward=1.370, f1_reward=0.720, ced=0.353），而非 step 50 (1.101)。训练后半程（step 70-100）整体优于前半程，说明 GRPO 在 D020 配置下持续学习到最后。(2026-05-14)\\n\\n## D020 Ablation 训练曲线深度分析 (2026-05-14)\\n\\n### 关键发现\\n\\n1. **分化点在 step 15-20**：ced_kl001_r4 和 extract_r4 在 step 10 都陷入初期 collapse（frac_zero_std=0.7-0.8, f1=0），但 ced_kl001_r4 在 step 20 恢复（frac_zero_std→0.1），extract_r4 持续 collapse（frac_zero_std=0.8）直到 step 30 被 kill。\\n\\n2. **多样性恢复先于 CED reward**：ced_kl001_r4 step 20 时 frac_zero_std=0.1（多样性恢复），但 f1_reward=0.003, ced_reward=0.008（几乎为零）。有意义的 CED reward 要到 step 30 (0.058) 才出现。说明 CED 的初始作用是通过 **reward variance 维持梯度流**，而非通过 reward magnitude 直接驱动。\\n\\n3. **Reward variance 是近端机制**：step 10 时 reward_std: CED=0.070 vs extract=0.039；step 20 时 CED=0.134 vs extract=0.027。CED 通道为 GRPO 提供额外的 reward 维度——不同 generation 的 evidence quality 不同，即使 F1 相同也产生 reward variance → nonzero advantage → 梯度信号 → 学习继续。extract_r4 只有 F1 通道，所有 generation 都错时 reward_std→0→零梯度。\\n\\n4. **CED 的双面性**：有 KL 约束（kl=0.01）时 CED 是 stabilizer（ced_kl001_r4 成功），无 KL（kl=0）时 CED 是 hacking target（ced_r5 学会 34-token 捷径，ced=0.99 但 f1=0）。F1 门控缓解但不完全消除此风险。\\n\\n5. **extract_r4 collapse 时间线**：step 5→10 之间 f1_reward (0.016→0) 和 frac_zero_std (0.2→0.7) 同时崩溃，grad_norm 从 0.297→0.005。旧配置 extract_r3 (kl=0, gen=4) 类似但更慢——step 70 才完全停滞。\\n\\n### CED-as-Stabilizer Evidence Chain\\n\\n| 证据 | 强度 | 说明 |\\n|------|------|------|\\n| D020 A/B 对比: CED on 成功 / off 失败 | **强** | 同配置, 唯一差异=CED, n=1 seed |\\n| reward_std 差异 (0.070 vs 0.039 at step 10) | **中** | 方向一致但 n=1, 噪声可能大 |\\n| 多样性先恢复，CED reward 后至 | **中** | 支持 variance 机制（非 reward magnitude） |\\n| 旧配置参照: kl=0 时 CED 反而导致 hacking | **强** | 证明 stabilization 依赖 KL 约束 |\\n| flatnli_r6 也 collapse（D020配置） | **中** | 排除\\\"只是 extraction-only 太弱\\\"的替代解释 |\\n\\n### 论文 Story 建议\\n\\n**推荐 framing**：CED reward 在 GRPO 训练中扮演 **dual role**——(1) 改善 evidence faithfulness（任务效果），(2) 作为 diversity-maintaining signal 防止 mode collapse（训练稳定性）。第二个作用是意外发现，机制是 CED 提供了与 F1 正交的 reward 维度，增加 reward variance 维持 GRPO 梯度流。\\n\\n**Claim 强度**：足够写入论文作为 empirical finding + 机制假说，但需要 caveats：(1) n=1 seed；(2) stabilization effect 依赖 KL 正则化（kl=0 时 CED 反而有害）；(3) 机制是推测（基于 reward_std 相关性），未做因果干预实验。\\n\\n**可能的后续实验**（如有 GPU 时间）：(1) 多 seed 复现 D020 ablation；(2) 用 random noise reward 替代 CED 测试\\\"任意额外 reward 通道是否就够\\\"；(3) 调 CED weight 看 stabilization 阈值。\\n\\n## 操作经验\\n\\n- **[硬规则] kill 后必须验证子进程终止**：kill_job 只杀 tmux session（父进程），python 子进程可能 reparent 到 init 继续占 GPU 显存。**kill 后必须派 Worker SSH 执行 `ps -p <子进程PID>` + `nvidia-smi -i &lt;GPU>` 验证**。第二次出现僵尸进程（flatnli_r5 PID 73412 占 12920 MiB 与 flatnli_r6 争抢 cuda:3），差点导致 OOM。不能只更新 registry 就算完。(2026-05-14, 升级为硬规则)\\n- **Cron 状态检测不可靠（tmux wrapper vs 训练进程）**：cron 检查 tmux wrapper PID 存活，但 kill_job 杀 wrapper 后训练子进程可能仍在运行。Registry 被误标 failed 但实际训练正常。教训：实验状态检测应以训练进程 PID 为准（ps -p），不依赖 tmux session。(2026-05-14)\\n- **GRPO checkpoint 评估需要 SFT adapter merge**：grpo_trainer.py 先 merge SFT adapter 到 base model，再训练新 LoRA。inference.py 需要 --sft_adapter 参数先 merge SFT 再加载 GRPO delta，否则评估缺失 SFT 贡献。(2026-05-14)\\n- **NLI reward_device 必须指定 cuda**：默认 reward_device=cpu，NLI 推理 ~100s/step（vs cuda ~12-34s/step）。共享 GPU 时 NLI+训练共存导致 ~34s（而非理想 12s），但仍比 CPU 快 3x。(2026-05-14)\\n- **stdout 缓冲导致日志不可见**：Python stdout 重定向到文件时使用 block buffering，短时间运行的实验日志可能为空。修复：启动命令加 `PYTHONUNBUFFERED=1` 或 `python -u`。(2026-05-14)\\n\\n## Eval Baseline\\n\\n- **SFT baseline (sft_eval_r2/r3)**：F1=0.4057, Evi-F1=0.7979, EDCR=0.7118, truncated=37.3%。截断率高是因为 max_new_tokens=1024 不够长文档输出。r3 使用统一 eval 代码 (_repair_truncated_json) 复现，与 r2 所有指标完全一致（0.00pp 差异），确认 eval pipeline 无偏差。(2026-05-14)\\n\", \"total_chars\": 8225, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have key context. Let me read the CED reward code and the GRPO trainer to understand the reward calculation mechanism, particularly whether CED has a recall shortcut.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "e5199f91-5495-48f2-ba4e-48225a335105",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DLEE7DWGkhHWz9qiDEpNCL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9428,
+      "cache_read_input_tokens": 26493,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9428
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+找到关键线索。现在读 CED reward 和 GRPO trainer 代码确认 reward hacking 机制。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "bc28266a-9769-4a78-8739-f5906ecd2f18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DLEE7DWGkhHWz9qiDEpNCL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9428,
+      "cache_read_input_tokens": 26493,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9428
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WG3FZZXP7xFdzp6qrEVduk`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/rewards/ced_reward.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "db8d8a6c-0e50-4458-9470-2c88cb00fc74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DLEE7DWGkhHWz9qiDEpNCL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9428,
+      "cache_read_input_tokens": 26493,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9428
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T19:17:03.954Z_
+
+<details><summary>↩ Tool result · `toolu_01WG3FZZXP7xFdzp6qrEVduk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"CED（Contrastive Evidence Discrimination）对比证据判别奖励。\\n\\n核心公式:\\n  p_pos = NLI_entail(concat(cited_evidence), claim)\\n  p_neg = max_j NLI_entail(neg_sent_j, claim)\\n  R_CED = max(0, p_pos - p_neg) * I(p_pos > tau)\\n\\n输入: 关系三元组 + gold evidence 句子 + hard negative 句子\\n输出: CED 奖励值 ∈ [0, 1]\\n依赖: transformers, torch\\n\\\"\\\"\\\"\\n\\nimport logging\\nfrom typing import Optional\\n\\nimport torch\\nimport torch.nn.functional as F\\nfrom transformers import AutoModelForSequenceClassification, AutoTokenizer\\n\\nlogger = logging.getLogger(__name__)\\n\\nDEFAULT_NLI_MODEL = \\\"cross-encoder/nli-deberta-v3-base\\\"\\n\\nVERBALIZATION_TEMPLATES = {\\n    \\\"P6\\\": \\\"The head of government of {head} is {tail}.\\\",\\n    \\\"P17\\\": \\\"{head} is located in the country {tail}.\\\",\\n    \\\"P19\\\": \\\"{head} was born in {tail}.\\\",\\n    \\\"P20\\\": \\\"{head} died in {tail}.\\\",\\n    \\\"P22\\\": \\\"The father of {head} is {tail}.\\\",\\n    \\\"P25\\\": \\\"The mother of {head} is {tail}.\\\",\\n    \\\"P26\\\": \\\"{head} is married to {tail}.\\\",\\n    \\\"P27\\\": \\\"{head} is a citizen of {tail}.\\\",\\n    \\\"P30\\\": \\\"{head} is located in the continent of {tail}.\\\",\\n    \\\"P31\\\": \\\"{head} is an instance of {tail}.\\\",\\n    \\\"P35\\\": \\\"The head of state of {head} is {tail}.\\\",\\n    \\\"P36\\\": \\\"The capital of {head} is {tail}.\\\",\\n    \\\"P37\\\": \\\"The official language of {head} is {tail}.\\\",\\n    \\\"P39\\\": \\\"{head} held the position of {tail}.\\\",\\n    \\\"P40\\\": \\\"{head} has a child named {tail}.\\\",\\n    \\\"P50\\\": \\\"The author of {head} is {tail}.\\\",\\n    \\\"P54\\\": \\\"{head} is a member of the sports team {tail}.\\\",\\n    \\\"P57\\\": \\\"The director of {head} is {tail}.\\\",\\n    \\\"P58\\\": \\\"The screenwriter of {head} is {tail}.\\\",\\n    \\\"P69\\\": \\\"{head} was educated at {tail}.\\\",\\n    \\\"P86\\\": \\\"The composer of {head} is {tail}.\\\",\\n    \\\"P102\\\": \\\"{head} is a member of the political party {tail}.\\\",\\n    \\\"P108\\\": \\\"{head} is employed by {tail}.\\\",\\n    \\\"P112\\\": \\\"{head} was founded by {tail}.\\\",\\n    \\\"P118\\\": \\\"{head} plays in the league {tail}.\\\",\\n    \\\"P123\\\": \\\"The publisher of {head} is {tail}.\\\",\\n    \\\"P127\\\": \\\"{head} is owned by {tail}.\\\",\\n    \\\"P131\\\": \\\"{head} is located in {tail}.\\\",\\n    \\\"P136\\\": \\\"The genre of {head} is {tail}.\\\",\\n    \\\"P137\\\": \\\"{head} is operated by {tail}.\\\",\\n    \\\"P140\\\": \\\"The religion of {head} is {tail}.\\\",\\n    \\\"P150\\\": \\\"{head} contains the administrative territory {tail}.\\\",\\n    \\\"P155\\\": \\\"{head} follows {tail}.\\\",\\n    \\\"P156\\\": \\\"{head} is followed by {tail}.\\\",\\n    \\\"P159\\\": \\\"The headquarters of {head} is located in {tail}.\\\",\\n    \\\"P161\\\": \\\"{head} features the cast member {tail}.\\\",\\n    \\\"P162\\\": \\\"The producer of {head} is {tail}.\\\",\\n    \\\"P166\\\": \\\"{head} received the award {tail}.\\\",\\n    \\\"P170\\\": \\\"The creator of {head} is {tail}.\\\",\\n    \\\"P171\\\": \\\"The parent taxon of {head} is {tail}.\\\",\\n    \\\"P172\\\": \\\"{head} belongs to the ethnic group {tail}.\\\",\\n    \\\"P175\\\": \\\"The performer of {head} is {tail}.\\\",\\n    \\\"P176\\\": \\\"The manufacturer of {head} is {tail}.\\\",\\n    \\\"P178\\\": \\\"The developer of {head} is {tail}.\\\",\\n    \\\"P179\\\": \\\"{head} is part of the series {tail}.\\\",\\n    \\\"P190\\\": \\\"{head} is a sister city of {tail}.\\\",\\n    \\\"P194\\\": \\\"The legislative body of {head} is {tail}.\\\",\\n    \\\"P205\\\": \\\"{head} is in the basin of {tail}.\\\",\\n    \\\"P206\\\": \\\"{head} is located near the body of water {tail}.\\\",\\n    \\\"P241\\\": \\\"{head} is a branch of the military {tail}.\\\",\\n    \\\"P264\\\": \\\"The record label of {head} is {tail}.\\\",\\n    \\\"P272\\\": \\\"The production company of {head} is {tail}.\\\",\\n    \\\"P276\\\": \\\"{head} is located in {tail}.\\\",\\n    \\\"P279\\\": \\\"{head} is a subclass of {tail}.\\\",\\n    \\\"P355\\\": \\\"{head} has the subsidiary {tail}.\\\",\\n    \\\"P361\\\": \\\"{head} is part of {tail}.\\\",\\n    \\\"P364\\\": \\\"The original language of {head} is {tail}.\\\",\\n    \\\"P400\\\": \\\"{head} is available on the platform {tail}.\\\",\\n    \\\"P403\\\": \\\"{head} flows into {tail}.\\\",\\n    \\\"P449\\\": \\\"The original network of {head} is {tail}.\\\",\\n    \\\"P463\\\": \\\"{head} is a member of {tail}.\\\",\\n    \\\"P488\\\": \\\"The chairperson of {head} is {tail}.\\\",\\n    \\\"P495\\\": \\\"{head} originates from the country {tail}.\\\",\\n    \\\"P527\\\": \\\"{head} has the part {tail}.\\\",\\n    \\\"P551\\\": \\\"{head} resides in {tail}.\\\",\\n    \\\"P569\\\": \\\"{head} was born on {tail}.\\\",\\n    \\\"P570\\\": \\\"{head} died on {tail}.\\\",\\n    \\\"P571\\\": \\\"{head} was established in {tail}.\\\",\\n    \\\"P576\\n\\n... [截断: 输出过长，省略 2190 字符] ...\\n\\n.model = AutoModelForSequenceClassification.from_pretrained(model_name)\\n        self.model.to(self.device)\\n        self.model.eval()\\n\\n        self._resolve_entailment_idx()\\n\\n    def _resolve_entailment_idx(self):\\n        id2label = self.model.config.id2label\\n        self.entail_idx = None\\n        for idx, label in id2label.items():\\n            if label.lower() in (\\\"entailment\\\", \\\"entail\\\"):\\n                self.entail_idx = int(idx)\\n                break\\n        if self.entail_idx is None:\\n            logger.warning(\\n                \\\"Could not find 'entailment' in id2label=%s, defaulting to index 1\\\",\\n                id2label,\\n            )\\n            self.entail_idx = 1\\n        logger.info(\\\"Entailment index: %d (id2label=%s)\\\", self.entail_idx, id2label)\\n\\n    @torch.no_grad()\\n    def nli_entailment_prob(\\n        self, premises: list[str], hypotheses: list[str]\\n    ) -> torch.Tensor:\\n        inputs = self.tokenizer(\\n            premises,\\n            hypotheses,\\n            padding=True,\\n            truncation=True,\\n            max_length=self.max_length,\\n            return_tensors=\\\"pt\\\",\\n        ).to(self.device)\\n\\n        logits = self.model(**inputs).logits\\n        probs = F.softmax(logits, dim=-1)\\n        return probs[:, self.entail_idx].cpu()\\n\\n    def compute_ced_reward(\\n        self,\\n        claim: str,\\n        cited_evidence_sents: list[str],\\n        hard_negative_sents: list[str],\\n        tau: float = 0.5,\\n    ) -> dict:\\n        evidence_concat = \\\" \\\".join(cited_evidence_sents)\\n        p_pos = self.nli_entailment_prob(\\n            [evidence_concat], [claim]\\n        ).item()\\n\\n        if not hard_negative_sents:\\n            p_neg = 0.0\\n        else:\\n            neg_probs = self.nli_entailment_prob(\\n                hard_negative_sents, [claim] * len(hard_negative_sents)\\n            )\\n            p_neg = neg_probs.max().item()\\n\\n        margin = p_pos - p_neg\\n        reward = max(0.0, margin) * float(p_pos > tau)\\n\\n        return {\\n            \\\"reward\\\": reward,\\n            \\\"p_pos\\\": p_pos,\\n            \\\"p_neg\\\": p_neg,\\n            \\\"margin\\\": margin,\\n        }\\n\\n    def compute_ced_reward_batch(\\n        self,\\n        claims: list[str],\\n        cited_evidence_list: list[list[str]],\\n        hard_negative_list: list[list[str]],\\n        tau: float = 0.5,\\n    ) -> list[dict]:\\n        n = len(claims)\\n        assert len(cited_evidence_list) == n and len(hard_negative_list) == n\\n\\n        pos_premises = [\\\" \\\".join(ev) for ev in cited_evidence_list]\\n        pos_probs = self.nli_entailment_prob(pos_premises, claims)\\n\\n        all_neg_premises = []\\n        all_neg_hyps = []\\n        neg_counts = []\\n        for i in range(n):\\n            negs = hard_negative_list[i]\\n            neg_counts.append(len(negs))\\n            all_neg_premises.extend(negs)\\n            all_neg_hyps.extend([claims[i]] * len(negs))\\n\\n        if all_neg_premises:\\n            all_neg_probs = self.nli_entailment_prob(all_neg_premises, all_neg_hyps)\\n        else:\\n            all_neg_probs = torch.tensor([])\\n\\n        results = []\\n        offset = 0\\n        for i in range(n):\\n            p_pos = pos_probs[i].item()\\n            nc = neg_counts[i]\\n            if nc > 0:\\n                p_neg = all_neg_probs[offset:offset + nc].max().item()\\n            else:\\n                p_neg = 0.0\\n            offset += nc\\n\\n            margin = p_pos - p_neg\\n            reward = max(0.0, margin) * float(p_pos > tau)\\n            results.append({\\n                \\\"reward\\\": reward,\\n                \\\"p_pos\\\": p_pos,\\n                \\\"p_neg\\\": p_neg,\\n                \\\"margin\\\": margin,\\n            })\\n\\n        return results\\n\\n    def compute_flat_nli_reward(\\n        self,\\n        claim: str,\\n        cited_evidence_sents: list[str],\\n        tau: float = 0.5,\\n    ) -> dict:\\n        evidence_concat = \\\" \\\".join(cited_evidence_sents)\\n        p_pos = self.nli_entailment_prob(\\n            [evidence_concat], [claim]\\n        ).item()\\n        reward = p_pos * float(p_pos > tau)\\n        return {\\\"reward\\\": reward, \\\"p_pos\\\": p_pos}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "3f5bb839-b933-48f3-8721-b5a53932e088",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"CED（Contrastive Evidence Discrimination）对比证据判别奖励。\\\\n\\\\n核心公式:\\\\n  p_pos = NLI_entail(concat(cited_evidence), claim)\\\\n  p_neg = max_j NLI_entail(neg_sent_j, claim)\\\\n  R_CED = max(0, p_pos - p_neg) * I(p_pos > tau)\\\\n\\\\n输入: 关系三元组 + gold evidence 句子 + hard negative 句子\\\\n输出: CED 奖励值 ∈ [0, 1]\\\\n依赖: transformers, torch\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport logging\\\\nfrom typing import Optional\\\\n\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom transformers import AutoModelForSequenceClassification, AutoTokenizer\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nDEFAULT_NLI_MODEL = \\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\"\\\\n\\\\nVERBALIZATION_TEMPLATES = {\\\\n    \\\\\\\"P6\\\\\\\": \\\\\\\"The head of government of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P17\\\\\\\": \\\\\\\"{head} is located in the country {tail}.\\\\\\\",\\\\n    \\\\\\\"P19\\\\\\\": \\\\\\\"{head} was born in {tail}.\\\\\\\",\\\\n    \\\\\\\"P20\\\\\\\": \\\\\\\"{head} died in {tail}.\\\\\\\",\\\\n    \\\\\\\"P22\\\\\\\": \\\\\\\"The father of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P25\\\\\\\": \\\\\\\"The mother of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P26\\\\\\\": \\\\\\\"{head} is married to {tail}.\\\\\\\",\\\\n    \\\\\\\"P27\\\\\\\": \\\\\\\"{head} is a citizen of {tail}.\\\\\\\",\\\\n    \\\\\\\"P30\\\\\\\": \\\\\\\"{head} is located in the continent of {tail}.\\\\\\\",\\\\n    \\\\\\\"P31\\\\\\\": \\\\\\\"{head} is an instance of {tail}.\\\\\\\",\\\\n    \\\\\\\"P35\\\\\\\": \\\\\\\"The head of state of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P36\\\\\\\": \\\\\\\"The capital of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P37\\\\\\\": \\\\\\\"The official language of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P39\\\\\\\": \\\\\\\"{head} held the position of {tail}.\\\\\\\",\\\\n    \\\\\\\"P40\\\\\\\": \\\\\\\"{head} has a child named {tail}.\\\\\\\",\\\\n    \\\\\\\"P50\\\\\\\": \\\\\\\"The author of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P54\\\\\\\": \\\\\\\"{head} is a member of the sports team {tail}.\\\\\\\",\\\\n    \\\\\\\"P57\\\\\\\": \\\\\\\"The director of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P58\\\\\\\": \\\\\\\"The screenwriter of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P69\\\\\\\": \\\\\\\"{head} was educated at {tail}.\\\\\\\",\\\\n    \\\\\\\"P86\\\\\\\": \\\\\\\"The composer of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P102\\\\\\\": \\\\\\\"{head} is a member of the political party {tail}.\\\\\\\",\\\\n    \\\\\\\"P108\\\\\\\": \\\\\\\"{head} is employed by {tail}.\\\\\\\",\\\\n    \\\\\\\"P112\\\\\\\": \\\\\\\"{head} was founded by {tail}.\\\\\\\",\\\\n    \\\\\\\"P118\\\\\\\": \\\\\\\"{head} plays in the league {tail}.\\\\\\\",\\\\n    \\\\\\\"P123\\\\\\\": \\\\\\\"The publisher of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P127\\\\\\\": \\\\\\\"{head} is owned by {tail}.\\\\\\\",\\\\n    \\\\\\\"P131\\\\\\\": \\\\\\\"{head} is located in {tail}.\\\\\\\",\\\\n    \\\\\\\"P136\\\\\\\": \\\\\\\"The genre of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P137\\\\\\\": \\\\\\\"{head} is operated by {tail}.\\\\\\\",\\\\n    \\\\\\\"P140\\\\\\\": \\\\\\\"The religion of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P150\\\\\\\": \\\\\\\"{head} contains the administrative territory {tail}.\\\\\\\",\\\\n    \\\\\\\"P155\\\\\\\": \\\\\\\"{head} follows {tail}.\\\\\\\",\\\\n    \\\\\\\"P156\\\\\\\": \\\\\\\"{head} is followed by {tail}.\\\\\\\",\\\\n    \\\\\\\"P159\\\\\\\": \\\\\\\"The headquarters of {head} is located in {tail}.\\\\\\\",\\\\n    \\\\\\\"P161\\\\\\\": \\\\\\\"{head} features the cast member {tail}.\\\\\\\",\\\\n    \\\\\\\"P162\\\\\\\": \\\\\\\"The producer of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P166\\\\\\\": \\\\\\\"{head} received the award {tail}.\\\\\\\",\\\\n    \\\\\\\"P170\\\\\\\": \\\\\\\"The creator of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P171\\\\\\\": \\\\\\\"The parent taxon of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P172\\\\\\\": \\\\\\\"{head} belongs to the ethnic group {tail}.\\\\\\\",\\\\n    \\\\\\\"P175\\\\\\\": \\\\\\\"The performer of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P176\\\\\\\": \\\\\\\"The manufacturer of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P178\\\\\\\": \\\\\\\"The developer of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P179\\\\\\\": \\\\\\\"{head} is part of the series {tail}.\\\\\\\",\\\\n    \\\\\\\"P190\\\\\\\": \\\\\\\"{head} is a sister city of {tail}.\\\\\\\",\\\\n    \\\\\\\"P194\\\\\\\": \\\\\\\"The legislative body of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P205\\\\\\\": \\\\\\\"{head} is in the basin of {tail}.\\\\\\\",\\\\n    \\\\\\\"P206\\\\\\\": \\\\\\\"{head} is located near the body of water {tail}.\\\\\\\",\\\\n    \\\\\\\"P241\\\\\\\": \\\\\\\"{head} is a branch of the military {tail}.\\\\\\\",\\\\n    \\\\\\\"P264\\\\\\\": \\\\\\\"The record label of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P272\\\\\\\": \\\\\\\"The production company of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P276\\\\\\\": \\\\\\\"{head} is located in {tail}.\\\\\\\",\\\\n    \\\\\\\"P279\\\\\\\": \\\\\\\"{head} is a subclass of {tail}.\\\\\\\",\\\\n    \\\\\\\"P355\\\\\\\": \\\\\\\"{head} has the subsidiary {tail}.\\\\\\\",\\\\n    \\\\\\\"P361\\\\\\\": \\\\\\\"{head} is part of {tail}.\\\\\\\",\\\\n    \\\\\\\"P364\\\\\\\": \\\\\\\"The original language of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P400\\\\\\\": \\\\\\\"{head} is available on the platform {tail}.\\\\\\\",\\\\n    \\\\\\\"P403\\\\\\\": \\\\\\\"{head} flows into {tail}.\\\\\\\",\\\\n    \\\\\\\"P449\\\\\\\": \\\\\\\"The original network of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P463\\\\\\\": \\\\\\\"{head} is a member of {tail}.\\\\\\\",\\\\n    \\\\\\\"P488\\\\\\\": \\\\\\\"The chairperson of {head} is {tail}.\\\\\\\",\\\\n    \\\\\\\"P495\\\\\\\": \\\\\\\"{head} originates from the country {tail}.\\\\\\\",\\\\n    \\\\\\\"P527\\\\\\\": \\\\\\\"{head} has the part {tail}.\\\\\\\",\\\\n    \\\\\\\"P551\\\\\\\": \\\\\\\"{head} resides in {tail}.\\\\\\\",\\\\n    \\\\\\\"P569\\\\\\\": \\\\\\\"{head} was born on {tail}.\\\\\\\",\\\\n    \\\\\\\"P570\\\\\\\": \\\\\\\"{head} died on {tail}.\\\\\\\",\\\\n    \\\\\\\"P571\\\\\\\": \\\\\\\"{head} was established in {tail}.\\\\\\\",\\\\n    \\\\\\\"P576\\\\n\\\\n... [截断: 输出过长，省略 2190 字符] ...\\\\n\\\\n.model = AutoModelForSequenceClassification.from_pretrained(model_name)\\\\n        self.model.to(self.device)\\\\n        self.model.eval()\\\\n\\\\n        self._resolve_entailment_idx()\\\\n\\\\n    def _resolve_entailment_idx(self):\\\\n        id2label = self.model.config.id2label\\\\n        self.entail_idx = None\\\\n        for idx, label in id2label.items():\\\\n            if label.lower() in (\\\\\\\"entailment\\\\\\\", \\\\\\\"entail\\\\\\\"):\\\\n                self.entail_idx = int(idx)\\\\n                break\\\\n        if self.entail_idx is None:\\\\n            logger.warning(\\\\n                \\\\\\\"Could not find 'entailment' in id2label=%s, defaulting to index 1\\\\\\\",\\\\n                id2label,\\\\n            )\\\\n            self.entail_idx = 1\\\\n        logger.info(\\\\\\\"Entailment index: %d (id2label=%s)\\\\\\\", self.entail_idx, id2label)\\\\n\\\\n    @torch.no_grad()\\\\n    def nli_entailment_prob(\\\\n        self, premises: list[str], hypotheses: list[str]\\\\n    ) -> torch.Tensor:\\\\n        inputs = self.tokenizer(\\\\n            premises,\\\\n            hypotheses,\\\\n            padding=True,\\\\n            truncation=True,\\\\n            max_length=self.max_length,\\\\n            return_tensors=\\\\\\\"pt\\\\\\\",\\\\n        ).to(self.device)\\\\n\\\\n        logits = self.model(**inputs).logits\\\\n        probs = F.softmax(logits, dim=-1)\\\\n        return probs[:, self.entail_idx].cpu()\\\\n\\\\n    def compute_ced_reward(\\\\n        self,\\\\n        claim: str,\\\\n        cited_evidence_sents: list[str],\\\\n        hard_negative_sents: list[str],\\\\n        tau: float = 0.5,\\\\n    ) -> dict:\\\\n        evidence_concat = \\\\\\\" \\\\\\\".join(cited_evidence_sents)\\\\n        p_pos = self.nli_entailment_prob(\\\\n            [evidence_concat], [claim]\\\\n        ).item()\\\\n\\\\n        if not hard_negative_sents:\\\\n            p_neg = 0.0\\\\n        else:\\\\n            neg_probs = self.nli_entailment_prob(\\\\n                hard_negative_sents, [claim] * len(hard_negative_sents)\\\\n            )\\\\n            p_neg = neg_probs.max().item()\\\\n\\\\n        margin = p_pos - p_neg\\\\n        reward = max(0.0, margin) * float(p_pos > tau)\\\\n\\\\n        return {\\\\n            \\\\\\\"reward\\\\\\\": reward,\\\\n            \\\\\\\"p_pos\\\\\\\": p_pos,\\\\n            \\\\\\\"p_neg\\\\\\\": p_neg,\\\\n            \\\\\\\"margin\\\\\\\": margin,\\\\n        }\\\\n\\\\n    def compute_ced_reward_batch(\\\\n        self,\\\\n        claims: list[str],\\\\n        cited_evidence_list: list[list[str]],\\\\n        hard_negative_list: list[list[str]],\\\\n        tau: float = 0.5,\\\\n    ) -> list[dict]:\\\\n        n = len(claims)\\\\n        assert len(cited_evidence_list) == n and len(hard_negative_list) == n\\\\n\\\\n        pos_premises = [\\\\\\\" \\\\\\\".join(ev) for ev in cited_evidence_list]\\\\n        pos_probs = self.nli_entailment_prob(pos_premises, claims)\\\\n\\\\n        all_neg_premises = []\\\\n        all_neg_hyps = []\\\\n        neg_counts = []\\\\n        for i in range(n):\\\\n            negs = hard_negative_list[i]\\\\n            neg_counts.append(len(negs))\\\\n            all_neg_premises.extend(negs)\\\\n            all_neg_hyps.extend([claims[i]] * len(negs))\\\\n\\\\n        if all_neg_premises:\\\\n            all_neg_probs = self.nli_entailment_prob(all_neg_premises, all_neg_hyps)\\\\n        else:\\\\n            all_neg_probs = torch.tensor([])\\\\n\\\\n        results = []\\\\n        offset = 0\\\\n        for i in range(n):\\\\n            p_pos = pos_probs[i].item()\\\\n            nc = neg_counts[i]\\\\n            if nc > 0:\\\\n                p_neg = all_neg_probs[offset:offset + nc].max().item()\\\\n            else:\\\\n                p_neg = 0.0\\\\n            offset += nc\\\\n\\\\n            margin = p_pos - p_neg\\\\n            reward = max(0.0, margin) * float(p_pos > tau)\\\\n            results.append({\\\\n                \\\\\\\"reward\\\\\\\": reward,\\\\n                \\\\\\\"p_pos\\\\\\\": p_pos,\\\\n                \\\\\\\"p_neg\\\\\\\": p_neg,\\\\n                \\\\\\\"margin\\\\\\\": margin,\\\\n            })\\\\n\\\\n        return results\\\\n\\\\n    def compute_flat_nli_reward(\\\\n        self,\\\\n        claim: str,\\\\n        cited_evidence_sents: list[str],\\\\n        tau: float = 0.5,\\\\n    ) -> dict:\\\\n        evidence_concat = \\\\\\\" \\\\\\\".join(cited_evidence_sents)\\\\n        p_pos = self.nli_entailment_prob(\\\\n            [evidence_concat], [claim]\\\\n        ).item()\\\\n        reward = p_pos * float(p_pos > tau)\\\\n        return {\\\\\\\"reward\\\\\\\": reward, \\\\\\\"p_pos\\\\\\\": p_pos}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"CED（Contrastive Evidence Discrimination）对比证据判别奖励。\\n\\n核心公式:\\n  p_pos = NLI_entail(concat(cited_evidence), claim)\\n  p_neg = max_j NLI_entail(neg_sent_j, claim)\\n  R_CED = max(0, p_pos - p_neg) * I(p_pos > tau)\\n\\n输入: 关系三元组 + gold evidence 句子 + hard negative 句子\\n输出: CED 奖励值 ∈ [0, 1]\\n依赖: transformers, torch\\n\\\"\\\"\\\"\\n\\nimport logging\\nfrom typing import Optional\\n\\nimport torch\\nimport torch.nn.functional as F\\nfrom transformers import AutoModelForSequenceClassification, AutoTokenizer\\n\\nlogger = logging.getLogger(__name__)\\n\\nDEFAULT_NLI_MODEL = \\\"cross-encoder/nli-deberta-v3-base\\\"\\n\\nVERBALIZATION_TEMPLATES = {\\n    \\\"P6\\\": \\\"The head of government of {head} is {tail}.\\\",\\n    \\\"P17\\\": \\\"{head} is located in the country {tail}.\\\",\\n    \\\"P19\\\": \\\"{head} was born in {tail}.\\\",\\n    \\\"P20\\\": \\\"{head} died in {tail}.\\\",\\n    \\\"P22\\\": \\\"The father of {head} is {tail}.\\\",\\n    \\\"P25\\\": \\\"The mother of {head} is {tail}.\\\",\\n    \\\"P26\\\": \\\"{head} is married to {tail}.\\\",\\n    \\\"P27\\\": \\\"{head} is a citizen of {tail}.\\\",\\n    \\\"P30\\\": \\\"{head} is located in the continent of {tail}.\\\",\\n    \\\"P31\\\": \\\"{head} is an instance of {tail}.\\\",\\n    \\\"P35\\\": \\\"The head of state of {head} is {tail}.\\\",\\n    \\\"P36\\\": \\\"The capital of {head} is {tail}.\\\",\\n    \\\"P37\\\": \\\"The official language of {head} is {tail}.\\\",\\n    \\\"P39\\\": \\\"{head} held the position of {tail}.\\\",\\n    \\\"P40\\\": \\\"{head} has a child named {tail}.\\\",\\n    \\\"P50\\\": \\\"The author of {head} is {tail}.\\\",\\n    \\\"P54\\\": \\\"{head} is a member of the sports team {tail}.\\\",\\n    \\\"P57\\\": \\\"The director of {head} is {tail}.\\\",\\n    \\\"P58\\\": \\\"The screenwriter of {head} is {tail}.\\\",\\n    \\\"P69\\\": \\\"{head} was educated at {tail}.\\\",\\n    \\\"P86\\\": \\\"The composer of {head} is {tail}.\\\",\\n    \\\"P102\\\": \\\"{head} is a member of the political party {tail}.\\\",\\n    \\\"P108\\\": \\\"{head} is employed by {tail}.\\\",\\n    \\\"P112\\\": \\\"{head} was founded by {tail}.\\\",\\n    \\\"P118\\\": \\\"{head} plays in the league {tail}.\\\",\\n    \\\"P123\\\": \\\"The publisher of {head} is {tail}.\\\",\\n    \\\"P127\\\": \\\"{head} is owned by {tail}.\\\",\\n    \\\"P131\\\": \\\"{head} is located in {tail}.\\\",\\n    \\\"P136\\\": \\\"The genre of {head} is {tail}.\\\",\\n    \\\"P137\\\": \\\"{head} is operated by {tail}.\\\",\\n    \\\"P140\\\": \\\"The religion of {head} is {tail}.\\\",\\n    \\\"P150\\\": \\\"{head} contains the administrative territory {tail}.\\\",\\n    \\\"P155\\\": \\\"{head} follows {tail}.\\\",\\n    \\\"P156\\\": \\\"{head} is followed by {tail}.\\\",\\n    \\\"P159\\\": \\\"The headquarters of {head} is located in {tail}.\\\",\\n    \\\"P161\\\": \\\"{head} features the cast member {tail}.\\\",\\n    \\\"P162\\\": \\\"The producer of {head} is {tail}.\\\",\\n    \\\"P166\\\": \\\"{head} received the award {tail}.\\\",\\n    \\\"P170\\\": \\\"The creator of {head} is {tail}.\\\",\\n    \\\"P171\\\": \\\"The parent taxon of {head} is {tail}.\\\",\\n    \\\"P172\\\": \\\"{head} belongs to the ethnic group {tail}.\\\",\\n    \\\"P175\\\": \\\"The performer of {head} is {tail}.\\\",\\n    \\\"P176\\\": \\\"The manufacturer of {head} is {tail}.\\\",\\n    \\\"P178\\\": \\\"The developer of {head} is {tail}.\\\",\\n    \\\"P179\\\": \\\"{head} is part of the series {tail}.\\\",\\n    \\\"P190\\\": \\\"{head} is a sister city of {tail}.\\\",\\n    \\\"P194\\\": \\\"The legislative body of {head} is {tail}.\\\",\\n    \\\"P205\\\": \\\"{head} is in the basin of {tail}.\\\",\\n    \\\"P206\\\": \\\"{head} is located near the body of water {tail}.\\\",\\n    \\\"P241\\\": \\\"{head} is a branch of the military {tail}.\\\",\\n    \\\"P264\\\": \\\"The record label of {head} is {tail}.\\\",\\n    \\\"P272\\\": \\\"The production company of {head} is {tail}.\\\",\\n    \\\"P276\\\": \\\"{head} is located in {tail}.\\\",\\n    \\\"P279\\\": \\\"{head} is a subclass of {tail}.\\\",\\n    \\\"P355\\\": \\\"{head} has the subsidiary {tail}.\\\",\\n    \\\"P361\\\": \\\"{head} is part of {tail}.\\\",\\n    \\\"P364\\\": \\\"The original language of {head} is {tail}.\\\",\\n    \\\"P400\\\": \\\"{head} is available on the platform {tail}.\\\",\\n    \\\"P403\\\": \\\"{head} flows into {tail}.\\\",\\n    \\\"P449\\\": \\\"The original network of {head} is {tail}.\\\",\\n    \\\"P463\\\": \\\"{head} is a member of {tail}.\\\",\\n    \\\"P488\\\": \\\"The chairperson of {head} is {tail}.\\\",\\n    \\\"P495\\\": \\\"{head} originates from the country {tail}.\\\",\\n    \\\"P527\\\": \\\"{head} has the part {tail}.\\\",\\n    \\\"P551\\\": \\\"{head} resides in {tail}.\\\",\\n    \\\"P569\\\": \\\"{head} was born on {tail}.\\\",\\n    \\\"P570\\\": \\\"{head} died on {tail}.\\\",\\n    \\\"P571\\\": \\\"{head} was established in {tail}.\\\",\\n    \\\"P576\\n\\n... [截断: 输出过长，省略 2190 字符] ...\\n\\n.model = AutoModelForSequenceClassification.from_pretrained(model_name)\\n        self.model.to(self.device)\\n        self.model.eval()\\n\\n        self._resolve_entailment_idx()\\n\\n    def _resolve_entailment_idx(self):\\n        id2label = self.model.config.id2label\\n        self.entail_idx = None\\n        for idx, label in id2label.items():\\n            if label.lower() in (\\\"entailment\\\", \\\"entail\\\"):\\n                self.entail_idx = int(idx)\\n                break\\n        if self.entail_idx is None:\\n            logger.warning(\\n                \\\"Could not find 'entailment' in id2label=%s, defaulting to index 1\\\",\\n                id2label,\\n            )\\n            self.entail_idx = 1\\n        logger.info(\\\"Entailment index: %d (id2label=%s)\\\", self.entail_idx, id2label)\\n\\n    @torch.no_grad()\\n    def nli_entailment_prob(\\n        self, premises: list[str], hypotheses: list[str]\\n    ) -> torch.Tensor:\\n        inputs = self.tokenizer(\\n            premises,\\n            hypotheses,\\n            padding=True,\\n            truncation=True,\\n            max_length=self.max_length,\\n            return_tensors=\\\"pt\\\",\\n        ).to(self.device)\\n\\n        logits = self.model(**inputs).logits\\n        probs = F.softmax(logits, dim=-1)\\n        return probs[:, self.entail_idx].cpu()\\n\\n    def compute_ced_reward(\\n        self,\\n        claim: str,\\n        cited_evidence_sents: list[str],\\n        hard_negative_sents: list[str],\\n        tau: float = 0.5,\\n    ) -> dict:\\n        evidence_concat = \\\" \\\".join(cited_evidence_sents)\\n        p_pos = self.nli_entailment_prob(\\n            [evidence_concat], [claim]\\n        ).item()\\n\\n        if not hard_negative_sents:\\n            p_neg = 0.0\\n        else:\\n            neg_probs = self.nli_entailment_prob(\\n                hard_negative_sents, [claim] * len(hard_negative_sents)\\n            )\\n            p_neg = neg_probs.max().item()\\n\\n        margin = p_pos - p_neg\\n        reward = max(0.0, margin) * float(p_pos > tau)\\n\\n        return {\\n            \\\"reward\\\": reward,\\n            \\\"p_pos\\\": p_pos,\\n            \\\"p_neg\\\": p_neg,\\n            \\\"margin\\\": margin,\\n        }\\n\\n    def compute_ced_reward_batch(\\n        self,\\n        claims: list[str],\\n        cited_evidence_list: list[list[str]],\\n        hard_negative_list: list[list[str]],\\n        tau: float = 0.5,\\n    ) -> list[dict]:\\n        n = len(claims)\\n        assert len(cited_evidence_list) == n and len(hard_negative_list) == n\\n\\n        pos_premises = [\\\" \\\".join(ev) for ev in cited_evidence_list]\\n        pos_probs = self.nli_entailment_prob(pos_premises, claims)\\n\\n        all_neg_premises = []\\n        all_neg_hyps = []\\n        neg_counts = []\\n        for i in range(n):\\n            negs = hard_negative_list[i]\\n            neg_counts.append(len(negs))\\n            all_neg_premises.extend(negs)\\n            all_neg_hyps.extend([claims[i]] * len(negs))\\n\\n        if all_neg_premises:\\n            all_neg_probs = self.nli_entailment_prob(all_neg_premises, all_neg_hyps)\\n        else:\\n            all_neg_probs = torch.tensor([])\\n\\n        results = []\\n        offset = 0\\n        for i in range(n):\\n            p_pos = pos_probs[i].item()\\n            nc = neg_counts[i]\\n            if nc > 0:\\n                p_neg = all_neg_probs[offset:offset + nc].max().item()\\n            else:\\n                p_neg = 0.0\\n            offset += nc\\n\\n            margin = p_pos - p_neg\\n            reward = max(0.0, margin) * float(p_pos > tau)\\n            results.append({\\n                \\\"reward\\\": reward,\\n                \\\"p_pos\\\": p_pos,\\n                \\\"p_neg\\\": p_neg,\\n                \\\"margin\\\": margin,\\n            })\\n\\n        return results\\n\\n    def compute_flat_nli_reward(\\n        self,\\n        claim: str,\\n        cited_evidence_sents: list[str],\\n        tau: float = 0.5,\\n    ) -> dict:\\n        evidence_concat = \\\" \\\".join(cited_evidence_sents)\\n        p_pos = self.nli_entailment_prob(\\n            [evidence_concat], [claim]\\n        ).item()\\n        reward = p_pos * float(p_pos > tau)\\n        return {\\\"reward\\\": reward, \\\"p_pos\\\": p_pos}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012QAm233GNd6hY5eBRSkHSR`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/training/grpo_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "1c4918b0-b0c0-40a1-baf2-bab90797de32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DLEE7DWGkhHWz9qiDEpNCL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9428,
+      "cache_read_input_tokens": 26493,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9428
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T19:17:04.994Z_
+
+<details><summary>↩ Tool result · `toolu_012QAm233GNd6hY5eBRSkHSR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"GRPO 训练脚本: 基于 TRL GRPOTrainer 的多阶段 curriculum 训练。\\n\\n支持单卡和多卡（DeepSpeed ZeRO-2/3）训练，默认 4-bit QLoRA。\\n\\n单卡:   python -m freige.training.grpo_trainer --stage 1 --output_dir ./grpo_s1\\n多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\n            -m freige.training.grpo_trainer --deepspeed configs/deepspeed_zero2.json \\\\\\n            --stage 1 --reward_device cpu\\n不量化: 加 --no_quantize\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport math\\nimport os\\nimport re\\nfrom pathlib import Path\\nfrom typing import Optional\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom peft import LoraConfig, PeftModel, TaskType\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, TrainerCallback\\nfrom trl import GRPOConfig, GRPOTrainer\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nclass KLDivergenceCallback(TrainerCallback):\\n    \\\"\\\"\\\"Monitor KL divergence — log only, no early stopping.\\n\\n    With QLoRA 4-bit, KL between ref and policy is unreliable due to\\n    quantization noise. We log it for diagnostics but do not penalize or stop.\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, max_kl: float = 100.0):\\n        self.max_kl = max_kl\\n\\n    def on_log(self, args, state, control, logs=None, **kwargs):\\n        if logs and \\\"kl\\\" in logs:\\n            kl = logs[\\\"kl\\\"]\\n            if kl > self.max_kl:\\n                logger.warning(\\\"KL divergence %.2f exceeds monitoring threshold %.1f (monitoring only, not stopping)\\\", kl, self.max_kl)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\n\\ndef _parse_json_output(text: str) -> list[dict]:\\n    \\\"\\\"\\\"从模型输出中解��� JSON 列表。\\\"\\\"\\\"\\n    try:\\n        return json.loads(text)\\n    except json.JSONDecodeError:\\n        start = text.find(\\\"[\\\")\\n        end = text.rfind(\\\"]\\\") + 1\\n        if start >= 0 and end > start:\\n            try:\\n                return json.loads(text[start:end])\\n            except json.JSONDecodeError:\\n                return []\\n    return []\\n\\n\\ndef format_reward_fn(completions: list[str], **kwargs) -> list[float]:\\n    \\\"\\\"\\\"格式奖励: 输出是否为合法 JSON 列表，每个元素是否含必需字段。\\\"\\\"\\\"\\n    rewards = []\\n    for text in completions:\\n        parsed = _parse_json_output(text)\\n        if not isinstance(parsed, list):\\n            rewards.append(0.0)\\n            continue\\n        if not parsed:\\n            rewards.append(0.1)\\n            continue\\n        valid = 0\\n        for item in parsed:\\n            if (isinstance(item, dict) and \\\"head\\\" in item\\n                    and \\\"relation\\\" in item and \\\"tail\\\" in item\\n                    and \\\"evidence\\\" in item\\n                    and isinstance(item[\\\"evidence\\\"], list)):\\n                valid += 1\\n        rewards.append(valid / len(parsed))\\n    return rewards\\n\\n\\ndef f1_reward_fn(completions: list[str], gold_triples: list[str], **kwargs) -> list[float]:\\n    \\\"\\\"\\\"F1 奖励: 预测三元组与 gold 三元组的 micro-F1。\\n\\n    gold_triples 是 JSON 字符串列表，每个元素对应一个 prompt 的 gold。\\n    completions 中每 num_generations 个对应同一个 prompt。\\n    \\\"\\\"\\\"\\n    num_gen = len(completions) // len(gold_triples)\\n    rewards = []\\n\\n    for i, text in enumerate(completions):\\n        gold_idx = i // num_gen\\n        gold_str = gold_triples[gold_idx]\\n        try:\\n            gold = json.loads(gold_str)\\n        except (json.JSONDecodeError, IndexError):\\n            rewards.append(0.0)\\n            continue\\n\\n        pred = _parse_json_output(text)\\n\\n        gold_set = set()\\n        for g in gold:\\n            gold_set.add((\\n                str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n            ))\\n\\n        pred_set = set()\\n        for p in pred:\\n            if isinstance(p, dict):\\n                pred_se\\n\\n... [截断: 输出过长，省略 12292 字符] ...\\n\\nnfig(\\n            load_in_4bit=True,\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\n            bnb_4bit_quant_type=\\\"nf4\\\",\\n            bnb_4bit_use_double_quant=True,\\n        )\\n        model_kwargs[\\\"device_map\\\"] = {\\\"\\\":  local_rank}\\n    else:\\n        model_kwargs[\\\"torch_dtype\\\"] = torch.bfloat16 if args.bf16 else torch.float16\\n    model = AutoModelForCausalLM.from_pretrained(args.model_name, **model_kwargs)\\n\\n    if args.sft_adapter:\\n        logger.info(\\\"Loading SFT adapter from %s\\\", args.sft_adapter)\\n        model = PeftModel.from_pretrained(model, args.sft_adapter)\\n        model = model.merge_and_unload()\\n\\n    reward_fns = [\\n        WeightedRewardFn(format_reward_fn, args.format_reward_weight),\\n        WeightedRewardFn(f1_reward_fn, args.f1_reward_weight),\\n    ]\\n\\n    if args.stage >= 2 and args.ced_reward_weight > 0:\\n        mode = \\\"flat_nli\\\" if args.stage == 2 else \\\"ced\\\"\\n        num_gpus = int(os.environ.get(\\\"WORLD_SIZE\\\", 1))\\n        steps_per_epoch = math.ceil(\\n            len(train_dataset) / (args.per_device_batch_size * num_gpus * args.gradient_accumulation_steps)\\n        )\\n        total_steps = steps_per_epoch * args.num_epochs\\n        ced_wrapper = CEDRewardWrapper(\\n            nli_model=args.nli_model,\\n            mode=mode,\\n            device=args.reward_device,\\n            tau_start=args.tau_start,\\n            tau_end=args.tau_end,\\n            total_steps=total_steps,\\n        )\\n        reward_fns.append(WeightedRewardFn(ced_wrapper, args.ced_reward_weight))\\n        logger.info(\\n            \\\"Stage %d: using %s reward, tau %.2f→%.2f over %d steps\\\",\\n            args.stage, mode, args.tau_start, args.tau_end, total_steps,\\n        )\\n    else:\\n        logger.info(\\\"Extraction-only mode: format + F1 rewards (stage=%d, ced_weight=%.1f)\\\", args.stage, args.ced_reward_weight)\\n\\n    lora_config = LoraConfig(\\n        task_type=TaskType.CAUSAL_LM,\\n        r=args.lora_rank,\\n        lora_alpha=args.lora_alpha,\\n        lora_dropout=0.05,\\n        target_modules=[\\\"q_proj\\\", \\\"k_proj\\\", \\\"v_proj\\\", \\\"o_proj\\\",\\n                         \\\"gate_proj\\\", \\\"up_proj\\\", \\\"down_proj\\\"],\\n    )\\n\\n    save_strategy = \\\"steps\\\" if args.save_steps else \\\"epoch\\\"\\n    save_steps = args.save_steps if args.save_steps else None\\n\\n    grpo_config_kwargs = dict(\\n        output_dir=args.output_dir,\\n        num_train_epochs=args.num_epochs,\\n        per_device_train_batch_size=args.per_device_batch_size,\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\n        learning_rate=args.learning_rate,\\n        bf16=args.bf16,\\n        logging_steps=5,\\n        save_strategy=save_strategy,\\n        save_total_limit=args.save_total_limit,\\n        seed=args.seed,\\n        num_generations=args.num_generations,\\n        max_completion_length=args.max_new_tokens,\\n        report_to=\\\"wandb\\\" if \\\"WANDB_API_KEY\\\" in os.environ else \\\"none\\\",\\n        gradient_checkpointing=True,\\n        gradient_checkpointing_kwargs={\\\"use_reentrant\\\": False},\\n        deepspeed=args.deepspeed,\\n        num_iterations=args.num_iterations,\\n    )\\n    if save_steps:\\n        grpo_config_kwargs[\\\"save_steps\\\"] = save_steps\\n    if args.max_steps > 0:\\n        grpo_config_kwargs[\\\"max_steps\\\"] = args.max_steps\\n    if args.kl_coef > 0:\\n        grpo_config_kwargs[\\\"beta\\\"] = args.kl_coef\\n    grpo_config = GRPOConfig(**grpo_config_kwargs)\\n\\n    callbacks = [KLDivergenceCallback(max_kl=args.max_kl)]\\n\\n    trainer = GRPOTrainer(\\n        model=model,\\n        args=grpo_config,\\n        train_dataset=train_dataset,\\n        reward_funcs=reward_fns,\\n        peft_config=lora_config,\\n        processing_class=tokenizer,\\n        callbacks=callbacks,\\n    )\\n\\n    logger.info(\\\"Starting GRPO training (stage %d)...\\\", args.stage)\\n    trainer.train(resume_from_checkpoint=args.resume_from_checkpoint)\\n\\n    logger.info(\\\"Saving model to %s\\\", args.output_dir)\\n    trainer.save_model(args.output_dir)\\n    tokenizer.save_pretrained(args.output_dir)\\n    logger.info(\\\"GRPO training (stage %d) complete.\\\", args.stage)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "fc6510ff-8822-4869-a315-6b5ef2077044",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"GRPO 训练脚本: 基于 TRL GRPOTrainer 的多阶段 curriculum 训练。\\\\n\\\\n支持单卡和多卡（DeepSpeed ZeRO-2/3）训练，默认 4-bit QLoRA。\\\\n\\\\n单卡:   python -m freige.training.grpo_trainer --stage 1 --output_dir ./grpo_s1\\\\n多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\\\\\\\n            -m freige.training.grpo_trainer --deepspeed configs/deepspeed_zero2.json \\\\\\\\\\\\n            --stage 1 --reward_device cpu\\\\n不量化: 加 --no_quantize\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport math\\\\nimport os\\\\nimport re\\\\nfrom pathlib import Path\\\\nfrom typing import Optional\\\\n\\\\nimport torch\\\\nfrom datasets import Dataset\\\\nfrom peft import LoraConfig, PeftModel, TaskType\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, TrainerCallback\\\\nfrom trl import GRPOConfig, GRPOTrainer\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nclass KLDivergenceCallback(TrainerCallback):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Monitor KL divergence — log only, no early stopping.\\\\n\\\\n    With QLoRA 4-bit, KL between ref and policy is unreliable due to\\\\n    quantization noise. We log it for diagnostics but do not penalize or stop.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, max_kl: float = 100.0):\\\\n        self.max_kl = max_kl\\\\n\\\\n    def on_log(self, args, state, control, logs=None, **kwargs):\\\\n        if logs and \\\\\\\"kl\\\\\\\" in logs:\\\\n            kl = logs[\\\\\\\"kl\\\\\\\"]\\\\n            if kl > self.max_kl:\\\\n                logger.warning(\\\\\\\"KL divergence %.2f exceeds monitoring threshold %.1f (monitoring only, not stopping)\\\\\\\", kl, self.max_kl)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are an information extraction model. Given a document with numbered sentences \\\\\\\"\\\\n    \\\\\\\"and a list of entities, extract all relation triples. For each triple, provide the \\\\\\\"\\\\n    \\\\\\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\\\\\"\\\\n    \\\\\\\"Output as a JSON list.\\\\\\\"\\\\n)\\\\n\\\\n\\\\ndef _parse_json_output(text: str) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"从模型输出中解��� JSON 列表。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    try:\\\\n        return json.loads(text)\\\\n    except json.JSONDecodeError:\\\\n        start = text.find(\\\\\\\"[\\\\\\\")\\\\n        end = text.rfind(\\\\\\\"]\\\\\\\") + 1\\\\n        if start >= 0 and end > start:\\\\n            try:\\\\n                return json.loads(text[start:end])\\\\n            except json.JSONDecodeError:\\\\n                return []\\\\n    return []\\\\n\\\\n\\\\ndef format_reward_fn(completions: list[str], **kwargs) -> list[float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"格式奖励: 输出是否为合法 JSON 列表，每个元素是否含必需字段。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    rewards = []\\\\n    for text in completions:\\\\n        parsed = _parse_json_output(text)\\\\n        if not isinstance(parsed, list):\\\\n            rewards.append(0.0)\\\\n            continue\\\\n        if not parsed:\\\\n            rewards.append(0.1)\\\\n            continue\\\\n        valid = 0\\\\n        for item in parsed:\\\\n            if (isinstance(item, dict) and \\\\\\\"head\\\\\\\" in item\\\\n                    and \\\\\\\"relation\\\\\\\" in item and \\\\\\\"tail\\\\\\\" in item\\\\n                    and \\\\\\\"evidence\\\\\\\" in item\\\\n                    and isinstance(item[\\\\\\\"evidence\\\\\\\"], list)):\\\\n                valid += 1\\\\n        rewards.append(valid / len(parsed))\\\\n    return rewards\\\\n\\\\n\\\\ndef f1_reward_fn(completions: list[str], gold_triples: list[str], **kwargs) -> list[float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"F1 奖励: 预测三元组与 gold 三元组的 micro-F1。\\\\n\\\\n    gold_triples 是 JSON 字符串列表，每个元素对应一个 prompt 的 gold。\\\\n    completions 中每 num_generations 个对应同一个 prompt。\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    num_gen = len(completions) // len(gold_triples)\\\\n    rewards = []\\\\n\\\\n    for i, text in enumerate(completions):\\\\n        gold_idx = i // num_gen\\\\n        gold_str = gold_triples[gold_idx]\\\\n        try:\\\\n            gold = json.loads(gold_str)\\\\n        except (json.JSONDecodeError, IndexError):\\\\n            rewards.append(0.0)\\\\n            continue\\\\n\\\\n        pred = _parse_json_output(text)\\\\n\\\\n        gold_set = set()\\\\n        for g in gold:\\\\n            gold_set.add((\\\\n                str(g.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(g.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(g.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            ))\\\\n\\\\n        pred_set = set()\\\\n        for p in pred:\\\\n            if isinstance(p, dict):\\\\n                pred_se\\\\n\\\\n... [截断: 输出过长，省略 12292 字符] ...\\\\n\\\\nnfig(\\\\n            load_in_4bit=True,\\\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\\\n            bnb_4bit_quant_type=\\\\\\\"nf4\\\\\\\",\\\\n            bnb_4bit_use_double_quant=True,\\\\n        )\\\\n        model_kwargs[\\\\\\\"device_map\\\\\\\"] = {\\\\\\\"\\\\\\\":  local_rank}\\\\n    else:\\\\n        model_kwargs[\\\\\\\"torch_dtype\\\\\\\"] = torch.bfloat16 if args.bf16 else torch.float16\\\\n    model = AutoModelForCausalLM.from_pretrained(args.model_name, **model_kwargs)\\\\n\\\\n    if args.sft_adapter:\\\\n        logger.info(\\\\\\\"Loading SFT adapter from %s\\\\\\\", args.sft_adapter)\\\\n        model = PeftModel.from_pretrained(model, args.sft_adapter)\\\\n        model = model.merge_and_unload()\\\\n\\\\n    reward_fns = [\\\\n        WeightedRewardFn(format_reward_fn, args.format_reward_weight),\\\\n        WeightedRewardFn(f1_reward_fn, args.f1_reward_weight),\\\\n    ]\\\\n\\\\n    if args.stage >= 2 and args.ced_reward_weight > 0:\\\\n        mode = \\\\\\\"flat_nli\\\\\\\" if args.stage == 2 else \\\\\\\"ced\\\\\\\"\\\\n        num_gpus = int(os.environ.get(\\\\\\\"WORLD_SIZE\\\\\\\", 1))\\\\n        steps_per_epoch = math.ceil(\\\\n            len(train_dataset) / (args.per_device_batch_size * num_gpus * args.gradient_accumulation_steps)\\\\n        )\\\\n        total_steps = steps_per_epoch * args.num_epochs\\\\n        ced_wrapper = CEDRewardWrapper(\\\\n            nli_model=args.nli_model,\\\\n            mode=mode,\\\\n            device=args.reward_device,\\\\n            tau_start=args.tau_start,\\\\n            tau_end=args.tau_end,\\\\n            total_steps=total_steps,\\\\n        )\\\\n        reward_fns.append(WeightedRewardFn(ced_wrapper, args.ced_reward_weight))\\\\n        logger.info(\\\\n            \\\\\\\"Stage %d: using %s reward, tau %.2f→%.2f over %d steps\\\\\\\",\\\\n            args.stage, mode, args.tau_start, args.tau_end, total_steps,\\\\n        )\\\\n    else:\\\\n        logger.info(\\\\\\\"Extraction-only mode: format + F1 rewards (stage=%d, ced_weight=%.1f)\\\\\\\", args.stage, args.ced_reward_weight)\\\\n\\\\n    lora_config = LoraConfig(\\\\n        task_type=TaskType.CAUSAL_LM,\\\\n        r=args.lora_rank,\\\\n        lora_alpha=args.lora_alpha,\\\\n        lora_dropout=0.05,\\\\n        target_modules=[\\\\\\\"q_proj\\\\\\\", \\\\\\\"k_proj\\\\\\\", \\\\\\\"v_proj\\\\\\\", \\\\\\\"o_proj\\\\\\\",\\\\n                         \\\\\\\"gate_proj\\\\\\\", \\\\\\\"up_proj\\\\\\\", \\\\\\\"down_proj\\\\\\\"],\\\\n    )\\\\n\\\\n    save_strategy = \\\\\\\"steps\\\\\\\" if args.save_steps else \\\\\\\"epoch\\\\\\\"\\\\n    save_steps = args.save_steps if args.save_steps else None\\\\n\\\\n    grpo_config_kwargs = dict(\\\\n        output_dir=args.output_dir,\\\\n        num_train_epochs=args.num_epochs,\\\\n        per_device_train_batch_size=args.per_device_batch_size,\\\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\\\n        learning_rate=args.learning_rate,\\\\n        bf16=args.bf16,\\\\n        logging_steps=5,\\\\n        save_strategy=save_strategy,\\\\n        save_total_limit=args.save_total_limit,\\\\n        seed=args.seed,\\\\n        num_generations=args.num_generations,\\\\n        max_completion_length=args.max_new_tokens,\\\\n        report_to=\\\\\\\"wandb\\\\\\\" if \\\\\\\"WANDB_API_KEY\\\\\\\" in os.environ else \\\\\\\"none\\\\\\\",\\\\n        gradient_checkpointing=True,\\\\n        gradient_checkpointing_kwargs={\\\\\\\"use_reentrant\\\\\\\": False},\\\\n        deepspeed=args.deepspeed,\\\\n        num_iterations=args.num_iterations,\\\\n    )\\\\n    if save_steps:\\\\n        grpo_config_kwargs[\\\\\\\"save_steps\\\\\\\"] = save_steps\\\\n    if args.max_steps > 0:\\\\n        grpo_config_kwargs[\\\\\\\"max_steps\\\\\\\"] = args.max_steps\\\\n    if args.kl_coef > 0:\\\\n        grpo_config_kwargs[\\\\\\\"beta\\\\\\\"] = args.kl_coef\\\\n    grpo_config = GRPOConfig(**grpo_config_kwargs)\\\\n\\\\n    callbacks = [KLDivergenceCallback(max_kl=args.max_kl)]\\\\n\\\\n    trainer = GRPOTrainer(\\\\n        model=model,\\\\n        args=grpo_config,\\\\n        train_dataset=train_dataset,\\\\n        reward_funcs=reward_fns,\\\\n        peft_config=lora_config,\\\\n        processing_class=tokenizer,\\\\n        callbacks=callbacks,\\\\n    )\\\\n\\\\n    logger.info(\\\\\\\"Starting GRPO training (stage %d)...\\\\\\\", args.stage)\\\\n    trainer.train(resume_from_checkpoint=args.resume_from_checkpoint)\\\\n\\\\n    logger.info(\\\\\\\"Saving model to %s\\\\\\\", args.output_dir)\\\\n    trainer.save_model(args.output_dir)\\\\n    tokenizer.save_pretrained(args.output_dir)\\\\n    logger.info(\\\\\\\"GRPO training (stage %d) complete.\\\\\\\", args.stage)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"GRPO 训练脚本: 基于 TRL GRPOTrainer 的多阶段 curriculum 训练。\\n\\n支持单卡和多卡（DeepSpeed ZeRO-2/3）训练，默认 4-bit QLoRA。\\n\\n单卡:   python -m freige.training.grpo_trainer --stage 1 --output_dir ./grpo_s1\\n多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\n            -m freige.training.grpo_trainer --deepspeed configs/deepspeed_zero2.json \\\\\\n            --stage 1 --reward_device cpu\\n不量化: 加 --no_quantize\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport math\\nimport os\\nimport re\\nfrom pathlib import Path\\nfrom typing import Optional\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom peft import LoraConfig, PeftModel, TaskType\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, TrainerCallback\\nfrom trl import GRPOConfig, GRPOTrainer\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nclass KLDivergenceCallback(TrainerCallback):\\n    \\\"\\\"\\\"Monitor KL divergence — log only, no early stopping.\\n\\n    With QLoRA 4-bit, KL between ref and policy is unreliable due to\\n    quantization noise. We log it for diagnostics but do not penalize or stop.\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, max_kl: float = 100.0):\\n        self.max_kl = max_kl\\n\\n    def on_log(self, args, state, control, logs=None, **kwargs):\\n        if logs and \\\"kl\\\" in logs:\\n            kl = logs[\\\"kl\\\"]\\n            if kl > self.max_kl:\\n                logger.warning(\\\"KL divergence %.2f exceeds monitoring threshold %.1f (monitoring only, not stopping)\\\", kl, self.max_kl)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\n\\ndef _parse_json_output(text: str) -> list[dict]:\\n    \\\"\\\"\\\"从模型输出中解��� JSON 列表。\\\"\\\"\\\"\\n    try:\\n        return json.loads(text)\\n    except json.JSONDecodeError:\\n        start = text.find(\\\"[\\\")\\n        end = text.rfind(\\\"]\\\") + 1\\n        if start >= 0 and end > start:\\n            try:\\n                return json.loads(text[start:end])\\n            except json.JSONDecodeError:\\n                return []\\n    return []\\n\\n\\ndef format_reward_fn(completions: list[str], **kwargs) -> list[float]:\\n    \\\"\\\"\\\"格式奖励: 输出是否为合法 JSON 列表，每个元素是否含必需字段。\\\"\\\"\\\"\\n    rewards = []\\n    for text in completions:\\n        parsed = _parse_json_output(text)\\n        if not isinstance(parsed, list):\\n            rewards.append(0.0)\\n            continue\\n        if not parsed:\\n            rewards.append(0.1)\\n            continue\\n        valid = 0\\n        for item in parsed:\\n            if (isinstance(item, dict) and \\\"head\\\" in item\\n                    and \\\"relation\\\" in item and \\\"tail\\\" in item\\n                    and \\\"evidence\\\" in item\\n                    and isinstance(item[\\\"evidence\\\"], list)):\\n                valid += 1\\n        rewards.append(valid / len(parsed))\\n    return rewards\\n\\n\\ndef f1_reward_fn(completions: list[str], gold_triples: list[str], **kwargs) -> list[float]:\\n    \\\"\\\"\\\"F1 奖励: 预测三元组与 gold 三元组的 micro-F1。\\n\\n    gold_triples 是 JSON 字符串列表，每个元素对应一个 prompt 的 gold。\\n    completions 中每 num_generations 个对应同一个 prompt。\\n    \\\"\\\"\\\"\\n    num_gen = len(completions) // len(gold_triples)\\n    rewards = []\\n\\n    for i, text in enumerate(completions):\\n        gold_idx = i // num_gen\\n        gold_str = gold_triples[gold_idx]\\n        try:\\n            gold = json.loads(gold_str)\\n        except (json.JSONDecodeError, IndexError):\\n            rewards.append(0.0)\\n            continue\\n\\n        pred = _parse_json_output(text)\\n\\n        gold_set = set()\\n        for g in gold:\\n            gold_set.add((\\n                str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n            ))\\n\\n        pred_set = set()\\n        for p in pred:\\n            if isinstance(p, dict):\\n                pred_se\\n\\n... [截断: 输出过长，省略 12292 字符] ...\\n\\nnfig(\\n            load_in_4bit=True,\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\n            bnb_4bit_quant_type=\\\"nf4\\\",\\n            bnb_4bit_use_double_quant=True,\\n        )\\n        model_kwargs[\\\"device_map\\\"] = {\\\"\\\":  local_rank}\\n    else:\\n        model_kwargs[\\\"torch_dtype\\\"] = torch.bfloat16 if args.bf16 else torch.float16\\n    model = AutoModelForCausalLM.from_pretrained(args.model_name, **model_kwargs)\\n\\n    if args.sft_adapter:\\n        logger.info(\\\"Loading SFT adapter from %s\\\", args.sft_adapter)\\n        model = PeftModel.from_pretrained(model, args.sft_adapter)\\n        model = model.merge_and_unload()\\n\\n    reward_fns = [\\n        WeightedRewardFn(format_reward_fn, args.format_reward_weight),\\n        WeightedRewardFn(f1_reward_fn, args.f1_reward_weight),\\n    ]\\n\\n    if args.stage >= 2 and args.ced_reward_weight > 0:\\n        mode = \\\"flat_nli\\\" if args.stage == 2 else \\\"ced\\\"\\n        num_gpus = int(os.environ.get(\\\"WORLD_SIZE\\\", 1))\\n        steps_per_epoch = math.ceil(\\n            len(train_dataset) / (args.per_device_batch_size * num_gpus * args.gradient_accumulation_steps)\\n        )\\n        total_steps = steps_per_epoch * args.num_epochs\\n        ced_wrapper = CEDRewardWrapper(\\n            nli_model=args.nli_model,\\n            mode=mode,\\n            device=args.reward_device,\\n            tau_start=args.tau_start,\\n            tau_end=args.tau_end,\\n            total_steps=total_steps,\\n        )\\n        reward_fns.append(WeightedRewardFn(ced_wrapper, args.ced_reward_weight))\\n        logger.info(\\n            \\\"Stage %d: using %s reward, tau %.2f→%.2f over %d steps\\\",\\n            args.stage, mode, args.tau_start, args.tau_end, total_steps,\\n        )\\n    else:\\n        logger.info(\\\"Extraction-only mode: format + F1 rewards (stage=%d, ced_weight=%.1f)\\\", args.stage, args.ced_reward_weight)\\n\\n    lora_config = LoraConfig(\\n        task_type=TaskType.CAUSAL_LM,\\n        r=args.lora_rank,\\n        lora_alpha=args.lora_alpha,\\n        lora_dropout=0.05,\\n        target_modules=[\\\"q_proj\\\", \\\"k_proj\\\", \\\"v_proj\\\", \\\"o_proj\\\",\\n                         \\\"gate_proj\\\", \\\"up_proj\\\", \\\"down_proj\\\"],\\n    )\\n\\n    save_strategy = \\\"steps\\\" if args.save_steps else \\\"epoch\\\"\\n    save_steps = args.save_steps if args.save_steps else None\\n\\n    grpo_config_kwargs = dict(\\n        output_dir=args.output_dir,\\n        num_train_epochs=args.num_epochs,\\n        per_device_train_batch_size=args.per_device_batch_size,\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\n        learning_rate=args.learning_rate,\\n        bf16=args.bf16,\\n        logging_steps=5,\\n        save_strategy=save_strategy,\\n        save_total_limit=args.save_total_limit,\\n        seed=args.seed,\\n        num_generations=args.num_generations,\\n        max_completion_length=args.max_new_tokens,\\n        report_to=\\\"wandb\\\" if \\\"WANDB_API_KEY\\\" in os.environ else \\\"none\\\",\\n        gradient_checkpointing=True,\\n        gradient_checkpointing_kwargs={\\\"use_reentrant\\\": False},\\n        deepspeed=args.deepspeed,\\n        num_iterations=args.num_iterations,\\n    )\\n    if save_steps:\\n        grpo_config_kwargs[\\\"save_steps\\\"] = save_steps\\n    if args.max_steps > 0:\\n        grpo_config_kwargs[\\\"max_steps\\\"] = args.max_steps\\n    if args.kl_coef > 0:\\n        grpo_config_kwargs[\\\"beta\\\"] = args.kl_coef\\n    grpo_config = GRPOConfig(**grpo_config_kwargs)\\n\\n    callbacks = [KLDivergenceCallback(max_kl=args.max_kl)]\\n\\n    trainer = GRPOTrainer(\\n        model=model,\\n        args=grpo_config,\\n        train_dataset=train_dataset,\\n        reward_funcs=reward_fns,\\n        peft_config=lora_config,\\n        processing_class=tokenizer,\\n        callbacks=callbacks,\\n    )\\n\\n    logger.info(\\\"Starting GRPO training (stage %d)...\\\", args.stage)\\n    trainer.train(resume_from_checkpoint=args.resume_from_checkpoint)\\n\\n    logger.info(\\\"Saving model to %s\\\", args.output_dir)\\n    trainer.save_model(args.output_dir)\\n    tokenizer.save_pretrained(args.output_dir)\\n    logger.info(\\\"GRPO training (stage %d) complete.\\\", args.stage)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016RaovbUU2jmn8ZjUNjytE7`</summary>
+
+```json
+{
+  "query": "MO-GRPO reward hacking multi-objective normalization variance reweighting"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "8181a08d-e63f-4d9c-803c-0d109c47aa74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DLEE7DWGkhHWz9qiDEpNCL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9428,
+      "cache_read_input_tokens": 26493,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9428
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017cWUu9HKyJKxDbXZsEmAGm`</summary>
+
+```json
+{
+  "query": "GRPO QLoRA learning rate 5e-6 1e-5 best practice Qwen 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "f9232f8a-7b2d-4ab5-a7b1-cb7b21888513",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DLEE7DWGkhHWz9qiDEpNCL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9428,
+      "cache_read_input_tokens": 26493,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9428
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T19:17:12.548Z_
+
+<details><summary>↩ Tool result · `toolu_016RaovbUU2jmn8ZjUNjytE7`</summary>
+
+```text
+Web search results for query: "MO-GRPO reward hacking multi-objective normalization variance reweighting"
+
+Links: [{"title":"[2509.22047] MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems","url":"https://arxiv.org/abs/2509.22047"},{"title":"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems","url":"https://arxiv.org/html/2509.22047"},{"title":"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250922047I/abstract"},{"title":"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems | Request PDF","url":"https://www.researchgate.net/publication/395944746_MO-GRPO_Mitigating_Reward_Hacking_of_Group_Relative_Policy_Optimization_on_Multi-Objective_Problems"},{"title":"GitHub - CyberAgentAILab/MO-GRPO: MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems (Submitted on 26 Sep 2025) · GitHub","url":"https://github.com/CyberAgentAILab/MO-GRPO"},{"title":"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems | Takara TLDR","url":"https://tldr.takara.ai/p/2509.22047"},{"title":"Constrained Group Relative Policy Optimization","url":"https://arxiv.org/html/2602.05863.pdf"},{"title":"MO-GRPO/README.md at main · CyberAgentAILab/MO-GRPO","url":"https://github.com/CyberAgentAILab/MO-GRPO/blob/main/README.md"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=GRPO+objectives"},{"title":"Multi-Reward GRPO Policy Optimization","url":"https://www.emergentmind.com/topics/multi-reward-group-relative-policy-optimization-grpo"}]
+
+I found detailed information about MO-GRPO. Here's a summary of the search results:
+
+## MO-GRPO: Mitigating Reward Hacking in Multi-Objective GRPO
+
+MO-GRPO is an extension of GRPO with a simple normalization method to reweight the reward functions automatically according to the variances of their values.
+
+### The Problem
+
+In multi-objective settings, GRPO is vulnerable to reward hacking, optimizing only one of the objectives at the cost of the others. Specifically, the advantage function of GRPO is biased toward reward functions with high variance, making the algorithm susceptible to reward-hacking behaviors in multi-objective settings.
+
+### The Solution
+
+MO-GRPO normalizes the advantage functions for each objective so that their variances are scaled evenly, ensuring that all reward functions contribute equally to updating the policy, regardless of their variance scales.
+
+Standard GRPO normalizes after summing rewards, so objectives with larger scale/variance can dominate, while MO-GRPO equalizes scales across objectives before aggregation, making optimization less sensitive to reward magnitude mismatch and improving robustness in multi-objective settings.
+
+### Key Properties
+
+MO-GRPO ensures that all reward functions contribute evenly to the loss function while preserving the order of preferences, eliminating the need for manual tuning of the reward functions' scales. Additionally, it is invariant with the rescaling of the reward functions with positive affine transformation.
+
+### Evaluation
+
+MO-GRPO is evaluated experimentally in four domains: (i) the multi-armed bandits problem, (ii) simulated control task (Mo-Gymnasium), (iii) machine translation tasks on the WMT benchmark (En-Ja, En-Zh), and (iv) instruction following task.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "f96b9963-2925-4850-a0b2-13b7e9c5c431",
+  "tool_use_result": {
+    "query": "MO-GRPO reward hacking multi-objective normalization variance reweighting",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011USH7UTSnYEuCr2u9yexYr",
+        "content": [
+          {
+            "title": "[2509.22047] MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems",
+            "url": "https://arxiv.org/abs/2509.22047"
+          },
+          {
+            "title": "MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems",
+            "url": "https://arxiv.org/html/2509.22047"
+          },
+          {
+            "title": "MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250922047I/abstract"
+          },
+          {
+            "title": "MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems | Request PDF",
+            "url": "https://www.researchgate.net/publication/395944746_MO-GRPO_Mitigating_Reward_Hacking_of_Group_Relative_Policy_Optimization_on_Multi-Objective_Problems"
+          },
+          {
+            "title": "GitHub - CyberAgentAILab/MO-GRPO: MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems (Submitted on 26 Sep 2025) · GitHub",
+            "url": "https://github.com/CyberAgentAILab/MO-GRPO"
+          },
+          {
+            "title": "MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems | Takara TLDR",
+            "url": "https://tldr.takara.ai/p/2509.22047"
+          },
+          {
+            "title": "Constrained Group Relative Policy Optimization",
+            "url": "https://arxiv.org/html/2602.05863.pdf"
+          },
+          {
+            "title": "MO-GRPO/README.md at main · CyberAgentAILab/MO-GRPO",
+            "url": "https://github.com/CyberAgentAILab/MO-GRPO/blob/main/README.md"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=GRPO+objectives"
+          },
+          {
+            "title": "Multi-Reward GRPO Policy Optimization",
+            "url": "https://www.emergentmind.com/topics/multi-reward-group-relative-policy-optimization-grpo"
+          }
+        ]
+      },
+      "I found detailed information about MO-GRPO. Here's a summary of the search results:\n\n## MO-GRPO: Mitigating Reward Hacking in Multi-Objective GRPO\n\nMO-GRPO is an extension of GRPO with a simple normalization method to reweight the reward functions automatically according to the variances of their values.\n\n### The Problem\n\nIn multi-objective settings, GRPO is vulnerable to reward hacking, optimizing only one of the objectives at the cost of the others. Specifically, the advantage function of GRPO is biased toward reward functions with high variance, making the algorithm susceptible to reward-hacking behaviors in multi-objective settings.\n\n### The Solution\n\nMO-GRPO normalizes the advantage functions for each objective so that their variances are scaled evenly, ensuring that all reward functions contribute equally to updating the policy, regardless of their variance scales.\n\nStandard GRPO normalizes after summing rewards, so objectives with larger scale/variance can dominate, while MO-GRPO equalizes scales across objectives before aggregation, making optimization less sensitive to reward magnitude mismatch and improving robustness in multi-objective settings.\n\n### Key Properties\n\nMO-GRPO ensures that all reward functions contribute evenly to the loss function while preserving the order of preferences, eliminating the need for manual tuning of the reward functions' scales. Additionally, it is invariant with the rescaling of the reward functions with positive affine transformation.\n\n### Evaluation\n\nMO-GRPO is evaluated experimentally in four domains: (i) the multi-armed bandits problem, (ii) simulated control task (Mo-Gymnasium), (iii) machine translation tasks on the WMT benchmark (En-Ja, En-Zh), and (iv) instruction following task."
+    ],
+    "durationSeconds": 7.438441314999997
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T19:17:12.705Z_
+
+<details><summary>↩ Tool result · `toolu_017cWUu9HKyJKxDbXZsEmAGm`</summary>
+
+```text
+Web search results for query: "GRPO QLoRA learning rate 5e-6 1e-5 best practice Qwen 2025 2026"
+
+Links: [{"title":"GitHub - 2U1/Qwen-VL-Series-Finetune: An open-source implementaion for fine-tuning Qwen-VL series by Alibaba Cloud. · GitHub","url":"https://github.com/2U1/Qwen-VL-Series-Finetune"},{"title":"Fine-Tune LLMs with LoRA and QLoRA: 2026 Guide - DEV Community","url":"https://dev.to/jangwook_kim_e31e7291ad98/fine-tune-llms-with-lora-and-qlora-2026-guide-33lf"},{"title":"MS-SWIFT - Qwen","url":"https://qwen.readthedocs.io/en/latest/training/ms_swift.html"},{"title":"How to Fine-Tune LLMs in 2026: Costs, GPUs, and Code | Spheron Blog","url":"https://www.spheron.network/blog/how-to-fine-tune-llm-2026/"},{"title":"Reinforcement Learning (RL) Guide | Unsloth Documentation","url":"https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide"},{"title":"Qwen3.5 Fine-tuning Guide | Unsloth Documentation","url":"https://unsloth.ai/docs/models/qwen3.5/fine-tune"},{"title":"LoRA fine-tuning Hyperparameters Guide | Unsloth Documentation","url":"https://unsloth.ai/docs/get-started/fine-tuning-llms-guide/lora-hyperparameters-guide"},{"title":"Qwen3 - How to Run & Fine-tune | Unsloth Documentation","url":"https://unsloth.ai/docs/models/qwen3-how-to-run-and-fine-tune"},{"title":"GitHub - modelscope/ms-swift: Use PEFT or Full-parameter to CPT/SFT/DPO/GRPO 600+ LLMs (Qwen3.6, DeepSeek-R1, GLM-5.1, InternLM3, Llama4, ...) and 300+ MLLMs (Qwen3-VL, Qwen3-Omni, InternVL3.5, Ovis2.5, GLM4.5v, Gemma4, Llava, Phi4, ...) (AAAI 2025). · GitHub","url":"https://github.com/modelscope/ms-swift"},{"title":"Predictive Scaling Laws for Efficient GRPO Training of Large Reasoning Models","url":"https://arxiv.org/html/2507.18014v1"}]
+
+Based on the search results, here's what I found about GRPO QLoRA learning rate best practices for Qwen models in 2025-2026:
+
+## Learning Rate Recommendations
+
+For Reinforcement Learning (DPO, GRPO etc.), a learning rate of 5e-6 is recommended. This appears to be the standard guidance across current training frameworks.
+
+## GRPO Training Examples with Qwen
+
+The official MS-SWIFT documentation for Qwen models shows practical examples: A GRPO training example for Qwen3-8B uses a learning rate of 1e-6, which is actually lower than the 5e-6 recommendation, suggesting that for large-scale GRPO training, even smaller learning rates may be appropriate.
+
+## QLoRA + GRPO Compatibility
+
+GRPO is now supported with QLoRA and LoRA, with Unsloth enabling significantly reduced VRAM usage compared to standard implementations.
+
+## Key Considerations
+
+For vision models combined with language models, vision_model usually works better with a learning rate about 5x to 10x smaller than language_model, which may also apply to different training scenarios.
+
+The 5e-6 to 1e-5 range you mentioned appears sound based on current best practices, with 5e-6 being the more conservative and recommended starting point for GRPO with QLoRA specifically.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "746d3b54-330e-44a9-85de-a4effe3e1cbd",
+  "tool_use_result": {
+    "query": "GRPO QLoRA learning rate 5e-6 1e-5 best practice Qwen 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EpKCPHfVRcBric81s5vgbo",
+        "content": [
+          {
+            "title": "GitHub - 2U1/Qwen-VL-Series-Finetune: An open-source implementaion for fine-tuning Qwen-VL series by Alibaba Cloud. · GitHub",
+            "url": "https://github.com/2U1/Qwen-VL-Series-Finetune"
+          },
+          {
+            "title": "Fine-Tune LLMs with LoRA and QLoRA: 2026 Guide - DEV Community",
+            "url": "https://dev.to/jangwook_kim_e31e7291ad98/fine-tune-llms-with-lora-and-qlora-2026-guide-33lf"
+          },
+          {
+            "title": "MS-SWIFT - Qwen",
+            "url": "https://qwen.readthedocs.io/en/latest/training/ms_swift.html"
+          },
+          {
+            "title": "How to Fine-Tune LLMs in 2026: Costs, GPUs, and Code | Spheron Blog",
+            "url": "https://www.spheron.network/blog/how-to-fine-tune-llm-2026/"
+          },
+          {
+            "title": "Reinforcement Learning (RL) Guide | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide"
+          },
+          {
+            "title": "Qwen3.5 Fine-tuning Guide | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/models/qwen3.5/fine-tune"
+          },
+          {
+            "title": "LoRA fine-tuning Hyperparameters Guide | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/get-started/fine-tuning-llms-guide/lora-hyperparameters-guide"
+          },
+          {
+            "title": "Qwen3 - How to Run & Fine-tune | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/models/qwen3-how-to-run-and-fine-tune"
+          },
+          {
+            "title": "GitHub - modelscope/ms-swift: Use PEFT or Full-parameter to CPT/SFT/DPO/GRPO 600+ LLMs (Qwen3.6, DeepSeek-R1, GLM-5.1, InternLM3, Llama4, ...) and 300+ MLLMs (Qwen3-VL, Qwen3-Omni, InternVL3.5, Ovis2.5, GLM4.5v, Gemma4, Llava, Phi4, ...) (AAAI 2025). · GitHub",
+            "url": "https://github.com/modelscope/ms-swift"
+          },
+          {
+            "title": "Predictive Scaling Laws for Efficient GRPO Training of Large Reasoning Models",
+            "url": "https://arxiv.org/html/2507.18014v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about GRPO QLoRA learning rate best practices for Qwen models in 2025-2026:\n\n## Learning Rate Recommendations\n\nFor Reinforcement Learning (DPO, GRPO etc.), a learning rate of 5e-6 is recommended. This appears to be the standard guidance across current training frameworks.\n\n## GRPO Training Examples with Qwen\n\nThe official MS-SWIFT documentation for Qwen models shows practical examples: A GRPO training example for Qwen3-8B uses a learning rate of 1e-6, which is actually lower than the 5e-6 recommendation, suggesting that for large-scale GRPO training, even smaller learning rates may be appropriate.\n\n## QLoRA + GRPO Compatibility\n\nGRPO is now supported with QLoRA and LoRA, with Unsloth enabling significantly reduced VRAM usage compared to standard implementations.\n\n## Key Considerations\n\nFor vision models combined with language models, vision_model usually works better with a learning rate about 5x to 10x smaller than language_model, which may also apply to different training scenarios.\n\nThe 5e-6 to 1e-5 range you mentioned appears sound based on current best practices, with 5e-6 being the more conservative and recommended starting point for GRPO with QLoRA specifically."
+    ],
+    "durationSeconds": 6.706219253000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have critical information. Let me read the truncated part of the grpo_trainer.py to see the CEDRewardWrapper and f1_reward_fn in full.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "23d54ada-c829-4e5f-83c9-dd607931cdf7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ujh7swcmYTXuSfZLNWB9P4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9689,
+      "cache_read_input_tokens": 35921,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9689
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+需要读 grpo_trainer.py 中被截断的 CEDRewardWrapper 和 f1_reward_fn 的完整逻辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "e66a31b1-38d4-4632-9e74-00f0c117b52a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ujh7swcmYTXuSfZLNWB9P4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9689,
+      "cache_read_input_tokens": 35921,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9689
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Je4HuLT8cvzQuHRrgVh4C8`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "grep -n \"class CEDRewardWrapper\\|def __call__\\|def ced_reward\\|f1_gate\\|pred_set\\|recall\\|precision\\|gold_set\" /root/autodl-tmp/freige/training/grpo_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "026b8407-589f-428f-a110-e3ad1ff3f018",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ujh7swcmYTXuSfZLNWB9P4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9689,
+      "cache_read_input_tokens": 35921,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9689
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T19:17:18.967Z_
+
+<details><summary>↩ Tool result · `toolu_01Je4HuLT8cvzQuHRrgVh4C8`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "5ba508a7-2cbf-43f6-b3de-088357d40c30",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Me9wSZxiCsjX55mXXSsCso`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "head -300 /root/autodl-tmp/freige/training/grpo_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "6d4294a2-9e81-4471-ab45-711804e2d2dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ujh7swcmYTXuSfZLNWB9P4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9689,
+      "cache_read_input_tokens": 35921,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9689
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T19:17:19.809Z_
+
+<details><summary>↩ Tool result · `toolu_01Me9wSZxiCsjX55mXXSsCso`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"GRPO 训练脚本: 基于 TRL GRPOTrainer 的多阶段 curriculum 训练。\\n\\n支持单卡和多卡（DeepSpeed ZeRO-2/3）训练，默认 4-bit QLoRA。\\n\\n单卡:   python -m freige.training.grpo_trainer --stage 1 --output_dir ./grpo_s1\\n多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\n            -m freige.training.grpo_trainer --deepspeed configs/deepspeed_zero2.json \\\\\\n            --stage 1 --reward_device cpu\\n不量化: 加 --no_quantize\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport math\\nimport os\\nimport re\\nfrom pathlib import Path\\nfrom typing import Optional\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom peft import LoraConfig, PeftModel, TaskType\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, TrainerCallback\\nfrom trl import GRPOConfig, GRPOTrainer\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nclass KLDivergenceCallback(TrainerCallback):\\n    \\\"\\\"\\\"Monitor KL divergence — log only, no early stopping.\\n\\n    With QLoRA 4-bit, KL between ref and policy is unreliable due to\\n    quantization noise. We log it for diagnostics but do not penalize or stop.\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, max_kl: float = 100.0):\\n        self.max_kl = max_kl\\n\\n    def on_log(self, args, state, control, logs=None, **kwargs):\\n        if logs and \\\"kl\\\" in logs:\\n            kl = logs[\\\"kl\\\"]\\n            if kl > self.max_kl:\\n                logger.warning(\\\"KL divergence %.2f exceeds monitoring threshold %.1f (monitoring only, not stopping)\\\", kl, self.max_kl)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\n\\ndef _parse_json_output(text: str) -> list[dict]:\\n    \\\"\\\"\\\"从模型输出中解��� JSON 列表。\\\"\\\"\\\"\\n    try:\\n        return json.loads(text)\\n    except json.JSONDecodeError:\\n        start = text.find(\\\"[\\\")\\n        end = text.rfind(\\\"]\\\") + 1\\n        if start >= 0 and end > start:\\n            try:\\n                return json.loads(text[start:end])\\n            except json.JSONDecodeError:\\n                return []\\n    return []\\n\\n\\ndef format_reward_fn(completions: list[str], **kwargs) -> list[float]:\\n    \\\"\\\"\\\"格式奖励: 输出是否为合法 JSON 列表，每个元素是否含必需字段。\\\"\\\"\\\"\\n    rewards = []\\n    for text in completions:\\n        parsed = _parse_json_output(text)\\n        if not isinstance(parsed, list):\\n            rewards.append(0.0)\\n            continue\\n        if not parsed:\\n            rewards.append(0.1)\\n            continue\\n        valid = 0\\n        for item in parsed:\\n            if (isinstance(item, dict) and \\\"head\\\" in item\\n                    and \\\"relation\\\" in item and \\\"tail\\\" in item\\n                    and \\\"evidence\\\" in item\\n                    and isinstance(item[\\\"evidence\\\"], list)):\\n                valid += 1\\n        rewards.append(valid / len(parsed))\\n    return rewards\\n\\n\\ndef f1_reward_fn(completions: list[str], gold_triples: list[str], **kwargs) -> list[float]:\\n    \\\"\\\"\\\"F1 奖励: 预测三元组与 gold 三元组的 micro-F1。\\n\\n    gold_triples 是 JSON 字符串列表，每个元素对应一个 prompt 的 gold。\\n    completions 中每 num_generations 个对应同一个 prompt。\\n    \\\"\\\"\\\"\\n    num_gen = len(completions) // len(gold_triples)\\n    rewards = []\\n\\n    for i, text in enumerate(completions):\\n        gold_idx = i // num_gen\\n        gold_str = gold_triples[gold_idx]\\n        try:\\n            gold = json.loads(gold_str)\\n        except (json.JSONDecodeError, IndexError):\\n            rewards.append(0.0)\\n            continue\\n\\n        pred = _parse_json_output(text)\\n\\n        gold_set = set()\\n        for g in gold:\\n            gold_set.add((\\n                str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n            ))\\n\\n        pred_set = set()\\n        for p in pred:\\n            if isinstance(p, dict):\\n                pred_se\\n\\n... [截断: 输出过长，省略 2189 字符] ...\\n\\n_sent_ids 和 hard_negative_sent_ids。\\n        \\\"\\\"\\\"\\n        current_tau = self.tau\\n        self._call_count += 1\\n        num_gen = len(completions) // len(all_sents)\\n        rewards = []\\n\\n        for i, text in enumerate(completions):\\n            prompt_idx = i // num_gen\\n            try:\\n                sents = json.loads(all_sents[prompt_idx])\\n                gold = json.loads(gold_triples[prompt_idx])\\n            except (json.JSONDecodeError, IndexError):\\n                rewards.append(0.0)\\n                continue\\n\\n            pred = _parse_json_output(text)\\n            if not pred:\\n                rewards.append(0.0)\\n                continue\\n\\n            gold_map = {}\\n            for g in gold:\\n                key = (\\n                    str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                    str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                    str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n                )\\n                gold_map[key] = g\\n\\n            # F1 gate: at least one predicted triple must match gold\\n            has_gold_match = False\\n            for p in pred:\\n                if isinstance(p, dict):\\n                    _pk = (\\n                        str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                        str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                        str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n                    )\\n                    if _pk in gold_map:\\n                        has_gold_match = True\\n                        break\\n            if not has_gold_match:\\n                rewards.append(0.0)\\n                continue\\n\\n            triple_rewards = []\\n            for p in pred:\\n                if not isinstance(p, dict):\\n                    continue\\n                pred_evi_ids = p.get(\\\"evidence\\\", [])\\n                if not isinstance(pred_evi_ids, list) or not pred_evi_ids:\\n                    triple_rewards.append(0.0)\\n                    continue\\n\\n                claim = self.verbalize(\\n                    str(p.get(\\\"head\\\") or \\\"\\\"),\\n                    str(p.get(\\\"relation\\\") or \\\"\\\"),\\n                    str(p.get(\\\"tail\\\") or \\\"\\\"),\\n                )\\n                cited_sents = [sents[idx] for idx in pred_evi_ids\\n                               if isinstance(idx, int) and 0 <= idx < len(sents)]\\n                if not cited_sents:\\n                    triple_rewards.append(0.0)\\n                    continue\\n\\n                key = (\\n                    str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                    str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                    str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n                )\\n                matched_gold = gold_map.get(key, {})\\n                hard_neg_ids = matched_gold.get(\\\"hard_negative_sent_ids\\\", [])\\n                hard_neg_sents = [sents[idx] for idx in hard_neg_ids\\n                                  if isinstance(idx, int) and 0 <= idx < len(sents)]\\n\\n                if self.mode == \\\"flat_nli\\\":\\n                    result = self.reward_model.compute_flat_nli_reward(\\n                        claim, cited_sents, tau=current_tau,\\n                    )\\n                else:\\n                    result = self.reward_model.compute_ced_reward(\\n                        claim, cited_sents, hard_neg_sents, tau=current_tau,\\n                    )\\n                triple_rewards.append(result[\\\"reward\\\"])\\n\\n            rewards.append(\\n                sum(triple_rewards) / len(triple_rewards) if triple_rewards else 0.0\\n            )\\n\\n        return rewards\\n\\n\\nclass WeightedRewardFn:\\n    \\\"\\\"\\\"Wrap a reward function with a scalar weight.\\\"\\\"\\\"\\n\\n    def __init__(self, fn, weight: float):\\n        self.__name__ = getattr(fn, \\\"__name__\\\", fn.__class__.__name__)\\n        self.fn = fn\\n        self.weight = weight\\n\\n    def __call__(self, *args, **kwargs):\\n        rewards = self.fn(*args, **kwargs)\\n        return [r * self.weight for r in rewards]\\n\\n\\ndef prepare_grpo_dataset(\\n    data_dir: str = None,\\n    split: str = \\\"train\\\",\\n    tokenizer=None,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "715e9cfa-5771-47c2-ba25-bd99212164a2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"GRPO 训练脚本: 基于 TRL GRPOTrainer 的多阶段 curriculum 训练。\\\\n\\\\n支持单卡和多卡（DeepSpeed ZeRO-2/3）训练，默认 4-bit QLoRA。\\\\n\\\\n单卡:   python -m freige.training.grpo_trainer --stage 1 --output_dir ./grpo_s1\\\\n多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\\\\\\\n            -m freige.training.grpo_trainer --deepspeed configs/deepspeed_zero2.json \\\\\\\\\\\\n            --stage 1 --reward_device cpu\\\\n不量化: 加 --no_quantize\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport math\\\\nimport os\\\\nimport re\\\\nfrom pathlib import Path\\\\nfrom typing import Optional\\\\n\\\\nimport torch\\\\nfrom datasets import Dataset\\\\nfrom peft import LoraConfig, PeftModel, TaskType\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, TrainerCallback\\\\nfrom trl import GRPOConfig, GRPOTrainer\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nclass KLDivergenceCallback(TrainerCallback):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Monitor KL divergence — log only, no early stopping.\\\\n\\\\n    With QLoRA 4-bit, KL between ref and policy is unreliable due to\\\\n    quantization noise. We log it for diagnostics but do not penalize or stop.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, max_kl: float = 100.0):\\\\n        self.max_kl = max_kl\\\\n\\\\n    def on_log(self, args, state, control, logs=None, **kwargs):\\\\n        if logs and \\\\\\\"kl\\\\\\\" in logs:\\\\n            kl = logs[\\\\\\\"kl\\\\\\\"]\\\\n            if kl > self.max_kl:\\\\n                logger.warning(\\\\\\\"KL divergence %.2f exceeds monitoring threshold %.1f (monitoring only, not stopping)\\\\\\\", kl, self.max_kl)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are an information extraction model. Given a document with numbered sentences \\\\\\\"\\\\n    \\\\\\\"and a list of entities, extract all relation triples. For each triple, provide the \\\\\\\"\\\\n    \\\\\\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\\\\\"\\\\n    \\\\\\\"Output as a JSON list.\\\\\\\"\\\\n)\\\\n\\\\n\\\\ndef _parse_json_output(text: str) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"从模型输出中解��� JSON 列表。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    try:\\\\n        return json.loads(text)\\\\n    except json.JSONDecodeError:\\\\n        start = text.find(\\\\\\\"[\\\\\\\")\\\\n        end = text.rfind(\\\\\\\"]\\\\\\\") + 1\\\\n        if start >= 0 and end > start:\\\\n            try:\\\\n                return json.loads(text[start:end])\\\\n            except json.JSONDecodeError:\\\\n                return []\\\\n    return []\\\\n\\\\n\\\\ndef format_reward_fn(completions: list[str], **kwargs) -> list[float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"格式奖励: 输出是否为合法 JSON 列表，每个元素是否含必需字段。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    rewards = []\\\\n    for text in completions:\\\\n        parsed = _parse_json_output(text)\\\\n        if not isinstance(parsed, list):\\\\n            rewards.append(0.0)\\\\n            continue\\\\n        if not parsed:\\\\n            rewards.append(0.1)\\\\n            continue\\\\n        valid = 0\\\\n        for item in parsed:\\\\n            if (isinstance(item, dict) and \\\\\\\"head\\\\\\\" in item\\\\n                    and \\\\\\\"relation\\\\\\\" in item and \\\\\\\"tail\\\\\\\" in item\\\\n                    and \\\\\\\"evidence\\\\\\\" in item\\\\n                    and isinstance(item[\\\\\\\"evidence\\\\\\\"], list)):\\\\n                valid += 1\\\\n        rewards.append(valid / len(parsed))\\\\n    return rewards\\\\n\\\\n\\\\ndef f1_reward_fn(completions: list[str], gold_triples: list[str], **kwargs) -> list[float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"F1 奖励: 预测三元组与 gold 三元组的 micro-F1。\\\\n\\\\n    gold_triples 是 JSON 字符串列表，每个元素对应一个 prompt 的 gold。\\\\n    completions 中每 num_generations 个对应同一个 prompt。\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    num_gen = len(completions) // len(gold_triples)\\\\n    rewards = []\\\\n\\\\n    for i, text in enumerate(completions):\\\\n        gold_idx = i // num_gen\\\\n        gold_str = gold_triples[gold_idx]\\\\n        try:\\\\n            gold = json.loads(gold_str)\\\\n        except (json.JSONDecodeError, IndexError):\\\\n            rewards.append(0.0)\\\\n            continue\\\\n\\\\n        pred = _parse_json_output(text)\\\\n\\\\n        gold_set = set()\\\\n        for g in gold:\\\\n            gold_set.add((\\\\n                str(g.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(g.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(g.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            ))\\\\n\\\\n        pred_set = set()\\\\n        for p in pred:\\\\n            if isinstance(p, dict):\\\\n                pred_se\\\\n\\\\n... [截断: 输出过长，省略 2189 字符] ...\\\\n\\\\n_sent_ids 和 hard_negative_sent_ids。\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        current_tau = self.tau\\\\n        self._call_count += 1\\\\n        num_gen = len(completions) // len(all_sents)\\\\n        rewards = []\\\\n\\\\n        for i, text in enumerate(completions):\\\\n            prompt_idx = i // num_gen\\\\n            try:\\\\n                sents = json.loads(all_sents[prompt_idx])\\\\n                gold = json.loads(gold_triples[prompt_idx])\\\\n            except (json.JSONDecodeError, IndexError):\\\\n                rewards.append(0.0)\\\\n                continue\\\\n\\\\n            pred = _parse_json_output(text)\\\\n            if not pred:\\\\n                rewards.append(0.0)\\\\n                continue\\\\n\\\\n            gold_map = {}\\\\n            for g in gold:\\\\n                key = (\\\\n                    str(g.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                    str(g.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                    str(g.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                )\\\\n                gold_map[key] = g\\\\n\\\\n            # F1 gate: at least one predicted triple must match gold\\\\n            has_gold_match = False\\\\n            for p in pred:\\\\n                if isinstance(p, dict):\\\\n                    _pk = (\\\\n                        str(p.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                        str(p.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                        str(p.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                    )\\\\n                    if _pk in gold_map:\\\\n                        has_gold_match = True\\\\n                        break\\\\n            if not has_gold_match:\\\\n                rewards.append(0.0)\\\\n                continue\\\\n\\\\n            triple_rewards = []\\\\n            for p in pred:\\\\n                if not isinstance(p, dict):\\\\n                    continue\\\\n                pred_evi_ids = p.get(\\\\\\\"evidence\\\\\\\", [])\\\\n                if not isinstance(pred_evi_ids, list) or not pred_evi_ids:\\\\n                    triple_rewards.append(0.0)\\\\n                    continue\\\\n\\\\n                claim = self.verbalize(\\\\n                    str(p.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\"),\\\\n                    str(p.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\"),\\\\n                    str(p.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\"),\\\\n                )\\\\n                cited_sents = [sents[idx] for idx in pred_evi_ids\\\\n                               if isinstance(idx, int) and 0 <= idx < len(sents)]\\\\n                if not cited_sents:\\\\n                    triple_rewards.append(0.0)\\\\n                    continue\\\\n\\\\n                key = (\\\\n                    str(p.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                    str(p.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                    str(p.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                )\\\\n                matched_gold = gold_map.get(key, {})\\\\n                hard_neg_ids = matched_gold.get(\\\\\\\"hard_negative_sent_ids\\\\\\\", [])\\\\n                hard_neg_sents = [sents[idx] for idx in hard_neg_ids\\\\n                                  if isinstance(idx, int) and 0 <= idx < len(sents)]\\\\n\\\\n                if self.mode == \\\\\\\"flat_nli\\\\\\\":\\\\n                    result = self.reward_model.compute_flat_nli_reward(\\\\n                        claim, cited_sents, tau=current_tau,\\\\n                    )\\\\n                else:\\\\n                    result = self.reward_model.compute_ced_reward(\\\\n                        claim, cited_sents, hard_neg_sents, tau=current_tau,\\\\n                    )\\\\n                triple_rewards.append(result[\\\\\\\"reward\\\\\\\"])\\\\n\\\\n            rewards.append(\\\\n                sum(triple_rewards) / len(triple_rewards) if triple_rewards else 0.0\\\\n            )\\\\n\\\\n        return rewards\\\\n\\\\n\\\\nclass WeightedRewardFn:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Wrap a reward function with a scalar weight.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, fn, weight: float):\\\\n        self.__name__ = getattr(fn, \\\\\\\"__name__\\\\\\\", fn.__class__.__name__)\\\\n        self.fn = fn\\\\n        self.weight = weight\\\\n\\\\n    def __call__(self, *args, **kwargs):\\\\n        rewards = self.fn(*args, **kwargs)\\\\n        return [r * self.weight for r in rewards]\\\\n\\\\n\\\\ndef prepare_grpo_dataset(\\\\n    data_dir: str = None,\\\\n    split: str = \\\\\\\"train\\\\\\\",\\\\n    tokenizer=None,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"GRPO 训练脚本: 基于 TRL GRPOTrainer 的多阶段 curriculum 训练。\\n\\n支持单卡和多卡（DeepSpeed ZeRO-2/3）训练，默认 4-bit QLoRA。\\n\\n单卡:   python -m freige.training.grpo_trainer --stage 1 --output_dir ./grpo_s1\\n多卡:   accelerate launch --config_file configs/accelerate_4gpu.yaml \\\\\\n            -m freige.training.grpo_trainer --deepspeed configs/deepspeed_zero2.json \\\\\\n            --stage 1 --reward_device cpu\\n不量化: 加 --no_quantize\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport math\\nimport os\\nimport re\\nfrom pathlib import Path\\nfrom typing import Optional\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom peft import LoraConfig, PeftModel, TaskType\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, TrainerCallback\\nfrom trl import GRPOConfig, GRPOTrainer\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nclass KLDivergenceCallback(TrainerCallback):\\n    \\\"\\\"\\\"Monitor KL divergence — log only, no early stopping.\\n\\n    With QLoRA 4-bit, KL between ref and policy is unreliable due to\\n    quantization noise. We log it for diagnostics but do not penalize or stop.\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, max_kl: float = 100.0):\\n        self.max_kl = max_kl\\n\\n    def on_log(self, args, state, control, logs=None, **kwargs):\\n        if logs and \\\"kl\\\" in logs:\\n            kl = logs[\\\"kl\\\"]\\n            if kl > self.max_kl:\\n                logger.warning(\\\"KL divergence %.2f exceeds monitoring threshold %.1f (monitoring only, not stopping)\\\", kl, self.max_kl)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are an information extraction model. Given a document with numbered sentences \\\"\\n    \\\"and a list of entities, extract all relation triples. For each triple, provide the \\\"\\n    \\\"head entity, relation type, tail entity, and the sentence IDs that serve as evidence. \\\"\\n    \\\"Output as a JSON list.\\\"\\n)\\n\\n\\ndef _parse_json_output(text: str) -> list[dict]:\\n    \\\"\\\"\\\"从模型输出中解��� JSON 列表。\\\"\\\"\\\"\\n    try:\\n        return json.loads(text)\\n    except json.JSONDecodeError:\\n        start = text.find(\\\"[\\\")\\n        end = text.rfind(\\\"]\\\") + 1\\n        if start >= 0 and end > start:\\n            try:\\n                return json.loads(text[start:end])\\n            except json.JSONDecodeError:\\n                return []\\n    return []\\n\\n\\ndef format_reward_fn(completions: list[str], **kwargs) -> list[float]:\\n    \\\"\\\"\\\"格式奖励: 输出是否为合法 JSON 列表，每个元素是否含必需字段。\\\"\\\"\\\"\\n    rewards = []\\n    for text in completions:\\n        parsed = _parse_json_output(text)\\n        if not isinstance(parsed, list):\\n            rewards.append(0.0)\\n            continue\\n        if not parsed:\\n            rewards.append(0.1)\\n            continue\\n        valid = 0\\n        for item in parsed:\\n            if (isinstance(item, dict) and \\\"head\\\" in item\\n                    and \\\"relation\\\" in item and \\\"tail\\\" in item\\n                    and \\\"evidence\\\" in item\\n                    and isinstance(item[\\\"evidence\\\"], list)):\\n                valid += 1\\n        rewards.append(valid / len(parsed))\\n    return rewards\\n\\n\\ndef f1_reward_fn(completions: list[str], gold_triples: list[str], **kwargs) -> list[float]:\\n    \\\"\\\"\\\"F1 奖励: 预测三元组与 gold 三元组的 micro-F1。\\n\\n    gold_triples 是 JSON 字符串列表，每个元素对应一个 prompt 的 gold。\\n    completions 中每 num_generations 个对应同一个 prompt。\\n    \\\"\\\"\\\"\\n    num_gen = len(completions) // len(gold_triples)\\n    rewards = []\\n\\n    for i, text in enumerate(completions):\\n        gold_idx = i // num_gen\\n        gold_str = gold_triples[gold_idx]\\n        try:\\n            gold = json.loads(gold_str)\\n        except (json.JSONDecodeError, IndexError):\\n            rewards.append(0.0)\\n            continue\\n\\n        pred = _parse_json_output(text)\\n\\n        gold_set = set()\\n        for g in gold:\\n            gold_set.add((\\n                str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n            ))\\n\\n        pred_set = set()\\n        for p in pred:\\n            if isinstance(p, dict):\\n                pred_se\\n\\n... [截断: 输出过长，省略 2189 字符] ...\\n\\n_sent_ids 和 hard_negative_sent_ids。\\n        \\\"\\\"\\\"\\n        current_tau = self.tau\\n        self._call_count += 1\\n        num_gen = len(completions) // len(all_sents)\\n        rewards = []\\n\\n        for i, text in enumerate(completions):\\n            prompt_idx = i // num_gen\\n            try:\\n                sents = json.loads(all_sents[prompt_idx])\\n                gold = json.loads(gold_triples[prompt_idx])\\n            except (json.JSONDecodeError, IndexError):\\n                rewards.append(0.0)\\n                continue\\n\\n            pred = _parse_json_output(text)\\n            if not pred:\\n                rewards.append(0.0)\\n                continue\\n\\n            gold_map = {}\\n            for g in gold:\\n                key = (\\n                    str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                    str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                    str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n                )\\n                gold_map[key] = g\\n\\n            # F1 gate: at least one predicted triple must match gold\\n            has_gold_match = False\\n            for p in pred:\\n                if isinstance(p, dict):\\n                    _pk = (\\n                        str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                        str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                        str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n                    )\\n                    if _pk in gold_map:\\n                        has_gold_match = True\\n                        break\\n            if not has_gold_match:\\n                rewards.append(0.0)\\n                continue\\n\\n            triple_rewards = []\\n            for p in pred:\\n                if not isinstance(p, dict):\\n                    continue\\n                pred_evi_ids = p.get(\\\"evidence\\\", [])\\n                if not isinstance(pred_evi_ids, list) or not pred_evi_ids:\\n                    triple_rewards.append(0.0)\\n                    continue\\n\\n                claim = self.verbalize(\\n                    str(p.get(\\\"head\\\") or \\\"\\\"),\\n                    str(p.get(\\\"relation\\\") or \\\"\\\"),\\n                    str(p.get(\\\"tail\\\") or \\\"\\\"),\\n                )\\n                cited_sents = [sents[idx] for idx in pred_evi_ids\\n                               if isinstance(idx, int) and 0 <= idx < len(sents)]\\n                if not cited_sents:\\n                    triple_rewards.append(0.0)\\n                    continue\\n\\n                key = (\\n                    str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                    str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                    str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n                )\\n                matched_gold = gold_map.get(key, {})\\n                hard_neg_ids = matched_gold.get(\\\"hard_negative_sent_ids\\\", [])\\n                hard_neg_sents = [sents[idx] for idx in hard_neg_ids\\n                                  if isinstance(idx, int) and 0 <= idx < len(sents)]\\n\\n                if self.mode == \\\"flat_nli\\\":\\n                    result = self.reward_model.compute_flat_nli_reward(\\n                        claim, cited_sents, tau=current_tau,\\n                    )\\n                else:\\n                    result = self.reward_model.compute_ced_reward(\\n                        claim, cited_sents, hard_neg_sents, tau=current_tau,\\n                    )\\n                triple_rewards.append(result[\\\"reward\\\"])\\n\\n            rewards.append(\\n                sum(triple_rewards) / len(triple_rewards) if triple_rewards else 0.0\\n            )\\n\\n        return rewards\\n\\n\\nclass WeightedRewardFn:\\n    \\\"\\\"\\\"Wrap a reward function with a scalar weight.\\\"\\\"\\\"\\n\\n    def __init__(self, fn, weight: float):\\n        self.__name__ = getattr(fn, \\\"__name__\\\", fn.__class__.__name__)\\n        self.fn = fn\\n        self.weight = weight\\n\\n    def __call__(self, *args, **kwargs):\\n        rewards = self.fn(*args, **kwargs)\\n        return [r * self.weight for r in rewards]\\n\\n\\ndef prepare_grpo_dataset(\\n    data_dir: str = None,\\n    split: str = \\\"train\\\",\\n    tokenizer=None,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to see the truncated part of f1_reward_fn and the CEDRewardWrapper. Let me read the middle part of the file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "03387b15-cf72-4e87-8ad6-d292dd7c0e4f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5vAF7r1ut8aeNLPFoSDja",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3517,
+      "cache_read_input_tokens": 45610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3517
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DEiAPTfpEem2FYEe4UKgdb`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -n +100 /root/autodl-tmp/freige/training/grpo_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "fad10b24-a3e4-4b3d-b554-b464581cacfc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5vAF7r1ut8aeNLPFoSDja",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3517,
+      "cache_read_input_tokens": 45610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3517
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T19:17:23.690Z_
+
+<details><summary>↩ Tool result · `toolu_01DEiAPTfpEem2FYEe4UKgdb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    for i, text in enumerate(completions):\\n        gold_idx = i // num_gen\\n        gold_str = gold_triples[gold_idx]\\n        try:\\n            gold = json.loads(gold_str)\\n        except (json.JSONDecodeError, IndexError):\\n            rewards.append(0.0)\\n            continue\\n\\n        pred = _parse_json_output(text)\\n\\n        gold_set = set()\\n        for g in gold:\\n            gold_set.add((\\n                str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n            ))\\n\\n        pred_set = set()\\n        for p in pred:\\n            if isinstance(p, dict):\\n                pred_set.add((\\n                    str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                    str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                    str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n                ))\\n\\n        if not gold_set:\\n            rewards.append(1.0 if not pred_set else 0.0)\\n            continue\\n\\n        tp = len(pred_set & gold_set)\\n        prec = tp / len(pred_set) if pred_set else 0.0\\n        rec = tp / len(gold_set) if gold_set else 0.0\\n        f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\\n        rewards.append(f1)\\n\\n    return rewards\\n\\n\\nclass CEDRewardWrapper:\\n    \\\"\\\"\\\"将 CED 奖励封装为 GRPO 兼容的 reward function。\\n\\n    对每个 completion 解析 triples + evidence，用 CED 模型计算奖励，\\n    返回所有 triples 的平均 CED reward。\\n    \\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        nli_model: str = \\\"cross-encoder/nli-deberta-v3-base\\\",\\n        tau: float = 0.5,\\n        mode: str = \\\"ced\\\",\\n        device: str = None,\\n        tau_start: float = None,\\n        tau_end: float = None,\\n        total_steps: int = None,\\n    ):\\n        from freige.rewards.ced_reward import CEDRewardModel, verbalize_triple\\n        self.__name__ = f\\\"{mode}_reward\\\"\\n        self.reward_model = CEDRewardModel(model_name=nli_model, device=device)\\n        self.verbalize = verbalize_triple\\n        self.mode = mode\\n        self._call_count = 0\\n        if tau_start is not None and tau_end is not None:\\n            self.tau_start = tau_start\\n            self.tau_end = tau_end\\n            self.total_steps = total_steps\\n        else:\\n            self.tau_start = tau\\n            self.tau_end = tau\\n            self.total_steps = None\\n\\n    @property\\n    def tau(self) -> float:\\n        if self.total_steps and self.total_steps > 0:\\n            progress = min(self._call_count / self.total_steps, 1.0)\\n        else:\\n            progress = 1.0\\n        return self.tau_start + (self.tau_end - self.tau_start) * progress\\n\\n    def __call__(\\n        self,\\n        completions: list[str],\\n        all_sents: list[str],\\n        gold_triples: list[str],\\n        **kwargs,\\n    ) -> list[float]:\\n        \\\"\\\"\\\"计算 CED/flat-NLI 奖励。\\n\\n        all_sents: JSON 字符串列表，每个元素为文档句子列表。\\n        gold_triples: JSON 字符串列表，含 evidence_sent_ids 和 hard_negative_sent_ids。\\n        \\\"\\\"\\\"\\n        current_tau = self.tau\\n        self._call_count += 1\\n        num_gen = len(completions) // len(all_sents)\\n        rewards = []\\n\\n        for i, text in enumerate(completions):\\n            prompt_idx = i // num_gen\\n            try:\\n                sents = json.loads(all_sents[prompt_idx])\\n                gold = json.loads(gold_triples[prompt_idx])\\n            except (json.JSONDecodeError, IndexError):\\n                rewards.append(0.0)\\n                continue\\n\\n            pred = _parse_json_output(text)\\n            if not pred:\\n                rewards.append(0.0)\\n                continue\\n\\n            gold_map = {}\\n            for g in gold:\\n                key = (\\n                    str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                    str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                    str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n                )\\n                gold_map[key] = g\\n\\n            # F1 gate: at least one predicted triple must match gold\\n            has_gold_match = False\\n            for p in pred:\\n                \\n\\n... [截断: 输出过长，省略 8984 字符] ...\\n\\nnfig(\\n            load_in_4bit=True,\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\n            bnb_4bit_quant_type=\\\"nf4\\\",\\n            bnb_4bit_use_double_quant=True,\\n        )\\n        model_kwargs[\\\"device_map\\\"] = {\\\"\\\":  local_rank}\\n    else:\\n        model_kwargs[\\\"torch_dtype\\\"] = torch.bfloat16 if args.bf16 else torch.float16\\n    model = AutoModelForCausalLM.from_pretrained(args.model_name, **model_kwargs)\\n\\n    if args.sft_adapter:\\n        logger.info(\\\"Loading SFT adapter from %s\\\", args.sft_adapter)\\n        model = PeftModel.from_pretrained(model, args.sft_adapter)\\n        model = model.merge_and_unload()\\n\\n    reward_fns = [\\n        WeightedRewardFn(format_reward_fn, args.format_reward_weight),\\n        WeightedRewardFn(f1_reward_fn, args.f1_reward_weight),\\n    ]\\n\\n    if args.stage >= 2 and args.ced_reward_weight > 0:\\n        mode = \\\"flat_nli\\\" if args.stage == 2 else \\\"ced\\\"\\n        num_gpus = int(os.environ.get(\\\"WORLD_SIZE\\\", 1))\\n        steps_per_epoch = math.ceil(\\n            len(train_dataset) / (args.per_device_batch_size * num_gpus * args.gradient_accumulation_steps)\\n        )\\n        total_steps = steps_per_epoch * args.num_epochs\\n        ced_wrapper = CEDRewardWrapper(\\n            nli_model=args.nli_model,\\n            mode=mode,\\n            device=args.reward_device,\\n            tau_start=args.tau_start,\\n            tau_end=args.tau_end,\\n            total_steps=total_steps,\\n        )\\n        reward_fns.append(WeightedRewardFn(ced_wrapper, args.ced_reward_weight))\\n        logger.info(\\n            \\\"Stage %d: using %s reward, tau %.2f→%.2f over %d steps\\\",\\n            args.stage, mode, args.tau_start, args.tau_end, total_steps,\\n        )\\n    else:\\n        logger.info(\\\"Extraction-only mode: format + F1 rewards (stage=%d, ced_weight=%.1f)\\\", args.stage, args.ced_reward_weight)\\n\\n    lora_config = LoraConfig(\\n        task_type=TaskType.CAUSAL_LM,\\n        r=args.lora_rank,\\n        lora_alpha=args.lora_alpha,\\n        lora_dropout=0.05,\\n        target_modules=[\\\"q_proj\\\", \\\"k_proj\\\", \\\"v_proj\\\", \\\"o_proj\\\",\\n                         \\\"gate_proj\\\", \\\"up_proj\\\", \\\"down_proj\\\"],\\n    )\\n\\n    save_strategy = \\\"steps\\\" if args.save_steps else \\\"epoch\\\"\\n    save_steps = args.save_steps if args.save_steps else None\\n\\n    grpo_config_kwargs = dict(\\n        output_dir=args.output_dir,\\n        num_train_epochs=args.num_epochs,\\n        per_device_train_batch_size=args.per_device_batch_size,\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\n        learning_rate=args.learning_rate,\\n        bf16=args.bf16,\\n        logging_steps=5,\\n        save_strategy=save_strategy,\\n        save_total_limit=args.save_total_limit,\\n        seed=args.seed,\\n        num_generations=args.num_generations,\\n        max_completion_length=args.max_new_tokens,\\n        report_to=\\\"wandb\\\" if \\\"WANDB_API_KEY\\\" in os.environ else \\\"none\\\",\\n        gradient_checkpointing=True,\\n        gradient_checkpointing_kwargs={\\\"use_reentrant\\\": False},\\n        deepspeed=args.deepspeed,\\n        num_iterations=args.num_iterations,\\n    )\\n    if save_steps:\\n        grpo_config_kwargs[\\\"save_steps\\\"] = save_steps\\n    if args.max_steps > 0:\\n        grpo_config_kwargs[\\\"max_steps\\\"] = args.max_steps\\n    if args.kl_coef > 0:\\n        grpo_config_kwargs[\\\"beta\\\"] = args.kl_coef\\n    grpo_config = GRPOConfig(**grpo_config_kwargs)\\n\\n    callbacks = [KLDivergenceCallback(max_kl=args.max_kl)]\\n\\n    trainer = GRPOTrainer(\\n        model=model,\\n        args=grpo_config,\\n        train_dataset=train_dataset,\\n        reward_funcs=reward_fns,\\n        peft_config=lora_config,\\n        processing_class=tokenizer,\\n        callbacks=callbacks,\\n    )\\n\\n    logger.info(\\\"Starting GRPO training (stage %d)...\\\", args.stage)\\n    trainer.train(resume_from_checkpoint=args.resume_from_checkpoint)\\n\\n    logger.info(\\\"Saving model to %s\\\", args.output_dir)\\n    trainer.save_model(args.output_dir)\\n    tokenizer.save_pretrained(args.output_dir)\\n    logger.info(\\\"GRPO training (stage %d) complete.\\\", args.stage)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "44fd4602-d094-4df4-934f-49802f1fe93b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    for i, text in enumerate(completions):\\\\n        gold_idx = i // num_gen\\\\n        gold_str = gold_triples[gold_idx]\\\\n        try:\\\\n            gold = json.loads(gold_str)\\\\n        except (json.JSONDecodeError, IndexError):\\\\n            rewards.append(0.0)\\\\n            continue\\\\n\\\\n        pred = _parse_json_output(text)\\\\n\\\\n        gold_set = set()\\\\n        for g in gold:\\\\n            gold_set.add((\\\\n                str(g.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(g.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                str(g.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n            ))\\\\n\\\\n        pred_set = set()\\\\n        for p in pred:\\\\n            if isinstance(p, dict):\\\\n                pred_set.add((\\\\n                    str(p.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                    str(p.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                    str(p.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                ))\\\\n\\\\n        if not gold_set:\\\\n            rewards.append(1.0 if not pred_set else 0.0)\\\\n            continue\\\\n\\\\n        tp = len(pred_set & gold_set)\\\\n        prec = tp / len(pred_set) if pred_set else 0.0\\\\n        rec = tp / len(gold_set) if gold_set else 0.0\\\\n        f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\\\\n        rewards.append(f1)\\\\n\\\\n    return rewards\\\\n\\\\n\\\\nclass CEDRewardWrapper:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"将 CED 奖励封装为 GRPO 兼容的 reward function。\\\\n\\\\n    对每个 completion 解析 triples + evidence，用 CED 模型计算奖励，\\\\n    返回所有 triples 的平均 CED reward。\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(\\\\n        self,\\\\n        nli_model: str = \\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\",\\\\n        tau: float = 0.5,\\\\n        mode: str = \\\\\\\"ced\\\\\\\",\\\\n        device: str = None,\\\\n        tau_start: float = None,\\\\n        tau_end: float = None,\\\\n        total_steps: int = None,\\\\n    ):\\\\n        from freige.rewards.ced_reward import CEDRewardModel, verbalize_triple\\\\n        self.__name__ = f\\\\\\\"{mode}_reward\\\\\\\"\\\\n        self.reward_model = CEDRewardModel(model_name=nli_model, device=device)\\\\n        self.verbalize = verbalize_triple\\\\n        self.mode = mode\\\\n        self._call_count = 0\\\\n        if tau_start is not None and tau_end is not None:\\\\n            self.tau_start = tau_start\\\\n            self.tau_end = tau_end\\\\n            self.total_steps = total_steps\\\\n        else:\\\\n            self.tau_start = tau\\\\n            self.tau_end = tau\\\\n            self.total_steps = None\\\\n\\\\n    @property\\\\n    def tau(self) -> float:\\\\n        if self.total_steps and self.total_steps > 0:\\\\n            progress = min(self._call_count / self.total_steps, 1.0)\\\\n        else:\\\\n            progress = 1.0\\\\n        return self.tau_start + (self.tau_end - self.tau_start) * progress\\\\n\\\\n    def __call__(\\\\n        self,\\\\n        completions: list[str],\\\\n        all_sents: list[str],\\\\n        gold_triples: list[str],\\\\n        **kwargs,\\\\n    ) -> list[float]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"计算 CED/flat-NLI 奖励。\\\\n\\\\n        all_sents: JSON 字符串列表，每个元素为文档句子列表。\\\\n        gold_triples: JSON 字符串列表，含 evidence_sent_ids 和 hard_negative_sent_ids。\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        current_tau = self.tau\\\\n        self._call_count += 1\\\\n        num_gen = len(completions) // len(all_sents)\\\\n        rewards = []\\\\n\\\\n        for i, text in enumerate(completions):\\\\n            prompt_idx = i // num_gen\\\\n            try:\\\\n                sents = json.loads(all_sents[prompt_idx])\\\\n                gold = json.loads(gold_triples[prompt_idx])\\\\n            except (json.JSONDecodeError, IndexError):\\\\n                rewards.append(0.0)\\\\n                continue\\\\n\\\\n            pred = _parse_json_output(text)\\\\n            if not pred:\\\\n                rewards.append(0.0)\\\\n                continue\\\\n\\\\n            gold_map = {}\\\\n            for g in gold:\\\\n                key = (\\\\n                    str(g.get(\\\\\\\"head\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                    str(g.get(\\\\\\\"relation\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                    str(g.get(\\\\\\\"tail\\\\\\\") or \\\\\\\"\\\\\\\").lower().strip(),\\\\n                )\\\\n                gold_map[key] = g\\\\n\\\\n            # F1 gate: at least one predicted triple must match gold\\\\n            has_gold_match = False\\\\n            for p in pred:\\\\n                \\\\n\\\\n... [截断: 输出过长，省略 8984 字符] ...\\\\n\\\\nnfig(\\\\n            load_in_4bit=True,\\\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\\\n            bnb_4bit_quant_type=\\\\\\\"nf4\\\\\\\",\\\\n            bnb_4bit_use_double_quant=True,\\\\n        )\\\\n        model_kwargs[\\\\\\\"device_map\\\\\\\"] = {\\\\\\\"\\\\\\\":  local_rank}\\\\n    else:\\\\n        model_kwargs[\\\\\\\"torch_dtype\\\\\\\"] = torch.bfloat16 if args.bf16 else torch.float16\\\\n    model = AutoModelForCausalLM.from_pretrained(args.model_name, **model_kwargs)\\\\n\\\\n    if args.sft_adapter:\\\\n        logger.info(\\\\\\\"Loading SFT adapter from %s\\\\\\\", args.sft_adapter)\\\\n        model = PeftModel.from_pretrained(model, args.sft_adapter)\\\\n        model = model.merge_and_unload()\\\\n\\\\n    reward_fns = [\\\\n        WeightedRewardFn(format_reward_fn, args.format_reward_weight),\\\\n        WeightedRewardFn(f1_reward_fn, args.f1_reward_weight),\\\\n    ]\\\\n\\\\n    if args.stage >= 2 and args.ced_reward_weight > 0:\\\\n        mode = \\\\\\\"flat_nli\\\\\\\" if args.stage == 2 else \\\\\\\"ced\\\\\\\"\\\\n        num_gpus = int(os.environ.get(\\\\\\\"WORLD_SIZE\\\\\\\", 1))\\\\n        steps_per_epoch = math.ceil(\\\\n            len(train_dataset) / (args.per_device_batch_size * num_gpus * args.gradient_accumulation_steps)\\\\n        )\\\\n        total_steps = steps_per_epoch * args.num_epochs\\\\n        ced_wrapper = CEDRewardWrapper(\\\\n            nli_model=args.nli_model,\\\\n            mode=mode,\\\\n            device=args.reward_device,\\\\n            tau_start=args.tau_start,\\\\n            tau_end=args.tau_end,\\\\n            total_steps=total_steps,\\\\n        )\\\\n        reward_fns.append(WeightedRewardFn(ced_wrapper, args.ced_reward_weight))\\\\n        logger.info(\\\\n            \\\\\\\"Stage %d: using %s reward, tau %.2f→%.2f over %d steps\\\\\\\",\\\\n            args.stage, mode, args.tau_start, args.tau_end, total_steps,\\\\n        )\\\\n    else:\\\\n        logger.info(\\\\\\\"Extraction-only mode: format + F1 rewards (stage=%d, ced_weight=%.1f)\\\\\\\", args.stage, args.ced_reward_weight)\\\\n\\\\n    lora_config = LoraConfig(\\\\n        task_type=TaskType.CAUSAL_LM,\\\\n        r=args.lora_rank,\\\\n        lora_alpha=args.lora_alpha,\\\\n        lora_dropout=0.05,\\\\n        target_modules=[\\\\\\\"q_proj\\\\\\\", \\\\\\\"k_proj\\\\\\\", \\\\\\\"v_proj\\\\\\\", \\\\\\\"o_proj\\\\\\\",\\\\n                         \\\\\\\"gate_proj\\\\\\\", \\\\\\\"up_proj\\\\\\\", \\\\\\\"down_proj\\\\\\\"],\\\\n    )\\\\n\\\\n    save_strategy = \\\\\\\"steps\\\\\\\" if args.save_steps else \\\\\\\"epoch\\\\\\\"\\\\n    save_steps = args.save_steps if args.save_steps else None\\\\n\\\\n    grpo_config_kwargs = dict(\\\\n        output_dir=args.output_dir,\\\\n        num_train_epochs=args.num_epochs,\\\\n        per_device_train_batch_size=args.per_device_batch_size,\\\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\\\n        learning_rate=args.learning_rate,\\\\n        bf16=args.bf16,\\\\n        logging_steps=5,\\\\n        save_strategy=save_strategy,\\\\n        save_total_limit=args.save_total_limit,\\\\n        seed=args.seed,\\\\n        num_generations=args.num_generations,\\\\n        max_completion_length=args.max_new_tokens,\\\\n        report_to=\\\\\\\"wandb\\\\\\\" if \\\\\\\"WANDB_API_KEY\\\\\\\" in os.environ else \\\\\\\"none\\\\\\\",\\\\n        gradient_checkpointing=True,\\\\n        gradient_checkpointing_kwargs={\\\\\\\"use_reentrant\\\\\\\": False},\\\\n        deepspeed=args.deepspeed,\\\\n        num_iterations=args.num_iterations,\\\\n    )\\\\n    if save_steps:\\\\n        grpo_config_kwargs[\\\\\\\"save_steps\\\\\\\"] = save_steps\\\\n    if args.max_steps > 0:\\\\n        grpo_config_kwargs[\\\\\\\"max_steps\\\\\\\"] = args.max_steps\\\\n    if args.kl_coef > 0:\\\\n        grpo_config_kwargs[\\\\\\\"beta\\\\\\\"] = args.kl_coef\\\\n    grpo_config = GRPOConfig(**grpo_config_kwargs)\\\\n\\\\n    callbacks = [KLDivergenceCallback(max_kl=args.max_kl)]\\\\n\\\\n    trainer = GRPOTrainer(\\\\n        model=model,\\\\n        args=grpo_config,\\\\n        train_dataset=train_dataset,\\\\n        reward_funcs=reward_fns,\\\\n        peft_config=lora_config,\\\\n        processing_class=tokenizer,\\\\n        callbacks=callbacks,\\\\n    )\\\\n\\\\n    logger.info(\\\\\\\"Starting GRPO training (stage %d)...\\\\\\\", args.stage)\\\\n    trainer.train(resume_from_checkpoint=args.resume_from_checkpoint)\\\\n\\\\n    logger.info(\\\\\\\"Saving model to %s\\\\\\\", args.output_dir)\\\\n    trainer.save_model(args.output_dir)\\\\n    tokenizer.save_pretrained(args.output_dir)\\\\n    logger.info(\\\\\\\"GRPO training (stage %d) complete.\\\\\\\", args.stage)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    for i, text in enumerate(completions):\\n        gold_idx = i // num_gen\\n        gold_str = gold_triples[gold_idx]\\n        try:\\n            gold = json.loads(gold_str)\\n        except (json.JSONDecodeError, IndexError):\\n            rewards.append(0.0)\\n            continue\\n\\n        pred = _parse_json_output(text)\\n\\n        gold_set = set()\\n        for g in gold:\\n            gold_set.add((\\n                str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n            ))\\n\\n        pred_set = set()\\n        for p in pred:\\n            if isinstance(p, dict):\\n                pred_set.add((\\n                    str(p.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                    str(p.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                    str(p.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n                ))\\n\\n        if not gold_set:\\n            rewards.append(1.0 if not pred_set else 0.0)\\n            continue\\n\\n        tp = len(pred_set & gold_set)\\n        prec = tp / len(pred_set) if pred_set else 0.0\\n        rec = tp / len(gold_set) if gold_set else 0.0\\n        f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\\n        rewards.append(f1)\\n\\n    return rewards\\n\\n\\nclass CEDRewardWrapper:\\n    \\\"\\\"\\\"将 CED 奖励封装为 GRPO 兼容的 reward function。\\n\\n    对每个 completion 解析 triples + evidence，用 CED 模型计算奖励，\\n    返回所有 triples 的平均 CED reward。\\n    \\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        nli_model: str = \\\"cross-encoder/nli-deberta-v3-base\\\",\\n        tau: float = 0.5,\\n        mode: str = \\\"ced\\\",\\n        device: str = None,\\n        tau_start: float = None,\\n        tau_end: float = None,\\n        total_steps: int = None,\\n    ):\\n        from freige.rewards.ced_reward import CEDRewardModel, verbalize_triple\\n        self.__name__ = f\\\"{mode}_reward\\\"\\n        self.reward_model = CEDRewardModel(model_name=nli_model, device=device)\\n        self.verbalize = verbalize_triple\\n        self.mode = mode\\n        self._call_count = 0\\n        if tau_start is not None and tau_end is not None:\\n            self.tau_start = tau_start\\n            self.tau_end = tau_end\\n            self.total_steps = total_steps\\n        else:\\n            self.tau_start = tau\\n            self.tau_end = tau\\n            self.total_steps = None\\n\\n    @property\\n    def tau(self) -> float:\\n        if self.total_steps and self.total_steps > 0:\\n            progress = min(self._call_count / self.total_steps, 1.0)\\n        else:\\n            progress = 1.0\\n        return self.tau_start + (self.tau_end - self.tau_start) * progress\\n\\n    def __call__(\\n        self,\\n        completions: list[str],\\n        all_sents: list[str],\\n        gold_triples: list[str],\\n        **kwargs,\\n    ) -> list[float]:\\n        \\\"\\\"\\\"计算 CED/flat-NLI 奖励。\\n\\n        all_sents: JSON 字符串列表，每个元素为文档句子列表。\\n        gold_triples: JSON 字符串列表，含 evidence_sent_ids 和 hard_negative_sent_ids。\\n        \\\"\\\"\\\"\\n        current_tau = self.tau\\n        self._call_count += 1\\n        num_gen = len(completions) // len(all_sents)\\n        rewards = []\\n\\n        for i, text in enumerate(completions):\\n            prompt_idx = i // num_gen\\n            try:\\n                sents = json.loads(all_sents[prompt_idx])\\n                gold = json.loads(gold_triples[prompt_idx])\\n            except (json.JSONDecodeError, IndexError):\\n                rewards.append(0.0)\\n                continue\\n\\n            pred = _parse_json_output(text)\\n            if not pred:\\n                rewards.append(0.0)\\n                continue\\n\\n            gold_map = {}\\n            for g in gold:\\n                key = (\\n                    str(g.get(\\\"head\\\") or \\\"\\\").lower().strip(),\\n                    str(g.get(\\\"relation\\\") or \\\"\\\").lower().strip(),\\n                    str(g.get(\\\"tail\\\") or \\\"\\\").lower().strip(),\\n                )\\n                gold_map[key] = g\\n\\n            # F1 gate: at least one predicted triple must match gold\\n            has_gold_match = False\\n            for p in pred:\\n                \\n\\n... [截断: 输出过长，省略 8984 字符] ...\\n\\nnfig(\\n            load_in_4bit=True,\\n            bnb_4bit_compute_dtype=torch.bfloat16,\\n            bnb_4bit_quant_type=\\\"nf4\\\",\\n            bnb_4bit_use_double_quant=True,\\n        )\\n        model_kwargs[\\\"device_map\\\"] = {\\\"\\\":  local_rank}\\n    else:\\n        model_kwargs[\\\"torch_dtype\\\"] = torch.bfloat16 if args.bf16 else torch.float16\\n    model = AutoModelForCausalLM.from_pretrained(args.model_name, **model_kwargs)\\n\\n    if args.sft_adapter:\\n        logger.info(\\\"Loading SFT adapter from %s\\\", args.sft_adapter)\\n        model = PeftModel.from_pretrained(model, args.sft_adapter)\\n        model = model.merge_and_unload()\\n\\n    reward_fns = [\\n        WeightedRewardFn(format_reward_fn, args.format_reward_weight),\\n        WeightedRewardFn(f1_reward_fn, args.f1_reward_weight),\\n    ]\\n\\n    if args.stage >= 2 and args.ced_reward_weight > 0:\\n        mode = \\\"flat_nli\\\" if args.stage == 2 else \\\"ced\\\"\\n        num_gpus = int(os.environ.get(\\\"WORLD_SIZE\\\", 1))\\n        steps_per_epoch = math.ceil(\\n            len(train_dataset) / (args.per_device_batch_size * num_gpus * args.gradient_accumulation_steps)\\n        )\\n        total_steps = steps_per_epoch * args.num_epochs\\n        ced_wrapper = CEDRewardWrapper(\\n            nli_model=args.nli_model,\\n            mode=mode,\\n            device=args.reward_device,\\n            tau_start=args.tau_start,\\n            tau_end=args.tau_end,\\n            total_steps=total_steps,\\n        )\\n        reward_fns.append(WeightedRewardFn(ced_wrapper, args.ced_reward_weight))\\n        logger.info(\\n            \\\"Stage %d: using %s reward, tau %.2f→%.2f over %d steps\\\",\\n            args.stage, mode, args.tau_start, args.tau_end, total_steps,\\n        )\\n    else:\\n        logger.info(\\\"Extraction-only mode: format + F1 rewards (stage=%d, ced_weight=%.1f)\\\", args.stage, args.ced_reward_weight)\\n\\n    lora_config = LoraConfig(\\n        task_type=TaskType.CAUSAL_LM,\\n        r=args.lora_rank,\\n        lora_alpha=args.lora_alpha,\\n        lora_dropout=0.05,\\n        target_modules=[\\\"q_proj\\\", \\\"k_proj\\\", \\\"v_proj\\\", \\\"o_proj\\\",\\n                         \\\"gate_proj\\\", \\\"up_proj\\\", \\\"down_proj\\\"],\\n    )\\n\\n    save_strategy = \\\"steps\\\" if args.save_steps else \\\"epoch\\\"\\n    save_steps = args.save_steps if args.save_steps else None\\n\\n    grpo_config_kwargs = dict(\\n        output_dir=args.output_dir,\\n        num_train_epochs=args.num_epochs,\\n        per_device_train_batch_size=args.per_device_batch_size,\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\n        learning_rate=args.learning_rate,\\n        bf16=args.bf16,\\n        logging_steps=5,\\n        save_strategy=save_strategy,\\n        save_total_limit=args.save_total_limit,\\n        seed=args.seed,\\n        num_generations=args.num_generations,\\n        max_completion_length=args.max_new_tokens,\\n        report_to=\\\"wandb\\\" if \\\"WANDB_API_KEY\\\" in os.environ else \\\"none\\\",\\n        gradient_checkpointing=True,\\n        gradient_checkpointing_kwargs={\\\"use_reentrant\\\": False},\\n        deepspeed=args.deepspeed,\\n        num_iterations=args.num_iterations,\\n    )\\n    if save_steps:\\n        grpo_config_kwargs[\\\"save_steps\\\"] = save_steps\\n    if args.max_steps > 0:\\n        grpo_config_kwargs[\\\"max_steps\\\"] = args.max_steps\\n    if args.kl_coef > 0:\\n        grpo_config_kwargs[\\\"beta\\\"] = args.kl_coef\\n    grpo_config = GRPOConfig(**grpo_config_kwargs)\\n\\n    callbacks = [KLDivergenceCallback(max_kl=args.max_kl)]\\n\\n    trainer = GRPOTrainer(\\n        model=model,\\n        args=grpo_config,\\n        train_dataset=train_dataset,\\n        reward_funcs=reward_fns,\\n        peft_config=lora_config,\\n        processing_class=tokenizer,\\n        callbacks=callbacks,\\n    )\\n\\n    logger.info(\\\"Starting GRPO training (stage %d)...\\\", args.stage)\\n    trainer.train(resume_from_checkpoint=args.resume_from_checkpoint)\\n\\n    logger.info(\\\"Saving model to %s\\\", args.output_dir)\\n    trainer.save_model(args.output_dir)\\n    tokenizer.save_pretrained(args.output_dir)\\n    logger.info(\\\"GRPO training (stage %d) complete.\\\", args.stage)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me synthesize the analysis.
+
+Key findings from code review:
+
+1. **CED reward has a "少预测 = 高 CED" shortcut confirmed**: 
+   - CED reward = `mean(triple_rewards)` across ALL predicted triples (not just matched ones)
+   - F1 gate only checks "at least one predicted triple matches gold"
+   - So model can: predict 1 correct triple with good evidence → passes F1 gate → gets CED reward for that 1 triple → high CED score
+   - But if model outputs 10 triples, 3 correct + 7 wrong, CED averages across all — wrong triples have no matched gold → their hard_neg_sents will be empty → CED = max(0, p_pos - 0) * I(p_pos > tau) → could still get high CED even for wrong triples if NLI says the cited evidence entails them
+   - For unmatched triples, the hard negative sentences list stays empty, which means the negative probability defaults to zero. This reduces the reward calculation to just checking if the positive probability exceeds the threshold, so non-matched triples can still accumulate high CED rewards whenever the cited evidence appears to entail them according to the NLI model.
+
+This creates a significant loophole: the model can generate incorrect triples that aren't in the gold set, but as long as it cites plausible evidence for them, it avoids penalty since there are no hard negatives to discriminate against. Combined with the F1 gate requiring only one real triple match, the model can get away with predicting mostly fake-but-plausible triples alongside a single correct one, effectively gaming the reward signal.
+
+The learning rate of 5e-5 is also problematically high for GRPO—standard practice across implementations uses 5e-6 or lower—which explains the catastrophic forgetting visible in the early checkpoints where the model's performance collapses.
+
+There's a significant train-eval mismatch happening: during training with temperature sampling, the model achieves high reward scores (0.72 f1_reward at step 90), but evaluation with greedy decoding shows much worse performance (0.156 rel_f1 at step 50), suggesting the model learns to generate plausible outputs under high temperature that don't actually correspond to the greedy decoding path. Combined with the CED reward shortcut, this creates a perverse incentive where the model optimizes for temperature-sampled outputs that pass the F1 gate and score well on CED, which doesn't transfer to actual inference.
+
+The reward weighting scheme itself is problematic—with format already saturated at 99.9% variance, it contributes nothing to the gradient, leaving f1 and CED as the effective optimization targets, but CED likely dominates due to higher variance across the difficulty range. The learning rate of 5e-5 is the primary culprit here; GRPO's on-policy updates are far more aggressive than standard SFT, and the community standard for GRPO with QLoRA is 5-10x lower. The CED reward also has a critical flaw where unmatched triples get free reward since there are no hard negatives to penalize.
+
+For fixes, I'm prioritizing three experiments: first, dropping the learning rate to 5e-6 to prevent catastrophic forgetting of the base model; second, eliminating the CED shortcut by either zeroing reward for non-matched triples or adding an explicit recall penalty; and third, closing the train-eval gap by ensuring the model optimizes for greedy decoding consistency rather than lucky temperature-sampled outputs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "0c4832d8-ae2c-4efd-a4be-1811f0526683",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013MYZtdYxh5HCh9DnnexMJQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3366,
+      "cache_read_input_tokens": 49127,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3366
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+代码和社区经验都已到手。关键发现：CED reward 对非匹配 triple 无 hard negative（p_neg=0），存在系统性 shortcut。下面给出完整分析。
+
+---
+
+## 根因分析
+
+通过代码审查和社区数据，识别出 **3 个互相叠加的根因**：
+
+### 根因 1：lr=5e-5 对 GRPO 太激进（主因）
+
+社区共识：GRPO+QLoRA 的 lr 应为 **5e-6**（[Unsloth RL Guide](https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide)），HuggingFace 官方示例用 **1e-5**（[TRL GRPO cookbook](https://huggingface.co/learn/cookbook/en/fine_tuning_llm_grpo_trl)），MS-SWIFT 对 Qwen 甚至用 **1e-6**（[MS-SWIFT](https://qwen.readthedocs.io/en/latest/training/ms_swift.html)）。当前 5e-5 是推荐值的 **5-10 倍**。
+
+证据：ckpt-10（仅 10 步！）rel_f1 从 SFT 的 0.4057 崩到 0.003。这不是 reward hacking，是 **on-policy 更新步幅过大导致的灾难性遗忘**。GRPO 不同于 SFT——SFT 有 teacher forcing 锚定正确分布，GRPO 的梯度完全来自采样 reward，更新方向噪声更大，lr 必须更保守。
+
+### 根因 2：CED reward 的 recall shortcut（代码级确认）
+
+审查 `grpo_trainer.py` L221-280 的 `CEDRewardWrapper.__call__`：
+
+```python
+# 对每个 predicted triple:
+matched_gold = gold_map.get(key, {})  # 非匹配 triple → {}
+hard_neg_ids = matched_gold.get("hard_negative_sent_ids", [])  # → []
+hard_neg_sents = [...]  # → []
+
+# 在 ced_reward.py 中:
+if not hard_negative_sents:
+    p_neg = 0.0  # ← 无 hard negative 时 p_neg=0
+reward = max(0, p_pos - p_neg) * float(p_pos > tau)
+# → 简化为: p_pos * I(p_pos > tau)
+```
+
+**Shortcut 机制**：非匹配 predicted triple（不在 gold 中）没有 hard negatives → p_neg=0 → CED 退化为 flat NLI → 任何"看起来合理"的 triple 都能拿到高 CED。F1 gate 只要求 **至少 1 个** triple 匹配 gold 就放行全部 triples 的 CED 计算。
+
+**结果**：模型学会（1）少预测以提高 per-triple 平均 CED，（2）集中预测 NLI 容易判 entail 的 triple。这解释了 pred_count ↓50%、recall 崩塌、EDCR 虚高。
+
+### 根因 3：Train/eval 分布不匹配
+
+训练用 temperature sampling（8 candidates 取 reward 最高的更新），eval 用 greedy。Training f1_reward 0.02→0.72 持续上升，但 eval rel_f1 远低于预期。说明 model 偶尔在高 temperature 下采样到好输出拿高 reward，但 greedy mode 走不到那条路径。这是 GRPO 固有问题，但 **lr 过高放大了这个 gap**——policy 被少数高 reward 样本的梯度大幅拉偏。
+
+---
+
+## Top-3 可执行方案
+
+### 方向 1: 降 lr 到 5e-6
+**诊断依据**:
+- ckpt-10 rel_f1=0.003（10 步摧毁 SFT 全部 extraction 能力）
+- 社区标准 GRPO+QLoRA lr = 5e-6（vs 当前 5e-5，高 10x）
+- [HuggingFace GRPO Trainer](https://huggingface.co/docs/trl/main/en/grpo_trainer) 文档：val/ratio 偏离 1.0 太远 → lr 太高
+- 即使不改 reward 设计，lr 下降可能大幅缓解遗忘+hacking
+
+**实验配置**:
+- 改动: `--learning_rate 5e-6`（其余完全不变）
+- 命令 diff:
+  ```diff
+  - --learning_rate 5e-5
+  + --learning_rate 5e-6
+  ```
+- max_steps: 200（lr 降 10x，给更多步收敛）
+- save_steps: 20
+- 预计 GPU 时间: ~4h（单卡 RTX 5090，200 steps）
+
+**预期结果**:
+- 如果假说正确: ckpt-20 rel_f1 > 0.30（SFT 的 75%+），ckpt-100 rel_f1 ≥ 0.40，evi_f1 保持 > 0.70
+- 风险: 收敛太慢看不到 reward 上升 → 下一轮试 1e-5
+
+**优先级**: **P0** — 这是阻塞性问题，lr 不降其他修复无意义
+
+---
+
+### 方向 2: 修复 CED recall shortcut
+**诊断依据**:
+- 代码确认：非匹配 triple 的 p_neg=0，CED 退化为 flat NLI
+- pred_count: 18815 → 9250（-50%），recall: 0.407 → 0.117
+- EDCR: 0.71 → 0.89-0.99（proxy 被过度优化）
+- F1 gate 阈值太低（1 个匹配就放行所有 triple 的 CED）
+
+**实验配置** — 改 CEDRewardWrapper（两种选项，推荐 A）:
+
+**选项 A: 严格匹配 — 只对 gold-matched triple 计算 CED**
+```python
+# grpo_trainer.py CEDRewardWrapper.__call__ 中
+# 替换当前 "对所有 pred triple 算 CED" 的逻辑:
+for p in pred:
+    key = (head, relation, tail)
+    if key not in gold_map:
+        continue  # 非匹配 triple 直接跳过，不计入 CED
+    # 只有 matched triple 进 CED 计算
+    ...
+# 如果没有 matched triple → reward = 0 (F1 gate 已处理)
+```
+
+**选项 B: recall penalty 加权**
+```python
+# 在 CED reward 最后乘以 recall factor
+recall = matched_count / len(gold_set) if gold_set else 0
+final_reward = mean_ced * recall
+```
+
+- 命令 diff: 代码修改 + `--learning_rate 5e-6`（与方向 1 组合）
+- 预计 GPU 时间: ~4h（200 steps）
+
+**预期结果**:
+- 如果假说正确: pred_count 不再下降，recall 恢复到 SFT 水平（0.40+），EDCR 适度提升（0.75-0.85 而非 0.99）
+- 风险: 严格匹配可能让 CED reward 太稀疏（多数 triple 拿不到分），失去 CED-as-stabilizer 作用 → 用选项 B 折中
+
+**优先级**: **P1** — 与方向 1 组合使用
+
+---
+
+### 方向 3: MO-GRPO 风格 reward 归一化
+**诊断依据**:
+- [MO-GRPO](https://arxiv.org/abs/2509.22047) 指出标准 GRPO 按 sum 归一化 advantage，variance 大的 reward 主导梯度
+- format reward variance≈0（已最大化），f1 和 CED 的 variance 不同，CED 可能主导
+- 当前 WeightedRewardFn 只做静态权重，不做 variance normalization
+- 实现简单：TRL GRPOTrainer 内部对 rewards 做 group-level normalization，只需改 reward_funcs 返回方式
+
+**实验配置**:
+- 改动: 在 WeightedRewardFn 外层 wrapper，对每个 reward channel 的 advantage 独立归一化后再求和
+- 或者更简单：移除 format reward（已无信号），只用 f1 + CED 两个 channel，参考 MO-GRPO 的 per-objective normalization
+- 与方向 1+2 组合: `--learning_rate 5e-6` + CED shortcut fix + MO-GRPO normalization
+- 预计 GPU 时间: ~4h
+
+**预期结果**:
+- 如果假说正确: f1 和 CED 同步提升，不再出现 CED 单边优化
+- 风险: TRL 内部 normalization 可能与自定义 normalization 冲突，需仔细对接
+
+**优先级**: **P2** — 在 P0+P1 效果不够时再叠加
+
+---
+
+## 执行建议
+
+| 优先级 | 实验 | 关键改动 | 验证标准 |
+|--------|------|---------|---------|
+| **P0** | lr=5e-6 | `learning_rate 5e-6`, max_steps=200 | ckpt-20 rel_f1 > 0.30 |
+| **P1** | P0 + CED shortcut fix | 只对 gold-matched triple 计算 CED | pred_count 不下降, recall > 0.35 |
+| **P2** | P0+P1 + MO-GRPO norm | per-objective advantage normalization | f1/ced 同步上升 |
+
+**建议先单独跑 P0**（只改 lr），如果 ckpt-20 rel_f1 > 0.30 确认 lr 是主因，再叠加 P1。P0 和 P1 可以并行跑（如果有两张空闲卡）以节省时间。
+
+Sources:
+- [Unsloth RL Guide — lr=5e-6 for GRPO](https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide)
+- [HuggingFace GRPO Trainer docs](https://huggingface.co/docs/trl/main/en/grpo_trainer)
+- [TRL GRPO cookbook — lr=1e-5](https://huggingface.co/learn/cookbook/en/fine_tuning_llm_grpo_trl)
+- [MO-GRPO: Mitigating Reward Hacking](https://arxiv.org/abs/2509.22047)
+- [Reward Hacking in GRPO — blog](https://ishanjmukherjee.github.io/reward-hacking-grpo)
+- [MS-SWIFT Qwen GRPO — lr=1e-6](https://qwen.readthedocs.io/en/latest/training/ms_swift.html)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "uuid": "0cc81657-7983-4256-87b0-d80071537af4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013MYZtdYxh5HCh9DnnexMJQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3366,
+      "cache_read_input_tokens": 49127,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3366
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 41_
+
+代码和社区经验都已到手。关键发现：CED reward 对非匹配 triple 无 hard negative（p_neg=0），存在系统性 shortcut。下面给出完整分析。
+
+---
+
+## 根因分析
+
+通过代码审查和社区数据，识别出 **3 个互相叠加的根因**：
+
+### 根因 1：lr=5e-5 对 GRPO 太激进（主因）
+
+社区共识：GRPO+QLoRA 的 lr 应为 **5e-6**（[Unsloth RL Guide](https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide)），HuggingFace 官方示例用 **1e-5**（[TRL GRPO cookbook](https://huggingface.co/learn/cookbook/en/fine_tuning_llm_grpo_trl)），MS-SWIFT 对 Qwen 甚至用 **1e-6**（[MS-SWIFT](https://qwen.readthedocs.io/en/latest/training/ms_swift.html)）。当前 5e-5 是推荐值的 **5-10 倍**。
+
+证据：ckpt-10（仅 10 步！）rel_f1 从 SFT 的 0.4057 崩到 0.003。这不是 reward hacking，是 **on-policy 更新步幅过大导致的灾难性遗忘**。GRPO 不同于 SFT——SFT 有 teacher forcing 锚定正确分布，GRPO 的梯度完全来自采样 reward，更新方向噪声更大，lr 必须更保守。
+
+### 根因 2：CED reward 的 recall shortcut（代码级确认）
+
+审查 `grpo_trainer.py` L221-280 的 `CEDRewardWrapper.__call__`：
+
+```python
+# 对每个 predicted triple:
+matched_gold = gold_map.get(key, {})  # 非匹配 triple → {}
+hard_neg_ids = matched_gold.get("hard_negative_sent_ids", [])  # → []
+hard_neg_sents = [...]  # → []
+
+# 在 ced_reward.py 中:
+if not hard_negative_sents:
+    p_neg = 0.0  # ← 无 hard negative 时 p_neg=0
+reward = max(0, p_pos - p_neg) * float(p_pos > tau)
+# → 简化为: p_pos * I(p_pos > tau)
+```
+
+**Shortcut 机制**：非匹配 predicted triple（不在 gold 中）没有 hard negatives → p_neg=0 → CED 退化为 flat NLI → 任何"看起来合理"的 triple 都能拿到高 CED。F1 gate 只要求 **至少 1 个** triple 匹配 gold 就放行全部 triples 的 CED 计算。
+
+**结果**：模型学会（1）少预测以提高 per-triple 平均 CED，（2）集中预测 NLI 容易判 entail 的 triple。这解释了 pred_count ↓50%、recall 崩塌、EDCR 虚高。
+
+### 根因 3：Train/eval 分布不匹配
+
+训练用 temperature sampling（8 candidates 取 reward 最高的更新），eval 用 greedy。Training f1_reward 0.02→0.72 持续上升，但 eval rel_f1 远低于预期。说明 model 偶尔在高 temperature 下采样到好输出拿高 reward，但 greedy mode 走不到那条路径。这是 GRPO 固有问题，但 **lr 过高放大了这个 gap**——policy 被少数高 reward 样本的梯度大幅拉偏。
+
+---
+
+## Top-3 可执行方案
+
+### 方向 1: 降 lr 到 5e-6
+**诊断依据**:
+- ckpt-10 rel_f1=0.003（10 步摧毁 SFT 全部 extraction 能力）
+- 社区标准 GRPO+QLoRA lr = 5e-6（vs 当前 5e-5，高 10x）
+- [HuggingFace GRPO Trainer](https://huggingface.co/docs/trl/main/en/grpo_trainer) 文档：val/ratio 偏离 1.0 太远 → lr 太高
+- 即使不改 reward 设计，lr 下降可能大幅缓解遗忘+hacking
+
+**实验配置**:
+- 改动: `--learning_rate 5e-6`（其余完全不变）
+- 命令 diff:
+  ```diff
+  - --learning_rate 5e-5
+  + --learning_rate 5e-6
+  ```
+- max_steps: 200（lr 降 10x，给更多步收敛）
+- save_steps: 20
+- 预计 GPU 时间: ~4h（单卡 RTX 5090，200 steps）
+
+**预期结果**:
+- 如果假说正确: ckpt-20 rel_f1 > 0.30（SFT 的 75%+），ckpt-100 rel_f1 ≥ 0.40，evi_f1 保持 > 0.70
+- 风险: 收敛太慢看不到 reward 上升 → 下一轮试 1e-5
+
+**优先级**: **P0** — 这是阻塞性问题，lr 不降其他修复无意义
+
+---
+
+### 方向 2: 修复 CED recall shortcut
+**诊断依据**:
+- 代码确认：非匹配 triple 的 p_neg=0，CED 退化为 flat NLI
+- pred_count: 18815 → 9250（-50%），recall: 0.407 → 0.117
+- EDCR: 0.71 → 0.89-0.99（proxy 被过度优化）
+- F1 gate 阈值太低（1 个匹配就放行所有 triple 的 CED）
+
+**实验配置** — 改 CEDRewardWrapper（两种选项，推荐 A）:
+
+**选项 A: 严格匹配 — 只对 gold-matched triple 计算 CED**
+```python
+# grpo_trainer.py CEDRewardWrapper.__call__ 中
+# 替换当前 "对所有 pred triple 算 CED" 的逻辑:
+for p in pred:
+    key = (head, relation, tail)
+    if key not in gold_map:
+        continue  # 非匹配 triple 直接跳过，不计入 CED
+    # 只有 matched triple 进 CED 计算
+    ...
+# 如果没有 matched triple → reward = 0 (F1 gate 已处理)
+```
+
+**选项 B: recall penalty 加权**
+```python
+# 在 CED reward 最后乘以 recall factor
+recall = matched_count / len(gold_set) if gold_set else 0
+final_reward = mean_ced * recall
+```
+
+- 命令 diff: 代码修改 + `--learning_rate 5e-6`（与方向 1 组合）
+- 预计 GPU 时间: ~4h（200 steps）
+
+**预期结果**:
+- 如果假说正确: pred_count 不再下降，recall 恢复到 SFT 水平（0.40+），EDCR 适度提升（0.75-0.85 而非 0.99）
+- 风险: 严格匹配可能让 CED reward 太稀疏（多数 triple 拿不到分），失去 CED-as-stabilizer 作用 → 用选项 B 折中
+
+**优先级**: **P1** — 与方向 1 组合使用
+
+---
+
+### 方向 3: MO-GRPO 风格 reward 归一化
+**诊断依据**:
+- [MO-GRPO](https://arxiv.org/abs/2509.22047) 指出标准 GRPO 按 sum 归一化 advantage，variance 大的 reward 主导梯度
+- format reward variance≈0（已最大化），f1 和 CED 的 variance 不同，CED 可能主导
+- 当前 WeightedRewardFn 只做静态权重，不做 variance normalization
+- 实现简单：TRL GRPOTrainer 内部对 rewards 做 group-level normalization，只需改 reward_funcs 返回方式
+
+**实验配置**:
+- 改动: 在 WeightedRewardFn 外层 wrapper，对每个 reward channel 的 advantage 独立归一化后再求和
+- 或者更简单：移除 format reward（已无信号），只用 f1 + CED 两个 channel，参考 MO-GRPO 的 per-objective normalization
+- 与方向 1+2 组合: `--learning_rate 5e-6` + CED shortcut fix + MO-GRPO normalization
+- 预计 GPU 时间: ~4h
+
+**预期结果**:
+- 如果假说正确: f1 和 CED 同步提升，不再出现 CED 单边优化
+- 风险: TRL 内部 normalization 可能与自定义 normalization 冲突，需仔细对接
+
+**优先级**: **P2** — 在 P0+P1 效果不够时再叠加
+
+---
+
+## 执行建议
+
+| 优先级 | 实验 | 关键改动 | 验证标准 |
+|--------|------|---------|---------|
+| **P0** | lr=5e-6 | `learning_rate 5e-6`, max_steps=200 | ckpt-20 rel_f1 > 0.30 |
+| **P1** | P0 + CED shortcut fix | 只对 gold-matched triple 计算 CED | pred_count 不下降, recall > 0.35 |
+| **P2** | P0+P1 + MO-GRPO norm | per-objective advantage normalization | f1/ced 同步上升 |
+
+**建议先单独跑 P0**（只改 lr），如果 ckpt-20 rel_f1 > 0.30 确认 lr 是主因，再叠加 P1。P0 和 P1 可以并行跑（如果有两张空闲卡）以节省时间。
+
+Sources:
+- [Unsloth RL Guide — lr=5e-6 for GRPO](https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide)
+- [HuggingFace GRPO Trainer docs](https://huggingface.co/docs/trl/main/en/grpo_trainer)
+- [TRL GRPO cookbook — lr=1e-5](https://huggingface.co/learn/cookbook/en/fine_tuning_llm_grpo_trl)
+- [MO-GRPO: Mitigating Reward Hacking](https://arxiv.org/abs/2509.22047)
+- [Reward Hacking in GRPO — blog](https://ishanjmukherjee.github.io/reward-hacking-grpo)
+- [MS-SWIFT Qwen GRPO — lr=1e-6](https://qwen.readthedocs.io/en/latest/training/ms_swift.html)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 143834,
+  "duration_api_ms": 169128,
+  "num_turns": 15,
+  "stop_reason": "end_turn",
+  "session_id": "036c44a4-0aac-4a79-a952-4a5e6564c4e5",
+  "total_cost_usd": 0.672317,
+  "usage": {
+    "input_tokens": 9,
+    "cache_creation_input_tokens": 41046,
+    "cache_read_input_tokens": 193639,
+    "output_tokens": 6496,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 41046,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 4739,
+        "cache_read_input_tokens": 49127,
+        "cache_creation_input_tokens": 3366,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3366
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 93205,
+      "outputTokens": 2662,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 5,
+      "costUSD": 0.15651500000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 9,
+      "outputTokens": 6496,
+      "cacheReadInputTokens": 193639,
+      "cacheCreationInputTokens": 41046,
+      "webSearchRequests": 0,
+      "costUSD": 0.515802,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "ac014242-f37e-4f5e-81df-71d64ad3c14a"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_009_dynamics_figure",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:17:30.987Z",
+    "updated_at": "2026-05-15T23:17:47.394Z",
+    "hypothesis": "GRPO forgetting dynamics 3-panel figure: QLoRA vs BF16 GRPO 的 rel_f1/evi_f1/EDCR 训练轨迹对比。支撑 Claim 3 (task decoupling 是 QLoRA-specific)。plan_id=plan_009。",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T23:17:47.632000+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan_006_qwen3_8b_rsft_test",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:30:36.092Z",
+    "updated_at": "2026-05-17T15:30:46.920Z",
+    "hypothesis": "Generate 8B RSFT test set predictions for CodaLab submission. 8B RSFT dev rel_f1=0.5606, expect similar performance on test."
+  },
+  "timestamp": "2026-05-17T15:30:47.354834+00:00",
+  "trigger": "update_registry"
+}

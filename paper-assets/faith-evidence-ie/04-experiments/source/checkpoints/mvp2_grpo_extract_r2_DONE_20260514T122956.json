@@ -1,0 +1,55 @@
+{
+  "exp_id": "mvp2_grpo_extract_r2",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:10:19.532Z",
+    "updated_at": "2026-05-14T12:29:56.495Z",
+    "spec": {
+      "command": "python -m freige.training.grpo_trainer --stage 1 --kl_coef 0.0 --num_iterations 1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 0.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "50670",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_grpo_extract_r2.log",
+      "submitted_at": "2026-05-14T12:10:19.491Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": {
+        "train": 3027,
+        "dev": 985
+      },
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "Extraction-only reward (format×0.3, f1×3.0, ced=0) with kl_coef=0 establishes stable GRPO baseline",
+      "parent": "mvp2_grpo_extract",
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "/root/autodl-tmp/data/docred",
+      "hyperparams": {
+        "learning_rate": "5e-5",
+        "kl_coef": 0,
+        "save_steps": 20,
+        "num_iterations": 1,
+        "format_reward_weight": 0.3,
+        "f1_reward_weight": 3,
+        "ced_reward_weight": 0,
+        "per_device_batch_size": 1,
+        "gradient_accumulation_steps": 16,
+        "num_generations": 4,
+        "quantization": "QLoRA 4-bit NF4"
+      },
+      "wall_clock_seconds": 1166.7,
+      "gpu_hours": 0.32
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-14T12:29:46.151Z"
+  },
+  "timestamp": "2026-05-14T12:29:56.538284+00:00",
+  "trigger": "update_registry"
+}

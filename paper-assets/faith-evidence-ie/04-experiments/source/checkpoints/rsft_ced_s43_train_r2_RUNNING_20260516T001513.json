@@ -1,0 +1,32 @@
+{
+  "exp_id": "rsft_ced_s43_train_r2",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:09:34.266Z",
+    "updated_at": "2026-05-16T00:15:13.003Z",
+    "spec": {
+      "data_path": "/root/autodl-tmp/rsft_filtered/rsft_train.jsonl",
+      "data_count": 2718,
+      "model_name": "Qwen3-4B + LoRA on SFT adapter",
+      "seed": 43,
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "account": "root",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.rsft_trainer --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_ced_s43_r2 --seed 43 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --wandb_run_name rsft_ced_s43_r2 --bf16\"",
+      "pid": 275269,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "N/A (training, not eval)",
+      "log_path": "~/runs/faith-evidence-ie/rsft_ced_s43_train_r2.log"
+    },
+    "hypothesis": "CED RSFT seed=43 训练（r2 重试，修正 cwd 错误）。补全 paired t-test 所需的第 3 个 CED seed（现有 s42/s44）。训练数据 2718 samples，3 epochs，~2h。plan_id=plan_mvp2_rsft, claim=3。",
+    "parent": "rsft_ced_s43_train"
+  },
+  "timestamp": "2026-05-16T00:15:13.370168+00:00",
+  "trigger": "update_registry"
+}

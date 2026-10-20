@@ -1,0 +1,16 @@
+{
+  "exp_id": "post_hoc_bm25_baseline",
+  "project": "faith-evidence-ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:01:00.344Z",
+    "updated_at": "2026-05-17T13:01:29.315Z",
+    "hypothesis": "Post-hoc BM25 evidence retrieval on SFT-no-evidence predictions: if retrieving evidence after RE produces comparable joint Evi-F1 and EDCR to jointly trained RSFT, then joint generation is unnecessary. Expect RSFT to have better evidence quality (lower EDCR) due to training-time evidence grounding.",
+    "parent": "plan_014_sft_no_evidence"
+  },
+  "timestamp": "2026-05-17T13:01:29.739085+00:00",
+  "trigger": "update_registry"
+}

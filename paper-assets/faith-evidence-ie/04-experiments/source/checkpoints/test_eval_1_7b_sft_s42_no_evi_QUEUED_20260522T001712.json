@@ -1,0 +1,15 @@
+{
+  "exp_id": "test_eval_1_7b_sft_s42_no_evi",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T23:21:48.946Z",
+    "updated_at": "2026-05-22T00:17:11.575Z",
+    "hypothesis": "D147 evidence tax test spot-check: 1.7B SFT s42 no-evidence on test_revised.json (500 docs)。配对 test_eval_1_7b_sft_s42 (cuda:0 running) 计算 test set 上的 1.7B evidence tax。验证 dev matched@2048 fair_tax (-5.63pp, evidence helps) 在 test set 上是否一致。"
+  },
+  "timestamp": "2026-05-22T00:17:12.248423+00:00",
+  "trigger": "update_registry"
+}

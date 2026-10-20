@@ -1,0 +1,44 @@
+{
+  "exp_id": "plan_001_flat_nli_seed44",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:38:26.174Z",
+    "updated_at": "2026-05-15T23:25:19.841Z",
+    "spec": {
+      "command": "rsft train flat_nli seed=44",
+      "server": "rtx5090-4x",
+      "gpu": "cuda:0",
+      "pid": 258503,
+      "log_path": "~/runs/faith-evidence-ie/plan_001_flat_nli_seed44.log",
+      "submitted_at": "2026-05-15T21:38:25.857Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl",
+      "data_count": 2691,
+      "model_name": "Qwen3-4B + SFT adapter",
+      "seed": 44,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "checkpoint_path": "/root/autodl-tmp/rsft_output_flat_nli_s44"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T23:22:24.600Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T23:22:27.640280+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T23:25:20.130796+00:00",
+  "trigger": "update_registry"
+}

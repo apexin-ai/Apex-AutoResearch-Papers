@@ -1,0 +1,896 @@
+# cron hook mvp2 sft eval
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 28
+- **Recorded user turns:** 1
+- **Tool calls:** 13
+- **Original source:** `logs/chats/cron_hook_mvp2_sft_eval.jsonl`
+- **Structured JSON:** [`3c3a5e3bf98e109e0378.json`](../../sessions/3c/3c3a5e3bf98e109e0378.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+28 recorded events
+
+### User
+
+_source line 1 · 2026-05-15T04:33:50.023539+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #7。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（rtx5090-4x），无其他可用 GPU
+- 运行目录必须是 `/root/autodl-tmp/`，**禁止** `cd /root/autodl-tmp/freige`（会触发 Python import 找到内层空 freige/freige/ 包，所有脚本全部 fail）
+- RSFT 训练禁止 `--quantize`（4-bit + merge_and_unload 在 RTX 5090 有 CUBLAS 错误），bf16 Qwen3-4B 仅 ~8GB 无需量化
+- Qwen3 的 `generation_config.json` 会静默覆盖代码传参（top_k=20, temperature=0.6），生成前必须显式 override `model.generation_config`
+- GRPO+QLoRA 方向已判死（D031/D033），不要再跑任何 GRPO 实验，全力推 RSFT 流水线
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: rtx5090-4x（4× RTX 5090 32GB），备用 bjb2-12179
+- **工作目录**: `/root/autodl-tmp/`（脚本在 `/root/autodl-tmp/freige/`）
+- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）
+- **模型**: `/root/autodl-tmp/models/Qwen3-4B`（base），`/root/autodl-tmp/sft_output`（SFT adapter）
+- **NLI 模型**: `/root/autodl-tmp/.hf_cache` 下 cross-encoder/nli-deberta-v3-base（已下载）
+- **数据**: DocRED，通过 `freige.data.docred_processor.DocREDProcessor` 加载
+- **RSFT 生成输出**: `/root/autodl-tmp/rsft_generations/shard_{0,1,2,3}/generations.jsonl`
+- **日志**: shard 0-2 在 `/root/autodl-tmp/rsft_generations/shard_{0,1,2}/log.txt`，shard 3 在 `/root/runs/faith-evidence-ie/mvp2_rsft_gen_s3.log`
+- **活跃进程**: 4 个 RSFT 生成 shard 正在跑
+  - shard 0: PID 135867, cuda:0 (mvp2_rsft_gen_s0)
+  - shard 1: PID 136270, cuda:1 (mvp2_rsft_gen_s1)
+  - shard 2: PID 136649, cuda:2 (mvp2_rsft_gen_s2)
+  - shard 3: PID 137985, cuda:3 (mvp2_rsft_gen_s3)
+- **Cron**: 4 个 cron 分别监控上述 4 个 shard（reconcile 确认 all still running）
+- **W&B**: 项目 faith-evidence-ie
+
+### 3. 📊 当前状态
+- **正在做**: 4 卡并行 RSFT 候选生成（Qwen3-4B + SFT adapter, T=0.7, N=8 generations/doc, 共 3027 docs 分 4 shard）
+- **上次快照（~14:50 UTC+8）**: 总进度 ~87.7%（2369/2701 docs），预计 ~15:20 完成。质量指标良好：format_ok_rate ≥99.6%, mean_diversity 7.4-7.8/8, truncation ~9-10%
+- **Registry RUNNING**: mvp2_rsft_gen_s0/s1/s2/s3（4 个生成 shard）
+- **Registry PREPARING**: mvp2_grpo_ced_kl001_r2, mvp2_grpo_ced_kl001_r3, mvp2_eval_ced_kl001_r4_last（遗留 GRPO 实验，**已废弃不要跑**）
+- **Worker 池**: 0 running（全部已完成退出）
+- **等待**: 4 个 cron 回调（shard 生成完成 → ANALYZING），预计很快到达
+- **总战绩**: 成功 10 / 负向 11 / 失败 11 / 共 48 实验
+
+### 4. 📋 待办（条件触发式）
+- **4 shard 全部完成 cron 回调到达** → spawn Worker 合并 4 个 shard 的 `generations.jsonl` → 验证总行数 ~24000（3027×8）→ 运行 `rsft_score_filter.py` 做 CED 打分筛选 → 检查筛选后样本数量和质量分布
+- **CED 筛选完成** → 启动 `rsft_trainer.py` 训练（bf16, 不量化, lora_rank=64, lora_alpha=128）→ 注册新实验 mvp2_rsft_train → 用 `submit_training_job` 提交
+- **RSFT 训练完成** → eval rel_f1 vs SFT baseline (0.4057)。**Pass criteria: rel_f1 > 0.4057**（必须超过 SFT baseline 才算 RSFT 有效）
+- **RSFT eval success** → 向 Director 汇报，推进 Post-MVP 流程（complete_mvp → paper_framing → experiment_plan → dream_simulate）
+- **RSFT eval negative** → 尝试 contingency 方案（调 selection_strategy/threshold、prompt diversity、CED as reranker 推理时方案）
+
+### 5. 🎯 战略上下文
+- **项目核心**: FREIGE = CED reward 引导 LLM 在文档级关系抽取中生成可验证证据。MVP-1 已验证 CED signal 有效（margin=0.48, accuracy=81.5%）
+- **关键 pivot（D031）**: GRPO+QLoRA 全线 FAIL，在线 RL 在结构化生成任务上根本性失败——CED 能教会 evidence 定位（evi_f1↑）但 policy shift 摧毁关系抽取（rel_f1 崩塌到 0.01 级别）。Pivot 到 RSFT（离线 RL）
+- **论文素材已有**: rel_f1/evi_f1 分离现象可以证明 CED reward signal 本身有效，问题在训练方式——这是正面贡献
+- **D034→D035→D036 教训**: diversity crisis 是监控 bug 不是生成质量问题。监控代码的 triple-set 归一化有 bug 导致误报 diversity=1.0/8，实际 7.5/8。已修复并加了 cross-check。**不要因为监控数字可疑就暂停流水线——先独立验证**
+- **易错点**: (1) 不要再碰 GRPO 相关的 PREPARING 实验 (2) shard 3 日志路径和 shard 0-2 不同 (3) 合并 shard 时注意 shard 1 包含之前的 302 docs 续传数据，可能有重复 doc_id 需去重
+
+## 可查的历史
+前 62 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:mvp2_sft_eval",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T04:34:00.975500+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T04:34:01.027431+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "ToolSearch",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T04:34:03.603882+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": "{'status': 'RUNNING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "filters": "{'status': 'RUNNING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T04:34:03.604373+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T04:34:04.136306+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"mvp2_rsft_gen_s3\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T01:39:34.645Z\", \"updated_at\": \"2026-05-15T01:50:52.582Z\", \"hypothesis\": \"RSFT generation shard 3/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1.\", \"parent\": \"mvp2_sft_warmup\"}, \"mvp2_rsft_gen_s2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T01:39:32.299Z\", \"updated_at\": \"2026-05-15T01:50:09.425Z\", \"hypothesis\": \"RSFT generation shard 2/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1.\", \"parent\": \"mvp2_sft_warmup\"}, \"mvp2_rsft_gen_s1\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T01:39:29.894Z\", \"updated_at\": \"2026-05-15T01:50:08.464Z\", \"hypothesis\": \"RSFT generation shard 1/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1.\", \"parent\": \"mvp2_sft_warmup\"}, \"mvp2_rsft_gen_s0\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T01:39:26.572Z\", \"updated_at\": \"2026-05-15T01:50:07.589Z\", \"hypothesis\": \"RSFT generation shard 0/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1.\", \"parent\": \"mvp2_sft_warmup\"}}, \"count\": 4, \"total\": 4, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2965}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 532
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T04:34:04.136785+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "faith-evidence-ie",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T04:34:04.407766+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T04:34:18.129927+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 4, \"results\": [{\"exp_id\": \"mvp2_rsft_gen_s0\", \"success\": true, \"actions\": [\"Job still running (pid=135867)\"]}, {\"exp_id\": \"mvp2_rsft_gen_s1\", \"success\": true, \"actions\": [\"Sentinel EXIT_CODE=143 → Registry → DONE(failed)\", \"Cron deleted\"]}, {\"exp_id\": \"mvp2_rsft_gen_s2\", \"success\": true, \"actions\": [\"Job still running (pid=136649)\"]}, {\"exp_id\": \"mvp2_rsft_gen_s3\", \"success\": true, \"actions\": [\"Job still running (pid=137985)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 14525
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T04:34:18.182074+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-15T04:34:09Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 32 个实验 — DONE 26, PREPARING 3, RUNNING 3\\n**DONE 分布**: failed 9, killed 5, negative 7, success 5\\n\\n### GPU 占用\\n- **分配**: 4 张 — rtx5090-4x:cuda:0, rtx5090-4x:cuda:1, rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\n- **空闲（分配了没跑）**: rtx5090-4x:cuda:0, rtx5090-4x:cuda:1, rtx5090-4x:cuda:2, rtx5090-4x:cuda:3\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `mvp2_rsft_gen_s0` | ? | ? | 135867 | `—` |\\n| `mvp2_rsft_gen_s2` | ? | ? | 136649 | `—` |\\n| `mvp2_rsft_gen_s3` | ? | ? | 137985 | `—` |\\n\\n### 📌 最近完成 (top 5)\\n- `mvp2_rsft_gen_s1` [failed] — 2026-05-15T04:34:08 — EXIT_CODE=143 (SIGTERM — graceful kill)\\n- `mvp2_rsft_generate` [failed] — 2026-05-15T01:32:10 — EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)\\n- `mvp2_diversity_probe` [success] — 2026-05-15T01:31:34\\n- `mvp2_eval_lr5e6_r1_ckpt100` [negative] — 2026-05-15T01:30:01\\n- `mvp2_grpo_ced_lr5e6_r1` [killed] — 2026-05-15T01:29:06\\n\\n### 🔴 最近失败原因 (top 3)\\n- `mvp2_rsft_gen_s1`: EXIT_CODE=143 (SIGTERM — graceful kill)\\n- `mvp2_rsft_generate`: EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)\\n- `mvp2_grpo_ced_lr5e6_r1`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| mvp2_rsft_gen_s3 | RSFT generation shard 3/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1. | — | — | — |\\n| mvp2_rsft_gen_s2 | RSFT generation shard 2/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM 
+…[truncated 2644 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 14045
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T04:34:18.182822+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\", \"content\": \"# faith-evidence-ie — Research Dashboard\\n\\n> 最后更新: 2026-05-15 01:42 UTC | 更新原因: D036: 撤销 diversity crisis，恢复 4 卡并行 RSFT 生成\\n\\n## 核心方向\\nFREIGE: 用对比证据判别 (CED) 奖励训练 LLM 在文档级关系抽取中同时生成抽取结果和可验证证据。\\n\\n## 当前进展\\n- 阶段: MVP 验证（MVP-1 ✅, MVP-2 运行中 — GRPO 判死，离线 RL pivot 进行中）\\n- **MVP-1**: CED margin 0.4827, accuracy 81.5%, r=0.34 — PASS\\n- **SFT warmup**: 完成（eval loss 0.72, token accuracy 83.5%）\\n- **GRPO+QLoRA 全线 FAIL (D031/D033)**: CED 有效但在线 RL 导致 rel_f1 catastrophic forgetting\\n- **D034/D035 撤销 (D036)**: diversity crisis 为监控 bug（度量代码错误报 1.0/8，实际 7.11/8 median=8.0）\\n- **RSFT 生成**: T=0.7 diversity 充足，4 卡并行分片重启中（已完成 302/3027 docs，断点续传）\\n\\n## GPU 分配（2026-05-15 实况）\\n\\n| GPU | 状态 | 任务 |\\n|-----|------|------|\\n| cuda:0 | 🏃 启动中 | RSFT generate shard 0 |\\n| cuda:1 | 🏃 启动中 | RSFT generate shard 1（续跑已有 302 docs） |\\n| cuda:2 | 🏃 启动中 | RSFT generate shard 2 |\\n| cuda:3 | 🏃 启动中 | RSFT generate shard 3 |\\n\\n## MVP-2: 离线 RL 路线\\n\\n### RSFT 流水线（diversity gate 已通过）\\n1. ✅ 代码准备（含 generation_config 修复 + 分片并行 + diversity 监控修复）\\n2. 🏃 生成候选（4 卡并行，预计 ~3h 完成全量 3027 docs × 8 generations）\\n3. ⬜ CED 打分筛选\\n4. ⬜ RSFT 训练\\n5. ⬜ Eval\\n\\n### 方案 2: DPO + CED（RSFT 完成后考虑）\\n\\n### Contingency（RSFT 训练效果不佳时）\\n1. Prompt-level 多样性: 不同 prompt 模板 / 不同实体子集\\n2. CED 作为 reranker（推理时方案）\\n3. 全参微调（non-QLoRA）\\n\\n## 近期任务\\n- [ ] 4 卡并行 RSFT 生成完成（~3h）\\n- [ ] 合并 4 shard 输出\\n- [ ] CED 打分筛选 top candidates\\n- [ ] RSFT 训练\\n- [ ] Eval: rel_f1 / evidence quality\\n\\n## Post-MVP 流程（MVP-2 通过后）\\n1. complete_mvp() → paper_framing.md → experiment_plan.yaml → dream_simulate\\n\\n## GPU 预算\\n- 硬件: 4× RTX 5090 32GB\\n- GRPO 已消耗: ~60+ GPU-hours\\n- RSFT 生成预估: ~3h（4 卡并行）\\n- RSFT 训练预估: ~4-8h\\n\\n## 评审笔记（Research 阶段处理）\\n1. CED 重框定为 anti-reward-overoptimization mechanism\\n2. EDCR 升格为独立评估贡献\\n3. ~~NLI lexical overlap bias~~ → MVP-1 已验证 (r=0.34)\\n4.
+…[truncated 1632 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 13775
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T04:34:39.282257+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T04:34:39.332971+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T04:35:08.402459+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "ops:rsft_gen_status_check",
+  "project": "faith-evidence-ie",
+  "task_prompt": "## 任务：检查 RSFT 生成进度和 shard 1 失败调查\n\n### 背景\n4 卡并行 RSFT 候选生成（Qwen3-4B + SFT adapter, T=0.7, N=8 generations/doc, 共 3027 docs 分 4 shard）。\nShard 1 已被 SIGTERM (EXIT_CODE=143) 杀死，需要调查数据完整性。其余 3 个 shard 仍在运行。\n\n### 服务器信息\n- 服务器: rtx5090-4x\n- Python: `/root/miniconda3/bin/python`（conda base）\n- 工作目录: `/root/autodl-tmp/`（**禁止 cd /root/autodl-tmp/freige**）\n\n### 需要检查的内容（全部用 ssh_read_only）\n\n1. **Shard 1 数据完整性**:\n   - `wc -l /root/autodl-tmp/rsft_generations/shard_1/generations.jsonl` 查行数\n   - `tail -3 /root/autodl-tmp/rsft_generations/shard_1/generations.jsonl` 查最后几行是否完整（不是截断的 JSON）\n   - `cat /root/autodl-tmp/rsft_generations/shard_1/log.txt | tail -20` 查死亡前日志\n   - 用 python 统计 shard 1 的 unique doc_id 数量: `python3 -c \"import json; lines=open('/root/autodl-tmp/rsft_generations/shard_1/generations.jsonl').readlines(); doc_ids=set(json.loads(l)['doc_id'] for l in lines if l.strip()); print(f'lines={len(lines)}, unique_docs={len(doc_ids)}')\"` \n\n2. **其余 shard 进度**（shard 0, 2, 3）:\n   - 每个 shard: `wc -l /root/autodl-tmp/rsft_generations/shard_{0,2,3}/generations.jsonl`\n   - 检查进程是否还活着: `ps -p 135867,136649,137985 -o pid,etime,rss,cmd --no-headers`\n   - shard 0 日志: `tail -5 /root/autodl-tmp/rsft_generations/shard_0/log.txt`\n   - shard 2 日志: `tail -5 /root/autodl-tmp/rsft_generations/shard_2/log.txt`\n   - shard 3 日志: `tail -5 /root/runs/faith-evidence-ie/mvp2_rsft_gen_s3.log`\n\n3. **每个 shard 应有的 doc 数**（总 3027 docs / 4 shard）:\n   - shard 0: ~757 docs → ~6056 lines (757×8)\n   - shard 1: ~757 docs → ~6056 lines（注意 shard 1 包含之前续传的 302 docs，可能有重复 doc_id）\n   - shard 2: ~757 docs → ~6056 lines  \n   - shard 3: ~756 docs → ~6048 lines\n\n4. **Shard 1 SIGTERM 原因调查**:\n   - `dmesg | grep -i \"kill\\|oom\" | tail -10` 查是否 OOM\n   - `ls -la /root/autodl-tmp/rsft_generations/shard_1/` 查文件时间戳\n\n### 产出\n用简洁格式汇报：\n- 每个 shard 的 lines / unique_docs / 是否完成\n- shard 1 失败原因（OOM? 手动 kill? 系统清理?）\n- shard 1 数据是否可用（最后一行是否完整 JSON）\n- 其余 shard 预计还需多久（根据已完成比例估算）\n",
+  "tool_groups": "['ssh']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "ops:rsft_gen_status_check",
+    "project": "faith-evidence-ie",
+    "task_prompt": "## 任务：检查 RSFT 生成进度和 shard 1 失败调查\n\n### 背景\n4 卡并行 RSFT 候选生成（Qwen3-4B + SFT adapter, T=0.7, N=8 generations/doc, 共 3027 docs 分 4 shard）。\nShard 1 已被 SIGTERM (EXIT_CODE=143) 杀死，需要调查数据完整性。其余 3 个 shard 仍在运行。\n\n### 服务器信息\n- 服务器: rtx5090-4x\n- Python: `/root/miniconda3/bin/python`（conda base）\n- 工作目录: `/root/autodl-tmp/`（**禁止 cd /root/autodl-tmp/freige**）\n\n### 需要检查的内容（全部用 ssh_read_only）\n\n1. **Shard 1 数据完整性**:\n   - `wc -l /root/autodl-tmp/rsft_generations/shard_1/generations.jsonl` 查行数\n   - `tail -3 /root/autodl-tmp/rsft_generations/shard_1/generations.jsonl` 查最后几行是否完整（不是截断的 JSON）\n   - `cat /root/autodl-tmp/rsft_generations/shard_1/log.txt | tail -20` 查死亡前日志\n   - 用 python 统计 shard 1 的 unique doc_id 数量: `python3 -c \"import json; lines=open('/root/autodl-tmp/rsft_generations/shard_1/generations.jsonl').readlines(); doc_ids=set(json.loads(l)['doc_id'] for l in lines if l.strip()); print(f'lines={len(lines)}, unique_docs={len(doc_ids)}')\"` \n\n2. **其余 shard 进度**（shard 0, 2, 3）:\n   - 每个 shard: `wc -l /root/autodl-tmp/rsft_generations/shard_{0,2,3}/generations.jsonl`\n   - 检查进程是否还活着: `ps -p 135867,136649,137985 -o pid,etime,rss,cmd --no-headers`\n   - shard 0 日志: `tail -5 /root/autodl-tmp/rsft_generations/shard_0/log.txt`\n   - shard 2 日志: `tail -5 /root/autodl-tmp/rsft_generations/shard_2/log.txt`\n   - shard 3 日志: `tail -5 /root/runs/faith-evidence-ie/mvp2_rsft_gen_s3.log`\n\n3. **每个 shard 应有的 doc 数**（总 3027 docs / 4 shard）:\n   - shard 0: ~757 docs → ~6056 lines (757×8)\n   - shard 1: ~757 docs → ~6056 lines（注意 shard 1 包含之前续传的 302 docs，可能有重复 doc_id）\n   - shard 2: ~757 docs → ~6056 lines  \n   - shard 3: ~756 docs → ~6048 lines\n\n4. **Shard 1 SIGTERM 原因调查**:\n   - `dmesg | grep -i \"kill\\|oom\" | tail -10` 查是否 OOM\n   - `ls -la /root/autodl-tmp/rsft_generations/shard_1/` 查文件时间戳\n\n### 产出\n用简洁格式汇报：\n- 每个 shard 的 lines / unique_docs / 是否完成\n- shard 1 失败原因（OOM? 手动 kill? 系统清理?）\n- shard 1 数据是否可用（最后一行是否完整 JSON）\n- 其余 shard 预计还需多久（根据已完成比例估算）\n",
+    "tool_groups": "['ssh']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T04:35:11.383995+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_rsft_gen_status_check_20260515T043509\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_ops_rsft_gen_status_check_20260515T043509.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_rsft_gen_status_check_20260515T043509 started. Use get_worker_status('worker_ops_rsft_gen_status_check_20260515T043509') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2981
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T04:35:18.838047+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T04:35:18.838917+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_6374170d.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T04:35:20.849518+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T04:35:21.002071+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "Glob",
+  "elapsed_ms": 152
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T04:35:22.766126+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T04:35:22.918445+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "Glob",
+  "elapsed_ms": 152
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T04:35:25.488804+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T04:35:25.540523+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T04:35:57.529676+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "code:rsft_merge_ced_prep",
+  "project": "faith-evidence-ie",
+  "task_prompt": "## 任务：预审 RSFT merge + CED 筛选流水线代码\n\n### 背景\n4 卡并行 RSFT 候选生成即将完成（每 shard 约 757 docs × 8 generations = ~6056 行 JSONL）。\n下一步流水线：\n1. 合并 4 个 shard 的 generations.jsonl → 一个大文件\n2. 去重（shard 1 包含之前续传的 302 docs，可能有重复 doc_id）\n3. CED 打分筛选（用 rsft_score_filter.py）\n4. 生成 RSFT 训练数据\n\n### 服务器信息\n- 服务器: rtx5090-4x\n- Python: `/root/miniconda3/bin/python`（conda base）\n- 代码目录: `/root/autodl-tmp/freige/`（**禁止 cd 到此目录运行脚本**，脚本必须从 `/root/autodl-tmp/` 运行）\n- 生成输出: `/root/autodl-tmp/rsft_generations/shard_{0,1,2,3}/generations.jsonl`\n- NLI 模型: `/root/autodl-tmp/.hf_cache` 下 cross-encoder/nli-deberta-v3-base\n\n### 你需要做的（全部用 ssh_read_only）\n\n1. **检查 merge 脚本是否存在**:\n   - `ls -la /root/autodl-tmp/freige/freige/rsft/` 列出所有 RSFT 相关脚本\n   - `ls -la /root/autodl-tmp/freige/scripts/` 看是否有 merge 脚本\n\n2. **审查 rsft_score_filter.py**:\n   - 读取完整代码: `cat /root/autodl-tmp/freige/freige/rsft/rsft_score_filter.py`（如果存在）\n   - 理解输入格式要求（JSONL 字段名）\n   - 理解 CED 打分逻辑\n   - 检查是否需要 GPU（NLI model）\n   - 检查命令行参数\n\n3. **审查 rsft_trainer.py**:\n   - `cat /root/autodl-tmp/freige/freige/rsft/rsft_trainer.py`（如果存在）\n   - 理解训练数据格式要求\n   - 检查训练超参数默认值\n   - 确认是否支持 bf16 + LoRA\n\n4. **检查 generations.jsonl 格式**:\n   - 从任意已有 shard 读一行: `head -1 /root/autodl-tmp/rsft_generations/shard_0/generations.jsonl`\n   - 确认字段名是否与 rsft_score_filter.py 的输入格式匹配\n\n5. **预估 CED 筛选资源需求**:\n   - NLI model 需要多少显存\n   - 能否用 1 卡跑 CED 筛选同时其余 3 卡空出来\n\n### 产出\n汇报：\n- merge 脚本是否存在，不存在的话需要写什么\n- rsft_score_filter.py 的输入输出格式、命令行参数\n- rsft_trainer.py 的配置和数据格式要求\n- 数据格式是否对齐（generation output → score_filter input → trainer input）\n- CED 筛选需要几卡、预计耗时\n- 是否有任何代码问题需要修复\n",
+  "tool_groups": "['ssh']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "code:rsft_merge_ced_prep",
+    "project": "faith-evidence-ie",
+    "task_prompt": "## 任务：预审 RSFT merge + CED 筛选流水线代码\n\n### 背景\n4 卡并行 RSFT 候选生成即将完成（每 shard 约 757 docs × 8 generations = ~6056 行 JSONL）。\n下一步流水线：\n1. 合并 4 个 shard 的 generations.jsonl → 一个大文件\n2. 去重（shard 1 包含之前续传的 302 docs，可能有重复 doc_id）\n3. CED 打分筛选（用 rsft_score_filter.py）\n4. 生成 RSFT 训练数据\n\n### 服务器信息\n- 服务器: rtx5090-4x\n- Python: `/root/miniconda3/bin/python`（conda base）\n- 代码目录: `/root/autodl-tmp/freige/`（**禁止 cd 到此目录运行脚本**，脚本必须从 `/root/autodl-tmp/` 运行）\n- 生成输出: `/root/autodl-tmp/rsft_generations/shard_{0,1,2,3}/generations.jsonl`\n- NLI 模型: `/root/autodl-tmp/.hf_cache` 下 cross-encoder/nli-deberta-v3-base\n\n### 你需要做的（全部用 ssh_read_only）\n\n1. **检查 merge 脚本是否存在**:\n   - `ls -la /root/autodl-tmp/freige/freige/rsft/` 列出所有 RSFT 相关脚本\n   - `ls -la /root/autodl-tmp/freige/scripts/` 看是否有 merge 脚本\n\n2. **审查 rsft_score_filter.py**:\n   - 读取完整代码: `cat /root/autodl-tmp/freige/freige/rsft/rsft_score_filter.py`（如果存在）\n   - 理解输入格式要求（JSONL 字段名）\n   - 理解 CED 打分逻辑\n   - 检查是否需要 GPU（NLI model）\n   - 检查命令行参数\n\n3. **审查 rsft_trainer.py**:\n   - `cat /root/autodl-tmp/freige/freige/rsft/rsft_trainer.py`（如果存在）\n   - 理解训练数据格式要求\n   - 检查训练超参数默认值\n   - 确认是否支持 bf16 + LoRA\n\n4. **检查 generations.jsonl 格式**:\n   - 从任意已有 shard 读一行: `head -1 /root/autodl-tmp/rsft_generations/shard_0/generations.jsonl`\n   - 确认字段名是否与 rsft_score_filter.py 的输入格式匹配\n\n5. **预估 CED 筛选资源需求**:\n   - NLI model 需要多少显存\n   - 能否用 1 卡跑 CED 筛选同时其余 3 卡空出来\n\n### 产出\n汇报：\n- merge 脚本是否存在，不存在的话需要写什么\n- rsft_score_filter.py 的输入输出格式、命令行参数\n- rsft_trainer.py 的配置和数据格式要求\n- 数据格式是否对齐（generation output → score_filter input → trainer input）\n- CED 筛选需要几卡、预计耗时\n- 是否有任何代码问题需要修复\n",
+    "tool_groups": "['ssh']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T04:35:59.858774+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_rsft_merge_ced_prep_20260515T043557\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_code_rsft_merge_ced_prep_20260515T043557.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_rsft_merge_ced_prep_20260515T043557 started. Use get_worker_status('worker_code_rsft_merge_ced_prep_20260515T043557') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2329
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T04:36:22.131182+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 4 / 实际在跑 3 (cuda:0,2,3) | cuda:1 空闲(shard 1 被 SIGTERM) | Worker 池 2 (CPU: shard 调查 + merge/CED 代码预审)\n\n**Session-start 状态汇报**\n\n**RSFT 生成**:\n- shard 0/2/3: 仍在运行（reconcile 确认进程存活）\n- shard 1: **EXIT_CODE=143 (SIGTERM) 被杀**，reconcile 已自动转 DONE(failed)\n- 已派 Worker 调查 shard 1 数据完整性和死因\n\n**行动中**:\n1. Worker-1: SSH 调查 shard 1 输出数据行数/完整性 + 其余 shard 进度\n2. Worker-2: 预审 merge + rsft_score_filter.py + rsft_trainer.py 代码，确保 shard 完成后能立即启动下一步\n\n**待决**:\n- shard 1 数据如果大部分完整 → 仅补跑剩余 docs（cuda:1）\n- shard 1 数据如果损坏 → 重跑整个 shard（cuda:1）\n- 等 Worker 调查结果后立即处理，不让 cuda:1 空闲\n\n**ROADMAP 对齐**: RSFT 流水线第 2 步（生成候选）接近完成，下一步 CED 打分筛选 + RSFT 训练。",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 4 / 实际在跑 3 (cuda:0,2,3) | cuda:1 空闲(shard 1 被 SIGTERM) | Worker 池 2 (CPU: shard 调查 + merge/CED 代码预审)\n\n**Session-start 状态汇报**\n\n**RSFT 生成**:\n- shard 0/2/3: 仍在运行（reconcile 确认进程存活）\n- shard 1: **EXIT_CODE=143 (SIGTERM) 被杀**，reconcile 已自动转 DONE(failed)\n- 已派 Worker 调查 shard 1 数据完整性和死因\n\n**行动中**:\n1. Worker-1: SSH 调查 shard 1 输出数据行数/完整性 + 其余 shard 进度\n2. Worker-2: 预审 merge + rsft_score_filter.py + rsft_trainer.py 代码，确保 shard 完成后能立即启动下一步\n\n**待决**:\n- shard 1 数据如果大部分完整 → 仅补跑剩余 docs（cuda:1）\n- shard 1 数据如果损坏 → 重跑整个 shard（cuda:1）\n- 等 Worker 调查结果后立即处理，不让 cuda:1 空闲\n\n**ROADMAP 对齐**: RSFT 流水线第 2 步（生成候选）接近完成，下一步 CED 打分筛选 + RSFT 训练。",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T04:36:23.392667+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp2_sft_eval",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 1261
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-15T04:36:30.034873+00:00_
+
+Session-start 完成。当前状态：
+- 3 个 shard 仍在运行（cuda:0/2/3），shard 1 被 SIGTERM 杀死（cuda:1 空闲）
+- 2 个 Worker 已派出：调查 shard 1 + 预审下游代码
+- 已向 Director 汇报
+
+等待 Worker 回调，回调到达后立即处理 shard 1 恢复并推进流水线。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:mvp2_sft_eval"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval_llama_rsft_s42_no_evi_2048",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T09:39:33.016Z",
+    "updated_at": "2026-05-21T14:02:26.817Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference ... --no_evidence --seed 42",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "95606",
+      "log_path": "~/runs/faith-evidence-ie/eval_llama_rsft_s42_no_evi_2048.log",
+      "submitted_at": "2026-05-21T09:39:32.197Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Meta-Llama-3.1-8B + SFT + RSFT(k1)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_llama_3_1_8b_k1",
+      "eval_data": "docred-dev"
+    },
+    "hypothesis": "matched@2048 methodology: LLaMA RSFT s42 no-evi@2048。配对 eval_llama_rsft_s42_with_evidence_2048 (ign_f1=0.5774)，计算 LLaMA RSFT matched@2048 evidence tax。@1024 RSFT tax=-1.14±0.76pp (3-seed)，验证 @2048 budget 下 RSFT evidence tax 是否稳定。",
+    "reproduce": {
+      "finished_at": "2026-05-21T14:02:23.805Z"
+    }
+  },
+  "timestamp": "2026-05-21T14:02:28.173053+00:00",
+  "trigger": "update_registry"
+}

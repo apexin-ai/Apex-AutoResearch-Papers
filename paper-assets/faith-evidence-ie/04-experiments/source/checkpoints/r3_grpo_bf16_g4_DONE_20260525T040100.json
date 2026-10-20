@@ -1,0 +1,44 @@
+{
+  "exp_id": "r3_grpo_bf16_g4",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T23:22:08.526Z",
+    "updated_at": "2026-05-25T04:00:59.354Z",
+    "hypothesis": "GRPO bf16 G=4 控制实验（100 steps）。QLoRA 实验实际是 G=8（非 G=4，Director 更正），所以本实验是 supplementary evidence：更小 G 在 bf16 下也不 collapse，进一步支持 quantization 是 collapse 主因。",
+    "parent": "plan_011_grpo_g8_bf16",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/grpo_ced_g4_bf16 --stage 3 --num_generations 4 --kl_coef 0.01 --learning_rate 5e-5 --max_steps 100 --save_steps 10 --save_total_limit 10 --per_device_batch_size 1 --gradient_accumulation_steps 1 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --no-quantize --wandb_run_name r3_grpo_bf16_g4",
+      "server": "rtx5090-4x",
+      "gpu_id": "cuda:1",
+      "pid": 339032,
+      "log_path": "~/runs/faith-evidence-ie/r3_grpo_bf16_g4.log",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 3027,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "/root/autodl-tmp/data/docred",
+      "checkpoint_path": "/root/autodl-tmp/grpo_ced_g4_bf16"
+    },
+    "metrics": {
+      "train_loss": -0.003974,
+      "final_reward": 1.019,
+      "final_f1_reward": 0.6833,
+      "final_ced_reward": 0.1705,
+      "final_format_reward": 0.165,
+      "final_kl": 0.01308,
+      "final_entropy": 0.127,
+      "train_runtime_sec": 685,
+      "steps": 100,
+      "clipped_ratio": 0.5
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-25T03:59:13.142Z"
+  },
+  "timestamp": "2026-05-25T04:01:00.108968+00:00",
+  "trigger": "update_registry"
+}

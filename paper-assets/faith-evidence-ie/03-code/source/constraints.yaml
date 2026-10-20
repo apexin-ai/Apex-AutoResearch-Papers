@@ -1,0 +1,34 @@
+_next_id: 6
+constraints:
+- id: C001
+  added: 2026-05-15 21:52 UTC
+  summary: 提交 eval 前必须 nvidia-smi 确认目标 GPU 显存占用 < 2GB，否则不提交、换卡或等待
+  scope: worker
+  reason: 本 session 已 5 次因 eval 提交到被占用 GPU 导致 OOM，修复 eval 也因此作废。eval 推理需要接近全部显存，与训练共享必然
+    OOM。
+  decision_id: D064
+- id: C002
+  added: 2026-05-16 00:23 UTC
+  summary: 提交训练/评估任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map="auto" 自动分配 GPU
+  scope: worker
+  reason: plan_011 和 rsft_ced_s45_train_r3 两次因未设 CUDA_VISIBLE_DEVICES 导致 device_map="auto"
+    跨 GPU 分布，造成 OOM 和资源冲突。已知 bug 重复发生。
+- id: C003
+  added: 2026-05-16 00:23 UTC
+  summary: 提交训练任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map="auto" 自动分配 GPU
+  scope: worker
+  reason: plan_011 和 rsft_ced_s45_train_r3 均因未设 CUDA_VISIBLE_DEVICES 导致模型跨 GPU 分布，造成
+    OOM 或显存冲突。已重复发生两次。
+- id: C004
+  added: 2026-05-16 00:29 UTC
+  summary: Registry 标记 killed 时必须同时 kill -9 PID 并 ps 验证进程已终止，否则 killed 状态不可信
+  scope: all
+  reason: rsft_ced_s45_train_r2 (PID 276148) registry 标记 killed 但进程未实际终止，占用 cuda:2
+    31.6GB 导致 r3 OOM。plan_011 也有类似模式。Reviewer WARNING。
+- id: C005
+  added: 2026-05-16 11:15 UTC
+  summary: no-evidence 模型 eval 必须传 --no_evidence 参数，确保推理时使用 NO_EVIDENCE_SYSTEM_PROMPT
+    与训练一致
+  scope: all
+  reason: 'plan_006 1.7B/8B no-evidence eval 漏传该参数，导致训练/推理提示词不匹配（模型被要求输出未训练过的 evidence
+    字段），结果全部无效。Reviewer critical #20。'

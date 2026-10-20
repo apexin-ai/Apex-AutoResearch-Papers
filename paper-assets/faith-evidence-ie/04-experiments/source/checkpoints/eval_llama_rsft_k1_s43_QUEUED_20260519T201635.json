@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_llama_rsft_k1_s43",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T20:15:41.671Z",
+    "updated_at": "2026-05-19T20:16:34.977Z",
+    "hypothesis": "LLaMA-3.1-8B RSFT k=1 s43 eval: 验证 LLaMA RSFT seed robustness。Baseline: s42 ign_f1=0.5839, SFT ign_f1=0.5514。",
+    "parent": "seed_llama_rsft_k1_s43"
+  },
+  "timestamp": "2026-05-19T20:16:35.469753+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,72 @@
+{
+  "exp_id": "mvp2_eval_rsft_r2b_maxtok1536_r2",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:54:57.156Z",
+    "updated_at": "2026-05-15T15:21:11.590Z",
+    "hypothesis": "Truncation diagnosis: r2b eval with max_new_tokens=1536 (vs default 1024). Retry with correct model stack (Base+SFT+RSFT). If EDCR improves significantly (from 0.6609 toward 0.71+), truncation is the cause. If unchanged, distractor citation is genuine RSFT behavior.",
+    "parent": "mvp2_eval_rsft_r2b",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx5090-4x",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T11:55:17.608Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/* && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --model_path /root/autodl-tmp/rsft_output_r2b --data_path /root/autodl-tmp/data/docred --no-quantize --max_new_tokens 1536 --output_dir /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\"",
+      "finished_at": "2026-05-15T14:55:32.781Z",
+      "training_hours": 3.0
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/* && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --model_path /root/autodl-tmp/rsft_output_r2b --data_path /root/autodl-tmp/data/docred --no-quantize --max_new_tokens 1536 --output_dir /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "197381",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536_r2.log",
+      "submitted_at": "2026-05-15T11:55:18.697Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 12352.2,
+      "gpu_hours": 3.43
+    },
+    "pid": "197381",
+    "log_path": "~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536_r2.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T14:55:34.874453+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "rel_f1": 0.4504,
+      "ign_f1": 0.4504,
+      "evi_f1": 0.8102,
+      "edcr": 0.674,
+      "precision": 0.4488,
+      "recall": 0.4519,
+      "evi_precision": 0.8162,
+      "evi_recall": 0.8044,
+      "n_truncated": 146,
+      "n_total": 985,
+      "n_predictions": 17188,
+      "n_distractor_citations": 19589,
+      "n_total_citations": 29063,
+      "format_ok_rate": 0.998
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/",
+    "completed_at": "2026-05-15T15:21:10.917Z"
+  },
+  "timestamp": "2026-05-15T15:21:11.764948+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,39 @@
+{
+  "exp_id": "d112_rsft_no_evidence_eval_r3",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:47:43.281Z",
+    "updated_at": "2026-05-19T18:22:25.680Z",
+    "hypothesis": "4B RSFT no-evidence eval r3 (D112 bf16 SFT s44 base): 移除 evidence 输出后测量 4B RSFT 的 evidence tax。对比 with-evidence 的 D112 RSFT ign_f1。r1/r2 因脚本路径错误失败 (EXIT_CODE=127)，r3 使用正确路径 scripts/seed_expansion/eval_4b_rsft_no_evidence.sh。",
+    "parent": "d112_rsft_s44_eval_bf16",
+    "plan_id": "plan_d112",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && GPU=1 bash scripts/seed_expansion/eval_4b_rsft_no_evidence.sh\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "706326",
+      "log_path": "~/runs/faith-evidence-ie/d112_rsft_no_evidence_eval_r3.log",
+      "submitted_at": "2026-05-19T15:47:01.673Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "rtx5090-4x",
+    "gpu": "cuda:1",
+    "account": "root",
+    "pid": "706326",
+    "log_path": "~/runs/faith-evidence-ie/d112_rsft_no_evidence_eval_r3.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && GPU=1 bash scripts/seed_expansion/eval_4b_rsft_no_evidence.sh\"",
+      "finished_at": "2026-05-19T18:22:24.418Z"
+    }
+  },
+  "timestamp": "2026-05-19T18:22:26.198817+00:00",
+  "trigger": "update_registry"
+}

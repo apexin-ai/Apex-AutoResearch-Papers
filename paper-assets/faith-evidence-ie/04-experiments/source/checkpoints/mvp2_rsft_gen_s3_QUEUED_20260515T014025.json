@@ -1,0 +1,35 @@
+{
+  "exp_id": "mvp2_rsft_gen_s3",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:39:34.645Z",
+    "updated_at": "2026-05-15T01:40:25.695Z",
+    "spec": {
+      "command": "python -m freige.training.rsft_generate --start_idx 2346 --end_idx 3027 --shard_id 3 --batch_size 1 --num_generations 8 --temperature 0.7",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "134362",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_rsft_gen_s3.log",
+      "submitted_at": "2026-05-15T01:39:34.451Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 681,
+      "model_name": "Qwen3-4B + SFT adapter",
+      "seed": 42,
+      "hypothesis": "RSFT generation shard 3/4: docs 2346-3027 at T=0.7, N=8",
+      "parent": "mvp2_rsft_generate"
+    },
+    "hypothesis": "RSFT generation shard 3/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1.",
+    "parent": "mvp2_sft_warmup"
+  },
+  "timestamp": "2026-05-15T01:40:25.927173+00:00",
+  "trigger": "update_registry"
+}

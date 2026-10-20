@@ -1,0 +1,38 @@
+{
+  "exp_id": "plan_001_flat_nli_seed43",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:22:55.521Z",
+    "updated_at": "2026-05-15T20:20:11.068Z",
+    "spec": {
+      "hypothesis": "flat-NLI RSFT seed=43 补跑。验证 seed=42 的 rel_f1=0.4539 是否在噪声范围内（CED RSFT 3-seed mean=0.4596, σ=0.0127）。",
+      "parent": "plan_001_rsft_flat_nli",
+      "command": "python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_flat_nli_s43 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 1 --gradient_accumulation_steps 16 --lora_rank 64 --lora_alpha 128 --eval_data_dir /root/autodl-tmp/data/docred --wandb_run_name plan_001_flat_nli_seed43 --seed 43",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl",
+      "data_count": 2691,
+      "model_name": "Qwen3-4B + SFT adapter",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "N/A (training)",
+      "checkpoint_path": "/root/autodl-tmp/rsft_output_flat_nli_s43",
+      "log_path": "~/runs/faith-evidence-ie/plan_001_flat_nli_seed43.log",
+      "pid": "236774",
+      "submitted_at": "2026-05-15T18:22:00Z",
+      "submitted_via": "worker_direct",
+      "backend": "nohup"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T20:20:10.574Z"
+    }
+  },
+  "timestamp": "2026-05-15T20:20:11.267733+00:00",
+  "trigger": "update_registry"
+}

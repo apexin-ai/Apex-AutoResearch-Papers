@@ -1,0 +1,105 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{yao2019docred}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{zhou2021atlop}
+\citation{ma2023dreeam}
+\citation{xiao2022sais}
+\citation{shao2024deepseekmath}
+\citation{rafailov2023dpo}
+\citation{zelikman2022star}
+\citation{zelikman2022star}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Document-level relation extraction.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evidence-grounded vs.\ evidence-retrieved.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RL for language models.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{QLoRA and quantization effects.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Base Model: Evidence-Grounded SFT}{2}{subsection.3.2}\protected@file@percent }
+\citation{yao2019docred}
+\citation{tan2022revisiting}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Optimization Routes}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RSFT (Rejection Sampling Fine-Tuning).}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GRPO.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DPO.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}EDCR: Evidence-Decoupling Ratio}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}CED Reranker}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{3}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical testing.}{3}{section*.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces DocRED test set results. Ign-F1 and F1 from CodaLab; Evi-F1 (conditional) and EDCR from dev set (test set lacks public evidence annotations). RSFT CED improves +3.0pp Ign-F1 over SFT baseline ($p<0.05$, bootstrap). Evidence tax: SFT no-evidence $-$ SFT baseline $\approx $ 7.5pp.}}{4}{table.caption.12}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main}{{1}{4}{DocRED test set results. Ign-F1 and F1 from CodaLab; Evi-F1 (conditional) and EDCR from dev set (test set lacks public evidence annotations). RSFT CED improves +3.0pp Ign-F1 over SFT baseline ($p<0.05$, bootstrap). Evidence tax: SFT no-evidence $-$ SFT baseline $\approx $ 7.5pp}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Results on DocRED Test Set}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:main-results}{{5.1}{4}{Main Results on DocRED Test Set}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Evidence tax.}{4}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RSFT recovers part of the cost.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CED reranker is the best practical solution.}{4}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Decoupling at test time.}{4}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}The Decoupling Spectrum}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:decoupling}{{5.2}{4}{The Decoupling Spectrum}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Decoupling spectrum across optimization methods. As RL optimization pressure increases, rel\_F1 degrades while evi\_F1 is maintained or improves, producing rising EDCR. QLoRA amplifies decoupling to catastrophic levels. The pattern replicates on LLaMA-3.1-8B.}}{5}{table.caption.17}\protected@file@percent }
+\newlabel{tab:spectrum}{{2}{5}{Decoupling spectrum across optimization methods. As RL optimization pressure increases, rel\_F1 degrades while evi\_F1 is maintained or improves, producing rising EDCR. QLoRA amplifies decoupling to catastrophic levels. The pattern replicates on LLaMA-3.1-8B}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces NLI scoring ablation on dev set (5 seeds, mean$\pm $std). CED and flat-NLI are statistically indistinguishable ($p$=0.31). Both substantially improve over SFT ($\sim $+5pp). Top-$k$=3 degrades by $-$1.36pp vs.\ $k$=1, indicating that scoring \emph  {precision} matters more than training set size. Top-$k$=3 row is a single seed.}}{5}{table.caption.18}\protected@file@percent }
+\newlabel{tab:scoring}{{3}{5}{NLI scoring ablation on dev set (5 seeds, mean$\pm $std). CED and flat-NLI are statistically indistinguishable ($p$=0.31). Both substantially improve over SFT ($\sim $+5pp). Top-$k$=3 degrades by $-$1.36pp vs.\ $k$=1, indicating that scoring \emph {precision} matters more than training set size. Top-$k$=3 row is a single seed}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}NLI-Based Scoring Ablation}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:scoring}{{5.3}{5}{NLI-Based Scoring Ablation}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cross-Scale Generalization}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:cross-scale}{{5.4}{5}{Cross-Scale Generalization}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Cross-Dataset: Re-DocRED}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:redocred}{{5.5}{5}{Cross-Dataset: Re-DocRED}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Cross-scale comparison on DocRED dev set (Ign-F1). RSFT consistently improves over SFT across all scales, though magnitude varies (+1.9 to +4.9pp). Evidence tax is non-monotonic across scales.}}{6}{table.caption.19}\protected@file@percent }
+\newlabel{tab:cross-scale}{{4}{6}{Cross-scale comparison on DocRED dev set (Ign-F1). RSFT consistently improves over SFT across all scales, though magnitude varies (+1.9 to +4.9pp). Evidence tax is non-monotonic across scales}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Re-DocRED results. ``Full'' uses all triples; ``evi-only'' restricts to the 43\% with evidence annotations. RSFT improves +2.0pp over SFT in both modes. Evidence tax is $\sim $5.3pp.}}{6}{table.caption.20}\protected@file@percent }
+\newlabel{tab:redocred}{{5}{6}{Re-DocRED results. ``Full'' uses all triples; ``evi-only'' restricts to the 43\% with evidence annotations. RSFT improves +2.0pp over SFT in both modes. Evidence tax is $\sim $5.3pp}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}EDCR Human Validation}{6}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:edcr-validation}{{5.6}{6}{EDCR Human Validation}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Cross-Family Validation: LLaMA-3.1-8B}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:cross-family}{{5.7}{6}{Cross-Family Validation: LLaMA-3.1-8B}{subsection.5.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces EDCR correlation with human evidence quality judgments on 100 annotated samples (850 triples). Inter-annotator $\kappa $=0.62.}}{7}{table.caption.21}\protected@file@percent }
+\newlabel{tab:edcr-human}{{6}{7}{EDCR correlation with human evidence quality judgments on 100 annotated samples (850 triples). Inter-annotator $\kappa $=0.62}{table.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces LLaMA-3.1-8B results on DocRED dev set. RSFT improves +2.5pp over SFT. GRPO QLoRA is catastrophic (rel\_F1$\approx $0.08) but less severe than Qwen3-4B (0.014), indicating architecture modulates severity.}}{7}{table.caption.22}\protected@file@percent }
+\newlabel{tab:llama}{{7}{7}{LLaMA-3.1-8B results on DocRED dev set. RSFT improves +2.5pp over SFT. GRPO QLoRA is catastrophic (rel\_F1$\approx $0.08) but less severe than Qwen3-4B (0.014), indicating architecture modulates severity}{table.caption.22}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Analysis and Discussion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{7}{Analysis and Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why does decoupling occur?}{7}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{QLoRA as amplifier.}{7}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RSFT: why it works.}{7}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{7}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{7}{section.7}\protected@file@percent }
+\newlabel{sec:limitations}{{7}{7}{Limitations}{section.7}{}}
+\bibcite{yao2019docred}{{1}{2019}{{Yao et~al.}}{{}}}
+\bibcite{zhou2021atlop}{{2}{2021}{{Zhou and Chen}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{8}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{8}{Conclusion}{section.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}NLI Model Ablation}{8}{appendix.A}\protected@file@percent }
+\newlabel{app:nli-ablation}{{A}{8}{NLI Model Ablation}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces NLI model capacity ablation. Replacing DeBERTa-v3-large with base reduces RSFT Ign-F1 by only 0.7pp, suggesting the contrastive design is more important than NLI model capacity.}}{8}{table.caption.27}\protected@file@percent }
+\newlabel{tab:nli-ablation}{{8}{8}{NLI model capacity ablation. Replacing DeBERTa-v3-large with base reduces RSFT Ign-F1 by only 0.7pp, suggesting the contrastive design is more important than NLI model capacity}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}EDCR Disagreement Analysis}{8}{appendix.B}\protected@file@percent }
+\newlabel{app:disagreement}{{B}{8}{EDCR Disagreement Analysis}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Systematic disagreement categories between EDCR and human judgments.}}{8}{table.caption.28}\protected@file@percent }
+\newlabel{tab:disagreement}{{9}{8}{Systematic disagreement categories between EDCR and human judgments}{table.caption.28}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Per-Seed CED vs flat-NLI Results}{8}{appendix.C}\protected@file@percent }
+\newlabel{app:per-seed}{{C}{8}{Per-Seed CED vs flat-NLI Results}{appendix.C}{}}
+\bibcite{ma2023dreeam}{{3}{2023}{{Ma et~al.}}{{}}}
+\bibcite{xiao2022sais}{{4}{2022}{{Xiao et~al.}}{{}}}
+\bibcite{shao2024deepseekmath}{{5}{2024}{{Shao et~al.}}{{}}}
+\bibcite{rafailov2023dpo}{{6}{2023}{{Rafailov et~al.}}{{}}}
+\bibcite{zelikman2022star}{{7}{2022}{{Zelikman et~al.}}{{}}}
+\bibcite{tan2022revisiting}{{8}{2022}{{Tan et~al.}}{{}}}
+\bibcite{gao2023scaling}{{9}{2023}{{Gao et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Per-seed results for CED vs flat-NLI scoring on DocRED dev set.}}{9}{table.caption.29}\protected@file@percent }
+\newlabel{tab:per-seed}{{10}{9}{Per-seed results for CED vs flat-NLI scoring on DocRED dev set}{table.caption.29}{}}
+\gdef \@abspage@last{9}

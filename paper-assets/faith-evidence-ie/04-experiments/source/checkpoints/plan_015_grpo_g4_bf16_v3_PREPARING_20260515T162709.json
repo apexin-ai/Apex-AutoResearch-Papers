@@ -1,0 +1,32 @@
+{
+  "exp_id": "plan_015_grpo_g4_bf16_v3",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:27:09.496Z",
+    "updated_at": "2026-05-15T16:27:09.496Z",
+    "spec": {
+      "hypothesis": "QLoRA quantization isolation (v3, kl=0.01 corrected): bf16 LoRA GRPO with G=4, kl=0.01, lr=5e-6. 与原始 QLoRA GRPO 仅改 quantization (4-bit → bf16). 如 forgetting 不复现 → 量化是唯一因素.",
+      "parent": "plan_011_grpo_g8_bf16",
+      "method": "GRPO bf16 LoRA (no quantization)",
+      "model": "Qwen3-4B + SFT adapter",
+      "key_params": {
+        "quantization": "none (bf16 LoRA)",
+        "G": 4,
+        "kl_coef": 0.01,
+        "lr": "5e-6",
+        "grad_accum": 16,
+        "max_steps": 200,
+        "format_reward_weight": 0.3,
+        "f1_reward_weight": 3,
+        "ced_reward_weight": 1,
+        "no_quantize": true
+      }
+    }
+  },
+  "timestamp": "2026-05-15T16:27:09.723642+00:00",
+  "trigger": "update_registry"
+}

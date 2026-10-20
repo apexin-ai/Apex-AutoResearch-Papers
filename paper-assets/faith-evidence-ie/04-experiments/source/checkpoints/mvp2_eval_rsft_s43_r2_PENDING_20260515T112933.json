@@ -1,0 +1,19 @@
+{
+  "exp_id": "mvp2_eval_rsft_s43_r2",
+  "project": "faith-evidence-ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:29:17.551Z",
+    "updated_at": "2026-05-15T11:29:33.031Z",
+    "hypothesis": "Full dev eval of RSFT s43 (seed=43). 3rd seed for variance estimation. r1: rel_f1=0.4449, s44: rel_f1=0.4655. Pass: rel_f1 > 0.4057, evi_f1 > 0.798. Retry of mvp2_eval_rsft_s43 (fixed arg names).",
+    "parent": "mvp2_rsft_train_r1_s43",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:2",
+    "account": "root"
+  },
+  "timestamp": "2026-05-15T11:29:33.289515+00:00",
+  "trigger": "update_registry"
+}

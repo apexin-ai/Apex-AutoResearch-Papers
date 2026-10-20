@@ -1,0 +1,20 @@
+{
+  "exp_id": "plan_006_qwen3_1_7b_sft",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T06:13:52.388Z",
+    "updated_at": "2026-05-16T06:13:52.388Z",
+    "spec": {
+      "hypothesis": "Model size ablation: Qwen3-1.7B SFT baseline，验证 evidence tax 和 RSFT 增益在小模型上是否成立。应对 RC4 (scale sensitivity)。plan_id=plan_006, claim=1。",
+      "model_name": "Qwen3-1.7B",
+      "server": "rtx5090-4x",
+      "plan_id": "plan_006"
+    }
+  },
+  "timestamp": "2026-05-16T06:13:52.695174+00:00",
+  "trigger": "update_registry"
+}

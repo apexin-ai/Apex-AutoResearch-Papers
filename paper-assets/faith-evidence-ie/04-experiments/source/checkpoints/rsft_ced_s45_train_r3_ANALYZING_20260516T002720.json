@@ -1,0 +1,32 @@
+{
+  "exp_id": "rsft_ced_s45_train_r3",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:21:01.099Z",
+    "updated_at": "2026-05-16T00:27:20.038Z",
+    "spec": {
+      "command": "rsft_ced_s45 (OOM at launch on cuda:2)",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "277407",
+      "log_path": "~/runs/faith-evidence-ie/rsft_ced_s45_train_r3.log",
+      "submitted_at": "2026-05-16T00:21:15.972Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/rsft_filtered/rsft_train.jsonl",
+      "data_count": 2718,
+      "model_name": "Qwen3-4B + SFT + CED RSFT",
+      "seed": 45
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-16T00:27:20.281943+00:00",
+  "trigger": "update_registry"
+}

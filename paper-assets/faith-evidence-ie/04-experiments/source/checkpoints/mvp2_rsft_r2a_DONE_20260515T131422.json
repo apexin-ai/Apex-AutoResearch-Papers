@@ -1,0 +1,69 @@
+{
+  "exp_id": "mvp2_rsft_r2a",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T08:57:46.140Z",
+    "updated_at": "2026-05-15T13:14:22.509Z",
+    "hypothesis": "RSFT r2a: data fix only (1 epoch + filter 170 truncated JSON → 2548 samples). Same LoRA alpha=128/r=64, lr=2e-5 as r1. Isolates: does 1 epoch + clean data alone fix the ontology collapse? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.",
+    "parent": "mvp2_rsft_train_r1",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx5090-4x",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T08:58:44.826Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train_clean.jsonl --output_dir /root/autodl-tmp/rsft_output_r2a --learning_rate 2e-5 --num_epochs 1 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --save_steps 50 --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-r2a --seed 42\"",
+      "wandb_run_id": "rsft-r2a",
+      "finished_at": "2026-05-15T09:36:15.752Z",
+      "training_hours": 0.63
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train_clean.jsonl --output_dir /root/autodl-tmp/rsft_output_r2a --learning_rate 2e-5 --num_epochs 1 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --save_steps 50 --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-r2a --seed 42\"",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "183504",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_rsft_r2a.log",
+      "submitted_at": "2026-05-15T08:59:58.168Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/autodl-tmp/rsft_output_r2a",
+      "wall_clock_seconds": 15264.3,
+      "gpu_hours": 4.24
+    },
+    "pid": "183504",
+    "log_path": "~/runs/faith-evidence-ie/mvp2_rsft_r2a.log",
+    "wandb_run_id": "rsft-r2a",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T09:36:20.493042+00:00"
+        }
+      ]
+    },
+    "notes": "训练完成 (160 steps, 35.5min, eval_loss=0.7547)。TaskEvalCallback rel_f1=0.0509 是已知 bug (D038: gold triples 分母不匹配)，不代表真实性能。需全量 dev eval 确认实际指标。",
+    "conclusion": "success",
+    "metrics": {
+      "rel_f1": 0.4494,
+      "evi_f1": 0.8108,
+      "edcr": 0.6641,
+      "sft_baseline_rel_f1": 0.4057,
+      "sft_baseline_evi_f1": 0.7979,
+      "delta_rel_f1": 0.0437,
+      "delta_evi_f1": 0.0129,
+      "mvp2_pass": true
+    },
+    "completed_at": "2026-05-15T13:14:22.510Z"
+  },
+  "timestamp": "2026-05-15T13:14:22.658330+00:00",
+  "trigger": "update_registry"
+}

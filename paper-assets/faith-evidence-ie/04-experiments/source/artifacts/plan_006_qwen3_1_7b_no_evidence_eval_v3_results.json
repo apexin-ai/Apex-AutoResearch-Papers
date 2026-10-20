@@ -1,0 +1,69 @@
+{
+  "experiment": "plan_006_qwen3_1_7b_no_evidence_eval_v3",
+  "model": "Qwen3-1.7B + SFT adapter (no-evidence)",
+  "adapter_path": "/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence",
+  "eval_split": "dev",
+  "date": "2026-05-16",
+  "status": "completed",
+  "no_evidence_mode": true,
+
+  "metrics": {
+    "f1": 0.4103,
+    "ign_f1": 0.3982,
+    "precision": 0.4464,
+    "recall": 0.3796,
+    "ign_precision": 0.4213,
+    "ign_recall": 0.3776,
+    "evi_f1": 0.0,
+    "edcr": 0.0,
+    "format_ok_rate": 1.0,
+    "n_truncated": 501,
+    "n_total_docs": 985,
+    "truncation_rate": 0.509,
+    "n_predictions": 26157,
+    "inference_time_seconds": 7465.3
+  },
+
+  "comparison": {
+    "qwen3_1_7b_with_evidence_sft": {
+      "ign_f1": 0.4786,
+      "evi_f1": 0.8316,
+      "edcr": 0.6704,
+      "note": "有 evidence 版本，作为 evidence tax 对比基线"
+    },
+    "qwen3_1_7b_no_evidence_v1": {
+      "ign_f1": 0.3786,
+      "n_truncated": 531,
+      "note": "v1 版本，bash-c wrapping 导致严重截断"
+    },
+    "delta_vs_with_evidence": {
+      "ign_f1_diff": -0.0804,
+      "direction": "no-evidence WORSE than with-evidence",
+      "note": "与 4B 结果相反，1.7B 上去掉 evidence 反而损害性能"
+    }
+  },
+
+  "truncation_analysis": {
+    "v1_truncated": 531,
+    "v3_truncated": 501,
+    "improvement": 30,
+    "v3_truncation_rate": "50.9% (501/985)",
+    "severity": "仍然严重——过半文档截断，结果不完全可信",
+    "note": "v3 修复 bash-c wrapping 仅小幅改善（531→501），根本问题是 max_new_tokens=1024 对 1.7B 模型不够"
+  },
+
+  "conclusion": {
+    "verdict": "negative_but_confounded",
+    "evidence_tax_confirmed": false,
+    "summary": "Qwen3-1.7B no-evidence ign_f1=0.3982 低于有 evidence 版本 0.4786（差 8 个点），evidence tax 假设在 1.7B 上不成立。但结果被严重截断（50.9%）污染——超半数文档输出被截断导致预测丢失，真实 no-evidence 性能可能更高。需要增大 max_new_tokens 重跑才能得出可靠结论。",
+    "next_steps": [
+      "增大 max_new_tokens（2048+）重跑 eval 消除截断干扰",
+      "分析截断 vs 非截断文档的 ign_f1 差异，估算截断影响幅度",
+      "对比 4B no-evidence 截断率，判断是否 1.7B 特有问题"
+    ]
+  },
+
+  "wandb_run_id": null,
+  "log_path": "~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_no_evidence_eval_v3.log",
+  "output_dir": "/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval_v3"
+}

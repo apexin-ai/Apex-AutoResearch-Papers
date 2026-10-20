@@ -1,0 +1,57 @@
+{
+  "exp_id": "plan_006_qwen3_1_7b_rsft_candidates",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T13:51:15.410Z",
+    "updated_at": "2026-05-17T00:59:31.249Z",
+    "hypothesis": "Qwen3-1.7B RSFT candidate generation (N=8, T=0.7). Scale ablation: smallest model RSFT candidates for CED scoring. plan_006 claim=3.",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:0",
+    "spec": {
+      "model_name": "Qwen3-1.7B",
+      "sft_adapter": "/root/autodl-tmp/sft_output_qwen3_1_7b_bf16",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 3027,
+      "seed": 42,
+      "output_dir": "/root/autodl-tmp/freige/outputs/rsft_candidates_1_7b",
+      "config": {
+        "num_generations": 8,
+        "temperature": 0.7,
+        "batch_size": 1,
+        "split": "train"
+      },
+      "command": "RSFT candidate generation N=8, T=0.7 for Qwen3-1.7B",
+      "server": "rtx5090-4x",
+      "checkpoint_path": "/root/autodl-tmp/freige/outputs/rsft_candidates_1_7b",
+      "log_path": "~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_rsft_candidates.log"
+    },
+    "conclusion": "success",
+    "reproduce": {
+      "finished_at": "2026-05-17T00:59:21.916Z"
+    },
+    "metrics": {
+      "docs_completed": 3027,
+      "total_generations": 24216,
+      "lines": 24216,
+      "runtime_h": 11,
+      "truncation_rate": 0.104,
+      "mean_diversity": 7.4
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T00:59:26.947779+00:00"
+        }
+      ]
+    },
+    "completed_at": "2026-05-17T00:59:31.249Z"
+  },
+  "timestamp": "2026-05-17T00:59:32.049118+00:00",
+  "trigger": "update_registry"
+}

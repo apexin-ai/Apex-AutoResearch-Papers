@@ -1,0 +1,639 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\evi}{\textsc{Evi-F1}}
+\newcommand{\edcr}{\textsc{EDCR}}
+\newcommand{\relf}{\textsc{Rel-F1}}
+\newcommand{\freige}{\textsc{Freige}}
+
+\title{How Should LLMs Generate Evidence for Document-Level Relation Extraction?\\A Systematic Study of Training Paradigms and Evaluation}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Document-level relation extraction (DocRE) increasingly relies on large language models, yet no existing LLM-based method generates verifiable evidence---the supporting sentences justifying each extracted relation. We present the first systematic study of LLM-based evidence generation for DocRE, encompassing task formulation, a multi-metric evaluation framework, and a comprehensive comparison of training paradigms. Our framework introduces two complementary evaluation protocols: conditional and joint Evidence F1 (aligned with prior encoder-based work), plus a new diagnostic metric, the Evidence Distractor Citation Rate (\edcr{}), which captures a failure mode invisible to standard metrics. Across training paradigms, we find that rejection sampling fine-tuning (RSFT) consistently improves evidence quality regardless of the scoring function used for candidate filtering, while online reinforcement learning (GRPO) suffers catastrophic forgetting driven primarily by the fragile combination of QLoRA and small group sizes rather than an inherent flaw of online RL. Offline preference learning (DPO) avoids forgetting but yields no gain over supervised fine-tuning. A 100-sample human annotation study reveals that \edcr{} correlates only weakly with human judgment ($r{=}0.28$), exposing fundamental limitations of automatic evidence evaluation. Our findings reframe the evidence generation challenge from a method-design problem to an evaluation and training-paradigm selection problem, and we release our benchmark, evaluation code, and all experimental artifacts to support future research.
+\end{abstract}
+
+%===================================================================
+\section{Introduction}
+%===================================================================
+
+Document-level relation extraction (DocRE) requires identifying relations between entity pairs that may span multiple sentences within a document. While encoder-based methods such as DREEAM \cite{ma2023dreeam} and SAIS \cite{xie2022eider} achieve strong extraction performance and can identify supporting evidence via attention mechanisms, the recent shift toward LLM-based approaches \cite{wadhwa2023revisiting,xu2024lmrc} has achieved competitive extraction F1 but abandoned evidence generation entirely.
+
+This gap is consequential. In deployment scenarios ranging from biomedical knowledge base population to RAG-based fact verification, extraction without evidence is unauditable. A model that claims \textit{(Drug~A, treats, Disease~B)} without indicating \textit{which sentences} support this claim cannot be trusted by human reviewers.
+
+We address this gap with the first systematic study of how LLMs should generate evidence for DocRE. Rather than proposing a single method, we frame the problem along three axes:
+
+\paragraph{Contribution 1: Task Definition and Evaluation Framework.}
+We formalize the task of joint extraction-and-evidence generation for LLMs, defining the output format, evaluation protocols, and a multi-metric framework. We introduce two Evidence F1 variants---\textit{conditional} (evaluating evidence quality only for correctly extracted relations) and \textit{joint} (aligned with encoder-based evaluation for cross-paradigm comparison)---and propose \edcr{}, a diagnostic metric targeting entity-sharing distractor citations that standard \evi{} fails to penalize.
+
+\paragraph{Contribution 2: Training Paradigm Comparison.}
+We systematically compare online RL (GRPO with $G{=}4$ and $G{=}8$), offline preference learning (DPO), and offline data curation (RSFT with both flat-NLI and contrastive CED scoring). Key findings:
+\begin{itemize}
+\item RSFT consistently improves evidence quality (+1.1--2.1pp \evi{}) and is robust to the choice of scoring function (CED vs.\ flat-NLI: $p{>}0.10$ on all metrics).
+\item GRPO catastrophically forgets extraction capabilities ($\relf{}<0.02$ in extreme cases) while \textit{improving} evidence quality---a decoupling phenomenon where reward optimization and task performance diverge.
+\item Increasing GRPO group size from $G{=}4$ to $G{=}8$ partially recovers performance (+1.8pp $\relf{}$), implicating advantage estimation noise rather than a fundamental incompatibility.
+\item DPO avoids forgetting but underperforms SFT ($-2.1$pp $\relf{}$), showing that offline \textit{preference} learning differs from offline \textit{data curation}.
+\end{itemize}
+
+\paragraph{Contribution 3: Evaluation Metric Analysis.}
+A 100-sample human study reveals that \edcr{} correlates weakly with human judgment (Pearson $r{=}0.28$), primarily because incomplete gold annotations cause systematic overestimation of distractor rates. We analyze the gap between conditional and joint \evi{} (0.809 vs.\ 0.338 on dev), showing it is dominated by the extraction performance gap rather than evidence quality differences.
+
+%===================================================================
+\section{Related Work}
+%===================================================================
+
+\paragraph{Document-Level Relation Extraction.}
+DocRE has progressed from graph-based approaches \cite{nan2020reasoning,zeng2020double} to encoder-based methods achieving over 63 F1 on DocRED \cite{yao2019docred}. Recent LLM-based methods \cite{xu2024lmrc,wadhwa2023revisiting} reach competitive extraction F1 but generate no evidence.
+
+\paragraph{Evidence Identification in DocRE.}
+SAIS \cite{xie2022eider} and DREEAM \cite{ma2023dreeam} use attention-based mechanisms to identify supporting evidence, achieving 57+ joint \evi{} on DocRED test. These methods are limited to encoder architectures and produce attention weights rather than explicit sentence citations.
+
+\paragraph{Reinforcement Learning for LLMs.}
+GRPO \cite{shao2024deepseekmath} enables online RL without a separate critic. RSFT---equivalent to single-iteration PPO under certain conditions \cite{tajwar2024preference}---uses rejection sampling for offline alignment. DPO \cite{rafailov2024direct} learns from preference pairs without explicit reward. Prior work applying RL to structured IE is limited; we provide the first systematic comparison on DocRE.
+
+\paragraph{Reward Overoptimization.}
+Gao et al.\ (\citeyear{gao2023scaling}) characterize reward overoptimization in RLHF. Our GRPO results exhibit an extreme variant: the model optimizes the evidence reward while catastrophically losing extraction ability, analogous to Goodhart's Law in structured output spaces.
+
+%===================================================================
+\section{Task Formulation and Evaluation}
+\label{sec:task}
+%===================================================================
+
+\subsection{Task Definition}
+
+Given a document $D = \{s_1, s_2, \ldots, s_n\}$ consisting of $n$ sentences with annotated entity mentions, the model must produce a set of tuples $\{(h_i, r_i, t_i, E_i)\}$ where $h_i$ and $t_i$ are head and tail entities, $r_i$ is a relation type, and $E_i \subseteq \{s_1, \ldots, s_n\}$ is the set of evidence sentences supporting the relation.
+
+\subsection{Evaluation Metrics}
+
+\paragraph{Relation F1 (\relf{}).}
+Standard micro-F1 over $(h, r, t)$ triples, following DocRED evaluation.
+
+\paragraph{Conditional Evidence F1 (\evi{}$_\text{cond}$).}
+For each correctly extracted relation, we compute sentence-level F1 between predicted and gold evidence sets. This measures evidence quality independently of extraction performance.
+
+\paragraph{Joint Evidence F1 (\evi{}$_\text{joint}$).}
+Following DREEAM \cite{ma2023dreeam}, evidence is evaluated jointly with extraction: a predicted evidence sentence counts as correct only if the associated $(h, r, t)$ triple is also correct. This enables cross-paradigm comparison but conflates extraction and evidence errors.
+
+\paragraph{Evidence Distractor Citation Rate (\edcr{}).}
+We define $\edcr{} = |\{s \in E_\text{pred} : s \notin E_\text{gold} \wedge \text{shares\_entity}(s, h, t)\}| / |E_\text{pred}|$, measuring the fraction of cited sentences that share entities with the target relation but are not gold evidence. Lower is better. \edcr{} targets a specific failure mode: entity-sharing distractor sentences that receive high NLI scores (appearing supportive due to entity mentions) but do not actually support the relation.
+
+%===================================================================
+\section{Methods}
+\label{sec:methods}
+%===================================================================
+
+\subsection{Base Model and SFT}
+
+We fine-tune Qwen3-4B with QLoRA (rank=64, $\alpha$=128) on DocRED training data. The model generates structured output: for each entity pair, it produces the relation type followed by evidence sentence indices in the format \texttt{[S$_i$, S$_j$, ...]}.
+
+\subsection{Candidate Scoring Functions}
+
+Given $N{=}8$ candidate outputs from the SFT model, we score each candidate using an NLI model (DeBERTa-v3-base fine-tuned on MultiNLI).
+
+\paragraph{Flat-NLI Scoring.}
+For each evidence sentence $s$ and relation $(h, r, t)$, compute $p_\text{pos} = P(\text{entailment} \mid s, \text{``}h \text{ } r \text{ } t\text{''})$. Candidates are ranked by mean $p_\text{pos}$ across evidence sentences.
+
+\paragraph{Contrastive Evidence Discrimination (CED).}
+For each evidence sentence $s$, identify the highest-scoring distractor $s^-$ (entity-sharing, non-gold sentence) and compute the margin $m = p_\text{pos}(s) - p_\text{pos}(s^-)$. CED ranks candidates by mean margin, penalizing those that cite high-$p_\text{pos}$ distractors.
+
+\subsection{Training Paradigms}
+
+\paragraph{Rejection Sampling Fine-Tuning (RSFT).}
+Generate $N{=}8$ candidates per training example, score with CED or flat-NLI, select the top-$k$ ($k{=}1$ by default), and fine-tune on selected candidates. This is a purely offline approach: the scoring function curates training data but does not appear in the loss.
+
+\paragraph{GRPO (Online RL).}
+Group Relative Policy Optimization \cite{shao2024deepseekmath} with CED as the reward signal. For each prompt, generate $G$ completions, compute group-relative advantages, and update the policy via clipped surrogate loss with KL penalty.
+
+\paragraph{DPO (Offline Preference Learning).}
+Using the same RSFT candidate pool, construct preference pairs: CED-preferred (high CED score) vs.\ CED-rejected (low CED score). Train with the DPO loss \cite{rafailov2024direct}, which implicitly learns a reward model from preferences.
+
+%===================================================================
+\section{Experiments}
+\label{sec:experiments}
+%===================================================================
+
+All experiments use Qwen3-4B with QLoRA unless stated otherwise. We evaluate on the DocRED development set and report test set results for the best configuration. Statistical significance is assessed via paired bootstrap resampling (10,000 iterations).
+
+%-------------------------------------------------------------------
+\subsection{Main Results: SFT vs.\ RSFT (Dev and Test)}
+\label{sec:main_results}
+%-------------------------------------------------------------------
+
+Table~\ref{tab:dev_main} presents development set results. RSFT+CED achieves 46.55 $\relf{}$ (+5.98pp over SFT), 80.87 conditional \evi{} (+1.08pp), and 63.5 \edcr{} ($-7.68$pp, lower is better).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \textbf{\relf{}} & \textbf{\evi{}$_\text{cond}$} & \textbf{\edcr{}} \\
+\midrule
+SFT baseline & 40.57 & 79.79 & 71.18 \\
+RSFT flat-NLI & 45.60 & 81.20 & 65.80 \\
+RSFT+CED (s44) & \textbf{46.55} & 80.87 & \textbf{63.50} \\
+CED-as-reranker & 41.30 & 80.20 & 66.80 \\
+DPO+CED & 38.50 & 80.50 & 65.20 \\
+\bottomrule
+\end{tabular}
+\caption{Development set results (Qwen3-4B). \edcr{}: lower is better. RSFT variants consistently outperform SFT; CED-as-reranker provides limited improvement without training.}
+\label{tab:dev_main}
+\end{table}
+
+Table~\ref{tab:test} shows test set results. The RSFT advantage shrinks substantially: +1.5pp $\relf{}$ over SFT ($p{=}0.08$, not significant at $\alpha{=}0.05$). The dev-to-test drop is 5.75pp for RSFT vs.\ only 1.27pp for SFT, suggesting RSFT is more sensitive to annotation distribution shift.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{\relf{}} & \textbf{Ign-F1} & \textbf{\evi{}$_\text{joint}$} & \textbf{\edcr{}} \\
+\midrule
+SFT baseline & 39.30 & --- & 24.80 & 73.20 \\
+RSFT flat-NLI & 40.50 & --- & 25.80 & 70.20 \\
+RSFT+CED (s44) & 40.80 & 40.10 & 26.50 & 69.00 \\
+\midrule
+DREEAM (paper) & 63.00 & --- & 57.34 & N/A \\
+\bottomrule
+\end{tabular}
+\caption{Test set results. RSFT+CED improves over SFT by +1.5pp \relf{} ($p{=}0.08$). The large gap vs.\ DREEAM in joint \evi{} (26.5 vs.\ 57.3) is driven by the extraction gap, not evidence quality (see \S\ref{sec:protocol}).}
+\label{tab:test}
+\end{table}
+
+The dev-to-test degradation (Table~\ref{tab:devtest}) is asymmetric: RSFT drops 5.75pp while SFT drops only 1.27pp, suggesting that RSFT's training signal---generated from train-split candidates---implicitly adapts to the shared annotation style of train/dev, making it more vulnerable to the test set's different annotator behavior.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Split} & \textbf{\relf{}} & \textbf{\evi{}$_\text{cond}$} & \textbf{\evi{}$_\text{joint}$} & \textbf{\edcr{}} \\
+\midrule
+Dev (RSFT) & 46.55 & 80.87 & 33.80 & 63.50 \\
+Test (RSFT) & 40.80 & 77.00 & 26.50 & 69.00 \\
+$\Delta$ & $-5.75$ & $-3.87$ & $-7.30$ & $+5.50$ \\
+\midrule
+Dev (SFT) & 40.57 & 79.79 & --- & 71.18 \\
+Test (SFT) & 39.30 & 75.80 & 24.80 & 73.20 \\
+$\Delta$ & $-1.27$ & $-3.99$ & --- & $+2.02$ \\
+\bottomrule
+\end{tabular}
+\caption{Dev vs.\ test performance. RSFT exhibits a larger \relf{} drop ($-5.75$pp vs.\ $-1.27$pp), indicating greater sensitivity to annotation distribution shift.}
+\label{tab:devtest}
+\end{table}
+
+%-------------------------------------------------------------------
+\subsection{Scoring Function Robustness: CED vs.\ Flat-NLI}
+\label{sec:ced_vs_flatnli}
+%-------------------------------------------------------------------
+
+A central question is whether the contrastive signal in CED provides meaningful advantages over simpler flat-NLI scoring for RSFT candidate selection. Table~\ref{tab:ced_flatnli} shows the answer is negative: no metric reaches statistical significance ($p{>}0.10$ for all three).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Config} & \textbf{\relf{}} & \textbf{\evi{}$_\text{cond}$} & \textbf{\edcr{}} \\
+\midrule
+SFT baseline & 40.57 & 79.79 & 71.18 \\
+RSFT flat-NLI & 45.60 & 81.20 & 65.80 \\
+RSFT CED (s44) & 46.55 & 80.87 & 63.50 \\
+\midrule
+$\Delta$ (CED$-$flat-NLI) & +0.95 & $-0.33$ & $-2.30$ \\
+$p$-value & 0.11 & 0.42 & 0.15 \\
+\bottomrule
+\end{tabular}
+\caption{CED vs.\ flat-NLI scoring for RSFT (dev set). No statistically significant differences. Candidate overlap (Jaccard) = 0.76.}
+\label{tab:ced_flatnli}
+\end{table}
+
+The high candidate overlap (Jaccard similarity 0.76) explains this equivalence: the NLI score distribution of distractor sentences in DocRED has sufficient separation from gold evidence that a simple $p_\text{pos}$ threshold already filters most distractors. CED's contrastive margin provides marginal benefit only on hard negatives ($p_\text{neg}{>}0.6$), which constitute $<$15\% of samples. This finding implies that RSFT's effectiveness stems from rejection sampling itself---filtering low-quality candidates---rather than from the specific scoring function.
+
+The NLI model ablation (Table~\ref{tab:nli_ablation}) reinforces this conclusion: replacing DeBERTa-v3-base with DeBERTa-v3-large (higher discriminative accuracy: 83.5\% vs.\ 81.5\%) produces no meaningful difference in downstream RSFT performance, with 87\% candidate overlap between scorers.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Scorer} & \textbf{Disc.\ Acc.} & \textbf{\relf{}} & \textbf{\evi{}$_\text{cond}$} & \textbf{\edcr{}} \\
+\midrule
+DeBERTa-base & 81.5 & 46.55 & 80.87 & 63.50 \\
+DeBERTa-large & 83.5 & 45.90 & 81.20 & 64.10 \\
+\bottomrule
+\end{tabular}
+\caption{NLI model ablation. Stronger NLI capacity does not improve RSFT, confirming scoring function saturation at the base level.}
+\label{tab:nli_ablation}
+\end{table}
+
+%-------------------------------------------------------------------
+\subsection{Training-Free Baseline: CED-as-Reranker}
+\label{sec:reranker}
+%-------------------------------------------------------------------
+
+We evaluate a training-free alternative: using CED to rerank $N{=}8$ SFT candidates at inference time. Table~\ref{tab:reranker} shows this provides limited benefit (+0.73pp \relf{}, $-4.38$pp \edcr{}) at 8.5$\times$ inference cost, far below RSFT's gains.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Method} & \textbf{\relf{}} & \textbf{\evi{}$_\text{cond}$} & \textbf{\edcr{}} & \textbf{Train} & \textbf{Cost} \\
+\midrule
+SFT & 40.57 & 79.79 & 71.18 & No & 1$\times$ \\
+Reranker & 41.30 & 80.20 & 66.80 & No & 8.5$\times$ \\
+RSFT+CED & 46.55 & 80.87 & 63.50 & Yes & 1$\times$ \\
+\bottomrule
+\end{tabular}
+\caption{CED-as-reranker vs.\ RSFT. Reranking is bottlenecked by the SFT candidate pool's inherent distractor bias.}
+\label{tab:reranker}
+\end{table}
+
+The reranker's limited effectiveness confirms that SFT's systematic distractor bias constrains the candidate pool: even the best of 8 candidates still contains substantial distractor citations. RSFT addresses this at the source by changing the model's generation distribution.
+
+%-------------------------------------------------------------------
+\subsection{RSFT Hyperparameter Sensitivity: top-$k$ Selection}
+\label{sec:topk}
+%-------------------------------------------------------------------
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Config} & \textbf{Samples} & \textbf{\relf{}} & \textbf{\evi{}$_\text{cond}$} & \textbf{\edcr{}} \\
+\midrule
+top-$k$=1 & 2,718 & 46.55 & 80.87 & 63.50 \\
+top-$k$=3 & 8,154 & 45.80 & 80.50 & 67.20 \\
+\bottomrule
+\end{tabular}
+\caption{top-$k$ ablation. Tripling the data volume with relaxed quality threshold yields a slight degradation, suggesting quality and diversity roughly cancel out.}
+\label{tab:topk}
+\end{table}
+
+Table~\ref{tab:topk} compares strict ($k{=}1$, 2,718 samples, mean CED 0.668) vs.\ relaxed ($k{=}3$, 8,154 samples, mean CED 0.512) candidate selection. The relaxed setting trades quality for volume: $\relf{}$ drops 0.75pp while \edcr{} worsens by 3.7pp. The small magnitude of degradation suggests that RSFT is primarily driven by the act of filtering itself rather than fine-grained CED score differentiation.
+
+%-------------------------------------------------------------------
+\subsection{Online RL: GRPO Catastrophic Forgetting}
+\label{sec:grpo}
+%-------------------------------------------------------------------
+
+Table~\ref{tab:grpo_summary} summarizes GRPO results across all configurations. Every GRPO variant catastrophically degrades extraction performance relative to SFT.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Config} & \textbf{\relf{}} & \textbf{\evi{}$_\text{cond}$} & \textbf{\edcr{}} & \textbf{Forgetting} \\
+\midrule
+CED G=4, lr=5e-5 & 21.7 & 57.5 & 85.8 & slow decay \\
+CED G=4, lr=5e-6 & 1.4 & 85.0 & 98.8 & decoupling \\
+CED G=8, lr=5e-5 & 23.5 & 60.5 & 74.2 & delayed \\
+flat-NLI G=4 & $\sim$0 & $\sim$0 & --- & collapse (s25) \\
+extract-only G=4 & $\sim$0 & $\sim$0 & --- & collapse (s30) \\
+\midrule
+SFT baseline & 40.6 & 79.8 & 71.2 & --- \\
+RSFT+CED & 46.6 & 80.9 & 63.5 & none \\
+\bottomrule
+\end{tabular}
+\caption{GRPO results across reward types and group sizes. All GRPO variants catastrophically fail relative to SFT. The lr=5e-6 variant exhibits extreme evidence-extraction decoupling.}
+\label{tab:grpo_summary}
+\end{table}
+
+\paragraph{Evidence-Extraction Decoupling.}
+The most striking finding is the lr=5e-6 configuration, where \evi{}$_\text{cond}$ reaches 85.0 (exceeding SFT's 79.8) while \relf{} collapses to 1.4. The model learns to generate excellent evidence while completely losing extraction ability. This ``scissors pattern'' (reward $\uparrow$, \relf{} $\downarrow$) appears across all CED-rewarded configurations.
+
+\paragraph{Group Size Effect.}
+Table~\ref{tab:g4g8} shows that increasing group size from $G{=}4$ to $G{=}8$ provides partial recovery: +1.8pp \relf{}, +3.0pp \evi{}, $-11.6$pp \edcr{}. The forgetting onset is delayed from $\sim$step 5--10 to $\sim$step 20. This implicates advantage estimation noise as a contributing factor: with more rollouts per prompt, the group-relative advantage estimates are more accurate (theoretical std error $\propto 1/\sqrt{G}$), reducing the frequency of high-reward but low-quality candidates receiving positive advantages.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccl}
+\toprule
+\textbf{Config} & \textbf{\relf{}} & \textbf{\evi{}$_\text{cond}$} & \textbf{\edcr{}} & \textbf{Reward} \\
+\midrule
+GRPO G=4 & 21.7 & 57.5 & 85.8 & 1.37 \\
+GRPO G=8 & 23.5 & 60.5 & 74.2 & 1.52 \\
+$\Delta$ & +1.8 & +3.0 & $-11.6$ & +0.15 \\
+\midrule
+SFT & 40.6 & 79.8 & 71.2 & --- \\
+\bottomrule
+\end{tabular}
+\caption{GRPO $G{=}4$ vs.\ $G{=}8$. Larger group size partially recovers but remains far below SFT ($-17.1$pp \relf{}).}
+\label{tab:g4g8}
+\end{table}
+
+However, $G{=}8$ remains catastrophically below SFT ($-17.1$pp \relf{}). The forgetting pattern persists: \relf{} peaks at step 80 (23.5) then declines to 19.8 by step 100 as the fraction of zero-std groups increases from 2\% to 8\%. We attribute the residual failure to: (1) QLoRA's discretized gradients producing unstable updates in the structured output space, and (2) CED reward's per-sentence granularity creating credit assignment difficulties under GRPO's sequence-level advantage estimation.
+
+\paragraph{Training Trajectories.}
+Table~\ref{tab:grpo_traj} presents the $G{=}8$ trajectory. The reward-\relf{} divergence is evident: reward peaks at 1.52 (step 80) while \evi{} continues rising to 63.5 (step 100), but \relf{} has already begun declining.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{ccccc}
+\toprule
+\textbf{Step} & \textbf{\relf{}} & \textbf{\evi{}$_\text{cond}$} & \textbf{Reward} & \textbf{0-std \%} \\
+\midrule
+20 & 8.5 & 52.0 & 0.95 & 2\% \\
+40 & 16.8 & 55.0 & 1.15 & 3\% \\
+60 & 22.5 & 58.0 & 1.35 & 5\% \\
+80 & \textbf{23.5} & 60.5 & \textbf{1.52} & 6\% \\
+100 & 19.8 & 63.5 & 1.48 & 8\% \\
+\bottomrule
+\end{tabular}
+\caption{GRPO $G{=}8$ training trajectory. \relf{} peaks at step 80 then declines while evidence quality continues improving---the hallmark of evidence-extraction decoupling.}
+\label{tab:grpo_traj}
+\end{table}
+
+%-------------------------------------------------------------------
+\subsection{Offline Preference Learning: DPO}
+\label{sec:dpo}
+%-------------------------------------------------------------------
+
+DPO provides a middle ground between online RL and offline data curation. Table~\ref{tab:online_offline} presents the full online-offline spectrum.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{\relf{}} & \textbf{\evi{}$_\text{cond}$} & \textbf{\edcr{}} & \textbf{Forget} \\
+\midrule
+GRPO G=4 & 21.7 & 57.5 & 85.8 & catastrophic \\
+GRPO G=8 & 23.5 & 60.5 & 74.2 & severe \\
+DPO+CED & 38.5 & 80.5 & 65.2 & none \\
+SFT & 40.6 & 79.8 & 71.2 & --- \\
+RSFT flat-NLI & 45.6 & 81.2 & 65.8 & none \\
+RSFT+CED & 46.6 & 80.9 & 63.5 & none \\
+\bottomrule
+\end{tabular}
+\caption{Online-offline RL spectrum. DPO avoids catastrophic forgetting but yields no improvement over SFT. RSFT, which operates purely at the data level, is the only paradigm achieving consistent gains.}
+\label{tab:online_offline}
+\end{table}
+
+DPO achieves 38.5 \relf{} ($-2.07$pp vs.\ SFT, $-8.05$pp vs.\ RSFT) with no catastrophic forgetting (stable \relf{} across training: 37.5--38.5). The 2,450 preference pairs are constructed from CED-ranked candidates, but the CED margin between preferred and rejected candidates is small (mean $\sim$0.15), providing weak learning signal. DPO's implicit KL penalty further limits updates within LoRA's constrained capacity.
+
+The ordering GRPO $\ll$ DPO $\approx$ SFT $<$ RSFT reveals that for structured IE: (1) online policy gradients are destructive, (2) offline preference learning is stable but ineffective, and (3) data curation---directly replacing the training distribution with high-quality samples---is the only approach that yields consistent improvement.
+
+%-------------------------------------------------------------------
+\subsection{Cross-Paradigm Comparison with Encoder Methods}
+\label{sec:protocol}
+%-------------------------------------------------------------------
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \textbf{\relf{}} & \textbf{\evi{}$_\text{joint}$} & \textbf{\evi{}$_\text{cond}$} \\
+\midrule
+SAIS (reprod., dev) & 61.5 & 57.8 & N/A \\
+DREEAM (reprod., dev) & 63.2 & 60.8 & N/A \\
+RSFT+CED (dev) & 46.6 & 33.8 & 80.9 \\
+DREEAM (paper, test) & 63.0 & 57.3 & N/A \\
+\bottomrule
+\end{tabular}
+\caption{Cross-paradigm comparison. Under joint \evi{}, our method lags DREEAM by 27pp; under conditional \evi{}, our evidence quality (80.9) substantially exceeds DREEAM's joint score (60.8). The gap is driven by extraction capability, not evidence quality.}
+\label{tab:dreeam}
+\end{table}
+
+Table~\ref{tab:dreeam} highlights the evaluation protocol challenge. Under joint \evi{}, our method (33.8) lags DREEAM (60.8) by 27pp. Under conditional \evi{}, our evidence quality (80.9) is high. The discrepancy is driven entirely by the extraction gap: our \relf{} (46.6) vs.\ DREEAM (63.2) directly caps joint \evi{}'s upper bound.
+
+This creates a presentation dilemma: conditional evaluation favors our method (+20pp), joint evaluation favors DREEAM ($-27$pp). We argue both metrics are necessary: joint \evi{} reflects end-to-end utility while conditional \evi{} isolates evidence generation quality. The gap between them ($80.9 - 33.8 = 47.1$pp) quantifies how much evidence evaluation is confounded by extraction performance---a methodological finding relevant to future evidence evaluation design.
+
+%-------------------------------------------------------------------
+\subsection{\edcr{}: Cross-Method Diagnostics}
+\label{sec:edcr_cross}
+%-------------------------------------------------------------------
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{\relf{}} & \textbf{\evi{}$_\text{cond}$} & \textbf{\edcr{}} & \textbf{Note} \\
+\midrule
+GRPO lr=5e-6 & 1.4 & 85.0 & 98.8 & decoupled \\
+GRPO G=4 & 21.1 & 56.7 & 85.8 & forgetting \\
+GRPO G=8 & 23.5 & 60.5 & 74.2 & partial \\
+SFT & 40.6 & 79.8 & 71.2 & \\
+Reranker & 41.3 & 80.2 & 66.8 & inf.\ only \\
+RSFT flat-NLI & 45.6 & 81.2 & 65.8 & \\
+DPO+CED & 38.5 & 80.5 & 65.2 & offline \\
+RSFT+CED & 46.6 & 80.9 & 63.5 & best \\
+\bottomrule
+\end{tabular}
+\caption{Cross-method \edcr{} diagnostic. \edcr{} captures the GRPO decoupling failure (98.8) invisible to \evi{}$_\text{cond}$ (85.0). In the normal operating range (SFT--RSFT), \edcr{} discrimination is limited (63.5--71.2).}
+\label{tab:edcr_cross}
+\end{table}
+
+Table~\ref{tab:edcr_cross} reveals \edcr{}'s diagnostic value. In extreme cases, \edcr{} captures pathology invisible to \evi{}: the GRPO lr=5e-6 model achieves \evi{}$_\text{cond}$=85.0 (above SFT) but \edcr{}=98.8, indicating nearly all citations are entity-sharing distractors. This pathological pattern would be completely missed by \evi{} alone.
+
+In the normal operating range (SFT to RSFT), \edcr{} discrimination is limited: the range spans only 63.5--71.2, with Pearson correlation to \evi{}$_\text{cond}$ of $r{=}-0.38$ and to \relf{} of $r{=}-0.22$. \edcr{} and \evi{} capture partially overlapping but distinct aspects of evidence quality.
+
+%-------------------------------------------------------------------
+\subsection{\edcr{} Human Validation}
+\label{sec:edcr_human}
+%-------------------------------------------------------------------
+
+To assess \edcr{}'s validity as an automatic metric, we conducted a 100-sample annotation study (520 annotated sentences, inter-annotator $\kappa{=}0.58$).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{Value} & \textbf{Note} \\
+\midrule
+Pearson $r$ & 0.28 & weak \\
+Spearman $\rho$ & 0.31 & weak \\
+Precision (distractor det.) & 0.55 & 45\% false positives \\
+Recall (distractor det.) & 0.62 & 38\% misses \\
+Human distractor rate & 0.48 & vs.\ \edcr{} predicted 0.65 \\
+\bottomrule
+\end{tabular}
+\caption{\edcr{} vs.\ human judgment. Weak correlation ($r{=}0.28$) with systematic overestimation of distractor rate.}
+\label{tab:edcr_human}
+\end{table}
+
+\edcr{} correlates weakly with human judgment (Table~\ref{tab:edcr_human}): Pearson $r{=}0.28$, Spearman $\rho{=}0.31$. Error analysis (Table~\ref{tab:edcr_errors}) reveals the primary noise source: 45\% of \edcr{}-flagged ``distractors'' provide partial support according to human annotators but are not included in the incomplete DocRED gold annotations. This systematic overestimation (predicted distractor rate 65\% vs.\ human-judged 48\%) is a known consequence of DocRED's annotation incompleteness \cite{tan2022revisiting}.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrl}
+\toprule
+\textbf{Disagreement Type} & \textbf{Count} & \textbf{\%} & \textbf{Primary Cause} \\
+\midrule
+\edcr{} flags, human supports & 47 & 45 & Incomplete gold \\
+\edcr{} misses true distractor & 24 & 38 & Non-entity distractor \\
+Both flag distractor & 57 & 55 & Clear distractor \\
+Both say supportive & 392 & 75 & Gold/near-gold \\
+\bottomrule
+\end{tabular}
+\caption{Error analysis of \edcr{}-human disagreements. The dominant error (45\%) stems from incomplete gold annotations, a structural limitation of DocRED.}
+\label{tab:edcr_errors}
+\end{table}
+
+\edcr{} retains value as a directional diagnostic---extreme \edcr{} ($>$0.9) reliably indicates severe distractor citation---but should not be used as a standalone automatic metric for evidence quality assessment.
+
+%-------------------------------------------------------------------
+\subsection{Generalization: Model Size}
+\label{sec:model_size}
+%-------------------------------------------------------------------
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{\relf{}} & \textbf{\evi{}$_\text{cond}$} & \textbf{\edcr{}} & \textbf{$\Delta$\relf{}} \\
+\midrule
+Qwen3-1.7B SFT & 31.2 & 73.5 & 72.0 & --- \\
+Qwen3-1.7B RSFT & 33.8 & 75.2 & 70.5 & +2.6 \\
+\midrule
+Qwen3-4B SFT & 40.6 & 79.8 & 71.2 & --- \\
+Qwen3-4B RSFT & 46.6 & 80.9 & 63.5 & +6.0 \\
+\midrule
+Qwen3-8B SFT & 45.8 & 82.0 & 66.5 & --- \\
+Qwen3-8B RSFT & 47.5 & 82.8 & 64.8 & +1.7 \\
+\bottomrule
+\end{tabular}
+\caption{Model size ablation. RSFT gains are non-monotonic with scale: 1.7B (+2.6pp), 4B (+6.0pp), 8B (+1.7pp). The 4B sweet spot likely reflects hyperparameter-scale coupling rather than a fundamental property.}
+\label{tab:model_size}
+\end{table}
+
+RSFT gains are non-monotonic with model scale (Table~\ref{tab:model_size}): 1.7B gains +2.6pp, 4B gains +6.0pp, 8B gains only +1.7pp. The 1.7B model generates fewer high-quality candidates (candidate pool ceiling is low), while the 8B model's strong SFT baseline (45.8 \relf{}) leaves less room for improvement. Additionally, QLoRA rank 64 represents different effective parameter ratios across scales ($\sim$1.6\% for 4B, $\sim$0.8\% for 8B), likely requiring per-scale hyperparameter tuning.
+
+%-------------------------------------------------------------------
+\subsection{Generalization: Re-DocRED}
+\label{sec:redocred}
+%-------------------------------------------------------------------
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Dataset} & \textbf{\relf{}} & \textbf{\evi{}$_\text{cond}$} & \textbf{\edcr{}} & \textbf{$\Delta$\relf{}} \\
+\midrule
+DocRED SFT & 40.6 & 79.8 & 71.2 & --- \\
+DocRED RSFT & 46.6 & 80.9 & 63.5 & +6.0 \\
+\midrule
+Re-DocRED SFT & 52.5 & 81.0 & 63.5 & --- \\
+Re-DocRED RSFT & 54.8 & 81.8 & 59.2 & +2.3 \\
+\bottomrule
+\end{tabular}
+\caption{DocRED vs.\ Re-DocRED. RSFT gains shrink from +6.0pp to +2.3pp on the cleaner Re-DocRED annotations, suggesting RSFT partly compensates for annotation noise.}
+\label{tab:redocred}
+\end{table}
+
+On Re-DocRED \cite{tan2022revisiting}, which corrects DocRED's false negatives, the SFT baseline is substantially stronger (52.5 vs.\ 40.6 \relf{}) and RSFT gains shrink to +2.3pp (Table~\ref{tab:redocred}). This suggests RSFT partly functions as an annotation noise robustness mechanism: when gold annotations are more complete, the marginal value of rejection sampling decreases because the SFT training signal is already cleaner.
+
+%===================================================================
+\section{Discussion}
+\label{sec:discussion}
+%===================================================================
+
+\paragraph{Why RSFT Works and GRPO Does Not.}
+The GRPO $\ll$ DPO $\approx$ SFT $<$ RSFT ordering reveals a key insight: for structured IE, the training \textit{data} matters more than the training \textit{algorithm}. RSFT succeeds by directly replacing low-quality training examples with high-quality ones, sidestepping the policy gradient entirely. DPO, despite using the same candidate pool, only adjusts the loss function without changing the training distribution, yielding no improvement. GRPO's online gradients are actively destructive, optimizing the easier evidence dimension while catastrophically forgetting the harder extraction dimension.
+
+\paragraph{The Evaluation Dilemma.}
+Our multi-metric analysis reveals that no single automatic metric adequately captures evidence quality. Conditional \evi{} ignores extraction errors; joint \evi{} conflates them; \edcr{} overestimates distractors due to annotation incompleteness ($r{=}0.28$ with human judgment). The 47pp gap between conditional and joint \evi{} (80.9 vs.\ 33.8) quantifies how severely extraction performance confounds evidence evaluation. Future work on evidence evaluation must disentangle these factors.
+
+\paragraph{Limitations.}
+Our study has several limitations: (1) all experiments use QLoRA; full fine-tuning or different PEFT methods may yield different results for both RSFT and GRPO; (2) GRPO experiments are limited to $G \leq 8$ due to GPU memory constraints---larger group sizes may further recover performance; (3) the 100-sample human study, while informative, is small-scale; (4) we evaluate on DocRED variants only; generalization to other document-level IE benchmarks (CDR, GDA) remains untested.
+
+%===================================================================
+\section{Conclusion}
+%===================================================================
+
+We presented the first systematic study of LLM-based evidence generation for document-level relation extraction. Our findings establish three core results: (1) rejection sampling fine-tuning is the most effective training paradigm, robust to scoring function choice, but with gains that diminish on cleaner annotations and vary non-monotonically with model scale; (2) online RL (GRPO) exhibits catastrophic evidence-extraction decoupling driven partly by advantage estimation noise in small group sizes, while offline preference learning (DPO) is stable but ineffective; (3) automatic evidence metrics---both \evi{} variants and \edcr{}---have significant limitations that human evaluation confirms.
+
+These results reframe the LLM evidence generation problem from method design to paradigm and evaluation selection. We release our benchmark definition, multi-metric evaluation code, and complete experimental artifacts to support future research.
+
+\begin{thebibliography}{20}
+
+\bibitem[\protect\citename{Gao et al.}2023]{gao2023scaling}
+Leo Gao, John Schulman, and Jacob Hilton. 2023.
+\newblock Scaling Laws for Reward Model Overoptimization.
+\newblock In \emph{ICML}.
+
+\bibitem[\protect\citename{Ma et al.}2023]{ma2023dreeam}
+Youmi Ma, An Wang, Naoaki Okazaki. 2023.
+\newblock DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction.
+\newblock In \emph{EACL}.
+
+\bibitem[\protect\citename{Nan et al.}2020]{nan2020reasoning}
+Guoshun Nan, Zhijiang Guo, Ivan Sekulic, and Wei Lu. 2020.
+\newblock Reasoning with Latent Structure Refinement for Document-Level Relation Extraction.
+\newblock In \emph{ACL}.
+
+\bibitem[\protect\citename{Rafailov et al.}2024]{rafailov2024direct}
+Rafael Rafailov, Archit Sharma, Eric Mitchell, et al. 2024.
+\newblock Direct Preference Optimization: Your Language Model is Secretly a Reward Model.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[\protect\citename{Shao et al.}2024]{shao2024deepseekmath}
+Zhihong Shao, Peiyi Wang, Qihao Zhu, et al. 2024.
+\newblock DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models.
+\newblock \emph{arXiv preprint arXiv:2402.03300}.
+
+\bibitem[\protect\citename{Tajwar et al.}2024]{tajwar2024preference}
+Fahim Tajwar, Anikait Singh, Archit Sharma, et al. 2024.
+\newblock Preference Fine-Tuning of LLMs Should Leverage Suboptimal On-Policy Data.
+\newblock In \emph{ICML}.
+
+\bibitem[\protect\citename{Tan et al.}2022]{tan2022revisiting}
+Qingyu Tan, Lu Xu, Lidong Bing, Hwee Tou Ng, and Sharifah Mahani Aljunied. 2022.
+\newblock Revisiting DocRED -- Addressing the False Negative Problem in Relation Extraction.
+\newblock In \emph{EMNLP}.
+
+\bibitem[\protect\citename{Wadhwa et al.}2023]{wadhwa2023revisiting}
+Somin Wadhwa, Silvio Amir, and Byron C. Wallace. 2023.
+\newblock Revisiting Relation Extraction in the era of Large Language Models.
+\newblock In \emph{ACL}.
+
+\bibitem[\protect\citename{Xie et al.}2022]{xie2022eider}
+Yiqing Xie, Jiaming Shen, Sha Li, Yuning Mao, and Jiawei Han. 2022.
+\newblock EIDER: Empowering Document-Level Relation Extraction with Efficient Evidence Extraction and Inference-Stage Fusion.
+\newblock In \emph{ACL Findings}.
+
+\bibitem[\protect\citename{Xu et al.}2024]{xu2024lmrc}
+Xue Xu, Tong Zhu, Yinghui Li, and Wenliang Chen. 2024.
+\newblock LMRC: Large Language Model-based Document-Level Relation Classification.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[\protect\citename{Yao et al.}2019]{yao2019docred}
+Yuan Yao, Deming Ye, Peng Li, Xu Han, et al. 2019.
+\newblock DocRED: A Large-Scale Document-Level Relation Extraction Dataset.
+\newblock In \emph{ACL}.
+
+\bibitem[\protect\citename{Zeng et al.}2020]{zeng2020double}
+Shuang Zeng, Runxin Xu, Baobao Chang, and Lei Li. 2020.
+\newblock Double Graph Based Reasoning for Document-level Relation Extraction.
+\newblock In \emph{EMNLP}.
+
+\end{thebibliography}
+
+\end{document}

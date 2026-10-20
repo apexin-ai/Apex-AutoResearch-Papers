@@ -1,0 +1,861 @@
+# analysis 14b rsft s43 test eval pair
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 29
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/chats/worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542.jsonl`
+- **Structured JSON:** [`f5593f4d969b171a270e.json`](../../sessions/f5/f5593f4d969b171a270e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+29 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T16:57:28.228298+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T16:57:28.228730+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T16:57:28.229002+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -80 ~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -80 ~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-23T16:57:28.229204+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -80 ~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "tail -80 ~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_no_evi.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-23T16:57:28.229515+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-23 23:01:45,965 INFO Detected adapter at /root/autodl-tmp/rsft_output_14b_s43, base: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n2026-05-23 23:01:45,965 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n2026-05-23 23:01:46,436 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/443 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/443 [00:00<01:14,  5.91it/s]\\rLoading weights:   0%|          | 2/443 [00:00<01:21,  5.40it/s]\\rLoading weights:   3%|▎         | 15/443 [00:00<00:10, 42.00it/s]\\rLoading weights:   6%|▌         | 27/443 [00:00<00:06, 61.83it/s]\\rLoading weights:   8%|▊         | 37/443 [00:00<00:06, 66.76it/s]\\rLoading weights:  12%|█▏        | 53/443 [00:00<00:05, 66.48it/s]\\rLoading weights:  19%|█▊        | 83/443 [00:01<00:03, 117.22it/s]\\rLoading weights:  23%|██▎       | 100/443 [00:01<00:02, 128.57it/s]\\rLoading weights:  26%|█���▌       | 116/443 [00:01<00:03, 103.38it/s]\\rLoading weights:  31%|███       | 138/443 [00:01<00:02, 123.93it/s]\\rLoading weights:  35%|███▍      | 153/443 [00:01<00:02, 128.32it/s]\\rLoading weights:  38%|███▊      | 168/443 [00:01<00:02, 131.66it/s]\\rLoading weights:  41%|████▏     | 183/443 [00:01<00:02, 116.48it/s]\\rLoading weights:  44%|████▍     | 197/443 [00:02<00:02, 120.98it/s]\\rLoading weights:  47%|████▋     | 210/443 [00:02<00:01, 122.43it/s]\\rLoading weights:  50%|█████     | 223/443 [00:02<00:01, 116.00it/s]\\rLoading weights:  53%|█████▎    | 236/443 [00:02<00:01, 112.64it/s]\\rLoading weights:  56%|█████▌    | 248/443 [00:02<00:01, 108.39it/s]\\rLoading weights:  59%|█████▊    | 260/443 [00:02<00:01, 107.22it/s]\\rLoading weights:  63%|██████▎   | 279/443 [00:02<00:01, 121.21it/s]\\rLoading weights:  66%|██████▌   | 292/443 [00:02<00:01, 109.74it/s]\\rLoading weights:  69%|██████▉   | 307/443 [00:02<0
+…[truncated 4297 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-23T16:57:28.229741+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-23T16:57:28.229993+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-23 23:01:49,187 INFO Detected adapter at /root/autodl-tmp/rsft_output_14b_s43, base: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n2026-05-23 23:01:49,188 INFO Loading tokenizer: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n2026-05-23 23:01:49,586 INFO Loading model: /root/autodl-tmp/models/Qwen/Qwen3-14B\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/443 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/443 [00:00<01:37,  4.54it/s]\\rLoading weights:   0%|          | 2/443 [00:00<01:45,  4.17it/s]\\rLoading weights:   3%|▎         | 12/443 [00:00<00:15, 28.43it/s]\\rLoading weights:   5%|▍         | 21/443 [00:00<00:09, 44.24it/s]\\rLoading weights:   6%|▋         | 28/443 [00:00<00:08, 50.81it/s]\\rLoading weights:   9%|▉         | 39/443 [00:00<00:06, 65.02it/s]\\rLoading weights:  11%|█▏        | 50/443 [00:01<00:05, 74.67it/s]\\rLoading weights:  14%|█▎        | 60/443 [00:01<00:04, 79.48it/s]\\rLoading weights:  16%|█▋        | 72/443 [00:01<00:04, 88.89it/s]\\rLoading weights:  19%|█▊        | 83/443 [00:01<00:03, 92.45it/s]\\rLoading weights:  21%|██        | 93/443 [00:01<00:03, 92.73it/s]\\rLoading weights:  24%|██▎       | 105/443 [00:01<00:03, 96.57it/s]\\rLoading weights:  26%|██▌       | 115/443 [00:01<00:03, 93.72it/s]\\rLoading weights:  29%|██▊       | 127/443 [00:01<00:03, 96.73it/s]\\rLoading weights:  31%|███       | 137/443 [00:01<00:03, 94.84it/s]\\rLoading weights:  34%|███▎      | 149/443 [00:02<00:02, 98.93it/s]\\rLoading weights:  36%|███▌      | 160/443 [00:02<00:02, 98.39it/s]\\rLoading weights:  39%|███▊      | 171/443 [00:02<00:02, 98.48it/s]\\rLoading weights:  41%|████      | 182/443 [00:02<00:02, 98.51it/s]\\rLoading weights:  44%|████▎     | 193/443 [00:02<00:02, 97.82it/s]\\rLoading weights:  46%|████▌     | 203/443 [00:02<00:02, 95.08it/s]\\rLoading weights:  49%|████▊     | 215/443 [00:02<00:02, 97.11it/s]\\rLo
+…[truncated 4959 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-23T16:57:28.230165+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/metrics.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-23T16:57:28.230340+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/metrics.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T16:57:28.230476+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/metrics.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-23T16:57:28.230628+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-23T16:57:28.230758+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T16:57:28.230898+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"codalab_submission.json\\npredictions.json\\ntest_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T16:57:28.231033+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"codalab_submission.json\\npredictions.json\\ntest_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T16:57:28.231162+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/test_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi/test_summary.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T16:57:28.231388+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_documents\\\": 500,\\n  \\\"n_predictions\\\": 22861,\\n  \\\"n_truncated\\\": 271,\\n  \\\"n_format_ok\\\": 498,\\n  \\\"format_ok_rate\\\": 0.996,\\n  \\\"inference_time_seconds\\\": 6583.2,\\n  \\\"codalab_stats\\\": {\\n    \\\"converted\\\": 13323,\\n    \\\"skipped_rel\\\": 371,\\n    \\\"skipped_entity\\\": 652\\n  },\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_14b_s43\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_14b_s43\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 2048,\\n    \\\"seed\\\": 43,\\n    \\\"split\\\": \\\"test_revised\\\",\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"metrics\\\": {\\n    \\\"precision\\\": 0.4251757373722734,\\n    \\\"recall\\\": 0.3381556195965418,\\n    \\\"f1\\\": 0.37670551221548043,\\n    \\\"ign_precision\\\": 0.4251757373722734,\\n    \\\"ign_recall\\\": 0.3381556195965418,\\n    \\\"ign_f1\\\": 0.37670551221548043,\\n    \\\"tp\\\": 5867,\\n    \\\"pred_count\\\": 13799,\\n    \\\"gold_count\\\": 17350,\\n    \\\"evi_precision\\\": 0.44330312185297077,\\n    \\\"evi_recall\\\": 0.8538730117677487,\\n    \\\"evi_f1\\\": 0.5836132225561251,\\n    \\\"n_evaluated\\\": 22507,\\n    \\\"edcr\\\": 0.8339745040356038,\\n    \\\"n_distractor_citations\\\": 33168,\\n    \\\"n_total_citations\\\": 39771,\\n    \\\"evi_joint_precision\\\": 0.1875953018751288,\\n    \\\"evi_joint_recall\\\": 0.36072588953165863,\\n    \\\"evi_f1_joint\\\": 0.24682789285326975,\\n    \\\"evi_tp\\\": 4552,\\n    \\\"evi_pred_total\\\": 24265,\\n    \\\"evi_gold_total\\\": 12619,\\n    \\\"format_compliance_rate\\\": 0.996,\\n    \\\"
+…[truncated 323 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-23T16:57:28.231559+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/test_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "cat /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi/test_summary.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T16:57:28.231734+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_documents\\\": 500,\\n  \\\"n_predictions\\\": 31216,\\n  \\\"n_truncated\\\": 292,\\n  \\\"n_format_ok\\\": 499,\\n  \\\"format_ok_rate\\\": 0.998,\\n  \\\"inference_time_seconds\\\": 6554.6,\\n  \\\"codalab_stats\\\": {\\n    \\\"converted\\\": 14066,\\n    \\\"skipped_rel\\\": 405,\\n    \\\"skipped_entity\\\": 831\\n  },\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_14b_s43\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_14b_s43\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred-repo/data\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_no_evi\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 2048,\\n    \\\"seed\\\": 43,\\n    \\\"split\\\": \\\"test_revised\\\",\\n    \\\"no_evidence\\\": true,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"metrics\\\": {\\n    \\\"precision\\\": 0.4138310304530144,\\n    \\\"recall\\\": 0.34697406340057635,\\n    \\\"f1\\\": 0.37746496535724366,\\n    \\\"ign_precision\\\": 0.4138310304530144,\\n    \\\"ign_recall\\\": 0.34697406340057635,\\n    \\\"ign_f1\\\": 0.37746496535724366,\\n    \\\"tp\\\": 6020,\\n    \\\"pred_count\\\": 14547,\\n    \\\"gold_count\\\": 17350,\\n    \\\"evi_precision\\\": 0.0,\\n    \\\"evi_recall\\\": 0.0,\\n    \\\"evi_f1\\\": 0.0,\\n    \\\"n_evaluated\\\": 0,\\n    \\\"edcr\\\": 0.0,\\n    \\\"n_distractor_citations\\\": 0,\\n    \\\"n_total_citations\\\": 0,\\n    \\\"evi_joint_precision\\\": 0.0,\\n    \\\"evi_joint_recall\\\": 0.0,\\n    \\\"evi_f1_joint\\\": 0.0,\\n    \\\"evi_tp\\\": 0,\\n    \\\"evi_pred_total\\\": 0,\\n    \\\"evi_gold_total\\\": 12619,\\n    \\\"format_compliance_rate\\\": 0.998,\\n    \\\"field_compliance_rate\\\": 0.0,\\n    \\\"evidence_format_rate\\\": 0.0,\\n    \\\"n_total\\\": 500,\\n    \\\"n_parseable\\\": 
+…[truncated 187 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-23T16:57:28.231946+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43_pair/ 2>/dev/null || echo \"DIR_NOT_EXISTS\"",
+  "description": "Check if output directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43_pair/ 2>/dev/null || echo \"DIR_NOT_EXISTS\"",
+    "description": "Check if output directory exists"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T16:57:28.232093+00:00_
+
+DIR_NOT_EXISTS
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-23T16:57:28.232224+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43_pair",
+  "description": "Create output directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43_pair",
+    "description": "Create output directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T16:57:28.232374+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-23T16:57:28.232510+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43_pair/analysis.md",
+  "content": "# 14B RSFT s43 Test Eval — Evidence Tax Analysis\n\n## 1. 完整指标表\n\n| Metric | with_evi (s43) | no_evi (s43) |\n|--------|---------------|-------------|\n| **ign_f1** | **0.3767** | **0.3775** |\n| f1 | 0.3767 | 0.3775 |\n| precision | 0.4252 | 0.4138 |\n| recall | 0.3382 | 0.3470 |\n| format_ok_rate | 0.996 (498/500) | 0.998 (499/500) |\n| n_truncated | 271/500 | 292/500 |\n| n_predictions | 22,861 | 31,216 |\n| tp / gold | 5,867 / 17,350 | 6,020 / 17,350 |\n| inference_time | 6,583.2s (1h49m) | 6,554.6s (1h49m) |\n| Evi-F1 (DREEAM) | 0.2468 | N/A |\n| Evi-F1 (TP) | 0.5836 | N/A |\n| EDCR | 0.8340 | N/A |\n\n**Note:** `ign_f1 == f1` because `train_annotated.json` not found (test split, no train overlap filtering).\n\n## 2. Evidence Tax 计算\n\n```\nevidence_tax = no_evi_ign_f1 - with_evi_ign_f1\n             = 0.3775 - 0.3767\n             = +0.0008\n             = +0.08 pp  (正值 = no-evi 更好)\n```\n\n## 3. 与 s42 对比\n\n| Metric | s42 | s43 |\n|--------|-----|-----|\n| with_evi ign_f1 | 0.3849 | 0.3767 |\n| no_evi ign_f1 | 0.3926 | 0.3775 |\n| evidence_tax (pp) | **+0.77** | **+0.08** |\n\ns43 两个变体的 ign_f1 均低于 s42（约 -0.8pp ~ -1.5pp），seed 间存在方差。\n\n## 4. 14B 2-Seed Evidence Tax 汇总\n\n| Seed | with_evi | no_evi | Tax (pp) |\n|------|----------|--------|----------|\n| s42 | 0.3849 | 0.3926 | +0.77 |\n| s43 | 0.3767 | 0.3775 | +0.08 |\n| **Mean** | **0.3808** | **0.3851** | **+0.43** |\n| **Std** | **0.0058** | **0.0107** | **±0.49** |\n\nEvidence tax mean = **+0.43 ± 0.49 pp** (sample std, n=2).\n\n方向一致（两个 seed 均为正，即 no-evi ≥ with-evi），但幅度小且 seed 间方差大，税值在统计意义上不显著。\n\n## 5. 结论判定\n\n| Experiment | Conclusion | 理由 |\n|-----------|-----------|------|\n| test_eval_14b_rsft_s43_with_evi | **success** | 完成推理，format_ok 99.6%，ign_f1=0.3767 合理 |\n| test_eval_14b_rsft_s43_no_evi | **success** | 完成推理，format_ok 99.8%，ign_f1=0.3775 合理 |\n\n**Evidence tax 整体判定：** 14B 模型的 evidence tax 为 +0.43±0.49pp，方向一致但幅度极小，evidence 输出对 RE 性能的负面影响可忽略。\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43_pair/analysis.md",
+    "content": "# 14B RSFT s43 Test Eval — Evidence Tax Analysis\n\n## 1. 完整指标表\n\n| Metric | with_evi (s43) | no_evi (s43) |\n|--------|---------------|-------------|\n| **ign_f1** | **0.3767** | **0.3775** |\n| f1 | 0.3767 | 0.3775 |\n| precision | 0.4252 | 0.4138 |\n| recall | 0.3382 | 0.3470 |\n| format_ok_rate | 0.996 (498/500) | 0.998 (499/500) |\n| n_truncated | 271/500 | 292/500 |\n| n_predictions | 22,861 | 31,216 |\n| tp / gold | 5,867 / 17,350 | 6,020 / 17,350 |\n| inference_time | 6,583.2s (1h49m) | 6,554.6s (1h49m) |\n| Evi-F1 (DREEAM) | 0.2468 | N/A |\n| Evi-F1 (TP) | 0.5836 | N/A |\n| EDCR | 0.8340 | N/A |\n\n**Note:** `ign_f1 == f1` because `train_annotated.json` not found (test split, no train overlap filtering).\n\n## 2. Evidence Tax 计算\n\n```\nevidence_tax = no_evi_ign_f1 - with_evi_ign_f1\n             = 0.3775 - 0.3767\n             = +0.0008\n             = +0.08 pp  (正值 = no-evi 更好)\n```\n\n## 3. 与 s42 对比\n\n| Metric | s42 | s43 |\n|--------|-----|-----|\n| with_evi ign_f1 | 0.3849 | 0.3767 |\n| no_evi ign_f1 | 0.3926 | 0.3775 |\n| evidence_tax (pp) | **+0.77** | **+0.08** |\n\ns43 两个变体的 ign_f1 均低于 s42（约 -0.8pp ~ -1.5pp），seed 间存在方差。\n\n## 4. 14B 2-Seed Evidence Tax 汇总\n\n| Seed | with_evi | no_evi | Tax (pp) |\n|------|----------|--------|----------|\n| s42 | 0.3849 | 0.3926 | +0.77 |\n| s43 | 0.3767 | 0.3775 | +0.08 |\n| **Mean** | **0.3808** | **0.3851** | **+0.43** |\n| **Std** | **0.0058** | **0.0107** | **±0.49** |\n\nEvidence tax mean = **+0.43 ± 0.49 pp** (sample std, n=2).\n\n方向一致（两个 seed 均为正，即 no-evi ≥ with-evi），但幅度小且 seed 间方差大，税值在统计意义上不显著。\n\n## 5. 结论判定\n\n| Experiment | Conclusion | 理由 |\n|-----------|-----------|------|\n| test_eval_14b_rsft_s43_with_evi | **success** | 完成推理，format_ok 99.6%，ign_f1=0.3767 合理 |\n| test_eval_14b_rsft_s43_no_evi | **success** | 完成推理，format_ok 99.8%，ign_f1=0.3775 合理 |\n\n**Evidence tax 整体判定：** 14B 模型的 evidence tax 为 +0.43±0.49pp，方向一致但幅度极小，evidence 输出对 RE 性能的负面影响可忽略。\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-23T16:57:28.232664+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43_pair/analysis.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-23T16:57:28.232796+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T16:57:28.232949+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-23T16:57:28.233088+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "test_eval_14b_rsft_s43_pair_analysis",
+  "type": "report",
+  "description": "14B RSFT s43 test eval paired analysis: with_evi vs no_evi evidence tax calculation, cross-seed (s42/s43) comparison",
+  "project": "faith-evidence-ie",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43_pair/analysis.md",
+  "tags": "['14b', 'rsft', 's43', 'evidence-tax', 'test-eval']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "test_eval_14b_rsft_s43_pair_analysis",
+    "type": "report",
+    "description": "14B RSFT s43 test eval paired analysis: with_evi vs no_evi evidence tax calculation, cross-seed (s42/s43) comparison",
+    "project": "faith-evidence-ie",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/test_eval_14b_rsft_s43_pair/analysis.md",
+    "tags": "['14b', 'rsft', 's43', 'evidence-tax', 'test-eval']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T16:57:28.233248+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260523_65a66c\", \"name\": \"test_eval_14b_rsft_s43_pair_analysis\", \"type\": \"report\", \"description\": \"14B RSFT s43 test eval paired analysis: with_evi vs no_evi evidence tax calculation, cross-seed (s42/s43) comparison\", \"path\": \"projects/faith-evidence-ie/artifacts/_project/report/analysis.md\", \"url\": null, \"project\": \"faith-evidence-ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-23T16:57:20.956110+00:00\", \"tags\": [\"14b\", \"rsft\", \"s43\", \"evidence-tax\", \"test-eval\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-23T16:57:28.233420+00:00_
+
+分析完成。核心结果：
+
+**14B s43 evidence tax = +0.08pp**（with_evi 0.3767 vs no_evi 0.3775）
+
+**14B 2-seed 汇总：**
+- s42: +0.77pp, s43: +0.08pp
+- Mean: **+0.43 ± 0.49pp**
+- 方向一致（no-evi 略优），但幅度极小，evidence 输出对 RE 性能的负面影响可忽略
+
+两个实验均 conclusion=success。报告已写入 `artifacts/test_eval_14b_rsft_s43_pair/analysis.md`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_14b-rsft-s43-test-eval-pair_20260523T165542"
+}
+```
+
+</details>
+
+---

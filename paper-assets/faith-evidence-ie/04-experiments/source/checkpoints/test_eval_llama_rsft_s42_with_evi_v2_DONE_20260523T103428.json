@@ -1,0 +1,43 @@
+{
+  "exp_id": "test_eval_llama_rsft_s42_with_evi_v2",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T10:32:07.492Z",
+    "updated_at": "2026-05-23T10:34:27.578Z",
+    "hypothesis": "LLaMA RSFT s42 with-evi test eval 重跑（当前版本 eval 代码）。原 s42 eval field_compliance=176/500 vs s43=497/500，旧代码版本 confound。用与 s43 完全一致的参数消除跨 seed 对比污染。数据质量修复。",
+    "parent": "test_eval_llama_rsft_s42",
+    "spec": {
+      "command": "python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_k1 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --batch_size 16 --seed 42 --output_dir /root/autodl-tmp/eval_results/test_eval_llama_rsft_s42_with_evi_v2",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/faith-evidence-ie/test_eval_llama_rsft_s42_with_evi_v2.log",
+      "submitted_at": "2026-05-23T10:33:02.091Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+      "data_count": 500,
+      "model_name": "LLaMA-3.1-8B + SFT + RSFT-k1-s42 (with-evi, v2)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_llama_3_1_8b_k1",
+      "eval_data": "Re-DocRED test_revised (500 docs)",
+      "wall_clock_seconds": 85.5,
+      "gpu_hours": 0.02
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T10:34:20.575Z"
+    },
+    "failure_reason": "EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-23T10:34:27.578Z"
+  },
+  "timestamp": "2026-05-23T10:34:28.707624+00:00",
+  "trigger": "update_registry"
+}

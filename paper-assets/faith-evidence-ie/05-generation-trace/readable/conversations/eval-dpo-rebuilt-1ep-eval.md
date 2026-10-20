@@ -1,0 +1,698 @@
+# eval dpo rebuilt 1ep eval
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 23
+- **Recorded user turns:** 0
+- **Tool calls:** 11
+- **Original source:** `logs/chats/worker_eval_dpo_rebuilt_1ep_eval_20260523T033005.jsonl`
+- **Structured JSON:** [`bc23dd063812d6472351.json`](../../sessions/bc/bc23dd063812d6472351.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+23 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T03:32:00.583663+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_execute",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_execute",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T03:32:00.584006+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T03:32:00.584176+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-23T03:32:00.584372+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 26857 MiB, 97887 MiB\\n1, 32479 MiB, 97887 MiB\\n2, 0 MiB, 97887 MiB\\n3, 6071 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-23T03:32:00.584512+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -la /root/autodl-tmp/dpo_output_rebuilt_1ep/adapter_config.json /root/autodl-tmp/dpo_output_rebuilt_1ep/adapter_model.safetensors",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ls -la /root/autodl-tmp/dpo_output_rebuilt_1ep/adapter_config.json /root/autodl-tmp/dpo_output_rebuilt_1ep/adapter_model.safetensors",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T03:32:00.584644+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root      1112 May 23 11:09 /root/autodl-tmp/dpo_output_rebuilt_1ep/adapter_config.json\\n-rw-r--r-- 1 root root 528550256 May 23 11:09 /root/autodl-tmp/dpo_output_rebuilt_1ep/adapter_model.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T03:32:00.584766+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "dpo_rebuilt_1ep_eval",
+  "field": "status",
+  "value": "PREPARING",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "dpo_rebuilt_1ep_eval",
+    "field": "status",
+    "value": "PREPARING",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T03:32:00.584920+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"dpo_rebuilt_1ep_eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T03:30:29.032Z\", \"updated_at\": \"2026-05-23T03:30:29.032Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.9955}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-23T03:32:00.585067+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "dpo_rebuilt_1ep_eval",
+  "field": "hypothesis",
+  "value": "DPO 1ep 重建 checkpoint 的 unified protocol eval (matched@2048, DocRED dev)。DPO adapter 在 merged SFT 上，需要 --base_model + --sft_adapter + --model_path (DPO adapter)。对比原始 1ep eval Ign-F1=38.9 和 RSFT CED baseline 44.67。",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "dpo_rebuilt_1ep_eval",
+    "field": "hypothesis",
+    "value": "DPO 1ep 重建 checkpoint 的 unified protocol eval (matched@2048, DocRED dev)。DPO adapter 在 merged SFT 上，需要 --base_model + --sft_adapter + --model_path (DPO adapter)。对比原始 1ep eval Ign-F1=38.9 和 RSFT CED baseline 44.67。",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-23T03:32:00.585198+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "dpo_rebuilt_1ep_eval",
+  "field": "parent",
+  "value": "dpo_rebuilt_1ep",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "dpo_rebuilt_1ep_eval",
+    "field": "parent",
+    "value": "dpo_rebuilt_1ep",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T03:32:00.585393+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"dpo_rebuilt_1ep_eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T03:30:29.032Z\", \"updated_at\": \"2026-05-23T03:30:41.159Z\", \"hypothesis\": \"DPO 1ep 重建 checkpoint 的 unified protocol eval (matched@2048, DocRED dev)。DPO adapter 在 merged SFT 上，需要 --base_model + --sft_adapter + --model_path (DPO adapter)。对比原始 1ep eval Ign-F1=38.9 和 RSFT CED baseline 44.67。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.0909}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T03:32:00.585542+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"dpo_rebuilt_1ep_eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T03:30:29.032Z\", \"updated_at\": \"2026-05-23T03:30:43.989Z\", \"hypothesis\": \"DPO 1ep 重建 checkpoint 的 unified protocol eval (matched@2048, DocRED dev)。DPO adapter 在 merged SFT 上，需要 --base_model + --sft_adapter + --model_path (DPO adapter)。对比原始 1ep eval Ign-F1=38.9 和 RSFT CED baseline 44.67。\", \"parent\": \"dpo_rebuilt_1ep\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.9955}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-23T03:32:00.585689+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export CUDA_VISIBLE_DEVICES=2 && nohup python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_rebuilt_1ep --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 2048 --no-quantize --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval > /root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval.log 2>&1 & echo PID=\\$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export CUDA_VISIBLE_DEVICES=2 && nohup python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_rebuilt_1ep --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 2048 --no-quantize --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval > /root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval.log 2>&1 & echo PID=\\$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T03:32:00.585822+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=221951\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T03:32:00.585961+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ps -p 221951 -o pid,cmd --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx5090-4x",
+    "command": "ps -p 221951 -o pid,cmd --no-headers",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T03:32:00.586087+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"221951 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export CUDA_VISIBLE_DEVICES=2 && nohup python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_rebuilt_1ep --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 2048 --no-quantize --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval > /root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval.log 2>&1 & echo PID=$!\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-23T03:32:00.586220+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "dpo_rebuilt_1ep_eval",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "faith-evidence-ie",
+  "spec": "{'command': 'python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_rebuilt_1ep --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 2048 --no-quantize --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval', 'server': 'rtx5090-4x', 'data_path': '/root/autodl-tmp/data/docred', 'data_count': 985, 'model_name': 'Qwen3-4B + SFT (merged) + DPO-1ep LoRA', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/dpo_output_rebuilt_1ep', 'eval_data': 'docred-dev', 'pid': 221951, 'gpu': 'cuda:2', 'log_path': '/root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "dpo_rebuilt_1ep_eval",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "faith-evidence-ie",
+    "spec": "{'command': 'python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_rebuilt_1ep --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 2048 --no-quantize --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval', 'server': 'rtx5090-4x', 'data_path': '/root/autodl-tmp/data/docred', 'data_count': 985, 'model_name': 'Qwen3-4B + SFT (merged) + DPO-1ep LoRA', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/dpo_output_rebuilt_1ep', 'eval_data': 'docred-dev', 'pid': 221951, 'gpu': 'cuda:2', 'log_path': '/root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T03:32:00.586438+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.9143}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-23T03:32:00.586588+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "dpo_rebuilt_1ep_eval",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "dpo_rebuilt_1ep_eval",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "faith-evidence-ie"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T03:32:00.586723+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"dpo_rebuilt_1ep_eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-23T03:30:29.032Z\", \"updated_at\": \"2026-05-23T03:31:44.178Z\", \"hypothesis\": \"DPO 1ep 重建 checkpoint 的 unified protocol eval (matched@2048, DocRED dev)。DPO adapter 在 merged SFT 上，需要 --base_model + --sft_adapter + --model_path (DPO adapter)。对比原始 1ep eval Ign-F1=38.9 和 RSFT CED baseline 44.67。\", \"parent\": \"dpo_rebuilt_1ep\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.7777}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-23T03:32:00.586856+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "dpo_rebuilt_1ep_eval",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "faith-evidence-ie",
+  "spec": "{'command': 'python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_rebuilt_1ep --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 2048 --no-quantize --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval', 'server': 'rtx5090-4x', 'data_path': '/root/autodl-tmp/data/docred', 'data_count': 985, 'model_name': 'Qwen3-4B + SFT (merged) + DPO-1ep LoRA', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/dpo_output_rebuilt_1ep', 'eval_data': 'docred-dev', 'pid': 221951, 'gpu': 'cuda:2', 'log_path': '/root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "dpo_rebuilt_1ep_eval",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "faith-evidence-ie",
+    "spec": "{'command': 'python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_rebuilt_1ep --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 2048 --no-quantize --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval', 'server': 'rtx5090-4x', 'data_path': '/root/autodl-tmp/data/docred', 'data_count': 985, 'model_name': 'Qwen3-4B + SFT (merged) + DPO-1ep LoRA', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/dpo_output_rebuilt_1ep', 'eval_data': 'docred-dev', 'pid': 221951, 'gpu': 'cuda:2', 'log_path': '/root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T03:32:00.587025+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"dpo_rebuilt_1ep_eval\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T03:30:29.032Z\", \"updated_at\": \"2026-05-23T03:31:52.799Z\", \"hypothesis\": \"DPO 1ep 重建 checkpoint 的 unified protocol eval (matched@2048, DocRED dev)。DPO adapter 在 merged SFT 上，需要 --base_model + --sft_adapter + --model_path (DPO adapter)。对比原始 1ep eval Ign-F1=38.9 和 RSFT CED baseline 44.67。\", \"parent\": \"dpo_rebuilt_1ep\", \"spec\": {\"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_rebuilt_1ep --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 2048 --no-quantize --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT (merged) + DPO-1ep LoRA\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/dpo_output_rebuilt_1ep\", \"eval_data\": \"docred-dev\", \"pid\": 221951, \"gpu\": \"cuda:2\", \"log_path\": \"/root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval.log\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.6836}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-23T03:32:00.587200+00:00_
+
+`dpo_rebuilt_1ep_eval` 已提交并运行：
+
+- **PID**: 221951
+- **GPU**: cuda:2（提交前确认 0 MiB 占用）
+- **协议**: matched@2048, with-evidence, DocRED dev
+- **日志**: `/root/autodl-tmp/eval_results/dpo_rebuilt_1ep_eval.log`
+- **预估耗时**: ~1-1.5h
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_eval_dpo_rebuilt_1ep_eval_20260523T033005"
+}
+```
+
+</details>
+
+---

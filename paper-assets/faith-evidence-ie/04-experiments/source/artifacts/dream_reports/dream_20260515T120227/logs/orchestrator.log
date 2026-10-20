@@ -1,0 +1,3 @@
+2026-05-15 12:29:00,108 INFO    core.tools.feishu  create_chat: name='审稿-faith-evidence-ie' → chat_id=oc_186574e43a82a9df336fe62a846a7b52
+2026-05-15 12:29:00,111 INFO    core.tools.dream  [dream] auto-created Group C for project=faith-evidence-ie: oc_186574e43a82a9df336fe62a846a7b52
+2026-05-15 12:29:00,215 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-idea_gen_0513_6/config/mcp_config_dream_review_director.json
