@@ -688,6 +688,19 @@
       }
     },
     {
+      "project": "gen-depth-contamination--export-20260712",
+      "title": "Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary (July export snapshot)",
+      "catalog": "../research-snapshots/gen-depth-contamination/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1762,
+        "messages": 262934,
+        "user_turns": 11277,
+        "tool_calls": 70227,
+        "unparsed_lines": 14,
+        "conversation": 1762
+      }
+    },
+    {
       "project": "gen-depth-fingerprint",
       "title": "Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text",
       "catalog": "../paper-assets/gen-depth-fingerprint/05-generation-trace/catalog.json",

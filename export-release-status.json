@@ -122,6 +122,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 453
+        },
+        "gen-depth-contamination": {
+          "status": "uploaded",
+          "project": "gen-depth-contamination",
+          "collection": "gen-depth-contamination--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "c9745c37eeaadb1f9be5005af5c868f3416323a52df18c6b755118afce7be8f8",
+          "indexed_members": 1767,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 1762
         }
       },
       "status": "in_progress",
